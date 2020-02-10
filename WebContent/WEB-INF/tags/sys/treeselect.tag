@@ -24,6 +24,7 @@
 <%@ attribute name="dataMsgRequired" type="java.lang.String" required="false" description=""%>
 <%@ attribute name="dicts" type="java.lang.Boolean" required="false" description="是否为数据字典的树"%>
 <%@ attribute name="placeholder" type="java.lang.String" required="false" description="提示语"%>
+<%@ attribute name="controlTree" type="java.lang.Boolean" required="false" description="是否为重点人员树"%>
 <div class="input-append">
 	<input id="${id}Id" name="${name}" class="${cssClass}" type="hidden" value="${value}"/>
 	<input id="${id}Name" name="${labelName}" ${allowInput?'':'readonly="readonly"'} type="text" value="${labelValue}" data-msg-required="${dataMsgRequired}" placeholder="${placeholder}"
@@ -77,8 +78,11 @@
 
 						//数据字典的树
 						var dicts = "${dicts}";
+						var controlTree = "${controlTree}";//重点人员树
 						if(dicts=="true"){
 							ids.push(nodes[i].name);
+						}else if(controlTree){
+							ids.push(nodes[i].param.peopleId);
 						}else{
 							ids.push(nodes[i].id);
 						}

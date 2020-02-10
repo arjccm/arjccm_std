@@ -171,9 +171,38 @@ CREATE TABLE `ccm_patrol_unit`  (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+
+-- ----------------------------
+-- Table structure for ccm_guard_unit
+-- ----------------------------
+DROP TABLE IF EXISTS `ccm_guard_unit`;
+CREATE TABLE `ccm_guard_unit`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 唯一主键ID（自增） ',
+  `security_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '警卫任务id',
+  `user_id` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 警卫 ',
+  `patrol_vehicles` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 车辆 ',
+  `vehicle_equipment` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 车载设备 ',
+  `individual_equipment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 单兵装备 ',
+  `departure_time` datetime(0) NULL DEFAULT NULL COMMENT ' 时间 ',
+  `status` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 状态 ',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 创建者 ',
+  `create_date` datetime(0) NULL DEFAULT NULL COMMENT ' 发生时间 ',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 更新者 ',
+  `update_date` datetime(0) NULL DEFAULT NULL COMMENT ' 更新时间 ',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 描述信息 ',
+  `del_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 删除标记 ',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `ccm_alarm_log_update_date`(`update_date`) USING BTREE,
+  INDEX `ccm_alarm_log_del_flag`(`del_flag`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '警卫单位 ' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
 -- 新增表   by maoxb  2020-02-09  end -----------------------------------------------------------------------------------------------------------------------
 
 -- 新增菜单  by maoxb   2020-02-07 start -----------------------------------------------------------------------------------------------------------------------
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('bba5e49630e649fab9c7816db639092e', '06dff2cae7b540b3a5ecabeec950296f', '0,1,ef61dbc7960f4272b360de7ad7d59a07,aa8bc4b271cf4b0ea85406e8d654f909,06dff2cae7b540b3a5ecabeec950296f,', '编辑', 60, '', '', '', '0', 'unit:ccmReliefUnit:edit', '1', '2020-02-09 07:24:51', '1', '2020-02-09 07:24:51', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('a10ea2424f074637839e82366cee2b74', '06dff2cae7b540b3a5ecabeec950296f', '0,1,ef61dbc7960f4272b360de7ad7d59a07,aa8bc4b271cf4b0ea85406e8d654f909,06dff2cae7b540b3a5ecabeec950296f,', '显示', 30, '', '', '', '0', 'unit:ccmReliefUnit:view', '1', '2020-02-09 07:24:08', '1', '2020-02-09 07:24:08', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('87c6bcb15e4045809e8c1e152b38011a', '29ddedacbae94e89ab07e9ebe8e558c8', '0,1,ef61dbc7960f4272b360de7ad7d59a07,aa8bc4b271cf4b0ea85406e8d654f909,29ddedacbae94e89ab07e9ebe8e558c8,', '编辑', 60, '', '', '', '0', 'relief:ccmReliefTask:edit', '1', '2020-02-07 18:09:10', '1', '2020-02-07 18:09:10', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('1f81b090f6f142139933c09be2717cc3', '29ddedacbae94e89ab07e9ebe8e558c8', '0,1,ef61dbc7960f4272b360de7ad7d59a07,aa8bc4b271cf4b0ea85406e8d654f909,29ddedacbae94e89ab07e9ebe8e558c8,', '显示', 30, '', '', '', '0', 'relief:ccmReliefTask:view', '1', '2020-02-07 18:08:30', '1', '2020-02-07 18:08:30', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('770581b5892c4cb8b714bccd6cd14019', '5977b1806ddf41c3baea18e7482dd724', '0,1,ef61dbc7960f4272b360de7ad7d59a07,1cff269b7cb248659118a3bdded9c0fe,5977b1806ddf41c3baea18e7482dd724,', '编辑', 60, '', '', '', '0', 'guard:ccmGuardUnit:edit', '1', '2020-02-07 18:06:53', '1', '2020-02-07 18:06:53', '', '0');
@@ -205,6 +234,5 @@ INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, 
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('e1ea142288174ff9be2ae602d07af1f9', 'ef61dbc7960f4272b360de7ad7d59a07', '0,1,ef61dbc7960f4272b360de7ad7d59a07,', '警情信息查询', 450, '', '', 'camera', '1', '', '1', '2020-02-07 17:08:50', '1', '2020-02-07 17:08:50', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('1cff269b7cb248659118a3bdded9c0fe', 'ef61dbc7960f4272b360de7ad7d59a07', '0,1,ef61dbc7960f4272b360de7ad7d59a07,', '警卫任务管理', 420, '', '', 'forward', '1', '', '1', '2020-02-07 17:07:54', '1', '2020-02-07 17:07:54', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('c4b65a69d07b4907b379fcda304d71b2', 'ef61dbc7960f4272b360de7ad7d59a07', '0,1,ef61dbc7960f4272b360de7ad7d59a07,', '巡逻管理', 390, '', '', 'richanggongzuo1', '1', '', '1', '2020-02-07 17:06:12', '1', '2020-02-07 17:06:12', '', '0');
-INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ea38f2936cae4276848bd888a7322aab', '3119b31a022645a78d4ebbe9b767b5f9', '0,1,ef61dbc7960f4272b360de7ad7d59a07,3119b31a022645a78d4ebbe9b767b5f9,', '警情通知', 70, '/alarmnotify/bphAlarmNotify/', '', '', '1', 'alarmnotify:bphAlarmNotify:view,alarmnotify:bphAlarmNotify:edit', '1', '2019-12-05 14:02:50', '1', '2019-12-05 14:02:50', '', '0');
 
 -- 新增菜单  by maoxb   2020-02-07 end -----------------------------------------------------------------------------------------------------------------------
