@@ -208,3 +208,5 @@ INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, 
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ea38f2936cae4276848bd888a7322aab', '3119b31a022645a78d4ebbe9b767b5f9', '0,1,ef61dbc7960f4272b360de7ad7d59a07,3119b31a022645a78d4ebbe9b767b5f9,', '警情通知', 70, '/alarmnotify/bphAlarmNotify/', '', '', '1', 'alarmnotify:bphAlarmNotify:view,alarmnotify:bphAlarmNotify:edit', '1', '2019-12-05 14:02:50', '1', '2019-12-05 14:02:50', '', '0');
 
 -- 新增菜单  by maoxb   2020-02-07 end -----------------------------------------------------------------------------------------------------------------------
+
+-- 邢增
