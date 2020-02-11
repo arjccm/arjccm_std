@@ -294,7 +294,6 @@ INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, 
 -- 新增菜单  by maoxb   2020-02-07 end -----------------------------------------------------------------------------------------------------------------------
 
 
-
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('25787c7267444f4fa9f67d8c64dea76e', '1', '0,1,', '数据统计分析', 110, '', '', '721', '1', '', '1', '2019-07-09 14:44:36', '1', '2019-07-09 14:47:57', '', '0');
 
 
@@ -336,4 +335,5 @@ INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, 
 -- 电子围栏修改
 update sys_menu t set t.parent_id = '3' WHERE id = '8113cd3da9d448dba0c5681e7b59cff8';
 update sys_menu t set t.parent_ids = '0,1,2,3,' WHERE id = '8113cd3da9d448dba0c5681e7b59cff8';
+
 
