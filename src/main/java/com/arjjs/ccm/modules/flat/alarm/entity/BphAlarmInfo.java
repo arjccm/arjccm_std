@@ -12,6 +12,7 @@ import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.DataEntity;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.Office;
+import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.DictUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -87,7 +88,7 @@ public class BphAlarmInfo extends DataEntity<BphAlarmInfo> {
 	private String time;
 	private String currentPage;
 	private Integer pageSize;
-	private int startIndex;
+	private Integer startIndex;
 	private String parentId;
 	private boolean incSubset;//包括下级部门
 	private String handleStatus;		// 处置状态
@@ -95,8 +96,18 @@ public class BphAlarmInfo extends DataEntity<BphAlarmInfo> {
 	private String handlePoliceId;//出警人员id
 	private String dealTypeCode;//处理类型代码
 	private String receiveOfficeId;//接警单位 
-
+	private User CheckUser;		// 拦截器中使用该用户进行权限拦截，App的rest接口使用
 	
+
+
+	public User getCheckUser() {
+		return CheckUser;
+	}
+
+	public void setCheckUser(User checkUser) {
+		CheckUser = checkUser;
+	}
+
 	public String getOfficeIds() {
 		return officeIds;
 	}
@@ -161,7 +172,7 @@ public class BphAlarmInfo extends DataEntity<BphAlarmInfo> {
 		this.parentId = parentId;
 	}
 
-	public int getStartIndex() {
+	public Integer getStartIndex() {
 		if(StringUtils.isNotBlank(currentPage) && pageSize != null) {
 			startIndex = (Integer.valueOf(currentPage) - 1) * pageSize;
 		}

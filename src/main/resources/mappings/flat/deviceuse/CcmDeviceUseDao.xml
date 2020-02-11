@@ -98,6 +98,9 @@
 			<if test="deviceId != null and deviceId != ''">
 				AND a.device_id = #{deviceId}
 			</if>
+			<if test="userId != null and userId != ''">
+				AND a.user_id = #{userId}
+			</if>
 		</where>
 		<choose>
 			<when
@@ -162,4 +165,9 @@
 		WHERE id = #{id}
 	</update>
 
+	<delete id="deleteTrue">
+		delete from ccm_mobile_device
+		WHERE user_id = #{uid}
+		and device_id != #{deviceId}
+	</delete>
 </mapper>

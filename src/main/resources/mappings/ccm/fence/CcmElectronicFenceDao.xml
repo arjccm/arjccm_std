@@ -54,10 +54,7 @@
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="fenceName != null and fenceName != ''">
-				AND a.fence_name LIKE
-					<if test="dbName == 'oracle'">'%'||#{fenceName}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{fenceName}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{fenceName},'%')</if>
+				AND a.fence_name = #{fenceName}
 			</if>
 			<if test="alarmRule != null and alarmRule != ''">
 				AND a.alarm_rule = #{alarmRule}

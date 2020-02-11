@@ -3,11 +3,14 @@
  */
 package com.arjjs.ccm.modules.flat.deviceonline.dao;
 
+import com.arjjs.ccm.modules.flat.deviceonline.entity.CcmUserOnline;
 import org.apache.ibatis.annotations.Param;
 
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.flat.deviceonline.entity.CcmDeviceOnline;
+
+import java.util.List;
 
 /**
  * 设备在线实体类DAO接口
@@ -19,5 +22,7 @@ import com.arjjs.ccm.modules.flat.deviceonline.entity.CcmDeviceOnline;
 public interface CcmDeviceOnlineDao extends CrudDao<CcmDeviceOnline> {
 
 	CcmDeviceOnline getByDeviceId(@Param(value = "deviceId") String deviceId);
+
+	List<CcmUserOnline> getAppOnlineUser(@Param("uids") List<String> uids);
 
 }
