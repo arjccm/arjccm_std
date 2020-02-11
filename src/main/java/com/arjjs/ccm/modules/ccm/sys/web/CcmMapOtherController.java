@@ -809,7 +809,11 @@ public class CcmMapOtherController extends BaseController {
         //系统级别
         SysConfig sysConfig = SysConfigInit.SYS_LEVEL_CONFIG;
         model.addAttribute("sysConfig", sysConfig);
-        return "modules/sys/map/APPTerminal";
+        if ("wuchuan".equals(sysConfig.getObjId())) {//务川
+            return "modules/sys/map/APPTerminalWC";
+        } else {
+            return "modules/sys/map/APPTerminal";
+        }
     }
 
     //返回综治首页

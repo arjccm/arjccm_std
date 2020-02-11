@@ -1,310 +1,19 @@
 var Map,currPage=1,pageSize =10; //每页出现数量;
-var pTypeObj={},placeTypeObj={},placeImportantObj={},userType = "01";
-var key,keyControl,keyNormal,lastValue = "",nodeList = [];//搜索相关变量
-var checkStatus = "";
-//管控人员树
-var controlTree, settingontrolPeople;
-//工作人员树
-var tree, settingPolice;
-var treeSearch = null;
+var pTypeObj={},placeTypeObj={},placeImportantObj={};
 $(function(){
 	//加载地图
 	initMap();
     layui.use('element', function(){
 		  var element = layui.element; //Tab的切换功能，
-		  element.on('tab(allTab)', function(data){
-			  console.log(data);
-			  if(data.index == 0){
-				  userType = "01";
-				  refreshPoliceTree();
-			  }else if(data.index == 1){
-				  userType = "02";
-				  refreshControPeopleTree();
-			  }
-		  });
+		  element.on('tab(allTab)', function(data){ });
 		});
-    $('.ClearSubmit').click(function(){
+    $('#ClearSubmit').click(function(){
     	$('.input-medium').val('');
     	$('#primaryPersonName').val('');
     	$('#primaryPersonId').val('');
-    	$('#controlPeopleName').val('');
-    	$('#controlPeopleId').val('');
     	HideDiv();
     })
-    
-    $(":radio").click(function(){
-	   checkStatus = $(this).val();
-	   if(checkStatus == "primaryRadio"){//工作人员
-		   $("#liPrimary").show();
-		   $("#liControl").hide();
-	   }else if(checkStatus == "controlRadio"){
-		   $("#liPrimary").hide();
-		   $("#liControl").show();
-	   }else {
-		   $("#liPrimary").show();
-		   $("#liControl").hide();
-	   }
-	});
-    
-    keyNormal = $("#key");
-    keyNormal.bind("focus", focusKey).bind("blur", blurKey).bind("change cut input propertychange", searchNode);
-    keyNormal.bind('keydown', function (e){if(e.which == 13){searchNode();}});
-    
-	keyControl = $("#keyControl");
-	keyControl.bind("focus", focusKey).bind("blur", blurKey).bind("change cut input propertychange", searchNode);
-	keyControl.bind('keydown', function (e){if(e.which == 13){searchNode();}});
-    //初始化树形
-	refreshPoliceTree();
 })
-
-
-/**
- * 加載管控人員樹形
- * @returns
- */
-
-function refreshControPeopleTree(){
-	controlTree;
-	settingontrolPeople = {
-        data: {
-            simpleData: {
-                enable: true,
-                idKey: "id",
-                pIdKey: "pId",
-                rootPId: '0'
-            }
-        },
-		async: {
-			enable:true,
-			url: ctx + "/pop/ccmPeople/getUserByType",
-			autoParam: ["describe=type"]
-		},
-        check: {
-            enable: true,
-            chkStyle: "checkbox",
-            chkboxType: {
-                "Y": "s",
-                "N": "s"
-            }
-        },
-        callback: {
-            onAsyncSuccess: function(event, treeId, treeNode, msg) {
-                var nodes = controlTree.getNodesByParam("pId", treeNode.id, null);
-                for (var i = 0,
-                l = nodes.length; i < l; i++) {
-                    try {
-                    	controlTree.checkNode(nodes[i], treeNode.checked, true);
-                    } catch(e) {}
-                }
-            },
-            onCheck: function(e, treeId, treeNode) {
-            	Map.removeLayer('tralayer1');//轨迹回放
-                Map.removeLayer('tralayer2');//轨迹回放
-            	Map.removeAppLayer();
-            	Map.map.getOverlays().clear();
-                var nodes = controlTree.getCheckedNodes(true);
-                var items = [];
-                for (var i = 0, l = nodes.length; i < l; i++) {
-                	controlTree.expandNode(nodes[i], true, false, false);
-                    if(!nodes[i].isParent){//用户节点
-                    	var item = {};
-                    	item.id = nodes[i].id;
-                    	item.useType = "02";
-                    	items.push(item);
-                    }
-                }
-                GetPopLocation(items);
-            }
-        },
-
-    };
-    $.getJSON(ctx + "/sys/map/treeControlPeopleData?t=" + new Date().getTime(),
-    function(data) {
-		controlTree = $.fn.zTree.init($("#ztreeControlPeople"), settingontrolPeople, data);
-		// 默认展开一级节点
-        var nodes = controlTree.getNodesByParam("level", 0);
-        for (var i = 0; i < nodes.length; i++) {
-        	controlTree.expandNode(nodes[i], true, false, false);
-        }
-        // 异步加载子节点（加载用户）
-        var nodesOne = controlTree.getNodesByParam("isParent", true);
-        for (var j = 0; j < nodesOne.length; j++) {
-        	controlTree.reAsyncChildNodes(nodesOne[j], "!refresh", true);
-        }
-        treeSearch = controlTree;
-        key = keyControl;
-    });
-}
-
-/**
- * 加载工作人员树形（此处需要与手机终端用户做关联）
- */
-function refreshPoliceTree(){
-	tree,
-    settingPolice = {
-        data: {
-            simpleData: {
-                enable: true,
-                idKey: "id",
-                pIdKey: "pId",
-                rootPId: '0'
-            }
-        },
-        check: {
-            enable: true,
-            chkStyle: "checkbox",
-            chkboxType: {
-                "Y": "s",
-                "N": "s"
-            }
-        },
-        async: {
-            enable:true,
-            url: ctx + "/org/ccmOrgTeam/treeUserData?userType="+userType,
-            autoParam: ["id=officeId"],
-            dataFilter: function(treeId, parentNode, responseData) {
-                if (responseData) {
-                    for (var i = 0; i < responseData.length; i++) {
-
-						responseData[i].name += responseData[i].userState;
-
-                    }
-                }
-                return responseData;
-            }
-        },
-        callback: {
-            onCheck: function(e, treeId, treeNode) {
-	        	Map.removeAppLayer();
-	        	Map.map.getOverlays().clear();
-                var nodes = tree.getCheckedNodes(true);
-                var items = [];
-                for (var i = 0, l = nodes.length; i < l; i++) {
-                    tree.expandNode(nodes[i], true, false, false);
-                    var item = {};
-                	item.id = nodes[i].deviceId;
-                	item.useType = "01";
-                	items.push(item);
-                }
-                GetPopLocation(items);
-            },
-            onAsyncSuccess: function(event, treeId, treeNode, msg) {
-                var nodes = tree.getNodesByParam("pId", treeNode.id, null);
-                for (var i = 0,
-                l = nodes.length; i < l; i++) {
-                    try {
-                        tree.checkNode(nodes[i], treeNode.checked, true);
-                    } catch(e) {}
-                }
-            }
-        },
-
-    };
-
-    $.getJSON(ctx + "/sys/office/treeData?type=3&&extId=&isAll=&module=&t=" + new Date().getTime(),
-    function(data) {
-        tree = $.fn.zTree.init($("#ztreePolice"), settingPolice, data);
-        // 默认展开一级节点
-        var nodes = tree.getNodesByParam("level", 0);
-        for (var i = 0; i < nodes.length; i++) {
-            tree.expandNode(nodes[i], true, false, false);
-        }
-        // 异步加载子节点（加载用户）
-        var nodesOne = tree.getNodesByParam("isParent", true);
-        for (var j = 0; j < nodesOne.length; j++) {
-            tree.reAsyncChildNodes(nodesOne[j], "!refresh", true);
-        }
-        treeSearch = tree;
-        key = keyNormal;
-    });
-}
-
-function focusKey(e) {
-	if (key.hasClass("empty")) {
-		key.removeClass("empty");
-	}
-}
-function blurKey(e) {
-	if (key.get(0).value === "") {
-		key.addClass("empty");
-	}
-	searchNode(e);
-}
-//搜索节点
-function searchNode() {
-	// 取得输入的关键字的值
-	var value = $.trim(key.get(0).value);
-	
-	// 按名字查询
-	var keyType = "name";
-//	if (key.hasClass("empty")) {
-//		value = "";
-//	}
-	
-	// 如果和上次一次，就退出不查了。
-	if (lastValue === value) {
-		return;
-	}
-	
-	// 保存最后一次
-	lastValue = value;
-	
-	var nodes = treeSearch.getNodes();
-	// 如果要查空字串，就退出不查了。
-	if (value == "") {
-		showAllNode(nodes);
-		return;
-	}
-	hideAllNode(nodes);
-	nodeList = treeSearch.getNodesByParamFuzzy(keyType, value);
-	updateNodes(nodeList);
-}
-//隐藏所有节点
-function hideAllNode(nodes){			
-	nodes = tree.transformToArray(nodes);
-	for(var i=nodes.length-1; i>=0; i--) {
-		tree.hideNode(nodes[i]);
-	}
-}
-
-//显示所有节点
-function showAllNode(nodes){			
-	nodes = tree.transformToArray(nodes);
-	for(var i=nodes.length-1; i>=0; i--) {
-		/* if(!nodes[i].isParent){
-			tree.showNode(nodes[i]);
-		}else{ */
-			if(nodes[i].getParentNode()!=null){
-				tree.expandNode(nodes[i],false,false,false,false);
-			}else{
-				tree.expandNode(nodes[i],true,true,false,false);
-			}
-			tree.showNode(nodes[i]);
-			showAllNode(nodes[i].children);
-		/* } */
-	}
-}
-
-//更新节点状态
-function updateNodes(nodeList) {
-	tree.showNodes(nodeList);
-	for(var i=0, l=nodeList.length; i<l; i++) {
-		
-		//展开当前节点的父节点
-		tree.showNode(nodeList[i].getParentNode()); 
-		//tree.expandNode(nodeList[i].getParentNode(), true, false, false);
-		//显示展开符合条件节点的父节点
-		while(nodeList[i].getParentNode()!=null){
-			tree.expandNode(nodeList[i].getParentNode(), true, false, false);
-			nodeList[i] = nodeList[i].getParentNode();
-			tree.showNode(nodeList[i].getParentNode());
-		}
-		//显示根节点
-		tree.showNode(nodeList[i].getParentNode());
-		//展开根节点
-		tree.expandNode(nodeList[i].getParentNode(), true, false, false);
-	}
-}
 
 function initMap(){
 	// 地图默认数据设置
@@ -347,9 +56,6 @@ function HisTrackFun1() {
    var beginCreateDate=$('#beginCreateDate').val();
    var endCreateDate=$('#endCreateDate').val();
    var uesrId=$('#primaryPersonId').val();
-   if(checkStatus == "controlRadio"){//管控
-	   uesrId = $('#controlPeopleId').val();
-   }
    if(uesrId==""){
 	   top.$.jBox.tip("请选择人员");
 	   return;
@@ -382,7 +88,7 @@ function TableInit(data) {
 	var tableData = [];
 	Map.removeLayer('tralayer1');//轨迹回放
     Map.removeLayer('tralayer2');//轨迹回放
-    Map.removeAppLayer();
+
 	if (trackReplayLen == 0) {
 		HideDiv();
 		top.$.jBox.tip("暂无轨迹信息");
@@ -397,17 +103,12 @@ function TableInit(data) {
 			var value = [];
 			value[0] = Number(areaPoint.split(',')[0]);
 			value[1] = Number(areaPoint.split(',')[1]);
-			if(checkStatus == "controlRadio"){//管控
-				tableData.push([ Data[i].ccmPeople.name, value[0],value[1],Data[i].updateDate ])
-			}else{
-				tableData.push([ Data[i].user.name, value[0],value[1],Data[i].updateDate ])
-			}
+			tableData.push([ Data[i].user.name, value[0],value[1],Data[i].updateDate ])
 			routeCoords.push(value)
 		}
 		dataTableInit(tableData)
 		//轨迹回放
 		Map.map.getView().setZoom(18);
-		Map.trackCheckStatus = checkStatus;//人员性质
         Map.trackReplayLine(routeCoords);
 		
 		ShowDiv();
@@ -500,35 +201,4 @@ function GetPopLocation() {
 			})
 
 	Map.layersIsShow('PopLocation', true);
-}
-function GetPopLocation2(items/*userId*/) {
-	debugger
-	if(null == items || items.length < 0){
-		console.error("null == items");
-		return;
-	}
-	for(var i = 0;i<items.length;i++){
-		var item = items[i];
-		if(null == item){
-			console.error("null == item");
-			continue;
-		}
-		var url = "";
-		if(item.useType == "01"){//工作人员
-			url = '/sys/map/deviceMobileMap?id='+item.id+"&useType="+item.useType;
-		}else if(item.useType == "02"){//管控人员
-			url = '/sys/map/deviceMobileMap?vSpecialPeople.id='+item.id+"&useType="+item.useType;
-		}
-		$.getJSON('' + ctx + url,
-		function(data) {
-			debugger
-			Map.addJSONElec([ {
-				'type' : 'PopLocation',
-				'data' : data,
-				'isShow' : true 
-			} ]);
-			Map.goTo(data.centpoint);
-		})
-//		Map.layersIsShow('PopLocation', true);
-	}
 }
