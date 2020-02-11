@@ -236,3 +236,5 @@ INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, 
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('c4b65a69d07b4907b379fcda304d71b2', 'ef61dbc7960f4272b360de7ad7d59a07', '0,1,ef61dbc7960f4272b360de7ad7d59a07,', '巡逻管理', 390, '', '', 'richanggongzuo1', '1', '', '1', '2020-02-07 17:06:12', '1', '2020-02-07 17:06:12', '', '0');
 
 -- 新增菜单  by maoxb   2020-02-07 end -----------------------------------------------------------------------------------------------------------------------
+
+-- 邢增
