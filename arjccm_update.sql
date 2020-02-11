@@ -336,4 +336,10 @@ INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, 
 update sys_menu t set t.parent_id = '3' WHERE id = '8113cd3da9d448dba0c5681e7b59cff8';
 update sys_menu t set t.parent_ids = '0,1,2,3,' WHERE id = '8113cd3da9d448dba0c5681e7b59cff8';
 
+-- 巡更管理 字典新增  by maoxb 2020-02-11
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('24ce337c611f4a2abb6ac2f9871d7e5f', '1', '未审核', 'auditing_status', '审核状态', 10, '0', '1', '2019-07-30 10:39:39', '1', '2019-07-30 10:39:39', '巡逻模块新增', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('9b51e84d153f4657a8701c6c725fba5b', '2', '审核通过', 'auditing_status', '审核状态', 20, '0', '1', '2019-07-30 10:40:11', '1', '2019-07-30 10:40:11', '巡逻模块审核状态', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('1991284e0f314531b9677187b1f9b85d', '3', '已完成', 'ccm_patrol_missions_status', '巡逻任务状态', 30, '0', '1', '2019-07-05 19:33:35', '1', '2019-07-31 16:23:48', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('62ca5a29456949b092a7ce65e9d908ec', '1', '新建', 'ccm_patrol_missions_status', '巡逻任务状态', 10, '0', '1', '2019-07-05 19:32:39', '1', '2019-07-31 16:23:32', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('9bff1f1295e848f8b65ff693ed853ce7', '2', '进行中', 'ccm_patrol_missions_status', '巡逻任务状态', 20, '0', '1', '2019-07-05 19:33:05', '1', '2019-07-31 16:23:40', '', '0');
 
