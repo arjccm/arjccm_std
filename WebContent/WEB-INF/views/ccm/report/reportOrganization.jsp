@@ -15,7 +15,9 @@
 	  height:100%;
 	}
 	
-	
+	#searchForm{
+		background: #0E2A4C!important;
+	}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -37,7 +39,7 @@
 	<form:form id="searchForm" modelAttribute="ccmEventKacc" action="${ctx}/event/ccmEventKacc/map" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<table style="width: 60%;" id="tbody">
+		<table style="width: 60%;background: none!important;" id="tbody">
 		</table>	
 		
 	</form:form>
