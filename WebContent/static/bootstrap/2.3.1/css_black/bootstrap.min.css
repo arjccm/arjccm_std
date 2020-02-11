@@ -1723,7 +1723,7 @@ legend+.control-group {
 	float: left;
 	/*width: 160px;*/
 	/*解决label字数过多引起换行问题*/
-	widows: 200px;
+	width: 200px;
 	padding-top: 5px;
 	/*text-align: right
 	color: black;*/
