@@ -206,5 +206,9 @@
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
+
+	<select id="statIndexForZj" resultType="int">
+		SELECT COUNT(religion_type) FROM ccm_place_religion WHERE religion_type=#{i}
+	</select>
 </mapper>

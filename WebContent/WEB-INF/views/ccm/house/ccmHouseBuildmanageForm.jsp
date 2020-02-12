@@ -178,7 +178,7 @@
 				<div>
 					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>单元数：</label>
 					<div class="controls">
-						<form:input path="elemNum" htmlEscape="false" maxlength="2" class="input-xlarge required digits"  min="0"  type= "number" />
+						<form:input path="elemNum" htmlEscape="false" maxlength="2" class="input-xlarge required positiveNumber"  min="0"  type= "number" />
 
 					</div>
 				</div>
@@ -187,7 +187,7 @@
                 <div>
                     <label class="control-label">建筑物户数：</label>
                     <div class="controls">
-                        <form:input path="buildNum" htmlEscape="false" maxlength="4"  min="0"  class="input-xlarge digits" type= "number" />
+                        <form:input path="buildNum" htmlEscape="false" maxlength="4"  min="0"  class="input-xlarge positiveNumber" type= "number" />
                     </div>
                 </div>
             </td>

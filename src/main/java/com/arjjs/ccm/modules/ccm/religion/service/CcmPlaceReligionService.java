@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.religion.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,9 @@ import com.arjjs.ccm.modules.ccm.religion.dao.CcmPlaceReligionDao;
 @Service
 @Transactional(readOnly = true)
 public class CcmPlaceReligionService extends CrudService<CcmPlaceReligionDao, CcmPlaceReligion> {
+
+	@Autowired
+	private CcmPlaceReligionDao ccmPlaceReligionDao;
 
 	public CcmPlaceReligion get(String id) {
 		return super.get(id);
@@ -43,5 +47,9 @@ public class CcmPlaceReligionService extends CrudService<CcmPlaceReligionDao, Cc
 	public void delete(CcmPlaceReligion ccmPlaceReligion) {
 		super.delete(ccmPlaceReligion);
 	}
-	
+
+	//教堂个数
+	public Integer statIndexForZj(Integer i) {
+		return ccmPlaceReligionDao.statIndexForZj(i);
+	}
 }

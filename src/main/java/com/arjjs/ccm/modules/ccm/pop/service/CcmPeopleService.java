@@ -687,6 +687,12 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 
 	//重点人员top5
 	public List<EchartType> getKeypeopleTop(){
+
 		return ccmPeopleDao.getKeypeopleTop();
+	}
+
+	//宗教信徒人数
+	public Integer statIndexForZj(Integer bid) {
+		return 	ccmPeopleDao.peopleFollowerCount(bid);
 	}
 }

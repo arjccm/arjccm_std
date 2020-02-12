@@ -11,6 +11,7 @@ import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmMobileDevice;
 import com.arjjs.ccm.modules.ccm.ccmsys.service.CcmMobileDeviceService;
 import com.arjjs.ccm.modules.flat.userBindingDevice.entity.UserBindingDevice;
 import com.arjjs.ccm.modules.flat.userBindingDevice.service.UserBindingDeviceService;
+import com.arjjs.ccm.modules.tasks.IntervalsDeleteData;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,9 @@ public class CcmMobileDeviceController extends BaseController {
 
 	@Autowired
 	private UserBindingDeviceService userBindingDeviceService;
+	
+		@Autowired
+	private IntervalsDeleteData intervalsDeleteData;
 
 	@ModelAttribute
 	public CcmMobileDevice get(@RequestParam(required=false) String id) {
@@ -53,24 +57,50 @@ public class CcmMobileDeviceController extends BaseController {
 	@RequiresPermissions("ccmsys:ccmMobileDevice:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(CcmMobileDevice ccmMobileDevice, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<CcmMobileDevice> page = ccmMobileDeviceService.findPage(new Page<CcmMobileDevice>(request, response), ccmMobileDevice); 
+		//用户类型
+		ccmMobileDevice.setUseType("01");
+		Page<CcmMobileDevice> page = ccmMobileDeviceService.findPage(new Page<>(request, response), ccmMobileDevice);
 		model.addAttribute("page", page);
 		return "ccm/ccmsys/ccmMobileDeviceList";
 	}
 
 	@RequiresPermissions("ccmsys:ccmMobileDevice:view")
+	@RequestMapping(value = "list2")
+	public String list2(CcmMobileDevice ccmMobileDevice, HttpServletRequest request, HttpServletResponse response, Model model) {
+		//用户类型
+		ccmMobileDevice.setUseType("02");
+		Page<CcmMobileDevice> page = ccmMobileDeviceService.findPage(new Page<>(request, response), ccmMobileDevice);
+		model.addAttribute("page", page);
+		return "ccm/ccmsys/ccmMobileDeviceList2";
+	}
+
+	@RequiresPermissions("ccmsys:ccmMobileDevice:view")
 	@RequestMapping(value = "form")
 	public String form(CcmMobileDevice ccmMobileDevice, Model model) {
+		//用户类型
+		ccmMobileDevice.setUseType("01");
 		model.addAttribute("ccmMobileDevice", ccmMobileDevice);
 		return "ccm/ccmsys/ccmMobileDeviceForm";
+	}
+
+	@RequiresPermissions("ccmsys:ccmMobileDevice:view")
+	@RequestMapping(value = "form2")
+	public String form2(CcmMobileDevice ccmMobileDevice, Model model) {
+		//用户类型
+		ccmMobileDevice.setUseType("02");
+		model.addAttribute("ccmMobileDevice", ccmMobileDevice);
+		return "ccm/ccmsys/ccmMobileDeviceForm2";
 	}
 
 	@RequiresPermissions("ccmsys:ccmMobileDevice:edit")
 	@RequestMapping(value = "save")
 	public String save(CcmMobileDevice ccmMobileDevice, Model model, RedirectAttributes redirectAttributes) {
+
 		if (!beanValidator(model, ccmMobileDevice)){
 			return form(ccmMobileDevice, model);
 		}
+		//用户类型
+		ccmMobileDevice.setUseType("01");
 		ccmMobileDeviceService.save(ccmMobileDevice);
 		// 授权之后，给用户绑定设备
 		String userBindId = userBindingDeviceService.findDeviceByPolicePhoneCode(ccmMobileDevice.getDeviceId());
@@ -85,15 +115,42 @@ public class CcmMobileDeviceController extends BaseController {
             userBindingDeviceService.save(userBindingDevice);
 		}
 		addMessage(redirectAttributes, "保存移动设备管理成功");
-		return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/?repage";
+		if(ccmMobileDevice.getIsVariable().equals("1")){
+
+			return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/?repage";
+		}else{
+			return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/list2?repage";
+
+		}
 	}
-	
+		@RequiresPermissions("ccmsys:ccmMobileDevice:edit")
+	@RequestMapping(value = "save2")
+	public String save2(CcmMobileDevice ccmMobileDevice, Model model, RedirectAttributes redirectAttributes) {
+		if (!beanValidator(model, ccmMobileDevice)){
+			return form(ccmMobileDevice, model);
+		}
+		//用户类型
+		ccmMobileDevice.setUseType("02");
+		ccmMobileDeviceService.save(ccmMobileDevice);
+		addMessage(redirectAttributes, "保存移动设备管理成功");
+		return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/list2?repage";
+	}
+
+
 	@RequiresPermissions("ccmsys:ccmMobileDevice:edit")
 	@RequestMapping(value = "delete")
 	public String delete(CcmMobileDevice ccmMobileDevice, RedirectAttributes redirectAttributes) {
 		ccmMobileDeviceService.delete(ccmMobileDevice);
 		addMessage(redirectAttributes, "删除移动设备管理成功");
+		if("02".equalsIgnoreCase(ccmMobileDevice.getUseType())) {
+			return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/list2?repage";
+		}
 		return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/?repage";
+	}
+	@RequestMapping(value = "test")
+	public String test(){
+		intervalsDeleteData.deleteLog();
+		return  "";
 	}
 
 }

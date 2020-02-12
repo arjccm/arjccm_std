@@ -3,12 +3,15 @@
  */
 package com.arjjs.ccm.modules.ccm.ccmsys.entity;
 
+import com.arjjs.ccm.modules.ccm.view.entity.VSpecialPeople;
+import org.hibernate.validator.constraints.Length;
+import com.arjjs.ccm.modules.ccm.fence.entity.CcmElectronicFence;
 import com.arjjs.ccm.common.persistence.DataEntity;
 import com.arjjs.ccm.modules.ccm.view.entity.VCcmTeam;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.Length;
+
 
 import java.lang.reflect.MalformedParameterizedTypeException;
 import java.util.Date;
@@ -51,17 +54,27 @@ public class CcmMobileDevice extends DataEntity<CcmMobileDevice> {
 	private String isOnline;	// 是否在线（根据坐标更新时间判断）
 	@ApiModelProperty(value="登录用户所在区域")
 	private Area userArea;  //登录用户所在区域
+	private CcmElectronicFence elecFenceInfo; //电子围栏信息
+	private String userId; //用户id
 
 
-	private String baseUrl;	// app服务器地址
 
-	public String getBaseUrl() {
-		return baseUrl;
+	public CcmElectronicFence getElecFenceInfo() {
+		return elecFenceInfo;
 	}
 
-	public void setBaseUrl(String baseUrl) {
-		this.baseUrl = baseUrl;
+	public void setElecFenceInfo(CcmElectronicFence elecFenceInfo) {
+		this.elecFenceInfo = elecFenceInfo;
 	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 
 	public String getUseType() {
 		return useType;
@@ -86,8 +99,9 @@ public class CcmMobileDevice extends DataEntity<CcmMobileDevice> {
 	private String typeName; //设备类型文字
 	private String name; // 设备名称
 	private String parentId; // 父id
-	
-	
+	private VSpecialPeople vSpecialPeople;
+
+
 	public String getName() {
 		return name;
 	}
@@ -246,5 +260,11 @@ public class CcmMobileDevice extends DataEntity<CcmMobileDevice> {
 		this.isOnline = isOnline;
 	}
 
-		
+	public VSpecialPeople getvSpecialPeople() {
+		return vSpecialPeople;
+	}
+
+	public void setvSpecialPeople(VSpecialPeople vSpecialPeople) {
+		this.vSpecialPeople = vSpecialPeople;
+	}
 }

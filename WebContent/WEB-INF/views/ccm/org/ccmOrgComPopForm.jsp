@@ -44,21 +44,21 @@
         }
 		function saveForm(){
 			var commonalityIdId = $("#commonalityIdId").val();
-			var html1 = '<label for="" class="error">必填信息 *<label>';
+			var html1 = '<label for="" class="error">必填信息 <label>';
 			//alert(commonalityIdId.length);
 			if(commonalityIdId.length!=0){
-				$("#show1").html("*");
+				$("#show1").html("");
 			}else{
 				$("#show1").html(html1);
 			}
-			if(commonalityIdId.length!=0&&flag){
+			/*if(commonalityIdId.length!=0&&flag){
 				$("#inputForm").submit();
 			}else {
                 parent.layer.msg('日期不能大于当前日期或大于150岁!', {
                     icon: 5
                 });
                 event.preventDefault();
-            }
+            }*/
 		}
 	</script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
@@ -95,12 +95,12 @@
 		<tr>
 		<td>
 			<div class="control-group" >
-				<label class="control-label" ><span class="help-inline"><font color="red" id="show1">*</font> </span>所属机构：</label>
+				<label class="control-label" ><span class="help-inline"><font color="red">*</font> </span>所属机构：</label>
 				<div class="controls">
 					<!--<form:input path="commonalityId" htmlEscape="false" maxlength="64" class="input-xlarge "/>-->
 					<sys:treeselect id="commonalityId" name="commonalityId.id" value="${ccmOrgComPop.commonalityId.id}" labelName="commonalityId.name" labelValue="${ccmOrgComPop.commonalityId.name}"
 									title="机构名称" url="/org/ccmOrgCommonality/treeData" cssClass="" allowClear="true" notAllowSelectParent="true" cssStyle=""/>
-
+					<span class="help-inline"><font color="red" id="show1"></font> </span>
 				</div>
 			</div>
 		</td>

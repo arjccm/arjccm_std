@@ -129,5 +129,11 @@
 		del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-
+	<select id="getAppOnlineUser" resultType="com.arjjs.ccm.modules.flat.deviceonline.entity.CcmUserOnline">
+		select user_id as uid , min(now()-create_date) as date from ccm_tracingpoint where user_id in
+		<foreach collection="uids" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		group by user_id
+	</select>
 </mapper>

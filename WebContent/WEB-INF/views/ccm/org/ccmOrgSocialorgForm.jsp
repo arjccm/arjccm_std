@@ -338,7 +338,7 @@
 						<label class="control-label">中心点：</label>
 						<div class="controls">
 							<form:input path="areaPoint" htmlEscape="false" maxlength="40" class="input-xlarge " disabled="true"/>
-							<a onclick="ThisLayerDialog('${ctx}/event/ccmEventIncident/drawForm?areaMap='+$('#areaMap').val()+'&areaPoint='+$('#areaPoint').val(), '标注', '1100px', '700px');"
+							<a style="position: absolute; width: 40px!important;" onclick="ThisLayerDialog('${ctx}/event/ccmEventIncident/drawForm?areaMap='+$('#areaMap').val()+'&areaPoint='+$('#areaPoint').val(), '标注', '1100px', '700px');"
 							   class="btn btn-primary">标 注</a>
 						</div>
 					</div>

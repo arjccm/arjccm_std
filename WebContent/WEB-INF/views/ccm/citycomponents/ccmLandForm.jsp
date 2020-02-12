@@ -143,7 +143,7 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">用地性质：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>用地性质：</label>
 						<div class="controls">
 							<form:select path="landUsage" class="input-xlarge required">
 								<form:option value="" label=""/>
@@ -154,7 +154,7 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">土地用途：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>土地用途：</label>
 						<div class="controls">
 							<form:select path="type" class="input-xlarge required">
 								<form:option value="" label=""/>

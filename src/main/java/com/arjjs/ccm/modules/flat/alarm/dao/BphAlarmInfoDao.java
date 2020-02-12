@@ -66,5 +66,6 @@ public interface BphAlarmInfoDao extends CrudDao<BphAlarmInfo> {
 	// 接处警： 更新警情的接口
 	int updateBphAlarmInfo(BphAlarmInfo alarmInfo);
 	AlarmNotifyInfo selectAlarmNotifyInfoById(@Param("alarmId") String alarmId);
-
+	List<BphAlarmInfo> queryAll(@Param("startIndex") Integer startIndex,@Param("pageSize") Integer pageSize);
+	int queryAlarmCount();
 }

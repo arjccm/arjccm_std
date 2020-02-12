@@ -57,6 +57,7 @@ ArjMap.Map = function (params) {
     this.scaleLinemapShow = params.scaleLinemapShow || false;
     this.units = params.units || "metric";//度量单位
     this.scaleLineClass = params.scaleLineClass || "ol-scale-line";
+    this.trackCheckStatus = "";//人员性质--add by tzh
     /*this.colorArr = [ {
 		"color" : "#aa4644",
 		"rgba" : "rgba(170,70,68,0.8)"
@@ -862,7 +863,7 @@ ArjMap.Map.prototype = {
             // 获取地图中所有图层
             var layers = map.getLayers();
             var len = layers.getLength();
-
+				var layerName = layer.get('name');
 //				var selectFeatures = layer.getSource().getFeatures();
 //				for ( var i in selectFeatures) {
 //					map.removeOverlay(this[(selectFeatures[i].get('name') + 'Overlay')])
@@ -2069,8 +2070,7 @@ ArjMap.Map.prototype = {
             // remove listener
             map.un('postcompose', moveFeature);
         }
-
-        // startButton.addEventListener('click', startAnimation, false);
+		    startButton.addEventListener('click', startAnimation, false);
     },
     //轨迹回放
     trackReplaInit: function (startBtnId, speedId, routeCoords) {
@@ -2229,7 +2229,7 @@ ArjMap.Map.prototype = {
         _this.endMarker = null;
 
         $.each(points, function (i, item) {
-
+	    var s = new Date().getTime();
             var currLng = item[0];
             var currLat = item[1];
             _this.newPoints.push(ol.proj.fromLonLat([currLng, currLat]));
@@ -2342,27 +2342,29 @@ ArjMap.Map.prototype = {
                     currLat = currLat + currParamsLat;
                     while (currLng > nextLng) {
 
-                        _this.newPoints.push(ol.proj.fromLonLat([currLng, currLat]));
-                        currLng = currLng - currParamsLng;
-                        currLat = currLat + currParamsLat;
-                    }
-                }
-            }
-        })
-        $.each(_this.newPoints, function (i, item) {
-            var currLng = item[0];
-            var currLat = item[1];
-            _this.toLonLatPoints.push(ol.proj.toLonLat([currLng, currLat]));
-        });
-        _this.AddPolygon();
-        _this.moveFeature = function (event) {
-            _this['vectorContext'] = event.vectorContext;
-            var frameState = event.frameState;
-            var elapsedTime = frameState.time - _this.date;
+		                        _this.newPoints.push(ol.proj.fromLonLat([currLng, currLat]));
+		                        currLng = currLng - currParamsLng;
+		                        currLat = currLat + currParamsLat;
+		                    }
+		                }
+		            }
+		            var s1 = new Date().getTime();
+		        })
+		        console.error("_this.newPoints === ",_this.newPoints.length);
+		    $.each(_this.newPoints, function (i, item) {
+		    	var currLng = item[0];
+	            var currLat = item[1];
+	            _this.toLonLatPoints.push(ol.proj.toLonLat ([currLng, currLat]));
+		    });
+            _this.AddPolygon();
+            _this.moveFeature=function (event) {
+            	_this['vectorContext'] = event.vectorContext;
+    	        var frameState = event.frameState;
+    	        var elapsedTime = frameState.time -_this.date;
 
-            if (_this.ispuse == 0) {
-                _this.index = Math.round(_this.speed * elapsedTime / 1000) + _this.calcIndex;
-            }
+    	        if ( _this.ispuse == 0) {
+    	        	_this.index = Math.round(_this.speed * elapsedTime / 1000) + _this.calcIndex;
+    	        }
 
             if (_this.index >= _this.newPoints.length) {
                 _this.stopAnimationLine();
@@ -2486,6 +2488,10 @@ ArjMap.Map.prototype = {
     SetMoveMark: function () {
         var _this = this;
         var map = this.map;
+		    	var imagePath = '/modules/map/images/p1.png';
+		    	if(_this.trackCheckStatus == "controlRadio"){//管控人员
+		    		imagePath = '/modules/map/images/controlPeople.png';
+		    	}
         //样式
         _this.style = new ol.style.Style({
             image: new ol.style.Icon({
@@ -3861,38 +3867,38 @@ ArjMap.Map.prototype = {
                 selectedFeatures(_this.selectClick)
             } else if (e.deselected.length > 0) {
 
-            }
-        });
+				}
+			});
+           
+			selectedFeatures(_this.selectClick)
+			// 点击添加饼形图--勿删
+			map.addInteraction(selectSingleClick);
+			selectSingleClick.on('select', function(e) {
+				$('#detailsDialog').html('');
+				$('#detailsDialog').show();
+				if (e.selected.length > 0) {
+					var selectedFeatures = selectSingleClick.getFeatures();			
+					var id = selectedFeatures.getArray().map(function(feature) {
+						return feature.get('info')['id1'];// 社区网格id
+					})
+					var type=selectedFeatures.getArray().map(function(feature) {
+						return feature.get('info')['所属层级'];// 社区网格id
+					})
+ 					// var id = $('#detailsDialog').attr('infoId');
+// if(type=='4'){
+// $("#detailsDialog").load(
+// ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
+// }else{
+// $("#detailsDialog").load(
+// ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
+// }
+					$("#detailsDialog").load(ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
+					
 
-        selectedFeatures(_this.selectClick)
-        // 点击添加饼形图--勿删
-        map.addInteraction(selectSingleClick);
-        selectSingleClick.on('select', function (e) {
-            $('#detailsDialog').html('');
-            $('#detailsDialog').show()
-            if (e.selected.length > 0) {
-                var selectedFeatures = selectSingleClick.getFeatures();
-                var id = selectedFeatures.getArray().map(function (feature) {
-                    return feature.get('info')['id1'];// 社区网格id
-                })
-                var type = selectedFeatures.getArray().map(function (feature) {
-                    return feature.get('info')['所属层级'];// 社区网格id
-                })
-                //var id = $('#detailsDialog').attr('infoId');
-//					if(type=='4'){
-//						$("#detailsDialog").load(
-//								ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
-//					}else{
-//						$("#detailsDialog").load(
-//								ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
-//					}
-                $("#detailsDialog").load(ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
-
-
-            } else if (e.deselected.length > 0) {
-                $('#detailsDialog').hide()
-            }
-        });
+				} else if (e.deselected.length > 0) {
+					$('#detailsDialog').hide()
+				}
+			});
 
         function selectedFeatures(selectType) {
             var selectedFeatures = selectType.getFeatures();
@@ -3916,6 +3922,7 @@ ArjMap.Map.prototype = {
                         var popInfo = null;
                         var featureName = null;
                         var PopLocationId = null;
+			var _map = _this.map;
                         var htmls ='<div class="items-top">'
                         var feature = selectedFeatures.getArray().map(function (feature) {
                                     if (!feature.get('features')) {
@@ -4241,8 +4248,9 @@ ArjMap.Map.prototype = {
                                         continue
 
                                     } else if (i == "电子围栏区域") {
-                                        continue
-
+					// 清楚图层
+					_this.removeLayer('ElectronicFence');
+					_this.addElectronicFence(info["设备唯一标识码"],info["围栏类型"],info["电子围栏区域"]);
                                     } else if (i == "设备名称") {
                                         continue
 

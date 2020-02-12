@@ -1,0 +1,133 @@
+/*消防检查*/
+.icon-play-circle {
+    background-image: url(../icon/消防检查@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-play-circle:before {
+    content: "" !important;
+}
+
+/*工作备忘录*/
+.icon-play {
+    background-image: url(../icon/工作备忘录@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-play:before {
+    content: "" !important;
+}
+
+/*事件管理*/
+.icon-adjust {
+    background-image: url(../icon/事件管理@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-adjust:before {
+    content: "" !important;
+}
+
+
+/*个人信息*/
+.icon-stop {
+    background-image: url(../icon/个人信息@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-stop:before {
+    content: "" !important;
+}
+
+/*单位信息*/
+.icon-step-backward {
+    background-image: url(../icon/单位信息@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-step-backward:before {
+    content: "" !important;
+}
+
+/*单位警情 */
+.icon-fast-backward {
+    background-image: url(../icon/单位警情@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-fast-backward:before {
+    content: "" !important;
+}
+
+/*客户端 */
+.icon-backward {
+    background-image: url(../icon/客户端@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-backward:before {
+    content: "" !important;
+}
+
+/*警卫任务 */
+.icon-forward {
+    background-image: url(../icon/警卫任务@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-forward:before {
+    content: "" !important;
+}
+
+/*警情信息 */
+.icon-fast-forward {
+    background-image: url(../icon/警情信息查询@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-fast-forward:before {
+    content: "" !important;
+}
+
+/*备勤任务管理 */
+.icon-step-forward {
+    background-image: url(../icon/备勤任务@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-step-forward:before {
+    content: "" !important;
+}
+/* KPI排行榜 */
+.icon-eject {
+    background-image: url(../icon/矢量智能对象@2x.png);
+    background-repeat: no-repeat;
+    background-size: 25px 28px;;
+    background-position: top;
+}
+
+.icon-eject:before {
+    content: "" !important;
+}
+
+

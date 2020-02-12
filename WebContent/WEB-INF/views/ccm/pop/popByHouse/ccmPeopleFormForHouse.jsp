@@ -46,6 +46,9 @@
 .input-medium.Wdate {
 	width: 200px;
 }
+label.error {
+    display: block;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -134,7 +137,7 @@
 					<div>
 						<label class="control-label">人口类型：</label>
 						<div class="controls">
-							<form:select path="type" class="input-xlarge " id="sel"
+							<form:select path="type" class="input-xlarge required" id="sel"
 								onchange="sels()">
 								<form:options items="${fns:getDictList('sys_ccm_people')}"
 									itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -147,7 +150,7 @@
 						<label class="control-label">性别：</label>
 						<div class="controls">
 							<form:radiobuttons path="sex" items="${fns:getDictList('sex')}"
-											   itemLabel="label" itemValue="value" htmlEscape="false" class="" />
+											   itemLabel="label" itemValue="value" htmlEscape="false" class="required" />
 						</div>
 					</div>
 				</td>
@@ -171,7 +174,7 @@
 						<label class="control-label">出生日期：</label>
 						<div class="controls">
 							<input name="birthday" type="text" readonly="readonly"
-								   maxlength="20" class="input-medium Wdate "
+								   maxlength="20" class="input-medium Wdate required"
 								   value="<fmt:formatDate value="${ccmPeople.birthday}" pattern="yyyy-MM-dd"/>"
 								   onclick="WdatePicker({minDate:'{%y-150}-%M-%d',maxDate: '%y-%M-%d',dateFmt:'yyyy-MM-dd',isShowClear:false});" />
 						</div>
@@ -181,7 +184,7 @@
 					<div>
 						<label class="control-label">是否常住：</label>
 						<div class="controls">
-							<form:select path="isPermanent" class="input-xlarge ">
+							<form:select path="isPermanent" class="input-xlarge required">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('yes_no')}"
 											  itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -208,7 +211,7 @@
 					<div>
 						<label class="control-label">民族：</label>
 						<div class="controls">
-							<form:select path="nation" class="input-xlarge ">
+							<form:select path="nation" class="input-xlarge required">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_volk')}"
 											  itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -221,7 +224,7 @@
 						<label class="control-label">公民身份号码：</label>
 						<div class="controls">
 							<form:input path="ident" htmlEscape="false" maxlength="18"
-								class="input-xlarge ident0 card " />
+								class="input-xlarge required ident0 card " />
 							<span id="ident0"></span>
 						</div>
 					</div>
@@ -231,7 +234,7 @@
 						<label class="control-label">联系方式：</label>
 						<div class="controls">
 							<form:input path="telephone" htmlEscape="false" maxlength="18"
-								class="input-xlarge telephone0" />
+								class="input-xlarge telephone0 required" />
 							<span id="telephone0"></span>
 						</div>
 					</div>
@@ -244,7 +247,7 @@
 						<label class="control-label">籍贯：</label>
 						<div class="controls">
 							<form:input path="censu" htmlEscape="false" maxlength="6"
-								class="input-xlarge " />
+								class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
@@ -252,7 +255,7 @@
 					<div>
 						<label class="control-label">政治面貌：</label>
 						<div class="controls">
-							<form:select path="politics" class="input-xlarge ">
+							<form:select path="politics" class="input-xlarge required">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_ccm_poli_stat')}"
 											  itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -264,7 +267,7 @@
 					<div>
 						<label class="control-label">婚姻状况：</label>
 						<div class="controls">
-							<form:select path="marriage" class="input-xlarge ">
+							<form:select path="marriage" class="input-xlarge required">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_ccm_mari_stat')}"
 											  itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -278,7 +281,7 @@
 					<div>
 						<label class="control-label">学历：</label>
 						<div class="controls">
-							<form:select path="education" class="input-xlarge ">
+							<form:select path="education" class="input-xlarge required">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_ccm_degree')}"
 									itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -291,7 +294,7 @@
 						<label class="control-label">职业类别：</label>
 						<div class="controls">
 							<form:input path="profType" htmlEscape="false" maxlength="5"
-										class="input-xlarge " />
+										class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
@@ -319,7 +322,7 @@
 							<sys:treeselect id="areaComId" name="areaComId.id"
 								value="${ccmPeople.areaComId.id}" labelName="areaComId.name"
 								labelValue="${ccmPeople.areaComId.name}" title="区域"
-								url="/tree/ccmTree/treeDataArea?type=6" cssClass=""
+								url="/tree/ccmTree/treeDataArea?type=6" cssClass="required"
 								allowClear="true" notAllowSelectParent="true"
 								cssStyle="width: 150px" />
 
@@ -331,7 +334,7 @@
 						<label class="control-label">户籍门（楼）详址：</label>
 						<div class="controls">
 							<form:input path="domiciledetail" htmlEscape="false"
-										maxlength="80" class="input-xlarge " />
+										maxlength="80" class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
@@ -340,7 +343,7 @@
 						<label class="control-label">户籍地：</label>
 						<div class="controls">
 							<form:input path="domicile" htmlEscape="false" maxlength="6"
-								class="input-xlarge " />
+								class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
@@ -355,7 +358,7 @@
 								<sys:treeselect id="areaGridId" name="areaGridId.id"
 									value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
 									labelValue="${ccmPeople.areaGridId.name}" title="区域"
-									url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""
+									url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="required"
 									allowClear="true" notAllowSelectParent="true"
 									cssStyle="width: 150px" />
 							</div>
@@ -381,7 +384,7 @@
 						<label class="control-label">现住地：</label>
 						<div class="controls">
 							<form:input path="residence" htmlEscape="false" maxlength="6"
-										class="input-xlarge " />
+										class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
@@ -396,7 +399,7 @@
 						<label class="control-label">职业：</label>
 						<div class="controls">
 							<form:input path="profession" htmlEscape="false" maxlength="30"
-										class="input-xlarge " />
+										class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
@@ -414,7 +417,7 @@
 						<label class="control-label">现住门（楼）详址：</label>
 						<div class="controls">
 							<form:input path="residencedetail" htmlEscape="false"
-								maxlength="80" class="input-xlarge " />
+								maxlength="80" class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
