@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.religion.dao.CcmReligionActivityDao">
+
+    <sql id="ccmReligionActivityColumns">
+		a.id AS "id",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.name AS "name",
+		a.begin_date AS "beginDate",
+		a.end_date AS "endDate",
+		a.host AS "host",
+		a.address AS "address",
+		a.head AS "head",
+		a.head_card AS "headCard",
+		a.head_phone AS "headPhone",
+		a.number AS "number",
+		a.scale AS "scale",
+		a.type AS "type"
+	</sql>
+
+    <sql id="ccmReligionActivityJoins">
+    </sql>
+
+    <select id="get" resultType="com.arjjs.ccm.modules.ccm.religion.entity.CcmReligionActivity">
+        SELECT
+        <include refid="ccmReligionActivityColumns"/>
+        FROM ccm_religion_activity a
+        <include refid="ccmReligionActivityJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findByScale" resultType="com.arjjs.ccm.tool.EchartType">
+	SELECT
+		b.label as type ,count(*) as value
+	FROM
+		ccm_religion_activity a,
+		sys_dict b
+	WHERE
+		a.scale = b.VALUE AND b.type = 'ccm_activity_scale'
+	GROUP BY
+		a.scale
+	</select>
+
+	<select id="findByType" resultType="com.arjjs.ccm.tool.EchartType">
+	SELECT
+		b.label as type ,count(*) as value
+	FROM
+		ccm_religion_activity a,
+		sys_dict b
+	WHERE
+		a.type = b.VALUE 	AND b.type = 'ccm_activity_type'
+	GROUP BY
+		a.type
+	</select>
+
+    <select id="findList" resultType="CcmReligionActivity">
+        SELECT
+        <include refid="ccmReligionActivityColumns"/>
+        FROM ccm_religion_activity a
+        <include refid="ccmReligionActivityJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+            <if test="name != null and name != ''">
+                AND a.name LIKE
+                <if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+            </if>
+            <if test="scale != null and scale != ''">
+                AND a.scale = #{scale}
+            </if>
+            <if test="type != null and type != ''">
+                AND a.type = #{type}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findAllList" resultType="CcmReligionActivity">
+        SELECT
+        <include refid="ccmReligionActivityColumns"/>
+        FROM ccm_religion_activity a
+        <include refid="ccmReligionActivityJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <insert id="insert">
+		INSERT INTO ccm_religion_activity(
+			id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			name,
+			begin_date,
+			end_date,
+			host,
+			address,
+			head,
+			head_card,
+			head_phone,
+			number,
+			scale,
+			type
+		) VALUES (
+			#{id},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{name},
+			#{beginDate},
+			#{endDate},
+			#{host},
+			#{address},
+			#{head},
+			#{headCard},
+			#{headPhone},
+			#{number},
+			#{scale},
+			#{type}
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE ccm_religion_activity SET 	
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			name = #{name},
+			begin_date = #{beginDate},
+			end_date = #{endDate},
+			host = #{host},
+			address = #{address},
+			head = #{head},
+			head_card = #{headCard},
+			head_phone = #{headPhone},
+			number = #{number},
+			scale = #{scale},
+			type = #{type}
+		WHERE id = #{id}
+	</update>
+
+    <update id="delete">
+		UPDATE ccm_religion_activity SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+
+</mapper>
