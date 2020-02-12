@@ -1266,15 +1266,14 @@ div.jbox #search{
 }
 
 .contentTitle {
-    padding-left: 10%;
+    padding-left: 36px;
     font-family: MicrosoftYaHei;
     color: #93FFFF;
     font-size: 18px;
-    padding-top: 3%;
+    padding-top: 26px;
     padding-bottom: 1%;
     width: 100%;
     text-align: left;
-    font-weight: 600;
 }
 
 .date {
