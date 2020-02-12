@@ -25,7 +25,7 @@
 			width: 274px;
 		}
 		.control-group {
-			border-bottom: 0px dotted #dddddd;
+			border-bottom: 0px dotted #dddddd !important;
 		}
 		.form-horizontal {
 			padding-top: 8px;
