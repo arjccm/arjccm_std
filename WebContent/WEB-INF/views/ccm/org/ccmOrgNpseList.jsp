@@ -124,8 +124,6 @@
 
 <%--			<li class="clearfix"></li>--%>
 		</ul>
-
-	<sys:message content="${message}"/>
 	<div class="clearfix pull-right btn-box">
 		<a
 				onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpse/form', '添加', '1100px', '800px')"
@@ -134,6 +132,7 @@
 				<i></i><span style="font-size: 12px">查询</span>  </a>
 	</div>
 	</form:form>
+    <sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
