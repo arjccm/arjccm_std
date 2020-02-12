@@ -6,11 +6,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.common.utils.StringUtils;
+import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
+import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
+import com.arjjs.ccm.modules.ccm.sys.entity.SysDicts;
+import com.arjjs.ccm.modules.ccm.sys.service.SysDictsService;
+import com.arjjs.ccm.modules.sys.dao.UserDao;
+import com.arjjs.ccm.tool.LjpTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +62,15 @@ public class CcmRestWechat extends BaseController {
 	private CcmWechatEventDao ccmWechatEventDao;
 	@Autowired
 	private CcmWechatEventAttachmentService ccmWechatEventAttachmentService;
+	@Autowired
+	private CcmPopTenantService ccmPopTenantService;
+
+	@Autowired
+	private CcmHouseBuildmanageService ccmHouseBuildmanageService;
+	@Autowired
+    private UserDao userDao;
+	@Autowired
+    private SysDictsService sysDictsService;
 
 
 	/**
@@ -162,6 +181,141 @@ public class CcmRestWechat extends BaseController {
 		result.setResult("成功");
 		return result;
 	}
+
+
+	@RequestMapping(value = "login")
+    @ResponseBody
+    public CcmRestResult login(User user,HttpServletRequest request){
+        CcmRestResult result = new CcmRestResult();
+        if(LjpTools.isExistBlank(user.getLoginName(),user.getPassword())){
+	        result.setCode(CcmRestType.ERROR_PARAM);
+	        return result;
+        }
+        User userDB = userDao.getByLoginName(user);
+        if(userDB==null) {
+            result.setCode(CcmRestType.ERROR_NO_USER);
+            return result;
+        }else if (!user.getPassword().equals(userDB.getPassword())) {
+            result.setCode(CcmRestType.ERROR_NO_USER);
+            return result;
+        }
+        if (request.getSession().getAttribute("user")==null) {
+            request.getSession().setAttribute("user",userDB);
+        }
+        result.setCode(CcmRestType.OK);
+
+        return result;
+
+    }
+
+
+	/**
+	 * 获取楼栋list
+	 * @param ccmHouseBuildmanage
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/queryBuilding")
+	public CcmRestResult queryBuilding(CcmHouseBuildmanage ccmHouseBuildmanage,Integer pageNo,Integer pageSize,HttpServletRequest request){
+		CcmRestResult result = new CcmRestResult();
+
+		if(request.getSession().getAttribute("user")==null){
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+
+		if(LjpTools.isExistNullOrZero(pageNo,pageSize)){
+			result.setCode(CcmRestType.ERROR_PARAM);
+			return result;
+		}
+		Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService.findPage(new Page<>(pageNo, pageSize), ccmHouseBuildmanage);
+
+		result.setResult(page);
+		result.setCode(CcmRestType.OK);
+
+		return result;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/queryTenant")
+	public CcmRestResult queryTenant(String buildingId,String doorNum,Integer pageNo,Integer pageSize,HttpServletRequest request) {
+		CcmRestResult result = new CcmRestResult();
+        if(request.getSession().getAttribute("user")==null){
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+		if (LjpTools.isExistNullOrZero(pageNo, pageSize)|| StringUtils.isBlank(buildingId)) {
+			result.setCode(CcmRestType.ERROR_PARAM);
+			return result;
+		}
+		CcmPopTenant ccmPopTenant = new CcmPopTenant();
+		ccmPopTenant.setBuildingId(new CcmHouseBuildmanage(buildingId));
+		ccmPopTenant.setDoorNum(doorNum);
+		Page<CcmPopTenant> page = ccmPopTenantService.findPage(new Page<>(pageNo, pageSize),ccmPopTenant);
+
+		result.setResult(page);
+		result.setCode(CcmRestType.OK);
+		return result;
+	}
+
+    @ResponseBody
+    @RequestMapping(value = "/saveTenant")
+    public CcmRestResult saveTenant(CcmPopTenant ccmPopTenant,HttpServletRequest request) {
+        CcmRestResult result = new CcmRestResult();
+        User user = (User) request.getSession().getAttribute("user");
+        if(user ==null){
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+
+        ccmPopTenant.setCreateBy(user);
+        ccmPopTenant.setUpdateBy(user);
+        ccmPopTenantService.save(ccmPopTenant);
+        result.setResult(ccmPopTenant);
+        result.setCode(CcmRestType.OK);
+        return result;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/delTenant")
+    public CcmRestResult delTenant(CcmPopTenant ccmPopTenant,HttpServletRequest request) {
+        CcmRestResult result = new CcmRestResult();
+        if(request.getSession().getAttribute("user")==null){
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+        if(StringUtils.isBlank(ccmPopTenant.getId())){
+            result.setCode(CcmRestType.ERROR_PARAM);
+            return result;
+        }
+
+        ccmPopTenantService.delete(ccmPopTenant);
+        result.setResult(ccmPopTenant);
+        result.setCode(CcmRestType.OK);
+        return result;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/getDict")
+    public CcmRestResult getDict(String type,HttpServletRequest request) {
+        CcmRestResult result = new CcmRestResult();
+        if(request.getSession().getAttribute("user")==null){
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+        if(StringUtils.isBlank(type)){
+            result.setCode(CcmRestType.ERROR_PARAM);
+            return result;
+        }
+
+        List<SysDicts> allListByType = sysDictsService.findAllListByType(type);
+        result.setResult(allListByType);
+        result.setCode(CcmRestType.OK);
+        return result;
+    }
+
+
+
 
 	/**
 	 * @see 填加微信上报附件添加

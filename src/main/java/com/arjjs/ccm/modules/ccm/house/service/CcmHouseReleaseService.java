@@ -40,6 +40,10 @@ public class CcmHouseReleaseService extends CrudService<CcmHouseReleaseDao, CcmH
 	@Autowired
 	private CcmEventIncidentService ccmEventIncidentService;
 	
+	public CcmHouseRelease getByPeopleId(String peopleId) {
+		
+		return ccmHouseReleaseDao.getItemByPeopleId(peopleId);
+	}
 	
 	
 	public CcmHouseRelease get(String id) {

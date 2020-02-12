@@ -14,13 +14,13 @@
 	<bean name="shiroFilterChainDefinitions" class="java.lang.String">
 		<constructor-arg>
 			<value>
-				/static/** = anon
+				/static/** = anon  <!--  没有参数，表示可以匿名使用 -->
 				/userfiles/** = anon
 				${appPath}/** = anon
-				${adminPath}/cas = cas
-				${adminPath}/login = authc
-				${adminPath}/logout = logout
-				${adminPath}/** = user
+				${adminPath}/cas = cas   <!-- -->
+				${adminPath}/login = authc <!-- 表示需要认证(登录)才能使用，没有参数 -->
+				${adminPath}/logout = logout <!-- -->
+				${adminPath}/** = user <!--表示需要认证(登录)才能使用，没有参数 -->
 				/act/editor/** = user
 				/ReportServer/** = user
 			</value>

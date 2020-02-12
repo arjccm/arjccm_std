@@ -4,11 +4,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.arjjs.ccm.modules.sys.service.SystemService;
+import com.arjjs.ccm.modules.sys.web.OfficeController;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -230,6 +235,29 @@ public class CcmRestWorkReport extends BaseController {
 		return result;
 	}
 
+
+	@ResponseBody
+	@RequestMapping(value = "officeTreeData")
+	public Object officeTreeData() {
+		CcmRestResult ccmRestResult=new CcmRestResult();
+		List<Map<String, Object>> mapList = Lists.newArrayList();
+		List<Office> list = this.officeService.findList(true);
+
+		for(int i = 0; i < list.size(); ++i) {
+			Office e = list.get(i);
+				Map<String, Object> map = Maps.newHashMap();
+				map.put("id", e.getId());
+				map.put("pId", e.getParentId());
+				map.put("pIds", e.getParentIds());
+				map.put("name", e.getName());
+				map.put("isParent", true);
+
+				mapList.add(map);
+		}
+		ccmRestResult.setCode(CcmRestType.OK);
+		ccmRestResult.setResult(mapList);
+		return ccmRestResult;
+	}
 	@ResponseBody
 	@RequestMapping(value = "allTreeData")
 	public Object allTreeData() {
@@ -252,13 +280,30 @@ public class CcmRestWorkReport extends BaseController {
 		return ccmRestResult;
 	}
 
+	@ResponseBody
+	@RequestMapping("userTreeData")
+	public List<Map<String, Object>> treeData(@RequestParam(required = false) String officeId, HttpServletResponse response) {
+		List<Map<String, Object>> mapList = Lists.newArrayList();
+		List<User> list = systemService.findUserByOfficeId(officeId);
+
+		for(int i = 0; i < list.size(); ++i) {
+			User e = list.get(i);
+			Map<String, Object> map = Maps.newHashMap();
+			map.put("id", "u_" + e.getId());
+			map.put("pId", officeId);
+			map.put("name", StringUtils.replace(e.getName(), " ", ""));
+			mapList.add(map);
+		}
+
+		return mapList;
+	}
 
 	/**
-             * @see 查询接受人详情
-             * @param ccmWorkReport
-             * @author fuxinshuang
-             * @version 2018-04-20
-             */
+	 * @see 查询接受人详情
+	 * @param ccmWorkReport  
+	 * @author fuxinshuang
+	 * @version 2018-04-20
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/acceptUsers", method = RequestMethod.GET)
 	public CcmRestResult acceptUsers(String userId, String ccmWorkReportReadIds, HttpServletRequest req,

@@ -30,6 +30,15 @@ public class CcmRestType {
 	public static final int CASEDEAL_SAVE_SUCCEED = -20;    ////保存事件处理成功
 	public static final int SUBMIT_REPEAT = -21;    ////重复提交
 
+    /**
+     *关键数据不存在无法进行下一步
+     */
+	public static final int ERROR_NOT_EXIST_CRUCIAL_DATA = -21;
+	/**
+     *验证码不正确
+     */
+	public static final int ERROR__VERIFICATION_CODE_INCORRECT = -22;
+
 	
 	public static final String REAL_MONITOR_UUID = "ccm-4232342-activemq-topic-id";
 

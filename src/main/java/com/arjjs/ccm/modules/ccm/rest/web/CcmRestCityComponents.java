@@ -94,7 +94,7 @@ public class CcmRestCityComponents extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/queryCityComponent", method = RequestMethod.GET)
-	public CcmRestResult queryCityComponent(String userId,CcmCityComponents ccmCityComponent, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public CcmRestResult queryCityComponent(Integer pageNo,String userId,CcmCityComponents ccmCityComponent, HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		CcmRestResult result = new CcmRestResult();
 		User sessionUser = (User) req.getSession().getAttribute("user");
 		if (sessionUser== null) {
@@ -109,6 +109,7 @@ public class CcmRestCityComponents extends BaseController {
 
 		ccmCityComponent.setCheckUser(sessionUser);
 		Page<CcmCityComponents> page = ccmCityComponentsService.findPage(new Page<CcmCityComponents>(req, resp), ccmCityComponent);
+		page.setPageNo(pageNo);
 		if(page.getList().size()>0){
 			String file = Global.getConfig("FILE_UPLOAD_URL");
 			for(CcmCityComponents resccmCityComponents : page.getList()){
@@ -219,7 +220,7 @@ public class CcmRestCityComponents extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/queryLand", method = RequestMethod.GET)
-	public CcmRestResult queryLand(String userId,CcmLand ccmLand, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public CcmRestResult queryLand(Integer pageNo,String userId,CcmLand ccmLand, HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		CcmRestResult result = new CcmRestResult();
 		User user = UserUtils.get(userId);
 		ccmLand.setCheckUser(user);
@@ -319,7 +320,7 @@ public class CcmRestCityComponents extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/queryDevice", method = RequestMethod.GET)
-	public CcmRestResult queryDevice(CcmDevice ccmDevice, HttpServletRequest req, HttpServletResponse resp, String userId) throws IOException {
+	public CcmRestResult queryDevice(Integer pageNo,CcmDevice ccmDevice, HttpServletRequest req, HttpServletResponse resp, String userId) throws IOException {
 		CcmRestResult result = new CcmRestResult();
 		User sessionUser = (User) req.getSession().getAttribute("user");
 		if (sessionUser== null) {
@@ -336,6 +337,7 @@ public class CcmRestCityComponents extends BaseController {
 		Page<CcmDevice> page = ccmDeviceService.findPage(new Page<CcmDevice>(req, resp), ccmDevice);
 	
 		result.setCode(CcmRestType.OK);
+		page.setPageNo(pageNo);
 		result.setResult(page.getList());
 		
 		return result;

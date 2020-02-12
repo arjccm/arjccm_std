@@ -142,6 +142,20 @@ public class CcmRestOrgCommonality extends BaseController {
 			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
 			return result;
 		}
+     	if (ccmOrgCommonality.getId()!= null && !"".equals(ccmOrgCommonality.getId())) {
+			CcmOrgCommonality ccmOrgCommonalityDB = ccmOrgCommonalityService.get(ccmOrgCommonality.getId());
+			if (ccmOrgCommonalityDB == null ) {//从数据库中没有取到对应数据
+				result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);
+				return result;
+			}
+			ccmOrgCommonality.setAreaPoint(ccmOrgCommonalityDB.getAreaPoint());
+			ccmOrgCommonality.setAreaMap(ccmOrgCommonalityDB.getAreaMap());
+			ccmOrgCommonality.setImage(ccmOrgCommonalityDB.getImage());
+		}else{
+			ccmOrgCommonality.setAreaPoint("");
+			ccmOrgCommonality.setAreaMap("");
+			ccmOrgCommonality.setImage("");
+		}
 		if (ccmOrgCommonality.getCreateBy()== null) {
 			ccmOrgCommonality.setCreateBy(new User(userId));
 		}
