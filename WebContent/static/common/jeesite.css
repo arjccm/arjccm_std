@@ -111,3 +111,8 @@ input.btn:hover {*color:#333333}
 #searchForm .input-medium.Wdate{width:158px;}
 #searchForm .btn-box{margin-top: 13px}
 #searchForm .btn-box a{margin-right: 14px}
+
+span>label{
+	margin-left: 0;
+	margin-right: 15px;
+}
