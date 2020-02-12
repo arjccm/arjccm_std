@@ -15,9 +15,7 @@
 	  height:100%;
 	}
 	
-	#searchForm{
-		background: #0E2A4C!important;
-	}
+
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
