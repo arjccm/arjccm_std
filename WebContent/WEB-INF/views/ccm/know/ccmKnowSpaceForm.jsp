@@ -60,8 +60,11 @@
 					<div>
 						<label class="control-label">类别：</label>
 						<div class="controls">
-							<input type="hidden" name="type" value="${fns:getDictValue('地方性法规','sys_laws_class', '')}"/>
-							${fns:getDictLabel ('04','sys_laws_class','')}
+							<%--<input type="hidden" name="type" value="${fns:getDictValue('地方性法规','sys_laws_class', '')}"/>
+							${fns:getDictLabel ('04','sys_laws_class','')}--%>
+								<form:select path="type" class="input-xlarge ">
+									<form:options items="${fns:getDictList('sys_laws_class')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+								</form:select>
 						</div>
 					</div>
 				</td>
