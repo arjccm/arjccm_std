@@ -169,4 +169,8 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 	//重点人员top5
 	public List<EchartType> getKeypeopleTop();
 	List<CcmPeople> findListByName(String key,String name);
+
+
+	//信徒人数
+     int peopleFollowerCount(@Param("bid")Integer bid);
 }

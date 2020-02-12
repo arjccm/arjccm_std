@@ -2414,4 +2414,8 @@
 		where a.name like concat("%",#{param2},"%")
 	</select>
 
+
+	<select id="peopleFollowerCount" resultType="java.lang.Integer">
+		SELECT count(belief) FROM ccm_people WHERE belief=#{bid}
+	</select>
 </mapper>

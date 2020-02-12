@@ -6,6 +6,7 @@ package com.arjjs.ccm.modules.ccm.religion.dao;
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.religion.entity.CcmPlaceReligion;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 宗教组织DAO接口
@@ -14,5 +15,7 @@ import com.arjjs.ccm.modules.ccm.religion.entity.CcmPlaceReligion;
  */
 @MyBatisDao
 public interface CcmPlaceReligionDao extends CrudDao<CcmPlaceReligion> {
-	
+
+    //教堂个数
+    Integer statIndexForZj(@Param("i") Integer i);
 }

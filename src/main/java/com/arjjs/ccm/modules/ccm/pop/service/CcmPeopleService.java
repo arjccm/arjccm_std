@@ -692,6 +692,7 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 
 	//重点人员top5
 	public List<EchartType> getKeypeopleTop(){
+
 		return ccmPeopleDao.getKeypeopleTop();
 	}
 	/**
@@ -995,5 +996,10 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	 */
 	public List<CcmPeople> findListByName(String type,String name){
 		return ccmPeopleDao.findListByName(type,name);
+	}
+
+	//宗教信徒人数
+	public Integer statIndexForZj(Integer bid) {
+		return 	ccmPeopleDao.peopleFollowerCount(bid);
 	}
 }
