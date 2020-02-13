@@ -133,11 +133,11 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font> </span>值班负责人：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font> </span>值班负责人：</label>
 						<div class="controls">
 							<sys:treeselect id="principal" name="principal" value="${ccmWorkBeonduty.principal.id}" labelName="" labelValue="${ccmWorkBeonduty.principal.name}"
 											title="用户" url="/sys/office/treeData?type=3" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
-
+							<span class="help-inline"><font color="red" id="show1"></font> </span>
 						</div>
 					</div>
 				</td>
