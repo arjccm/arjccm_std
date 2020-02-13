@@ -88,9 +88,9 @@
             </shiro:hasPermission>
             <input id="btnSubmit" class="btn btn-primary" style="width: 75px;display:inline-block;float: right;margin-right: 15px" type="submit" value="查询"/>
         </div>
-	<sys:message content="${message}"/>
-	</form:form>
 
+	</form:form>
+	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
