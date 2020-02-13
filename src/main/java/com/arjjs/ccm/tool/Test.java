@@ -16,7 +16,7 @@ public class Test {
         img2file(bii,"png","D:\\22.png");  //生成图片
         long ss = (System.currentTimeMillis() - ll);
 		System.out.println("--end:" + System.currentTimeMillis() + ",take " + ss);
-	
+        System.out.println("Test.main");
 
 	}
 	//图片反色
