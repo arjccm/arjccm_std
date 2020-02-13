@@ -2877,7 +2877,257 @@ ArjMap.Map.prototype={
 			}
 
 		},
-		//记载数据--涉及点聚合-style中feature为整个数组
+		elecAppLayer:[],//app终端撒点数组
+		elecLayer:null,//单点
+		addJSONElec:function(params){
+			debugger
+			var map = this.map;
+			var _this = this;
+			// 加载数据
+			var vectorArr = params;
+			var len = vectorArr.length;
+			if (len > 0) {
+				for (var i = 0; i < len; i++) {
+					this.center = vectorArr[i].data ? vectorArr[i].data.centpoint : "";
+					var vectorArrType = vectorArr[i].type;
+					// 图层id
+					var vectorArrId=vectorArr[i].id||vectorArr[i].type;
+					// 添加到矢量数据源
+					var Data=vectorArr[i].data.features;
+					var DataLen=Data.length;
+					var vectorSource=null;
+					var clusterSource=null;
+					var layerVectortype=vectorSource;
+					if(DataLen>0){
+						// 字符串转化为number数据 ['137','47']=>[137,47]
+						for(var j=0;j<DataLen;j++){
+							if(Data[j].geometry.type=="Point"){
+								vectorArr[i].data.features[j].geometry.coordinates[0]=Number(vectorArr[i].data.features[j].geometry.coordinates[0])
+								vectorArr[i].data.features[j].geometry.coordinates[1]=Number(vectorArr[i].data.features[j].geometry.coordinates[1])
+							}else if(Data[j].geometry.type=="Polygon"){
+								var PolygonLen=vectorArr[i].data.features[j].geometry.coordinates.length;
+								if(PolygonLen>0){
+									for(var k=0;k<PolygonLen;k++){
+										var coordinates=vectorArr[i].data.features[j].geometry.coordinates[k];
+										var coordinatesLen=coordinates.length;
+										if(coordinatesLen>0){
+											for(var m=0;m<coordinatesLen;m++){
+												vectorArr[i].data.features[j].geometry.coordinates[k][m][0]=Number(	vectorArr[i].data.features[j].geometry.coordinates[k][m][0])
+												vectorArr[i].data.features[j].geometry.coordinates[k][m][1]=Number(	vectorArr[i].data.features[j].geometry.coordinates[k][m][1])
+
+											}
+										}
+									}
+								}
+							}else if(Data[j].geometry.type=="LineString"){
+								var LineStringLen=vectorArr[i].data.features[j].geometry.coordinates.length;
+								if(LineStringLen>0){
+									for(var k=0;k<LineStringLen;k++){
+										var coordinates=vectorArr[i].data.features[j].geometry.coordinates[k];
+										var coordinatesLen=coordinates.length;
+										if(coordinatesLen>0){
+											vectorArr[i].data.features[j].geometry.coordinates[k][0]=Number(	vectorArr[i].data.features[j].geometry.coordinates[k][0])
+											vectorArr[i].data.features[j].geometry.coordinates[k][1]=Number(	vectorArr[i].data.features[j].geometry.coordinates[k][1])
+										}
+									}
+								}
+							}
+						}
+					}
+
+					// 数据
+					vectorSource=this.vectorGeoJSON(vectorArr[i].data)
+					// 点聚合
+					clusterSource=this.cluster(vectorSource);
+					if(DataLen>0){
+						for(var j=0;j<DataLen;j++){
+							if(Data[j].geometry.type=="Point"){
+								layerVectortype=clusterSource;
+							}else if(Data[j].geometry.type=="Polygon"){
+								layerVectortype=vectorSource;
+							}
+						}
+					}
+
+					var styleCache = {};
+					var cont1=0;
+					this.elecLayer = new ol.layer.Vector({
+						visible : vectorArr[i].isShow,
+						source :layerVectortype,
+						zIndex:9,
+						// 设置样式
+						style : function(feature) {
+							// 图标地址
+							var iconSrc = feature.get('icon');
+							var colorArr = _this.colorArr;
+							var index = Math.floor((Math.random() * colorArr.length));
+							var areaColor = feature.get('color');
+							var fillColor = areaColor ? areaColor : colorArr[index].rgba;
+							var color = colorArr[index].color;
+							var getZoom= map.getView().getZoom()
+							if(vectorArrType=="resultCheck"){
+								iconSrc=feature.get('info').color;// 巡逻结果颜色
+							}
+							// 中心
+							var coordinate = feature.get('coordinateCentre');
+							// 公共机构
+							if(vectorArrType=="publicPlace"){
+								map.removeOverlay(_this[feature.getId()+ 'Overlay'])
+								if(getZoom>=16){
+									_this.addOverlayLabelpublicPlace(feature.get('name'),coordinate,feature.getId())
+
+								}else{
+									_this.addOverlayLabelpublicPlaceIcon(feature.get('name'),coordinate,feature.getId())
+								}
+							}
+							// 返回样式
+							if(_this.featureStyles(iconSrc,feature)[vectorArrType]){
+								return  _this.featureStyles(iconSrc,feature)[vectorArrType];
+							}else {
+								// 点聚合 点feature为数组
+								var GeometryType=feature.getGeometry().getType();
+								if(GeometryType=="Point"){
+									var  selectedFeatures=feature.get('features');
+									var idIndex="";
+									selectedFeatures.map(function(feature) {
+										idIndex+=feature.getId()
+									});
+									var size = selectedFeatures.length;
+									var style = styleCache[idIndex];
+									if (!style) {
+										var color = size > 25 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
+										var radius = Math.max(8, Math.min(size * 0.75, 20));
+										var dash = 2 * Math.PI * radius / 6;
+										dash = [0, dash, dash, dash, dash, dash, dash];
+										if(size==1){
+											var Src=feature.get('features')[0].get('icon');
+											if(feature.get('features')[0].get('info')['是否在线']=='1'){
+												if(feature.get('features')[0].get('info')['是否越界']=='1'){
+													if(feature.get('features')[0].get('info')['用户类型']=='01'){//工作人员
+														Src='p3.png';
+													}else{//管控人员
+														Src='p3.png';//TODO-越界（管控）
+													}
+												}else{
+													if(feature.get('features')[0].get('info')['用户类型']=='01'){//工作人员
+														Src='p1.png';
+													}else{//管控人员
+														Src='controlPeople.png';//TODO-在线未越界（管控）
+													}
+												}
+
+											}else{//离线
+												if(feature.get('features')[0].get('info')['是否越界']=='1'){
+													if(feature.get('features')[0].get('info')['用户类型']=='01'){//工作人员
+														Src='p3.png';
+													}else{
+														Src='p3.png';//TODO-越界（管控）
+													}
+												}else{
+													if(feature.get('features')[0].get('info')['用户类型']=='01'){//工作人员
+														Src='p2.png';
+													}else{
+														Src='controlPeople.png';//TODO-离线未越界（管控）
+													}
+												}
+											}
+											style = styleCache[idIndex] = [
+												new ol.style.Style({
+													image : new ol.style.Icon({
+														src : ctxStatic+ '/modules/map/images/'+ Src+ '',
+														scale : map.getView().getZoom() / 15
+													}),
+													text: new ol.style.Text({
+														textAlign: 'center', // 位置
+														textBaseline: 'top', // 基准线
+														offsetY:'10',
+														exceedLength:'true',
+														font: 'normal 10px 微软雅黑',  // 文字样式
+														text: feature.get('features')[0].get('name'),  // 文本内容
+														fill: new ol.style.Fill({ color: '#aa3300' }), // 文本填充样式（即文字颜色）
+														stroke: new ol.style.Stroke({ color: '#ffcc33', width: 2 })
+													})
+
+												})
+											];
+										}
+										else{
+											style = styleCache[idIndex] = [new ol.style.Style({
+												image: new ol.style.Circle({
+													radius: radius,
+													stroke: new ol.style.Stroke({
+														color: "rgba(" + color + ",0.5)",
+														width: 15,
+														lineDash: dash,
+														lineCap: "butt"
+													}),
+													fill: new ol.style.Fill({
+														color: "rgba(" + color + ",1)"
+													})
+												}),
+												text: new ol.style.Text({
+													text: size.toString(),
+													fill: new ol.style.Fill({
+														color: '#fff'
+													})
+												})
+											})
+											];
+										}
+									}
+									_this.elecLayer.setZIndex(9999);
+									return style;
+								}else{
+									var size = feature.getId();
+									var style = styleCache[size];
+									if (!style) {
+										style = styleCache[size]=[new ol.style.Style({
+											// 图层内容颜色
+											fill : new ol.style.Fill({
+												color : fillColor ? fillColor: 'rgba(255, 255, 255, 0.6)'
+											}),
+											// 图层边框颜色
+											stroke : new ol.style.Stroke({
+												color : color ? '#0099FF': 'blue',
+												width : 1
+											}),
+											// 图层文字颜色
+											text: new ol.style.Text({
+												textAlign: 'center', // 位置
+												textBaseline: 'middle', // 基准线
+												exceedLength:'true',
+												font: 'normal 14px 微软雅黑',  // 文字样式
+												text: feature.get('name'),  // 文本内容
+												fill: new ol.style.Fill({ color: '#000' }), // 文本填充样式（即文字颜色）
+											})
+										}),]
+									}
+									return  style
+								}
+							}
+
+						}
+					});
+					map.addLayer(this.elecLayer);
+					//图层显示
+					this.elecLayer.setVisible(true);
+					//加入到全局数组
+					this.elecAppLayer.push(this.elecLayer);
+				}
+			}
+			if(this.selectPointerFlag){
+				_this.selectPointer();
+			}
+		},
+		//移除所有图层
+		removeAppLayer:function(){
+			var map = this.map;
+			var _this = this;
+			for(var i = 0;i < this.elecAppLayer.length;i++){
+				map.removeLayer(this.elecAppLayer[i]);
+			}
+		},
+	    //记载数据--涉及点聚合-style中feature为整个数组
 		addJSON1:function(params){
 			var map = this.map;
 			var _this = this;
@@ -3107,7 +3357,163 @@ ArjMap.Map.prototype={
 				_this.selectPointer();
 			}
 		},
-		//记载数据--不涉及点聚合-style中feature为数组中某一个值
+		// 记载数据--涉及点聚合-style中feature为整个数组
+		addGIS:function(params){
+			var map = this.map;
+			var _this = this;
+			// 加载数据
+			var vectorArr = params;
+			var len = vectorArr.length;
+			if(_this.overlayGISDialog){
+				_this.overlayGISDialog.setPosition(undefined);
+			}
+
+			if (len > 0) {
+				for (var i = 0; i < len; i++) {
+					this.center = vectorArr[i].data.centpoint;
+					var vectorArrType = vectorArr[i].type;
+					// 图层id
+
+					var vectorArrId=vectorArr[i].id||vectorArr[i].type;
+					// 添加到矢量数据源
+					var Data=vectorArr[i].data.features;
+					var DataLen=Data.length;
+					var vectorSource=null;
+					var clusterSource=null;
+					var layerVectortype=vectorSource;
+					if(DataLen>0){
+						// 字符串转化为number数据 ['137','47']=>[137,47]
+						for(var j=0;j<DataLen;j++){
+							if(Data[j].geometry.type=="Point"){
+								var nameNum=vectorArr[i].data.features[j].properties.nameNum;
+								var id=vectorArr[i].data.features[j].id;
+								var properties=vectorArr[i].data.features[j].properties;
+								var x=vectorArr[i].data.features[j].geometry.coordinates[0];
+								var y=vectorArr[i].data.features[j].geometry.coordinates[1];
+								if(x!=''&&y!=''){
+									var coordinates=[Number(x),Number(y)];
+									_this.addGISOverlay(nameNum,coordinates,id,properties)
+								}
+
+							}
+						}
+					}
+
+				}
+			}
+		},
+		// 添加图文标注
+		addGISOverlay:function(name, coordinate,overlayId,info) {
+			var map = this.map;
+			var overlay = document.getElementById('FullBody'); // 获取id为label的元素
+			// 新增div元素
+			var elementDiv = document.createElement('div');
+			elementDiv.id='overlay_'+overlayId;
+			var x=coordinate[0];
+			var y=coordinate[1];
+			overlay.appendChild(elementDiv); // 为ID为label的div层添加div子节点
+			elementDiv.className = "gis-marker";
+			elementDiv.onclick =function(){goToDetail(x,y,overlayId,info)} ;
+			elementDiv.title = name;
+
+
+			// 新建span标签
+			var elementSpan = document.createElement("span");
+			elementDiv.appendChild(elementSpan);
+			elementSpan.innerHTML=name;
+
+			this[overlayId + 'Overlay'] = new ol.Overlay({
+				id:overlayId,
+				position : coordinate,
+				element : elementDiv,
+				// offset : [ -offset, -105 ],
+				autoPan : true,
+				autoPanAnimation : {
+					duration : 250
+				}
+			});
+			map.addOverlay(this[overlayId + 'Overlay']);
+		},
+		// 悬上图层
+		selectGISPointer : function(id,info,coordinate) {
+			var map = this.map;
+			var _this = this;
+			// 弹框
+
+			$('#popup').show();
+			var container = document.getElementById('popup');
+			var content = document.getElementById('popup-content');
+			var closer = document.getElementById('popup-closer');
+			_this.overlayGISDialog = new ol.Overlay({
+				element : container,
+				offset : [10, 0],
+				autoPan : true,
+				autoPanAnimation : {
+					duration : 250
+				}
+			});
+			if(closer){
+				closer.onclick = function() {
+					_this.overlayGISDialog.setPosition(undefined);
+					closer.blur();
+					return false;
+				};
+			}
+
+			map.on('click', function(event) {
+				if(closer){
+					// 关闭弹框
+					closer.click();
+				}
+			});
+			map.addOverlay(_this.overlayGISDialog);
+			var html = '<table>';
+			html += '<tr>';
+			html += '<td><strong>名称：</strong></td>';
+			html += '<td  style="color:#eea807">' + (info.name||info.info['楼栋名称']) + '</td>';
+			html += '</tr>';
+			var infoData=info.info;
+			for ( var i in infoData) {
+				if(i=='住所楼栋区域'){
+					continue
+				}else if(i=='住所楼栋id'){
+					continue
+				}else if(i=='住所楼栋id'){
+					continue
+				}else if(i=='场所图片'){
+					continue
+				}
+				if(i=='场所类型'){
+					html += '<tr>';
+					html += '<td><strong>'+i+'：</strong></td>';
+					html += '<td  style="color:#eea807">' + placeTypeObj[infoData[i]]||'' + '</td>';
+					html += '</tr>';
+				}else if(i=='重点属性'){
+					html += '<tr>';
+					html += '<td><strong>'+i+'：</strong></td>';
+					html += '<td  style="color:#eea807">' + placeImportantObj[infoData[i]]||'' + '</td>';
+					html += '</tr>';
+				}else if(i=='人口类型'){
+					html += '<tr>';
+					html += '<td><strong>'+i+'：</strong></td>';
+					html += '<td  style="color:#eea807">' + pTypeObj[infoData[i]]||'' + '</td>';
+					html += '</tr>';
+				}else{
+					html += '<tr>';
+					html += '<td><strong>'+i+'：</strong></td>';
+					html += '<td  style="color:#eea807">' + infoData[i] + '</td>';
+					html += '</tr>';
+				}
+
+			}
+			html += '</table>';
+			if(content){
+				content.innerHTML = html;
+			}
+			_this.overlayGISDialog.setPosition(coordinate);
+
+		},
+	    //记载数据--不涉及点聚合-style中feature为数组中某一个值
         addJSON2:function(params){
         	var map = this.map;
         	var colorArr = this.colorArr;

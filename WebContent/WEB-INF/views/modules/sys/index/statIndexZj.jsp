@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -433,12 +434,12 @@
 					<p class="sectName">基督教</p>
 					<p class="sectNum">
 						<span class="lvfont">教堂</span>
-						<span class="lanfont">26</span>
+						<span class="lanfont">${z1}</span>
 						<span class="lvfont">个</span>
 					</p>
 					<p class="sectNum">
 						<span class="lvfont">信徒</span>
-						<span class="lanfont">842</span>
+						<span class="lanfont">${i1}</span>
 						<span class="lvfont">人</span>
 					</p>
 				</div>
@@ -446,12 +447,12 @@
 					<p class="sectName">天主教</p>
 					<p class="sectNum">
 						<span class="lvfont">教堂</span>
-						<span class="lanfont">18</span>
+						<span class="lanfont">${z2}</span>
 						<span class="lvfont">个</span>
 					</p>
 					<p class="sectNum">
 						<span class="lvfont">信徒</span>
-						<span class="lanfont">669</span>
+						<span class="lanfont">${i2}</span>
 						<span class="lvfont">人</span>
 					</p>
 				</div>
@@ -459,12 +460,12 @@
 					<p class="sectName">伊斯兰教</p>
 					<p class="sectNum">
 						<span class="lvfont">清真寺</span>
-						<span class="lanfont">16</span>
+						<span class="lanfont">${z3}</span>
 						<span class="lvfont">个</span>
 					</p>
 					<p class="sectNum">
 						<span class="lvfont">信徒</span>
-						<span class="lanfont">634</span>
+						<span class="lanfont">${i3}</span>
 						<span class="lvfont">人</span>
 					</p>
 				</div>
@@ -472,12 +473,12 @@
 					<p class="sectName">佛教</p>
 					<p class="sectNum">
 						<span class="lvfont">寺、庵</span>
-						<span class="lanfont">10</span>
+						<span class="lanfont">${z4}</span>
 						<span class="lvfont">个</span>
 					</p>
 					<p class="sectNum">
 						<span class="lvfont">信徒</span>
-						<span class="lanfont">520</span>
+						<span class="lanfont">${i4}</span>
 						<span class="lvfont">人</span>
 					</p>
 				</div>
@@ -485,12 +486,12 @@
 					<p class="sectName">道教</p>
 					<p class="sectNum">
 						<span class="lvfont">宫、观</span>
-						<span class="lanfont">5</span>
+						<span class="lanfont">${z5}</span>
 						<span class="lvfont">个</span>
 					</p>
 					<p class="sectNum">
 						<span class="lvfont">信徒</span>
-						<span class="lanfont">120</span>
+						<span class="lanfont">${i5}</span>
 						<span class="lvfont">人</span>
 					</p>
 				</div>
@@ -676,7 +677,7 @@
 						<div class="event_row">
 							<div class="e_cube1">
 								<div class="e_cube2">
-									<span class="e_num">54</span>
+									<span class="e_num">${j6}</span>
 								</div>
 								<span class="e_title">累计受理事件</span>
 
@@ -685,7 +686,7 @@
 						<div class="event_row">
 							<div class="e_cube1">
 								<div class="e_cube2">
-									<span class="e_num">23</span>
+									<span class="e_num">${j1}</span>
 								</div>
 								<span class="e_title">散播谣言</span>
 
@@ -694,7 +695,7 @@
 						<div class="event_row">
 							<div class="e_cube1">
 								<div class="e_cube2">
-									<span class="e_num">2</span>
+									<span class="e_num">${j2}</span>
 								</div>
 								<span class="e_title">制造骚乱</span>
 
@@ -703,7 +704,7 @@
 						<div class="event_row">
 							<div class="e_cube1">
 								<div class="e_cube2">
-									<span class="e_num">3</span>
+									<span class="e_num">${j3}</span>
 								</div>
 								<span class="e_title">反动言论</span>
 
@@ -712,7 +713,7 @@
 						<div class="event_row">
 							<div class="e_cube1">
 								<div class="e_cube2">
-									<span class="e_num">23</span>
+									<span class="e_num">${j4}</span>
 								</div>
 								<span class="e_title">非法集会</span>
 
@@ -721,7 +722,7 @@
 						<div class="event_row">
 							<div class="e_cube1">
 								<div class="e_cube2">
-									<span class="e_num">3</span>
+									<span class="e_num">${j5}</span>
 								</div>
 								<span class="e_title">其他</span>
 

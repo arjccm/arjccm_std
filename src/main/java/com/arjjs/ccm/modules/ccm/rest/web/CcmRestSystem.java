@@ -2,6 +2,7 @@ package com.arjjs.ccm.modules.ccm.rest.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -94,6 +95,30 @@ public class CcmRestSystem extends BaseController {
 		result.setCode(CcmRestType.OK);
 		result.setResult(dictList);
 	//	return dictService.findList(dict);
+		return result;
+	}
+
+	/**
+	 * @see  获取数据字典信息
+	 * @param types  类型
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "multdict", method = RequestMethod.POST)
+	public CcmRestResult listMultData(@RequestParam(required=false) List<String> types) {
+		CcmRestResult result = new CcmRestResult();
+		Map<String, Object> map = new HashMap<>();
+		for(String type : types) {
+			Dict dict = new Dict();
+			dict.setType(type);
+			List<Dict> dictList = dictService.findList(dict);
+			map.put(type, dictList);
+		}
+
+		// 返回具体内容
+		result.setCode(CcmRestType.OK);
+		result.setResult(map);
+		//	return dictService.findList(dict);
 		return result;
 	}
 	

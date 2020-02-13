@@ -6,6 +6,7 @@ import com.arjjs.ccm.common.gis.Point;
 import com.arjjs.ccm.common.utils.DateUtils;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.citycomponents.entity.CcmCityComponents;
+import com.arjjs.ccm.modules.ccm.fence.entity.CcmElecfenceAlarm;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.sys.utils.DictUtils;
 
@@ -1865,4 +1866,31 @@ public class CommUtil {
 		}
 		return age;
 	}
+	/**
+	 * 获取描述信息
+	 * @param ccmElecfenceAlarm
+	 * @return
+	 */
+
+	public static String getDescribe(CcmElecfenceAlarm ccmElecfenceAlarm) {
+		String describe = "";
+		if(null == ccmElecfenceAlarm) {
+			return describe;
+		}
+		if(StringUtils.isEmpty(ccmElecfenceAlarm.getUserName())) {
+			return describe;
+		}
+		if(null == ccmElecfenceAlarm.getCcmPeople() || StringUtils.isEmpty(ccmElecfenceAlarm.getCcmPeople().getName())) {
+			return describe;
+		}
+		if(null == ccmElecfenceAlarm.getCcmDevice() || StringUtils.isEmpty(ccmElecfenceAlarm.getCcmDevice().getDeviceId())) {
+			return describe;
+		}
+		String alarmTypeLabel = DictUtils.getDictLabel(ccmElecfenceAlarm.getAlarmType(), "fence_alarm_rule", "");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		describe = "手机" + ccmElecfenceAlarm.getCcmDevice().getDeviceId() + ":" + ccmElecfenceAlarm.getUserName()
+				+"(" + ccmElecfenceAlarm.getCcmPeople().getName() + ")" + "于"+ df.format(ccmElecfenceAlarm.getAlarmTime()) + "发生" + alarmTypeLabel + "报警";
+		return describe;
+	}
+
 }

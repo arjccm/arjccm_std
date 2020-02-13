@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.fence.dao.CcmElecfenceAlarmDao">
+    
+	<sql id="ccmElecfenceAlarmColumns">
+			a.create_by AS "createBy.id",
+			a.create_date AS "createDate",
+			a.update_by AS "updateBy.id",
+			a.update_date AS "updateDate",
+			a.remarks AS "remarks",
+			a.del_flag AS "delFlag",
+			a.alarm_type AS "alarmType",
+			a.alarm_time AS "alarmTime",
+			a.people_id AS "ccmPeople.id",
+			a.people_name AS "ccmPeople.name",
+			a.user_id AS "userId",
+			a.user_name AS "userName",
+			a.x AS "x",
+			a.y AS "y",
+			a.is_check AS "isCheck",
+			a.device_id AS "ccmDevice.deviceId" 
+	</sql>
+	
+	<sql id="ccmMobileDeviceJoins">
+		LEFT JOIN v_ccm_team u3 ON u3.id = a.user_id
+		LEFT JOIN
+		sys_office o ON o.id = u3.office_id
+		LEFT JOIN ccm_people p ON p.id = a.people_id
+	</sql>
+	
+	<sql id="ccmElectronicFenceJoins">
+		
+	</sql>
+    
+	<select id="findList" resultType="CcmElecfenceAlarm">
+		SELECT 
+			<include refid="ccmElecfenceAlarmColumns"/>
+		FROM ccm_elecfence_alarm a
+		<include refid="ccmElectronicFenceJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="ccmDevice != null and ccmDevice.deviceId != null and ccmDevice.deviceId != ''">
+				AND a.device_id LIKE
+				<if test="dbName == 'oracle'">'%'||#{ccmDevice.deviceId}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{ccmDevice.deviceId}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{ccmDevice.deviceId},'%')</if>
+			</if>
+			<if test="ccmPeople !=null and ccmPeople.name != null and ccmPeople.name != ''">
+				AND a.people_name LIKE
+				<if test="dbName == 'oracle'">'%'||#{ccmPeople.name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{ccmPeople.name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{ccmPeople.name},'%')</if>
+			</if>
+			<if test="beginCreateDate != null and endCreateDate != null and beginCreateDate != '' and endCreateDate != ''">
+				AND a.alarm_time BETWEEN #{beginCreateDate} AND #{endCreateDate}
+			</if>
+			<if test="alarmType != null and alarType != ''">
+				AND a.alarm_type = #{alarmType}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_elecfence_alarm(
+			id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			people_id,
+			alarm_type,
+			alarm_time,
+			people_name,
+			user_id,
+			user_name,
+			x,
+			y,
+			is_check,
+			device_id
+		) VALUES (
+			#{id},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{ccmPeople.id},
+			#{alarmType},
+			#{alarmTime},
+			#{ccmPeople.name},
+			#{userId},
+			#{userName},
+			#{x},
+			#{y},
+			#{isCheck},
+			#{ccmDevice.deviceId}
+		)
+	</insert>
+	
+	
+	<update id="delete">
+		UPDATE ccm_elecfence_alarm SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+</mapper>

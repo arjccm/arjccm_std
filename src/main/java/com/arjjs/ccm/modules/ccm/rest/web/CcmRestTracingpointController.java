@@ -23,6 +23,10 @@ import com.arjjs.ccm.modules.ccm.patrol.entity.CcmTracingpoint;
 import com.arjjs.ccm.modules.ccm.patrol.service.CcmTracingpointService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
+import com.arjjs.ccm.modules.flat.deviceonline.entity.CcmDeviceOnline;
+import com.arjjs.ccm.modules.flat.deviceonline.service.CcmDeviceOnlineService;
+import com.arjjs.ccm.modules.flat.deviceuse.entity.CcmDeviceUse;
+import com.arjjs.ccm.modules.flat.deviceuse.service.CcmDeviceUseService;
 import com.arjjs.ccm.modules.ccm.service.entity.CcmCommunityWork;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.CommUtil;
@@ -40,6 +44,10 @@ public class CcmRestTracingpointController extends BaseController {
 
 	@Autowired
 	private CcmTracingpointService ccmTracingpointService;
+	@Autowired
+	private CcmDeviceOnlineService ccmDeviceOnlineService;
+	@Autowired
+	private CcmDeviceUseService ccmDeviceUseService;
 
 	/**
 	 * 
@@ -149,7 +157,18 @@ public class CcmRestTracingpointController extends BaseController {
 		list = CommUtil.getListByArray(CcmTracingpoint.class, JsonString);
 		for(CcmTracingpoint c:list){
 			CcmTracingpoint ccmTracingpoint1 = ccmTracingpointService.get(c.getId());
-			if(ccmTracingpoint1!=null){
+
+			// 查询最后一次登录的数据,并更新最后一次的离线时间
+			CcmDeviceUse ccmDeviceUse = ccmDeviceUseService.getByDeviceId(c.getDeviceId());
+			ccmDeviceUse.setUpdateTime(new Date());
+			ccmDeviceUseService.save(ccmDeviceUse);
+
+			// 更新设备在线记录
+			CcmDeviceOnline online = ccmDeviceOnlineService.getByDeviceId(c.getDeviceId());
+			online.setUpdateDate(new Date());
+			ccmDeviceOnlineService.save(online);
+
+			if (ccmTracingpoint1 != null) {
 				c.setIsNewRecord(false);
 				ccmTracingpointService.save(c);
 			}else{

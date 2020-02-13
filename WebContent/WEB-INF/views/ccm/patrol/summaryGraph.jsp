@@ -38,8 +38,8 @@
 	
 	<sys:message content="${message}"/>
 	    <br>
-	    <div class="row-fluid">
-			
+	    <div class="row-fluid" id="blackech2">
+
 					<h4>巡逻单位任务完成情况</h4>
 					<div class="common-pading">
 						<div id="PopFlowTable" class="echarts" ></div>
@@ -77,7 +77,7 @@
 <script src="${ctxStatic}/common/index/Scripts/js/echarts.js"></script>
 <script>
 	var color;
-
+	var FontColor="#999";
 	var theme=$.cookie('theme');
 	if(theme=='gradient'){
 		color = [ '#25B8FE', '#2BE0D5', '#B180E4', '#FD93B6', '#53D5FF', '#F8C73C', '#1F8BFA', '#F77136',//循环一遍
@@ -137,18 +137,18 @@
 					//min:0,
 					//max: 250000,
 					textStyle: {
-						color: '#000'
+						color: FontColor
 					},
 					axisLine: {
 						lineStyle: {
-							color: '#000',
+							color: FontColor,
 							width: 2
 						}
 					},
 					axisLabel: {
 						show: true,
 						textStyle: {
-							color: '#000'
+							color: FontColor
 						}
 					},
 					splitLine: {
@@ -163,14 +163,14 @@
 					},
 					axisLine: {
 						lineStyle: {
-							color: '#000',
+							color: FontColor,
 							width: 2
 						}
 					},
 					axisLabel: {
 						show: true,
 						textStyle: {
-							color: '#000'
+							color: FontColor
 						}
 					}
 				},

@@ -20,8 +20,17 @@
     <script src="${ctxStatic}/common/index/Scripts/js/echarts.js"></script>
     <script type="text/javascript" src="${ctxStatic}/echarts/echarts.common.min.js"></script>
     <link rel="stylesheet" href="${ctxStatic}/bootstrap/bootstrap3.0/css/bootstrap.min.css">
+    <script src="${ctxStatic}/jquery/jquery.cookie.js" type="text/javascript"></script>
     <script type="text/javascript">
-
+        var FontColor="#999";
+        var theme=$.cookie('theme');
+        if(theme==undefined){
+            FontColor='#fff';
+        }else if(theme=='gradient'){
+            FontColor='#000';
+        }else if(theme=='black'){
+            FontColor='#fff';
+        }
         $.ajax({
             type: "GET",
             url: "${ctx}/analyst/getDataByDept",
@@ -44,6 +53,9 @@
                 title: {
                     left: 'left',
                     text: '单位信息统计',
+                    textStyle: {
+                        color: FontColor
+                    }
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -62,13 +74,27 @@
                         saveAsImage: {show: true}
                     }
                 },
+
                 legend: {
+                    textStyle: {
+                        fontWeight: 'normal', //标题颜色
+                        color: FontColor
+                    },
                     data: ['查询次数', '登录次数', '使用时长(天)']
                 },
                 xAxis: [
                     {
                         type: 'category',
                         data: nameList,
+                        textStyle: {
+                            color: FontColor
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: FontColor,
+                                width: 2
+                            }
+                        },
                         axisPointer: {
                             type: 'shadow'
                         }
@@ -78,15 +104,38 @@
                     {
                         type: 'value',
                         name: '次数',
+                        textStyle: {
+                            color: FontColor
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                color:FontColor,
+                            }
+                        },
                         axisLabel: {
-                            formatter: '{value} '
+                            formatter: '{value} ',
+                            textStyle: {
+                                color: FontColor
+                            }
+
                         }
                     },
                     {
                         type: 'value',
                         name: '时长',
+                        textStyle: {
+                            color: FontColor
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                color:FontColor,
+                            }
+                        },
                         axisLabel: {
-                            formatter: '{value} min'
+                            formatter: '{value} min',
+                            textStyle: {
+                                color: FontColor
+                            }
                         }
                     }
                 ],
@@ -94,17 +143,26 @@
                     {
                         name: '查询次数',
                         type: 'bar',
+                        textStyle: {
+                            color: FontColor
+                        },
                         data: queryList
                     },
                     {
                         name: '登录次数',
                         type: 'bar',
+                        textStyle: {
+                            color: FontColor
+                        },
                         data: timesList
                     },
                     {
                         name: '使用时长(天)',
                         type: 'bar',
                         yAxisIndex: 1,
+                        textStyle: {
+                            color: FontColor
+                        },
                         data: loginList
                     }
                 ]
@@ -116,7 +174,7 @@
     </script>
 </head>
 <body>
-<div class="row-fluid">
+<div class="row-fluid" id="blackech2">
     <div class="span11">
         <div id="deptBar" class="echarts"></div>
     </div>

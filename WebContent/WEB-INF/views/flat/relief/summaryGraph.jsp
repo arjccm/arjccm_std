@@ -40,7 +40,7 @@
 	
 	<sys:message content="${message}"/>
 	    <br>
-	    <div class="row-fluid">
+	    <div class="row-fluid" id="blackech2">
 			
 					<h4>备勤单位任务完成情况</h4>
 					<div class="common-pading">
@@ -90,6 +90,7 @@
 		color = ['#D87A82', '#4573a7', '#89a54e', '#71588f', '#4298af', '#db843d',
 			'#93a9d0', '#d09392', '#b9ce96', '#a99bbc', '#92c3d4', '#ffdf5f'];
 	}
+
 	//基础参数
 	var windowsHeight, _fontSize = 14,
 
@@ -105,6 +106,14 @@
 	if(theme=="black"){
 		FontColor="#fff";
 		backgroundColor="#0e2a4c";
+	}
+
+	if($.cookie('theme')==undefined){
+		FontColor='#fff';
+	}else if($.cookie('theme')=='gradient'){
+		FontColor='#000';
+	}else if($.cookie('theme')=='black'){
+		FontColor='#fff';
 	}
 	$(function(){
 	    windowsHeight= $(window).width();
@@ -123,7 +132,7 @@
 					data: ['幺铺镇', '西航办事处', '宋旗镇'],
 					textStyle: {
 						fontWeight: 'normal', //标题颜色
-						color: '#000'
+						color: FontColor
 					},
 				},
 				grid: {
@@ -139,18 +148,18 @@
 					//min:0,
 					//max: 250000,
 					textStyle: {
-						color: '#000'
+						color: FontColor
 					},
 					axisLine: {
 						lineStyle: {
-							color: '#000',
+							color: FontColor,
 							width: 2
 						}
 					},
 					axisLabel: {
 						show: true,
 						textStyle: {
-							color: '#000'
+							color: FontColor
 						}
 					},
 					splitLine: {
@@ -165,14 +174,14 @@
 					},
 					axisLine: {
 						lineStyle: {
-							color: '#000',
+							color: FontColor,
 							width: 2
 						}
 					},
 					axisLabel: {
 						show: true,
 						textStyle: {
-							color: '#000'
+							color: FontColor
 						}
 					}
 				},
@@ -228,10 +237,6 @@
 				}
 				$("#td").html(twoHtml);
 			})
-
-
-
-
 		}
 	 })
 	 

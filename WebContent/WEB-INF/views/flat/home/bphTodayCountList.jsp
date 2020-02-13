@@ -4,7 +4,7 @@
 <html style="height:100%;width:100%;">
 <head>
 <title>今日统计</title>
-<%--<meta name="decorator" content="default"/>--%>
+<meta name="decorator" content="default"/>
 <script type="text/javascript">
 	$(document).ready(function() {
 		
@@ -12,6 +12,11 @@
 </script>
 </head>
 <body>
+
+<ul class="nav nav-tabs">
+	<li class="active"><a href="javascript:void(0)">单位警情统计</a></li>
+</ul>
+
 	<table id="contentTable" class="table table-condensed">
 		<thead>
 			<tr>

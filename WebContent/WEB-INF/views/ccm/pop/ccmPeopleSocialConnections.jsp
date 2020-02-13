@@ -59,6 +59,8 @@
 		<li ><a href="#SocialRelations" data-toggle="tab">社会关系图谱</a></li>
 		<li ><a href="#roomPop" data-toggle="tab">同住人员信息</a></li>
 		<li ><a href="#homePop" data-toggle="tab">家庭成员信息</a></li>
+		<li ><a href="" data-toggle="tab">交通住宿信息</a></li>
+		<li ><a href="" data-toggle="tab">布控结果信息</a></li>
 	</ul>
 	<div id="myTabContent" class="tab-content">
 	<div class="tab-pane fade in active" id="SocialRelations" style="align-content:center;width:100%;height:800px;">

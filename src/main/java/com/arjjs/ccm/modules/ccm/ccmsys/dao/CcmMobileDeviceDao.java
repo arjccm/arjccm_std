@@ -28,4 +28,30 @@ public interface CcmMobileDeviceDao extends CrudDao<CcmMobileDevice> {
 	//查询待上传的数据
 	List<CcmMobileDevice> findListApp(CcmMobileDevice ccmMobileDevice);
 	
+	/**
+	 * @desc 更新设备关联电子围栏信息
+	 * @param ccmMobileDevice
+	 * @author arj0704
+	 * @return
+	 */
+	public int updateElecFenceId(CcmMobileDevice ccmMobileDevice);
+	
+	/**
+	 * @desc 根据电子围栏id获取关联设备列表
+	 * @param id
+	 * @author arj0704
+	 * @return
+	 */
+	List<CcmMobileDevice> findDeviceListByElecId(String id);
+	
+	
+	/**
+	 * @desc 根据设备标识、用户id获取其围栏规则及信息
+	 * @param ccmMobileDevice
+	 * @author arj0704
+	 * @return
+	 */
+	CcmMobileDevice findAppElecInfoById(CcmMobileDevice ccmMobileDevice);
+
+	
 }
