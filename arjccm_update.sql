@@ -343,12 +343,12 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('62ca5a29456949b092a7ce65e9d908ec', '1', '新建', 'ccm_patrol_missions_status', '巡逻任务状态', 10, '0', '1', '2019-07-05 19:32:39', '1', '2019-07-31 16:23:32', '', '0');
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('9bff1f1295e848f8b65ff693ed853ce7', '2', '进行中', 'ccm_patrol_missions_status', '巡逻任务状态', 20, '0', '1', '2019-07-05 19:33:05', '1', '2019-07-31 16:23:40', '', '0');
 
--- 2020-02-13
--- 城市部件表
+
+-- 城市部件表 by maoxb 2020-02-13
  alter table ccm_city_components add components_num varchar(10) COMMENT '消防设施的数量';
  alter table ccm_city_components add is_danger varchar(2)  COMMENT '是否是危险品（是 1  否  0）';
  alter table ccm_city_components add collect_people varchar(255)  COMMENT '信息采集人员';  
- -- 房屋表
+ -- 房屋表 by maoxb 2020-02-13
  alter table ccm_pop_tenant add collect_people varchar(255)  COMMENT '信息采集人员';
 
 
