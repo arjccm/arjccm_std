@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.pop.dao.CcmPeopleAntiepidemicDao">
+    
+	<sql id="ccmPeopleAntiepidemicColumns">
+		a.id AS "id",
+		a.telephone AS "telephone",
+		a.tel_posion AS "telPosion",
+		a.name AS "name",
+		a.sex AS "sex",
+		a.id_number AS "idNumber",
+		a.domicile AS "domicile",
+		a.habitation AS "habitation",
+		a.leave_hubei_date AS "leaveHubeiDate",
+		a.come_hainan_date AS "comeHainanDate",
+		a.is_in_14days AS "isIn14days",
+		a.is_left_hainan AS "isLeftHainan",
+		a.left_date AS "leftDate",
+		a.health AS "health",
+		a.does_take_steps AS "doesTakeSteps",
+		a.take_steps AS "takeSteps",
+		a.is_transfer_hc AS "isTransferHc",
+		a.telephone_home AS "telephoneHome",
+		a.distribute_city AS "distributeCity",
+		a.distribute_no AS "distributeNo",
+		a.check_name AS "checkName",
+		a.check_tel AS "checkTel",
+		a.check_date AS "checkDate",
+		a.report_name AS "reportName",
+		a.report_department AS "reportDepartment",
+		a.report_date AS "reportDate",
+		a.report_status AS "reportStatus",
+		a.belong_bureau AS "belongBureau",
+		a.belong_sub_bureau AS "belongSubBureau",
+		a.belong_police_station AS "belongPoliceStation",
+		a.data_type AS "dataType",
+		a.data_status AS "dataStatus",
+		a.area_grid_id AS "areaGridId",
+		a.area_point AS "areaPoint",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="ccmPeopleAntiepidemicJoins">
+	</sql>
+    
+	<select id="get" resultType="CcmPeopleAntiepidemic">
+		SELECT 
+			<include refid="ccmPeopleAntiepidemicColumns"/>
+		FROM ccm_people_antiepidemic a
+		<include refid="ccmPeopleAntiepidemicJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CcmPeopleAntiepidemic">
+		SELECT 
+			<include refid="ccmPeopleAntiepidemicColumns"/>
+		FROM ccm_people_antiepidemic a
+		<include refid="ccmPeopleAntiepidemicJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="telephone != null and telephone != ''">
+				AND a.telephone = #{telephone}
+			</if>
+			<if test="telPosion != null and telPosion != ''">
+				AND a.tel_posion = #{telPosion}
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="sex != null and sex != ''">
+				AND a.sex = #{sex}
+			</if>
+			<if test="idNumber != null and idNumber != ''">
+				AND a.id_number = #{idNumber}
+			</if>
+			<if test="domicile != null and domicile != ''">
+				AND a.domicile = #{domicile}
+			</if>
+			<if test="habitation != null and habitation != ''">
+				AND a.habitation = #{habitation}
+			</if>
+			<if test="leaveHubeiDate != null and leaveHubeiDate != ''">
+				AND a.leave_hubei_date = #{leaveHubeiDate}
+			</if>
+			<if test="comeHainanDate != null and comeHainanDate != ''">
+				AND a.come_hainan_date = #{comeHainanDate}
+			</if>
+			<if test="isIn14days != null and isIn14days != ''">
+				AND a.is_in_14days = #{isIn14days}
+			</if>
+			<if test="isLeftHainan != null and isLeftHainan != ''">
+				AND a.is_left_hainan = #{isLeftHainan}
+			</if>
+			<if test="leftDate != null and leftDate != ''">
+				AND a.left_date = #{leftDate}
+			</if>
+			<if test="doesTakeSteps != null and doesTakeSteps != ''">
+				AND a.does_take_steps = #{doesTakeSteps}
+			</if>
+			<if test="isTransferHc != null and isTransferHc != ''">
+				AND a.is_transfer_hc = #{isTransferHc}
+			</if>
+			<if test="telephoneHome != null and telephoneHome != ''">
+				AND a.telephone_home = #{telephoneHome}
+			</if>
+			<if test="distributeCity != null and distributeCity != ''">
+				AND a.distribute_city = #{distributeCity}
+			</if>
+			<if test="distributeNo != null and distributeNo != ''">
+				AND a.distribute_no = #{distributeNo}
+			</if>
+			<if test="checkName != null and checkName != ''">
+				AND a.check_name = #{checkName}
+			</if>
+			<if test="checkTel != null and checkTel != ''">
+				AND a.check_tel = #{checkTel}
+			</if>
+			<if test="reportDate != null and reportDate != ''">
+				AND a.report_date = #{reportDate}
+			</if>
+			<if test="reportStatus != null and reportStatus != ''">
+				AND a.report_status = #{reportStatus}
+			</if>
+			<if test="belongBureau != null and belongBureau != ''">
+				AND a.belong_bureau = #{belongBureau}
+			</if>
+			<if test="belongSubBureau != null and belongSubBureau != ''">
+				AND a.belong_sub_bureau = #{belongSubBureau}
+			</if>
+			<if test="belongPoliceStation != null and belongPoliceStation != ''">
+				AND a.belong_police_station = #{belongPoliceStation}
+			</if>
+			<if test="dataType != null and dataType != ''">
+				AND a.data_type = #{dataType}
+			</if>
+			<if test="dataStatus != null and dataStatus != ''">
+				AND a.data_status = #{dataStatus}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CcmPeopleAntiepidemic">
+		SELECT 
+			<include refid="ccmPeopleAntiepidemicColumns"/>
+		FROM ccm_people_antiepidemic a
+		<include refid="ccmPeopleAntiepidemicJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_people_antiepidemic(
+			id,
+			telephone,
+			tel_posion,
+			name,
+			sex,
+			id_number,
+			domicile,
+			habitation,
+			leave_hubei_date,
+			come_hainan_date,
+			is_in_14days,
+			is_left_hainan,
+			left_date,
+			health,
+			does_take_steps,
+			take_steps,
+			is_transfer_hc,
+			telephone_home,
+			distribute_city,
+			distribute_no,
+			check_name,
+			check_tel,
+			check_date,
+			report_name,
+			report_department,
+			report_date,
+			report_status,
+			belong_bureau,
+			belong_sub_bureau,
+			belong_police_station,
+			data_type,
+			data_status,
+			area_grid_id,
+			area_point,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{telephone},
+			#{telPosion},
+			#{name},
+			#{sex},
+			#{idNumber},
+			#{domicile},
+			#{habitation},
+			#{leaveHubeiDate},
+			#{comeHainanDate},
+			#{isIn14days},
+			#{isLeftHainan},
+			#{leftDate},
+			#{health},
+			#{doesTakeSteps},
+			#{takeSteps},
+			#{isTransferHc},
+			#{telephoneHome},
+			#{distributeCity},
+			#{distributeNo},
+			#{checkName},
+			#{checkTel},
+			#{checkDate},
+			#{reportName},
+			#{reportDepartment},
+			#{reportDate},
+			#{reportStatus},
+			#{belongBureau},
+			#{belongSubBureau},
+			#{belongPoliceStation},
+			#{dataType},
+			#{dataStatus},
+			#{areaGridId},
+			#{areaPoint},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ccm_people_antiepidemic SET 	
+			telephone = #{telephone},
+			tel_posion = #{telPosion},
+			name = #{name},
+			sex = #{sex},
+			id_number = #{idNumber},
+			domicile = #{domicile},
+			habitation = #{habitation},
+			leave_hubei_date = #{leaveHubeiDate},
+			come_hainan_date = #{comeHainanDate},
+			is_in_14days = #{isIn14days},
+			is_left_hainan = #{isLeftHainan},
+			left_date = #{leftDate},
+			health = #{health},
+			does_take_steps = #{doesTakeSteps},
+			take_steps = #{takeSteps},
+			is_transfer_hc = #{isTransferHc},
+			telephone_home = #{telephoneHome},
+			distribute_city = #{distributeCity},
+			distribute_no = #{distributeNo},
+			check_name = #{checkName},
+			check_tel = #{checkTel},
+			check_date = #{checkDate},
+			report_name = #{reportName},
+			report_department = #{reportDepartment},
+			report_date = #{reportDate},
+			report_status = #{reportStatus},
+			belong_bureau = #{belongBureau},
+			belong_sub_bureau = #{belongSubBureau},
+			belong_police_station = #{belongPoliceStation},
+			data_type = #{dataType},
+			data_status = #{dataStatus},
+			area_grid_id = #{areaGridId},
+			area_point = #{areaPoint},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE ccm_people_antiepidemic SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
