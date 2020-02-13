@@ -36,7 +36,7 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group" style="padding-top: 8px">
-			<label class="control-label">标题：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>标题：</label>
 			<div class="controls">
 				<form:input path="title" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
 			</div>

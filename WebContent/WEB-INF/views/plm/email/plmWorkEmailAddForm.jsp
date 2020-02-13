@@ -14,6 +14,9 @@
 .padding {
     padding-bottom: 5px; 
 }
+	#plmWorkEmailSReadName,#title{
+		background-color: #fff!important;
+	}
 </style>
 </head>
 <body>
