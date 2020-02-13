@@ -33,6 +33,7 @@
     <title>个人信息统计</title>
     <script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>
     <script src="${ctxStatic}/common/index/Scripts/js/echarts.js"></script>
+    <script src="${ctxStatic}/jquery/jquery.cookie.js" type="text/javascript"></script>
     <script type="text/javascript"
             src="${ctxStatic}/echarts/echarts.common.min.js"></script>
     <link rel="stylesheet"
@@ -47,12 +48,12 @@
         <%--<img src="{ctx}" style="width:16px;height:14px;">--%>
         <%--当前位置：数据统计分析>个人信息统计--%>
 
-        <div class="row-fluid">
+        <div class="row-fluid" id="blackech2">
             <div class="span11">
                 <div id="personalEcharts" class="echarts"></div>
             </div>
         </div>
-        <div class="row-fluid">
+        <div class="row-fluid" id="blackech2">
             <div class="span11">
                 <div id="loginTimes" class="echarts1"></div>
             </div>
@@ -72,6 +73,15 @@
     </tr>
 </table>--%>
 <script type="text/javascript">
+    var FontColor="#999";
+    var theme=$.cookie('theme');
+    if(theme==undefined){
+        FontColor='#fff';
+    }else if(theme=='gradient'){
+        FontColor='#000';
+    }else if(theme=='black'){
+        FontColor='#fff';
+    }
     $.ajax({
         type: "GET",
         url: "${ctx}/analyst/countUseTime",
@@ -92,7 +102,10 @@
         var colors = ['#FF7453', '#25B8FE'];
         option = {
             title: {
-                text: '当前用户APP登录次数与使用时长'
+                text: '当前用户APP登录次数与使用时长',
+                textStyle: {
+                    color: FontColor
+                }
             },
             color: colors,
             // grid: {
@@ -102,7 +115,7 @@
             legend: {
                 data: ['登录次数', '使用时长'],
                 textStyle: {
-                    color: '#0F0F0F',
+                    color: FontColor,
                 }
             },
             tooltip: {},
@@ -113,7 +126,7 @@
                 },
                 axisLine: {
                     lineStyle: {
-                        color: '#0F0F0F'
+                        color: FontColor
                     }
                 },
                 data: dateList
@@ -124,11 +137,14 @@
                 position: 'left',
                 axisLine: {
                     lineStyle: {
-                        color: '#0F0F0F'
+                        color: FontColor
                     }
                 },
                 axisLabel: {
-                    formatter: '{value}'
+                    formatter: '{value}',
+                    textStyle: {
+                        color: FontColor
+                    }
                 }
             }, {
                 type: 'value',
@@ -136,15 +152,21 @@
                 position: 'right',
                 axisLine: {
                     lineStyle: {
-                        color: '#0F0F0F'
+                        color:FontColor
                     }
                 },
                 axisLabel: {
-                    formatter: '{value}'
+                    formatter: '{value}',
+                    textStyle: {
+                        color: FontColor
+                    }
                 }
             }],
             series: [{
                 name: '登录次数',
+                textStyle: {
+                    color: FontColor
+                },
                 type: 'bar',
                 barWidth: '30%',
                 itemStyle: {
@@ -159,6 +181,9 @@
                 data: timesList
             }, {
                 name: '使用时长',
+                textStyle: {
+                    color: FontColor
+                },
                 type: 'line',
                 smooth: true,
                 yAxisIndex: 1,
@@ -191,7 +216,10 @@
     function init(data1, data2, loginName) {
         option = {
             title: {
-                text: '当前用户查询记录'
+                text: '当前用户查询记录',
+                textStyle: {
+                    color: FontColor
+                }
             },
             tooltip: {
                 trigger: 'axis'
@@ -212,14 +240,29 @@
             xAxis: {
                 type: 'category',
                 boundaryGap: true,
+                axisLine: {
+                    lineStyle: {
+                        color: FontColor,
+                        width: 2
+                    }
+                },
                 data: data1
             },
             yAxis: {
                 type: 'value',
-                name: '查询次数（次）'
+                name: '查询次数（次）',
+                axisLine: {
+                    lineStyle: {
+                        color: FontColor,
+                        width: 2
+                    }
+                },
             },
             series: [{
                 name: loginName,
+                textStyle: {
+                    color: FontColor
+                },
                 type: 'bar',
                 barWidth: '30%',
                 stack: '查询次数',

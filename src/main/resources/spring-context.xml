@@ -116,7 +116,19 @@
 		<property name="password" value="${jdbc.password}"/>
 	</bean>-->
 	
+	<bean id="ccmRestEvent" class="com.arjjs.ccm.modules.ccm.rest.web.CcmRestEvent" />
 	<!-- 启动并定时检测消息中间件 -->
+	<bean id="amqDaemonJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="ccmRestEvent" />
+		<property name="targetMethod" value="initializeAmq" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="amqDaemonTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="amqDaemonJob" />
+		<property name="startDelay" value="0" />
+		<property name="repeatInterval" value="120000" />
+	</bean>
+		<!-- 启动并定时检测消息中间件 -->
 	<bean id="rabbitMQTools" class="com.arjjs.ccm.tool.RabbitMQTools" />
 	<bean id="initRabbitMQJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="rabbitMQTools" />
@@ -262,6 +274,7 @@
  	<bean id="schedulerFactoryBean" autowire="no" lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
  	  <property name="triggers">
    		<list>
+   			<!-- <ref bean="amqDaemonTrigger" /> -->
 <!--  			<ref bean="uploadCcmDataTrigger" /> -->
 <!--    			<ref bean="uploadCcmDataAppTrigger" /> -->
  <!--  			<ref bean="initRabbitMQTrigger" />  &lt;!&ndash;定时检测rabbitMQ连接状态&ndash;&gt;;-->

@@ -138,7 +138,27 @@
 					</div>
 				</td>
 			</tr>
-						
+					<tr>
+				<td>
+					<div>
+						<label class="control-label">数量：</label>
+						<div class="controls">
+							<form:input path="componentsNum" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+							<span class="help-inline"><font color="red">*</font> </span>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">是否是危险品：</label>
+						<div class="controls">
+						<form:select path="isDanger" class="input-xlarge">
+							<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false" />
+						</form:select>
+						</div>
+					</div>
+				</td>
+			</tr>		
 			<tr>
 				<td>
 					<div>

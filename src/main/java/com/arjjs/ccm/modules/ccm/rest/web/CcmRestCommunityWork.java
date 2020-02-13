@@ -76,7 +76,7 @@ public class CcmRestCommunityWork extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/query", method = RequestMethod.GET)
-	public CcmRestResult query(String userId, HttpServletRequest req, HttpServletResponse resp,
+	public CcmRestResult query(Integer pageNo,String userId, HttpServletRequest req, HttpServletResponse resp,
 			CcmCommunityWork ccmCommunityWork) throws IOException {
 		// 获取结果
 		CcmRestResult result = CommUtilRest.queryResult(userId, req, resp);
@@ -87,6 +87,7 @@ public class CcmRestCommunityWork extends BaseController {
 		Page<CcmCommunityWork> page = ccmCommunityWorkService.findPage(new Page<CcmCommunityWork>(req, resp),
 				(null == ccmCommunityWork) ? new CcmCommunityWork() : ccmCommunityWork);
 		result.setCode(CcmRestType.OK);
+		page.setPageNo(pageNo);
 		result.setResult(page.getList());
 		// 输出结果
 		return result;

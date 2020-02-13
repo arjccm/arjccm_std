@@ -1249,4 +1249,14 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 	public AlarmNotifyInfo selectAlarmNotifyInfoById(String alarmId) {
 		return dao.selectAlarmNotifyInfoById(alarmId);
 	}
+		
+	public PageAlarmInfo queryPageAlarmInfo(Integer startIndex,Integer pageSize) {
+		PageAlarmInfo pageAlarmInfo = new PageAlarmInfo();
+		List<BphAlarmInfo> queryAll = dao.queryAll(startIndex,pageSize);
+		int queryAlarmCount = dao.queryAlarmCount();
+		pageAlarmInfo.setCount(queryAlarmCount);
+		pageAlarmInfo.setAlarmList(queryAll);
+		
+		return pageAlarmInfo;
+	}
 }

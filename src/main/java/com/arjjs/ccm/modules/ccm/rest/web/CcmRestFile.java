@@ -1,10 +1,6 @@
 package com.arjjs.ccm.modules.ccm.rest.web;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -187,6 +184,46 @@ public class CcmRestFile extends BaseController {
         return result;
 		
 	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/download/{filename:.+}/{downloadName}")
+	public void getDownload(@PathVariable String filename, @PathVariable("downloadName") String downloadName, HttpServletRequest request,
+							HttpServletResponse response) {
+
+		String rootPath = Global.getConfig("FILE_DOWNLOAD_PATH");
+		// 读到流中
+		InputStream inStream = null;
+		try {
+			inStream = new FileInputStream(rootPath + filename);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		// 设置输出的格式
+		response.reset();
+		response.setContentType("bin");
+		//中文支持
+		try {
+			String newDownloadName = new String(downloadName.getBytes(), "ISO-8859-1");
+			response.setHeader("Content-Disposition", "attachment;fileName=" + newDownloadName);
+		} catch (Exception e) {
+			response.setHeader("Content-Disposition", "attachment;fileName=" + downloadName);
+		}
+		// 循环取出流中的数据
+		byte[] b = new byte[1024];
+		int len;
+		try {
+			while ((len = inStream.read(b)) > 0) {
+				response.getOutputStream().write(b, 0, len);
+			}
+			inStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
+
+
 
 	//文件上传进度Map uuid和当前大小
 	public static Map<String, CcmEntityProgress> map = new HashMap<String, CcmEntityProgress>();

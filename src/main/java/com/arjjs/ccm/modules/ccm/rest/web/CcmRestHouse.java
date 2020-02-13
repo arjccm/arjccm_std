@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.ccm.tenant.entity.CcmTenantRecord;
 import com.arjjs.ccm.modules.pbs.common.config.Global;
 import com.arjjs.ccm.tool.CommUtilRest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
+import com.arjjs.ccm.modules.ccm.tenant.entity.CcmTenantRecord;
+import com.arjjs.ccm.modules.ccm.tenant.service.CcmTenantRecordService;
 import com.arjjs.ccm.modules.sys.entity.User;
 
 /**
@@ -35,6 +38,9 @@ import com.arjjs.ccm.modules.sys.entity.User;
 @RequestMapping(value = "${appPath}/rest/house")
 public class CcmRestHouse extends BaseController {
 
+	@Autowired
+	private CcmTenantRecordService ccmTenantRecordService;
+	
 	@Autowired
 	private CcmPopTenantService ccmPopTenantService;
 
@@ -125,7 +131,83 @@ public class CcmRestHouse extends BaseController {
 		
 		return result;
 	}
+		/**
+	 * @see  查询出租房屋信息
+	 * @param houseBuild  房屋编号 
+	 * @param housePlace  房屋地址
+	 * @param houseName  房主姓名
+	 * @param pageNo  页码
+	 * @param pageSize  分页大小
+	 * @return 
+	 * @author fuxinshuang
+	 * @version 2018-02-03
+	 */
+	@ResponseBody
+	@RequestMapping(value="/queryRent", method = RequestMethod.GET)
+	public CcmRestResult queryRent(Integer pageNo,String buildingid,String userId,CcmPopTenant ccmPopTenant,HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = new CcmRestResult();
+		User sessionUser = (User) req.getSession().getAttribute("user");
+		if (sessionUser== null) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		String sessionUserId = sessionUser.getId();
+		if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		ccmPopTenant.setCheckUser(sessionUser);
+		ccmPopTenant.setBuildingId(new CcmHouseBuildmanage(buildingid));
+		ccmPopTenant.setHouseType("02");
+		Page<CcmPopTenant> page = ccmPopTenantService
+				.findPage(new Page<CcmPopTenant>(req, resp), ccmPopTenant);
 	
+		result.setCode(CcmRestType.OK);
+		page.setPageNo(pageNo);
+		result.setResult(page.getList());
+		
+		return result;
+	}
+	/**
+	 * @see  查询房屋历史租户信息
+	 * @param houseBuild  房屋编号 
+	 * @param housePlace  房屋地址
+	 * @param houseName  房主姓名
+	 * @param pageNo  页码
+	 * @param pageSize  分页大小
+	 * @return 
+	 * @author ljd
+	 * @version 2019-07-24
+	 *   /arjccm/a/tenant/ccmTenantRecord/11f6e17918c948cda5fcc9000003954
+	 */
+	@ResponseBody
+	@RequestMapping(value="/queryHistory", method = RequestMethod.GET)
+	public CcmRestResult queryRent(Integer pageNo,String userId,String id,HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = new CcmRestResult();
+		User sessionUser = (User) req.getSession().getAttribute("user");
+		if (sessionUser== null) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		String sessionUserId = sessionUser.getId();
+		if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		if (id == null || "".equals(id)) {//参数id不对
+			result.setCode(CcmRestType.ERROR_PARAM);
+			return result;
+		}
+		CcmTenantRecord ccmTenantRecord = new CcmTenantRecord();
+		ccmTenantRecord.setHouseId(id);
+		Page<CcmTenantRecord> page = ccmTenantRecordService.findPage(new Page<CcmTenantRecord>(req, resp), ccmTenantRecord); 
+		
+		result.setCode(CcmRestType.OK);
+		page.setPageNo(pageNo);
+		result.setResult(page.getList());
+		
+		return result;
+	}
 	
 	/**
 	 * @see  修改房屋信息

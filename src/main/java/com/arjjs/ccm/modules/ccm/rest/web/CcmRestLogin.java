@@ -5,6 +5,7 @@ import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.gis.MapUtil;
 import com.arjjs.ccm.common.gis.Point;
 import com.arjjs.ccm.common.security.Digests;
+import com.arjjs.ccm.common.utils.CacheUtils;
 import com.arjjs.ccm.common.utils.Encodes;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
@@ -16,6 +17,7 @@ import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgTeam;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgTeamService;
 import com.arjjs.ccm.modules.ccm.patrol.entity.CcmTracingpoint;
 import com.arjjs.ccm.modules.ccm.patrol.service.CcmTracingpointService;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
@@ -26,9 +28,14 @@ import com.arjjs.ccm.modules.flat.deviceuse.service.CcmDeviceUseService;
 import com.arjjs.ccm.modules.flat.userBindingDevice.entity.UserBindingDevice;
 import com.arjjs.ccm.modules.flat.userBindingDevice.service.UserBindingDeviceService;
 import com.arjjs.ccm.modules.sys.dao.UserDao;
+import com.arjjs.ccm.modules.sys.entity.Dict;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.service.DictService;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
+import com.arjjs.ccm.tool.MessageTools;
+import com.arjjs.ccm.tool.StringTool;
 import com.arjjs.ccm.tool.TransGPS;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -39,9 +46,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.security.SecureRandom;
+import java.util.*;
 
 /**
  * 登录接口类
@@ -77,7 +83,8 @@ public class CcmRestLogin extends BaseController {
     @Autowired
     private SysConfigService sysConfigService;
 
-
+    private static final String SYMBOLS = "0123456789";
+    private static final Random RANDOM = new SecureRandom();
 
     @Value("${RABBIT_MQ_HOST}")
     private  String  RABBIT_MQ_HOST;
@@ -391,7 +398,11 @@ public class CcmRestLogin extends BaseController {
                     ccmAlarmLogService.save(ccmAlarmLog);//保存
                 }
 
-                ccmMobileDeviceDB.setIsAlarm("1");//是否越界-是
+                ccmMobileDeviceDB.setIsAlarm("1");// 是否越界-是
+                Map<String, String> stringStringMap = new HashMap<>();
+                stringStringMap.put("id", ccmMobileDeviceDB.getDeviceId());
+                stringStringMap.put("name", "出栏警告！");
+                MessageTools.sendAppMsgByUserId(ccmMobileDeviceDB.getCreateBy().getId(), stringStringMap);
 
             }
         }
@@ -417,5 +428,239 @@ public class CcmRestLogin extends BaseController {
     }
 
 
+    @ResponseBody
+    @RequestMapping(value = "location", method = RequestMethod.POST)
+    public CcmRestResult location(CcmMobileDevice ccmMobileDevice) {
+        CcmRestResult result = new CcmRestResult();
+        // 向移动设备表存入数据
+        CcmMobileDevice ccmMobileDeviceDB = ccmMobileDeviceService.findByDeviceId(ccmMobileDevice.getDeviceId());
 
+        if (ccmMobileDeviceDB == null) {
+            result.setCode(CcmRestType.ERROR_PARAM);
+            return result;
+        }
+        if (ccmMobileDeviceDB.getElecFenceInfo() != null) {
+
+
+            // 判断是否越界告警
+            String eFenceScope = ccmMobileDeviceDB.getElecFenceInfo().getAreaMap();
+            if (!"".equals(eFenceScope) && null != eFenceScope) {// 存在电子围栏设置时
+                String[] points = ccmMobileDevice.getAreaPoint().split(",");
+                Point pointApp = new Point(Double.parseDouble(points[0]), Double.parseDouble(points[1]));// app点位
+
+                // 电子围栏区域
+                List<Point> eFencePointList = new ArrayList<>();
+                String[] eFencePoints = eFenceScope.split(";");
+                for (int i = 0; i < eFencePoints.length; i++) {
+                    Point point = new Point(Double.parseDouble(eFencePoints[i].split(",")[0]),
+                            Double.parseDouble(eFencePoints[i].split(",")[1]));
+                    eFencePointList.add(point);
+                }
+//			MapUtil mu = new MapUtil();
+                boolean isPointInPolygon = MapUtil.isPointInPolygon(pointApp, eFencePointList);// 在围栏里面返回true，不报警，false则报警
+                if (!isPointInPolygon && System.currentTimeMillis() - ccmMobileDeviceDB.getUpdateDate().getTime() > 60) {
+                    ccmMobileDeviceDB.setIsAlarm("1");// 是否越界-是
+                    ccmMobileDeviceDB.setUpdateDate(new Date());
+                    ccmMobileDeviceDB.setAreaPoint(ccmMobileDevice.getAreaPoint());
+                    ccmMobileDeviceService.save(ccmMobileDeviceDB);// 保存移动设备管理
+
+                    Map<String, String> stringStringMap = new HashMap<>();
+                    stringStringMap.put("id", ccmMobileDeviceDB.getDeviceId());
+                    stringStringMap.put("name", ccmMobileDeviceDB.getvCcmTeam().getName() + "-出栏警告！");
+                    MessageTools.sendAppMsgByUserId(ccmMobileDeviceDB.getCreateBy().getId(), stringStringMap);
+
+                }
+            }
+        }
+
+        // 向巡逻点位表存入数据
+        CcmTracingpoint ccmTracingpoint = new CcmTracingpoint();
+        ccmTracingpoint.setAreaPoint(ccmMobileDevice.getAreaPoint());
+        ccmTracingpoint.setDeviceId(ccmMobileDevice.getDeviceId());
+        ccmTracingpoint.setUser(new User(ccmMobileDevice.getUserId()));
+        ccmTracingpoint.setCurDate(new Date());
+        ccmTracingpointService.save(ccmTracingpoint);
+        result.setCode(CcmRestType.OK);
+        return result;
+    }
+
+    /**
+     * 获取消息验证
+     *
+     * @param deviceId
+     * @param policeAccount
+     * @param req
+     * @param resp
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    public CcmRestResult validate(String deviceId, String policeAccount, HttpServletRequest req, HttpServletResponse resp) {
+        CcmRestResult result = new CcmRestResult();
+        if (deviceId == null || "".equals(deviceId) || policeAccount == null || "".equals(policeAccount)) {
+            result.setCode(CcmRestType.ERROR_PARAM);
+            return result;
+        }
+        StringBuilder sb = new StringBuilder(deviceId);
+        sb.append(policeAccount);
+
+        User userDB = UserUtils.getByLoginName(policeAccount);
+        if (userDB == null) {
+            result.setCode(CcmRestType.ERROR_NO_USER);
+            return result;
+        }
+        String captcha = getNonceStr();
+        Map<String, String> map = Maps.newHashMap();
+        map.put("name", "验证码:" + captcha);
+        map.put("type", "CAPTCHA");
+        map.put("id", captcha);
+        System.out.println(captcha);
+        CacheUtils.put(sb.toString(), captcha);
+        MessageTools.sendAppMsgByUserId(userDB.getId(), map);
+        result.setCode(CcmRestType.OK);
+        return result;
+    }
+
+    /**
+     * 重点人员添加到设备管理
+     *
+     * @param deviceId      设备号
+     * @param policeAccount 警察账号
+     * @param captcha       验证码
+     * @param peopleId      重点人员id
+     * @param areaPonit     当前位置
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/savepel", method = RequestMethod.POST)
+    public CcmRestResult isValidate(String deviceId, String policeAccount, String captcha, String peopleId, String areaPonit) {
+        CcmRestResult result = new CcmRestResult();
+        if (StringTool.isAllEmpty(deviceId, policeAccount, captcha, peopleId, areaPonit)) {
+            result.setCode(CcmRestType.ERROR_PARAM);
+            return result;
+        }
+        String string = (String) CacheUtils.get(deviceId + policeAccount);
+        if (string == null) {
+            result.setCode(CcmRestType.ERROR_PARAM);
+            return result;
+        }
+        if (!string.equals(captcha)) {
+            result.setCode(CcmRestType.ERROR__VERIFICATION_CODE_INCORRECT);
+            return result;
+        }
+        CcmPeople ccmPeople = ccmPeopleService.get(peopleId);
+        if (ccmPeople == null) {
+            result.setCode(CcmRestType.ERROR_NOT_EXIST_CRUCIAL_DATA);
+            return result;
+        }
+
+        CcmMobileDevice byDeviceId = ccmMobileDeviceService.findByDeviceId(deviceId);
+        CcmMobileDevice ccmMobileDevice = new CcmMobileDevice();
+        if (byDeviceId != null) {
+            ccmMobileDevice.setId(deviceId);
+        }
+        VCcmTeam vCcmTeam = new VCcmTeam();
+        vCcmTeam.setId(ccmPeople.getId());
+        ccmMobileDevice.setvCcmTeam(vCcmTeam);
+        ccmMobileDevice.setParentId(peopleId);
+        //用户id
+        ccmMobileDevice.setDeviceId(deviceId);
+        //管控 type 类型 数据字典里的value
+        ccmMobileDevice.setUseType("02");
+        ccmMobileDevice.setAreaPoint(areaPonit);
+        //授权可接入 状态
+        ccmMobileDevice.setIsVariable("02");
+        ccmMobileDevice.setCreateBy(UserUtils.getByLoginName(policeAccount));
+        ccmMobileDeviceService.save(ccmMobileDevice);
+        result.setCode(CcmRestType.OK);
+
+        return result;
+    }
+
+    /**
+     * 获得警察id
+     *
+     * @param policeAccount 警察账号
+     * @return
+     */
+    @RequestMapping(value = "getPoliceId", method = RequestMethod.POST)
+    @ResponseBody
+    public CcmRestResult getPoliceId(String policeAccount) {
+        CcmRestResult result = new CcmRestResult();
+        result.setResult(UserUtils.getByLoginName(policeAccount));
+        result.setCode(CcmRestType.OK);
+        return result;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/special", method = RequestMethod.POST)
+    public CcmRestResult special(String name, String type) {
+        CcmRestResult result = new CcmRestResult();
+        if (StringTool.isAllBlank(name, type)) {
+            result.setCode(CcmRestType.ERROR_PARAM);
+            return result;
+        }
+        try {
+            Dict dict = new Dict();
+            //重点人群 数据字典type
+            dict.setType("emphasis_people_type");
+            dict.setValue(type);
+            List<Dict> list = dictService.findList(dict);
+            if (list.isEmpty()) {
+                result.setCode(CcmRestType.ERROR_PARAM);
+                return result;
+            }
+            List<CcmPeople> listByName = ccmPeopleService.findListByName(list.get(0).getRemarks(), name);
+            result.setResult(listByName);
+            result.setCode(CcmRestType.OK);
+            return result;
+        } catch (Exception e) {
+            System.out.println(e);
+            result.setCode(CcmRestType.ERROR_PARAM);
+            return result;
+        }
+
+
+    }
+
+    /**
+     * 根据设备号判断是否 注册过
+     *
+     * @param deviceId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/isRegistered", method = RequestMethod.POST)
+    public CcmRestResult isRegistered(String deviceId) {
+        CcmRestResult result = new CcmRestResult();
+
+        CcmMobileDevice ccmMobileDevice = new CcmMobileDevice();
+        ccmMobileDevice.setDeviceId(deviceId);
+        List<CcmMobileDevice> list = ccmMobileDeviceService.findList(ccmMobileDevice);
+        if (list == null || list.size() == 0) {
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("peopleId", list.get(0).getvCcmTeam().getId());
+        map.put("policeId", list.get(0).getCreateBy().getId());
+        map.put("policeName", userDao.get(new User(list.get(0).getCreateBy().getId())).getName());
+
+        result.setResult(map);
+        result.setCode(CcmRestType.OK);
+
+        return result;
+    }
+
+
+    public static String getNonceStr() {
+        char[] nonceChars = new char[6];
+
+        for (int index = 0; index < nonceChars.length; ++index) {
+            nonceChars[index] = SYMBOLS.charAt(RANDOM.nextInt(SYMBOLS.length()));
+        }
+
+        return new String(nonceChars);
+    }
 }

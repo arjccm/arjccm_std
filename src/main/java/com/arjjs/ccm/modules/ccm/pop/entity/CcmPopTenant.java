@@ -66,6 +66,24 @@ public class CcmPopTenant extends DataEntity<CcmPopTenant> {
 	private User checkUser;		// 拦截器中使用该用户进行权限拦截，App的rest接口使用
 
 	private List<String> listLimite;
+private String collectPeople;	// 信息采集人
+	private String collectPeopleName;	// 信息采集人姓名
+
+	public String getCollectPeople() {
+		return collectPeople;
+	}
+
+	public void setCollectPeople(String collectPeople) {
+		this.collectPeople = collectPeople;
+	}
+
+	public String getCollectPeopleName() {
+		return collectPeopleName;
+	}
+
+	public void setCollectPeopleName(String collectPeopleName) {
+		this.collectPeopleName = collectPeopleName;
+	}
 
 
 	public String getBuildDoorName() {
