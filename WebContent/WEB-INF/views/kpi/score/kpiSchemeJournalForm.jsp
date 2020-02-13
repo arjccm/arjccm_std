@@ -57,10 +57,11 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group head_Space" >
-			<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font> </span>被考核人：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>被考核人：</label>
 			<div class="controls">
 				<sys:treeselect id="user" name="user.id" value="${kpiSchemeJournal.user.id}" labelName="user.name" labelValue="${kpiSchemeJournal.user.name}"
 					title="用户" url="/sys/office/treeData?type=3" cssClass="" allowClear="true" notAllowSelectParent="true"/>
+				<lable id="show1"></lable>
 			</div>
 		</div>
 		<div class="control-group">

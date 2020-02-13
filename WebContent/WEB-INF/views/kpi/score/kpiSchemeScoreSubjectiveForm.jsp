@@ -141,9 +141,12 @@
 									<span>KPI说明：${kpiSchemeKpi.remarks}</span>
 								</div>
 								<c:if test="${kpiSchemeKpi.schemeState eq '1'}">
-									<button type="button" id="alltj" class="button positive" style="float: right;" >
+									<%--<button type="button" id="alltj" class="button positive" style="float: right;" >
 	    									提交所有数据
-	   								</button>
+	   								</button>--%>
+									<button type="button" id="alltj" class="btn btn-primary" style="float: right;" >
+										提交所有数据
+									</button>
    								</c:if>
 						    </div>
 						    <input type="hidden" name="schemeId" id="schemeId" value="${kpiSchemeKpi.schemeId}"/>
@@ -176,7 +179,8 @@
 		                    </td>
 		                    <td>
 		                    	<c:if test="${kpiSchemeKpi.schemeState eq '1'}">
-		                   			<input class="update" type="button" id="${staffScore.userId.id}" value="确认修改"/>
+<%--		                   			<input class="update" type="button" id="${staffScore.userId.id}" value="确认修改"/>--%>
+		                   			<input class="btn btn-primary" type="button" id="${staffScore.userId.id}" value="确认修改"/>
 		                   		</c:if>
 		                   		<c:if test="${kpiSchemeKpi.schemeState eq '2'}">
 									<span style='color:red'>${fns:getDictLabel(kpiSchemeKpi.schemeState, 'kpi_scheme_state', '')}</span>

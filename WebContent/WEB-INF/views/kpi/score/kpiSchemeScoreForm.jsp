@@ -145,9 +145,12 @@
 									<span>正在为【${kpiScheme.name}】打分!</span>
 								</div>
 								<c:if test="${kpiScheme.state eq '1'}">
-									<button type="button" id="alltj" class="button positive" style="float: right;" >
+									<%--<button type="button" id="alltj" class="button positive" style="float: right;" >
 	    									提交所有数据
-	   								</button>
+	   								</button>--%>
+									<button type="button" id="alltj" class="btn btn-primary" style="float: right;" >
+										提交所有数据
+									</button>
 									
    								</c:if>
 						    </div>
@@ -161,9 +164,12 @@
 						<td width="15%">姓名</td>
 							<c:forEach items="${kpirow}" var="kpi">
 							   <td width="15%">${kpi.name}&nbsp;&#40;${kpi.score}&#41;
-									<button onclick="parent.LayerDialog1('','${ctx}/report/ccmReportOthers/logBookOffice?kpiSchemeId=${kpiScheme.id}&kpiId=${kpi.id}', '日常工作数据详情', '1800px', '700px')" type="button" class="button positive" style="margin: 0px 20px" >
+									<%--<button onclick="parent.LayerDialog1('','${ctx}/report/ccmReportOthers/logBookOffice?kpiSchemeId=${kpiScheme.id}&kpiId=${kpi.id}', '日常工作数据详情', '1800px', '700px')" type="button" class="button positive" style="margin: 0px 20px" >
 	    									日常数据录入
-	   								</button>
+	   								</button>--%>
+								   <button onclick="parent.LayerDialog1('','${ctx}/report/ccmReportOthers/logBookOffice?kpiSchemeId=${kpiScheme.id}&kpiId=${kpi.id}', '日常工作数据详情', '1800px', '700px')" type="button" class="btn btn-primary" style="margin: 0px 20px" >
+									   日常数据录入
+								   </button>
 								</td>
 							</c:forEach>
 						<td width="20%">操作</td>
@@ -196,7 +202,8 @@
 		                    </c:forEach>
 		                    <td>
 		                    	<c:if test="${kpiScheme.state eq '1'}">
-		                   			<input class="update" type="button" id="${staffScore.user.id}" value="确认修改"/>
+<%--		                   			<input class="update" type="button" id="${staffScore.user.id}" value="确认修改"/>--%>
+		                   			<input class="btn btn-primary" type="button" id="${staffScore.user.id}" value="确认修改"/>
 		                   		</c:if>
 		                   		<c:if test="${kpiScheme.state eq '2'}">
 		                   			<span style='color:red'>${fns:getDictLabel(kpiScheme.state, 'kpi_scheme_state', '')}</span>

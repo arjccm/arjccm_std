@@ -116,14 +116,14 @@
 						value="${plmStorage.parent.id}" labelName="parent.name"
 						labelValue="${plmStorage.parent.name}" title="父级编号"
 						url="/storage/plmStorage/treeData" extId="${plmStorage.id}"
-						cssStyle="padding-right: 13px;padding-left: 13px;"
+						cssStyle="padding-right: 13px;padding-left: 13px;width:245px !important;"
 						allowClear="true" /></td>
 				<td class="trtop">联系人</td>
 				<td ><sys:treeselect id="user" name="user.id"
 						value="${plmStorage.user.id}" labelName="user.name"
 						labelValue="${plmStorage.user.name}" title="用户"
 						url="/sys/office/treeData?type=3"
-						cssStyle="padding-right: 13px;padding-left: 13px;"
+						cssStyle="padding-right: 13px;padding-left: 13px;width:245px !important;"
 						allowClear="true" notAllowSelectParent="true" isAll="true"/></td>
 			</tr>
 			<tr>
