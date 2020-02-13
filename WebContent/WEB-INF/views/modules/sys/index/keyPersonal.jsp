@@ -220,47 +220,49 @@
 	</form>
 	<div class="context" content="${ctx}" style="display: none"></div>
 	<div id="FullBody">
-		<div class="row-fluid header" style="position: absolute;z-index:2;top: -2px;">
+		<div class="row-fluid header">
 			<div>
 				<!-- 菜单 -->
-				<div style="z-index: 9999;position: absolute;width:100%; top: 0px;left: 26px;">
-					<div style="float: right;" class="Logout">
-						<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/sys/map/projectIndex"><img src="/arjccm/static/common/index/images/statIndexCool/home.png"></a>
-						<img style="display: inline;" src="/arjccm/static/common/index/images/statIndexCool/vertical.png">
-						<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/logout"><img src="/arjccm/static/common/index/images/statIndexCool/exit.png"></a>
-					</div>
-					<div style="float: left;width: 26%;text-align: left;margin-left: 20px;padding-top: 1%">
+				<div class="header_area clearfix">
+
+					<div class="header_logo clearfix">
 						<div class="liuG"></div>
-						<img class="logo" src="/arjccm/static/common/index/images/statIndexZj/xmzj_logo.png" style="margin-left: -20px;width:46px;height:46px;vertical-align:baseline;">
-						<span id="productName" style="height:45px;vertical-align:baseline;width:300px;font-size:30px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);line-height:27px;text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;top: -70px; left: 40px;background: none;">宗教全时空立体化防控</span>
+						<img class="logo" src="/arjccm/static/common/index/images/statIndexZj/xmzj_logo.png">
+						<span id="productName" class="logo_text">宗教全时空立体化防控</span>
 					</div>
-					<div>
-						<ul class="nav pm-links">
+					<div class="header_nav">
+						<ul class="nav pm-links clearfix">
 							<li class="menu">
-								<a href="${ctx}/sys/map/statIndexForZj">数据展示</a>
+								<a id="wanggeguanli" href="${ctx}/sys/map/statIndexForZj">数据展示</a>
 							</li>
 							<li class="menu">
-								<a class="active" style="margin-left: 20px; " href="${ctx}/sys/map/keyPersonal">重点人员专题</a>
+								<a class="active" href="${ctx}/sys/map/keyPersonal">重点人员专题</a>
 							</li>
 							<li class="menu">
-								<a style="margin-left: 20px;" href="${ctx}/sys/map/religionIndex">宗教专题</a>
+								<a href="${ctx}/sys/map/religionIndex">宗教专题</a>
 							</li>
-					<%--		<li class="menu">
-								<a style="margin-left: 20px; " id="anquanshengchan">安全生产</a>
-							</li>
-							<li class="menu">
-								<a style="margin-left: 20px;" id="xuelianggongcheng">雪亮工程</a>
-							</li>--%>
+							<%--		<li class="menu">
+                                        <a style="margin-left: 20px; " id="anquanshengchan">安全生产</a>
+                                    </li>
+                                    <li class="menu">
+                                        <a style="margin-left: 20px;" id="xuelianggongcheng">雪亮工程</a>
+                                    </li>--%>
 						</ul>
+					</div>
+					<div class="Logout hearder_operation clearfix">
+						<a  href="${ctx}/sys/map/projectIndex"><img src="/arjccm/static/common/index/images/statIndexCool/home.png"></a>
+						<img src="/arjccm/static/common/index/images/statIndexCool/vertical.png">
+						<a  href="${ctx}/logout"><img src="/arjccm/static/common/index/images/statIndexCool/exit.png"></a>
 					</div>
 				</div>
 
 			</div>
 
-			<div>
-				<h5 class="header-logo"></h5>
-			</div>
+			<%--			<div>--%>
+			<%--				<h5 class="header-logo"></h5>--%>
+			<%--			</div>--%>
 		</div>
+
 		<div class="row-fluid" style="width: 100%;height: 100%;position: absolute;padding-top: 90px;">
 			<div class="left-area">
 				<div class="title">人员分布</div>
