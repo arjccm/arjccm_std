@@ -46,6 +46,11 @@
 	</script>
 
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
+	<style>
+		.control-label{
+			width: 200px!important;
+		}
+	</style>
 </head>
 <body>
 	<ul class="nav nav-tabs">
