@@ -260,7 +260,7 @@
 <%--				<h5 class="header-logo"></h5>--%>
 <%--			</div>--%>
 		</div>
-		<div class="row-fluid" style="width: 100%;height: 100%;position: absolute;padding-top: 30px;">
+		<div class="row-fluid clearfix" style="width: 100%; position: relative;">
 			<div id="leftCol" class="leftCol">
 				<div id="leftContent0" class="showBigContent">
 					<div class="contentTitle"><span id="leftTitle0"></span></div>
@@ -389,19 +389,22 @@
 					<div class="common-pading" id="leftContent2Body">
 						<div style="display: none" id="echleftContent2" class="echarts"></div>
 						<div class="p_part">
-							<div id="power1" class="power"></div>
+							<div id="power1" class="power">
+								<span class="p_num">6 辆</span>
+							</div>
 							<span class="p_text">工作车辆</span>
-							<span class="p_num">6 辆</span>
 						</div>
 						<div class="p_part">
-							<div id="power2"  class="power"></div>
+							<div id="power2"  class="power">
+								<span class="p_num">26 人</span>
+							</div>
 							<span class="p_text">工作人员</span>
-							<span class="p_num">26 人</span>
 						</div>
 						<div class="p_part">
-							<div  id="power3" class="power"></div>
+							<div  id="power3" class="power">
+								<span class="p_num">34 件</span>
+							</div>
 							<span class="p_text">执法设备</span>
-							<span class="p_num">34 件</span>
 						</div>
 					</div>
 
@@ -430,73 +433,73 @@
 			</div>
 
 			<div id="CentralPart" class="CentralPart" >
-
-				<div class="c_part">
-					<p class="sectName">基督教</p>
-					<p class="sectNum">
-						<span class="lvfont">教堂</span>
-						<span class="lanfont">${z1}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i1}</span>
-						<span class="lvfont">人</span>
-					</p>
+				<div class="centralPart_area clearfix">
+					<div class="c_part">
+						<p class="sectName">基督教</p>
+						<p class="sectNum">
+							<span class="lvfont">教堂</span>
+							<span class="lanfont">${z1}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒</span>
+							<span class="lanfont">${i1}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
+					<div class="c_part">
+						<p class="sectName">天主教</p>
+						<p class="sectNum">
+							<span class="lvfont">教堂</span>
+							<span class="lanfont">${z2}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒</span>
+							<span class="lanfont">${i2}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
+					<div class="c_part">
+						<p class="sectName">伊斯兰教</p>
+						<p class="sectNum">
+							<span class="lvfont">清真寺</span>
+							<span class="lanfont">${z3}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒</span>
+							<span class="lanfont">${i3}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
+					<div class="c_part">
+						<p class="sectName">佛教</p>
+						<p class="sectNum">
+							<span class="lvfont">寺、庵</span>
+							<span class="lanfont">${z4}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒</span>
+							<span class="lanfont">${i4}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
+					<div class="c_part">
+						<p class="sectName">道教</p>
+						<p class="sectNum">
+							<span class="lvfont">宫、观</span>
+							<span class="lanfont">${z5}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒</span>
+							<span class="lanfont">${i5}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
 				</div>
-				<div class="c_part">
-					<p class="sectName">天主教</p>
-					<p class="sectNum">
-						<span class="lvfont">教堂</span>
-						<span class="lanfont">${z2}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i2}</span>
-						<span class="lvfont">人</span>
-					</p>
-				</div>
-				<div class="c_part">
-					<p class="sectName">伊斯兰教</p>
-					<p class="sectNum">
-						<span class="lvfont">清真寺</span>
-						<span class="lanfont">${z3}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i3}</span>
-						<span class="lvfont">人</span>
-					</p>
-				</div>
-				<div class="c_part">
-					<p class="sectName">佛教</p>
-					<p class="sectNum">
-						<span class="lvfont">寺、庵</span>
-						<span class="lanfont">${z4}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i4}</span>
-						<span class="lvfont">人</span>
-					</p>
-				</div>
-				<div class="c_part">
-					<p class="sectName">道教</p>
-					<p class="sectNum">
-						<span class="lvfont">宫、观</span>
-						<span class="lanfont">${z5}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i5}</span>
-						<span class="lvfont">人</span>
-					</p>
-				</div>
-
 
 
 			</div>
@@ -740,8 +743,8 @@
 				</div>
 			</div>
 
-			<div id="bottomCol" class="bottomCol">
-				<div style="padding-left: 50px;padding-top: 20px;">
+			<div id="bottomCol" class="bottomCol zjlist_area">
+				<div class="clearfix">
 					<!-- 基督教 -->
 					<div class="bottom_icon" onclick="zongjiaoFun(this,'01')">
 						<span class="pub-icon icon-jidujiao"></span><span class="pub-name">基督教</span>

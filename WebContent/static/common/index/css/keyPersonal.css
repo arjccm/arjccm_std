@@ -23,7 +23,7 @@
     background:url("../images/statIndexZj/keyPersonal_left_box.png") no-repeat center;
     position:fixed;
     left: 1.5vw;
-    top: 120px;
+    top: 100px;
     z-index: 10000;
 }
 .left-area .title{

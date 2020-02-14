@@ -263,7 +263,7 @@
 			<%--			</div>--%>
 		</div>
 
-		<div class="row-fluid" style="width: 100%;height: 100%;position: absolute;padding-top: 90px;">
+		<div class="row-fluid" style="width: 100%;height: 100%;position: absolute;">
 			<div class="left-area">
 				<div class="title">人员分布</div>
 				<div class="content">
