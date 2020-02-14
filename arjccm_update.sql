@@ -350,9 +350,20 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
  alter table ccm_city_components add collect_people varchar(255)  COMMENT '信息采集人员';  
  -- 房屋表 by maoxb 2020-02-13
  alter table ccm_pop_tenant add collect_people varchar(255)  COMMENT '信息采集人员';
+ 
+ 
+-- 移动设备管理表 by maoxb 2020-02-13
+ alter table ccm_mobile_device add use_type varchar(255)  COMMENT 'app应用类型';
+ alter table ccm_mobile_device add people_id varchar(255)  COMMENT '关联人员';
+ alter table ccm_mobile_device add elecfence_id varchar(255)  COMMENT '电子围栏id';
 
- -- 防疫人员表 by yiqingxuan 2020-02-13
-
+-- 通知通告 by maoxb 2020-02-13
+ alter table oa_notify add task_url varchar(255)  COMMENT '任务链接';
+ alter table oa_notify add relief_id varchar(255)  COMMENT '备勤任务id';
+ alter table oa_notify add relief_type varchar(255)  COMMENT '备勤任务通知类型';
+ alter table oa_notify add relief_status varchar(255)  COMMENT '备勤任务执行状态';
+ 
+ -- 防疫人员表 by yiqingxuan 2020-02-14
 DROP TABLE IF EXISTS `ccm_people_antiepidemic`;
 CREATE TABLE `ccm_people_antiepidemic`  (
   `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'id',
@@ -360,17 +371,23 @@ CREATE TABLE `ccm_people_antiepidemic`  (
   `tel_posion` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '基站位置',
   `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
   `sex` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '性别',
+  `age` int(3) NULL DEFAULT NULL COMMENT '年龄',
   `id_number` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '身份证号',
   `domicile` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '户籍地',
   `habitation` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '在琼居住地',
   `leave_hubei_date` datetime(0) NULL DEFAULT NULL COMMENT '离鄂时间',
   `come_hainan_date` datetime(0) NULL DEFAULT NULL COMMENT '入琼时间',
+  `transportation` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '交通工具',
   `is_in_14days` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否14天以内',
+  `cohabitant` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '同居住人员',
   `is_left_hainan` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否离岛',
   `left_date` datetime(0) NULL DEFAULT NULL COMMENT '离岛时间',
   `health` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '身体状况',
   `does_take_steps` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '有无采取措施',
   `take_steps` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采取何种措施',
+  `address` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '住院或集中观察地址',
+  `info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '开展网格化服务管理情况',
+  `autoupdatetime` datetime(0) NULL DEFAULT NULL COMMENT '自动更新时间',
   `is_transfer_HC` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否移交卫健委',
   `telephone_home` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机归属地',
   `distribute_city` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '下发所属市县',
@@ -397,6 +414,20 @@ CREATE TABLE `ccm_people_antiepidemic`  (
   `del_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT ' 删除标记 ',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '人员疫情表' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+INSERT INTO `arjccm`.`sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('147dfc2b7fef4d009fb540de4c531df9', '130200', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,', '疫情人口管理', 320, '/pop/ccmPeopleAntiepidemic/', '', '', '1', '', '1', '2020-02-14 10:57:46', '1', '2020-02-14 10:57:46', '/pop/ccmPeopleAntiepidemic/', '0');
+
+INSERT INTO `arjccm`.`sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('332b2069a0fa4fdda369090e75b55f50', '5', '无', 'sys_ccm_people_takeSteps', '采取何种措施', 50, '0', '1', '2020-02-14 13:54:27', '1', '2020-02-14 13:54:27', '', '0');
+INSERT INTO `arjccm`.`sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('1a4aa290087e495887979e6c4fbad052', '4', '医院隔离', 'sys_ccm_people_takeSteps', '采取何种措施', 40, '0', '1', '2020-02-14 13:53:37', '1', '2020-02-14 13:53:54', '', '0');
+INSERT INTO `arjccm`.`sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('2f6a85b3f13a4973b8eb5a6bce4acbbe', '3', '确诊住院', 'sys_ccm_people_takeSteps', '采取何种措施', 30, '0', '1', '2020-02-14 13:53:15', '1', '2020-02-14 13:53:15', '', '0');
+INSERT INTO `arjccm`.`sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('84c4ecea474b43fc81b523c52c7eb5e1', '2', '留观点隔离', 'sys_ccm_people_takeSteps', '采取何种措施', 20, '0', '1', '2020-02-14 13:52:51', '1', '2020-02-14 13:52:51', '', '0');
+INSERT INTO `arjccm`.`sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('f04ee3eb4ef749d89cdba67c014562bf', '1', '居家隔离', 'sys_ccm_people_takeSteps', '采取何种措施', 10, '0', '1', '2020-02-14 13:52:20', '1', '2020-02-14 13:52:20', '', '0');
+INSERT INTO `arjccm`.`sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('31285b387f1a4218a2641745dc354f6b', '2', '非正常', 'sys_ccm_people_health', '身体状况', 20, '0', '1', '2020-02-14 13:48:39', '1', '2020-02-14 13:50:14', '', '0');
+INSERT INTO `arjccm`.`sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ddb09d555a0e442bbd1f15ad8016ad9e', '1', '正常', 'sys_ccm_people_health', '身体状况', 10, '0', '1', '2020-02-14 13:48:23', '1', '2020-02-14 13:50:07', '', '0');
+
 
 
 
