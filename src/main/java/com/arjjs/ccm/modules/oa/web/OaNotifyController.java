@@ -31,7 +31,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import com.arjjs.ccm.modules.flat.relief.entity.CcmReliefTask;
+import com.arjjs.ccm.modules.flat.relief.service.CcmReliefTaskService;
+import com.arjjs.ccm.tool.CommUtil;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -53,7 +58,8 @@ public class OaNotifyController extends BaseController {
 	@Autowired
 	private CcmMessageService ccmMessageService;
 	
-	
+	@Autowired
+	private CcmReliefTaskService ccmReliefTaskService;
 	
 	@ModelAttribute
 	public OaNotify get(@RequestParam(required=false) String id) {
@@ -82,21 +88,26 @@ public class OaNotifyController extends BaseController {
 			oaNotify = oaNotifyService.getRecordList(oaNotify);
 		}
 		model.addAttribute("oaNotify", oaNotify);
+
+		List<CcmReliefTask> tasks = ccmReliefTaskService.findList(new CcmReliefTask());
+		model.addAttribute("tasks", tasks);
+
 		return "modules/oa/oaNotifyForm";
 	}
 
 	@RequiresPermissions("oa:oaNotify:edit")
 	@RequestMapping(value = "save")
-	public String save(OaNotify oaNotify, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, oaNotify)){
-			return form(oaNotify, model);
+	public void save(OaNotify oaNotify, Model model, RedirectAttributes redirectAttributes,
+			HttpServletResponse response) {
+		if (!beanValidator(model, oaNotify)) {
+			// return form(oaNotify, model);
 		}
 		// 如果是修改，则状态为已发布，则不能再进行操作
-		if (StringUtils.isNotBlank(oaNotify.getId())){
+		if (StringUtils.isNotBlank(oaNotify.getId())) {
 			OaNotify e = oaNotifyService.get(oaNotify.getId());
-			if ("1".equals(e.getStatus())){
+			if ("1".equals(e.getStatus())) {
 				addMessage(redirectAttributes, "已发布，不能操作！");
-				return "redirect:" + adminPath + "/oa/oaNotify/form?id="+oaNotify.getId();
+				// return "redirect:" + adminPath + "/oa/oaNotify/form?id=" + oaNotify.getId();
 			}
 		}
 		oaNotifyService.save(oaNotify);
@@ -129,8 +140,17 @@ public class OaNotifyController extends BaseController {
 			//发送mq
 			CcmRestEvent.sendMessageToMq(list);
 		}
-		addMessage(redirectAttributes, "保存通知'" + oaNotify.getTitle() + "'成功");
-		return "redirect:" + adminPath + "/oa/oaNotify/?repage";
+		//addMessage(redirectAttributes, "保存通知'" + oaNotify.getTitle() + "'成功");
+		//return "redirect:" + adminPath + "/oa/oaNotify/?repage";
+		PrintWriter writer = null;
+
+		try {
+			writer = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		CommUtil.openWinExpDiv(writer, "保存通知'" + oaNotify.getTitle() + "'成功");
 	}
 	
 	//定时提醒
@@ -226,6 +246,8 @@ public class OaNotifyController extends BaseController {
 			oaNotifyService.updateReadFlag(oaNotify);
 			oaNotify = oaNotifyService.getRecordList(oaNotify);
 			model.addAttribute("oaNotify", oaNotify);
+			List<CcmReliefTask> tasks = ccmReliefTaskService.findList(new CcmReliefTask());
+			model.addAttribute("tasks", tasks);
 			return "modules/oa/oaNotifyFormRead";
 		}
 		return "redirect:" + adminPath + "/oa/oaNotify/self?repage";

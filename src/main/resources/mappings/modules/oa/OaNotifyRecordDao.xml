@@ -108,6 +108,34 @@
 	    </if>
 	</insert>
 	
+	<insert id="insertAllByTask" parameterType="List">
+		INSERT INTO oa_notify_record(
+			ID,
+			OA_NOTIFY_ID,
+			USER_ID,
+			READ_FLAG,
+			READ_DATE
+		)
+		<if test="list.get(0).dbName == 'oracle'">
+			<foreach collection="list" item="e" separator=" union all ">
+				SELECT #{e.id},
+				#{e.oaNotify.id},
+				#{e.user.id},
+				#{e.readFlag},
+				#{e.readDate} FROM dual
+			</foreach>
+		</if>
+		<if test="list.get(0).dbName == 'mssql' or list.get(0).dbName == 'mysql'"> VALUES  
+		    <foreach collection="list" item="e" open="" separator="," close="">  
+				(#{e.id},
+				#{e.oaNotify.id},
+				#{e.user.id},
+				#{e.readFlag},
+				#{e.readDate})
+			</foreach>
+	    </if>
+	</insert>
+	
 	<update id="update">
 		UPDATE oa_notify_record SET 	
 			READ_FLAG = #{readFlag},
