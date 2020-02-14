@@ -350,7 +350,18 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
  alter table ccm_city_components add collect_people varchar(255)  COMMENT '信息采集人员';  
  -- 房屋表 by maoxb 2020-02-13
  alter table ccm_pop_tenant add collect_people varchar(255)  COMMENT '信息采集人员';
+ 
+ 
+-- 移动设备管理表 by maoxb 2020-02-13
+ alter table ccm_mobile_device add use_type varchar(255)  COMMENT 'app应用类型';
+ alter table ccm_mobile_device add people_id varchar(255)  COMMENT '关联人员';
+ alter table ccm_mobile_device add elecfence_id varchar(255)  COMMENT '电子围栏id';
 
+-- 通知通告 by maoxb 2020-02-13
+ alter table oa_notify add task_url varchar(255)  COMMENT '任务链接';
+ alter table oa_notify add relief_id varchar(255)  COMMENT '备勤任务id';
+ alter table oa_notify add relief_type varchar(255)  COMMENT '备勤任务通知类型';
+ alter table oa_notify add relief_status varchar(255)  COMMENT '备勤任务执行状态';
  -- 防疫人员表 by yiqingxuan 2020-02-13
 
 DROP TABLE IF EXISTS `ccm_people_antiepidemic`;
