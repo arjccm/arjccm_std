@@ -33,28 +33,24 @@
 	<form:form id="inputForm" modelAttribute="ccmPeopleAntiepidemic" action="${ctx}/pop/ccmPeopleAntiepidemic/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
-		<div class="control-group">
-			<label class="control-label">电话号码：</label>
-			<div class="controls">
-				<form:input path="telephone" htmlEscape="false" maxlength="32" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
+		<%-- <div class="control-group">
 			<label class="control-label">基站位置：</label>
 			<div class="controls">
 				<form:input path="telPosion" htmlEscape="false" maxlength="64" class="input-xlarge "/>
 			</div>
-		</div>
+		</div> --%>
 		<div class="control-group">
 			<label class="control-label">姓名：</label>
 			<div class="controls">
 				<form:input path="name" htmlEscape="false" maxlength="32" class="input-xlarge "/>
 			</div>
 		</div>
+		<!-- <font color="red" >*</font> -->
 		<div class="control-group">
-			<label class="control-label">性别：</label>
+			<label class="control-label"><span class="help-inline"></span>性别：</label>
 			<div class="controls">
-				<form:input path="sex" htmlEscape="false" maxlength="2" class="input-xlarge "/>
+				<form:radiobuttons path="sex" items="${fns:getDictList('sex')}"
+					itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -70,19 +66,25 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">在琼居住地：</label>
+			<label class="control-label">电话号码：</label>
 			<div class="controls">
-				<form:input path="habitation" htmlEscape="false" maxlength="128" class="input-xlarge "/>
+				<form:input path="telephone" htmlEscape="false" maxlength="32" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">在三亚居住地：</label>
+			<div class="controls">
+				<form:input path="habitation" htmlEscape="false" maxlength="128" class="input-xlarge " placeholder="详情到区、社区、小区、楼栋、单元、房号"/>
+			</div>
+		</div>
+		<%-- <div class="control-group">
 			<label class="control-label">离鄂时间：</label>
 			<div class="controls">
 				<input name="leaveHubeiDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${ccmPeopleAntiepidemic.leaveHubeiDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			</div>
-		</div>
+		</div> --%>
 		<div class="control-group">
 			<label class="control-label">入琼时间：</label>
 			<div class="controls">
@@ -94,13 +96,34 @@
 		<div class="control-group">
 			<label class="control-label">是否14天以内：</label>
 			<div class="controls">
-				<form:input path="isIn14days" htmlEscape="false" maxlength="2" class="input-xlarge "/>
+				<form:select path="isIn14days">
+					<form:option value="" label="" />
+					<form:options items="${fns:getDictList('is_key_place')}"
+						itemLabel="label" itemValue="value" htmlEscape="false" />
+				</form:select>
+			</div>
+		</div> 
+		<div class="control-group">
+			<label class="control-label">来琼乘坐交通工具：</label>
+			<div class="controls">
+				<form:input path="transportation" htmlEscape="false" maxlength="128" class="input-xlarge " placeholder="请输入详细的航班号、车次、车牌号等信息"/>
+			</div>
+		</div>
+		</div>
+			<div class="control-group">
+			<label class="control-label">同居住人员：</label>
+			<div class="controls">
+				<form:input path="cohabitant" htmlEscape="false" maxlength="128" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">是否离岛：</label>
 			<div class="controls">
-				<form:input path="isLeftHainan" htmlEscape="false" maxlength="2" class="input-xlarge "/>
+				<form:select path="isLeftHainan">
+					<form:option value="" label="" />
+					<form:options items="${fns:getDictList('is_key_place')}"
+						itemLabel="label" itemValue="value" htmlEscape="false" />
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">
@@ -114,19 +137,39 @@
 		<div class="control-group">
 			<label class="control-label">身体状况：</label>
 			<div class="controls">
-				<form:input path="health" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+				<form:select path="health">
+						<form:option value="" label="" />
+						<form:options items="${fns:getDictList('sys_ccm_people_health')}"
+							itemLabel="label" itemValue="value" htmlEscape="false" />
+				</form:select>
 			</div>
 		</div>
-		<div class="control-group">
+		<%-- <div class="control-group">
 			<label class="control-label">有无采取措施：</label>
 			<div class="controls">
 				<form:input path="doesTakeSteps" htmlEscape="false" maxlength="2" class="input-xlarge "/>
 			</div>
-		</div>
+		</div> --%>
 		<div class="control-group">
 			<label class="control-label">采取何种措施：</label>
 			<div class="controls">
-				<form:input path="takeSteps" htmlEscape="false" maxlength="128" class="input-xlarge "/>
+				<form:select path="takeSteps">
+						<form:option value="" label="" />
+						<form:options items="${fns:getDictList('sys_ccm_people_takeSteps')}"
+							itemLabel="label" itemValue="value" htmlEscape="false" />
+				</form:select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">住院或集中观察地址：</label>
+			<div class="controls">
+				<form:input path="address" htmlEscape="false" maxlength="128" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">开展网格化服务管理情况：</label>
+			<div class="controls">
+				<form:textarea path="info" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge " placeholder="如xx年xx月xx日登门测量体温“正常”或送口罩或宣传防疫知识。"/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -218,7 +261,7 @@
 				<form:input path="belongPoliceStation" htmlEscape="false" maxlength="32" class="input-xlarge "/>
 			</div>
 		</div>
-		<div class="control-group">
+		<%-- <div class="control-group">
 			<label class="control-label">数据类型：</label>
 			<div class="controls">
 				<form:input path="dataType" htmlEscape="false" maxlength="2" class="input-xlarge "/>
@@ -241,7 +284,7 @@
 			<div class="controls">
 				<form:input path="areaPoint" htmlEscape="false" maxlength="64" class="input-xlarge "/>
 			</div>
-		</div>
+		</div> --%>
 		<div class="control-group">
 			<label class="control-label">备注信息：</label>
 			<div class="controls">

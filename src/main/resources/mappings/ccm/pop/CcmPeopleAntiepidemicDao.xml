@@ -42,7 +42,13 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag"
+		a.del_flag AS "delFlag",
+		a.transportation AS "transportation",
+		a.cohabitant AS "cohabitant",
+		a.address AS "address",
+		a.info AS "info",
+		a.autoupdatetime AS "autoUpdatetime",
+		a.age AS "age"
 	</sql>
 	
 	<sql id="ccmPeopleAntiepidemicJoins">
@@ -144,6 +150,15 @@
 			<if test="dataStatus != null and dataStatus != ''">
 				AND a.data_status = #{dataStatus}
 			</if>
+			<if test="age != null and age != ''">
+				AND a.age = #{age}
+			</if>
+			<if test="takeSteps != null and takeSteps != ''">
+				AND a.take_steps = #{takeSteps}
+			</if>
+			<if test="transportation != null and transportation != ''">
+				AND a.transportation = #{transportation}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -214,7 +229,13 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			transportation,
+			cohabitant,
+			address,
+			info,
+			autoupdatetime,
+			age
 		) VALUES (
 			#{id},
 			#{telephone},
@@ -255,7 +276,13 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{transportation},
+			#{cohabitant},
+			#{address},
+			#{info},
+			#{autoUpdatetime},
+			#{age}
 		)
 	</insert>
 	
@@ -296,7 +323,12 @@
 			area_point = #{areaPoint},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
-			remarks = #{remarks}
+			remarks = #{remarks},
+			transportation = #{transportation},
+			cohabitant = #{cohabitant},
+			address = #{address},
+			info = #{info},
+			age = #{age}
 		WHERE id = #{id}
 	</update>
 	

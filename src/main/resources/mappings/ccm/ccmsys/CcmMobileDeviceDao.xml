@@ -5,9 +5,11 @@
 	<sql id="ccmMobileDeviceColumns">
 		a.id AS "id",
 		a.device_id AS "deviceId",
-		a.user_id AS "vCcmTeam.id",
+		a.user_id AS
+		"vCcmTeam.id",
 		a.area_point AS "areaPoint",
-		a.is_variable AS "isVariable",
+		a.is_variable AS
+		"isVariable",
 		a.icon AS "icon",
 		a.efence_point AS "efencePoint",
 		a.efence_scope AS "efenceScope",
@@ -16,15 +18,23 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag",
+		a.del_flag AS
+		"delFlag",
+		a.use_type AS "useType",
+		a.people_id AS "vSpecialPeople.id",
 		u3.status AS "vCcmTeam.status",
 		u3.phone AS "vCcmTeam.phone",
 		u3.mobile AS "vCcmTeam.mobile",
 		u3.name AS "vCcmTeam.name",
-		o.name As "officeName", 
-	  	(case WHEN SUBDATE(now(),interval 2 minute) &lt; a.update_date THEN "1" ELSE '0' END
-		)AS "isOnline",
-		a.is_alarm AS "isAlarm"
+		CONCAT_WS('-',p.name,p.ident) AS "vSpecialPeople.name",
+		o.name As "officeName",
+		(case WHEN
+		SUBDATE(now(),interval 2 minute) &lt; a.update_date THEN "1"
+		ELSE '0'
+		END
+		) AS "isOnline",
+		a.is_alarm AS "isAlarm",
+		a.elecFence_id AS "elecFenceId"
 	</sql>
 	
 	<sql id="ccmMobileDeviceJoins">
@@ -169,7 +179,10 @@
 			update_date,
 			remarks,
 			del_flag,
-			is_alarm
+			is_alarm,
+			use_type,
+			people_id,
+			elecfence_id
 		) VALUES (
 			#{id},
 			#{deviceId},
@@ -185,10 +198,13 @@
 			#{updateDate},
 			#{remarks},
 			#{delFlag},
-			#{isAlarm}
-		)
+			#{isAlarm},
+			#{useType},
+			#{vSpecialPeople.id},
+			#{elecFenceInfo.id}
+			)
 	</insert>
-	
+
 	<update id="update">
 		UPDATE ccm_mobile_device SET 	
 			device_id = #{deviceId},
@@ -201,21 +217,33 @@
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
 			remarks = #{remarks},
-			is_alarm = #{isAlarm}
+			is_alarm = #{isAlarm},
+			use_type = #{useType},
+			elecfence_id = #{elecFenceInfo.id},
+			people_id = #{vSpecialPeople.id}
 		WHERE id = #{id}
 	</update>
 	<!-- App电子围栏updateCoordinates -->
 	<update id="updateCoordinates">
 		UPDATE ccm_mobile_device SET
-			efence_point = #{efencePoint},
-			efence_scope = #{efenceScope}
+		efence_point =
+		#{efencePoint},
+		efence_scope = #{efenceScope}
 		WHERE id = #{id}
 	</update>
 	
-	
+	<!-- App电子围栏updateElecFenceId -->
+	<update id="updateElecFenceId">
+		UPDATE ccm_mobile_device SET
+		elecfence_id =
+		#{elecFenceInfo.id}
+		WHERE id = #{id}
+	</update>
+
 	<update id="delete">
-		UPDATE ccm_mobile_device SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		UPDATE ccm_mobile_device SET
+		del_flag =
+		#{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 	

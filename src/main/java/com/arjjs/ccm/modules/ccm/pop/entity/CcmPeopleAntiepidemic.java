@@ -51,6 +51,13 @@ public class CcmPeopleAntiepidemic extends DataEntity<CcmPeopleAntiepidemic> {
 	private String dataStatus;		// 数据状态
 	private String areaGridId;		// 网格id
 	private String areaPoint;		// 坐标
+	private String transportation;  //交通工具
+	private String cohabitant;     //同居住人员
+	private String address;      //住院或集中观察地址
+	private String info;     //开展网格化服务管理情况
+	private Date autoUpdatetime;      //自动更新时间
+	private int age;   //年龄
+	
 	
 	public CcmPeopleAntiepidemic() {
 		super();
@@ -357,5 +364,55 @@ public class CcmPeopleAntiepidemic extends DataEntity<CcmPeopleAntiepidemic> {
 	public void setAreaPoint(String areaPoint) {
 		this.areaPoint = areaPoint;
 	}
+
+	public String getTransportation() {
+		return transportation;
+	}
+
+	public void setTransportation(String transportation) {
+		this.transportation = transportation;
+	}
+
+	public String getCohabitant() {
+		return cohabitant;
+	}
+
+	public void setCohabitant(String cohabitant) {
+		this.cohabitant = cohabitant;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public Date getAutoUpdatetime() {
+		return autoUpdatetime;
+	}
+
+	public void setAutoUpdatetime(Date autoUpdatetime) {
+		this.autoUpdatetime = autoUpdatetime;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+	
 	
 }
