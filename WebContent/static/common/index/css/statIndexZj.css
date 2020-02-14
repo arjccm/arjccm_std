@@ -401,6 +401,7 @@ div.jbox #search{
 
 .common-pading {
     width: auto;
+    padding: 0 1vw 1vw 1vw !important;
 }
 
 #test {
@@ -1076,7 +1077,7 @@ div.jbox #search{
 }
 
 .showContent {
-    height: 15.6vw;
+    height: 14.2vw;
     width: 100%;
     /*margin-top: -10px;*/
     background-size: 100% 100%;
@@ -1090,6 +1091,7 @@ div.jbox #search{
     -webkit-background-size: cover;
     -o-background-size: cover;
     background-position: center 0;
+    margin-top: 0.8vw;
 }
 
 .showBigContent {
@@ -1110,22 +1112,27 @@ div.jbox #search{
 }
 
 .leftCol {
-    width: 23vw;
-    height: calc(100vh - 100px);
+    width: 21.5vw;
+    height: calc(100vh - 70px);
     float: left;
+    margin-left: 20px;
 }
 
 
 .CentralPart {
-    /*width: 50%;*/
-    height: 110px;
-    float: left;
-    margin-left: 2%;
-    position: relative;
+    width: 100%;
+    height: 0px;
+    position: absolute;
+    /*margin-left: 2%;*/
+    /*position: relative;*/
     z-index: 999;
     animation: fade-in;/*动画名称  淡入淡出效果*/
     animation-duration: 1.5s;/*动画持续时间*/
     -webkit-animation:fade-in 1.5s;/*针对webkit内核*/
+}
+.centralPart_area{
+    width: 48.6vw;
+    margin: 0.8vw auto 0 auto;
 }
 
 @keyframes fade-in {
@@ -1143,9 +1150,12 @@ div.jbox #search{
     width: 9.4vw;
     height: 6.3vw;
     float: left;
-    margin-left: 7px;
+    margin-left: 0.4vw;
     background: url("../images/statIndexZj/xmzj_bg12.png") no-repeat;
     background-size: 100% 100%;
+}
+.c_part:first-child {
+    margin-left: 0;
 }
 
 .sectName {
@@ -1177,10 +1187,10 @@ div.jbox #search{
 
 
 .rightCol {
-    width: 23.5vw;
-    height: calc(100vh - 100px);
+    width: 21.5vw;
+    height: calc(100vh - 70px);
     float: right;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 .topCol {
@@ -1192,77 +1202,85 @@ div.jbox #search{
     /*padding-left: 20px;*/
     left: 30%;
 }
-
+.zjlist_area .icon-jidujiao{
+    width: 1.25vw;
+    height: 1.25vw;
+}
+.zjlist_area .pub-name{
+    font-size: 0.94vw;
+    color: #00BFBF;
+    padding-left: 0.31vw;
+}
 .bottomCol {
     width: 50%;
     z-index: 10;
     position: fixed;
-    bottom: -18px;
-    height: 120px;
-    left: 25%;
+    bottom: 18px;
+    height: 66px;
+    left: 50%;
+    margin-left: -25%;
+    padding: 0 15px;
     background: url(../images/statIndexZj/xmzj_bg10.png) no-repeat center center;
 }
 
 .bottom_icon {
-    width: 101px;
-    height: 24px;
+    width: 12.5%;
+    /*height: 24px;*/
     float: left;
     display: block;
     color: #000;
-    line-height: 24px;
-    border:1px solid transparent;
-    margin: 25px 5px 5px;
+    padding: 20px 0 20px 0.3vw;
 }
 
 
 .p_part{
-    width: 33%;
+    width: 6.25vw;
     height: 100%;
     float: left;
-    margin-left: -5px;
-    margin-right: 5px;
 }
 
 .p_text{
     display: block;
-    font-size:18px;
+    font-size:0.937vw;
     font-family:Microsoft YaHei;
     font-weight:400;
     color:rgba(147,255,255,1);
-    line-height:29px;
+    /*line-height:29px;*/
     text-align: center;
-    margin-left: 5px;
+    /*margin-left: 5px;*/
 }
 
 .p_num{
     display: block;
     text-align: center;
-    font-size:16px;
+    font-size:0.833vw;
     font-family:Microsoft YaHei;
     font-weight:400;
     color:rgba(254,191,0,1);
-    margin-top: -75px;
-    margin-left: 10px;
+    padding-top: 3.8vw;
 }
 
 #power1{
-    width: 130px;
-    height: 120px;
-    background: url("../images/statIndexZj/xmzj_bg7.png");
+    width: 6.25vw;
+    height: 6.25vw;
+    background: url("../images/statIndexZj/xmzj_bg7.png") center no-repeat;
+    background-size: cover;
 }
 
 
 #power2{
-    width: 130px;
-    height: 120px;
-    margin-top: 60px;
-    background: url("../images/statIndexZj/xmzj_bg6.png");
+    width: 6.25vw;
+    height: 6.25vw;
+    margin-top: 3.125vw;
+    background: url("../images/statIndexZj/xmzj_bg6.png") center no-repeat;
+    background-size: cover;
 }
 
 #power3{
-    width: 130px;
-    height: 120px;
-    background: url("../images/statIndexZj/xmzj_bg5.png");
+    width: 6.25vw;
+    height: 6.25vw;
+    background: url("../images/statIndexZj/xmzj_bg5.png") center no-repeat;
+    background-size: cover;
 }
 
 
@@ -1297,7 +1315,6 @@ div.jbox #search{
     font-family:Microsoft YaHei;
     font-weight:400;
     color:rgba(225,225,225,1);
-    line-height:29px;
 }
 
 
@@ -1326,11 +1343,11 @@ div.jbox #search{
 }
 
 .contentTitle {
-    padding-left: 36px;
+    padding-left: 1.56vw;
     font-family: MicrosoftYaHei;
     color: #93FFFF;
-    font-size: 18px;
-    padding-top: 26px;
+    font-size: 0.937vw;
+    padding-top: 1.04vw;
     padding-bottom: 1%;
     width: 100%;
     text-align: left;
