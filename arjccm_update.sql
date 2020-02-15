@@ -430,6 +430,7 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('31285b387f1a4218a2641745dc354f6b', '2', '非正常', 'sys_ccm_people_health', '身体状况', 20, '0', '1', '2020-02-14 13:48:39', '1', '2020-02-14 13:50:14', '', '0');
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ddb09d555a0e442bbd1f15ad8016ad9e', '1', '正常', 'sys_ccm_people_health', '身体状况', 10, '0', '1', '2020-02-14 13:48:23', '1', '2020-02-14 13:50:07', '', '0');
 
+-- 代码传输测试
 
 
 
