@@ -430,8 +430,50 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('31285b387f1a4218a2641745dc354f6b', '2', '非正常', 'sys_ccm_people_health', '身体状况', 20, '0', '1', '2020-02-14 13:48:39', '1', '2020-02-14 13:50:14', '', '0');
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ddb09d555a0e442bbd1f15ad8016ad9e', '1', '正常', 'sys_ccm_people_health', '身体状况', 10, '0', '1', '2020-02-14 13:48:23', '1', '2020-02-14 13:50:07', '', '0');
 
--- 代码传输测试
+-- 宗教活动表  by lgh 2020-2-15
+DROP TABLE IF EXISTS `ccm_religion_activity`;
+CREATE TABLE `ccm_religion_activity`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 唯一主键ID，设备编号（自增） ',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 创建者 ',
+  `create_date` datetime(0) NOT NULL COMMENT ' 发生时间 ',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 更新者 ',
+  `update_date` datetime(0) NOT NULL COMMENT ' 更新时间 ',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 描述信息 ',
+  `del_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 删除标记 ',
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 活动名称',
+  `begin_date` datetime(0) NOT NULL COMMENT ' 开始日期',
+  `host` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动主办方',
+  `address` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动地点',
+  `head` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动负责人',
+  `head_card` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 负责人身份证号码',
+  `head_phone` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 负责人联系方式',
+  `number` int(5) NULL DEFAULT NULL COMMENT ' 活动参加人数',
+  `scale` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动规模',
+  `type` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动类型',
+  `end_date` datetime(0) NULL DEFAULT NULL COMMENT ' 结束日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '宗教活动表' ROW_FORMAT = Dynamic;
 
+-- 宗教活动菜单添加
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('37646ca5abb04f10996bb5496d5aca89', '70a1747ee8334e439b2b24ebe947ecdd', '0,1,70a1747ee8334e439b2b24ebe947ecdd,', '宗教管理', 170, '', '', 'changsuoguanli', '1', '', '1', '2020-01-09 17:33:25', '1', '2020-02-11 15:51:56', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('0bcfc59423be498f841988d3784a5122', 'ae07897b04e64a51aba817372fa7f60d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,ae07897b04e64a51aba817372fa7f60d,', '查看', 30, '', '', '', '0', 'religion:ccmReligionActivity:view', '1', '2020-02-11 14:22:16', '1', '2020-02-11 14:22:16', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('285941b93e174dc2bcd43bb4e4e71ae9', 'ac1835c14d60461893787620ca94560d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,ac1835c14d60461893787620ca94560d,', '编辑', 60, '', '', '', '1', 'religion:ccmPlaceReligion:edit', '1', '2020-02-11 15:54:20', '1', '2020-02-11 15:54:20', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('63626f0f77de452baf600bac846835f6', 'ae07897b04e64a51aba817372fa7f60d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,ae07897b04e64a51aba817372fa7f60d,', '编辑', 60, '', '', '', '0', 'religion:ccmReligionActivity:edit', '1', '2020-02-11 14:22:53', '1', '2020-02-11 14:22:53', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ac1835c14d60461893787620ca94560d', '37646ca5abb04f10996bb5496d5aca89', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,', '场所管理', 30, '/religion/ccmPlaceReligion/list1', '', '', '1', '', '1', '2020-02-11 15:50:05', '1', '2020-02-11 15:54:58', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ae07897b04e64a51aba817372fa7f60d', '37646ca5abb04f10996bb5496d5aca89', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,', '活动管理', 60, '/religion/ccmReligionActivity', '', '', '1', '', '1', '2020-02-11 14:20:02', '1', '2020-02-11 15:47:54', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('e62501f884c9421b9da25812306bcd23', 'ac1835c14d60461893787620ca94560d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,ac1835c14d60461893787620ca94560d,', '查看', 30, '', '', '', '0', 'religion:ccmPlaceReligion:view', '1', '2020-02-11 15:53:46', '1', '2020-02-11 15:53:46', '', '0');
+
+-- 宗教活动相关字典添加
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3ba87bc99b5d4e7b88873f052f4c0bdc', '05', '斋戒', 'ccm_activity_type', '宗教活动类别', 50, '0', '1', '2020-02-11 11:46:16', '1', '2020-02-11 11:46:16', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('539256fcf3684500b00ac341dab26c6f', '06', '放生', 'ccm_activity_type', '宗教活动类别', 60, '0', '1', '2020-02-11 11:46:35', '1', '2020-02-11 11:46:35', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('5540c1fc36b344f2bbc1850092cd7902', '04', '忏悔', 'ccm_activity_type', '宗教活动类别', 40, '0', '1', '2020-02-11 11:45:21', '1', '2020-02-11 11:45:21', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('5b25315a99564f0aa42699aff08b510c', '01', '祈祷', 'ccm_activity_type', '宗教活动类别', 10, '0', '1', '2020-02-11 11:43:57', '1', '2020-02-11 11:43:57', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('a693f62b4ef94970919cb000eec6f959', '03', '祭祀', 'ccm_activity_type', '宗教活动类别', 30, '0', '1', '2020-02-11 11:45:03', '1', '2020-02-11 11:45:03', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ec833e8808db4e58862e6ac085efbecd', '02', '讲经', 'ccm_activity_type', '宗教活动类别', 20, '0', '1', '2020-02-11 11:44:28', '1', '2020-02-11 11:44:28',
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('2bf14129804c4654a39e1e5b32072502', '01', '小型活动', 'ccm_activity_scale', '宗教活动规模', 10, '0', '1', '2020-02-11 11:40:30', '1', '2020-02-11 11:40:30', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3c48b5e11380495d9ea5af05054835c4', '03', '大型活动', 'ccm_activity_scale', '宗教活动规模', 30, '0', '1', '2020-02-11 11:41:57', '1', '2020-02-11 11:41:57', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('da78908ad40b4c05a5b7c4ce14dc1449', '02', '中型活动', 'ccm_activity_scale', '宗教活动规模', 20, '0', '1', '2020-02-11 11:41:27', '1', '2020-02-11 11:41:27', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ece82fc7fe7d41339ad7766453272893', '04', '特大型活动', 'ccm_activity_scale', '宗教活动规模', 40, '0', '1', '2020-02-11 11:42:29', '1', '2020-02-11 11:42:29', '', '0');
 
 
 
