@@ -82,6 +82,12 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">年龄：</label>
+			<div class="controls">
+				<form:input path="age" htmlEscape="false" maxlength="3" class="input-xlarge " readonly="true"/>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">身份证号：</label>
 			<div class="controls">
 				<form:input path="idNumber" htmlEscape="false" maxlength="32" class="input-xlarge " readonly="true"/>

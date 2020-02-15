@@ -5,8 +5,6 @@
 	<title>人员疫情管理</title>
 	<meta name="decorator" content="default"/>
 	<link rel="stylesheet" type="text/css" href="${ctxStatic}/jquery-cityselect/main.css" />
-	
-	<%-- <script type="text/javascript" src="${ctxStatic}/jquery/jquery-1.9.1.js"></script> --%>
 	<script type="text/javascript" src="${ctxStatic}/jquery-cityselect/jquery.cityselect.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -79,6 +77,12 @@
 			<div class="controls">
 				<form:radiobuttons path="sex" items="${fns:getDictList('sex')}"
 					itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">年龄：</label>
+			<div class="controls">
+				<form:input path="age" htmlEscape="false" maxlength="3" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

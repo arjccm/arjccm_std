@@ -4,9 +4,32 @@
 <head>
 	<title>人员疫情管理</title>
 	<meta name="decorator" content="default"/>
+	<link rel="stylesheet" type="text/css" href="${ctxStatic}/jquery-cityselect/main.css" />
+	<script type="text/javascript" src="${ctxStatic}/jquery-cityselect/jquery.cityselect.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			if($("#getdomicile").val()!="" && $("#getdomicile").val()!=null && $("#getdomicile").val()!=undefined){
+				var getdomicile = $("#getdomicile").val().split(",");
+				var provval,cityval;
+				provval = getdomicile[0];
+				if( getdomicile[1]!=""){
+					cityval = getdomicile[1];
+					$("#city").citySelect({
+						prov: provval,
+						city: cityval
+					});
+				} else {
+					$("#city").citySelect({
+						prov: provval,
+						nodata:"none"
+					});
+				}
+			} else {
+				$("#city").citySelect({
+					nodata:"none",
+					required:false
+				});
+			}
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -21,6 +44,7 @@
 		<li class="active"><a href="${ctx}/pop/ccmPeopleAntiepidemic/">人员疫情列表</a></li>
 		<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><li><a href="${ctx}/pop/ccmPeopleAntiepidemic/form">人员疫情添加</a></li></shiro:hasPermission>
 	</ul>
+	<input id="getdomicile" type="hidden" value="${ccmPeopleAntiepidemic.domicile}"/>
 	<form:form id="searchForm" modelAttribute="ccmPeopleAntiepidemic" action="${ctx}/pop/ccmPeopleAntiepidemic/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
@@ -38,10 +62,17 @@
 				<form:input path="idNumber" htmlEscape="false" maxlength="32" class="input-medium"/>
 			</li>--%>
 			<li><label>年龄段：</label>
-				<form:input path="age" htmlEscape="false" maxlength="128" class="input-medium"/>
+				<form:select path="ageType">
+					<form:option value="" label="" />
+					<form:options items="${fns:getDictList('sys_ccm_peopleantiepidemic_age')}"
+								  itemLabel="label" itemValue="value" htmlEscape="false" />
+				</form:select>
 			</li>
 			<li><label>户籍地：</label>
-				<form:input path="domicile" htmlEscape="false" maxlength="128" class="input-medium"/>
+				<div id="city">
+					<select class="prov" name="domicile"></select>
+					<select class="city" disabled="disabled" name="domicile"></select>
+				</div>
 			</li>
 			<li><label>采取何种措施：</label>
 				<form:select path="takeSteps">
@@ -149,7 +180,7 @@
 					${ccmPeopleAntiepidemic.habitation}
 				</td>
 				<td>
-					${ccmPeopleAntiepidemic.takeSteps}
+					${fns:getDictLabel(ccmPeopleAntiepidemic.takeSteps, 'sys_ccm_people_takeSteps', '')}
 				</td>
 				<td>
 					<fmt:formatDate value="${ccmPeopleAntiepidemic.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>

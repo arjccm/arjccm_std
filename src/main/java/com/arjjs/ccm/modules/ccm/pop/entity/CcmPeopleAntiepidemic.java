@@ -57,8 +57,11 @@ public class CcmPeopleAntiepidemic extends DataEntity<CcmPeopleAntiepidemic> {
 	private String info;     //开展网格化服务管理情况
 	private Date autoUpdatetime;      //自动更新时间
 	private int age;   //年龄
-	
-	
+	private String ageType;  //年龄段
+	private int minage;     //最小年龄
+	private int maxage;     //最大年龄
+
+
 	public CcmPeopleAntiepidemic() {
 		super();
 	}
@@ -412,7 +415,28 @@ public class CcmPeopleAntiepidemic extends DataEntity<CcmPeopleAntiepidemic> {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-	
-	
+
+	public String getAgeType() {
+		return ageType;
+	}
+
+	public void setAgeType(String ageType) {
+		this.ageType = ageType;
+	}
+
+	public int getMinage() {
+		return minage;
+	}
+
+	public void setMinage(int minage) {
+		this.minage = minage;
+	}
+
+	public int getMaxage() {
+		return maxage;
+	}
+
+	public void setMaxage(int maxage) {
+		this.maxage = maxage;
+	}
 }

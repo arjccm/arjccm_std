@@ -6,6 +6,7 @@ package com.arjjs.ccm.modules.ccm.pop.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +50,21 @@ public class CcmPeopleAntiepidemicController extends BaseController {
 	@RequiresPermissions("pop:ccmPeopleAntiepidemic:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(CcmPeopleAntiepidemic ccmPeopleAntiepidemic, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<CcmPeopleAntiepidemic> page = ccmPeopleAntiepidemicService.findPage(new Page<CcmPeopleAntiepidemic>(request, response), ccmPeopleAntiepidemic); 
+		ccmPeopleAntiepidemic.setCreateBy(UserUtils.getUser());
+		if(StringUtils.isNotEmpty(ccmPeopleAntiepidemic.getAgeType())){
+			if(ccmPeopleAntiepidemic.getAgeType().equals("1")){
+				ccmPeopleAntiepidemic.setMaxage(19);
+			} else if(ccmPeopleAntiepidemic.getAgeType().equals("2")){
+				ccmPeopleAntiepidemic.setMinage(17);
+				ccmPeopleAntiepidemic.setMaxage(31);
+			} else if(ccmPeopleAntiepidemic.getAgeType().equals("3")){
+				ccmPeopleAntiepidemic.setMinage(29);
+				ccmPeopleAntiepidemic.setMaxage(61);
+			} else if(ccmPeopleAntiepidemic.getAgeType().equals("4")){
+				ccmPeopleAntiepidemic.setMinage(59);
+			}
+		}
+		Page<CcmPeopleAntiepidemic> page = ccmPeopleAntiepidemicService.findPage(new Page<CcmPeopleAntiepidemic>(request, response), ccmPeopleAntiepidemic);
 		model.addAttribute("page", page);
 		return "ccm/pop/ccmPeopleAntiepidemicList";
 	}
