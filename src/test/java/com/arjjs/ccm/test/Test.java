@@ -26,7 +26,6 @@ public class Test {
 		map.put("生日", "生日");
 		//properties.addInfo(map);
 		featureDto.setProperties(properties);
-		System.out.println("2323232");
-		System.out.println(123123123);
+		System.out.println(featureDto);
 	}
 }
