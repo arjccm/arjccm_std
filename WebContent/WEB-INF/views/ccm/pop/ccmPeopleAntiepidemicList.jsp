@@ -44,7 +44,11 @@
 				<form:input path="domicile" htmlEscape="false" maxlength="128" class="input-medium"/>
 			</li>
 			<li><label>采取何种措施：</label>
-				<form:input path="takeSteps" htmlEscape="false" maxlength="128" class="input-medium"/>
+				<form:select path="takeSteps">
+						<form:option value="" label="" />
+						<form:options items="${fns:getDictList('sys_ccm_people_takeSteps')}"
+							itemLabel="label" itemValue="value" htmlEscape="false" />
+				</form:select>
 			</li>
 			<li><label>来琼乘坐交通工具：</label>
 				<form:input path="transportation" htmlEscape="false" maxlength="128" class="input-medium"/>
@@ -94,7 +98,7 @@
 				<form:input path="reportStatus" htmlEscape="false" maxlength="2" class="input-medium"/>
 			</li>
 			<li><label>所属市局：</label>
-				<form:input path="belongBureau" htmlEscape="false" maxlength="32" class="input-medium"/>
+				<form:input path="belongBureau" htmlEscape="false" max	length="32" class="input-medium"/>
 			</li>
 			<li><label>所属分局：</label>
 				<form:input path="belongSubBureau" htmlEscape="false" maxlength="32" class="input-medium"/>
@@ -154,6 +158,7 @@
 				<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><td>
     				<a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">修改</a>
 					<a href="${ctx}/pop/ccmPeopleAntiepidemic/delete?id=${ccmPeopleAntiepidemic.id}" onclick="return confirmx('确认要删除该人员疫情吗？', this.href)">删除</a>
+					<a href="${ctx}/pop/ccmPeopleAntiepidemic/details?id=${ccmPeopleAntiepidemic.id}">详情</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

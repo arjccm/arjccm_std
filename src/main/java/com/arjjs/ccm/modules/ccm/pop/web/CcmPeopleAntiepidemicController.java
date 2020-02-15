@@ -80,4 +80,11 @@ public class CcmPeopleAntiepidemicController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/pop/ccmPeopleAntiepidemic/?repage";
 	}
 
+	@RequiresPermissions("pop:ccmPeopleAntiepidemic:view")
+	@RequestMapping(value = "details")
+	public String details(CcmPeopleAntiepidemic ccmPeopleAntiepidemic, Model model) {
+		model.addAttribute("ccmPeopleAntiepidemic", ccmPeopleAntiepidemic);
+		return "ccm/pop/ccmPeopleAntiepidemicDetails";
+	}
+	
 }
