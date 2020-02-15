@@ -30,10 +30,11 @@
 			});
 		});
 		function isValue() {
+			var html1 = '<label for="" class="error">请选择接受人 <label>';
 			if($("#oaNotifyRecordName").val()==""){
-				$("#item-one").show();
+				$("#show1").html(html1);
 			}else{
-				$("#item-one").hide();
+				$("#show1").html("");
 			}
 		}
 	</script>
@@ -90,8 +91,7 @@
 				<div class="controls">
 	                <sys:treeselect id="oaNotifyRecord" name="oaNotifyRecordIds" value="${oaNotify.oaNotifyRecordIds}" labelName="oaNotifyRecordNames" labelValue="${oaNotify.oaNotifyRecordNames}"
 						title="用户" url="/sys/office/treeData?type=3" cssClass="input-xxlarge required" notAllowSelectParent="true" checked="true"/>
-
-					<span id="item-one" style="display: none;" class="help-inline"><font color="red">请选择接收人</font> </span>
+					<span class="help-inline"><font color="red" id="show1"></font> </span>
 				</div>
 			</div>
 		</c:if>

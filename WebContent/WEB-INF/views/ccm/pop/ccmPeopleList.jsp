@@ -164,13 +164,13 @@
 			    </form:select>
 			<li/>
 
-			<li class="selectHidden hide"><label style="width: 178px;">肇事肇祸等精神障碍：</label>
+			<li class="selectHidden hide"><label style="width: 190px;">肇事肇祸等精神障碍：</label>
 				<form:select path="isPsychogeny" class="input-small ">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			<li/>
-			<li class="selectHidden hide"><label style="width: 115px">所属网格：</label>
+			<li class="selectHidden hide"><label style="width: 130px">所属网格：</label>
 					<sys:treeselect id="areaGridId" name="areaGridId.id" value="${ccmPeople.areaGridId.id}"
 									labelName="areaGridId.name" labelValue="${ccmPeople.areaGridId.name}"
 									title="网格" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-medium" allowClear="true" notAllowSelectParent="true"/>
@@ -197,12 +197,12 @@
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			<li/>
-			<li class="selectHidden hide"><label style="width: 178px">是否重点青少年：</label>
+			<li class="selectHidden hide"><label style="width: 190px">是否重点青少年：</label>
 				<form:select path="isKym" class="input-small ">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
-			<li class="selectHidden hide"><label style="width: 115px" >所属社区：</label>
+			<li class="selectHidden hide"><label style="width: 130px" >所属社区：</label>
 					<sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}"
 									labelName="areaComId.name" 	labelValue="${ccmPeople.areaComId.name}"
 									title="社区" url="/tree/ccmTree/treeDataArea?type=6" cssClass="input-medium" allowClear="true" notAllowSelectParent="true"/>

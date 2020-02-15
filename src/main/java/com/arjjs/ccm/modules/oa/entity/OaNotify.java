@@ -29,8 +29,18 @@ public class OaNotify extends DataEntity<OaNotify> {
 	private String status;		// 状态
 	private String taskUrl; // 任务路径
 
-	private String readNum;		// 已读
-	private String unReadNum;	// 未读
+	private String reliefId; // 备勤任务id
+
+	public String getReliefId() {
+		return reliefId;
+	}
+
+	public void setReliefId(String reliefId) {
+		this.reliefId = reliefId;
+	}
+
+	private String readNum; // 已读
+	private String unReadNum; // 未读
 
 	private boolean isSelf;		// 是否只查询自己的通知
 
@@ -231,5 +241,28 @@ public class OaNotify extends DataEntity<OaNotify> {
 
 	public void setReadFlag(String readFlag) {
 		this.readFlag = readFlag;
+	}
+
+	@Override
+	public String toString() {
+		return "OaNotify{" +
+				"type='" + type + '\'' +
+				", title='" + title + '\'' +
+				", content='" + content + '\'' +
+				", files='" + files + '\'' +
+				", status='" + status + '\'' +
+				", reliefId='" + reliefId + '\'' +
+				", readNum='" + readNum + '\'' +
+				", unReadNum='" + unReadNum + '\'' +
+				", isSelf=" + isSelf +
+				", readFlag='" + readFlag + '\'' +
+				", sender='" + sender + '\'' +
+				", sendTime=" + sendTime +
+				", count='" + count + '\'' +
+				", value0='" + value0 + '\'' +
+				", value1='" + value1 + '\'' +
+				", userId='" + userId + '\'' +
+				", oaNotifyRecordList=" + oaNotifyRecordList +
+				'}';
 	}
 }

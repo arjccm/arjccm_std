@@ -84,7 +84,7 @@
 			</li>
 			<li class="first-line"><label>所属网格：</label>
 				<sys:treeselect id="area" name="area.id" value="${ccmOrgNpse.area.id}" labelName="area.name" labelValue="${ccmOrgNpse.area.name}"
-					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
+					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-medium" allowClear="true" notAllowSelectParent="true"/>
 			</li>
 			<li class="first-line"><label>是否危化企业：</label>
 				<form:select path="dangComp" class="input-medium">
