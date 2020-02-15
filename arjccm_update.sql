@@ -475,7 +475,11 @@ INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `pa
 INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('da78908ad40b4c05a5b7c4ce14dc1449', '02', '中型活动', 'ccm_activity_scale', '宗教活动规模', 20, '0', '1', '2020-02-11 11:41:27', '1', '2020-02-11 11:41:27', '', '0');
 INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ece82fc7fe7d41339ad7766453272893', '04', '特大型活动', 'ccm_activity_scale', '宗教活动规模', 40, '0', '1', '2020-02-11 11:42:29', '1', '2020-02-11 11:42:29', '', '0');
 
-
+-- 防疫人员年龄段数据字典
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('77d72024587e4fcd9051c8ca5142b932', '4', '60以上老年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 40, '0', '1', '2020-02-15 16:36:32', '1', '2020-02-15 16:36:32', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('88eaf32ca3f74be1bc81fb75e95d714b', '3', '30-60中青年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 30, '0', '1', '2020-02-15 16:35:47', '1', '2020-02-15 16:35:47', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3870d830366748cda49cccb6a9670bcc', '2', '18-30岁青年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 20, '0', '1', '2020-02-15 16:34:47', '1', '2020-02-15 16:34:47', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('cb6097a1aca64237a9a09c93d1129398', '1', '18岁以下少年儿童', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 10, '0', '1', '2020-02-15 16:33:17', '1', '2020-02-15 16:33:17', '', '0');
 
 
 
