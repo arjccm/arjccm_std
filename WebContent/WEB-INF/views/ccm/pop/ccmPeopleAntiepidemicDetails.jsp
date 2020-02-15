@@ -5,7 +5,45 @@
 	<title>人员疫情管理</title>
 	<meta name="decorator" content="default"/>
 	<link rel="stylesheet" type="text/css" href="${ctxStatic}/jquery-cityselect/main.css" />
-	
+
+	<script src="${ctxStatic}/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/jquery/jquery.cookie.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/custom.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/bootstrap/2.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css" rel="stylesheet" />
+
+	<link href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome.min.css" type="text/css" rel="stylesheet" />
+	<link href="${ctxStatic}/bootstrap/checkbox-radio.css" type="text/css" rel="stylesheet" />
+	<link href="${ctxStatic}/iconfont/iconfont.css" type="text/css" rel="stylesheet" />
+	<!--[if lte IE 7]><link href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome-ie7.min.css" type="text/css" rel="stylesheet" /><![endif]-->
+	<!--[if lte IE 6]><link href="${ctxStatic}/bootstrap/bsie/css/bootstrap-ie6.min.css" type="text/css" rel="stylesheet" />
+<script src="${ctxStatic}/bootstrap/bsie/js/bootstrap-ie.min.js" type="text/javascript"></script><![endif]-->
+	<%-- <link href="${ctxStatic}/jquery-select2/3.4/select2.min.css" rel="stylesheet" /> --%>
+	<script src="${ctxStatic}/stomp-websocket-master/stomp.js"></script>
+	<%-- <script src="${ctxStatic}/jquery-select2/3.4/select2.min.js" type="text/javascript"></script> --%>
+	<link href="${ctxStatic}/jquery-validation/1.11.0/jquery.validate.min.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/jquery-validation/1.11.0/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/jquery-validation/1.11.1/jquery.validate.method.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/jquery-validation/1.11.1/localization/messages_zh.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet" />
+	<script src="${ctxStatic}/jquery-jbox/2.3/jquery.jBox-2.3.min.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/common/mustache.min.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/common/jeesite.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/common/jeesite.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/common/menu.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/common/pgwmenu.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/bootstrap/bootstrapTable/css/bootstrap-table.min.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/bootstrap/bootstrapTable/js/bootstrap-table.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/bootstrap/bootstrapTable/js/bootstrap-table-zh-CN.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/mCustomScrollbar/jquery.mCustomScrollbar.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/mCustomScrollbar/jquery.mCustomScrollbar.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/lightbox/js/lightbox.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/lightbox/css/lightbox.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/Particleground/Particleground.js" type="text/javascript"></script>
+	<script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
+	<%-- <%@include file="/WEB-INF/views/include/layUI.jsp" %> --%>
 	<%-- <script type="text/javascript" src="${ctxStatic}/jquery/jquery-1.9.1.js"></script> --%>
 	<script type="text/javascript" src="${ctxStatic}/jquery-cityselect/jquery.cityselect.js"></script>
 	<script type="text/javascript">
@@ -52,11 +90,12 @@
 		});
 	</script>
 </head>
+<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/pop/ccmPeopleAntiepidemic/">人员疫情列表</a></li>
 		<li class="active"><a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">人员疫情详情</a></li>
-	</ul><br/>
+	</ul>
 	<input id="getdomicile" type="hidden" value="${ccmPeopleAntiepidemic.domicile}"/>
 	<form:form id="inputForm" modelAttribute="ccmPeopleAntiepidemic" action="${ctx}/pop/ccmPeopleAntiepidemic/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

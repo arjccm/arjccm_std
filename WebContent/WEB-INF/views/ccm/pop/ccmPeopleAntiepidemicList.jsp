@@ -15,8 +15,47 @@
         	return false;
         }
 	</script>
+	<script src="${ctxStatic}/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/jquery/jquery.cookie.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/custom.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/bootstrap/2.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css" rel="stylesheet" />
+
+	<link href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome.min.css" type="text/css" rel="stylesheet" />
+	<link href="${ctxStatic}/bootstrap/checkbox-radio.css" type="text/css" rel="stylesheet" />
+	<link href="${ctxStatic}/iconfont/iconfont.css" type="text/css" rel="stylesheet" />
+	<!--[if lte IE 7]><link href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome-ie7.min.css" type="text/css" rel="stylesheet" /><![endif]-->
+	<!--[if lte IE 6]><link href="${ctxStatic}/bootstrap/bsie/css/bootstrap-ie6.min.css" type="text/css" rel="stylesheet" />
+<script src="${ctxStatic}/bootstrap/bsie/js/bootstrap-ie.min.js" type="text/javascript"></script><![endif]-->
+	<%-- <link href="${ctxStatic}/jquery-select2/3.4/select2.min.css" rel="stylesheet" /> --%>
+	<script src="${ctxStatic}/stomp-websocket-master/stomp.js"></script>
+	<%-- <script src="${ctxStatic}/jquery-select2/3.4/select2.min.js" type="text/javascript"></script> --%>
+	<link href="${ctxStatic}/jquery-validation/1.11.0/jquery.validate.min.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/jquery-validation/1.11.0/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/jquery-validation/1.11.1/jquery.validate.method.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/jquery-validation/1.11.1/localization/messages_zh.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet" />
+	<script src="${ctxStatic}/jquery-jbox/2.3/jquery.jBox-2.3.min.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/common/mustache.min.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/common/jeesite.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/common/jeesite.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/common/menu.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/common/pgwmenu.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/bootstrap/bootstrapTable/css/bootstrap-table.min.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/bootstrap/bootstrapTable/js/bootstrap-table.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/bootstrap/bootstrapTable/js/bootstrap-table-zh-CN.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/mCustomScrollbar/jquery.mCustomScrollbar.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/mCustomScrollbar/jquery.mCustomScrollbar.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/lightbox/js/lightbox.js" type="text/javascript"></script>
+	<link href="${ctxStatic}/lightbox/css/lightbox.css" type="text/css" rel="stylesheet" />
+	<script src="${ctxStatic}/Particleground/Particleground.js" type="text/javascript"></script>
+	<script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
+	<%-- <%@include file="/WEB-INF/views/include/layUI.jsp" %> --%>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/pop/ccmPeopleAntiepidemic/">人员疫情列表</a></li>
 		<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><li><a href="${ctx}/pop/ccmPeopleAntiepidemic/form">人员疫情添加</a></li></shiro:hasPermission>
@@ -28,7 +67,7 @@
 			<%-- <li><label>电话号码：</label>
 				<form:input path="telephone" htmlEscape="false" maxlength="32" class="input-medium"/>
 			</li> --%>
-			<li><label>姓名：</label>
+			<li class="first-line"><label>姓名：</label>
 				<form:input path="name" htmlEscape="false" maxlength="32" class="input-medium"/>
 			</li>
 			<%-- <li><label>性别：</label>
@@ -37,10 +76,10 @@
 			<li><label>身份证号：</label>
 				<form:input path="idNumber" htmlEscape="false" maxlength="32" class="input-medium"/>
 			</li>--%>
-			<li><label>年龄段：</label>
+			<li class="first-line"><label>年龄段：</label>
 				<form:input path="age" htmlEscape="false" maxlength="128" class="input-medium"/>
 			</li>
-			<li><label>户籍地：</label>
+			<li class="first-line"><label>户籍地：</label>
 				<form:input path="domicile" htmlEscape="false" maxlength="128" class="input-medium"/>
 			</li>
 			<li><label>采取何种措施：</label>
@@ -50,7 +89,7 @@
 							itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select>
 			</li>
-			<li><label>来琼乘坐交通工具：</label>
+			<li class="first-line"><label>来琼乘坐交通工具：</label>
 				<form:input path="transportation" htmlEscape="false" maxlength="128" class="input-medium"/>
 			</li>
 			<%-- <li><label>离鄂时间：</label>
@@ -117,7 +156,7 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>姓名</th>
@@ -164,6 +203,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
