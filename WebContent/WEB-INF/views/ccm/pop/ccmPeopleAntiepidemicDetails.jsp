@@ -130,16 +130,6 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">是否14天以内：</label>
-			<div class="controls">
-				<form:select path="isIn14days" disabled="true">
-					<form:option value="" label="" />
-					<form:options items="${fns:getDictList('is_key_place')}"
-						itemLabel="label" itemValue="value" htmlEscape="false" />
-				</form:select>
-			</div>
-		</div> 
-		<div class="control-group">
 			<label class="control-label">来琼乘坐交通工具：</label>
 			<div class="controls">
 				<form:input path="transportation" htmlEscape="false" maxlength="128" class="input-xlarge " placeholder="请输入详细的航班号、车次、车牌号等信息" readonly="true"/>

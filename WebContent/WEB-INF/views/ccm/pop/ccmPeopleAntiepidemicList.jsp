@@ -155,7 +155,7 @@
 				<th>性别</th>
 				<th>身份证号</th>
 				<th>户籍地</th>
-				<th>在琼居住地</th>
+				<th>是否14天以内</th>
 				<th>采取何种措施</th>
 				<th>更新时间</th>
 				<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><th>操作</th></shiro:hasPermission>
@@ -177,7 +177,7 @@
 					${ccmPeopleAntiepidemic.domicile}
 				</td>
 				<td>
-					${ccmPeopleAntiepidemic.habitation}
+					${fns:getDictLabel(ccmPeopleAntiepidemic.isIn14days, 'is_key_place', '')}
 				</td>
 				<td>
 					${fns:getDictLabel(ccmPeopleAntiepidemic.takeSteps, 'sys_ccm_people_takeSteps', '')}

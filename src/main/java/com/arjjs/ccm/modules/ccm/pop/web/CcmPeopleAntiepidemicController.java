@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
+import com.arjjs.ccm.tool.DateTools;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeopleAntiepidemic;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleAntiepidemicService;
+
+import java.text.SimpleDateFormat;
 
 /**
  * 人员疫情Controller
@@ -82,6 +85,16 @@ public class CcmPeopleAntiepidemicController extends BaseController {
 		if (!beanValidator(model, ccmPeopleAntiepidemic)){
 			return form(ccmPeopleAntiepidemic, model);
 		}
+        if(ccmPeopleAntiepidemic.getComeHainanDate()!=null){
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String dateString = formatter.format(ccmPeopleAntiepidemic.getComeHainanDate());
+            String num = DateTools.getTwoDay( DateTools.getStringDateShort(),dateString);
+            if(Integer.parseInt(num)>14){
+				ccmPeopleAntiepidemic.setIsIn14days("01");
+            } else {
+				ccmPeopleAntiepidemic.setIsIn14days("02");
+			}
+        }
 		ccmPeopleAntiepidemicService.save(ccmPeopleAntiepidemic);
 		addMessage(redirectAttributes, "保存人员疫情成功");
 		return "redirect:"+Global.getAdminPath()+"/pop/ccmPeopleAntiepidemic/?repage";
