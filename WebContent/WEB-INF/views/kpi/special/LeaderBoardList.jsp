@@ -153,7 +153,7 @@
 	</form:form>
 	<div class="span6 column ui-sortable" style="margin-top: 20px">
 		<span>网格排行榜</span>
-		<table class="table table-striped table-bordered table-condensed">
+		<table style="margin-top: 10px" class="table table-striped table-bordered table-condensed">
 			<thead>
 				<tr>
 					<th>名次</th>
@@ -193,7 +193,7 @@
 	
 	<div class="span6 column ui-sortable" style="margin-top: 20px">
 		<span>社区排行榜</span>
-		<table class="table table-striped table-bordered table-condensed">
+		<table style="margin-top: 10px"  class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
 				<th>名次</th>
@@ -233,7 +233,7 @@
 	
 	<div class="span6 column ui-sortable" style="margin-top: 20px">
 		<span>区县排行榜</span>
-		<table  class="table table-striped table-bordered table-condensed">
+		<table style="margin-top: 10px"   class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
 				<th>名次</th>
