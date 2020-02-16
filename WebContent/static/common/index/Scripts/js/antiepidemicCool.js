@@ -47,9 +47,377 @@ $(function () {
 
 
 
+    //疫情人员年龄段
+    showechleftContent1();
+
+    function showechleftContent1() {
+        var leftContent1Charts = echarts.init(document.getElementById('echleftContent1'));
+        var piebg = {
+            name: '',
+            type: 'pie',
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: [{
+                value: 0
+            }],
+            avoidLabelOverlap: false,
+            animation: false
+        };
+        option = {
+            // title : {
+            //     text: '2018 农场DCC 软件提交占比',
+            //     subtext: '数据来源于 Deadline',
+            //     x:'center'
+            // },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                left: '15%',
+                top: '90%',
+                width: '50%',
+                icon: 'rect',
+                align: 'left',
+                // itemWidth: 10,  // 设置宽度
+                // itemHeight: 10, // 设置高度
+                itemGap:11,
+                data: ['18岁以下', '18-30岁青年', '30-60中青年', '60以上老年']
+            },
+            series: [{
+                name: '数据',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                data: [{
+                    value: 12059.02,
+                    name: '18岁以下'
+                },
+                    {
+                        value: 10735.45,
+                        name: '18-30岁青年'
+                    },
+                    {
+                        value: 52821.32,
+                        name: '30-60中青年'
+                    },
+                    {
+                        value: 6087.68,
+                        name: '60以上老年'
+                    }
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            },
+                Object.assign({}, piebg, {
+                    radius: ['5%', '75%'],
+                    center: ['50%', '50%'],
+                    tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        formatter: " "
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: {
+                                type: 'radial',
+                                x: 0.5,
+                                y: 0.5,
+                                r: 0.5,
+                                colorStops: [{
+                                    offset: 0,
+                                    color: 'rgba(16,60,94,0)' // 0% 处的颜色
+                                },
+                                    {
+                                        offset: 0.2,
+                                        color: 'rgba(16,60,94,0)' // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 0.3,
+                                        color: 'rgba(16,60,94,0)' // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 0.4,
+                                        color: 'rgba(16,60,94,0)' // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 0.45,
+                                        color: 'rgba(43,177,255,0.5)' // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 0.55,
+                                        color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 0.6,
+                                        color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 0.7,
+                                        color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 0.8,
+                                        color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 0.9,
+                                        color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: 'rgba(40,169,252,0.5)' // 100% 处的颜色
+                                    },
+                                ],
+                                globalCoord: false // 缺省为 false
+                            }
+                        }
+                    },
+                    z: -10
+                })
+            ]
+        };
+
+        leftContent1Charts.setOption(option);
+    }
 
 
+     //疫情人员现状
+    showechRightContent2();
 
+    function showechRightContent2(){
+        var echRightContent2 = echarts.init(document.getElementById('echRightContent2'));
+        var dataStyle = {
+            normal: {
+                label: {
+                    show: false
+                },
+                labelLine: {
+                    show: false
+                },
+                // shadowBlur: 15,
+                // shadowColor: 'white',
+            }
+        };
+        var placeHolderStyle = {
+            normal: {
+                color: 'rgba(0,0,0,0)',
+                label: {
+                    show: false
+                },
+                labelLine: {
+                    show: false
+                }
+            },
+            emphasis: {
+                color: 'rgba(0,0,0,0)'
+            }
+        };
+        var piebg = {
+            name: '',
+            type: 'pie',
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: [{
+                value: 0
+            }],
+            avoidLabelOverlap: false,
+            animation: false
+        };
+        option = {
+            color: ['#32F7FF', '#4358FF', '#FC9A2F'],
+            // tooltip: {
+            //     show: false,
+            //     formatter: "{b} : {c}"
+            // },
+
+            legend: {
+                top: "60%",
+                x: 'right',
+                left: "80%",
+                data: ['身体状况异常', '已满14天', '已移交卫健委'],
+                // itemGap: 38,
+                textStyle: {
+                    color: '#fff',
+                },
+
+                selectedMode: true,
+                orient: "vertical",
+
+            },
+            grid: {
+                top: '11%',
+                bottom: '66%',
+                left: "44%",
+                containLabel: false
+            },
+            xAxis: [{
+                show: false
+            }],
+            yAxis: [{
+                type: 'category',
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    interval: 0,
+                    inside: true,
+                    textStyle: {
+                        color: "#fff",
+                        fontSize: 16,
+                    },
+                    show: true
+                },
+                data: [600, 400, 200]
+            }],
+
+            series: [{
+                name: 'Line 4',
+                type: 'pie',
+                clockWise: true,
+                hoverAnimation: false,
+                radius: ['65%', '75%'],
+                itemStyle: dataStyle,
+
+                data: [{
+                    value: 7645434,
+                    name: '身体状况异常',
+                    tooltip: {
+                        show: true
+                    },
+                }, {
+                    value: 3612343,
+                    name: '总数',
+                    tooltip: {
+                        show: false
+                    },
+                    itemStyle: placeHolderStyle
+                }
+
+                ],
+            }, {
+                name: 'Line 3',
+                type: 'pie',
+                clockWise: true,
+                radius: ['50%', '60%'],
+                itemStyle: dataStyle,
+                hoverAnimation: false,
+
+                data: [{
+                    value: 2632321,
+                    name: '已满14天'
+                }, {
+                    value: 2212343,
+                    name: '总数',
+                    tooltip: {
+                        show: false
+                    },
+                    itemStyle: placeHolderStyle
+                }]
+            }, {
+                name: 'Line 2',
+                type: 'pie',
+                clockWise: true,
+                hoverAnimation: false,
+                radius: ['35%', '45%'],
+                itemStyle: dataStyle,
+
+                data: [{
+                    value: 1823323,
+                    name: '已移交卫健委'
+                }, {
+                    value: 1812343,
+                    name: '总数',
+                    tooltip: {
+                        show: false
+                    },
+                    itemStyle: placeHolderStyle
+                }]
+            }, Object.assign({}, piebg, {
+                radius: ['75%', '85%'],
+                center: ['50%', '50%'],
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0)',
+                    formatter: " "
+                },
+                itemStyle: {
+                    normal: {
+                        color: {
+                            type: 'radial',
+                            x: 0.5,
+                            y: 0.5,
+                            r: 0.5,
+                            colorStops: [{
+                                offset: 0,
+                                color: 'rgba(16,60,94,0)' // 0% 处的颜色
+                            },
+                                {
+                                    offset: 0.2,
+                                    color: 'rgba(16,60,94,0)' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.3,
+                                    color: 'rgba(16,60,94,0)' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.4,
+                                    color: 'rgba(16,60,94,0)' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.45,
+                                    color: 'rgba(43,177,255,0.5)' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.55,
+                                    color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.6,
+                                    color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.7,
+                                    color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.8,
+                                    color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.9,
+                                    color: 'rgba(5,5,5,0.1)' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(40,169,252,0.5)' // 100% 处的颜色
+                                },
+                            ],
+                            globalCoord: false // 缺省为 false
+                        }
+                    }
+                },
+                z: -10
+            })
+            ],
+        };
+
+        echRightContent2.setOption(option);
+
+    }
 
     /********************地图***********************/
     //地图

@@ -45,7 +45,7 @@
 		<script src="${ctxStatic}/modules/map/js/commonMap.js"></script>
 		<script src="${ctxStatic}/mapv/mapv.min.js"></script>
 		<script src="${ctxStatic}/supermapopenlayers/iclient-openlayers.min.js"></script>
-		<script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill/echarts.min.js"></script>
+		<%--<script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill/echarts.min.js"></script>--%>
 		<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 		<%--<script src="${ctxStatic}/common/index/Scripts/js/echarts.min.js"></script>--%>
 
