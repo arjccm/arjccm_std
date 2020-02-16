@@ -416,7 +416,8 @@ CREATE TABLE `ccm_people_antiepidemic`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '人员疫情表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
+-- 修改防疫人员表上报时间 可以为空
+ALTER TABLE `arjccm_std`.`ccm_people_antiepidemic` MODIFY COLUMN `report_date` datetime(0) NULL COMMENT '上报时间' AFTER `report_department`;
 
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ab598b21da684e35abc56fe9047934e7', '147dfc2b7fef4d009fb540de4c531df9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,147dfc2b7fef4d009fb540de4c531df9,', '编辑', 60, '', '', '', '0', 'pop:ccmPeopleAntiepidemic:edit', '1', '2020-02-14 11:03:30', '1', '2020-02-14 11:03:30', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('0845bf0e086d4727a5c21b96d2e8292a', '147dfc2b7fef4d009fb540de4c531df9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,147dfc2b7fef4d009fb540de4c531df9,', '显示', 30, '', '', '', '0', 'pop:ccmPeopleAntiepidemic:view', '1', '2020-02-14 11:02:54', '1', '2020-02-14 11:02:54', '', '0');
