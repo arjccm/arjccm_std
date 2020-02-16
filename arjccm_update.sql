@@ -486,6 +486,8 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
 
 
 
+-- 三亚新型冠状病毒肺炎疫情管控平台
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('e2cfcfc331e547e79f7f78b4171e4adf', '1', '0,1,', '三亚新型冠状病毒肺炎疫情管控平台', 330, '/sys/map/antiepidemicCool', '', 'adjust', '1', '', '1', '2020-02-16 22:20:17', '1', '2020-02-16 22:34:43', '', '0');
 
 
 
