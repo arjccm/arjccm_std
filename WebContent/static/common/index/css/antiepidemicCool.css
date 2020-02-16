@@ -1746,23 +1746,12 @@ div.jbox #search{
 	height: 95px;
 	float: left;
 	color: #fff;
-	margin-top: 10px;
-	margin-left: 10px;
+	margin-left: 17%;
 	list-style: none;
 	position: relative;
-    margin-right: 2%;
-    margin-left: 8%;
 }
 
-.mainVideoPop li i {
-	display: block;
-	position: absolute;
-	bottom: 25px;
-}
-.mianLeftDiv{
-	margin-right: 0% !important;
-    margin-left: 8% !important;
-}
+
 .mianCenterDiv{
 	margin-right: 0% !important;
     margin-left: 2% !important;
@@ -1863,15 +1852,19 @@ div.jbox #search{
 }
 
 .mainVideoPop li h6 {
-	font-size: 12px;
-	color: #9DCCFF;
-	margin: 5px 0;
+    height:28px;
+    font-size:12px;
+    font-family:PingFang SC;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    line-height:28px;
 }
 
 .mainVideoPop li b {
-    font-size: 24px;
-    /*color: #fff;*/
-    color: #F9CB42;
+    font-size:30px;
+    font-family:PingFang SC;
+    color:rgba(255,255,255,1);
+    line-height:28px;
     margin-right: 5px;
 }
 
@@ -1921,4 +1914,41 @@ div.jbox #search{
 }
 #leftContent0{
     margin-bottom: 20px;
+}
+
+.glcs-jjgl i {
+    display: block;
+    position: absolute;
+     width: 48px;
+     height: 50px;
+    top: 35px;
+    left: -10px;
+     background: url(../images/statIndexCool/jjgl2.png) center no-repeat;
+ }
+.glcs-lgdgl i {
+    display: block;
+    position: absolute;
+    width: 48px;
+    height: 50px;
+    top: 35px;
+    left: -10px;
+    background: url(../images/statIndexCool/lgdgl.png) center no-repeat;
+}
+.glcs-qzgl i {
+    display: block;
+    position: absolute;
+    width: 48px;
+    height: 50px;
+    top: 35px;
+    left: -10px;
+    background: url(../images/statIndexCool/qzgl.png) center no-repeat;
+}
+.glcs-yygl i {
+    display: block;
+    position: absolute;
+    width: 48px;
+    height: 50px;
+    top: 35px;
+    left: -10px;
+    background: url(../images/statIndexCool/yygl.png) center no-repeat;
 }

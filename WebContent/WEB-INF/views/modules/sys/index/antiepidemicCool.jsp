@@ -170,8 +170,7 @@
 
 #leftContent1{
 	height: 45%;
-	margin-top: 15px;
-	margin-bottom: 35px;
+	margin-bottom: 40px;
 }
 #leftContent2{
 	height: 45%;
@@ -179,6 +178,82 @@
 #rightContent1,#rightContent2,#rightContent3{
 	height: 30%;
 }
+			#rightContent1,#rightContent2{
+				margin-bottom: 20px;
+			}
+.left-title{
+    width: 500px;
+    position: relative;
+    left: 38%;
+}
+.left-title p{
+	width:496px;
+	height:29px;
+	font-size:30px;
+	font-family:PingFang SC;
+	font-weight:bold;
+	color:rgba(255,255,255,1);
+	line-height:28px;
+	margin-top: 25px;
+}
+#topCol{
+    margin-top: 25px;
+}
+.topCol-t{
+    width: 237px;
+    height: 84px;
+    background: url("${ctxStatic}/images/topCol.png") no-repeat center center;
+    background-size: 100% 100% ;
+    float: left;
+    margin-right: 29px;
+}
+.topCol-t1{
+    float: left;
+    margin-top: 15px;
+    margin-left: 28px;
+    text-align: center;
+}
+.topCol-t2{
+    float: left;
+    margin-top: 15px;
+    margin-left: 38px;
+    text-align: center;
+}
+.topCol-t .p1{
+    height:28px;
+    font-size:16px;
+    font-family:PingFang SC;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    line-height:20px;
+}
+.topCol-t .p2{
+    height:15px;
+    font-size: 30px;
+    color: #F9CB42;
+    font-family:PingFang SC;
+    font-weight:500;
+    line-height:28px;
+}
+            .topCol-t .p3{
+                height:28px;
+                font-size:16px;
+                font-family:PingFang SC;
+                font-weight:500;
+                color:rgba(255,255,255,1);
+                line-height:20px;
+                margin-top: 5px;
+            }
+            .topCol-t .p4{
+                height:38px;
+                font-size:50px;
+                font-family:PingFang SC;
+                font-weight:bold;
+                color:rgba(252,47,47,1);
+                line-height:28px;
+                margin-top: 5px;
+            }
+
 		</style>
 		<script>
 			$(function() {
@@ -213,7 +288,10 @@
 					<div>
 						<!-- 菜单 -->
 						<div style="z-index: 9999;position: absolute;width:100%; top: 0px;left: 26px;">
-							<div style="float: right; padding-top: 13px;"  class="Logout">
+                            <div style="float: left;" class="left-title">
+                                <p>三亚新型冠状病毒肺炎疫情管控平台</p>
+                            </div>
+							<div style="float: right;"  class="Logout">
 								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/sys/map/projectIndex"><img src="/arjccm/static/common/index/images/statIndexCool/home.png"></a>
 								<img style="display: inline;" src="/arjccm/static/common/index/images/statIndexCool/vertical.png">
 								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/logout"><img src="/arjccm/static/common/index/images/statIndexCool/exit.png"></a>
@@ -234,13 +312,13 @@
 				<div class="row-fluid" style="width: 100%;height: 100%;position: absolute;padding-top: 90px;">
 					<div id="leftCol" class="leftCol">
 						<div id="leftContent1"  class="showContent">
-							<div class="contentTitle"><span id="leftTitle1"></span></div>
-							<div class="common-pading" id="leftContent1Body">
-								<div id="echleftContent1" class="echarts"></div>
+							<div class="contentTitle"><span id="leftTitle1">疫情人员年龄段</span></div>
+							<div class="common-pading" id="leftContent1Body" class="echarts">
+
 							</div>
 						</div>
 						<div id="leftContent2"  class="showContent">
-							<div class="contentTitle"><span id="leftTitle2"></span></div>
+							<div class="contentTitle"><span id="leftTitle2">疫情人员入琼趋势</span></div>
 							<div class="common-pading" id="leftContent2Body">
 								<div id="echLeftContent2" class="echarts"></div>
 							</div>
@@ -251,32 +329,49 @@
 
 
 						<div id="rightContent1" class="showContent">
-							<div class="contentTitle"><span id="rightTitle1"></span></div>
+							<div class="contentTitle"><span id="rightTitle1">病疫人员分布</span></div>
 							<div class="common-pading" id="rightContent1Body">
 								<div id="echRightContent1" class="echarts"></div>
 							</div>
 						</div>
 						<div id="rightContent2" class="showContent">
-							<div class="contentTitle"><span id="rightTitle2"></span></div>
+							<div class="contentTitle"><span id="rightTitle2">病疫人员现状</span></div>
 							<div class="common-pading" id="rightContent2Body">
 								<div id="echRightContent2" class="echarts"></div>
 							</div>
 						</div>
 						<div id="rightContent3" class="showContent" >
-							<div class="contentTitle"><span id="rightTitle3"></span></div>
-							<div class="common-pading" id="rightContent3Body" style="height: 90%;">
-								<div id="echRightContent3" class="echarts"></div>
-							</div>
+							<div class="contentTitle"><span id="rightTitle3">疫情人员隔离措施</span></div>
 							<div class="mainVideoPop" id="videoCountDivPop">
 								<ul>
-									<li class="azbj mianLeftDiv" style="margin-top: 40px" >
+									<li class="glcs-jjgl">
 										<i></i>
-										<span></span>
 										<div>
-											<h6>安置帮教人员</h6>
-											<b id="azbj">5560</b>个
+											<h6>居家隔离</h6>
+											<b >11310</b>
 										</div>
 									</li>
+                                    <li class="glcs-lgdgl" >
+                                        <i></i>
+                                        <div>
+                                            <h6>留观点隔离</h6>
+                                            <b >197</b>
+                                        </div>
+                                    </li>
+                                    <li class="glcs-qzgl"  >
+                                        <i></i>
+                                        <div>
+                                            <h6>确诊隔离</h6>
+                                            <b >11</b>
+                                        </div>
+                                    </li>
+                                    <li class="glcs-yygl" >
+                                        <i></i>
+                                        <div>
+                                            <h6>医院隔离</h6>
+                                            <b >17</b>
+                                        </div>
+                                    </li>
 
 								</ul>
 							</div>
@@ -284,7 +379,17 @@
 
 					</div>
 					<div id="topCol" class="topCol">
-
+						<div class="topCol-t">
+							<div class="topCol-t1"><p class="p1">湖北籍</p><p class="p2">7132</p></div>
+							<div class="topCol-t2"><p class="p1">非湖北籍</p><p class="p2">5510</p></div>
+						</div>
+                        <div class="topCol-t" style="text-align: center">
+                            <p class="p3">重点检测人员</p><p class="p4">12642</p>
+                        </div>
+                        <div class="topCol-t">
+                            <div class="topCol-t1"><p class="p1">武汉籍</p><p class="p2">3924</p></div>
+                            <div class="topCol-t2"><p class="p1">非武汉籍</p><p class="p2">3108</p></div>
+                        </div>
 					</div>
 					<div id="bottomCol" class="bottomCol">
 						<div style="padding-left: 50px;padding-top: 20px;">

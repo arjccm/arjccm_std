@@ -51,7 +51,7 @@ $(function () {
     showechleftContent1();
 
     function showechleftContent1() {
-        var leftContent1Charts = echarts.init(document.getElementById('echleftContent1'));
+        var leftContent1Charts = echarts.init(document.getElementById('leftContent1Body'));
         var piebg = {
             name: '',
             type: 'pie',
@@ -77,11 +77,14 @@ $(function () {
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
             legend: {
-                left: '15%',
-                top: '90%',
+                left: '25%',
+                top: '85%',
                 width: '50%',
                 icon: 'rect',
                 align: 'left',
+                textStyle: {
+                    color: '#fff',
+                },
                 // itemWidth: 10,  // 设置宽度
                 // itemHeight: 10, // 设置高度
                 itemGap:11,
@@ -90,8 +93,8 @@ $(function () {
             series: [{
                 name: '数据',
                 type: 'pie',
-                radius: ['40%', '70%'],
-                center: ['50%', '50%'],
+                radius: ['30%', '60%'],
+                center: ['45%', '45%'],
                 data: [{
                     value: 12059.02,
                     name: '18岁以下'
@@ -118,8 +121,8 @@ $(function () {
                 }
             },
                 Object.assign({}, piebg, {
-                    radius: ['5%', '75%'],
-                    center: ['50%', '50%'],
+                    radius: ['5%', '70%'],
+                    center: ['45%', '45%'],
                     tooltip: {
                         backgroundColor: 'rgba(0,0,0,0)',
                         formatter: " "
@@ -307,9 +310,9 @@ $(function () {
             // },
 
             legend: {
-                top: "60%",
+                top: "30%",
                 x: 'right',
-                left: "80%",
+                left: "60%",
                 data: ['身体状况异常', '已满14天', '已移交卫健委'],
                 // itemGap: 38,
                 textStyle: {
@@ -321,9 +324,9 @@ $(function () {
 
             },
             grid: {
-                top: '11%',
+                top: '2%',
                 bottom: '66%',
-                left: "44%",
+                left: "22%",
                 containLabel: false
             },
             xAxis: [{
@@ -343,7 +346,7 @@ $(function () {
                     inside: true,
                     textStyle: {
                         color: "#fff",
-                        fontSize: 16,
+                        fontSize: 12,
                     },
                     show: true
                 },
@@ -355,7 +358,8 @@ $(function () {
                 type: 'pie',
                 clockWise: true,
                 hoverAnimation: false,
-                radius: ['65%', '75%'],
+                radius: ['78%', '88%'],
+                center: ['30%', '50%'],
                 itemStyle: dataStyle,
 
                 data: [{
@@ -378,7 +382,8 @@ $(function () {
                 name: 'Line 3',
                 type: 'pie',
                 clockWise: true,
-                radius: ['50%', '60%'],
+                radius: ['63%', '73%'],
+                center: ['30%', '50%'],
                 itemStyle: dataStyle,
                 hoverAnimation: false,
 
@@ -398,7 +403,8 @@ $(function () {
                 type: 'pie',
                 clockWise: true,
                 hoverAnimation: false,
-                radius: ['35%', '45%'],
+                radius: ['48%', '58%'],
+                center: ['30%', '50%'],
                 itemStyle: dataStyle,
 
                 data: [{
@@ -413,8 +419,8 @@ $(function () {
                     itemStyle: placeHolderStyle
                 }]
             }, Object.assign({}, piebg, {
-                radius: ['75%', '85%'],
-                center: ['50%', '50%'],
+                radius: ['88%', '98%'],
+                center: ['30%', '50%'],
                 tooltip: {
                     backgroundColor: 'rgba(0,0,0,0)',
                     formatter: " "
