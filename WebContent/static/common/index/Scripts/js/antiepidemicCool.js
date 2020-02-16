@@ -78,7 +78,7 @@ $(function () {
             },
             legend: {
                 left: '25%',
-                top: '85%',
+                top: '87%',
                 width: '50%',
                 icon: 'rect',
                 align: 'left',
@@ -93,23 +93,35 @@ $(function () {
             series: [{
                 name: '数据',
                 type: 'pie',
-                radius: ['30%', '60%'],
-                center: ['45%', '45%'],
+                radius: ['40%', '70%'],
+                center: ['45%', '48%'],
                 data: [{
                     value: 12059.02,
-                    name: '18岁以下'
+                    name: '18岁以下',
+                    itemStyle:{
+                        color:'#32F7FF'
+                    },
                 },
                     {
                         value: 10735.45,
-                        name: '18-30岁青年'
+                        name: '18-30岁青年',
+                        itemStyle:{
+                            color:'#6576FA'
+                        },
                     },
                     {
                         value: 52821.32,
-                        name: '30-60中青年'
+                        name: '30-60中青年',
+                        itemStyle:{
+                            color:'#FC9A2F'
+                        },
                     },
                     {
                         value: 6087.68,
-                        name: '60以上老年'
+                        name: '60以上老年',
+                        itemStyle:{
+                            color:'#2FFF1D'
+                        },
                     }
                 ],
                 itemStyle: {
@@ -121,8 +133,8 @@ $(function () {
                 }
             },
                 Object.assign({}, piebg, {
-                    radius: ['5%', '70%'],
-                    center: ['45%', '45%'],
+                    radius: ['1%', '75%'],
+                    center: ['45%', '48%'],
                     tooltip: {
                         backgroundColor: 'rgba(0,0,0,0)',
                         formatter: " "
@@ -196,35 +208,60 @@ $(function () {
     showechLeftContent2()
 
     function showechLeftContent2() {
-        var echLeftContent2 = echarts.init(document.getElementById('echLeftContent2'));
+        var echLeftContent2 = echarts.init(document.getElementById('leftContent2Body'));
        var option = {
             legend: {
                 data: ['人数', '武汉籍'],
                 x: '100px', // 对齐方式
                 itemGap: 100, // item之间的距离
+                textStyle: {
+                    color: '#FFFFFF'
+                },
             },
+
             xAxis: {
                 type: 'category',
-                data: ['2013', '2014', '2015', '2016', '2017', '2018', '2019']
+                data: ['01-14', '01-15', '01-16', '01-17', '01-18', '01-19', '01-20','01-21', '01-22', '01-23', '01-24'],
+                axisLabel: {
+                    color: '#FFFFFF',
+                    rotate:60,
+                },
+
+
             },
             yAxis: [
                 {
                     type: 'value',
                     scale: true,
-                    max: 300,
+                    max: 1800,
                     min: 0,
-                    boundaryGap: [0.2, 0.2]
+                    boundaryGap: [0.2, 0.2],
+                    axisLabel: {
+                        color: '#FFFFFF'
+                    },
+                    axisTick: {
+                        show: true,
+                        lineStyle: {
+                            color: '#FFF',
+                            opacity: 0.2
+                        }
+                    },
+
                 },
                 {
                     type: 'value',
                     scale: true,
-                    max: 300,
+                    max: 1800,
                     min: 0,
-                    boundaryGap: [0.2, 0.2]
-                }
+                    boundaryGap: [0.2, 0.2],
+                    axisLabel: {
+                        color: '#FFFFFF'
+                    }
+                },
+
             ],
             series: [{
-                data: [120, 200, 150, 80, 200, 150, 80],
+                data: [311, 359, 385, 548, 887, 1142, 1484,1553, 1488, 957, 513],
                 type: 'bar',
                 name: '人数',
                 itemStyle: {
@@ -232,21 +269,24 @@ $(function () {
                         color: new echarts.graphic.LinearGradient(
                             0, 0, 0, 1, [{
                                 offset: 0,
-                                color: '#FF32F7FF'
+                                color: '#32F7FF'
                             },
                                 {
                                     offset: 1,
-                                    color: '#FF091C41'
+                                    color: '#32F7FF'
                                 }
                             ])
                     }
                 }
             },
                 {
-                    data: [120, 200, 150, 80, 200, 150, 80],
+                    data: [108, 121, 138, 188, 285, 381, 486,534, 546, 332, 174],
                     type: 'line',
                     name: '武汉籍',
-                    symbolSize: 10 // 控制线条上 点 的大小
+                    symbolSize: 10, // 控制线条上 点 的大小
+                    itemStyle:{
+                        color:'#FC9A2F'
+                    },
                 }
             ]
         };
@@ -495,7 +535,7 @@ $(function () {
     function showechRightContent1(){
        var echRightContent1 = echarts.init(document.getElementById('echRightContent1'));
        var option = {
-            backgroundColor: '#0b214a',
+           /* backgroundColor: '#0b214a',*/
             color: '#FF00FFFF',
             grid: {
                 left: '6%',
