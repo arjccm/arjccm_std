@@ -486,6 +486,9 @@
 									<li class="menu">
 										<a  id="xuelianggongcheng">雪亮工程</a>
 									</li>
+									<%--<li class="menu">
+										<a  href="/arjccm/WEB-INF/views/modules/sys/index/antiepidemicCool.jsp">疫情</a>
+									</li>--%>
 								</ul>
 								<%--                                <span style="float: left;margin-left: 200px;font-size: 18px;font-family: MicrosoftYaHei;font-weight: normal;" id="cba"><i class=""></i>网格管理</span>--%>
 								<%--								<span style="float: left;margin-left: 20px"><a href="${ctx}/sys/map/statLivelihoodQuLiang">关注对象</a></span>--%>
