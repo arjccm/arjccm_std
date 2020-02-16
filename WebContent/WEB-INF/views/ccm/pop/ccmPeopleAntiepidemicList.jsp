@@ -101,26 +101,34 @@
 				<form:input path="idNumber" htmlEscape="false" maxlength="32" class="input-medium"/>
 			</li>--%>
 			<li class="first-line"><label>年龄段：</label>
-				<form:select path="ageType">
+				<form:select path="ageType" cssStyle="width: 175px">
 					<form:option value="" label="" />
 					<form:options items="${fns:getDictList('sys_ccm_peopleantiepidemic_age')}"
 								  itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select>
 			</li>
 			<li class="first-line"><label>户籍地：</label>
-				<div id="city">
-					<select class="prov" name="domicile"></select>
-					<select class="city" disabled="disabled" name="domicile"></select>
-				</div>
+				<form:input path="domicile" htmlEscape="false" maxlength="128" class="input-medium"/>
+				<%--<div id="city">--%>
+					<%--<select class="prov" name="domicile"></select>--%>
+					<%--<select class="city" disabled="disabled" name="domicile"></select>--%>
+				<%--</div>--%>
 			</li>
-			<li><label>采取何种措施：</label>
-				<form:select path="takeSteps">
+			<li class="first-line" style="margin-top: 10px"><label>采取何种措施：</label>
+				<form:select path="takeSteps" cssStyle="width: 175px">
 						<form:option value="" label="" />
 						<form:options items="${fns:getDictList('sys_ccm_people_takeSteps')}"
 							itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select>
 			</li>
-			<li class="first-line"><label>来琼乘坐交通工具：</label>
+				<li class="first-line" style="margin-top: 10px"><label>身体状况：</label>
+					<form:select path="takeSteps" cssStyle="width: 175px">
+						<form:option value="" label="" />
+						<form:options items="${fns:getDictList('sys_ccm_people_health')}"
+									  itemLabel="label" itemValue="value" htmlEscape="false" />
+					</form:select>
+				</li>
+			<li class="second-line"><label>来琼交通工具：</label>
 				<form:input path="transportation" htmlEscape="false" maxlength="128" class="input-medium"/>
 			</li>
 			<%-- <li><label>离鄂时间：</label>
@@ -182,7 +190,7 @@
 			<li><label>数据状态：</label>
 				<form:input path="dataStatus" htmlEscape="false" maxlength="2" class="input-medium"/>
 			</li>--%>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns" style="margin-top: 10px"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -203,32 +211,33 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmPeopleAntiepidemic">
 			<tr>
-				<td><a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">
+				<td style="height: 50px"><a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">
 					${ccmPeopleAntiepidemic.name}
 				</a></td>
-				<td>
+				<td style="height: 50px">
 					${fns:getDictLabel(ccmPeopleAntiepidemic.sex, 'sex', '')}
 				</td>
-				<td>
+				<td style="height: 50px">
 					${ccmPeopleAntiepidemic.idNumber}
 				</td>
-				<td>
+				<td style="height: 50px">
 					${ccmPeopleAntiepidemic.domicile}
 				</td>
-				<td>
+				<td style="height: 50px">
 					${fns:getDictLabel(ccmPeopleAntiepidemic.isIn14days, 'is_key_place', '')}
 				</td>
-				<td>
+				<td style="height: 50px">
 					${fns:getDictLabel(ccmPeopleAntiepidemic.takeSteps, 'sys_ccm_people_takeSteps', '')}
 				</td>
-				<td>
+				<td style="height: 50px">
 					<fmt:formatDate value="${ccmPeopleAntiepidemic.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 		
-				<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><td>
-    				<a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">修改</a>
-					<a href="${ctx}/pop/ccmPeopleAntiepidemic/delete?id=${ccmPeopleAntiepidemic.id}" onclick="return confirmx('确认要删除该人员疫情吗？', this.href)">删除</a>
-					<a href="${ctx}/pop/ccmPeopleAntiepidemic/details?id=${ccmPeopleAntiepidemic.id}">详情</a>
+				<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><td style="height: 50px">
+					<a class="btnList"  href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}" title="修改"><i class="icon-pencil"></i></a>
+					<a class="btnList" href="${ctx}/pop/ccmPeopleAntiepidemic/delete?id=${ccmPeopleAntiepidemic.id}" onclick="return confirmx('确认要删除该人员疫情吗？', this.href)"  title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/pop/ccmPeopleAntiepidemic/details?id=${ccmPeopleAntiepidemic.id}" title="详情"><i class="icon-file"></i></a>
+						<%--<a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">修改</a>--%>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

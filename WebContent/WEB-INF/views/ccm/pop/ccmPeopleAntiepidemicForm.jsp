@@ -144,10 +144,10 @@
             </td>
             <td>
                 <div class="control-group">
-                    <label class="control-label">户籍地：</label>
+                    <label class="control-label">户籍地：&nbsp;</label>
                     <div id="city">
-                        <select class="prov" name="domicile"></select>
-                        <select class="city" disabled="disabled" name="domicile"></select>
+                        <select class="prov" name="domicile" style="width: 142px"></select>
+                        <select class="city" disabled="disabled" name="domicile" style="width: 142px"></select>
                         <!-- <select class="dist" disabled="disabled"></select>  -->
                     </div>
                 </div>
@@ -197,7 +197,7 @@
                 <div class="control-group">
                     <label class="control-label">是否14天以内：</label>
                     <div class="controls">
-                        <form:select path="isIn14days">
+                        <form:select path="isIn14days" cssStyle="width: 285px">
                             <form:option value="" label="" />
                             <form:options items="${fns:getDictList('is_key_place')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -233,7 +233,7 @@
                 <div class="control-group">
                     <label class="control-label">是否离岛：</label>
                     <div class="controls">
-                        <form:select path="isLeftHainan">
+                        <form:select path="isLeftHainan"  cssStyle="width: 285px">
                             <form:option value="" label="" />
                             <form:options items="${fns:getDictList('is_key_place')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -257,7 +257,7 @@
                 <div class="control-group">
                     <label class="control-label">身体状况：</label>
                     <div class="controls">
-                        <form:select path="health">
+                        <form:select path="health" cssStyle="width: 285px">
                             <form:option value="" label="" />
                             <form:options items="${fns:getDictList('sys_ccm_people_health')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -275,7 +275,7 @@
                 <div class="control-group">
                     <label class="control-label">采取何种措施：</label>
                     <div class="controls">
-                        <form:select path="takeSteps">
+                        <form:select path="takeSteps" cssStyle="width: 285px">
                             <form:option value="" label="" />
                             <form:options items="${fns:getDictList('sys_ccm_people_takeSteps')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false" />

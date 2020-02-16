@@ -88,7 +88,7 @@
 				AND a.id_number = #{idNumber}
 			</if>
 			<if test="domicile != null and domicile != ''">
-				AND a.domicile = #{domicile}
+				AND a.domicile  LIKE concat('%',#{domicile},'%')
 			</if>
 			<if test="habitation != null and habitation != ''">
 				AND a.habitation = #{habitation}
@@ -160,7 +160,7 @@
 				AND a.take_steps = #{takeSteps}
 			</if>
 			<if test="transportation != null and transportation != ''">
-				AND a.transportation LIKE '%${transportation}%'
+				AND a.transportation LIKE concat('%',#{transportation},'%')
 			</if>
 			<if test="createBy != null and createBy != ''">
 				AND a.create_by = #{createBy.id}
