@@ -201,7 +201,7 @@ public class CcmMapController extends BaseController {
 			map_P.put("监控类型", device.getType());
 			map_P.put("安装位置", device.getAddress());
 			map_P.put("设备状态", device.getStatus());
-			map_P.put("监控设备类型", device.getType());
+			//map_P.put("监控设备类型", device.getType());
 			properties.addInfo(map_P);
 			featureList.add(featureDto);
 			featureDto.setProperties(properties);
@@ -257,6 +257,8 @@ public class CcmMapController extends BaseController {
 		}
 		return geoJSON;
 	}
+
+
     /**
 	 * @see -生成广播站地图信息点位图
 	 * @param deviceBroadcast
