@@ -121,6 +121,12 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">年龄：</label>
+			<div class="controls">
+				<form:input path="age" htmlEscape="false" maxlength="3" class="input-xlarge " readonly="true"/>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">身份证号：</label>
 			<div class="controls">
 				<form:input path="idNumber" htmlEscape="false" maxlength="32" class="input-xlarge " readonly="true"/>
@@ -162,16 +168,6 @@
 					/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">是否14天以内：</label>
-			<div class="controls">
-				<form:select path="isIn14days" disabled="true">
-					<form:option value="" label="" />
-					<form:options items="${fns:getDictList('is_key_place')}"
-						itemLabel="label" itemValue="value" htmlEscape="false" />
-				</form:select>
-			</div>
-		</div> 
 		<div class="control-group">
 			<label class="control-label">来琼乘坐交通工具：</label>
 			<div class="controls">
