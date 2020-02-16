@@ -70,24 +70,14 @@
 			<c:if test="${not empty listSocial}">
 				<table class="table table-striped table-bordered table-condensed">
 					<tr>
-						<td>人员图片</td>
 						<td>姓名</td>
-						<td>性别</td>
-						<td>出生日期</td>
 						<td>公民身份号码</td>
-						<td>联系方式</td>
 						<td>关系</td>
 					</tr>
 					<c:forEach items="${listSocial}" var="cpp">
 						<tr>
-							<td width="100px">
-								<img src="${cpp.images}" style="height:80px;" class="pimg"/>
-							</td>
 							<td>${cpp.name}</td>
-							<td>${fns:getDictLabel(cpp.sex, 'sex', '')}</td>
-							<td><fmt:formatDate value="${cpp.birthday}" pattern="yyyy-MM-dd"/></td>
 							<td>${cpp.ident}</td>
-							<td>${cpp.telephone}</td>
 							<td>${fns:getDictLabel(cpp.cpptype, 'cpp_pop_pop_type', '')}</td>
 						</tr>
 					</c:forEach>
@@ -269,6 +259,7 @@
 			            })
 				   }
 			   }
+			   debugger
 			   console.log(linksData)
 			   var myChart = echarts.init(document.getElementById("SocialRelationsEcharts"));
 			   var option = {
@@ -353,7 +344,7 @@
 			   
 		   })
 		   
-		  
+
 	   })
 	</script>
 	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
