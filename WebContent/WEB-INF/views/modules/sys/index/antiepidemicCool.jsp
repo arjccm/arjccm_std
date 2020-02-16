@@ -389,7 +389,7 @@
                         </div>
                         <div class="topCol-t">
                             <div class="topCol-t1"><p class="p1">武汉籍</p><p class="p2">3924</p></div>
-                            <div class="topCol-t2"><p class="p1">非武汉籍</p><p class="p2">3108</p></div>
+                            <div class="topCol-t2"><p class="p1">湖北非武汉籍</p><p class="p2">3108</p></div>
                         </div>
 					</div>
 					<div id="bottomCol" class="bottomCol">
