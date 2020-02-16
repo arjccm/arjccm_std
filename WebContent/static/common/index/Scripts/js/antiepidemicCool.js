@@ -366,7 +366,7 @@ $(function () {
             grid: {
                 top: '2%',
                 bottom: '66%',
-                left: "22%",
+                left: "21%",
                 containLabel: false
             },
             xAxis: [{
@@ -386,11 +386,11 @@ $(function () {
                     inside: true,
                     textStyle: {
                         color: "#fff",
-                        fontSize: 12,
+                        fontSize: 10,
                     },
                     show: true
                 },
-                data: [600, 400, 200]
+                data: [1096, 12560, 3962]
             }],
 
             series: [{
@@ -403,13 +403,13 @@ $(function () {
                 itemStyle: dataStyle,
 
                 data: [{
-                    value: 7645434,
+                    value: 1096,
                     name: '身体状况异常',
                     tooltip: {
                         show: true
                     },
                 }, {
-                    value: 3612343,
+                    value: 17618,
                     name: '总数',
                     tooltip: {
                         show: false
@@ -428,10 +428,10 @@ $(function () {
                 hoverAnimation: false,
 
                 data: [{
-                    value: 2632321,
+                    value: 12560,
                     name: '已满14天'
                 }, {
-                    value: 2212343,
+                    value: 17618,
                     name: '总数',
                     tooltip: {
                         show: false
@@ -448,10 +448,10 @@ $(function () {
                 itemStyle: dataStyle,
 
                 data: [{
-                    value: 1823323,
+                    value: 3962,
                     name: '已移交卫健委'
                 }, {
-                    value: 1812343,
+                    value: 17618,
                     name: '总数',
                     tooltip: {
                         show: false
@@ -617,7 +617,7 @@ $(function () {
                         borderColor: '#FF00FFFF',
                     }
                 },
-                data: [80, 80, 80, 80, 80]
+                data: [6000, 6000, 6000, 6000, 6000]
             }, {
                 type: 'pictorialBar',
                 animation: true,
@@ -638,7 +638,7 @@ $(function () {
                         }
                     }
                 },
-                data: [10, 20, 30, 40, 50]
+                data: [4715, 5527, 1260, 1121, 23]
             }]
         };
 

@@ -314,13 +314,13 @@
 				<div class="row-fluid" style="width: 100%;height: 100%;position: absolute;padding-top: 90px;">
 					<div id="leftCol" class="leftCol">
 						<div id="leftContent1"  class="showContent">
-							<div class="contentTitle"><span id="leftTitle1">疫情人员年龄段</span></div>
+							<div class="contentTitle"><span id="leftTitle1">人员年龄段</span></div>
 							<div class="common-pading" id="leftContent1Body" class="echarts">
 
 							</div>
 						</div>
 						<div id="leftContent2"  class="showContent">
-							<div class="contentTitle"><span id="leftTitle2">疫情人员入琼趋势</span></div>
+							<div class="contentTitle"><span id="leftTitle2">人员入琼趋势</span></div>
 							<div class="common-pading" id="leftContent2Body">
 							</div>
 						</div>
@@ -330,19 +330,19 @@
 
 
 						<div id="rightContent1" class="showContent">
-							<div class="contentTitle"><span id="rightTitle1">病疫人员分布</span></div>
+							<div class="contentTitle"><span id="rightTitle1">人员分布</span></div>
 							<div class="common-pading" id="rightContent1Body">
 								<div id="echRightContent1" class="echarts"></div>
 							</div>
 						</div>
 						<div id="rightContent2" class="showContent">
-							<div class="contentTitle"><span id="rightTitle2">病疫人员现状</span></div>
+							<div class="contentTitle"><span id="rightTitle2">人员现状</span></div>
 							<div class="common-pading" id="rightContent2Body">
 								<div id="echRightContent2" class="echarts"></div>
 							</div>
 						</div>
 						<div id="rightContent3" class="showContent" >
-							<div class="contentTitle"><span id="rightTitle3">疫情人员隔离措施</span></div>
+							<div class="contentTitle"><span id="rightTitle3">人员隔离措施</span></div>
 							<div class="mainVideoPop" id="videoCountDivPop">
 								<ul>
 									<li class="glcs-jjgl">
