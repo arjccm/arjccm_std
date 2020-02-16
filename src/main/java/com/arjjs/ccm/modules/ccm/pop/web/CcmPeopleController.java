@@ -133,7 +133,10 @@ public class CcmPeopleController extends BaseController {
 
 		CcmPeople ccmPeople = ccmPeopleService.get(id);
 		Map<String, Object> map = Maps.newHashMap();
-		List<CppPopPop> cppPopPoplList = cppPopPopDao.getByIdCard(ccmPeople.getIdent());
+//		List<CppPopPop> cppPopPoplList = cppPopPopDao.getByIdCard(ccmPeople.getIdent());
+        CppPopPop cppPopPop = new CppPopPop();
+        cppPopPop.setIdCard1(ccmPeople.getIdent());
+        List<CppPopPop> cppPopPoplList =cppPopPopService.findList(cppPopPop);
 		List<CppPopVehile> cppPopVehilelList = cppPopVehileDao.getByRelation(ccmPeople.getIdent());
 		map.put("cppPopPop", cppPopPoplList);
 		map.put("cppPopVehile", cppPopVehilelList);
@@ -2072,7 +2075,13 @@ public class CcmPeopleController extends BaseController {
 		if(list.size()!=0) {
 			for(int i=0;i<list.size();i++) {
 				if(list.get(i).getIdCard1().equals(ccmPeople.getIdent())) {
-					ccmPeople3 = ccmPeopleService.getByIdent(list.get(i).getIdCard2());
+                    List<CcmPeople> ccmPeople4= new ArrayList<CcmPeople>();
+                    CcmPeople ccmPop= new CcmPeople();
+                    ccmPop.setIdent(list.get(i).getIdCard2());
+                    ccmPop.setName(list.get(i).getName2());
+//                  ccmPeople3 = ccmPeopleService.getByIdent(list.get(i).getIdCard2());
+                    ccmPeople4.add(ccmPop);
+                    ccmPeople3=ccmPeople4;
 					if(ccmPeople3==null || ccmPeople3.size() <= 0) {
 						continue;
 					}
