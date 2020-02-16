@@ -344,6 +344,14 @@
             t1.del_flag = 0
             GROUP BY t3.id
 	</select>
+	<!-- 视频区域分布 new -->
+	<select id="selectDevAreaInfo" resultType="com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmAreaDev" >
+        SELECT
+			t1.id as area_Id,	t1.`name` as area_Name,	t1.type,t1.parent_id
+		FROM
+			ccm_device t
+			LEFT JOIN sys_area t1 ON t.area_id = t1.id
+	</select>
 	<!-- 视频区域分布 -->
     <select id="selectDeviceByAreaYa" resultType="com.arjjs.ccm.tool.EchartType" >
 
