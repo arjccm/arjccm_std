@@ -53,7 +53,7 @@
 		<script src="${ctxStatic}/custom/date/date.js"></script>
 		<script src="${ctxStatic}/jquery-jbox/2.3/jquery.jBox-2.3.min.js" type="text/javascript"></script>
 		<script src="${ctxStatic}/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.js" type="text/javascript"></script>
-		<script src="${ctxStatic}/common/index/Scripts/js/statIndexCool.js"></script>
+		<script src="${ctxStatic}/common/index/Scripts/js/antiepidemicCool.js"></script>
 		<script src="${ctxStatic}/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 		<script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill/echarts-liquidfill.min.js"></script>
 		<style type="text/css">
@@ -151,12 +151,6 @@
 			}
             #echLeftContent1>div{
                 position: absolute!important;
-            }
-            /*导航a标签宽度修改*/
-            .menu a{
-                height: 72px !important;
-                 padding: 0!important;
-                 padding: 22px 28px 10px !important;
             }
 
             /*Z-Tree位置*/
