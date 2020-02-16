@@ -253,7 +253,9 @@
                 line-height:28px;
                 margin-top: 5px;
             }
-
+#leftContent2Body{
+    margin-top: 30px;
+}
 		</style>
 		<script>
 			$(function() {
@@ -320,7 +322,6 @@
 						<div id="leftContent2"  class="showContent">
 							<div class="contentTitle"><span id="leftTitle2">疫情人员入琼趋势</span></div>
 							<div class="common-pading" id="leftContent2Body">
-								<div id="echLeftContent2" class="echarts"></div>
 							</div>
 						</div>
 
