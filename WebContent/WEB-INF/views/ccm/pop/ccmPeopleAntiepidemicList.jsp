@@ -122,7 +122,7 @@
 				</form:select>
 			</li>
 				<li class="first-line" style="margin-top: 10px"><label>身体状况：</label>
-					<form:select path="takeSteps" cssStyle="width: 175px">
+					<form:select path="health" cssStyle="width: 175px">
 						<form:option value="" label="" />
 						<form:options items="${fns:getDictList('sys_ccm_people_health')}"
 									  itemLabel="label" itemValue="value" htmlEscape="false" />
