@@ -204,7 +204,7 @@
 				<th>户籍地</th>
 				<th>是否14天以内</th>
 				<th>采取何种措施</th>
-				<th>更新时间</th>
+				<th>身体状况</th>
 				<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -230,7 +230,7 @@
 					${fns:getDictLabel(ccmPeopleAntiepidemic.takeSteps, 'sys_ccm_people_takeSteps', '')}
 				</td>
 				<td style="height: 50px">
-					<fmt:formatDate value="${ccmPeopleAntiepidemic.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+						${fns:getDictLabel(ccmPeopleAntiepidemic.health, 'sys_ccm_people_health', '')}
 				</td>
 		
 				<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><td style="height: 50px">

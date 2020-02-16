@@ -287,7 +287,7 @@ public class CcmPeopleAntiepidemic extends DataEntity<CcmPeopleAntiepidemic> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@NotNull(message="上报时间不能为空")
+//	@NotNull(message="上报时间不能为空")
 	public Date getReportDate() {
 		return reportDate;
 	}

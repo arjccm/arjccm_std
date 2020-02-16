@@ -120,7 +120,7 @@
             </td>
             <td>
                 <div class="control-group">
-                    <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>性别：</label>
+                    <label class="control-label">性别：</label>
                     <div class="controls">
                         <form:radiobuttons path="sex" items="${fns:getDictList('sex')}"
                                            itemLabel="label" itemValue="value" htmlEscape="false" class="required" />
@@ -380,7 +380,7 @@
             <tr>
                 <td>
                     <div class="control-group">
-                        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>上报时间：</label>
+                        <label class="control-label">上报时间：</label>
                         <div class="controls">
                             <input name="reportDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
                                    value="<fmt:formatDate value="${ccmPeopleAntiepidemic.reportDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"

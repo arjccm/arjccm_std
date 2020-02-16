@@ -125,10 +125,10 @@
             <td>
                 <!-- <font color="red" >*</font> -->
                 <div class="control-group">
-                    <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>性别：</label>
+                    <label class="control-label">性别：</label>
                     <div class="controls">
                         <form:radiobuttons path="sex" items="${fns:getDictList('sex')}"
-                                           itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
+                                           itemLabel="label" itemValue="value" htmlEscape="false" />
                     </div>
                 </div>
             </td>
@@ -159,6 +159,16 @@
                     <label class="control-label">年龄：</label>
                     <div class="controls">
                         <form:input path="age" htmlEscape="false" maxlength="3" class="input-xlarge " />
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="control-group">
+                    <label class="control-label">入琼时间：</label>
+                    <div class="controls">
+                        <input name="comeHainanDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+                               value="<fmt:formatDate value="${ccmPeopleAntiepidemic.comeHainanDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+                               onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
                     </div>
                 </div>
             </td>
@@ -193,28 +203,19 @@
                 </div>
             </div> --%>
         <tr>
-            <td>
-                <div class="control-group">
-                    <label class="control-label">入琼时间：</label>
-                    <div class="controls">
-                        <input name="comeHainanDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-                               value="<fmt:formatDate value="${ccmPeopleAntiepidemic.comeHainanDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-                               onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="control-group">
-                    <label class="control-label">是否14天以内：</label>
-                    <div class="controls">
-                        <form:select path="isIn14days" cssStyle="width: 285px">
-                            <form:option value="" label="" />
-                            <form:options items="${fns:getDictList('is_key_place')}"
-                                          itemLabel="label" itemValue="value" htmlEscape="false" />
-                        </form:select>
-                    </div>
-                </div>
-            </td>
+
+            <%--<td>--%>
+                <%--<div class="control-group">--%>
+                    <%--<label class="control-label">是否14天以内：</label>--%>
+                    <%--<div class="controls">--%>
+                        <%--<form:select path="isIn14days" cssStyle="width: 285px">--%>
+                            <%--<form:option value="" label="" />--%>
+                            <%--<form:options items="${fns:getDictList('is_key_place')}"--%>
+                                          <%--itemLabel="label" itemValue="value" htmlEscape="false" />--%>
+                        <%--</form:select>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</td>--%>
         </tr>
         <tr>
             <td>
@@ -397,9 +398,9 @@
             </td>
             <td>
                 <div class="control-group">
-                    <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>上报时间：</label>
+                    <label class="control-label">上报时间：</label>
                     <div class="controls">
-                        <input name="reportDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+                        <input name="reportDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
                                value="<fmt:formatDate value="${ccmPeopleAntiepidemic.reportDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
                                onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
                     </div>
