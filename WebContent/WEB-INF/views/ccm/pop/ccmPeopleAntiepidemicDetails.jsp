@@ -128,25 +128,6 @@
                 </div>
             </td>
         </tr>
-
-        <tr>
-            <td>
-                <div class="control-group">
-                    <label class="control-label">年龄：</label>
-                    <div class="controls">
-                        <form:input path="age" htmlEscape="false" maxlength="3" class="input-xlarge " readonly="true"/>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="control-group">
-                    <label class="control-label">身份证号：</label>
-                    <div class="controls">
-                        <form:input path="idNumber" htmlEscape="false" maxlength="32" class="input-xlarge " readonly="true"/>
-                    </div>
-                </div>
-            </td>
-        </tr>
         <tr>
             <td>
                 <div class="control-group">
@@ -155,6 +136,24 @@
                         <select class="prov" disabled="true" style="width: 142px"></select>
                         <select class="city" disabled="disabled" style="width: 142px"></select>
                         <!-- <select class="dist" disabled="disabled"></select>  -->
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="control-group">
+                    <label class="control-label">身份证号：</label>
+                    <div class="controls">
+                        <form:input path="idNumber" htmlEscape="false" maxlength="32" class="input-xlarge " readonly="true"/>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="control-group">
+                    <label class="control-label">年龄：</label>
+                    <div class="controls">
+                        <form:input path="age" htmlEscape="false" maxlength="3" class="input-xlarge " readonly="true"/>
                     </div>
                 </div>
             </td>

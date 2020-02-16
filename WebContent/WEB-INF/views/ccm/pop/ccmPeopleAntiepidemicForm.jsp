@@ -156,6 +156,16 @@
         <tr>
             <td>
                 <div class="control-group">
+                    <label class="control-label">年龄：</label>
+                    <div class="controls">
+                        <form:input path="age" htmlEscape="false" maxlength="3" class="input-xlarge " />
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="control-group">
                     <label class="control-label">电话号码：</label>
                     <div class="controls">
                         <form:input path="telephone" htmlEscape="false" maxlength="32" class="input-xlarge "/>
