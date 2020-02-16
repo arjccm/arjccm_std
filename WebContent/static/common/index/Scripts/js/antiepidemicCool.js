@@ -189,6 +189,71 @@ $(function () {
     }
 
 
+    //疫情人员入琼趋势
+    showechLeftContent2()
+
+    function showechLeftContent2() {
+        var echLeftContent2 = echarts.init(document.getElementById('echLeftContent2'));
+       var option = {
+            legend: {
+                data: ['人数', '武汉籍'],
+                x: '100px', // 对齐方式
+                itemGap: 100, // item之间的距离
+            },
+            xAxis: {
+                type: 'category',
+                data: ['2013', '2014', '2015', '2016', '2017', '2018', '2019']
+            },
+            yAxis: [
+                {
+                    type: 'value',
+                    scale: true,
+                    max: 300,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                },
+                {
+                    type: 'value',
+                    scale: true,
+                    max: 300,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }
+            ],
+            series: [{
+                data: [120, 200, 150, 80, 200, 150, 80],
+                type: 'bar',
+                name: '人数',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1, [{
+                                offset: 0,
+                                color: '#FF32F7FF'
+                            },
+                                {
+                                    offset: 1,
+                                    color: '#FF091C41'
+                                }
+                            ])
+                    }
+                }
+            },
+                {
+                    data: [120, 200, 150, 80, 200, 150, 80],
+                    type: 'line',
+                    name: '武汉籍',
+                    symbolSize: 10 // 控制线条上 点 的大小
+                }
+            ]
+        };
+
+        echLeftContent2.setOption(option);
+
+    }
+
+
+
      //疫情人员现状
     showechRightContent2();
 
