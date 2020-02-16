@@ -419,6 +419,123 @@ $(function () {
 
     }
 
+    //疫情人员分布
+    showechRightContent1();
+    function showechRightContent1(){
+       var echRightContent1 = echarts.init(document.getElementById('echRightContent1'));
+       var option = {
+            backgroundColor: '#0b214a',
+            color: '#FF00FFFF',
+            grid: {
+                left: '6%',
+                top: '16%',
+                right: '6%',
+                bottom: '7%',
+                containLabel: true
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            xAxis: [{
+                type: 'category',
+                data: ["崖州区", "天涯区", "吉阳区", "海棠区", "育才生态区"],
+                axisTick: {
+                    show: false,
+                    alignWithLabel: true
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#FFFFFFFF',
+                        opacity: 0.2
+                    }
+                },
+                axisLabel: {
+                    color: '#9DCCFF'
+                }
+            }],
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: '#FFF',
+                        opacity: 0.2
+                    }
+                },
+                axisTick: {
+                    show: true,
+                    lineStyle: {
+                        color: '#FFF',
+                        opacity: 0.2
+                    }
+                },
+                splitLine: {
+                    show: false
+                },
+                axisLabel: {
+                    color: 'rgba(255,255,255,0.5)',
+                    fontSize: 12,
+                    fontFamily: 'MicrosoftYaHei'
+                }
+            },
+            series: [{
+                tooltip: {
+                    show: false
+                },
+                name: 'bg',
+                type: 'pictorialBar',
+                barWidth: '60%',
+                silent: true,
+                symbol: 'rect',
+                symbolRepeat: true,
+                symbolMargin: 1,
+                barMinHeight: 150,
+                symbolSize: [25, 10],
+                itemStyle: {
+                    normal: {
+                        show: true,
+                        //  color: function(params) {
+                        //      return colorList[params.dataIndex]
+                        //  },
+                        color:'#0066cc',  //剩余数据
+                        barBorderRadius: 50,
+                        borderWidth: 0,
+                        opacity: 0.3,
+                        borderColor: '#FF00FFFF',
+                    }
+                },
+                data: [80, 80, 80, 80, 80]
+            }, {
+                type: 'pictorialBar',
+                animation: true,
+                animationDuration: 600,
+                symbol: 'rect',
+                symbolRepeat: true,
+                symbolMargin: 1,
+                symbolSize: [25, 10],
+                barWidth: '60%',
+                itemStyle: {
+                    normal: {
+                        //  color: function(params) {
+                        //      return colorList[params.dataIndex]
+                        //  },
+                        color:'#0099cc',    //数据颜色
+                        label: {
+                            show: false
+                        }
+                    }
+                },
+                data: [10, 20, 30, 40, 50]
+            }]
+        };
+
+        echRightContent1.setOption(option);
+    }
+
+
+
     /********************地图***********************/
     //地图
     map();
