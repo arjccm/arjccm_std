@@ -174,7 +174,7 @@
 </script>
 <style type="text/css">
 .form-horizontal .control-label {
-	width: 95px;
+	width: 110px;
 }
 
 .form-horizontal .controls {
