@@ -2418,4 +2418,76 @@
 	<select id="peopleFollowerCount" resultType="java.lang.Integer">
 		SELECT count(belief) FROM ccm_people WHERE belief=#{bid}
 	</select>
+
+	<!--查询从业人员-->
+	<select id="getPlaceOfPop" resultType="CcmPeople">
+		SELECT
+		<include refid="ccmPeopleColumns_simple_V2" />
+		,b.id AS more2,
+		b.place_org_id AS more3,
+		b.people_id AS more4,
+		b.type AS more5
+		FROM ccm_people a
+		<include refid="ccmPeopleJoinsArea" />
+		<include refid="ccmPeopleJoinsNet" />
+		LEFT JOIN ccm_place_org_people b ON a.id = b.people_id
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="more5 != null and more5 != ''">
+				AND b.type = #{more5}
+			</if>
+			<if test="more3 != null and more3 != ''">
+				AND b.place_org_id = #{more3}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+
+	<!--批量添加从业人员-->
+	<select id="findPlaceOfPopAdd" resultType="CcmPeople">
+		SELECT
+		<include refid="ccmPeopleColumns_simple_V2" />
+		,b.id AS more2,
+		b.place_org_id AS more3,
+		b.people_id AS more4,
+		b.type AS more5
+		FROM ccm_people a
+		<include refid="ccmPeopleJoinsArea" />
+		<include refid="ccmPeopleJoinsNet" />
+		LEFT JOIN ccm_place_org_people b ON a.id = b.people_id
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			AND a.id not in ( SELECT people_id FROM ccm_place_org_people )
+			<if test="residencedetail != null and residencedetail != ''">
+				AND a.residencedetail LIKE
+				<if test="dbName == 'oracle'">'%'||#{residencedetail}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{residencedetail}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{residencedetail},'%')</if>
+			</if>
+			<if test="ident != null and ident != ''">
+				AND a.ident LIKE '%${ident}%'
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat(#{name},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
 </mapper>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.placeorgpeople.dao.CcmPlaceOrgPeopleDao">
+    
+	<sql id="ccmPlaceOrgPeopleColumns">
+		a.id AS "id",
+		a.place_org_id AS "placeOrgId",
+		a.people_id AS "peopleId",
+		a.type AS "type",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks"
+	</sql>
+	
+	<sql id="ccmPlaceOrgPeopleJoins">
+	</sql>
+    
+	<select id="get" resultType="CcmPlaceOrgPeople">
+		SELECT 
+			<include refid="ccmPlaceOrgPeopleColumns"/>
+		FROM ccm_place_org_people a
+		<include refid="ccmPlaceOrgPeopleJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CcmPlaceOrgPeople">
+		SELECT 
+			<include refid="ccmPlaceOrgPeopleColumns"/>
+		FROM ccm_place_org_people a
+		<include refid="ccmPlaceOrgPeopleJoins"/>
+		<where>
+			
+			<if test="id != null and id != ''">
+				AND a.id = #{id}
+			</if>
+			<if test="placeOrgId != null and placeOrgId != ''">
+				AND a.place_org_id = #{placeOrgId}
+			</if>
+			<if test="peopleId != null and peopleId != ''">
+				AND a.people_id = #{peopleId}
+			</if>
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+			<if test="createBy != null and createBy.id != null and createBy.id != ''">
+				AND a.create_by = #{createBy.id}
+			</if>
+			<if test="createDate != null and createDate != ''">
+				AND a.create_date = #{createDate}
+			</if>
+			<if test="updateBy != null and updateBy.id != null and updateBy.id != ''">
+				AND a.update_by = #{updateBy.id}
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				AND a.update_date = #{updateDate}
+			</if>
+			<if test="remarks != null and remarks != ''">
+				AND a.remarks = #{remarks}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CcmPlaceOrgPeople">
+		SELECT 
+			<include refid="ccmPlaceOrgPeopleColumns"/>
+		FROM ccm_place_org_people a
+		<include refid="ccmPlaceOrgPeopleJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_place_org_people(
+			id,
+			place_org_id,
+			people_id,
+			type,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks
+		) VALUES (
+			#{id},
+			#{placeOrgId},
+			#{peopleId},
+			#{type},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ccm_place_org_people SET 	
+			id = #{id},
+			place_org_id = #{placeOrgId},
+			people_id = #{peopleId},
+			type = #{type},
+			create_by = #{createBy.id},
+			create_date = #{createDate},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM ccm_place_org_people
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

@@ -148,7 +148,7 @@
 					</c:choose></td>
 			</tr>
 			<tr>
-				<td class="trtop">盘点物资类型</td>
+				<td class="trtop"><span class="help-inline"><font color="red">*</font> </span>盘点物资类型</td>
 				<td><c:choose>
 						<c:when test="${empty plmCheck.id || plmCheck.status == '1'}">
 							<form:select path="type" class="input-xlarge required">
