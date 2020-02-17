@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.ccmsys.dao;
 
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
+import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmAreaDev;
 import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDevice;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmAreaPoint;
 import com.arjjs.ccm.modules.ccm.sys.entity.CcmAreaPointVo;
@@ -45,4 +46,6 @@ public interface CcmDeviceDao extends CrudDao<CcmDevice> {
 	List<CcmTiandyOnlineStatus> findIdAndStatus();
 
 	public int updateDevStatus(@Param("id") String id, @Param("status")String status);
+
+	List<CcmAreaDev> selectDevAreaInfo();
 }

@@ -1002,4 +1002,18 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	public Integer statIndexForZj(Integer bid) {
 		return 	ccmPeopleDao.peopleFollowerCount(bid);
 	}
+
+	//查询从业人员列
+	public Page<CcmPeople> findPlaceOfPop(Page<CcmPeople> page, CcmPeople ccmPeople) {
+		ccmPeople.setPage(page);
+		page.setList(ccmPeopleDao.getPlaceOfPop(ccmPeople));
+		return page;
+	}
+
+	//批量添加从业人员列
+	public Page<CcmPeople> findPlaceOfPopAdd(Page<CcmPeople> page, CcmPeople ccmPeople) {
+		ccmPeople.setPage(page);
+		page.setList(ccmPeopleDao.findPlaceOfPopAdd(ccmPeople));
+		return page;
+	}
 }

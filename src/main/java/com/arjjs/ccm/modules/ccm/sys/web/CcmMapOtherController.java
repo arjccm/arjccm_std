@@ -1963,4 +1963,10 @@ public class CcmMapOtherController extends BaseController {
     }
 
 
+    // 返回三亚新型冠状病毒疫情首页
+    @RequestMapping(value = "antiepidemicCool", method = RequestMethod.GET)
+    public String antiepidemicCool(Model model) {
+        return "modules/sys/index/antiepidemicCool";
+    }
+
 }

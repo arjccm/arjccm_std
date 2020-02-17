@@ -88,7 +88,7 @@
 				AND a.id_number = #{idNumber}
 			</if>
 			<if test="domicile != null and domicile != ''">
-				AND a.domicile = #{domicile}
+				AND a.domicile  LIKE concat('%',#{domicile},'%')
 			</if>
 			<if test="habitation != null and habitation != ''">
 				AND a.habitation = #{habitation}
@@ -150,14 +150,20 @@
 			<if test="dataStatus != null and dataStatus != ''">
 				AND a.data_status = #{dataStatus}
 			</if>
-			<if test="age != null and age != ''">
-				AND a.age = #{age}
+			<if test="minage != null and minage != ''">
+				AND a.age &gt; #{minage}
+			</if>
+			<if test="maxage != null and maxage != ''">
+				AND a.age &lt; #{maxage}
 			</if>
 			<if test="takeSteps != null and takeSteps != ''">
 				AND a.take_steps = #{takeSteps}
 			</if>
 			<if test="transportation != null and transportation != ''">
-				AND a.transportation = #{transportation}
+				AND a.transportation LIKE concat('%',#{transportation},'%')
+			</if>
+			<if test="createBy != null and createBy != ''">
+				AND a.create_by = #{createBy.id}
 			</if>
 		</where>
 		<choose>

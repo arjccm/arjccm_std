@@ -196,7 +196,13 @@
 	background: url(../images/pub/guangbozhan4.png) no-repeat center;
 	background-size: 85% 85%;
 }
-
+.icon-yqry {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background: url(../images/pub/yqry.png) no-repeat center;
+	background-size: 85% 85%;
+}
 .icon-jidujiao{
 	width: 24px;
 	height: 24px;

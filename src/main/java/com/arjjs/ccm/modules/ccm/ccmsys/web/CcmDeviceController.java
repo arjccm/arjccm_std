@@ -304,7 +304,8 @@ public class CcmDeviceController extends BaseController {
 	public Map<String,Object> selectDeviceByArea() {
 		int num = 4;
 		Map map = Maps.newHashMap();
-		List<EchartType> list = ccmDeviceService.selectDeviceByArea();
+		List<EchartType> list = ccmDeviceService.selectDevAreaInfo();
+		//List<EchartType> list = ccmDeviceService.selectDeviceByArea();
 		List<String> listdata = Lists.newArrayList();
 		List<String> listtype = Lists.newArrayList();
 		List<Integer> listMaxnum = Lists.newArrayList();

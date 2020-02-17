@@ -416,7 +416,8 @@ CREATE TABLE `ccm_people_antiepidemic`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '人员疫情表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
+-- 修改防疫人员表上报时间 可以为空
+ALTER TABLE `arjccm_std`.`ccm_people_antiepidemic` MODIFY COLUMN `report_date` datetime(0) NULL COMMENT '上报时间' AFTER `report_department`;
 
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ab598b21da684e35abc56fe9047934e7', '147dfc2b7fef4d009fb540de4c531df9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,147dfc2b7fef4d009fb540de4c531df9,', '编辑', 60, '', '', '', '0', 'pop:ccmPeopleAntiepidemic:edit', '1', '2020-02-14 11:03:30', '1', '2020-02-14 11:03:30', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('0845bf0e086d4727a5c21b96d2e8292a', '147dfc2b7fef4d009fb540de4c531df9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,147dfc2b7fef4d009fb540de4c531df9,', '显示', 30, '', '', '', '0', 'pop:ccmPeopleAntiepidemic:view', '1', '2020-02-14 11:02:54', '1', '2020-02-14 11:02:54', '', '0');
@@ -475,12 +476,18 @@ INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `pa
 INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('da78908ad40b4c05a5b7c4ce14dc1449', '02', '中型活动', 'ccm_activity_scale', '宗教活动规模', 20, '0', '1', '2020-02-11 11:41:27', '1', '2020-02-11 11:41:27', '', '0');
 INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ece82fc7fe7d41339ad7766453272893', '04', '特大型活动', 'ccm_activity_scale', '宗教活动规模', 40, '0', '1', '2020-02-11 11:42:29', '1', '2020-02-11 11:42:29', '', '0');
 
+-- 防疫人员年龄段数据字典
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('77d72024587e4fcd9051c8ca5142b932', '4', '60以上老年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 40, '0', '1', '2020-02-15 16:36:32', '1', '2020-02-15 16:36:32', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('88eaf32ca3f74be1bc81fb75e95d714b', '3', '30-60中青年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 30, '0', '1', '2020-02-15 16:35:47', '1', '2020-02-15 16:35:47', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3870d830366748cda49cccb6a9670bcc', '2', '18-30岁青年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 20, '0', '1', '2020-02-15 16:34:47', '1', '2020-02-15 16:34:47', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('cb6097a1aca64237a9a09c93d1129398', '1', '18岁以下少年儿童', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 10, '0', '1', '2020-02-15 16:33:17', '1', '2020-02-15 16:33:17', '', '0');
 
 
 
 
 
-
+-- 三亚新型冠状病毒肺炎疫情管控平台
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('e2cfcfc331e547e79f7f78b4171e4adf', '1', '0,1,', '三亚新型冠状病毒肺炎疫情管控平台', 330, '/sys/map/antiepidemicCool', '', 'adjust', '1', '', '1', '2020-02-16 22:20:17', '1', '2020-02-16 22:34:43', '', '0');
 
 
 

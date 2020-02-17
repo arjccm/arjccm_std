@@ -189,7 +189,13 @@
 				<td><shiro:hasPermission name="org:ccmOrgNpse:edit">
     				<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpse/formData?id=${ccmOrgNpse.id}', '添加', '1100px', '800px')"><i class="icon-pencil"></i></a>
 					<a class="btnList" href="${ctx}/org/ccmOrgNpse/delete?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该非公有制经济组织吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
-				</shiro:hasPermission> 
+					<a class="btnList"
+					   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmOrgNpse.id}&type=2', '从业人员添加', '1550px', '800px')"
+					   title="从业人员添加"><i class="icon-plus"></i></a>
+					<a class="btnList"
+					   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmOrgNpse.id}&type=2', '从业人员信息', '1550px', '800px')"
+					   title="从业人员信息"><i class="icon-group"></i></a>
+				</shiro:hasPermission></td>
 			</tr>
 		</c:forEach>
 		</tbody>
