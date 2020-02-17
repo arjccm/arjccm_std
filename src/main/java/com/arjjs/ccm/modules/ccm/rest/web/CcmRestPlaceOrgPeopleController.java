@@ -137,10 +137,20 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 	
     //APP从业人员删除接口
 	@RequestMapping(value = "deletePeople")
-	public CcmRestResult delete(String more2, RedirectAttributes redirectAttributes) {
+	public CcmRestResult delete(String more2, String userId, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        CcmRestResult result = new CcmRestResult();
+        User sessionUser = (User) request.getSession().getAttribute("user");
+        if (sessionUser== null) {
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+        String sessionUserId = sessionUser.getId();
+        if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
 	    CcmPlaceOrgPeople placeOrgPeople = ccmPlaceOrgPeopleService.get(more2);
 		ccmPlaceOrgPeopleService.delete(placeOrgPeople);
-		CcmRestResult result = new CcmRestResult();
 		result.setCode(CcmRestType.OK);
 		result.setResult("成功");
 		return result;
