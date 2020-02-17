@@ -395,7 +395,7 @@
 						<div class="p_part">
 							<div id="power2"  class="power"></div>
 							<span class="p_text">工作人员</span>
-							<span class="p_num">26 人</span>
+							<span class="p_num">30 人</span>
 						</div>
 						<div class="p_part">
 							<div  id="power3" class="power"></div>

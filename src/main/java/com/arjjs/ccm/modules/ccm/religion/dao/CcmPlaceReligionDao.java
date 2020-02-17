@@ -14,7 +14,7 @@ import org.apache.ibatis.annotations.Param;
  * @version 2019-04-29
  */
 @MyBatisDao
-public interface CcmPlaceReligionDao extends CrudDao<CcmPlaceReligion> {
+    public interface CcmPlaceReligionDao extends CrudDao<CcmPlaceReligion> {
 
     //教堂个数
     Integer statIndexForZj(@Param("i") Integer i);
