@@ -13,7 +13,6 @@
 		a.habitation AS "habitation",
 		a.leave_hubei_date AS "leaveHubeiDate",
 		a.come_hainan_date AS "comeHainanDate",
-		a.is_in_14days AS "isIn14days",
 		a.is_left_hainan AS "isLeftHainan",
 		a.left_date AS "leftDate",
 		a.health AS "health",
@@ -65,6 +64,12 @@
 	<select id="findList" resultType="CcmPeopleAntiepidemic">
 		SELECT 
 			<include refid="ccmPeopleAntiepidemicColumns"/>
+		,CASE
+		WHEN DATEDIFF(now(),a.come_hainan_date) > 14 THEN
+		'02'
+		ELSE
+		'01'
+		END is_in_14days
 		FROM ccm_people_antiepidemic a
 		<include refid="ccmPeopleAntiepidemicJoins"/>
 		<where>

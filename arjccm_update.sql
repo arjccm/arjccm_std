@@ -482,6 +482,16 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3870d830366748cda49cccb6a9670bcc', '2', '18-30岁青年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 20, '0', '1', '2020-02-15 16:34:47', '1', '2020-02-15 16:34:47', '', '0');
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('cb6097a1aca64237a9a09c93d1129398', '1', '18岁以下少年儿童', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 10, '0', '1', '2020-02-15 16:33:17', '1', '2020-02-15 16:33:17', '', '0');
 
+-- 防疫人员上报状态数据字典
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('77d22024584e4fcd7051c8c7143b922', '3', '核销上报', 'sys_ccm_peopleantiepidemic_upload', '防疫人员上报状态', 3, '0', '1', '2020-02-15 16:36:32', '1', '2020-02-15 16:36:32', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('88rcf3ca3f74be1b81fb75e95r6171', '2', '已上报', 'sys_ccm_peopleantiepidemic_upload', '防疫人员上报状态', 2, '0', '1', '2020-02-15 16:37:47', '1', '2020-02-15 16:35:47', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3878d73035674tcxa4iccct6a96r0bic', '1', '待上报', 'sys_ccm_peopleantiepidemic_upload', '防疫人员上报状态', 1, '0', '1', '2020-02-15 16:24:47', '1', '2020-02-15 16:34:47', '', '0');
+
+
+
+
+
+
 
 
 
