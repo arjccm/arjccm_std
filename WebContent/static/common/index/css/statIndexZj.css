@@ -1266,6 +1266,9 @@ div.jbox #search{
     background: url("../images/statIndexZj/xmzj_bg7.png") center no-repeat;
     background-size: cover;
     margin-top: 0.4vw;
+    border:1px dashed #5e8ebb;
+    background-color: #023144;
+    opacity: 0.9;
 }
 
 
@@ -1275,6 +1278,9 @@ div.jbox #search{
     margin-top: 3.125vw;
     background: url("../images/statIndexZj/xmzj_bg6.png") center no-repeat;
     background-size: cover;
+    border:1px dashed #5e8ebb;
+    background-color: #023144;
+    opacity: 0.9;
 }
 
 #power3{
@@ -1283,6 +1289,9 @@ div.jbox #search{
     background: url("../images/statIndexZj/xmzj_bg5.png") center no-repeat;
     background-size: cover;
     margin-top: 0.4vw;
+    border:1px dashed #5e8ebb;
+    background-color: #023144;
+    opacity: 0.9;
 }
 
 

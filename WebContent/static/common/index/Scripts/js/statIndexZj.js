@@ -302,7 +302,7 @@ $(function () {
     function hideDivChat(bool) {
         if (bool == 0) {
             $("#leftContent1").find('.contentTitle').text('人口基础数据');
-            $("#leftContent2").find('.contentTitle').text('宗教事务局工作力量');
+            $("#leftContent2").find('.contentTitle').text('工作力量');
             $("#leftContent3").find('.contentTitle').text('重点人员top5');
             $("#leftContent0").hide();
             $("#leftContent1").show();
@@ -2287,13 +2287,13 @@ function getPeopleData(noCache) {
 //基础数据的option
 function showPeopleData() {
     var dataMap = {
-        '无信仰':335,
+        '佛教':251,
         '伊斯兰教':310,
         '基督教':234,
         '天主教':135,
-        '道教':1048,
-        '佛教':251,
-    }
+        '道教':948,
+        '其他':335
+    };
     var piebg = {
         name: '',
         type: 'pie',
@@ -2309,6 +2309,7 @@ function showPeopleData() {
         animation: false
     };
     var option = {
+        color: ['#0cb4eb','#2277e1', '#2449e2', '#8c43eb', '#add632','#4acf77'],
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -2320,29 +2321,29 @@ function showPeopleData() {
             icon: 'rect',
             itemWidth: 10,  // 设置宽度
             itemHeight: 10, // 设置高度
-            data: ['无信仰', '伊斯兰教', '基督教', '天主教', '道教', '佛教'],
+            data: ['佛教', '伊斯兰教', '基督教', '天主教', '道教','其他'],
             textStyle: {//图例文字的样式
                 color: '#fff',
                 fontSize: 14,
                 rich: {
-                    align:'right',
+                    // align:'right',
                     title: {
                         fontFamily: 'Microsoft YaHei',
                         // fontWeight: 400,
                         // width: 59,
                         fontSize: 12,
                         // lineHeight: 1,
-                        color: "#FFFFFF"
+                        color: "#FFFFFF",
+                        width:"100%"
                     },
                     value: {
                         fontFamily: 'Microsoft YaHei',
-                        fontWeight: 'bold',
                         fontSize: 12,
                         lineHeight: 18,
-                        padding: [0, 6, 0, 10],
+                        padding: [0, 0, 0, 15],
                         color: "#FFFFFF",
                         // width: 30,
-                        align:'right'
+                        align:'left'
                     },
                     unit: {
                         fontFamily: 'Microsoft YaHei',
@@ -2379,12 +2380,12 @@ function showPeopleData() {
                     }
                 },
                 data: [
-                    {value: 335, name: '无信仰',},
+                    {value: 251, name: '佛教'},
                     {value: 310, name: '伊斯兰教'},
                     {value: 234, name: '基督教'},
                     {value: 135, name: '天主教'},
-                    {value: 1048, name: '道教'},
-                    {value: 251, name: '佛教'}
+                    {value: 948, name: '道教'},
+                    {value: 335, name: '其他'}
                 ]
 
             },
@@ -2623,12 +2624,12 @@ function showKeyPersonnel(name,value) {
             left: '8%',
             right: '8%',
             bottom: '8%',
-            containLabel: true,
+            containLabel: true
 
         },
         xAxis: {
             type: 'value',
-            boundaryGap: [0, 0.01],
+            // boundaryGap: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90],
             min: 0,
             rotate: 0,
             margin: 10,
@@ -2749,7 +2750,7 @@ function showSafeCount() {
         },
         xAxis: {
             type: 'category',
-            data: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+            data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
             axisLabel: {
                 show: true,
                 interval: 0,
@@ -2895,6 +2896,8 @@ function showHouseData() {
         animation: false,
     };
     var option = {
+
+
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -2914,7 +2917,7 @@ function showHouseData() {
             {
                 orient: 'horizontal',
                 left: '5%',
-                top: '70%',
+                top: '65%',
                 width: '50%',
                 icon: 'rect',
                 align: 'left',
@@ -2933,12 +2936,12 @@ function showHouseData() {
             {
                 orient: 'horizontal',
                 left: '55%',
-                top: '70%',
+                top: '65%',
                 icon: 'rect',
                 itemWidth: 10,  // 设置宽度
                 itemHeight: 10, // 设置高度
                 itemGap:12,
-                data: ['小型活动','中型活动','大型活动','特大型活动',],
+                data: ['小型活动','大型活动','中型活动','特大型活动',],
                 textStyle: {//图例文字的样式
                     color: '#fff',
                     fontSize: 12,
@@ -2960,6 +2963,7 @@ function showHouseData() {
                         }
                     }
                 },
+                color:['#0cd5a6', '#0ea3d9', '#1163de', '#990dd7', '#d92a7c','#d58314', '#c7e117'],
                 name: '数据',
                 type: 'pie',
                 radius: ['33%', '50%'],
@@ -2991,6 +2995,7 @@ function showHouseData() {
                         }
                     }
                 },
+                color:['#0fb1ea', '#2449e2', '#2671e1', '#8546e8'],
                 name: '数据',
                 type: 'pie',
                 radius: ['33%', '50%'],
@@ -3002,8 +3007,8 @@ function showHouseData() {
                 },
                 data: [
                     {value: 335, name: '小型活动',},
-                    {value: 310, name: '中型活动'},
                     {value: 234, name: '大型活动'},
+                    {value: 310, name: '中型活动'},
                     {value: 135, name: '特大型活动'},
                 ]
 
