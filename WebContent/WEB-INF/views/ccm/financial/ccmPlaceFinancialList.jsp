@@ -123,15 +123,22 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="financial:ccmPlaceFinancial:edit">
 						<td>
-						<a class="btnList"
-							onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/listCheck?placeId=${ccmPlaceFinancial.basePlaceId}', '事件关联', '1100px', '700px')"
-							title="事件关联"><i class="icon-random"></i></a> 
-						<a class="btnList"
-							onclick="parent.LayerDialog('${ctx}/financial/ccmPlaceFinancial/form?id=${ccmPlaceFinancial.id}', '编辑', '1100px', '700px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
-							href="${ctx}/financial/ccmPlaceFinancial/delete?id=${ccmPlaceFinancial.id}"
-							onclick="return confirmx('确认要删除该娱乐场所吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a></td>
+							<a class="btnList"
+								onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/listCheck?placeId=${ccmPlaceFinancial.basePlaceId}', '事件关联', '1100px', '700px')"
+								title="事件关联"><i class="icon-random"></i></a>
+							<a class="btnList"
+								onclick="parent.LayerDialog('${ctx}/financial/ccmPlaceFinancial/form?id=${ccmPlaceFinancial.id}', '编辑', '1100px', '700px')"
+								title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+								href="${ctx}/financial/ccmPlaceFinancial/delete?id=${ccmPlaceFinancial.id}"
+								onclick="return confirmx('确认要删除该娱乐场所吗？', this.href)" title="删除"><i
+									class="icon-trash"></i></a>
+							<a class="btnList"
+							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceFinancial.id}&type=1', '从业人员添加', '1550px', '800px')"
+							   title="从业人员添加"><i class="icon-plus"></i></a>
+							<a class="btnList"
+							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmPlaceFinancial.id}&type=1', '从业人员信息', '1550px', '800px')"
+							   title="从业人员信息"><i class="icon-group"></i></a>
+						</td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>
