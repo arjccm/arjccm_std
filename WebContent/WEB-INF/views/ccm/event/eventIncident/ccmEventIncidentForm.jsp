@@ -583,9 +583,9 @@
     </c:if>
 </form:form>
     <c:if test="${isDispatch eq '1'}">
-        <br />
+        <p style="margin-bottom: 10px;"/>
         事件指派信息：
-        <br/>
+        <p/>
         <form:form id="dealForm" modelAttribute="ccmEventCasedeal"
                    action="${ctx}/event/ccmEventCasedeal/saveCasedealCommon"
                    method="post" class="form-horizontal">

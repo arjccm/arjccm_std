@@ -1271,3 +1271,14 @@ body{
  /*table去除虚线*/
  .first_table td{border: 1px solid #00cccc !important;}
 
+#ech2{
+	background: rgb(14, 42, 76) !important;
+	FontColor: #fff !important;
+}
+#blackech2{
+	background: rgb(14, 42, 76) !important;
+	FontColor: #fff !important;
+}
+ #searchForm{
+	 background: #0E2A4C!important;
+ }

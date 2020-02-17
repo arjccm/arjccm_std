@@ -53,7 +53,7 @@
 			</td>
 			<td>
 				<div class="control-group">
-					<label class="control-label">时间：</label>
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>时间：</label>
 					<div class="controls">
 						<input name="times" type="text" readonly="readonly"  maxlength="20" class="input-medium Wdate required"
 							   value="<fmt:formatDate value="${ccmServiceCivil.times}" pattern="yyyy-MM-dd HH:mm:ss"/>"

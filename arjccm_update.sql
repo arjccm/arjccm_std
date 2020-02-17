@@ -171,9 +171,93 @@ CREATE TABLE `ccm_patrol_unit`  (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+
+-- ----------------------------
+-- Table structure for ccm_guard_unit
+-- ----------------------------
+DROP TABLE IF EXISTS `ccm_guard_unit`;
+CREATE TABLE `ccm_guard_unit`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 唯一主键ID（自增） ',
+  `security_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '警卫任务id',
+  `user_id` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 警卫 ',
+  `patrol_vehicles` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 车辆 ',
+  `vehicle_equipment` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 车载设备 ',
+  `individual_equipment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 单兵装备 ',
+  `departure_time` datetime(0) NULL DEFAULT NULL COMMENT ' 时间 ',
+  `status` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 状态 ',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 创建者 ',
+  `create_date` datetime(0) NULL DEFAULT NULL COMMENT ' 发生时间 ',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 更新者 ',
+  `update_date` datetime(0) NULL DEFAULT NULL COMMENT ' 更新时间 ',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 描述信息 ',
+  `del_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 删除标记 ',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `ccm_alarm_log_update_date`(`update_date`) USING BTREE,
+  INDEX `ccm_alarm_log_del_flag`(`del_flag`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '警卫单位 ' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+-- ----------------------------
+-- Table structure for ccm_elecfence_alarm
+-- ----------------------------
+DROP TABLE IF EXISTS `ccm_elecfence_alarm`;
+CREATE TABLE `ccm_elecfence_alarm`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键id',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `create_date` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
+  `update_date` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 备注信息 ',
+  `del_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '删除标志',
+  `alarm_type` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '报警类型：进围栏、出围栏、进出围栏',
+  `people_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '人口id',
+  `device_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '设备唯一标识号',
+  `user_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户id-平台',
+  `is_check` int(1) NULL DEFAULT NULL COMMENT '是否核实：1核实0未核实',
+  `people_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '人口姓名',
+  `user_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户姓名-平台',
+  `x` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '经度',
+  `y` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '纬度',
+  `alarm_time` datetime(0) NULL DEFAULT NULL COMMENT '报警时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+-- ----------------------------
+-- Table structure for ccm_kpi_count
+-- ----------------------------
+DROP TABLE IF EXISTS `ccm_kpi_count`;
+CREATE TABLE `ccm_kpi_count`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 唯一主键ID ',
+  `create_date` datetime(0) NOT NULL COMMENT ' 创建时间 ',
+  `update_date` datetime(0) NOT NULL COMMENT ' 更新时间 ',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 备注信息 ',
+  `del_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 删除标记 ',
+  `user_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `tail_times` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '重点人员帮教次数',
+  `people_number` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '新增重点人员数量',
+  `tenant_number` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '新增的房东和租住人数量',
+  `org_number` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '新增重点机构数量',
+  `components_number` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '新增消防设施数量',
+  `reports_times` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工作日志次数',
+  `relief_times` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备勤次数',
+  `relief_time` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备勤时长',
+  `patrol_times` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '巡逻次数',
+  `patrol_time` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '巡逻时长',
+  `police_task_times` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '警卫任务次数'
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '绩效统计表' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
 -- 新增表   by maoxb  2020-02-09  end -----------------------------------------------------------------------------------------------------------------------
 
 -- 新增菜单  by maoxb   2020-02-07 start -----------------------------------------------------------------------------------------------------------------------
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('bba5e49630e649fab9c7816db639092e', '06dff2cae7b540b3a5ecabeec950296f', '0,1,ef61dbc7960f4272b360de7ad7d59a07,aa8bc4b271cf4b0ea85406e8d654f909,06dff2cae7b540b3a5ecabeec950296f,', '编辑', 60, '', '', '', '0', 'unit:ccmReliefUnit:edit', '1', '2020-02-09 07:24:51', '1', '2020-02-09 07:24:51', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('a10ea2424f074637839e82366cee2b74', '06dff2cae7b540b3a5ecabeec950296f', '0,1,ef61dbc7960f4272b360de7ad7d59a07,aa8bc4b271cf4b0ea85406e8d654f909,06dff2cae7b540b3a5ecabeec950296f,', '显示', 30, '', '', '', '0', 'unit:ccmReliefUnit:view', '1', '2020-02-09 07:24:08', '1', '2020-02-09 07:24:08', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('87c6bcb15e4045809e8c1e152b38011a', '29ddedacbae94e89ab07e9ebe8e558c8', '0,1,ef61dbc7960f4272b360de7ad7d59a07,aa8bc4b271cf4b0ea85406e8d654f909,29ddedacbae94e89ab07e9ebe8e558c8,', '编辑', 60, '', '', '', '0', 'relief:ccmReliefTask:edit', '1', '2020-02-07 18:09:10', '1', '2020-02-07 18:09:10', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('1f81b090f6f142139933c09be2717cc3', '29ddedacbae94e89ab07e9ebe8e558c8', '0,1,ef61dbc7960f4272b360de7ad7d59a07,aa8bc4b271cf4b0ea85406e8d654f909,29ddedacbae94e89ab07e9ebe8e558c8,', '显示', 30, '', '', '', '0', 'relief:ccmReliefTask:view', '1', '2020-02-07 18:08:30', '1', '2020-02-07 18:08:30', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('770581b5892c4cb8b714bccd6cd14019', '5977b1806ddf41c3baea18e7482dd724', '0,1,ef61dbc7960f4272b360de7ad7d59a07,1cff269b7cb248659118a3bdded9c0fe,5977b1806ddf41c3baea18e7482dd724,', '编辑', 60, '', '', '', '0', 'guard:ccmGuardUnit:edit', '1', '2020-02-07 18:06:53', '1', '2020-02-07 18:06:53', '', '0');
@@ -205,8 +289,220 @@ INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, 
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('e1ea142288174ff9be2ae602d07af1f9', 'ef61dbc7960f4272b360de7ad7d59a07', '0,1,ef61dbc7960f4272b360de7ad7d59a07,', '警情信息查询', 450, '', '', 'camera', '1', '', '1', '2020-02-07 17:08:50', '1', '2020-02-07 17:08:50', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('1cff269b7cb248659118a3bdded9c0fe', 'ef61dbc7960f4272b360de7ad7d59a07', '0,1,ef61dbc7960f4272b360de7ad7d59a07,', '警卫任务管理', 420, '', '', 'forward', '1', '', '1', '2020-02-07 17:07:54', '1', '2020-02-07 17:07:54', '', '0');
 INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('c4b65a69d07b4907b379fcda304d71b2', 'ef61dbc7960f4272b360de7ad7d59a07', '0,1,ef61dbc7960f4272b360de7ad7d59a07,', '巡逻管理', 390, '', '', 'richanggongzuo1', '1', '', '1', '2020-02-07 17:06:12', '1', '2020-02-07 17:06:12', '', '0');
-INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ea38f2936cae4276848bd888a7322aab', '3119b31a022645a78d4ebbe9b767b5f9', '0,1,ef61dbc7960f4272b360de7ad7d59a07,3119b31a022645a78d4ebbe9b767b5f9,', '警情通知', 70, '/alarmnotify/bphAlarmNotify/', '', '', '1', 'alarmnotify:bphAlarmNotify:view,alarmnotify:bphAlarmNotify:edit', '1', '2019-12-05 14:02:50', '1', '2019-12-05 14:02:50', '', '0');
+
 
 -- 新增菜单  by maoxb   2020-02-07 end -----------------------------------------------------------------------------------------------------------------------
 
--- 邢增
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('25787c7267444f4fa9f67d8c64dea76e', '1', '0,1,', '数据统计分析', 110, '', '', '721', '1', '', '1', '2019-07-09 14:44:36', '1', '2019-07-09 14:47:57', '', '0');
+
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('55e024f4504343e9ae1416713de4013b', '25787c7267444f4fa9f67d8c64dea76e', '0,1,25787c7267444f4fa9f67d8c64dea76e,', '客户端情况统计', 120, '', '', 'backward', '1', '', '1', '2019-07-09 14:47:42', '1', '2019-07-25 13:48:30', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('a21a9d310cda487bb755e1c16fac46d5', '25787c7267444f4fa9f67d8c64dea76e', '0,1,25787c7267444f4fa9f67d8c64dea76e,', '单位警情统计', 90, '', '', 'fast-backward', '1', '', '1', '2019-07-09 14:47:20', '1', '2019-07-25 13:46:42', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('afd6433ee8a5415b8f79fd11590ff9c1', '25787c7267444f4fa9f67d8c64dea76e', '0,1,25787c7267444f4fa9f67d8c64dea76e,', '个人信息统计', 30, '', '', 'stop', '1', '', '1', '2019-07-09 14:46:49', '1', '2019-07-25 13:43:57', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('f203d9cf26b94070ae394212a8c07f31', '25787c7267444f4fa9f67d8c64dea76e', '0,1,25787c7267444f4fa9f67d8c64dea76e,', '单位信息统计', 60, '', '', 'step-backward', '1', '', '1', '2019-07-09 14:46:31', '1', '2019-07-25 13:45:01', '', '0');
+
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('60911fdba6ca4ba4a8099be4d6a68135', '55e024f4504343e9ae1416713de4013b', '0,1,25787c7267444f4fa9f67d8c64dea76e,55e024f4504343e9ae1416713de4013b,', '客户端登录查询统计', 30, '/deviceonline/ccmDeviceOnline', '', '', '1', '', '1', '2019-07-09 14:49:57', '1', '2019-07-13 16:29:28', '', '0');
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('8c11afdb61794b23960b1d1b61b74a8f', 'a21a9d310cda487bb755e1c16fac46d5', '0,1,25787c7267444f4fa9f67d8c64dea76e,a21a9d310cda487bb755e1c16fac46d5,', '警情统计', 30, '/alarm/bphAlarmInfo/countDtae', '', '', '1', '', '1', '2019-07-09 14:49:12', '1', '2019-07-09 14:49:12', '', '0');
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('b6f6fc920196439ba4e147bdb5b5f9b6', 'afd6433ee8a5415b8f79fd11590ff9c1', '0,1,25787c7267444f4fa9f67d8c64dea76e,afd6433ee8a5415b8f79fd11590ff9c1,', '个人信息统计', 30, '/analyst/personal', '', '', '1', '', '1', '2019-07-09 14:53:10', '1', '2019-07-11 14:17:09', '', '0');
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('cf749158a4d4457a8bfc508cce29f0c5', 'f203d9cf26b94070ae394212a8c07f31', '0,1,25787c7267444f4fa9f67d8c64dea76e,f203d9cf26b94070ae394212a8c07f31,', '单位信息统计', 30, '/analyst/department', '', '', '1', '', '1', '2019-07-09 14:53:33', '1', '2019-07-15 20:46:28', '', '0');
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('119a26f82374473db1d8f9baae7a173a', '60911fdba6ca4ba4a8099be4d6a68135', '0,1,25787c7267444f4fa9f67d8c64dea76e,55e024f4504343e9ae1416713de4013b,60911fdba6ca4ba4a8099be4d6a68135,', '显示', 30, '', '', '', '0', 'deviceonline:ccmDeviceOnline:view', '1', '2019-07-13 16:30:38', '1', '2019-07-13 16:30:38', '', '0');
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('caaa666689224050a9772a72b8653d87', 'b6f6fc920196439ba4e147bdb5b5f9b6', '0,1,25787c7267444f4fa9f67d8c64dea76e,afd6433ee8a5415b8f79fd11590ff9c1,b6f6fc920196439ba4e147bdb5b5f9b6,', '显示', 30, '', '', '', '0', 'report:ccmPeopleStat:view', '1', '2019-07-09 15:13:18', '1', '2019-07-09 15:13:27', '', '0');
+
+
+-- 绩效统计
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('d720d03afe2a44febaa4a274993f6383', '1', '0,1,', '绩效统计', 280, '', '', 'perfoemance-old', '1', '', '1', '2019-07-10 13:01:40', '1', '2019-07-25 09:14:30', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('64c8919348574730ae5ae51329f20c23', 'd720d03afe2a44febaa4a274993f6383', '0,1,d720d03afe2a44febaa4a274993f6383,', 'KPI排行榜', 90, '/kpi/count/toKpi', '', 'eject', '1', '', '1', '2019-07-25 09:13:53', '1', '2019-08-08 17:23:39', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('75bfaab4a48a4d538cce5bd1548c7d86', 'd720d03afe2a44febaa4a274993f6383', '0,1,d720d03afe2a44febaa4a274993f6383,', '数据统计', 30, '', '', '', '1', '', '1', '2019-07-10 13:14:48', '1', '2019-07-10 13:14:48', '', '1');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('99b82e4327f24f13a0040ffa907a5f84', 'd720d03afe2a44febaa4a274993f6383', '0,1,d720d03afe2a44febaa4a274993f6383,', '编辑', 60, '', '', '', '0', 'count:ccmKpiCount:edit', '1', '2019-07-17 20:34:18', '1', '2019-07-17 20:34:40', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ad911e062aac466fa0f0cac5e6dc4968', 'd720d03afe2a44febaa4a274993f6383', '0,1,d720d03afe2a44febaa4a274993f6383,', '显示', 30, '', '', '', '0', 'count:ccmKpiCount:view', '1', '2019-07-17 20:33:55', '1', '2019-07-17 20:34:29', '', '0');
+
+
+
+-- 移动设备管理-管控
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('530b24308ad2426c9ae6ff6cfd4b2e58', 'ba41342f6add4b8ab7684d07749229d5', '0,1,2,ba41342f6add4b8ab7684d07749229d5,', '移动设备管理-管控', 200, '/ccmsys/ccmMobileDevice/list2', '', '', '1', '', '1', '2019-08-09 17:52:51', '1', '2019-08-09 17:52:51', '', '0');
+-- 围栏报警日志管理
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('836b2e026a0d492a922ee14ee37039e3', '67', '0,1,2,67,', '围栏报警日志管理', 100, '/fenceAlarm/ccmElecfenceAlarm', '', '', '1', 'fenceAlarm:ccmElecfenceAlarm:view', '1', '2019-08-02 14:16:25', '1', '2019-08-02 15:15:37', '', '0');
+
+-- 新增菜单  by maoxb   2020-02-07 end -----------------------------------------------------------------------------------------------------------------------
+
+-- 电子围栏修改
+update sys_menu t set t.parent_id = '3' WHERE id = '8113cd3da9d448dba0c5681e7b59cff8';
+update sys_menu t set t.parent_ids = '0,1,2,3,' WHERE id = '8113cd3da9d448dba0c5681e7b59cff8';
+
+-- 巡更管理 字典新增  by maoxb 2020-02-11
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('24ce337c611f4a2abb6ac2f9871d7e5f', '1', '未审核', 'auditing_status', '审核状态', 10, '0', '1', '2019-07-30 10:39:39', '1', '2019-07-30 10:39:39', '巡逻模块新增', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('9b51e84d153f4657a8701c6c725fba5b', '2', '审核通过', 'auditing_status', '审核状态', 20, '0', '1', '2019-07-30 10:40:11', '1', '2019-07-30 10:40:11', '巡逻模块审核状态', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('1991284e0f314531b9677187b1f9b85d', '3', '已完成', 'ccm_patrol_missions_status', '巡逻任务状态', 30, '0', '1', '2019-07-05 19:33:35', '1', '2019-07-31 16:23:48', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('62ca5a29456949b092a7ce65e9d908ec', '1', '新建', 'ccm_patrol_missions_status', '巡逻任务状态', 10, '0', '1', '2019-07-05 19:32:39', '1', '2019-07-31 16:23:32', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('9bff1f1295e848f8b65ff693ed853ce7', '2', '进行中', 'ccm_patrol_missions_status', '巡逻任务状态', 20, '0', '1', '2019-07-05 19:33:05', '1', '2019-07-31 16:23:40', '', '0');
+
+
+-- 城市部件表 by maoxb 2020-02-13
+ alter table ccm_city_components add components_num varchar(10) COMMENT '消防设施的数量';
+ alter table ccm_city_components add is_danger varchar(2)  COMMENT '是否是危险品（是 1  否  0）';
+ alter table ccm_city_components add collect_people varchar(255)  COMMENT '信息采集人员';  
+ -- 房屋表 by maoxb 2020-02-13
+ alter table ccm_pop_tenant add collect_people varchar(255)  COMMENT '信息采集人员';
+ 
+ 
+-- 移动设备管理表 by maoxb 2020-02-13
+ alter table ccm_mobile_device add use_type varchar(255)  COMMENT 'app应用类型';
+ alter table ccm_mobile_device add people_id varchar(255)  COMMENT '关联人员';
+ alter table ccm_mobile_device add elecfence_id varchar(255)  COMMENT '电子围栏id';
+
+-- 通知通告 by maoxb 2020-02-13
+ alter table oa_notify add task_url varchar(255)  COMMENT '任务链接';
+ alter table oa_notify add relief_id varchar(255)  COMMENT '备勤任务id';
+ alter table oa_notify add relief_type varchar(255)  COMMENT '备勤任务通知类型';
+ alter table oa_notify add relief_status varchar(255)  COMMENT '备勤任务执行状态';
+ 
+ -- 防疫人员表 by yiqingxuan 2020-02-14
+DROP TABLE IF EXISTS `ccm_people_antiepidemic`;
+CREATE TABLE `ccm_people_antiepidemic`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'id',
+  `telephone` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话号码',
+  `tel_posion` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '基站位置',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
+  `sex` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '性别',
+  `age` int(3) NULL DEFAULT NULL COMMENT '年龄',
+  `id_number` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '身份证号',
+  `domicile` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '户籍地',
+  `habitation` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '在琼居住地',
+  `leave_hubei_date` datetime(0) NULL DEFAULT NULL COMMENT '离鄂时间',
+  `come_hainan_date` datetime(0) NULL DEFAULT NULL COMMENT '入琼时间',
+  `transportation` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '交通工具',
+  `is_in_14days` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否14天以内',
+  `cohabitant` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '同居住人员',
+  `is_left_hainan` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否离岛',
+  `left_date` datetime(0) NULL DEFAULT NULL COMMENT '离岛时间',
+  `health` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '身体状况',
+  `does_take_steps` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '有无采取措施',
+  `take_steps` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采取何种措施',
+  `address` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '住院或集中观察地址',
+  `info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '开展网格化服务管理情况',
+  `autoupdatetime` datetime(0) NULL DEFAULT NULL COMMENT '自动更新时间',
+  `is_transfer_HC` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否移交卫健委',
+  `telephone_home` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机归属地',
+  `distribute_city` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '下发所属市县',
+  `distribute_no` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '下发数据批次',
+  `check_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '核查人',
+  `check_tel` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '核查人联系方式',
+  `check_date` datetime(0) NULL DEFAULT NULL COMMENT '核查时间',
+  `report_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '上报人',
+  `report_department` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '上报人所属单位',
+  `report_date` datetime(0) NOT NULL COMMENT '上报时间',
+  `report_status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '上报状态',
+  `belong_bureau` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属市局',
+  `belong_sub_bureau` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属分局',
+  `belong_police_station` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属派出所',
+  `data_type` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据类型',
+  `data_status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据状态',
+  `area_grid_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '网格id',
+  `area_point` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '坐标',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT ' 创建者 ',
+  `create_date` datetime(0) NOT NULL COMMENT ' 创建时间 ',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT ' 更新者 ',
+  `update_date` datetime(0) NOT NULL COMMENT ' 更新时间 ',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT ' 备注信息 ',
+  `del_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT ' 删除标记 ',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '人员疫情表' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+-- 修改防疫人员表上报时间 可以为空
+ALTER TABLE `arjccm_std`.`ccm_people_antiepidemic` MODIFY COLUMN `report_date` datetime(0) NULL COMMENT '上报时间' AFTER `report_department`;
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ab598b21da684e35abc56fe9047934e7', '147dfc2b7fef4d009fb540de4c531df9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,147dfc2b7fef4d009fb540de4c531df9,', '编辑', 60, '', '', '', '0', 'pop:ccmPeopleAntiepidemic:edit', '1', '2020-02-14 11:03:30', '1', '2020-02-14 11:03:30', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('0845bf0e086d4727a5c21b96d2e8292a', '147dfc2b7fef4d009fb540de4c531df9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,147dfc2b7fef4d009fb540de4c531df9,', '显示', 30, '', '', '', '0', 'pop:ccmPeopleAntiepidemic:view', '1', '2020-02-14 11:02:54', '1', '2020-02-14 11:02:54', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('147dfc2b7fef4d009fb540de4c531df9', '130200', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,', '疫情人口管理', 320, '/pop/ccmPeopleAntiepidemic/', '', '', '1', '', '1', '2020-02-14 10:57:46', '1', '2020-02-14 10:57:46', '/pop/ccmPeopleAntiepidemic/', '0');
+
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('332b2069a0fa4fdda369090e75b55f50', '5', '无', 'sys_ccm_people_takeSteps', '采取何种措施', 50, '0', '1', '2020-02-14 13:54:27', '1', '2020-02-14 13:54:27', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('1a4aa290087e495887979e6c4fbad052', '4', '医院隔离', 'sys_ccm_people_takeSteps', '采取何种措施', 40, '0', '1', '2020-02-14 13:53:37', '1', '2020-02-14 13:53:54', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('2f6a85b3f13a4973b8eb5a6bce4acbbe', '3', '确诊住院', 'sys_ccm_people_takeSteps', '采取何种措施', 30, '0', '1', '2020-02-14 13:53:15', '1', '2020-02-14 13:53:15', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('84c4ecea474b43fc81b523c52c7eb5e1', '2', '留观点隔离', 'sys_ccm_people_takeSteps', '采取何种措施', 20, '0', '1', '2020-02-14 13:52:51', '1', '2020-02-14 13:52:51', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('f04ee3eb4ef749d89cdba67c014562bf', '1', '居家隔离', 'sys_ccm_people_takeSteps', '采取何种措施', 10, '0', '1', '2020-02-14 13:52:20', '1', '2020-02-14 13:52:20', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('31285b387f1a4218a2641745dc354f6b', '2', '非正常', 'sys_ccm_people_health', '身体状况', 20, '0', '1', '2020-02-14 13:48:39', '1', '2020-02-14 13:50:14', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ddb09d555a0e442bbd1f15ad8016ad9e', '1', '正常', 'sys_ccm_people_health', '身体状况', 10, '0', '1', '2020-02-14 13:48:23', '1', '2020-02-14 13:50:07', '', '0');
+
+-- 宗教活动表  by lgh 2020-2-15
+DROP TABLE IF EXISTS `ccm_religion_activity`;
+CREATE TABLE `ccm_religion_activity`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 唯一主键ID，设备编号（自增） ',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 创建者 ',
+  `create_date` datetime(0) NOT NULL COMMENT ' 发生时间 ',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 更新者 ',
+  `update_date` datetime(0) NOT NULL COMMENT ' 更新时间 ',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 描述信息 ',
+  `del_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 删除标记 ',
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT ' 活动名称',
+  `begin_date` datetime(0) NOT NULL COMMENT ' 开始日期',
+  `host` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动主办方',
+  `address` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动地点',
+  `head` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动负责人',
+  `head_card` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 负责人身份证号码',
+  `head_phone` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 负责人联系方式',
+  `number` int(5) NULL DEFAULT NULL COMMENT ' 活动参加人数',
+  `scale` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动规模',
+  `type` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 活动类型',
+  `end_date` datetime(0) NULL DEFAULT NULL COMMENT ' 结束日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '宗教活动表' ROW_FORMAT = Dynamic;
+
+-- 宗教活动菜单添加
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('37646ca5abb04f10996bb5496d5aca89', '70a1747ee8334e439b2b24ebe947ecdd', '0,1,70a1747ee8334e439b2b24ebe947ecdd,', '宗教管理', 170, '', '', 'changsuoguanli', '1', '', '1', '2020-01-09 17:33:25', '1', '2020-02-11 15:51:56', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('0bcfc59423be498f841988d3784a5122', 'ae07897b04e64a51aba817372fa7f60d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,ae07897b04e64a51aba817372fa7f60d,', '查看', 30, '', '', '', '0', 'religion:ccmReligionActivity:view', '1', '2020-02-11 14:22:16', '1', '2020-02-11 14:22:16', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('285941b93e174dc2bcd43bb4e4e71ae9', 'ac1835c14d60461893787620ca94560d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,ac1835c14d60461893787620ca94560d,', '编辑', 60, '', '', '', '1', 'religion:ccmPlaceReligion:edit', '1', '2020-02-11 15:54:20', '1', '2020-02-11 15:54:20', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('63626f0f77de452baf600bac846835f6', 'ae07897b04e64a51aba817372fa7f60d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,ae07897b04e64a51aba817372fa7f60d,', '编辑', 60, '', '', '', '0', 'religion:ccmReligionActivity:edit', '1', '2020-02-11 14:22:53', '1', '2020-02-11 14:22:53', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ac1835c14d60461893787620ca94560d', '37646ca5abb04f10996bb5496d5aca89', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,', '场所管理', 30, '/religion/ccmPlaceReligion/list1', '', '', '1', '', '1', '2020-02-11 15:50:05', '1', '2020-02-11 15:54:58', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ae07897b04e64a51aba817372fa7f60d', '37646ca5abb04f10996bb5496d5aca89', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,', '活动管理', 60, '/religion/ccmReligionActivity', '', '', '1', '', '1', '2020-02-11 14:20:02', '1', '2020-02-11 15:47:54', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('e62501f884c9421b9da25812306bcd23', 'ac1835c14d60461893787620ca94560d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,37646ca5abb04f10996bb5496d5aca89,ac1835c14d60461893787620ca94560d,', '查看', 30, '', '', '', '0', 'religion:ccmPlaceReligion:view', '1', '2020-02-11 15:53:46', '1', '2020-02-11 15:53:46', '', '0');
+
+-- 宗教活动相关字典添加
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3ba87bc99b5d4e7b88873f052f4c0bdc', '05', '斋戒', 'ccm_activity_type', '宗教活动类别', 50, '0', '1', '2020-02-11 11:46:16', '1', '2020-02-11 11:46:16', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('539256fcf3684500b00ac341dab26c6f', '06', '放生', 'ccm_activity_type', '宗教活动类别', 60, '0', '1', '2020-02-11 11:46:35', '1', '2020-02-11 11:46:35', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('5540c1fc36b344f2bbc1850092cd7902', '04', '忏悔', 'ccm_activity_type', '宗教活动类别', 40, '0', '1', '2020-02-11 11:45:21', '1', '2020-02-11 11:45:21', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('5b25315a99564f0aa42699aff08b510c', '01', '祈祷', 'ccm_activity_type', '宗教活动类别', 10, '0', '1', '2020-02-11 11:43:57', '1', '2020-02-11 11:43:57', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('a693f62b4ef94970919cb000eec6f959', '03', '祭祀', 'ccm_activity_type', '宗教活动类别', 30, '0', '1', '2020-02-11 11:45:03', '1', '2020-02-11 11:45:03', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ec833e8808db4e58862e6ac085efbecd', '02', '讲经', 'ccm_activity_type', '宗教活动类别', 20, '0', '1', '2020-02-11 11:44:28', '1', '2020-02-11 11:44:28',
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('2bf14129804c4654a39e1e5b32072502', '01', '小型活动', 'ccm_activity_scale', '宗教活动规模', 10, '0', '1', '2020-02-11 11:40:30', '1', '2020-02-11 11:40:30', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3c48b5e11380495d9ea5af05054835c4', '03', '大型活动', 'ccm_activity_scale', '宗教活动规模', 30, '0', '1', '2020-02-11 11:41:57', '1', '2020-02-11 11:41:57', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('da78908ad40b4c05a5b7c4ce14dc1449', '02', '中型活动', 'ccm_activity_scale', '宗教活动规模', 20, '0', '1', '2020-02-11 11:41:27', '1', '2020-02-11 11:41:27', '', '0');
+INSERT INTO sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ece82fc7fe7d41339ad7766453272893', '04', '特大型活动', 'ccm_activity_scale', '宗教活动规模', 40, '0', '1', '2020-02-11 11:42:29', '1', '2020-02-11 11:42:29', '', '0');
+
+-- 防疫人员年龄段数据字典
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('77d72024587e4fcd9051c8ca5142b932', '4', '60以上老年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 40, '0', '1', '2020-02-15 16:36:32', '1', '2020-02-15 16:36:32', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('88eaf32ca3f74be1bc81fb75e95d714b', '3', '30-60中青年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 30, '0', '1', '2020-02-15 16:35:47', '1', '2020-02-15 16:35:47', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3870d830366748cda49cccb6a9670bcc', '2', '18-30岁青年', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 20, '0', '1', '2020-02-15 16:34:47', '1', '2020-02-15 16:34:47', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('cb6097a1aca64237a9a09c93d1129398', '1', '18岁以下少年儿童', 'sys_ccm_peopleantiepidemic_age', '防疫人员年龄段', 10, '0', '1', '2020-02-15 16:33:17', '1', '2020-02-15 16:33:17', '', '0');
+
+
+
+
+
+-- 三亚新型冠状病毒肺炎疫情管控平台
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('e2cfcfc331e547e79f7f78b4171e4adf', '1', '0,1,', '三亚新型冠状病毒肺炎疫情管控平台', 330, '/sys/map/antiepidemicCool', '', 'adjust', '1', '', '1', '2020-02-16 22:20:17', '1', '2020-02-16 22:34:43', '', '0');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -490,7 +490,7 @@ public class CcmRestChat extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/queryMyFriendPage", method = RequestMethod.GET)
-	public CcmRestResult queryMyFriendPage(String userId,String name,HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public CcmRestResult queryMyFriendPage(String userId,String name,HttpServletRequest req, HttpServletResponse resp,Integer pageNo) throws IOException {
 		CcmRestResult result = new CcmRestResult();
 		User sessionUser = (User) req.getSession().getAttribute("user");
 		if (sessionUser== null) {
@@ -516,6 +516,7 @@ public class CcmRestChat extends BaseController {
 			vCcmTeamListNew.add(vCcmTeam3);
 		}
 		page.setList(vCcmTeamListNew);
+		page.setPageNo(pageNo);
 		result.setCode(CcmRestType.OK);
 		result.setResult(page.getList());
 		
@@ -532,7 +533,7 @@ public class CcmRestChat extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/queryMyFriendAvailable", method = RequestMethod.GET)
-	public CcmRestResult queryMyFriendAvailable(String groupId,String userId,String name,HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public CcmRestResult queryMyFriendAvailable(String groupId,String userId,String name,HttpServletRequest req, HttpServletResponse resp,Integer pageNo) throws IOException {
 		CcmRestResult result = new CcmRestResult();
 		User sessionUser = (User) req.getSession().getAttribute("user");
 		if (sessionUser== null) {
@@ -559,6 +560,7 @@ public class CcmRestChat extends BaseController {
 			vCcmTeamListNew.add(vCcmTeam3);
 		}
 		page.setList(vCcmTeamListNew);
+		page.setPageNo(pageNo);
 		result.setCode(CcmRestType.OK);
 		result.setResult(page.getList());
 		

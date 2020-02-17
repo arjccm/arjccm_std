@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.arjjs.ccm.modules.ccm.ccmsys.dao.CcmMobileDeviceDao">
-    
+<mapper
+	namespace="com.arjjs.ccm.modules.ccm.ccmsys.dao.CcmMobileDeviceDao">
+
 	<sql id="ccmMobileDeviceColumns">
 		a.id AS "id",
 		a.device_id AS "deviceId",
-		a.user_id AS "vCcmTeam.id",
+		a.user_id AS
+		"vCcmTeam.id",
 		a.area_point AS "areaPoint",
-		a.is_variable AS "isVariable",
+		a.is_variable AS
+		"isVariable",
 		a.icon AS "icon",
 		a.efence_point AS "efencePoint",
 		a.efence_scope AS "efenceScope",
@@ -16,60 +19,155 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag",
+		a.del_flag AS
+		"delFlag",
+		a.use_type AS "useType",
+		a.people_id AS "vSpecialPeople.id",
 		u3.status AS "vCcmTeam.status",
 		u3.phone AS "vCcmTeam.phone",
 		u3.mobile AS "vCcmTeam.mobile",
 		u3.name AS "vCcmTeam.name",
-		o.name As "officeName", 
-	  	(case WHEN SUBDATE(now(),interval 2 minute) &lt; a.update_date THEN "1" ELSE '0' END
-		)AS "isOnline",
-		a.is_alarm AS "isAlarm"
+		CONCAT_WS('-',p.name,p.ident) AS "vSpecialPeople.name",
+		o.name As "officeName",
+		(case WHEN
+		SUBDATE(now(),interval 2 minute) &lt; a.update_date THEN "1"
+		ELSE '0'
+		END
+		) AS "isOnline",
+		a.is_alarm AS "isAlarm",
+		a.elecFence_id AS "elecFenceId"
 	</sql>
 	
 	<sql id="ccmMobileDeviceJoins">
 		LEFT JOIN v_ccm_team u3 ON u3.id = a.user_id
-		LEFT JOIN sys_office o ON o.id = u3.office_id
+		LEFT JOIN
+		sys_office o ON o.id = u3.office_id
+		LEFT JOIN ccm_people p ON p.id = a.people_id
+	</sql>
+	<sql id="ccmMobileDeviceJoinElecfence">
+		LEFT JOIN ccm_electronic_fence e ON e.id = a.elecfence_id 
 	</sql>
     
-	<select id="get" resultType="CcmMobileDevice">
-		SELECT 
-			<include refid="ccmMobileDeviceColumns"/>
+	<select id="findAppElecInfoById" resultType="CcmMobileDevice">
+		SELECT
+		<include refid="ccmMobileDeviceColumnsAPP" />
 		FROM ccm_mobile_device a
-		<include refid="ccmMobileDeviceJoins"/>
+		<include refid="ccmMobileDeviceJoins" />
+		<include refid="ccmMobileDeviceJoinElecfence" />
+		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		<if test="userId !=null and userId != ''">
+			AND a.user_id = #{userId}
+		</if>
+		<if test="deviceId !=null and deviceId!=''">
+			AND a.device_id = #{deviceId}
+		</if>
+	</select>
+	<sql id="ccmMobileDeviceColumnsAPP">
+		a.id AS "id",
+		a.device_id AS "deviceId",
+		a.user_id AS
+		"vCcmTeam.id",
+		a.area_point AS "areaPoint",
+		a.is_variable AS
+		"isVariable",
+		a.icon AS "icon",
+		a.efence_point AS "efencePoint",
+		a.efence_scope AS "efenceScope",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS
+		"delFlag",
+		a.use_type AS "useType",
+		a.people_id AS "vSpecialPeople.id",
+		u3.status AS "vCcmTeam.status",
+		u3.phone AS "vCcmTeam.phone",
+		u3.mobile AS "vCcmTeam.mobile",
+		u3.name AS "vCcmTeam.name",
+		CONCAT_WS('-',p.name,p.ident) AS "vSpecialPeople.name",
+		o.name As "officeName",
+		(case WHEN
+		SUBDATE(now(),interval 2 minute) &lt; a.update_date THEN "1"
+		ELSE '0'
+		END
+		) AS "isOnline",
+		a.is_alarm AS "isAlarm",
+		e.id AS "elecFenceInfo.id",
+		e.fence_name AS "elecFenceInfo.fenceName",
+		e.alarm_rule AS "elecFenceInfo.alarmRule",
+		e.create_by AS "elecFenceInfo.createBy.id",
+		e.create_date AS "elecFenceInfo.createDate",
+		e.update_by AS "elecFenceInfo.updateBy.id",
+		e.update_date AS "elecFenceInfo.updateDate",
+		e.remarks AS "elecFenceInfo.remarks",
+		e.del_flag AS "elecFenceInfo.delFlag",
+		e.start_time AS "elecFenceInfo.startTime",
+		e.end_time AS "elecFenceInfo.endTime",
+		e.area_point AS "elecFenceInfo.areaPoint",
+		e.area_map AS "elecFenceInfo.areaMap",
+		e.gravity AS "elecFenceInfo.gravity"
+	</sql>
+	<select id="findDeviceListByElecId" resultType="CcmMobileDevice">
+		SELECT
+		<include refid="ccmMobileDeviceColumnsAPP" />
+		FROM ccm_mobile_device a
+		<include refid="ccmMobileDeviceJoins" />
+		<include refid="ccmMobileDeviceJoinElecfence" />
+		WHERE a.elecFence_id = #{id}
+	</select>
+	<select id="get" resultType="CcmMobileDevice">
+		SELECT
+		<include refid="ccmMobileDeviceColumnsAPP" />
+		FROM ccm_mobile_device a
+		<include refid="ccmMobileDeviceJoins" />
+		<include refid="ccmMobileDeviceJoinElecfence" />
 		WHERE a.id = #{id}
 	</select>
 	
 	<select id="findList" resultType="CcmMobileDevice">
-		SELECT 
-			<include refid="ccmMobileDeviceColumns"/>
+		SELECT
+		<include refid="ccmMobileDeviceColumnsAPP" />
 		FROM ccm_mobile_device a
-		<include refid="ccmMobileDeviceJoins"/>		
-        LEFT JOIN sys_area area ON area.id = o.area_id      
+		<include refid="ccmMobileDeviceJoins" />
+		LEFT JOIN sys_area area ON area.id = o.area_id
+		<include refid="ccmMobileDeviceJoinElecfence" />
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="deviceId != null and deviceId != ''">
-				AND a.device_id LIKE 
-					<if test="dbName == 'oracle'">'%'||#{deviceId}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{deviceId}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{deviceId},'%')</if>
+				AND a.device_id LIKE
+				<if test="dbName == 'oracle'">'%'||#{deviceId}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{deviceId}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{deviceId},'%')</if>
+			</if>
+			<if test="id != null and deviceId != ''">
+				AND a.id = #{id}
 			</if>
 			<if test="isVariable != null and isVariable != ''">
 				AND a.is_variable = #{isVariable}
 			</if>
-			<if test="vCcmTeam != null and vCcmTeam.id != null and vCcmTeam.id != ''">
+			<if
+				test="vCcmTeam != null and vCcmTeam.id != null and vCcmTeam.id != ''">
 				AND a.user_id = #{vCcmTeam.id}
+			</if>
+			<if test="vSpecialPeople != null and vSpecialPeople.id != null and vSpecialPeople.id != ''">
+				AND a.people_id = #{vSpecialPeople.id}
 			</if>
 			<if test="beginCreateDate != null and endCreateDate != null and beginCreateDate != '' and endCreateDate != ''">
 				AND a.create_date BETWEEN #{beginCreateDate} AND #{endCreateDate}
-			</if>			
+			</if>
 			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
            AND (area.parent_ids LIKE  CONCAT('%',#{userArea.id},'%')  or o.area_id = #{userArea.id})
              </if>
-			
+			<if test="useType != null and useType != ''">
+				AND a.use_type = #{useType}
+			</if>
+
 		</where>
 		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+			<when
+				test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
@@ -77,16 +175,18 @@
 			</otherwise>
 		</choose>
 	</select>
+	
 	<!-- 查询待上传的数据 -->
 	<select id="findListApp" resultType="CcmMobileDevice">
-		SELECT 
-			<include refid="ccmMobileDeviceColumns"/>
+		SELECT
+		<include refid="ccmMobileDeviceColumnsAPP" />
 		FROM ccm_mobile_device a
-		<include refid="ccmMobileDeviceJoins"/>
+		<include refid="ccmMobileDeviceJoins" />
 		WHERE
-			a.del_flag = 0
-			AND(a.update_date &gt; SUBDATE(now(),interval 10 second))
-			AND(a.update_date &lt; SUBDATE(now(),interval 0 second))
+		a.del_flag = 0
+		AND(a.update_date &gt; SUBDATE(now(),interval 10
+		second))
+		AND(a.update_date &lt; SUBDATE(now(),interval 0 second))
 	</select>
 	
 	
@@ -104,15 +204,16 @@
 	
 	
 	<select id="findAllList" resultType="CcmMobileDevice">
-		SELECT 
-			<include refid="ccmMobileDeviceColumns"/>
+		SELECT
+		<include refid="ccmMobileDeviceColumns" />
 		FROM ccm_mobile_device a
-		<include refid="ccmMobileDeviceJoins"/>
+		<include refid="ccmMobileDeviceJoins" />
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-		</where>		
+		</where>
 		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+			<when
+				test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
@@ -123,9 +224,10 @@
 	
 	<select id="findByDeviceId" resultType="CcmMobileDevice" >
 		SELECT 
-			<include refid="ccmMobileDeviceColumns"/>
+			<include refid="ccmMobileDeviceColumnsAPP"/>
 		FROM ccm_mobile_device a
 		<include refid="ccmMobileDeviceJoins"/>
+		<include refid="ccmMobileDeviceJoinElecfence" />
 		<where>
 			a.device_id = #{deviceId}
 			and
@@ -169,7 +271,10 @@
 			update_date,
 			remarks,
 			del_flag,
-			is_alarm
+			is_alarm,
+			use_type,
+			people_id,
+			elecfence_id
 		) VALUES (
 			#{id},
 			#{deviceId},
@@ -185,10 +290,13 @@
 			#{updateDate},
 			#{remarks},
 			#{delFlag},
-			#{isAlarm}
-		)
+			#{isAlarm},
+			#{useType},
+			#{vSpecialPeople.id},
+			#{elecFenceInfo.id}
+			)
 	</insert>
-	
+
 	<update id="update">
 		UPDATE ccm_mobile_device SET 	
 			device_id = #{deviceId},
@@ -201,21 +309,33 @@
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
 			remarks = #{remarks},
-			is_alarm = #{isAlarm}
+			is_alarm = #{isAlarm},
+			use_type = #{useType},
+			elecfence_id = #{elecFenceInfo.id},
+			people_id = #{vSpecialPeople.id}
 		WHERE id = #{id}
 	</update>
 	<!-- App电子围栏updateCoordinates -->
 	<update id="updateCoordinates">
 		UPDATE ccm_mobile_device SET
-			efence_point = #{efencePoint},
-			efence_scope = #{efenceScope}
+		efence_point =
+		#{efencePoint},
+		efence_scope = #{efenceScope}
 		WHERE id = #{id}
 	</update>
 	
-	
+	<!-- App电子围栏updateElecFenceId -->
+	<update id="updateElecFenceId">
+		UPDATE ccm_mobile_device SET
+		elecfence_id =
+		#{elecFenceInfo.id}
+		WHERE id = #{id}
+	</update>
+
 	<update id="delete">
-		UPDATE ccm_mobile_device SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		UPDATE ccm_mobile_device SET
+		del_flag =
+		#{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 	

@@ -6,6 +6,7 @@ package com.arjjs.ccm.modules.oa.entity;
 import org.hibernate.validator.constraints.Length;
 
 import com.arjjs.ccm.common.persistence.DataEntity;
+import com.arjjs.ccm.modules.flat.relief.entity.CcmReliefTask;
 import com.arjjs.ccm.modules.sys.entity.User;
 
 import java.util.Date;
@@ -19,6 +20,7 @@ public class OaNotifyRecord extends DataEntity<OaNotifyRecord> {
 	
 	private static final long serialVersionUID = 1L;
 	private OaNotify oaNotify;		// 通知通告ID
+	private CcmReliefTask ccmReliefTask;	// 备勤任务id
 	private User user;		// 接受人
 	private String readFlag;		// 阅读标记（0：未读；1：已读）
 	private Date readDate;		// 阅读时间
@@ -43,6 +45,16 @@ public class OaNotifyRecord extends DataEntity<OaNotifyRecord> {
 
 	public OaNotifyRecord(OaNotify oaNotify){
 		this.oaNotify = oaNotify;
+	}
+	
+	
+
+	public CcmReliefTask getCcmReliefTask() {
+		return ccmReliefTask;
+	}
+
+	public void setCcmReliefTask(CcmReliefTask ccmReliefTask) {
+		this.ccmReliefTask = ccmReliefTask;
 	}
 
 	public OaNotify getOaNotify() {

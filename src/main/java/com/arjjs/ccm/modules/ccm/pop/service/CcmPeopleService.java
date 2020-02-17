@@ -92,7 +92,12 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	@Autowired
 	private CcmPopTenantService ccmPopTenantService;
 	
-	
+		@Autowired
+	private CcmHarmNationalSecurityService ccmHarmNationalSecurityService;
+	@Autowired
+	private CcmSeriousCriminalOffenseService ccmSeriousCriminalOffenseService;
+	@Autowired
+	private CcmHouseDeliberatelyIllegalService ccmHouseDeliberatelyIllegalService;
 	
 	//上传上级平台记录
 	@Autowired
@@ -687,7 +692,315 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 
 	//重点人员top5
 	public List<EchartType> getKeypeopleTop(){
+
 		return ccmPeopleDao.getKeypeopleTop();
+	}
+	/**
+	 * 获取吸毒人员
+	 */
+	public List<Object> getHouseDrugs() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapDrugs = new HashMap<>();
+		mapDrugs.put("isParent", true);
+		mapDrugs.put("name", "吸毒人员");
+		mapDrugs.put("pId", "-1");
+		mapDrugs.put("id", "-2");
+		mapDrugs.put("pIds", "0,-1");
+		List<CcmHouseDrugs> houseDrugs = ccmHouseDrugsService.findList(new CcmHouseDrugs());
+		//List<CcmPeople> peopleAll = ccmPeopleService.findSpeList(new CcmPeople()); //只获取重点人口的 其他的用户无需关联
+		for (CcmHouseDrugs p : houseDrugs) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-2");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-2");
+			list.add(map);
+		}
+		list.add(mapDrugs);
+		return list;
+	}
+	/**
+	 *获取重点青少年
+	 */
+	public List<Object> getHouseKym() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapKym = new HashMap<>();
+		mapKym.put("isParent", true);
+		mapKym.put("name", "重点青少年");
+		mapKym.put("pId", "-1");
+		mapKym.put("id", "-3");
+		mapKym.put("pIds", "0,-1");
+		List<CcmHouseKym> houseKyms = ccmHouseKymService.findList(new CcmHouseKym());
+		for (CcmHouseKym kyms : houseKyms) {
+			Map<String, Object> mapK = new HashMap<>();
+			mapK.put("isParent", false);
+			mapK.put("name", kyms.getName() + "(" + kyms.getIdent() + ")");
+			mapK.put("pId", "-3");
+			mapK.put("id", kyms.getPeopleId());
+			mapK.put("pIds", "0,-1,-3");
+			list.add(mapK);
+		}
+		list.add(mapKym);
+		return list;
+	}
+
+	/**
+	 * 安置帮教
+	 * @return list
+	 */
+	public List<Object> getCcmHouseRelease() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "安置帮教");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-3");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmHouseRelease> houseReleases = ccmHouseReleaseService.findList(new CcmHouseRelease());
+		for (CcmHouseRelease p : houseReleases) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-3");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-3,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+	/**
+	 * 社区矫正
+	 */
+	public List<Object> getCcmHouseRectification() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "社区矫正");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-4");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmHouseRectification> houseRectifications = ccmHouseRectificationService.findList(new CcmHouseRectification());
+		for (CcmHouseRectification p : houseRectifications) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-4");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-4,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+	/**
+	 * 艾滋病患者
+	 */
+	public List<Object> getCcmHouseAids() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "艾滋病患者");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-5");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmHouseAids> ccmHouseAids = ccmHouseAidsService.findList(new CcmHouseAids());
+		for (CcmHouseAids p : ccmHouseAids) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-5");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-5,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+	/**
+	 * 危险品从业人员
+	 */
+	public List<Object> getCcmHouseDangerous() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "危险品从业人员");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-6");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmHouseDangerous> ccmHouseDangerous = ccmHouseDangerousService.findList(new CcmHouseDangerous());
+		for (CcmHouseDangerous p : ccmHouseDangerous) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-6");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-6,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+	/**
+	 * 涉教人员
+	 */
+	public List<Object> getCcmHouseHeresy() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "涉教人员");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-7");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmHouseHeresy> ccmHouseHeresy = ccmHouseHeresyService.findList(new CcmHouseHeresy());
+		for (CcmHouseHeresy p : ccmHouseHeresy) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-7");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-7,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+	/**
+	 * 重点上访
+	 */
+	public List<Object> getCcmHousePetition() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "重点上访");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-8");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmHousePetition> ccmHousePetition = ccmHousePetitionService.findList(new CcmHousePetition());
+		for (CcmHousePetition p : ccmHousePetition) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-8");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-8,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+	/**
+	 * 肇事肇祸等严重精神障碍患者人口
+	 */
+	public List<Object> getCcmHousePsychogeny() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "肇事肇祸等严重精神障碍患者人口");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-9");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmHousePsychogeny> ccmHousePsychogeny = ccmHousePsychogenyService.findList(new CcmHousePsychogeny());
+		for (CcmHousePsychogeny p : ccmHousePsychogeny) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-9");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-9,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+	/**
+	 *ccm_harm_national_security
+	 * 有危害国家安全活动嫌疑的
+	 */
+	public List<Object> getCcmHarmNationalSecurity() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "有危害国家安全活动嫌疑的");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-10");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmHarmNationalSecurity> ccmHarmNationalSecurity = ccmHarmNationalSecurityService.findList(new CcmHarmNationalSecurity());
+		for (CcmHarmNationalSecurity p : ccmHarmNationalSecurity) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-10");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-10,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+	/**
+	 * 严重刑事犯罪活动嫌疑
+	 */
+	public List<Object> getCcmSeriousCriminalOffense() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "严重刑事犯罪活动嫌疑");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-11");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmSeriousCriminalOffense> ccmSeriousCriminalOffense = ccmSeriousCriminalOffenseService.findList(new CcmSeriousCriminalOffense());
+		for (CcmSeriousCriminalOffense p : ccmSeriousCriminalOffense) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-11");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-11,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+	/**
+	 * 故意违法
+	 */
+	public List<Object> getCcmHouseDeliberatelyIllegal() {
+		List<Object> list = new ArrayList<>();
+		Map<String, Object> mapRoot = new HashMap<>();
+		mapRoot.put("isParent", true);
+		mapRoot.put("name", "故意违法刑事不足5年");
+		mapRoot.put("pId", "-1");
+		mapRoot.put("id", "-12");
+		mapRoot.put("pIds", "0,-1");
+		List<CcmHouseDeliberatelyIllegal> ccmHouseDeliberatelyIllegal = ccmHouseDeliberatelyIllegalService.findList(new CcmHouseDeliberatelyIllegal());
+		for (CcmHouseDeliberatelyIllegal p : ccmHouseDeliberatelyIllegal) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("isParent", false);
+			map.put("name", p.getName() + "(" + p.getIdent() + ")");
+			map.put("pId", "-12");
+			map.put("id", p.getPeopleId());
+			map.put("pIds", "0,-1,-12,");
+			list.add(map);
+		}
+		list.add(mapRoot);
+		return list;
+	}
+
+	/**
+	 * 搜索重点人口数据 专用接口
+	 * @param type 重点人员 类别
+	 * @param name 名字
+	 * @return
+	 */
+	public List<CcmPeople> findListByName(String type,String name){
+		return ccmPeopleDao.findListByName(type,name);
+	}
+
+	//宗教信徒人数
+	public Integer statIndexForZj(Integer bid) {
+		return 	ccmPeopleDao.peopleFollowerCount(bid);
 	}
 
 	//查询从业人员列

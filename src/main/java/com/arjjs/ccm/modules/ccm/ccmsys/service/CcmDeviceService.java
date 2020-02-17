@@ -6,14 +6,21 @@ package com.arjjs.ccm.modules.ccm.ccmsys.service;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.service.CrudService;
 import com.arjjs.ccm.modules.ccm.ccmsys.dao.CcmDeviceDao;
+import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmAreaDev;
 import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDevice;
+import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDeviceArea;
+import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
+import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
+import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
 import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmAreaPoint;
 import com.arjjs.ccm.modules.ccm.sys.dao.SysConfigDao;
 import com.arjjs.ccm.modules.ccm.sys.entity.CcmAreaPointVo;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.videoData.entity.CcmTiandyOnlineStatus;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.tool.EchartType;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +43,9 @@ public class CcmDeviceService extends CrudService<CcmDeviceDao, CcmDevice> {
 	private SysConfigDao sysConfigDao;
 	@Autowired
 	private SysAreaService sysAreaService;
+
+	@Autowired
+	private CcmOrgAreaService ccmOrgAreaService;
 
 	public CcmDevice get(String id) {
 		return super.get(id);
@@ -89,6 +99,85 @@ public class CcmDeviceService extends CrudService<CcmDeviceDao, CcmDevice> {
 	public List<EchartType> selectByType(){
 		return  dao.selectByType();
 	}
+	// <!-- 视频区域分布 by maoxb 2020-02-16-->
+	public List<EchartType> selectDevAreaInfo(){
+
+
+		SysConfig system_level = sysConfigDao.get("system_level");
+		//系统应用级别：1街道；2区县；3市
+		String paramStr = system_level.getParamStr();
+		String sysConf = "5";
+		if ("1".equals(paramStr)){
+			sysConf= "6";
+		}else{
+			sysConf = "5";
+		}
+		//查出所有视频所属区域；
+		List<CcmAreaDev> devAreaList = dao.selectDevAreaInfo();
+
+		//递归视频找出对应的大区；统计数量
+		List<EchartType> devAreaCount = this.groupA(devAreaList,sysConf);
+
+		return devAreaCount;
+	}
+
+	/**
+	 *  分组统计区域视频
+	 * @param list 设备中视频集合
+	 * @param sysConf 系统配置级别
+	 * @return
+	 */
+	public List<EchartType> groupA(List<CcmAreaDev> list, String sysConf) {
+		Map<String, Integer> map = new HashMap<>();
+		if (null == list ) {
+			return null;
+		}
+		String key;
+		for (CcmAreaDev val : list) {
+			key = val.getAreaName();
+			Integer listTmp =  map.get(key) == null ? 0: map.get(key);
+			if (0 == listTmp && val.getType().equals(sysConf)) {
+				map.put(key, 1);
+			}
+			if(0 == listTmp && !val.getType().equals(sysConf)){
+				SysArea parentDevInfo = this.getParentDevInfo(val.getParentId(), sysConf);
+				if (parentDevInfo==null)
+					continue;
+				key = parentDevInfo.getName();
+				listTmp =  map.get(key) == null ? 0: map.get(key);
+				listTmp++;
+				map.put(key, listTmp);
+			}
+			if(0 != listTmp){
+				listTmp++;
+				map.put(key, listTmp);
+			}
+		}
+		List<EchartType> resultList = new ArrayList<>();
+
+		for (Map.Entry<String, Integer> entry : map.entrySet()) {
+			EchartType resultETC = new EchartType();
+			resultETC.setType(entry.getKey());
+			resultETC.setValue(entry.getValue().toString());
+			resultList.add(resultETC);
+		}
+		return  resultList;
+	}
+
+	/**
+	 * 递归寻找父区域
+	 * @param id
+	 * @param sysConf
+	 * @return
+	 */
+	private SysArea getParentDevInfo(String id,String sysConf) {
+		SysArea area = sysAreaService.get(id);
+		if (area != null && !area.getType().equals(sysConf)){
+			getParentDevInfo(area.getParent().getId(), sysConf);
+		}
+		return area;
+	}
+
 	// <!-- 视频区域分布-->
 	public List<EchartType> selectDeviceByArea(){
 
@@ -97,7 +186,7 @@ public class CcmDeviceService extends CrudService<CcmDeviceDao, CcmDevice> {
 		String paramStr = system_level.getParamStr();
 		List<EchartType> resultEchar = new ArrayList<>();
 		List<String> diffrent= new ArrayList<>();
-		if ("1".equals(paramStr)){//地级市
+		if ("1".equals(paramStr)){//县级市
 			List<EchartType> echartTypeList = dao.selectDeviceByArea();
 			List<String> sysAreas = sysAreaService.selectAreaByType("6");
 			List<String> newStr= new ArrayList<>();

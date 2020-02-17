@@ -7,6 +7,7 @@ import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
+import com.arjjs.ccm.modules.ccm.ccmsys.service.CcmMobileDeviceService;
 import com.arjjs.ccm.modules.ccm.fence.entity.CcmElectronicFence;
 import com.arjjs.ccm.modules.ccm.fence.service.CcmElectronicFenceService;
 import com.arjjs.ccm.modules.ccm.tree.entity.CcmTree;
@@ -41,10 +42,11 @@ public class CcmElectronicFenceController extends BaseController {
 
 	@Autowired
 	private CcmElectronicFenceService ccmElectronicFenceService;
-
-//	@Autowired
-//	private CcmMobileDeviceService ccmMobileDeviceService;
-
+	
+	@Autowired
+	
+	private CcmMobileDeviceService ccmMobileDeviceService;
+	
 	@ModelAttribute
 	public CcmElectronicFence get(@RequestParam(required=false) String id) {
 		CcmElectronicFence entity = null;
@@ -85,20 +87,20 @@ public class CcmElectronicFenceController extends BaseController {
 		addMessage(redirectAttributes, "保存电子围栏成功");
 		//return "redirect:"+Global.getAdminPath()+"/fence/ccmElectronicFence/?repage";
 	}
-
+	
 	@RequiresPermissions("fence:ccmElectronicFence:edit")
 	@RequestMapping(value = "delete")
 	public String delete(CcmElectronicFence ccmElectronicFence, RedirectAttributes redirectAttributes) {
 		ccmElectronicFenceService.delete(ccmElectronicFence);
-//		//删除关联设备的规则
-//		ccmMobileDeviceService.delElecInfoByElecId(ccmElectronicFence.getId());
+		//删除关联设备的规则
+		ccmMobileDeviceService.delElecInfoByElecId(ccmElectronicFence.getId());
 		addMessage(redirectAttributes, "删除电子围栏成功");
 		return "redirect:"+Global.getAdminPath()+"/fence/ccmElectronicFence/?repage";
 	}
-
+	
 	@Autowired
 	private CcmTreeService ccmTreeService;
-
+	
 	/***
 	 * 电子围栏tree
 	 */

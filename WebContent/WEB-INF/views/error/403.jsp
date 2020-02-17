@@ -35,7 +35,7 @@ else {
 				out.print("<div>"+StringUtils.replace(ex.getMessage(), "msg:", "")+" <br/> <br/></div>");
 			}
 		%>
-		<div><a href="javascript:" onclick="history.go(-1);" class="btn">返回上一页</a></div>
+		<div><a style="width: 80px!important;" href="javascript:" onclick="history.go(-1);" class="btn">返回上一页</a></div>
 		<script>try{top.$.jBox.closeTip();}catch(e){}</script>
 	</div>
 </body>

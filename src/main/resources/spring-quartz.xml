@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	   default-lazy-init="false">
+
+	<!--配置任务类,也就是下面targetMethod所在的类-->
+	<bean id="statisticalDataCaching" class="com.arjjs.ccm.modules.tasks.StatisticalDataCaching" />
+	<!-- 配置job -->
+	<bean id="myJobDetail"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="statisticalDataCaching" />
+		</property>
+		<property name="targetMethod">
+			<value>execute</value>
+		</property>
+	</bean>
+	<!-- 配置触发器 -->
+	<bean id="crontestJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="myJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 0 * * ? *</value>
+		</property>
+	</bean>
+	<bean name="schedulerFactoryBean" lazy-init="false" autowire="no"
+		  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="crontestJobTrigger" />
+			</list>
+		</property>
+	</bean>
+</beans>

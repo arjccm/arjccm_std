@@ -15,6 +15,12 @@
         	return false;
         }
 	</script>
+
+	<style>
+		#s2id_leaveType{
+			width: 225px;
+		}
+	</style>
 </head>
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>

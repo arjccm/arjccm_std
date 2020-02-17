@@ -4,7 +4,12 @@
 package com.arjjs.ccm.modules.flat.deviceonline.service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import com.arjjs.ccm.modules.flat.deviceonline.entity.CcmUserOnline;
+import com.arjjs.ccm.modules.sys.entity.User;
+import com.arjjs.ccm.modules.sys.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +30,11 @@ public class CcmDeviceOnlineService extends CrudService<CcmDeviceOnlineDao, CcmD
 
 	@Autowired
 	private CcmDeviceOnlineDao ccmDeviceOnlineDao;
-	
+
+	private static List<User> user;
+
+	@Autowired
+	private SystemService systemService;
 	public CcmDeviceOnline getByDeviceId(String deviceId) {
 		return ccmDeviceOnlineDao.getByDeviceId(deviceId);
 	}
@@ -50,6 +59,17 @@ public class CcmDeviceOnlineService extends CrudService<CcmDeviceOnlineDao, CcmD
 	@Transactional(readOnly = false)
 	public void delete(CcmDeviceOnline ccmDeviceOnline) {
 		super.delete(ccmDeviceOnline);
+	}
+
+	public List<CcmUserOnline> getOnlineUser(){
+		if(user==null){
+			user = systemService.findUser(new User());
+		}
+
+		List<String> collect = user.stream().map(item -> item.getId()).collect(Collectors.toList());
+
+		List<CcmUserOnline> appOnlineUser = ccmDeviceOnlineDao.getAppOnlineUser(collect);
+		return appOnlineUser;
 	}
 	
 }

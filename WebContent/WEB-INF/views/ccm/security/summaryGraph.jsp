@@ -38,7 +38,7 @@
 	
 	<sys:message content="${message}"/>
 	    <br>
-	    <div class="row-fluid">
+	    <div class="row-fluid" id="blackech2">
 			
 					<h4>警卫单位任务完成情况</h4>
 					<div class="common-pading">
@@ -121,7 +121,7 @@
 					data: ['幺铺镇', '西航办事处', '宋旗镇'],
 					textStyle: {
 						fontWeight: 'normal', //标题颜色
-						color: '#000'
+						color: FontColor
 					},
 				},
 				grid: {
@@ -137,18 +137,18 @@
 					//min:0,
 					//max: 250000,
 					textStyle: {
-						color: '#000'
+						color: FontColor
 					},
 					axisLine: {
 						lineStyle: {
-							color: '#000',
+							color: FontColor,
 							width: 2
 						}
 					},
 					axisLabel: {
 						show: true,
 						textStyle: {
-							color: '#000'
+							color: FontColor
 						}
 					},
 					splitLine: {
@@ -163,14 +163,14 @@
 					},
 					axisLine: {
 						lineStyle: {
-							color: '#000',
+							color: FontColor,
 							width: 2
 						}
 					},
 					axisLabel: {
 						show: true,
 						textStyle: {
-							color: '#000'
+							color: FontColor
 						}
 					}
 				},

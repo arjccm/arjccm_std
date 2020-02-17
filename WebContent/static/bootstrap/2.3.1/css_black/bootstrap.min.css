@@ -1722,6 +1722,8 @@ legend+.control-group {
 .form-horizontal .control-label {
 	float: left;
 	width: 160px;
+	/*解决label字数过多引起换行问题*/
+	/*width: 195px;*/
 	padding-top: 5px;
 	/*text-align: right
 	color: black;*/

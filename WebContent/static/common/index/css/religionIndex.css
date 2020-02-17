@@ -55,9 +55,10 @@
 
 .right_part{
     width: calc(100% - 16vw);
-    height: calc(100vh - 90px);
+    /*height: calc(100vh - 90px);*/
     float: left;
     overflow: auto;
+    margin-top: 25px;
 }
 .right_part .r_part{
     padding: 0 2vw;

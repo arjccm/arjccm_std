@@ -136,6 +136,9 @@ public class CcmMapOtherController extends BaseController {
 
     @Autowired
     private CcmPlaceReligionService ccmPlaceReligionService;
+
+    @Autowired
+    private CcmPeopleService ccmPeopleServicec;
     /**
      * @param CcmOrgCommonality
      * @param model
@@ -809,7 +812,11 @@ public class CcmMapOtherController extends BaseController {
         //系统级别
         SysConfig sysConfig = SysConfigInit.SYS_LEVEL_CONFIG;
         model.addAttribute("sysConfig", sysConfig);
-        return "modules/sys/map/APPTerminal";
+        if ("wuchuan".equals(sysConfig.getObjId())) {//务川
+            return "modules/sys/map/APPTerminalWC";
+        } else {
+            return "modules/sys/map/APPTerminal";
+        }
     }
 
     //返回综治首页
@@ -1123,7 +1130,55 @@ public class CcmMapOtherController extends BaseController {
 
     // 返回新密宗教可视化界面
     @RequestMapping(value = "statIndexForZj", method = RequestMethod.GET)
-    public String statIndexForZj() {
+    public String statIndexForZj(Map<String,Object> map) {
+        //基督教
+        Integer i1 = ccmPeopleService.statIndexForZj(6);
+        //天主教
+        Integer i2 = ccmPeopleService.statIndexForZj(5);
+        //伊斯兰教
+        Integer i3 = ccmPeopleService.statIndexForZj(8);
+        //佛教
+        Integer i4 = ccmPeopleService.statIndexForZj(2);
+        //道教
+        Integer i5 = ccmPeopleService.statIndexForZj(4);
+        map.put("i1",i1);
+        map.put("i2",i2);
+        map.put("i3",i3);
+        map.put("i4",i4);
+        map.put("i5",i5);
+        //基督教
+        Integer z1 =ccmPlaceReligionService.statIndexForZj(01);
+        //天主教
+        Integer z2 =ccmPlaceReligionService.statIndexForZj(05);
+        //伊斯兰教
+        Integer z3 =ccmPlaceReligionService.statIndexForZj(02);
+        //佛教
+        Integer z4 =ccmPlaceReligionService.statIndexForZj(03);
+        //道教
+        Integer z5 =ccmPlaceReligionService.statIndexForZj(04);
+        map.put("z1",z1);
+        map.put("z2",z2);
+        map.put("z3",z3);
+        map.put("z4",z4);
+        map.put("z5",z5);
+
+        //宗教事件
+        Integer j1 = ccmEventIncidentService.statIndexForZj(06);
+        Integer j2 = ccmEventIncidentService.statIndexForZj(07);
+        Integer j3 = ccmEventIncidentService.statIndexForZj(Integer.parseInt("08"));
+        Integer j4 = ccmEventIncidentService.statIndexForZj(Integer.parseInt("09"));
+        Integer j5 = ccmEventIncidentService.statIndexForZj(05);
+        map.put("j1",j1);
+        map.put("j2",j2);
+        map.put("j3",j3);
+        map.put("j4",j4);
+        map.put("j5",j5);
+        map.put("j6",j5+j1+j2+j3+j4);
+
+
+        Page<CcmEventIncident> page = ccmEventIncidentService.findPage(new Page<CcmEventIncident>(),
+                new CcmEventIncident());
+        System.out.println(page.getTotalPage());
         return "modules/sys/index/statIndexZj";
     }
 
@@ -1907,5 +1962,11 @@ public class CcmMapOtherController extends BaseController {
         return inArea;
     }
 
+
+    // 返回三亚新型冠状病毒疫情首页
+    @RequestMapping(value = "antiepidemicCool", method = RequestMethod.GET)
+    public String antiepidemicCool(Model model) {
+        return "modules/sys/index/antiepidemicCool";
+    }
 
 }

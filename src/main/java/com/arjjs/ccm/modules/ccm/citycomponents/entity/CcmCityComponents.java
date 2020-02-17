@@ -14,34 +14,56 @@ import com.arjjs.ccm.common.persistence.DataEntity;
  * @version 2018-03-06
  */
 public class CcmCityComponents extends DataEntity<CcmCityComponents> {
-	
-	private static final long serialVersionUID = 1L;
-	private String type;		// 部件类型
-	private String name;		// 名称
-	private String code;		// 编号
-	private String competentDepartmentCode;		// 主管部门代码
-	private String competentDepartmentName;		// 主管部门名称
-	private String ownershipDepartmentCode;		// 权属部门代码
-	private String ownershipDepartmentName;		// 权属部门名称
-	private String maintainDepartmentCode;		// 养护部门代码
-	private String maintainDepartmentName;		// 养护部门名称
-	private String maintainDepartmentTel;		// 养护部门电话
-	private Area area;		// 设备所在区域
-	private String address;		// 详细地点
-	private String imagePath;		// 图片
-	private String spatialForm;		// 空间形态
-	private String status;		// 状态
-	private String areaMap;		// 坐标（面）
-	private String areaPoint;		// 坐标（点）
-	private String more1;  // Sql 查询语句
-	private String[] types; // 部件类型数组
 
-	public String[] getTypes() {
-		return types;
-	}
-	public void setTypes(String[] types) {
-		this.types = types;
-	}
+    private static final long serialVersionUID = 1L;
+    private String type;        // 部件类型
+    private String name;        // 名称
+    private String code;        // 编号
+    private String componentsNum; //数量
+    private String isDanger;  //是否是危险品
+    private String competentDepartmentCode;        // 主管部门代码
+    private String competentDepartmentName;        // 主管部门名称
+    private String ownershipDepartmentCode;        // 权属部门代码
+    private String ownershipDepartmentName;        // 权属部门名称
+    private String maintainDepartmentCode;        // 养护部门代码
+    private String maintainDepartmentName;        // 养护部门名称
+    private String maintainDepartmentTel;        // 养护部门电话
+    private Area area;        // 设备所在区域
+    private String address;        // 详细地点
+    private String imagePath;        // 图片
+    private String spatialForm;        // 空间形态
+    private String status;        // 状态
+    private String areaMap;        // 坐标（面）
+    private String areaPoint;        // 坐标（点）
+    private String more1;  // Sql 查询语句
+    private String[] types; // 部件类型数组
+
+    private String collectPeople;
+    private String collectPeopleName;
+
+    public String getCollectPeople() {
+        return collectPeople;
+    }
+
+    public void setCollectPeople(String collectPeople) {
+        this.collectPeople = collectPeople;
+    }
+
+    public String getCollectPeopleName() {
+        return collectPeopleName;
+    }
+
+    public void setCollectPeopleName(String collectPeopleName) {
+        this.collectPeopleName = collectPeopleName;
+    }
+
+    public String[] getTypes() {
+        return types;
+    }
+
+    public void setTypes(String[] types) {
+        this.types = types;
+    }
 
 	private User checkUser;		// 拦截器中使用该用户进行权限拦截，App的rest接口使用
 	public User getCheckUser() {
@@ -215,8 +237,24 @@ public class CcmCityComponents extends DataEntity<CcmCityComponents> {
 		return more1;
 	}
 
-	public void setMore1(String more1) {
-		this.more1 = more1;
-	}
-	
+    public void setMore1(String more1) {
+        this.more1 = more1;
+    }
+
+    public String getIsDanger() {
+        return isDanger;
+    }
+
+    public void setIsDanger(String isDander) {
+        this.isDanger = isDander;
+    }
+
+    public String getComponentsNum() {
+        return componentsNum;
+    }
+
+    public void setComponentsNum(String componentsNum) {
+        this.componentsNum = componentsNum;
+    }
+
 }

@@ -13,8 +13,10 @@
 		a.CREATE_DATE AS "createDate",
 		a.UPDATE_BY AS "updateBy.id",
 		a.UPDATE_DATE AS "updateDate",
+		a.relief_id AS "reliefId",
 		a.REMARKS AS "remarks",
 		a.DEL_FLAG AS "delFlag",
+		a.task_url AS "taskUrl",
 	    b.read_num,
 	    b.un_read_num
 	</sql>
@@ -149,7 +151,9 @@
 			UPDATE_BY,
 			UPDATE_DATE,
 			REMARKS,
-			DEL_FLAG
+			DEL_FLAG,
+			task_url,
+			relief_id
 		) VALUES (
 			#{id},
 			#{type},
@@ -162,7 +166,9 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{taskUrl},
+			#{reliefId}
 		)
 	</insert>
 	
@@ -175,7 +181,9 @@
 			STATUS = #{status},
 			UPDATE_BY = #{updateBy.id},
 			UPDATE_DATE = #{updateDate},
-			REMARKS = #{remarks}
+			REMARKS = #{remarks},
+			task_url = #{taskUrl},
+			relief_id = #{reliefId}
 		WHERE id = #{id}
 	</update>
 	

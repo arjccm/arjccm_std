@@ -25,6 +25,34 @@
 				}
 			});
 		});
+		function saveForm(){
+			var userId = $("#userId").val();
+			var groupIdId = $("#groupIdId").val();
+			var html1 = '<label for="" class="error">必填信息<label>';
+			if(userId.length!=0){
+				$("#show1").html("");
+			}else{
+				$("#show1").html(html1);
+				$("#userName").focus();
+			}
+			if(groupIdId.length!=0){
+				$("#show2").html("");
+			}else{
+				$("#show2").html(html1);
+				$("#groupIdName").focus();
+			}
+			//禁止页面提交
+			if(userId.length==0){
+				$("#show1").html(html1);
+				$("#userName").focus();
+				event.preventDefault();
+			}
+			if(groupIdId.length==0){
+				$("#show2").html(html1);
+				$("#groupIdName").focus();
+				event.preventDefault();
+			}
+		}
 	</script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
@@ -41,7 +69,7 @@
 			<div class="controls">
 				<sys:treeselect id="user" name="user.id" value="${ccmUserRelationship.user.id}" labelName="user.name" labelValue="${ccmUserRelationship.user.name}"
 					title="用户" url="/sys/office/treeData?type=3" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
-
+				<span class="help-inline"><font color="red" id="show1"></font> </span>
 			</div>
 		</div>
 		<div class="control-group">
@@ -49,6 +77,7 @@
 			<div class="controls">
 				<sys:treeselect id="groupId" name="groupId" value="${ccmUserRelationship.userGroup.id}" labelName="userGroup.groupname" labelValue="${ccmUserRelationship.userGroup.groupname}"
 					title="分组名称" url="/rest/ccmUserGroup/treeData" cssClass="" allowClear="true" notAllowSelectParent="true"/>
+				<span class="help-inline"><font color="red" id="show2"></font> </span>
 			</div>
 		</div>
 		
@@ -59,7 +88,7 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="rest:ccmUserRelationship:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
+			<shiro:hasPermission name="rest:ccmUserRelationship:edit"><input id="btnSubmit" class="btn btn-primary"  onclick="saveForm()" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

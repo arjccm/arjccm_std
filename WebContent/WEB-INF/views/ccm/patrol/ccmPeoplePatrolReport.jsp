@@ -88,6 +88,25 @@
     //         })
     //     })
     // })
+    var color;
+    var FontColor="#999";
+    var theme=$.cookie('theme');
+    if(theme=='gradient'){
+        color = [ '#25B8FE', '#2BE0D5', '#B180E4', '#FD93B6', '#53D5FF', '#F8C73C', '#1F8BFA', '#F77136',//循环一遍
+            '#25B8FE', '#2BE0D5', '#B180E4', '#FD93B6', '#53D5FF', '#F8C73C', '#1F8BFA', '#F77136' ];
+    }
+    else{
+
+        color = ['#D87A82', '#4573a7', '#89a54e', '#71588f', '#4298af', '#db843d',
+            '#93a9d0', '#d09392', '#b9ce96', '#a99bbc', '#92c3d4', '#ffdf5f'];
+    }
+    if(theme==undefined){
+        FontColor='#fff';
+    }else if(theme=='gradient'){
+        FontColor='#000';
+    }else if(theme=='black'){
+        FontColor='#fff';
+    }
 
     Date.prototype.format = function(fmt) {
         var o = {
@@ -110,22 +129,14 @@
         return fmt;
     }
 
-    var color;
 
-    var theme=$.cookie('theme');
-    if(theme=='gradient'){
-         color = [ '#25B8FE', '#2BE0D5', '#B180E4', '#FD93B6', '#53D5FF', '#F8C73C', '#1F8BFA', '#F77136',//循环一遍
-             '#25B8FE', '#2BE0D5', '#B180E4', '#FD93B6', '#53D5FF', '#F8C73C', '#1F8BFA', '#F77136' ];
-    }
-    else{
-
-         color = ['#D87A82', '#4573a7', '#89a54e', '#71588f', '#4298af', '#db843d',
-            '#93a9d0', '#d09392', '#b9ce96', '#a99bbc', '#92c3d4', '#ffdf5f'];
-    }
     option = {
         title: {
             text: '巡逻报告',
-            subtext: '数据统计'
+            subtext: '数据统计',
+            textStyle: {
+                color: FontColor
+            }
         },
         color: color,
         tooltip: {
@@ -149,21 +160,40 @@
             {
                 name:"日期",
                 type: 'category',
+                textStyle: {
+                    color: FontColor
+                },
+                axisLine:{
+                    lineStyle:{
+                        color:FontColor,
+                    }
+                },
                 data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
             }
         ],
         yAxis: [
             {
                 name:"数量",
-                type: 'value'
+                type: 'value',
+                textStyle: {
+                    color: FontColor
+                },
+                axisLine:{
+                    lineStyle:{
+                        color:FontColor,
+                    }
+                }
             }
         ],
         series: [
             {
-
                 type: 'bar',
+                axisLine:{
+                    lineStyle:{
+                        color:FontColor,
+                    }
+                },
                 data: [0, 0,0, 0, 0, 0,0, 0,0,0]
-
             }
         ]
     };
@@ -208,6 +238,9 @@
                     option.series[i]={
                         name: x,
                         type: 'bar',
+                        textStyle: {
+                            color: FontColor
+                        },
                         data: intArr[x]
                     }
                     i++;
