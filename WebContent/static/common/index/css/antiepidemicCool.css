@@ -788,7 +788,7 @@ div.jbox #search{
     }
 
     .header h5.header-logo {
-        background: url(../images/statIndexCool/headerLogo.png) no-repeat center;
+        /*background: url(../images/statIndexCool/headerLogo.png) no-repeat center;*/
         background-size: 100% 100%;
         line-height: 21px;
         letter-spacing: 10px;
@@ -1847,7 +1847,7 @@ div.jbox #search{
 	color: #0062E6;
 	position: absolute;
 	right: 0;
-	margin-top: 30px;
+	margin-top: 15px;
     width: 85px;
 }
 
@@ -1921,7 +1921,7 @@ div.jbox #search{
     position: absolute;
      width: 48px;
      height: 50px;
-    top: 35px;
+    top: 25px;
     left: -10px;
      background: url(../images/statIndexCool/jjgl2.png) center no-repeat;
  }
@@ -1930,7 +1930,7 @@ div.jbox #search{
     position: absolute;
     width: 48px;
     height: 50px;
-    top: 35px;
+    top: 25px;
     left: -10px;
     background: url(../images/statIndexCool/lgdgl.png) center no-repeat;
 }
@@ -1939,7 +1939,7 @@ div.jbox #search{
     position: absolute;
     width: 48px;
     height: 50px;
-    top: 35px;
+    top: 25px;
     left: -10px;
     background: url(../images/statIndexCool/qzgl.png) center no-repeat;
 }
@@ -1948,7 +1948,7 @@ div.jbox #search{
     position: absolute;
     width: 48px;
     height: 50px;
-    top: 35px;
+    top: 25px;
     left: -10px;
     background: url(../images/statIndexCool/yygl.png) center no-repeat;
 }

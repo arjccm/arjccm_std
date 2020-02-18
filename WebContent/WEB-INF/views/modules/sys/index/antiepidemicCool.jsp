@@ -169,25 +169,21 @@
             }
 
 #leftContent1{
-	height: 45%;
-	margin-bottom: 40px;
-}
-#leftContent2{
-	height: 45%;
+	margin-bottom: 4vh;
 }
 #rightContent1,#rightContent2,#rightContent3{
-	height: 30%;
+	height: 26.4vh;
 }
 			#rightContent1,#rightContent2{
-				margin-bottom: 20px;
+				margin-bottom: 3vh;
 			}
 .left-title{
-    width: 500px;
+    width: 26vw;
     position: relative;
     left: 38%;
 }
 .left-title p{
-	width:496px;
+	width:25.8vw;
 	height:29px;
 	font-size:30px;
 	font-family:PingFang SC;
@@ -200,7 +196,7 @@
     margin-top: 25px;
 }
 .topCol-t{
-    width: 237px;
+    width: 12.34vw;
     height: 84px;
     background: url("${ctxStatic}/images/topCol.png") no-repeat center center;
     background-size: 100% 100% ;
@@ -256,6 +252,13 @@
 #leftContent2Body{
     margin-top: 30px;
 }
+			#leftContent1,#leftContent2{
+				width: 28vw;
+				height: 41vh;
+			}
+			#topCol1{
+
+			}
 		</style>
 		<script>
 			$(function() {
@@ -380,16 +383,16 @@
 
 					</div>
 					<div id="topCol" class="topCol">
-						<div class="topCol-t">
+						<div class="topCol-t" id="topCol1">
 							<div class="topCol-t1"><p class="p1">湖北籍</p><p class="p2">7132</p></div>
 							<div class="topCol-t2"><p class="p1">非湖北籍</p><p class="p2">5510</p></div>
 						</div>
-                        <div class="topCol-t" style="text-align: center">
+                        <div class="topCol-t" id="topCol2" style="text-align: center">
                             <p class="p3">重点检测人员</p><p class="p4">12642</p>
                         </div>
-                        <div class="topCol-t">
+                        <div class="topCol-t" id="topCol3">
                             <div class="topCol-t1"><p class="p1">武汉籍</p><p class="p2">3924</p></div>
-                            <div class="topCol-t2"><p class="p1">湖北非武汉籍</p><p class="p2">3108</p></div>
+                            <div class="topCol-t2" style="margin-left: 20px!important;"><p class="p1">湖北非武汉籍</p><p class="p2">3108</p></div>
                         </div>
 					</div>
 					<div id="bottomCol" class="bottomCol">
