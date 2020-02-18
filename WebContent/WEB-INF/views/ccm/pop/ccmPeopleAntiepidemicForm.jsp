@@ -318,7 +318,12 @@
                 <div class="control-group">
                     <label class="control-label">是否移交卫健委：</label>
                     <div class="controls">
-                        <form:input path="isTransferHc" htmlEscape="false" maxlength="2" class="input-xlarge "/>
+                        <%--<form:input path="isTransferHc" htmlEscape="false" maxlength="2" class="input-xlarge "/>--%>
+                        <form:select path="isTransferHc"  cssStyle="width: 285px">
+                            <form:option value="" label="" />
+                            <form:options items="${fns:getDictList('is_key_place')}"
+                                          itemLabel="label" itemValue="value" htmlEscape="false" />
+                        </form:select>
                     </div>
                 </div>
             </td>
@@ -412,7 +417,12 @@
                 <div class="control-group">
                     <label class="control-label">上报状态：</label>
                     <div class="controls">
-                        <form:input path="reportStatus" htmlEscape="false" maxlength="2" class="input-xlarge "/>
+                        <%--<form:input path="reportStatus" htmlEscape="false" maxlength="2" class="input-xlarge "/>--%>
+                            <form:select path="reportStatus" cssStyle="width: 285px">
+                                <form:option value="" label="" />
+                                <form:options items="${fns:getDictList('sys_ccm_peopleantiepidemic_upload')}"
+                                              itemLabel="label" itemValue="value" htmlEscape="false" />
+                            </form:select>
                     </div>
                 </div>
             </td>

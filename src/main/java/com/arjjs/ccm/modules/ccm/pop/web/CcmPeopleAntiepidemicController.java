@@ -88,16 +88,16 @@ public class CcmPeopleAntiepidemicController extends BaseController {
 		if (!beanValidator(model, ccmPeopleAntiepidemic)){
 			return form(ccmPeopleAntiepidemic, model);
 		}
-        if(ccmPeopleAntiepidemic.getComeHainanDate()!=null){
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-			String dateString = formatter.format(ccmPeopleAntiepidemic.getComeHainanDate());
-            String num = DateTools.getTwoDay( DateTools.getStringDateShort(),dateString);
-            if(Integer.parseInt(num)>14){
-				ccmPeopleAntiepidemic.setIsIn14days("01");
-            } else {
-				ccmPeopleAntiepidemic.setIsIn14days("02");
-			}
-        }
+//        if(ccmPeopleAntiepidemic.getComeHainanDate()!=null){
+//			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//			String dateString = formatter.format(ccmPeopleAntiepidemic.getComeHainanDate());
+//            String num = DateTools.getTwoDay( DateTools.getStringDateShort(),dateString);
+//            if(Integer.parseInt(num)>14){
+//				ccmPeopleAntiepidemic.setIsIn14days("01");
+//            } else {
+//				ccmPeopleAntiepidemic.setIsIn14days("02");
+//			}
+//        }
 		ccmPeopleAntiepidemicService.save(ccmPeopleAntiepidemic);
 		addMessage(redirectAttributes, "保存人员疫情成功");
 		return "redirect:"+Global.getAdminPath()+"/pop/ccmPeopleAntiepidemic/?repage";

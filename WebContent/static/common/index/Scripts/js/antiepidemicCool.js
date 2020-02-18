@@ -1068,7 +1068,8 @@ var idArryiyuan = [];
 
 function yiyuanFun(_this) {
     if (yiyuanFlag) {
-        $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
+        // $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
+        $.getJSON('' + ctx + '/sys/map/findMapIndustry?type=2', function (
             data) {
             var features = data.features;
             var len = features.length;

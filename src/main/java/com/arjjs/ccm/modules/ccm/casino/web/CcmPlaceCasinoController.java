@@ -148,6 +148,8 @@ public class CcmPlaceCasinoController extends BaseController {
 			String id = UUID.randomUUID().toString();
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
+			ccmBasePlace.setAreaMap(ccmPlaceCasino.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceCasino.getAreaPoint());
 			ccmBasePlace.setPlaceType("ccm_place_casino");
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceCasino.setCcmBasePlace(ccmBasePlace);
@@ -156,6 +158,8 @@ public class CcmPlaceCasinoController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceCasino.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceCasino.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_casino");
+			ccmBasePlace.setAreaMap(ccmPlaceCasino.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceCasino.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceCasino.setCcmBasePlace(ccmBasePlace);
 		}
