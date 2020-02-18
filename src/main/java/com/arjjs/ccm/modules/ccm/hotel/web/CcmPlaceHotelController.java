@@ -87,6 +87,10 @@ public class CcmPlaceHotelController extends BaseController {
 		ccmBasePlace.setId(ccmPlaceHotel.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceHotel.setCcmBasePlace(ccmBasePlace2);
+		if(ccmBasePlace2 != null){
+			ccmPlaceHotel.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceHotel.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceHotel", ccmPlaceHotel);
 
 		if ("01".equals(ccmPlaceHotel.getType())) {
@@ -113,6 +117,9 @@ public class CcmPlaceHotelController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_hotel");
+
+			ccmBasePlace.setAreaMap(ccmPlaceHotel.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceHotel.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceHotel.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceHotel.setBasePlaceId(id);
@@ -120,6 +127,9 @@ public class CcmPlaceHotelController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceHotel.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceHotel.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_hotel");
+
+			ccmBasePlace.setAreaMap(ccmPlaceHotel.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceHotel.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceHotel.setCcmBasePlace(ccmBasePlace);
 		}
