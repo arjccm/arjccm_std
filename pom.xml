@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -249,9 +250,9 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>javax.servlet-api</artifactId> 
-			<version>3.0.1</version> <scope>provided</scope> </dependency> <dependency> 
-			<groupId>javax.servlet.jsp</groupId> <artifactId>jsp-api</artifactId> <version>2.2</version> 
+		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version> <scope>provided</scope> </dependency> <dependency>
+			<groupId>javax.servlet.jsp</groupId> <artifactId>jsp-api</artifactId> <version>2.2</version>
 			<scope>provided</scope> </dependency> -->
 		<!-- WEB end -->
 
@@ -349,7 +350,7 @@
 		</dependency>
 
 		<!-- 支持activiti缓存 -->
-		<!-- <dependency> <groupId>org.infinispan</groupId> <artifactId>infinispan-core</artifactId> 
+		<!-- <dependency> <groupId>org.infinispan</groupId> <artifactId>infinispan-core</artifactId>
 			<version>5.1.7.Final</version> </dependency> -->
 
 		<!-- LOGGING begin -->
@@ -477,7 +478,7 @@
 		    <artifactId>activemq-web</artifactId>
 		    <version>5.15.3</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
 		<dependency>
 		    <groupId>org.apache.activemq</groupId>
@@ -634,14 +635,14 @@
 			<systemPath>${project.basedir}/WebContent/WEB-INF/lib/UserAgentUtils-1.13.jar</systemPath>
 		</dependency>
 
-		<!-- 自定义jar依赖包 <dependency> <groupId>com.arjjs.ccm</groupId> <artifactId>test-core</artifactId> 
-			<version>1.0</version> <scope>system</scope> <systemPath>${project.basedir}/WebContent/WEB-INF/lib/test-core-1.0.jar</systemPath> 
+		<!-- 自定义jar依赖包 <dependency> <groupId>com.arjjs.ccm</groupId> <artifactId>test-core</artifactId>
+			<version>1.0</version> <scope>system</scope> <systemPath>${project.basedir}/WebContent/WEB-INF/lib/test-core-1.0.jar</systemPath>
 			</dependency> -->
 
-		<!-- 使用 Jetty JSP引擎 <dependency> <groupId>org.eclipse.jetty</groupId> <artifactId>jetty-jsp</artifactId> 
-			<version>${jetty.version}</version> <exclusions> <exclusion> <groupId>org.eclipse.jetty.orbit</groupId> 
-			<artifactId>javax.servlet</artifactId> </exclusion> <exclusion> <groupId>org.eclipse.jetty.orbit</groupId> 
-			<artifactId>org.apache.taglibs.standard.glassfish</artifactId> </exclusion> 
+		<!-- 使用 Jetty JSP引擎 <dependency> <groupId>org.eclipse.jetty</groupId> <artifactId>jetty-jsp</artifactId>
+			<version>${jetty.version}</version> <exclusions> <exclusion> <groupId>org.eclipse.jetty.orbit</groupId>
+			<artifactId>javax.servlet</artifactId> </exclusion> <exclusion> <groupId>org.eclipse.jetty.orbit</groupId>
+			<artifactId>org.apache.taglibs.standard.glassfish</artifactId> </exclusion>
 			</exclusions> </dependency> -->
 
 	</dependencies>
@@ -672,17 +673,17 @@
 				</configuration>
 			</plugin>
 
-			<!-- 混淆代码 <plugin> <groupId>com.github.wvengen</groupId> <artifactId>proguard-maven-plugin</artifactId> 
-				<version>2.0.11</version> <executions> <execution> <phase>prepare-package</phase> 
-				<goals> <goal>proguard</goal> </goals> </execution> </executions> <configuration> 
-				<obfuscate>true</obfuscate> <options> <option>-injars ${project.build.directory}/${project.artifactId}/WEB-INF/lib/jeesite.jar</option> 
-				</options> <outjar>${project.artifactId}/WEB-INF/lib/jeesite_out.jar</outjar> 
-				<outputDirectory>${project.build.directory}</outputDirectory> <proguardInclude>${basedir}/proguard.cfg</proguardInclude> 
-				<source>${jdk.version}</source> <target>${jdk.version}</target> <encoding>${project.build.sourceEncoding}</encoding> 
-				<libs> <lib>${java.home}/lib/rt.jar</lib> <lib>${java.home}/lib/jsse.jar</lib> 
-				<lib>${java.home}/lib/jce.jar</lib> </libs> <addMavenDescriptor>false</addMavenDescriptor> 
-				</configuration> <dependencies> <dependency> <groupId>net.sf.proguard</groupId> 
-				<artifactId>proguard-base</artifactId> <version>4.9</version> <scope>runtime</scope> 
+			<!-- 混淆代码 <plugin> <groupId>com.github.wvengen</groupId> <artifactId>proguard-maven-plugin</artifactId>
+				<version>2.0.11</version> <executions> <execution> <phase>prepare-package</phase>
+				<goals> <goal>proguard</goal> </goals> </execution> </executions> <configuration>
+				<obfuscate>true</obfuscate> <options> <option>-injars ${project.build.directory}/${project.artifactId}/WEB-INF/lib/jeesite.jar</option>
+				</options> <outjar>${project.artifactId}/WEB-INF/lib/jeesite_out.jar</outjar>
+				<outputDirectory>${project.build.directory}</outputDirectory> <proguardInclude>${basedir}/proguard.cfg</proguardInclude>
+				<source>${jdk.version}</source> <target>${jdk.version}</target> <encoding>${project.build.sourceEncoding}</encoding>
+				<libs> <lib>${java.home}/lib/rt.jar</lib> <lib>${java.home}/lib/jsse.jar</lib>
+				<lib>${java.home}/lib/jce.jar</lib> </libs> <addMavenDescriptor>false</addMavenDescriptor>
+				</configuration> <dependencies> <dependency> <groupId>net.sf.proguard</groupId>
+				<artifactId>proguard-base</artifactId> <version>4.9</version> <scope>runtime</scope>
 				</dependency> </dependencies> </plugin> -->
 
 			<!-- war 打包插件, 设定war包名称不带版本号 -->
@@ -717,7 +718,7 @@
 						,
 						test/**
 					</warSourceExcludes>
-					<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory><!-- 
+					<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory><!--
 						<webXml>${project.basedir}/target/jspweb.xml</webXml> -->
 					<warName>${project.artifactId}</warName>
 				</configuration>

@@ -38,7 +38,7 @@
 			</li>
 
 			<li class="btns">
-				<a onclick="parent.LayerDialog('${ctx}/list/ccmList/form', '添加', '600px', '500px')" class="btn btn-success">
+				<a onclick="parent.LayerDialog('${ctx}/list/ccmList/form', '添加', '600px', '500px')" class="btn btn-primary">
 					<i class="icon-plus"></i> 添加
 				</a>
 			</li>
