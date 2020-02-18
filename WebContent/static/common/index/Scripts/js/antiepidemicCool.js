@@ -45,7 +45,7 @@ $(function () {
 
     var context = $(".context").attr("content");
 
-
+    var noCache = new Date();
 
     //疫情人员年龄段
     showechleftContent1();
@@ -646,6 +646,85 @@ $(function () {
     }
 
 
+    //户籍统计信息
+    getCountdomicile();
+    function getCountdomicile() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCountdomicile", {"noCache": noCache}, function (data) {
+            var value = data['type'];
+            var value1 = data['value'];
+            var value2 = data['value1'];
+            var value3 = data['value2'];
+            var value4 = data['value3'];
+
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+    //人员隔离措施
+    getCounttakeSteps();
+    function getCounttakeSteps() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCounttakeSteps", {"noCache": noCache}, function (data) {
+            var value1 = data['value'];
+            var value2 = data['value1'];
+            var value3 = data['value2'];
+            var value4 = data['value3'];
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+    //人员现状
+    getCountstatus();
+    function getCountstatus() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCountstatus", {"noCache": noCache}, function (data) {
+            var value1 = data['value'];
+            var value2 = data['value1'];
+            var value3 = data['value2'];
+            var value4 = data['value3'];
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+    //人员分布
+    getDistribution();
+    function getDistribution() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getDistribution", {"noCache": noCache}, function (data) {
+            var value1 = data['type'];
+            var value2 = data['value'];
+
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+
+    //人员入琼趋势
+    countBycomeHainanDate();
+    function countBycomeHainanDate() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/countBycomeHainanDate", {"noCache": noCache}, function (data) {
+            var value1 = data['type'];
+            var value2 = data['value'];
+
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+
+    //人员年龄段
+    getCountage();
+    function getCountage() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCountage", {"noCache": noCache}, function (data) {
+            debugger;
+            var value1 = data['type'];
+            var value2 = data['value'];
+
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
 
     /********************地图***********************/
     //地图
