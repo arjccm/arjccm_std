@@ -7,7 +7,7 @@ var windowsHeight, _fontSize = 14, _fontSize1 = 26, _fontSize2 = 24, _fontSize3 
 
 var streetFlag, vccmorgFlag, communityFlag, gridFlag, buildFlag, eventFlag, partsFlag, landsFlag, videoFlag,
     broadcastFlag, policeroomFlag, workstationFlag, schoolPlaceFlag, keyPlaceFlag, keyPersonFlag, rentingPersonFlag,
-    publicPlaceFlag, popLocationFlag, SetTopBoxFlag, zongjiaoFunflag;
+    publicPlaceFlag, popLocationFlag, SetTopBoxFlag,zongjiaoFunflag;
 streetFlag = true;
 communityFlag = false;
 gridFlag = false;
@@ -312,7 +312,7 @@ $(function () {
     function hideDivChat(bool) {
         if (bool == 0) {
             $("#leftContent1").find('.contentTitle').text('人口基础数据');
-            $("#leftContent2").find('.contentTitle').text('宗教事务局工作力量');
+            $("#leftContent2").find('.contentTitle').text('工作力量');
             $("#leftContent3").find('.contentTitle').text('重点人员top5');
             $("#leftContent0").hide();
             $("#leftContent1").show();
@@ -770,7 +770,8 @@ var idArryiyuan = [];
 
 function yiyuanFun(_this) {
     if (yiyuanFlag) {
-        $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
+        // $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
+        $.getJSON('' + ctx + '/sys/map/findMapIndustry?type=2', function (
             data) {
             var features = data.features;
             var len = features.length;
@@ -2310,12 +2311,12 @@ function getPeopleData(noCache) {
 function showPeopleData(dataList) {
 
     var dataMap = {
-        '无信仰': dataList[5],
+        '佛教': dataList[3],
         '伊斯兰教': dataList[2],
         '基督教': dataList[0],
         '天主教': dataList[1],
         '道教': dataList[4],
-        '佛教': dataList[3],
+        '其他': dataList[5],
     }
 
     var piebg = {
@@ -2333,6 +2334,7 @@ function showPeopleData(dataList) {
         animation: false
     };
     var option = {
+        color: ['#0cb4eb','#2277e1', '#2449e2', '#8c43eb', '#add632','#4acf77'],
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -2344,11 +2346,12 @@ function showPeopleData(dataList) {
             icon: 'rect',
             itemWidth: 10,  // 设置宽度
             itemHeight: 10, // 设置高度
-            data: ['无信仰', '伊斯兰教', '基督教', '天主教', '道教', '佛教'],
+            data: ['佛教', '伊斯兰教', '基督教', '天主教', '道教','其他'],
             textStyle: {//图例文字的样式
                 color: '#fff',
                 fontSize: 14,
                 rich: {
+                    // align:'right',
                     align: 'right',
                     title: {
                         fontFamily: 'Microsoft YaHei',
@@ -2356,17 +2359,17 @@ function showPeopleData(dataList) {
                         // width: 59,
                         fontSize: 12,
                         // lineHeight: 1,
-                        color: "#FFFFFF"
+                        color: "#FFFFFF",
+                        width:"100%"
                     },
                     value: {
                         fontFamily: 'Microsoft YaHei',
-                        fontWeight: 'bold',
                         fontSize: 12,
                         lineHeight: 18,
-                        padding: [0, 6, 0, 10],
+                        padding: [0, 0, 0, 15],
                         color: "#FFFFFF",
                         // width: 30,
-                        align: 'right'
+                        align:'left'
                     },
                     unit: {
                         fontFamily: 'Microsoft YaHei',
@@ -2403,12 +2406,12 @@ function showPeopleData(dataList) {
                     }
                 },
                 data: [
-                    {value: dataList[5], name: '无信仰'},
+                    {value: dataList[3], name: '佛教'},
                     {value: dataList[2], name: '伊斯兰教'},
                     {value: dataList[0], name: '基督教'},
                     {value: dataList[1], name: '天主教'},
                     {value: dataList[4], name: '道教'},
-                    {value: dataList[3], name: '佛教'}
+                    {value: dataList[5], name: '其他'}
 
                 ]
 
@@ -2646,12 +2649,12 @@ function showKeyPersonnel(name, value) {
             left: '8%',
             right: '8%',
             bottom: '8%',
-            containLabel: true,
+            containLabel: true
 
         },
         xAxis: {
             type: 'value',
-            boundaryGap: [0, 0.01],
+            // boundaryGap: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90],
             min: 0,
             rotate: 0,
             margin: 10,
@@ -2747,7 +2750,7 @@ function showKeyPersonnel(name, value) {
 
 
 // 安全隐患统计
-function showSafeCount(data1,value) {
+function showSafeCount() {
 
     option = {
         color: ['#3398DB'],
@@ -2757,7 +2760,7 @@ function showSafeCount(data1,value) {
             axisPointer: {
                 type: 'shadow'
             },
-            formatter: "{b} <br> 次数: {c}"
+            formatter: "{b} <br> 件数: {c}"
         },
         /*legend: {
             data: [date]
@@ -2961,7 +2964,7 @@ function showHouseData(dataList, dataList1) {
             {
                 orient: 'horizontal',
                 left: '5%',
-                top: '70%',
+                top: '65%',
                 width: '50%',
                 icon: 'rect',
                 align: 'left',
@@ -2980,12 +2983,12 @@ function showHouseData(dataList, dataList1) {
             {
                 orient: 'horizontal',
                 left: '55%',
-                top: '70%',
+                top: '65%',
                 icon: 'rect',
                 itemWidth: 10,  // 设置宽度
                 itemHeight: 10, // 设置高度
                 itemGap: 12,
-                data: ['小型活动', '中型活动', '大型活动', '特大型活动',],
+                data: ['小型活动','大型活动','中型活动','特大型活动',],
                 textStyle: {//图例文字的样式
                     color: '#fff',
                     fontSize: 12,
@@ -3007,6 +3010,7 @@ function showHouseData(dataList, dataList1) {
                         }
                     }
                 },
+                color:['#0cd5a6', '#0ea3d9', '#1163de', '#990dd7', '#d92a7c','#d58314', '#c7e117'],
                 name: '数据',
                 type: 'pie',
                 radius: ['33%', '50%'],
@@ -3030,6 +3034,7 @@ function showHouseData(dataList, dataList1) {
                         }
                     }
                 },
+                color:['#0fb1ea', '#2449e2', '#2671e1', '#8546e8'],
                 name: '数据',
                 type: 'pie',
                 radius: ['33%', '50%'],

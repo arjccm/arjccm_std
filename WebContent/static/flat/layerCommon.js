@@ -81,7 +81,8 @@ var publicPlaceFlag = true;
 var idArryiyuan=[];
 function yiyuanFun(_this) {
 	if (yiyuanFlag) {
-		$.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function(
+		// $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
+		$.getJSON('' + ctx + '/sys/map/findMapIndustry?type=2', function (
 				data) {
 			if (data != null && data != '' && data != undefined) {
 				var features=data.features;

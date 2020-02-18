@@ -399,7 +399,6 @@
 								<span class="p_num">26 人</span>
 							</div>
 							<span class="p_text">工作人员</span>
-							<span class="p_num">30 人</span>
 						</div>
 						<div class="p_part">
 							<div  id="power3" class="power">
@@ -434,73 +433,73 @@
 			</div>
 
 			<div id="CentralPart" class="CentralPart" >
-
-				<div class="c_part">
-					<p class="sectName">基督教</p>
-					<p class="sectNum">
-						<span class="lvfont">教堂</span>
-						<span class="lanfont">${z1}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i1}</span>
-						<span class="lvfont">人</span>
-					</p>
+				<div class="centralPart_area clearfix">
+					<div class="c_part">
+						<p class="sectName">基督教</p>
+						<p class="sectNum">
+							<span class="lvfont">教堂：</span>
+							<span class="lanfont">${z1}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒：</span>
+							<span class="lanfont">${i1}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
+					<div class="c_part">
+						<p class="sectName">天主教</p>
+						<p class="sectNum">
+							<span class="lvfont">教堂：</span>
+							<span class="lanfont">${z2}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒：</span>
+							<span class="lanfont">${i2}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
+					<div class="c_part">
+						<p class="sectName">伊斯兰教</p>
+						<p class="sectNum">
+							<span class="lvfont">清真寺：</span>
+							<span class="lanfont">${z3}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒：&#12288</span>
+							<span class="lanfont">${i3}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
+					<div class="c_part">
+						<p class="sectName">佛教</p>
+						<p class="sectNum">
+							<span class="lvfont">寺庵：</span>
+							<span class="lanfont">${z4}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒：</span>
+							<span class="lanfont">${i4}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
+					<div class="c_part">
+						<p class="sectName">道教</p>
+						<p class="sectNum">
+							<span class="lvfont">宫观：</span>
+							<span class="lanfont">${z5}</span>
+							<span class="lvfont">个</span>
+						</p>
+						<p class="sectNum">
+							<span class="lvfont">信徒：</span>
+							<span class="lanfont">${i5}</span>
+							<span class="lvfont">人</span>
+						</p>
+					</div>
 				</div>
-				<div class="c_part">
-					<p class="sectName">天主教</p>
-					<p class="sectNum">
-						<span class="lvfont">教堂</span>
-						<span class="lanfont">${z2}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i2}</span>
-						<span class="lvfont">人</span>
-					</p>
-				</div>
-				<div class="c_part">
-					<p class="sectName">伊斯兰教</p>
-					<p class="sectNum">
-						<span class="lvfont">清真寺</span>
-						<span class="lanfont">${z3}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i3}</span>
-						<span class="lvfont">人</span>
-					</p>
-				</div>
-				<div class="c_part">
-					<p class="sectName">佛教</p>
-					<p class="sectNum">
-						<span class="lvfont">寺、庵</span>
-						<span class="lanfont">${z4}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i4}</span>
-						<span class="lvfont">人</span>
-					</p>
-				</div>
-				<div class="c_part">
-					<p class="sectName">道教</p>
-					<p class="sectNum">
-						<span class="lvfont">宫、观</span>
-						<span class="lanfont">${z5}</span>
-						<span class="lvfont">个</span>
-					</p>
-					<p class="sectNum">
-						<span class="lvfont">信徒</span>
-						<span class="lanfont">${i5}</span>
-						<span class="lvfont">人</span>
-					</p>
-				</div>
-
 
 
 			</div>
@@ -744,20 +743,21 @@
 				</div>
 			</div>
 
-			<div id="bottomCol" class="bottomCol">
-				<div style="padding-left: 50px;padding-top: 20px;">
+			<div id="bottomCol" class="bottomCol zjlist_area">
+				<div class="clearfix">
 					<!-- 基督教 -->
 					<div class="bottom_icon" onclick="zongjiaoFun(this,'01')">
 						<span class="pub-icon icon-jidujiao"></span><span class="pub-name">基督教</span>
 					</div>
+                    <!-- 伊斯兰教 -->
+                    <div class="bottom_icon" onclick="zongjiaoFun(this,'02')">
+                        <span class="pub-icon icon-yisilanjiao"></span><span class="pub-name">伊斯兰教</span>
+                    </div>
 					<!-- 天主教 -->
 					<div class="bottom_icon" onclick="zongjiaoFun(this,'05')">
 						<span class="pub-icon icon-tianzhujiao"></span><span class="pub-name">天主教</span>
 					</div>
-					<!-- 伊斯兰教 -->
-					<div class="bottom_icon" onclick="zongjiaoFun(this,'02')">
-						<span class="pub-icon icon-yisilanjiao"></span><span class="pub-name">伊斯兰教</span>
-					</div>
+
 					<!-- 佛教 -->
 					<div class="bottom_icon" onclick="zongjiaoFun(this,'03')">
 						<span class="pub-icon icon-fojiao"></span><span class="pub-name">佛教</span>
@@ -766,18 +766,18 @@
 					<div class="bottom_icon" onclick="zongjiaoFun(this,'04')">
 						<span class="pub-icon icon-daojiao"></span><span class="pub-name">道教</span>
 					</div>
-					<!-- 医院 -->
-					<div class="bottom_icon" onclick="yiyuanFun(this)">
-						<span class="pub-icon icon-yiyuan"></span></span><span class="pub-name">医院</span>
-					</div>
-					<!-- 加油站 -->
-					<div class="bottom_icon" onclick="jiayouzhanFun(this)">
-						<span class="pub-icon icon-jiayouzhans"></span></span><span class="pub-name">加油站</span>
-					</div>
 					<!-- 视频监控 -->
 					<div class="bottom_icon" onclick="shipinjiankongFun(this)" id="VideoFlag" VideoFlagAttr="false">
 						<span class="pub-icon icon-shipins"></span><span class="pub-name">视频监控</span>
 					</div>
+                    <!-- 医院 -->
+                    <div class="bottom_icon" onclick="yiyuanFun(this)">
+                        <span class="pub-icon icon-yiyuan"></span></span><span class="pub-name">医院</span>
+                    </div>
+                    <!-- 加油站 -->
+                    <div class="bottom_icon" onclick="jiayouzhanFun(this)">
+                        <span class="pub-icon icon-jiayouzhans"></span></span><span class="pub-name">加油站</span>
+                    </div>
 				</div>
 			</div>
 

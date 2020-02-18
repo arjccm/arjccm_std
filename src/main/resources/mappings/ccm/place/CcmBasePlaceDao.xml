@@ -103,6 +103,7 @@
 	<sql id="ccmBasePlaceJoins">
 		LEFT JOIN sys_area s ON s.id = a.administrative_division
 	</sql>
+
 	<sql id="ccmBasePlaceJoinsUser">
 		LEFT JOIN sys_user b ON b.id = a.create_by
 	</sql>
@@ -374,4 +375,20 @@
 			baseplace.place_type
 	</select>
 
+	<select id="queryPlaceBase" parameterType="com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceVO" resultType="com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceEntity">
+		SELECT
+			t2.id,t2.place_name,t2.address,t2.worker_number,t2.key_point,t2.leader_name,t2.leader_contact,t2.area_point ,t2.area_map,
+			t3.id AS "area.id",t3.name AS "area.name"
+		FROM
+			${placeName} t1
+		INNER JOIN ccm_base_place t2 on t2.id = t1.base_place_id
+		INNER JOIN sys_area t3 on t2.administrative_division = t3.id
+		WHERE
+		<if test="placeTypes !=null and placeTypes != ''">
+			 t1.type in
+			<foreach collection="placeTypes" item="item" index="index" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</select>
 </mapper>

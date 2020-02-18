@@ -24,7 +24,10 @@ import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseSchoolrimService;
 import com.arjjs.ccm.modules.ccm.org.entity.*;
 import com.arjjs.ccm.modules.ccm.org.service.*;
+import com.arjjs.ccm.modules.ccm.place.dao.CcmBasePlaceDao;
 import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlace;
+import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceEntity;
+import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceVO;
 import com.arjjs.ccm.modules.ccm.place.service.CcmBasePlaceService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
@@ -139,6 +142,9 @@ public class CcmMapOtherController extends BaseController {
 
     @Autowired
     private CcmPeopleService ccmPeopleServicec;
+
+    @Autowired
+    private CcmBasePlaceDao ccmBasePlaceDao;
     /**
      * @param CcmOrgCommonality
      * @param model
@@ -1492,57 +1498,98 @@ public class CcmMapOtherController extends BaseController {
         CcmOrgNpse ccmOrgNpseDto = new CcmOrgNpse();
         // 生成 非公有制所属行业的 list
         List<CcmOrgNpse> ccmOrgNpseList = new ArrayList<>();
+        CcmBasePlaceVO basePlaceVO = new CcmBasePlaceVO();
+        //modify by maoxb 2020-02-17
+        List<CcmBasePlaceEntity> ccmBasePlaceList = new ArrayList<>();
         if (!StringUtils.isEmpty(type)) {
-            if ("1".equals(type)) {
+            if ("1".equals(type)) { //加油站
+                basePlaceVO.setPlaceName("ccm_place_traffic");
+                String[] placeType ={"03"};
+                basePlaceVO.setPlaceTypes(placeType);
+                ccmBasePlaceList = ccmBasePlaceDao.queryPlaceBase(basePlaceVO);
+            }
+            if ("3".equals(type)) {//娱乐场所
+                basePlaceVO.setPlaceName("ccm_place_casino");
+                String[] placeType ={"01","02","03","04","05","06","07","08"};
+                basePlaceVO.setPlaceTypes(placeType);
+                ccmBasePlaceList = ccmBasePlaceDao.queryPlaceBase(basePlaceVO);
+            }
+            if ("4".equals(type)) {//酒店宾馆
+                basePlaceVO.setPlaceName("ccm_place_hotel");
+                String[] placeType ={"01","02"};
+                basePlaceVO.setPlaceTypes(placeType);
+                ccmBasePlaceList = ccmBasePlaceDao.queryPlaceBase(basePlaceVO);
+            }
+            if ("2".equals(type)) {//医院
+                basePlaceVO.setPlaceName("ccm_place_hospital");
+                String[] placeType ={"01"};
+                basePlaceVO.setPlaceTypes(placeType);
+                ccmBasePlaceList = ccmBasePlaceDao.queryPlaceBase(basePlaceVO);
+            }
+          /*  if ("1".equals(type)) { //加油站
                 String[] industryList = {"加油站", "石油", "石化", "燃料"};
                 ccmOrgNpseDto.setIndustryList(industryList);
                 ccmOrgNpseList = ccmOrgNpseService.findList(ccmOrgNpseDto);
             }
-            if ("2".equals(type)) {
+           if ("2".equals(type)) { //商场超市
                 String[] industryList = {"超市", "商店", "小卖部", "商场", "购物", "商厦", "百货", "零售", "批发"};
                 ccmOrgNpseDto.setIndustryList(industryList);
                 ccmOrgNpseList = ccmOrgNpseService.findList(ccmOrgNpseDto);
             }
-            if ("3".equals(type)) {
+            if ("3".equals(type)) {//娱乐场所
                 String[] industryList = {"电影院", "电子综艺", "娱乐", "互联网", "量贩式", "唱歌", "上网", "台球", "棋牌", "网吧", "洗浴", "足疗", "游泳", "KTV", "ktv", "足浴", "酒吧", "夜店", "网咖", "电玩"};
                 ccmOrgNpseDto.setIndustryList(industryList);
                 ccmOrgNpseList = ccmOrgNpseService.findList(ccmOrgNpseDto);
             }
-            if ("4".equals(type)) {
+            if ("4".equals(type)) {//酒店宾馆
                 String[] industryList = {"酒店", "宾馆", "旅馆", "住宿", "饭店", "民宿", "露营"};
                 ccmOrgNpseDto.setIndustryList(industryList);
                 ccmOrgNpseList = ccmOrgNpseService.findList(ccmOrgNpseDto);
             }
-            if ("5".equals(type)) {
+            if ("5".equals(type)) {//涉危涉爆
                 ccmOrgNpseDto.setDangComp(1);
                 ccmOrgNpseList = ccmOrgNpseService.findList(ccmOrgNpseDto);
-            }
+            }*/
         }
 
         // 返回对象
         GeoJSON geoJSON = new GeoJSON();
         List<Features> featureList = new ArrayList<Features>();
         // 重点场所
-        for (CcmOrgNpse ccmorgnpse : ccmOrgNpseList) {
+        //for (CcmOrgNpse ccmorgnpse : ccmOrgNpseList) {
+         for (CcmBasePlaceEntity basePlace : ccmBasePlaceList) {
             // 特征属性
             Features featureDto = new Features();
             Properties properties = new Properties();
             System.out.println(featureDto.getId());
             // 1 type 默认不填
             // 2 id 添加
-            featureDto.setId(ccmorgnpse.getId());
+            featureDto.setId(basePlace.getId());
             // 3 properties 展示属性信息
-            properties.setName(ccmorgnpse.getCompName());
-            properties.setIcon(ccmorgnpse.getIcon());
+            properties.setName(basePlace.getPlaceName());
+            properties.setIcon("");
             Map<String, Object> map = new HashMap<String, Object>();
             // 创建附属信息
-            map.put("工商执照注册号", ccmorgnpse.getCompId());
-            map.put("企业地址", ccmorgnpse.getCompAdd());
-            map.put("企业员工数", ccmorgnpse.getCompanyNum() + "");
-            map.put("企业重点类型", DictUtils.getDictLabel(ccmorgnpse.getCompImpoType(), "comp_impo_type", ""));
+            /*map.put("工商执照注册号",basePlace.getAddress());*/
+            map.put("企业地址", basePlace.getAddress());
+            map.put("企业员工数", basePlace.getWorkerNumber() + "");
+            String[] split = basePlace.getKeyPoint().split(",");
+            StringBuilder placeImportant = new StringBuilder();
+            String strPlaceImportant="";
+            for(int i = 0; i<split.length;i++){
+                if(!"".equals(split[i])&& null != split[i]){
+                    strPlaceImportant = DictUtils.getDictLabel(split[i], "ccm_place_important", "");
+                }
+                if (StringUtils.isNotBlank(placeImportant)){
+                    placeImportant.append(',');
+                }
+                placeImportant.append(strPlaceImportant);
+            }
+
+            map.put("企业重点类型", placeImportant.toString());
             String name = "";
-            if (ccmorgnpse.getArea() != null && ccmorgnpse.getArea().getId() != null && !"".equals(ccmorgnpse.getArea().getId())) {
-                name = ccmorgnpse.getArea().getName();
+            if (basePlace.getArea() != null && basePlace.getArea().getId() != null && !"".equals(basePlace.getArea().getId())) {
+                name = basePlace.getArea().getName();
             }
             map.put("所属区域", name);
             properties.addInfo(map);
@@ -1554,9 +1601,9 @@ public class CcmMapOtherController extends BaseController {
             // 点位信息 测试为面
             geometry.setType("Polygon");
             // 添加具体数据
-            if (!StringUtils.isEmpty(ccmorgnpse.getAreaPoint())) {
+            if (!StringUtils.isEmpty(basePlace.getAreaPoint())) {
                 // 获取中心点的值
-                String[] centpoint = ccmorgnpse.getAreaPoint().split(",");
+                String[] centpoint = basePlace.getAreaPoint().split(",");
                 // 图层中心点
                 geoJSON.setCentpoint(centpoint);
                 // 图形中心点
@@ -1565,7 +1612,7 @@ public class CcmMapOtherController extends BaseController {
             // 封装的list 以有孔与无孔进行添加
             List<Object> CoordinateslistR = new ArrayList<>();
             // 以下是无孔面积数组
-            String[] coordinates = (StringUtils.isEmpty(ccmorgnpse.getAreaMap()) ? ";" : ccmorgnpse.getAreaMap())
+            String[] coordinates = (StringUtils.isEmpty(basePlace.getAreaMap()) ? ";" : basePlace.getAreaMap())
                     .split(";");
             // 返回无孔结果 2层数据一个数据源
             List<String[]> Coordinateslist = new ArrayList<>();
