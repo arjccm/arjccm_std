@@ -90,6 +90,10 @@ public class CcmPlaceLiveController extends BaseController {
 		ccmBasePlace.setId(ccmPlaceLive.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceLive.setCcmBasePlace(ccmBasePlace2);
+		if(ccmBasePlace2 != null){
+			ccmPlaceLive.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceLive.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceLive", ccmPlaceLive);
 		if ("1".equals(ccmPlaceLive.getType())) {
 			return "ccm/live/ccmPlaceLiveForm";
@@ -110,6 +114,10 @@ public class CcmPlaceLiveController extends BaseController {
 		ccmBasePlace.setId(ccmPlaceLive.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceLive.setCcmBasePlace(ccmBasePlace2);
+		if(ccmBasePlace2 != null){
+			ccmPlaceLive.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceLive.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceLive", ccmPlaceLive);
 		if ("1".equals(ccmPlaceLive.getType())) {
 			return "ccm/live/ccmPlaceLiveForm";
@@ -138,6 +146,8 @@ public class CcmPlaceLiveController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_live");
+			ccmBasePlace.setAreaMap(ccmPlaceLive.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceLive.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceLive.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceLive.setBasePlaceId(id);
@@ -145,6 +155,8 @@ public class CcmPlaceLiveController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceLive.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceLive.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_live");
+			ccmBasePlace.setAreaMap(ccmPlaceLive.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceLive.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceLive.setCcmBasePlace(ccmBasePlace);
 		}
@@ -175,6 +187,8 @@ public class CcmPlaceLiveController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_live");
+			ccmBasePlace.setAreaMap(ccmPlaceLive.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceLive.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceLive.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceLive.setBasePlaceId(id);
@@ -182,6 +196,8 @@ public class CcmPlaceLiveController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceLive.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceLive.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_live");
+			ccmBasePlace.setAreaMap(ccmPlaceLive.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceLive.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceLive.setCcmBasePlace(ccmBasePlace);
 		}
@@ -213,6 +229,8 @@ public class CcmPlaceLiveController extends BaseController {
             ccmBasePlace.setId(id);
             ccmBasePlace.setIsNewRecord(true);
             ccmBasePlace.setPlaceType("ccm_place_live");
+			ccmBasePlace.setAreaMap(ccmPlaceLive.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceLive.getAreaPoint());
             ccmBasePlaceService.save(ccmBasePlace);
             ccmPlaceLive.setCcmBasePlace(ccmBasePlace);
             ccmPlaceLive.setBasePlaceId(id);
@@ -220,6 +238,8 @@ public class CcmPlaceLiveController extends BaseController {
             CcmBasePlace ccmBasePlace = ccmPlaceLive.getCcmBasePlace();
             ccmBasePlace.setId(ccmPlaceLive.getBasePlaceId());
             ccmBasePlace.setPlaceType("ccm_place_live");
+			ccmBasePlace.setAreaMap(ccmPlaceLive.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceLive.getAreaPoint());
             ccmBasePlaceService.save(ccmBasePlace);
             ccmPlaceLive.setCcmBasePlace(ccmBasePlace);
         }
