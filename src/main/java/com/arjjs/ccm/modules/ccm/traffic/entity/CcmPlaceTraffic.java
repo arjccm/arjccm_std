@@ -58,6 +58,24 @@ public class CcmPlaceTraffic extends DataEntity<CcmPlaceTraffic> {
 	
 	private Area area;
 	private User checkUser;
+	private String areaMap;		// 区域图
+	private String areaPoint;		// 中心点
+
+	public String getAreaMap() {
+		return areaMap;
+	}
+
+	public void setAreaMap(String areaMap) {
+		this.areaMap = areaMap;
+	}
+
+	public String getAreaPoint() {
+		return areaPoint;
+	}
+
+	public void setAreaPoint(String areaPoint) {
+		this.areaPoint = areaPoint;
+	}
 	public List<String> getKeyPointList() {
 		List<String> list = Lists.newArrayList();
 		if (ccmBasePlace!=null && ccmBasePlace.getKeyPoint() != null) {

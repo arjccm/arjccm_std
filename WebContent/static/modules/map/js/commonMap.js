@@ -3848,7 +3848,7 @@ ArjMap.Map.prototype = {
         _this.selectClick = new ol.interaction.Select({
             condition: ol.events.condition.click,
             filter: function (feature, layer) {
-                return layer == _this['binguan'] || _this['yule'] || _this['shangchang'] || _this['jiayouzhan'] || _this['yiyuan'] || _this['grids'] || layer == _this['builds'] || layer == _this['events'] || layer == _this['parts'] || layer == _this['lands'] || layer == _this['videos']|| layer == _this['policeroom']||  layer == _this['workstation']|| layer == _this['broadcast'] || layer == _this['schoolPlace'] || layer == _this['keyPlace'] || _this['xuexiao'] || layer == _this['keyPerson'] || layer == _this['rentingPerson'] || layer == _this['publicPlace'] || layer == _this['PopLocation'] || layer == _this['SetTopBoxFlag'] || layer == _this['zongjiaotype']
+                return layer == _this['binguan'] || _this['yule'] || _this['shangchang'] || _this['jiayouzhan'] || _this['yiyuan'] || _this['grids'] || layer == _this['builds'] || layer == _this['events'] || layer == _this['parts'] || layer == _this['lands'] || layer == _this['videos']|| layer == _this['policeroom']||  layer == _this['workstation']|| layer == _this['broadcast'] || layer == _this['schoolPlace'] || layer == _this['keyPlace'] || _this['xuexiao'] || layer == _this['keyPerson'] || layer == _this['rentingPerson'] || layer == _this['publicPlace'] || layer == _this['PopLocation'] || layer == _this['SetTopBoxFlag'] || layer == _this['zongjiaotype'] || layer == _this['antiepidemictype']
 
             }
 

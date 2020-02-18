@@ -84,6 +84,10 @@ public class CcmPlaceCateringController extends BaseController {
 		ccmBasePlace.setId(ccmPlaceCatering.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceCatering.setCcmBasePlace(ccmBasePlace2);
+		if(ccmBasePlace2 != null){
+			ccmPlaceCatering.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceCatering.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceCatering", ccmPlaceCatering);
 		
 		if (StringUtils.isNoneBlank(ccmPlaceCatering.getType()) && "01".equals(ccmPlaceCatering.getType())) {
@@ -107,6 +111,8 @@ public class CcmPlaceCateringController extends BaseController {
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setChildType("01");
 			ccmBasePlace.setPlaceType("ccm_place_catering");
+			ccmBasePlace.setAreaMap(ccmPlaceCatering.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceCatering.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceCatering.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceCatering.setBasePlaceId(id);
@@ -114,6 +120,8 @@ public class CcmPlaceCateringController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceCatering.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceCatering.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_catering");
+			ccmBasePlace.setAreaMap(ccmPlaceCatering.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceCatering.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceCatering.setCcmBasePlace(ccmBasePlace);
 		}
