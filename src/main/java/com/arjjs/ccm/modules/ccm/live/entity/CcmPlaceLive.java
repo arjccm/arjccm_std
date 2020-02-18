@@ -34,6 +34,8 @@ public class CcmPlaceLive extends DataEntity<CcmPlaceLive> {
 	private String basePlaceId; // 场所id
 	private Area area;
 	private Area userArea;
+	private String areaMap;		// 区域图
+	private String areaPoint;		// 中心点
 
 	public Area getArea() {
 		return area;
@@ -300,5 +302,21 @@ public class CcmPlaceLive extends DataEntity<CcmPlaceLive> {
 
 	public void setCheckUser(User checkUser) {
 		this.checkUser = checkUser;
+	}
+
+	public String getAreaMap() {
+		return areaMap;
+	}
+
+	public void setAreaMap(String areaMap) {
+		this.areaMap = areaMap;
+	}
+
+	public String getAreaPoint() {
+		return areaPoint;
+	}
+
+	public void setAreaPoint(String areaPoint) {
+		this.areaPoint = areaPoint;
 	}
 }
