@@ -32,7 +32,9 @@ import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlace;
 import com.arjjs.ccm.modules.ccm.place.service.CcmBasePlaceService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmAreaPoint;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeopleAntiepidemic;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleAntiepidemicService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.religion.entity.CcmPlaceReligion;
@@ -158,6 +160,8 @@ public class CcmMapController extends BaseController {
 	@Autowired
 	private CcmPlaceReligionService ccmPlaceReligionService;
 
+	@Autowired
+	private CcmPeopleAntiepidemicService ccmPeopleAntiepidemicService;
 
 	private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -3270,6 +3274,76 @@ public class CcmMapController extends BaseController {
 		}
 		return geoJSON;
 	}
+
+
+	/**
+	 * 疫情人员信息
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getpeopleAntiepidemic")
+	public GeoJSON getpeopleAntiepidemic(CcmPeopleAntiepidemic ccmPeopleAntiepidemic, Model model) {
+		List<CcmPeopleAntiepidemic> ccmPeopleList = ccmPeopleAntiepidemicService.findList(ccmPeopleAntiepidemic);
+		// 返回对象
+		GeoJSON geoJSON = new GeoJSON();
+		List<Features> featureList = new ArrayList<Features>();
+		for (CcmPeopleAntiepidemic ccmPeople1 : ccmPeopleList) {
+			// 特征,属性
+			Features featureDto = new Features();
+			Properties properties = new Properties();
+			// 1 type 默认不填
+			// 2 id 添加
+			featureDto.setId(ccmPeople1.getId());
+			// 3 properties 展示属性信息
+			properties.setName(ccmPeople1.getName());
+			properties.setIcon("pub/yqry.png");
+			// 点击后展示详细属性值
+			Map<String, Object> map_P = new HashMap<String, Object>();
+			properties.addInfo(map_P);
+			featureList.add(featureDto);
+			featureDto.setProperties(properties);
+			// 4 geometry 配置参数
+			Geometry geometry = new Geometry();
+			featureDto.setGeometry(geometry);
+			// 点位信息 测试为点
+			geometry.setType("Point");
+			// 为中心点赋值
+			if (!StringUtils.isEmpty(ccmPeople1.getAreaPoint())) {
+				// 获取中心点的值
+				String[] centpoint = ccmPeople1.getAreaPoint().split(",");
+				// 图层中心的
+				geoJSON.setCentpoint(centpoint);
+				// 图形中心点
+				properties.setCoordinateCentre(centpoint);
+			}
+			// 添加具体数据
+			// 封装的list
+			List<String> Coordinateslist = new ArrayList<>();
+			// 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
+			String[] a = (StringUtils.isEmpty(ccmPeople1.getAreaPoint()) ? (",") : ccmPeople1.getAreaPoint()).split(",");
+			// 填充数据
+			if (a.length < 2) {
+				Coordinateslist.add("");
+				Coordinateslist.add("");
+			} else {
+				Coordinateslist.add(a[0]);
+				Coordinateslist.add(a[1]);
+			}
+			// 装配点位
+			geometry.setCoordinates(Coordinateslist);
+		}
+
+		// 添加数据
+		geoJSON.setFeatures(featureList);
+		// 如果无数据
+		if (featureList.size() == 0) {
+			return null;
+		}
+		return geoJSON;
+	}
+
+
 
 	@RequestMapping(value = "todevice")
 	public String formIncident(String code, Model model) {

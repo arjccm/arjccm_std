@@ -105,8 +105,11 @@ public class CcmPlaceCasinoController extends BaseController {
 	public String form(CcmPlaceCasino ccmPlaceCasino, Model model) {
 		CcmBasePlace ccmBasePlace = new CcmBasePlace();
 		ccmBasePlace.setId(ccmPlaceCasino.getBasePlaceId());
+
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceCasino.setCcmBasePlace(ccmBasePlace2);
+		ccmPlaceCasino.setAreaMap(ccmBasePlace2.getAreaMap());
+		ccmPlaceCasino.setAreaPoint(ccmBasePlace2.getAreaPoint());
 		model.addAttribute("ccmPlaceCasino", ccmPlaceCasino);
 		if ("01".equals(ccmPlaceCasino.getType())) {
 			return "ccm/casino/ccmPlaceCasinoForm";
@@ -148,6 +151,8 @@ public class CcmPlaceCasinoController extends BaseController {
 			String id = UUID.randomUUID().toString();
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
+			ccmBasePlace.setAreaMap(ccmPlaceCasino.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceCasino.getAreaPoint());
 			ccmBasePlace.setPlaceType("ccm_place_casino");
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceCasino.setCcmBasePlace(ccmBasePlace);
@@ -156,6 +161,8 @@ public class CcmPlaceCasinoController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceCasino.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceCasino.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_casino");
+			ccmBasePlace.setAreaMap(ccmPlaceCasino.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceCasino.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceCasino.setCcmBasePlace(ccmBasePlace);
 		}

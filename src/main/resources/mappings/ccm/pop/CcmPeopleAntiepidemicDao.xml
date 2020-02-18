@@ -348,5 +348,52 @@
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
+
+	<select id="countPeopleAntiepidemic" resultType="int">
+		SELECT
+			count( 1 )
+		FROM
+			ccm_people_antiepidemic a
+		where
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="domicile != null and domicile != ''">
+				AND a.domicile  LIKE concat('%',#{domicile},'%')
+			</if>
+			<if test="takeSteps != null and takeSteps != ''">
+				AND a.take_steps = #{takeSteps}
+			</if>
+			<if test="isIn14days != null and isIn14days != ''">
+				AND DATEDIFF(now(),a.come_hainan_date) > 14
+			</if>
+			<if test="isTransferHc != null and isTransferHc != ''">
+				AND a.is_transfer_hc = #{isTransferHc}
+			</if>
+			<if test="health != null and health != ''">
+				AND a.health = #{health}
+			</if>
+			<if test="minage != null and minage != ''">
+				AND a.age &gt; #{minage}
+			</if>
+			<if test="maxage != null and maxage != ''">
+				AND a.age &lt; #{maxage}
+			</if>
+			<if test="belongSubBureau != null and belongSubBureau != ''">
+				AND a.belong_sub_bureau LIKE concat('%',#{belongSubBureau},'%')
+			</if>
+	</select>
+
+
+	<select id="countBycomeHainanDate" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT count( 1 ) as "value" ,come_hainan_date as "type"
+		FROM ccm_people_antiepidemic a
+		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		<if test="domicile != null and domicile != ''">
+			AND a.domicile  LIKE concat('%',#{domicile},'%')
+		</if>
+		GROUP BY a.come_hainan_date
+	</select>
+
+
+
 </mapper>

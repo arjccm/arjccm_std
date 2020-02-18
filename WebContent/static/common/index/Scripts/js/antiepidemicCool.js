@@ -45,7 +45,7 @@ $(function () {
 
     var context = $(".context").attr("content");
 
-
+    var noCache = new Date();
 
     //疫情人员年龄段
     showechleftContent1();
@@ -646,6 +646,85 @@ $(function () {
     }
 
 
+    //户籍统计信息
+    getCountdomicile();
+    function getCountdomicile() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCountdomicile", {"noCache": noCache}, function (data) {
+            var value = data['type'];
+            var value1 = data['value'];
+            var value2 = data['value1'];
+            var value3 = data['value2'];
+            var value4 = data['value3'];
+
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+    //人员隔离措施
+    getCounttakeSteps();
+    function getCounttakeSteps() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCounttakeSteps", {"noCache": noCache}, function (data) {
+            var value1 = data['value'];
+            var value2 = data['value1'];
+            var value3 = data['value2'];
+            var value4 = data['value3'];
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+    //人员现状
+    getCountstatus();
+    function getCountstatus() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCountstatus", {"noCache": noCache}, function (data) {
+            var value1 = data['value'];
+            var value2 = data['value1'];
+            var value3 = data['value2'];
+            var value4 = data['value3'];
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+    //人员分布
+    getDistribution();
+    function getDistribution() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getDistribution", {"noCache": noCache}, function (data) {
+            var value1 = data['type'];
+            var value2 = data['value'];
+
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+
+    //人员入琼趋势
+    countBycomeHainanDate();
+    function countBycomeHainanDate() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/countBycomeHainanDate", {"noCache": noCache}, function (data) {
+            var value1 = data['type'];
+            var value2 = data['value'];
+
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
+
+
+    //人员年龄段
+    getCountage();
+    function getCountage() {
+        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCountage", {"noCache": noCache}, function (data) {
+            debugger;
+            var value1 = data['type'];
+            var value2 = data['value'];
+
+            // var option = showDistribution(dataX, bgNum, dataY);
+            // rightContent3Charts.setOption(option);
+        });
+    }
 
     /********************地图***********************/
     //地图
@@ -989,7 +1068,8 @@ var idArryiyuan = [];
 
 function yiyuanFun(_this) {
     if (yiyuanFlag) {
-        $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
+        // $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
+        $.getJSON('' + ctx + '/sys/map/findMapIndustry?type=2', function (
             data) {
             var features = data.features;
             var len = features.length;
@@ -1376,6 +1456,28 @@ function SetTopBoxFun(_this) {
     }
     SetTopBoxFlag = !SetTopBoxFlag;
 }
+
+//疫情人员信息
+var PeopleAntiepidemicFlag = true;
+function getpeopleAntiepidemic(_this) {
+    if (PeopleAntiepidemicFlag) {
+        $.getJSON('' + ctx + '/sys/map/getpeopleAntiepidemic', function (data) {
+            Map.addJSON1([{
+                'type': 'antiepidemictype',
+                'id': 'PeopleAntiepidemic',
+                'data': data,
+                'isShow': true
+            }])
+        })
+        $(_this).css('border', '1px solid #0e54a9');
+    } else {
+        $(_this).css('border', '1px solid transparent');
+        Map.removeLayer('PeopleAntiepidemic');
+    }
+    PeopleAntiepidemicFlag = !PeopleAntiepidemicFlag;
+}
+
+
 
 function XiangQingFun(type) {
     $('.pubMapDialog').show()

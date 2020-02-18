@@ -7,7 +7,7 @@ var windowsHeight, _fontSize = 14, _fontSize1 = 26, _fontSize2 = 24, _fontSize3 
 
 var streetFlag, vccmorgFlag, communityFlag, gridFlag, buildFlag, eventFlag, partsFlag, landsFlag, videoFlag,
     broadcastFlag, policeroomFlag, workstationFlag, schoolPlaceFlag, keyPlaceFlag, keyPersonFlag, rentingPersonFlag,
-    publicPlaceFlag, popLocationFlag, SetTopBoxFlag, zongjiaoFunflag;
+    publicPlaceFlag, popLocationFlag, SetTopBoxFlag,zongjiaoFunflag;
 streetFlag = true;
 communityFlag = false;
 gridFlag = false;
@@ -132,22 +132,13 @@ $(function () {
         var noCache = new Date();
         getPeopleData(noCache);//人口基础数据
         getshowKeyPersonnel();
-
-        //安全隐患统计
-        $.getJSON(context + "/know/ccmKnowInspect/getTypeSafeDataeCharts", {"noCache": noCache}, function (
-            data) {
-            var data1 = data["data"];
-            var value = data["value"];
-            showSafeCount(data1,value);
-        });
-
-
+        showSafeCount();
 
         /*  getPeopleCurrent(noCache);//人口趋势图
           getCitycomponents(noCache);//城市部件状态*/
-        getHouseData(noCache);//本月活动统计
-        /* getWorkForce(noCache);//工作力量
-         getKeyenterprisesshow(noCache);//重点企业*/
+          getHouseData(noCache);//本月活动统计
+         /* getWorkForce(noCache);//工作力量
+          getKeyenterprisesshow(noCache);//重点企业*/
     }
 
     //关注对象
@@ -253,7 +244,6 @@ $(function () {
         $.getJSON(context + "/know/ccmKnowInspect/getTypeSafeDataeCharts", {"noCache": noCache}, function (
             data) {
             getPreventive(data);
-
         });
 
         $.getJSON(context + "/event/ccmEventIncident/getSafeDisDataecharts?eventTypes=01&eventTypes=03", {"noCache": noCache}, function (
@@ -312,7 +302,7 @@ $(function () {
     function hideDivChat(bool) {
         if (bool == 0) {
             $("#leftContent1").find('.contentTitle').text('人口基础数据');
-            $("#leftContent2").find('.contentTitle').text('宗教事务局工作力量');
+            $("#leftContent2").find('.contentTitle').text('工作力量');
             $("#leftContent3").find('.contentTitle').text('重点人员top5');
             $("#leftContent0").hide();
             $("#leftContent1").show();
@@ -770,7 +760,8 @@ var idArryiyuan = [];
 
 function yiyuanFun(_this) {
     if (yiyuanFlag) {
-        $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
+        // $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
+        $.getJSON('' + ctx + '/sys/map/findMapIndustry?type=2', function (
             data) {
             var features = data.features;
             var len = features.length;
@@ -1161,14 +1152,13 @@ function SetTopBoxFun(_this) {
 
 //宗教显示
 var flagtype = [];
-
-function zongjiaoFun(_this, type) {
-    if (flagtype.indexOf(type) == -1) {
+function zongjiaoFun(_this,type) {
+    if (flagtype.indexOf(type)==-1) {
         flagtype.push(type);
-        $.getJSON('' + ctx + '/sys/map/religionshow?religionType=' + type, function (data) {
+        $.getJSON('' + ctx + '/sys/map/religionshow?religionType='+ type, function (data) {
             Map.addJSON1([{
                 'type': 'zongjiaotype',
-                'id': 'zongjiao' + type,
+                'id': 'zongjiao'+ type,
                 'data': data,
                 'isShow': true
             }])
@@ -1177,7 +1167,7 @@ function zongjiaoFun(_this, type) {
     } else {
         $(_this).css('border', '1px solid transparent');
         Map.removeLayer('zongjiao' + type);
-        flagtype.splice(flagtype.indexOf(type), 1);
+        flagtype.splice(flagtype.indexOf(type),1);
     }
 }
 
@@ -1845,7 +1835,6 @@ var rightContent1Charts = null;
 var rightContent2Charts = null;
 var rightContent3Charts = null;
 var rightContent1Charts_1 = null;
-
 function resizeChat() {
     if (leftContent0Charts == null) {
         leftContent0Charts = echarts.init(document.getElementById('echLeftContent0'));
@@ -2293,31 +2282,19 @@ function getPeopleData(noCache) {
             };
 
         });*/
-    var dataList = '';
-    $.ajax({
-        type: "get",
-        url: ctx + "/sys/map/statIndexPeoPleZj",
-        async: false,
-        success: function (data) {
-        dataList = data.data;
-        }
-
-    });
-    showPeopleData(dataList);
+    showPeopleData();
 }
 
 //基础数据的option
-function showPeopleData(dataList) {
-
+function showPeopleData() {
     var dataMap = {
-        '无信仰': dataList[5],
-        '伊斯兰教': dataList[2],
-        '基督教': dataList[0],
-        '天主教': dataList[1],
-        '道教': dataList[4],
-        '佛教': dataList[3],
-    }
-
+        '佛教':251,
+        '伊斯兰教':310,
+        '基督教':234,
+        '天主教':135,
+        '道教':948,
+        '其他':335
+    };
     var piebg = {
         name: '',
         type: 'pie',
@@ -2333,6 +2310,7 @@ function showPeopleData(dataList) {
         animation: false
     };
     var option = {
+        color: ['#0cb4eb','#2277e1', '#2449e2', '#8c43eb', '#add632','#4acf77'],
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -2344,29 +2322,29 @@ function showPeopleData(dataList) {
             icon: 'rect',
             itemWidth: 10,  // 设置宽度
             itemHeight: 10, // 设置高度
-            data: ['无信仰', '伊斯兰教', '基督教', '天主教', '道教', '佛教'],
+            data: ['佛教', '伊斯兰教', '基督教', '天主教', '道教','其他'],
             textStyle: {//图例文字的样式
                 color: '#fff',
                 fontSize: 14,
                 rich: {
-                    align: 'right',
+                    // align:'right',
                     title: {
                         fontFamily: 'Microsoft YaHei',
                         // fontWeight: 400,
                         // width: 59,
                         fontSize: 12,
                         // lineHeight: 1,
-                        color: "#FFFFFF"
+                        color: "#FFFFFF",
+                        width:"100%"
                     },
                     value: {
                         fontFamily: 'Microsoft YaHei',
-                        fontWeight: 'bold',
                         fontSize: 12,
                         lineHeight: 18,
-                        padding: [0, 6, 0, 10],
+                        padding: [0, 0, 0, 15],
                         color: "#FFFFFF",
                         // width: 30,
-                        align: 'right'
+                        align:'left'
                     },
                     unit: {
                         fontFamily: 'Microsoft YaHei',
@@ -2403,13 +2381,12 @@ function showPeopleData(dataList) {
                     }
                 },
                 data: [
-                    {value: dataList[5], name: '无信仰'},
-                    {value: dataList[2], name: '伊斯兰教'},
-                    {value: dataList[0], name: '基督教'},
-                    {value: dataList[1], name: '天主教'},
-                    {value: dataList[4], name: '道教'},
-                    {value: dataList[3], name: '佛教'}
-
+                    {value: 251, name: '佛教'},
+                    {value: 310, name: '伊斯兰教'},
+                    {value: 234, name: '基督教'},
+                    {value: 135, name: '天主教'},
+                    {value: 948, name: '道教'},
+                    {value: 335, name: '其他'}
                 ]
 
             },
@@ -2612,22 +2589,24 @@ function formatFloat(src, pos) {
 }
 
 
+
+
 // 重点人员top5
 function getshowKeyPersonnel(noCache) {
     $.getJSON(ctx + "/pop/ccmPeople/getKeypeopleTop", {"noCache": noCache}, function (data) {
         var name = [];
         var value = [];
-        for (var i = 0; i < data.length; i++) {
+        for(var i = 0;i<data.length;i++){
             name.push(data[i].type);
             value.push(data[i].value);
         }
-        showKeyPersonnel(name, value);
+        showKeyPersonnel(name,value);
     })
 }
 
 
 // 重点人员top5的option
-function showKeyPersonnel(name, value) {
+function showKeyPersonnel(name,value) {
     option = {
         color: ['#3398DB'],
         barWidth: '60%',
@@ -2646,12 +2625,12 @@ function showKeyPersonnel(name, value) {
             left: '8%',
             right: '8%',
             bottom: '8%',
-            containLabel: true,
+            containLabel: true
 
         },
         xAxis: {
             type: 'value',
-            boundaryGap: [0, 0.01],
+            // boundaryGap: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90],
             min: 0,
             rotate: 0,
             margin: 10,
@@ -2747,7 +2726,7 @@ function showKeyPersonnel(name, value) {
 
 
 // 安全隐患统计
-function showSafeCount(data1,value) {
+function showSafeCount() {
 
     option = {
         color: ['#3398DB'],
@@ -2757,7 +2736,7 @@ function showSafeCount(data1,value) {
             axisPointer: {
                 type: 'shadow'
             },
-            formatter: "{b} <br> 次数: {c}"
+            formatter: "{b} <br> 件数: {c}"
         },
         /*legend: {
             data: [date]
@@ -2772,7 +2751,7 @@ function showSafeCount(data1,value) {
         },
         xAxis: {
             type: 'category',
-            data: data1,
+            data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
             axisLabel: {
                 show: true,
                 interval: 0,
@@ -2840,7 +2819,7 @@ function showSafeCount(data1,value) {
                     color: '#fff'
                 }
             },
-            data: value,
+            data: [10,2,12,24,36,10,2,12,24,36,12,13],
             itemStyle: {
                 normal: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -2866,67 +2845,43 @@ function showSafeCount(data1,value) {
 }
 
 //基本信息
-function getHouseData() {
-
-    $.ajax({
-        type: "get",
-        url: ctx + "/religion/ccmReligionActivity/typeAndScale",
-        async: false,
-        success: function (data) {
-            var dataList = [{
-                value: data["leftData"][0].value,
-                name: data["leftData"][0].type
+function getHouseData(noCache) {
+/*    $.getJSON(ctx + "/report/ccmPeopleAmount/getListTypeAll", {"noCache": noCache}, function (data) {
+        var value = Number(data[0].value);
+        var value1 = Number(data[1].value);
+        var value2 = Number(data[2].value);
+        var value3 = Number(data[3].value);
+        var count = Number(value) + Number(value1) + Number(value2) + Number(value3);
+        var dataList = [{
+            value: value,
+            name: '自住'
+        },
+            {
+                value: value1,
+                name: '出租'
             },
-                {
-                    value: data["leftData"][1].value,
-                    name: data["leftData"][1].type
-                },
-                {
-                    value: data["leftData"][2].value,
-                    name: data["leftData"][2].type
-                },
-                {
-                    value: data["leftData"][3].value,
-                    name: data["leftData"][3].type
-                },
-                {
-                    value: data["leftData"][4].value,
-                    name: data["leftData"][4].type
-                },
-                {
-                    value: data["leftData"][5].value,
-                    name: data["leftData"][5].type
-                }
-            ];
-
-            var dataList1 = [{
-                value: data["rightData"][0].value,
-                name: data["rightData"][0].type
+            {
+                value: value2,
+                name: '空置'
             },
-                {
-                    value: data["rightData"][1].value,
-                    name: data["rightData"][1].type
-                },
-                {
-                    value: data["rightData"][2].value,
-                    name: data["rightData"][2].type
-                },
-                {
-                    value: data["rightData"][3].value,
-                    name: data["rightData"][3].type
-                }
-            ];
-
-            showHouseData(dataList, dataList1);
-
-        }
-
-    })
-
+            {
+                value: value3,
+                name: '其他'
+            }
+        ];
+        var dataMap = {
+            '自住': value,
+            '出租': value1,
+            '空置': value2,
+            '其他': value3
+        };
+        showHouseData(dataList, dataMap, count);
+    });*/
+    showHouseData();
 }
 
 //本月活动统计的option
-function showHouseData(dataList, dataList1) {
+function showHouseData() {
     var piebg = {
         name: '',
         type: 'pie',
@@ -2942,6 +2897,8 @@ function showHouseData(dataList, dataList1) {
         animation: false,
     };
     var option = {
+
+
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -2961,36 +2918,36 @@ function showHouseData(dataList, dataList1) {
             {
                 orient: 'horizontal',
                 left: '5%',
-                top: '70%',
+                top: '65%',
                 width: '50%',
                 icon: 'rect',
                 align: 'left',
                 itemWidth: 10,  // 设置宽度
                 itemHeight: 10, // 设置高度
-                itemGap: 12,
-                data: ['祈祷', '讲经', '祭祀', '忏悔', '斋戒', '放生'],
+                itemGap:12,
+                data: ['祈祷', '讲经', '放生', '圣诞', '圣祭', '忏悔', '斋戒'],
                 textStyle: {
                     color: '#fff',
                     fontSize: 12,
                     rich: {
-                        align: 'right',
+                        align:'right',
                     }
                 },
             },
             {
                 orient: 'horizontal',
                 left: '55%',
-                top: '70%',
+                top: '65%',
                 icon: 'rect',
                 itemWidth: 10,  // 设置宽度
                 itemHeight: 10, // 设置高度
-                itemGap: 12,
-                data: ['小型活动', '中型活动', '大型活动', '特大型活动',],
+                itemGap:12,
+                data: ['小型活动','大型活动','中型活动','特大型活动',],
                 textStyle: {//图例文字的样式
                     color: '#fff',
                     fontSize: 12,
                     rich: {
-                        align: 'left',
+                        align:'left',
                     }
                 }
             },
@@ -3007,6 +2964,7 @@ function showHouseData(dataList, dataList1) {
                         }
                     }
                 },
+                color:['#0cd5a6', '#0ea3d9', '#1163de', '#990dd7', '#d92a7c','#d58314', '#c7e117'],
                 name: '数据',
                 type: 'pie',
                 radius: ['33%', '50%'],
@@ -3016,7 +2974,15 @@ function showHouseData(dataList, dataList1) {
                         show: false
                     }
                 },
-                data: dataList
+                data: [
+                    {value: 335, name: '祈祷',},
+                    {value: 310, name: '讲经'},
+                    {value: 234, name: '放生'},
+                    {value: 135, name: '圣诞'},
+                    {value: 1048, name: '圣祭'},
+                    {value: 251, name: '忏悔'},
+                    {value: 251, name: '斋戒'},
+                ]
 
             },
             {
@@ -3030,6 +2996,7 @@ function showHouseData(dataList, dataList1) {
                         }
                     }
                 },
+                color:['#0fb1ea', '#2449e2', '#2671e1', '#8546e8'],
                 name: '数据',
                 type: 'pie',
                 radius: ['33%', '50%'],
@@ -3039,7 +3006,13 @@ function showHouseData(dataList, dataList1) {
                         show: false
                     }
                 },
-                data: dataList1
+                data: [
+                    {value: 335, name: '小型活动',},
+                    {value: 234, name: '大型活动'},
+                    {value: 310, name: '中型活动'},
+                    {value: 135, name: '特大型活动'},
+                ]
+
             },
             Object.assign({}, piebg, {
                 radius: ['5%', '61%'],
