@@ -78,6 +78,10 @@ public class CcmPlaceFinancialController extends BaseController {
 
 		CcmBasePlace ccmBasePlace = ccmBasePlaceService.get(ccmPlaceFinancial.getBasePlaceId());
 		ccmPlaceFinancial.setCcmBasePlace(ccmBasePlace);
+		if(ccmBasePlace != null){
+			ccmPlaceFinancial.setAreaMap(ccmBasePlace.getAreaMap());
+			ccmPlaceFinancial.setAreaPoint(ccmBasePlace.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceFinancial", ccmPlaceFinancial);
 		return "ccm/financial/ccmPlaceFinancialForm";
 	}
@@ -97,6 +101,8 @@ public class CcmPlaceFinancialController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_financial");
+			ccmBasePlace.setAreaMap(ccmPlaceFinancial.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceFinancial.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceFinancial.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceFinancial.setBasePlaceId(id);
@@ -104,6 +110,9 @@ public class CcmPlaceFinancialController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceFinancial.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceFinancial.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_financial");
+
+			ccmBasePlace.setAreaMap(ccmPlaceFinancial.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceFinancial.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceFinancial.setCcmBasePlace(ccmBasePlace);
 		}

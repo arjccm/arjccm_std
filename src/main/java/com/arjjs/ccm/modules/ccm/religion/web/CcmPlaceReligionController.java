@@ -112,6 +112,10 @@ public class CcmPlaceReligionController extends BaseController {
 		CcmBasePlace ccmBasePlace = new CcmBasePlace();
 		ccmBasePlace.setId(ccmPlaceReligion.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+		if(ccmBasePlace2 != null){
+			ccmPlaceReligion.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceReligion.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		ccmPlaceReligion.setCcmBasePlace(ccmBasePlace2);
 		model.addAttribute("ccmPlaceReligion", ccmPlaceReligion);
 		return "ccm/religion/ccmPlaceReligionForm";
@@ -165,6 +169,8 @@ public class CcmPlaceReligionController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_religion");
+			ccmBasePlace.setAreaMap(ccmPlaceReligion.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceReligion.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceReligion.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceReligion.setBasePlaceId(id);
@@ -172,6 +178,8 @@ public class CcmPlaceReligionController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceReligion.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceReligion.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_religion");
+			ccmBasePlace.setAreaMap(ccmPlaceReligion.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceReligion.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceReligion.setCcmBasePlace(ccmBasePlace);
 		}

@@ -174,7 +174,7 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 
 		//18岁以下少年儿童
 		CcmPeopleAntiepidemic ccmPeople2 = new CcmPeopleAntiepidemic();
-		ccmPeople2.setMinage(19);
+		ccmPeople2.setMaxage(19);
 		int num1 = ccmPeopleAntiepidemicDao.countPeopleAntiepidemic(ccmPeople2);
 		echartType.setValue(num1+"");
 
@@ -211,18 +211,27 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 		//总数
 		CcmPeopleAntiepidemic ccmPeopleAntiepidemic = new CcmPeopleAntiepidemic();
 		int countnum = ccmPeopleAntiepidemicDao.countPeopleAntiepidemic(ccmPeopleAntiepidemic);
-		echartType.setType(countnum+"");
+		echartType.setValue(countnum+"");
 
 		//崖州  天涯  吉阳  海棠   育才
-		String[] areanames = {"崖州","天涯","吉阳","海棠","育才"};
 		List<Integer> resnum = Lists.newArrayList();
+		String[] areanames = {"崖州","天涯","吉阳","海棠","育才"};
 		for(String name : areanames){
 			CcmPeopleAntiepidemic ccmPeople = new CcmPeopleAntiepidemic();
 			ccmPeople.setBelongSubBureau(name);
 			int num = ccmPeopleAntiepidemicDao.countPeopleAntiepidemic(ccmPeople);
 			resnum.add(num);
+
 		}
-		echartType.setValue(resnum.toString());
+
+		List<String> getname = Lists.newArrayList();
+		String[] names = {"崖州区","天涯区","吉阳区","海棠区","育才生态区"};
+		for(String name : names){
+			getname.add(name);
+		}
+
+		echartType.setType(getname.toString());
+		echartType.setValue1(resnum.toString());
 		list.add(echartType);
 		return list;
 
