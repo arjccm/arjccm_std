@@ -210,7 +210,7 @@
                 <div>
                     <label class="control-label"> <span class="help-inline"><font color="red">*</font></span>事件名称：</label>
                     <div class="controls">
-                        <form:input path="caseName" htmlEscape="false"
+                        <form:input path="caseName" htmlEscape="false" disabled="true"
                                     maxlength="100" class="input-xlarge required"/>
                     </div>
                 </div>
@@ -221,7 +221,7 @@
                 <div>
                     <label class="control-label">事件情况：</label>
                     <div class="controls">
-                        <form:textarea path="caseCondition"
+                        <form:textarea path="caseCondition" disabled="true"
                                        htmlEscape="false" rows="2" maxlength="4000" class="input-xxlarge "/>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                 <div>
                     <label class="control-label">事件图标：</label>
                     <div class="controls">
-                        <form:hidden id="file1" path="file1" htmlEscape="false" maxlength="200" class="input-xxlarge"/>
+                        <form:hidden id="file1" path="file1" htmlEscape="false" maxlength="200" disabled="true" class="input-xxlarge"/>
                         <sys:ckfinder input="file1" type="images" uploadPath="/event/ccmEventIncident"
                                       selectMultiple="false"/>
                     </div>
@@ -247,7 +247,7 @@
                         <sys:treeselect id="area" name="area.id"
                                         value="${ccmEventIncident.area.id}" labelName="area.name"
                                         labelValue="${ccmEventIncident.area.name}" title="区域"
-                                        url="/sys/area/treeData" cssClass="" allowClear="true"
+                                        url="/sys/area/treeData" cssClass="" disabled="true" allowClear="true"
                                         notAllowSelectParent="true" cssStyle="width: 220.22px"/>
                     </div>
                 </div>
@@ -257,7 +257,7 @@
                     <label class="control-label"> <span class="help-inline"><font color="red">*</font></span>发生日期：</label>
                     <div class="controls">
                         <input name="happenDate" type="text"
-                               readonly="readonly" maxlength="20" class="input-medium Wdate required"
+                               readonly="readonly" maxlength="20" class="input-medium Wdate required" disabled="true"
                                value="<fmt:formatDate value="${ccmEventIncident.happenDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
                                onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
                     </div>
@@ -269,7 +269,7 @@
                 <div>
                     <label class="control-label">发案地代码：</label>
                     <div class="controls">
-                        <form:input path="address" htmlEscape="false" maxlength="6" class="input-xlarge"/>
+                        <form:input path="address" htmlEscape="false" maxlength="6" disabled="true" class="input-xlarge"/>
                     </div>
                 </div>
             </td>
@@ -277,7 +277,7 @@
                 <div>
                     <label class="control-label"> <span class="help-inline"><font color="red">*</font></span>发生地详址：</label>
                     <div class="controls">
-                        <form:input path="happenPlace" htmlEscape="false" maxlength="200"
+                        <form:input path="happenPlace" htmlEscape="false" maxlength="200" disabled="true"
                                     class="input-xlarge required"/>
                     </div>
                 </div>
@@ -288,9 +288,9 @@
                 <div>
                     <label class="control-label"> <span class="help-inline"><font color="red">*</font></span>事件模块分类：</label>
                     <div  class="controls">
-                        <form:select onchange="xianLu(this.value)" path="eventKind" class="input-xlarge required" style="width:284px">
+                        <form:select onchange="xianLu(this.value)" path="eventKind" class="input-xlarge required" disabled="true" style="width:284px">
                             <form:options items="${fns:getDictList('ccm_event_inci_kind')}"
-                                          itemLabel="label" itemValue="value" htmlEscape="false"/>
+                                          itemLabel="label" itemValue="value"  htmlEscape="false"/>
                         </form:select>
                     </div>
                 </div>
@@ -300,7 +300,7 @@
                     <label class="control-label">事件编号：</label>
                     <div class="controls">
                         <form:input path="number" htmlEscape="false"
-                                    maxlength="100" class="input-xlarge "/>
+                                    maxlength="100" disabled="true" class="input-xlarge "/>
                     </div>
                 </div>
             </td>
@@ -310,7 +310,7 @@
                 <div>
                     <label class="control-label"> <span class="help-inline"><font color="red">*</font></span>事件类别：</label>
                     <div class="controls">
-                        <form:select path="eventSort" class="input-xlarge required" style="width:284px">
+                        <form:select path="eventSort" class="input-xlarge required" disabled="true" style="width:284px">
                             <form:options items="${fns:getDictList('ccm_event_sort')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false"/>
                         </form:select>
@@ -321,7 +321,7 @@
                 <div>
                     <label class="control-label">事件规模：</label>
                     <div class="controls">
-                        <form:select path="caseScope" class="input-xlarge required" style="width:284px">
+                        <form:select path="caseScope" class="input-xlarge required" disabled="true" style="width:284px">
                             <form:options items="${fns:getDictList('ccm_event_scope')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false"/>
                         </form:select>
@@ -344,7 +344,7 @@
                     <label class="control-label"> <span class="help-inline"><font color="red">*</font></span>中心点：</label>
                     <div class="controls">
                         <form:input path="areaPoint" readonly="true" htmlEscape="false"
-                                    maxlength="40" class="input-xlarge required"/>
+                                    maxlength="40" disabled="true" class="input-xlarge required"/>
                             <%--							<input id="draw" class="btn btn-primary" onclick="drawPoint()" type="button"--%>
                             <%--								   value="标 注" />--%>
                         <a onclick="ThisLayerDialog('${ctx}/event/ccmEventIncident/drawForm?areaMap='+$('#areaMap').val()+'&areaPoint='+$('#areaPoint').val(), '标注', '1100px', '700px');"
@@ -381,7 +381,7 @@
                     <label class="control-label">所属线、路：</label>
                     <div class="controls">
                         <sys:treeselect id="line" name="line.id" value="${ccmEventIncident.line.id}"
-                                        labelName="line.name" labelValue="${ccmEventIncident.line.name}"
+                                        labelName="line.name" disabled="true" labelValue="${ccmEventIncident.line.name}"
                                         title="线、路名称" url="/event/ccmEventIncident/treeData" cssClass=""
                                         allowClear="true" notAllowSelectParent="true" cssStyle="width: 220px"/>
                     </div>
@@ -393,7 +393,7 @@
                 <div>
                     <label class="control-label"><span class="help-inline"><font color="red">*</font></span>事件性质：</label>
                     <div class="controls">
-                        <form:select path="property" class="input-xlarge required" style="width:284px">
+                        <form:select path="property" class="input-xlarge required" disabled="true" style="width:284px">
                             <form:options items="${fns:getDictList('bph_alarm_info_typecode')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false"/>
                         </form:select>
@@ -404,7 +404,7 @@
                 <div>
                     <label class="control-label"><span class="help-inline"><font color="red">*</font></span>事件类型：</label>
                     <div class="controls">
-                        <form:select path="eventType" class="input-xlarge required" style="width:284px">
+                        <form:select path="eventType" class="input-xlarge required" disabled="true" style="width:284px">
                             <form:options items="${fns:getDictList('ccm_case_type')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false"/>
                         </form:select>
@@ -417,7 +417,7 @@
                 <div>
                     <label class="control-label">主犯（嫌疑人）姓名：</label>
                     <div class="controls">
-                        <form:input path="culName" htmlEscape="false"
+                        <form:input path="culName" htmlEscape="false" disabled="true"
                                     maxlength="80" class="input-xlarge "/>
                     </div>
                 </div>
@@ -459,7 +459,7 @@
                 <div>
                     <label class="control-label">主犯（嫌疑人）证件类型：</label>
                     <div class="controls">
-                        <form:select id="test1" path="culPapercode" onchange="selectChange()" class="input-xlarge "
+                        <form:select id="test1" path="culPapercode" onchange="selectChange()" class="input-xlarge " disabled="true"
                                      items="${fns:getDictList('legal_person_certificate_type')}" itemLabel="label"
                                      itemValue="value" htmlEscape="false" style="width:284px">
                         </form:select>
@@ -472,7 +472,7 @@
                     <label class="control-label">主犯（嫌疑人）证件号码：</label>
                     <div class="controls">
                         <form:input path="culPaperid" id="styleType"
-                                    htmlEscape="false" maxlength="50" class="input-xlarge ident0 card"/>
+                                    htmlEscape="false" maxlength="50" disabled="true" class="input-xlarge ident0 card"/>
                     </div>
                 </div>
             </td>
@@ -482,7 +482,7 @@
                 <div>
                     <label class="control-label">作案人数：</label>
                     <div class="controls">
-                        <form:input path="numCrime" htmlEscape="false"
+                        <form:input path="numCrime" htmlEscape="false" disabled="true"
                                     maxlength="6" class="input-xlarge  digits" type="number"/>
                     </div>
                 </div>
@@ -491,7 +491,7 @@
                 <div>
                     <label class="control-label">在逃人数：</label>
                     <div class="controls">
-                        <form:input path="numFlee" htmlEscape="false"
+                        <form:input path="numFlee" htmlEscape="false" disabled="true"
                                     maxlength="6" class="input-xlarge  digits" type="number"/>
                     </div>
                 </div>
@@ -502,7 +502,7 @@
                 <div>
                     <label class="control-label">抓捕人数：</label>
                     <div class="controls">
-                        <form:input path="numArrest" htmlEscape="false"
+                        <form:input path="numArrest" htmlEscape="false" disabled="true"
                                     maxlength="6" class="input-xlarge  digits" type="number"/>
                     </div>
                 </div>
@@ -511,7 +511,7 @@
                 <div>
                     <label class="control-label">侦查终结日期：</label>
                     <div class="controls">
-                        <input name="caseOverDay" type="text"
+                        <input name="caseOverDay" type="text" disabled="true"
                                readonly="readonly" maxlength="20" class="input-medium Wdate "
                                value="<fmt:formatDate value="${ccmEventIncident.caseOverDay}" pattern="yyyy-MM-dd HH:mm:ss"/>"
                                onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
@@ -524,7 +524,7 @@
                 <div>
                     <label class="control-label">事件上报人评价：</label>
                     <div class="controls">
-                        <form:textarea path="caseSolve"
+                        <form:textarea path="caseSolve" disabled="true"
                                        htmlEscape="false" rows="4" maxlength="4000" class="input-xlarge "/>
                     </div>
                 </div>
@@ -533,7 +533,7 @@
                 <div>
                     <label class="control-label">处理状态：</label>
                     <div class="controls">
-                        <form:select path="status" class="input-xlarge " style="width:284px">
+                        <form:select path="status" class="input-xlarge " disabled="true" style="width:284px">
                             <c:if test="${empty ccmEventIncident.id}"><form:option value="01" label="未处理"/></c:if>
                             <c:if test="${not empty ccmEventIncident.id}">
                                 <form:options items="${fns:getDictList('ccm_event_status')}" itemLabel="label"
@@ -571,7 +571,7 @@
         <tr>
             <td colspan="2" style="padding: 8px;"><label class="control-label">备注信息：</label>
                 <div class="controls">
-                    <form:textarea path="remarks" htmlEscape="false" rows="4"
+                    <form:textarea path="remarks" htmlEscape="false" rows="4" disabled="true"
                                    maxlength="255" class="input-xxlarge "/>
                 </div>
             </td>
