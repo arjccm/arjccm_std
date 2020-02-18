@@ -456,7 +456,7 @@
 							</div>
 
 							<!--疫情人员  -->
-							<div class="pub-flag" onclick="getpeopleAntiepidemic(this)">
+							<div class="pub-flag">
 								<span class="pub-icon icon-yqry"></span> <span class="pub-name">疫情人员</span>
 							</div>
 						</div>

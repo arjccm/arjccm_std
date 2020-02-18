@@ -148,9 +148,7 @@
 					<td width="100px">
 						<img src="${ccmEventIncident.file1}"  class="pic-size pimg"/>
 					</td>
-					<td style="white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis; text-align: left;">
+					<td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; text-align: left;">
 						<c:if test="${ccmEventIncident.stick eq 1}" var="zhiding">
 							<div class="stick"></div>
 						</c:if>
@@ -159,6 +157,9 @@ text-overflow: ellipsis; text-align: left;">
 						</c:if>
 						<c:if test="${ccmEventIncident.ratify eq 1}" var="flag">
 							<div onclick="showRecord('${ccmEventIncident.id}','领导批示')" class="ratify" title="领导批示"></div>
+						</c:if>
+						<c:if test="${ccmEventIncident.historyLegacy eq 1}" var="lishi">
+							<div class="historyLegacy" title="历史遗留"></div>
 						</c:if>
 						<c:if test="${not flag}">
 							<div onclick="showRecord('${ccmEventIncident.id}','领导批示')" class="noratify" ></div>
