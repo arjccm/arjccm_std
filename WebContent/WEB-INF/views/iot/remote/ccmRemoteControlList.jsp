@@ -60,7 +60,7 @@
 			</li>
 			<shiro:hasPermission name="remote:ccmRemoteControl:edit">
 				<li class="btns">
-					<a onclick="parent.LayerDialog('${ctx}/remote/ccmRemoteControl/form', '添加重点人员设备管理信息', '1100px', '370px')" class="btn btn-success">
+					<a onclick="parent.LayerDialog('${ctx}/remote/ccmRemoteControl/form', '添加重点人员设备管理信息', '1100px', '370px')" class="btn btn-primary">
 						<i class="icon-plus"></i>添加
 					</a>
 				</li>

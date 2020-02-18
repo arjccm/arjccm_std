@@ -51,7 +51,7 @@
 				<form:input path="papersNumber" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
 			<li class="btns">
-				<a onclick="onAddClick()" class="btn btn-success">
+				<a onclick="onAddClick()" class="btn btn-primary">
 					<i class="icon-plus"></i> 添加
 				</a>
 			</li>
