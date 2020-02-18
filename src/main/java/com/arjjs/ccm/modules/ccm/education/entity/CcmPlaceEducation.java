@@ -60,6 +60,8 @@ public class CcmPlaceEducation extends DataEntity<CcmPlaceEducation> {
 	private String administrativeDivision; // 行政区划
 	private Area area;
 	private User checkUser;
+	private String areaMap;		// 区域图
+	private String areaPoint;		// 中心点
 	public List<String> getKeyPointList() {
 		List<String> list = Lists.newArrayList();
 		if (ccmBasePlace!=null&&ccmBasePlace.getKeyPoint() != null) {
@@ -82,7 +84,21 @@ public class CcmPlaceEducation extends DataEntity<CcmPlaceEducation> {
 		this.area = area;
 	}
 
+	public String getAreaMap() {
+		return areaMap;
+	}
 
+	public void setAreaMap(String areaMap) {
+		this.areaMap = areaMap;
+	}
+
+	public String getAreaPoint() {
+		return areaPoint;
+	}
+
+	public void setAreaPoint(String areaPoint) {
+		this.areaPoint = areaPoint;
+	}
 
 	public CcmBasePlace getCcmBasePlace() {
 		return ccmBasePlace;

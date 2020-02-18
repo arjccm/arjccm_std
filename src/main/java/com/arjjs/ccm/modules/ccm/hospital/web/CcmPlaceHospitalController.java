@@ -92,6 +92,10 @@ public class CcmPlaceHospitalController extends BaseController {
 		ccmBasePlace.setId(ccmPlaceHospital.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceHospital.setCcmBasePlace(ccmBasePlace2);
+		if(ccmBasePlace2 != null){
+			ccmPlaceHospital.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceHospital.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceHospital", ccmPlaceHospital);
 
 		if (StringUtils.isNoneBlank(ccmPlaceHospital.getType()) && "01".equals(ccmPlaceHospital.getType())) {
@@ -122,6 +126,8 @@ public class CcmPlaceHospitalController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_hospital");
+			ccmBasePlace.setAreaMap(ccmPlaceHospital.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceHospital.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceHospital.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceHospital.setBasePlaceId(id);
@@ -129,6 +135,8 @@ public class CcmPlaceHospitalController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceHospital.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceHospital.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_hospital");
+			ccmBasePlace.setAreaMap(ccmPlaceHospital.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceHospital.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceHospital.setCcmBasePlace(ccmBasePlace);
 		}
