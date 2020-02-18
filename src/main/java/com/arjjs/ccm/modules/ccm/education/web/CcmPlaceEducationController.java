@@ -104,6 +104,10 @@ public class CcmPlaceEducationController extends BaseController {
 		ccmBasePlace.setId(ccmPlaceEducation.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceEducation.setCcmBasePlace(ccmBasePlace2);
+		if(ccmBasePlace2 != null) {
+			ccmPlaceEducation.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceEducation.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceEducation", ccmPlaceEducation);
 		if ("01".equals(ccmPlaceEducation.getType())) {
 			// 学校
@@ -132,6 +136,8 @@ public class CcmPlaceEducationController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_education");
+			ccmBasePlace.setAreaMap(ccmPlaceEducation.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceEducation.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceEducation.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceEducation.setBasePlaceId(id);
@@ -139,6 +145,8 @@ public class CcmPlaceEducationController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceEducation.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceEducation.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_education");
+			ccmBasePlace.setAreaMap(ccmPlaceEducation.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceEducation.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceEducation.setCcmBasePlace(ccmBasePlace);
 		}

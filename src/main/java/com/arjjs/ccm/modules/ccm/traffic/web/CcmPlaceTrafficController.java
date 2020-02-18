@@ -92,6 +92,10 @@ public class CcmPlaceTrafficController extends BaseController {
 		ccmBasePlace.setId(ccmPlaceTraffic.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceTraffic.setCcmBasePlace(ccmBasePlace2);
+		if(ccmBasePlace2 != null){
+			ccmPlaceTraffic.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceTraffic.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceTraffic", ccmPlaceTraffic);
 
 		if (StringUtils.isNoneBlank(ccmPlaceTraffic.getType()) && "01".equals(ccmPlaceTraffic.getType())) {
@@ -121,6 +125,8 @@ public class CcmPlaceTrafficController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_traffic");
+			ccmBasePlace.setAreaMap(ccmPlaceTraffic.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceTraffic.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceTraffic.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceTraffic.setBasePlaceId(id);
@@ -128,6 +134,8 @@ public class CcmPlaceTrafficController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceTraffic.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceTraffic.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_traffic");
+			ccmBasePlace.setAreaMap(ccmPlaceTraffic.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceTraffic.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceTraffic.setCcmBasePlace(ccmBasePlace);
 		}

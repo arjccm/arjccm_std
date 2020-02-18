@@ -83,7 +83,7 @@ ul.echartsAlarm-value li{
     background-size: 100% 100%;
 }
 .shadow {
-    box-shadow: 1px 1px 1px 1px  #D3D3D3;
+    /*box-shadow: 1px 1px 1px 1px  #D3D3D3;*/
 }
 .common-pading{
     padding: 5px;
@@ -117,7 +117,7 @@ ul.echartsAlarm-value li{
     /* background: url('../../type.png') no-repeat center; */
     background-size: 100% 100%;
     color: #696969;
-    font-size: 15px;
+    font-size: 17px;
     font-weight:bold;
     line-height: 30px;
     height: 30px;

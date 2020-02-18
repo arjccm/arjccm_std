@@ -108,8 +108,10 @@ public class CcmPlaceCasinoController extends BaseController {
 
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceCasino.setCcmBasePlace(ccmBasePlace2);
-		ccmPlaceCasino.setAreaMap(ccmBasePlace2.getAreaMap());
-		ccmPlaceCasino.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		if(ccmBasePlace2 != null) {
+			ccmPlaceCasino.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceCasino.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceCasino", ccmPlaceCasino);
 		if ("01".equals(ccmPlaceCasino.getType())) {
 			return "ccm/casino/ccmPlaceCasinoForm";
