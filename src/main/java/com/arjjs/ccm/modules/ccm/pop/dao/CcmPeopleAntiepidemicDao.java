@@ -22,7 +22,7 @@ public interface CcmPeopleAntiepidemicDao extends CrudDao<CcmPeopleAntiepidemic>
      int countPeopleAntiepidemic(CcmPeopleAntiepidemic CcmPeopleAntiepidemic);
 
      //根据如琼日期查询统计数量
-     List<EchartType> countBycomeHainanDate();
+     List<EchartType> countBycomeHainanDate(CcmPeopleAntiepidemic CcmPeopleAntiepidemic);
 
 
 }

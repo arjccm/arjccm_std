@@ -387,6 +387,10 @@
 	<select id="countBycomeHainanDate" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT count( 1 ) as "value" ,come_hainan_date as "type"
 		FROM ccm_people_antiepidemic a
+		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		<if test="domicile != null and domicile != ''">
+			AND a.domicile  LIKE concat('%',#{domicile},'%')
+		</if>
 		GROUP BY a.come_hainan_date
 	</select>
 

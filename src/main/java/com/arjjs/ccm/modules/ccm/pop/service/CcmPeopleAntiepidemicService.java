@@ -231,7 +231,8 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 
 	//根据入琼时间查询
 	public List<EchartType> countBycomeHainanDate() throws Exception{
-		List<EchartType> list = ccmPeopleAntiepidemicDao.countBycomeHainanDate();
+		CcmPeopleAntiepidemic ccmPeopleAntiepidemic = new CcmPeopleAntiepidemic();
+		List<EchartType> list = ccmPeopleAntiepidemicDao.countBycomeHainanDate(ccmPeopleAntiepidemic);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		Map<String,String> map = Maps.newHashMap();
 		for(EchartType type:list){
@@ -241,8 +242,20 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 			}
 		}
 
+		CcmPeopleAntiepidemic ccmPeople = new CcmPeopleAntiepidemic();
+		ccmPeople.setDomicile(WH);
+		List<EchartType> listwuhan = ccmPeopleAntiepidemicDao.countBycomeHainanDate(ccmPeople);
+		Map<String,String> mapwuhan = Maps.newHashMap();
+		for(EchartType type:listwuhan){
+			if(StringUtils.isNotEmpty(type.getType())){
+				String typestr = type.getType().split(" ")[0];
+				mapwuhan.put(typestr,type.getValue());
+			}
+		}
+
 		List<String> types = Lists.newArrayList();
 		List<String> values = Lists.newArrayList();
+		List<String> whvalues = Lists.newArrayList();
 		List<String> ldates = DateTools.getDayBetweenDates("2020-01-14","2020-01-24");
 		for(String s : ldates){
 			if(map.containsKey(s)){
@@ -251,13 +264,19 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 				values.add("0");
 			}
 
+			if(mapwuhan.containsKey(s)){
+				whvalues.add(mapwuhan.get(s));
+			} else {
+				whvalues.add("0");
+			}
+
 			types.add(s.substring(s.indexOf("-")+1,s.length()));
 		}
 
 		EchartType echartType = new EchartType();
 		echartType.setType(types.toString());
 		echartType.setValue(values.toString());
-
+		echartType.setValue1(whvalues.toString());
 		List<EchartType> res = Lists.newArrayList();
 		res.add(echartType);
 		return res;
