@@ -84,6 +84,10 @@ public class CcmPlaceScenicController extends BaseController {
 		ccmBasePlace.setId(ccmPlaceScenic.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceScenic.setCcmBasePlace(ccmBasePlace2);
+		if(ccmBasePlace2 != null){
+			ccmPlaceScenic.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceScenic.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceScenic", ccmPlaceScenic);
 		if ("01".equals(ccmPlaceScenic.getType())) {
 			return "ccm/scenic/ccmPlaceScenicForm";
@@ -104,6 +108,9 @@ public class CcmPlaceScenicController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_scenic");
+
+			ccmBasePlace.setAreaMap(ccmPlaceScenic.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceScenic.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceScenic.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceScenic.setBasePlaceId(id);
@@ -111,6 +118,9 @@ public class CcmPlaceScenicController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceScenic.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceScenic.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_scenic");
+
+			ccmBasePlace.setAreaMap(ccmPlaceScenic.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceScenic.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceScenic.setCcmBasePlace(ccmBasePlace);
 		}

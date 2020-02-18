@@ -79,6 +79,10 @@ public class CcmPlaceChemicalController extends BaseController {
 		ccmBasePlace.setId(ccmPlaceChemical.getBasePlaceId());
 		CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
 		ccmPlaceChemical.setCcmBasePlace(ccmBasePlace2);
+		if(ccmBasePlace2 != null){
+			ccmPlaceChemical.setAreaMap(ccmBasePlace2.getAreaMap());
+			ccmPlaceChemical.setAreaPoint(ccmBasePlace2.getAreaPoint());
+		}
 		model.addAttribute("ccmPlaceChemical", ccmPlaceChemical);
 		return "ccm/chemical/ccmPlaceChemicalForm";
 	}
@@ -96,6 +100,8 @@ public class CcmPlaceChemicalController extends BaseController {
 			ccmBasePlace.setId(id);
 			ccmBasePlace.setIsNewRecord(true);
 			ccmBasePlace.setPlaceType("ccm_place_chemical");
+			ccmBasePlace.setAreaMap(ccmPlaceChemical.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceChemical.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceChemical.setCcmBasePlace(ccmBasePlace);
 			ccmPlaceChemical.setBasePlaceId(id);
@@ -103,6 +109,8 @@ public class CcmPlaceChemicalController extends BaseController {
 			CcmBasePlace ccmBasePlace = ccmPlaceChemical.getCcmBasePlace();
 			ccmBasePlace.setId(ccmPlaceChemical.getBasePlaceId());
 			ccmBasePlace.setPlaceType("ccm_place_chemical");
+			ccmBasePlace.setAreaMap(ccmPlaceChemical.getAreaMap());
+			ccmBasePlace.setAreaPoint(ccmPlaceChemical.getAreaPoint());
 			ccmBasePlaceService.save(ccmBasePlace);
 			ccmPlaceChemical.setCcmBasePlace(ccmBasePlace);
 		}
