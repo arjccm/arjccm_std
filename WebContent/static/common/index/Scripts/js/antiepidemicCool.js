@@ -1457,6 +1457,28 @@ function SetTopBoxFun(_this) {
     SetTopBoxFlag = !SetTopBoxFlag;
 }
 
+//疫情人员信息
+var PeopleAntiepidemicFlag = true;
+function getpeopleAntiepidemic(_this) {
+    if (PeopleAntiepidemicFlag) {
+        $.getJSON('' + ctx + '/sys/map/getpeopleAntiepidemic', function (data) {
+            Map.addJSON1([{
+                'type': 'antiepidemictype',
+                'id': 'PeopleAntiepidemic',
+                'data': data,
+                'isShow': true
+            }])
+        })
+        $(_this).css('border', '1px solid #0e54a9');
+    } else {
+        $(_this).css('border', '1px solid transparent');
+        Map.removeLayer('PeopleAntiepidemic');
+    }
+    PeopleAntiepidemicFlag = !PeopleAntiepidemicFlag;
+}
+
+
+
 function XiangQingFun(type) {
     $('.pubMapDialog').show()
     var XiangQingData = {
