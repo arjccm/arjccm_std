@@ -1137,30 +1137,33 @@ public class CcmMapOtherController extends BaseController {
     // 返回新密宗教可视化界面
     @RequestMapping(value = "statIndexForZj", method = RequestMethod.GET)
     public String statIndexForZj(Map<String,Object> map) {
-        //基督教
+        //基督教 信徒
         Integer i1 = ccmPeopleService.statIndexForZj(6);
-        //天主教
+        //天主教 信徒
         Integer i2 = ccmPeopleService.statIndexForZj(5);
-        //伊斯兰教
+        //伊斯兰教 信徒
         Integer i3 = ccmPeopleService.statIndexForZj(8);
-        //佛教
+        //佛教 信徒
         Integer i4 = ccmPeopleService.statIndexForZj(2);
-        //道教
+        //道教 信徒
         Integer i5 = ccmPeopleService.statIndexForZj(4);
+        //无宗教信仰
+        Integer i6 = ccmPeopleService.statIndexForZj(1);
         map.put("i1",i1);
         map.put("i2",i2);
         map.put("i3",i3);
         map.put("i4",i4);
         map.put("i5",i5);
-        //基督教
+        map.put("i6",i6);
+        //基督教 教堂
         Integer z1 =ccmPlaceReligionService.statIndexForZj(01);
-        //天主教
+        //天主教 教堂
         Integer z2 =ccmPlaceReligionService.statIndexForZj(05);
-        //伊斯兰教
+        //伊斯兰教 教堂
         Integer z3 =ccmPlaceReligionService.statIndexForZj(02);
-        //佛教
+        //佛教 教堂
         Integer z4 =ccmPlaceReligionService.statIndexForZj(03);
-        //道教
+        //道教 教堂
         Integer z5 =ccmPlaceReligionService.statIndexForZj(04);
         map.put("z1",z1);
         map.put("z2",z2);
@@ -1186,6 +1189,34 @@ public class CcmMapOtherController extends BaseController {
                 new CcmEventIncident());
         System.out.println(page.getTotalPage());
         return "modules/sys/index/statIndexZj";
+    }
+
+    // 宗教页面人口数据
+    @RequestMapping(value = "statIndexPeoPleZj", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> statIndexPeoPleZj() {
+        Map<String,Object> map = new HashMap<>();
+        List list = new ArrayList();
+        //基督教 信徒
+        Integer i1 = ccmPeopleService.statIndexForZj(6);
+        //天主教 信徒
+        Integer i2 = ccmPeopleService.statIndexForZj(5);
+        //伊斯兰教 信徒
+        Integer i3 = ccmPeopleService.statIndexForZj(8);
+        //佛教 信徒
+        Integer i4 = ccmPeopleService.statIndexForZj(2);
+        //道教 信徒
+        Integer i5 = ccmPeopleService.statIndexForZj(4);
+        //无宗教信仰
+        Integer i6 = ccmPeopleService.statIndexForZj(1);
+        list.add(i1);
+        list.add(i2);
+        list.add(i3);
+        list.add(i4);
+        list.add(i5);
+        list.add(i6);
+        map.put("data",list);
+        return map;
     }
 
     // 返回民计民生统计

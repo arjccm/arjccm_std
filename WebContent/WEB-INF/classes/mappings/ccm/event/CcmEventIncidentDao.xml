@@ -1659,4 +1659,8 @@
             </otherwise>
         </choose>
     </select>
+
+    <select id="statIndexForZj" resultType="int">
+        SELECT COUNT(event_type) FROM ccm_event_incident WHERE event_type = #{i}
+    </select>
 </mapper>
