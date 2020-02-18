@@ -60,4 +60,5 @@ public class CcmBasePlaceService extends CrudService<CcmBasePlaceDao, CcmBasePla
 		return ccmBasePlaceDao.getcountbyplaceType();
 	}
 
+
 }

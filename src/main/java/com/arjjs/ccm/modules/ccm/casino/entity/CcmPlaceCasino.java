@@ -31,6 +31,8 @@ public class CcmPlaceCasino extends DataEntity<CcmPlaceCasino> {
 	private String managerNumber; // 管理人员数量
 	private String computerNumber; // 电脑数量
 	private String isLicense;  //是否有经营许可证
+	private String areaMap;		// 区域图
+	private String areaPoint;		// 中心点
 
     @Length(min = 1, max = 16, message = "电脑数量长度必须介于 1 和 255 之间")
     public String getComputerNumber() {
@@ -345,5 +347,21 @@ public class CcmPlaceCasino extends DataEntity<CcmPlaceCasino> {
 
 	public void setCheckUser(User checkUser) {
 		this.checkUser = checkUser;
+	}
+
+	public String getAreaMap() {
+		return areaMap;
+	}
+
+	public void setAreaMap(String areaMap) {
+		this.areaMap = areaMap;
+	}
+
+	public String getAreaPoint() {
+		return areaPoint;
+	}
+
+	public void setAreaPoint(String areaPoint) {
+		this.areaPoint = areaPoint;
 	}
 }

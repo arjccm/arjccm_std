@@ -6,6 +6,8 @@ package com.arjjs.ccm.modules.ccm.place.dao;
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlace;
+import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceEntity;
+import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceVO;
 import com.arjjs.ccm.tool.EchartType;
 
 import java.util.List;
@@ -28,5 +30,8 @@ public interface CcmBasePlaceDao extends CrudDao<CcmBasePlace> {
 	 * @return
 	 */
 	public List<EchartType> getcountbyplaceType();
+
+	//查询某一类型对应的基本场所
+	public List<CcmBasePlaceEntity> queryPlaceBase(CcmBasePlaceVO basePlaceVO);
 
 }
