@@ -34,8 +34,6 @@ public class KeyPersonalController {
         return map;
     }
 
-
-
     //开始时间结束时间
     @RequestMapping(value = "/KJ",method = RequestMethod.POST)
     @ResponseBody
