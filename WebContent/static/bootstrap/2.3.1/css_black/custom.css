@@ -233,7 +233,7 @@ input.btn{
 	margin-top: 8px;
 }
 #main {
-	/* background: #f0f3f4 !important; */
+	 background: #0e2a4c !important;
 }
 
 #footer {
@@ -562,7 +562,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
 	 box-shadow:none!important;*/
 }
 .control-group {
-    border-bottom: 1px dotted #425679!important;
+    /*border-bottom: 1px dotted #425679!important;*/
 }
 ::-webkit-scrollbar {
 	width: 5px;

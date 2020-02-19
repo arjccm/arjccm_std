@@ -51,11 +51,11 @@ $(function () {
     showechleftContent1();
 
     function showechleftContent1() {
-        /*var zs;
+        var zs;
         var value;  //18岁以下
         var value1;//18-30岁青年
         var value2;//30-60中青年
-        var value3;//60以上老年*!/
+        var value3;//60以上老年*/
         //人员年龄段
         $.ajax({
             type: "get",
@@ -69,7 +69,7 @@ $(function () {
                 value3=parseInt(data[0]['value3']); //60以上老年
             }
 
-        })*/
+        })
         var leftContent1Charts = echarts.init(document.getElementById('leftContent1Body'));
         var piebg = {
             name: '',
@@ -93,8 +93,8 @@ $(function () {
             // },
             title: {
                 text: '总数',
-                subtext: 7789,
-                // subtext: zs,
+                // subtext: 7789,
+                subtext: zs,
                 textStyle: {
                     color: '#f2f2f2',
                     fontSize: 20,
@@ -132,32 +132,32 @@ $(function () {
                 radius: ['40%', '70%'],
                 center: ['45%', '49%'],
                 data: [{
-                    value: 12059.02,
-                    // value: value,
+                    // value: 12059.02,
+                    value: value,
                     name: '18岁以下',
                     itemStyle:{
                         color:'#32F7FF'
                     },
                 },
                     {
-                        value: 10735.45,
-                        // value: value1,
+                        // value: 10735.45,
+                        value: value1,
                         name: '18-30岁青年',
                         itemStyle:{
                             color:'#6576FA'
                         },
                     },
                     {
-                        value: 52821.32,
+                        // value: 52821.32,
                         value: value2,
-                        // name: '30-60中青年',
+                        name: '30-60中青年',
                         itemStyle:{
                             color:'#FC9A2F'
                         },
                     },
                     {
-                        value: 6087.68,
-                        // value: value3,
+                        // value: 6087.68,
+                        value: value3,
                         name: '60以上老年',
                         itemStyle:{
                             color:'#2FFF1D'
@@ -250,98 +250,98 @@ $(function () {
         var type ;
         var zs; //总数
         var wh; //武汉
-        /*$.ajax({
+        $.ajax({
             type: "get",
             url: ctx + "/pop/ccmPeopleAntiepidemic/countBycomeHainanDate",
             async: false,
             success: function (data) {
-                type = data[0]['type']
-                zs= data[0]['value']; //总数
-                wh= data[0]['value1']; //武汉*!/
+                // console.log(data)
+                type = data.type;
+                zs= data.value; //总数
+                wh= data.value1; //武汉*/
             }
-
-        })*/
+        })
         var echLeftContent2 = echarts.init(document.getElementById('leftContent2Body'));
-       /*var option = {
-            legend: {
-                data: ['人数', '武汉籍'],
-                x: '100px', // 对齐方式
-                itemGap: 100, // item之间的距离
-                textStyle: {
-                    color: '#FFFFFF'
-                },
-            },
+        /*var option = {
+             legend: {
+                 data: ['人数', '武汉籍'],
+                 x: '100px', // 对齐方式
+                 itemGap: 100, // item之间的距离
+                 textStyle: {
+                     color: '#FFFFFF'
+                 },
+             },
 
-            xAxis: {
-                type: 'category',
-                data: ['01-14', '01-15', '01-16', '01-17', '01-18', '01-19', '01-20','01-21', '01-22', '01-23', '01-24'],
-                axisLabel: {
-                    color: '#FFFFFF',
-                    rotate:60,
-                },
+             xAxis: {
+                 type: 'category',
+                 data: ['01-14', '01-15', '01-16', '01-17', '01-18', '01-19', '01-20','01-21', '01-22', '01-23', '01-24'],
+                 axisLabel: {
+                     color: '#FFFFFF',
+                     rotate:60,
+                 },
 
-            },
-            yAxis: [
-                {
-                    type: 'value',
-                    scale: true,
-                    max: 1800,
-                    min: 0,
-                    boundaryGap: [0.2, 0.2],
-                    axisLabel: {
-                        color: '#FFFFFF'
-                    },
-                    axisTick: {
-                        show: true,
-                        lineStyle: {
-                            color: '#FFF',
-                            opacity: 0.2
-                        }
-                    },
+             },
+             yAxis: [
+                 {
+                     type: 'value',
+                     scale: true,
+                     max: 1800,
+                     min: 0,
+                     boundaryGap: [0.2, 0.2],
+                     axisLabel: {
+                         color: '#FFFFFF'
+                     },
+                     axisTick: {
+                         show: true,
+                         lineStyle: {
+                             color: '#FFF',
+                             opacity: 0.2
+                         }
+                     },
 
-                },
-                {
-                    type: 'value',
-                    scale: true,
-                    max: 1800,
-                    min: 0,
-                    boundaryGap: [0.2, 0.2],
-                    axisLabel: {
-                        color: '#FFFFFF'
-                    }
-                },
+                 },
+                 {
+                     type: 'value',
+                     scale: true,
+                     max: 1800,
+                     min: 0,
+                     boundaryGap: [0.2, 0.2],
+                     axisLabel: {
+                         color: '#FFFFFF'
+                     }
+                 },
 
-            ],
-            series: [{
-                data: [311, 359, 385, 548, 887, 1142, 1484,1553, 1488, 957, 513],
-                type: 'bar',
-                name: '人数',
-                itemStyle: {
-                    normal: {
-                        color: new echarts.graphic.LinearGradient(
-                            0, 0, 0, 1, [{
-                                offset: 0,
-                                color: '#32F7FF'
-                            },
-                                {
-                                    offset: 1,
-                                    color: '#32F7FF'
-                                }
-                            ])
-                    }
-                }
-            },
-                {
-                    data: [108, 121, 138, 188, 285, 381, 486,534, 546, 332, 174],
-                    type: 'line',
-                    name: '武汉籍',
-                    symbolSize: 10, // 控制线条上 点 的大小
-                    itemStyle:{
-                        color:'#FC9A2F'
-                    },
-                }
-            ]
-        };*/
+             ],
+             series: [{
+                 data: [311, 359, 385, 548, 887, 1142, 1484,1553, 1488, 957, 513],
+                 type: 'bar',
+                 name: '人数',
+                 itemStyle: {
+                     normal: {
+                         color: new echarts.graphic.LinearGradient(
+                             0, 0, 0, 1, [{
+                                 offset: 0,
+                                 color: '#32F7FF'
+                             },
+                                 {
+                                     offset: 1,
+                                     color: '#32F7FF'
+                                 }
+                             ])
+                     }
+                 }
+             },
+                 {
+                     data: [108, 121, 138, 188, 285, 381, 486,534, 546, 332, 174],
+                     type: 'line',
+                     name: '武汉籍',
+                     symbolSize: 10, // 控制线条上 点 的大小
+                     itemStyle:{
+                         color:'#FC9A2F'
+                     },
+                 }
+             ]
+         };*/
         var option = {
             tooltip: {
                 trigger: 'item',
@@ -362,8 +362,8 @@ $(function () {
             },
             xAxis: [{
                 type: 'category',
-                /data: ['01-14', '01-15', '01-16', '01-17', '01-18', '01-19', '01-20','01-21', '01-22', '01-23', '01-24'],
-                // data:data[0]['type'],
+                // data: ['01-14', '01-15', '01-16', '01-17', '01-18', '01-19', '01-20','01-21', '01-22', '01-23', '01-24'],
+                data:type,
                 //data: data['日期'],
                 axisLabel: {
                     show: true,
@@ -442,8 +442,8 @@ $(function () {
                 type: 'bar',
                 barWidth: '60%',
                 //data: data['人数'],
-                data: [311, 359, 385, 548, 887, 1142, 1484,1553, 1488, 957, 513],
-                // data: data[0]['value'],
+                // data: [311, 359, 385, 548, 887, 1142, 1484,1553, 1488, 957, 513],
+                data: zs,
                 itemStyle: {
                     normal: {
                         color: new echarts.graphic.LinearGradient(
@@ -463,8 +463,8 @@ $(function () {
             },
                 {
                     name: '武汉籍',
-                     data: [108, 121, 138, 188, 285, 381, 486,534, 546, 332, 174],
-                    // data: data[0]['value1'],
+                    // data: [108, 121, 138, 188, 285, 381, 486,534, 546, 332, 174],
+                    data: wh,
                     type: 'line',
                     symbolSize: 10, // 控制线条上 点 的大小
                     yAxisIndex: 1,
@@ -483,10 +483,28 @@ $(function () {
 
 
 
-     //疫情人员现状
+    //疫情人员现状
     showechRightContent2();
 
     function showechRightContent2(){
+        var value;
+        var value1;
+        var value2;
+        var value3;
+        //人员现状
+        $.ajax({
+            type: "get",
+            url: ctx + "/pop/ccmPeopleAntiepidemic/getCountstatus",
+            async: false,
+            success: function (data) {
+                // console.log(data)
+                value=parseInt(data[0]['value']);//value：总数
+                value1=parseInt(data[0]['value1']);//身体状况异常
+                value2=parseInt(data[0]['value2']);//已满14天
+                value3=parseInt(data[0]['value3']);//已移交
+
+            }
+        })
         var echRightContent2 = echarts.init(document.getElementById('echRightContent2'));
         var dataStyle = {
             normal: {
@@ -575,7 +593,7 @@ $(function () {
                     },
                     show: true
                 },
-                data: [1096, 12560, 3962]
+                data: [value1, value2, value3]
             }],
 
             series: [{
@@ -588,13 +606,13 @@ $(function () {
                 itemStyle: dataStyle,
 
                 data: [{
-                    value: 1096,
+                    value: value1,
                     name: '身体状况异常',
                     tooltip: {
                         show: true
                     },
                 }, {
-                    value: 17618,
+                    value: value,
                     name: '总数',
                     tooltip: {
                         show: false
@@ -613,10 +631,10 @@ $(function () {
                 hoverAnimation: false,
 
                 data: [{
-                    value: 12560,
+                    value: value2,
                     name: '已满14天'
                 }, {
-                    value: 17618,
+                    value: value,
                     name: '总数',
                     tooltip: {
                         show: false
@@ -633,10 +651,10 @@ $(function () {
                 itemStyle: dataStyle,
 
                 data: [{
-                    value: 3962,
+                    value: value3,
                     name: '已移交卫健委'
                 }, {
-                    value: 17618,
+                    value: value,
                     name: '总数',
                     tooltip: {
                         show: false
@@ -714,21 +732,27 @@ $(function () {
         echRightContent2.setOption(option);
 
     }
-//人员分布
-    getDistribution();
-    function getDistribution() {
-        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getDistribution", {"noCache": noCache}, function (data) {
-            showechRightContent1(data)
-            // var option = showDistribution(dataX, bgNum, dataY);
-            // rightContent3Charts.setOption(option);
-        });
-    }
+
     //疫情人员分布
-    //showechRightContent1();
+    showechRightContent1();
     function showechRightContent1(data){
-       var echRightContent1 = echarts.init(document.getElementById('echRightContent1'));
-       var option = {
-           /* backgroundColor: '#0b214a',*/
+        var type ;
+        var zdz; //最大值
+        var sz; //数值
+        $.ajax({
+            type: "get",
+            url: ctx + "/pop/ccmPeopleAntiepidemic/getDistribution",
+            async: false,
+            success: function (data) {
+                // console.log(data)
+                type = data.type;
+                zdz= data.value; //最大值
+                sz= data.value1; //数值
+            }
+        })
+        var echRightContent1 = echarts.init(document.getElementById('echRightContent1'));
+        var option = {
+            /* backgroundColor: '#0b214a',*/
             color: '#FF00FFFF',
             grid: {
                 left: '6%',
@@ -746,7 +770,7 @@ $(function () {
             xAxis: [{
                 type: 'category',
                 // data: ["崖州区", "天涯区", "吉阳区", "海棠区", "育才生态区"],
-                data: data[0]['type'],
+                data: type,
                 axisTick: {
                     show: false,
                     alignWithLabel: true,
@@ -815,7 +839,8 @@ $(function () {
                         borderColor: '#FF00FFFF',
                     }
                 },
-                data: [data[0]['value'], data[0]['value'], data[0]['value'], data[0]['value'], data[0]['value']]
+                // data: [6000, 6000, 6000, 6000, 6000]
+                data:zdz
             }, {
                 type: 'pictorialBar',
                 animation: true,
@@ -836,7 +861,7 @@ $(function () {
                         }
                     }
                 },
-                data: data[0]['value1']
+                data: sz
             }]
         };
 
@@ -871,37 +896,22 @@ $(function () {
     getCounttakeSteps();
     function getCounttakeSteps() {
         $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCounttakeSteps", {"noCache": noCache}, function (data) {
-            console.log("人员隔离措施")
-            var value1 = data['value'];
-            console.log(value1)
-            var value2 = data['value1'];
-            console.log(value2)
-            var value3 = data['value2'];
-            console.log(value3)
-            var value4 = data['value3'];
-            console.log(value4)
+            // console.log("人员隔离措施")
+            var value = parseInt(data[0]['value']);
+            var value1 = parseInt(data[0]['value1']);
+            var value2 = parseInt(data[0]['value2']);
+            var value3 = parseInt(data[0]['value3']);
+
+            $("#jjgl").html(value);
+            $("#lgdgl").html(value1);
+            $("#qzgl").html(value2);
+            $("#yygl").html(value3);
             // var option = showDistribution(dataX, bgNum, dataY);
             // rightContent3Charts.setOption(option);
         });
     }
 
-    //人员现状
-    getCountstatus();
-    function getCountstatus() {
-        $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCountstatus", {"noCache": noCache}, function (data) {
-            console.log("人员现状")
-            var value1 = data['value'];
-            console.log(value1)
-            var value2 = data['value1'];
-            console.log(value2)
-            var value3 = data['value2'];
-            console.log(value3)
-            var value4 = data['value3'];
-            console.log(value4)
-            // var option = showDistribution(dataX, bgNum, dataY);
-            // rightContent3Charts.setOption(option);
-        });
-    }
+
 
 
 
@@ -2364,7 +2374,7 @@ function LayerDialog(src, title, height, width) {
         content: src,
         zIndex: '1992',
         skin:"mySkin"
-});
+    });
 
 }
 
@@ -2903,36 +2913,36 @@ function videoChangeJboxStyle(h) {
 }
 
 function videoTreeselectCallBack(v, h, f){
-	if (v=="ok"){
-		var tree = h.find("iframe")[0].contentWindow.tree;//h.find("iframe").contents();
-		var ids = [], names = [], nodes = [];
-		if ("${checked}" == "true"){
-			nodes = tree.getCheckedNodes(true);
-		}else{
-			nodes = tree.getSelectedNodes();
-		}
-		for(var i=0; i<nodes.length; i++) {
-			if(nodes[i].type == "camera"){
-				ids.push(nodes[i].id);
-				names.push(nodes[i].name);
-			}else{
-				top.$.jBox.tip("不能选择非监控节点（"+nodes[i].name+"）请重新选择。");
-				$("#videoId").val("");
-				$("#videoName").val("");
-				return false;
-			}
-		}
-		var name = names.join(",");
-		var id = ids.join(",").replace(/u_/ig,"");
-		if(name == null || name == "" || name == undefined){
-			$("#videoId").val("");
-			$("#videoName").val("");
-			return false;
-		}else{
-			$("#videoId").val(id);
-			$("#videoName").val(names.join(","));
-			$('#ccmLiveVideoVisualized').attr("src","/arjccm/a/ccmsys/ccmDevice/getDeviceMap?id=" + id);
-			return true;
-		}
-	}
+    if (v=="ok"){
+        var tree = h.find("iframe")[0].contentWindow.tree;//h.find("iframe").contents();
+        var ids = [], names = [], nodes = [];
+        if ("${checked}" == "true"){
+            nodes = tree.getCheckedNodes(true);
+        }else{
+            nodes = tree.getSelectedNodes();
+        }
+        for(var i=0; i<nodes.length; i++) {
+            if(nodes[i].type == "camera"){
+                ids.push(nodes[i].id);
+                names.push(nodes[i].name);
+            }else{
+                top.$.jBox.tip("不能选择非监控节点（"+nodes[i].name+"）请重新选择。");
+                $("#videoId").val("");
+                $("#videoName").val("");
+                return false;
+            }
+        }
+        var name = names.join(",");
+        var id = ids.join(",").replace(/u_/ig,"");
+        if(name == null || name == "" || name == undefined){
+            $("#videoId").val("");
+            $("#videoName").val("");
+            return false;
+        }else{
+            $("#videoId").val(id);
+            $("#videoName").val(names.join(","));
+            $('#ccmLiveVideoVisualized').attr("src","/arjccm/a/ccmsys/ccmDevice/getDeviceMap?id=" + id);
+            return true;
+        }
+    }
 }

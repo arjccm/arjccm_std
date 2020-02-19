@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.DateTools;
 import com.arjjs.ccm.tool.EchartType;
+import com.google.common.collect.Maps;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleAntiepidemicService;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 人员疫情Controller
@@ -160,18 +162,18 @@ public class CcmPeopleAntiepidemicController extends BaseController {
 	//人员分布
 	@ResponseBody
 	@RequestMapping(value = "getDistribution")
-	public List<EchartType> getDistribution(Model model) {
+	public Map<String, Object> getDistribution(Model model) {
 		// 返回对象结果
-		List<EchartType> list = ccmPeopleAntiepidemicService.getDistribution();
-		return list;
+		Map<String, Object> map = ccmPeopleAntiepidemicService.getDistribution();
+		return map;
 	}
 
 	//人员如琼趋势
 	@ResponseBody
 	@RequestMapping(value = "countBycomeHainanDate")
-	public List<EchartType> countBycomeHainanDate(Model model) throws Exception{
+	public  Map<String, Object>  countBycomeHainanDate(Model model) throws Exception{
 		// 返回对象结果
-		List<EchartType> list = ccmPeopleAntiepidemicService.countBycomeHainanDate();
-		return list;
+		Map<String, Object> map = ccmPeopleAntiepidemicService.countBycomeHainanDate();
+		return map;
 	}
 }
