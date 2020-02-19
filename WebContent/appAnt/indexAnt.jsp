@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="css/plugins.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/themes.css">
-    <script src="js/vendor/modernizr-3.3.1.min.js"></script>
+  <%--  <link href="js/jquery-validation/1.11.0/jquery.validate.min.css" type="text/css" rel="stylesheet" />
+    <script src="js/jquery-validation/1.11.0/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="js/jquery-validation/1.11.1/jquery.validate.method.js" type="text/javascript"></script>--%>
 </head>
 <body>
 
@@ -72,17 +74,17 @@
                         <!-- Form Validation Block -->
                         <div class="block">
                             <!-- Form Validation Title -->
-                            <div class="block-title">
+                            <%--<div class="block-title">
                                 <h2>人员疫情添加</h2>
-                            </div>
+                            </div>--%>
                             <!-- END Form Validation Title -->
 
                             <!-- Form Validation Form -->
-                            <form id="form-validation" action="page_forms_validation.html" method="post" class="form-horizontal form-bordered">
+                            <form id="inputForm" action="" method="post" class="form-horizontal form-bordered">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="name">姓名： <span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="name">姓名： <%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
-                                        <input type="text" id="name" name="name" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入姓名">
+                                        <input type="text" id="name" name="name" class="form-control required" htmlEscape="false" maxlength="32"  placeholder="请输入姓名">
                                     </div>
 
                                 </div>
@@ -90,23 +92,23 @@
                                     <label class="col-md-3 control-label">性别：</label>
                                     <div class="col-md-9">
                                         <label class="radio-inline" for="example-inline-radio1">
-                                            <input type="radio" id="example-inline-radio1" name="example-inline-radios" value="0"> 男
+                                            <input type="radio" id="example-inline-radio1" name="sex" value="0"> 男
                                         </label>
                                         <label class="radio-inline" for="example-inline-radio2">
-                                            <input type="radio" id="example-inline-radio2" name="example-inline-radios" value="1"> 女
+                                            <input type="radio" id="example-inline-radio2" name="sex" value="1"> 女
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="age">年龄： <span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" >年龄： <%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
-                                        <input type="text" id="age" name="age" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输年龄">
+                                        <input type="text" id="agetype" name="agetype" class="form-control required" htmlEscape="false" maxlength="32"  placeholder="请输年龄">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="idNumber">身份证号码： <span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="idNumber">身份证号码： <%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
-                                        <input type="text" id="idNumber" name="idNumber" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入身份证号码">
+                                        <input type="text" id="idNumber" name="idNumber" class="form-control required" htmlEscape="false" maxlength="32"  placeholder="请输入身份证号码">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -116,19 +118,19 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="telephone">电话号码： <span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="telephone">电话号码： <%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="telephone" name="telephone" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入电话号码">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="habitation">当地居住地： <span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="habitation">当地居住地： <%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="habitation" name="habitation" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入当地居住地">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="transportation">返程交通工具： <span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="transportation">返程交通工具：<%-- <span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="transportation" name="transportation" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入返程交通工具">
                                     </div>
@@ -155,13 +157,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="checkName">核查人：<span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="checkName">核查人：<%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="checkName" name="checkName" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入核查人">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="checkTel">核查人联系方式： <span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="checkTel">核查人联系方式： <%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="checkTel" name="checkTel" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入核查人联系方式">
                                     </div>
@@ -173,13 +175,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="reportName">上报人：<span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="reportName">上报人：<%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="reportName" name="reportName" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入上报人">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="reportDepartment">上报人所属单位： <span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="reportDepartment">上报人所属单位： <%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="reportDepartment" name="reportDepartment" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入上报人所属单位">
                                     </div>
@@ -201,32 +203,32 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="belongBureau">所属市局： <span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="belongBureau">所属市局： <%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="belongBureau" name="belongBureau" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入所属市局">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="belongSubBureau">所属分局：<span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="belongSubBureau">所属分局：<%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="belongSubBureau" name="belongSubBureau" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入所属分局">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="belongPoliceStation">所属派出所：<span class="text-danger">*</span></label>
+                                    <label class="col-md-3 control-label" for="belongPoliceStation">所属派出所：<%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">
                                         <input type="text" id="belongPoliceStation" name="belongPoliceStation" class="form-control" htmlEscape="false" maxlength="32"  placeholder="请输入所属派出所">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="remarks">备注信息： <span class="text-danger">*</span></label>
+                              <%--  <div class="form-group">
+                                    <label class="col-md-3 control-label" for="remarks">备注信息： &lt;%&ndash;<span class="text-danger">*</span>&ndash;%&gt;</label>
                                     <div class="col-md-9">
                                         <textarea id="remarks" name="remarks" rows="7" class="form-control" placeholder="请输入备注信息"></textarea>
                                     </div>
-                                </div>
+                                </div>--%>
                                 <div class="form-group form-actions">
                                     <div class="col-md-8 col-md-offset-3">
-                                        <button type="submit" class="btn btn-effect-ripple btn-primary">提交</button>
+                                        <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="save()">提交</button>
                                         <button type="reset" class="btn btn-effect-ripple btn-danger">取消</button>
                                     </div>
                                 </div>
@@ -253,9 +255,35 @@
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/app.js"></script>
+<script src="js/vendor/modernizr-3.3.1.min.js"></script>
+
 
 <!-- Load and execute javascript code used only in this page -->
 <script src="js/pages/formsValidation.js"></script>
-<script>$(function(){ FormsValidation.init(); });</script>
+<script>$(function(){ FormsValidation.init(); });
+function save() {
+    $.ajax({
+        //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "/arjccm/app/rest/people/saveAntiepidemic" ,//url
+        data: $('#inputForm').serialize(),
+        success: function (result) {
+            console.log(result);//打印服务端返回的数据(调试用)
+            if (result.code == 0) {
+                alert("提交成功");
+                window.location.href="message.jsp";
+            }
+            ;
+        },
+        error : function() {
+            alert("异常！");
+        }
+    });
+}
+
+
+
+</script>
 </body>
 </html>

@@ -7,8 +7,10 @@ import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.ccm.house.entity.*;
 import com.arjjs.ccm.modules.ccm.house.service.*;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeopleAntiepidemic;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopBehind;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleAntiepidemicService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopBehindService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
@@ -80,7 +82,8 @@ public class CcmRestPeople extends BaseController {
 	private CcmHouseDisputeService ccmHouseDisputeService;
 	@Autowired
 	private CcmSeriousCriminalOffenseService ccmSeriousCriminalOffenseService;
-
+	@Autowired
+	private CcmPeopleAntiepidemicService ccmPeopleAntiepidemicService;
 
 	/**
 	 * @see  获取单个人员信息
@@ -2971,6 +2974,32 @@ public class CcmRestPeople extends BaseController {
 		return result;
 	}
 
-	
-	
+
+	//疫情人员信息
+	@ResponseBody
+	@RequestMapping(value = "/saveAntiepidemic", method = RequestMethod.POST)
+	public CcmRestResult save(CcmPeopleAntiepidemic ccmPeopleAntiepidemic) {
+		CcmRestResult result = new CcmRestResult();
+		ccmPeopleAntiepidemic.setCreateBy(new User("1"));
+		ccmPeopleAntiepidemic.setCreateDate(new Date());
+		ccmPeopleAntiepidemic.setUpdateBy(new User("1"));
+		ccmPeopleAntiepidemic.setUpdateDate(new Date());
+		if(StringUtils.isNotEmpty(ccmPeopleAntiepidemic.getAgeType())){
+			if(isNumeric(ccmPeopleAntiepidemic.getAgeType())){
+				ccmPeopleAntiepidemic.setAge(Integer.parseInt(ccmPeopleAntiepidemic.getAgeType()));
+			}
+		}
+		ccmPeopleAntiepidemicService.save(ccmPeopleAntiepidemic);
+		result.setCode(CcmRestType.OK);
+		result.setResult("成功");
+		return result;
+	}
+
+	public final static boolean isNumeric(String s) {
+		if (s != null && !"".equals(s.trim()))
+			return s.matches("^[0-9]*$");
+		else
+			return false;
+	}
+
 }
