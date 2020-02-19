@@ -99,12 +99,12 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" >年龄： <%--<span class="text-danger">*</span>--%></label>
+                                <%--<div class="form-group">
+                                    <label class="col-md-3 control-label" for="agetype">年龄： &lt;%&ndash;<span class="text-danger">*</span>&ndash;%&gt;</label>
                                     <div class="col-md-6">
                                         <input type="text" id="agetype" name="agetype" class="form-control required" htmlEscape="false" maxlength="32"  placeholder="请输年龄">
                                     </div>
-                                </div>
+                                </div>--%>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="idNumber">身份证号码： <%--<span class="text-danger">*</span>--%></label>
                                     <div class="col-md-6">

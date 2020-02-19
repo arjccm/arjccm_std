@@ -37,6 +37,7 @@
 				<param name='loop' value='true' />
 				<param name='fullscreen' value='false' />
 			</object>
+
 		</c:if>
 		<c:if test="${ccmDevice.typeVidicon == 1}">
 			<div class="form" style="display: none">
@@ -78,13 +79,55 @@
 		        <br />
 		        <input type="submit" class="playBtn" value="视频预览播放" />
 		    </div>
-			<div class="video-position" style="width: 99%; height:99%;">
+			<div class="video-position" style="width: 600px;height: auto; position: relative;padding: 14px 0 0 0; float: left">
 		        <p class="pop" style="display:block">加载中</p>
 		        <input type="hidden" name="config" id="config" value="ReqType:PlayReal;wndcount:1" />
 		        <!-- 添加预览控件（需要先在windows下注册） -->
 		        <object classid="CLSID:7E393848-7238-4CE3-82EE-44AF444B240A" id="PlayViewOCX" wmode="opaque" width="0" height="0" name="PlayViewOCX">
 		        </object>
 	        </div>
+			<div id="vidioDiv" style="float: left; width: 250px;">
+
+				<ul class="clearfix" style="width: 210px; margin: 0px auto;">
+					<li onclick="PtzControl(11,1,1,100)" style="float:left ;width: 30px;height: 30px;padding: 10px;margin-left: 45px;margin-top: 5px">
+						<img src="${ctxStatic}/common/index/images/white_ZoomOut_hover.png" style="width:30px;height:30px;" title="放大">
+					</li>
+					<li onclick="PtzControl(12,1,1,100)" style="float:left ;width: 30px;height: 30px;padding: 10px;margin-left: 18px;margin-top: 2px">
+						<img src="${ctxStatic}/common/index/images/white_ZoomIn_hover.png" style="width:30px;height:30px;" title="缩小">
+					</li>
+				</ul>
+
+				<ul class="clearfix" style="width: 210px; margin: 90px auto;">
+					<li onmousedown="PtzControl(25,1,1,0)" onmouseup="PtzControl(25,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
+						<img src="${ctxStatic}/common/index/images/left_up.png" style="width:50px;height:50px;" title="左上">
+					</li>
+					<li onmousedown="PtzControl(21,1,1,0)" onmouseup="PtzControl(21,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
+						<img src="${ctxStatic}/common/index/images/up.png" style="width:50px;height:50px;" title="向上">
+					</li>
+					<li onmousedown="PtzControl(26,1,1,0)" onmouseup="PtzControl(26,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
+						<img src="${ctxStatic}/common/index/images/right_up.png" style="width:50px;height:50px;" title="右上">
+					</li>
+					<li onmousedown="PtzControl(23,1,1,0)" onmouseup="PtzControl(23,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
+						<img src="${ctxStatic}/common/index/images/left.png" style="width:50px;height:50px;" title="向左">
+					</li>
+					<li onmousedown="PtzControl(29,1,1,0)" onmouseup="PtzControl(29,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
+						<img src="${ctxStatic}/common/index/images/auto.png" style="width:50px;height:50px;" title="自动">
+					</li>
+					<li onmousedown="PtzControl(24,1,1,0)" onmouseup="PtzControl(24,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
+						<img src="${ctxStatic}/common/index/images/right.png" style="width:50px;height:50px;" title="向右">
+					</li>
+					<li onmousedown="PtzControl(27,1,1,0)" onmouseup="PtzControl(27,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
+						<img src="${ctxStatic}/common/index/images/left_down.png" style="width:50px;height:50px;" title="左下">
+					</li>
+					<li onmousedown="PtzControl(22,1,1,0)" onmouseup="PtzControl(22,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
+						<img src="${ctxStatic}/common/index/images/down.png" style="width:50px;height:50px;" title="向下">
+					</li>
+					<li onmousedown="PtzControl(28,1,1,0)" onmouseup="PtzControl(28,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
+						<img src="${ctxStatic}/common/index/images/right_down.png" style="width:50px;height:50px;" title="右下">
+					</li>
+				</ul>
+
+			</div>
 		</c:if>
 		<c:if test="${ccmDevice.typeVidicon == 4}">
 
