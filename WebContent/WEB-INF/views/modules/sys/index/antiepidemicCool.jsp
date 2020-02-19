@@ -410,9 +410,9 @@
 						<span class="pub-icon icon-jiayouzhans"></span> <span class="pub-name">加油站</span>
 					</div>
 					<!-- 商场超市 -->
-					<div class="pub-flag" onclick="shangchangFun(this)">
+					<%--<div class="pub-flag" onclick="shangchangFun(this)">
 						<span class="pub-icon icon-shangchang"></span> <span class="pub-name">商场超市</span>
-					</div>
+					</div>--%>
 					<!-- 娱乐场所 -->
 					<div class="pub-flag" onclick="yuleFun(this)">
 						<span class="pub-icon icon-yule"></span> <span class="pub-name">娱乐场所</span>
@@ -422,9 +422,9 @@
 						<span class="pub-icon icon-bingguan"></span> <span class="pub-name">酒店宾馆</span>
 					</div>
 					<!-- 涉危涉爆单位 -->
-					<div class="pub-flag" onclick="sheweishebaoFun(this)">
+					<%--<div class="pub-flag" onclick="sheweishebaoFun(this)">
 						<span class="pub-icon icon-sheweishebao"></span> <span class="pub-name">涉危涉爆</span>
-					</div>
+					</div>--%>
 
 					<!-- 视频监控 -->
 					<div class="pub-flag" onclick="shipinjiankongFun(this)" id="VideoFlag" VideoFlagAttr="false">
