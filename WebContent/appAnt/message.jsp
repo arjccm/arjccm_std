@@ -23,9 +23,6 @@
     <link rel="stylesheet" href="css/plugins.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/themes.css">
-    <link href="js/jquery-validation/1.11.0/jquery.validate.min.css" type="text/css" rel="stylesheet" />
-    <script src="js/jquery-validation/1.11.0/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="js/jquery-validation/1.11.1/jquery.validate.method.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -103,29 +100,6 @@
 <!-- Load and execute javascript code used only in this page -->
 <script src="js/pages/formsValidation.js"></script>
 <script>$(function(){ FormsValidation.init(); });
-function save() {
-    $.ajax({
-        //几个参数需要注意一下
-        type: "POST",//方法类型
-        dataType: "json",//预期服务器返回的数据类型
-        url: "/arjccm/app/rest/people/saveAntiepidemic" ,//url
-        data: $('#inputForm').serialize(),
-        success: function (result) {
-            console.log(result);//打印服务端返回的数据(调试用)
-            if (result.code == 0) {
-                // alert("提交成功");
-                window.location.href="www.baidu.com";
-            }
-            ;
-        },
-        error : function() {
-            alert("异常！");
-        }
-    });
-}
-
-
-
 </script>
 </body>
 </html>

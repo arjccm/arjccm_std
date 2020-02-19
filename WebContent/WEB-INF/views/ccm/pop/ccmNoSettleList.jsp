@@ -106,11 +106,12 @@
 			<li class="first-line"><label>更多</label>
 				<input type="checkbox" id="che" onclick="show()">
 			</li>
+		</ul>
 
-		<li class="clearfix selectHidden hide"></li>
-			<li class="clearfix selectHidden hide"></li>
+<%--		<li class="clearfix selectHidden hide"></li>--%>
+<%--			<li class="clearfix selectHidden hide"></li>--%>
 
-			
+	<ul class="ul-form pull-left">
 			<li class="selectHidden hide"><label>性别：</label>
 				<form:select path="sex" class="input-small ">
 					<form:option value="" label="全部"/>
@@ -183,7 +184,7 @@
 					value="<fmt:formatDate value="${ccmPeople.endBirthday}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
-		<li class="clearfix selectHidden hide"></li>
+<%--		<li class="clearfix selectHidden hide"></li>--%>
 	</ul>
 		
 		

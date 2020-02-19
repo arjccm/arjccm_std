@@ -107,10 +107,12 @@
 			<li class="first-line"><label>更多</label>
 				<input type="checkbox" id="che" onclick="show()">
 			</li>
+		</ul>
 
-		<li class="clearfix selectHidden hide"></li>
+<%--		<li class="clearfix selectHidden hide"></li>--%>
 
-			<li class="clearfix selectHidden hide"></li>
+<%--			<li class="clearfix selectHidden hide"></li>--%>
+	<ul class="ul-form pull-left">
 			<li class="selectHidden hide"><label>性别：</label>
 				<form:select path="sex" class="input-small ">
 					<form:option value="" label="全部"/>
@@ -128,7 +130,7 @@
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
-			<li/>
+			</li>
 			<li class="selectHidden hide"><label style="width: 178px;">肇事肇祸等精神障碍：</label>
 				<form:select path="isPsychogeny" class="input-small ">
 					<form:option value="" label="全部"/>

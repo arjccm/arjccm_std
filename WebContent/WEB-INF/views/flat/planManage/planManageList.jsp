@@ -395,55 +395,55 @@ h5 i.active {
 					<!-- 图层 -->
 					<div id="onparentdiv" style="position: absolute;width: 1230px;height: 30px;background-color: white;left: 280px;z-index: 9;border-radius: 5px;top: 10px;border: 1px solid #ccc;">
 						<!-- 视频监控 -->
-						<div class="pub-flag" onclick="shipinjiankongFun(this)" id="v_videoMon" style="width: 8%;" >
+						<div class="pub-flag" onclick="shipinjiankongFun(this)" id="v_videoMon" style="width:10%;" >
 							<span class="pub-icon icon-shipin"></span> <span class="pub-name">视频监控</span>
 						</div>
 						<!-- 应急广播 -->
-						<div class="pub-flag" onclick="guangbozhanFun(this)" id="v_broadCast" style="width: 8%;" >
+						<div class="pub-flag" onclick="guangbozhanFun(this)" id="v_broadCast" style="width: 9%;" >
 							<span class="pub-icon icon-guangbozhan"></span> <span class="pub-name">广播站</span>
 						</div>
 						<!-- 警员-->
-						<div class="pub-flag" onclick="jingyuanFun(this)" id="v_police" style="width: 8%;" >
+						<div class="pub-flag" onclick="jingyuanFun(this)" id="v_police" style="width: 10%;" >
 							<span class="pub-icon icon-jingyuan"></span> <span class="pub-name">工作人员</span>
 						</div>
 						<!-- 警车-->
-						<div class="pub-flag" onclick="jingcheFun(this)" id="v_policeCar" style="width: 6%;" >
+						<div class="pub-flag" onclick="jingcheFun(this)" id="v_policeCar" style="width: 8%;" >
 							<span class="pub-icon icon-jingche"></span> <span class="pub-name">车辆</span>
 						</div>
 						<!--学校  -->
-						<div class="pub-flag" onclick="xuexiaoFun(this)" id="v_scoole" style="width: 6%;" >
+						<div class="pub-flag" onclick="xuexiaoFun(this)" id="v_scoole" style="width: 8%;" >
 							<span class="pub-icon icon-xuexiao"></span> <span class="pub-name">学校</span>
 						</div>
 						<!-- 医院 -->
-						<div class="pub-flag" onclick="yiyuanFun(this)" id="v_hospital" style="width: 6%;" >
+						<div class="pub-flag" onclick="yiyuanFun(this)" id="v_hospital" style="width: 8%;" >
 							<span class="pub-icon icon-yiyuan"></span> <span class="pub-name">医院</span>
 						</div>
 						<!-- 加油站 -->
-						<div class="pub-flag" onclick="jiayouzhanFun(this)" id="v_gasStation" style="width: 8%;" >
+						<div class="pub-flag" onclick="jiayouzhanFun(this)" id="v_gasStation" style="width: 9%;" >
 							<span class="pub-icon icon-jiayouzhan"></span> <span class="pub-name">加油站</span>
 						</div>
 						<!-- 商场超市 -->
-						<div class="pub-flag" onclick="shangchangFun(this)" id="v_store" style="width: 8%;" >
+						<%--<div class="pub-flag" onclick="shangchangFun(this)" id="v_store" style="width: 8%;" >
 							<span class="pub-icon icon-shangchang"></span> <span class="pub-name">商场超市</span>
-						</div>
+						</div>--%>
 						<!-- 娱乐场所 -->
-						<div class="pub-flag" onclick="yuleFun(this)" id="v_entertainment" style="width: 8%;" >
+						<div class="pub-flag" onclick="yuleFun(this)" id="v_entertainment" style="width: 10%;" >
 							<span class="pub-icon icon-yule"></span> <span class="pub-name">娱乐场所</span>
 						</div>
 						<!-- 宾馆 -->
-						<div class="pub-flag" onclick="binguanFun(this)" id="v_hotel" style="width: 8%;" >
+						<div class="pub-flag" onclick="binguanFun(this)" id="v_hotel" style="width: 9%;" >
 							<span class="pub-icon icon-bingguan"></span> <span class="pub-name">酒店宾馆</span>
 						</div>
 						<!-- 涉危涉爆单位 -->
-						<div class="pub-flag" onclick="sheweishebaoFun(this)" id="v_danger" style="width: 8%;" >
+						<%--<div class="pub-flag" onclick="sheweishebaoFun(this)" id="v_danger" style="width: 8%;" >
 							<span class="pub-icon icon-sheweishebao"></span> <span class="pub-name">涉危涉爆</span>
-						</div>
+						</div>--%>
 						<!-- 警务室-->
-						<div class="pub-flag" onclick="jingwushiFun(this)" id="v_policeRoom" style="width: 7%;" >
+						<div class="pub-flag" onclick="jingwushiFun(this)" id="v_policeRoom" style="width: 8%;" >
 							<span class="pub-icon icon-jingwushi"></span> <span class="pub-name">警务室</span>
 						</div>
 						<!-- 工作站-->
-						<div class="pub-flag" onclick="gongzuozhanFun(this)" id="v_workstation" style="width: 8%;" >
+						<div class="pub-flag" onclick="gongzuozhanFun(this)" id="v_workstation" style="width: 9%;" >
 							<span class="pub-icon icon-gongzuozhan"></span> <span class="pub-name">工作站</span>
 						</div>
 					</div>

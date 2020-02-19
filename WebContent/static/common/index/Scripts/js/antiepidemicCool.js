@@ -250,6 +250,7 @@ $(function () {
         var type ;
         var zs; //总数
         var wh; //武汉
+        var zdz;
         $.ajax({
             type: "get",
             url: ctx + "/pop/ccmPeopleAntiepidemic/countBycomeHainanDate",
@@ -259,6 +260,7 @@ $(function () {
                 type = data.type;
                 zs= data.value; //总数
                 wh= data.value1; //武汉*/
+                zdz=Math.max.apply(null,zs);
             }
         })
         var echLeftContent2 = echarts.init(document.getElementById('leftContent2Body'));
@@ -413,7 +415,7 @@ $(function () {
             },
                 {
                     type: 'value',
-                    max: 1800,
+                    max: zdz,
                     splitLine: {
                         show: false
                     },
@@ -506,7 +508,7 @@ $(function () {
             }
         })
         var echRightContent2 = echarts.init(document.getElementById('echRightContent2'));
-        var dataStyle = {
+       var dataStyle = {
             normal: {
                 label: {
                     show: false
@@ -575,6 +577,12 @@ $(function () {
             xAxis: [{
                 show: false
             }],
+            grid: {
+                top: '10%',
+                bottom: '72%',
+                left: "21%",
+                containLabel: false
+            },
             yAxis: [{
                 type: 'category',
                 inverse: true,
@@ -593,6 +601,7 @@ $(function () {
                     },
                     show: true
                 },
+                // data: [1096, 12560, 3962],
                 data: [value1, value2, value3]
             }],
 
@@ -606,13 +615,15 @@ $(function () {
                 itemStyle: dataStyle,
 
                 data: [{
+                    // value: 1096,
                     value: value1,
                     name: '身体状况异常',
                     tooltip: {
                         show: true
                     },
                 }, {
-                    value: value,
+                    // value: 17618,
+                    value: parseInt(((value+value1)*3/4)-value1),
                     name: '总数',
                     tooltip: {
                         show: false
@@ -631,10 +642,12 @@ $(function () {
                 hoverAnimation: false,
 
                 data: [{
+                    // value: 12560,
                     value: value2,
                     name: '已满14天'
                 }, {
-                    value: value,
+                    // value: 17618,
+                    value: parseInt(((value+value2)*3/4)-value2),
                     name: '总数',
                     tooltip: {
                         show: false
@@ -651,10 +664,13 @@ $(function () {
                 itemStyle: dataStyle,
 
                 data: [{
+                    // value: 3962,
                     value: value3,
                     name: '已移交卫健委'
                 }, {
-                    value: value,
+                    // value: 17618,
+                    value: parseInt(((value+value3)*3/4)-value3),
+
                     name: '总数',
                     tooltip: {
                         show: false
@@ -728,6 +744,12 @@ $(function () {
             })
             ],
         };
+
+
+
+
+
+
 
         echRightContent2.setOption(option);
 
@@ -824,7 +846,7 @@ $(function () {
                 symbol: 'rect',
                 symbolRepeat: true,
                 symbolMargin: 1,
-                barMinHeight: 150,
+                barMinHeight: 100,
                 symbolSize: [40, 10],
                 itemStyle: {
                     normal: {
@@ -861,6 +883,7 @@ $(function () {
                         }
                     }
                 },
+                // data: [4715, 5527, 1260, 1121, 23]
                 data: sz
             }]
         };
@@ -876,15 +899,10 @@ $(function () {
 
             console.log("户籍统计信息")
             var value = data['type'];
-            console.log(value)
             var value1 = data['value'];
-            console.log(value1)
             var value2 = data['value1'];
-            console.log(value2)
             var value3 = data['value2'];
-            console.log(value3)
             var value4 = data['value3'];
-            console.log(value4)
 
 
             // var option = showDistribution(dataX, bgNum, dataY);
