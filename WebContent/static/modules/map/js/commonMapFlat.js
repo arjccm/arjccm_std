@@ -3240,7 +3240,8 @@ ArjMap.Map.prototype={
 								html += '<td><a class="videoPlay btn btn-success"  href="###" videoIp="'+ data[i].get('video')['ip']+'"  videoId="'+ data[i].get('video')['id']+ '" >播放</a></td>';
 								html += '</tr>'
 							}
-							if(pointType&&pointType=='vlc'||pointType&&pointType=='people'){
+							//if(pointType&&pointType=='vlc'||pointType&&pointType=='people'){
+							if(pointType&&pointType=='vlc'){
 								//如果警力警车，添加播放视频流
 								html += '<tr>';
 								html += '<td><strong>视频监控：</strong></td>';
