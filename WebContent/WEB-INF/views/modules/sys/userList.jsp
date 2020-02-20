@@ -43,6 +43,16 @@
 		$("#searchForm").submit();
 		return false;
 	}
+	function saveImport() {
+		debugger;
+		var s = document.importForm[1][0].files.length;
+		if(s == 0){
+			alert("请选择文件！");
+			return;
+		}else{
+			$("#importForm").submit();
+		}
+	}
 </script>
 </head>
 <body>
@@ -50,7 +60,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">用户管理</span>--%>
 <div class="back-list">
 	<div id="importBox" class="hide">
-		<form id="importForm" action="${ctx}/sys/sysUser/import" method="post"
+		<form name="importForm" id="importForm" action="${ctx}/sys/sysUser/import" method="post"
 			enctype="multipart/form-data" class="form-search"
 			style="padding-left: 20px; text-align: center;"
 			onsubmit="loading('正在导入，请稍等...');">
@@ -59,7 +69,7 @@
 			<input id="btnImportTemplate"
 				   class="btn btn-primary"  type="button" value="模板下载 " onclick="location.href='${ctxStatic}/template/excel/userTemplate.xlsx'"/>
 			<input id="btnImportSubmit"
-				class="btn btn-primary" type="submit" value="   导    入   " />
+				class="btn btn-primary" type="submit" onclick="saveImport()" value="   导    入   " />
 <%--			<a href="${ctx}/sys/user/import/template">下载模板</a>--%>
 		</form>
 	</div>
