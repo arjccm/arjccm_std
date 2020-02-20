@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li class="hidden-xs animation-fadeInQuick">
-                        <a href=""><h4>安顺</h4></a>
+                        <a href=""><h4></h4></a>
                     </li>
                 </ul>
             </header>
