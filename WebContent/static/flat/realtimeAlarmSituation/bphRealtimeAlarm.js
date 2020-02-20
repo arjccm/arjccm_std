@@ -1548,7 +1548,8 @@ function bindAlarmInfo(id) {
             'handlePoliceId': id
         },
         success: function(data) {
-            alarmHtml += '<div>关联警情</div>';
+            alarmHtml += '<div style="height:300px;overflow-y:scroll;">';
+            alarmHtml += '<div >关联警情</div>';
             alarmHtml += '<table id="BindAlarmInfoTable" class="layui-table">';
             alarmHtml += '<thead>';
             alarmHtml += '<tr>';
@@ -1571,6 +1572,7 @@ function bindAlarmInfo(id) {
             }
             alarmHtml += '</tbody>';
             alarmHtml += '</table>';
+            alarmHtml += '</div>';
         }
     });
     return alarmHtml;
