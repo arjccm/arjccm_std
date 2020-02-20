@@ -846,7 +846,7 @@ $(function () {
                 symbol: 'rect',
                 symbolRepeat: true,
                 symbolMargin: 1,
-                barMinHeight: 100,
+                barMinHeight: 120,
                 symbolSize: [40, 10],
                 itemStyle: {
                     normal: {
@@ -898,13 +898,17 @@ $(function () {
         $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCountdomicile", {"noCache": noCache}, function (data) {
 
             console.log("户籍统计信息")
-            var value = data['type'];
-            var value1 = data['value'];
-            var value2 = data['value1'];
-            var value3 = data['value2'];
-            var value4 = data['value3'];
+            var value = data[0]['type'];  //总数
+            var value1 = data[0]['value'];// 湖北籍
+            var value2 = data[0]['value1'];//非湖北籍
+            var value3 = data[0]['value2'];//武汉籍
+            var value4 = data[0]['value3'];// 湖北非武汉籍
 
-
+            $("#zdjcry").html(value);
+            $("#hbj").html(value1);
+            $("#fhbj").html(value2);
+            $("#whj").html(value3);
+            $("#fwhj").html(value4);
             // var option = showDistribution(dataX, bgNum, dataY);
             // rightContent3Charts.setOption(option);
         });
