@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html">
 
 
-    <title>疫情人员添加</title>
+    <title>人员疫情添加</title>
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li class="hidden-xs animation-fadeInQuick">
-                        <a href=""><h4>安顺</h4></a>
+                        <a href=""><h4></h4></a>
                     </li>
                 </ul>
             </header>
@@ -256,6 +256,30 @@
 
 <!-- Load and execute javascript code used only in this page -->
 <script src="js/pages/formsValidation.js"></script>
-<script>$(function(){ FormsValidation.init(); });</script>
+<script>$(function(){ FormsValidation.init(); });
+function save() {
+    $.ajax({
+        //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "/arjccm/app/rest/people/saveAntiepidemic" ,//url
+        data: $('#inputForm').serialize(),
+        success: function (result) {
+            console.log(result);//打印服务端返回的数据(调试用)
+            if (result.code == 0) {
+                alert("提交成功");
+                window.location.href="message.jsp";
+            }
+            ;
+        },
+        error : function() {
+            alert("异常！");
+        }
+    });
+}
+
+
+
+</script>
 </body>
 </html>
