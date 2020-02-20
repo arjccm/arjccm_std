@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.sys.dao.KeyPersonalDao">
+
+    <sql id="ysql" >
+        SELECT name,alarm_date,address FROM ccm_early_warning
+    </sql>
+
+    <!--最近一小时-->
+    <select id="findPersonal" resultType="com.arjjs.ccm.modules.sys.entity.KeyPersonal">
+        <include refid="ysql"></include>
+         WHERE alarm_date &gt;=#{time}
+    </select>
+
+
+    <!--开始时间 结束时间-->
+    <select id="findPersonalKJ" resultType="com.arjjs.ccm.modules.sys.entity.KeyPersonal">
+        <include refid="ysql"></include>
+        <where>
+            <if  test="time1 != null and time1 != ''">
+                 alarm_date &gt;= #{time1}
+            </if>
+            <if  test="time2 != null and time2 != ''">
+                AND alarm_date &lt;= #{time2}
+            </if>
+        </where>
+    </select>
+</mapper>

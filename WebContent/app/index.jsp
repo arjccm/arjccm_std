@@ -62,7 +62,7 @@
 					<h2>网格化指挥调度App</h2>
 				</header>
 				<ul class="actions special">
-				<li>期待您的下载</a></li>
+				<li><a>期待您的下载</a></li>
    		
 				</ul>
 			</section>
@@ -73,7 +73,7 @@
 					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 				</ul>
-				<p class="copyright">网格化指挥调度系统</a></p>
+				<p class="copyright"><a>网格化指挥调度系统</a></p>
 			</footer>
 			
 			<script src="assets/js/jquery.min.js"></script>
@@ -84,7 +84,7 @@
 			<script src="assets/js/main.js"></script>
 			<script type="text/javascript">
 				$(document).ready(function() {
-					var ctx = "/arjccm/app"
+					var ctx = "/arjccm/app/getAppInfo"
 					$.get(ctx+'/getAppInfo',function(data){
 						$("#appUrl").attr("href",data); 
 					})

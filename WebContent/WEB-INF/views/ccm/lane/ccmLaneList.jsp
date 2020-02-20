@@ -49,7 +49,7 @@
 				</form:select></li>
 			<li class="btns"><a
 				onclick="parent.parent.LayerDialog('${ctx}/lane/ccmLane/form', '添加', '1100px', '700px')"
-				class="btn btn-success"><i class="icon-plus"></i> 添加</a></li>
+				class="btn btn-primary"><i class="icon-plus"></i> 添加</a></li>
 			<li class="btns"><a href="javascript:;" id="btnSubmit"
 				class="btn btn-primary"> <i class="icon-search"></i> 查询
 			</a></li>

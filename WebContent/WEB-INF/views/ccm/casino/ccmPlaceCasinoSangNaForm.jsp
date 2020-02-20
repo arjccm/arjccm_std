@@ -62,6 +62,34 @@
 		}
 
 	}
+
+	function ThisLayerDialog(src, title, height, width) {
+		debugger
+		parent.drawForm = parent.layer.open({
+			type: 2,
+			title: title,
+			area: [height, width],
+			fixed: true, //固定
+			maxmin: false,
+			/*   btn: ['关闭'], //可以无限个按钮 */
+			content: src,
+			zIndex: '1992',
+			cancel: function () {
+				//防止取消和删除效果一样
+				window.isCancel = true;
+			},
+			end: function () {
+				debugger
+				if (!window.isCancel) {
+					$("#areaPoint")[0].value = parent.areaPoint;
+					parent.areaPoint = null;
+					$("#areaMap")[0].value = parent.areaMap;
+					parent.areaMap = null;
+				}
+				window.isCancel = null;
+			}
+		});
+	}
 </script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
@@ -171,6 +199,28 @@
 							value="<fmt:formatDate value="${ccmPlaceCasino.ccmBasePlace.createTime}" pattern="yyyy-MM-dd"/>"
 							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});" />
 					</div></td>
+			</tr>
+			<tr>
+				<td style="padding: 8px;border: 0px dashed #CCCCCC">
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font></span>中心点：</label>
+						<div class="controls">
+							<form:input path="areaPoint" readonly="true" htmlEscape="false"
+										maxlength="40" class="input-xlarge disabled1 required"/>
+						</div>
+					</div>
+				</td>
+				<td style="padding: 8px;border: 0px dashed #CCCCCC">
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font></span>区域图：</label>
+						<div class="controls">
+							<form:input path="areaMap" readonly="true" htmlEscape="false"
+										class="input-xlarge disabled1 required"/>
+							<a onclick="ThisLayerDialog('${ctx}/event/ccmEventIncident/drawForm?areaMap='+$('#areaMap').val()+'&areaPoint='+$('#areaPoint').val(), '标注', '1100px', '700px');"
+							   class="btn hide1 btn-primary">标 注</a>
+						</div>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2"><label class="control-label">重点场所：</label>

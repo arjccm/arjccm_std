@@ -34,12 +34,12 @@
 			</li>
 			<shiro:hasPermission name="grabber:ccmGrabberManage:edit">
 				<li class="btns">
-					<a onclick="parent.LayerDialog('${ctx}/grabber/ccmGrabberManage/form', '添加', '1100px', '700px')" class="btn btn-success">
+					<a onclick="parent.LayerDialog('${ctx}/grabber/ccmGrabberManage/form', '添加', '1100px', '700px')" class="btn btn-primary">
 						<i class="icon-plus"></i>添加
 					</a>
 				</li>
 				<li class="btns">
-					<a href="${ctx}/grabber/ccmGrabberManage/synchro" class="btn btn-warning">
+					<a href="${ctx}/grabber/ccmGrabberManage/synchro" class="btn btn-export">
 						<i class="icon-refresh"></i>同步
 					</a>
 				</li>

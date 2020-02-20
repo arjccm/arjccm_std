@@ -174,7 +174,7 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 
 		//18岁以下少年儿童
 		CcmPeopleAntiepidemic ccmPeople2 = new CcmPeopleAntiepidemic();
-		ccmPeople2.setMinage(19);
+		ccmPeople2.setMaxage(19);
 		int num1 = ccmPeopleAntiepidemicDao.countPeopleAntiepidemic(ccmPeople2);
 		echartType.setValue(num1+"");
 
@@ -204,33 +204,46 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 	}
 
 	//人员现状
-	public List<EchartType> getDistribution(){
-		List<EchartType> list = Lists.newArrayList();
+	public Map<String, Object> getDistribution(){
+		Map<String, Object> map = Maps.newHashMap();
+		List<Integer> list = Lists.newArrayList();
 		EchartType echartType = new EchartType();
 
-		//总数
-		CcmPeopleAntiepidemic ccmPeopleAntiepidemic = new CcmPeopleAntiepidemic();
-		int countnum = ccmPeopleAntiepidemicDao.countPeopleAntiepidemic(ccmPeopleAntiepidemic);
-		echartType.setType(countnum+"");
-
 		//崖州  天涯  吉阳  海棠   育才
-		String[] areanames = {"崖州","天涯","吉阳","海棠","育才"};
+		int temp = 0;
 		List<Integer> resnum = Lists.newArrayList();
+		String[] areanames = {"崖州","天涯","吉阳","海棠","育才"};
 		for(String name : areanames){
 			CcmPeopleAntiepidemic ccmPeople = new CcmPeopleAntiepidemic();
 			ccmPeople.setBelongSubBureau(name);
 			int num = ccmPeopleAntiepidemicDao.countPeopleAntiepidemic(ccmPeople);
 			resnum.add(num);
+			if(num > temp){
+				temp = num;
+			}
 		}
-		echartType.setValue(resnum.toString());
-		list.add(echartType);
-		return list;
+
+		for(int i=0;i<areanames.length;i++){
+			list.add(temp);
+		}
+
+		List<String> getname = Lists.newArrayList();
+		String[] names = {"崖州区","天涯区","吉阳区","海棠区","育才生态区"};
+		for(String name : names){
+			getname.add(name);
+		}
+
+		map.put("type",getname);
+		map.put("value",list);
+		map.put("value1",resnum);
+		return map;
 
 	}
 
 
 	//根据入琼时间查询
-	public List<EchartType> countBycomeHainanDate() throws Exception{
+	public Map<String, Object> countBycomeHainanDate() throws Exception{
+		Map<String, Object> summap = Maps.newHashMap();
 		CcmPeopleAntiepidemic ccmPeopleAntiepidemic = new CcmPeopleAntiepidemic();
 		List<EchartType> list = ccmPeopleAntiepidemicDao.countBycomeHainanDate(ccmPeopleAntiepidemic);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
@@ -273,13 +286,10 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 			types.add(s.substring(s.indexOf("-")+1,s.length()));
 		}
 
-		EchartType echartType = new EchartType();
-		echartType.setType(types.toString());
-		echartType.setValue(values.toString());
-		echartType.setValue1(whvalues.toString());
-		List<EchartType> res = Lists.newArrayList();
-		res.add(echartType);
-		return res;
+		summap.put("type",types);
+		summap.put("value",values);
+		summap.put("value1",whvalues);
+		return summap;
 
 	}
 }

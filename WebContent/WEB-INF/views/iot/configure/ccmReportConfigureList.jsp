@@ -36,7 +36,7 @@
 			</li>--%>
 			<shiro:hasPermission name="grabber:ccmGrabberManage:edit">
 				<li class="btns">
-					<a onclick="parent.LayerDialog('${ctx}/configure/ccmReportConfigure/form', '添加', '1100px', '700px')" class="btn btn-success">
+					<a onclick="parent.LayerDialog('${ctx}/configure/ccmReportConfigure/form', '添加', '1100px', '700px')" class="btn btn-primary">
 						<i class="icon-plus"></i>添加
 					</a>
 				</li>
