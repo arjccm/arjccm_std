@@ -145,11 +145,19 @@
 			</td>
 			</tr>
 			<tr>
-				<td style="width: 50%" colspan="2">
+				<td style="width: 50%" >
 					<div class="control-group">
 						<label class="control-label">接警员姓名：</label>
 						<div class="controls">
 							<form:input path="policeName" htmlEscape="false" maxlength="12" class="input-xlarge "/>
+						</div>
+					</div>
+				</td>
+				<td style="width: 50%">
+					<div class="control-group">
+						<label class="control-label">案发地点：</label>
+						<div class="controls">
+							<form:input path="place" htmlEscape="false" maxlength="200" class="input-xlarge "/>
 						</div>
 					</div>
 				</td>
@@ -231,7 +239,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td style="width: 50%">
+				<%--<td style="width: 50%">
 					<div class="control-group">
 						<label class="control-label">警情状态：</label>
 						<div class="controls">
@@ -249,7 +257,7 @@
 							<form:input path="place" htmlEscape="false" maxlength="200" class="input-xlarge "/>
 						</div>
 					</div>
-				</td>
+				</td>--%>
 			</tr>
 			<tr>
 				<td style="width: 50%">
