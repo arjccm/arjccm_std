@@ -52,6 +52,177 @@
 		});
 	}
 </script>
+	<style>
+#traffic-div{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.traffic1{
+	width: 300px;
+    float: left;
+    padding-bottom: 20px;
+}
+.traffic2{
+    width: 290px;
+    height: 460px;
+    border-left: 1px solid  #027DA8 ;
+	margin-left: 9px;
+	margin-top: -5px;
+	padding-top: 15px;
+}
+.traffic-plane{
+	width: 240px;
+	height: 100px;
+	background: url(${ctxStatic}/images/plan.png) no-repeat center center;
+	background-size: 100% 100%;
+	margin-left: 20px;
+    margin-bottom: 20px;
+}
+.traffic-train{
+    width: 240px;
+    height: 100px;
+    background: url(${ctxStatic}/images/train.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.traffic-coach{
+    width: 240px;
+    height: 100px;
+    background: url(${ctxStatic}/images/coach.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.traffic-accommodation{
+    width: 240px;
+    height: 100px;
+    background: url(${ctxStatic}/images/accommodation.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.traffic-p{
+	width:108px;
+	height:14px;
+	font-size:18px;
+	font-family:PingFang SC;
+	font-weight:bold;
+	color:rgba(255,255,255,1);
+	line-height:28px;
+
+	margin-left: 30px;
+	margin-bottom: 10px;
+
+}
+.traffic-img{
+	width: 300px;
+	margin-bottom: 5px;
+}
+.traffic-plane .traffic3{
+    width:38px ;
+    height: 38px;
+    float: left;
+    background: url(${ctxStatic}/images/plan1.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin: 10px 6px 15px 13px;
+}
+.traffic-train .traffic3{
+    width:38px ;
+    height: 38px;
+    float: left;
+    background: url(${ctxStatic}/images/train1.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin: 10px 6px 15px 13px;
+}
+.traffic-coach .traffic3{
+    width:38px ;
+    height: 38px;
+    float: left;
+    background: url(${ctxStatic}/images/coach1.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin: 10px 6px 15px 13px;
+}
+.traffic-accommodation .traffic3{
+    width:38px ;
+    height: 38px;
+    float: left;
+    background: url(${ctxStatic}/images/accommodation1.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin: 10px 6px 15px 13px;
+}
+
+.traffic4{
+    width: 170px;
+    float: left;
+    margin-top: 6px;
+    margin-bottom: 15px;
+
+}
+.origin{
+    width:35px;
+    height:17px;
+    font-size:18px;
+    font-family:PingFang SC;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:28px;
+    margin-left: 8px;
+}
+.destination{
+    width:35px;
+    height:17px;
+    font-size:18px;
+    font-family:PingFang SC;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:28px;
+    margin-right: 8px;
+}
+.hx{
+    width: 26px;
+    height: 5px;
+    background: url(${ctxStatic}/images/jt.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin: 0 8px 10px 8px;
+}
+.traffic-time{
+    width:170px;
+    height:12px;
+    font-size:14px;
+    font-family:PingFang SC;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height:28px;
+    opacity:0.8;
+
+}
+.information{
+    height:17px;
+    font-size:18px;
+    font-family:PingFang SC;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:28px;
+    clear: both;
+    margin-left: 20px;
+}
+.name{
+    width:143px;
+    height:17px;
+    font-size:18px;
+    font-family:PingFang SC;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:28px;
+}
+.nav-tabs>li>a {
+    border-right:1px solid rgba(2,125,168,1);
+}
+body{
+	background: #122E59!important;
+}
+	</style>
 </head>
 <body>
 
@@ -59,7 +230,7 @@
 		<li ><a href="#SocialRelations" data-toggle="tab">社会关系图谱</a></li>
 		<li ><a href="#roomPop" data-toggle="tab">同住人员信息</a></li>
 		<li ><a href="#homePop" data-toggle="tab">家庭成员信息</a></li>
-		<li ><a href="" data-toggle="tab">交通住宿信息</a></li>
+		<li ><a href="#trafficAccommodation" data-toggle="tab">交通住宿信息</a></li>
 		<li ><a href="" data-toggle="tab">布控结果信息</a></li>
 	</ul>
 	<div id="myTabContent" class="tab-content">
@@ -150,9 +321,139 @@
 				<div style="text-align:center;width:100%;height:100%;"><h3>暂无数据</h3></div>
 			</c:if>
 		</div>
+		<div class="tab-pane fade" id="trafficAccommodation">
+            <div id="traffic-div">
+                <%--<div class="traffic1">
+                    <p class="traffic-p">2019-02-18</p>
+                    <img src="${ctxStatic}/images/zdry-top2.png" class="traffic-img">
+                    <div class="traffic2">
+                        <div class="traffic-plane">
+                            <div class="traffic3">
+                            </div>
+                            <div class="traffic4">
+                                <span class="origin">天津</span><img class="hx" src="${ctxStatic}/images/jt.png"><span
+                                    class="destination">北京</span>
+                                <p class="traffic-time">2020-02-18 08:30-10:15</p>
+                            </div>
+                            <p class="information">天津航空GS7581</p>
+                        </div>
+                    </div>
+                    <div class="traffic2">
+                        <div class="traffic-train">
+                            <div class="traffic3">
+                            </div>
+                            <div class="traffic4">
+                                <span class="origin">天津</span><img class="hx" src="${ctxStatic}/images/jt.png"><span
+                                    class="destination">北京</span>
+                                <p class="traffic-time">2020-02-18 08:30-10:15</p>
+                            </div>
+                            <p class="information">天津航空GS7581</p>
+                        </div>
+                    </div>
+                </div>--%>
+            </div>
+			<%--<c:if test="${not empty listAccount}">
+				<div id="traffic-div">
+
+					<c:forEach items="${listAccount}" var="ccmpop">
+
+
+					</c:forEach>
+				</div>
+			</c:if>--%>
+			<%--<c:if test="${empty listAccount}">
+				<div style="text-align:center;width:100%;height:100%;"><h3>暂无数据</h3></div>
+			</c:if>--%>
+		</div>
 	</div>
 	<script>
 	   $(function(){
+
+	       var trafficJson=[
+	           {
+                   "date":"2019-02-18",
+	               "traffic":{
+                       "plan":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"天津航空GS7581"},
+                       "train":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"G81次"},
+                       "coach":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"津A1234"},
+                   },
+                   "accommodation":{
+	                   "name":"新密盛世商务酒店", "addredd":"新密市西大街长乐路38号","information":"2020-02-18退房(4晚)",
+                   },
+               },
+               {
+                   "date":"2019-02-17",
+                   "traffic":{
+                       "train":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"G81次"},
+                       "coach":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"津A1234"},
+                   }
+               },
+               {
+                   "date":"2019-02-16",
+                   "traffic":{
+                       "plan":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"天津航空GS7581"},
+                       "train":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"G81次"},
+                       "plan":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"天津航空GS7581"},
+                   },
+               },
+               {
+                   "date":"2019-02-15",
+                   "traffic":{
+                       "plan":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"天津航空GS7581"},
+                       "train":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"G81次"},
+                       "coach":{"origin":"天津","destination":"北京","time":"2020-02-18 08:30-10:15","information":"津A1234"},
+                   },
+                   "accommodation":{
+                       "name":"新密盛世商务酒店", "addredd":"新密市西大街长乐路38号","information":"2020-02-15入住(4晚)",
+                   },
+               },
+           ];
+
+
+           if(trafficJson.length>3){
+               $("#traffic-div").width(300*trafficJson.length)
+           }
+	       for(var i=0;i<trafficJson.length;i++){
+               var traffic1 = '<div class="traffic1" id="traffic'+i+'"><p class="traffic-p">'+trafficJson[i].date+'</p><img src="${ctxStatic}/images/zdry-top2.png" class="traffic-img"><div class="traffic2"></div></div>';
+               $("#traffic-div").append(traffic1);
+           }
+           for(var i=0;i<trafficJson.length;i++){
+               //alert("trafficJson")
+               if(trafficJson[i].hasOwnProperty("traffic")&&trafficJson[i].traffic!=null&&trafficJson[i].traffic!=""){
+                   if(trafficJson[i].traffic.hasOwnProperty("plan")&&trafficJson[i].traffic.plan!=null&&trafficJson[i].traffic.plan!=""){
+                       //alert("plan")
+                       var plan = '<div class="traffic-plane"><div class="traffic3"></div><div class="traffic4"><span class="origin">'+trafficJson[i].traffic.plan.origin+'</span><img class="hx" src="${ctxStatic}/images/jt.png">' +
+                           '<span class="destination">'+trafficJson[i].traffic.plan.destination+'</span><p class="traffic-time">'+trafficJson[i].traffic.plan.time+'</p></div><p class="information">'+trafficJson[i].traffic.plan.information+'</p></div>';
+                       $("#traffic"+i+" .traffic2").append(plan);
+                   }
+                   if(trafficJson[i].traffic.hasOwnProperty("train")&&trafficJson[i].traffic.train!=null&&trafficJson[i].traffic.train!=""){
+                       //alert("train")
+                       var train = '<div class="traffic-train"><div class="traffic3"></div><div class="traffic4"><span class="origin">'+trafficJson[i].traffic.train.origin+'</span><img class="hx" src="${ctxStatic}/images/jt.png">' +
+                           '<span class="destination">'+trafficJson[i].traffic.train.destination+'</span><p class="traffic-time">'+trafficJson[i].traffic.train.time+'</p></div><p class="information">'+trafficJson[i].traffic.train.information+'</p></div>';
+                       $("#traffic"+i+" .traffic2").append(train);
+                   }
+                   if(trafficJson[i].traffic.hasOwnProperty("coach")&&trafficJson[i].traffic.coach!=null&&trafficJson[i].traffic.coach!=""){
+                       //alert("coach")
+                       var coach = '<div class="traffic-coach"><div class="traffic3"></div><div class="traffic4"><span class="origin">'+trafficJson[i].traffic.coach.origin+'</span><img class="hx" src="${ctxStatic}/images/jt.png">' +
+                           '<span class="destination">'+trafficJson[i].traffic.coach.destination+'</span><p class="traffic-time">'+trafficJson[i].traffic.coach.time+'</p></div><p class="information">'+trafficJson[i].traffic.coach.information+'</p></div>';
+                       $("#traffic"+i+" .traffic2").append(coach);
+                   }
+               }
+               if(trafficJson[i].hasOwnProperty("accommodation")&&trafficJson[i].accommodation!=null&&trafficJson[i].accommodation!=""){
+                   //alert("accommodation")
+                   var accommodation = '<div class="traffic-accommodation"><div class="traffic3"></div><div class="traffic4"><span class="name">'+trafficJson[i].accommodation.name+'</span>' +
+                       '<p class="traffic-time">'+trafficJson[i].accommodation.addredd+'</p></div><p class="information">'+trafficJson[i].accommodation.information+'</p></div>';
+                   $("#traffic"+i+" .traffic2").append(accommodation);
+               }
+           }
+		   if(trafficJson.length==0){
+			  var zw='<div style="text-align:center;width:100%;height:100%;"><h3>暂无数据</h3></div>';
+			   $("#traffic-div").append(zw);
+		   }
+
+
+
+
 		   var cppPopPopType={};
 		   var cppWebType={};
 		   var cppVehileType={};
@@ -259,7 +560,6 @@
 			            })
 				   }
 			   }
-			   debugger
 			   console.log(linksData)
 			   var myChart = echarts.init(document.getElementById("SocialRelationsEcharts"));
 			   var option = {
@@ -346,11 +646,13 @@
 		   
 
 	   })
+
 	</script>
 	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
 			<div id="innerdiv" style="position:absolute;">
 				<img id="bigimg" style="border:5px solid #fff;" src="" />
 			</div>
 		</div>
+
 </body>
 </html>
