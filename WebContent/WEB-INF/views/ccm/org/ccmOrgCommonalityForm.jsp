@@ -140,7 +140,7 @@
 						<label class="control-label"><span class="help-inline"><font color="red">*</font></span>所属区域：</label>
 						<div class="controls">
 							<sys:treeselect id="area" name="area.id" value="${ccmOrgCommonality.area.id}" labelName="area.name" labelValue="${ccmOrgCommonality.area.name}"
-											title="区域" url="/sys/area/treeData" allowClear="true" notAllowSelectParent="false" cssClass=""/>
+											title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" allowClear="true" notAllowSelectParent="false" cssClass=""/>
 							<span class="help-inline"><font color="red" id="show1"></font></span>
 						</div>
 					</div>
