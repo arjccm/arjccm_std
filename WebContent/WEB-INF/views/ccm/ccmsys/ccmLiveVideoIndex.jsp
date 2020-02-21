@@ -20,7 +20,7 @@
 	<div id="content" class="row-fluid">
 		<div id="left" class="accordion-group">
 			<div class="accordion-heading">
-		    	<a class="accordion-toggle"style="width: 172px">网格<i class="icon-refresh pull-right" onclick="refreshTree();"></i></a>
+		    	<a class="accordion-toggle"style="width: 168px">网格<i class="icon-refresh pull-right" onclick="refreshTree();"></i></a>
 		    </div>
 			<div id="ztree" class="ztree"></div>
 		</div>
