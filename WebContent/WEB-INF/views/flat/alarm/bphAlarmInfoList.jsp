@@ -74,15 +74,14 @@ var ctxStatic='${ctxStatic}',ctx='${ctx}';
 <%--			</li>--%>
 <%--			<li class="clearfix"></li>--%>
 		</ul>
-
-	<sys:message content="${message}"/>
 		<div class="clearfix pull-right btn-box">
 			<a href="javascript:;" id="btnSubmit" style="width: 49px;
    /*margin-top: 25px;*/display:inline-block;float: right;" class="btn btn-primary">
 				<%--<i class="icon-search"></i> --%><span style="font-size: 12px">查询</span> </a>
 		</div>
 		</form:form>
-	<div style="float: left; width: 100%; height: 100%" id="content">
+	<sys:message content="${message}"/>
+	<div style="float: left; width: 98%; height: 98%;padding-left: 15px;" id="content">
 
 		<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient"></table>
 	</div>
