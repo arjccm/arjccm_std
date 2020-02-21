@@ -16,10 +16,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.arjjs.ccm.common.config.Global;
@@ -40,7 +37,7 @@ import java.util.List;
  * @version 2020-02-11
  */
 @Controller
-@RequestMapping(value = "${appPath}/placeorgpeople/ccmPlaceOrgPeople")
+@RequestMapping(value = "${appPath}/rest/ccmplacergeople")
 public class CcmRestPlaceOrgPeopleController extends BaseController {
 
 	@Autowired
@@ -49,7 +46,8 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 	private CcmPeopleService ccmPeopleService;
 	
     //APP从业人员查询
-	@RequestMapping(value = {"list", ""})
+	@ResponseBody
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public CcmRestResult list(String type, String placeOrgId, String userId, HttpServletRequest request, HttpServletResponse response, Model model) {
 		CcmRestResult result = new CcmRestResult();
 
@@ -77,7 +75,8 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 	}
 
 	//APP从业人员修改跳转
-	@RequestMapping(value = "toUpdatePeople")
+	@ResponseBody
+	@RequestMapping(value = "toUpdatePeople", method = RequestMethod.GET)
 	public CcmRestResult form(String userId, String peopleId,HttpServletRequest req, HttpServletResponse resp) {
 		CcmRestResult result = new CcmRestResult();
 		User sessionUser = (User) req.getSession().getAttribute("user");
@@ -113,7 +112,8 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 	}
 
 	//APP从业人员修改保存接口
-	@RequestMapping(value = "saveUpdatePeople")
+	@ResponseBody
+	@RequestMapping(value = "saveUpdatePeople", method = RequestMethod.POST)
 	public CcmRestResult update(CcmPeople ccmpeople, String userId, RedirectAttributes redirectAttributes, HttpServletResponse response, HttpServletRequest request) {
 		CcmRestResult result = new CcmRestResult();
 		User sessionUser = (User) request.getSession().getAttribute("user");
@@ -136,7 +136,8 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 	}
 	
     //APP从业人员删除接口
-	@RequestMapping(value = "deletePeople")
+	@ResponseBody
+	@RequestMapping(value = "deletePeople", method = RequestMethod.POST)
 	public CcmRestResult delete(String more2, String userId, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         CcmRestResult result = new CcmRestResult();
         User sessionUser = (User) request.getSession().getAttribute("user");
@@ -156,4 +157,103 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 		return result;
 	}
 
+	// 添加从业人员--保存
+	@ResponseBody
+	@RequestMapping(value = "savePeople", method = RequestMethod.POST)
+	public CcmRestResult save(CcmPeople ccmpeople, String placeid, Integer placetype, String userId, Model model, RedirectAttributes redirectAttributes, HttpServletResponse response, HttpServletRequest request) {
+		CcmRestResult result = new CcmRestResult();
+		User sessionUser = (User) request.getSession().getAttribute("user");
+		if (sessionUser== null) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		String sessionUserId = sessionUser.getId();
+		if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		CcmPlaceOrgPeople ccmPlaceOrgPeople = new CcmPlaceOrgPeople();
+		ccmPlaceOrgPeople.setPlaceOrgId(placeid);
+		ccmPlaceOrgPeople.setType(placetype);
+		if (!beanValidator(model, ccmpeople)){
+//			return form(ccmPlaceOrgPeople, ccmpeople, model);
+		}
+		ccmPeopleService.save(ccmpeople);
+		ccmPlaceOrgPeople.setPeopleId(ccmpeople.getId());
+		List<CcmPlaceOrgPeople> list = ccmPlaceOrgPeopleService.findList(ccmPlaceOrgPeople);
+		if(list.size()>0){
+			CcmPlaceOrgPeople placeOrgPeople = list.get(0);
+			ccmPlaceOrgPeopleService.save(placeOrgPeople);
+		}else{
+			ccmPlaceOrgPeopleService.save(ccmPlaceOrgPeople);
+		}
+		result.setCode(CcmRestType.OK);
+		result.setResult("成功");
+		return result;
+	}
+
+	// 从业人员批量添加--查询
+	@ResponseBody
+	@RequestMapping(value = "listPopAdd", method = RequestMethod.GET)
+	public CcmRestResult listPopAdd(@RequestParam(required = false) String placeType,
+							 @RequestParam(required = false) String placeOrgId, CcmPeople ccmPeople, String userId, HttpServletRequest request, HttpServletResponse response, Model model) {
+		CcmRestResult result = new CcmRestResult();
+		User sessionUser = (User) request.getSession().getAttribute("user");
+		if (sessionUser== null) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		String sessionUserId = sessionUser.getId();
+		if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		ccmPeople.setMore5(placeType);
+		ccmPeople.setMore3(placeOrgId);
+		// 查询 人员列表
+		Page<CcmPeople> page = ccmPeopleService.findPlaceOfPopAdd(new Page<CcmPeople>(request, response), ccmPeople);
+		result.setCode(CcmRestType.OK);
+		if(page.getList()==null||page.getList().size()<=0) {
+			result.setResult("");
+		}else {
+			result.setResult(page.getList());
+		}
+		return result;
+	}
+	// 从业人员批量添加--保存
+	@ResponseBody
+	@RequestMapping(value = "savePopAdd", method = RequestMethod.POST)
+	public CcmRestResult savePopAdd(@RequestParam(required = false) String peopleId,
+								   @RequestParam(required = false) String placeOrgId,
+								   @RequestParam(required = false) String type,
+								   CcmPeople ccmPeople, Model model, String userId,
+								   RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		CcmRestResult result = new CcmRestResult();
+		User sessionUser = (User) request.getSession().getAttribute("user");
+		if (sessionUser== null) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		String sessionUserId = sessionUser.getId();
+		if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		CcmPlaceOrgPeople ccmPlaceOrgPeople = new CcmPlaceOrgPeople();
+		ccmPlaceOrgPeople.setPlaceOrgId(placeOrgId);
+		ccmPlaceOrgPeople.setPeopleId(peopleId);
+		ccmPlaceOrgPeople.setType(Integer.parseInt(type));
+		List<CcmPlaceOrgPeople> place = ccmPlaceOrgPeopleService.findList(ccmPlaceOrgPeople);
+		if(place.size()>0){
+			for(int i=0;i<place.size();i++){
+				ccmPlaceOrgPeopleService.delete(place.get(i));
+			}
+			ccmPlaceOrgPeopleService.save(ccmPlaceOrgPeople);
+		}else{
+			ccmPlaceOrgPeopleService.save(ccmPlaceOrgPeople);
+		}
+		result.setCode(CcmRestType.OK);
+		result.setResult(ccmPlaceOrgPeople.getId());
+		return result;
+	}
 }

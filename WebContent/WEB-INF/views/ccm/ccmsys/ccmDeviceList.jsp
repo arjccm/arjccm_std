@@ -17,12 +17,23 @@
         	return false;
         }
 	</script> -->
-	 <script>
-	$(document).ready(function() {
-		$("#btnSubmit").on("click" ,function(){
-			$("#searchForm").submit();
-		})
-	});
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#btnSubmit").on("click" ,function(){
+				$("#searchForm").submit();
+			})
+		});
+
+		function saveImport() {
+			debugger;
+			var s = document.importForm[1][0].files.length;
+			if(s == 0){
+				alert("请选择文件！");
+				return;
+			}else{
+				$("#importForm").submit();
+			}
+		}
 	</script>
 </head>
 <body>
@@ -30,13 +41,13 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">设备管理</span>--%>
 <div class="back-list">
 	<div id="importBox" class="hide">
-		<form id="importForm" action="${ctx}/ccmsys/ccmDevice/import"
+		<form name="importForm" id="importForm" action="${ctx}/ccmsys/ccmDevice/import"
 			method="post" enctype="multipart/form-data" class="form-search"
 			style="padding-left: 20px; text-align: center;"
 			onsubmit="loading('正在导入，请稍等...');">
 			<br /> <input id="uploadFile" name="file" type="file"
 				style="width: 330px" /><br /> <br /> <input id="btnImportSubmit"
-				class="btn btn-primary" type="submit" value="导  入 " />
+				class="btn btn-primary" type="submit" onclick="saveImport()" value="导  入 " />
 		</form>
 	</div>
 	<ul class="nav nav-tabs">

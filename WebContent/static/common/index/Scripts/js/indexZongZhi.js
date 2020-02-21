@@ -128,6 +128,84 @@ function findKeyPlace() {
 	});
 }
 
+//户籍人口echarts图
+function myChartPeople1(datatitle, dataX, dataY, model, mainContent, rotate) {
+	// 指定图表的配置项和数据
+	var option = {
+
+		color : [ '#F8C73C','#219FFC'  ],
+		grid : {
+			left : '3%',
+			right : '4%',
+			bottom : '3%',
+			containLabel : true
+		},
+		tooltip : {
+			trigger: 'axis'
+		},
+		legend : {
+			data : datatitle,
+			textStyle : {
+				color : FontColor,
+			}
+		},
+		xAxis : {
+			axisLabel : {
+				textStyle : {
+					color : FontColor
+				}
+			},
+			axisTick: {
+				show: false
+			},
+			axisLine : {
+				lineStyle : {
+					color : FontColor,
+				}
+			},
+			data : dataX,
+
+		},
+		yAxis : [{
+			axisLabel : {
+				textStyle : {
+					color : FontColor
+				}
+			},
+			axisTick: {
+				show: false
+			},
+			axisLine : {
+				lineStyle : {
+					color : FontColor,
+				}
+			},
+		},
+			{
+				type: 'value',
+				splitLine: {
+					show: false
+				},
+				axisLabel: {
+					textStyle : {
+						color : FontColor
+					}
+				},
+				axisLine: {
+					lineStyle : {
+						color : FontColor,
+					}
+				},
+				axisTick: {
+					show: false,
+				},
+			}],
+		series : dataY
+	};
+	model.setOption(option);
+}
+
+//其他人口类型echarts图
 function myChartPeople(datatitle, dataX, dataY, model, mainContent, rotate) {
 	// 指定图表的配置项和数据
 	var option = {
@@ -201,7 +279,7 @@ function IsNull(variable1) {
 function getSeriesDate(titleS, ajaxDataYALLS) {
 	// 返回数据
 	var seriesDate1 = new Array();
-	// for 循环生成数据
+	// // for 循环生成数据
 	for (var titleNumer = 0; titleNumer < titleS.length; titleNumer++) {
 		seriesDate1.push({
 			"name" : titleS[titleNumer],
@@ -210,6 +288,27 @@ function getSeriesDate(titleS, ajaxDataYALLS) {
 			"data" : ajaxDataYALLS[titleNumer]
 		})
 	}
+	// 返回数据
+	return seriesDate1;
+}
+
+function getSeriesDate1(titleS, ajaxDataYALLS) {
+	// 返回数据
+	var seriesDate1 = new Array();
+	// // for 循环生成数据
+	// for (var titleNumer = 0; titleNumer < titleS.length; titleNumer++) {
+	seriesDate1.push({
+		"name" : titleS[1],
+		"type" : 'bar',
+		"barWidth" : '20%',
+		"data" : ajaxDataYALLS[1]
+	},{
+		"name" : titleS[0],
+		"type" : 'line',
+		"yAxisIndex": '1',
+		"data" : ajaxDataYALLS[0]
+	})
+	// }
 	// 返回数据
 	return seriesDate1;
 }
@@ -270,10 +369,27 @@ function PeopleStatistics(type, title) {
 			var ajaxDataX2 = getxAxisDate(data, title2), ajaxDataYALL2 = getyAxisDate(
 					data, title2);
 			// 组装图表的Y轴数据
-			var seriesDate2 = getSeriesDate(title2, ajaxDataYALL2);
-			// 生成图表
-			myChartPeople(title2, ajaxDataX2, seriesDate2,
+
+			var seriesDate2 = null;
+
+			if (title == "户籍") {
+				seriesDate2 = getSeriesDate1(title2, ajaxDataYALL2);
+			} else {
+				seriesDate2 = getSeriesDate(title2, ajaxDataYALL2);
+			}
+
+			if (title == "户籍") {
+				// 生成图表
+				myChartPeople1(title2, ajaxDataX2, seriesDate2,
 					myChart2, "" + title + "人数", 0);
+			} else {
+				// 生成图表
+				myChartPeople(title2, ajaxDataX2, seriesDate2,
+					myChart2, "" + title + "人数", 0);
+			}
+
+
+
 
 		});
 }

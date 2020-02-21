@@ -23,9 +23,7 @@
     <link rel="stylesheet" href="css/plugins.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/themes.css">
-  <%--  <link href="js/jquery-validation/1.11.0/jquery.validate.min.css" type="text/css" rel="stylesheet" />
-    <script src="js/jquery-validation/1.11.0/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="js/jquery-validation/1.11.1/jquery.validate.method.js" type="text/javascript"></script>--%>
+    <script src="js/vendor/modernizr-3.3.1.min.js"></script>
 </head>
 <body>
 
@@ -42,7 +40,7 @@
                         </a>
                     </li>
                     <li class="hidden-xs animation-fadeInQuick">
-                        <a href=""><h4>安顺</h4></a>
+                        <a href=""><h4></h4></a>
                     </li>
                 </ul>
             </header>
@@ -60,7 +58,7 @@
                                 <ul class="breadcrumb breadcrumb-top">
                                     <li>人口管理</li>
                                     <li>疫情人口管理</li>
-                                    <li><a href="">人员疫情添加</a></li>
+                                    <li><a href="">疫情人员添加</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -255,8 +253,6 @@
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/app.js"></script>
-<script src="js/vendor/modernizr-3.3.1.min.js"></script>
-
 
 <!-- Load and execute javascript code used only in this page -->
 <script src="js/pages/formsValidation.js"></script>

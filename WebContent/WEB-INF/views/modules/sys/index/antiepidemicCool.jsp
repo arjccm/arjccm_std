@@ -204,6 +204,7 @@
 			margin-right: 29px;
 		}
 		.topCol-t1{
+			width: 3.65vw;
 			float: left;
 			margin-top: 15px;
 			margin-left: 28px;
@@ -384,15 +385,15 @@
 			</div>
 			<div id="topCol" class="topCol">
 				<div class="topCol-t" id="topCol1">
-					<div class="topCol-t1"><p class="p1">湖北籍</p><p class="p2">7132</p></div>
-					<div class="topCol-t2"><p class="p1">非湖北籍</p><p class="p2">5510</p></div>
+					<div class="topCol-t1"><p class="p1">湖北籍</p><p class="p2" id="hbj">7132</p></div>
+					<div class="topCol-t2"><p class="p1">非湖北籍</p><p class="p2" id="fhbj">5510</p></div>
 				</div>
 				<div class="topCol-t" id="topCol2" style="text-align: center">
-					<p class="p3">重点检测人员</p><p class="p4">12642</p>
+					<p class="p3">重点检测人员</p><p class="p4" id="zdjcry">12642</p>
 				</div>
 				<div class="topCol-t" id="topCol3">
-					<div class="topCol-t1"><p class="p1">武汉籍</p><p class="p2">3924</p></div>
-					<div class="topCol-t2" style="margin-left: 20px!important;"><p class="p1">湖北非武汉籍</p><p class="p2">3108</p></div>
+					<div class="topCol-t1"><p class="p1">武汉籍</p><p class="p2" id="whj">3924</p></div>
+					<div class="topCol-t2" style="margin-left: 20px!important;"><p class="p1">湖北非武汉籍</p><p class="p2" id="fwhj">3108</p></div>
 				</div>
 			</div>
 			<div id="bottomCol" class="bottomCol">
@@ -410,9 +411,9 @@
 						<span class="pub-icon icon-jiayouzhans"></span> <span class="pub-name">加油站</span>
 					</div>
 					<!-- 商场超市 -->
-					<div class="pub-flag" onclick="shangchangFun(this)">
+					<%--<div class="pub-flag" onclick="shangchangFun(this)">
 						<span class="pub-icon icon-shangchang"></span> <span class="pub-name">商场超市</span>
-					</div>
+					</div>--%>
 					<!-- 娱乐场所 -->
 					<div class="pub-flag" onclick="yuleFun(this)">
 						<span class="pub-icon icon-yule"></span> <span class="pub-name">娱乐场所</span>
@@ -422,9 +423,9 @@
 						<span class="pub-icon icon-bingguan"></span> <span class="pub-name">酒店宾馆</span>
 					</div>
 					<!-- 涉危涉爆单位 -->
-					<div class="pub-flag" onclick="sheweishebaoFun(this)">
+					<%--<div class="pub-flag" onclick="sheweishebaoFun(this)">
 						<span class="pub-icon icon-sheweishebao"></span> <span class="pub-name">涉危涉爆</span>
-					</div>
+					</div>--%>
 
 					<!-- 视频监控 -->
 					<div class="pub-flag" onclick="shipinjiankongFun(this)" id="VideoFlag" VideoFlagAttr="false">
