@@ -4203,6 +4203,11 @@ ArjMap.Map.prototype = {
                         var PopLocationId = "";
                         if(feature[0].get('name')){
                             names = feature[0].get('name')
+                            info = feature[0].get('info');
+                            video = feature[0].get('video');
+                            videoList = feature[0].get('videoList');
+                            featureName = feature[0].get('name');
+                            PopLocationId = feature[0].getId();
                         }else{
                             names =  feature[0].get('features')[0].get('name');
                             info = feature[0].get('features')[0].get('info');
@@ -4418,7 +4423,6 @@ ArjMap.Map.prototype = {
                     this.center = vectorArr[i].data.centpoint;
                     var vectorArrType = vectorArr[i].type;
                     //图层id
-
                     var vectorArrId = vectorArr[i].id || vectorArr[i].type;
                     // 添加到矢量数据源
                     var Data = vectorArr[i].data.features;
@@ -4427,7 +4431,6 @@ ArjMap.Map.prototype = {
                     var clusterSource = null;
                     var layerVectortype = vectorSource;
                     if (DataLen > 0) {
-
                         //字符串转化为number数据  ['137','47']=>[137,47]
                         for (var j = 0; j < DataLen; j++) {
                             if (Data[j].geometry.type == "Point") {
