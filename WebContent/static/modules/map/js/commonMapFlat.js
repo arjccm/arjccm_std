@@ -3,6 +3,11 @@
  */
 
 var ArjMap = window.ArjMap = {};
+var theme=$.cookie('theme');
+var scolorb="#4C4B4B"
+if(theme=="black"){
+	scolorb="#fff"
+}
 ArjMap.Map = function(params) {
 	this.id = params.id;// 容器ID
 	this.baseUrl = params.baseUrl || {
@@ -136,6 +141,7 @@ ArjMap.Map = function(params) {
 ArjMap.Map.prototype={
 	//初始化
 	init:function(){
+
 		var _this=this;
 		//初始化题图地图
 		this.map= this.drawMap();
@@ -2763,6 +2769,7 @@ ArjMap.Map.prototype={
 	},
 	// 悬上图层--网格化
 	selectPointer : function() {
+
 		var map = this.map;
 		var _this = this;
 		// 鼠标位置
@@ -2974,17 +2981,17 @@ ArjMap.Map.prototype={
 											&& names[0] != undefined) {
 										var html = '<table>';
 										html += '<tr>';
-										html += '<td><strong>名称：</strong></td>';
+										html += '<td class="td_color"><strong>名称：</strong></td>';
 										html += '<td  style="color:#eea807">' + names.join(', ') + '</td>';
 										html += '</tr>'
 										for ( var i in info) {
 											html += '<tr>';
 											if (i != 'id' && i != '重点人员' && i != 'id1') {
 												if(i=="性别"&&info[i] !=null){
-													html += '<td><strong>' + i+ '：</strong></td>';
+													html += '<td class="td_color"><strong>' + i+ '：</strong></td>';
 													html += '<td style="color:#eea807">'+ ((info[i] == 1 || info[i] == "1") ? '女': '男') + '</td>';
 												}else if(i=="设备状态"&&info[i] !=null){
-													html += '<td><strong>' + i+ '：</strong></td>';
+													html += '<td class="td_color"><strong>' + i+ '：</strong></td>';
 													if(info[i] == 1 ||info[i] == "1"){
 														html += '<td style="color:#eea807">在线</td>';
 													}else if(info[i] == 2 ||info[i] == "2"){
@@ -3003,14 +3010,14 @@ ArjMap.Map.prototype={
 												}else if(i=='广播站名称') {
 													continue
                                                 }else if(i=="是否在线"){
-													html += '<td><strong>' + i+ '：</strong></td>';
+													html += '<td class="td_color"><strong>' + i+ '：</strong></td>';
 													if(info[i] == "1"){
 														html += '<td style="color:#eea807">是</td>';
 													}else{
 														html += '<td style="color:#eea807">否</td>';
 													}
 												}else if(i=="是否越界"){
-													html += '<td><strong>' + i+ '：</strong></td>';
+													html += '<td class="td_color"><strong>' + i+ '：</strong></td>';
 													if(info[i] == "1"){
 														html += '<td style="color:#eea807">是</td>';
 													}else{
@@ -3018,18 +3025,18 @@ ArjMap.Map.prototype={
 													}
 													html += '</tr>'
 													html += '<tr>'
-													html += '<td><strong>历史轨迹：</strong></td>';
+													html += '<td class="td_color"><strong>历史轨迹：</strong></td>';
 													html += '<td><a id="'+PopLocationId+'" ElectronicFence="'+info["电子围栏区域"]+'"  deviceId="'+info["设备唯一标识码"]+'"  class="HisTrack btn btn-success"  href="###" onclick="HisTrackFun(this)">查看</a></td>';
 												}else if(i=='公共机构人员'){
-													html += '<td><strong>人员信息：</strong></td>';   
+													html += '<td class="td_color"><strong>人员信息：</strong></td>';
 													html += '<td><a id="'+featureId+'"  popinfo="'+JSON.stringify(info[i]).replace(/"/g, '&quot;')+'" class=" btn btn-success"  href="###" onclick="PopInfoFun(this)">查看</a></td>';
 												}else if(i == '下发广播') {
-                                                    html += '<td><strong>' + i + '：</strong></td>';
+                                                    html += '<td class="td_color"><strong>' + i + '：</strong></td>';
                                                     html += '<td style="vertical-align:middle;">';
                                                     html += '<iframe id="deviceUpload" src="' + ctx + '/sys/map/todevice?code=' + ((info[i] == null || info[i] == "null") ? '' : info[i]) + '" width="100%" height="50%" frameborder="0"></iframe>';
                                                     html += '</td>';
                                                 }else{
-													html += '<td><strong>' + i+ '：</strong></td>';
+													html += '<td class="td_color"><strong>' + i+ '：</strong></td>';
 													html += '<td style="color:#eea807">'+ ((info[i] == null || info[i] == "null") ? '': info[i]) + '</td>';
 												}
 											}
@@ -3037,14 +3044,14 @@ ArjMap.Map.prototype={
 										} 
 										if (video) {
 											html += '<tr>';
-											html += '<td><strong>视频监控：</strong></td>';
+											html += '<td class="td_color"><strong>视频监控：</strong></td>';
 											html += '<td><a class="click btn btn-success"  href="###" videoIp="'+ videoIp+'"  videoId="'+ videoId+ '" >播放</a></td>';
 											html += '</tr>'
 										}
 										if(i!='公共机构人员'){
 											if (featureId) {
 												html += '<tr>';
-												html += '<td><strong>楼栋住户信息：</strong></td>';
+												html += '<td class="td_color"><strong>楼栋住户信息：</strong></td>';
 												html += '<td><a class="bulidclick btn btn-success" href="###" featureId="' + featureId + '"  elemNum="' + elemNum + '" pilesNum="' + pilesNum + '" buildName="' + buildName + '">详情</a></td>';
 												html += '</tr>'
 											}
@@ -3069,32 +3076,32 @@ ArjMap.Map.prototype={
 										var html = '<div id="eventsDialog">';
 										html += '<table>';
 										html += '<tr>';
-										html += '<td><strong>名称：</strong></td>';
+										html += '<td class="td_color"><strong>名称：</strong></td>';
 										html += '<td>' + obj.caseName + '</td>';
 										html += '</tr>';
 										html += '<tr>';
-										html += '<td><strong>案事件模块分类：</strong></td>';
+										html += '<td class="td_color"><strong>案事件模块分类：</strong></td>';
 										html += '<td>' + obj.eventKind + '</td>';
 										html += '</tr>';
 										html += '<tr>';
-										html += '<td><strong>案发地详细地址：</strong></td>';
+										html += '<td class="td_color"><strong>案发地详细地址：</strong></td>';
 										html += '<td>' + obj.happenPlace + '</td>';
 										html += '</tr>';
 										html += '<tr>';
-										html += '<td><strong>案事件情况：</strong></td>';
+										html += '<td class="td_color"><strong>案事件情况：</strong></td>';
 										html += '<td>' + obj.caseCondition + '</td>';
 										html += '</tr>';
 										html += '<tr>';
-										html += '<td><strong>主犯名称：</strong></td>';
+										html += '<td class="td_color"><strong>主犯名称：</strong></td>';
 										html += '<td>' + obj.culName + '</td>';
 										html += '</tr>';
 										html += '<tr>';
-										html += '<td><strong>案发日期：</strong></td>';
+										html += '<td class="td_color"><strong>案发日期：</strong></td>';
 										html += '<td>' + happenDate + '</td>';
 										html += '</tr>';
 										html += '</table>';
 										html += '<tr>';
-										html += '<td><strong>预案：</strong></td>';
+										html += '<td class="td_color"><strong>预案：</strong></td>';
 										html += '<td><a  class="popclick btn btn-success"  target="_blank" href="' + ctx + '/event/ccmEmergencyPlan/solveList?ccmEmergencyPlan=">详情</a></td>';
 										html += '</tr>';
 										html += '</div>';
@@ -3105,7 +3112,9 @@ ArjMap.Map.prototype={
 									} else {
 								}
 							});
+				$('.td_color').css("color",scolorb);
 			}
+
 
 		},
 		// 悬上图层--扁平化
@@ -3202,7 +3211,7 @@ ArjMap.Map.prototype={
 							for(j in info){
 								if(j=="设备状态"&&info[j] !=null){
 									html += '<tr>';
-									html += '<td><strong>' + j+ '：</strong></td>';
+									html += '<td class="td_color"><strong>' + j+ '：</strong></td>';
 									if(info[j] == 1 ||info[j] == "1"){
 										html += '<td style="color:#eea807">在线</td>';
 									}else if(info[j] == 2 ||info[j] == "2"){
@@ -3215,19 +3224,19 @@ ArjMap.Map.prototype={
 									html += '</tr>';
 								}else if(j == '下发广播') {
 									html += '<tr>';
-                                    html += '<td><strong>' + j + '：</strong></td>';
+                                    html += '<td class="td_color"><strong>' + j + '：</strong></td>';
                                     html += '<td style="vertical-align:middle;">';
                                     html += '<iframe id="deviceUpload" src="' + ctx + '/sys/map/todevice?code=' + ((info[j] == null || info[j] == "null") ? '' : info[j]) + '" width="100%" height="50%" frameborder="0"></iframe>';
                                     html += '</td>';
                                     html += '</tr>';
                                 }else if(j == '广播站名称') {
                                 	html += '<tr>';
-									html += '<td><strong>名称：</strong></td>';
+									html += '<td class="td_color"><strong>名称：</strong></td>';
 									html += '<td  style="color:#eea807">' + info[j]+ '</td>';
 									html += '</tr>';
                                 }else{
 									html += '<tr>';
-									html += '<td><strong>'+j+'：</strong></td>';
+									html += '<td class="td_color"><strong>'+j+'：</strong></td>';
 									html += '<td  style="color:#eea807">' + info[j]+ '</td>';
 									html += '</tr>';
 								}
@@ -3236,7 +3245,7 @@ ArjMap.Map.prototype={
 							if(pointType&&pointType=='video'){
 								//如果为视频，则添加播放功能
 								html += '<tr>';
-								html += '<td><strong>视频监控：</strong></td>';
+								html += '<td class="td_color"><strong>视频监控：</strong></td>';
 								html += '<td><a class="videoPlay btn btn-success"  href="###" videoIp="'+ data[i].get('video')['ip']+'"  videoId="'+ data[i].get('video')['id']+ '" >' +
 									'<button class="btn btn-success" style="width: 78px;\n' +
 									'    height: 30px;\n' +
@@ -3249,7 +3258,7 @@ ArjMap.Map.prototype={
 							if(pointType&&pointType=='vlc'){
 								//如果警力警车，添加播放视频流
 								html += '<tr>';
-								html += '<td><strong>视频监控：</strong></td>';
+								html += '<td class="td_color"><strong>视频监控：</strong></td>';
 								html += '<td><a class="vlcPlay btn btn-success"  href="###" vlcId="'+ id+'">' +
 									'<button class="btn btn-success" style="width: 78px;\n' +
 									'    height: 30px;\n' +
