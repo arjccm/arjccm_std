@@ -18,7 +18,7 @@
 
 .floor {
 	width: 100%;
-	height: 69px;
+	height: 76px;
 }
 
 .build table {
@@ -30,7 +30,7 @@
 }
 
 .build table td {
-	border: 1px solid #dfe3e3;
+	/*border: 1px solid #dfe3e3;*/
 	text-align: center;
 	background: #dfe3e3;
 }
@@ -188,7 +188,7 @@
 			 </div>
 			<div class="page row-fluid">
 
-				<div class="span8 floor_ct_block">
+				<div class="floor_ct_block" style="width: 100%">
 				  <div id="roomCenter"></div>
 				</div>
 
@@ -1044,7 +1044,7 @@
 	})
 function TopDown(){
 		//上下滚动
-	    var mainContainer = $('.build-top');//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
+	    var mainContainer = $('.build-main');//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
 		var uNum = $('.unit-1 .floor').length;
 		
 		if(uNum>6){
@@ -1054,7 +1054,7 @@ function TopDown(){
 			
 		}
 		$('.page-down').click(function() {
-			var mainContainer = $('.build-top'), scrollToContainer = mainContainer.find('.floor:last').height() + 2;//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
+			var mainContainer = $('.build-main'), scrollToContainer = mainContainer.find('.floor:last').height() + 2;//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
 			//动画效果
 			mainContainer.animate({
 								scrollTop : scrollToContainer + mainContainer.scrollTop()
@@ -1075,7 +1075,7 @@ function TopDown(){
 		});
 
          $('.page-top').click(function() {
-			var mainContainer = $('.build-top'), scrollToContainer = mainContainer.find('.floor:last').height()+2 ;//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
+			var mainContainer = $('.build-main'), scrollToContainer = mainContainer.find('.floor:last').height()+2 ;//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
 
 			 if (mainContainer.scrollTop() <= 59) {
 				 scrollToContainer = 59;
@@ -1179,8 +1179,27 @@ function house(buildingId){
 	     var widthUnitleft = 400;
 
 		 html+='<div id="home">';
-		 html+='<div class="homeRight" style="width: auto;  height: auto;float: left;">';
-			html+='<div class="lawn-area clearfix">';
+		 html+='<div class="homeRight" style="width: 100%;  height: auto;float: left;">';
+
+
+		var widthA = widthB;
+		if(widthA >= 800){
+			widthA = 801;
+		}
+		var houseBoxWidth = 1200;
+		 html+='<div class="build" style="width:'+houseBoxWidth+'px;margin: 0 auto;">';
+		 // html+='<div class="house-top">';
+		 // html+='<div class="house-top-beam"></div>';
+		 // html+='<div class="house-top-beam"></div>';
+		 // html+='<div class="house-top-beam"></div>';
+		 // html+='<div class="house-top-beam"></div>';
+		 // html+='<div class="house-top-beam"></div>';
+		 // html+='</div>';
+		 html+='<div class="build-main  clearfix" style="width:'+ houseBoxWidth+'px;position:relative;height: 380px;overflow: hidden;">';
+
+		 html+='<div class="build-top" style="width:'+widthB+'px;position:relative; margin: 0 auto' +
+				 '">';
+			html+='<div class="lawn-area clearfix" style="bottom:'+'px">';
 			html+='<div class="lawn_left">';
 			html+='</div>';
 			html+='<div class="lawn_content">';
@@ -1189,24 +1208,11 @@ function house(buildingId){
 			html+='</div>';
 			html+='</div>';
 
-		var widthA = widthB;
-		if(widthA >= 800){
-			widthA = 801;
-		}
-		 html+='<div class="build" style="width:'+widthA+'px">';
-		 // html+='<div class="house-top">';
-		 // html+='<div class="house-top-beam"></div>';
-		 // html+='<div class="house-top-beam"></div>';
-		 // html+='<div class="house-top-beam"></div>';
-		 // html+='<div class="house-top-beam"></div>';
-		 // html+='<div class="house-top-beam"></div>';
-		 // html+='</div>';
-		 html+='<div class="build-main  clearfix" style="width:'+widthA+'px;position:relative;height: 380px;overflow: hidden;">';
-
-		 html+='<div class="build-top  clearfix" style="width:'+widthB+'px;position:relative;height: 380px;overflow: hidden;">';
+		 html+='<div class="house_ct clearfix">';
     	 for(var j in residentialUnitArr){
     		//几个单元
 			 var reswidthUnitleft = widthUnitleft * j + 30;
+
              html+='<div class="floor_box">';
                  html+='<div class="house-top" style="width:'+widthUnit+'%;">';
 			 		html+='<div class="house-top-area">';
@@ -1292,8 +1298,10 @@ function house(buildingId){
 
                  html+='</table>';
                  html+='</div>';	 */
+
 			html+='</div>';
     	 }
+    	 html+='</div>';
     	 html+='</div>';
     	 html+='</div>';
     	 var houseBottomArr=[];
@@ -1368,9 +1376,9 @@ function house(buildingId){
     	}
          $('#roomCenter').html(html)
 
-		var maxH = 362;
+		var maxH = 380;
 		//遍历最大高度赋给maxH
-		var heightnum = 69;
+		var heightnum = 76;
 		$(".unit").each(function() {
 			// var maxHeight=$(this).height();
 			var maxHeight = $(this).find('.floor.ElemNum').length * heightnum;
@@ -1379,15 +1387,31 @@ function house(buildingId){
 			}
 		});
 		var i = 0;
+
+		var houseArr = [];
+		var addheight = 74;
+
 		$(".unit").each(function() {
-			var addheight = i * 52;
-			var height = $(this).find('.floor.ElemNum').length * heightnum;
-			// var _thisHeight=$(this).height()-maxH + addheight;
-			var _thisHeight=height-maxH + addheight;
+			var height = $(this).find('.floor.ElemNum').length * heightnum + addheight;
+			houseArr.push(height);
+			var maxNum = Math.max.apply(null,houseArr);
+			// alert(maxNum)
+			if(maxNum>=maxH){
+				var _thisHeight=height-addheight-maxH;
+				$(this).parents('.floor_box').css('bottom',_thisHeight);
+			}else {
+				var _thisHeight=height-maxH;
+
+				$(this).parents('.floor_box').css('bottom',_thisHeight+47);
+				$(this).parents('.build-top').find('.lawn-area').css('bottom',_thisHeight);
+			}
 			i++;
-			// $(this).css('bottom',_thisHeight)
-			// $(this).prev('.house-top').css('bottom',_thisHeight);
+
+
+
+
 		});
+
 
 		 TopDown();
 		 LeftRight();

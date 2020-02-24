@@ -9,6 +9,7 @@
 .floor_box{
 	float: left;
 	margin-left: 1px;
+    position: relative;
 }
 .floor_box:first-child{
 	margin-left: 0;
@@ -371,6 +372,7 @@ div.jbox .jbox-button {
 	position: absolute;
 	top: 34px;
 	left: 29px;
+	z-index: 999;
 }
 .page-right {
     height: 17px;
@@ -501,7 +503,7 @@ div.jbox .jbox-button {
 	width: calc(100% + 308px);
 	position: absolute;
 	left: -170px;
-	bottom: -25px;
+	bottom: -47px;
 }
 .lawn-area .lawn_left{
 	width: 170px;

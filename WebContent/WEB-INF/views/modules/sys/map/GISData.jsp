@@ -947,12 +947,12 @@
 								<!--人口-->
 								<div class="modal-body" id="pop-details"></div>
 							</div>
-							<div class="jbox-button-panel"
-								style="height: 4px; padding: 0 15px 20px; text-align: right;"
-								id="modal-footer">
-								<button class="jbox-button" style="padding: 0px 10px 0px 10px;"
-									data-dismiss="modal" aria-hidden="true">关闭</button>
-							</div>
+<%--							<div class="jbox-button-panel"--%>
+<%--								style="height: 4px; padding: 0 15px 20px; text-align: right;"--%>
+<%--								id="modal-footer">--%>
+<%--								<button class="jbox-button" style="padding: 0px 10px 0px 10px;"--%>
+<%--									data-dismiss="modal" aria-hidden="true">关闭</button>--%>
+<%--							</div>--%>
 						</div>
 					</div>
 
