@@ -3237,7 +3237,12 @@ ArjMap.Map.prototype={
 								//如果为视频，则添加播放功能
 								html += '<tr>';
 								html += '<td><strong>视频监控：</strong></td>';
-								html += '<td><a class="videoPlay btn btn-success"  href="###" videoIp="'+ data[i].get('video')['ip']+'"  videoId="'+ data[i].get('video')['id']+ '" >播放</a></td>';
+								html += '<td><a class="videoPlay btn btn-success"  href="###" videoIp="'+ data[i].get('video')['ip']+'"  videoId="'+ data[i].get('video')['id']+ '" >' +
+									'<button class="btn btn-success" style="width: 78px;\n' +
+									'    height: 30px;\n' +
+									'    background-color: #5bb75b;\n' +
+									'    color: white;">播放</button>' +
+									'</a></td>';
 								html += '</tr>'
 							}
 							//if(pointType&&pointType=='vlc'||pointType&&pointType=='people'){
@@ -3245,7 +3250,12 @@ ArjMap.Map.prototype={
 								//如果警力警车，添加播放视频流
 								html += '<tr>';
 								html += '<td><strong>视频监控：</strong></td>';
-								html += '<td><a class="vlcPlay btn btn-success"  href="###" vlcId="'+ id+'">播放</a></td>';
+								html += '<td><a class="vlcPlay btn btn-success"  href="###" vlcId="'+ id+'">' +
+									'<button class="btn btn-success" style="width: 78px;\n' +
+									'    height: 30px;\n' +
+									'    background-color: #5bb75b;\n' +
+									'    color: white;">播放</button>' +
+									'</a></td>';
 								html += '</tr>'
 							}
 							html+='</table>'
