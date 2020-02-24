@@ -4203,6 +4203,11 @@ ArjMap.Map.prototype = {
                         var PopLocationId = "";
                         if(feature[0].get('name')){
                             names = feature[0].get('name')
+                            info = feature[0].get('info');
+                            video = feature[0].get('video');
+                            videoList = feature[0].get('videoList');
+                            featureName = feature[0].get('name');
+                            PopLocationId = feature[0].getId();
                         }else{
                             names =  feature[0].get('features')[0].get('name');
                             info = feature[0].get('features')[0].get('info');
@@ -4418,7 +4423,6 @@ ArjMap.Map.prototype = {
                     this.center = vectorArr[i].data.centpoint;
                     var vectorArrType = vectorArr[i].type;
                     //图层id
-
                     var vectorArrId = vectorArr[i].id || vectorArr[i].type;
                     // 添加到矢量数据源
                     var Data = vectorArr[i].data.features;
@@ -4427,7 +4431,6 @@ ArjMap.Map.prototype = {
                     var clusterSource = null;
                     var layerVectortype = vectorSource;
                     if (DataLen > 0) {
-
                         //字符串转化为number数据  ['137','47']=>[137,47]
                         for (var j = 0; j < DataLen; j++) {
                             if (Data[j].geometry.type == "Point") {
@@ -4825,14 +4828,14 @@ ArjMap.Map.prototype = {
                     html += '<td><strong>' + i + '：</strong></td>';
                 }
                 if(i == '住所楼栋名称'){
-                    html += '<td ><a class="bulidclick" style="color:eea807" onclick="$(\'#popup-closer\').click();" href="###" featureId="'
+                    html += '<td ><a class="bulidclick btn btn-success"onclick="$(\'#popup-closer\').click();" href="###" featureId="'
                                 + info.info['住所楼栋id']
                                 + '"  elemNum="'
                                 + info.info['单元数']
                                 + '" pilesNum="'
                                 + info.info['层数']
                                 + '" buildName="'
-                                + info.info['楼栋名称'] + '">' + infoData[i] + '</a></td>';
+                                + info.info['住所楼栋名称'] + '">' + infoData[i] + '</a></td>';
                 } else {
                     if(i != '单元数' && i != '层数'){
                         html += '<td  style="color:#eea807">' + infoData[i] + '</td>';
@@ -6107,12 +6110,12 @@ ArjMap.Map.prototype.drawMapSituationKeShiHua = function () {
     }));
 
     //鼠标悬停显示数据
-    this.map.on('pointermove', function(evt) {
-        if (evt.dragging) {
-            return;
-        }
-        displayFeatureInfo(evt);
-    });
+    // this.map.on('pointermove', function(evt) {
+    //     if (evt.dragging) {
+    //         return;
+    //     }
+    //     displayFeatureInfo(evt);
+    // });
 
     //鼠标单击事件
     this.map.on("singleclick", function (evt) {

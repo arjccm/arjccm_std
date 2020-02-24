@@ -32,6 +32,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 160px"><a class="nav-head" href="${ctx}/event/ccmEventKacc/map">排查整治分析</a></li>
 		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventKacc/">排查整治列表</a></li>
@@ -104,6 +105,7 @@
 				 </div>
 		      </div>
 	    </div>
+</div>
 <script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>
 <script src="${ctxStatic}/jquery/jquery.cookie.js" type="text/javascript"></script>
 <script src="${ctxStatic}/common/index/Scripts/js/echarts.min.js"></script>

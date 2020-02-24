@@ -285,6 +285,10 @@
 	<select id="getByIdent" parameterType="java.lang.String" resultType="CcmPeople">
 		SELECT
 		<include refid="ccmPeopleColumns"/>
+		,a23.area_point AS "buildId.areaPoint"
+		,a23.area_map AS "buildId.areaMap",
+		a23.elem_num AS "buildId.elemNum",
+		a23.piles_num AS "buildId.pilesNum"
 		FROM ccm_people a
 		<include refid="ccmPeopleJoinsArea"/>
 		<include refid="ccmPeopleJoinsNet"/>

@@ -3295,11 +3295,30 @@ public class CcmMapController extends BaseController {
 			// 1 type 默认不填
 			// 2 id 添加
 			featureDto.setId(ccmPeople1.getId());
-			// 3 properties 展示属性信息
+			// 3 properties 展示属性信息!
 			properties.setName(ccmPeople1.getName());
 			properties.setIcon("pub/yqry.png");
 			// 点击后展示详细属性值
-			Map<String, Object> map_P = new HashMap<String, Object>();
+			Map<String, Object> map_P = new LinkedHashMap<String, Object>();
+			// 创建附属信息
+			map_P.put("姓名", ccmPeople1.getName());
+			map_P.put("身份号码", ccmPeople1.getIdNumber());
+			map_P.put("户籍详址", ccmPeople1.getDomicile());
+			map_P.put("现住详址", ccmPeople1.getHabitation());
+			map_P.put("联系方式", ccmPeople1.getTelephone());
+			map_P.put("到达时间", (ccmPeople1.getComeHainanDate() == null) ? "" : time.format(ccmPeople1.getComeHainanDate()) + "  ");
+			map_P.put("所属分局", ccmPeople1.getBelongSubBureau());
+			if(ccmPeople1.getIdNumber()!=null && StringUtils.isNotEmpty(ccmPeople1.getIdNumber())){
+				List<CcmPeople> list = ccmPeopleService.getByIdent(ccmPeople1.getIdNumber());
+				if(list.size()>0 && list.get(0).getBuildId()!=null){
+					CcmHouseBuildmanage buildmanage = list.get(0).getBuildId();
+					map_P.put("住所楼栋名称", buildmanage.getBuildname());
+					map_P.put("住所楼栋id", buildmanage.getId());
+					map_P.put("住所楼栋区域", buildmanage.getAreaMap());
+					map_P.put("单元数", buildmanage.getElemNum());
+					map_P.put("层数", buildmanage.getPilesNum());
+				}
+			}
 			properties.addInfo(map_P);
 			featureList.add(featureDto);
 			featureDto.setProperties(properties);

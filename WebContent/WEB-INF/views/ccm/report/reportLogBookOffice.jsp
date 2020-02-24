@@ -82,14 +82,22 @@
 						<tr>
 							<th rowspan="2"><span style="color: red;" >本次计算数量标准(总分:${kpiSchemeKpi.score}分)</span></th>
 							<th colspan="2"><span style="color: red;float: right;">单项处理上限：</span></th>
-							<th><input id="" class="span10 ribao" type="text" value="0" /></th>
-							<th><input id="" class="span10 anshijian" type="text" value="0" /></th>
-							<th><input id="" class="span10 chuli" type="text" value="0" /></th>
-							<th><input id="" class="span10 loudong" type="text" value="0" /></th>
-							<th><input id="" class="span10 renkou" type="text" value="0" /></th>
-							<th><input id="" class="span10 teshu" type="text" value="0" /></th>
-							<th><input id="" class="span10 fangwu" type="text" value="0" /></th>
-							<th><input id="" class="span10 zhongdian" type="text" value="0" /></th>
+							<th><input id="" class="span10 ribao" type="text" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+									   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" /></th>
+							<th><input id="" class="span10 anshijian" type="text" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+									   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" /></th>
+							<th><input id="" class="span10 chuli" type="text" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+									   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" /></th>
+							<th><input id="" class="span10 loudong" type="text" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+									   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" /></th>
+							<th><input id="" class="span10 renkou" type="text" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+									   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" /></th>
+							<th><input id="" class="span10 teshu" type="text" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+									   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" /></th>
+							<th><input id="" class="span10 fangwu" type="text" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+									   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" /></th>
+							<th><input id="" class="span10 zhongdian" type="text" value="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+									   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" /></th>
 							<th rowspan="2">
 								<input id="" class="input-mini" type="text" value="${kpiSchemeKpi.score}" name='sum-score'/><br>
 								<input id="" class="btn btn-primary Calculation" type="button" value="计算" />

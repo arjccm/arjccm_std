@@ -200,7 +200,7 @@ $(function () {
                     move: '.layer-common-header',
                     resize: false,
                     fixed: false,
-                    id: "videoLayer",
+                    id: "videoLayer" +id,
                     content: html,
                     cancel: function () {
                         // 关闭事件

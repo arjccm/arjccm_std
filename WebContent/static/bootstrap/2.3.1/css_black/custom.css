@@ -1279,6 +1279,10 @@ body{
 	background: rgb(14, 42, 76) !important;
 	FontColor: #fff !important;
 }
+ /*
  #searchForm{
 	 background: #0E2A4C!important;
+ } */
+ .row-fluid{
+	 margin-left: 20px;
  }

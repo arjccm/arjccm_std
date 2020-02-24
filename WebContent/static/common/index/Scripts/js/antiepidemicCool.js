@@ -897,7 +897,6 @@ $(function () {
     function getCountdomicile() {
         $.getJSON(ctx + "/pop/ccmPeopleAntiepidemic/getCountdomicile", {"noCache": noCache}, function (data) {
 
-            console.log("户籍统计信息")
             var value = data[0]['type'];  //总数
             var value1 = data[0]['value'];// 湖北籍
             var value2 = data[0]['value1'];//非湖北籍
@@ -1679,7 +1678,17 @@ var PeopleAntiepidemicFlag = true;
 function getpeopleAntiepidemic(_this) {
     if (PeopleAntiepidemicFlag) {
         $.getJSON('' + ctx + '/sys/map/getpeopleAntiepidemic', function (data) {
-            Map.addJSON1([{
+            // Map.addJSON1([{
+            //     'type': 'antiepidemictype',
+            //     'id': 'PeopleAntiepidemic',
+            //     'data': data,
+            //     'isShow': true
+            // }])
+            for (var i in data.features){
+                data.features[i].properties['nameNum']=''+(Number(i)+1)+'';
+                // data.features[i].properties['nameNum'] = data.features[i].properties['info']["姓名"];
+            }
+            Map.addGIS([{
                 'type': 'antiepidemictype',
                 'id': 'PeopleAntiepidemic',
                 'data': data,
@@ -1694,7 +1703,17 @@ function getpeopleAntiepidemic(_this) {
     PeopleAntiepidemicFlag = !PeopleAntiepidemicFlag;
 }
 
-
+//点击定位
+function goToDetail(x,y,id,info){
+    var coordinates=[x,y];
+    Map.map.getView().setZoom(18);
+    Map.goTo(coordinates);
+    Map.selectGISPointer(id,info,coordinates);
+    $('.gis-marker').removeClass('activeMax');
+    $('#overlay_'+id).addClass('activeMax');
+    $('.gis-marker').parent().removeClass('activeMax');
+    $('#overlay_'+id).parent().addClass('activeMax');
+}
 
 function XiangQingFun(type) {
     $('.pubMapDialog').show()

@@ -406,6 +406,9 @@ border-top:0.6px solid  #efefef;
     font-size: 20px;
     padding-top: 2px;
 }
+	#business_list_div_event,#business_list_div_PopLocation{
+		display: none;
+	}
 </style>
 
 </head>
