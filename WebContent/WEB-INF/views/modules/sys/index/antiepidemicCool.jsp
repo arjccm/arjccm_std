@@ -11,7 +11,8 @@
 	<meta name="renderer" content="webkit|ie-comp|ie-stand" />
 	<title>社会网格化管理信息系统</title>
 	<script src="${ctxStatic}/jquery/jquery-1.8.3.min.js"></script>
-	<link rel="stylesheet" href="${ctxStatic}/bootstrap/bootstrap3.0/css/bootstrap.min.css">
+<%--	<link rel="stylesheet" href="${ctxStatic}/bootstrap/bootstrap3.0/css/bootstrap.min.css">--%>
+		<link rel="stylesheet" href="${ctxStatic}/bootstrap/2.3.1/css_black/bootstrap.min.css">
 	<script src="${ctxStatic}/bootstrap/2.3.1/js/bootstrap.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome.min.css">
 	<link rel="stylesheet" href="${ctxStatic}/bootstrap/animate.min.css">
@@ -33,12 +34,18 @@
 	<link rel="stylesheet" href="${ctxStatic}/modules/map/css/publicinstitutions.css">
 	<link href="${ctxStatic}/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet" />
 	<link href="${ctxStatic}/jquery-ztree/3.5.12/css/zTreeStyle/zTreeStyle.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="${ctxStatic}/modules/map/css/house.css">
 	<link rel="stylesheet" href="${ctxStatic}/common/index/css/antiepidemicCool.css">
+
 	<script type="text/javascript">
 		var ctxStatic = '${ctxStatic}',
 				ctx = '${ctx}';
 	</script>
-
+	<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
+	<link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css"
+		  rel="stylesheet">
+	<script src="${ctxStatic}/layim/layui/layui.js"></script>
+	<script src="${ctxStatic}/modules/map/js/mapBuildSpe.js"></script>
 	<script src="${ctxStatic}/ol/ol.js"></script>
 	<script src="${ctxStatic}/d3/d3.v4.min.js"></script>
 	<script src="${ctxStatic}/modules/map/js/mapconfig.js"></script>
@@ -260,6 +267,9 @@
 		#topCol1{
 
 		}
+		#toolCenter, .detail-box, .tag-panl-header, .tag-panl, .kpi-bg, div.jbox .jbox-container {
+			background: rgb(14, 45, 80) !important;
+		}
 	</style>
 	<script>
 		$(function() {
@@ -465,29 +475,83 @@
 					</div>
 				</div>
 			</div>
-			<%--<div id="toolCol" class="toolCol">
-                <div style="height: 40%;text-align: center;margin-top: 30%;" onclick="Map.selectQuery('Polygon')">
-                    <img src="/arjccm/static/common/index/images/statIndexCool/draw.png">
-                    <p>标绘</p>
-                </div>
-                <div style="height: 40%;text-align: center;" onclick="Map.fullScreen()">
-                    <img src="/arjccm/static/common/index/images/statIndexCool/allScreen.png">
-                    <p>全屏</p>
-                </div>
-            </div>--%>
-			<div id="popup" class="ol-popup  popup-ksh">
-				<div class="popup-content" id="popup-content"></div>--%>
-				<div class="">
-					<div class="jbox-state">
-						<div id="popup-content" style="padding: 8px 15px;"></div>
+			<div style="position: relative;">
+
+				<div id="popup" class="ol-popup  popup-ksh">
+					<div class="">
+						<a href="#" id="popup-closer"
+						   class="ol-popup-closer  icon-remove " title="关闭"
+						   onmouseover="$(this).addClass('jbox-close-hover');"
+						   onmouseout="$(this).removeClass('jbox-close-hover');"
+						   style="position: absolute; display: block; cursor: pointer; top: 4px; right: 11px; width: 15px; height: 15px; color: #666"></a>
+<%--						<div class="jbox-title-panel" style="height: 25px;">--%>
+<%--							<div class="jbox-title">信息</div>--%>
+<%--						</div>--%>
+						<div class="jbox-state">
+							<div id="popup-content" style="padding: 8px 15px;">
+<%--								<div class="modal-body" id="build-details"--%>
+<%--									 style="padding: 3px 0px 0 0;"></div>--%>
+							</div>
+
+							<%--<div class="jbox-button-panel"
+                                     style="height: 4px; padding: 0 15px 20px; text-align: right;"
+                                     id="modal-footer">
+                                    <button class="jbox-button" style="padding: 0px 10px 0px 10px;"
+                                            data-dismiss="modal" aria-hidden="true">关闭</button>
+                                </div>--%>
+
+						</div>
 					</div>
 				</div>
+
+
+				<button type="button" data-toggle="modal" data-target="#myModal"
+						id="buildBtn" style="display: none"></button>
+				<div id="myModal" class="modal hide fade jbox" tabindex="-1"
+					 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+					 style="width: 1300px; margin-left: -30%;z-index: 1993;">
+					<div class="jbox-container">
+						<a href="#" id="popup-closer" class="ol-popup-closer jbox-close"
+						   title="关闭" onmouseover="$(this).addClass('jbox-close-hover');"
+						   onmouseout="$(this).removeClass('jbox-close-hover');"
+						   style="position: absolute; display: block; cursor: pointer; top: 4px; right: 11px; width: 15px; height: 15px;"
+						   data-dismiss="modal" aria-hidden="true"></a>
+						<div class="jbox-title-panel" style="height: 25px;">
+							<div class="jbox-title">信息</div>
+						</div>
+						<!-- 楼栋 -->
+						<div class="jbox-state">
+							<div id="popup-content">
+								<div class="modal-body" id="build-details"
+									 style="padding: 3px 0px 0 0;"></div>
+								<!-- 房屋 -->
+								<div class="modal-body" id="house-details"
+									 style="padding: 3px 15px;"></div>
+								<!--人口-->
+								<div class="modal-body" id="pop-details"></div>
+							</div>
+							<div class="jbox-button-panel"
+								 style="height: 4px; padding: 0 15px 20px; text-align: right;"
+								 id="modal-footer">
+								<button class="jbox-button" style="padding: 0px 10px 0px 10px;"
+										data-dismiss="modal" aria-hidden="true">关闭</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+
 			</div>
-			<div id="pubMap"></div>
-			<div id="mapMask" class="map"></div>
+
 
 		</div>
 	</div>
+
+	<div id="pubMap"></div>
+	<div id="mapMask" class="map"></div>
+
 </div>
 </body>
 
