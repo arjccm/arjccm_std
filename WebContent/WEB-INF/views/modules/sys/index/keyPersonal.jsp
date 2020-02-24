@@ -56,6 +56,13 @@
 	<script src="${ctxStatic}/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 	<script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill.min.js"></script>
 
+	<script>
+		function showKey() {
+			// 切换元素的可见状态。如果元素是可见的，切换为隐藏的；如果元素是隐藏的，则切换为可见的。
+			$("#timeline").toggle()
+		}
+	</script>
+
 	<style type="text/css">
 		.table-info td {
 			padding-top: 12px;
@@ -177,7 +184,6 @@
 		@keyframes logoLight {
 			0% {
 				margin-left: -180px;
-				opacity: 1,
 			}
 			40% {
 				opacity: 1;
@@ -278,31 +284,31 @@
 
 						<div class="ckbx clearfix">
 							<div class="checkbox">
-								<input type="checkbox" id="checkbox1">
+								<input type="checkbox" name="pop" id="checkbox1" value="02">
 								<label for="checkbox1">
 									车辆卡口
 								</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" id="checkbox2">
+								<input type="checkbox" name="pop" id="checkbox2" value="01">
 								<label for="checkbox2">
 									人脸卡口
 								</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" id="checkbox3">
+								<input type="checkbox" name="pop" id="checkbox3" value="03">
 								<label for="checkbox3">
 									RFID
 								</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" id="checkbox4">
+								<input type="checkbox" name="pop" id="checkbox4" value="05">
 								<label for="checkbox4">
 									电子围栏
 								</label>
 							</div>
 							<div class="checkbox">
-								<input type="checkbox" id="checkbox5">
+								<input type="checkbox" name="pop" id="checkbox5" value="04">
 								<label for="checkbox5">
 									wifi探针
 								</label>
@@ -312,108 +318,355 @@
 					<div class="checkbox-box">
 						<div class="tit">人员类型</div>
 
-						<div class="ckbx clearfix">
-							<div class="checkbox">
-								<input type="checkbox" id="checkbox6">
-								<label for="checkbox6">
-									社教人员
-								</label>
-							</div>
-							<div class="checkbox">
-								<input type="checkbox" id="checkbox7">
-								<label for="checkbox7">
-									重点人员
-								</label>
-							</div>
-							<div class="checkbox">
-								<input type="checkbox" id="checkbox8">
-								<label for="checkbox8">
-									流动人员
-								</label>
-							</div>
-							<div class="checkbox">
-								<input type="checkbox" id="checkbox9">
-								<label for="checkbox9">
-									其他人员
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="date-box clearfix">
-						<div class="tit">时间</div>
-						<div class="form-group has_dark has-feedback timebox">
-							<input name="beginHappenDate"
-							type="text" readonly="readonly" maxlength="20"
-							class="input-medium form-control"
-							value="开始时间"
-							onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" />
-							<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
-						</div>
-						<div style="padding: 0 2px;">-</div>
-						<div class="form-group has_dark has-feedback timebox">
-							<input name="beginHappenDate"
-								   type="text" readonly="readonly" maxlength="20"
-								   class="input-medium form-control"
-								   value="结束时间"
-								   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" />
-							<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
-						</div>
-					</div>
-					<div class="btn-box">
-						<button >最近1小时</button>
-						<button >最近3小时</button>
-						<button >最近1天</button>
-					</div>
-					<div class="table-box">
-						<table class="table table-condensed">
-							<tr>
-								<th>人员</th>
-								<th>时间</th>
-								<th>位置</th>
-								<th>操作</th>
-							</tr>
-							<tr>
-								<td>张三四</td>
-								<td>01-07 13:01:32</td>
-								<td>xx街xx路交口</td>
-								<td class="clearfix">
-									<a class="dangan"></a>
-									<a class="guiji"></a>
-									<a class="dingwei"></a>
-								</td>
-							</tr>
-							<tr>
-								<td>张三四</td>
-								<td>01-07 13:01:32</td>
-								<td>xx街xx路交口</td>
-								<td class="clearfix">
-									<a class="dangan"></a>
-									<a class="guiji"></a>
-									<a class="dingwei"></a>
-								</td>
-							</tr>
-							<tr>
-								<td>张三四</td>
-								<td>01-07 13:01:32</td>
-								<td>xx街xx路交口</td>
-								<td class="clearfix">
-									<a class="dangan"></a>
-									<a class="guiji"></a>
-									<a class="dingwei"></a>
-								</td>
-							</tr>
-						</table>
-					</div>
+                        <div class="ckbx clearfix">
+                            <div class="checkbox">
+                                <input type="checkbox" name="pop" id="checkbox6" value="6">
+                                <label for="checkbox6">
+                                    社教人员
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="pop" id="checkbox7" value="7">
+                                <label for="checkbox7">
+                                    重点人员
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="pop" id="checkbox8" value="8">
+                                <label for="checkbox8">
+                                    流动人员
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="pop" id="checkbox9" value="9">
+                                <label for="checkbox9">
+                                    其他人员
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="date-box clearfix">
+                        <div class="tit">时间</div>
+                        <div class="form-group has_dark has-feedback timebox">
+                            <input name="beginHappenDate"
+                                   type="text" readonly="readonly" maxlength="20"
+                                   class="input-medium form-control"
+                                   value=""
+                                   placeholder="开始时间"
+                                   id="time1"
+                                   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                            <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                        <div style="padding: 0 2px;">-</div>
+                        <div class="form-group has_dark has-feedback timebox">
+                            <input name="beginHappenDate"
+                                   type="text" readonly="readonly" maxlength="20"
+                                   class="input-medium form-control"
+                                   value=""
+                                   placeholder="结束时间"
+                                   id="time2"
+                                   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"
+                                   onchange="funtime()"/>
+
+                            <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="btn-box">
+                        <button type="button" id="btn_One">最近1小时</button>
+                        <button type="button" id="btn_Three">最近3小时</button>
+                        <button type="button" id="btn_Aday">最近1天</button>
+                    </div>
+                    <div class="table-box">
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th>人员</th>
+                                <th>时间</th>
+                                <th>位置</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
 
 				</div>
 			</div>
 
 			<div id="pubMap"></div>
 			<div id="mapMask" class="map"></div>
+			<div id="timeline" style="display: none" class="track-rcol">
+				<div class="track-list">
+					<ul>
+						<li>
+							<i class="node-icon"></i>
+							<div class="line_div">
+								<span class="time">2016-03-10 18:07:15</span>
+								<br />
+								<br />
+								<span class="txt">创新六路和一路交叉口</span>
+							</div>
+						</li>
+						<li>
+							<i class="node-icon"></i>
+							<div class="line_div">
+								<span class="time">2016-03-10 18:07:15</span>
+								<br />
+								<br />
+								<span class="txt">创新六路和一路交叉口</span>
+							</div>
+						</li>
+						<li>
+							<i class="node-icon"></i>
+							<div class="line_div">
+								<span class="time">2016-03-10 18:07:15</span>
+								<br />
+								<br />
+								<span class="txt">创新六路和一路交叉口</span>
+							</div>
+						</li>
+						<li>
+							<i class="node-icon"></i>
+							<div class="line_div">
+								<span class="time">2016-03-10 18:07:15</span>
+								<br />
+								<br />
+								<span class="txt">创新六路和一路交叉口</span>
+							</div>
+						</li>
+						<li>
+							<i class="node-icon"></i>
+							<div class="line_div">
+								<span class="time">2016-03-10 18:07:15</span>
+								<br />
+								<br />
+								<span class="txt">创新六路和一路交叉口</span>
+							</div>
+						</li>
+						<li>
+							<i class="node-icon"></i>
+							<div class="line_div">
+								<span class="time">2016-03-10 18:07:15</span>
+								<br />
+								<br />
+								<span class="txt">创新六路和一路交叉口</span>
+							</div>
+						</li>
+						<li>
+							<i class="node-icon"></i>
+							<div class="line_div">
+								<span class="time">2016-03-10 18:07:15</span>
+								<br />
+								<br />
+								<span class="txt">创新六路和一路交叉口</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
 
 		</div>
 	</div>
 </div>
 </body>
+<script>
+    var ArrList = [];
+    $("input[name='pop']").click(function () {
+        for (var i = 0; i < $("input[name='pop']").length; i++) {//遍历$("input[name='teachar']").length的个数
+            //console.log($("input[name='teachar']"))
+            if ($("input[name='pop']")[i].checked == true) {//判断是否选中的值
+                ArrList.push($("input[name='pop']")[i].value);//输出value值
+                ArrList = Array.from(new Set(ArrList))
+            } else {
+                ArrList = ArrList.filter(function (res) {
+                    return res != ($("input[name='pop']")[i].value);
+                })
+            }
+        }
+        if (ArrList.length > 0) {
+            $.ajax({
+                url:  ctx + "/sys/map/KeyPersonal/FU",
+                type: "POST",
+                data: {
+                    array: ArrList.join(",")
+                        },
+                success: function (ref) {
+                    if (ref.code == 200){
+                        var html = '';
+                        $.each(ref.data, function (index, ele) {
+                            html += ' <tr>' +
+                                '<td>' + ele.name + '</td>' +
+                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.address + '</td>' +
+                                '<td class="clearfix">' +
+                                '<a class="dangan">' + '</a>' +
+                                '<a class="guiji"' + 'onclick="showKey()"' + '>' + '</a>' +
+                                '<a class="dingwei">' + '</a>' +
+                                '</td>' +
+                                '        </tr>';
+                        });
+                        $('tbody').empty().html(html);
+                    }
+                }
+            })
+        }
+    });
+    var array ='';
+
+    $(window).load(function () {
+        fun_Aday();
+    });
+
+
+    function funtime() {
+        var time1 = $('#time1').val();
+        var time2 = $('#time2').val();
+        if (ArrList.length > 0){
+            array = ArrList.join(",");
+        }
+        if (time1 != '') {
+            $.ajax({
+                type: "POST",
+                url: ctx + "/sys/map/KeyPersonal/KJ",
+                async: false,
+                data: {
+                    time1: time1,
+                    time2: time2,
+                    array:array
+                },
+                success: function (ref) {
+                    if (ref.code == 200) {
+                        var html = '';
+                        $.each(ref.data, function (index, ele) {
+                            html += ' <tr>' +
+                                '<td>' + ele.name + '</td>' +
+                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.address + '</td>' +
+                                '<td class="clearfix">' +
+                                '<a class="dangan">' + '</a>' +
+                                '<a class="guiji">' + '</a>' +
+                                '<a class="dingwei">' + '</a>' +
+                                '</td>' +
+                                '        </tr>';
+                        });
+                        $('tbody').empty().html(html);
+                    }
+                }
+            })
+        }
+    }
+
+
+    /*最近一小时*/
+    $('#btn_One').click(function () {
+        var time = new Date(new Date().getTime() - 1 * 60 * 60 * 1000);
+        if (ArrList.length > 0){
+            array = ArrList.join(",");
+        }
+        $.ajax({
+            type: "POST",
+            url: ctx + "/sys/map/KeyPersonal/recently",
+            async: false,
+            data: {
+                time: time,
+                array: array
+            },
+            success: function (ref) {
+                if (ref.code == 200) {
+                    var html = '';
+                    $.each(ref.data, function (index, ele) {
+                        html += ' <tr>' +
+                            '<td>' + ele.name + '</td>' +
+                            '<td>' + ele.time + '</td>' +
+                            '<td>' + ele.address + '</td>' +
+                            '<td class="clearfix">' +
+                            '<a class="dangan">' + '</a>' +
+                            '<a class="guiji">' + '</a>' +
+                            '<a class="dingwei">' + '</a>' +
+                            '</td>' +
+                            '        </tr>';
+                    });
+                    $('tbody').empty().html(html);
+                }
+            }
+        })
+    });
+
+    /*最近三小时*/
+    $('#btn_Three').click(function () {
+        var time = new Date(new Date().getTime() - 3 * 60 * 60 * 1000);
+        if (ArrList.length > 0){
+            array = ArrList.join(",");
+        }
+        $.ajax({
+            type: "POST",
+            url: ctx + "/sys/map/KeyPersonal/recently",
+            async: false,
+            data: {
+                time: time,
+                array:array
+            },
+            success: function (ref) {
+                if (ref.code == 200) {
+                    var html = '';
+                    $.each(ref.data, function (index, ele) {
+                        html += ' <tr>' +
+                            '<td>' + ele.name + '</td>' +
+                            '<td>' + ele.time + '</td>' +
+                            '<td>' + ele.address + '</td>' +
+                            '<td class="clearfix">' +
+                            '<a class="dangan">' + '</a>' +
+                            '<a class="guiji">' + '</a>' +
+                            '<a class="dingwei">' + '</a>' +
+                            '</td>' +
+                            '        </tr>';
+                    });
+                    $('tbody').empty().html(html);
+                }
+            }
+        })
+    });
+
+    /*最近一天*/
+    $('#btn_Aday').click(function () {
+        fun_Aday();
+    });
+
+    function fun_Aday() {
+        var time = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+        if (ArrList.length > 0){
+            array = ArrList.join(",");
+        }
+        $.ajax({
+            type: "POST",
+            url: ctx + "/sys/map/KeyPersonal/recently",
+            async: false,
+            data: {
+                time: time,
+                array:array
+            },
+            success: function (ref) {
+                if (ref.code == 200) {
+                    var html = '';
+                    $.each(ref.data, function (index, ele) {
+                        html += ' <tr>' +
+                            '<td>' + ele.name + '</td>' +
+                            '<td>' + ele.time + '</td>' +
+                            '<td>' + ele.address + '</td>' +
+                            '<td class="clearfix">' +
+                            '<a class="dangan">' + '</a>' +
+                            '<a class="guiji">' + '</a>' +
+                            '<a class="dingwei">' + '</a>' +
+                            '</td>' +
+                            '        </tr>';
+                    });
+                    $('tbody').empty().html(html);
+                }
+            }
+        })
+    }
+</script>
 
 </html>

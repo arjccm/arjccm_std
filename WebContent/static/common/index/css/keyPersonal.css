@@ -119,3 +119,88 @@
     background: url("../images/statIndexZj/zj_icon_03.png") no-repeat center;
     background-size: 100% 100%;
 }
+
+ul li {
+    list-style: none;
+}
+
+#timeline{
+    position: fixed;
+    left: 75%;
+    bottom: 10%;
+    width: 20%;
+    height: 550px;
+   /* border: 1px solid #eee;*/
+    background: #0B1B41;
+    z-index: 999;
+    overflow-y: scroll;
+    font-size: 16px;
+}
+
+/*.track-rcol {
+    width: 24%;
+    z-index: 999;
+    border: 1px solid #eee;
+    background: #0B1B41;
+}*/
+
+.track-list {
+    margin: 20px;
+    padding-left: 5px;
+    position: relative;
+}
+
+.track-list li {
+    position: relative;
+    padding: 9px 0 0 25px;
+    line-height: 18px;
+    border-left: 5px solid #027DA8;
+    height: 75px;
+    color: #FFFFFF;
+}
+
+/* 		.track-list li.first {
+			color: red;
+			padding-top: 0;
+			border-left-color: #fff;
+		} */
+
+.track-list li .node-icon {
+    position: absolute;
+    left: -5px;
+    top: 20%;
+    width: 11px;
+    height: 11px;
+    background: url(../../../images/key_personal/tuoyuan1.png) no-repeat;
+}
+
+.track-list li .line_div{
+    background-color: #027DA8;
+    height: 60px;
+}
+
+.track-list li.first .node-icon {
+    background-position: 0 -72px;
+}
+
+.track-list li .time {
+    margin-right: 20px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 5px;
+}
+
+.track-list li .txt {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.track-list li.first .time {
+    margin-right: 20px;
+}
+
+.track-list li.first .txt {
+    max-width: 600px;
+}

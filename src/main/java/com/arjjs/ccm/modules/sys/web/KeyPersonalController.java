@@ -25,9 +25,9 @@ public class KeyPersonalController {
     //查询最近时间段
     @RequestMapping(value = "/recently",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> findPersonal(Date time){
+    public Map<String,Object> findPersonal(Date time,String array){
         Map<String,Object> map = new HashMap();
-        List<KeyPersonal> Plist = keyPersonalService.findPersonal(time);
+        List<KeyPersonal> Plist = keyPersonalService.findPersonal(time,array);
 
         map.put("code","200");
         map.put("data",Plist);
@@ -37,9 +37,21 @@ public class KeyPersonalController {
     //开始时间结束时间
     @RequestMapping(value = "/KJ",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> findPersonalAday(String time1,String time2){
+    public Map<String,Object> findPersonalAday(String time1,String time2,String array){
         Map<String,Object> map = new HashMap();
-        List<KeyPersonal> Plist = keyPersonalService.findPersonalKJ(time1,time2);
+        List<KeyPersonal> Plist = keyPersonalService.findPersonalKJ(time1,time2,array);
+
+        map.put("code","200");
+        map.put("data",Plist);
+        return map;
+    }
+
+
+    @RequestMapping(value = "/FU",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> findPersonalFu(String array){
+        Map<String,Object> map = new HashMap();
+        List<KeyPersonal> Plist = keyPersonalService.findPersonalFu(array);
 
         map.put("code","200");
         map.put("data",Plist);
