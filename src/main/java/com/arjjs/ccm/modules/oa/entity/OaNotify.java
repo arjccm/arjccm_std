@@ -52,6 +52,9 @@ public class OaNotify extends DataEntity<OaNotify> {
 	private String value1;
 	private String userId;
 
+	private boolean isCreateByMySelf;		// 是否只查询自己创建的通知
+
+
 
 	public String getSender() {
 		return sender;
@@ -264,5 +267,13 @@ public class OaNotify extends DataEntity<OaNotify> {
 				", userId='" + userId + '\'' +
 				", oaNotifyRecordList=" + oaNotifyRecordList +
 				'}';
+	}
+
+	public boolean isCreateByMySelf() {
+		return isCreateByMySelf;
+	}
+
+	public void setCreateByMySelf(boolean createByMySelf) {
+		isCreateByMySelf = createByMySelf;
 	}
 }

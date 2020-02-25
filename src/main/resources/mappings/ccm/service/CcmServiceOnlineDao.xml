@@ -242,6 +242,101 @@
 			typeO
 	
 	</select>
-	
+
+	<select id="findPageByCreateBy" resultType="CcmServiceOnline">
+		SELECT
+		<include refid="ccmServiceOnlineColumns"/>
+		FROM ccm_service_online a
+		<include refid="ccmServiceOnlineJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="areaId != null and areaId != ''">
+				AND o.area_id = #{areaId}
+			</if>
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+			<if test="status != null and status != ''">
+				AND a.status = #{status}
+			</if>
+			<if test="applicant != null and applicant != ''">
+				AND a.applicant LIKE
+				<if test="dbName == 'oracle'">'%'||#{applicant}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{applicant}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{applicant},'%')</if>
+			</if>
+			<if test="ident != null and ident != ''">
+				AND a.ident LIKE
+				<if test="dbName == 'oracle'">'%'||#{ident}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{ident}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{ident},'%')</if>
+			</if>
+			<if test="beginTime != null and endTime != null and beginTime != '' and endTime != ''">
+				AND a.create_date BETWEEN #{beginTime} AND #{endTime}
+			</if>
+			<if test="beginTime != null and endTime != null and beginTime != '' and endTime != ''">
+				AND a.create_date BETWEEN #{beginTime} AND #{endTime}
+			</if>
+			<if test="createBy.id != null and createBy.id != ''">
+				AND u.id = #{createBy.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findPageByOffice" resultType="CcmServiceOnline">
+		SELECT
+		<include refid="ccmServiceOnlineColumns"/>
+		FROM ccm_service_online a
+		<include refid="ccmServiceOnlineJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="areaId != null and areaId != ''">
+				AND o.area_id = #{areaId}
+			</if>
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+			<if test="status != null and status != ''">
+				AND a.status = #{status}
+			</if>
+			<if test="applicant != null and applicant != ''">
+				AND a.applicant LIKE
+				<if test="dbName == 'oracle'">'%'||#{applicant}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{applicant}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{applicant},'%')</if>
+			</if>
+			<if test="ident != null and ident != ''">
+				AND a.ident LIKE
+				<if test="dbName == 'oracle'">'%'||#{ident}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{ident}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{ident},'%')</if>
+			</if>
+			<if test="beginTime != null and endTime != null and beginTime != '' and endTime != ''">
+				AND a.create_date BETWEEN #{beginTime} AND #{endTime}
+			</if>
+			<if test="beginTime != null and endTime != null and beginTime != '' and endTime != ''">
+				AND a.create_date BETWEEN #{beginTime} AND #{endTime}
+			</if>
+			<if test="createBy.office.id != null and createBy.office.id != ''">
+				AND o.id = #{createBy.office.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
 	
 </mapper>

@@ -70,6 +70,9 @@
 		<if test="isSelf">
 			AND a.STATUS = '1'
 		</if>
+		<if test="isCreateByMySelf">
+			AND a.create_by = #{createBy.id}
+		</if>
 		ORDER BY a.update_date DESC
 	</select>
 	

@@ -21,5 +21,8 @@ public interface CcmServiceOnlineDao extends CrudDao<CcmServiceOnline> {
 	List<EchartType> getServiceType();
 	//在线办事-处理进度
 	List<EchartType> getServiceStatus();
-	
+
+	List<CcmServiceOnline>  findPageByCreateBy(CcmServiceOnline ccmServiceOnline);
+
+	List<CcmServiceOnline>  findPageByOffice(CcmServiceOnline ccmServiceOnline);
 }

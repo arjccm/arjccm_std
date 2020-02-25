@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
+import com.google.common.collect.Lists;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -268,5 +269,74 @@ public class SysUserController extends BaseController {
 			addMessage(redirectAttributes, "导入用户信息失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + adminPath + "/sys/user/list";
+	}
+
+	@RequiresPermissions({"sys:user:edit"})
+	@RequestMapping({"save"})
+	public String save(User user, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
+		if (Global.isDemoMode()) {
+			this.addMessage(redirectAttributes, new String[]{"演示模式，不允许操作！"});
+			return "redirect:" + this.adminPath + "/sys/user/list?repage";
+		} else {
+			user.setCompany(new Office(request.getParameter("company.id")));
+			user.setOffice(new Office(request.getParameter("office.id")));
+			if (StringUtils.isNotBlank(user.getNewPassword())) {
+				user.setPassword(SystemService.entryptPassword(user.getNewPassword()));
+			}else{
+				user.setPassword(UserUtils.get(user.getId()).getPassword());
+			}
+
+			if (!this.beanValidator(model, user, new Class[0])) {
+				return this.form(user, model);
+			} else if (!"true".equals(this.checkLoginName(user.getOldLoginName(), user.getLoginName()))) {
+				this.addMessage(model, new String[]{"保存用户'" + user.getLoginName() + "'失败，登录名已存在"});
+				return this.form(user, model);
+			} else {
+				List<Role> roleList = Lists.newArrayList();
+				List<String> roleIdList = user.getRoleIdList();
+				Iterator var8 = this.systemService.findAllRole().iterator();
+
+				while(var8.hasNext()) {
+					Role r = (Role)var8.next();
+					if (roleIdList.contains(r.getId())) {
+						roleList.add(r);
+					}
+				}
+
+				user.setRoleList(roleList);
+				if(StringUtils.isEmpty(user.getPhoto())){
+					user.setPhoto(Global.getConfig("USER_HEAD_PHOTO_URL"));
+				}
+				this.systemService.saveUser(user);
+				if (user.getLoginName().equals(UserUtils.getUser().getLoginName())) {
+					UserUtils.clearCache();
+				}
+
+				this.addMessage(redirectAttributes, new String[]{"保存用户'" + user.getLoginName() + "'成功"});
+				return "redirect:" + this.adminPath + "/sys/user/list?repage";
+			}
+		}
+	}
+
+	public String form(User user, Model model) {
+		if (user.getCompany() == null || user.getCompany().getId() == null) {
+			user.setCompany(UserUtils.getUser().getCompany());
+		}
+
+		if (user.getOffice() == null || user.getOffice().getId() == null) {
+			user.setOffice(UserUtils.getUser().getOffice());
+		}
+
+		model.addAttribute("user", user);
+		model.addAttribute("allRoles", this.systemService.findAllRole());
+		return "modules/sys/userForm";
+	}
+
+	public String checkLoginName(String oldLoginName, String loginName) {
+		if (loginName != null && loginName.equals(oldLoginName)) {
+			return "true";
+		} else {
+			return loginName != null && this.systemService.getUserByLoginName(loginName) == null ? "true" : "false";
+		}
 	}
 }

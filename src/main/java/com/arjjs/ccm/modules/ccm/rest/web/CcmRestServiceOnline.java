@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.utils.StringUtils;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,18 +105,16 @@ public class CcmRestServiceOnline extends BaseController {
 		if(null == ccmServiceOnline.getType()) {
 			ccmServiceOnline.setType("");
 		}
-		// 获取userId
-		User userEntity = new User();
-		userEntity.setId(userId);
-		ccmServiceOnline.setCreateBy(userEntity);
-		// 设置当前用户 为自身
-		ccmServiceOnline.setSelf(true);
-		//设置当前的用户   
-		ccmServiceOnline.setCurrentUser(userEntity);
-		Page<CcmServiceOnline> page = ccmServiceOnlineService.findPage(new Page<CcmServiceOnline>(req, resp),
-				(null == ccmServiceOnline) ? new CcmServiceOnline() : ccmServiceOnline);
+		//根据userId判断查询方式，admin查询全部，其他的只能看自己提交的
+		if("1".equals(userId)){
+			Page<CcmServiceOnline> page = ccmServiceOnlineService.findPage(new Page<CcmServiceOnline>(req, resp), ccmServiceOnline);
+			result.setResult(page.getList());
+		}else{
+			ccmServiceOnline.setCreateBy(UserUtils.get(userId));
+			Page<CcmServiceOnline> page = ccmServiceOnlineService.findPageByCreateBy(new Page<CcmServiceOnline>(req, resp), ccmServiceOnline);
+			result.setResult(page.getList());
+		}
 		result.setCode(CcmRestType.OK);
-		result.setResult(page.getList());
 		// 输出结果
 		return result;
 	}
