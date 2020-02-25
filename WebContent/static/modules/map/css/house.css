@@ -1,52 +1,81 @@
 @CHARSET "UTF-8";
 
+#popup-content #build-details{
+	background: #0b1b41;
+}
+.floor_content{
+	float: none !important;
+}
+.floor_box{
+	float: left;
+	margin-left: 1px;
+    position: relative;
+}
+.floor_box:first-child{
+	margin-left: 0;
+}
 .house-top {
-	/* width: 103.2%; */
 	width:100%;
-	height: 50px;
-	border: 1px solid #000;
+	height: 74px;
+	/*border: 1px solid #000;*/
 	text-align: center;
 	color: #fff;
-	line-height: 50px;
-	background-color: #0054A8;
+	background: url("../images/roof_top.png") no-repeat;
+	background-size: cover;
 	position: relative;
-    width: 92.5%;
-    margin-left: 3.5%;
+    /*margin-left: 3.5%;*/
 }
 
-.house-top:before {
-	content: '';
-	display: block;
-	width: 35px;
-	height: 50px;
-	position: absolute;
-	transform: skewX(-30deg);
-	background: #0054A8;
-	left: -16px;
-	top: 0;
-	border-left: 1px solid #000;
-	border-bottom: 1px solid #000;
-}
+/*.house-top:before {*/
+/*	content: '';*/
+/*	display: block;*/
+/*	width: 35px;*/
+/*	height: 50px;*/
+/*	position: absolute;*/
+/*	transform: skewX(-30deg);*/
+/*	background: #0054A8;*/
+/*	left: -16px;*/
+/*	top: 0;*/
+/*	border-left: 1px solid #000;*/
+/*	border-bottom: 1px solid #000;*/
+/*}*/
 
-.house-top:after {
-	content: '';
-	display: block;
-	width: 35px;
-	height: 50px;
-	position: absolute;
-	transform: skewX(30deg);
-	background: #0054A8;
-	top: 0;
-	right: -16px;
-	border-right: 1px solid #000;
-	border-bottom: 1px solid #000;
-}
+/*.house-top:after {*/
+/*	content: '';*/
+/*	display: block;*/
+/*	width: 35px;*/
+/*	height: 50px;*/
+/*	position: absolute;*/
+/*	transform: skewX(30deg);*/
+/*	background: #0054A8;*/
+/*	top: 0;*/
+/*	right: -16px;*/
+/*	border-right: 1px solid #000;*/
+/*	border-bottom: 1px solid #000;*/
+/*}*/
 
-.house-top-beam {
-	border-top: 1px solid #535853;
-	border-bottom: 1px solid #535853;
+/*.house-top-beam {*/
+/*	border-top: 1px solid #535853;*/
+/*	border-bottom: 1px solid #535853;*/
+/*	width: 100%;*/
+/*	margin: 6px 0;*/
+/*}*/
+.house-top-area{
 	width: 100%;
-	margin: 6px 0;
+	padding-top: 19px;
+}
+.house-top-num{
+	width: 70%;
+	margin: 0 auto;
+	border: 3px solid #615849;
+	line-height: 30px;
+}
+.house-top-num .house-num-box{
+	background: #f3efe8;
+	border: 2px solid #bfb5a3;
+	text-align: center;
+	color: #333333;
+	font-size: 14px;
 }
 
 .house-center {
@@ -80,72 +109,72 @@
 .house-window {
 	width: 100%;
 	height: 25px;
-	background: url("../images/window.png") center;
-	background-size: 90% 90%;
+	background: url("../images/window.png") center no-repeat;
+	background-size: cover;
 	padding: 2px;
 }
 
 .house-window1 {
 	width: 100%;
 	height: 25px;
-	background: url("../images/window1.png") center;
-	background-size: 90% 90%;
+	background: url("../images/window1.png") center no-repeat;
+	background-size: cover;
 	padding: 2px;
 }
 
 .house-window2 {
 	width: 100%;
 	height: 25px;
-	background: url("../images/window2.png") center;
-	background-size: 90% 90%;
+	background: url("../images/window2.png") center no-repeat;
+	background-size: cover;
 	padding: 2px;
 }
 
 .house-window3 {
 	width: 100%;
 	height: 25px;
-	background: url("../images/window3.png") center;
-	background-size: 90% 90%;
+	background: url("../images/window3.png") center no-repeat;
+	background-size: cover;
 	padding: 2px;
 }
 
 .house-window4 {
 	width: 100%;
 	height: 25px;
-	background: url("../images/window4.png") center;
-	background-size: 90% 90%;
+	background: url("../images/window4.png") center no-repeat;
+	background-size: cover;
 	padding: 2px;
 }
 
 .house-window5 {
 	width: 100%;
 	height: 25px;
-	background: url("../images/window5.png") center;
-	background-size: 90% 90%;
+	background: url("../images/window5.png") center no-repeat;
+	background-size: cover;
 	padding: 2px;
 }
 
 .house-window6 {
 	width: 100%;
 	height: 25px;
-	background: url("../images/window6.png") center;
-	background-size: 90% 90%;
+	background: url("../images/window6.png") center no-repeat;
+	background-size: cover;
 	padding: 2px;
 }
 
 .house-window7 {
 	width: 100%;
 	height: 25px;
-	background: url("../images/window7.png") center;
-	background-size: 90% 90%;
+	background: url("../images/window7.png") center no-repeat;
+	background-size: cover;
 	padding: 2px;
 }
 
 .house-window-white {
 	width: 100%;
 	height: 25px;
-	background: url("../images/window_white.png") center;
-	background-size: 90% 90%;
+	background: url("../images/window_white.png") center no-repeat;
+	background-size: cover;
 	padding: 2px;
 }
 
@@ -171,27 +200,28 @@
 }
 
 .pop-house {
-    position: fixed;
-	height: 519px;
-	width: 319px;
-	border: 1px solid #b6d1d6;
+	/*height: 519px;*/
+	width: 100%;
+	/*border: 1px solid #b6d1d6;*/
 }
-
+.tab-switch{
+    border-bottom: 1px solid #027da8;
+    border-top: 1px solid #027da8;
+}
 .tab-switch li {
 	float: left;
-	border: 1px solid #b6d1d6;
+    border-right: 1px solid #027da8;
 	text-align: center;
-	line-height: 20px;
-	padding: 5px;
-	font-weight: bold;
-	color: #90c7dc;
+	line-height: 40px;
+	color: #0eadce;
 	cursor: pointer;
-	margin-left: 15px;
+    font-size: 14px;
+    width: 150px;
 }
 
 .tab-switch li.active {
-	background: #35f7a6;
-	color: #000;
+	background: #027da8;
+	color: #fff;
 }
 
 .tab-center {
@@ -279,96 +309,8 @@ input[type="radio"].type-input {
 	margin-left: 5px;
 }
 
-.page-right {
-	height: 48px;
-	width: 48px;
-	background: url("../images/right.png") center no-repeat;
-	background-size: 100% 100%;
-	cursor: pointer;
-}
-.page-right.active{
-	background: url("../images/right-active.png") center no-repeat;
-}
- .page-left {
-	height: 48px;
-	width: 48px;
-	background: url("../images/left.png") center no-repeat;
-	background-size: 100% 100%;
-	cursor: pointer;
-}
- .page-left.active{
-  	background: url("../images/left-active.png") center no-repeat;
- }
-/* .page-left div {
-	width: 18px;
-	height: 40px;
-	background: url(../images/slider_btn_icon_1fac543.png) center no-repeat;
-	cursor: pointer;
-	background-position: -25px -166px;
-} */
 
-/* .page-right div {
-	height: 40px;
-	width: 20px;
-	background: url("../images/slider_btn_icon_1fac543.png") center
-		no-repeat;
-	cursor: pointer;
-	background-position: 4px -166px;
-} */
 
-/* .page-right:hover, .page-left:hover {
-	background: #e6e6e6;
-}
-
-.page-right:hover div {
-	background-position: -43px -166px;
-}
-
-.page-left:hover div {
-	 background-position: -71px -166px;
-}*/
-.page-down{
-	background: url("../images/down-active.png") center
-		no-repeat;
-	cursor: pointer;
-	width: 32px;
-      height: 26px;
-	background-size: 100% 100%;
-}
-.page-down.active{
-	background: url("../images/down.png") center
-		no-repeat;
-	cursor: pointer;
-	width:32px;
-    height: 26px;
-	background-size: 100% 100%;
-}
-.page-top{
-	background: url("../images/top-active.png") center
-		no-repeat;
-	cursor: pointer;
-	width: 32px;
-    height: 26px;
-	background-size: 100% 100%;
-	margin-left: 32px;
-}
-.page-top.active{
-	background: url("../images/top.png") center
-		no-repeat;
-	cursor: pointer;
-	width:32px;
-	    height: 26px;
-	background-size: 100% 100%;
-}
-.page-left.active {
-	/* 	background: url("../images/left-active.png") center no-repeat; */
-	
-}
-
-.page-right.active {
-	/* background: url("../images/right-active.png") center no-repeat; */
-	
-}
 
 .houseMap td:first-child {
 	width: 140px;
@@ -394,4 +336,191 @@ div.jbox .jbox-title-panel {
 }
 div.jbox .jbox-button {
     margin: -7px 5px 0!important;
+}
+/*  新增  */
+.floor_ct_block{
+    margin: 36px auto 0 auto !important;
+    float: none !important;
+}
+.screen_list{
+	float: none !important;
+	width: 100% !important;
+    position: absolute;
+    bottom: 0;
+}
+.key_personnel > div ,.key_personnel_01 > div {
+    padding: 0 32px;
+}
+.key_personnel .check_box_list{
+    width: 12.5%;
+    height: 32px;
+    float: left;
+}
+.key_personnel_01 .check_box_list{
+    width: 20%;
+    height: 32px;
+    float: left;
+}
+.key_personnel .check_text ,.key_personnel_01 .check_text{
+    font-size: 14px;
+}
+
+/* 箭头 */
+.arrow_area {
+    width: 74px;
+    height: 74px;
+	position: absolute;
+	top: 34px;
+	left: 29px;
+	z-index: 999;
+}
+.page-right {
+    height: 17px;
+    width: 23px;
+    background: url("../images/icon_right.png") center no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+/*.page-right.active{*/
+/*    background: url("../images/right-active.png") center no-repeat;*/
+/*}*/
+.page-left {
+    height: 17px;
+    width: 23px;
+    background: url("../images/icon_left.png") center no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+/*.page-left.active{*/
+/*    background: url("../images/left-active.png") center no-repeat;*/
+/*}*/
+.page-down{
+    background: url("../images/icon_down.png") center
+    no-repeat;
+    cursor: pointer;
+    width: 17px;
+    height: 23px;
+    background-size: 100% 100%;
+}
+/*.page-down.active{*/
+/*    background: url("../images/down.png") center*/
+/*    no-repeat;*/
+/*    cursor: pointer;*/
+/*    width:32px;*/
+/*    height: 26px;*/
+/*    background-size: 100% 100%;*/
+/*}*/
+.page-top{
+    background: url("../images/icon_top.png") center
+    no-repeat;
+    cursor: pointer;
+    width: 17px;
+    height: 23px;
+    background-size: 100% 100%;
+}
+/*.page-top.active{*/
+/*    background: url("../images/top.png") center*/
+/*    no-repeat;*/
+/*    cursor: pointer;*/
+/*    width:32px;*/
+/*    height: 26px;*/
+/*    background-size: 100% 100%;*/
+/*}*/
+.page-left.active {
+    /* 	background: url("../images/left-active.png") center no-repeat; */
+
+}
+
+.page-right.active {
+    /* background: url("../images/right-active.png") center no-repeat; */
+
+}
+
+.arrow_area .arrow_sl_01{
+	width: 17px;
+	height: 23px;
+	float: left;
+}
+.arrow_area .arrow_sl_02{
+	width: 23px;
+	height: 17px;
+	float: left;
+}
+.arrow_area .blank_01{
+	width: 28px;
+	height: 23px;
+	float: left;
+}
+.arrow_area .blank_02{
+	width: 17px;
+	height: 17px;
+	float: left;
+	margin: 0 5px;
+}
+.arrow_area .blank_03{
+	width: 100%;
+	height: 5px;
+	float: left;
+}
+
+/*  缩略图 */
+.thumbnail_area{
+	width: 146px;
+	position: absolute;
+	right: 0;
+	top: 36px;
+}
+.thumbnail_area .house_casement_01{
+	width: 56px;
+	height: 24px;
+	background: url("../images/thumbnail_img_01.png") no-repeat center;
+}
+.thumbnail_area .house_casement_02{
+	width: 56px;
+	height: 24px;
+	background: url("../images/thumbnail_img_02.png") no-repeat center;
+}
+.thumbnail_area .house_casement_03{
+	width: 56px;
+	height: 24px;
+	background: url("../images/thumbnail_img_03.png") no-repeat center;
+}
+.thumbnail_area .house_casement_04{
+	width: 56px;
+	height: 24px;
+	background: url("../images/thumbnail_img_04.png") no-repeat center;
+}
+.thumbnail_area .house_casement_text{
+	margin-left: 15px;
+}
+
+/*  草坪  */
+.homeRight{
+	position: relative;
+	overflow: visible;
+}
+.lawn-area {
+	width: calc(100% + 308px);
+	position: absolute;
+	left: -170px;
+	bottom: -47px;
+}
+.lawn-area .lawn_left{
+	width: 170px;
+	height: 112px;
+	background: url("../images/lawn-left.png") no-repeat center;
+	float: left;
+}
+.lawn-area .lawn_content{
+	width: calc(100% - 308px);
+	height: 112px;
+	background: #417b41;
+	float: left;
+}
+.lawn-area .lawn_right{
+	float: left;
+	width: 138px;
+	height: 184px;
+	background: url("../images/lawn-right.png") no-repeat center;
+	margin-top: -72px;
 }
