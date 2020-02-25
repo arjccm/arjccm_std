@@ -2750,7 +2750,7 @@ function showKeyPersonnel(name, value) {
 
 
 // 安全隐患统计
-function showSafeCount() {
+function showSafeCount(data1,value) {
 
     option = {
         color: ['#3398DB'],
