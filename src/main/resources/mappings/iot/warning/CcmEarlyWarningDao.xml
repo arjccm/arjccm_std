@@ -433,4 +433,64 @@
 		ORDER BY a.update_date DESC
 	</select>
 
+
+	<!--重点人员-->
+	<sql id="ysql">
+		SELECT name,alarm_date,address FROM ccm_early_warning
+	</sql>
+
+	<!--最近时间-->
+	<select id="findPersonal" resultType="CcmEarlyWarning">
+		<include refid="ysql"></include>
+		<where>
+			alarm_date &gt;=#{time}
+			<if test="list != null and list != ''">
+				AND alarm_type IN
+				<foreach collection="list" item="list" index="i" open="(" separator="," close=")">
+					#{list}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+
+	<!--开始时间 结束时间-->
+	<select id="findPersonalKJ" resultType="CcmEarlyWarning">
+		<include refid="ysql"></include>
+		<where>
+			<if test="time1 != null and time1 != ''">
+				alarm_date &gt;= #{time1}
+			</if>
+			<if test="time2 != null and time2 != ''">
+				AND alarm_date &lt;= #{time2}
+			</if>
+			<if test="list != null and list != ''">
+				AND alarm_type IN
+				<foreach collection="list" item="list" index="i" open="(" separator="," close=")">
+					#{list}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+	<!--多选框-->
+	<select id="findPersonalFu" resultType="CcmEarlyWarning">
+		<include refid="ysql"></include>
+		WHERE '1'='1'
+		<if test="list != null and list != ''">
+			AND alarm_type IN
+			<foreach collection="list" item="list" index="i" open="(" separator="," close=")">
+				#{list}
+			</foreach>
+		</if>
+		<if test="zd != null and zd != ''">
+			AND people_emphasis=#{zd}
+		</if>
+	</select>
+
+	<!--搜索框-->
+	<select id="findPersonalSearch" resultType="CcmEarlyWarning">
+		<include refid="ysql"></include>
+		WHERE name LIKE #{name}
+	</select>
 </mapper>
