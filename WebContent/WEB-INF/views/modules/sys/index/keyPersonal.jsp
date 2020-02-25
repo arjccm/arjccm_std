@@ -505,7 +505,7 @@
                         $.each(ref.data, function (index, ele) {
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -550,7 +550,7 @@
                         $.each(ref.data, function (index, ele) {
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -582,7 +582,7 @@
                     $.each(ref.data, function (index, ele) {
                         html += ' <tr>' +
                             '<td>' + ele.name + '</td>' +
-                            '<td>' + ele.time + '</td>' +
+                            '<td>' + ele.alarmDate + '</td>' +
                             '<td>' + ele.address + '</td>' +
                             '<td class="clearfix">' +
                             '<a class="dangan">' + '</a>' +
@@ -616,7 +616,7 @@
                         $.each(ref.data, function (index, ele) {
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -651,7 +651,7 @@
                         $.each(ref.data, function (index, ele) {
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -690,7 +690,7 @@
                         $.each(ref.data, function (index, ele) {
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
