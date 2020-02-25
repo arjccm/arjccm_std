@@ -4,11 +4,11 @@
 <style>
 .radio-div {
 	margin-top: 7px;
-	margin-left: 10px;
 }
 
 .houseclick.btn {
-	background: #BDC7C7;
+	background: #dfe3e3;
+    box-shadow: 0px 0px;
 }
 .build {
 	width: 400px;
@@ -18,7 +18,7 @@
 
 .floor {
 	width: 100%;
-	height: 69px;
+	height: 76px;
 }
 
 .build table {
@@ -30,8 +30,9 @@
 }
 
 .build table td {
-	border: 1px solid #000;
+	/*border: 1px solid #dfe3e3;*/
 	text-align: center;
+	background: #dfe3e3;
 }
 
 .floor-add {
@@ -87,7 +88,7 @@
 
 .unit {
 	width: 400px;
-	float: left;
+	/*float: left;*/
 	position: relative;
 }
 
@@ -150,36 +151,85 @@
 <c:if test="${ maxelemnum > 0 }">
 	<div class="row-fluid">
 
-		<div class="span9">
+		<div class="floor_content span12">
 			<!-- 详情 -->
-			<div class="row-fluid">
-				<h4 style="padding: 10px 52px;">楼栋名称: ${buildName}</h4>
-			</div>
+<%--			<div class="row-fluid">--%>
+<%--				<h4 style="padding: 10px 52px;">楼栋名称: ${buildName}</h4>--%>
+<%--			</div>--%>
 				<!-- 分页 -->
-			 <div class="page row-fluid">
-				<div class="span2"></div>
-				<div class="span2">
+			 <div class="arrow_area page row-fluid">
+
+				 <div class="blank_01"></div>
+				 <div class="arrow_sl_01">
+					 <div class="page-top page-icon"></div>
+				 </div>
+				 <div class="blank_01"></div>
+
+				 <div class="blank_03"></div>
+
+				<div class="arrow_sl_02">
 					<div class="page-left  page-icon">
-						<div></div>
 					</div>
 				</div>
-				<div class="span2">
+				 <div class="blank_02"></div>
+				<div class="arrow_sl_02">
 					<div class="page-right  page-icon">
-						<div></div>
 					</div>
 				</div>
-			</div>
-			<div class="page row-fluid" style="margin-left: 10px;">
-		    	<div class="span1">
-					<div class="page-down active page-icon"></div>
-				</div> 
-				<div class="span10">
+
+				<div class="blank_03"></div>
+
+				 <div class="blank_01"></div>
+				 <div class="arrow_sl_01">
+					 <div class="page-down page-icon"></div>
+				 </div>
+				 <div class="blank_01"></div>
+
+			 </div>
+			<div class="page row-fluid">
+
+				<div class="floor_ct_block" style="width: 100%">
 				  <div id="roomCenter"></div>
 				</div>
-			    <div class="span1" style="margin-left:0">
-					<div class="page-top active  page-icon"></div>
+
+			</div>
+			<!-- 房屋类型 -->
+			<div class="row-fluid thumbnail_area">
+				<div class="span12">
+					<div class="span12">
+
+
+						<div class="row-fluid">
+
+							<div class="span6 house_casement_01"></div>
+							<div class="span6 house_casement_text lineght30">自住</div>
+
+							<!-- 自住01 -->
+						</div>
+						<div class="row-fluid">
+
+							<div class="span6 house_casement_02"></div>
+							<div class="span6 house_casement_text lineght30">出租</div>
+
+							<!-- 	出租02 -->
+						</div>
+						<div class="row-fluid">
+
+							<div class="span6 house_casement_03"></div>
+							<div class="span6 house_casement_text lineght30">空置</div>
+
+							<!-- 空置03 -->
+						</div>
+						<div class="row-fluid">
+
+							<div class="span6 house_casement_04"></div>
+							<div class="span6 house_casement_text lineght30">暂无信息</div>
+
+						</div>
+					</div>
 				</div>
 			</div>
+			<!--房屋类型  -->
 		
 			<!-- 分页 -->
 
@@ -285,31 +335,41 @@
 			</div>--%>
 			<!-- 房子 -->
 		</div>
-		<div class="span3" style="margin-left: 0;" >
+		<div class="screen_list span3" style="margin-left: 0;" >
 			<div class="row-fluid">
 				<!-- 分类 -->
 				<div class="span12" style="padding: 8px 0">
-					<div class="pop-house active "
-						style="margin-top: 20px; padding: 2px;">
-						<div class="row-fluid" style="margin-top: 10px;">
+					<div class="pop-house active">
+						<div class="row-fluid">
 							<div class="span12">
-								<ul class=" tab-switch">
+								<ul class=" tab-switch clearfix">
 									<li class="active">重点人群</li>
 									<li>特殊人群</li>
-									<li>房屋类型</li>
+<%--									<li>房屋类型</li>--%>
 								</ul>
 							</div>
 						</div>
 						<!--重点人员  -->
-						<div class="row-fluid tab-center active" style="margin-top: 10px;">
+						<div class="key_personnel row-fluid tab-center active" style="margin-top: 10px;">
 							<div class="span12">
-								<div class="span12" style="">
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">留守人员</div>
-										<div class="span3">
-											<div class="type-pop7"></div>
+								<div class="span12 clearfix" style="">
+									<div class="row-fluid check_box_list">
+											<%--								<div class="span6 lineght30"></div>--%>
+
+										<div class="span3 lineght30">
+											<div class="checkbox checkbox-success radio-div">
+												<input type="checkbox" value="4194303" class="type-input"
+													   name="repairId" onclick="checkAll(this, 'repairId')"
+													   id="checkId" /> <label for="checkId"></label>
+											</div>
 										</div>
+										<div class="check_text span3 lineght30">全选</div>
+									</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="7" class="type-input"
@@ -317,13 +377,13 @@
 													for="LiuShou"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">留守人员</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">重点青少年</div>
-										<div class="span3 ">
-											<div class="type-pop3"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3 ">--%>
+<%--											<div class="type-pop3"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="3" class="type-input"
@@ -331,13 +391,13 @@
 												<label for="YoungPop"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">重点青少年</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">老年人</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #ffff80"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #ffff80"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="11" class="type-input"
@@ -345,13 +405,13 @@
 													for="LaoNian"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">老年人</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">低保人员</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #fd6d01"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #fd6d01"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="12" class="type-input"
@@ -359,13 +419,13 @@
 													for="DiBao"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">低保人员</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">残疾人员</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #951167"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #951167"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="13" class="type-input"
@@ -373,13 +433,13 @@
 													for="canji"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">残疾人员</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">退伍人员</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #e822e7"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #e822e7"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="14" class="type-input"
@@ -387,13 +447,13 @@
 													for="tuiwu"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">退伍人员</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">优抚对象</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #eeb22a"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #eeb22a"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="15" class="type-input"
@@ -401,13 +461,13 @@
 													for="youfu"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">优抚对象</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">现役军人</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #55c723"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #55c723"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="16" class="type-input"
@@ -415,13 +475,13 @@
 													for="junren"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">现役军人</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">烈士家属</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #ff8080"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #ff8080"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="17" class="type-input"
@@ -429,13 +489,13 @@
 													for="lieshi"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">烈士家属</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">失业人员</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #0000ff"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #0000ff"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="18" class="type-input"
@@ -443,13 +503,13 @@
 													for="shiye"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">失业人员</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">孤儿</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #ff0080"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #ff0080"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="19" class="type-input"
@@ -457,13 +517,13 @@
 													for="guer"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">孤儿</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">救助对象</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #804040"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #804040"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="20" class="type-input"
@@ -471,13 +531,13 @@
 													for="jiuzhu"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">救助对象</div>
 									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-										<div class="span6 lineght30">失独人员</div>
-										<div class="span3">
-											<div class="type-pop7" style="background: #408080"></div>
-										</div>
+									<div class="row-fluid check_box_list">
+
+<%--										<div class="span3">--%>
+<%--											<div class="type-pop7" style="background: #408080"></div>--%>
+<%--										</div>--%>
 										<div class="span3 lineght30">
 											<div class="checkbox checkbox-success radio-div">
 												<input type="checkbox" value="22" class="type-input"
@@ -485,141 +545,143 @@
 													for="shidu"></label>
 											</div>
 										</div>
+										<div class="check_text span6 lineght30">失独人员</div>
 									</div>
+
 								</div>
 
 							</div>
-							<div class="row-fluid " style="height: 32px;">
-								<div class="span6 lineght30"></div>
-								<div class="span3 lineght30">全选</div>
-								<div class="span3 lineght30">
-									<div class="checkbox checkbox-success radio-div">
-										<input type="checkbox" value="4194303" class="type-input"
-											name="repairId" onclick="checkAll(this, 'repairId')"
-											id="checkId" /> <label for="checkId"></label>
-									</div>
-								</div>
-							</div>
+
 						</div>
 						<!--重点人员  -->
 						<!-- 特殊人群 -->
-						<div class="row-fluid tab-center  speHouse"
+						<div class="key_personnel_01 row-fluid tab-center  speHouse"
 							style="margin-top: 10px">
-							<div class="span12"
-								style="height: 465px; overflow-y: auto; overflow-x: hidden;">
+							<div class="span12 clearfix">
+
+								<div class="row-fluid check_box_list">
+									<div class="span2 lineght30">
+										<div class="checkbox checkbox-success radio-div">
+											<input type="checkbox" value="4194303" class="type-input"
+												   name="repairId1" onclick="checkAll(this, 'repairId1')"
+												   id="checkId1" /> <label for="checkId1"></label>
+										</div>
+									</div>
+									<div class="check_text span8 lineght30">全选</div>
+								</div>
 							
-							<div class="row-fluid "
-									style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-									<div class="span6 lineght30">安置帮教人员</div>
-									<div class="span3">
-										<div class="type-pop5" style="background: #ff0000"></div>
-									</div>
-									<div class="span3 lineght30">
-										<div class="checkbox checkbox-success radio-div">
-											<input type="checkbox" value="5" class="type-input"
-												name="repairId1" onclick="selectSingle('repairId1')" id="ReleasePop" />
-											<label for="ReleasePop"></label>
+								<div class="row-fluid check_box_list">
+
+	<%--									<div class="span3">--%>
+	<%--										<div class="type-pop5" style="background: #ff0000"></div>--%>
+	<%--									</div>--%>
+										<div class="span2 lineght30">
+											<div class="checkbox checkbox-success radio-div">
+												<input type="checkbox" value="5" class="type-input"
+													name="repairId1" onclick="selectSingle('repairId1')" id="ReleasePop" />
+												<label for="ReleasePop"></label>
+											</div>
 										</div>
+										<div class="check_text span8 lineght30">安置帮教人员</div>
 									</div>
-								</div>
-								<div class="row-fluid "
-									style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-									<div class="span6 lineght30">社区矫正人员</div>
-									<div class="span3">
-										<div class="type-pop6"></div>
-									</div>
-									<div class="span3 lineght30">
-										<div class="checkbox checkbox-success radio-div">
-											<input type="checkbox" value="6" class="type-input"
-												name="repairId1" onclick="selectSingle('repairId1')" id="CorrectPop" />
-											<label for="CorrectPop"></label>
+								<div class="row-fluid check_box_list">
+
+	<%--									<div class="span3">--%>
+	<%--										<div class="type-pop6"></div>--%>
+	<%--									</div>--%>
+										<div class="span2 lineght30">
+											<div class="checkbox checkbox-success radio-div">
+												<input type="checkbox" value="6" class="type-input"
+													name="repairId1" onclick="selectSingle('repairId1')" id="CorrectPop" />
+												<label for="CorrectPop"></label>
+											</div>
 										</div>
+										<div class="check_text span8 lineght30">社区矫正人员</div>
 									</div>
-								</div>
-							<div class="row-fluid "
-									style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-									<div class="span6 lineght30">肇事肇祸等严重精神障碍患者</div>
-									<div class="span3 ">
-										<div class="type-pop2"></div>
-									</div>
-									<div class="span3 lineght30">
-										<div class="checkbox checkbox-success radio-div">
-											<input type="checkbox" value="2" class="type-input"
-												name="repairId1" onclick="selectSingle('repairId1')" id="MentalPop" />
-											<label for="MentalPop"></label>
+								<div class="row-fluid check_box_list">
+
+	<%--									<div class="span3 ">--%>
+	<%--										<div class="type-pop2"></div>--%>
+	<%--									</div>--%>
+										<div class="span2 lineght30">
+											<div class="checkbox checkbox-success radio-div">
+												<input type="checkbox" value="2" class="type-input"
+													name="repairId1" onclick="selectSingle('repairId1')" id="MentalPop" />
+												<label for="MentalPop"></label>
+											</div>
 										</div>
+										<div class="check_text span10 lineght30">肇事肇祸等严重精神障碍患者</div>
 									</div>
-								</div>
-							<div class="row-fluid "
-									style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-									<div class="span6 lineght30">吸毒人员</div>
-									<div class="span3 ">
-										<div class="type-pop4"></div>
-									</div>
-									<div class="span3 lineght30">
-										<div class="checkbox checkbox-success radio-div">
-											<input type="checkbox" value="4" class="type-input"
-												name="repairId1" onclick="selectSingle('repairId1')" id="DrugPop" /> <label
-												for="DrugPop"></label>
+								<div class="row-fluid check_box_list">
+
+	<%--									<div class="span3 ">--%>
+	<%--										<div class="type-pop4"></div>--%>
+	<%--									</div>--%>
+										<div class="span2 lineght30">
+											<div class="checkbox checkbox-success radio-div">
+												<input type="checkbox" value="4" class="type-input"
+													name="repairId1" onclick="selectSingle('repairId1')" id="DrugPop" /> <label
+													for="DrugPop"></label>
+											</div>
 										</div>
+										<div class="check_text span8 lineght30">吸毒人员</div>
 									</div>
-								</div>
-								<div class="row-fluid "
-									style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-									<div class="span6 lineght30">艾滋病危险人员</div>
-									<div class="span3">
-										<div class="type-pop1"></div>
-									</div>
-									<div class="span3 lineght30">
-										<div class="checkbox checkbox-success radio-div">
-											<input type="checkbox" value="1" class="type-input"
-												name="repairId1" onclick="selectSingle('repairId1')" id="AIDSPop" /> <label
-												for="AIDSPop"></label>
+								<div class="row-fluid check_box_list">
+
+	<%--									<div class="span3">--%>
+	<%--										<div class="type-pop1"></div>--%>
+	<%--									</div>--%>
+										<div class="span2 lineght30">
+											<div class="checkbox checkbox-success radio-div">
+												<input type="checkbox" value="1" class="type-input"
+													name="repairId1" onclick="selectSingle('repairId1')" id="AIDSPop" /> <label
+													for="AIDSPop"></label>
+											</div>
 										</div>
+										<div class="check_text span8 lineght30">艾滋病危险人员</div>
 									</div>
-								</div>
-								<div class="row-fluid "
-									style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-									<div class="span6 lineght30">重点上访人员</div>
-									<div class="span3">
-										<div class="type-pop8"></div>
-									</div>
-									<div class="span3 lineght30">
-										<div class="checkbox checkbox-success radio-div">
-											<input type="checkbox" value="8" class="type-input"
-												name="repairId1" onclick="selectSingle('repairId1')" id="ZhongDian" />
-											<label for="ZhongDian"></label>
+								<div class="row-fluid check_box_list">
+
+	<%--									<div class="span3">--%>
+	<%--										<div class="type-pop8"></div>--%>
+	<%--									</div>--%>
+										<div class="span2 lineght30">
+											<div class="checkbox checkbox-success radio-div">
+												<input type="checkbox" value="8" class="type-input"
+													name="repairId1" onclick="selectSingle('repairId1')" id="ZhongDian" />
+												<label for="ZhongDian"></label>
+											</div>
 										</div>
+										<div class="check_text span8 lineght30">重点上访人员</div>
 									</div>
-								</div>
-								<div class="row-fluid "
-									style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-									<div class="span6 lineght30">涉教人员</div>
-									<div class="span3">
-										<div class="type-pop9"></div>
-									</div>
-									<div class="span3 lineght30">
-										<div class="checkbox checkbox-success radio-div">
-											<input type="checkbox" value="9" class="type-input"
-												name="repairId1" onclick="selectSingle('repairId1')" id="SheJiao" /> <label
-												for="SheJiao"></label>
+								<div class="row-fluid check_box_list">
+
+	<%--									<div class="span3">--%>
+	<%--										<div class="type-pop9"></div>--%>
+	<%--									</div>--%>
+										<div class="span2 lineght30">
+											<div class="checkbox checkbox-success radio-div">
+												<input type="checkbox" value="9" class="type-input"
+													name="repairId1" onclick="selectSingle('repairId1')" id="SheJiao" /> <label
+													for="SheJiao"></label>
+											</div>
 										</div>
+										<div class="check_text span8 lineght30">涉教人员</div>
 									</div>
-								</div>
-								<div class="row-fluid "
-									style="border-bottom: 1px solid #b6d1d6; height: 32px;">
-									<div class="span6 lineght30">危险品从业人员</div>
-									<div class="span3">
-										<div class="type-pop10"></div>
-									</div>
-									<div class="span3 lineght30">
-										<div class="checkbox checkbox-success radio-div">
-											<input type="checkbox" value="10" class="type-input"
-												name="repairId1" onclick="selectSingle('repairId1')" id="WeiXian" /> <label
-												for="WeiXian"></label>
+								<div class="row-fluid check_box_list">
+
+	<%--									<div class="span3">--%>
+	<%--										<div class="type-pop10"></div>--%>
+	<%--									</div>--%>
+										<div class="span2 lineght30">
+											<div class="checkbox checkbox-success radio-div">
+												<input type="checkbox" value="10" class="type-input"
+													name="repairId1" onclick="selectSingle('repairId1')" id="WeiXian" /> <label
+													for="WeiXian"></label>
+											</div>
 										</div>
+										<div class="check_text span8 lineght30">危险品从业人员</div>
 									</div>
-								</div>
 
 										<!-- 		<div class="row-fluid " style="border-bottom: 1px solid #b6d1d6; height: 32px;">
 									<div class="span6 lineght30">计生重点</div>
@@ -635,17 +697,7 @@
 								</div> -->
 
 
-								<div class="row-fluid " style="height: 32px;">
-									<div class="span6 lineght30"></div>
-									<div class="span3 lineght30">全选</div>
-									<div class="span3 lineght30">
-										<div class="checkbox checkbox-success radio-div">
-											<input type="checkbox" value="4194303" class="type-input"
-												name="repairId1" onclick="checkAll(this, 'repairId1')"
-												id="checkId1" /> <label for="checkId1"></label>
-										</div>
-									</div>
-								</div>
+
 							</div>
 
 
@@ -794,44 +846,7 @@
 						</div> -->
 						<!-- 特殊人群 -->
 
-						<!-- 房屋类型 -->
-						<div class="row-fluid tab-center" style="margin-top: 10px;">
-							<div class="span12">
-								<div class="span12" style="">
 
-
-									<div class="row-fluid" style="border-bottom: 1px solid #b6d1d6">
-										<div class="span6 lineght30">自住</div>
-										<div class="span6 house-window-white"
-											style="min-height: 26px; margin-top: 7px;"></div>
-
-										<!-- 自住01 -->
-									</div>
-									<div class="row-fluid" style="border-bottom: 1px solid #b6d1d6">
-										<div class="span6 lineght30">出租</div>
-										<div class="span6 house-window2"
-											style="min-height: 26px; margin-top: 7px;"></div>
-
-										<!-- 	出租02 -->
-									</div>
-									<div class="row-fluid "
-										style="border-bottom: 1px solid #b6d1d6">
-										<div class="span6 lineght30">空置</div>
-										<div class="span6 house-window6"
-											style="min-height: 26px; margin-top: 7px;"></div>
-
-										<!-- 空置03 -->
-									</div>
-									<div class="row-fluid" style="border-bottom: 1px solid #b6d1d6">
-										<div class="span6 lineght30">暂无信息</div>
-										<div class="span6 house-window7"
-											style="min-height: 26px; margin-top: 7px;"></div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--房屋类型  -->
 					</div>
 				</div>
 				<!--分类  -->
@@ -1029,7 +1044,7 @@
 	})
 function TopDown(){
 		//上下滚动
-	    var mainContainer = $('.build-top');//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
+	    var mainContainer = $('.build-main');//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
 		var uNum = $('.unit-1 .floor').length;
 		
 		if(uNum>6){
@@ -1039,7 +1054,7 @@ function TopDown(){
 			
 		}
 		$('.page-down').click(function() {
-			var mainContainer = $('.build-top'), scrollToContainer = mainContainer.find('.floor:last').height() + 2;//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
+			var mainContainer = $('.build-main'), scrollToContainer = mainContainer.find('.floor:last').height() + 2;//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
 			//动画效果
 			mainContainer.animate({
 								scrollTop : scrollToContainer + mainContainer.scrollTop()
@@ -1060,7 +1075,7 @@ function TopDown(){
 		});
 
          $('.page-top').click(function() {
-			var mainContainer = $('.build-top'), scrollToContainer = mainContainer.find('.floor:last').height()+2 ;//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
+			var mainContainer = $('.build-main'), scrollToContainer = mainContainer.find('.floor:last').height()+2 ;//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
 
 			 if (mainContainer.scrollTop() <= 59) {
 				 scrollToContainer = 59;
@@ -1089,7 +1104,7 @@ function LeftRight(){
 	 var mainContainer = $('.build-main'), scrollToContainer = mainContainer.find('.ElemNum:last').width();//滚动到<div id="thisMainPanel">中类名为son-panel的最后一个div处
 	var uNum=$('.unit').length;
 	if(uNum==1){
-		$('.house-top').css({"width":"84.5%","margin-left":"7.5%"})
+		// $('.house-top').css({"width":"84.5%","margin-left":"7.5%"})
 	}
 	if(uNum>2){
 		$('.page-right').addClass('active')
@@ -1159,18 +1174,20 @@ function house(buildingId){
     	 residentialUnitArr = residentialUnitArr.sort(sortNumber);
 	     var residentialUnitLen = residentialUnitArr.length;
 	     var widthU = 400;
-	     var widthB = widthU * residentialUnitLen;
-	     var widthUnit = 338;
+	     var widthB = widthU * residentialUnitLen + 1;
+	     var widthUnit = 100;
 	     var widthUnitleft = 400;
 
 		 html+='<div id="home">';
-		 html+='<div class="homeRight" style="width: auto;  height: auto;float: left;overflow-x:auto;">';
+		 html+='<div class="homeRight" style="width: 100%;  height: auto;float: left;">';
+
 
 		var widthA = widthB;
 		if(widthA >= 800){
-			widthA = 800;
+			widthA = 801;
 		}
-		 html+='<div class="build" style="width:'+widthA+'px">';
+		var houseBoxWidth = 1200;
+		 html+='<div class="build" style="width:'+houseBoxWidth+'px;margin: 0 auto;">';
 		 // html+='<div class="house-top">';
 		 // html+='<div class="house-top-beam"></div>';
 		 // html+='<div class="house-top-beam"></div>';
@@ -1178,21 +1195,37 @@ function house(buildingId){
 		 // html+='<div class="house-top-beam"></div>';
 		 // html+='<div class="house-top-beam"></div>';
 		 // html+='</div>';
-		 html+='<div class="build-main  clearfix" style="width:'+widthA+'px;position:relative;height: 419px;overflow: hidden;">';
-		 html+='<div class="build-top  clearfix" style="width:'+widthB+'px;position:relative;height: 419px;overflow: hidden;">';
+		 html+='<div class="build-main  clearfix" style="width:'+ houseBoxWidth+'px;position:relative;height: 380px;overflow: hidden;">';
+
+		 html+='<div class="build-top" style="width:'+widthB+'px;position:relative; margin: 0 auto' +
+				 '">';
+			html+='<div class="lawn-area clearfix" style="bottom:'+'px">';
+			html+='<div class="lawn_left">';
+			html+='</div>';
+			html+='<div class="lawn_content">';
+			html+='</div>';
+			html+='<div class="lawn_right">';
+			html+='</div>';
+			html+='</div>';
+
+		 html+='<div class="house_ct clearfix">';
     	 for(var j in residentialUnitArr){
     		//几个单元
 			 var reswidthUnitleft = widthUnitleft * j + 30;
 
-			 html+='<div class="house-top" style="width:'+widthUnit+'px;margin-left:'+ reswidthUnitleft +'px;">';
-			 html+='<div class="house-top-beam"></div>';
-			 html+='<div class="house-top-beam"></div>';
-			 html+='<div class="house-top-beam"></div>';
-			 html+='<div class="house-top-beam"></div>';
-			 html+='<div class="house-top-beam"></div>';
-			 html+='</div>';
-    		 html+='<div class="unit unit-'+residentialUnitArr[j]+'">';
- 			 html+='<div class="unit-top" unitNum="'+residentialUnitArr[j]+'">';
+             html+='<div class="floor_box">';
+                 html+='<div class="house-top" style="width:'+widthUnit+'%;">';
+			 		html+='<div class="house-top-area">';
+						html+='<div class="house-top-num">';
+							html+='<div class="house-num-box">';
+								html+='<span>楼栋名称：</span><span>${buildName}</span>';
+							html+='</div>';
+						html+='</div>';
+			 		html+='</div>';
+                 html+='</div>';
+
+                 html+='<div class="unit unit-'+residentialUnitArr[j]+'">';
+ 			         html+='<div class="unit-top" unitNum="'+residentialUnitArr[j]+'">';
  			 var houseArr=[];
     		 for(var x in data){
     			//找到同一单元有多少楼层
@@ -1252,19 +1285,23 @@ function house(buildingId){
 				html+='</div>';	
     		 }
     		html+='</div>';
-    	/* 	html+='<div class="unit-num">';	
-			html+='<table>';
-			//单元大于1，添加删除单元
-			if(residentialUnitArr[j]>1){
-				html+='<td><span>'+residentialUnitArr[j]+'单元<a class="btnList" title="删除该单元" onclick="removeUnit('+residentialUnitArr[j]+')"><i class="icon-trash"></i></a></span></td>';	
-			}else{
-				html+='<td><span>'+residentialUnitArr[j]+'单元</span></td>';	
-			}
-					
-			html+='</table>';		
-			html+='</div>';	 */
+             html+='</div>';
+
+             /* 	html+='<div class="unit-num">';
+                 html+='<table>';
+                 //单元大于1，添加删除单元
+                 if(residentialUnitArr[j]>1){
+                     html+='<td><span>'+residentialUnitArr[j]+'单元<a class="btnList" title="删除该单元" onclick="removeUnit('+residentialUnitArr[j]+')"><i class="icon-trash"></i></a></span></td>';
+                 }else{
+                     html+='<td><span>'+residentialUnitArr[j]+'单元</span></td>';
+                 }
+
+                 html+='</table>';
+                 html+='</div>';	 */
+
 			html+='</div>';
     	 }
+    	 html+='</div>';
     	 html+='</div>';
     	 html+='</div>';
     	 var houseBottomArr=[];
@@ -1332,15 +1369,16 @@ function house(buildingId){
     		html+='</div>';
     		html+='</div>';
     		html+='</div>';
+
     	}else{
     	 //没有数据时初始化
 		 html+='<div id="home">请构建房屋绑定数据</div>';
     	}
          $('#roomCenter').html(html)
 
-		var maxH = 362;
+		var maxH = 380;
 		//遍历最大高度赋给maxH
-		var heightnum = 69;
+		var heightnum = 76;
 		$(".unit").each(function() {
 			// var maxHeight=$(this).height();
 			var maxHeight = $(this).find('.floor.ElemNum').length * heightnum;
@@ -1349,15 +1387,31 @@ function house(buildingId){
 			}
 		});
 		var i = 0;
+
+		var houseArr = [];
+		var addheight = 74;
+
 		$(".unit").each(function() {
-			var addheight = i * 52;
-			var height = $(this).find('.floor.ElemNum').length * heightnum;
-			// var _thisHeight=$(this).height()-maxH + addheight;
-			var _thisHeight=height-maxH + addheight;
+			var height = $(this).find('.floor.ElemNum').length * heightnum + addheight;
+			houseArr.push(height);
+			var maxNum = Math.max.apply(null,houseArr);
+			// alert(maxNum)
+			if(maxNum>=maxH){
+				var _thisHeight=height-addheight-maxH;
+				$(this).parents('.floor_box').css('bottom',_thisHeight);
+			}else {
+				var _thisHeight=height-maxH;
+
+				$(this).parents('.floor_box').css('bottom',_thisHeight+47);
+				$(this).parents('.build-top').find('.lawn-area').css('bottom',_thisHeight);
+			}
 			i++;
-			$(this).css('bottom',_thisHeight)
-			$(this).prev('.house-top').css('bottom',_thisHeight);
+
+
+
+
 		});
+
 
 		 TopDown();
 		 LeftRight();
