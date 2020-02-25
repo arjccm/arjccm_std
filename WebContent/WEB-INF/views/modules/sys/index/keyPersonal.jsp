@@ -269,60 +269,67 @@
 			<%--			</div>--%>
 		</div>
 
-		<div class="row-fluid" style="width: 100%;height: 100%;position: absolute;">
-			<div class="left-area">
-				<div class="title">人员分布</div>
-				<div class="content">
-					<div class="search-box">
-						<div class="form-group has_dark has-feedback">
-							<input type="text" class="form-control" id="">
-							<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-						</div>
-					</div>
-					<div class="checkbox-box">
-						<div class="tit">数据类型</div>
+        <div class="row-fluid" style="width: 100%;height: 100%;position: absolute;">
+            <div class="left-area">
+                <div class="title">人员分布</div>
+                <div class="content">
+                    <div class="search-box">
+                        <div class="form-group has_dark has-feedback">
+                            <input type="text" class="form-control" id="sinput" value="">
+                            <div>
+                            <span>
+                                <a class="glyphicon glyphicon-search form-control-feedback" id="sousuo"
+                                   aria-hidden="true" style="pointer-events: auto"></a>
+                            </span>
+                            </div>
+                        </div>
 
-						<div class="ckbx clearfix">
-							<div class="checkbox">
-								<input type="checkbox" name="pop" id="checkbox1" value="02">
-								<label for="checkbox1">
-									车辆卡口
-								</label>
-							</div>
-							<div class="checkbox">
-								<input type="checkbox" name="pop" id="checkbox2" value="01">
-								<label for="checkbox2">
-									人脸卡口
-								</label>
-							</div>
-							<div class="checkbox">
-								<input type="checkbox" name="pop" id="checkbox3" value="03">
-								<label for="checkbox3">
-									RFID
-								</label>
-							</div>
-							<div class="checkbox">
-								<input type="checkbox" name="pop" id="checkbox4" value="05">
-								<label for="checkbox4">
-									电子围栏
-								</label>
-							</div>
-							<div class="checkbox">
-								<input type="checkbox" name="pop" id="checkbox5" value="04">
-								<label for="checkbox5">
-									wifi探针
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="checkbox-box">
-						<div class="tit">人员类型</div>
+
+                    </div>
+                    <div class="checkbox-box">
+                        <div class="tit">数据类型</div>
+
+                        <div class="ckbx clearfix">
+                            <div class="checkbox">
+                                <input type="checkbox" name="pop" id="checkbox1" value="02">
+                                <label for="checkbox1">
+                                    车辆卡口
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="pop" id="checkbox2" value="01">
+                                <label for="checkbox2">
+                                    人脸卡口
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="pop" id="checkbox3" value="03">
+                                <label for="checkbox3">
+                                    RFID
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="pop" id="checkbox4" value="05">
+                                <label for="checkbox4">
+                                    电子围栏
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="pop" id="checkbox5" value="04">
+                                <label for="checkbox5">
+                                    wifi探针
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkbox-box">
+                        <div class="tit">人员类型</div>
 
                         <div class="ckbx clearfix">
                             <div class="checkbox">
                                 <input type="checkbox" name="pop" id="checkbox6" value="6">
                                 <label for="checkbox6">
-                                    社教人员
+                                    涉教人员
                                 </label>
                             </div>
                             <div class="checkbox">
@@ -487,13 +494,13 @@
         }
         if (ArrList.length > 0) {
             $.ajax({
-                url:  ctx + "/sys/map/KeyPersonal/FU",
+                url: ctx + "/warning/ccmEarlyWarning/FU",
                 type: "POST",
                 data: {
                     array: ArrList.join(",")
-                        },
+                },
                 success: function (ref) {
-                    if (ref.code == 200){
+                    if (ref.code == 200) {
                         var html = '';
                         $.each(ref.data, function (index, ele) {
                             html += ' <tr>' +
@@ -513,23 +520,24 @@
             })
         }
     });
-    var array ='';
+    var array = '';
 
+    /*默认加载一天数据*/
     $(window).load(function () {
         fun_Aday();
     });
 
-
+    /*开始时间结束时间*/
     function funtime() {
         var time1 = $('#time1').val();
         var time2 = $('#time2').val();
-        if (ArrList.length > 0){
+        if (ArrList.length > 0) {
             array = ArrList.join(",");
         }
         if (time1 != '') {
             $.ajax({
                 type: "POST",
-                url: ctx + "/sys/map/KeyPersonal/KJ",
+                url: ctx + "/warning/ccmEarlyWarning/KJ",
                 async: false,
                 data: {
                     time1: time1,
@@ -558,20 +566,15 @@
         }
     }
 
-
-    /*最近一小时*/
-    $('#btn_One').click(function () {
-        var time = new Date(new Date().getTime() - 1 * 60 * 60 * 1000);
-        if (ArrList.length > 0){
-            array = ArrList.join(",");
-        }
+    /*搜索框*/
+    $('#sousuo').click(function () {
+        var res = document.getElementById('sinput').value;
         $.ajax({
             type: "POST",
-            url: ctx + "/sys/map/KeyPersonal/recently",
+            url: ctx + "/warning/ccmEarlyWarning/search",
             async: false,
             data: {
-                time: time,
-                array: array
+                name: res
             },
             success: function (ref) {
                 if (ref.code == 200) {
@@ -591,82 +594,116 @@
                     $('tbody').empty().html(html);
                 }
             }
-        })
+        });
     });
-
-    /*最近三小时*/
-    $('#btn_Three').click(function () {
-        var time = new Date(new Date().getTime() - 3 * 60 * 60 * 1000);
-        if (ArrList.length > 0){
-            array = ArrList.join(",");
-        }
-        $.ajax({
-            type: "POST",
-            url: ctx + "/sys/map/KeyPersonal/recently",
-            async: false,
-            data: {
-                time: time,
-                array:array
-            },
-            success: function (ref) {
-                if (ref.code == 200) {
-                    var html = '';
-                    $.each(ref.data, function (index, ele) {
-                        html += ' <tr>' +
-                            '<td>' + ele.name + '</td>' +
-                            '<td>' + ele.time + '</td>' +
-                            '<td>' + ele.address + '</td>' +
-                            '<td class="clearfix">' +
-                            '<a class="dangan">' + '</a>' +
-                            '<a class="guiji">' + '</a>' +
-                            '<a class="dingwei">' + '</a>' +
-                            '</td>' +
-                            '        </tr>';
-                    });
-                    $('tbody').empty().html(html);
-                }
+        /*最近一小时*/
+        $('#btn_One').click(function () {
+            var time = new Date(new Date().getTime() - 1 * 60 * 60 * 1000);
+            if (ArrList.length > 0) {
+                array = ArrList.join(",");
             }
-        })
-    });
-
-    /*最近一天*/
-    $('#btn_Aday').click(function () {
-        fun_Aday();
-    });
-
-    function fun_Aday() {
-        var time = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-        if (ArrList.length > 0){
-            array = ArrList.join(",");
-        }
-        $.ajax({
-            type: "POST",
-            url: ctx + "/sys/map/KeyPersonal/recently",
-            async: false,
-            data: {
-                time: time,
-                array:array
-            },
-            success: function (ref) {
-                if (ref.code == 200) {
-                    var html = '';
-                    $.each(ref.data, function (index, ele) {
-                        html += ' <tr>' +
-                            '<td>' + ele.name + '</td>' +
-                            '<td>' + ele.time + '</td>' +
-                            '<td>' + ele.address + '</td>' +
-                            '<td class="clearfix">' +
-                            '<a class="dangan">' + '</a>' +
-                            '<a class="guiji">' + '</a>' +
-                            '<a class="dingwei">' + '</a>' +
-                            '</td>' +
-                            '        </tr>';
-                    });
-                    $('tbody').empty().html(html);
+            $.ajax({
+                type: "POST",
+                url: ctx + "/warning/ccmEarlyWarning/recently",
+                async: false,
+                data: {
+                    time: time,
+                    array: array
+                },
+                success: function (ref) {
+                    if (ref.code == 200) {
+                        var html = '';
+                        $.each(ref.data, function (index, ele) {
+                            html += ' <tr>' +
+                                '<td>' + ele.name + '</td>' +
+                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.address + '</td>' +
+                                '<td class="clearfix">' +
+                                '<a class="dangan">' + '</a>' +
+                                '<a class="guiji">' + '</a>' +
+                                '<a class="dingwei">' + '</a>' +
+                                '</td>' +
+                                '        </tr>';
+                        });
+                        $('tbody').empty().html(html);
+                    }
                 }
+            })
+        });
+
+        /*最近三小时*/
+        $('#btn_Three').click(function () {
+            var time = new Date(new Date().getTime() - 3 * 60 * 60 * 1000);
+            if (ArrList.length > 0) {
+                array = ArrList.join(",");
             }
-        })
-    }
+            $.ajax({
+                type: "POST",
+                url: ctx + "/warning/ccmEarlyWarning/recently",
+                async: false,
+                data: {
+                    time: time,
+                    array: array
+                },
+                success: function (ref) {
+                    if (ref.code == 200) {
+                        var html = '';
+                        $.each(ref.data, function (index, ele) {
+                            html += ' <tr>' +
+                                '<td>' + ele.name + '</td>' +
+                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.address + '</td>' +
+                                '<td class="clearfix">' +
+                                '<a class="dangan">' + '</a>' +
+                                '<a class="guiji">' + '</a>' +
+                                '<a class="dingwei">' + '</a>' +
+                                '</td>' +
+                                '        </tr>';
+                        });
+                        $('tbody').empty().html(html);
+                    }
+                }
+            })
+        });
+
+        /*最近一天*/
+        $('#btn_Aday').click(function () {
+            fun_Aday();
+        });
+
+        function fun_Aday() {
+            var time = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+            if (ArrList.length > 0) {
+                array = ArrList.join(",");
+            }
+            $.ajax({
+                type: "POST",
+                url: ctx + "/warning/ccmEarlyWarning/recently",
+                async: false,
+                data: {
+                    time: time,
+                    array: array
+                },
+                success: function (ref) {
+                    if (ref.code == 200) {
+                        var html = '';
+                        $.each(ref.data, function (index, ele) {
+                            html += ' <tr>' +
+                                '<td>' + ele.name + '</td>' +
+                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.address + '</td>' +
+                                '<td class="clearfix">' +
+                                '<a class="dangan">' + '</a>' +
+                                '<a class="guiji">' + '</a>' +
+                                '<a class="dingwei">' + '</a>' +
+                                '</td>' +
+                                '        </tr>';
+                        });
+                        $('tbody').empty().html(html);
+                    }
+                }
+            })
+        }
 </script>
 
 </html>
