@@ -275,7 +275,7 @@
                 <div class="content">
                     <div class="search-box">
                         <div class="form-group has_dark has-feedback">
-                            <input type="text" class="form-control" id="sinput" value="">
+                            <input type="text" class="form-control" placeholder="支持模糊搜素" id="sinput" value="">
                             <div>
                             <span>
                                 <a class="glyphicon glyphicon-search form-control-feedback" id="sousuo"
@@ -308,13 +308,13 @@
                                     RFID
                                 </label>
                             </div>
-                            <div class="checkbox">
+                            <div class="checkbox mb0">
                                 <input type="checkbox" name="pop" id="checkbox4" value="05">
                                 <label for="checkbox4">
                                     电子围栏
                                 </label>
                             </div>
-                            <div class="checkbox">
+                            <div class="checkbox mb0">
                                 <input type="checkbox" name="pop" id="checkbox5" value="04">
                                 <label for="checkbox5">
                                     wifi探针
@@ -344,7 +344,7 @@
                                     流动人员
                                 </label>
                             </div>
-                            <div class="checkbox">
+                            <div class="checkbox mb0">
                                 <input type="checkbox" name="pop" id="checkbox9" value="9">
                                 <label for="checkbox9">
                                     其他人员

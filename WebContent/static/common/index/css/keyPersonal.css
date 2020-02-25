@@ -1,20 +1,31 @@
 /*  全局  */
+.mb0{
+    margin-bottom: 0px !important;
+}
 .has_dark .form-control{
     border-color: #097684;
     background-color: #040d1e;
     color: #fff;
+    height: 28px;
+    font-size: 12px;
 }
 .has_dark .form-control-feedback{
     color: #0a9dc3;
 }
 
 .checkbox label::before{
-    background-color: #040d1e;
+    background-color: #043d59;
     border: 1px solid #097684;
+    width: 13px;
+    height: 13px;
+    margin-top: 2px;
 }
 .checkbox label::after {
     padding-top: 2px;
     color: #ffffff;
+    width: 12px;
+    height: 12px;
+    margin-left: -22px;
 }
 /*  左侧  */
 .left-area{
@@ -71,6 +82,7 @@
     border: 1px solid #097684;
     border-radius: 4px;
     margin-right: 6px;
+    font-size: 12px;
 }
 .btn-box button:last-child{
     margin-right: 0;
@@ -81,15 +93,15 @@
 }
 .table-box tr th{
     text-align: center;
+    border-top: 1px solid #097684 !important;
+    border-bottom: 1px solid #097684 !important;
+    font-size: 12px;
 }
 .table-box tr td{
     font-size: 12px;
     color: #05B1C7;
     /*border-top: 1px solid #ddd;*/
     border-top: none !important;
-}
-.table-box tr th{
-    border-bottom: 1px solid #ddd;
 }
 .table-box tr td a{
     display: block;
@@ -203,4 +215,13 @@ ul li {
 
 .track-list li.first .txt {
     max-width: 600px;
+}
+
+.form-group{
+    margin-bottom: 5px;
+}
+.form-control-feedback{
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
 }
