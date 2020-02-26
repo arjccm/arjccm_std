@@ -20,7 +20,7 @@ $(function() {
 			// 图表2 数据 
 			var ajaxDataX2 = $.getxAxisDate(data,title2),ajaxDataYALL2 =$.getyAxisDate(data,title2);
 			// 组装图表的Y轴数据
-			var seriesDate1 = $.getSeriesDate1(title1, ajaxDataYALL1),seriesDate2 = $.getSeriesDate1(title2, ajaxDataYALL2);
+			var seriesDate1 = $.getSeriesDateHuji(title1, ajaxDataYALL1),seriesDate2 = $.getSeriesDateHuji(title2, ajaxDataYALL2);
 			var optionToContent = function(opt) {
 				var axisData = opt.xAxis[0].data;
 				var series = opt.series;
