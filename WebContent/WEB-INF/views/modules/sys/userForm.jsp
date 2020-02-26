@@ -63,7 +63,7 @@
 				<shiro:lacksPermission name="sys:user:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="user"
-		action="${ctx}/sys/user/save" method="post" class="form-horizontal">
+		action="${ctx}/sys/sysUser/save" method="post" class="form-horizontal">
 		<form:hidden path="id" />
 		<sys:message content="${message}" />
 		<table  style=" padding:0px 10px; width: 100%;">

@@ -133,7 +133,7 @@ function myChartPeople1(datatitle, dataX, dataY, model, mainContent, rotate) {
 	// 指定图表的配置项和数据
 	var option = {
 
-		color : [ '#F8C73C','#219FFC'  ],
+		color : [ '#FC9A2F','#32F7FF' ],
 		grid : {
 			left : '3%',
 			right : '4%',
@@ -156,13 +156,15 @@ function myChartPeople1(datatitle, dataX, dataY, model, mainContent, rotate) {
 				}
 			},
 			axisTick: {
-				show: false
+				show: true,
+				color : '#397BA1',
 			},
 			axisLine : {
 				lineStyle : {
-					color : FontColor,
+					color : '#397BA1',
 				}
 			},
+			z:999,
 			data : dataX,
 
 		},
@@ -177,8 +179,16 @@ function myChartPeople1(datatitle, dataX, dataY, model, mainContent, rotate) {
 			},
 			axisLine : {
 				lineStyle : {
-					color : FontColor,
+					color : '#397BA1',
 				}
+			},
+			splitLine: {
+				show: true,
+				lineStyle: {
+					type: 'dashed',
+					color: '#2A6283',
+					opacity : '0.3'
+				},
 			},
 		},
 			{
@@ -193,7 +203,7 @@ function myChartPeople1(datatitle, dataX, dataY, model, mainContent, rotate) {
 				},
 				axisLine: {
 					lineStyle : {
-						color : FontColor,
+						color : '#397BA1',
 					}
 				},
 				axisTick: {
@@ -300,12 +310,26 @@ function getSeriesDate1(titleS, ajaxDataYALLS) {
 	seriesDate1.push({
 		"name" : titleS[1],
 		"type" : 'bar',
-		"barWidth" : '20%',
-		"data" : ajaxDataYALLS[1]
+		"barWidth" : '45%',
+		"data" : ajaxDataYALLS[1],
+		itemStyle: {
+			normal: {
+				color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+					offset: 0,
+					color: '#32F7FF' // 0% 处的颜色
+				}, {
+					offset: 1,
+					color: '#0E2A4C' // 100% 处的颜色
+				}], false),
+				barBorderRadius: [6, 6, 0, 0],
+			}
+		},
 	},{
 		"name" : titleS[0],
 		"type" : 'line',
 		"yAxisIndex": '1',
+		symbolSize: 8,
+		z:1000,
 		"data" : ajaxDataYALLS[0]
 	})
 	// }
@@ -674,9 +698,17 @@ function initMaoDun() {
 						color : FontColor
 					}
 				},
+				axisTick: {
+					show: true,
+					color : '#397BA1',
+					inside: true
+				},
+				splitLine: {
+					show:false
+				},
 				axisLine : {
 					lineStyle : {
-						color : FontColor,
+						color : '#397BA1',
 					}
 				},
 			},
@@ -687,9 +719,20 @@ function initMaoDun() {
 						color : FontColor
 					}
 				},
+				splitLine: {
+					show: true,
+					lineStyle: {
+						type: 'dashed',
+						color: '#2A6283',
+						opacity : '0.3'
+					},
+				},
+				axisTick: {
+					show: false
+				},
 				axisLine : {
 					lineStyle : {
-						color : FontColor,
+						color : '#397BA1',
 					}
 				},
 			},

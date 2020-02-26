@@ -14,12 +14,11 @@ import com.arjjs.ccm.modules.ccm.house.service.*;
 import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.ccm.pop.dao.CcmPeopleDao;
 import com.arjjs.ccm.modules.ccm.pop.dao.CcmPopBehindDao;
-import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
-import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeopleExport;
-import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeopleVo;
-import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopBehind;
+import com.arjjs.ccm.modules.ccm.pop.entity.*;
 import com.arjjs.ccm.modules.ccm.sys.entity.CcmAreaPointVo;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysDicts;
+import com.arjjs.ccm.modules.ccm.tenant.entity.CcmTenantRecord;
+import com.arjjs.ccm.modules.ccm.tenant.service.CcmTenantRecordService;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.EchartType;
@@ -98,6 +97,8 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	private CcmSeriousCriminalOffenseService ccmSeriousCriminalOffenseService;
 	@Autowired
 	private CcmHouseDeliberatelyIllegalService ccmHouseDeliberatelyIllegalService;
+	@Autowired
+	private CcmTenantRecordService ccmTenantRecordService;
 	
 	//上传上级平台记录
 	@Autowired
@@ -196,7 +197,36 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		if(StringUtils.isEmpty(ccmPeople.getPersonType()) && isNew) {
 			ccmPeople.setPersonType("01");
 		}
-		
+
+		//租客记录
+		if(StringUtils.isNotEmpty(ccmPeople.getId())) {
+			CcmPeople people = get(ccmPeople.getId());
+			if(!ccmPeople.getRoomId().getId().equals(people.getRoomId().getId())) {
+				//删除旧的数据
+				deletePeopleOfHouse(people.getId(), people.getRoomId().getId(), people.getBuildId().getId(), people.getAreaGridId().getId());
+				// 把修改的数据记录到租客记录表里面
+				CcmTenantRecord ccmTenantRecord = new CcmTenantRecord();
+				ccmTenantRecord.setHouseId(ccmPeople.getRoomId().getId());
+				ccmTenantRecord.setIdCard(ccmPeople.getIdent());
+				ccmTenantRecord.setName(ccmPeople.getName());
+				ccmTenantRecord.setPhoneNumber(ccmPeople.getTelephone());
+				ccmTenantRecord.setCreateDate(new Date());
+				ccmTenantRecord.setLiveDate(new Date());
+				ccmTenantRecord.setLeaveDate(new Date());
+				ccmTenantRecordService.save(ccmTenantRecord);
+			}
+		}else {
+			// 把新增的数据记录到租客记录表里面
+			CcmTenantRecord ccmTenantRecord = new CcmTenantRecord();
+			ccmTenantRecord.setHouseId(ccmPeople.getRoomId().getId());
+			ccmTenantRecord.setIdCard(ccmPeople.getIdent());
+			ccmTenantRecord.setName(ccmPeople.getName());
+			ccmTenantRecord.setPhoneNumber(ccmPeople.getTelephone());
+			ccmTenantRecord.setCreateDate(new Date());
+			ccmTenantRecord.setLiveDate(new Date());
+			ccmTenantRecord.setLeaveDate(new Date());
+			ccmTenantRecordService.save(ccmTenantRecord);
+		}
 		super.save(ccmPeople);
 		
 		//上传上级平台记录
@@ -1015,5 +1045,37 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		ccmPeople.setPage(page);
 		page.setList(ccmPeopleDao.findPlaceOfPopAdd(ccmPeople));
 		return page;
+	}
+
+	public void deletePeopleOfHouse(String id, String houseId, String buildId, String netId) {
+		CcmPeople ccmPeople = new CcmPeople();
+		ccmPeople = get(id);
+		String houseIdString = ccmPeople.getRoomId().getId();
+		// ccmPeopleService.delete(ccmPeople);
+		CcmPopTenant ccmPopTenant = new CcmPopTenant(); // 移除房屋ID
+		ccmPeople.setRoomId(ccmPopTenant);
+		// 修改记录表离开时间
+		CcmTenantRecord ccmTenantRecord = new CcmTenantRecord();
+		ccmTenantRecord.setHouseId(houseIdString);
+		ccmTenantRecord.setIdCard(ccmPeople.getIdent());
+		List<CcmTenantRecord> list = ccmTenantRecordService.findList(ccmTenantRecord);
+
+		if (list.size() != 0) {
+			for (int i = 0; i < list.size(); i++) {
+				for (int j = 0; j < list.size() - i - 1; j++) {// 注意第二重循环的条件
+					long a =list.get(j).getLiveDate().getTime();
+					long b = list.get(j + 1).getLiveDate().getTime();
+					if (a > b) {
+						CcmTenantRecord temp = list.get(j);
+						list.set(j, list.get(j + 1));
+						list.set(j + 1, temp);
+					}
+				}
+			}
+			CcmTenantRecord ccmTenantRecord2 = list.get(list.size() - 1);
+			ccmTenantRecord2.setLeaveDate(new Date());
+			ccmTenantRecordService.save(ccmTenantRecord2);
+		}
+
 	}
 }

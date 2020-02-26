@@ -46,39 +46,66 @@
 		<form:hidden path="id"/>
 		<input type="hidden" name="category" value="01"/>
 		<sys:message content="${message}"/>	
-		<h2 style="margin-bottom: 30px;">会议室信息表</h2>	
-		<table id="table" class="table   table-condensed">
+		<%--<h2 style="margin-bottom: 30px;">会议室信息表</h2>	--%>
+		<table id="table" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;border-top-color: white">
 			<tr>
-				<td class="trtop"><font color="red">*</font>会议室名称</td>
-				<td colspan="2"><form:input path="subject" htmlEscape="false" maxlength="64" class="input-xlarge required"/></td>
-				<td class="trtop"><font color="red">*</font>座位数</td>
-				<td colspan="2"><form:input path="seat" htmlEscape="false" maxlength="6" class="input-xlarge required digits"/></td>
-				<td class="trtop">会议室照片</td>
-			</tr>
-			<tr>
-				<td class="trtop"><font color="red">*</font>会议室地址</td>
-				<td colspan="2"><form:input path="address" htmlEscape="false" maxlength="255" class="input-xlarge required"/></td>
-				<%--<td class="trtop">使用状态<font color="red">*</font></td>--%>
-				<%--<td colspan="2">--%>
-					<%--<form:select path="state" class="input-xlarge required">--%>
-						<%--<form:option value="" label=""/>--%>
-						<%--<form:options items="${fns:getDictList('plm_room_state')}" itemLabel="label" itemValue="value" htmlEscape="false"/>--%>
-					<%--</form:select>--%>
-				<%--</td>--%>
-				<td></td>
-				<td colspan="2"></td>
-				<td rowspan="3">
-					<form:hidden id="picture" path="picture" htmlEscape="false" maxlength="256" class="input-xlarge"/>
-					<sys:ckfinder input="picture" type="images" uploadPath="/car/plmCarRepair" selectMultiple="false"/>		
+				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
+					<div>
+						<label class="control-label"><font color="red">*</font>会议室名称：</label>
+						<div class="controls">
+							<form:input path="subject" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+						</div>
+					</div>
+				</td>
+				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
+					<div>
+						<label class="control-label"><font color="red">*</font>座位数：</label>
+						<div class="controls">
+							<form:input path="seat" htmlEscape="false" maxlength="6" class="input-xlarge required digits"/>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr>
-				<td class="trtop">会议室介绍</td>
-				<td colspan="5"><form:textarea path="memo" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/></td>
-			</tr>	
+				<td colspan="2" style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
+					<div>
+						<label class="control-label"><font color="red">*</font>会议室地址：</label>
+						<div class="controls">
+							<form:input path="address" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
+						</div>
+					</div>
+				</td>
+			</tr>
 			<tr>
-				<td class="trtop">备注信息</td>
-				<td colspan="5"><form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/></td>
+				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
+					<div>
+						<label class="control-label">会议室照片：</label>
+						<div class="controls">
+							<form:hidden id="picture" path="picture" htmlEscape="false" maxlength="256" class="input-xlarge"/>
+							<sys:ckfinder input="picture" type="images" uploadPath="/car/plmCarRepair" selectMultiple="false"/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
+					<div>
+						<label class="control-label">会议室介绍：</label>
+						<div class="controls">
+							<form:textarea path="memo" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
+					<div>
+						<label class="control-label">备注信息：</label>
+						<div class="controls">
+							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+						</div>
+					</div>
+				</td>
 			</tr>
 		</table>
 		

@@ -9,14 +9,13 @@ import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.iot.warning.entity.CcmEarlyWarning;
 import com.arjjs.ccm.modules.iot.warning.service.CcmEarlyWarningService;
+import com.arjjs.ccm.modules.sys.entity.KeyPersonal;
+import com.arjjs.ccm.modules.sys.service.KeyPersonalService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -334,4 +334,55 @@ public class CcmEarlyWarningController extends BaseController {
 		List<CcmEarlyWarning> reslist = ccmEarlyWarningService.findListbyidcard(ccmEarlyWarning);
 		return reslist;
 	}
+
+
+	/*重点人员*/
+	//查询最近时间段
+	@RequestMapping(value = "/recently",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> findPersonal(Date time,String array){
+		Map<String,Object> map = new HashMap();
+		List<CcmEarlyWarning> Plist = ccmEarlyWarningService.findPersonal(time,array);
+
+		map.put("code","200");
+		map.put("data",Plist);
+		return map;
+	}
+
+	//开始时间结束时间
+	@RequestMapping(value = "/KJ",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> findPersonalAday(String time1,String time2,String array){
+		Map<String,Object> map = new HashMap();
+		List<CcmEarlyWarning> Plist = ccmEarlyWarningService.findPersonalKJ(time1,time2,array);
+
+		map.put("code","200");
+		map.put("data",Plist);
+		return map;
+	}
+
+	/*多选框*/
+	@RequestMapping(value = "/FU",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> findPersonalFu(String array){
+		Map<String,Object> map = new HashMap();
+		List<CcmEarlyWarning> Plist = ccmEarlyWarningService.findPersonalFu(array);
+
+		map.put("code","200");
+		map.put("data",Plist);
+		return map;
+	}
+
+	/*搜索框*/
+	@RequestMapping(value = "/search",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> findPersonalSearch(String name){
+		Map<String,Object> map = new HashMap();
+		List<CcmEarlyWarning> Plist = ccmEarlyWarningService.findPersonalSearch(name);
+
+		map.put("code","200");
+		map.put("data",Plist);
+		return map;
+	}
+
 }

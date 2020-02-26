@@ -92,7 +92,7 @@
         </h1>
     </div>
     <div id="main">
-        <ul class="system-nav clearfix" style="padding-top: 75px;">
+        <ul class="system-nav clearfix" >
             <c:forEach items="${fns:getMenuList()}" var="menu"
                        varStatus="idxStatus">
                 <c:if test="${menu.parent.id eq '1'&&menu.isShow eq '1'}">
@@ -126,34 +126,98 @@
 
 	});
 
+
     function reload() {
 
-		var Li = $("#main ul li");
-		<%--var flag = ${cookie.theme.value eq 'black' ? true : false}--%>
-		var flag = $(".zhuti").attr("href")
+        var Li = $("#main ul li");
+        <%--var flag = ${cookie.theme.value eq 'black' ? true : false}--%>
+        var flag = $(".zhuti").attr("href");
+        var Ul=$(".system-nav");
 
         if (flag=="/arjccm/static/bootstrap/2.3.1/css_black/projectIndex.css") {
+            var liLength=Li.length;
+            // alert(liLength)
             // alert(Li)
-			var ti =parseInt(Li.length-9)
-            for (var i = 1; i <= parseInt(Li.length-ti); i++) {
-                Li.eq(i - 1).css({
-                    "background": "url(${ctxStatic}/images/menu_icon_" + i + ".png)"
-                }).addClass("icon" + i)
-            }
-			for (var i = 10; i <=Li.length; i++) {
-				Li.eq(i - 1).css({
-					"background": "url(${ctxStatic}/menu_icon_1.png)"
-				}).addClass("icon" + i)
-			}
 
-			$("#main ul li .nav-icon").hide()
-			$(".brand").hide()
+            //12个菜单及以下样式
+            if(liLength<=9){
+                if(liLength<=8){
+                    Ul.css({
+                        "margin-top":"90px"
+                    })
+                }
+            }
+            //12个菜单以上样式
+            if(liLength>12){
+                Ul.width(1400);
+                Ul.css({
+                    "margin-top":"10px"
+                })
+            }
+            //alert(Li.eq(1).find('span').html())
+
+
+            //先循环添加背景图片
+            for (var i = 0; i < Li.length; i++) {
+                var asp1 = Li.eq(i).find('a').attr("href");
+                //console.log(asp1)
+                //  /arjccm/a/index?pid=70a1747ee8334e439b2b24ebe947ecdd
+                var len=asp1.length;
+                var sp1=asp1.substring(20,len);
+                console.log(sp1)
+                var ljSrc = "http://localhost:8080/arjccm/static/images/" + sp1 + ".png";
+                //console.log(ljSrc)
+
+                imgOnload(ljSrc, sp1, i);
+            }
+            //添加悬浮动图
+            Li.mouseover(function () {
+                var  bjSrc=decodeURIComponent($(this) .css("backgroundImage"));
+                var len=bjSrc.length
+                //url("http://localhost:8080/arjccm/static/images/社会信息采集平台.png")
+                var ljSrc=bjSrc.substring(48,len-6);
+                $(this).css({
+                    "background": "url(${ctxStatic}/images/" + ljSrc + ".gif)"
+                })
+            })
+            Li.mouseout(function () {
+                var  bjSrc=decodeURIComponent($(this) .css("backgroundImage"));
+                var len=bjSrc.length
+                //url("http://localhost:8080/arjccm/static/images/社会信息采集平台.png")
+                var ljSrc=bjSrc.substring(48,len-6);
+                $(this).css({
+                    "background": "url(${ctxStatic}/images/" + ljSrc + ".png)"
+                })
+            })
+
+
+
+            $("#main ul li .nav-icon").hide()
+            $(".brand").hide()
             $("#userControl li a ").css({
                 "marginTop":"7px",
                 "marginRight":"-13px"
             })
+
         }
     }
+
+    function imgOnload(ljSrc,sp1,i) {
+        var Li = $("#main ul li");
+        var img=new Image();
+        img.src=ljSrc;
+
+        img.onerror = function() {
+            Li.eq(i).css({
+                "background": "url(${ctxStatic}/images/默认.png)"
+            });
+            return false;
+        }
+        Li.eq(i).css({
+            "background": "url(${ctxStatic}/images/" + sp1 + ".png)"
+        });
+    }
+
 </script>
 
 

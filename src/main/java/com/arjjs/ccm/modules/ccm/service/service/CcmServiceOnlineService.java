@@ -40,6 +40,19 @@ public class CcmServiceOnlineService extends CrudService<CcmServiceOnlineDao, Cc
 	public Page<CcmServiceOnline> findPage(Page<CcmServiceOnline> page, CcmServiceOnline ccmServiceOnline) {
 		return super.findPage(page, ccmServiceOnline);
 	}
+
+	public Page<CcmServiceOnline> findPageByCreateBy(Page<CcmServiceOnline> page, CcmServiceOnline ccmServiceOnline) {
+		ccmServiceOnline.setPage(page);
+		page.setList(ccmServiceOnlineDao.findPageByCreateBy(ccmServiceOnline));
+		return page;
+	}
+
+	public Page<CcmServiceOnline> findPageByOffice(Page<CcmServiceOnline> page, CcmServiceOnline ccmServiceOnline) {
+		ccmServiceOnline.setPage(page);
+		page.setList(ccmServiceOnlineDao.findPageByOffice(ccmServiceOnline));
+		return page;
+	}
+
 	
 	@Transactional(readOnly = false)
 	public void save(CcmServiceOnline ccmServiceOnline) {

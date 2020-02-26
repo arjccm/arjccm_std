@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.sys.entity.User;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,11 +60,16 @@ public class CcmServiceOnlineController extends BaseController {
 	@RequiresPermissions("service:ccmServiceOnline:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(CcmServiceOnline ccmServiceOnline, HttpServletRequest request, HttpServletResponse response, Model model) {
-		
-		ccmServiceOnline.setAreaId(UserUtils.getUser().getOffice().getArea().getId());
-		Page<CcmServiceOnline> page = ccmServiceOnlineService.findPage(new Page<CcmServiceOnline>(request, response), ccmServiceOnline); 
+		User user = UserUtils.getUser();
 		String etype = "1";
-		model.addAttribute("page", page);
+		if("1".equals(user.getId())){
+			Page<CcmServiceOnline> page = ccmServiceOnlineService.findPage(new Page<CcmServiceOnline>(request, response), ccmServiceOnline);
+			model.addAttribute("page", page);
+		}else{
+			ccmServiceOnline.setCreateBy(user);
+			Page<CcmServiceOnline> page = ccmServiceOnlineService.findPageByCreateBy(new Page<CcmServiceOnline>(request, response), ccmServiceOnline);
+			model.addAttribute("page", page);
+		}
 		model.addAttribute("etype", etype);
 		return "ccm/service/ccmServiceOnlineList";
 	}
@@ -71,11 +77,16 @@ public class CcmServiceOnlineController extends BaseController {
 	@RequiresPermissions("service:ccmServiceOnline:view")
 	@RequestMapping(value = {"examinelist"})
 	public String examinelist(CcmServiceOnline ccmServiceOnline, HttpServletRequest request, HttpServletResponse response, Model model) {
-		
-		ccmServiceOnline.setAreaId(UserUtils.getUser().getOffice().getArea().getId());
-		Page<CcmServiceOnline> page = ccmServiceOnlineService.findPage(new Page<CcmServiceOnline>(request, response), ccmServiceOnline); 
+		User user = UserUtils.getUser();
 		String etype = "2";
-		model.addAttribute("page", page);
+		if("1".equals(user.getId())){
+			Page<CcmServiceOnline> page = ccmServiceOnlineService.findPage(new Page<CcmServiceOnline>(request, response), ccmServiceOnline);
+			model.addAttribute("page", page);
+		}else{
+			ccmServiceOnline.setCreateBy(user);
+			Page<CcmServiceOnline> page = ccmServiceOnlineService.findPageByOffice(new Page<CcmServiceOnline>(request, response), ccmServiceOnline);
+			model.addAttribute("page", page);
+		}
 		model.addAttribute("etype", etype);
 		return "ccm/service/ccmServiceOnlineList";
 	}
@@ -83,10 +94,20 @@ public class CcmServiceOnlineController extends BaseController {
 	@RequiresPermissions("service:ccmServiceOnline:view")
 	@RequestMapping(value = {"jumplist"})
 	public String jumplist(String etype, CcmServiceOnline ccmServiceOnline, HttpServletRequest request, HttpServletResponse response, Model model) {
-		
-		ccmServiceOnline.setAreaId(UserUtils.getUser().getOffice().getArea().getId());
-		Page<CcmServiceOnline> page = ccmServiceOnlineService.findPage(new Page<CcmServiceOnline>(request, response), ccmServiceOnline); 
-		model.addAttribute("page", page);
+		User user = UserUtils.getUser();
+		if("1".equals(user.getId())){
+			Page<CcmServiceOnline> page = ccmServiceOnlineService.findPage(new Page<CcmServiceOnline>(request, response), ccmServiceOnline);
+			model.addAttribute("page", page);
+		}else{
+			ccmServiceOnline.setCreateBy(user);
+			if("1".equals(etype)){
+				Page<CcmServiceOnline> page = ccmServiceOnlineService.findPageByCreateBy(new Page<CcmServiceOnline>(request, response), ccmServiceOnline);
+				model.addAttribute("page", page);
+			}else{
+				Page<CcmServiceOnline> page = ccmServiceOnlineService.findPageByOffice(new Page<CcmServiceOnline>(request, response), ccmServiceOnline);
+				model.addAttribute("page", page);
+			}
+		}
 		model.addAttribute("etype", etype);
 		return "ccm/service/ccmServiceOnlineList";
 	}

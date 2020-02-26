@@ -3,9 +3,13 @@
  */
 package com.arjjs.ccm.modules.iot.warning.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.arjjs.ccm.modules.sys.entity.KeyPersonal;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,5 +74,45 @@ public class CcmEarlyWarningService extends CrudService<CcmEarlyWarningDao, CcmE
 
 	public List<Map<String, String>> getSortCountWeek(CcmEarlyWarning ccmEarlyWarning) {
 		return ccmEarlyWarningDao.getSortCountWeek(ccmEarlyWarning);
+	}
+
+	/*重点人员*/
+	public List<CcmEarlyWarning> findPersonal(Date time, String array) {
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String format = simpleDateFormat.format(time);
+
+		return  ccmEarlyWarningDao.findPersonal(format,array.split(","));
+
+	}
+
+	public List<CcmEarlyWarning> findPersonalKJ(String time1, String time2,String array) {
+		return  ccmEarlyWarningDao.findPersonalKJ(time1,time2,array.split(","));
+	}
+
+	public List<CcmEarlyWarning> findPersonalFu(String array) {
+		String[] split = array.split(",");
+		String sj="";
+		String zd="";
+		String ld="";
+		String qt="";
+		for (String s : split) {
+			if (s=="6"){
+				sj="1";
+			}else if("7".equals(s)){
+				zd="1";
+			}else if(s=="8"){
+				ld="1";
+			}else if(s=="9"){
+				zd="0";
+				ld="0";
+			}
+		}
+		return ccmEarlyWarningDao.findPersonalFu(split,sj,zd,ld,qt);
+	}
+
+	public List<CcmEarlyWarning> findPersonalSearch(String name) {
+
+		return ccmEarlyWarningDao.findPersonalSearch("%"+name+"%");
 	}
 }

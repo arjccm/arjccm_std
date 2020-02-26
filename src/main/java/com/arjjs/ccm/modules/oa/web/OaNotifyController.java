@@ -15,6 +15,8 @@ import com.arjjs.ccm.modules.ccm.work.service.CcmWorkTimingService;
 import com.arjjs.ccm.modules.oa.entity.OaNotify;
 import com.arjjs.ccm.modules.oa.entity.OaNotifyRecord;
 import com.arjjs.ccm.modules.oa.service.OaNotifyService;
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.RabbitMQTools;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -76,6 +78,11 @@ public class OaNotifyController extends BaseController {
 	@RequiresPermissions("oa:oaNotify:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(OaNotify oaNotify, HttpServletRequest request, HttpServletResponse response, Model model) {
+		User user = UserUtils.getUser();
+		if(!"1".equals(user.getId())){
+			oaNotify.setCreateByMySelf(true);
+			oaNotify.setCreateBy(user);
+		}
 		Page<OaNotify> page = oaNotifyService.find(new Page<OaNotify>(request, response), oaNotify);
 		model.addAttribute("page", page);
 		return "modules/oa/oaNotifyList";

@@ -10,6 +10,7 @@ import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.CommUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -160,7 +161,7 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 	// 添加从业人员--保存
 	@ResponseBody
 	@RequestMapping(value = "savePeople", method = RequestMethod.POST)
-	public CcmRestResult save(CcmPeople ccmpeople, String placeid, Integer placetype, String userId, Model model, RedirectAttributes redirectAttributes, HttpServletResponse response, HttpServletRequest request) {
+	public CcmRestResult save(CcmPeople ccmpeople, String userId, Model model, RedirectAttributes redirectAttributes, HttpServletResponse response, HttpServletRequest request) {
 		CcmRestResult result = new CcmRestResult();
 		User sessionUser = (User) request.getSession().getAttribute("user");
 		if (sessionUser== null) {
@@ -173,11 +174,15 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 			return result;
 		}
 		CcmPlaceOrgPeople ccmPlaceOrgPeople = new CcmPlaceOrgPeople();
-		ccmPlaceOrgPeople.setPlaceOrgId(placeid);
-		ccmPlaceOrgPeople.setType(placetype);
+		ccmPlaceOrgPeople.setPlaceOrgId(ccmpeople.getMore3());
+		ccmPlaceOrgPeople.setType(Integer.parseInt(ccmpeople.getMore5()));
 		if (!beanValidator(model, ccmpeople)){
 //			return form(ccmPlaceOrgPeople, ccmpeople, model);
 		}
+		ccmpeople.setMore3("");
+		ccmpeople.setMore5("");
+		ccmpeople.setCreateBy(UserUtils.get(userId));
+		ccmpeople.setUpdateBy(UserUtils.get(userId));
 		ccmPeopleService.save(ccmpeople);
 		ccmPlaceOrgPeople.setPeopleId(ccmpeople.getId());
 		List<CcmPlaceOrgPeople> list = ccmPlaceOrgPeopleService.findList(ccmPlaceOrgPeople);

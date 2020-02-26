@@ -22,6 +22,9 @@ $(document).ready(function() {
     plotDrawInit(); // 标绘初始化
     init();
 //    timeoutAlarmTimer=setInterval('checkTimeoutAlarm()',timeoutAlarmTime);
+
+
+
 });
 
 //检测超时警情
@@ -658,6 +661,7 @@ function getAlarmDetails(_this) {
             }
         });
         $(".layui-layer").css("border-radius", "10px");
+
         audioInit();// 初始化audio
         // 警情状态下拉框
         var alarmStateSelectNode = $("<select id='alarmState'></select>");
@@ -680,7 +684,7 @@ function alarmBasicInfoHtml(datas) {
     var data = datas.alarmInfo;
     var alarmHandleList = datas.alarmHandleList;
     var alarmDetail = '';
-    alarmDetail += '<table class="table table-striped table-bordered table-condensed" style="margin-bottom:0px;">';
+    alarmDetail += '<table class="table table-striped table-bordered table-condensed" style="margin-bottom:0px; ">';
     alarmDetail += '<tr>';
     var orderNum = data.orderNum;
     if(orderNum == "" || orderNum == null || orderNum == undefined){
@@ -770,6 +774,9 @@ function alarmBasicInfoHtml(datas) {
 
 //警情反馈信息拼接html
 function alarmFeedbackInfoHtml (filesInfo,alarmHandleList) {
+    console.log("============================")
+    console.log(filesInfo)
+    console.log(alarmHandleList)
     var alarmFeedbackHtml = '';
     if(filesInfo !== undefined && filesInfo != null && filesInfo != ''){
         for (var i = 0; i < filesInfo.length; i++) {

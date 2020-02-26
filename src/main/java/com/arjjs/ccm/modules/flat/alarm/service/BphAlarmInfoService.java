@@ -974,16 +974,17 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 		List<BphAlarmHandleFile> alarmHandleFile = dao.getAlarmHandleFile(id);
 		Map<String, BphAlarmHandleFileResult> fileMap = Maps.newConcurrentMap();
 		alarmHandleFile.forEach(file -> {
-			if (fileMap.containsKey(file.getUserId())) {
+			if (fileMap.containsKey(file.getAlarmHandleId())) {
 				if(StringUtils.equals("0", file.getType())) {
-					fileMap.get(file.getUserId()).getImgFileList().add(file);
+					fileMap.get(file.getAlarmHandleId()).getImgFileList().add(file);
 				}else if(StringUtils.equals("3", file.getType())) {
-					fileMap.get(file.getUserId()).getAudioFileList().add(file);
+					fileMap.get(file.getAlarmHandleId()).getAudioFileList().add(file);
 				}else if(StringUtils.equals("4", file.getType())) {
-					fileMap.get(file.getUserId()).getVideoFileList().add(file);
+					fileMap.get(file.getAlarmHandleId()).getVideoFileList().add(file);
 				}
 			} else {
 				BphAlarmHandleFileResult fileResult = new BphAlarmHandleFileResult();
+				fileResult.setAlarmHandleId(file.getAlarmHandleId());
 				fileResult.setUserId(file.getUserId());
 				fileResult.setUserName(file.getUserName());
 				fileResult.setHandleResult(file.getHandleResult());
@@ -997,7 +998,7 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 				}else if(StringUtils.equals("4", file.getType())) {
 					fileResult.getVideoFileList().add(file);
 				}
-				fileMap.put(file.getUserId(), fileResult);
+				fileMap.put(file.getAlarmHandleId(), fileResult);
 			}
 		});
 		List<BphAlarmHandleFileResult> result = Lists.newArrayList();

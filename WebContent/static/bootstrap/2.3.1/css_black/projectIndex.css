@@ -234,30 +234,7 @@ a,a:hover{
     text-align: center;
     top: 15px;
 }
-.system-nav .icon1:hover{
-	background: url("../../../images/menu_icon_1_hover.gif") !important;
-}
-.system-nav .icon2:hover{
-	background: url("../../../images/menu_icon_2_hover.gif") !important;
-}
-.system-nav .icon3:hover{
-	background: url("../../../images/menu_icon_3_hover.gif") !important;
-}
-.system-nav .icon4:hover{
-	background: url("../../../images/menu_icon_4_hover.gif") !important;
-}
-.system-nav .icon5:hover{
-	background: url("../../../images/menu_icon_5_hover.gif") !important;
-}
-.system-nav .icon6:hover{
-	background: url("../../../images/menu_icon_6_hover.gif") !important;
-}
-.system-nav .icon7:hover{
-	background: url("../../../images/menu_icon_7_hover.gif") !important;
-}
-.system-nav .icon8:hover{
-	background: url("../../../images/menu_icon_8_hover.gif") !important;
-}
-.system-nav .icon9:hover{
-	background: url("../../../images/menu_icon_9_hover.gif") !important;
+/*黑色菜单ul上边距修改*/
+.system-nav {
+    padding-top: 30px ;
 }
