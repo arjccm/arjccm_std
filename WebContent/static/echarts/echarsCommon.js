@@ -27,6 +27,7 @@ $(function () {
                                 rotate, optionToContent) {
         // 指定图表的配置项和数据
         var option = {
+
             backgroundColor: backgroundColor,
             grid: {
                 right: "3%",
@@ -39,6 +40,7 @@ $(function () {
                 }
             },
             tooltip: {},
+            color : [ '#FC9A2F','#32F7FF' ],
             legend: {
                 data: datatitle,
                 textStyle: {
@@ -61,24 +63,29 @@ $(function () {
                 }
             },
             xAxis: {
-
                 axisLabel: {
-                    interval: 0,
-                    rotate: rotate,
+                    /*interval: 0,
+                    rotate: rotate,*/
                     textStyle: {
                         color: FontColor,
                     }
                 },
+                axisTick: {
+                    show: true,
+                    lineStyle : {
+                        color : '#397BA1',
+                    },
+                    inside: true
+                },
                 splitLine: {
-                    lineStyle: {
-                        color: lineStyleColor
+                    show:false
+                },
+                axisLine : {
+                    lineStyle : {
+                        color : '#397BA1',
                     }
                 },
-                axisLine: {
-                    lineStyle: {
-                        color: lineStyleColor1
-                    }
-                },
+                z:999,
                 data: dataX
             },
             yAxis: [{
@@ -88,21 +95,25 @@ $(function () {
                     }
                 },
                 splitLine: {
+                    show: true,
                     lineStyle: {
-                        color: lineStyleColor
-                    }
+                        type: 'dashed',
+                        color: '#2A6283',
+                        opacity : '0.3'
+                    },
                 },
-                axisLine: {
-                    lineStyle: {
-                        color: lineStyleColor1
+                axisTick: {
+                    show: false
+                },
+                axisLine : {
+                    lineStyle : {
+                        color : '#397BA1',
                     }
                 },
             },
                 {
                     splitLine: {
-                        lineStyle: {
-                            color: lineStyleColor
-                        }
+                        show:false
                     },
                     axisLabel: {
                         textStyle: {
@@ -110,9 +121,12 @@ $(function () {
                         }
                     },
                     axisLine: {
-                        lineStyle: {
-                            color: lineStyleColor1,
+                        lineStyle : {
+                            color : '#397BA1',
                         }
+                    },
+                    axisTick: {
+                        show: false,
                     },
                 }],
             series: dataY,
@@ -169,7 +183,8 @@ $(function () {
         return seriesDate1;
     }
 
-    $.getSeriesDate1 = function (titleS, ajaxDataYALLS) {
+    //户籍人口类型图形生成
+    $.getSeriesDateHuji = function (titleS, ajaxDataYALLS) {
         // 返回数据
         var seriesDate1 = new Array();
         // // for 循环生成数据
@@ -177,15 +192,60 @@ $(function () {
         seriesDate1.push({
             "name": titleS[1],
             "type": 'bar',
-            "barWidth": '20%',
+            "barWidth": '62%',
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: '#32F7FF' // 0% 处的颜色
+                    }, {
+                        offset: 1,
+                        color: '#0E2A4C' // 100% 处的颜色
+                    }], false),
+                    barBorderRadius: [6, 6, 0, 0],
+                }
+            },
             "data": ajaxDataYALLS[1]
         }, {
             "name": titleS[0],
             "type": 'line',
             "yAxisIndex": '1',
+            symbolSize: 8,
+            z:1000,
             "data": ajaxDataYALLS[0]
         })
         // }
+        // 返回数据
+        return seriesDate1;
+    }
+
+    //其他人口类型图形生成
+    $.getSeriesDateOther = function (titleS, ajaxDataYALLS) {
+
+        var color = [['#32F7FF','#0E2A4C'],['#3289FF','#0E2A4C']];
+
+        // 返回数据
+        var seriesDate1 = new Array();
+        // for 循环生成数据
+        for (var titleNumer = 0; titleNumer < titleS.length; titleNumer++) {
+            seriesDate1.push({
+                "name": titleS[titleNumer],
+                "type": 'bar',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: color[titleNumer][0] // 0% 处的颜色
+                        }, {
+                            offset: 1,
+                            color: color[titleNumer][1] // 100% 处的颜色
+                        }], false),
+                        barBorderRadius: [6, 6, 0, 0],
+                    }
+                },
+                "data": ajaxDataYALLS[titleNumer]
+            })
+        }
         // 返回数据
         return seriesDate1;
     }
