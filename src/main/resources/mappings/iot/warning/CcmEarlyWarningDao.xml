@@ -430,7 +430,7 @@
 				AND a.alarm_date BETWEEN #{beginDate} AND #{endDate}
 			</if>
 		</where>
-		ORDER BY a.update_date DESC
+		ORDER BY a.alarm_date DESC
 	</select>
 
 
