@@ -49,7 +49,11 @@
 		top.$.jBox.open( UrlType, "选择${title}", 300, 420, {
 			ajaxData:{selectIds: $("#${id}Id").val()},buttons:{"确定":"ok", ${allowClear?"\"清除\":\"clear\", ":""}"关闭":true}, submit:function(v, h, f){
 				if (v=="ok"){
-					var tree = h.find("iframe")[0].contentWindow.tree;//h.find("iframe").contents();
+					var iframe = h.find("iframe")[0].contentWindow;
+					var tree = iframe.tree;//h.find("iframe").contents();
+					var key = iframe.document.getElementById('key');
+					key.value = '';
+					iframe.searchNode();
 					var ids = [], names = [], nodes = [];
 					if ("${checked}" == "true"){
 						nodes = tree.getCheckedNodes(true);
