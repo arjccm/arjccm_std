@@ -5,6 +5,7 @@ import java.util.List;
 import com.arjjs.ccm.modules.flat.handle.entity.BphAlarmHandleFile;
 
 public class BphAlarmHandleFileResult {
+	private String alarmHandleId;
 	private String userId;
 	private String userName;
 	private String handleResult;
@@ -18,6 +19,14 @@ public class BphAlarmHandleFileResult {
 
 	public void setHandleResult(String handleResult) {
 		this.handleResult = handleResult;
+	}
+
+	public String getAlarmHandleId() {
+		return alarmHandleId;
+	}
+
+	public void setAlarmHandleId(String alarmHandleId) {
+		this.alarmHandleId = alarmHandleId;
 	}
 
 	public String getUserId() {

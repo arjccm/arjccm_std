@@ -770,6 +770,9 @@ function alarmBasicInfoHtml(datas) {
 
 //警情反馈信息拼接html
 function alarmFeedbackInfoHtml (filesInfo,alarmHandleList) {
+    console.log("============================")
+    console.log(filesInfo)
+    console.log(alarmHandleList)
     var alarmFeedbackHtml = '';
     if(filesInfo !== undefined && filesInfo != null && filesInfo != ''){
         for (var i = 0; i < filesInfo.length; i++) {

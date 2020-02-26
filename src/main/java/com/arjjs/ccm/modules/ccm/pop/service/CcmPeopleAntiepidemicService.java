@@ -37,20 +37,20 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 	public CcmPeopleAntiepidemic get(String id) {
 		return super.get(id);
 	}
-	
+
 	public List<CcmPeopleAntiepidemic> findList(CcmPeopleAntiepidemic ccmPeopleAntiepidemic) {
 		return super.findList(ccmPeopleAntiepidemic);
 	}
-	
+
 	public Page<CcmPeopleAntiepidemic> findPage(Page<CcmPeopleAntiepidemic> page, CcmPeopleAntiepidemic ccmPeopleAntiepidemic) {
 		return super.findPage(page, ccmPeopleAntiepidemic);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void save(CcmPeopleAntiepidemic ccmPeopleAntiepidemic) {
 		super.save(ccmPeopleAntiepidemic);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void delete(CcmPeopleAntiepidemic ccmPeopleAntiepidemic) {
 		super.delete(ccmPeopleAntiepidemic);

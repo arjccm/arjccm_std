@@ -42,7 +42,7 @@ public class CcmPeopleAntiepidemicController extends BaseController {
 
 	@Autowired
 	private CcmPeopleAntiepidemicService ccmPeopleAntiepidemicService;
-	
+
 	@ModelAttribute
 	public CcmPeopleAntiepidemic get(@RequestParam(required=false) String id) {
 		CcmPeopleAntiepidemic entity = null;
@@ -54,7 +54,7 @@ public class CcmPeopleAntiepidemicController extends BaseController {
 		}
 		return entity;
 	}
-	
+
 	@RequiresPermissions("pop:ccmPeopleAntiepidemic:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(CcmPeopleAntiepidemic ccmPeopleAntiepidemic, HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -104,7 +104,7 @@ public class CcmPeopleAntiepidemicController extends BaseController {
 		addMessage(redirectAttributes, "保存人员疫情成功");
 		return "redirect:"+Global.getAdminPath()+"/pop/ccmPeopleAntiepidemic/?repage";
 	}
-	
+
 	@RequiresPermissions("pop:ccmPeopleAntiepidemic:edit")
 	@RequestMapping(value = "delete")
 	public String delete(CcmPeopleAntiepidemic ccmPeopleAntiepidemic, RedirectAttributes redirectAttributes) {
