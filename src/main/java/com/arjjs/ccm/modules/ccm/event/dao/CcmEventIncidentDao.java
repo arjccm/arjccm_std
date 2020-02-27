@@ -190,4 +190,6 @@ public interface CcmEventIncidentDao extends CrudDao<CcmEventIncident> {
 	public List<CcmEventIncident> findArchive(CcmEventIncident ccmEventIncident);
 
     Integer statIndexForZj(@Param("i") Integer i);
+
+    Integer worker(@Param("w1") String w1,@Param("w2") String w2);
 }
