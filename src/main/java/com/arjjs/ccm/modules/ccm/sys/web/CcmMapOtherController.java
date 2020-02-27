@@ -65,6 +65,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.plugin.com.Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -1184,10 +1185,10 @@ public class CcmMapOtherController extends BaseController {
         map.put("j5",j5);
         map.put("j6",j5+j1+j2+j3+j4);
 
-
-        Page<CcmEventIncident> page = ccmEventIncidentService.findPage(new Page<CcmEventIncident>(),
-                new CcmEventIncident());
-        System.out.println(page.getTotalPage());
+        //工作人员
+        String uid = UserUtils.getUser().getOffice().getId();
+        Integer w1 = ccmEventIncidentService.worker(uid);
+        map.put("w1",w1);
         return "modules/sys/index/statIndexZj";
     }
 
@@ -1240,7 +1241,6 @@ public class CcmMapOtherController extends BaseController {
         }
         model.addAttribute("dz_hangzhoudao_link_video", link1);
         model.addAttribute("dz_hangzhoudao_link_pbs", link2);
-
         return "modules/sys/index/statLivelihood";
     }
 
