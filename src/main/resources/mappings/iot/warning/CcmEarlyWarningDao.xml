@@ -464,7 +464,7 @@
 			<if test="time2 != null and time2 != ''">
 				AND alarm_date &lt;= #{time2}
 			</if>
-			<if test="list != null and list != ''">
+			<if test="list != '' and list != null ">
 				AND alarm_type IN
 				<foreach collection="list" item="list" index="i" open="(" separator="," close=")">
 					#{list}
