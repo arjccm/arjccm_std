@@ -8,7 +8,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.arjjs.ccm.modules.sys.entity.KeyPersonal;
+
+import com.arjjs.ccm.modules.iot.warning.entity.KeyPersonal;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,13 +82,21 @@ public class CcmEarlyWarningService extends CrudService<CcmEarlyWarningDao, CcmE
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String format = simpleDateFormat.format(time);
+		String[] split = array.split(",");
+		if ("".equals(array)){
+			split=null;
+		}
 
-		return  ccmEarlyWarningDao.findPersonal(format,array.split(","));
+		return  ccmEarlyWarningDao.findPersonal(format,split);
 
 	}
 
 	public List<CcmEarlyWarning> findPersonalKJ(String time1, String time2,String array) {
-		return  ccmEarlyWarningDao.findPersonalKJ(time1,time2,array.split(","));
+		String[] split = array.split(",");
+		if ("".equals(array)){
+			split=null;
+		}
+		return  ccmEarlyWarningDao.findPersonalKJ(time1,time2,split);
 	}
 
 	public List<CcmEarlyWarning> findPersonalFu(String array) {
