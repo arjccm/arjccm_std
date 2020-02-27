@@ -868,4 +868,9 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 	public Integer statIndexForZj(int i) {
 		return ccmEventIncidentDao.statIndexForZj(i);
 	}
+
+    public Integer worker(String uid) {
+		String w2="%"+uid+"%";
+		return ccmEventIncidentDao.worker(uid,w2);
+    }
 }
