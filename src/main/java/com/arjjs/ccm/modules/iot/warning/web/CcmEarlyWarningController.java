@@ -8,9 +8,10 @@ import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.iot.warning.entity.CcmEarlyWarning;
+import com.arjjs.ccm.modules.iot.warning.entity.KeyPersonal;
 import com.arjjs.ccm.modules.iot.warning.service.CcmEarlyWarningService;
-import com.arjjs.ccm.modules.sys.entity.KeyPersonal;
-import com.arjjs.ccm.modules.sys.service.KeyPersonalService;
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -355,7 +356,7 @@ public class CcmEarlyWarningController extends BaseController {
 	public Map<String,Object> findPersonalAday(String time1,String time2,String array){
 		Map<String,Object> map = new HashMap();
 		List<CcmEarlyWarning> Plist = ccmEarlyWarningService.findPersonalKJ(time1,time2,array);
-
+		String id = UserUtils.getUser().getOffice().getId();
 		map.put("code","200");
 		map.put("data",Plist);
 		return map;
