@@ -5,11 +5,9 @@ package com.arjjs.ccm.modules.iot.warning.dao;
 
 import java.util.List;
 import java.util.Map;
-
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.iot.warning.entity.CcmEarlyWarning;
-import com.arjjs.ccm.modules.sys.entity.KeyPersonal;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -51,9 +49,7 @@ public interface CcmEarlyWarningDao extends CrudDao<CcmEarlyWarning> {
 	/*重点人员*/
 	List<CcmEarlyWarning> findPersonal(@Param("time") String time, @Param("list") String[] list);
 
-
 	List<CcmEarlyWarning> findPersonalKJ(@Param("time1") String time1, @Param("time2") String time2,@Param("list") String[] list);
-
 
 	List<CcmEarlyWarning> findPersonalFu(@Param("list") String[] list,@Param("sj")String sj,@Param("zd")String zd,@Param("ld")String ld,@Param("qt")String qt);
 
