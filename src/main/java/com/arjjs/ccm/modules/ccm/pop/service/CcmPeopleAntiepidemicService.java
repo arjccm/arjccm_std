@@ -213,6 +213,7 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 		int temp = 0;
 		List<Integer> resnum = Lists.newArrayList();
 		String[] areanames = {"崖州","天涯","吉阳","海棠","育才"};
+//        String[] areanames = {"西秀","平坝","普定","镇宁","关岭","紫云"};
 		for(String name : areanames){
 			CcmPeopleAntiepidemic ccmPeople = new CcmPeopleAntiepidemic();
 			ccmPeople.setBelongSubBureau(name);
@@ -229,6 +230,7 @@ public class CcmPeopleAntiepidemicService extends CrudService<CcmPeopleAntiepide
 
 		List<String> getname = Lists.newArrayList();
 		String[] names = {"崖州区","天涯区","吉阳区","海棠区","育才生态区"};
+//        String[] names = {"西秀区","平坝区","普定区","镇宁县","关岭县","紫云县"};
 		for(String name : names){
 			getname.add(name);
 		}
