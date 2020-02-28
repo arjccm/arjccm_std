@@ -436,7 +436,7 @@
 
 	<!--重点人员-->
 	<sql id="ysql">
-		SELECT name,alarm_date,address FROM ccm_early_warning
+		SELECT name,alarm_date,address,id_card FROM ccm_early_warning
 	</sql>
 
 	<!--最近时间-->
