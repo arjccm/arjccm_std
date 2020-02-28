@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 
-import com.arjjs.ccm.modules.iot.warning.entity.KeyPersonal;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

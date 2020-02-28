@@ -8,7 +8,6 @@ import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.iot.warning.entity.CcmEarlyWarning;
-import com.arjjs.ccm.modules.iot.warning.entity.KeyPersonal;
 import com.arjjs.ccm.modules.iot.warning.service.CcmEarlyWarningService;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 

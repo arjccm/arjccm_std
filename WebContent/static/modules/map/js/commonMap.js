@@ -4610,7 +4610,7 @@ ArjMap.Map.prototype = {
                                             }),
                                             //图层边框颜色
                                             stroke: new ol.style.Stroke({
-                                                color: color ? '#0099FF' : 'blue',
+                                                color: color ? '#fff' : 'white',
                                                 width: 1
                                             }),
                                             //图层文字颜色
@@ -4618,9 +4618,10 @@ ArjMap.Map.prototype = {
                                                 textAlign: 'center', // 位置
                                                 textBaseline: 'middle', // 基准线
                                                 exceedLength: 'true',
-                                                font: 'normal 14px 微软雅黑',  // 文字样式
+                                                font: 'normal 12px 微软雅黑',  // 文字样式
                                                 text: feature.get('name'),  // 文本内容
-                                                fill: new ol.style.Fill({color: '#fff'}), // 文本填充样式（即文字颜色）
+                                                fill: new ol.style.Fill({color: '#e5780b'}), // 文本填充样式（即文字颜色）,
+                                                stroke: new ol.style.Stroke({color: '#fff', width: 2})
                                             })
                                         }),]
                                     }
@@ -5142,7 +5143,7 @@ ArjMap.Map.prototype = {
                                                 exceedLength: 'true',
                                                 font: 'normal 12px 微软雅黑',  // 文字样式
                                                 text: feature.get('name'),  // 文本内容
-                                                fill: new ol.style.Fill({color: '#fff'}), // 文本填充样式（即文字颜色）
+                                                fill: new ol.style.Fill({color: '#e5780b'}), // 文本填充样式（即文字颜色）
                                             })
 
                                         }),
