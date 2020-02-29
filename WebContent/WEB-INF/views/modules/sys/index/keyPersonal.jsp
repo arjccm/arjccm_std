@@ -580,7 +580,7 @@
                             console.log("idCard-----------------", idCard);
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.alarmDate + '</td>' +
+                                '<td>' + ele.time + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -626,7 +626,7 @@
                         $.each(ref.data, function (index, ele) {
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.alarmDate + '</td>' +
+                                '<td>' + ele.time + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -658,7 +658,7 @@
                     $.each(ref.data, function (index, ele) {
                         html += ' <tr>' +
                             '<td>' + ele.name + '</td>' +
-                            '<td>' + ele.alarmDate + '</td>' +
+                            '<td>' + ele.time + '</td>' +
                             '<td>' + ele.address + '</td>' +
                             '<td class="clearfix">' +
                             '<a class="dangan">' + '</a>' +
@@ -672,115 +672,170 @@
             }
         });
     });
-    /*最近一小时*/
-    $('#btn_One').click(function () {
-        var time = new Date(new Date().getTime() - 1 * 60 * 60 * 1000);
-        if (ArrList.length > 0) {
-            array = ArrList.join(",");
-        }
-        console.log("time----------------------------",time);
-        $.ajax({
-            type: "POST",
-            url: ctx + "/warning/ccmEarlyWarning/recently",
-            async: false,
-            data: {
-                time: time,
-                array: array
-            },
-            success: function (ref) {
-                if (ref.code == 200) {
-                    var html = '';
-                    $.each(ref.data, function (index, ele) {
-                        html += ' <tr>' +
-                            '<td>' + ele.name + '</td>' +
-                            '<td>' + ele.alarmDate + '</td>' +
-                            '<td>' + ele.address + '</td>' +
-                            '<td class="clearfix">' +
-                            '<a class="dangan">' + '</a>' +
-                            '<a class="guiji">' + '</a>' +
-                            '<a class="dingwei">' + '</a>' +
-                            '</td>' +
-                            '        </tr>';
-                    });
-                    $('tbody').empty().html(html);
-                }
-            }
-        })
-    });
+        /*最近一小时*/
+        $('#btn_One').click(function () {
+            var time = "";
 
-    /*最近三小时*/
-    $('#btn_Three').click(function () {
-        var time = new Date(new Date().getTime() - 3 * 60 * 60 * 1000);
-        if (ArrList.length > 0) {
-            array = ArrList.join(",");
-        }
-        $.ajax({
-            type: "POST",
-            url: ctx + "/warning/ccmEarlyWarning/recently",
-            async: false,
-            data: {
-                time: time,
-                array: array
-            },
-            success: function (ref) {
-                if (ref.code == 200) {
-                    var html = '';
-                    $.each(ref.data, function (index, ele) {
-                        html += ' <tr>' +
-                            '<td>' + ele.name + '</td>' +
-                            '<td>' + ele.alarmDate + '</td>' +
-                            '<td>' + ele.address + '</td>' +
-                            '<td class="clearfix">' +
-                            '<a class="dangan">' + '</a>' +
-                            '<a class="guiji">' + '</a>' +
-                            '<a class="dingwei">' + '</a>' +
-                            '</td>' +
-                            '        </tr>';
-                    });
-                    $('tbody').empty().html(html);
-                }
+            //判断是否在前面加0
+            function getNow(s) {
+                return s < 10 ? '0' + s: s;
             }
-        })
-    });
 
-    /*最近一天*/
-    $('#btn_Aday').click(function () {
-        fun_Aday();
-    });
-
-    function fun_Aday() {
-        var time = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-        if (ArrList.length > 0) {
-            array = ArrList.join(",");
-        }
-        $.ajax({
-            type: "POST",
-            url: ctx + "/warning/ccmEarlyWarning/recently",
-            async: false,
-            data: {
-                time: time,
-                array: array
-            },
-            success: function (ref) {
-                if (ref.code == 200) {
-                    var html = '';
-                    $.each(ref.data, function (index, ele) {
-                        html += ' <tr>' +
-                            '<td>' + ele.name + '</td>' +
-                            '<td>' + ele.alarmDate + '</td>' +
-                            '<td>' + ele.address + '</td>' +
-                            '<td class="clearfix">' +
-                            '<a class="dangan">' + '</a>' +
-                            '<a class="guiji">' + '</a>' +
-                            '<a class="dingwei">' + '</a>' +
-                            '</td>' +
-                            '        </tr>';
-                    });
-                    $('tbody').empty().html(html);
-                }
+            var myDate = new Date();
+            var year=myDate.getFullYear();        //获取当前年
+            var month=myDate.getMonth()+1;   //获取当前月
+            var date=myDate.getDate();            //获取当前日
+            var h=myDate.getHours();              //获取当前小时数(0-23)
+            if (h<1){
+                date=date-1;
+                h=h+23;
+            }else {
+                h=h-1;
             }
-        })
-    }
+            var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+            var s=myDate.getSeconds();
+
+            var begin=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+            if (ArrList.length > 0) {
+                array = ArrList.join(",");
+            }
+            console.log(begin)
+            $.ajax({
+                type: "POST",
+                url: ctx + "/warning/ccmEarlyWarning/recently",
+                async: false,
+                data: {
+                    time: begin,
+                    array: array
+                },
+                success: function (ref) {
+                    if (ref.code == 200) {
+                        var html = '';
+                        $.each(ref.data, function (index, ele) {
+                            html += ' <tr>' +
+                                '<td>' + ele.name + '</td>' +
+                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.address + '</td>' +
+                                '<td class="clearfix">' +
+                                '<a class="dangan">' + '</a>' +
+                                '<a class="guiji">' + '</a>' +
+                                '<a class="dingwei">' + '</a>' +
+                                '</td>' +
+                                '        </tr>';
+                        });
+
+                        $('tbody').empty().html(html);
+                    }
+                }
+            })
+        });
+
+        /*最近三小时*/
+    $('#btn_Three').click(function (){
+            var time = "";
+            //判断是否在前面加0
+            function getNow(s) {
+                return s < 10 ? '0' + s: s;
+            }
+
+            var myDate = new Date();
+            var year=myDate.getFullYear();        //获取当前年
+            var month=myDate.getMonth()+1;   //获取当前月
+            var date=myDate.getDate();            //获取当前日
+            var h=myDate.getHours();              //获取当前小时数(0-23)
+            if (h<3){
+               date=date-1;
+               h=h+21;
+            }else {
+                h=h-3;
+            }
+            var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+            var s=myDate.getSeconds();
+
+            var begin=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+            if (ArrList.length > 0) {
+                array = ArrList.join(",");
+            }
+            $.ajax({
+                type: "POST",
+                url: ctx + "/warning/ccmEarlyWarning/recently",
+                async: false,
+                data: {
+                    time: begin,
+                    array: array
+
+                },
+                success: function (ref) {
+                    if (ref.code == 200) {
+                        var html = '';
+                        $.each(ref.data, function (index, ele) {
+                            html += ' <tr>' +
+                                '<td>' + ele.name + '</td>' +
+                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.address + '</td>' +
+                                '<td class="clearfix">' +
+                                '<a class="dangan">' + '</a>' +
+                                '<a class="guiji">' + '</a>' +
+                                '<a class="dingwei">' + '</a>' +
+                                '</td>' +
+                                '        </tr>';
+                        });
+                        $('tbody').empty().html(html);
+                    }
+                }
+            })
+        });
+         /*最近一天*/
+        $('#btn_Aday').click(function () {
+            fun_Aday();
+            });
+        function fun_Aday() {
+            var time = "";
+            //判断是否在前面加0
+            function getNow(s) {
+                return s < 10 ? '0' + s: s;
+            }
+
+            var myDate = new Date();
+            var year=myDate.getFullYear();        //获取当前年
+            var month=myDate.getMonth()+1;   //获取当前月
+            var date=myDate.getDate()-1;            //获取当前日
+            var h=myDate.getHours();              //获取当前小时数(0-23)
+            var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+            var s=myDate.getSeconds();
+
+            var begin=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+            if (ArrList.length > 0) {
+                array = ArrList.join(",");
+            }
+            $.ajax({
+                type: "POST",
+                url: ctx + "/warning/ccmEarlyWarning/recently",
+                async: false,
+                data: {
+                    time: begin,
+                    array: array
+                },
+                success: function (ref) {
+                    if (ref.code == 200) {
+                        var html = '';
+                        $.each(ref.data, function (index, ele) {
+                            html += ' <tr>' +
+                                '<td>' + ele.name + '</td>' +
+                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.address + '</td>' +
+                                '<td class="clearfix">' +
+                                '<a class="dangan">' + '</a>' +
+                                '<a class="guiji">' + '</a>' +
+                                '<a class="dingwei">' + '</a>' +
+                                '</td>' +
+                                '        </tr>';
+                        });
+                        $('tbody').empty().html(html);
+                    }
+                }
+            })
+        }
 </script>
 
 </html>

@@ -436,7 +436,7 @@
 
 	<!--重点人员-->
 	<sql id="ysql">
-		SELECT name,alarm_date,address FROM ccm_early_warning
+		SELECT name,alarm_date,address,id_card FROM ccm_early_warning
 	</sql>
 
 	<!--最近时间-->
@@ -464,7 +464,7 @@
 			<if test="time2 != null and time2 != ''">
 				AND alarm_date &lt;= #{time2}
 			</if>
-			<if test="list != null and list != ''">
+			<if test="list != '' and list != null ">
 				AND alarm_type IN
 				<foreach collection="list" item="list" index="i" open="(" separator="," close=")">
 					#{list}
@@ -492,5 +492,23 @@
 	<select id="findPersonalSearch" resultType="CcmEarlyWarning">
 		<include refid="ysql"></include>
 		WHERE name LIKE #{name}
+	</select>
+
+	<select id="findListbyalarmDate">
+		SELECT
+		<include refid="ccmEarlyWarningColumns" />
+		FROM ccm_early_warning a
+		<include refid="ccmEarlyWarningJoins" />
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			AND a.is_people = "1"
+			AND (a.alarm_type = "1" or a.alarm_type = "2")
+			<if test="beginDate != null and beginDate != ''">
+				AND a.alarm_date gt; #{beginDate}
+			</if>
+			<if test="endDate != null and endDate != ''">
+				AND a.alarm_date lt; #{endDate}
+			</if>
+		</where>
 	</select>
 </mapper>
