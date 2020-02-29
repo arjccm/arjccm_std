@@ -123,4 +123,8 @@ public class CcmEarlyWarningService extends CrudService<CcmEarlyWarningDao, CcmE
 
 		return ccmEarlyWarningDao.findPersonalSearch("%"+name+"%");
 	}
+
+	public List<CcmEarlyWarning> findListbyalarmDate(CcmEarlyWarning ccmEarlyWarning) {
+		return ccmEarlyWarningDao.findListbyalarmDate(ccmEarlyWarning);
+	}
 }
