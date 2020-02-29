@@ -54,4 +54,14 @@ public interface CcmEarlyWarningDao extends CrudDao<CcmEarlyWarning> {
 	List<CcmEarlyWarning> findPersonalFu(@Param("list") String[] list,@Param("sj")String sj,@Param("zd")String zd,@Param("ld")String ld,@Param("qt")String qt);
 
 	List<CcmEarlyWarning> findPersonalSearch(@Param("name") String name);
+
+
+	/**
+	 *  根据日期查询  人脸 车辆抓拍信息
+	 * @param ccmEarlyWarning
+	 * @return
+	 */
+	List<CcmEarlyWarning> findListbyalarmDate(CcmEarlyWarning ccmEarlyWarning);
+
+
 }
