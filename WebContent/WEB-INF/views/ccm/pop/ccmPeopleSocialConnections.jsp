@@ -248,8 +248,18 @@
             font-weight: bold;
             color: rgba(255,255,255,1);
             line-height: 28px;
-            margin-right: 165px;
+            margin-right: 120px;
         }
+		.lab2{
+			width: 69px;
+			height: 14px;
+			font-size: 14px;
+			font-family: PingFang SC;
+			font-weight: bold;
+			color: rgba(255,255,255,1);
+			line-height: 28px;
+			margin-right: 72px;
+		}
         .button-ss,.button-bf,.button-zt{
             width:86px!important;
             height:27px;
@@ -307,7 +317,7 @@
 	</style>
 </head>
 <body>
-
+<input type="hidden" id="ident" name="ident" value="${ident}">
 <ul id="myTab" class="nav nav-tabs">
 	<li ><a href="#SocialRelations" data-toggle="tab" onclick="showmap(2)">社会关系图谱</a></li>
 	<li ><a href="#roomPop" data-toggle="tab" onclick="showmap(2)">同住人员信息</a></li>
@@ -457,7 +467,7 @@
 
 	<div id="pubMap"></div>
 	<div id="mapMask" class="map" style="float:left;width: 600px"></div>
-	<div id="tablemap" style="">
+	<div id="tablemap" >
 		<%--<table class="table">
                 <li>
                     <span>姓名:</span>
@@ -477,19 +487,17 @@
 		<table class="table" style="width: 423px;height: 610px;position:absolute;float: right;margin-left: 573px;margin-top: -500px;" >
 			<tr>
 				<td style="position:absolute;width: 422px;height: 610px;margin-top: 10px">
-					<label class="lab1" style="margin-top:12px"><span > 姓名:</span>张三</label>
-					<label  class="lab2"><span >车牌号:</span> 津A12345</label>
+					<label class="lab1" style="margin-top:12px"><span > 姓名:</span ><span id="warpeoplename"></span></label>
+					<label  class="lab2"><span >车牌号:</span> <span id="warcarid"></span></label>
 					<br>
 					<li style="margin-top:12px"><label >开始日期：</label>
-						<input name="beginBirthday" type="text" maxlength="20" class="input-medium Wdate"
-							   value="<fmt:formatDate value="${ccmPeople.beginBirthday}" pattern="yyyy-MM-dd"/>"
+						<input name="beginBirthday" id="beginBirthday" type="text" maxlength="20" class="input-medium Wdate"
 							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> </li>
 					<li class=""><label >结束日期：</label>
-						<input name="endBirthday" type="text" maxlength="20" class="input-medium Wdate"
-							   value="<fmt:formatDate value="${ccmPeople.endBirthday}" pattern="yyyy-MM-dd"/>"
+						<input name="endBirthday" id="endBirthday" type="text" maxlength="20" class="input-medium Wdate"
 							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 					</li>
-					<li><input class="button-ss" type="button" value="搜索">
+					<li><input class="button-ss" type="button" onclick="getdata()" value="搜索">
 						<input class="button-bf" type="button" value="播放">
 						<input class="button-zt" type="button" value="暂停">
 					</li>
@@ -505,6 +513,54 @@
                             </div>
                         </div>
                     </li>
+					<li>
+						<div class="site-w">
+							<div class="site-x1" >
+								<img src="${ctxStatic}/images/dian.png"/>
+								<div class="site-x2"></div>
+							</div>
+							<div class="site-n">
+								<p class="site-p1"><span style="color: #FFFFFF">2020-01-05 07:23:37</span></p>
+								<p class="site-p2">厦门路与大营路</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="site-w">
+							<div class="site-x1" >
+								<img src="${ctxStatic}/images/dian.png"/>
+								<div class="site-x2"></div>
+							</div>
+							<div class="site-n">
+								<p class="site-p1"><span style="color: #FFFFFF">2020-01-05 07:22:44</span></p>
+								<p class="site-p2">厦门路与苏州路</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="site-w">
+							<div class="site-x1" >
+								<img src="${ctxStatic}/images/dian.png"/>
+								<div class="site-x2"></div>
+							</div>
+							<div class="site-n">
+								<p class="site-p1"><span style="color: #FFFFFF">2020-01-05 07:21:19</span></p>
+								<p class="site-p2">R厦门路与苏州路路口</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="site-w">
+							<div class="site-x1" >
+								<img src="${ctxStatic}/images/dian.png"/>
+								<div class="site-x2"></div>
+							</div>
+							<div class="site-n">
+								<p class="site-p1"><span style="color: #FFFFFF">2020-01-05 07:21:19</span></p>
+								<p class="site-p2">R厦门路与苏州路路口</p>
+							</div>
+						</div>
+					</li>
 				</td>
 			</tr>
 		</table>
@@ -514,6 +570,8 @@
 </div>
 <script>
 	$(function(){
+		$("#mapMask").attr("style","display:none;");
+		$("#tablemap").attr("style","display:none;");
 
 		var trafficJson=[
 			{
@@ -789,10 +847,6 @@
 			myChart.setOption(option);
 
 		})
-
-		$("#mapMask").attr("style","display:none;");
-		$("#tablemap").attr("style","display:none;");
-
 	})
 
 	function showmap(num) {
@@ -802,10 +856,49 @@
 		} else {
 			$("#mapMask").attr("style","display:block;");
 			$("#tablemap").attr("style","display:block;");
+			getdata();
 		}
 	}
 
+	function getdata() {
+		var ident = $("#ident").val();
+		var beginBirthday = $("#beginBirthday").val();
+		var endBirthday = $("#endBirthday").val();
+		beginDateNew = Date.parse(new Date(beginBirthday.replace(/-/g, "/")));
+		endDateNew = Date.parse(new Date(endBirthday.replace(/-/g, "/")));
+		var time = endDateNew - beginDateNew;
+		if (time < 0) {
+			$.jBox.tip('开始时间必须小于结束时间!');
+			return;
+		}
 
+		$.ajax({
+			type: "POST",
+			url: ctx + "/warning/ccmEarlyWarning/findListbyalarmDate",
+			data: {
+				idCard: ident,
+				beginDate: beginBirthday,
+				endDate: endBirthday,
+			},
+			dataType: "json",
+			cache: false,
+			async: true,
+			success: function (data) {
+				if (data.code == "200") {
+					if(data.data[0].name!="" && data.data[0].name!=undefined){
+						$("#warpeoplename").text(data.data[0].name);
+					}
+					if(data.data[0].carid!="" && data.data[0].carid!=undefined){
+						$("#warcarid").text(data.data[0].carid);
+					}
+
+
+				}
+			}, error: function () {
+
+			}
+		})
+	}
 
 </script>
 <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
