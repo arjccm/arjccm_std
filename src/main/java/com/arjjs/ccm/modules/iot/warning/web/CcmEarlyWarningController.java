@@ -385,4 +385,17 @@ public class CcmEarlyWarningController extends BaseController {
 		return map;
 	}
 
+
+	/**
+	 * 根据日期查询  人脸 车辆抓拍信息
+	 * @param ccmEarlyWarning
+	 * @return
+	 */
+	@RequestMapping(value = "findListbyalarmDate")
+	@ResponseBody
+	public List<CcmEarlyWarning> findListbyalarmDate(CcmEarlyWarning ccmEarlyWarning){
+		List<CcmEarlyWarning> reslist = ccmEarlyWarningService.findListbyalarmDate(ccmEarlyWarning);
+		return reslist;
+	};
+
 }
