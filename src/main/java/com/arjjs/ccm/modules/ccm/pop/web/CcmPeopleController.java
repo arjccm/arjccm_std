@@ -2124,6 +2124,7 @@ public class CcmPeopleController extends BaseController {
 			listRoomPeople = ccmPeopleService.getHousePopList(ccmPeople);
 		}
 		model.addAttribute("listRoomPeople", listRoomPeople);
+		model.addAttribute("ident", ccmPeople.getIdent());
 
 		return "ccm/pop/ccmPeopleSocialConnections";
 	}

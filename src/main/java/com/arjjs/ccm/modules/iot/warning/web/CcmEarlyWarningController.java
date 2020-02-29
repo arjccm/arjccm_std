@@ -11,6 +11,7 @@ import com.arjjs.ccm.modules.iot.warning.entity.CcmEarlyWarning;
 import com.arjjs.ccm.modules.iot.warning.service.CcmEarlyWarningService;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 
+import com.google.common.collect.Maps;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -391,11 +392,14 @@ public class CcmEarlyWarningController extends BaseController {
 	 * @param ccmEarlyWarning
 	 * @return
 	 */
-	@RequestMapping(value = "findListbyalarmDate")
+	@RequestMapping(value = "findListbyalarmDate",method = RequestMethod.POST)
 	@ResponseBody
-	public List<CcmEarlyWarning> findListbyalarmDate(CcmEarlyWarning ccmEarlyWarning){
+	public Map<String,Object> findListbyalarmDate(CcmEarlyWarning ccmEarlyWarning){
+		Map<String,Object> map = Maps.newHashMap();
 		List<CcmEarlyWarning> reslist = ccmEarlyWarningService.findListbyalarmDate(ccmEarlyWarning);
-		return reslist;
-	};
+		map.put("code","200");
+		map.put("data",reslist);
+		return map;
+	}
 
 }

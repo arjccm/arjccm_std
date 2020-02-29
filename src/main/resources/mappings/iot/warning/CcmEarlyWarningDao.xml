@@ -494,20 +494,21 @@
 		WHERE name LIKE #{name}
 	</select>
 
-	<select id="findListbyalarmDate">
+	<select id="findListbyalarmDate" resultType="CcmEarlyWarning">
 		SELECT
 		<include refid="ccmEarlyWarningColumns" />
 		FROM ccm_early_warning a
 		<include refid="ccmEarlyWarningJoins" />
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			AND a.id_card = #{idCard}
 			AND a.is_people = "1"
 			AND (a.alarm_type = "1" or a.alarm_type = "2")
 			<if test="beginDate != null and beginDate != ''">
-				AND a.alarm_date gt; #{beginDate}
+				AND a.alarm_date &gt; #{beginDate}
 			</if>
 			<if test="endDate != null and endDate != ''">
-				AND a.alarm_date lt; #{endDate}
+				AND a.alarm_date &lt; #{endDate}
 			</if>
 		</where>
 	</select>
