@@ -885,11 +885,13 @@
 			async: true,
 			success: function (data) {
 				if (data.code == "200") {
-					if(data.data[0].name!="" && data.data[0].name!=undefined){
-						$("#warpeoplename").text(data.data[0].name);
-					}
-					if(data.data[0].carid!="" && data.data[0].carid!=undefined){
-						$("#warcarid").text(data.data[0].carid);
+					if(data.data.length>0){
+						if(data.data[0].name!="" && data.data[0].name!=undefined){
+							$("#warpeoplename").text(data.data[0].name);
+						}
+						if(data.data[0].carid!="" && data.data[0].carid!=undefined){
+							$("#warcarid").text(data.data[0].carid);
+						}
 					}
 
 
