@@ -512,8 +512,22 @@ INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, 
 
 
 
+-- 从业人员场所 企业中间表 by yiqignxuan 2020-03-01
+DROP TABLE IF EXISTS `ccm_place_org_people`;
+CREATE TABLE `ccm_place_org_people`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `place_org_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '场所或企业id',
+  `people_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '人员id',
+  `type` bigint(2) NULL DEFAULT NULL COMMENT '1，场所2，企业',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 创建者 ',
+  `create_date` datetime(0) NULL DEFAULT NULL COMMENT ' 创建时间 ',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 更新者 ',
+  `update_date` datetime(0) NOT NULL COMMENT ' 更新时间 ',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT ' 备注信息 ',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-
+SET FOREIGN_KEY_CHECKS = 1;
 
 
 
