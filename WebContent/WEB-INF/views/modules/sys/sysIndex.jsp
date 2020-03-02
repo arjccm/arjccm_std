@@ -524,7 +524,7 @@ function addTab($this, refresh) {
 					</li> 
 					<li id="sysSwitch" class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="系统切换"><i class="icon-th-list"></i></a>
-						<ul class="dropdown-menu system-nav ">
+						<ul id="daohang" class="dropdown-menu system-nav ">
 						<c:set var="pid" value="${pid}" />
 						<c:set var="activeMenu" value="false" />
                           <c:forEach items="${fns:getMenuList()}" var="menu" varStatus="idxStatus">
