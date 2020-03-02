@@ -160,7 +160,7 @@
 		// alert(heightLi)
 		$(".gridster ul").gridster({
 			widget_margins: [8, 8],
-			widget_base_dimensions: [widthLi, heightLi]
+			widget_base_dimensions: [widthLi, heightLi],
 		});
 	});
 </script>

@@ -58,3 +58,29 @@
 }
 
 /*动画*/
+@keyframes headerAnimation {
+	from{
+		transform:translate(0px,-2.84vw);
+	}
+	to{
+		transform:translate(0px,0);
+	}
+}
+
+@keyframes navBasic_data_animation {
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+
+@keyframes content_animation {
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
