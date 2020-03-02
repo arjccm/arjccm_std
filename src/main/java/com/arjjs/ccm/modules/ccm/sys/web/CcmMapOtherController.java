@@ -2047,4 +2047,10 @@ public class CcmMapOtherController extends BaseController {
         return "modules/sys/index/antiepidemicCool";
     }
 
+
+    // 公安局数据可视化展现
+    @RequestMapping(value = "policeOfficeBI", method = RequestMethod.GET)
+    public String policeOfficeBI(Model model) {
+        return "policeOfficeBI/indexBI";
+    }
 }

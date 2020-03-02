@@ -1,0 +1,46 @@
+body{
+	background: #0c2030;
+}
+/* header */
+.header{
+	width: 100%;
+	height: 75px;
+	background: #027abc;
+}
+
+/* navBasic_data */
+.navBasic_data{
+	width: 100%;
+	height: 33px;
+	background: #666666;
+	margin-top: -33px;
+}
+
+/* container*/
+.container{
+	width: 100% !important;
+	padding: 0 5px;
+}
+.container_area{
+	width: 100%;
+	height: calc(100vh - 75px);
+}
+.container_area ul{
+	padding: 0;
+}
+
+
+
+
+
+
+
+/* .sizex_1{
+	background: #808080;
+} */
+/*.sizex_2{*/
+/*	background: #cccccc;*/
+/*}*/
+/*.sizemap{*/
+/*	background: #bbbbbb;*/
+/*}*/
