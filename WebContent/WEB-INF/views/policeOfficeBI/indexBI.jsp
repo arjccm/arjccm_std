@@ -55,13 +55,66 @@
 <body>
 <header class="header">
 	<div class="header_area">
-
+		<div class="header_title">XX市公安局XX镇派出所数据可视化展现</div>
+		<div class="header_information clearfix">
+			<div class="time">2020-02-20 12:33:44 周一</div>
+			<div class="personnel">今日值班民警：李小明，张露露</div>
+		</div>
 	</div>
 </header>
 <div class="navBasic_data">
-	<ul class="navBasic_data_area">
-		<li></li>
-	</ul>
+	<div class="navBasic_data_area clearfix">
+		<ul class="clearfix left_box">
+			<li class="clearfix">
+				<p>实有人口</p>
+				<p>345601</p>
+			</li>
+			<li class="clearfix">
+				<p>重点人员</p>
+				<p class="red_text">3456</p>
+			</li>
+			<li class="clearfix">
+				<p>实有房屋</p>
+				<p>34569</p>
+			</li>
+			<li class="clearfix">
+				<p>出租房</p>
+				<p>3456</p>
+			</li>
+			<li class="clearfix">
+				<p>实有单位</p>
+				<p>745</p>
+			</li>
+		</ul>
+
+
+		<ul class="clearfix right_box">
+			<li class="clearfix">
+				<p>警力人员</p>
+				<p>3456</p>
+			</li>
+			<li class="clearfix">
+				<p>警力设备</p>
+				<p>3456</p>
+			</li>
+			<li class="clearfix">
+				<p>视频监控</p>
+				<p class="red_text">340</p>
+			</li>
+			<li class="clearfix">
+				<p>本月警情</p>
+				<p class="red_text">888</p>
+			</li>
+			<li class="clearfix">
+				<p>人脸抓拍</p>
+				<p>3456</p>
+			</li>
+			<li class="clearfix">
+				<p>车辆抓拍</p>
+				<p>3456</p>
+			</li>
+		</ul>
+	</div>
 
 </div>
 <section>

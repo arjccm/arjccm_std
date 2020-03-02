@@ -2,7 +2,6 @@
 .gridster .box{
 	list-style-type: none;
 	border: 1px solid #216085;
-	overflow: hidden;
 }
 .gridster .box_header{
 	width: 100%;
@@ -57,3 +56,5 @@
 	width: 100%;
 	padding: 5px;
 }
+
+/*动画*/
