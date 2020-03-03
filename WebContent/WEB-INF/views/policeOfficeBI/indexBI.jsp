@@ -34,11 +34,11 @@
 	</script>
 
 
-	<script src="${ctxStatic}/d3/d3.v4.min.js"></script>
+<%--	<script src="${ctxStatic}/d3/d3.v4.min.js"></script>
 	<script src="${ctxStatic}/modules/map/js/mapconfig.js"></script>
 	<script src="${ctxStatic}/modules/map/js/commonMap.js"></script>
 	<script src="${ctxStatic}/mapv/mapv.min.js"></script>
-	<script src="${ctxStatic}/supermapopenlayers/iclient-openlayers.min.js"></script>
+	<script src="${ctxStatic}/supermapopenlayers/iclient-openlayers.min.js"></script>--%>
 	<script src="${ctxStatic}/common/index/Scripts/js/echarts.min.js"></script>
 	<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 	<script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
