@@ -44,7 +44,7 @@
 	<script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
 	<script src="${ctxStatic}/custom/date/date.js"></script>
 	<script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill.min.js"></script>
-	<script src="${ctxStatic}/policeOfficeBI/js/jquery.gridster2.min.js"></script>
+	<script src="${ctxStatic}/policeOfficeBI/js/jquery.gridster.min.js"></script>
 
 	<style type="text/css">
 
