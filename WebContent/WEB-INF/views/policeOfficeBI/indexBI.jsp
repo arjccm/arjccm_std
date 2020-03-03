@@ -126,12 +126,12 @@
 				</li>
 				<li class="box sizex_1" data-row="1" data-col="2" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizemap" data-row="1" data-col="3" data-sizex="3" data-sizey="3"></li>
-				<li class="box sizex_1" data-row="1" data-col="4" data-sizex="1" data-sizey="1"></li>
-				<li class="box sizex_2" data-row="1" data-col="6" data-sizex="2" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="1" data-col="4" data-sizex="2" data-sizey="1"></li>
+				<li class="box sizex_2" data-row="1" data-col="6" data-sizex="1" data-sizey="1"></li>
 
 				<li class="box sizex_2" data-row="2" data-col="1" data-sizex="2" data-sizey="1"></li>
-				<li class="box sizex_1" data-row="2" data-col="2" data-sizex="1" data-sizey="1"></li>
-				<li class="box sizex_2" data-row="2" data-col="3" data-sizex="2" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="2" data-col="2" data-sizex="2" data-sizey="1"></li>
+				<li class="box sizex_2" data-row="2" data-col="3" data-sizex="1" data-sizey="1"></li>
 
 				<li class="box sizex_1" data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="3" data-col="2" data-sizex="1" data-sizey="1"></li>
