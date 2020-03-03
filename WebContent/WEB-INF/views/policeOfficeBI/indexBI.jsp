@@ -154,14 +154,17 @@
 
 
 <script>
+	var gridster;
 	$(function() {
 		var widthLi = $(".gridster").width()/8-16;
 		var heightLi = $(".gridster").height()/4-16;
 		// alert(heightLi)
-		$(".gridster ul").gridster({
+		gridster = $(".gridster ul").gridster({
 			widget_margins: [8, 8],
 			widget_base_dimensions: [widthLi, heightLi],
-		});
+		}).data('gridster');
+		gridster.disable();
+
 	});
 </script>
 </body>
