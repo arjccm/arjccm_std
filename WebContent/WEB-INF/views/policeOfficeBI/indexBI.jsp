@@ -42,17 +42,37 @@
 	<script src="${ctxStatic}/common/index/Scripts/js/echarts.min.js"></script>
 	<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 	<script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
+
 	<script src="${ctxStatic}/custom/date/date.js"></script>
 	<script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill.min.js"></script>
 	<script src="${ctxStatic}/policeOfficeBI/js/jquery.gridster.min.js"></script>
-	<script src="${ctxStatic}/policeOfficeBI/js/indexBI.js"></script>
+	<%--<script src="${ctxStatic}/policeOfficeBI/js/indexBI.js"></script>--%>
 
 	<style type="text/css">
 
 	</style>
 
 </head>
+<script>
+	var gridster;
+	$(function() {
+		var widthLi = $(".gridster").width()/8-16;
+		var heightLi = $(".gridster").height()/4-16;
+		// alert(heightLi)
+		gridster = $(".gridster ul").gridster({
+			widget_margins: [8, 8],
+			widget_base_dimensions: [widthLi, heightLi],
+		}).data('gridster');
+		gridster.disable();
 
+		var box_content = $(".box_content");
+		var box_header_height =10;
+		var box_content_height = box_content.height();
+		var gridster_li = $(".gridster li").height()
+		box_content.height(gridster_li-box_header_height)
+
+	});
+</script>
 <body>
 <header class="header">
 	<div class="header_area">
@@ -140,7 +160,9 @@
 
 				<li class="box sizex_1" data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="3" data-col="2" data-sizex="1" data-sizey="1"></li>
-				<li class="box sizex_1" data-row="3" data-col="3" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="3" data-col="3" data-sizex="1" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/disputeDefuse.jsp" %>
+				</li>
 				<li class="box sizex_1" data-row="3" data-col="4" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="3" data-col="5" data-sizex="1" data-sizey="1"></li>
 
@@ -158,20 +180,8 @@
 </section>
 
 
-<script>
-	var gridster;
-	$(function() {
-		var widthLi = $(".gridster").width()/8-16;
-		var heightLi = $(".gridster").height()/4-16;
-		// alert(heightLi)
-		gridster = $(".gridster ul").gridster({
-			widget_margins: [8, 8],
-			widget_base_dimensions: [widthLi, heightLi],
-		}).data('gridster');
-		gridster.disable();
 
-	});
-</script>
+
 </body>
 
 </html>
