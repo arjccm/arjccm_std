@@ -45,6 +45,7 @@
 	<script src="${ctxStatic}/custom/date/date.js"></script>
 	<script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill.min.js"></script>
 	<script src="${ctxStatic}/policeOfficeBI/js/jquery.gridster.min.js"></script>
+	<script src="${ctxStatic}/policeOfficeBI/js/indexBI.js"></script>
 
 	<style type="text/css">
 
@@ -122,14 +123,16 @@
 		<div class="gridster container_area">
 			<ul>
 				<li class="box sizex_1" data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/modular_01.jsp" %>
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/population_confluence.jsp" %>
 				</li>
 				<li class="box sizex_1" data-row="1" data-col="2" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizemap" data-row="1" data-col="3" data-sizex="3" data-sizey="3">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/policeOfficeBI_map.jsp" %>
 				</li>
 				<li class="box sizex_1" data-row="1" data-col="4" data-sizex="2" data-sizey="1"></li>
-				<li class="box sizex_2" data-row="1" data-col="6" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_2" data-row="1" data-col="6" data-sizex="1" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/beonduty.jsp" %>
+				</li>
 
 				<li class="box sizex_2" data-row="2" data-col="1" data-sizex="2" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="2" data-col="2" data-sizex="2" data-sizey="1"></li>

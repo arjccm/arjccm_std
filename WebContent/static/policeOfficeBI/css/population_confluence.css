@@ -1,0 +1,28 @@
+/*  实有人口数据总汇  */
+.population_box{
+	width: 100%;
+	margin-top: 1.46vh;
+}
+.population_box .pop_list{
+	width: 33%;
+	height: 4.26vw;
+	float: left;
+	background: url("../img/population_bg_01.png") no-repeat center;
+	background-size: 100% 100%;
+}
+.population_box .pop_list:nth-of-type(1), .population_box .pop_list:nth-of-type(3){
+	margin-top: 1.66vw;
+}
+.population_box .pop_num{
+	color: #FFCF3F;
+	font-size: 0.65vw;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 0.944vw;
+}
+.population_box .pop_tit{
+	color: #FFFFFF;
+	font-size: 0.39vw;
+	text-align: center;
+}
+
