@@ -1,7 +1,7 @@
 /*  实有人口数据总汇  */
 .population_box{
 	width: 100%;
-	margin-top: 1.46vh;
+	/*margin-top: 1.46vh;*/
 }
 .population_box .pop_list{
 	width: 33%;

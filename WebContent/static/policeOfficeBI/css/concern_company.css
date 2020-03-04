@@ -1,11 +1,10 @@
 /*  重点关注单位  */
 .concerncompany_box{
 	width: 100%;
-	height: 100%;
 	font-size: 0.586vw;
 }
 .dw_list_box{
-	padding: 3.73% 0;
+	padding: 3% 0;
 }
 .dw_list_box .title{
 	color: #FFFFFF;

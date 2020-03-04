@@ -14,29 +14,39 @@
 	<div class="box_content">
 		<div class="jqqyfb_box">
 			<div class="region1 region_sl">
-				<p>区域1</p>
-				<p>378件</p>
-				<p>NO.1</p>
+				<div class="jq_data">
+					<p>区域1</p>
+					<p>378件</p>
+					<p>NO.1</p>
+				</div>
 			</div>
 			<div class="region2 region_sl">
-				<p>区域1</p>
-				<p>378件</p>
-				<p>NO.1</p>
+				<div class="jq_data">
+					<p>区域1</p>
+					<p>378件</p>
+					<p>NO.1</p>
+				</div>
 			</div>
 			<div class="region3 region_sl">
-				<p>区域1</p>
-				<p>378件</p>
-				<p>NO.1</p>
+				<div class="jq_data">
+					<p>区域1</p>
+					<p>378件</p>
+					<p>NO.1</p>
+				</div>
 			</div>
 			<div class="region4 region_sl">
-				<p>区域1</p>
-				<p>378件</p>
-				<p>NO.1</p>
+				<div class="jq_data">
+					<p>区域1</p>
+					<p>378件</p>
+					<p>NO.1</p>
+				</div>
 			</div>
 			<div class="region5 region_sl">
-				<p>区域1</p>
-				<p>378件</p>
-				<p>NO.1</p>
+				<div class="jq_data">
+					<p>区域1</p>
+					<p>378件</p>
+					<p>NO.1</p>
+				</div>
 			</div>
 		</div>
 	</div>
