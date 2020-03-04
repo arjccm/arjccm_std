@@ -32,15 +32,15 @@
 					 var id=$(dome).attr('attrId');
 					 var val=$(dome).attr("data");
 					 $.post('${ctx}/scheme/kpiSchemeSubjectivity/saveList/', {
-					    	"user.id": id, 
-					    	"remarks": val, 
+					    	"user.id": id,
+					    	"remarks": val,
 					    	"kpiId":kid,
 					    }, function(data) {
-					    
+
 					    });
 				})
 				top.$.jBox.tip('保存成功！ ');
-				var index = parent.layer.getFrameIndex(window.name); 
+				var index = parent.layer.getFrameIndex(window.name);
 				parent.layer.close(index);
 			}else if(state=="1"){
 				top.$.jBox.tip('它的方案状态为发布状态，不可编辑！ ');
@@ -53,7 +53,36 @@
 			var remarks = encodeURI($('#'+remarksId).attr("data"));
 			top.$.jBox.tip('正在打开！ ');
 			top.LayerDialog1('remarksAddId','${ctx}/scheme/kpiSchemeSubjectivity/remarksAdd?id='+id+'&remarks='+remarks, name+'的考评关系', '1000px', '650px')
-				
+
+		}
+		function choseText(_this){
+			$(".remarks").each(function(){
+				$(this).removeClass();
+				$(this).attr('class','input-xlarge remarks noactive');
+			});
+			$(_this).children().removeClass();
+			$(_this).children().attr('class','input-xlarge remarks isactive');
+		}
+		function chanceAllText(){
+			var val = "";
+			var data = "";
+			if($(".isactive").length==0){
+				alert("请选择同步项！");
+			}else{
+				$(".isactive").each(function(){
+					val = $(this).val();
+					data = $(this).attr('data');
+				});
+				if(val==""){
+					alert("请添加同步内容！");
+				}else{
+					$(".noactive").each(function(){
+						$(this).remove('data');
+						$(this).attr('data',data);
+						$(this).val(val);
+					});
+				}
+			}
 		}
 	</script>
 </head>
@@ -69,7 +98,8 @@
 	KPI分数：<span style="color: red">${kpiSchemeKpi.score}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</span>
 	<c:if test="${not empty schemeUserLst}">
-		<input id="" style="width:100px!important;margin: 5px 5px" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存 全 部"/>
+		<input id="" style="width:100px!important;margin: 5px 5px" class="btn btn-primary" onclick="saveForm()" type="button" value="保存全部"/>
+		<input id="" style="width:50px!important;margin: 5px 5px" class="btn btn-primary" onclick="chanceAllText()" type="button" value="同步"/>
 	</c:if>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
@@ -90,13 +120,13 @@
 				<td>
 					${kpiFinalScore.user.name}<!--${kpiFinalScore.kpiId}${kpiFinalScore.user.id}${kpiFinalScore.remarks}-->
 				</td>
-				<td width="40%">
-					<textarea rows="3" style="width: 95%" id="remarks${kpiFinalScore.user.id}"  attrId="${kpiFinalScore.user.id}" class="input-xlarge remarks" disabled="true" data="${kpiFinalScore.remarks}">${kpiFinalScore.remarks}</textarea>
+				<td width="40%" onclick="choseText(this)">
+					<textarea rows="3" style="width: 95%" id="remarks${kpiFinalScore.user.id}"  attrId="${kpiFinalScore.user.id}" disabled="true" class="input-xlarge remarks" data="${kpiFinalScore.remarks}">${kpiFinalScore.remarks}</textarea>
 				</td>
 				<td width="20%">
     				<a class="btnList" onclick="remarksAdd('remarks${kpiFinalScore.user.id}','${kpiFinalScore.user.name}')"><i class="icon-plus"></i></a>
 				</td>
-				
+
 			</tr>
 		</c:forEach>
 		<c:if test="${not empty schemeUserLst}">

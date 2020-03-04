@@ -90,8 +90,8 @@
 		    <div class="span8 kpi-bg" >
 				<!-- <h4 class="padding-style">详情</h4> -->
 				<div style="height:650px;overflow: hidden;width:100%">
-					<div class="index-style2" id="index-details" style="margin-left:5%;width:88%;height:100%;overflow: auto"> 
-						
+					<div class="index-style2" id="index-details" style="margin-left:5%;width:88%;height:100%;overflow: auto">
+
 				<iframe id="indexDetailsIframe" name="indexDetailsIframe" src="${ctx}/scheme/kpiScheme/formDap"
 				<%--<iframe id="indexDetailsIframe" name="indexDetailsIframe" src="${ctx}/scheme/kpiScheme/formDap?id=f6e70eca9d8148dbb27a399ecca2e167"--%>
 						 style="overflow: visible;" scrolling="yes" frameborder="no" 	width="100%" height="90%" allowfullscreen="true" allowtransparency="true"></iframe>
@@ -99,8 +99,8 @@
 				</div>
 			</div>
 	    </div>
-	    
-	    
+
+
 	    <!-- 右键菜单 -->
 	    <div id="rMenu">
 			<ul>
@@ -122,7 +122,7 @@
 						"pId":treeData[i].typeO,
 						"name":treeData[i].value,
 						"icon":treeData[i].typeO=="0"?ctxStatic+"/kpi/images/scheme_fangan.png":ctxStatic+"/kpi/images/scheme_kpi.png"
-						
+
 					})
 				}
 			}

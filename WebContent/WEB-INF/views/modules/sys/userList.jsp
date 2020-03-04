@@ -69,7 +69,7 @@
 			<input id="btnImportTemplate"
 				   class="btn btn-primary"  type="button" value="模板下载 " onclick="location.href='${ctxStatic}/template/excel/userTemplate.xlsx'"/>
 			<input id="btnImportSubmit"
-				class="btn btn-primary" type="submit" onclick="saveImport()" value="   导    入   " />
+				class="btn btn-primary" type="button" onclick="saveImport()" value="   导    入   " />
 <%--			<a href="${ctx}/sys/user/import/template">下载模板</a>--%>
 		</form>
 	</div>
