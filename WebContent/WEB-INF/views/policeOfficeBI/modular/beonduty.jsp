@@ -15,63 +15,63 @@
 		<div class="beonduty_box">
 			<table>
 				<tr>
-					<th></th>
-					<th>一</th>
-					<th>二</th>
-					<th>三</th>
-					<th>四</th>
-					<th>五</th>
-					<th>六</th>
-					<th>日</th>
+					<th class="tb_hd" width="16%"></th>
+					<th class="tb_hd" width="12%">一</th>
+					<th class="tb_hd" width="12%">二</th>
+					<th class="tb_hd" width="12%">三</th>
+					<th class="tb_hd" width="12%">四</th>
+					<th class="tb_hd" width="12%">五</th>
+					<th class="tb_hd" width="12%">六</th>
+					<th class="tb_hd" width="12%">日</th>
 				</tr>
 				<tr>
-					<th>李雷雷</th>
+					<th class="name">李雷雷</th>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_01.png"></td>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_01.png"></td>
 				</tr>
 				<tr>
-					<th>张露</th>
+					<th class="name">张&#12288露</th>
 					<td></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_02.png"></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_02.png"></td>
 					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<th>杨光</th>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_02.png"></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<th>赵小明</th>
+					<th class="name">杨&#12288光</th>
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_03.png"></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_03.png"></td>
 					<td></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<th>孙勇</th>
+					<th class="name">赵小明</th>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_04.png"></td>
+					<td></td>
+					<td></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_04.png"></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_04.png"></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th class="name">孙&#12288勇</th>
+					<td></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_05.png"></td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><img src="${ctxStatic}/policeOfficeBI/img/icon_seal_05.png"></td>
 					<td></td>
 				</tr>
 			</table>

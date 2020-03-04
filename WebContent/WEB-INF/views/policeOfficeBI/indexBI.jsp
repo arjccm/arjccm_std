@@ -69,7 +69,7 @@
 		var box_header_height =10;
 		var box_content_height = box_content.height();
 		var gridster_li = $(".gridster li").height()
-		box_content.height(gridster_li-box_header_height)
+		box_content.height(gridster_li-box_header_height-10)
 
 	});
 </script>
@@ -159,21 +159,29 @@
 				<li class="box sizex_2" data-row="2" data-col="3" data-sizex="1" data-sizey="1"></li>
 
 				<li class="box sizex_1" data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
-				<li class="box sizex_1" data-row="3" data-col="2" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="3" data-col="2" data-sizex="1" data-sizey="1">
+                    <%@ include file="/WEB-INF/views/policeOfficeBI/modular/key_personnel_data.jsp" %>
+                </li>
 				<li class="box sizex_1" data-row="3" data-col="3" data-sizex="1" data-sizey="1">
-					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/disputeDefuse.jsp" %>
+<%--					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/disputeDefuse.jsp" %>--%>
 				</li>
 				<li class="box sizex_1" data-row="3" data-col="4" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="3" data-col="5" data-sizex="1" data-sizey="1"></li>
 
-				<li class="box sizex_1" data-row="4" data-col="1" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="4" data-col="1" data-sizex="1" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/concern_company.jsp" %>
+				</li>
 				<li class="box sizex_1" data-row="4" data-col="2" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="4" data-col="3" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="4" data-col="4" data-sizex="1" data-sizey="1"></li>
-				<li class="box sizex_1" data-row="4" data-col="5" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="4" data-col="5" data-sizex="1" data-sizey="1">
+                    <%@ include file="/WEB-INF/views/policeOfficeBI/modular/alarm_data.jsp" %>
+                </li>
 				<li class="box sizex_1" data-row="4" data-col="6" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="4" data-col="7" data-sizex="1" data-sizey="1"></li>
-				<li class="box sizex_1" data-row="4" data-col="8" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="4" data-col="8" data-sizex="1" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/jq_areal_distribution.jsp" %>
+				</li>
 			</ul>
 		</div>
 	</div>

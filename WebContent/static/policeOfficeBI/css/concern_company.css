@@ -1,0 +1,51 @@
+/*  重点关注单位  */
+.concerncompany_box{
+	width: 100%;
+	height: 100%;
+	font-size: 0.586vw;
+}
+.dw_list_box{
+	padding: 3.73% 0;
+}
+.dw_list_box .title{
+	color: #FFFFFF;
+	float: left;
+	text-align: center;
+	width: 20%;
+}
+.dw_list_box .dwul{
+	float: right;
+	width: 80%;
+}
+.dw_list_box .dwul .line{
+	width: 1px;
+	height: 27px;
+	background: url("../img/icon_line_01.png")no-repeat center;
+	float: left;
+}
+.dw_list_box .dwli{
+	float: left;
+}
+.dw_list_box .dwli p{
+	margin: 0;
+	text-align: center;
+}
+.dw_list_box .dwli p:nth-of-type(1){
+	color: #ffcf3f;
+}
+.dw_list_box .dwli p:nth-of-type(2){
+	color: #03f8f6;
+}
+
+
+.dw_list_box .two_column .dwli{
+	width: calc(50% - 1px);
+}
+.dw_list_box .three_column .dwli{
+	width: calc(33.3% - 1px);
+}
+.dw_list_box .four_column .dwli{
+	width:calc(25% - 1px);
+}
+
+

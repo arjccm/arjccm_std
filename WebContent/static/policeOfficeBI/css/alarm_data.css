@@ -1,0 +1,33 @@
+/*  今日110警情数据  */
+.alarmdata_box{
+	width: 100%;
+}
+.alarmdata_box table{
+	width: 100%;
+	border: 1px solid #07537A;
+}
+.alarmdata_box table tr:nth-of-type(odd){
+	background: #09304d;
+	opacity: 0.9;
+}
+.alarmdata_box table .tb_hd{
+	font-size: 0.455vw;
+	color: #ffffff;
+	text-align: center;
+	line-height: 36px;
+	background: #07537A;
+}
+.alarmdata_box table td{
+	font-size: 0.39vw;
+	color: #ffffff;
+	opacity: 0.6;
+	text-align: center;
+	line-height: 32px;
+	border-bottom: 1px solid #0D70A1;
+}
+.alarmdata_box table tr.selected td{
+	color: #FF5313;
+	opacity: 1;
+}
+
+
