@@ -12,7 +12,7 @@
 <script
 	src="${ctxStatic}/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.js"
 	type="text/javascript"></script>
-	
+
 <style>
 .selects-tr.active{
 cursor: pointer;
@@ -34,7 +34,7 @@ cursor: pointer;
       select option{
       line-height: 20px!important;
       }
-  
+
       select:FOCUS{
         outline: none;
       }
@@ -56,9 +56,9 @@ cursor: pointer;
       #selectsTbody td input{
       margin-bottom: 2px;
       }
-     
- </style>	
-	
+
+ </style>
+
 <script type="text/javascript">
 	function page(n, s) {
 		$("#pageNo").val(n);
@@ -169,12 +169,12 @@ cursor: pointer;
 	}
 	var remarks = "${remarks}";
 		$(function() {
-			
+
 			refreshTree();
-			
+
 			var html = "";
 					if(remarks!=""){
-						var ls = new Array();						
+						var ls = new Array();
 						ls = remarks.split(";");
 						for(var i=0;i<ls.length-1;i++){
 							var lss = new Array();
@@ -183,12 +183,12 @@ cursor: pointer;
 							html += '<td width="50%" style="word-break:break-all;word-wrap:break-word;" class="val-td" data='+lss[0]+','+lss[1]+'>'+lss[1]+'</td>';
 							html += '<td width="50%" valign="middle"><input type="text" value="'+lss[2]+'" class="input-mini val-input"></td>';
 							html += '</tr>';
-							
+
 							var choose_sel = document.getElementById("choose_sel");
 							var s = choose_sel.options.length;
 							choose_sel.options[s++] = new Option(lss[0]+','+lss[1], lss[0]);
 
-							
+
 						}
 					}
 			$("#selectsTbody").html(html);
@@ -210,7 +210,7 @@ cursor: pointer;
 					  	html += '<tr id="'+brand_options[i].value+'" class="selects-tr" onclick="CheckActive(this)" ondblclick="returnCheckActive();">';
 						html += '<td width="50%" style="word-break:break-all;word-wrap:break-word;" class="val-td" data='+brand_options[i].value+','+brand_options[i].text+'>'+brand_options[i].text+ '</td>';
 						html += '<td width="50%"><input type="text" value="0" class="input-mini val-input"></td>';
-						html += '</tr>'; 
+						html += '</tr>';
 					}else{
 						top.$.jBox.tip(brand_options[i].text+'已存在，请勿重复添加')
 					}
@@ -229,7 +229,7 @@ cursor: pointer;
 					}
 				})
 			})
-					
+
 		/* 	$("#choose_sel>option").each(function() {
 					var option = $(this);
 					if (option[0].selected) {
@@ -275,7 +275,7 @@ cursor: pointer;
 				$(_this).addClass('active')
 			}
 	    },200);
-		
+
 	}
 	function returnCheckActive(){
 		 // 取消上次延时未执行的方法
@@ -299,12 +299,12 @@ cursor: pointer;
 			var frame = parent.document.getElementById("relationshipId").getElementsByTagName("iframe")[0].contentWindow;
 			frame.document.getElementById(id).value=valData1;
 			frame.document.getElementById(id).setAttribute("data", valData);
-			var index = parent.layer.getFrameIndex(window.name); 
+			var index = parent.layer.getFrameIndex(window.name);
 			parent.layer.close(index);
 		}else{
 			top.$.jBox.tip('权重和应该为1 ');
 		}
-		
+
 	}
 </script>
 </body>
