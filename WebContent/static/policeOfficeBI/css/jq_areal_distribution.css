@@ -1,0 +1,67 @@
+/*  警情区域分布TOP5  */
+.jqqyfb_box{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.jqqyfb_box .region1{
+	width: 3.55vw;
+	height: 3.55vw;
+	background: url("../img/circular_bg_yellow.png") no-repeat;
+	top: 6.8vh;
+	left: 4.26vw;
+}
+.jqqyfb_box .region2{
+	width: 3.22vw;
+	height: 3.22vw;
+	background: url("../img/circular_bg_orange.png") no-repeat;
+	top: 3.61vh;
+	left: 1.17vw;
+}
+.jqqyfb_box .region3{
+	width: 2.865vw;
+	height: 2.865vw;
+	background: url("../img/circular_bg_purple.png") no-repeat;
+	top: 13.18vh;
+	left: 1.69vw;
+}
+.jqqyfb_box .region4{
+	width: 2.6vw;
+	height: 2.6vw;
+	background: url("../img/circular_bg_young.png") no-repeat;
+	top: 12.3vh;
+	left: 7.62vw;
+}
+.jqqyfb_box .region5{
+	width: 2.38vw;
+	height: 2.38vw;
+	background: url("../img/circular_bg_blue.png") no-repeat;
+	top: 3.9vh;
+	left: 7.45vw;
+}
+.jqqyfb_box .region_sl{
+	background-size: 100% 100%;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.jqqyfb_box .region_sl p{
+	margin: 0;
+	text-align: center;
+	color: #FFFFFF;
+}
+.jqqyfb_box .region_sl p:nth-of-type(1){
+	font-size: 0.39vw;
+}
+.jqqyfb_box .region_sl p:nth-of-type(2){
+	font-size: 0.456vw;
+}
+.jqqyfb_box .region_sl p:nth-of-type(3){
+	font-size: 0.39vw;
+	opacity: 0.6;
+}
+
+
+

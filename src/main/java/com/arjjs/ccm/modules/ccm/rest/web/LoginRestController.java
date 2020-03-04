@@ -221,7 +221,7 @@ public class LoginRestController extends BaseController{
 			}
 			return "redirect:" + adminPath + "/login";
 		}
-		
+
 		return "modules/sys/sysIndex";
 	}
 	

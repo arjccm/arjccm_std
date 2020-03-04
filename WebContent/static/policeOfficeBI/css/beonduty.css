@@ -1,0 +1,36 @@
+/*  本周值班计划  */
+.beonduty_box{
+	width: 100%;
+}
+.beonduty_box table{
+	width: 100%;
+	border: 1px solid #07537A;
+}
+.beonduty_box table td, .beonduty_box table th{
+	border-bottom: 1px solid #07537A;
+	border-right: 1px solid #07537A;
+	padding: 0.3vh 0;
+	text-align: center;
+}
+.beonduty_box table td:last-child{
+	border-right: none;
+}
+.beonduty_box table .tb_hd{
+	color: #ffffff;
+	font-size: 0.391vw;
+	background: #07537A;
+	text-align: center;
+	padding: 1vh 0;
+}
+.beonduty_box table .name{
+	color: #ffffff;
+	font-size: 0.391vw;
+	/*overflow: hidden;*/
+	white-space:nowrap;
+	text-align: center;
+}
+.beonduty_box table td img{
+	width: 80%;
+}
+
+

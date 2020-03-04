@@ -1,29 +1,117 @@
 body{
-	background: #0c2030;
+	background: url("../img/common/index_bg.jpg") no-repeat center;
+	background-size: cover;
 }
 /* header */
 .header{
 	width: 100%;
-	height: 75px;
-	background: #027abc;
+	height: 2.84vw;
+	overflow: hidden;
+	animation:headerAnimation 0.5s;
+}
+.header_area{
+	width: 100%;
+	height: 2.84vw;
+	background: url("../img/common/header_bg.png") no-repeat center;
+	background-size: cover;
+}
+.header .header_title{
+	width: 100%;
+	text-align: center;
+	font-size: 1.237vw;
+	color: #FFFFFF;
+	line-height: 2.44vw;
+	font-weight: bold;
+
+	/*background: linear-gradient(to bottom, #FFFFFF, #b7bac1);*/
+	/*-webkit-background-clip: text;*/
+	/*color: transparent;*/
+	/*-webkit-text-fill-color: transparent;*/
+	/*text-fill-color: transparent;*/
+
+}
+.header_information{
+	height: 1.236vw;
+	position: absolute;
+	top: 0;
+	right: 20px;
+	z-index: 999;
+}
+.header_information .time, .header_information .personnel{
+	font-size: 0.586vw;
+	line-height: 1.236vw;
+	float: left;
+	color: #FFFFFF;
+	padding: 0 20px;
 }
 
 /* navBasic_data */
 .navBasic_data{
 	width: 100%;
-	height: 33px;
-	background: #666666;
-	margin-top: -33px;
+	height: 24px;
+	/*background: #666666;*/
+	margin-top: -24px;
+	opacity: 0;
+	animation: navBasic_data_animation 0.5s;
+	animation-delay: 0.5s;
+	animation-fill-mode:forwards;
+}
+.navBasic_data_area{
+	padding: 0 16px;
+}
+.navBasic_data .left_box{
+	float: left;
+}
+.navBasic_data .left_box li{
+	margin-right: 1.3vw;
+}
+.navBasic_data .right_box{
+	float: right;
+}
+.navBasic_data .right_box li{
+	margin-left: 0.2vw;
+}
+.navBasic_data ul{
+	padding: 0;
+}
+.navBasic_data ul li{
+	width: 5.69vw;
+	height: 1.3vw;
+	background: url("../img/common/navBasic_bg.png") no-repeat center;
+	background-size: cover;
+	list-style-type: none;
+	float: left;
+}
+.navBasic_data ul li p:first-child{
+	width: 50%;
+	font-size: 0.488vw;
+	float: left;
+	color: #00fffc;
+	text-align: center;
+}
+.navBasic_data ul li p:last-child{
+	width: 50%;
+	font-size: 0.488vw;
+	float: right;
+	color: #ffcf3f;
+	text-align: center;
+}
+.navBasic_data .red_text{
+	color: #ff5313 !important;
 }
 
 /* container*/
 .container{
 	width: 100% !important;
 	padding: 0 5px;
+	opacity: 0;
+	animation: content_animation 0.5s;
+	animation-delay: 1s;
+	animation-fill-mode:forwards;
 }
 .container_area{
 	width: 100%;
-	height: calc(100vh - 75px);
+	height: calc(100vh - 2.84vw);
 }
 .container_area ul{
 	padding: 0;
