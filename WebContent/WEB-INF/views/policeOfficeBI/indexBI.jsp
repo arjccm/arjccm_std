@@ -149,13 +149,18 @@
 				<li class="box sizemap" data-row="1" data-col="3" data-sizex="3" data-sizey="3">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/policeOfficeBI_map.jsp" %>
 				</li>
-				<li class="box sizex_1" data-row="1" data-col="4" data-sizex="2" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="1" data-col="4" data-sizex="2" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/PoliceForceDistribution.jsp" %>
+				</li>
 				<li class="box sizex_2" data-row="1" data-col="6" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/beonduty.jsp" %>
 				</li>
 
 				<li class="box sizex_2" data-row="2" data-col="1" data-sizex="2" data-sizey="1"></li>
-				<li class="box sizex_1" data-row="2" data-col="2" data-sizex="2" data-sizey="1"></li>
+
+				<li class="box sizex_1" data-row="2" data-col="2" data-sizex="2" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/PoliceEquipmentMonitorsDistribution.jsp" %>
+				</li>
 				<li class="box sizex_2" data-row="2" data-col="3" data-sizex="1" data-sizey="1"></li>
 
 				<li class="box sizex_1" data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
@@ -178,7 +183,9 @@
                     <%@ include file="/WEB-INF/views/policeOfficeBI/modular/alarm_data.jsp" %>
                 </li>
 				<li class="box sizex_1" data-row="4" data-col="6" data-sizex="1" data-sizey="1"></li>
-				<li class="box sizex_1" data-row="4" data-col="7" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="4" data-col="7" data-sizex="1" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/PoliceDigest.jsp" %>
+				</li>
 				<li class="box sizex_1" data-row="4" data-col="8" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/jq_areal_distribution.jsp" %>
 				</li>
