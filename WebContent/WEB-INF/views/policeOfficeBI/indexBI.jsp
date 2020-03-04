@@ -166,7 +166,9 @@
 <%--					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/disputeDefuse.jsp" %>--%>
 				</li>
 				<li class="box sizex_1" data-row="3" data-col="4" data-sizex="1" data-sizey="1"></li>
-				<li class="box sizex_1" data-row="3" data-col="5" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="3" data-col="5" data-sizex="1" data-sizey="1">
+                    <%@ include file="/WEB-INF/views/policeOfficeBI/modular/videoSurveillance.jsp" %>
+                </li>
 
 				<li class="box sizex_1" data-row="4" data-col="1" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/concern_company.jsp" %>
@@ -174,6 +176,10 @@
 				<li class="box sizex_1" data-row="4" data-col="2" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="4" data-col="3" data-sizex="1" data-sizey="1"></li>
 				<li class="box sizex_1" data-row="4" data-col="4" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="4" data-col="5" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="4" data-col="6" data-sizex="1" data-sizey="1">
+                    <%@ include file="/WEB-INF/views/policeOfficeBI/modular/policeSentiment.jsp" %>
+                </li>
 				<li class="box sizex_1" data-row="4" data-col="5" data-sizex="1" data-sizey="1">
                     <%@ include file="/WEB-INF/views/policeOfficeBI/modular/alarm_data.jsp" %>
                 </li>
