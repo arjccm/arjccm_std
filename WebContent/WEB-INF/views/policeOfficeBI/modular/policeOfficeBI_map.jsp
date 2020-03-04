@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <style>
-
+.map{
+	width: 742.25px;
+	height: 660px;
+	position: relative;
+}
 </style>
 
 <script src="${ctxStatic}/ol/ol.js"></script>
@@ -11,20 +15,9 @@
 <script src="${ctxStatic}/supermapopenlayers/iclient-openlayers.min.js"></script>
 
 <section>
-	<%--<div class="box_header">
-		<div class="box_header_title">
-			<div class="left_bg"></div>
-			<p>实有人口数据总汇</p>
-			<div class="right_bg"></div>
-		</div>
-		<div class="box_bg_01">
-			<div class="box_bg_02"></div>
-		</div>
-	</div>--%>
-	<div class="box_content">
-		123456
 
-
+	<div >
+		<input type="button" value="按钮" style="background-color: #0bbbee" onclick="getKeyPeopleNum()">
 	</div>
 
 	<div id="pubMap"></div>
@@ -86,7 +79,7 @@
 		//街道画线
 		// lightLine();
 		//初始化网格
-		// initorgAreaMap();
+		initorgAreaMap();
 
 		$('#main').height($(window).height());
 		$('.height100').height($('#main').height() - 70);
@@ -284,72 +277,10 @@
 		}
 	})
 
-	//框选查询
-	function boxSelectionDevice(data, type) {
-		var url = "";
-		if (type == "circle") {
-			url = ctx + '/sys/map/showSelect?x=' + data.centerX + '&y=' + data.centerY + '&radius=' + data.radius;
-		} else {
-			url = ctx + '/sys/map/showSelect?points1=' + data.xyList;
-		}
-		$.getJSON(url, function (val) {
-			var html = "";
-			html += '<div class="layer-common" style="width: 100%;height: 100%; position: relative;padding: 14px 0 0 0;">'
-			html += '<div class="layer-common-header" style="top: 1px; left: 36px;display: inline-block; padding: 5px 30px; border: 1px solid #0343a3; transform: skew(-20deg); background: #0343a3;color: #fff; font-weight: bold; position: absolute; z-index: 9999;">'
-			html += '<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">框选查询</div>'
-			html += '</div>'
-			html += '<div class="layer-show  layer-common-center" style="padding: 15px 10px 5px 10px; width: 100%;height: 100%;  border: 1px solid #10559a;background: rgba(36,105,187, 0.6) url('
-					+ ctxStatic
-					+ '/common/index/images/showbg.png);background-size: 100% 100%;">'
-			html += '<table style="width:100%;height:100%;">';
-			html += '<tr>';
-			html += '<td>框选区域总人口数：</td>';
-			html += '<td>' + val.sumPeople + '</td>';
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td>重点人员数量：</td>';
-			html += '<td>' + val.pNum + '</td>';
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td>学校数量：</td>';
-			html += '<td>' + val.sumSchool + '</td>';
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td>警务工作站数量：</td>';
-			html += '<td>' + val.sumPoliceRoom + '</td>';
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td>工作人员数量：</td>';
-			html += '<td>' + val.sumPolice + '</td>';
-			html += '</tr>';
-			html += '</table>';
-			html += '</div>'
-			html += '</div>'
-			layer.open({
-				type: 1,
-				shade: false,
-				title: false, // 不显示标题
-				area: ["300", "200px"],
-				skin: 'myskin',
-				move: '.layer-common-header',
-				resize: false,
-				fixed: false,
-				id: "showSelect",
-				content: html,
-				cancel: function () {
-					Map.clearShape();
-					// 关闭事件
-
-				}
-			});
-
-		})
-	}
-
 
 	//地图网格数据初始化
 	function initorgAreaMap() {
-		$.getJSON('' + ctx + '/sys/map/orgAreaMap?type=1', function (data) {
+/*		$.getJSON('' + ctx + '/sys/map/orgAreaMap?type=1', function (data) {
 			Map.addJSON1([{
 				'type': 'communitys',
 				'data': data,
@@ -364,7 +295,7 @@
 				'data': data,
 				'isShow': gridFlag
 			}])
-		})
+		})*/
 
 		$.getJSON('' + ctx + '/sys/map/orgAreaMap?type=4', function (data) {
 			Map.addJSON1([{
@@ -378,373 +309,28 @@
 
 	/********************地图End***********************/
 	/********************下方菜单***********************/
-	var xuexiaoFlag = true;
-	var idArrxuexiao = [];
-
-	function xuexiaoFun(_this) {
-
-		var centpoint = [];
-		if (xuexiaoFlag) {
-			$.getJSON('' + ctx + '/sys/map/ccmOrgNpseMap?type=32', function (data) {
-				centpoint = data.centpoint;
-				var features = data.features;
-				var len = features.length;
-				idArrxuexiao = [];
-				if (len > 0) {
-					for (var i = 0; i < len; i++) {
-						idArrxuexiao.push(features[i].id);
-					}
-				}
-				Map.addJSON3([{
-					'type': 'Shortcut',
-					'data': data,
-					'id': 'xuexiao',
-					'isShow': true
-				}])
-
-			})
-			$(_this).css('border', '1px solid #0e54a9')
-			//Map.goTo(centpoint)
-		} else {
-			$(_this).css('border', '1px solid transparent');
-			$.each(idArrxuexiao, function (index, val) {
-				Pubmap.removeOverlay(Map['' + val + 'Overlay'])
-			});
-			Map.removeLayer('xuexiao');
-		}
-		xuexiaoFlag = !xuexiaoFlag;
-	}
-
-	//医院
-	var yiyuanFlag = true;
-	var publicPlaceFlag = true;
-	var idArryiyuan = [];
-
-	function yiyuanFun(_this) {
-		if (yiyuanFlag) {
-			// $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
-			$.getJSON('' + ctx + '/sys/map/findMapIndustry?type=2', function (
-					data) {
-				var features = data.features;
-				var len = features.length;
-				idArryiyuan = [];
-				if (len > 0) {
-					for (var i = 0; i < len; i++) {
-						idArryiyuan.push(features[i].id);
-					}
-				}
-				Map.addJSON3([{
-					'type': 'Shortcut',
-					'data': data,
-					'id': 'yiyuan',
-					'isShow': true
-				}])
-
-			})
-			$(_this).css('border', '1px solid #0e54a9')
-			/*	Map.goTo([ "113.36105768169675", "34.54275331326893" ])*/
-		} else {
-			$.each(idArryiyuan, function (index, val) {
-				Pubmap.removeOverlay(Map['' + val + 'Overlay'])
-			});
-			$(_this).css('border', '1px solid transparent');
-			Map.removeLayer('yiyuan');
-		}
-		yiyuanFlag = !yiyuanFlag;
-	}
-
-	var jingcheFlag = true;
-
-	function jingcheFun(_this) {
-		if (jingcheFlag) {
-			$.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
-					data) {
+	//重点人员数量
+	var keyPeopleNumFlag = true;
+	function getKeyPeopleNum() {
+		debugger
+		if (keyPeopleNumFlag) {
+			$.getJSON('' + ctx + '/sys/policemap/getKeyPeopleNum', function (data) {
 				Map.addJSON1([{
-					'type': 'DanDian',
-					'data': data,
-					'id': 'jingche',
-					'isShow': true
-				}])
-			})
-
-			$(_this).css('border', '1px solid #0e54a9')
-		} else {
-			$(_this).css('border', '1px solid transparent')
-			Map.removeLayer('jingche');
-		}
-		jingcheFlag = !jingcheFlag;
-	}
-
-	//警员
-	var jingyuanFlag = true;
-
-	function jingyuanFun(_this) {
-		if (jingyuanFlag) {
-			$.getJSON('' + ctx + '/sys/map/deviceMobileMap', function (data) {
-				Map.addJSON1([{
-					'type': 'PopLocation',
-					'id': 'jingyuan',
-					'data': data,
-					'isShow': true
-				}]);
-			})
-			Map.layersIsShow('PopLocation', true);
-			$(_this).css('border', '1px solid #0e54a9');
-		} else {
-			$(_this).css('border', '1px solid transparent')
-			Map.removeLayer('jingyuan');
-		}
-		jingyuanFlag = !jingyuanFlag;
-	}
-
-	var jiayouzhanFlag = true;
-	var idArrjiayouzhan = [];
-
-	function jiayouzhanFun(_this) {
-		if (jiayouzhanFlag) {
-			$.getJSON('' + ctx + '/sys/map/findMapIndustry?type=1', function (data) {
-				if (data != null) {
-					var features = data.features;
-					var len = features.length;
-					idArrjiayouzhan = [];
-					if (len > 0) {
-						for (var i = 0; i < len; i++) {
-							idArrjiayouzhan.push(features[i].id);
-						}
-					}
-				}
-				Map.addJSON3([{
-					'type': 'Shortcut',
-					'id': 'jiayouzhan',
+					'type': 'topBox',
+					'id': 'SetTopBoxFlag',
 					'data': data,
 					'isShow': true
 				}])
 			})
-
-			$(_this).css('border', '1px solid #0e54a9');
-			//Map.goTo([ "113.39035820960999", "34.528061628341675" ])
 		} else {
-			$.each(idArrjiayouzhan, function (index, val) {
-				Pubmap.removeOverlay(Map['' + val + 'Overlay'])
-			});
-			$(_this).css('border', '1px solid transparent')
-			Map.removeLayer('jiayouzhan');
+			Map.removeLayer('SetTopBoxFlag');
 		}
-		jiayouzhanFlag = !jiayouzhanFlag;
+		keyPeopleNumFlag = !keyPeopleNumFlag;
 	}
 
-	//商场超市
-	var shangchangFlag = true;
-	var idArrshangchang = [];
 
-	function shangchangFun(_this) {
-		if (shangchangFlag) {
-			$.getJSON('' + ctx + '/sys/map/findMapIndustry?type=2', function (data) {
-				if (data != null) {
-					var features = data.features;
-					var len = features.length;
-					idArrshangchang = [];
-					if (len > 0) {
-						for (var i = 0; i < len; i++) {
-							idArrshangchang.push(features[i].id);
-						}
-					}
-				}
-				Map.addJSON3([{
-					'type': 'Shortcut',
-					'id': 'shangchang',
-					'data': data,
-					'isShow': true
-				}])
-			})
-			$(_this).css('border', '1px solid #0e54a9');
-		} else {
-			$.each(idArrshangchang, function (index, val) {
-				Pubmap.removeOverlay(Map['' + val + 'Overlay'])
-			});
-			$(_this).css('border', '1px solid transparent')
-			Map.removeLayer('shangchang');
-		}
-		shangchangFlag = !shangchangFlag;
-	}
 
-	//娱乐场所
-	var yuleFlag = true;
-	var idArryule = [];
 
-	function yuleFun(_this) {
-		if (yuleFlag) {
-			$.getJSON('' + ctx + '/sys/map/findMapIndustry?type=3', function (data) {
-				if (data != null) {
-					var features = data.features;
-					var len = features.length;
-					idArryule = [];
-					if (len > 0) {
-						for (var i = 0; i < len; i++) {
-							idArryule.push(features[i].id);
-						}
-					}
-				}
-				Map.addJSON3([{
-					'type': 'Shortcut',
-					'id': 'yule',
-					'data': data,
-					'isShow': true
-				}])
-			})
-			$(_this).css('border', '1px solid #0e54a9');
-		} else {
-			$.each(idArryule, function (index, val) {
-				Pubmap.removeOverlay(Map['' + val + 'Overlay'])
-			});
-			$(_this).css('border', '1px solid transparent')
-			Map.removeLayer('yule');
-		}
-		yuleFlag = !yuleFlag;
-	}
-
-	//酒店宾馆
-	var binguanFlag = true;
-	var idArrbinguan = [];
-
-	function binguanFun(_this) {
-		var id = 0;
-		if (binguanFlag) {
-			$.getJSON('' + ctx + '/sys/map/findMapIndustry?type=4', function (data) {
-				if (data != null) {
-					id = data.id;
-					var features = data.features;
-					var len = features.length;
-					idArrbinguan = [];
-					if (len > 0) {
-						for (var i = 0; i < len; i++) {
-							idArrbinguan.push(features[i].id);
-						}
-					}
-				}
-				Map.addJSON3([{
-					'type': 'Shortcut',
-					'id': 'binguan',
-					'data': data,
-					'isShow': true
-				}])
-			})
-			$(_this).css('border', '1px solid #0e54a9');
-		} else {
-			$.each(idArrbinguan, function (index, val) {
-				Pubmap.removeOverlay(Map['' + val + 'Overlay'])
-			});
-			$(_this).css('border', '1px solid transparent');
-			Map.removeLayer('binguan');
-		}
-
-		binguanFlag = !binguanFlag;
-	}
-
-	//涉危涉爆
-	var sheweishebaoFlag = true;
-	var idArrsheweishebao = [];
-
-	function sheweishebaoFun(_this) {
-		if (sheweishebaoFlag) {
-			$.getJSON('' + ctx + '/sys/map/findMapIndustry?type=5', function (data) {
-				if (data != null) {
-					var features = data.features;
-					var len = features.length;
-					idArrsheweishebao = [];
-					if (len > 0) {
-						for (var i = 0; i < len; i++) {
-							idArrsheweishebao.push(features[i].id);
-						}
-					}
-				}
-				Map.addJSON3([{
-					'type': 'Shortcut',
-					'id': 'sheweishebao',
-					'data': data,
-					'isShow': true
-				}])
-			})
-			$(_this).css('border', '1px solid #0e54a9');
-		} else {
-			$.each(idArrsheweishebao, function (index, val) {
-				Pubmap.removeOverlay(Map['' + val + 'Overlay'])
-			});
-			$(_this).css('border', '1px solid transparent')
-			Map.removeLayer('sheweishebao');
-		}
-		sheweishebaoFlag = !sheweishebaoFlag;
-	}
-
-	//警务室
-	var jingwushiFlag = true;
-	var idArrjingwushi = [];
-
-	function jingwushiFun(_this) {
-		if (jingwushiFlag) {
-			Map.removeLayer('policeroom');
-			$.getJSON('' + ctx + '/sys/map/orgCommonlityMap?type=10', function (data) {
-				// var features=data.features;
-				// var len=features.length;
-				// idArrjingwushi=[];
-				// if(len>0){
-				// 	for(var i=0;i<len;i++){
-				// 		idArrjingwushi.push(features[i].id);
-				// 	}
-				// }
-				Map.addJSON1([{
-					'type': 'policeroom',
-					'id': 'jingwushi',
-					'data': data,
-					'isShow': true
-				}])
-			})
-			$(_this).css('border', '1px solid #0e54a9');
-		} else {
-			// $.each(idArrjingwushi,function(index,val){
-			// 	Pubmap.removeOverlay(Map[''+val+'Overlay'])
-			// });
-			$(_this).css('border', '1px solid transparent');
-			Map.removeLayer('jingwushi');
-		}
-		jingwushiFlag = !jingwushiFlag;
-	}
-
-	//工作站
-	var gongzuozhanFlag = true;
-	var idArrgongzuozhan = [];
-
-	function gongzuozhanFun(_this) {
-		if (gongzuozhanFlag) {
-			Map.removeLayer('workstation');
-			$.getJSON('' + ctx + '/sys/map/orgCommonlityMap?type=11', function (data) {
-				var features = data.features;
-				var len = features.length;
-				idArrgongzuozhan = [];
-				if (len > 0) {
-					for (var i = 0; i < len; i++) {
-						idArrgongzuozhan.push(features[i].id);
-					}
-				}
-				Map.addJSON1([{
-					'type': 'workstation',
-					'id': 'gongzuozhan',
-					'data': data,
-					'isShow': true
-				}])
-			})
-			$(_this).css('border', '1px solid #0e54a9');
-		} else {
-			$.each(idArrgongzuozhan, function (index, val) {
-				Pubmap.removeOverlay(Map['' + val + 'Overlay'])
-			});
-			$(_this).css('border', '1px solid transparent')
-			Map.removeLayer('gongzuozhan');
-		}
-
-		gongzuozhanFlag = !gongzuozhanFlag;
-
-	}
 
 	//视频监控
 	var shipinjiankongFlag = true;
@@ -771,7 +357,6 @@
 
 	//广播站
 	var broadcastFlag = true;
-
 	function guangbozhanFun(_this) {
 		if (broadcastFlag) {
 			$.getJSON('' + ctx + '/sys/map/deviceBroadcastMap', function (data) {
@@ -792,7 +377,6 @@
 
 	//机顶盒
 	var SetTopBoxFlag = true;
-
 	function SetTopBoxFun(_this) {
 		if (SetTopBoxFlag) {
 			$.getJSON('' + ctx + '/sys/map/buildBox', function (data) {
