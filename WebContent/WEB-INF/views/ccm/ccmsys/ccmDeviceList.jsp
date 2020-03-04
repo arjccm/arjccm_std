@@ -47,8 +47,7 @@
 			onsubmit="loading('正在导入，请稍等...');">
 			<br /> <input id="uploadFile" name="file" type="file"
 				style="width: 330px" /><br /> <br /> <input id="btnImportSubmit"
-				class="btn btn-primary" type="button
-" onclick="saveImport()" value="导  入 " />
+				class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 " />
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
