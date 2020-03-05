@@ -11,7 +11,7 @@
 			<div class="box_bg_02"></div>
 		</div>
 	</div>
-	<div class="box_content">
+	<div class="box_content" id="keypersonneldata_area">
 		<div class="keypersonneldata_box clearfix">
 			<div class="kpd_sl xmsf_box clearfix">
 				<div class="icon"></div>

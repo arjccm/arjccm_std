@@ -74,7 +74,7 @@ $(function () {
 		data.forEach(function (value) {
 					sum+=value;
 		})
-        debugger
+        // debugger
 		var num=0;	//几位数
         var sum2=sum;
 		while (sum2>=1) {

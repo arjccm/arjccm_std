@@ -2,14 +2,19 @@
 .alarmdata_box{
 	width: 100%;
 }
+
 .alarmdata_box table{
 	width: 100%;
 	border: 1px solid #07537A;
 }
-.alarmdata_box table tr:nth-of-type(odd){
-	background: #09304d;
-	opacity: 0.9;
+.table_list{
+	height: 166px;
+	overflow: hidden;
 }
+/*.alarmdata_box table tr:nth-child(2n){*/
+/*	background: #09304d;*/
+/*	opacity: 0.9;*/
+/*}*/
 .alarmdata_box table .tb_hd{
 	font-size: 0.455vw;
 	color: #ffffff;
