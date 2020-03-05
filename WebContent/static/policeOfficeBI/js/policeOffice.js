@@ -4562,7 +4562,7 @@ ArjMap.Map.prototype = {
                                                     text: new ol.style.Text({
                                                         textAlign: 'center', // 位置
                                                         textBaseline: 'top', // 基准线
-                                                        offsetY: '10',
+                                                        offsetY: '-20',       //设置位置
                                                         exceedLength: 'true',
                                                         font: 'normal 10px 微软雅黑',  // 文字样式
                                                         text: feature.get('features')[0].get('name'),  // 文本内容

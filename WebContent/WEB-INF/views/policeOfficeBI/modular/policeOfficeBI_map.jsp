@@ -18,6 +18,8 @@
 
 	<div >
 		<input type="button" value="按钮" style="background-color: #0bbbee" onclick="getKeyPeopleNum()">
+        <input type="button" value="视频" style="background-color: #0bbbee" onclick="shipinjiankongFun()">
+		<input type="button" value="场所特业" style="background-color: #0bbbee" onclick="getBasePlaceMap()">
 	</div>
 
 	<div id="pubMap"></div>
@@ -280,7 +282,7 @@
 
 	//地图网格数据初始化
 	function initorgAreaMap() {
-/*		$.getJSON('' + ctx + '/sys/map/orgAreaMap?type=1', function (data) {
+		$.getJSON('' + ctx + '/sys/map/orgAreaMap?type=1', function (data) {
 			Map.addJSON1([{
 				'type': 'communitys',
 				'data': data,
@@ -295,7 +297,7 @@
 				'data': data,
 				'isShow': gridFlag
 			}])
-		})*/
+		})
 
 		$.getJSON('' + ctx + '/sys/map/orgAreaMap?type=4', function (data) {
 			Map.addJSON1([{
@@ -329,15 +331,11 @@
 	}
 
 
-
-
-
 	//视频监控
 	var shipinjiankongFlag = true;
-
-	function shipinjiankongFun(_this) {
+	function shipinjiankongFun() {
 		if (shipinjiankongFlag) {
-			$.getJSON('' + ctx + '/sys/map/deviceiveMap', function (data) {
+			$.getJSON('' + ctx + '/sys/policemap/deviceiveMap', function (data) {
 				Map.addJSON1([{
 					'type': 'videos',
 					'id': 'shipinjiankong',
@@ -345,21 +343,19 @@
 					'isShow': true
 				}])
 			})
-			$(_this).css('border', '1px solid #0e54a9');
-			$(_this).attr('VideoFlagAttr', true);
 		} else {
-			$(_this).css('border', '1px solid transparent');
-			$(_this).attr('VideoFlagAttr', false);
 			Map.removeLayer('shipinjiankong');
 		}
 		shipinjiankongFlag = !shipinjiankongFlag;
 	}
 
-	//广播站
+
+
+	//场所特也
 	var broadcastFlag = true;
-	function guangbozhanFun(_this) {
+	function getBasePlaceMap() {
 		if (broadcastFlag) {
-			$.getJSON('' + ctx + '/sys/map/deviceBroadcastMap', function (data) {
+			$.getJSON('' + ctx + '/sys/policemap/getBasePlaceMap', function (data) {
 				Map.addJSON1([{
 					'type': 'broadcast',
 					'id': 'guangbozhan',
@@ -367,13 +363,13 @@
 					'isShow': true
 				}])
 			})
-			$(_this).css('border', '1px solid #0e54a9');
 		} else {
-			$(_this).css('border', '1px solid transparent');
 			Map.removeLayer('guangbozhan');
 		}
 		broadcastFlag = !broadcastFlag;
 	}
+
+
 
 	//机顶盒
 	var SetTopBoxFlag = true;
