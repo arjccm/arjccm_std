@@ -174,7 +174,7 @@
                 </li>
 				<li class="box sizex_1" data-row="3" data-col="3" data-sizex="1" data-sizey="1">
 					<%--<%@ include file="/WEB-INF/views/policeOfficeBI/modular/disputeDefuse.jsp" %>--%>
-<%--					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/disputeDefuse.jsp" %>--%>
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/disputeDefuse.jsp" %>
 				</li>
 				<li class="box sizex_1" data-row="3" data-col="4" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/thisWeekFace.jsp" %>

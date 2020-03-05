@@ -222,9 +222,9 @@
 
 		.loginLiuGuang{
 			position: absolute;
-			top: 150px;
+			top: 148px;
 			left: -100px;
-			height: 668px;
+			height: 642px;
 		}
     </style>
 	<script type="text/javascript">
