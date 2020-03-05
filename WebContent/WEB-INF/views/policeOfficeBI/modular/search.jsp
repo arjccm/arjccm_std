@@ -26,7 +26,7 @@
 	option = {
 		grid:{
 			x:55,
-			y:10,
+			y:30,
 			x2:30,
 			y2:40,
 			borderWidth:10
