@@ -33,7 +33,8 @@
 		b.leader_id_card  AS"leaderIdCard",
 		b.leader_contact  AS"leaderContact",
 		b.relevance_org  AS"relevanceOrg",
-		b.place_picture AS"placePicture"
+		b.place_picture AS"placePicture",
+		b.area_point AS "areaPoint"
 	</sql>
 	
 	<sql id="ccmPlaceHotelJoins">

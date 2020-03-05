@@ -1,7 +1,11 @@
 /*  重点人员数据总汇  */
+#keypersonneldata_area{
+
+}
 .keypersonneldata_box{
-	width: 100%;
-	padding: 0 5px;
+	margin: 0 auto;
+	width: 80%;
+	/*padding: 0 5px;*/
 }
 .keypersonneldata_box .kpd_sl{
 	float: left;
