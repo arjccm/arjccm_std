@@ -145,7 +145,9 @@
 				<li class="box sizex_1" data-row="1" data-col="1" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/population_confluence.jsp" %>
 				</li>
-				<li class="box sizex_1" data-row="1" data-col="2" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/modular_02.jsp" %>
+				</li>
 				<li class="box sizemap" data-row="1" data-col="3" data-sizex="3" data-sizey="3">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/policeOfficeBI_map.jsp" %>
 				</li>
@@ -183,8 +185,12 @@
 				<li class="box sizex_1" data-row="4" data-col="1" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/concern_company.jsp" %>
 				</li>
-				<li class="box sizex_1" data-row="4" data-col="2" data-sizex="1" data-sizey="1"></li>
-				<li class="box sizex_1" data-row="4" data-col="3" data-sizex="1" data-sizey="1"></li>
+				<li class="box sizex_1" data-row="4" data-col="2" data-sizex="1" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/search.jsp" %>
+				</li>
+				<li class="box sizex_1" data-row="4" data-col="3" data-sizex="1" data-sizey="1">
+					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/Practitioners.jsp" %>
+				</li>
 				<li class="box sizex_1" data-row="4" data-col="4" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/rentalHouseOfArea.jsp" %>
 				</li>
@@ -206,8 +212,20 @@
 </section>
 
 
+<script>
+	var gridster;
+	$(function() {
+		var widthLi = $(".gridster").width()/8-16;
+		var heightLi = $(".gridster").height()/4-16;
+		// alert(heightLi)
+		gridster = $(".gridster ul").gridster({
+			widget_margins: [8, 8],
+			widget_base_dimensions: [widthLi, heightLi],
+		}).data('gridster');
+		gridster.disable();
 
-
+	});
+</script>
 </body>
 
 </html>
