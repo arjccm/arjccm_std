@@ -149,9 +149,13 @@ public class CcmPoliceOfficeMapController {
             // 2 id 添加
             featureDto.setId(device.getId());
             // 3 properties 展示属性信息
-            properties.setName(device.getName());
+//            properties.setName(device.getName());
 //            properties.setIcon(device.getImagePath());      //图标
-            properties.setIcon("video.png");      //图标
+            if(device.getStatus().equals("1")){
+                properties.setIcon("map_sxt-zxshow.png");      //图标
+            } else if(device.getStatus().equals("2")){
+                properties.setIcon("map_sxt-lxshow.png");      //图标
+            }
             // 点击后展示详细属性值
             Map<String, Object> map_P = new HashMap<String, Object>();
             // 创建附属信息
@@ -275,7 +279,17 @@ public class CcmPoliceOfficeMapController {
             // 3 properties 展示属性信息
 //          properties.setName(resccmPlaceCasino.getCcmBasePlace().getPlaceName());
 //          properties.setIcon(device.getImagePath());      //图标
-            properties.setIcon("video.png");      //图标
+//            properties.setIcon("video.png");      //图标
+            if(echartType.getType().equals("01")){
+                properties.setIcon("map_bgshow.png");      //宾馆
+            } else if(echartType.getType().equals("02")){
+                properties.setIcon("map_wbshow.png");      //网吧
+            } else if(echartType.getType().equals("03")){
+                properties.setIcon("map_ktvshow.png");      //KTV
+            } else if(echartType.getType().equals("08")){
+                properties.setIcon("map_zyshow.png");      //足浴
+            }
+
             // 点击后展示详细属性值
             Map<String, Object> map_P = new HashMap<String, Object>();
             properties.addInfo(map_P);

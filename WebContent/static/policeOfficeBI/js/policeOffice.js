@@ -4556,7 +4556,7 @@ ArjMap.Map.prototype = {
                                             style = styleCache[idIndex] = [
                                                 new ol.style.Style({
                                                     image: new ol.style.Icon({
-                                                        src: ctxStatic + '/modules/map/images/' + Src + '',
+                                                        src: ctxStatic + '/policeOfficeBI/img/' + Src + '',
                                                         scale: map.getView().getZoom() / 15
                                                     }),
                                                     text: new ol.style.Text({
