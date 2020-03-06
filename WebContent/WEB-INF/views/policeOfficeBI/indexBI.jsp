@@ -46,7 +46,7 @@
 	<script src="${ctxStatic}/custom/date/date.js"></script>
 	<script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill.min.js"></script>
 	<script src="${ctxStatic}/policeOfficeBI/js/jquery.gridster.min.js"></script>
-	<%--<script src="${ctxStatic}/policeOfficeBI/js/indexBI.js"></script>--%>
+	<script src="${ctxStatic}/policeOfficeBI/js/indexBI.js"></script>
 
 	<style type="text/css">
 
@@ -54,31 +54,21 @@
 
 </head>
 <script>
-	var gridster;
 	$(function() {
-		var widthLi = $(".gridster").width()/8-16;
-		var heightLi = $(".gridster").height()/4-16;
-		// alert(heightLi)
-		gridster = $(".gridster ul").gridster({
-			widget_margins: [8, 8],
-			widget_base_dimensions: [widthLi, heightLi],
-		}).data('gridster');
-		gridster.disable();
-
-		var box_content = $(".box_content");
-		var box_header_height =10;
-		var box_content_height = box_content.height();
-		var gridster_li = $(".gridster li").height()
-		box_content.height(gridster_li-box_header_height-10)
-
+		layoutBi()
 	});
+	window.onresize =function(){
+		layoutBi()
+	}
 </script>
 <body>
 <header class="header">
 	<div class="header_area">
+		<div class="streamer"><div class="lg_animate"></div></div>
 		<div class="header_title">XX市公安局XX镇派出所数据可视化展现</div>
 		<div class="header_information clearfix">
-			<div class="time">2020-02-20 12:33:44 周一</div>
+			<div class="time">0000-00-00 00:00:00 周？</div>
+			<div class="dividing_Line"></div>
 			<div class="personnel">今日值班民警：李小明，张露露</div>
 		</div>
 	</div>
@@ -214,7 +204,7 @@
 
 
 <script>
-
+	setInterval(showTime,500)
 </script>
 </body>
 

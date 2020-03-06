@@ -10,8 +10,12 @@ import com.arjjs.ccm.modules.ccm.hotel.service.CcmPlaceHotelService;
 import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
 import com.arjjs.ccm.modules.ccm.place.service.CcmBasePlaceService;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
+import com.arjjs.ccm.modules.ccm.rest.entity.AlarmHandleInfo;
+import com.arjjs.ccm.modules.ccm.rest.service.AlarmHandleInfoService;
 import com.arjjs.ccm.tool.EchartType;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.tool.geoJson.Features;
 import com.arjjs.ccm.tool.geoJson.GeoJSON;
 import com.arjjs.ccm.tool.geoJson.Geometry;
@@ -20,9 +24,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +42,12 @@ public class CcmPoliceOfficeMapController {
     @Autowired
     private CcmOrgAreaService ccmOrgAreaService;
 
+    //出租房数据
+    @Autowired
+    private CcmPopTenantService ccmPopTenantService;
+    //警情事件
+    @Autowired
+    private AlarmHandleInfoService alarmHandleInfoService;
     // 设备管理
     @Autowired
     private CcmDeviceService ccmDeviceService;
@@ -335,6 +343,165 @@ public class CcmPoliceOfficeMapController {
         return geoJSON;
     }
 
+    /*
+    * 查询出租屋数据
+    * */
 
+    @ResponseBody
+    @RequestMapping(value = "getLetNum")
+    public GeoJSON getLetNum(){
+        CcmPopTenant ccmPopTenant = new CcmPopTenant();
+        ccmPopTenant.setType("7");
+        ccmPopTenant.setHouseType("02");
+        ArrayList<CcmPopTenant> ccmPopTenants = new ArrayList<>();
+        //返回对象数据
+        List<CcmPopTenant> letList = ccmPopTenantService.findLet(ccmPopTenant);
+        for (CcmPopTenant popTenant : letList) {
+            //出租屋数量
+            popTenant.setLetNum(letList.size());
+            ccmPopTenants.add(popTenant);
+        }
+        // 返回对象
+        GeoJSON geoJSON = new GeoJSON();
+        List<Features> featureList = new ArrayList<Features>();
+        for (CcmPopTenant popTenant : ccmPopTenants) {
+            // 特征,属性
+            Features featureDto = new Features();
+            Properties properties = new Properties();
+            // 1 type 默认不填
+            // 2 id 添加
+            featureDto.setId(popTenant.getId());
+            // 3 properties 展示属性信息
+            String LetNum="";
+            if (popTenant.getLetNum()!=null){
+                LetNum=popTenant.getLetNum().toString();
+            }
+            properties.setName(LetNum);
+            properties.setIcon("box.png");
+            // 点击后展示详细属性值
+            Map<String, Object> map_P = new HashMap<String, Object>();
+            properties.addInfo(map_P);
+            featureList.add(featureDto);
+            featureDto.setProperties(properties);
+            // 4 geometry 配置参数
+            Geometry geometry = new Geometry();
+            featureDto.setGeometry(geometry);
+            // 点位信息 测试为点
+            geometry.setType("Point");
+            // 为中心点赋值
+            if (!StringUtils.isEmpty(popTenant.getAreaPoint())) {
+                // 获取中心点的值
+                String[] centpoint = popTenant.getAreaPoint().split(",");
+                // 图层中心的
+                geoJSON.setCentpoint(centpoint);
+                // 图形中心点
+                properties.setCoordinateCentre(centpoint);
+            }
+            // 添加具体数据
+            // 封装的list
+            List<String> Coordinateslist = new ArrayList<>();
+            // 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
+            String[] a = (StringUtils.isEmpty(popTenant.getAreaPoint()) ? (",") : popTenant.getAreaPoint()).split(",");
+            // 填充数据
+            if (a.length < 2) {
+                Coordinateslist.add("");
+                Coordinateslist.add("");
+            } else {
+                Coordinateslist.add(a[0]);
+                Coordinateslist.add(a[1]);
+            }
+            // 装配点位
+            geometry.setCoordinates(Coordinateslist);
+        }
+        // 添加数据
+        geoJSON.setFeatures(featureList);
+        // 如果无数据
+        if (featureList.size() == 0) {
+            return null;
+        }
+        return geoJSON;
+    }
 
+    /*
+     * 查询警情事件数据
+     * */
+
+    @ResponseBody
+    @RequestMapping(value = "getAlarm")
+    public GeoJSON getAlarmInfo(){
+        AlarmHandleInfo alarmHandleInfo = new AlarmHandleInfo();
+        ArrayList<AlarmHandleInfo> alarminfos = new ArrayList<>();
+        alarmHandleInfo.setType("7");
+        //返回对象数据
+        List<AlarmHandleInfo> alarmList = alarmHandleInfoService.findAlarm(alarmHandleInfo);
+        String areaPoint="";
+        if (alarmList.size()>0){
+            for (AlarmHandleInfo alarmInfo : alarmList) {
+                alarmInfo.setAlarmNum(alarmList.size());
+                areaPoint = alarmInfo.getX()+","+alarmInfo.getY();
+                alarmInfo.setAlarmPoint(areaPoint);
+                alarminfos.add(alarmInfo);
+            }
+        }
+        // 返回对象
+        GeoJSON geoJSON = new GeoJSON();
+        List<Features> featureList = new ArrayList<Features>();
+        for (AlarmHandleInfo alarminfo : alarminfos) {
+            // 特征,属性
+            Features featureDto = new Features();
+            Properties properties = new Properties();
+            // 1 type 默认不填
+            // 2 id 添加
+            featureDto.setId(alarminfo.getId());
+            // 3 properties 展示属性信息
+            String alarmNum = "";
+            if (alarminfo.getAlarmNum() != null) {
+                alarmNum = alarminfo.getAlarmNum().toString();
+            }
+            properties.setName(alarmNum);
+            properties.setIcon("box.png");
+            // 点击后展示详细属性值
+            Map<String, Object> map_P = new HashMap<String, Object>();
+            properties.addInfo(map_P);
+            featureList.add(featureDto);
+            featureDto.setProperties(properties);
+            // 4 geometry 配置参数
+            Geometry geometry = new Geometry();
+            featureDto.setGeometry(geometry);
+            // 点位信息 测试为点
+            geometry.setType("Point");
+            // 为中心点赋值
+            if (!StringUtils.isEmpty(alarminfo.getAlarmPoint())) {
+                // 获取中心点的值
+                String[] centpoint = alarminfo.getAlarmPoint().split(",");
+                // 图层中心的
+                geoJSON.setCentpoint(centpoint);
+                // 图形中心点
+                properties.setCoordinateCentre(centpoint);
+                // 添加具体数据
+                // 封装的list
+                List<String> Coordinateslist = new ArrayList<>();
+                // 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
+                String[] a = (StringUtils.isEmpty(alarminfo.getAlarmPoint()) ? (",") : alarminfo.getAlarmPoint()).split(",");
+                // 填充数据
+                if (a.length < 2) {
+                    Coordinateslist.add("");
+                    Coordinateslist.add("");
+                } else {
+                    Coordinateslist.add(a[0]);
+                    Coordinateslist.add(a[1]);
+                    // 装配点位
+                    geometry.setCoordinates(Coordinateslist);
+                }
+
+                // 添加数据
+                geoJSON.setFeatures(featureList);
+                // 如果无数据
+                if (featureList.size() == 0) {
+                    return null;
+                }
+            }
+        }
+        return geoJSON;
+    }
 }

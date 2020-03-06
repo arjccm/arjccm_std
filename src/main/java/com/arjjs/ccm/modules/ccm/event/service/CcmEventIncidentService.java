@@ -873,4 +873,5 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 		String w2="%"+uid+"%";
 		return ccmEventIncidentDao.worker(uid,w2);
     }
+
 }
