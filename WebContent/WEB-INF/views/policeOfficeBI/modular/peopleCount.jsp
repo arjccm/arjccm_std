@@ -19,7 +19,6 @@
     </div>
 </section>
 <script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill/echarts-liquidfill.min.js"></script>
-<script src="${ctxStatic}/common/index/Scripts/js/echarts-auto-tooltip.js"></script>
 <script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill/echarts.js"></script>
 <script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
 <script>
