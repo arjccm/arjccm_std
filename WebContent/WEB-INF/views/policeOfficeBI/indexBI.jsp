@@ -195,11 +195,11 @@
 				<li class="box sizex_1" data-row="4" data-col="4" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/rentalHouseOfArea.jsp" %>
 				</li>
+                <li class="box sizex_1" data-row="4" data-col="5" data-sizex="1" data-sizey="1">
+                    <%@ include file="/WEB-INF/views/policeOfficeBI/modular/alarm_data.jsp" %>
+                </li>
 				<li class="box sizex_1" data-row="4" data-col="6" data-sizex="1" data-sizey="1">
                     <%@ include file="/WEB-INF/views/policeOfficeBI/modular/policeSentiment.jsp" %>
-                </li>
-				<li class="box sizex_1" data-row="4" data-col="5" data-sizex="1" data-sizey="1">
-                    <%@ include file="/WEB-INF/views/policeOfficeBI/modular/alarm_data.jsp" %>
                 </li>
 				<li class="box sizex_1" data-row="4" data-col="7" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/PoliceDigest.jsp" %>
