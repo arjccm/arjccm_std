@@ -111,7 +111,7 @@
         <input type="button" value="视频监控"  class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zx.png) no-repeat 4px 16px;" onclick="shipinjiankongFun()">
 		<input type="button" value="出租屋"  class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_czw.png) no-repeat 4px 16px;" onclick="getLetNum()">
 		<input type="button" value="场所特业" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_cs.png) no-repeat 4px 16px;" onclick="getBasePlaceMap()">
-		<input type="button" value="警情事件" class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_jq.png) no-repeat 4px 16px;" onclick="etAlarm()">
+		<input type="button" value="警情事件" class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_jq.png) no-repeat 4px 16px;" onclick= "getAlarm()">
 			<%--<ul>
 				<li><span>重点人员</span></li>
 				<li><span>视频监控</span></li>
@@ -442,43 +442,6 @@
 			Map.removeLayer('SetTopBoxFlag');
 		}
 		keyPeopleNumFlag = !keyPeopleNumFlag;
-	}
-
-
-	//出租屋
-	var LetNumFlag = true;
-	function getLetNum() {
-		if (LetNumFlag) {
-			$.getJSON('' + ctx + '/sys/policemap/getLetNum', function (data) {
-				Map.addJSON1([{
-					'type': 'topBox',
-					'id': 'SetTopBoxFlag',
-					'data': data,
-					'isShow': true
-				}])
-			})
-		} else {
-			Map.removeLayer('SetTopBoxFlag');
-		}
-		LetNumFlag = !LetNumFlag;
-	}
-
-	//警情事件
-	var AlarmFlag = true;
-	function getAlarm() {
-		if (AlarmFlag) {
-			$.getJSON('' + ctx + '/sys/policemap/getAlarm', function (data) {
-				Map.addJSON1([{
-					'type': 'topBox',
-					'id': 'SetTopBoxFlag',
-					'data': data,
-					'isShow': true
-				}])
-			})
-		} else {
-			Map.removeLayer('SetTopBoxFlag');
-		}
-		AlarmFlag = !AlarmFlag;
 	}
 
 
