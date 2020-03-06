@@ -241,5 +241,8 @@ public class CcmPopTenantService extends CrudService<CcmPopTenantDao, CcmPopTena
 	}
 
 
-
+	//查询出租房屋数量
+	public List<CcmPopTenant> findLet(CcmPopTenant ccmPopTenant) {
+		return ccmPopTenantDao.findLet(ccmPopTenant);
+	}
 }

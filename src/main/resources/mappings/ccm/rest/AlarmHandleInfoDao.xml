@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.rest.dao.AlarmHandleInfoDao">
+
+    <!--查询警情事件-->
+    <select id="findAlarm" resultType="AlarmHandleInfo">
+        SELECT
+        a.id AS id,
+        a.x AS x,
+        a.y AS y
+        FROM bph_alarm_info a
+        LEFT JOIN sys_area a2
+		ON a2.id = a.area_id
+		WHERE
+		a2.type=#{type}
+    </select>
+</mapper>

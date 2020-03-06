@@ -20,6 +20,8 @@
 		<input type="button" value="按钮" style="background-color: #0bbbee" onclick="getKeyPeopleNum()">
         <input type="button" value="视频" style="background-color: #0bbbee" onclick="shipinjiankongFun()">
 		<input type="button" value="场所特业" style="background-color: #0bbbee" onclick="getBasePlaceMap()">
+		<input type="button" value="出租房" style="background-color: #0bbbee" onclick="getLetNum()">
+		<input type="button" value="警情事件" style="background-color: #0bbbee" onclick="getAlarm()">
 	</div>
 
 	<div id="pubMap"></div>
@@ -328,6 +330,43 @@
 			Map.removeLayer('SetTopBoxFlag');
 		}
 		keyPeopleNumFlag = !keyPeopleNumFlag;
+	}
+
+
+	//出租屋
+	var LetNumFlag = true;
+	function getLetNum() {
+		if (LetNumFlag) {
+			$.getJSON('' + ctx + '/sys/policemap/getLetNum', function (data) {
+				Map.addJSON1([{
+					'type': 'topBox',
+					'id': 'SetTopBoxFlag',
+					'data': data,
+					'isShow': true
+				}])
+			})
+		} else {
+			Map.removeLayer('SetTopBoxFlag');
+		}
+		LetNumFlag = !LetNumFlag;
+	}
+
+	//警情事件
+	var AlarmFlag = true;
+	function getAlarm() {
+		if (AlarmFlag) {
+			$.getJSON('' + ctx + '/sys/policemap/getAlarm', function (data) {
+				Map.addJSON1([{
+					'type': 'topBox',
+					'id': 'SetTopBoxFlag',
+					'data': data,
+					'isShow': true
+				}])
+			})
+		} else {
+			Map.removeLayer('SetTopBoxFlag');
+		}
+		AlarmFlag = !AlarmFlag;
 	}
 
 

@@ -1,6 +1,7 @@
 package com.arjjs.ccm.modules.ccm.rest.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.arjjs.ccm.common.persistence.DataEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import java.util.Map;
  * 警情详情实体类
  */
 
-public class AlarmHandleInfo  implements Serializable {
+public class AlarmHandleInfo  extends DataEntity<AlarmHandleInfo>{
 
 	private static final long serialVersionUID = 1L;
 
@@ -47,9 +48,62 @@ public class AlarmHandleInfo  implements Serializable {
 	private Date   alarmTime;
 	private String alarmRecord;
 	private String officeName;
-
 	private String maxDispatchTime;
 	private String maxArriveTime;
+
+	private String type;        //区域类型
+	private Integer alarmNum;   //警情事件数量
+	private String alarmPoint;		// 中心点
+	private double x;          //经度
+	private double y;			//纬度
+
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public String getAlarmPoint() {
+		return alarmPoint;
+	}
+
+	public void setAlarmPoint(String alarmPoint) {
+		this.alarmPoint = alarmPoint;
+	}
+
+	@Override
+	public String toString() {
+		return "AlarmHandleInfo{" +
+				"alarmNum=" + alarmNum +
+				'}';
+	}
+
+	public Integer getAlarmNum() {
+		return alarmNum;
+	}
+
+	public void setAlarmNum(Integer alarmNum) {
+		this.alarmNum = alarmNum;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	Map<String,List<AlarmHandleUserStatus>> alarmHandleUserStatusMap = new HashMap<String,List<AlarmHandleUserStatus>>();
 	//List<AlarmHandleUserStatus> alarmHandleUserStatuses  = new ArrayList<>();
 
