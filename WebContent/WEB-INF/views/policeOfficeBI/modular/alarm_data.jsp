@@ -130,9 +130,11 @@
 	})(jQuery);
 
 	$(function(){
+		var trHt =  $(".table_list").find("tr").outerHeight()
+		var tblList = $(".table_list").height(trHt*6)
 		$(".table_list").myScroll({
 			speed:40, //数值越大，速度越慢
-			rowHeight:33 //li的高度
+			rowHeight:trHt //li的高度
 		});
 
 		$(".table_list tr:even").css({

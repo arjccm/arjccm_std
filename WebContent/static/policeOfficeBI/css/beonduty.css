@@ -9,7 +9,7 @@
 .beonduty_box table td, .beonduty_box table th{
 	border-bottom: 1px solid #07537A;
 	border-right: 1px solid #07537A;
-	padding: 0.3vh 0;
+	padding: 0.3125vh 0;
 	text-align: center;
 }
 .beonduty_box table td:last-child{
@@ -30,7 +30,8 @@
 	text-align: center;
 }
 .beonduty_box table td img{
-	width: 80%;
+	width: 0.78125vw;
+	vertical-align: middle;
 }
 
 

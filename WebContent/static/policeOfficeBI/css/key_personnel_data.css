@@ -23,6 +23,7 @@
 }
 .keypersonneldata_box .kpd_sl .text{
 	float: left;
+	margin-left: 0.58vw;
 }
 .keypersonneldata_box .kpd_sl .text p{
 	margin: 0;
@@ -38,6 +39,8 @@
 .keypersonneldata_box .kpd_sl .text p:last-child span{
 	font-size: 0.39vw;
 	color: #fff;
+	opacity: 0.4;
+	margin-left: 5px;
 }
 .xmsf_box .icon{
 	background: url("../img/icon_xmsf.png") no-repeat center;

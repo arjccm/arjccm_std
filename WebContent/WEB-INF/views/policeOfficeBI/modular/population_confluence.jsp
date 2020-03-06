@@ -11,7 +11,7 @@
 			<div class="box_bg_02"></div>
 		</div>
 	</div>
-	<div class="box_content">
+	<div class="box_content population_area">
 		<div class="population_box clearfix">
 			<div class="pop_list">
 				<div class="pop_num">23901</div>
