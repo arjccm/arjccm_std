@@ -59,7 +59,6 @@
 				<th>负责人联系电话</th>
 				<th>开始日期</th>
 				<th>结束日期</th>
-				<th>活动备注</th>
 				<shiro:hasPermission name="religion:ccmReligionActivity:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -88,9 +87,6 @@
 				</td>
 				<td>
 					<fmt:formatDate value="${ccmReligionActivity.endDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</td>
-				<td>
-					${ccmReligionActivity.remarks}
 				</td>
 				<shiro:hasPermission name="religion:ccmReligionActivity:edit"><td>
 

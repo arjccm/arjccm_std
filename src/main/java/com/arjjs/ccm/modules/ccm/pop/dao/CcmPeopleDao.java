@@ -178,4 +178,11 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 
 	//信徒人数
      int peopleFollowerCount(@Param("bid")Integer bid);
+
+	/**
+	 * 根据户主身份证号码查询户主下的人员数据
+	 * @param ident 身份证号码
+	 * @return
+	 */
+	List<CcmPeople> queryByIdent(@Param("ident")String ident);
 }

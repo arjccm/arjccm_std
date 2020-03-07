@@ -2494,4 +2494,16 @@
 			</otherwise>
 		</choose>
 	</select>
+
+	<!--根据户主身份证号码查询户主下的人员数据-->
+	<select id="queryByIdent" resultType="CcmPeople">
+	SELECT
+	account,accountname,accounttelephone,domicile
+	FROM
+	ccm_people
+	WHERE
+	ident = #{ident}
+	AND del_flag = 0
+	</select>
+
 </mapper>

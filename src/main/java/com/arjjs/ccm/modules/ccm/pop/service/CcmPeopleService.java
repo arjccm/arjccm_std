@@ -1078,4 +1078,10 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		}
 
 	}
+
+	public List<CcmPeople> queryByIdent(String ident){
+		return ccmPeopleDao.queryByIdent(ident);
+	}
+
+
 }

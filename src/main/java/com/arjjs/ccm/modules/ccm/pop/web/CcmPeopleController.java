@@ -2151,4 +2151,13 @@ public class CcmPeopleController extends BaseController {
 		return list;
 	}
 
+
+	//根据户主身份证号码查询户主下的人员数据
+	@ResponseBody
+	@RequestMapping(value = "queryByIdent")
+	public List<CcmPeople> queryByIdent(String ident){
+		return ccmPeopleService.queryByIdent(ident);
+	}
+
+
 }
