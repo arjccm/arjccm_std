@@ -48,6 +48,7 @@
         a17.name AS "area.name",
         (case when a18.buildname is null then '' else a18.buildname end) AS "buildingId.buildname"
     </sql>
+
     <sql id="ccmPopTenantJoins">
         LEFT JOIN sys_area a17 ON a17.id = a.area_id
     </sql>
@@ -784,15 +785,17 @@
         AND
         del_flag = 0 GROUP BY collect_people
     </select>
-    <!--查询出租屋数据-->
     <select id="findLet" resultType="CcmPopTenant">
         SELECT
-        a.id AS "id",
-        a.area_point AS "areaPoint"
+        a3.area_point AS "area_point",
+        a.area_id AS "aid",
+        COUNT(1) AS "let_num"
         FROM ccm_pop_tenant a
-	    LEFT JOIN sys_area a2
-		ON a2.id = a.area_id
-		WHERE
-		a.house_type=#{houseType} AND a2.type=#{type}
+        LEFT JOIN sys_area a2
+        ON a2.id = a.area_id
+        LEFT JOIN ccm_org_area a3
+        ON a2.id = a3.area_id
+        WHERE
+        a.house_type=#{houseType} AND a2.type=#{type} GROUP BY aid
     </select>
 </mapper>
