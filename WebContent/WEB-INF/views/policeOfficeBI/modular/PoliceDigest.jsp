@@ -9,6 +9,7 @@
 <script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
 
 <section>
+    <div class="context" content="${ctx}" style="display: none"></div>
     <div class="box_header">
         <div class="box_header_title">
             <div class="left_bg"></div>
@@ -27,147 +28,153 @@
 
     $(function () {
 
-        var myChart = echarts.init(document.getElementById('policeDigest'));
+        // project-Path
+        var context = $(".context").attr("content");
 
-        PoliceForceDistribution();
+        $.getJSON(context + "/sys/BicMap/policeDigest", {}, function (data) {
 
-        function PoliceForceDistribution() {
+            var myChart = echarts.init(document.getElementById('policeDigest'));
 
+            var colorAttr = ['#07CDF1', '#7085FB', '#A77FF8', '#DD3F60', '#BE25C7', '#FF747B', '#FDDE01', '#FF6803', '#09A2F1', '#2875EC'];
 
-            option = {
+            var lineColor = '#32bcfe';
+
+            var insideColor = '#FFFFFF';
+
+            var total = 0;
+
+            for (var i = 0; i < data.length; i++) {
+                total += data[i].value;
+            }
+
+            var option = {
                 // backgroundColor: '#031845',
-                // title:{
-                //     text:"123",
-                //     left:'center',
-                //     top:'45%',
-                //     textStyle:{
-                //         color:"#FFF",
-                //         fontSize:"80px",
-
-                //     }
-                // },
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{b} : {d}% <br/> {c}"
-                },
-                //  graphic: {
-                //  elements: [
-                //         {
-                //          type: 'text',
-                //          left: 'center', // 相对父元素居中
-                //          top: 'center',  // 相对父元素上下的位置
-                //          style: {
-                //              fill: '#FFF',
-                //               text: ['357'],
-                //               zlevel:"100",
-                //               font: '80px Arial Normal',
-                //                  }
-                //         }]
-                //       },
-                //  title: {
-                //     text:'总考生数',
-                //     left:'center',
-                //     top:'center',
-                //     padding:[24,0],
-                //     textStyle:{
-                //         color:'#fff',
-                //         fontSize:18*scale,
-                //         align:'center'
-                //     }
-                // },
                 title: {
-                    text: '3246',
-                    subtext: '重点人员(人)',
-                    // x: 'center',
-                    // y: '43%',
+                    text: [
+                        "30天警情",
+                        total
+                    ].join("\n"),
+                    left: 'center',
+                    top: 'center',
                     textStyle: {
-                        // fontSize: 80,
-                        fontWeight: 'normal',
-                        color: '#00FFFF',
-                    },
-                    subtextStyle: {
-                        // fontSize: 28,
-                        fontWeight: 'normal',
-                        align:"center",
-                        color:'#CCCCCC'
-                    },
+                        color: "#FFF",
+                        fontSize: 13,
+                    }
                 },
-                series: [{
-                    type: 'pie',
-                    radius: ['40', '60'],
-                    center: ['50%', '50%'],
-                    color: ['#80C269', '#00FFFF', '#0090F1', '#FFA800','#4658F6'],
-                    itemStyle:{
-                        normal: {
-                            borderWidth: 5,
-                            borderColor: '#031845',
-                        }
-                    },
-                    data: [{
-                        value: 27,
-                        name: '严重不满人员'
-                    },
-                        {
-                            value: 30,
-                            name: '关注群体'
+                series: [
+                    {
+                        type: 'pie',
+                        radius: ['61%', '62%'],
+                        center: ['50%', '50%'],
+                        hoverAnimation: false,
+                        data: [100],
+                        label: {
+                            show: false
                         },
-                        {
-                            value: 24,
-                            name: '散居外国人'
-                        },
-                        {
-                            value: 27,
-                            name: '上访重点人'
-                        },
-                        {
-                            value: 27,
-                            name: '重点精神病'
-                        }
-
-                    ],
-                    labelLine: {
-                        normal: {
-                            show: true,
-                            // length: 50,
-                            // length2: 50,
-                            lineStyle: {
-                                color: '#CCCCCC',
-                                width: 2
+                        itemStyle: {
+                            normal: {
+                                color: lineColor,
                             }
-                        }
+                        },
                     },
-                    label: {
-                        normal: {
-                            formatter: '{b|{b}}\n{hr|}\n{c|{c}%}',
-                            rich: {
-                                b: {
-                                    // fontSize: 32,
-                                    color: '#FFF',
-                                    align: 'left',
-                                    // padding: 4
-                                },
-                                hr: {
-                                    borderColor: '#CCCCCC',
-                                    width: '100%',
-                                    borderWidth: 2,
-                                    height: 0
-                                },
-                                c: {
-                                    // fontSize: 32,
-                                    align: 'center',
-                                    // padding: 4,
-                                    color:'#00EDED'
+
+                    {
+
+                        type: 'pie',
+                        radius: ['30%', '34%'],
+                        center: ['50%', '50%'],
+                        hoverAnimation: false,
+                        data: [100],
+                        label: {
+                            show: false
+                        },
+                        opacity: '0.3',
+                        itemStyle: {
+                            normal: {
+                                color: '#FFFFFF',
+                            }
+                        },
+                    },
+
+                    {
+                        color: insideColor,
+                        type: 'pie',
+                        radius: ['51%', '51.5%'],
+                        center: ['50%', '50%'],
+                        hoverAnimation: false,
+                        data: [100],
+                        label: {
+                            show: false
+                        },
+                        opacity: '0.5',
+                        z: 20
+                    },
+                    {
+                        color: insideColor,
+                        type: 'pie',
+                        radius: ['45%', '45.5%'],
+                        center: ['50%', '50%'],
+                        hoverAnimation: false,
+                        data: [100],
+                        label: {
+                            show: false
+                        },
+                        opacity: '0.5',
+                        z: 20
+                    },
+                    {
+                        color: insideColor,
+                        type: 'pie',
+                        radius: ['39%', '39.5%'],
+                        center: ['50%', '50%'],
+                        hoverAnimation: false,
+                        data: [100],
+                        label: {
+                            show: false
+                        },
+                        opacity: '0.5',
+                        z: 20
+                    },
+                    {
+                        type: 'pie',
+                        radius: ['36%', '56%'],
+                        center: ['50%', '50%'],
+                        color: colorAttr,
+                        itemStyle: {
+                            normal: {
+                                // borderWidth: 5,
+                                // borderColor: '#031845',
+                            }
+                        },
+                        hoverAnimation: false,
+                        data: data,
+                        labelLine: {
+                            normal: {
+                                show: true,
+                                length: 12,
+                                length2: 50,
+                                lineStyle: {
+                                    color: '#CCCCCC',
+                                    width: 2
                                 }
                             }
+                        },
+                        label: {
+                            normal: {
+                                show: true,
+                                formatter: "{b} : {c}",
+                                height: 37,
+                                color: '#fff',
+                                padding: [0, -52],
+                                fontSize: 14,
+                                rich: {}
+                            }
                         }
-                    }
-                }
-
+                    },
                 ]
             };
-
             myChart.setOption(option);
-        }
+        })
     });
 
 </script>

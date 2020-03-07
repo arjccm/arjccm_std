@@ -1,0 +1,69 @@
+.pf_area{
+	width: 100%;
+}
+.pf_tab{
+	float: left;
+}
+.li_bg{
+	width: 25%;
+	height: 46px;
+	/*height: 2vw;*/
+	background: url("../img/bg_img.png") no-repeat center;
+	position: static !important;
+	background-size: 100% 100%;
+	float: left;
+	text-align: center;
+	white-space: nowrap;
+	margin-right: 5%;
+}
+.li_bg a{
+	font-size: 16px;
+	line-height: 46px;
+	color: #FFFFFF;
+	text-decoration: none;
+	text-align: center;
+}
+
+.jc_sl{
+	margin-top: 34px;
+}
+
+.sbzs_box{
+	width: 30%;
+	float: left;
+}
+.sbzs_box .jc_sl > span{
+	/*float: left;*/
+	/*vertical-align: bottom;*/
+}
+
+.name{
+	font-size:20px;
+	font-family:Microsoft YaHei;
+    margin-left: 1%;
+    margin-right: 17%;
+}
+
+.sbzs_box .jc_sl .name{
+	font-size: 0.456vw;
+	color: #FFFFFF;
+}
+
+
+.sbzs_box .jc_sl .num{
+	font-size: 0.814vw;
+	color: #03F8F6;
+}
+.sbzs_box .jc_sl div:nth-of-type(3){
+	font-size: 0.456vw;
+	color: #FFFFFF;
+	opacity: 0.3;
+}
+
+
+
+
+#policeForceDistribution{
+	width: 70%;
+	float: right;
+}
