@@ -186,4 +186,65 @@ public class CcmBIController {
         List<Object> result = ccmBIService.rentalHouseOfArea();
         return result;
     }
+    @ResponseBody
+    @RequestMapping(value = "search")
+    //重点单位检查问题
+    public Map<String, Object> search(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        //TODO 单位名数据 name
+        String[] name = new String[]{"单位1", "单位2", "单位3", "单位4", "单位5"};
+
+        // 重点单位问题数据 jlData
+        int[] jlData = new int[]{2000, 1000, 900, 800, 700};
+
+        //重点单位问题总数 jlData
+        int sumData=10000;
+
+        map.put("name", name);
+        map.put("jlData", jlData);
+        map.put("sumData", sumData);
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "modular_02")
+    //流动人员来源地
+    public Map<String, Object> modular_02(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        //TODO 单位名数据 name
+        String[] name = new String[]{"住宿", "餐饮", "学生", "司机", "教师", "医生", "物流", "房地产", "加工制造", "无固定职业"};
+
+        //TODO 重点单位问题数据 jlData
+        int[] jlData = new int[]{89, 90, 100, 200, 300, 400, 500, 600, 700, 800};
+
+        map.put("name", name);
+        map.put("jlData", jlData);
+
+        return map;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "Practitioners")
+    //流动人员来源地
+    public Map<String, Object> Practitioners(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        //TODO 单位名数据 name
+        String[] name = new String[]{"快递", "娱乐场所", "网约车", "出租车", "其他"};
+
+        //TODO 重点单位问题数据 jlData
+        int[] jlData = new int[]{301, 239, 350, 432, 309,};
+
+        map.put("name", name);
+        map.put("jlData", jlData);
+
+        return map;
+    }
 }
