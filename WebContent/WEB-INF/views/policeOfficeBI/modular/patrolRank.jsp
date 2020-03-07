@@ -23,69 +23,84 @@
 <script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
 <script>
     $(function(){
+        //初始化echarts对象
         var patrolRankChart = echarts.init(document.getElementById("patrolRankContent"));
-        patrolRankOption = {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'none'
+        //请求接口并填装数据执行
+        $.getJSON(ctx + "/sys/BicMap/vccmTeamMember", function (data) {
+            initPatrolRankOption(data);
+        });
+        function initPatrolRankOption(data){
+            patrolRankOption = {
+                grid: {
+                    top: '8%',
+                    left: 15,
+                    right: '8%',
+                    bottom: '8%',
+                    containLabel: true
                 },
-                formatter: function (params) {
-                    return params[0].name + ': ' + params[0].value;
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'none'
+                    },
+                    formatter: function (params) {
+                        return params[0].name + ': ' + params[0].value;
+                    },
                 },
-            },
-            //color: ['#17b3d1','#3279ee','#bb4cc3','#bd5e79','#e77d25'],
-            xAxis: {
-                type: 'value',
-                splitLine: {show: false},
-                axisTick: {show: false},
-                axisLine: {show: false},
-                axisLabel: {show: false}
-            },
-            yAxis: {
-                type: 'category',
-                data: ['区域1', '区域2', '区域3', '区域4', '区域5'],
-                axisTick: {show: false},
-                axisLine: {show: false},
-                axisLabel: {
-                    color: '#027DA8',
-                    fontSize: 10
+                xAxis: {
+                    type: 'value',
+                    splitLine: {show: false},
+                    axisTick: {show: false},
+                    axisLine: {show: false},
+                    axisLabel: {show: false}
                 },
-                splitLine: {show:false}
-            },
-            //color: ['#3279ee'],
-            series: [{
-                name: 'hill',
-                type: 'pictorialBar',
-                barCategoryGap: '-130%',
-                //symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
-                symbol: 'path://M109.5,456.9v265.6c19.8-85.6,86-139.2,165.1-173.1c53.9-23.1,91.7-32.5,174.7-45.5c142.4-22.3,463.9-37.2,463.9-37.2s-321.5-14.9-463.9-37.2c-83-13-120.7-22.4-174.7-45.5c-79.2-33.9-145.3-87.4-165.1-173.1v265.6z',
-                itemStyle: {
-                    opacity: 0.5,
-                    normal:{
-                        color: function (params){
-                            var colorList = ['#17b3d1','#3279ee','#bb4cc3','#bd5e79','#e77d25'];
-                            return colorList[params.dataIndex];
-                        }
-                    }
+                yAxis: {
+                    type: 'category',
+                    data: data[0],
+                    axisTick: {show: false},
+                    axisLine: {show: false},
+                    axisLabel: {
+                        color: 'white',
+                        fontSize: 13,
+                        margin: 5
+                    },
+                    splitLine: {show:false}
                 },
-                emphasis: {
+                series: [{
+                    name: 'hill',
+                    type: 'pictorialBar',
+                    barCategoryGap: '-130%',
+                    barWidth: '190%',
+                    symbol: 'path://M109.5,456.9v265.6c19.8-85.6,86-139.2,165.1-173.1c53.9-23.1,91.7-32.5,174.7-45.5c142.4-22.3,463.9-37.2,463.9-37.2s-321.5-14.9-463.9-37.2c-83-13-120.7-22.4-174.7-45.5c-79.2-33.9-145.3-87.4-165.1-173.1v265.6z',
                     itemStyle: {
-                        opacity: 1
-                    }
-                },
-                label: {
-                    show: true,
-                    position: 'right',
-                    padding: 10,
-                    color: '#2979ff',
-                    fontSize: 10,
-                },
-                data: [123, 60, 25, 18, 120]
-            }]
-        };
-
-        patrolRankChart.setOption(patrolRankOption);
+                        opacity: 0.5,
+                        normal:{
+                            color: function(params){
+                                var colorList = ['rgba(23, 179, 209, 1)','rgba(50, 121, 238, 1)','rgba(187, 76, 195, 1)','rgba(189, 94, 121, 1)','rgba(231, 125, 37, 1)'];
+                                var colorList2 = ['rgba(23, 179, 209, .5)','rgba(50, 121, 238, .5)','rgba(187, 76, 195, .5)','rgba(189, 94, 121, .5)','rgba(231, 125, 37, .5)'];
+                                return new echarts.graphic.LinearGradient(
+                                    1, 0, 0, 0, [{offset: 0, color: colorList[params.dataIndex]},{offset: 1, color: colorList2[params.dataIndex]}]);
+                            }
+                        }
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            opacity: 1
+                        }
+                    },
+                    label: {
+                        show: true,
+                        position: 'right',
+                        top: 8,
+                        color: 'white',
+                        fontSize: 13,
+                    },
+                    data: data[1],
+                    z: 10
+                }]
+            };
+            patrolRankChart.setOption(patrolRankOption);
+        }
     })
 </script>
 

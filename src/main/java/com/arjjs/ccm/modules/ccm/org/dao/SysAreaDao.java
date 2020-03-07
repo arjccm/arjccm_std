@@ -7,6 +7,7 @@ import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.plugins.InterceptorEntity;
+import com.arjjs.ccm.tool.EchartType;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,13 @@ public interface SysAreaDao extends CrudDao<SysArea> {
 	List<SysArea> findByPid(SysArea area);
 
     List<String> selectAreaIdByParentIdAndId(InterceptorEntity interceptorEntity);
+
+    //实有人口数据汇总（户籍）
+    List<EchartType> ccmPeopleCountHj();
+	//实有人口数据汇总（流动）
+	List<EchartType> ccmPeopleCountLd();
+	//重点人员区域分布TOP5
+	List<EchartType> keyPeopleOfArea();
+	//出租房区域分布TOP5
+	List<EchartType> rentalHouseOfArea();
 }

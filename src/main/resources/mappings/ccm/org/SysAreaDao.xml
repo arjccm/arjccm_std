@@ -450,4 +450,87 @@
 			 a.parent_ids LIKE  concat(#{parentIds},'%')  OR a.id = #{id}
 			AND a.del_flag = '0'
 	</select>
+
+	<!--实有人口数据汇总（户籍）-->
+	<select id="ccmPeopleCountHj" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			a.id AS 'type',
+			a. NAME AS 'typeO',
+			count(p.id) AS 'value'
+		FROM
+			sys_area a
+		LEFT JOIN ccm_people p ON a.id = p.area_grid_id and p.del_flag = 0 and p.type = 10
+		WHERE
+			a.type = 7
+		GROUP BY
+			a.id
+	</select>
+
+	<!--实有人口数据汇总（流动）-->
+	<select id="ccmPeopleCountLd" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			a.id AS 'type',
+			a. NAME AS 'typeO',
+			count(p.id) AS 'value'
+		FROM
+			sys_area a
+		LEFT JOIN ccm_people p ON a.id = p.area_grid_id and p.del_flag = 0 and p.type = 20
+		WHERE
+			a.type = 7
+		GROUP BY
+			a.id
+	</select>
+
+	<!--重点人员区域分布TOP5-->
+	<select id="keyPeopleOfArea" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			a.id AS 'type',
+			a. NAME AS 'typeO',
+			count(p.id) AS 'value'
+		FROM
+			sys_area a
+		LEFT JOIN ccm_people p ON a.id = p.area_grid_id and p.del_flag = 0
+		and (
+		p.is_aids = 1
+		or p.is_behind = 1
+		or p.is_release = 1
+		or p.is_rectification = 1
+		or p.is_psychogeny = 1
+		or p.is_kym = 1
+		or p.is_dangerous = 1
+		or p.is_visit = 1
+		or p.is_drugs = 1
+		or p.is_heresy = 1
+		or p.is_criminal_offense = 1
+		or p.is_escape = 1
+		or p.is_harm_national = 1
+		or p.is_dispute = 1
+		)
+		WHERE
+			a.type = 7
+		GROUP BY
+			a.id
+		ORDER BY
+			count(p.id) DESC
+		LIMIT 5
+	</select>
+
+	<!--出租房区域分布TOP5-->
+	<select id="rentalHouseOfArea" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			a.id AS 'type',
+			a. NAME AS 'typeO',
+			count(tenant.id) AS 'value'
+		FROM
+			sys_area a
+		LEFT JOIN ccm_house_buildmanage house ON a.id = house.area_id and house.del_flag = 0
+		LEFT JOIN ccm_pop_tenant tenant ON house.id = tenant.building_id and tenant.del_flag = 0 and tenant.house_type = '02'
+		WHERE
+			a.type = 7
+		GROUP BY
+			a.id
+		ORDER BY
+			count(tenant.id) DESC
+		LIMIT 5
+	</select>
 </mapper>

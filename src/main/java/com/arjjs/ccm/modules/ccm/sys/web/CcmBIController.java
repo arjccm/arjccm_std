@@ -1,11 +1,18 @@
 package com.arjjs.ccm.modules.ccm.sys.web;
 
+import com.arjjs.ccm.modules.ccm.sys.service.CcmBIService;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.arjjs.ccm.modules.ccm.sys.entity.PoliceDigest;
 import com.google.common.collect.Maps;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -132,4 +139,51 @@ public class CcmBIController {
         return policeJson;
     }
 
+    @Autowired
+    private CcmBIService ccmBIService;
+
+    // 实有人口数据汇总（柱状图）
+    @ResponseBody
+    @RequestMapping(value = "ccmPeopleCount")
+    public List<Object> ccmPeopleCount(Model model) {
+        // 返回对象结果
+        List<Object> result = ccmBIService.ccmPeopleCount();
+        return result;
+    }
+
+    // 重点人员区域分布TOP5
+    @ResponseBody
+    @RequestMapping(value = "keyPeopleOfArea")
+    public List<Object> keyPeopleOfArea(Model model) {
+        // 返回对象结果
+        List<Object> result = ccmBIService.keyPeopleOfArea();
+        return result;
+    }
+
+    // 巡逻队伍落实排名
+    @ResponseBody
+    @RequestMapping(value = "vccmTeamMember")
+    public List<Object> vccmTeamMember(Model model) {
+        // 返回对象结果
+        List<Object> result = ccmBIService.vccmTeamMember();
+        return result;
+    }
+
+    // 本周人脸抓拍告警TOP5
+    @ResponseBody
+    @RequestMapping(value = "thisWeekFace")
+    public List<Object> thisWeekFace(Model model) {
+        // 返回对象结果
+        List<Object> result = ccmBIService.thisWeekFace();
+        return result;
+    }
+
+    // 出租房区域分布TOP5
+    @ResponseBody
+    @RequestMapping(value = "rentalHouseOfArea")
+    public List<Object> rentalHouseOfArea(Model model) {
+        // 返回对象结果
+        List<Object> result = ccmBIService.rentalHouseOfArea();
+        return result;
+    }
 }
