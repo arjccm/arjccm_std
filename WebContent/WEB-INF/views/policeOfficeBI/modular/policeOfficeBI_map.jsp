@@ -464,8 +464,7 @@
 	}
 
 
-
-	//场所特也
+	//场所特业
 	var broadcastFlag = true;
 	function getBasePlaceMap() {
 		if (broadcastFlag) {
@@ -483,13 +482,11 @@
 		broadcastFlag = !broadcastFlag;
 	}
 
-
-
-	//机顶盒
-	var SetTopBoxFlag = true;
-	function SetTopBoxFun(_this) {
-		if (SetTopBoxFlag) {
-			$.getJSON('' + ctx + '/sys/map/buildBox', function (data) {
+	//出租屋
+	var LetNumFlag = true;
+	function getLetNum() {
+		if (LetNumFlag) {
+			$.getJSON('' + ctx + '/sys/policemap/getLetNum', function (data) {
 				Map.addJSON1([{
 					'type': 'topBox',
 					'id': 'SetTopBoxFlag',
@@ -497,44 +494,29 @@
 					'isShow': true
 				}])
 			})
-			$(_this).css('border', '1px solid #0e54a9');
 		} else {
-			$(_this).css('border', '1px solid transparent');
 			Map.removeLayer('SetTopBoxFlag');
 		}
-		SetTopBoxFlag = !SetTopBoxFlag;
+		LetNumFlag = !LetNumFlag;
 	}
 
-	//疫情人员信息
-	var PeopleAntiepidemicFlag = true;
-	function getpeopleAntiepidemic(_this) {
-		if (PeopleAntiepidemicFlag) {
-			$.getJSON('' + ctx + '/sys/map/getpeopleAntiepidemic', function (data) {
-				// Map.addJSON1([{
-				//     'type': 'antiepidemictype',
-				//     'id': 'PeopleAntiepidemic',
-				//     'data': data,
-				//     'isShow': true
-				// }])
-				for (var i in data.features){
-					data.features[i].properties['nameNum']=''+(Number(i)+1)+'';
-					// data.features[i].properties['nameNum'] = data.features[i].properties['info']["姓名"];
-				}
-				Map.addGIS([{
-					'type': 'antiepidemictype',
-					'id': 'PeopleAntiepidemic',
+	//警情事件
+	var AlarmFlag = true;
+	function getAlarm() {
+		if (AlarmFlag) {
+			$.getJSON('' + ctx + '/sys/policemap/getAlarm', function (data) {
+				Map.addJSON1([{
+					'type': 'topBox',
+					'id': 'SetTopBoxFlag',
 					'data': data,
 					'isShow': true
 				}])
 			})
-			$(_this).css('border', '1px solid #0e54a9');
 		} else {
-			$(_this).css('border', '1px solid transparent');
-			Map.removeLayer('PeopleAntiepidemic');
+			Map.removeLayer('SetTopBoxFlag');
 		}
-		PeopleAntiepidemicFlag = !PeopleAntiepidemicFlag;
+		AlarmFlag = !AlarmFlag;
 	}
-
 
 
 	/***************************下方菜单End****************************/
