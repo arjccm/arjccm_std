@@ -14,6 +14,13 @@
             <div class="box_bg_02"></div>
         </div>
     </div>
+    <div style="width: 25px;height: 100%;font-size: 13px;margin-top: 20px;position: absolute;margin-right: 10%;margin-left: 90%;">
+        <span id="patroldata1" style="width: 100%;color: white;margin-top: 30%;text-align: center;display:block;height: 25px;line-height: 25px;"></span>
+        <span id="patroldata2" style="width: 100%;color: white;margin-top: 50%;text-align: center;display:block;height: 25px;line-height: 25px;"></span>
+        <span id="patroldata3" style="width: 100%;color: white;margin-top: 50%;text-align: center;display:block;height: 25px;line-height: 25px;"></span>
+        <span id="patroldata4" style="width: 100%;color: white;margin-top: 50%;text-align: center;display:block;height: 25px;line-height: 25px;"></span>
+        <span id="patroldata5" style="width: 100%;color: white;margin-top: 50%;text-align: center;display:block;height: 25px;line-height: 25px;"></span>
+    </div>
     <div id="patrolRankContent" class="box_content">
 
     </div>
@@ -28,6 +35,11 @@
         //请求接口并填装数据执行
         $.getJSON(ctx + "/sys/BicMap/vccmTeamMember", function (data) {
             initPatrolRankOption(data);
+            $('#patroldata1').text(data[1][4]);
+            $('#patroldata2').text(data[1][3]);
+            $('#patroldata3').text(data[1][2]);
+            $('#patroldata4').text(data[1][1]);
+            $('#patroldata5').text(data[1][0]);
         });
         function initPatrolRankOption(data){
             patrolRankOption = {
@@ -87,13 +99,6 @@
                         itemStyle: {
                             opacity: 1
                         }
-                    },
-                    label: {
-                        show: true,
-                        position: 'right',
-                        top: 8,
-                        color: 'white',
-                        fontSize: 13,
                     },
                     data: data[1],
                     z: 10

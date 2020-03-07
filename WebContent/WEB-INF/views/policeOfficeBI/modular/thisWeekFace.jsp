@@ -13,6 +13,13 @@
         <div class="box_bg_01">
             <div class="box_bg_02"></div>
         </div>
+        <div style="width: 100%;height: 20px;font-size: 13px;margin-top: 20px;">
+            <span id="facedata1" style="width: 15%;color: white;margin-left: 10%;text-align: center;display:inline-block;"></span>
+            <span id="facedata2" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
+            <span id="facedata3" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
+            <span id="facedata4" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
+            <span id="facedata5" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
+        </div>
     </div>
     <div id="thisWeekContent" class="box_content">
 
@@ -28,6 +35,11 @@
         //请求接口并填装数据执行
         $.getJSON(ctx + "/sys/BicMap/thisWeekFace", function (data) {
             initThisWeekOption(data);
+            $('#facedata1').text(data[1][0]);
+            $('#facedata2').text(data[1][1]);
+            $('#facedata3').text(data[1][2]);
+            $('#facedata4').text(data[1][3]);
+            $('#facedata5').text(data[1][4]);
         });
         function initThisWeekOption(data){
             thisWeekOption = {
@@ -87,13 +99,6 @@
                         itemStyle: {
                             opacity: 1
                         }
-                    },
-                    label: {
-                        show: true,
-                        position: 'top',
-                        top: 8,
-                        color: 'white',
-                        fontSize: 13,
                     },
                     data: data[1],
                     z: 10
