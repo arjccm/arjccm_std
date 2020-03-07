@@ -6,13 +6,15 @@
     <!--查询警情事件-->
     <select id="findAlarm" resultType="AlarmHandleInfo">
         SELECT
-        a.id AS id,
-        a.x AS x,
-        a.y AS y
+        a3.area_point AS "alarm_point",
+        a.area_id AS "aid",
+        COUNT(1) AS "alarm_num"
         FROM bph_alarm_info a
         LEFT JOIN sys_area a2
-		ON a2.id = a.area_id
-		WHERE
-		a2.type=#{type}
+	    ON a2.id = a.area_id
+	    LEFT JOIN ccm_org_area a3
+	    ON a2.id = a3.area_id
+	    WHERE
+		a2.type=#{type} GROUP BY aid
     </select>
 </mapper>
