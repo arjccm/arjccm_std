@@ -11,9 +11,12 @@ import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
 import com.arjjs.ccm.modules.ccm.place.service.CcmBasePlaceService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.pop.dao.CcmPopTenantDao;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.rest.entity.AlarmHandleInfo;
 import com.arjjs.ccm.modules.ccm.rest.service.AlarmHandleInfoService;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.tool.EchartType;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.tool.geoJson.Features;
@@ -353,18 +356,12 @@ public class CcmPoliceOfficeMapController {
         CcmPopTenant ccmPopTenant = new CcmPopTenant();
         ccmPopTenant.setType("7");
         ccmPopTenant.setHouseType("02");
-        ArrayList<CcmPopTenant> ccmPopTenants = new ArrayList<>();
         //返回对象数据
         List<CcmPopTenant> letList = ccmPopTenantService.findLet(ccmPopTenant);
-        for (CcmPopTenant popTenant : letList) {
-            //出租屋数量
-            popTenant.setLetNum(letList.size());
-            ccmPopTenants.add(popTenant);
-        }
         // 返回对象
         GeoJSON geoJSON = new GeoJSON();
         List<Features> featureList = new ArrayList<Features>();
-        for (CcmPopTenant popTenant : ccmPopTenants) {
+        for (CcmPopTenant popTenant : letList) {
             // 特征,属性
             Features featureDto = new Features();
             Properties properties = new Properties();
@@ -430,23 +427,13 @@ public class CcmPoliceOfficeMapController {
     @RequestMapping(value = "getAlarm")
     public GeoJSON getAlarmInfo(){
         AlarmHandleInfo alarmHandleInfo = new AlarmHandleInfo();
-        ArrayList<AlarmHandleInfo> alarminfos = new ArrayList<>();
         alarmHandleInfo.setType("7");
         //返回对象数据
         List<AlarmHandleInfo> alarmList = alarmHandleInfoService.findAlarm(alarmHandleInfo);
-        String areaPoint="";
-        if (alarmList.size()>0){
-            for (AlarmHandleInfo alarmInfo : alarmList) {
-                alarmInfo.setAlarmNum(alarmList.size());
-                areaPoint = alarmInfo.getX()+","+alarmInfo.getY();
-                alarmInfo.setAlarmPoint(areaPoint);
-                alarminfos.add(alarmInfo);
-            }
-        }
         // 返回对象
         GeoJSON geoJSON = new GeoJSON();
         List<Features> featureList = new ArrayList<Features>();
-        for (AlarmHandleInfo alarminfo : alarminfos) {
+        for (AlarmHandleInfo alarminfo : alarmList) {
             // 特征,属性
             Features featureDto = new Features();
             Properties properties = new Properties();
