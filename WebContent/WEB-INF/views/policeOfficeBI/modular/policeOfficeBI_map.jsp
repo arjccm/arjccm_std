@@ -3,8 +3,98 @@
 .map{
 	width: 742.25px;
 	height: 660px;
-	position: relative;
+	position: absolute;
 }
+	.topmapbutton{
+		width: 531px;
+		height: 58px;
+		margin-top: 31px;
+		z-index: 10;
+		position: fixed;
+		left: 27%;
+		background: #040D1E;
+		border-radius:4px;
+		border:1px solid rgba(0,255,252,1);
+		opacity:0.8;
+	}
+
+	.btninp{
+		width: 106px;
+		height: 56px;
+		background: #040D1E;
+		padding: 0!important;
+		border: 0!important;
+		margin-right: -4px!important;
+		font-size: 12px;
+		font-family: "MicrosoftYaHei";
+		color: #FFFFFF;
+	}
+
+	.sxtback{
+		width: 50px;
+		height: 150px;
+		margin-top: 76px;
+		z-index: 10;
+		position: fixed;
+		right: 39%;
+		background: #040D1E;
+		border-radius:4px;
+		border:1px solid rgba(0,255,252,1);
+		opacity:0.8;
+	}
+	.sxtlizx{
+		height: 70px;
+		color: #44e0f0;
+		padding: 11px 0px 0px 8px;
+		background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zxquan.png) no-repeat 7px 34px;
+	}
+
+	.sxtlilx{
+		height: 70px;
+		color: #f93f76;
+		padding: 8px 0px 0px 8px;
+		background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-lxquan.png) no-repeat 7px 34px;
+	}
+
+	.sctyback{
+		width: 50px;
+		height: 290px;
+		margin-top: 76px;
+		z-index: 10;
+		position: fixed;
+		right: 39%;
+		background: #040D1E;
+		border-radius:4px;
+		border:1px solid rgba(0,255,252,1);
+		opacity:0.8;
+	}
+
+	.ktv{
+		height: 70px;
+		color: #d757de;
+		padding: 11px 0px 0px 8px;
+		background:url(${ctxStatic}/policeOfficeBI/img/map_ktvquan.png) no-repeat 7px 34px;
+	}
+	.bg{
+		height: 70px;
+		color: #1dd3b3;
+		padding: 11px 0px 0px 8px;
+		background:url(${ctxStatic}/policeOfficeBI/img/map_bgquan.png) no-repeat 7px 34px;
+	}
+	.zy{
+		height: 70px;
+		color: #9399fe;
+		padding: 11px 0px 0px 8px;
+		background:url(${ctxStatic}/policeOfficeBI/img/map_zyquan.png) no-repeat 7px 34px;
+	}
+	.wb{
+		height: 70px;
+		color: #248db0;
+		padding: 11px 0px 0px 8px;
+		background:url(${ctxStatic}/policeOfficeBI/img/map_wbquan.png) no-repeat 7px 34px;
+	}
+
+
 </style>
 
 <script src="${ctxStatic}/ol/ol.js"></script>
@@ -16,10 +106,35 @@
 
 <section>
 
-	<div >
-		<input type="button" value="按钮" style="background-color: #0bbbee" onclick="getKeyPeopleNum()">
-        <input type="button" value="视频" style="background-color: #0bbbee" onclick="shipinjiankongFun()">
-		<input type="button" value="场所特业" style="background-color: #0bbbee" onclick="getBasePlaceMap()">
+	<div class="topmapbutton">
+		<input type="button" value="重点人员" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_ry.png) no-repeat 11px 13px;" onclick="getKeyPeopleNum()">
+        <input type="button" value="视频监控"  class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zx.png) no-repeat 4px 16px;" onclick="shipinjiankongFun()">
+		<input type="button" value="出租屋"  class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_czw.png) no-repeat 4px 16px;" onclick="getLetNum()">
+		<input type="button" value="场所特业" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_cs.png) no-repeat 4px 16px;" onclick="getBasePlaceMap()">
+		<input type="button" value="警情事件" class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_jq.png) no-repeat 4px 16px;" onclick= "getAlarm()">
+			<%--<ul>
+				<li><span>重点人员</span></li>
+				<li><span>视频监控</span></li>
+				<li><span>出租屋</span></li>
+				<li><span>场所特业</span></li>
+				<li><span>警情事件</span></li>
+			</ul>--%>
+	</div>
+
+<%--	<div class="sxtback" id="sxtshow">
+		<ui>
+			<li class="sxtlizx"><span>在线</span><li>
+			<li class="sxtlilx"><span>离线</span><li>
+		</ui>
+	</div>--%>
+
+	<div class="sctyback" id="sctyshow" >
+		<ui>
+			<li class="ktv"><span>KTV</span><li>
+			<li class="bg"><span>宾馆</span><li>
+			<li class="zy"><span>足浴</span><li>
+			<li class="wb"><span>网吧</span><li>
+		</ui>
 	</div>
 
 	<div id="pubMap"></div>
@@ -314,7 +429,6 @@
 	//重点人员数量
 	var keyPeopleNumFlag = true;
 	function getKeyPeopleNum() {
-		debugger
 		if (keyPeopleNumFlag) {
 			$.getJSON('' + ctx + '/sys/policemap/getKeyPeopleNum', function (data) {
 				Map.addJSON1([{
@@ -350,8 +464,7 @@
 	}
 
 
-
-	//场所特也
+	//场所特业
 	var broadcastFlag = true;
 	function getBasePlaceMap() {
 		if (broadcastFlag) {
@@ -369,13 +482,11 @@
 		broadcastFlag = !broadcastFlag;
 	}
 
-
-
-	//机顶盒
-	var SetTopBoxFlag = true;
-	function SetTopBoxFun(_this) {
-		if (SetTopBoxFlag) {
-			$.getJSON('' + ctx + '/sys/map/buildBox', function (data) {
+	//出租屋
+	var LetNumFlag = true;
+	function getLetNum() {
+		if (LetNumFlag) {
+			$.getJSON('' + ctx + '/sys/policemap/getLetNum', function (data) {
 				Map.addJSON1([{
 					'type': 'topBox',
 					'id': 'SetTopBoxFlag',
@@ -383,44 +494,29 @@
 					'isShow': true
 				}])
 			})
-			$(_this).css('border', '1px solid #0e54a9');
 		} else {
-			$(_this).css('border', '1px solid transparent');
 			Map.removeLayer('SetTopBoxFlag');
 		}
-		SetTopBoxFlag = !SetTopBoxFlag;
+		LetNumFlag = !LetNumFlag;
 	}
 
-	//疫情人员信息
-	var PeopleAntiepidemicFlag = true;
-	function getpeopleAntiepidemic(_this) {
-		if (PeopleAntiepidemicFlag) {
-			$.getJSON('' + ctx + '/sys/map/getpeopleAntiepidemic', function (data) {
-				// Map.addJSON1([{
-				//     'type': 'antiepidemictype',
-				//     'id': 'PeopleAntiepidemic',
-				//     'data': data,
-				//     'isShow': true
-				// }])
-				for (var i in data.features){
-					data.features[i].properties['nameNum']=''+(Number(i)+1)+'';
-					// data.features[i].properties['nameNum'] = data.features[i].properties['info']["姓名"];
-				}
-				Map.addGIS([{
-					'type': 'antiepidemictype',
-					'id': 'PeopleAntiepidemic',
+	//警情事件
+	var AlarmFlag = true;
+	function getAlarm() {
+		if (AlarmFlag) {
+			$.getJSON('' + ctx + '/sys/policemap/getAlarm', function (data) {
+				Map.addJSON1([{
+					'type': 'topBox',
+					'id': 'SetTopBoxFlag',
 					'data': data,
 					'isShow': true
 				}])
 			})
-			$(_this).css('border', '1px solid #0e54a9');
 		} else {
-			$(_this).css('border', '1px solid transparent');
-			Map.removeLayer('PeopleAntiepidemic');
+			Map.removeLayer('SetTopBoxFlag');
 		}
-		PeopleAntiepidemicFlag = !PeopleAntiepidemicFlag;
+		AlarmFlag = !AlarmFlag;
 	}
-
 
 
 	/***************************下方菜单End****************************/

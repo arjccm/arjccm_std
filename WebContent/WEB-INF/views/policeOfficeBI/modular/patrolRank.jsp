@@ -34,30 +34,40 @@
                     return params[0].name + ': ' + params[0].value;
                 },
             },
+            //color: ['#17b3d1','#3279ee','#bb4cc3','#bd5e79','#e77d25'],
             xAxis: {
+                type: 'value',
                 splitLine: {show: false},
                 axisTick: {show: false},
                 axisLine: {show: false},
                 axisLabel: {show: false}
             },
             yAxis: {
+                type: 'category',
                 data: ['区域1', '区域2', '区域3', '区域4', '区域5'],
                 axisTick: {show: false},
                 axisLine: {show: false},
                 axisLabel: {
-                    color: '#027DA8'
+                    color: '#027DA8',
+                    fontSize: 10
                 },
                 splitLine: {show:false}
             },
-            color: ['#027DA8'],
+            //color: ['#3279ee'],
             series: [{
                 name: 'hill',
                 type: 'pictorialBar',
                 barCategoryGap: '-130%',
                 //symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
-                symbol: 'path://M10,0 L10,10 C10,5.5 5,5.5 0,5 C5,4.5 10,4.5 10,0 z',
+                symbol: 'path://M109.5,456.9v265.6c19.8-85.6,86-139.2,165.1-173.1c53.9-23.1,91.7-32.5,174.7-45.5c142.4-22.3,463.9-37.2,463.9-37.2s-321.5-14.9-463.9-37.2c-83-13-120.7-22.4-174.7-45.5c-79.2-33.9-145.3-87.4-165.1-173.1v265.6z',
                 itemStyle: {
-                    opacity: 0.5
+                    opacity: 0.5,
+                    normal:{
+                        color: function (params){
+                            var colorList = ['#17b3d1','#3279ee','#bb4cc3','#bd5e79','#e77d25'];
+                            return colorList[params.dataIndex];
+                        }
+                    }
                 },
                 emphasis: {
                     itemStyle: {
@@ -66,53 +76,12 @@
                 },
                 label: {
                     show: true,
-                    position: 'top',
+                    position: 'right',
                     padding: 10,
                     color: '#2979ff',
-                    fontSize: 14,
+                    fontSize: 10,
                 },
-                data: [123, 60, 25, 18, 120],
-                z: 10
-            }, {
-                name: 'glyph',
-                type: 'pictorialBar',
-                barGap: '-100%',
-                symbolPosition: 'end',
-                symbolSize: 50,
-                symbolOffset: [0, '-120%'],
-                data: [{
-                    // value: 123,
-                    // symbol: pathSymbols.reindeer,
-                    symbolSize: [60, 60]
-                }, {
-                    // value: 60,
-                    // symbol: pathSymbols.rocket,
-                    symbolSize: [50, 60]
-                }, {
-                    // value: 25,
-                    // symbol: pathSymbols.plane,
-                    symbolSize: [65, 35]
-                }, {
-                    // value: 18,
-                    // symbol: pathSymbols.train,
-                    symbolSize: [50, 30]
-                }, {
-                    // value: 12,
-                    // symbol: pathSymbols.ship,
-                    symbolSize: [50, 35]
-                }, {
-                    // value: 9,
-                    // symbol: pathSymbols.car,
-                    symbolSize: [40, 30]
-                }, {
-                    // value: 2,
-                    // symbol: pathSymbols.run,
-                    symbolSize: [40, 50]
-                }, {
-                    // value: 1,
-                    // symbol: pathSymbols.walk,
-                    symbolSize: [40, 50]
-                }]
+                data: [123, 60, 25, 18, 120]
             }]
         };
 

@@ -38,7 +38,8 @@ $(function () {
                 textStyle: {
                     color: '#FFFFFF'
                 },
-                left:'15%'
+                left:'25%',
+                itemGap:25
             },
             grid: {
                 top: '13%',
@@ -132,7 +133,7 @@ $(function () {
                 type: 'bar',
                 barWidth: '60%',
                 //data: data['人数'],
-                data: [11, 59, 85, 48, 87, 42, 64,53, 38, 57, 13],
+                data: [11, 59, 85, 48, 87, 42, 64,53, 38, 57, 13,33],
 
                 itemStyle: {
                     normal: {
@@ -152,7 +153,7 @@ $(function () {
             },
                 {
                     name: '化解率',
-                    data: [8, 21, 38, 33, 55, 41, 26,34, 16, 32, 4],
+                    data: [8, 21, 38, 33, 55, 41, 26,34, 16, 32, 4,55],
                     type: 'line',
                     symbolSize: 8, // 控制线条上 点 的大小
                     yAxisIndex: 1,

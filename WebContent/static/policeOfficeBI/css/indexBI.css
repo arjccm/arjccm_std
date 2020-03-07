@@ -15,20 +15,21 @@ body{
 	background: url("../img/common/header_bg.png") no-repeat center;
 	background-size: cover;
 }
-.header .header_title{
+.header .header_title {
 	width: 100%;
 	text-align: center;
 	font-size: 1.237vw;
 	color: #FFFFFF;
 	line-height: 2.44vw;
 	font-weight: bold;
+	text-shadow: 0px 0.13vw 4px #000000;
+
 
 	/*background: linear-gradient(to bottom, #FFFFFF, #b7bac1);*/
 	/*-webkit-background-clip: text;*/
 	/*color: transparent;*/
 	/*-webkit-text-fill-color: transparent;*/
 	/*text-fill-color: transparent;*/
-
 }
 .header_information{
 	height: 1.236vw;
@@ -43,14 +44,42 @@ body{
 	float: left;
 	color: #FFFFFF;
 	padding: 0 20px;
+	text-shadow: 0px 0.13vw 4px #000000;
+	font-family: pangmenzhengdao;
 }
-
+.dividing_Line{
+	width: 0.911vw;
+	height: 0.911vw;
+	float: left;
+	margin-top: 0.3vh;
+	background: url("../img/common/header_fg.png") no-repeat center;
+}
+.streamer{
+	width: 25.39vw;
+	height: 2.474vw;
+	position: absolute;
+	top: 0;
+	left: 36.95vw;
+	z-index: 100;
+}
+.streamer .lg_animate{
+	width: 7.8125vw;
+	height: 2.278vw;
+	background: url("../img/common/lg2.png") no-repeat center;
+	background-size: 100% 100%;
+	position: absolute;
+	bottom: -0.31vw;
+	left: 0;
+	animation: streamer_amt 4s;
+	animation-iteration-count:infinite;
+	animation-direction:alternate;
+}
 /* navBasic_data */
 .navBasic_data{
 	width: 100%;
-	height: 24px;
+	/*height: 1.074vw;*/
 	/*background: #666666;*/
-	margin-top: -24px;
+	margin-top: -1.0742vw;
 	opacity: 0;
 	animation: navBasic_data_animation 0.5s;
 	animation-delay: 0.5s;
@@ -61,12 +90,14 @@ body{
 }
 .navBasic_data .left_box{
 	float: left;
+	margin-bottom: 0;
 }
 .navBasic_data .left_box li{
 	margin-right: 2.734vw;
 }
 .navBasic_data .right_box{
 	float: right;
+	margin-bottom: 0;
 }
 .navBasic_data .right_box li{
 	margin-left: 1.2369vw;
@@ -78,7 +109,7 @@ body{
 	width: 4.6875vw;
 	height: 1.0742vw;
 	background: url("../img/common/navBasic_bg.png") no-repeat center;
-	background-size: cover;
+	background-size: 100% 100%;
 	list-style-type: none;
 	float: left;
 }
@@ -96,10 +127,11 @@ body{
 }
 .navBasic_data ul li p:last-child{
 	width: 50%;
-	font-size: 0.488vw;
+	font-size: 0.651vw;
 	float: right;
 	color: #ffcf3f;
 	text-align: center;
+	font-weight: bold;
 }
 .navBasic_data .red_text{
 	color: #ff5313 !important;
@@ -116,13 +148,21 @@ body{
 }
 .container_area{
 	width: 100%;
-	height: calc(100vh - 2.84vw);
+	height: calc(100vh - 3.3vw);
+	margin-top: 0.46vw;
 }
 .container_area ul{
 	padding: 0;
 }
 
-
+@keyframes streamer_amt {
+	from{
+		left: 0;
+	}
+	to{
+		left: 70%;
+	}
+}
 
 
 

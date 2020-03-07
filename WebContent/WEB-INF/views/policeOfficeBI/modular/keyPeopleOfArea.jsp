@@ -45,23 +45,22 @@
                 show : false,
             },
             yAxis: {
-                data: ['区域1', '区域2', '区域3', '区域4',"区域5"],
+                data: ['1 区域1', '2 区域2', '3 区域3', '4 区域4',"5 区域5"],
                 inverse: true,
                 axisTick: {show: false},
                 axisLine: {show: false},
                 axisLabel: {
-                    margin: 10,
                     textStyle: {
-                        color: '#999',
-                        fontSize: 10
+                        color: 'white',
+                        fontSize: 8
                     }
                 }
             },
             grid: {
                 top: 'center',
-                height: 200,
-                left: 70,
-                right: 100
+                height: 150,
+                left: 40,
+                right: 30
             },
             series: [{
                 // current data
@@ -70,7 +69,8 @@
                 symbol: 'path://M399.4 210.5a112.3 112.3 0 1 0 224.6 0a112.3 112.3 0 1 0 -224.6 0zM686.4,644.4H337c-18.1,0-33-14.9-33-33V384.3c0-18.1,14.9-33,33-33h349.4c18.2,0,33,14.9,33,33v227.1C719.4,629.5,704.5,644.4,686.4,644.4zM583.5,928.2H439.8c-13.6,0-24.7-11.1-24.7-24.7l-32.9-348.3c0-13.6,11.1-24.7,24.7-24.7h209.5c13.6,0,24.7,11.1,24.7,24.7l-32.9,348.3C608.2,917.1,597.1,928.2,583.5,928.2z',
                 symbolRepeat: 'fixed',
                 symbolClip: true,
-                symbolSize: 15,
+                symbolSize: [7,14],
+                symbolMargin: 2,
                 // symbolBoundingData: maxData,
                 data: [80, 50, 40, 60, 24],
                 z: 10
@@ -89,17 +89,17 @@
                             return params.value + ' 人';
                         },
                         position: 'right',
-                        offset: [10, 0],
                         textStyle: {
-                            color: 'green',
-                            fontSize: 10
+                            color: 'white',
+                            fontSize: 8
                         }
                     }
                 },
                 animationDuration: 0,
                 symbolRepeat: 'fixed',
                 symbol: 'path://M399.4 210.5a112.3 112.3 0 1 0 224.6 0a112.3 112.3 0 1 0 -224.6 0zM686.4,644.4H337c-18.1,0-33-14.9-33-33V384.3c0-18.1,14.9-33,33-33h349.4c18.2,0,33,14.9,33,33v227.1C719.4,629.5,704.5,644.4,686.4,644.4zM583.5,928.2H439.8c-13.6,0-24.7-11.1-24.7-24.7l-32.9-348.3c0-13.6,11.1-24.7,24.7-24.7h209.5c13.6,0,24.7,11.1,24.7,24.7l-32.9,348.3C608.2,917.1,597.1,928.2,583.5,928.2z',
-                symbolSize: 15,
+                symbolSize: [7,14],
+                symbolMargin: 2,
                 color: '#726c66',
                 symbolBoundingData: maxData,
                 data: [80, 50, 40, 60, 24],

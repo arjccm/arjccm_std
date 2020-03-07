@@ -64,10 +64,36 @@ public class CcmPopTenant extends DataEntity<CcmPopTenant> {
 	private String more1;      // 额外参数
 	private String count;
 	private User checkUser;		// 拦截器中使用该用户进行权限拦截，App的rest接口使用
+	private String collectPeople;	// 信息采集人
+	private String collectPeopleName;	// 信息采集人姓名
+
+	private Integer letNum;      //出租房屋数量
+	private String type;		// 区域类型：社区、网格等
+
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Integer getLetNum() {
+		return letNum;
+	}
+
+	public void setLetNum(Integer letNum) {
+		this.letNum = letNum;
+	}
+
+	@Override
+	public String toString() {
+		return "CcmPopTenant{" +
+				"letNum=" + letNum +
+				'}';
+	}
 
 	private List<String> listLimite;
-private String collectPeople;	// 信息采集人
-	private String collectPeopleName;	// 信息采集人姓名
+
 
 	public String getCollectPeople() {
 		return collectPeople;

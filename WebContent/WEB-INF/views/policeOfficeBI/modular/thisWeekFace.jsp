@@ -25,9 +25,6 @@
     $(function(){
         var thisWeekChart = echarts.init(document.getElementById("thisWeekContent"));
         thisWeekOption = {
-            title:{
-
-            },
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
@@ -42,7 +39,7 @@
                 axisTick: {show: false},
                 axisLine: {show: false},
                 axisLabel: {
-                    color: '#027DA8'
+                    color: 'white'
                 }
             },
             yAxis: {
@@ -51,15 +48,23 @@
                 axisLine: {show: false},
                 axisLabel: {show: false}
             },
-            color: ['#027DA8'],
             series: [{
                 name: 'hill',
                 type: 'pictorialBar',
                 barCategoryGap: '-130%',
-                // symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
                 symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
                 itemStyle: {
-                    opacity: 0.5
+                    opacity: 0.5,
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1, [{
+                                offset: 0,
+                                color: '#34CDFF'
+                            },{
+                                offset: 1,
+                                color: '#048AE2'
+                            }]),
+                    }
                 },
                 emphasis: {
                     itemStyle: {
@@ -69,53 +74,12 @@
                 label: {
                     show: true,
                     position: 'top',
-                    padding: 10,
-                    color: '#2979ff',
+                    top: 10,
                     fontSize: 14,
+                    color: 'white'
                 },
-
                 data: [123, 60, 25, 18, 120],
                 z: 10
-            }, {
-                name: 'glyph',
-                type: 'pictorialBar',
-                barGap: '-100%',
-                symbolPosition: 'end',
-                symbolSize: 50,
-                symbolOffset: [0, '-120%'],
-                data: [{
-                    // value: 123,
-                    // symbol: pathSymbols.reindeer,
-                    symbolSize: [60, 60]
-                }, {
-                    // value: 60,
-                    // symbol: pathSymbols.rocket,
-                    symbolSize: [50, 60]
-                }, {
-                    // value: 25,
-                    // symbol: pathSymbols.plane,
-                    symbolSize: [65, 35]
-                }, {
-                    // value: 18,
-                    // symbol: pathSymbols.train,
-                    symbolSize: [50, 30]
-                }, {
-                    // value: 12,
-                    // symbol: pathSymbols.ship,
-                    symbolSize: [50, 35]
-                }, {
-                    // value: 9,
-                    // symbol: pathSymbols.car,
-                    symbolSize: [40, 30]
-                }, {
-                    // value: 2,
-                    // symbol: pathSymbols.run,
-                    symbolSize: [40, 50]
-                }, {
-                    // value: 1,
-                    // symbol: pathSymbols.walk,
-                    symbolSize: [40, 50]
-                }]
             }]
         };
 

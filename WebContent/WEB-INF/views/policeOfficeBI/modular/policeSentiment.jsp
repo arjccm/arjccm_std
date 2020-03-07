@@ -39,7 +39,8 @@ $(function () {
                 textStyle: {
                     color: '#FFFFFF'
                 },
-                left:'15%'
+                left:'25%',
+                itemGap:25
             },
             grid: {
                 top: '13%',

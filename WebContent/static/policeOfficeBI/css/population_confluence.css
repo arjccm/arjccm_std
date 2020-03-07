@@ -1,7 +1,10 @@
 /*  实有人口数据总汇  */
+.population_area{
+	background: url("../img/population_bg_02.png") center bottom no-repeat;
+}
 .population_box{
 	width: 100%;
-	/*margin-top: 1.46vh;*/
+	margin-top: -2vh;
 }
 .population_box .pop_list{
 	width: 33%;
