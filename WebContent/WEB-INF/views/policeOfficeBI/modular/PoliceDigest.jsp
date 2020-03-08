@@ -26,7 +26,9 @@
 </section>
 <script>
 
-    $(function () {
+    function PoliceDigest() {
+        
+
 
         // project-Path
         var context = $(".context").attr("content");
@@ -175,7 +177,7 @@
             };
             myChart.setOption(option);
         })
-    });
+    }
 
 </script>
 

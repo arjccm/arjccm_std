@@ -46,6 +46,7 @@
         line-height: 26px;
         background: url("${ctxStatic}/images/numberBj.png") no-repeat;
         background-size: 100% 100%;
+        margin-right: 3px;
     }
 
     .fj2 {
@@ -58,6 +59,7 @@
         line-height: 26px;
         background: url("${ctxStatic}/images/numberBj.png") no-repeat;
         background-size: 100% 100%;
+        margin-right: 3px;
     }
 
     .fontStyle {
@@ -123,7 +125,9 @@
 
 <script>
 
-    $(function () {
+
+function PoliceForceDistribution() {
+    
 
         // project-Path
         var context = $(".context").attr("content");
@@ -372,8 +376,7 @@
             }, 5000);
         })
 
-    });
-
+}
 
 
 </script>

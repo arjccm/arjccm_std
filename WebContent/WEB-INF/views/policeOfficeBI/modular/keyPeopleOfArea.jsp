@@ -22,7 +22,7 @@
 <script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill/echarts.js"></script>
 <script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
 <script>
-    $(function(){
+    function keyPeopleOfArea(){
         //初始化echarts对象
         var keyPeopleChart = echarts.init(document.getElementById("keyPeopleContent"));
         //请求接口并填装数据执行
@@ -101,7 +101,7 @@
             };
             keyPeopleChart.setOption(keyPeopleOption);
         }
-    })
+    }
 </script>
 
 

@@ -61,7 +61,7 @@
 
 
 <script>
-$(function () {
+
 	//矛盾纠纷化解
 	showVideoSurveillance()
 
@@ -192,7 +192,7 @@ $(function () {
 		videoSurveillance.setOption(option);
 
 	}
-})
+
 
 
 

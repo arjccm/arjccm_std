@@ -24,7 +24,7 @@
 
 
 <script>
-$(function () {
+
 	//近7天110警情趋势
 	showpPoliceSentiment()
 
@@ -183,7 +183,7 @@ $(function () {
 		policeSentiment.setOption(option);
 
 	}
-})
+
 
 
 

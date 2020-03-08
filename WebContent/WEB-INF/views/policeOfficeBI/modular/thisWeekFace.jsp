@@ -29,7 +29,9 @@
 <script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill/echarts.js"></script>
 <script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
 <script>
-    $(function(){
+    function thisWeekFace() {
+        
+
         //初始化echarts对象
         var thisWeekChart = echarts.init(document.getElementById("thisWeekContent"));
         //请求接口并填装数据执行
@@ -106,7 +108,7 @@
             };
             thisWeekChart.setOption(thisWeekOption);
         }
-    })
+    }
 </script>
 
 

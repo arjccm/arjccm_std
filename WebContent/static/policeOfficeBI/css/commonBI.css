@@ -63,6 +63,10 @@
 	display: flex;
 	align-items: center;
 	overflow: hidden;
+	/*animation: boxContent 0.5s;*/
+	/*animation-delay: 1s;*/
+	/*animation-fill-mode:forwards;*/
+	/*transform: scale(0);*/
 }
 
 /*动画*/
@@ -92,3 +96,12 @@
 		opacity: 1;
 	}
 }
+
+/*@keyframes boxContent {*/
+/*	from{*/
+/*		transform: scale(0);*/
+/*	}*/
+/*	to{*/
+/*		transform: scale(1);*/
+/*	}*/
+/*}*/

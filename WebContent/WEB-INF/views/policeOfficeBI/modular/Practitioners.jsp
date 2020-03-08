@@ -15,12 +15,13 @@
 			<div class="box_bg_02"></div>
 		</div>
 	</div>
-	<div class="box_content">
-		<div id="pic3" style="width: 380px;height:260px;"></div>
+	<div class="box_content" id="pic3">
 	</div>
 </section>
 <script >
-	$(function () {
+	function Practitioners() {
+		
+
 		var context = $(".context").attr("content");
 		$.post(context + "/sys/BicMap/Practitioners", {}, function (data) {
 
@@ -175,7 +176,7 @@
 				return iconArr;
 			}
 		})
-	})
+	}
 </script>
 
 

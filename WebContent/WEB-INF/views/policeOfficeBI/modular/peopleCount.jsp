@@ -22,7 +22,9 @@
 <script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill/echarts.js"></script>
 <script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
 <script>
-    $(function(){
+    function peopleCount() {
+        
+
         //初始化echarts对象
         var peopleCountChart = echarts.init(document.getElementById("peopleCountContent"));
         //判断是否第一次执行来解决首次执行延迟问题
@@ -38,7 +40,7 @@
             firstTimeTodo(data);
         });
         function firstTimeTodo(data){
-            debugger;
+            // debugger;
             xdata = data[5];
             ydata0 = data[6];
             ydata1 = data[7];
@@ -187,7 +189,7 @@
                     times++;
                     peopleCountChart.setOption(peopleCountOption);
                 }else{
-                    debugger;
+                    // debugger;
                     var pushdata0 = 0;
                     var pushdata1 = 0;
                     var pushxdata0 = "";
@@ -216,7 +218,7 @@
                 return initOption;
             }, 5000);
         }
-    })
+    }
 </script>
 
 

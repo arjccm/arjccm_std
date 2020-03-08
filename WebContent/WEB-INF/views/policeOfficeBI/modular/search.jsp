@@ -14,13 +14,15 @@
             <div class="box_bg_02"></div>
         </div>
     </div>
-    <div class="box_content">
-        <div id="pic2" style="width: 380px;height:290px;"></div>
+    <div class="box_content" id="pic2">
+
     </div>
 </section>
 <script>
 
-    $(function () {
+    function search() {
+        
+
         var context = $(".context").attr("content");
         $.post(context + "/sys/BicMap/search", {}, function (data) {
 
@@ -159,7 +161,7 @@
             };
             myChart1.setOption(option);
         })
-    })
+    }
 </script>
 
 

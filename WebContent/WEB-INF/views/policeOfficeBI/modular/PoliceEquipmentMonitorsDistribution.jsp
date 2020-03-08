@@ -26,7 +26,9 @@
 </section>
 <script>
 
-    $(function () {
+function PoliceEquipmentMonitorsDistribution() {
+    
+
 
         // project-Path
         var context = $(".context").attr("content");
@@ -254,7 +256,7 @@
 
             }, 5000);
         })
-    });
+}
 </script>
 
 

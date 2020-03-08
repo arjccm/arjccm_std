@@ -29,7 +29,9 @@
 <script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill/echarts.js"></script>
 <script type="text/javascript" src="${ctxStatic}/echarts/echarts-4.2.1/echarts.min.js"></script>
 <script>
-    $(function(){
+    function rentalHouseOfArea() {
+        
+
         //初始化echarts对象
         var rentalHouseChart = echarts.init(document.getElementById("rentalHouseContent"));
         //请求接口并填装数据执行
@@ -112,7 +114,7 @@
             };
             rentalHouseChart.setOption(rentalHouseOption);
         }
-    })
+    }
 </script>
 
 

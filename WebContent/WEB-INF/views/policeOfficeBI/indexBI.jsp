@@ -147,6 +147,7 @@
 				<li class="box sizex_2" data-row="1" data-col="6" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/beonduty.jsp" %>
 				</li>
+
 				<li class="box sizex_2" data-row="2" data-col="1" data-sizex="2" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/peopleCount.jsp" %>
 				</li>
@@ -163,7 +164,7 @@
                     <%@ include file="/WEB-INF/views/policeOfficeBI/modular/key_personnel_data.jsp" %>
                 </li>
 				<li class="box sizex_1" data-row="3" data-col="3" data-sizex="1" data-sizey="1">
-					<%--<%@ include file="/WEB-INF/views/policeOfficeBI/modular/disputeDefuse.jsp" %>--%>
+
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/disputeDefuse.jsp" %>
 				</li>
 				<li class="box sizex_1" data-row="3" data-col="4" data-sizex="1" data-sizey="1">
@@ -204,7 +205,24 @@
 
 
 <script>
-	setInterval(showTime,500)
+	setInterval(showTime,500);
+	setTimeout(function () {
+		modular_02();
+		PoliceForceDistribution();
+		peopleCount();
+		PoliceEquipmentMonitorsDistribution();
+		patrolRank();
+		keyPeopleOfArea();
+		showDisputeDefuse();
+		thisWeekFace();
+		showVideoSurveillance();
+		search();
+		Practitioners();
+		rentalHouseOfArea();
+		showpPoliceSentiment();
+		PoliceDigest();
+
+	},1000)
 </script>
 </body>
 

@@ -55,12 +55,13 @@ body{
 	background: url("../img/common/header_fg.png") no-repeat center;
 }
 .streamer{
-	width: 25.39vw;
+	width: 25.5vw;
 	height: 2.474vw;
 	position: absolute;
 	top: 0;
-	left: 36.95vw;
+	left: 37vw;
 	z-index: 100;
+	overflow: hidden;
 }
 .streamer .lg_animate{
 	width: 7.8125vw;
@@ -70,7 +71,7 @@ body{
 	position: absolute;
 	bottom: -0.31vw;
 	left: 0;
-	animation: streamer_amt 4s;
+	animation: streamer_amt 3s;
 	animation-iteration-count:infinite;
 	animation-direction:alternate;
 }

@@ -23,7 +23,7 @@
 
 
 <script>
-$(function () {
+
 	//矛盾纠纷化解
 	showDisputeDefuse()
 
@@ -183,7 +183,7 @@ $(function () {
 		disputeDefuse.setOption(option);
 
 	}
-})
+
 
 
 

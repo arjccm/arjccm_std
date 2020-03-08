@@ -14,15 +14,15 @@
 			<div class="box_bg_02"></div>
 		</div>
 	</div>
-	<div class="box_content">
-        <div id="modular_02" style="width: 380px;height:300px;"></div>
+	<div class="box_content" id="modular_02">
 	</div>
 </section>
 <script>
-	$(function () {
+function modular_02(){
 		var context = $(".context").attr("content");
 		$.post(context + "/sys/BicMap/modular_02", {}, function (data) {
 			var myChart1 = echarts.init(document.getElementById('modular_02'));
+			var wz = 270;
 			var policeoption = {
 
 				color: [new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
@@ -52,7 +52,7 @@
 						type: 'shadow'
 					}
 				},
-				yAxis: {
+				yAxis: [{
 					data: data["name"],
 					axisTick: {
 						show: false
@@ -64,9 +64,23 @@
 						show: true,
 						color: "#fff",
 						fontSize: 12
-					},
+					}
 
-				},
+				},{
+					data:data["jlData"],
+					axisTick: {
+						show: false
+					},
+					axisLine: {
+						show: false
+					},
+					axisLabel: {
+						show: true,
+						color: "#fff",
+						fontSize: 12
+					}
+
+				}],
 				xAxis: [{
 					axisTick: {
 						show: false
@@ -86,9 +100,10 @@
 					name: '违规',
 					type: 'bar',
 					barWidth: 12,
+					barCategoryGap: '10%',
 					label: {
 						normal: {
-							show: true,
+							show: false,
 							position: 'right',
 							textStyle: {
 								color: "#fff",
@@ -101,7 +116,7 @@
 			};
 			myChart1.setOption(policeoption);
 		})
-	})
+	}
 </script>
 
 
