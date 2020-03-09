@@ -37,26 +37,26 @@
     <%--}--%>
 
     .mj2 {
-        width: 19px;
-        height: 26px;
-        font-size: 25px;
+        width: 0.6185vw;
+        height: 0.846vw;
+        font-size: 0.814vw;
         font-family: Digiface;
         font-weight: 400;
         color: rgba(3, 248, 246, 1);
-        line-height: 26px;
+        line-height: 0.846vw;
         background: url("${ctxStatic}/images/numberBj.png") no-repeat;
         background-size: 100% 100%;
         margin-right: 3px;
     }
 
     .fj2 {
-        width: 19px;
-        height: 26px;
-        font-size: 25px;
+        width: 0.6185vw;
+        height: 0.846vw;
+        font-size: 0.814vw;
         font-family: Digiface;
         font-weight: 400;
         color: rgba(3, 248, 246, 1);
-        line-height: 26px;
+        line-height: 0.846vw;
         background: url("${ctxStatic}/images/numberBj.png") no-repeat;
         background-size: 100% 100%;
         margin-right: 3px;
@@ -101,7 +101,7 @@
 
             <div class="sbzs_box">
                 <div class="mj_block jc_sl clearfix">
-                    <span id="mj0" class="name" style="font-size: 16px;line-height: 16px">民警</span>
+                    <span id="mj0" class="name" style="font-size: 0.4557vw;;line-height: 16px">民警</span>
                     <%--<span class="sp2">1</span>--%>
                     <span class="fontStyle">人</span>
                 </div>
@@ -109,7 +109,7 @@
                     <%--<div class="name">辅警</div>
                     <div class="num">123</div>
                     <div>人</div>--%>
-                    <span id="fj0" class="name" style="font-size: 16px;line-height: 16px">辅警</span>
+                    <span id="fj0" class="name" style="font-size: 0.4557vw;;line-height: 16px">辅警</span>
                     <%--<span class="sp2">1</span>--%>
                     <span class="fontStyle">人</span>
                 </div>
