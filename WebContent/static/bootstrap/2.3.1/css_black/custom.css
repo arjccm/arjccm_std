@@ -1286,3 +1286,31 @@ body{
  /*.row-fluid{*/
 	/* margin-left: 20px;*/
  /*}*/
+
+ .select2-container-multi .select2-choices{
+	 width: 274px;
+	 height: auto!important;
+	 height: 1%;
+	 margin: 0;
+	 padding: 0;
+	 position: relative;
+	 border: 0px solid #aaa!important;
+	 cursor: text;
+	 overflow: hidden;
+	 background-color: #fff;
+	 background-image: -webkit-gradient(linear,0% 0,0% 100%,color-stop(1%,#eee),color-stop(15%,#fff));
+	 background-image: -webkit-linear-gradient(top,#eee 1%,#fff 15%);
+ }
+ .select2-container-multi .select2-choices{
+	 height: auto!important;
+	 /* height: 1%; */
+	 /* margin: 0; */
+	 /* padding: 0; */
+	 /* position: relative; */
+	 /* border: 1px solid #aaa; */
+	 /* cursor: text; */
+	 /* overflow: hidden; */
+	 /* background-color: #fff; */
+	 /* background-image: -webkit-gradient(linear,0% 0,0% 100%,color-stop(1%,#eee),color-stop(15%,#fff)); */
+	 background-image: -webkit-linear-gradient(top,#eee 1%,#0b486f 1%)!important;
+ }
