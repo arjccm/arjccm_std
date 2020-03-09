@@ -93,9 +93,10 @@
 </div>
 
 
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="检索"/></li>
+
 			<li class="clearfix"></li>
 		</ul>
+        <ul><li class="btns"><input id="btnSubmit" style="float: right;margin-top: 15px"  class="btn btn-primary" type="submit" value="检索"/></li></ul>
 	</form>
 
 	<div class="pagination">${page}</div>
