@@ -33,8 +33,8 @@ public class CcmOrgAreaService extends CrudService<CcmOrgAreaDao, CcmOrgArea> {
 		return super.get(id);
 	}
 
-	public List<CcmOrgArea> findList(CcmOrgArea ccmOrgArea) {
-		return super.findList(ccmOrgArea);
+	public List<CcmOrgArea> findAreaList(CcmOrgArea ccmOrgArea) {
+		return ccmOrgAreaDao.findAreaList(ccmOrgArea);
 	}
 	
 	public List<CcmOrgArea> getAreaMap(CcmOrgArea ccmOrgArea) {
