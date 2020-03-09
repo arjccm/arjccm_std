@@ -71,22 +71,27 @@
 
                         formatter: function (value, index) {
                             return [
-                                '{lg|' + (index + 1) + '}' + '{title|' + value + '} '
+                                '{lg|' + (index + 1) + '}'+'{pd|}' + '{title|' + value + '} '
                             ].join('\n')
                         },
                         rich: {
                             lg: {
-                                backgroundColor: '#32d6ee',
+                                backgroundColor: '#1e798f',
+                                borderWidth:1,
+                                borderColor:'#32d6ee',
                                 color: '#fff',
                                 borderRadius: 0,
                                 // padding: 5,
                                 align: 'center',
                                 fontSize: 12,
                                 width: 15,
-                                height: 16,
+                                height: 16
                             },
+                            pd:{
+                                padding:5
+                            }
                         }
-                    },
+                    }
 
 
                 }, {
@@ -115,10 +120,10 @@
                     type: 'bar',
                     yAxisIndex: 0,
                     data: xData1,
-                    barWidth: 5,
+                    barWidth: 6,
                     itemStyle: {
                         normal: {
-                            barBorderRadius: 1,
+                            // barBorderRadius: 1,
                             color: function (params) {
                                 var num = myColor.length;
                                 return myColor[params.dataIndex % num]
@@ -138,7 +143,7 @@
                     yAxisIndex: 1,
                     barGap: '-100%',
                     data: [100, 100, 100, 100, 100],
-                    barWidth: 13,
+                    barWidth: 19,
                     itemStyle: {
                         normal: {
                             color: 'none',
@@ -150,13 +155,18 @@
                 },
                     {
                         type: 'pictorialBar',
-                        symbol: rightIcon,
+                        // symbol: rightIcon,
+                        barwidth:11,
+                        barMinHeight:3,
                         symbolPosition: 'end',
-                        symbolSize: [4, 12],
+                        symbolSize: [3, 11],
                         symbolRotate: 0,
-                        symbolOffset: [3, 0],
+                        symbolOffset: [2, 0],
                         z: 4,
                         data: xData1,
+                        itemStyle:{
+                            color:"#e6ad0a"
+                        }
                     },]
             };
             myChart1.setOption(option);

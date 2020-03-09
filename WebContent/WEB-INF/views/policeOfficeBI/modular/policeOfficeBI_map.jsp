@@ -1,8 +1,28 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<link rel="stylesheet" href="${ctxStatic}/policeOfficeBI/css/font-awesome.min.css">
+
 <style>
 	.sizemap{
-		box-shadow: inset 0px 0px 35px 5px #057fae;
+		box-shadow: inset 0px 0px 10px 2px #057fae;
 	}
+	.playButton{
+		position: absolute;
+		left: 1.888vw;
+		top: 1.01vw;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: inset 0px 0px 35px 5px #057fae;
+	}
+	.playButton a{
+		width: 58px;
+		height: 58px;
+		display: block;
+        background: #122847;
+        border: 1px solid #03cecf;
+	}
+    .playButton a i{
+        color: #07eefc;
+    }
 	.topmapbutton{
 		width: 531px;
 		height: 58px;
@@ -98,6 +118,7 @@
 	}
 
 
+
 </style>
 
 <script src="${ctxStatic}/ol/ol.js"></script>
@@ -108,7 +129,7 @@
 <script src="${ctxStatic}/supermapopenlayers/iclient-openlayers.min.js"></script>
 
 <section>
-
+	<div class="playButton"><a><i class="fa fa-play" aria-hidden="true"></i></a></div>
 	<div class="topmapbutton">
 		<input type="button" value="重点人员" class="btninp selected" style="background:url(${ctxStatic}/policeOfficeBI/img/map_ry.png) no-repeat 11px 13px;" onclick="getKeyPeopleNum()">
         <input type="button" value="视频监控"  class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zx.png) no-repeat 4px 16px;" onclick="shipinjiankongFun()">

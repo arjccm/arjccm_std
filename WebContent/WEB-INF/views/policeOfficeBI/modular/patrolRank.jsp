@@ -37,12 +37,13 @@
         //请求接口并填装数据执行
         $.getJSON(ctx + "/sys/BicMap/vccmTeamMember", function (data) {
             initPatrolRankOption(data);
-            $('#patroldata1').text(data[1][4]);
-            $('#patroldata2').text(data[1][3]);
-            $('#patroldata3').text(data[1][2]);
-            $('#patroldata4').text(data[1][1]);
-            $('#patroldata5').text(data[1][0]);
+            // $('#patroldata1').text(data[1][4]);
+            // $('#patroldata2').text(data[1][3]);
+            // $('#patroldata3').text(data[1][2]);
+            // $('#patroldata4').text(data[1][1]);
+            // $('#patroldata5').text(data[1][0]);
         });
+
         function initPatrolRankOption(data){
             patrolRankOption = {
                 grid: {
@@ -68,7 +69,7 @@
                     axisLine: {show: false},
                     axisLabel: {show: false}
                 },
-                yAxis: {
+                yAxis: [{
                     type: 'category',
                     data: data[0],
                     axisTick: {show: false},
@@ -79,7 +80,21 @@
                         margin: 5
                     },
                     splitLine: {show:false}
-                },
+                },{
+                    type:'category',
+                    data: data[1],
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: true,
+                        color: "#fff",
+                        fontSize: 12
+                    }
+                }],
                 series: [{
                     name: 'hill',
                     type: 'pictorialBar',
