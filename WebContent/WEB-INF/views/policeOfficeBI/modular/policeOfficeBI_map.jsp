@@ -1,21 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <style>
-.map{
-	width: 742.25px;
-	height: 660px;
-	position: absolute;
-}
+	.sizemap{
+		box-shadow: inset 0px 0px 35px 5px #057fae;
+	}
 	.topmapbutton{
 		width: 531px;
 		height: 58px;
-		margin-top: 31px;
+		top: 1.01vw;
 		z-index: 10;
-		position: fixed;
-		left: 27%;
+		position: absolute;
+		left: 1.888vw;
 		background: #040D1E;
 		border-radius:4px;
-		border:1px solid rgba(0,255,252,1);
+		border:1px solid #02d0d1;
 		opacity:0.8;
+		box-shadow: 0px 0px 8px 0px #3bc9e3;
+	}
+	.topmapbutton .selected{
+		box-shadow: inset 0px 0px 11px 6px #4cb3d0;
 	}
 
 	.btninp{
@@ -59,14 +61,15 @@
 	.sctyback{
 		width: 50px;
 		height: 290px;
-		margin-top: 76px;
+		top:2.474vw;
 		z-index: 10;
-		position: fixed;
-		right: 39%;
+		position: absolute;
+		right: 1vw;
 		background: #040D1E;
 		border-radius:4px;
 		border:1px solid rgba(0,255,252,1);
 		opacity:0.8;
+		box-shadow: 0px 0px 8px 0px #3bc9e3;
 	}
 
 	.ktv{
@@ -107,7 +110,7 @@
 <section>
 
 	<div class="topmapbutton">
-		<input type="button" value="重点人员" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_ry.png) no-repeat 11px 13px;" onclick="getKeyPeopleNum()">
+		<input type="button" value="重点人员" class="btninp selected" style="background:url(${ctxStatic}/policeOfficeBI/img/map_ry.png) no-repeat 11px 13px;" onclick="getKeyPeopleNum()">
         <input type="button" value="视频监控"  class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zx.png) no-repeat 4px 16px;" onclick="shipinjiankongFun()">
 		<input type="button" value="出租屋"  class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_czw.png) no-repeat 4px 16px;" onclick="getLetNum()">
 		<input type="button" value="场所特业" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_cs.png) no-repeat 4px 16px;" onclick="getBasePlaceMap()">
@@ -142,6 +145,15 @@
 
 </section>
 <script>
+	$(document).ready(function(){
+		var mapWidth = $(".sizemap").width();
+		var mapHeight = $(".sizemap").height();
+		$(".map").css({
+			"width":mapWidth,
+			"height":mapHeight
+		})
+	})
+
 	/**
 	 * Created by oHa on 2017/12/28.
 	 */

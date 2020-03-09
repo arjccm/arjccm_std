@@ -63,7 +63,7 @@
 <script>
 
 	//矛盾纠纷化解
-	showVideoSurveillance()
+
 
 	function showVideoSurveillance() {
 		var videoSurveillance = echarts.init(document.getElementById('videoSurveillance'));

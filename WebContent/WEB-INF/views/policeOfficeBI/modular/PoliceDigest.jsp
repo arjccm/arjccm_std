@@ -66,7 +66,7 @@
                 series: [
                     {
                         type: 'pie',
-                        radius: ['61%', '62%'],
+                        radius: ['65%', '50%'],
                         center: ['50%', '50%'],
                         hoverAnimation: false,
                         data: [100],
@@ -75,7 +75,8 @@
                         },
                         itemStyle: {
                             normal: {
-                                color: lineColor,
+                                color: '#2bb1ff',
+                                opacity:0.4
                             }
                         },
                     },
@@ -90,12 +91,14 @@
                         label: {
                             show: false
                         },
-                        opacity: '0.3',
                         itemStyle: {
                             normal: {
                                 color: '#FFFFFF',
+                                opacity: '0.3'
                             }
+
                         },
+                        z:20
                     },
 
                     {
@@ -108,7 +111,13 @@
                         label: {
                             show: false
                         },
-                        opacity: '0.5',
+                        itemStyle: {
+                            normal: {
+                                color: '#FFFFFF',
+                                opacity: '0.3'
+                            }
+
+                        },
                         z: 20
                     },
                     {
@@ -121,7 +130,13 @@
                         label: {
                             show: false
                         },
-                        opacity: '0.5',
+                        itemStyle: {
+                            normal: {
+                                color: '#FFFFFF',
+                                opacity: '0.3'
+                            }
+
+                        },
                         z: 20
                     },
                     {
@@ -134,12 +149,18 @@
                         label: {
                             show: false
                         },
-                        opacity: '0.5',
+                        itemStyle: {
+                            normal: {
+                                color: '#FFFFFF',
+                                opacity: '0.3'
+                            }
+
+                        },
                         z: 20
                     },
                     {
                         type: 'pie',
-                        radius: ['36%', '56%'],
+                        radius: ['30%', '56%'],
                         center: ['50%', '50%'],
                         color: colorAttr,
                         itemStyle: {
@@ -157,7 +178,8 @@
                                 length2: 50,
                                 lineStyle: {
                                     color: '#CCCCCC',
-                                    width: 2
+                                    width: 1,
+                                    opacity:0.4
                                 }
                             }
                         },

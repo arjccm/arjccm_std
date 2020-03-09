@@ -459,7 +459,7 @@
 			count(p.id) AS 'value'
 		FROM
 			sys_area a
-		LEFT JOIN ccm_people p ON a.id = p.area_grid_id and p.del_flag = 0 and p.type = 10
+		LEFT JOIN ccm_people p ON a.id = p.area_grid_id and p.del_flag = 0
 		WHERE
 			a.type = 7
 		GROUP BY
