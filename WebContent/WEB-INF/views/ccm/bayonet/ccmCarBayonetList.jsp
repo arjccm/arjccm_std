@@ -72,7 +72,7 @@
 				<th>卡口类型</th>
 				<th>卡口模式</th>
 				<th>是否一图多车</th>
-				<th>备注信息</th>
+				<%--<th>备注信息</th>--%>
 				<th>更新时间</th>
 				<shiro:hasPermission name="bayonet:ccmCarBayonet:edit">
 					<th>操作</th>
@@ -90,7 +90,7 @@
 					<td>${fns:getDictLabel(ccmCarBayonet.bayonetType, 'ccm_bayonet_type', '无')}</td>
 					<td>${fns:getDictLabel(ccmCarBayonet.bayonetPattern, 'ccm_bayonet_pattern', '无')}</td>
 					<td>${fns:getDictLabel(ccmCarBayonet.isOneToMore, 'yes_no', '无')}</td>
-					<td class="tp">${ccmCarBayonet.remarks}</td>
+					<%--<td class="tp">${ccmCarBayonet.remarks}</td>--%>
 					<td><fmt:formatDate value="${ccmCarBayonet.updateDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="bayonet:ccmCarBayonet:edit">

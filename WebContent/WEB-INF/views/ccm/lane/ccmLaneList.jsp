@@ -65,7 +65,7 @@
 				<th>车道方向</th>
 				<th>出入城方向</th>
 				<th>更新时间</th>
-				<th>备注信息</th>
+				<%--<th>备注信息</th>--%>
 				<shiro:hasPermission name="lane:ccmLane:edit">
 					<th>操作</th>
 				</shiro:hasPermission>
@@ -81,7 +81,7 @@
 					<td>${fns:getDictLabel(ccmLane.passDirection, 'ccm_pass_direction', '无')}</td>
 					<td><fmt:formatDate value="${ccmLane.updateDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td class="tp">${ccmLane.remarks}</td>
+					<%--<td class="tp">${ccmLane.remarks}</td>--%>
 					<shiro:hasPermission name="lane:ccmLane:edit">
 						<td><a class="btnList"
 							onclick="parent.parent.LayerDialog('${ctx}/lane/ccmLane/form?id=${ccmLane.id}', '编辑', '1100px', '700px')"
