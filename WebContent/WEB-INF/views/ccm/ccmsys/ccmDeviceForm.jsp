@@ -219,7 +219,7 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">厂商：</label>
+						<label class="control-label">厂商名称：</label>
 						<div class="controls">
 							<form:input path="companyId" htmlEscape="false" maxlength="64" class="input-xlarge "/>
 						</div>
@@ -255,7 +255,7 @@
 				</td>
 				<td>
 					<div class="control-group">
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>设备厂商类型：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>类型：</label>
 						<div class="controls">
 							<form:select path="typeVidicon" class="input-xlarge required">
 								<form:option value="" label=""/>
