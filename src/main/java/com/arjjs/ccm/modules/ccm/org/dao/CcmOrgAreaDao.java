@@ -41,4 +41,7 @@ public interface CcmOrgAreaDao extends CrudDao<CcmOrgArea> {
 	
 	// 社区网格外表（通过社区网格id查外表/不关联sys_area表）
 	public CcmOrgArea getCcmOrgArea(CcmOrgArea ccmOrgArea2);
+
+	//查询重点人员点位
+	public List<CcmOrgArea> findAreaList(CcmOrgArea ccmOrgArea);
 }
