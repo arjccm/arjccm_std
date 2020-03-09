@@ -785,21 +785,16 @@
         AND
         del_flag = 0 GROUP BY collect_people
     </select>
-
+<!--查询出租屋-->
     <select id="findLet" resultType="CcmPopTenant">
-	  SELECT
-	  a2.area_point AS 'area_point',
-	  COUNT(tenant.id) AS 'letNum'
-	  FROM
-	  sys_area a
-	  LEFT JOIN ccm_house_buildmanage house ON a.id = house.area_id AND house.del_flag = '0'
-	  LEFT JOIN ccm_pop_tenant tenant ON house.id = tenant.building_id AND tenant.del_flag = '0' AND tenant.house_type =#{houseType}
-	  LEFT JOIN ccm_org_area a2 ON a2.area_id= a.id
-	  WHERE
-	  a.type =#{type}
-	  GROUP BY
-	  a.id
-	  ORDER BY
-	  COUNT(tenant.id) DESC
+        SELECT
+        house.area_point AS "area_point",
+        a.area_id AS "aid"
+        FROM ccm_pop_tenant a
+				LEFT JOIN ccm_house_buildmanage house ON house.id = a.building_id AND a.del_flag = '0'
+        LEFT JOIN sys_area a2
+        ON a2.id = house.area_id
+        WHERE
+        a.house_type=#{houseType} AND a2.type=#{type}
     </select>
 </mapper>
