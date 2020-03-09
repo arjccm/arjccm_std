@@ -73,7 +73,7 @@ public class CcmPoliceOfficeMapController {
     public GeoJSON getKeyPeopleNum(){
         CcmOrgArea ccmOrgArea = new CcmOrgArea();
         ccmOrgArea.setType("7");
-        List<CcmOrgArea>  resOrgArealist = ccmOrgAreaService.findList(ccmOrgArea);
+        List<CcmOrgArea>  resOrgArealist = ccmOrgAreaService.findAreaList(ccmOrgArea);
         // 返回对象
         GeoJSON geoJSON = new GeoJSON();
         List<Features> featureList = new ArrayList<Features>();
@@ -85,11 +85,11 @@ public class CcmPoliceOfficeMapController {
             // 2 id 添加
             featureDto.setId(resccmOrgArea.getId());
             // 3 properties 展示属性信息
-            String keyPersonnelNum = "";
+            /*String keyPersonnelNum = "";
             if(resccmOrgArea.getKeyPersonnelNum()!=null){
                 keyPersonnelNum = resccmOrgArea.getKeyPersonnelNum().toString();
             }
-            properties.setName(keyPersonnelNum);
+            properties.setName(keyPersonnelNum);*/
             properties.setIcon("box.png");
             // 点击后展示详细属性值
             Map<String, Object> map_P = new HashMap<String, Object>();
@@ -369,11 +369,6 @@ public class CcmPoliceOfficeMapController {
             // 2 id 添加
             featureDto.setId(popTenant.getId());
             // 3 properties 展示属性信息
-            String LetNum="";
-            if (popTenant.getLetNum()!=null){
-                LetNum=popTenant.getLetNum().toString();
-            }
-            properties.setName(LetNum);
             properties.setIcon("box.png");
             // 点击后展示详细属性值
             Map<String, Object> map_P = new HashMap<String, Object>();
@@ -427,6 +422,7 @@ public class CcmPoliceOfficeMapController {
     @RequestMapping(value = "getAlarm")
     public GeoJSON getAlarmInfo(){
         AlarmHandleInfo alarmHandleInfo = new AlarmHandleInfo();
+        ArrayList<AlarmHandleInfo> alarmHandleInfos = new ArrayList<>();
         alarmHandleInfo.setType("7");
         //返回对象数据
         List<AlarmHandleInfo> alarmList = alarmHandleInfoService.findAlarm(alarmHandleInfo);
@@ -434,6 +430,11 @@ public class CcmPoliceOfficeMapController {
         GeoJSON geoJSON = new GeoJSON();
         List<Features> featureList = new ArrayList<Features>();
         for (AlarmHandleInfo alarminfo : alarmList) {
+            double x = alarminfo.getX();
+            double y = alarminfo.getY();
+            if (x>0&&y>0){
+                alarminfo.setAlarmPoint(x+","+y);
+            }
             // 特征,属性
             Features featureDto = new Features();
             Properties properties = new Properties();
@@ -441,11 +442,6 @@ public class CcmPoliceOfficeMapController {
             // 2 id 添加
             featureDto.setId(alarminfo.getId());
             // 3 properties 展示属性信息
-            String alarmNum = "";
-            if (alarminfo.getAlarmNum() != null) {
-                alarmNum = alarminfo.getAlarmNum().toString();
-            }
-            properties.setName(alarmNum);
             properties.setIcon("box.png");
             // 点击后展示详细属性值
             Map<String, Object> map_P = new HashMap<String, Object>();
@@ -463,6 +459,7 @@ public class CcmPoliceOfficeMapController {
                 String[] centpoint = alarminfo.getAlarmPoint().split(",");
                 // 图层中心的
                 geoJSON.setCentpoint(centpoint);
+                System.out.println(geoJSON);
                 // 图形中心点
                 properties.setCoordinateCentre(centpoint);
                 // 添加具体数据
