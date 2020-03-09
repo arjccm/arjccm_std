@@ -531,7 +531,18 @@
 		</where>
 	</select>
 	
-	
+	<select id="findAreaList" resultType="CcmOrgArea">
+
+ 		SELECT
+		a.id AS "id",
+		house.area_point AS "area_point"
+ 		FROM ccm_people a
+		LEFT JOIN ccm_house_buildmanage house ON house.id = a.build_id
+ 		LEFT JOIN sys_area a2
+ 		ON a2.id = house.area_id
+ 		WHERE a.del_flag = '0' AND a2.type =#{type} AND a.focu_pers='1'
+
+	</select>
 	
 	
 	
