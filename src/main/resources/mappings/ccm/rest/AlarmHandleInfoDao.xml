@@ -5,18 +5,14 @@
 
     <!--查询警情事件-->
     <select id="findAlarm" resultType="AlarmHandleInfo">
-      SELECT
-	    a2.area_point AS 'alarm_point',
-	  COUNT(alarm.id) AS 'alarm_num'
-	  FROM
-	    sys_area a
-	  LEFT JOIN bph_alarm_info alarm ON alarm.del_flag = '0' AND alarm.area_id=a.id
-	  LEFT JOIN ccm_org_area a2 ON a2.area_id= a.id
-	  WHERE
-	    a.type =#{type}
-	  GROUP BY
-	    a.id
-	  ORDER BY
-	  COUNT(alarm.id) DESC
+		SELECT
+		a2.id AS "aid",
+    	a.x AS "x",
+		a.y AS "y"
+    	FROM bph_alarm_info a
+    	LEFT JOIN sys_area a2
+		ON a2.id = a.area_id
+		WHERE
+		a.del_flag = '0' AND a2.type=#{type}
     </select>
 </mapper>
