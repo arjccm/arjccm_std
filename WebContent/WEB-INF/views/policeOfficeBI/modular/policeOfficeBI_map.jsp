@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<link rel="stylesheet" href="${ctxStatic}/policeOfficeBI/css/font-awesome.min.css">
+	<link rel="stylesheet" href="${ctxStatic}/policeOfficeBI/css/font-awesome.min.css">
 
 <style>
 	.sizemap{
@@ -7,29 +7,32 @@
 	}
 	.playButton{
 		position: absolute;
-		left: 1.888vw;
-		top: 1.01vw;
+		left: 30px;
+		top: 20px;
         border-radius: 50%;
         overflow: hidden;
-        box-shadow: inset 0px 0px 35px 5px #057fae;
+        box-shadow: 0px 0px 8px 2px #057fae;
+		border: 1px solid #03cecf;
+		opacity: 0.9;
+		background: #122847;
+		z-index: 9999;
 	}
-	.playButton a{
-		width: 58px;
-		height: 58px;
-		display: block;
-        background: #122847;
-        border: 1px solid #03cecf;
-	}
-    .playButton a i{
+    .playButton i{
         color: #07eefc;
+		font-size: 20px;
+		text-align: center;
+		line-height: 58px;
+		width: 58px;
+		cursor: pointer;
+
     }
 	.topmapbutton{
 		width: 531px;
 		height: 58px;
-		top: 1.01vw;
+		top: 20px;
 		z-index: 10;
 		position: absolute;
-		left: 1.888vw;
+		left: 118px;
 		background: #040D1E;
 		border-radius:4px;
 		border:1px solid #02d0d1;
@@ -81,7 +84,7 @@
 	.sctyback{
 		width: 50px;
 		height: 290px;
-		top:2.474vw;
+		top:100px;
 		z-index: 10;
 		position: absolute;
 		right: 1vw;
@@ -129,7 +132,10 @@
 <script src="${ctxStatic}/supermapopenlayers/iclient-openlayers.min.js"></script>
 
 <section>
-	<div class="playButton"><a><i class="fa fa-play" aria-hidden="true"></i></a></div>
+	<div class="playButton">
+		<i class="fa fa-play" aria-hidden="true"></i>
+<%--		<i class="fa fa-pause" aria-hidden="true"></i>--%>
+	</div>
 	<div class="topmapbutton">
 		<input type="button" value="重点人员" class="btninp selected" style="background:url(${ctxStatic}/policeOfficeBI/img/map_ry.png) no-repeat 11px 13px;" onclick="getKeyPeopleNum()">
         <input type="button" value="视频监控"  class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zx.png) no-repeat 4px 16px;" onclick="shipinjiankongFun()">
@@ -173,7 +179,20 @@
 			"width":mapWidth,
 			"height":mapHeight
 		})
+
+
+
 	})
+	$(".playButton i").click(function(){
+		if($(this).attr('aria-hidden')== 'true'){
+			$(this).removeClass("fa-play").addClass("fa-pause")
+			$(this).attr('aria-hidden',false)
+		}else{
+			$(this).removeClass("fa-pause").addClass("fa-play")
+			$(this).attr('aria-hidden',true)
+		}
+	})
+
 
 	/**
 	 * Created by oHa on 2017/12/28.
