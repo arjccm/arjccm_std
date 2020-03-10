@@ -52,14 +52,17 @@
             var option = {
                 // backgroundColor: '#031845',
                 title: {
-                    text: [
-                        "30天警情",
-                        total
-                    ].join("\n"),
+                    text: "30天警情",
+                    subtext:total,
                     left: 'center',
-                    top: 'center',
+                    top: '43%',
+                    itemGap:8,
                     textStyle: {
                         color: "#FFF",
+                        fontSize: 13,
+                    },
+                    subtextStyle:{
+                        color:"#FFF",
                         fontSize: 13,
                     }
                 },

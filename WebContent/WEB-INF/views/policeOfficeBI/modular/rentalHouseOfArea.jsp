@@ -70,7 +70,9 @@
                         color: 'white',
                         textStyle: {
                             fontSize: 12
-                        }
+                        },
+                        rotate: 30,
+                        align:'right'
                     }
                 },{
                     data: data[2],
