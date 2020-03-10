@@ -173,8 +173,8 @@
 		.loginTitle {
 			display: flex;
 			position: absolute;
-			top: 191px;
-			left: 63%;
+			top: 215px;
+			left: 60%;
 		}
 
 		.loginTip {
@@ -224,7 +224,7 @@
 			position: absolute;
 			top: 148px;
 			left: -100px;
-			height: 642px;
+			height: 670px;
 		}
     </style>
 	<script type="text/javascript">
@@ -260,11 +260,11 @@
 		</div>
 	</div>
 	<img class="loginLiuGuang" src='/arjccm/static/images/loginImages/guang.png'>
-	<img class="loginBig" src='/arjccm/static/images/loginImages/login_big.png'>
+	<img class="loginBig" src='/arjccm/static/images/loginImages/login_big_sany.png'>
 	<%-- <h1 class="form-signin-heading">${fns:getConfig('showName')}系统</h1> --%>
 	<div class="loginTitle">
-		<img width="43px" height="45px" src='/arjccm/static/images/logo2.png'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<h2 style="color: #fff">账号登录</h2>
+		<img width="43px" height="45px" src='/arjccm/static/images/logo.png'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<h2 style="color: #fff">三亚市雪亮工程综治网格化管理系统</h2>
 	</div>
 	<form id="loginForm" class="form-signin" action="${ctx}/login" method="post">
 		<h2 class="loginTip">账号登陆</h2>

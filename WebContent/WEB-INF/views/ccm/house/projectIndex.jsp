@@ -165,26 +165,26 @@
                 var len=asp1.length;
                 var sp1=asp1.substring(20,len);
                 console.log(sp1)
-                var ljSrc = "http://localhost:8080/arjccm/static/images/" + sp1 + ".png";
+                var ljSrc = "${ctxStatic}/images/" + sp1 + ".png";
                 //console.log(ljSrc)
 
                 imgOnload(ljSrc, sp1, i);
             }
             //添加悬浮动图
             Li.mouseover(function () {
-                var  bjSrc=decodeURIComponent($(this) .css("backgroundImage"));
-                var len=bjSrc.length
+                var bjSrc=decodeURIComponent($(this) .css("backgroundImage"));
                 //url("http://localhost:8080/arjccm/static/images/社会信息采集平台.png")
-                var ljSrc=bjSrc.substring(48,len-6);
+                var str=bjSrc.split("/");
+                var ljSrc=str[str.length-1].split(".")[0];
                 $(this).css({
                     "background": "url(${ctxStatic}/images/" + ljSrc + ".gif)"
                 })
             })
             Li.mouseout(function () {
-                var  bjSrc=decodeURIComponent($(this) .css("backgroundImage"));
-                var len=bjSrc.length
+                var bjSrc=decodeURIComponent($(this) .css("backgroundImage"));
                 //url("http://localhost:8080/arjccm/static/images/社会信息采集平台.png")
-                var ljSrc=bjSrc.substring(48,len-6);
+                var str=bjSrc.split("/");
+                var ljSrc=str[str.length-1].split(".")[0];
                 $(this).css({
                     "background": "url(${ctxStatic}/images/" + ljSrc + ".png)"
                 })
