@@ -85,12 +85,22 @@ public class CcmPoliceOfficeMapController {
             // 2 id 添加
             featureDto.setId(resccmOrgArea.getId());
             // 3 properties 展示属性信息
-            /*String keyPersonnelNum = "";
+           /* String keyPersonnelNum = "";
+            int num = 0;
             if(resccmOrgArea.getKeyPersonnelNum()!=null){
                 keyPersonnelNum = resccmOrgArea.getKeyPersonnelNum().toString();
+                num = resccmOrgArea.getKeyPersonnelNum();
             }
-            properties.setName(keyPersonnelNum);*/
-            properties.setIcon("box.png");
+            properties.setName(keyPersonnelNum);
+            if(num<100){
+                properties.setIcon("map_num1.png");
+            } else if(num>=100 && num<400){
+                properties.setIcon("map_num2.png");
+            } else if(num>=400 && num<700){
+                properties.setIcon("map_num3.png");
+            } else if(num>=7000){
+                properties.setIcon("map_num4.png");
+            }*/
             // 点击后展示详细属性值
             Map<String, Object> map_P = new HashMap<String, Object>();
             properties.addInfo(map_P);
@@ -161,11 +171,11 @@ public class CcmPoliceOfficeMapController {
             featureDto.setId(device.getId());
             // 3 properties 展示属性信息
 //            properties.setName(device.getName());
-//            properties.setIcon(device.getImagePath());      //图标
+//            properties.setIcon(device.getImagePath());
             if(device.getStatus().equals("1")){
-                properties.setIcon("map_sxt-zxshow.png");      //图标
+                properties.setIcon("map_sxt-zxshow.png");
             } else if(device.getStatus().equals("2")){
-                properties.setIcon("map_sxt-lxshow.png");      //图标
+                properties.setIcon("map_sxt-lxshow.png");
             }
             // 点击后展示详细属性值
             Map<String, Object> map_P = new HashMap<String, Object>();
@@ -266,12 +276,14 @@ public class CcmPoliceOfficeMapController {
         for(CcmPlaceCasino ccmPlaceCasino : casinosfindListAll){
             EchartType echartType = new EchartType();
             echartType.setType(ccmPlaceCasino.getType());
+            echartType.setValue(ccmPlaceCasino.getId());
             echartType.setValue1(ccmPlaceCasino.getAreaPoint());
             reslist.add(echartType);
         }
         for(CcmPlaceHotel ccmPlaceHotel : hotelfindListAll){
             EchartType echartType = new EchartType();
             echartType.setType(ccmPlaceHotel.getType());
+            echartType.setValue(ccmPlaceHotel.getId());
             echartType.setValue1(ccmPlaceHotel.getAreaPoint());
             reslist.add(echartType);
         }
@@ -286,11 +298,11 @@ public class CcmPoliceOfficeMapController {
             Properties properties = new Properties();
             // 1 type 默认不填
             // 2 id 添加
-//          featureDto.setId(echartType.getValue());
+            featureDto.setId(echartType.getValue());
             // 3 properties 展示属性信息
 //          properties.setName(resccmPlaceCasino.getCcmBasePlace().getPlaceName());
 //          properties.setIcon(device.getImagePath());      //图标
-//            properties.setIcon("video.png");      //图标
+            properties.setIcon("video.png");      //图标
             if(echartType.getType().equals("01")){
                 properties.setIcon("map_bgshow.png");      //宾馆
             } else if(echartType.getType().equals("02")){
@@ -369,7 +381,22 @@ public class CcmPoliceOfficeMapController {
             // 2 id 添加
             featureDto.setId(popTenant.getId());
             // 3 properties 展示属性信息
-            properties.setIcon("box.png");
+        /*    String LetNum="";
+            int num = 0;
+            if (popTenant.getLetNum()!=null){
+                LetNum=popTenant.getLetNum().toString();
+                num = popTenant.getLetNum();
+            }
+            properties.setName(LetNum);
+            if(num<100){
+                properties.setIcon("map_num1.png");
+            } else if(num>=100 && num<400){
+                properties.setIcon("map_num2.png");
+            } else if(num>=400 && num<700){
+                properties.setIcon("map_num3.png");
+            } else if(num>=7000){
+                properties.setIcon("map_num4.png");
+            }*/
             // 点击后展示详细属性值
             Map<String, Object> map_P = new HashMap<String, Object>();
             properties.addInfo(map_P);
@@ -442,7 +469,22 @@ public class CcmPoliceOfficeMapController {
             // 2 id 添加
             featureDto.setId(alarminfo.getId());
             // 3 properties 展示属性信息
-            properties.setIcon("box.png");
+       /*     String alarmNum = "";
+            int num = 0;
+            if (alarminfo.getAlarmNum() != null) {
+                alarmNum = alarminfo.getAlarmNum().toString();
+                num =  alarminfo.getAlarmNum();
+            }
+            properties.setName(alarmNum);
+            if(num<100){
+                properties.setIcon("map_num1.png");
+            } else if(num>=100 && num<400){
+                properties.setIcon("map_num2.png");
+            } else if(num>=400 && num<700){
+                properties.setIcon("map_num3.png");
+            } else if(num>=7000){
+                properties.setIcon("map_num4.png");
+            }*/
             // 点击后展示详细属性值
             Map<String, Object> map_P = new HashMap<String, Object>();
             properties.addInfo(map_P);
@@ -459,7 +501,6 @@ public class CcmPoliceOfficeMapController {
                 String[] centpoint = alarminfo.getAlarmPoint().split(",");
                 // 图层中心的
                 geoJSON.setCentpoint(centpoint);
-                System.out.println(geoJSON);
                 // 图形中心点
                 properties.setCoordinateCentre(centpoint);
                 // 添加具体数据

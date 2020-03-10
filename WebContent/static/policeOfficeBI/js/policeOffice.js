@@ -4410,6 +4410,206 @@ ArjMap.Map.prototype = {
 
     },
 
+    //初始化地图
+    addJSON: function (params) {
+        var map = this.map;
+        var _this = this;
+        // 加载数据
+        var vectorArr = params;
+        var len = vectorArr.length;
+        if (len > 0) {
+            for (var i = 0; i < len; i++) {
+                if(vectorArr[i].data!=null && vectorArr[i].data!=undefined){
+                    this.center = vectorArr[i].data.centpoint;
+                    var vectorArrType = vectorArr[i].type;
+                    //图层id
+                    var vectorArrId = vectorArr[i].id || vectorArr[i].type;
+                    // 添加到矢量数据源
+                    var Data = vectorArr[i].data.features;
+                    var DataLen = Data.length;
+                    var vectorSource = null;
+                    var clusterSource = null;
+                    var layerVectortype = vectorSource;
+                    if (DataLen > 0) {
+                        //字符串转化为number数据  ['137','47']=>[137,47]
+                        for (var j = 0; j < DataLen; j++) {
+                            if (Data[j].geometry.type == "Point") {
+                                vectorArr[i].data.features[j].geometry.coordinates[0] = Number(vectorArr[i].data.features[j].geometry.coordinates[0])
+                                vectorArr[i].data.features[j].geometry.coordinates[1] = Number(vectorArr[i].data.features[j].geometry.coordinates[1])
+                            } else if (Data[j].geometry.type == "Polygon") {
+                                var PolygonLen = vectorArr[i].data.features[j].geometry.coordinates.length;
+                                if (PolygonLen > 0) {
+                                    for (var k = 0; k < PolygonLen; k++) {
+                                        var coordinates = vectorArr[i].data.features[j].geometry.coordinates[k];
+                                        var coordinatesLen = coordinates.length;
+                                        if (coordinatesLen > 0) {
+                                            for (var m = 0; m < coordinatesLen; m++) {
+                                                vectorArr[i].data.features[j].geometry.coordinates[k][m][0] = Number(vectorArr[i].data.features[j].geometry.coordinates[k][m][0])
+                                                vectorArr[i].data.features[j].geometry.coordinates[k][m][1] = Number(vectorArr[i].data.features[j].geometry.coordinates[k][m][1])
+
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (Data[j].geometry.type == "LineString") {
+                                var LineStringLen = vectorArr[i].data.features[j].geometry.coordinates.length;
+                                if (LineStringLen > 0) {
+                                    for (var k = 0; k < LineStringLen; k++) {
+                                        var coordinates = vectorArr[i].data.features[j].geometry.coordinates[k];
+                                        var coordinatesLen = coordinates.length;
+                                        if (coordinatesLen > 0) {
+                                            vectorArr[i].data.features[j].geometry.coordinates[k][0] = Number(vectorArr[i].data.features[j].geometry.coordinates[k][0])
+                                            vectorArr[i].data.features[j].geometry.coordinates[k][1] = Number(vectorArr[i].data.features[j].geometry.coordinates[k][1])
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    //数据
+                    vectorSource = this.vectorGeoJSON(vectorArr[i].data)
+                    //点聚合
+                    clusterSource = this.cluster(vectorSource);
+                    if (DataLen > 0) {
+                        for (var j = 0; j < DataLen; j++) {
+                            if (Data[j].geometry.type == "Point") {
+                                layerVectortype = clusterSource;
+                            } else if (Data[j].geometry.type == "Polygon") {
+                                layerVectortype = vectorSource;
+                            }
+                        }
+                    }
+
+                    var styleCache = {};
+                    this[vectorArrId] = new ol.layer.Vector({
+                        visible: vectorArr[i].isShow,
+                        source: layerVectortype,
+                        zIndex: 9,
+                        // 设置样式
+                        style: function (feature) {
+                            //图标地址
+                            var iconSrc = feature.get('icon');
+                            var colorArr = _this.colorArr;
+                            var index = Math.floor((Math.random() * colorArr.length));
+                            var areaColor = feature.get('color');
+                            var fillColor = areaColor ? areaColor : colorArr[index].rgba;
+                            var color = colorArr[index].color;
+                            var getZoom = map.getView().getZoom()
+                            //中心
+                            var coordinate = feature.get('coordinateCentre');
+                            //返回样式
+                            if (_this.featureStyles(iconSrc, feature)[vectorArrType]) {
+                                return _this.featureStyles(iconSrc, feature)[vectorArrType];
+                            } else {
+                                //点聚合  点feature为数组
+                                var GeometryType = feature.getGeometry().getType();
+                                if (GeometryType == "Point") {
+                                    var selectedFeatures = feature.get('features');
+                                    var idIndex = "";
+                                    selectedFeatures.map(function (feature) {
+                                        idIndex += feature.getId()
+                                    });
+                                    var size = selectedFeatures.length;
+                                    var style = styleCache[idIndex];
+                                    if (!style) {
+                                        var color = size > 25 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
+                                        var radius = Math.max(8, Math.min(size * 0.75, 20));
+                                        var dash = 2 * Math.PI * radius / 6;
+                                        dash = [0, dash, dash, dash, dash, dash, dash];
+                                        if (size == 1) {
+                                            var Src = feature.get('features')[0].get('icon');
+                                            style = styleCache[idIndex] = [
+                                                new ol.style.Style({
+                                                    image: new ol.style.Icon({
+                                                        src: ctxStatic + '/policeOfficeBI/img/' + Src + '',
+                                                        scale: map.getView().getZoom() / 15
+                                                    }),
+                                                    text: new ol.style.Text({
+                                                        textAlign: 'center', // 位置
+                                                        textBaseline: 'top', // 基准线
+                                                        offsetY: '-20',       //设置位置
+                                                        exceedLength: 'true',
+                                                        font: 'normal 10px 微软雅黑',  // 文字样式
+                                                        text: feature.get('features')[0].get('name'),  // 文本内容
+                                                        fill: new ol.style.Fill({color: '#aa3300'}), // 文本填充样式（即文字颜色）
+                                                        stroke: new ol.style.Stroke({color: '#ffcc33', width: 2})
+                                                    })
+
+                                                })
+                                            ];
+                                        }
+                                        else {
+                                            style = styleCache[idIndex] = [new ol.style.Style({
+                                                image: new ol.style.Circle({
+                                                    radius: radius,
+                                                    stroke: new ol.style.Stroke({
+                                                        color: "rgba(" + color + ",0.5)",
+                                                        width: 15,
+                                                        lineDash: dash,
+                                                        lineCap: "butt"
+                                                    }),
+                                                    fill: new ol.style.Fill({
+                                                        color: "rgba(" + color + ",1)"
+                                                    })
+                                                }),
+                                                text: new ol.style.Text({
+                                                    text: size.toString(),
+                                                    fill: new ol.style.Fill({
+                                                        color: '#fff'
+                                                    })
+                                                })
+                                            })
+                                            ];
+                                        }
+                                    }
+                                    _this[vectorArrId].setZIndex(9999);
+                                    return style;
+                                } else {   //面
+                                    var size = feature.getId();
+                                    var style = styleCache[size];
+                                    if (!style) {
+                                        style = styleCache[size] = [new ol.style.Style({
+                                            //图层内容颜色
+                                         /*   fill: new ol.style.Fill({
+                                                color: fillColor ? fillColor : 'rgba(255, 255, 255, 0.6)'
+                                            }),*/
+                                            //图层边框颜色
+                                            stroke: new ol.style.Stroke({
+                                                // color: color ? '#fff' : 'white',
+                                                width: 1,
+                                                color: '#A3DAF4'
+                                            }),
+                                            //图层文字颜色
+                                            /*text: new ol.style.Text({
+                                                textAlign: 'center', // 位置
+                                                textBaseline: 'middle', // 基准线
+                                                exceedLength: 'true',
+                                                font: 'normal 12px 微软雅黑',  // 文字样式
+                                                text: feature.get('name'),  // 文本内容
+                                                fill: new ol.style.Fill({color: '#e5780b'}), // 文本填充样式（即文字颜色）,
+                                                stroke: new ol.style.Stroke({color: '#fff', width: 2})
+                                            })*/
+                                        }),]
+                                    }
+                                    return style
+                                }
+                            }
+
+                        }
+                    });
+                    map.addLayer(this[vectorArrId]);
+                }
+            }
+        }
+        // 图层显示隐藏
+        // this[type].setVisible(flag);
+        if (this.selectPointerFlag) {
+            _this.selectPointer();
+        }
+    },
+
+
     //记载数据--涉及点聚合-style中feature为整个数组
     addJSON1: function (params) {
         var map = this.map;
@@ -4482,7 +4682,6 @@ ArjMap.Map.prototype = {
                     }
 
                     var styleCache = {};
-                    var cont1 = 0;
                     this[vectorArrId] = new ol.layer.Vector({
                         visible: vectorArr[i].isShow,
                         source: layerVectortype,
@@ -4531,47 +4730,84 @@ ArjMap.Map.prototype = {
                                     var size = selectedFeatures.length;
                                     var style = styleCache[idIndex];
                                     if (!style) {
-                                        var color = size > 25 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
-                                        var radius = Math.max(8, Math.min(size * 0.75, 20));
+                                        var color  = "";
+                                        if(vectorArrType == "keypeopleBox"){                //重点人员
+                                            // color = "#FEFF61";
+                                            color = "254,255,97";
+                                        } else if(vectorArrType == "letnumBox"){
+                                            // color = "#A9FF63";
+                                            color = "169,255,99";
+                                        } else if(vectorArrType == "alarmnumBox"){
+                                            // color = "#C646CB";
+                                            color = "198,70,203";
+                                        } else if(vectorArrType == "videos"){
+                                            // color = "#4ADCF4";
+                                            color = "74,220,244";
+                                        }
+
+                                        // var color = size > 25 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
+                                        var radius = Math.max(5, Math.min(size * 0.75, 20));
                                         var dash = 2 * Math.PI * radius / 6;
                                         dash = [0, dash, dash, dash, dash, dash, dash];
                                         if (size == 1) {
-                                            var Src = feature.get('features')[0].get('icon');
-                                            if (vectorArrType == "PopLocation") {
-                                                if (feature.get('features')[0].get('info')['是否在线'] == '1') {
-                                                    if (feature.get('features')[0].get('info')['是否越界'] == '1') {
-                                                        Src = 'p3.png'
-                                                    } else {
-                                                        Src = 'p1.png'
-                                                    }
+                                            if(vectorArrType == "videos"){
+                                                var Src = feature.get('features')[0].get('icon');
+                                                if (vectorArrType == "PopLocation") {
+                                                    if (feature.get('features')[0].get('info')['是否在线'] == '1') {
+                                                        if (feature.get('features')[0].get('info')['是否越界'] == '1') {
+                                                            Src = 'p3.png'
+                                                        } else {
+                                                            Src = 'p1.png'
+                                                        }
 
-                                                } else {
-                                                    if (feature.get('features')[0].get('info')['是否越界'] == '1') {
-                                                        Src = 'p3.png'
                                                     } else {
-                                                        Src = 'p2.png'
+                                                        if (feature.get('features')[0].get('info')['是否越界'] == '1') {
+                                                            Src = 'p3.png'
+                                                        } else {
+                                                            Src = 'p2.png'
+                                                        }
                                                     }
                                                 }
-                                            }
-                                            style = styleCache[idIndex] = [
-                                                new ol.style.Style({
-                                                    image: new ol.style.Icon({
-                                                        src: ctxStatic + '/policeOfficeBI/img/' + Src + '',
-                                                        scale: map.getView().getZoom() / 15
-                                                    }),
-                                                    text: new ol.style.Text({
-                                                        textAlign: 'center', // 位置
-                                                        textBaseline: 'top', // 基准线
-                                                        offsetY: '-20',       //设置位置
-                                                        exceedLength: 'true',
-                                                        font: 'normal 10px 微软雅黑',  // 文字样式
-                                                        text: feature.get('features')[0].get('name'),  // 文本内容
-                                                        fill: new ol.style.Fill({color: '#aa3300'}), // 文本填充样式（即文字颜色）
-                                                        stroke: new ol.style.Stroke({color: '#ffcc33', width: 2})
+                                                style = styleCache[idIndex] = [
+                                                    new ol.style.Style({
+                                                        image: new ol.style.Icon({
+                                                            src: ctxStatic + '/policeOfficeBI/img/' + Src + '',
+                                                            scale: map.getView().getZoom() / 15
+                                                        }),
                                                     })
+                                                ];
+                                            } else {
+                                                var Src = feature.get('features')[0].get('icon');
+                                                style = styleCache[idIndex] = [
+                                                    new ol.style.Style({
+                                                        image: new ol.style.Circle({
+                                                            radius: radius,
+                                                            stroke: new ol.style.Stroke({
+                                                                color: "rgba(" + color + ",0.5)",
+                                                                width: 15,
+                                                                // lineDash: dash,
+                                                                // lineCap: "butt"
+                                                            }),
+                                                            fill: new ol.style.Fill({
+                                                                color: "rgba(" + color + ",1)"
+                                                            })
+                                                        }),
 
-                                                })
-                                            ];
+                                                        /*   text: new ol.style.Text({
+                                                             textAlign: 'center', // 位置
+                                                             textBaseline: 'top', // 基准线
+                                                             offsetY: '-20',       //设置位置
+                                                             exceedLength: 'true',
+                                                             font: 'normal 10px 微软雅黑',  // 文字样式
+                                                             text: feature.get('features')[0].get('name'),  // 文本内容
+                                                             fill: new ol.style.Fill({color: '#aa3300'}), // 文本填充样式（即文字颜色）
+                                                             stroke: new ol.style.Stroke({color: '#ffcc33', width: 2})
+                                                         })*/
+
+                                                    })
+                                                ];
+                                            }
+
                                         }
                                         else {
                                             style = styleCache[idIndex] = [new ol.style.Style({
@@ -4580,19 +4816,19 @@ ArjMap.Map.prototype = {
                                                     stroke: new ol.style.Stroke({
                                                         color: "rgba(" + color + ",0.5)",
                                                         width: 15,
-                                                        lineDash: dash,
-                                                        lineCap: "butt"
+                                                        // lineDash: dash,
+                                                        // lineCap: "butt"
                                                     }),
                                                     fill: new ol.style.Fill({
                                                         color: "rgba(" + color + ",1)"
                                                     })
                                                 }),
-                                                text: new ol.style.Text({
+                                             /*   text: new ol.style.Text({
                                                     text: size.toString(),
                                                     fill: new ol.style.Fill({
                                                         color: '#fff'
                                                     })
-                                                })
+                                                })*/
                                             })
                                             ];
                                         }
@@ -4641,6 +4877,116 @@ ArjMap.Map.prototype = {
             _this.selectPointer();
         }
     },
+
+    //记载数据--涉及点聚合-style中feature为整个数组
+    addPoliceOffice: function (params) {
+        var map = this.map;
+        var _this = this;
+        // 加载数据
+        var vectorArr = params;
+        var len = vectorArr.length;
+        if (len > 0) {
+            for (var i = 0; i < len; i++) {
+                if(vectorArr[i].data!=null && vectorArr[i].data!=undefined){
+                    this.center = vectorArr[i].data.centpoint;
+                    var vectorArrType = vectorArr[i].type;
+                    //图层id
+                    var vectorArrId = vectorArr[i].id || vectorArr[i].type;
+                    // 添加到矢量数据源
+                    var Data = vectorArr[i].data.features;
+                    var DataLen = Data.length;
+                    var vectorSource = null;
+                    if (DataLen > 0) {
+                        //字符串转化为number数据  ['137','47']=>[137,47]
+                        for (var j = 0; j < DataLen; j++) {
+                            if (Data[j].geometry.type == "Point") {
+                                vectorArr[i].data.features[j].geometry.coordinates[0] = Number(vectorArr[i].data.features[j].geometry.coordinates[0])
+                                vectorArr[i].data.features[j].geometry.coordinates[1] = Number(vectorArr[i].data.features[j].geometry.coordinates[1])
+                            } else if (Data[j].geometry.type == "Polygon") {
+                                var PolygonLen = vectorArr[i].data.features[j].geometry.coordinates.length;
+                                if (PolygonLen > 0) {
+                                    for (var k = 0; k < PolygonLen; k++) {
+                                        var coordinates = vectorArr[i].data.features[j].geometry.coordinates[k];
+                                        var coordinatesLen = coordinates.length;
+                                        if (coordinatesLen > 0) {
+                                            for (var m = 0; m < coordinatesLen; m++) {
+                                                vectorArr[i].data.features[j].geometry.coordinates[k][m][0] = Number(vectorArr[i].data.features[j].geometry.coordinates[k][m][0])
+                                                vectorArr[i].data.features[j].geometry.coordinates[k][m][1] = Number(vectorArr[i].data.features[j].geometry.coordinates[k][m][1])
+
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (Data[j].geometry.type == "LineString") {
+                                var LineStringLen = vectorArr[i].data.features[j].geometry.coordinates.length;
+                                if (LineStringLen > 0) {
+                                    for (var k = 0; k < LineStringLen; k++) {
+                                        var coordinates = vectorArr[i].data.features[j].geometry.coordinates[k];
+                                        var coordinatesLen = coordinates.length;
+                                        if (coordinatesLen > 0) {
+                                            vectorArr[i].data.features[j].geometry.coordinates[k][0] = Number(vectorArr[i].data.features[j].geometry.coordinates[k][0])
+                                            vectorArr[i].data.features[j].geometry.coordinates[k][1] = Number(vectorArr[i].data.features[j].geometry.coordinates[k][1])
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    //数据
+                    vectorSource = this.vectorGeoJSON(vectorArr[i].data)
+                    var styleCache = {};
+                    this[vectorArrId] = new ol.layer.Vector({
+                        visible: vectorArr[i].isShow,
+                        source: vectorSource,
+                        zIndex: 9,
+                        // 设置样式
+                        style: function (feature) {
+                            //图标地址
+                            var iconSrc = feature.get('icon');
+                            //返回样式
+                            if (_this.featureStyles(iconSrc, feature)[vectorArrType]) {
+                                return _this.featureStyles(iconSrc, feature)[vectorArrType];
+                            } else {
+                                var size = feature.getId();
+                                var style = styleCache[size];
+                                if (!style) {
+                                    style = styleCache[size] = [
+                                        new ol.style.Style({
+                                            image: new ol.style.Icon({
+                                                src: ctxStatic + '/policeOfficeBI/img/' + iconSrc + '',
+                                                scale: map.getView().getZoom() / 15
+                                            }),
+                                           /* text: new ol.style.Text({
+                                                textAlign: 'center', // 位置
+                                                textBaseline: 'top', // 基准线
+                                                offsetY: '-20',       //设置位置
+                                                exceedLength: 'true',
+                                                font: 'normal 10px 微软雅黑',  // 文字样式
+                                                text: feature.get('features')[0].get('name'),  // 文本内容
+                                                fill: new ol.style.Fill({color: '#aa3300'}), // 文本填充样式（即文字颜色）
+                                                stroke: new ol.style.Stroke({color: '#ffcc33', width: 2})
+                                            })*/
+                                        })
+                                    ];
+
+                                }
+                                return style;
+                            }
+
+                        }
+                    });
+                    map.addLayer(this[vectorArrId]);
+                }
+            }
+        }
+        // 图层显示隐藏
+        // this[type].setVisible(flag);
+        if (this.selectPointerFlag) {
+            _this.selectPointer();
+        }
+    },
+
     //记载数据--涉及点聚合-style中feature为整个数组
     addGIS: function (params) {
         var map = this.map;
@@ -6119,12 +6465,12 @@ ArjMap.Map.prototype.drawMapSituationKeShiHua = function () {
     // });
 
     //鼠标单击事件
-    this.map.on("singleclick", function (evt) {
-        if (evt.dragging) {
-            return;
-        }
-        displaysingleclickInfo(evt);
-    });
+    // this.map.on("singleclick", function (evt) {
+    //     if (evt.dragging) {
+    //         return;
+    //     }
+    //     displaysingleclickInfo(evt);
+    // });
 
 
 }
@@ -6612,19 +6958,6 @@ ArjMap.Map.prototype.drawMapSituationLoudong = function () {
     }
 
 
-    map.on('click', function (event) {
-
-
-        $('#eachAll13').html(sshiyoub);
-        $('#eachAll23').html(schsngzhub);
-        $('#eachAll33').html(schliudongb);
-        $('#eachAll43').html(schzhongdianb);
-        $('#eachAll53').html(sloudongb);
-        $('#eachAll63').html(sdanyuanb);
-        $('#eachAll73').html(sfangwub);
-        $('#eachAll83').html(sfujingb);
-    })
-
 
 }
 
@@ -6688,98 +7021,7 @@ $(function () {
 
             })
 })
-function doSelect(videoList){
-    var videoSelectNode = $("<select id='videoSelect'></select>");
-    for (var i = 0; i < videoList.length; i++) {
-        videoSelectNode.append("<option value='" + videoList[i].id + "' >" + videoList[i].name + "</option>");
-    }
 
-    $("#videoSelectTd").append(videoSelectNode);
-}
-// 根据id查询  ccm_base_place   ad         	在查询事件
-function getpaceinfo(id, coordinate) {
-    $.post(ctx + '/event/ccmEventIncident/geteventList', {"placeId": id}, function (data) {
-        if (data == null || data == "" || data == undefined) {
-            $.jBox.tip('暂无数据！');
-            return;
-        }
-        var html = '';
-        html += '<table id="contentTable" class="table table-striped table-bordered table-condensed">';
-        html += '<thead>';
-        html += '<tr>';
-        html += '<th>事件名称</th>';
-        html += '<th>发生日期</th>';
-        html += '<th>事件分级</th>';
-        html += '<th>事件类型</th>';
-        html += '<th>详情</th>'
-        html += '</tr>';
-        html += '</thead>';
-        html += '<tbody>';
-
-        var eventScale,eventType;
-        for (var i in data) {
-            var id = data[i].id;
-            html += '<tr>';
-
-            eventScale = data[i].eventScale;
-            eventType = data[i].eventType;
-
-            if(eventScale == '01') {
-                eventScale = '重特大'
-            } else if(eventScale == '02') {
-                eventScale = '重大'
-            } else if(eventScale == '03') {
-                eventScale = '较大'
-            } else if(eventScale == '04'){
-                eventScale = '一般'
-            } else {
-                eventScale = '未知'
-            }
-
-            if(eventType == '01') {
-                eventType = '安全事故'
-            } else if(eventType == '02') {
-                eventType = '群体性事故'
-            } else if(eventType == '03') {
-                eventType = '食品安全事故'
-            } else if(eventType == '04') {
-                eventType = '有关刑事案件'
-            } else if(eventType == '05') {
-                eventType = '其他'
-            } else {
-                eventType = '未知'
-            }
-
-            html += '<td>' + data[i].caseName + '</td>';
-            html += '<td>' + data[i].happenDate + '</td>';
-            html += '<td>' + eventScale + '</td>';
-            html += '<td>' + eventType + '</td>';
-            html += '<td>' + '<button type="button" onclick="parent.LayerDialog(ctx+\'/event/ccmEventIncident/form/?id='+id+'\', \'详情\', \'1200px\', \'800px\')" class="btn btn-mini btn-success">详细</button>' +'</td>';
-            html += '</tr>';
-        }
-        html += '</tbody>';
-        html += '</table>';
-
-        layer.open({
-            type: 1,
-            shade: false,
-            title: false, // 不显示标题
-            area: ["600px", "400px"],
-            offset: ['260px', '810px'],
-            move: '.layer-common-header',
-            resize: false,
-            fixed: false,
-            id: 'contentTable11',
-            content: html,
-            cancel: function () {
-                // 关闭事件
-                // layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', {time: 5000,
-                // icon:6});
-            }
-        });
-
-    })
-}
 var mapvLayer = [];
 var mapvSource = [];
 function lightLine() {
@@ -7145,42 +7387,6 @@ function fengchao(){
         source: new ol.source.Mapv(options)
     }));
 }
-
-
-/*$.getJSON(ctx+'/sys/map/queryDeviceMap?name='+videoName+',function(data){
-	if(data==null||data==""||data==undefined){
-    	 $.jBox.tip('暂无数据！');
-         return ;
-     }
-	var html='';
-	for(var i in data){
-		var id=featuresData[i].id;
-		var x='',y='';
-		if(featuresData[i].geometry.coordinates){
-			 x=featuresData[i].geometry.coordinates[0];
-			 y=featuresData[i].geometry.coordinates[1];
-		}
-		var properties=featuresData[i].properties;
-		html+='<li class="datalist-li" id="map_li'+id+'" data-id="'+id+'" onclick="goToDetail('+x+','+y+',\''+id+'\','+JSON.stringify(properties).replace(/"/g, '&quot;')+')">';
-		html+='<div class="map_list_data" data-id="'+id+'">';
-		html+='<div class="col-left" data-id="'+id+'"> <a class="map_markers" href="javascript:;" data-id="'+id+'">'+(Number(i)+1)+'</a></div>';
-		html+='<div class="col-right"><img src="'+ctxStatic+'/images/gisVideo.png" style="width:auto;height:58px;"></div>';
-		html+='<div class="col-center" style="margin-right: 50px;">';
-		html+='<div class="col-row" data-id="'+id+'"> <span class="n-blue" data-id="'+id+'">'+data.features[i].properties.name+'</span></div>';
-		if(x==''||y==''||featuresData[i].geometry.coordinates.length==0){
-			html+='<div class="col-row" data-id="'+id+'"><span style="color:red;font-size: 8px;margin-left: -7px;" data-id="'+id+'">〔坐标错误〕</span></div>';
-		}
-		html+='<div class="col-row" data-id="'+id+'">'+data.features[i].properties.info['IP地址']+'</div>';
-		html+='<div class="col-row" data-id="'+id+'">'+data.features[i].properties.info['安装位置']+'</div>';
-		html+='</div>';
-		html+='</div>';
-		html+='</li>';
-	}
-	$('#datalist').html(html);
-
-
-})
-*/
 
 
 
