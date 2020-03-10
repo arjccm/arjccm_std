@@ -160,11 +160,11 @@
 <%--		<i class="fa fa-pause" aria-hidden="true"></i>--%>
 	</div>
 	<div class="topmapbutton">
-		<button type="button" value="重点人员" class="btninp selected" style="background:url(${ctxStatic}/policeOfficeBI/img/map_ry.png) no-repeat 11px 13px;" onclick="getKeyPeopleNum()">重点人员<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
-        <button type="button" value="视频监控"  class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zx.png) no-repeat 4px 16px;" onclick="shipinjiankongFun()">视频监控<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
-		<button type="button" value="出租屋"  class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_czw.png) no-repeat 4px 16px;" onclick="getLetNum()">出租屋<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
-		<button type="button" value="场所特业" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_cs.png) no-repeat 4px 16px;" onclick="getBasePlaceMap()">场所特业<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
-		<button type="button" value="警情事件" class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_jq.png) no-repeat 4px 16px;" onclick= "getAlarm()">警情事件<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+		<button type="button" value="重点人员" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_ry.png) no-repeat 11px 13px;" onclick="addMapworknum(this,1)">重点人员<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+        <button type="button" value="视频监控"  class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zx.png) no-repeat 4px 16px;" onclick="addMapworknum(this,2)">视频监控<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+		<button type="button" value="出租屋"  class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_czw.png) no-repeat 4px 16px;" onclick="addMapworknum(this,3)">出租屋<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+		<button type="button" value="场所特业" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_cs.png) no-repeat 4px 16px;" onclick="addMapworknum(this,4)">场所特业<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+		<button type="button" value="警情事件" class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_jq.png) no-repeat 4px 16px;" onclick= "addMapworknum(this,5)">警情事件<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
 	</div>
 
 	<div class="sxtback" id="sxtshow" style="display: none">
@@ -199,16 +199,6 @@
 
 
 	})
-	$(".playButton i").click(function(){
-		if($(this).attr('aria-hidden')== 'true'){
-			$(this).removeClass("fa-play").addClass("fa-pause")
-			$(this).attr('aria-hidden',false)
-		}else{
-			$(this).removeClass("fa-pause").addClass("fa-play")
-			$(this).attr('aria-hidden',true)
-		}
-	})
-
 
 	/**
 	 * Created by oHa on 2017/12/28.
@@ -473,51 +463,96 @@
 		AlarmFlag = !AlarmFlag;
 	}
 
+	//添加选中样式记录播放id
+	var maptoworknum = [];
+	function addMapworknum(_this,num) {
+		if(maptoworknum.indexOf(num)==-1){
+			maptoworknum.push(num);
+			_this.className +=" selected";
+		} else {
+			maptoworknum.splice(maptoworknum.indexOf(num),1)
+			_this.className ="btninp";
+		}
+	}
+
+	//启动定时播放
+	$(".playButton i").click(function(){
+		if($(this).attr('aria-hidden')== 'true'){
+			$(this).removeClass("fa-play").addClass("fa-pause")
+			$(this).attr('aria-hidden',false)
+			initmapdo(true);
+		}else{
+			$(this).removeClass("fa-pause").addClass("fa-play")
+			$(this).attr('aria-hidden',true);
+			initmapdo(false);
+		}
+	})
+
 	//定时执行方法
     var mapnum = 0;
     function mapdonum(){
         mapnum++;
-        if(mapnum == 6){
+        if(mapnum == maptoworknum.length+1){
             mapnum = 1
         }
-        console.info(mapnum);
-        mapdowork(mapnum);
+		mapdowork(maptoworknum[mapnum-1]);
     }
 
-    function initmapdo(){
-        setInterval(mapdonum,3000);
+    var mapworking = null;
+    function initmapdo(flag){
+    	if(flag){
+    		if(maptoworknum.length > 0){
+				maptoworknum.sort(function(a, b){return a - b});
+				mapworking = setInterval(mapdonum,3000);
+			}
+		} else {
+			clearInterval(mapworking);
+			Map.removeLayer('SetTopBoxFlag');
+			$('#sxtshow').attr("style","display:none");
+			Map.removeLayer('shipinjiankong');
+			Map.removeLayer('letnum');
+			Map.removeLayer('baseplace');
+			$('#sctyshow').attr("style","display:none");
+			Map.removeLayer('baseplace');
+			Map.removeLayer('alarmnum');
+			mapnum = 0;
+		}
+
     }
 
     function mapdowork(num) {
-        Map.removeLayer('SetTopBoxFlag');
-		$('#sctyshow').attr("style","display:none");
+		Map.removeLayer('SetTopBoxFlag');
 		$('#sxtshow').attr("style","display:none");
+		Map.removeLayer('shipinjiankong');
+		Map.removeLayer('letnum');
+		Map.removeLayer('baseplace');
+		$('#sctyshow').attr("style","display:none");
+		Map.removeLayer('baseplace');
+		Map.removeLayer('alarmnum');
         switch (num) {
             case 1:   //重点人员
-                console.info("do-----"+num);
 				Map.layersIsShow('communitys', false);
 				Map.layersIsShow('streets', false);
 				Map.layersIsShow('grids', true);
-                $.getJSON('' + ctx + '/sys/policemap/getKeyPeopleNum', function (data) {
-                    Map.addJSON1([{
-                        'type': 'topBox',
-                        'id': 'SetTopBoxFlag',
-                        'data': data,
-                        'isShow': true
-                    }])
-                })
-				// var map = Map.map;
-				// map.getView().setZoom(12);
-				// Map.goTo(["113.600011373", "34.50186483919"])
+				$.getJSON('' + ctx + '/sys/policemap/getKeyPeopleNum', function (data) {
+					Map.addJSON1([{
+						'type': 'keypeopleBox',
+						'id': 'SetTopBoxFlag',
+						'data': data,
+						'isShow': true
+					}])
+					// var map = Map.map;
+					// map.getView().setZoom(12);
+					// Map.goTo(["113.600011373", "34.50186483919"])
+				})
                 break;
             case 2:  //视频监控
-                console.info("do-----"+num);
 				Map.layersIsShow('communitys', false);
 				Map.layersIsShow('streets', false);
 				Map.layersIsShow('grids', false);
 				$('#sxtshow').attr("style","display:block");
                 $.getJSON('' + ctx + '/sys/policemap/deviceiveMap', function (data) {
-                    Map.addJSON1([{
+                    Map.addPoliceOffice([{
                         'type': 'videos',
                         'id': 'SetTopBoxFlag',
                         'data': data,
@@ -526,53 +561,50 @@
                 })
                 break;
             case 3:  //出租屋
-                console.info("do-----"+num);
 				Map.layersIsShow('communitys', false);
 				Map.layersIsShow('streets', false);
 				Map.layersIsShow('grids', true);
-                $.getJSON('' + ctx + '/sys/policemap/getLetNum', function (data) {
-                    Map.addJSON1([{
-                        'type': 'topBox',
-                        'id': 'SetTopBoxFlag',
-                        'data': data,
-                        'isShow': true
-                    }])
-                })
+				$.getJSON('' + ctx + '/sys/policemap/getLetNum', function (data) {
+					Map.addJSON1([{
+						'type': 'letnumBox',
+						'id': 'letnum',
+						'data': data,
+						'isShow': true
+					}])
+				})
                 break;
             case 4:  //场所特业
-                console.info("do-----"+num);
 				Map.layersIsShow('communitys', false);
 				Map.layersIsShow('streets', false);
 				Map.layersIsShow('grids', false);
 				$('#sctyshow').attr("style","display:block");
-                $.getJSON('' + ctx + '/sys/policemap/getBasePlaceMap', function (data) {
-                    Map.addPoliceOffice([{
-                        'type': 'broadcast',
-                        'id': 'SetTopBoxFlag',
-                        'data': data,
-                        'isShow': true
-                    }])
-					var map = Map.map;
-					map.getView().setZoom(11);
-					Map.goTo(["113.3586326175677", "34.53555866426642"])
-                })
+				$.getJSON('' + ctx + '/sys/policemap/getBasePlaceMap', function (data) {
+					Map.addPoliceOffice([{
+						'type': 'broadcast',
+						'id': 'baseplace',
+						'data': data,
+						'isShow': true
+					}])
+					// var map = Map.map;
+					// map.getView().setZoom(11);
+					// Map.goTo(["113.3586326175677", "34.53555866426642"])
+				})
                 break;
             case 5:  //警情事件
-                console.info("do-----"+num);
 				Map.layersIsShow('communitys', false);
 				Map.layersIsShow('streets', false);
 				Map.layersIsShow('grids', true);
-                $.getJSON('' + ctx + '/sys/policemap/getAlarm', function (data) {
-                    Map.addJSON1([{
-                        'type': 'topBox',
-                        'id': 'SetTopBoxFlag',
-                        'data': data,
-                        'isShow': true
-                    }])
-                })
-				var map = Map.map;
-				map.getView().setZoom(12);
-				Map.goTo(["113.600011373", "34.50186483919"])
+				$.getJSON('' + ctx + '/sys/policemap/getAlarm', function (data) {
+					Map.addJSON1([{
+						'type': 'alarmnumBox',
+						'id': 'alarmnum',
+						'data': data,
+						'isShow': true
+					}])
+				})
+				// var map = Map.map;
+				// map.getView().setZoom(12);
+				// Map.goTo(["113.600011373", "34.50186483919"])
                 break;
         }
     }
