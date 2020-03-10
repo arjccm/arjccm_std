@@ -13,13 +13,13 @@
         <div class="box_bg_01">
             <div class="box_bg_02"></div>
         </div>
-        <div style="width: 100%;height: 20px;font-size: 13px;margin-top: 20px;">
-            <span id="housedata1" style="width: 15%;color: white;margin-left: 10%;text-align: center;display:inline-block;"></span>
-            <span id="housedata2" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
-            <span id="housedata3" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
-            <span id="housedata4" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
-            <span id="housedata5" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
-        </div>
+<%--        <div style="width: 100%;height: 20px;font-size: 13px;margin-top: 20px;">--%>
+<%--            <span id="housedata1" style="width: 15%;color: white;margin-left: 10%;text-align: center;display:inline-block;"></span>--%>
+<%--            <span id="housedata2" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>--%>
+<%--            <span id="housedata3" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>--%>
+<%--            <span id="housedata4" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>--%>
+<%--            <span id="housedata5" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>--%>
+<%--        </div>--%>
     </div>
     <div id="rentalHouseContent" class="box_content">
 
@@ -37,18 +37,19 @@
         //请求接口并填装数据执行
         $.getJSON(ctx + "/sys/BicMap/rentalHouseOfArea", function (data) {
             initRentalHouseOption(data);
-            $('#housedata1').text(data[2][0]);
-            $('#housedata2').text(data[2][1]);
-            $('#housedata3').text(data[2][2]);
-            $('#housedata4').text(data[2][3]);
-            $('#housedata5').text(data[2][4]);
+            // $('#housedata1').text(data[2][0]);
+            // $('#housedata2').text(data[2][1]);
+            // $('#housedata3').text(data[2][2]);
+            // $('#housedata4').text(data[2][3]);
+            // $('#housedata5').text(data[2][4]);
         });
         function initRentalHouseOption(data){
             rentalHouseOption = {
                 grid: {
                     left: '8%',
                     right: '8%',
-                    bottom: '1%',
+                    top: '10%',
+                    bottom: '10%',
                     containLabel: true
                 },
                 tooltip: {
@@ -60,17 +61,29 @@
                         return params[0].name + ': ' + params[0].value;
                     },
                 },
-                xAxis: {
+                xAxis: [{
                     data: data[1],
+                    axisTick: {show: false},
+                    axisLine: {show: false},
+                    axisLabel: {
+                        interval:0,
+                        color: 'white',
+                        textStyle: {
+                            fontSize: 12
+                        }
+                    }
+                },{
+                    data: data[2],
+                    type:'category',
                     axisTick: {show: false},
                     axisLine: {show: false},
                     axisLabel: {
                         color: 'white',
                         textStyle: {
-                            fontSize: 10
+                            fontSize: 12
                         }
                     }
-                },
+                }],
                 yAxis: {
                     max: data[0],
                     splitLine: {show: false},

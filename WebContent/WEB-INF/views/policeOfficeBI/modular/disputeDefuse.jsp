@@ -131,7 +131,7 @@
             series: [{
                 name: '数量',
                 type: 'bar',
-                barWidth: '60%',
+                barWidth: 8,
                 //data: data['人数'],
                 data: [11, 59, 85, 48, 87, 42, 64,53, 38, 57, 13,33],
 
@@ -144,7 +144,7 @@
                             },
                                 {
                                     offset: 1,
-                                    color: '#091C41'
+                                    color: 'rgba(9,28,65,0.2)'
                                 }
                             ]),
                     }

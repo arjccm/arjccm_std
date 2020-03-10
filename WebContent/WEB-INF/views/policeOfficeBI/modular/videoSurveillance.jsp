@@ -23,6 +23,7 @@
 		line-height:26px;
 		background: url("${ctxStatic}/images/numberBj.png") no-repeat;
 		background-size: 100% 100%;
+		margin-right: 3px;
 	}
 	#sbzs .sp3{
 		width:15px;
@@ -48,13 +49,18 @@
 			<div class="box_bg_02"></div>
 		</div>
 	</div>
-	<div id="sbzs">
-		<span id="sp0" class="sp1">监控设备总数</span>
-		<%--<span class="sp2">1</span>--%>
-		<span class="sp3">个</span>
-	</div>
-	<div id="videoSurveillance" class="box_content" >
 
+	<div id="" class="box_content" >
+		<div style="width: 100%;">
+			<div id="sbzs">
+				<span id="sp0" class="sp1">监控设备总数</span>
+				<%--<span class="sp2">1</span>--%>
+				<span class="sp3">个</span>
+			</div>
+			<div id="videoSurveillance" style="width: 100%;height: 200px">
+
+			</div>
+		</div>
 
 	</div>
 </section>
@@ -142,7 +148,7 @@
 				},
 				axisLabel: {
 					color: '#fff',
-					fontSize: 8,
+					fontSize: 12,
 					textShadowColor: '#000',
 					textShadowOffsetY: 2,
 					rotate:60,
@@ -168,7 +174,7 @@
 
 				axisLabel: {
 					color: '#fff',
-					fontSize: 8,
+					fontSize: 12,
 					textShadowColor: '#000',
 					textShadowOffsetY: 2
 				}
@@ -184,8 +190,16 @@
 				},
 
 				areaStyle: {
-					color: '#48D9F0',
-					opacity:0.6
+					color: new echarts.graphic.LinearGradient(
+							0, 0, 0, 1, [{
+								offset: 0,
+								color: '#49DBF3'
+							},
+								{
+									offset: 1,
+									color: 'rgba(73,219,243,.1)'
+								}
+							]),
 				}
 			}]
 		}

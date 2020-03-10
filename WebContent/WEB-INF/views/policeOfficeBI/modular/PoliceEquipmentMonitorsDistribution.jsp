@@ -181,7 +181,7 @@ function PoliceEquipmentMonitorsDistribution() {
                     name: "警力设备",
                     type: "bar",
                     stack: "总量",
-                    barMaxWidth: 15,
+                    barMaxWidth: 20,
                     barGap: "10%",
                     itemStyle: {
                         normal: {
@@ -191,7 +191,7 @@ function PoliceEquipmentMonitorsDistribution() {
                             },
                                 {
                                     offset: 1,
-                                    color: '#1d546a'
+                                    color: 'rgba(72,217,240,.1)'
                                 }]),
 
                         }
@@ -202,7 +202,7 @@ function PoliceEquipmentMonitorsDistribution() {
                     {
                         name: "监控设备",
                         type: "bar",
-                        barMaxWidth: 15,
+                        barMaxWidth: 20,
                         stack: "总量",
                         itemStyle: {
                             normal: {

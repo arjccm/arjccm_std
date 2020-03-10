@@ -13,13 +13,13 @@
         <div class="box_bg_01">
             <div class="box_bg_02"></div>
         </div>
-        <div style="width: 100%;height: 20px;font-size: 13px;margin-top: 20px;">
-            <span id="facedata1" style="width: 15%;color: white;margin-left: 10%;text-align: center;display:inline-block;"></span>
-            <span id="facedata2" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
-            <span id="facedata3" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
-            <span id="facedata4" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
-            <span id="facedata5" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>
-        </div>
+<%--        <div style="width: 100%;height: 20px;font-size: 13px;margin-top: 20px;">--%>
+<%--            <span id="facedata1" style="width: 15%;color: white;margin-left: 10%;text-align: center;display:inline-block;"></span>--%>
+<%--            <span id="facedata2" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>--%>
+<%--            <span id="facedata3" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>--%>
+<%--            <span id="facedata4" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>--%>
+<%--            <span id="facedata5" style="width: 15%;color: white;margin-left: 1px;text-align: center;display:inline-block;"></span>--%>
+<%--        </div>--%>
     </div>
     <div id="thisWeekContent" class="box_content">
 
@@ -37,19 +37,19 @@
         //请求接口并填装数据执行
         $.getJSON(ctx + "/sys/BicMap/thisWeekFace", function (data) {
             initThisWeekOption(data);
-            $('#facedata1').text(data[1][0]);
-            $('#facedata2').text(data[1][1]);
-            $('#facedata3').text(data[1][2]);
-            $('#facedata4').text(data[1][3]);
-            $('#facedata5').text(data[1][4]);
+            // $('#facedata1').text(data[1][0]);
+            // $('#facedata2').text(data[1][1]);
+            // $('#facedata3').text(data[1][2]);
+            // $('#facedata4').text(data[1][3]);
+            // $('#facedata5').text(data[1][4]);
         });
         function initThisWeekOption(data){
             thisWeekOption = {
                 grid: {
-                    top: '13%',
+                    top: '10%',
                     left: '8%',
                     right: '8%',
-                    bottom: '1%',
+                    bottom: '10%',
                     containLabel: true
                 },
                 tooltip: {
@@ -61,17 +61,27 @@
                         return params[0].name + ': ' + params[0].value;
                     },
                 },
-                xAxis: {
+                xAxis: [{
                     data: data[0],
                     axisTick: {show: false},
                     axisLine: {show: false},
                     axisLabel: {
                         color: 'white',
                         textStyle: {
-                            fontSize: 10
+                            fontSize: 12
                         }
                     }
-                },
+                },{
+                    data: data[1],
+                    axisTick: {show: false},
+                    axisLine: {show: false},
+                    axisLabel: {
+                        color: 'white',
+                        textStyle: {
+                            fontSize: 12
+                        }
+                    }
+                }],
                 yAxis: {
                     splitLine: {show: false},
                     axisTick: {show: false},

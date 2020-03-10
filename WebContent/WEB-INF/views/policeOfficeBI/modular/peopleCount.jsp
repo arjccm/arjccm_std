@@ -90,7 +90,7 @@
                             textStyle: {
                                 fontFamily: 'Microsoft YaHei',
                                 color: 'white',
-                                fontSize: 8
+                                fontSize: 12
                             },
                             rotate: 30,
                         },
@@ -112,7 +112,7 @@
                             textStyle: {
                                 fontFamily: 'Microsoft YaHei',
                                 color: 'white',
-                                fontSize: 8
+                                fontSize: 12
                             },
                         },
                         scale: true,
@@ -133,7 +133,7 @@
                             textStyle: {
                                 fontFamily: 'Microsoft YaHei',
                                 color: 'white',
-                                fontSize: 8
+                                fontSize: 12
                             },
                         },
                         scale: true,

@@ -115,7 +115,7 @@
                 </div>
             </div>
 
-            <div id="policeForceDistribution" style="height:160px;width: 70%">
+            <div id="policeForceDistribution" style="height:160px;">
 
             </div>
         </div>
@@ -313,7 +313,7 @@ function PoliceForceDistribution() {
                                 color: '#34CDFF'
                             }, {
                                 offset: 0.8,
-                                color: '#048AE2'
+                                color: 'rgba(4,138,226,0.1)'
                             }]),
                             barBorderRadius: 0,
                         },
@@ -331,7 +331,7 @@ function PoliceForceDistribution() {
                                     color: '#03F8F6'
                                 }, {
                                     offset: 0.8,
-                                    color: '#4BA09A'
+                                    color: 'rgba(75,160,154,0.1)'
                                 }]),
                                 barBorderRadius: 0,
                             }
