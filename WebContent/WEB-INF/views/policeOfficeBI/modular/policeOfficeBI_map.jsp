@@ -472,15 +472,25 @@
 		} else {
 			maptoworknum.splice(maptoworknum.indexOf(num),1)
 			_this.className ="btninp";
+			$(".playButton i").removeClass("fa-pause").addClass("fa-play")
+			$(".playButton i").attr('aria-hidden',true);
+			initmapdo(false);
 		}
 	}
 
 	//启动定时播放
 	$(".playButton i").click(function(){
 		if($(this).attr('aria-hidden')== 'true'){
-			$(this).removeClass("fa-play").addClass("fa-pause")
-			$(this).attr('aria-hidden',false)
-			initmapdo(true);
+			if(maptoworknum.length>0){
+				$(this).removeClass("fa-play").addClass("fa-pause")
+				$(this).attr('aria-hidden',false)
+				initmapdo(true);
+			} else {
+				layer.tips('选中后才能播放', $(".playButton i"), {
+					tips : [ 1, '#20c694' ],
+					time : 2000,
+				});
+			}
 		}else{
 			$(this).removeClass("fa-pause").addClass("fa-play")
 			$(this).attr('aria-hidden',true);
