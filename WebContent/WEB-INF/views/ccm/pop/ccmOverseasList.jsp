@@ -94,7 +94,7 @@
 	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmWork/list/30" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<input id="isPermanent" name="isPermanent" type="hidden" value="1"/>
+<%--		<input id="isPermanent" name="isPermanent" type="hidden" value="1"/>--%>
 		<input id="type" name="type" type="hidden" value="30"/>
 		<ul class="ul-form pull-left">
 			<li class="first-line"><label>姓名：</label>

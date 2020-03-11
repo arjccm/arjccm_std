@@ -79,4 +79,13 @@ public interface CcmPopTenantDao extends CrudDao<CcmPopTenant> {
 
 	//查询出租屋数据
     List<CcmPopTenant> findLet(CcmPopTenant ccmPopTenant);
+
+	//实有房屋个数
+	public Integer houseCount();
+
+	//出租屋个数
+	public Integer letCount();
+
+
+
 }

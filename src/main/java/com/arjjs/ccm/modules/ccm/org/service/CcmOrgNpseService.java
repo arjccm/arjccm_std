@@ -335,4 +335,10 @@ public class CcmOrgNpseService extends CrudService<CcmOrgNpseDao, CcmOrgNpse> {
 		});
 		return resultNpseList;
 	}
+
+
+	//实有单位个数
+	public Integer unitsCount(){
+		return dao.unitsCount();
+	}
 }

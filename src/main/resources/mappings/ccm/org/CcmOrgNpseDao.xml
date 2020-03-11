@@ -1054,4 +1054,9 @@
         GROUP BY
         more1
     </select>
+
+	<!--实有单位个数-->
+	<select id="unitsCount" resultType="Integer">
+		SELECT count(a.id) FROM ccm_org_npse a LEFT JOIN sys_area a34 ON a34.id = a.area_id WHERE a.del_flag = 0
+	</select>
 </mapper>
