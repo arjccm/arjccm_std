@@ -34,7 +34,7 @@
         var context = $(".context").attr("content");
 
         $.getJSON(context + "/sys/BicMap/policeDigest", {}, function (data) {
-
+debugger
             var myChart = echarts.init(document.getElementById('policeDigest'));
 
             var colorAttr = ['#07CDF1', '#7085FB', '#A77FF8', '#DD3F60', '#BE25C7', '#FF747B', '#FDDE01', '#FF6803', '#09A2F1', '#2875EC'];

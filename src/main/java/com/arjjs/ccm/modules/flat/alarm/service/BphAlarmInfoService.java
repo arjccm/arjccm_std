@@ -476,7 +476,18 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 		map.put("data", dataList);
 		return map;
 	}
+	//近30天警情摘要
+	public Map<String, Object> findMonthPieData() {
+		List<BphAlarmInfo3> bphAlarmInfoList = dao.findMonthPieData();
 
+		Map<String, Object> map = new HashMap<>();
+		for (BphAlarmInfo3 bphAlarmInfo3 : bphAlarmInfoList) {
+			map.put(bphAlarmInfo3.getLabel(),bphAlarmInfo3.getNum());
+		}
+//		map.put("typeName", typeNameList);
+//		map.put("data", dataList);
+		return map;
+	}
 	public GeoJSON getPeripheralResources(String type) {
 		if ("8".equals(type)) {// 警员
 			return realtimeSituationService.findPeopleInfo();

@@ -4,6 +4,7 @@ import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.modules.ccm.index.service.IndexChartService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
+import com.arjjs.ccm.modules.ccm.sys.entity.BicMapUser;
 import com.arjjs.ccm.modules.ccm.sys.entity.PoliceTrend;
 import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo;
 import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo2;
@@ -22,13 +23,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -134,16 +134,58 @@ public class CcmBIController {
 
         return map;
     }
+    @ResponseBody
+    @RequestMapping(value = "beonduty")
+    //本周值班计划
+    public List<BicMapUser> beonduty(){
+
+        List<BicMapUser> bicMapUsers = new ArrayList<>();
+
+        Map<String, String> weekPlan1 = new HashMap<>();
+        weekPlan1.put("day1","1");
+        weekPlan1.put("day2","0");
+        weekPlan1.put("day3","0");
+        weekPlan1.put("day4","0");
+        weekPlan1.put("day5","0");
+        weekPlan1.put("day6","0");
+        weekPlan1.put("day7","1");
+        BicMapUser bicMapUser1 = new BicMapUser("11","李雷雷",weekPlan1);
+        Map<String, String> weekPlan2 = new HashMap<>();
+        weekPlan1.put("day1","0");
+        weekPlan1.put("day2","1");
+        weekPlan1.put("day3","1");
+        weekPlan1.put("day4","0");
+        weekPlan1.put("day5","1");
+        weekPlan1.put("day6","0");
+        weekPlan1.put("day7","0");
+        BicMapUser bicMapUser2 = new BicMapUser("12","张露",weekPlan2);
+        Map<String, String> weekPlan3= new HashMap<>();
+        weekPlan1.put("day1","0");
+        weekPlan1.put("day2","0");
+        weekPlan1.put("day3","1");
+        weekPlan1.put("day4","1");
+        weekPlan1.put("day5","0");
+        weekPlan1.put("day6","0");
+        weekPlan1.put("day7","0");
+        BicMapUser bicMapUser3 = new BicMapUser("13","阳光",weekPlan3);
+        BicMapUser bicMapUser4 = new BicMapUser("14","赵晓明",weekPlan1);
+        BicMapUser bicMapUser5 = new BicMapUser("15","宋勇",weekPlan2);
+        BicMapUser bicMapUser6 = new BicMapUser("16","李雷雷1",weekPlan1);
+        BicMapUser bicMapUser7 = new BicMapUser("17","李雷雷2",weekPlan2);
+        bicMapUsers.add(bicMapUser1);
+        bicMapUsers.add(bicMapUser2);
+        bicMapUsers.add(bicMapUser3);
+        bicMapUsers.add(bicMapUser4);
+        bicMapUsers.add(bicMapUser5);
+        bicMapUsers.add(bicMapUser6);
+        bicMapUsers.add(bicMapUser7);
+        return bicMapUsers;
+    }
+
 //今日110警情处理
     @ResponseBody
     @RequestMapping(value = "alarmData" )
    public List<BphAlarmInfo2> list() {
-
-
-
-//        Map<String, Object> map = bphAlarmInfoService.findPieData();
-
-//        List<BphAlarmInfo> list = bphAlarmInfoService.countDtae();
 
         List<BphAlarmInfo2> list = bphAlarmInfoService.findTodayAlarmInfo();
 
@@ -300,18 +342,15 @@ public class CcmBIController {
     public String policeDigest(){
         // 返回对象结果
 
-        PoliceDigest policeDigest1 = new PoliceDigest(13,"aaa");
-        PoliceDigest policeDigest2 = new PoliceDigest(15,"bbb");
-        PoliceDigest policeDigest3 = new PoliceDigest(20,"ccc");
-        PoliceDigest policeDigest4 = new PoliceDigest(23,"ddd");
-        PoliceDigest policeDigest5 = new PoliceDigest(31,"eee");
-
+        Map<String, Object> map = bphAlarmInfoService.findMonthPieData();
         List<PoliceDigest> policeDigestList = new ArrayList<PoliceDigest>();
-        policeDigestList.add(policeDigest1);
-        policeDigestList.add(policeDigest2);
-        policeDigestList.add(policeDigest3);
-        policeDigestList.add(policeDigest4);
-        policeDigestList.add(policeDigest5);
+        for(Map.Entry<String, Object> entry : map.entrySet()){
+
+            String mapKey = entry.getKey();
+            Object mapValue = entry.getValue();
+            PoliceDigest policeDigest = new PoliceDigest(Integer.parseInt(mapValue.toString()),mapKey);
+            policeDigestList.add(policeDigest);
+        }
 
         JsonConfig config = new JsonConfig();
         String policeJson = JSONArray.fromObject(policeDigestList, config).toString();
