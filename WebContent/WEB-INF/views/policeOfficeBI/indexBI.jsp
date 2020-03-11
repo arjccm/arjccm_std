@@ -77,7 +77,7 @@
 <div class="navBasic_data">
 	<div class="navBasic_data_area clearfix">
 		<ul class="clearfix left_box">
-			<li class="clearfix">
+			<%--<li class="clearfix">
 				<p>实有人口</p>
 				<p>345601</p>
 			</li>
@@ -96,12 +96,13 @@
 			<li class="clearfix">
 				<p>实有单位</p>
 				<p>745</p>
-			</li>
+			</li>--%>
+			<li id="sj_lil" style="display: none"> </li>
 		</ul>
 
 
 		<ul class="clearfix right_box">
-			<li class="clearfix">
+			<%--<li class="clearfix">
 				<p>警力人员</p>
 				<p>3456</p>
 			</li>
@@ -124,7 +125,8 @@
 			<li class="ts_02 clearfix">
 				<p>今日人脸抓拍</p>
 				<p>378210</p>
-			</li>
+			</li>--%>
+			<li id="sj_lir" style="display: none"> </li>
 		</ul>
 	</div>
 
@@ -226,7 +228,24 @@
 		showKeyPersonne();
 		showConcernCompany();
 		setValueAndAreaName();
+		showSjHz();
 	},1000)
+
+	function showSjHz() {
+		$.getJSON(ctx + '/sys/BicMap/countHZ', function(data) {
+
+			console.log("============================")
+			$.each(data, function (key, value) {
+				$("#sj_lil").before('<li class="clearfix"><p>'+key+'</p><p class="red_text">'+value+'</p></li>')
+			});
+		})
+		$.getJSON(ctx + '/sys/BicMap/countHZ2', function(data) {
+			console.log("============================")
+			$.each(data, function (key, value) {
+				$("#sj_lir").before('<li class="clearfix"><p>'+key+'</p><p class="red_text">'+value+'</p></li>')
+			});
+		})
+	}
 </script>
 </body>
 

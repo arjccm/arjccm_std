@@ -164,6 +164,16 @@
 		</if>
 		GROUP BY typeO
 	</select>
+	<!-- 本月纠纷统计 -->
+	<select id="monthCount" resultType="Integer">
+			SELECT
+		COUNT( id ) AS "num"
+		FROM
+		ccm_event_ambi ambi
+		WHERE
+		DATE_FORMAT( ambi.send_date, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+		AND ambi.del_flag = 0
+	</select>
 	<!-- 总数统计 -->
 	<select id="findLineMap" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT

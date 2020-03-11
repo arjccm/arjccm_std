@@ -40,6 +40,7 @@
                 seriesArr.push(data[i].value);
                 seriesArrAll.push(data[i].value1)
             }
+            debugger
             var disputeDefuse = echarts.init(document.getElementById('disputeDefuse'));
             var option = {
                 tooltip: {
@@ -165,11 +166,11 @@
                 },
                     {
                         name: '化解率',
-                        // data: [8, 21, 38, 33, 55, 41, 26,34, 16, 32, 4,55],
+                        // data: [8, 91, 38, 33, 55, 41, 26,34, 16, 32, 4,55],
+						data : seriesArr,
                         type: 'line',
-                        data : seriesArr,
                         symbolSize: 8, // 控制线条上 点 的大小
-                        yAxisIndex: 1,
+                        // yAxisIndex: 1,
                         //data: data['新增人数'],
                         itemStyle: {
                             normal: {

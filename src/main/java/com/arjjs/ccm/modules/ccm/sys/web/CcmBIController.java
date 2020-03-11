@@ -2,6 +2,7 @@ package com.arjjs.ccm.modules.ccm.sys.web;
 
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.modules.ccm.casino.service.CcmPlaceCasinoService;
+import com.arjjs.ccm.modules.ccm.event.service.CcmEventAmbiService;
 import com.arjjs.ccm.modules.ccm.hotel.service.CcmPlaceHotelService;
 import com.arjjs.ccm.modules.ccm.index.service.IndexChartService;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgNpseService;
@@ -66,7 +67,8 @@ public class CcmBIController {
     private CcmPopTenantService ccmPopTenantService;
     @Autowired
     private CcmOrgNpseService ccmOrgNpseService;
-
+    @Autowired
+    private CcmEventAmbiService ccmEventAmbiService;
 
 
 
@@ -74,7 +76,8 @@ public class CcmBIController {
     @RequestMapping(value = "getDisputeDefuse")
     //矛盾纠纷化解
     public Object getDisputeDefuse() {
-        return indexChartService.oneYearSolveEvent();
+        List<EchartType> echartTypes = indexChartService.oneYearSolveEvent();
+        return echartTypes;
     }
 
     @ResponseBody
@@ -372,16 +375,6 @@ public class CcmBIController {
         map.put("data", data);
         map.put("firstData", firstData);
 
-        int jlSum=0;
-        for (int jlDatum : jlData) {
-            jlSum+=jlDatum;
-        }
-        int jkSum=0;
-        for (int jkDatum : jkData) {
-            jkSum+=jkDatum;
-        }
-        //向数据汇总传递
-        countHZ(jlSum,jkSum);
 
         return map;
     }
@@ -520,6 +513,7 @@ public class CcmBIController {
     public Map<String, Object> abnormalOfVideo(){
         // 返回对象结果
         Map<String, Object> map = ccmBIService.abnormalOfVideo();
+
         return map;
     }
 
@@ -540,10 +534,11 @@ public class CcmBIController {
         Map<String, Object> map = ccmBIService.alarmOfArea();
         return map;
     }
+
     @ResponseBody
     @RequestMapping(value = "countHZ")
     //实有数据人口汇总
-    public Map<String, Object> countHZ(int jl,int jk){
+    public Map<String, Object> countHZ(){
         // 返回对象结果
         Map<String, Object> map = Maps.newLinkedHashMap();
 
@@ -558,26 +553,88 @@ public class CcmBIController {
 
         //出租房
         Integer letCount = ccmPopTenantService.letCount();
-
         //实有单位
         Integer unitsCount = ccmOrgNpseService.unitsCount();
-
-        //警力总数
-        Integer policeCount = ccmBIService.policeCount();
-
-        //视频监控
-        Map<String, Object> map2 = ccmBIService.abnormalOfVideo();
-
-
         map.put("实有人口", peopleCount);
         map.put("重点人员", findfocuPersCount);
         map.put("实有房屋", houseCount);
         map.put("出租房", letCount);
         map.put("实有单位", unitsCount);
-        map.put("警力人员", policeCount);
-        map.put("警力设备", jl);
-        map.put("监控设备", jk);
 
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping(value = "countHZ2")
+    //实有数据人口汇总
+    public Map<String, Object> countHZ2(){
+        Random ran = new Random();
+        List<EchartType> device = ccmBIService.policeEquipmentMD();
+
+        //TODO 警室总数据 name
+        String[] name = new String[device.size()];
+
+        //TODO 警力设备 jlData
+        int[] jlData = new int[device.size()];
+
+        //TODO 监控设备 jkData
+        int[] jkData = new int[device.size()];
+
+        for(int i=0;i<device.size();i++){
+            name[i] = device.get(i).getTypeO();
+            jkData[i] = Integer.parseInt(device.get(i).getValue());
+            if(Integer.parseInt(device.get(i).getValue())>2){
+                jlData[i] = ran.nextInt(Integer.parseInt(device.get(i).getValue())-2)+1;
+            }else{
+                jlData[i] = Integer.parseInt(device.get(i).getValue());
+            }
+        }
+
+        //总数据 data
+        Map<String, Object> data = Maps.newHashMap();
+        data.put("警力设备", jlData);
+        data.put("监控设备", jkData);
+
+        //首次展示数据 firstData
+        Map<String, Object> firstData = Maps.newHashMap();
+        int[] jlFirstData = new int[12];
+        int[] jkFirstData = new int[12];
+        if (jlData.length != 0 && jkData.length != 0) {
+            for (int i = 0; i < 12; i++) {
+                jlFirstData[i] = jlData[i];
+                jkFirstData[i] = jkData[i];
+            }
+            firstData.put("警力设备", jlFirstData);
+            firstData.put("监控设备", jkFirstData);
+        }
+
+
+        int jlSum=0;
+        for (int jlDatum : jlData) {
+            jlSum+=jlDatum;
+        }
+        int jkSum=0;
+        for (int jkDatum : jkData) {
+            jkSum+=jkDatum;
+        }
+
+        // 返回对象结果
+        Map<String, Object> map = Maps.newLinkedHashMap();
+
+        //警力总数
+        Integer policeCount = ccmBIService.policeCount();
+
+        //本月警情个数
+        Integer month2Count = bphAlarmInfoService.findMonth2PieData();
+
+        //本月纠纷个数
+        Integer monthCount = ccmEventAmbiService.monthCount();
+
+        map.put("警力人员", policeCount);
+        map.put("警力设备", jlSum);
+        map.put("监控设备", jkSum);
+        map.put("本月警情", month2Count);
+        map.put("本月矛盾纠纷", monthCount);
+        map.put("今日人脸抓拍",15);
 
         return map;
     }

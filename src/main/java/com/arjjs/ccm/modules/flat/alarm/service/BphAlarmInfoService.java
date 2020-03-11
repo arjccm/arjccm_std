@@ -488,6 +488,10 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 //		map.put("data", dataList);
 		return map;
 	}
+	//本月警情个数
+	public Integer findMonth2PieData(){
+		return dao.findMonth2PieData();
+	}
 	public GeoJSON getPeripheralResources(String type) {
 		if ("8".equals(type)) {// 警员
 			return realtimeSituationService.findPeopleInfo();

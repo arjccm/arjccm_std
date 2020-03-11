@@ -126,7 +126,10 @@ public class CcmEventAmbiService extends CrudService<CcmEventAmbiDao, CcmEventAm
 	public List<EchartType> findLineMap(CcmEventAmbi ccmEventAmbi) {
 		return ccmEventAmbiDao.findLineMap(ccmEventAmbi);
 	}
-
+	//本月纠纷个数
+	public Integer monthCount(){
+		return dao.monthCount();
+	}
 	public List<EchartType> findAreaMap(CcmEventAmbi ccmEventAmbi) {
 		return ccmEventAmbiDao.findAreaMap(ccmEventAmbi);
 	}
