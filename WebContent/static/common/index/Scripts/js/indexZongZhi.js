@@ -399,7 +399,7 @@ function PeopleStatistics(type, title) {
 			if (title == "户籍") {
 				seriesDate2 = getSeriesDate1(title2, ajaxDataYALL2);
 			} else {
-				seriesDate2 = getSeriesDate(title2, ajaxDataYALL2);
+				seriesDate2 = getSeriesDate1(title2, ajaxDataYALL2);
 			}
 
 			if (title == "户籍") {
