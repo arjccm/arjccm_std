@@ -466,15 +466,18 @@
 	//添加选中样式记录播放id
 	var maptoworknum = [];
 	function addMapworknum(_this,num) {
+		$(".playButton i").removeClass("fa-pause").addClass("fa-play")
+		$(".playButton i").attr('aria-hidden',true);
+		initmapdo(false);
 		if(maptoworknum.indexOf(num)==-1){
 			maptoworknum.push(num);
 			_this.className +=" selected";
 		} else {
 			maptoworknum.splice(maptoworknum.indexOf(num),1)
 			_this.className ="btninp";
-			$(".playButton i").removeClass("fa-pause").addClass("fa-play")
-			$(".playButton i").attr('aria-hidden',true);
-			initmapdo(false);
+			// $(".playButton i").removeClass("fa-pause").addClass("fa-play")
+			// $(".playButton i").attr('aria-hidden',true);
+			// initmapdo(false);
 		}
 	}
 
@@ -512,8 +515,13 @@
     function initmapdo(flag){
     	if(flag){
     		if(maptoworknum.length > 0){
-				maptoworknum.sort(function(a, b){return a - b});
-				mapworking = setInterval(mapdonum,3000);
+    			if(maptoworknum.length == 1){
+					mapdowork(maptoworknum[mapnum]);
+				} else {
+					maptoworknum.sort(function(a, b){return a - b});
+					mapworking = setInterval(mapdonum,3000);
+				}
+
 			}
 		} else {
 			clearInterval(mapworking);
