@@ -14,5 +14,6 @@ import com.arjjs.ccm.modules.ccm.hotel.entity.CcmPlaceHotel;
  */
 @MyBatisDao
 public interface CcmPlaceHotelDao extends CrudDao<CcmPlaceHotel> {
-	
+    //统计酒店个数
+    Integer countHotel();
 }

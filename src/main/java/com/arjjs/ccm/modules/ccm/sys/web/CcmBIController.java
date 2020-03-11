@@ -1,11 +1,14 @@
 package com.arjjs.ccm.modules.ccm.sys.web;
 
 import com.arjjs.ccm.common.persistence.Page;
+import com.arjjs.ccm.modules.ccm.casino.service.CcmPlaceCasinoService;
+import com.arjjs.ccm.modules.ccm.hotel.service.CcmPlaceHotelService;
 import com.arjjs.ccm.modules.ccm.index.service.IndexChartService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
 import com.arjjs.ccm.modules.ccm.sys.entity.BicMapUser;
 import com.arjjs.ccm.modules.ccm.sys.entity.PoliceTrend;
+import com.arjjs.ccm.modules.ccm.traffic.service.CcmPlaceTrafficService;
 import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo;
 import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo2;
 import com.arjjs.ccm.modules.flat.alarm.service.BphAlarmInfoService;
@@ -44,6 +47,14 @@ public class CcmBIController {
     private IndexChartService indexChartService;
     @Autowired
     private BphAlarmInfoService bphAlarmInfoService;
+    @Autowired
+    private CcmPlaceCasinoService ccmPlaceCasinoService;
+    @Autowired
+    private CcmPlaceHotelService ccmPlaceHotelService;
+    @Autowired
+    private CcmPlaceTrafficService ccmPlaceTrafficService;
+
+
 
     @ResponseBody
     @RequestMapping(value = "getDisputeDefuse")
@@ -119,18 +130,28 @@ public class CcmBIController {
     public Map<String, Object> concernCompany(){
         // 返回对象结果
         Map<String, Object> map = Maps.newHashMap();
+        //网吧个数
+        Integer internetBar = ccmPlaceCasinoService.conutWb();
+        //足浴个数
+        Integer footBath = ccmPlaceCasinoService.conutFootBath();
+        //统计Ktv个数
+        Integer ktv = ccmPlaceCasinoService.conutKtv();
+        //统计酒店个数
+        Integer hotel = ccmPlaceHotelService.countHotel();
+        //统计加油站个数
+        Integer petrolStation = ccmPlaceTrafficService.petrolStation();
 
         map.put("zdnb",200);
         map.put("ybnb",200);
         map.put("bacy",200);
         map.put("bafw",200);
-        map.put("jyz",200);
+        map.put("petrolStation",petrolStation);
         map.put("hgc",200);
-        map.put("dc",200);
-        map.put("bg",200);
-        map.put("wb",200);
-        map.put("zy",200);
-        map.put("ktv",100);
+        map.put("powerStation",200);
+        map.put("hotel",hotel);
+        map.put("internetBar",internetBar);
+        map.put("footBath",footBath);
+        map.put("ktv",ktv);
 
         return map;
     }

@@ -47,7 +47,7 @@
 				<div class="title">微爆</br>单位</div>
 				<div class="dwul three_column clearfix">
 					<div class="dwli">
-						<p id="jyz">200</p>
+						<p id="petrolStation">200</p>
 						<p>加油站</p>
 					</div>
 					<div class="line"></div>
@@ -57,7 +57,7 @@
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p id="dz">200</p>
+						<p id="powerStation">200</p>
 						<p>电站</p>
 					</div>
 				</div>
@@ -67,17 +67,17 @@
 				<div class="title">场所</br>待业</div>
 				<div class="dwul four_column clearfix">
 					<div class="dwli">
-						<p id="zy">200</p>
+						<p id="hotel">200</p>
 						<p>宾馆</p>
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p id="wb">200</p>
+						<p id="internetBar">200</p>
 						<p>网吧</p>
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p id="zy">200</p>
+						<p id="footBath">200</p>
 						<p>足浴</p>
 					</div>
 					<div class="line"></div>
@@ -101,14 +101,15 @@
 
 
 			$('#zdnb').text(data['zdnb']);
-			$('#zdnb').text(data['ybnb']);
-			$('#zdnb').text(data['bacy']);
-			$('#zdnb').text(data['bafw']);
-			$('#zdnb').text(data['jyz']);
-			$('#zdnb').text(data['dc']);
-			$('#zdnb').text(data['bg']);
-			$('#zdnb').text(data['wb']);
-			$('#zdnb').text(data['zy']);
+			$('#ybnb').text(data['ybnb']);
+			$('#bacy').text(data['bacy']);
+			$('#bafw').text(data['bafw']);
+			$('#petrolStation').text(data['petrolStation']);
+			$('#hgc').text(data['hgc']);
+			$('#powerStation').text(data['powerStation']);
+			$('#hotel').text(data['hotel']);
+			$('#internetBar').text(data['internetBar']);
+			$('#footBath').text(data['footBath']);
 			$('#ktv').text(data['ktv']);
 
 		});

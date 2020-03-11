@@ -215,4 +215,16 @@
 		WHERE id = #{id}
 	</update>
 
+	<!--统计网吧个数-->
+	<select id="countWb" resultType="Integer">
+		SELECT count(*) as num FROM ccm_place_casino a WHERE a.del_flag = 0 AND a.type = 02
+	</select>
+	<!--统计足浴个数-->
+	<select id="conutFootBath" resultType="Integer">
+		SELECT count(*) as num FROM ccm_place_casino a WHERE a.del_flag = 0 AND a.type = 08
+	</select>
+	<!--统计KTV个数-->
+	<select id="countKtv" resultType="Integer">
+		SELECT count(*) as num FROM ccm_place_casino a WHERE a.del_flag = 0 AND a.type = 03
+	</select>
 </mapper>
