@@ -116,13 +116,13 @@
 				<p>本月警情</p>
 				<p class="red_text">888</p>
 			</li>
-			<li class="clearfix">
-				<p>人脸抓拍</p>
-				<p>3456</p>
+			<li class="ts_01 clearfix">
+				<p>本月矛盾纠纷</p>
+				<p>981</p>
 			</li>
-			<li class="clearfix">
-				<p>车辆抓拍</p>
-				<p>3456</p>
+			<li class="ts_02 clearfix">
+				<p>今日人脸抓拍</p>
+				<p>378210</p>
 			</li>
 		</ul>
 	</div>

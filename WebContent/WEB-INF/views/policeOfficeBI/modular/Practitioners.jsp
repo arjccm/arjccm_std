@@ -62,12 +62,10 @@
 						}
 					},
 					axisLabel: {
+						interval:0,
 						inside: false,
-						textStyle: {
-							color: "#fff",
-							fontWeight: "normal",
-							fontSize: "12"
-						}
+						color: "#fff",
+						fontSize: "12"
 						// formatter:function(val){
 						//     return val.split("").join("\n")
 						// },
@@ -135,11 +133,7 @@
 					itemStyle: {
 						normal: {
 							show: true,
-							color: function (params) {
-								//注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
-								var colorList = ['#ee8025', '#c435ac', '#17b7d5', '#337cf5', '#df4d66'];
-								return colorList[params.dataIndex]
-							},
+
 							// barBorderRadius: 1,
 							borderWidth: 0,
 							shadowBlur: 15,
@@ -148,7 +142,7 @@
 					},
 					zlevel: 2,
 					barWidth: "12px",
-					data: data["jlData"]
+					data: getColor()
 				}]
 			};
 			//初始化echarts实例(这里的main要根据自己的div的id进行修改.)
@@ -174,6 +168,53 @@
 					})
 				}
 				return iconArr;
+			}
+			// console.log(getColor())
+			function getColor(){
+				var dataColor = [],
+						offsetColor0="",
+						offsetColor1="";
+				for (var i = 0; i < data["jlData"].length; i++) {
+					if (i == 0){
+						offsetColor0 ='rgba(250,224,57,1)'
+						offsetColor1 ='rgba(250,224,57,0.1)'
+					}
+					if (i == 1){
+						offsetColor0 ='rgba(213,106,222,1)'
+						offsetColor1 ='rgba(213,106,222,0.1)'
+					}
+					if (i == 2){
+						offsetColor0 ='rgba(0,229,238,1)'
+						offsetColor1 ='rgba(0,229,238,0.1)'
+					}
+					if (i == 3){
+						offsetColor0 ='rgba(116,132,250,1)'
+						offsetColor1 ='rgba(116,132,250,0.1)'
+					}
+					if (i == 4){
+						offsetColor0 ='rgba(236,93,70,1)'
+						offsetColor1 ='rgba(236,93,70,0.1)'
+					}
+					dataColor.push({
+						value: data["jlData"][i],
+						itemStyle:{
+							color:  {
+								type: 'linear',
+								x: 0,
+								y: 0,
+								x2: 0,
+								y2: 1,
+								colorStops: [{
+									offset: 0, color: offsetColor0 // 0% 处的颜色
+								}, {
+									offset: 1, color: offsetColor1 // 100% 处的颜色
+								}],
+								global: false // 缺省为 false
+							}
+						}
+					})
+				}
+				return dataColor
 			}
 		})
 	}

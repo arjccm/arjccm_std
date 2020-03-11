@@ -82,12 +82,18 @@
                         normal: {
                             show: true,
                             formatter: function (params) {
-                                return params.value + ' 人';
+                                return '{kg|}'+params.value + ' 人';
                             },
                             position: 'right',
                             textStyle: {
                                 color: 'white',
                                 fontSize: 12
+                            },
+                            rich:{
+                                kg:{
+                                    padding:5
+                                }
+
                             }
                         }
                     },

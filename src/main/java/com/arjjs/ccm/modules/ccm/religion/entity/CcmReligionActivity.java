@@ -73,7 +73,7 @@ public class CcmReligionActivity extends DataEntity<CcmReligionActivity> {
 		return host;
 	}
 
-	public void Host(String host) {
+	public void setHost(String host) {
 		this.host = host;
 	}
 	

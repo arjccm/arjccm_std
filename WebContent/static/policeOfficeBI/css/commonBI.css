@@ -34,6 +34,8 @@
 	top: 0;
 	left: 0;
 	z-index: 999;
+	background: url("../img/common/lg3.png") no-repeat center 5px;
+	background-size: 5.24vw 8px;
 }
 .box_header .box_header_title .left_bg{
 	width: 3px;
@@ -55,7 +57,7 @@
 	text-align: center;
 	color: #03f8f6;
 	font-size: 0.65vw;
-	margin-top: -0.4vw;
+	margin-top: -0.45vw;
 }
 .gridster .box_content{
 	width: 100%;
