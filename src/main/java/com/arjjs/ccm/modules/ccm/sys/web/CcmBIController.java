@@ -16,6 +16,7 @@ import com.arjjs.ccm.tool.SearchTab;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.arjjs.ccm.modules.ccm.sys.service.CcmBIService;
+import com.arjjs.ccm.tool.EchartType;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.arjjs.ccm.modules.ccm.sys.entity.PoliceDigest;
 import com.google.common.collect.Maps;
@@ -53,7 +54,8 @@ public class CcmBIController {
     private CcmPlaceHotelService ccmPlaceHotelService;
     @Autowired
     private CcmPlaceTrafficService ccmPlaceTrafficService;
-
+    @Autowired
+    private CcmBIService ccmBIService;
 
 
     @ResponseBody
@@ -273,20 +275,30 @@ public class CcmBIController {
     @RequestMapping(value = "policeForceDistribution")
     //警力人员分布
     public Map<String, Object> policeForceDistribution(){
+        Random ran = new Random();
         // 返回对象结果
         Map<String, Object> map = Maps.newHashMap();
 
+        List<EchartType> police = ccmBIService.policeForceDistribution();
+
         //TODO 警室总数据 name
-        String[] name = new String[20];
-        for (int i = 1; i < 13; i++) {
-            name[i-1] = i + "警室";
-        }
+        String[] name = new String[police.size()];
 
         //TODO 民警人数数据 mjData
-        int[] mjData = new int[]{310, 150, 450, 890, 345, 310, 150, 450, 890, 345, 310, 150};
+        int[] mjData = new int[police.size()];
 
         //TODO 辅警人数数据 fjData
-        int[] fjData = new int[]{400, 500, 500, 500, 500, 400, 500, 500, 500, 500, 400, 500};
+        int[] fjData = new int[police.size()];
+
+        for(int i=0;i<police.size();i++){
+            name[i] = police.get(i).getTypeO();
+            mjData[i] = Integer.parseInt(police.get(i).getValue());
+            if(Integer.parseInt(police.get(i).getValue())>2){
+                fjData[i] = ran.nextInt(Integer.parseInt(police.get(i).getValue())-2)+1;
+            }else{
+                fjData[i] = Integer.parseInt(police.get(i).getValue());
+            }
+        }
 
         //总数据 data
         Map<String, Object> data = Maps.newHashMap();
@@ -295,8 +307,8 @@ public class CcmBIController {
 
         //首次展示数据 firstData
         Map<String, Object> firstData = Maps.newHashMap();
-        int[] mjFirstData = new int[]{310, 150, 450, 890, 345, 310};
-        int[] fjFirstData = new int[]{400, 500, 500, 500, 500, 400};
+        int[] mjFirstData = new int[6];
+        int[] fjFirstData = new int[6];
         if (mjData.length != 0 && fjData.length != 0) {
             for (int i = 0; i < 6; i++) {
                 mjFirstData[i] = mjData[i];
@@ -317,20 +329,30 @@ public class CcmBIController {
     @RequestMapping(value = "policeEquipmentMD")
     //警力设备监控设备分布
     public Map<String, Object> policeEquipmentMD(){
+        Random ran = new Random();
         // 返回对象结果
         Map<String, Object> map = Maps.newHashMap();
 
+        List<EchartType> device = ccmBIService.policeEquipmentMD();
+
         //TODO 警室总数据 name
-        String[] name = new String[20];
-        for (int i = 1; i < 19; i++) {
-            name[i-1] = i + "警室";
-        }
+        String[] name = new String[device.size()];
 
         //TODO 警力设备 jlData
-        int[] jlData = new int[]{310, 150, 450, 890, 345, 310, 150, 450, 890, 345, 310, 150, 150, 450, 890, 345, 310, 150};
+        int[] jlData = new int[device.size()];
 
         //TODO 监控设备 jkData
-        int[] jkData = new int[]{400, 500, 500, 500, 500, 400, 500, 500, 500, 500, 400, 500, 310, 150, 450, 890, 345, 180};
+        int[] jkData = new int[device.size()];
+
+        for(int i=0;i<device.size();i++){
+            name[i] = device.get(i).getTypeO();
+            jkData[i] = Integer.parseInt(device.get(i).getValue());
+            if(Integer.parseInt(device.get(i).getValue())>2){
+                jlData[i] = ran.nextInt(Integer.parseInt(device.get(i).getValue())-2)+1;
+            }else{
+                jlData[i] = Integer.parseInt(device.get(i).getValue());
+            }
+        }
 
         //总数据 data
         Map<String, Object> data = Maps.newHashMap();
@@ -339,8 +361,8 @@ public class CcmBIController {
 
         //首次展示数据 firstData
         Map<String, Object> firstData = Maps.newHashMap();
-        int[] jlFirstData = new int[]{310, 150, 450, 890, 345, 310, 150, 450, 890, 345, 310, 150};
-        int[] jkFirstData = new int[]{400, 500, 500, 500, 500, 400, 500, 500, 500, 500, 400, 500};
+        int[] jlFirstData = new int[12];
+        int[] jkFirstData = new int[12];
         if (jlData.length != 0 && jkData.length != 0) {
             for (int i = 0; i < 12; i++) {
                 jlFirstData[i] = jlData[i];
@@ -379,13 +401,10 @@ public class CcmBIController {
         return policeJson;
     }
 
-    @Autowired
-    private CcmBIService ccmBIService;
-
     // 实有人口数据汇总（柱状图）
     @ResponseBody
     @RequestMapping(value = "ccmPeopleCount")
-    public List<Object> ccmPeopleCount(Model model) {
+    public List<Object> ccmPeopleCount() {
         // 返回对象结果
         List<Object> result = ccmBIService.ccmPeopleCount();
         return result;
@@ -394,7 +413,7 @@ public class CcmBIController {
     // 重点人员区域分布TOP5
     @ResponseBody
     @RequestMapping(value = "keyPeopleOfArea")
-    public List<Object> keyPeopleOfArea(Model model) {
+    public List<Object> keyPeopleOfArea() {
         // 返回对象结果
         List<Object> result = ccmBIService.keyPeopleOfArea();
         return result;
@@ -403,7 +422,7 @@ public class CcmBIController {
     // 巡逻队伍落实排名
     @ResponseBody
     @RequestMapping(value = "vccmTeamMember")
-    public List<Object> vccmTeamMember(Model model) {
+    public List<Object> vccmTeamMember() {
         // 返回对象结果
         List<Object> result = ccmBIService.vccmTeamMember();
         return result;
@@ -412,7 +431,7 @@ public class CcmBIController {
     // 本周人脸抓拍告警TOP5
     @ResponseBody
     @RequestMapping(value = "thisWeekFace")
-    public List<Object> thisWeekFace(Model model) {
+    public List<Object> thisWeekFace() {
         // 返回对象结果
         List<Object> result = ccmBIService.thisWeekFace();
         return result;
@@ -421,7 +440,7 @@ public class CcmBIController {
     // 出租房区域分布TOP5
     @ResponseBody
     @RequestMapping(value = "rentalHouseOfArea")
-    public List<Object> rentalHouseOfArea(Model model) {
+    public List<Object> rentalHouseOfArea() {
         // 返回对象结果
         List<Object> result = ccmBIService.rentalHouseOfArea();
         return result;
@@ -485,6 +504,33 @@ public class CcmBIController {
         map.put("name", name);
         map.put("jlData", jlData);
 
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "abnormalOfVideo")
+    //视频监控异常趋势
+    public Map<String, Object> abnormalOfVideo(){
+        // 返回对象结果
+        Map<String, Object> map = ccmBIService.abnormalOfVideo();
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "sevenDayOfAlarm")
+    //近7天110警情趋势图
+    public Map<String, Object> sevenDayOfAlarm(){
+        // 返回对象结果
+        Map<String, Object> map = ccmBIService.sevenDayOfAlarm();
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "alarmOfArea")
+    //警情区域分布TOP5
+    public Map<String, Object> alarmOfArea(){
+        // 返回对象结果
+        Map<String, Object> map = ccmBIService.alarmOfArea();
         return map;
     }
 }

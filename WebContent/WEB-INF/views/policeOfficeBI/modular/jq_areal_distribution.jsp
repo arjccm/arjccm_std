@@ -15,37 +15,37 @@
 		<div class="jqqyfb_box">
 			<div class="region1 region_sl">
 				<div class="jq_data">
-					<p>区域1</p>
-					<p>378件</p>
+					<p id="areaNameOne"></p>
+					<p id="valueOne"></p>
 					<p>NO.1</p>
 				</div>
 			</div>
 			<div class="region2 region_sl">
 				<div class="jq_data">
-					<p>区域1</p>
-					<p>378件</p>
-					<p>NO.1</p>
+					<p id="areaNameTwo"></p>
+					<p id="valueTwo"></p>
+					<p>NO.2</p>
 				</div>
 			</div>
 			<div class="region3 region_sl">
 				<div class="jq_data">
-					<p>区域1</p>
-					<p>378件</p>
-					<p>NO.1</p>
+					<p id="areaNameThree"></p>
+					<p id="valueThree"></p>
+					<p>NO.3</p>
 				</div>
 			</div>
 			<div class="region4 region_sl">
 				<div class="jq_data">
-					<p>区域1</p>
-					<p>378件</p>
-					<p>NO.1</p>
+					<p id="areaNameFour"></p>
+					<p id="valueFour"></p>
+					<p>NO.4</p>
 				</div>
 			</div>
 			<div class="region5 region_sl">
 				<div class="jq_data">
-					<p>区域1</p>
-					<p>378件</p>
-					<p>NO.1</p>
+					<p id="areaNameFive"></p>
+					<p id="valueFive"></p>
+					<p>NO.5</p>
 				</div>
 			</div>
 
@@ -54,6 +54,21 @@
 	</div>
 </section>
 <script>
+	function setValueAndAreaName(){
+		//请求接口并填装数据执行
+		$.getJSON(ctx + "/sys/BicMap/alarmOfArea", function (data) {
+			$('#areaNameOne').text(data['areaName'][0]);
+			$('#areaNameTwo').text(data['areaName'][1]);
+			$('#areaNameThree').text(data['areaName'][2]);
+			$('#areaNameFour').text(data['areaName'][3]);
+			$('#areaNameFive').text(data['areaName'][4]);
+			$('#valueOne').text(data['value'][0]+'件');
+			$('#valueTwo').text(data['value'][1]+'件');
+			$('#valueThree').text(data['value'][2]+'件');
+			$('#valueFour').text(data['value'][3]+'件');
+			$('#valueFive').text(data['value'][4]+'件');
+		});
+	}
 </script>
 
 

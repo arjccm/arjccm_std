@@ -70,4 +70,5 @@ public interface BphAlarmInfoDao extends CrudDao<BphAlarmInfo> {
 	AlarmNotifyInfo selectAlarmNotifyInfoById(@Param("alarmId") String alarmId);
 	List<BphAlarmInfo> queryAll(@Param("startIndex") Integer startIndex,@Param("pageSize") Integer pageSize);
 	int queryAlarmCount();
+	List<BphAlarmInfo> getCountList(BphAlarmInfo bphAlarmInfo);//警情管理查询
 }

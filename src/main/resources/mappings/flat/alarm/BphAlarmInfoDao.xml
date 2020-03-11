@@ -1537,4 +1537,27 @@
 			alarm.del_flag = 0
 		AND alarm.id = #{alarmId}
 	</select>
+
+	<select id="getCountList" resultType="BphAlarmInfo">
+		SELECT
+		a.id,
+		a.order_num,
+		a.content,
+		a.alarm_time,
+		a.place,
+		a.type_code,
+		a.office_id,
+		a.state
+		FROM
+		bph_alarm_info a
+		WHERE
+		a.del_flag = #{DEL_FLAG_NORMAL}
+		<if test="state != null and state != ''">
+			AND a.state = #{state}
+		</if>
+		<if test="beginAlarmTime != null and endAlarmTime != null and beginAlarmTime != '' and endAlarmTime != ''">
+			AND a.alarm_time BETWEEN #{beginAlarmTime} AND #{endAlarmTime}
+		</if>
+		ORDER BY a.alarm_time DESC
+	</select>
 </mapper>

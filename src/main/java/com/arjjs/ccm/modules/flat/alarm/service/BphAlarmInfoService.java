@@ -1275,4 +1275,9 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 		
 		return pageAlarmInfo;
 	}
+
+	public List<BphAlarmInfo> getCountList(BphAlarmInfo bphAlarmInfo) {
+		List<BphAlarmInfo> list = dao.getCountList(bphAlarmInfo);
+		return list;
+	}
 }

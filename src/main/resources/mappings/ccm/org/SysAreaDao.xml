@@ -533,4 +533,53 @@
 			count(tenant.id) DESC
 		LIMIT 5
 	</select>
+
+	<!--警力人员分布-->
+	<select id="policeForceDistribution" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			a.id AS 'type',
+			a. NAME AS 'typeO',
+			count(u.id) AS 'value'
+		FROM
+			sys_area a
+		LEFT JOIN sys_office o ON o.area_id = a.id
+		LEFT JOIN sys_user u ON o.id = u.office_id AND u.del_flag = 0
+		WHERE
+			a.type = 7
+		GROUP BY
+			a.id
+	</select>
+
+	<!--警力设备监控设备分布-->
+	<select id="policeEquipmentMD" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			a.id AS 'type',
+			a. NAME AS 'typeO',
+			count(d.id) AS 'value'
+		FROM
+			sys_area a
+		LEFT JOIN ccm_device d ON a.id = d.area_id AND d.del_flag = 0
+		WHERE
+			a.type = 7
+		GROUP BY
+			a.id
+	</select>
+
+	<!--警情区域分布TOP5-->
+	<select id="alarmOfArea" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			a.id AS 'type',
+			a. NAME AS 'typeO',
+			count(d.id) AS 'value'
+			FROM
+				sys_area a
+			LEFT JOIN bph_alarm_info d ON a.id = d.area_id AND d.del_flag = 0
+			WHERE
+				a.type = 7
+			GROUP BY
+				a.id
+			ORDER BY
+				count(d.id) DESC
+			LIMIT 5
+	</select>
 </mapper>
