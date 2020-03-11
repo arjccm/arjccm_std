@@ -85,6 +85,16 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 
 	//常住人口
 	public List<CcmPeople> findPermanentList(CcmPeople ccmPeople);
+	//常住人口个数
+	public Integer findPermanentCount();
+    //流动人口个数
+    public Integer findMigrantPopulationCount();
+	//重点人口个数
+	public Integer findfocuPersCount();
+	//实有人口个数
+	public Integer peopleCount();
+
+
 
 	/**
 	 * 区域内人员统计

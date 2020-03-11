@@ -858,7 +858,22 @@
              -->
 		</choose>
 	</select>
-
+	<!--常驻人口个数-->
+	<select id="findPermanentCount" resultType="Integer">
+		SELECT count(a.id) FROM ccm_people a LEFT JOIN sys_area a21 ON a21.id = a.area_grid_id   WHERE a.del_flag = 0 and a.is_permanent = 1
+	</select>
+	<!--流动人口个数-->
+	<select id="findMigrantPopulationCount" resultType="Integer">
+		SELECT count(a.id) FROM ccm_people a LEFT JOIN sys_area a21 ON a21.id = a.area_grid_id  WHERE a.del_flag = 0 AND a.type =20
+	</select>
+	<!--重点人口个数-->
+	<select id="findfocuPersCount" resultType="Integer">
+		SELECT count(a.id) FROM  ccm_people a LEFT JOIN sys_area a21 ON a21.id = a.area_grid_id WHERE a.del_flag = 0 and a.focu_pers = 1
+	</select>
+	<!--实有人口个数-->
+	<select id="peopleCount" resultType="Integer">
+		SELECT count(a.id) FROM ccm_people a LEFT JOIN sys_area a21 ON a21.id = a.area_grid_id WHERE a.del_flag = 0
+	</select>
 
 	<!-- -->
 	<select id="findList" resultType="CcmPeople">

@@ -4,7 +4,10 @@ import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.modules.ccm.casino.service.CcmPlaceCasinoService;
 import com.arjjs.ccm.modules.ccm.hotel.service.CcmPlaceHotelService;
 import com.arjjs.ccm.modules.ccm.index.service.IndexChartService;
+import com.arjjs.ccm.modules.ccm.org.service.CcmOrgNpseService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
 import com.arjjs.ccm.modules.ccm.sys.entity.BicMapUser;
 import com.arjjs.ccm.modules.ccm.sys.entity.PoliceTrend;
@@ -57,6 +60,44 @@ public class CcmBIController {
     @Autowired
     private CcmBIService ccmBIService;
 
+    @Autowired
+    private CcmPeopleService ccmPeopleService;
+    @Autowired
+    private CcmPopTenantService ccmPopTenantService;
+    @Autowired
+    private CcmOrgNpseService ccmOrgNpseService;
+
+    @ResponseBody
+    @RequestMapping(value = "countHZ")
+    //实有数据人口汇总
+    public Map<String, Object> countHZ(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newLinkedHashMap();
+
+        //实有人口个数
+        Integer peopleCount = ccmPeopleService.peopleCount();
+
+        //重点人口
+        Integer findfocuPersCount = ccmPeopleService.findfocuPersCount();
+
+        //实有房屋
+        Integer houseCount = ccmPopTenantService.houseCount();
+
+        //出租房
+        Integer letCount = ccmPopTenantService.letCount();
+
+        //实有单位
+        Integer unitsCount = ccmOrgNpseService.unitsCount();
+
+        map.put("实有人口", peopleCount);
+        map.put("重点人员", findfocuPersCount);
+        map.put("实有房屋", houseCount);
+        map.put("出租房", letCount);
+        map.put("实有单位", unitsCount);
+
+
+        return map;
+    }
 
     @ResponseBody
     @RequestMapping(value = "getDisputeDefuse")
@@ -71,10 +112,16 @@ public class CcmBIController {
     public Map<String, Object> populationConfluence(){
         // 返回对象结果
         Map<String, Object> map = Maps.newHashMap();
+        //常驻人口
+        Integer permanentCount = ccmPeopleService.findPermanentCount();
+        //流动人口
+        Integer migrantPopulationCount = ccmPeopleService.findMigrantPopulationCount();
+        //重点人口
+        Integer findfocuPersCount = ccmPeopleService.findfocuPersCount();
 
-        map.put("常驻人口", 23901);
-        map.put("流动人口", 873);
-        map.put("重点人口", 548);
+        map.put("常驻人口", permanentCount);
+        map.put("流动人口", migrantPopulationCount);
+        map.put("重点人口", findfocuPersCount);
         return map;
     }
 
