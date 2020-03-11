@@ -44,4 +44,7 @@ public interface SysAreaDao extends CrudDao<SysArea> {
 	List<EchartType> policeEquipmentMD();
 	//警情区域分布TOP5
 	List<EchartType> alarmOfArea();
+
+	//警力总数
+	Integer policeCount();
 }

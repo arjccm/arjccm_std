@@ -565,6 +565,9 @@ public class CcmBIController {
         //警力总数
         Integer policeCount = ccmBIService.policeCount();
 
+        //视频监控
+        Map<String, Object> map2 = ccmBIService.abnormalOfVideo();
+
 
         map.put("实有人口", peopleCount);
         map.put("重点人员", findfocuPersCount);
