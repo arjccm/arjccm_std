@@ -43,5 +43,10 @@ public class CcmPlaceHotelService extends CrudService<CcmPlaceHotelDao, CcmPlace
 	public void delete(CcmPlaceHotel ccmPlaceHotel) {
 		super.delete(ccmPlaceHotel);
 	}
+
+	//统计酒店个数
+	public Integer countHotel(){
+		return dao.countHotel();
+	}
 	
 }

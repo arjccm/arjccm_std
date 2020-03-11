@@ -38,4 +38,10 @@ public interface SysAreaDao extends CrudDao<SysArea> {
 	List<EchartType> keyPeopleOfArea();
 	//出租房区域分布TOP5
 	List<EchartType> rentalHouseOfArea();
+	//警力人员分布
+	List<EchartType> policeForceDistribution();
+	//警力设备监控设备分布
+	List<EchartType> policeEquipmentMD();
+	//警情区域分布TOP5
+	List<EchartType> alarmOfArea();
 }

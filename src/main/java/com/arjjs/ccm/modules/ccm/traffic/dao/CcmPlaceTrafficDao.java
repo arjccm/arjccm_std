@@ -14,5 +14,6 @@ import com.arjjs.ccm.modules.ccm.traffic.entity.CcmPlaceTraffic;
  */
 @MyBatisDao
 public interface CcmPlaceTrafficDao extends CrudDao<CcmPlaceTraffic> {
-	
+    //统计加油站个数
+    Integer petrolStation();
 }

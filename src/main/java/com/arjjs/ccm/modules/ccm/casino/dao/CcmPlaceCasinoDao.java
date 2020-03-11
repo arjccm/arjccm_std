@@ -14,5 +14,12 @@ import com.arjjs.ccm.modules.ccm.casino.entity.CcmPlaceCasino;
  */
 @MyBatisDao
 public interface CcmPlaceCasinoDao extends CrudDao<CcmPlaceCasino> {
-	
+    //统计网吧个数
+    Integer countWb();
+
+    //统计足浴个数
+    Integer conutFootBath();
+
+    //统计KTV个数
+    Integer countKtv();
 }

@@ -24,14 +24,13 @@
 
 
 <script>
-
-	//近7天110警情趋势
-	// showpPoliceSentiment()
-
-	function showpPoliceSentiment() {
-		$.getJSON(ctx + '/sys/BicMap/policeSentiment', function(data) {
-
-
+	function initPoliceSentiment(){
+		//请求接口并填装数据执行
+		$.getJSON(ctx + "/sys/BicMap/sevenDayOfAlarm", function (data) {
+			//近7天110警情趋势
+			showpPoliceSentiment(data);
+		});
+		function showpPoliceSentiment(dataX) {
 			var policeSentiment = echarts.init(document.getElementById('policeSentiment'));
 			var option = {
 				tooltip: {
@@ -54,8 +53,8 @@
 				},
 				xAxis: [{
 					type: 'category',
-					// data: ['01-01', '01-02', '01-03', '01-04', '01-05', '01-06', '01-07'],
-					data: data['date'],
+					data: dataX["lable"],
+					//data: data['日期'],
 					axisLabel: {
 						show: true,
 						color: '#FFFFFF',
@@ -135,8 +134,8 @@
 					name: '数量',
 					type: 'bar',
 					barWidth: '60%',
-					data: data['alert'],
-					// data: [11, 59, 25, 18, 72, 12, 5,],
+					//data: data['人数'],
+					data: dataX["sum"],
 
 					itemStyle: {
 						normal: {
@@ -147,7 +146,7 @@
 									},
 										{
 											offset: 1,
-											color: '#091C41'
+											color: 'rgba(73,219,243,.1)'
 										}
 									]),
 						}
@@ -156,8 +155,7 @@
 				},
 					{
 						name: '处理率',
-						// data: [ 38, 33, 55, 41, 26, 34, 32],
-						data: data['rate'],
+						data: dataX["line"],
 						type: 'line',
 						symbolSize: 8, // 控制线条上 点 的大小
 						yAxisIndex: 1,
@@ -185,15 +183,8 @@
 				]
 			};
 			policeSentiment.setOption(option);
-		})
-
-
+		}
 	}
-
-
-
-
-
 </script>
 
 

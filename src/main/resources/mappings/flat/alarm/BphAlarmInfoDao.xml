@@ -73,6 +73,18 @@
 		GROUP BY
 			info.type_code
 	</select>
+	<!--近30天警情摘要 -->
+	<select id="findMonthPieData" resultType="BphAlarmInfo3">
+		SELECT
+		dict.label AS "label",COUNT( 1 ) AS "num"
+		FROM
+		(bph_alarm_info info LEFT JOIN sys_dict dict on info.type_code=dict.value)
+		WHERE
+		DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(info.alarm_time) AND info.del_flag = 0 AND dict.description='警情类型'
+		GROUP BY
+		info.type_code
+
+	</select>
 
 	<select id="get" resultType="BphAlarmInfo">
 		SELECT
@@ -1524,5 +1536,28 @@
 		WHERE
 			alarm.del_flag = 0
 		AND alarm.id = #{alarmId}
+	</select>
+
+	<select id="getCountList" resultType="BphAlarmInfo">
+		SELECT
+		a.id,
+		a.order_num,
+		a.content,
+		a.alarm_time,
+		a.place,
+		a.type_code,
+		a.office_id,
+		a.state
+		FROM
+		bph_alarm_info a
+		WHERE
+		a.del_flag = #{DEL_FLAG_NORMAL}
+		<if test="state != null and state != ''">
+			AND a.state = #{state}
+		</if>
+		<if test="beginAlarmTime != null and endAlarmTime != null and beginAlarmTime != '' and endAlarmTime != ''">
+			AND a.alarm_time BETWEEN #{beginAlarmTime} AND #{endAlarmTime}
+		</if>
+		ORDER BY a.alarm_time DESC
 	</select>
 </mapper>

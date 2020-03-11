@@ -1,14 +1,20 @@
 package com.arjjs.ccm.modules.ccm.sys.service;
 
+import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDevice;
+import com.arjjs.ccm.modules.ccm.ccmsys.service.CcmDeviceService;
 import com.arjjs.ccm.modules.ccm.org.dao.SysAreaDao;
+import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo;
+import com.arjjs.ccm.modules.flat.alarm.service.BphAlarmInfoService;
 import com.arjjs.ccm.tool.EchartType;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -16,6 +22,10 @@ public class CcmBIService {
 
     @Autowired
     private SysAreaDao areaDao;
+    @Autowired
+    private CcmDeviceService ccmDeviceService;
+    @Autowired
+    private BphAlarmInfoService bphAlarmInfoService;
 
     //实有人口数据汇总
     public List<Object> ccmPeopleCount(){
@@ -120,32 +130,13 @@ public class CcmBIService {
 
     //出租房区域分布TOP5
     public List<Object> rentalHouseOfArea(){
-        Random random = new Random();
         List<Object> list = new ArrayList<>();
         List<EchartType> listrental = areaDao.rentalHouseOfArea();
         String[] areaName = new String[5];
         int[] value = new int[5];
-        int maxNum = 80;
         for(int i = 0; i<listrental.size(); i++){
             areaName[i] = listrental.get(i).getTypeO();
-            //数据展示效果假数据
-            if(Integer.parseInt(listrental.get(i).getValue())<100){
-                if(maxNum!=80){
-                    if(maxNum>100){
-                        value[i] = random.nextInt(maxNum-100)+101;
-                        maxNum = value[i];
-                    }else{
-                        value[i] = random.nextInt(maxNum);
-                        maxNum = value[i];
-                    }
-                }else{
-                    value[i] = random.nextInt(maxNum)+101;
-                    maxNum = value[i];
-                }
-            }else{
-                value[i] = Integer.parseInt(listrental.get(i).getValue());
-                maxNum = value[i];
-            }
+            value[i] = Integer.parseInt(listrental.get(i).getValue());
         }
         int firstMax = value[0];
         for(int i = 0; i < value.length ; i++){
@@ -153,7 +144,7 @@ public class CcmBIService {
                 firstMax = value[i];
             }
         }
-        while(firstMax%200!=0){
+        while(firstMax%100!=0){
             if(firstMax%10!=0){
                 firstMax++;
             }else{
@@ -164,5 +155,107 @@ public class CcmBIService {
         list.add(areaName);
         list.add(value);
         return list;
+    }
+
+    //警力人员分布
+    public List<EchartType> policeForceDistribution(){
+        List<EchartType> police = areaDao.policeForceDistribution();
+        return police;
+    }
+
+    //警力设备监控设备分布
+    public List<EchartType> policeEquipmentMD(){
+        List<EchartType> device = areaDao.policeEquipmentMD();
+        return device;
+    }
+
+    //视频监控异常趋势
+    public Map<String, Object> abnormalOfVideo(){
+        Map<String, Object> map = Maps.newHashMap();
+        DateFormat dateFormat=new SimpleDateFormat("MM-dd");
+
+        List<CcmDevice> list = ccmDeviceService.findList(new CcmDevice());
+
+        String[] lable = new String[10];
+        for(int i=0;i<10;i++){
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_MONTH,-(10-i));
+            lable[i] = dateFormat.format(calendar.getTime());
+        }
+
+        map.put("sum",list.size());
+        map.put("lable",lable);
+        return map;
+    }
+
+    //近7天110警情趋势图
+    public Map<String, Object> sevenDayOfAlarm(){
+        Map<String, Object> map = Maps.newHashMap();
+
+        String[] lable = new String[7];
+        int[] sum = new int[7];
+        int[] line = new int[7];
+
+        for(int i=0;i<7;i++){
+            Map<String, Object> value = getAlarmNum(i);
+            lable[i] = value.get("lable").toString();
+            sum[i] = Integer.parseInt(value.get("sum").toString());
+            line[i] = Integer.parseInt(value.get("line").toString());
+        }
+        map.put("lable", lable);
+        map.put("sum", sum);
+        map.put("line", line);
+        return map;
+    }
+
+    //警情区域分布TOP5
+    public Map<String, Object> alarmOfArea(){
+        Map<String, Object> map = Maps.newHashMap();
+        List<EchartType> list = areaDao.alarmOfArea();
+        String[] areaName = new String[5];
+        int[] value = new int[5];
+        for(int i = 0; i<list.size(); i++){
+            areaName[i] = list.get(i).getTypeO();
+            value[i] = Integer.parseInt(list.get(i).getValue());
+        }
+        map.put("areaName", areaName);
+        map.put("value", value);
+        return map;
+    }
+
+    private Map<String, Object> getAlarmNum(int i){
+        Map<String, Object> map = Maps.newHashMap();
+        DateFormat dateFormat=new SimpleDateFormat("MM-dd");
+        BphAlarmInfo bphAlarmInfo = new BphAlarmInfo();
+        Calendar begin = Calendar.getInstance();
+        Calendar end = Calendar.getInstance();
+        begin.add(Calendar.DAY_OF_MONTH,-(7-i));
+        begin.set(Calendar.HOUR_OF_DAY,0);
+        begin.set(Calendar.MINUTE,0);
+        begin.set(Calendar.SECOND,0);
+        end.add(Calendar.DAY_OF_MONTH,-(6-i));
+        end.set(Calendar.HOUR_OF_DAY,0);
+        end.set(Calendar.MINUTE,0);
+        end.set(Calendar.SECOND,0);
+        bphAlarmInfo.setBeginAlarmTime(begin.getTime());
+        bphAlarmInfo.setEndAlarmTime(end.getTime());
+        List<BphAlarmInfo> list = bphAlarmInfoService.getCountList(bphAlarmInfo);
+        bphAlarmInfo.setState("3");
+        List<BphAlarmInfo> list2 = bphAlarmInfoService.getCountList(bphAlarmInfo);
+        map.put("lable", dateFormat.format(begin.getTime()));
+        map.put("sum", list.size());
+        if(list2.size()==0){
+            map.put("line", 0);
+        }else{
+            Integer chapterCount = list.size();//总警情数
+            Integer learnCount = list2.size();//已处理警情数
+            // 创建一个数值格式化对象
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            // 设置精确到小数点后2位
+            numberFormat.setMaximumFractionDigits(0);
+            String result = numberFormat.format((float) learnCount / (float) chapterCount * 100);//所占百分比
+            map.put("line", result);
+        }
+        return map;
     }
 }
