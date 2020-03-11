@@ -503,7 +503,7 @@ function addTab($this, refresh) {
 							<i class="icon-mobile-phone" style="font-size: 20px;"></i>
 						</a>
 						<ul class="dropdown-menu"  >
-							<li><i id="qrcode"></i></li>
+							<li><i id="qrcode" style="padding-left: 5px;display: block;"></i></li>
 						</ul>
 					</li>
 					|

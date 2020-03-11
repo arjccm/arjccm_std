@@ -4338,7 +4338,7 @@ ArjMap.Map.prototype = {
                                 }
                             }
 
-                            if (popInfo) {
+                            if (popInfo!="null") {
                                 html += '<tr>';
                                 html += '<td>信息：</td>';
                                 html += '<td><a class="popclick btn btn-success" href="###" type="'
@@ -6140,7 +6140,6 @@ var displaysingleclickInfo = function (evt) {
         // Map.clearOverlays();
         var restype = feature.get('type');
         var jsontype = null;
-        debugger;
         if(restype == "4"){
             type = 7;
             jsontype = 'communitys';

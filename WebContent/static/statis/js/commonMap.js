@@ -2805,7 +2805,7 @@ ArjMap.Map.prototype={
 												html += '</tr>'
 											}
 										}
-										
+
 										if (popInfo) {
 											html += '<tr>';
 											html += '<td>信息：</td>';

@@ -1195,10 +1195,9 @@ function house(buildingId){
 		 // html+='<div class="house-top-beam"></div>';
 		 // html+='<div class="house-top-beam"></div>';
 		 // html+='</div>';
-		 html+='<div class="build-main  clearfix" style="width:'+ houseBoxWidth+'px;position:relative;height: 380px;overflow: hidden;">';
+		 html+='<div class="build-main  clearfix" style="width:'+ houseBoxWidth+'px;position:relative;height: 430px;overflow: hidden;">';
 
-		 html+='<div class="build-top" style="width:'+widthB+'px;position:relative; margin: 0 auto' +
-				 '">';
+		 html+='<div class="build-top" style="width:'+widthB+'px;position:absolute; bottom: 0; left: 50%; transform: translate(-50%, 0px);">';
 			html+='<div class="lawn-area clearfix" style="bottom:'+'px">';
 			html+='<div class="lawn_left">';
 			html+='</div>';
