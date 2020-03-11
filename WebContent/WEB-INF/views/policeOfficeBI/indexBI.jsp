@@ -151,6 +151,7 @@
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/beonduty.jsp" %>
 				</li>
 
+
 				<li class="box sizex_2" data-row="2" data-col="1" data-sizex="2" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/peopleCount.jsp" %>
 				</li>
@@ -160,6 +161,8 @@
 				<li class="box sizex_2" data-row="2" data-col="3" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/patrolRank.jsp" %>
 				</li>
+
+
 				<li class="box sizex_1" data-row="3" data-col="1" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/keyPeopleOfArea.jsp" %>
 				</li>
@@ -176,6 +179,7 @@
 				<li class="box sizex_1" data-row="3" data-col="5" data-sizex="1" data-sizey="1">
                     <%@ include file="/WEB-INF/views/policeOfficeBI/modular/videoSurveillance.jsp" %>
                 </li>
+
 
 				<li class="box sizex_1" data-row="4" data-col="1" data-sizex="1" data-sizey="1">
 					<%@ include file="/WEB-INF/views/policeOfficeBI/modular/concern_company.jsp" %>
@@ -227,6 +231,8 @@
 		PoliceDigest();
 		showKeyPersonne();
 		showConcernCompany();
+		beonduty()
+
 		setValueAndAreaName();
 		showSjHz();
 	},1000)
