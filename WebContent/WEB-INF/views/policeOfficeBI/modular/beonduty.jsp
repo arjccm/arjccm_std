@@ -81,62 +81,23 @@
 	</div>
 </section>
 <script>
-	var arr = [];
+
 	function beonduty(){
 		$.getJSON(ctx + "/sys/BicMap/beonduty", function (data) {
 			for(var i in data){
-				var tbl_content_html = "<tr><th class='name'>"+ data[i].name +"</th></tr>"
-				// console.log(data[i].weekedPlan)
-				// var weekedPlan = data[i].weekedPlan
-				// arr.push(weekedPlan)
-
-				// for(var j in data[i].weekedPlan){
-				// 	console.log(j)
-					// var td = "<td>"+data[i][j]+"</td>"
-					// $(".by_tbl_ct .name").after(td)
-
-				// }
-					// console.log(data[i].weekedPlan)
-
+				var tbl_content_html = "<tr><th class='name'>"+ data[i].name +"</th><td>"+data[i].weekedPlan[0]+"</td><td>"+data[i].weekedPlan[1]+"</td><td>"+data[i].weekedPlan[2]+"</td><td>"+data[i].weekedPlan[3]+"</td><td>"+data[i].weekedPlan[4]+"</td><td>"+data[i].weekedPlan[5]+"</td><td>"+data[i].weekedPlan[6]+"</td></tr>"
+				console.log(data[i])
 				$(".by_tbl_ct").append(tbl_content_html)
 			}
-			// var week1 = [];
-			// var week2 = [];
-			// var week3 = [];
-			// var week4 = [];
-			// var week5 = [];
-			// var week6 = [];
-			// var week7 = [];
-			// for(var j = 0;j<arr.length;j++){
-			// 	console.log(arr[j])
-				// var day1 = arr[j].day1;
-				// var day2 = arr[j].day2;
-				// var day3 = arr[j].day3;
-				// var day4 = arr[j].day4;
-				// var day5 = arr[j].day5;
-				// var day6 = arr[j].day6;
-				// var day7 = arr[j].day7;
-				// week1.push(day1)
-				// week2.push(day2)
-				// week3.push(day3)
-				// week4.push(day4)
-				// week5.push(day5)
-				// week6.push(day6)
-				// week7.push(day7)
+			for(var j=0;j<$(".by_tbl_ct td").length;j++){
+				if($(".by_tbl_ct td").html()==0){
+					$(".by_tbl_ct td").html(2)
+				}else{
 
-				// alert(j)
+				}
+				// alert($(".by_tbl_ct td").html())
+			}
 
-			// }
-			// console.log(week1)
-			// console.log(arr)
-			// var td = "<td>"+week1+"</td>" +
-			// 		"<td>"+week2+"</td>" +
-			// 		"<td>"+week3+"</td>" +
-			// 		"<td>"+week4+"</td>" +
-			// 		"<td>"+week5+"</td>" +
-			// 		"<td>"+week6+"</td>" +
-			// 		"<td>"+week7+"</td>"
-			// $(".by_tbl_ct .name").after(td)
 
 
 		})
