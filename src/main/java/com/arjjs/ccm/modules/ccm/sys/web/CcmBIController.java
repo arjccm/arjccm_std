@@ -67,37 +67,8 @@ public class CcmBIController {
     @Autowired
     private CcmOrgNpseService ccmOrgNpseService;
 
-    @ResponseBody
-    @RequestMapping(value = "countHZ")
-    //实有数据人口汇总
-    public Map<String, Object> countHZ(){
-        // 返回对象结果
-        Map<String, Object> map = Maps.newLinkedHashMap();
-
-        //实有人口个数
-        Integer peopleCount = ccmPeopleService.peopleCount();
-
-        //重点人口
-        Integer findfocuPersCount = ccmPeopleService.findfocuPersCount();
-
-        //实有房屋
-        Integer houseCount = ccmPopTenantService.houseCount();
-
-        //出租房
-        Integer letCount = ccmPopTenantService.letCount();
-
-        //实有单位
-        Integer unitsCount = ccmOrgNpseService.unitsCount();
-
-        map.put("实有人口", peopleCount);
-        map.put("重点人员", findfocuPersCount);
-        map.put("实有房屋", houseCount);
-        map.put("出租房", letCount);
-        map.put("实有单位", unitsCount);
 
 
-        return map;
-    }
 
     @ResponseBody
     @RequestMapping(value = "getDisputeDefuse")
@@ -210,33 +181,11 @@ public class CcmBIController {
     public List<BicMapUser> beonduty(){
 
         List<BicMapUser> bicMapUsers = new ArrayList<>();
-
-        Map<String, String> weekPlan1 = new LinkedHashMap<>();
-        weekPlan1.put("day1","1");
-        weekPlan1.put("day2","0");
-        weekPlan1.put("day3","0");
-        weekPlan1.put("day4","0");
-        weekPlan1.put("day5","0");
-        weekPlan1.put("day6","0");
-        weekPlan1.put("day7","1");
+        int[] weekPlan1={1,0,0,0,0,0,1};
         BicMapUser bicMapUser1 = new BicMapUser("11","李雷雷",weekPlan1);
-        Map<String, String> weekPlan2 = new LinkedHashMap<>();
-        weekPlan1.put("day1","0");
-        weekPlan1.put("day2","1");
-        weekPlan1.put("day3","1");
-        weekPlan1.put("day4","0");
-        weekPlan1.put("day5","1");
-        weekPlan1.put("day6","0");
-        weekPlan1.put("day7","0");
+        int[] weekPlan2={0,1,1,0,1,0,0};
         BicMapUser bicMapUser2 = new BicMapUser("12","张露",weekPlan2);
-        Map<String, String> weekPlan3= new LinkedHashMap<>();
-        weekPlan1.put("day1","0");
-        weekPlan1.put("day2","0");
-        weekPlan1.put("day3","1");
-        weekPlan1.put("day4","1");
-        weekPlan1.put("day5","0");
-        weekPlan1.put("day6","0");
-        weekPlan1.put("day7","0");
+        int[] weekPlan3={0,0,1,1,0,0,0};
         BicMapUser bicMapUser3 = new BicMapUser("13","阳光",weekPlan3);
         BicMapUser bicMapUser4 = new BicMapUser("14","赵晓明",weekPlan1);
         BicMapUser bicMapUser5 = new BicMapUser("15","宋勇",weekPlan2);
@@ -423,6 +372,17 @@ public class CcmBIController {
         map.put("data", data);
         map.put("firstData", firstData);
 
+        int jlSum=0;
+        for (int jlDatum : jlData) {
+            jlSum+=jlDatum;
+        }
+        int jkSum=0;
+        for (int jkDatum : jkData) {
+            jkSum+=jkDatum;
+        }
+        //向数据汇总传递
+        countHZ(jlSum,jkSum);
+
         return map;
     }
 
@@ -578,6 +538,44 @@ public class CcmBIController {
     public Map<String, Object> alarmOfArea(){
         // 返回对象结果
         Map<String, Object> map = ccmBIService.alarmOfArea();
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping(value = "countHZ")
+    //实有数据人口汇总
+    public Map<String, Object> countHZ(int jl,int jk){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newLinkedHashMap();
+
+        //实有人口个数
+        Integer peopleCount = ccmPeopleService.peopleCount();
+
+        //重点人口
+        Integer findfocuPersCount = ccmPeopleService.findfocuPersCount();
+
+        //实有房屋
+        Integer houseCount = ccmPopTenantService.houseCount();
+
+        //出租房
+        Integer letCount = ccmPopTenantService.letCount();
+
+        //实有单位
+        Integer unitsCount = ccmOrgNpseService.unitsCount();
+
+        //警力总数
+        Integer policeCount = ccmBIService.policeCount();
+
+
+        map.put("实有人口", peopleCount);
+        map.put("重点人员", findfocuPersCount);
+        map.put("实有房屋", houseCount);
+        map.put("出租房", letCount);
+        map.put("实有单位", unitsCount);
+        map.put("警力人员", policeCount);
+        map.put("警力设备", jl);
+        map.put("监控设备", jk);
+
+
         return map;
     }
 }
