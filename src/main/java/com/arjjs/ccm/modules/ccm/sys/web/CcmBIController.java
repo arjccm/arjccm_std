@@ -141,7 +141,7 @@ public class CcmBIController {
 
         List<BicMapUser> bicMapUsers = new ArrayList<>();
 
-        Map<String, String> weekPlan1 = new HashMap<>();
+        Map<String, String> weekPlan1 = new LinkedHashMap<>();
         weekPlan1.put("day1","1");
         weekPlan1.put("day2","0");
         weekPlan1.put("day3","0");
@@ -150,7 +150,7 @@ public class CcmBIController {
         weekPlan1.put("day6","0");
         weekPlan1.put("day7","1");
         BicMapUser bicMapUser1 = new BicMapUser("11","李雷雷",weekPlan1);
-        Map<String, String> weekPlan2 = new HashMap<>();
+        Map<String, String> weekPlan2 = new LinkedHashMap<>();
         weekPlan1.put("day1","0");
         weekPlan1.put("day2","1");
         weekPlan1.put("day3","1");
@@ -159,7 +159,7 @@ public class CcmBIController {
         weekPlan1.put("day6","0");
         weekPlan1.put("day7","0");
         BicMapUser bicMapUser2 = new BicMapUser("12","张露",weekPlan2);
-        Map<String, String> weekPlan3= new HashMap<>();
+        Map<String, String> weekPlan3= new LinkedHashMap<>();
         weekPlan1.put("day1","0");
         weekPlan1.put("day2","0");
         weekPlan1.put("day3","1");
