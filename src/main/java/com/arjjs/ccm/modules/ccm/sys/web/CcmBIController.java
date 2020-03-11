@@ -1,5 +1,20 @@
 package com.arjjs.ccm.modules.ccm.sys.web;
 
+import com.arjjs.ccm.common.persistence.Page;
+import com.arjjs.ccm.modules.ccm.casino.service.CcmPlaceCasinoService;
+import com.arjjs.ccm.modules.ccm.hotel.service.CcmPlaceHotelService;
+import com.arjjs.ccm.modules.ccm.index.service.IndexChartService;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
+import com.arjjs.ccm.modules.ccm.sys.entity.BicMapUser;
+import com.arjjs.ccm.modules.ccm.sys.entity.PoliceTrend;
+import com.arjjs.ccm.modules.ccm.traffic.service.CcmPlaceTrafficService;
+import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo;
+import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo2;
+import com.arjjs.ccm.modules.flat.alarm.service.BphAlarmInfoService;
+import com.arjjs.ccm.tool.SearchTab;
+import com.google.common.collect.Lists;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.arjjs.ccm.modules.ccm.sys.service.CcmBIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.arjjs.ccm.modules.ccm.sys.entity.PoliceDigest;
@@ -11,11 +26,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +41,233 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "${adminPath}/sys/BicMap")
 public class CcmBIController {
+    @Autowired
+    private CcmPeopleAmountService ccmPeopleAmountService;
+    @Autowired
+    private IndexChartService indexChartService;
+    @Autowired
+    private BphAlarmInfoService bphAlarmInfoService;
+    @Autowired
+    private CcmPlaceCasinoService ccmPlaceCasinoService;
+    @Autowired
+    private CcmPlaceHotelService ccmPlaceHotelService;
+    @Autowired
+    private CcmPlaceTrafficService ccmPlaceTrafficService;
+
+
+
+    @ResponseBody
+    @RequestMapping(value = "getDisputeDefuse")
+    //矛盾纠纷化解
+    public Object getDisputeDefuse() {
+        return indexChartService.oneYearSolveEvent();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "populationConfluence")
+    //实有数据人口汇总
+    public Map<String, Object> populationConfluence(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        map.put("常驻人口", 23901);
+        map.put("流动人口", 873);
+        map.put("重点人口", 548);
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "policeSentiment")
+    //实有数据人口汇总
+    public Map<String, Object> policeSentiment(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        //TODO 110警情数量
+        int[] jqData = new int[]{11, 59, 25, 18, 72, 12, 5};
+
+        //TODO 警情处理率 clvData
+        int[] clvData = new int[]{38, 33, 55, 41, 26, 34, 32};
+
+        //TODO  日期  rqData
+        String[] rqData = new String[]{"01-01", "01-02", "01-03", "01-04", "01-05", "01-06", "01-07"};
+
+        map.put("alert",jqData);
+        map.put("rate",clvData);
+        map.put("date",rqData);
+
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping(value = "videoSurveillance")
+    //视频监控异常趋势
+    public Map<String, Object> videoSurveillance(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        //TODO 警情处理率 clvData
+        int[] sjData = new int[]{20, 82, 91, 50, 33, 65, 29, 88, 39, 15};
+
+        //TODO  日期  rqData
+        String[] rqData = new String[]{"01-01", "01-02", "01-03", "01-04", "01-05", "01-06", "01-07","01-08", "01-09", "01-10"};
+
+        map.put("sj",sjData);
+        map.put("date",rqData);
+
+        return map;
+    }
+    // 重点人员数据总汇
+    @ResponseBody
+    @RequestMapping(value = "getnumPopFollowPopQL")
+    public Map<String, Object> getnumPopFollowPopQL(Model model) {
+        Map<String, Object> result = ccmPeopleAmountService.getnumPopFollowPopQL();
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "concernCompany")
+    //重点关注单位
+    public Map<String, Object> concernCompany(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+        //网吧个数
+        Integer internetBar = ccmPlaceCasinoService.conutWb();
+        //足浴个数
+        Integer footBath = ccmPlaceCasinoService.conutFootBath();
+        //统计Ktv个数
+        Integer ktv = ccmPlaceCasinoService.conutKtv();
+        //统计酒店个数
+        Integer hotel = ccmPlaceHotelService.countHotel();
+        //统计加油站个数
+        Integer petrolStation = ccmPlaceTrafficService.petrolStation();
+
+        map.put("zdnb",200);
+        map.put("ybnb",200);
+        map.put("bacy",200);
+        map.put("bafw",200);
+        map.put("petrolStation",petrolStation);
+        map.put("hgc",200);
+        map.put("powerStation",200);
+        map.put("hotel",hotel);
+        map.put("internetBar",internetBar);
+        map.put("footBath",footBath);
+        map.put("ktv",ktv);
+
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping(value = "beonduty")
+    //本周值班计划
+    public List<BicMapUser> beonduty(){
+
+        List<BicMapUser> bicMapUsers = new ArrayList<>();
+
+        Map<String, String> weekPlan1 = new LinkedHashMap<>();
+        weekPlan1.put("day1","1");
+        weekPlan1.put("day2","0");
+        weekPlan1.put("day3","0");
+        weekPlan1.put("day4","0");
+        weekPlan1.put("day5","0");
+        weekPlan1.put("day6","0");
+        weekPlan1.put("day7","1");
+        BicMapUser bicMapUser1 = new BicMapUser("11","李雷雷",weekPlan1);
+        Map<String, String> weekPlan2 = new LinkedHashMap<>();
+        weekPlan1.put("day1","0");
+        weekPlan1.put("day2","1");
+        weekPlan1.put("day3","1");
+        weekPlan1.put("day4","0");
+        weekPlan1.put("day5","1");
+        weekPlan1.put("day6","0");
+        weekPlan1.put("day7","0");
+        BicMapUser bicMapUser2 = new BicMapUser("12","张露",weekPlan2);
+        Map<String, String> weekPlan3= new LinkedHashMap<>();
+        weekPlan1.put("day1","0");
+        weekPlan1.put("day2","0");
+        weekPlan1.put("day3","1");
+        weekPlan1.put("day4","1");
+        weekPlan1.put("day5","0");
+        weekPlan1.put("day6","0");
+        weekPlan1.put("day7","0");
+        BicMapUser bicMapUser3 = new BicMapUser("13","阳光",weekPlan3);
+        BicMapUser bicMapUser4 = new BicMapUser("14","赵晓明",weekPlan1);
+        BicMapUser bicMapUser5 = new BicMapUser("15","宋勇",weekPlan2);
+        BicMapUser bicMapUser6 = new BicMapUser("16","李雷雷1",weekPlan1);
+        BicMapUser bicMapUser7 = new BicMapUser("17","李雷雷2",weekPlan2);
+        bicMapUsers.add(bicMapUser1);
+        bicMapUsers.add(bicMapUser2);
+        bicMapUsers.add(bicMapUser3);
+        bicMapUsers.add(bicMapUser4);
+        bicMapUsers.add(bicMapUser5);
+        bicMapUsers.add(bicMapUser6);
+        bicMapUsers.add(bicMapUser7);
+        return bicMapUsers;
+    }
+
+//今日110警情处理
+    @ResponseBody
+    @RequestMapping(value = "alarmData" )
+   public List<BphAlarmInfo2> list() {
+
+        List<BphAlarmInfo2> list = bphAlarmInfoService.findTodayAlarmInfo();
+
+        List<BphAlarmInfo2> list2 = Lists.newArrayList();
+        for (BphAlarmInfo2 bphAlarmInfo2 : list) {
+            BphAlarmInfo2 bphAlarmInfo21 = new BphAlarmInfo2();
+            bphAlarmInfo21.setId(bphAlarmInfo2.getId());
+            if(bphAlarmInfo2.getContent()==null){
+                bphAlarmInfo21.setContent("");
+            }else {
+                bphAlarmInfo21.setContent(bphAlarmInfo2.getContent());
+            }
+            if(bphAlarmInfo2.getIsImportant()==null){
+                bphAlarmInfo21.setIsImportant("");
+            }else {
+                bphAlarmInfo21.setIsImportant(bphAlarmInfo2.getIsImportant());
+            }
+
+            if(bphAlarmInfo2.getState().equals("0")){
+                bphAlarmInfo21.setState("未处理");
+            }
+            if(bphAlarmInfo2.getState().equals("1")){
+                bphAlarmInfo21.setState("已处理");
+            }
+            if(bphAlarmInfo2.getState().equals("2")){
+                bphAlarmInfo21.setState("已到达");
+            }
+            if(bphAlarmInfo2.getState().equals("3")){
+                bphAlarmInfo21.setState("已反馈");
+            }
+            if(bphAlarmInfo2.getHandleName()==null){
+                bphAlarmInfo21.setHandleName("");
+            }else {
+                bphAlarmInfo21.setHandleName(bphAlarmInfo2.getHandleName());
+            }
+            list2.add(bphAlarmInfo21);
+        }
+
+        /*PoliceTrend policeTrend1 = new PoliceTrend("NO.1", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend2 = new PoliceTrend("NO.2", "案件测试1", "张晓明", "已处理","是");
+        PoliceTrend policeTrend3 = new PoliceTrend("NO.3", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend4 = new PoliceTrend("NO.4", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend5 = new PoliceTrend("NO.5", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend6 = new PoliceTrend("NO.6", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend7 = new PoliceTrend("NO.7", "案件测试1", "张晓明", "已处理","否");
+
+        List<PoliceTrend> policeTrendList = new ArrayList<PoliceTrend>();
+        policeTrendList.add(policeTrend1);
+        policeTrendList.add(policeTrend2);
+        policeTrendList.add(policeTrend3);
+        policeTrendList.add(policeTrend4);
+        policeTrendList.add(policeTrend5);
+        policeTrendList.add(policeTrend6);
+        policeTrendList.add(policeTrend7);
+
+        model.addAttribute("page", policeTrendList);*/
+
+        return  list2;
+//        return policeTrendList;
+    }
+
 
     @ResponseBody
     @RequestMapping(value = "policeForceDistribution")
@@ -120,18 +363,15 @@ public class CcmBIController {
     public String policeDigest(){
         // 返回对象结果
 
-        PoliceDigest policeDigest1 = new PoliceDigest(13,"aaa");
-        PoliceDigest policeDigest2 = new PoliceDigest(15,"bbb");
-        PoliceDigest policeDigest3 = new PoliceDigest(20,"ccc");
-        PoliceDigest policeDigest4 = new PoliceDigest(23,"ddd");
-        PoliceDigest policeDigest5 = new PoliceDigest(31,"eee");
-
+        Map<String, Object> map = bphAlarmInfoService.findMonthPieData();
         List<PoliceDigest> policeDigestList = new ArrayList<PoliceDigest>();
-        policeDigestList.add(policeDigest1);
-        policeDigestList.add(policeDigest2);
-        policeDigestList.add(policeDigest3);
-        policeDigestList.add(policeDigest4);
-        policeDigestList.add(policeDigest5);
+        for(Map.Entry<String, Object> entry : map.entrySet()){
+
+            String mapKey = entry.getKey();
+            Object mapValue = entry.getValue();
+            PoliceDigest policeDigest = new PoliceDigest(Integer.parseInt(mapValue.toString()),mapKey);
+            policeDigestList.add(policeDigest);
+        }
 
         JsonConfig config = new JsonConfig();
         String policeJson = JSONArray.fromObject(policeDigestList, config).toString();

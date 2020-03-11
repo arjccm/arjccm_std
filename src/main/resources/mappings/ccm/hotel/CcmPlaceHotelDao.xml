@@ -155,5 +155,9 @@
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
+	<!--统计酒店个数-->
+	<select id="countHotel" resultType="Integer">
+		SELECT count(1) FROM ccm_place_hotel a WHERE a.del_flag = 0 AND a.type = 01
+	</select>
 </mapper>

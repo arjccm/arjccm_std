@@ -21,6 +21,7 @@
 	text-align: center;
 	line-height: 2.8vh;
 	background: #07537A;
+	width: 25%;
 }
 .alarmdata_box table td{
 	font-size: 0.39vw;
@@ -29,6 +30,12 @@
 	text-align: center;
 	line-height: 2.344vh;
 	border-bottom: 1px solid #0D70A1;
+	width: 25%;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	float: left;
 }
 .alarmdata_box table tr.selected td{
 	color: #FF5313;

@@ -43,5 +43,10 @@ public class CcmPlaceTrafficService extends CrudService<CcmPlaceTrafficDao, CcmP
 	public void delete(CcmPlaceTraffic ccmPlaceTraffic) {
 		super.delete(ccmPlaceTraffic);
 	}
+
+	//统计加油站个数
+	public Integer petrolStation(){
+		return dao.petrolStation();
+	}
 	
 }

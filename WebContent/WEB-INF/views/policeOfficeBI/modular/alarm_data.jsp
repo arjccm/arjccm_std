@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <link rel="stylesheet" href="${ctxStatic}/policeOfficeBI/css/alarm_data.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section>
 	<div class="box_header">
 		<div class="box_header_title">
@@ -22,55 +23,58 @@
 				</tr>
 			</table>
 			<div class="table_list">
-				<table>
-				<tr>
-					<td>NO.1</td>
-					<td>案件名称</td>
-					<td>张小明</td>
-					<td>已处理</td>
-				</tr>
-				<tr class="selected">
-					<td>NO.2</td>
-					<td>案件名称</td>
-					<td>张小明</td>
-					<td>已处理</td>
-				</tr>
-				<tr>
-					<td>NO.3</td>
-					<td>案件名称</td>
-					<td>张小明</td>
-					<td>已处理</td>
-				</tr>
-				<tr>
-					<td>NO.4</td>
-					<td>案件名称</td>
-					<td>张小明</td>
-					<td>已处理</td>
-				</tr>
-				<tr>
-					<td>NO.5</td>
-					<td>案件名称</td>
-					<td>张小明</td>
-					<td>已处理</td>
-				</tr>
-				<tr>
-					<td>NO.5</td>
-					<td>案件名称</td>
-					<td>张小明</td>
-					<td>已处理</td>
-				</tr>
-				<tr>
-					<td>NO.5</td>
-					<td>案件名称</td>
-					<td>张小明</td>
-					<td>已处理</td>
-				</tr>
-				<tr>
-					<td>NO.5</td>
-					<td>案件名称</td>
-					<td>张小明</td>
-					<td>已处理</td>
-				</tr>
+				<table id="sj_Table">
+                    <tr id="sj_tr" style="display: none!important;"><td>111111111111</td></tr>
+<%--					<tr>--%>
+<%--                        <td>NO.2</td>--%>
+<%--                        <td>案件名称发案件名称发案件名称发案件名称发</td>--%>
+<%--                        <td>张小明</td>--%>
+<%--                        <td>已处理</td>--%>
+<%--                    </tr>--%>
+
+
+<%--                        <tr class="selected">--%>
+<%--                            <td>NO.2</td>--%>
+<%--                            <td>案件名称阿法狗案件名称阿法狗案件名称阿法狗</td>--%>
+<%--                            <td>张小明</td>--%>
+<%--                            <td>已处理</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>NO.3</td>--%>
+<%--                            <td>案件名称案件名称阿法狗案件名称阿法狗案件名称阿法狗</td>--%>
+<%--                            <td>张小明</td>--%>
+<%--                            <td>已处理</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>NO.4</td>--%>
+<%--                            <td>案件名称</td>--%>
+<%--                            <td>张小明</td>--%>
+<%--                            <td>已处理</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>NO.5</td>--%>
+<%--                            <td>案件名称案件名称阿法狗</td>--%>
+<%--                            <td>张小明</td>--%>
+<%--                            <td>已处理</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>NO.5</td>--%>
+<%--                            <td>案件名称</td>--%>
+<%--                            <td>张小明</td>--%>
+<%--                            <td>已处理</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>NO.5</td>--%>
+<%--                            <td>案件名称案件名称阿法狗案件名称阿法狗</td>--%>
+<%--                            <td>张小明</td>--%>
+<%--                            <td>已处理</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>NO.5</td>--%>
+<%--                            <td>案件名称</td>--%>
+<%--                            <td>张小明</td>--%>
+<%--                            <td>已处理</td>--%>
+<%--                        </tr>--%>
 
 			</table>
 			</div>
@@ -130,6 +134,21 @@
 	})(jQuery);
 
 	$(function(){
+
+
+        $.getJSON(ctx + '/sys/BicMap/alarmData', function(data) {
+            var sj_tr=$("#sj_tr");
+            var le2=data.length;
+            for(var i=0;i<data.length;i++){
+                if(data[i]["isImportant"]=="1"){
+                    sj_tr.before('<tr class="selected"><td>NO.'+(i+1)+'</td><td>'+data[i]["content"]+'</td><td>'+data[i]["handleName"]+'</td><td>'+data[i]["state"]+'</td></tr>')
+                }else {
+					sj_tr.before('<tr><td>NO.'+(i+1)+'</td><td>'+data[i]["content"]+'</td><td>'+data[i]["handleName"]+'</td><td>'+data[i]["state"]+'</td></tr>')
+				}
+            }
+
+        })
+
 		var trHt =  $(".table_list").find("tr").outerHeight()
 		var tblList = $(".table_list").height(trHt*6)
 		$(".table_list").myScroll({
@@ -141,6 +160,11 @@
 			"backgroundColor":"#09304d",
 			"opacity":0.9
 		})
+
+
+
+
+
 	});
 </script>
 

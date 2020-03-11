@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.casino.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,19 @@ public class CcmPlaceCasinoService extends CrudService<CcmPlaceCasinoDao, CcmPla
 
 	public CcmPlaceCasino get(String id) {
 		return super.get(id);
+	}
+
+	//统计网吧个数
+	public Integer conutWb(){
+		return dao.countWb();
+	}
+	//统计足浴个数
+	public Integer conutFootBath(){
+		return dao.conutFootBath();
+	}
+	//统计Ktv个数
+	public Integer conutKtv(){
+		return dao.countKtv();
 	}
 	
 	public List<CcmPlaceCasino> findList(CcmPlaceCasino ccmPlaceCasino) {

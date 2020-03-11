@@ -34,4 +34,6 @@ public interface CcmBasePlaceDao extends CrudDao<CcmBasePlace> {
 	//查询某一类型对应的基本场所
 	public List<CcmBasePlaceEntity> queryPlaceBase(CcmBasePlaceVO basePlaceVO);
 
+
+
 }

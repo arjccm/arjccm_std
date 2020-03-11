@@ -663,6 +663,7 @@ function initCaiJi() {
 }
 function initMaoDun() {
 	$.getJSON(ctx + '/index/chart/solveEvent', function(data) {
+
 		var dataArr = [];
 		var xAxisArr = [];
 		var seriesArr = [];

@@ -27,8 +27,10 @@ public interface BphAlarmInfoDao extends CrudDao<BphAlarmInfo> {
 	List<BphAlarmInfo> queryAlarmInfoByDateAndAlarmTypeToFourColor(BphAlarmInfo bphAlarmInfo);
 	int updateAlarmInfo(BphAlarmInfo bphAlarmInfo);
 	List<BphAlarmInfo> findNewestAlarmInfo();//查询最新警情前十条
+	List<BphAlarmInfo2> findTodayAlarmInfo();//查询今日警情数据
 	List<BphAlarmInfo> countDtae();//今日统计查询
 	List<BphAlarmInfo> findPieData();//今日警情摘要
+	List<BphAlarmInfo3> findMonthPieData();//近30天警情摘要
 	BphAlarmInfo count(BphAlarmInfo bphAlarmInfo);//查询数量
 	List<BphAlarmInfo> findDistributeList(BphAlarmInfo bphAlarmInfo);//根据部门查询数量
 	Integer countDistributeList(BphAlarmInfo bphAlarmInfo);

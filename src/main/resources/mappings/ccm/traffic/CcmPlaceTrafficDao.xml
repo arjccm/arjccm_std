@@ -190,5 +190,9 @@
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
+	<!--统计加油站个数-->
+	<select id="petrolStation" resultType="Integer">
+		 SELECT count(1) FROM ccm_place_traffic a WHERE a.del_flag = 0 AND a.type = 03
+	</select>
 </mapper>

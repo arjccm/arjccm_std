@@ -12,23 +12,34 @@
 		</div>
 	</div>
 	<div class="box_content population_area">
-		<div class="population_box clearfix">
-			<div class="pop_list">
+		<div class="population_box clearfix" >
+			<%--<div class="pop_list" >
 				<div class="pop_num">23901</div>
 				<div class="pop_tit">常驻人口</div>
 			</div>
-			<div class="pop_list">
+			<div class="pop_list" >
 				<div class="pop_num">873</div>
 				<div class="pop_tit">流动人口</div>
 			</div>
-			<div class="pop_list">
+			<div class="pop_list" >
 				<div class="pop_num">548</div>
 				<div class="pop_tit">重点人口</div>
-			</div>
+			</div>--%>
+            <div id="syrk"></div>
 		</div>
 	</div>
 </section>
 <script>
+	function showPopulationConfluence() {
+		debugger
+		$.getJSON(ctx + '/sys/BicMap/populationConfluence', function(data) {
+            console.log("============================")
+            $.each(data, function (key, value) {
+                // console.log(key, value)
+                $("#syrk").after('<div class="pop_list" ><div class="pop_num">'+value+'</div><div class="pop_tit">'+key+'</div> </div>')
+            });
+        })
+	}
 </script>
 
 
