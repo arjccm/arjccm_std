@@ -442,6 +442,10 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 	public List<BphAlarmInfo> findNewestAlarmInfo() {
 		return dao.findNewestAlarmInfo();
 	}
+	//查询今日警情数据
+	public List<BphAlarmInfo2> findTodayAlarmInfo() {
+		return dao.findTodayAlarmInfo();
+	}
 
 	public List<BphAlarmInfo> countDtae() {
 		return dao.countDtae();

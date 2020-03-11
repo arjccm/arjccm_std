@@ -1,5 +1,16 @@
 package com.arjjs.ccm.modules.ccm.sys.web;
 
+import com.arjjs.ccm.common.persistence.Page;
+import com.arjjs.ccm.modules.ccm.index.service.IndexChartService;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
+import com.arjjs.ccm.modules.ccm.sys.entity.PoliceTrend;
+import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo;
+import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo2;
+import com.arjjs.ccm.modules.flat.alarm.service.BphAlarmInfoService;
+import com.arjjs.ccm.tool.SearchTab;
+import com.google.common.collect.Lists;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.arjjs.ccm.modules.ccm.sys.service.CcmBIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.arjjs.ccm.modules.ccm.sys.entity.PoliceDigest;
@@ -15,6 +26,8 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +38,173 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "${adminPath}/sys/BicMap")
 public class CcmBIController {
+    @Autowired
+    private CcmPeopleAmountService ccmPeopleAmountService;
+    @Autowired
+    private IndexChartService indexChartService;
+    @Autowired
+    private BphAlarmInfoService bphAlarmInfoService;
+
+    @ResponseBody
+    @RequestMapping(value = "getDisputeDefuse")
+    //矛盾纠纷化解
+    public Object getDisputeDefuse() {
+        return indexChartService.oneYearSolveEvent();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "populationConfluence")
+    //实有数据人口汇总
+    public Map<String, Object> populationConfluence(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        map.put("常驻人口", 23901);
+        map.put("流动人口", 873);
+        map.put("重点人口", 548);
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "policeSentiment")
+    //实有数据人口汇总
+    public Map<String, Object> policeSentiment(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        //TODO 110警情数量
+        int[] jqData = new int[]{11, 59, 25, 18, 72, 12, 5};
+
+        //TODO 警情处理率 clvData
+        int[] clvData = new int[]{38, 33, 55, 41, 26, 34, 32};
+
+        //TODO  日期  rqData
+        String[] rqData = new String[]{"01-01", "01-02", "01-03", "01-04", "01-05", "01-06", "01-07"};
+
+        map.put("alert",jqData);
+        map.put("rate",clvData);
+        map.put("date",rqData);
+
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping(value = "videoSurveillance")
+    //视频监控异常趋势
+    public Map<String, Object> videoSurveillance(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        //TODO 警情处理率 clvData
+        int[] sjData = new int[]{20, 82, 91, 50, 33, 65, 29, 88, 39, 15};
+
+        //TODO  日期  rqData
+        String[] rqData = new String[]{"01-01", "01-02", "01-03", "01-04", "01-05", "01-06", "01-07","01-08", "01-09", "01-10"};
+
+        map.put("sj",sjData);
+        map.put("date",rqData);
+
+        return map;
+    }
+    // 重点人员数据总汇
+    @ResponseBody
+    @RequestMapping(value = "getnumPopFollowPopQL")
+    public Map<String, Object> getnumPopFollowPopQL(Model model) {
+        Map<String, Object> result = ccmPeopleAmountService.getnumPopFollowPopQL();
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "concernCompany")
+    //重点关注单位
+    public Map<String, Object> concernCompany(){
+        // 返回对象结果
+        Map<String, Object> map = Maps.newHashMap();
+
+        map.put("zdnb",200);
+        map.put("ybnb",200);
+        map.put("bacy",200);
+        map.put("bafw",200);
+        map.put("jyz",200);
+        map.put("hgc",200);
+        map.put("dc",200);
+        map.put("bg",200);
+        map.put("wb",200);
+        map.put("zy",200);
+        map.put("ktv",100);
+
+        return map;
+    }
+//今日110警情处理
+    @ResponseBody
+    @RequestMapping(value = "alarmData" )
+   public List<BphAlarmInfo2> list() {
+
+
+
+//        Map<String, Object> map = bphAlarmInfoService.findPieData();
+
+//        List<BphAlarmInfo> list = bphAlarmInfoService.countDtae();
+
+        List<BphAlarmInfo2> list = bphAlarmInfoService.findTodayAlarmInfo();
+
+        List<BphAlarmInfo2> list2 = Lists.newArrayList();
+        for (BphAlarmInfo2 bphAlarmInfo2 : list) {
+            BphAlarmInfo2 bphAlarmInfo21 = new BphAlarmInfo2();
+            bphAlarmInfo21.setId(bphAlarmInfo2.getId());
+            if(bphAlarmInfo2.getContent()==null){
+                bphAlarmInfo21.setContent("");
+            }else {
+                bphAlarmInfo21.setContent(bphAlarmInfo2.getContent());
+            }
+            if(bphAlarmInfo2.getIsImportant()==null){
+                bphAlarmInfo21.setIsImportant("");
+            }else {
+                bphAlarmInfo21.setIsImportant(bphAlarmInfo2.getIsImportant());
+            }
+
+            if(bphAlarmInfo2.getState().equals("0")){
+                bphAlarmInfo21.setState("未处理");
+            }
+            if(bphAlarmInfo2.getState().equals("1")){
+                bphAlarmInfo21.setState("已处理");
+            }
+            if(bphAlarmInfo2.getState().equals("2")){
+                bphAlarmInfo21.setState("已到达");
+            }
+            if(bphAlarmInfo2.getState().equals("3")){
+                bphAlarmInfo21.setState("已反馈");
+            }
+            if(bphAlarmInfo2.getHandleName()==null){
+                bphAlarmInfo21.setHandleName("");
+            }else {
+                bphAlarmInfo21.setHandleName(bphAlarmInfo2.getHandleName());
+            }
+            list2.add(bphAlarmInfo21);
+        }
+
+        /*PoliceTrend policeTrend1 = new PoliceTrend("NO.1", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend2 = new PoliceTrend("NO.2", "案件测试1", "张晓明", "已处理","是");
+        PoliceTrend policeTrend3 = new PoliceTrend("NO.3", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend4 = new PoliceTrend("NO.4", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend5 = new PoliceTrend("NO.5", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend6 = new PoliceTrend("NO.6", "案件测试1", "张晓明", "已处理","否");
+        PoliceTrend policeTrend7 = new PoliceTrend("NO.7", "案件测试1", "张晓明", "已处理","否");
+
+        List<PoliceTrend> policeTrendList = new ArrayList<PoliceTrend>();
+        policeTrendList.add(policeTrend1);
+        policeTrendList.add(policeTrend2);
+        policeTrendList.add(policeTrend3);
+        policeTrendList.add(policeTrend4);
+        policeTrendList.add(policeTrend5);
+        policeTrendList.add(policeTrend6);
+        policeTrendList.add(policeTrend7);
+
+        model.addAttribute("page", policeTrendList);*/
+
+        return  list2;
+//        return policeTrendList;
+    }
+
 
     @ResponseBody
     @RequestMapping(value = "policeForceDistribution")

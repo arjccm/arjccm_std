@@ -380,6 +380,17 @@
 		</choose>
 	</select>
 
+	<!-- 查询今日警情数据 -->
+	<select id="findTodayAlarmInfo" resultType="BphAlarmInfo2">
+		SELECT
+		info.id as "id", info.content as "content",info.state as "state",
+		info.is_important as "isImportant" ,user.name as "handleName"
+		FROM
+		(bph_alarm_info info LEFT JOIN bph_alarm_handle handle on info.id=handle.alarm_id)
+		LEFT JOIN sys_user user on handle.handle_police_id=user.id
+		WHERE info.alarm_time BETWEEN date_format( now( ), '%Y-%m-%d 00:00:00' ) AND date_format( now( ), '%Y-%m-%d 23:59:59' )
+	</select>
+
 	<!-- 查询前十条数据 -->
 	<select id="findNewestAlarmInfo" resultType="BphAlarmInfo">
 		SELECT

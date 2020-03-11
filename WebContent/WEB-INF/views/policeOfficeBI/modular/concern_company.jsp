@@ -17,12 +17,12 @@
 				<div class="title">内部</br>单位</div>
 				<div class="dwul two_column clearfix">
 					<div class="dwli">
-						<p>200</p>
+						<p id="zdnb">200</p>
 						<p>重点内部单位</p>
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p>200</p>
+						<p id="ybnb">200</p>
 						<p>一般内部单位</p>
 					</div>
 				</div>
@@ -32,12 +32,12 @@
 				<div class="title">保安</br>单位</div>
 				<div class="dwul two_column clearfix">
 					<div class="dwli">
-						<p>200</p>
+						<p id="bacy">200</p>
 						<p>保安从业单位</p>
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p>200</p>
+						<p id="bafw">200</p>
 						<p>保安服务公司</p>
 					</div>
 				</div>
@@ -47,17 +47,17 @@
 				<div class="title">微爆</br>单位</div>
 				<div class="dwul three_column clearfix">
 					<div class="dwli">
-						<p>200</p>
+						<p id="jyz">200</p>
 						<p>加油站</p>
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p>200</p>
+						<p id="hgc">200</p>
 						<p>化工厂</p>
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p>200</p>
+						<p id="dz">200</p>
 						<p>电站</p>
 					</div>
 				</div>
@@ -67,22 +67,22 @@
 				<div class="title">场所</br>待业</div>
 				<div class="dwul four_column clearfix">
 					<div class="dwli">
-						<p>200</p>
+						<p id="zy">200</p>
 						<p>宾馆</p>
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p>200</p>
+						<p id="wb">200</p>
 						<p>网吧</p>
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p>200</p>
+						<p id="zy">200</p>
 						<p>足浴</p>
 					</div>
 					<div class="line"></div>
 					<div class="dwli">
-						<p>200</p>
+						<p id="ktv">200</p>
 						<p>KTV</p>
 					</div>
 				</div>
@@ -94,7 +94,26 @@
 		</div>
 	</div>
 </section>
+
 <script>
+	function showConcernCompany() {
+		$.getJSON(ctx + '/sys/BicMap/concernCompany', function(data) {
+
+
+			$('#zdnb').text(data['zdnb']);
+			$('#zdnb').text(data['ybnb']);
+			$('#zdnb').text(data['bacy']);
+			$('#zdnb').text(data['bafw']);
+			$('#zdnb').text(data['jyz']);
+			$('#zdnb').text(data['dc']);
+			$('#zdnb').text(data['bg']);
+			$('#zdnb').text(data['wb']);
+			$('#zdnb').text(data['zy']);
+			$('#ktv').text(data['ktv']);
+
+		});
+	}
+
 </script>
 
 
