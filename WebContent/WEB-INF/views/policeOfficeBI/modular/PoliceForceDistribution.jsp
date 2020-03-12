@@ -135,12 +135,12 @@ function PoliceForceDistribution() {
 
             var myChart = echarts.init(document.getElementById('policeForceDistribution'));
 
-            var sum = 0;
             mjTotal(data["data"]["民警"])   //计算民警总数
             fjTotal(data["data"]["辅警"])   //计算辅警总数
 
             //计算民警总数
             function mjTotal(data) {
+                var sum = 0;
                 data.forEach(function (value) {
                     sum += value;
                 })
@@ -181,6 +181,7 @@ function PoliceForceDistribution() {
             }
             //计算辅警总数
             function fjTotal(data) {
+                var sum = 0;
                 data.forEach(function (value) {
                     sum += value;
                 })
