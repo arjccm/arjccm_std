@@ -462,7 +462,7 @@
 								<img class="logo" src="/arjccm/static/images/logo.png" style="width:46px;height:46px;vertical-align:baseline;">
 								<%--<img class="head" src="/arjccm/static/images/head.png" style="margin-top: -106px; margin-left: 45px">--%>
 								<%--<h1 class="form-signin-heading">${fns:getConfig('showName')}</h1>--%>
-								<span id="productName" style="width:190px;font-size:26px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);line-height:27px;text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;top: -80px; left: 55px;background: none;">${fns:getConfig('productName_part1')}</span>
+								<span id="productName" style="width:190px;font-size:26px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);line-height:27px;text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;top: -80px; left: 55px;white-space: nowrap;background: none;">${fns:getConfig('productName_part1')}</span>
 								<span style="display: block; top: -90px;left: 25px;width:220px;color:rgba(204, 204, 204, 1); font-size: 17px;font-weight: bold;position: relative;background: none;">${fns:getConfig('productName_part2')}</span>
 							</div>
 							<div>
