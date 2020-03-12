@@ -95,13 +95,13 @@ public class CcmBIService {
                 firstMax = value[i];
             }
         }
-        while(firstMax%100!=0){
+        /*while(firstMax%100!=0){
             if(firstMax%10!=0){
                 firstMax++;
             }else{
                 firstMax = firstMax+10;
             }
-        }
+        }*/
         list.add(firstMax);
         list.add(areaName);
         list.add(value);

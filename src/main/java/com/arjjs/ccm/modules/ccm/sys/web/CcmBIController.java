@@ -184,13 +184,14 @@ public class CcmBIController {
     public List<BicMapUser> beonduty(){
 
         List<BicMapUser> bicMapUsers = new ArrayList<>();
-        int[] weekPlan1={1,0,0,0,0,0,1};
+        int[] weekPlan1={1,0,0,1,0,0,1};
         BicMapUser bicMapUser1 = new BicMapUser("11","李雷雷",weekPlan1);
         int[] weekPlan2={0,1,1,0,1,0,0};
         BicMapUser bicMapUser2 = new BicMapUser("12","张露",weekPlan2);
         int[] weekPlan3={0,0,1,1,0,0,0};
         BicMapUser bicMapUser3 = new BicMapUser("13","阳光",weekPlan3);
-        BicMapUser bicMapUser4 = new BicMapUser("14","赵晓明",weekPlan1);
+        int[] weekPlan4={0,0,1,0,0,1,0};
+        BicMapUser bicMapUser4 = new BicMapUser("14","赵晓明",weekPlan4);
         BicMapUser bicMapUser5 = new BicMapUser("15","宋勇",weekPlan2);
         BicMapUser bicMapUser6 = new BicMapUser("16","李雷雷1",weekPlan1);
         BicMapUser bicMapUser7 = new BicMapUser("17","李雷雷2",weekPlan2);
@@ -456,14 +457,18 @@ public class CcmBIController {
         String[] name = new String[]{"单位1", "单位2", "单位3", "单位4", "单位5"};
 
         // 重点单位问题数据 jlData
-        int[] jlData = new int[]{2000, 1000, 900, 800, 700};
+        int[] jlData = new int[]{2000, 1000, 1300, 800, 700};
 
         //重点单位问题总数 jlData
-        int sumData=10000;
+        int maxData=jlData[0];
+        for (int jlDatum : jlData) {
+            maxData=maxData<jlDatum?jlDatum:maxData;
+        }
+
 
         map.put("name", name);
         map.put("jlData", jlData);
-        map.put("sumData", sumData);
+        map.put("sumData", maxData);
 
         return map;
     }

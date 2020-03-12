@@ -103,6 +103,7 @@
 			var d = new Date();
 			var weeks = d.getDay()-1
 			// alert(weeks)
+			debugger
 			$('#tblArea tr').each(function(i){
 				      $(this).children('td').each(function(j){
 					         // alert("第"+(i+1)+"行，第"+(j+1)+"个td的值："+$(this).text()+"。");
@@ -111,8 +112,12 @@
 
 						  }if($(this).text()==1){
 							  $(this).empty().html("<img src='${ctxStatic}/policeOfficeBI/img/icon_seal_02.png'>")
-							  $('#tblArea tr').eq(i).children('td').eq(weeks).empty().html("<img src='${ctxStatic}/policeOfficeBI/img/icon_seal_05.png'>")
+							  if(j==weeks){
+								  $('#tblArea tr').eq(i).children('td').eq(weeks).empty().html("<img src='${ctxStatic}/policeOfficeBI/img/icon_seal_05.png'>")
+							  }
+							  <%--$('#tblArea tr').eq(i).children('td').eq(weeks).empty().html("<img src='${ctxStatic}/policeOfficeBI/img/icon_seal_05.png'>")--%>
 						  }
+
 					  });
 			});
 			var tblHeight = $(".by_tbl_ct").find("tr").outerHeight()

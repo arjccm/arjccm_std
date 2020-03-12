@@ -31,7 +31,6 @@
 </section>
 <script>
 	function showPopulationConfluence() {
-		debugger
 		$.getJSON(ctx + '/sys/BicMap/populationConfluence', function(data) {
             console.log("============================")
             $.each(data, function (key, value) {

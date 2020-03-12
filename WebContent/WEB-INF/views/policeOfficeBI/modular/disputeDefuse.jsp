@@ -40,7 +40,6 @@
                 seriesArr.push(data[i].value);
                 seriesArrAll.push(data[i].value1)
             }
-            debugger
             var disputeDefuse = echarts.init(document.getElementById('disputeDefuse'));
             var option = {
                 tooltip: {
