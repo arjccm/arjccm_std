@@ -863,7 +863,7 @@ ArjMap.Map.prototype = {
             // 获取地图中所有图层
             var layers = map.getLayers();
             var len = layers.getLength();
-				var layerName = layer.get('name');
+				// var layerName = layer.get('name');
 //				var selectFeatures = layer.getSource().getFeatures();
 //				for ( var i in selectFeatures) {
 //					map.removeOverlay(this[(selectFeatures[i].get('name') + 'Overlay')])
