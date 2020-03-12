@@ -199,7 +199,7 @@
 		.pwdIcon{
 			position: absolute;
 			top: 39.6%;
-			height: 49px;
+			height: 47px;
 			left: 21.6%;
 			z-index: 999;
 		}
@@ -263,8 +263,8 @@
 	<img class="loginBig" src='/arjccm/static/images/loginImages/login_big_sany.png'>
 	<%-- <h1 class="form-signin-heading">${fns:getConfig('showName')}系统</h1> --%>
 	<div class="loginTitle">
-		<img width="43px" height="45px" src='/arjccm/static/images/logo.png'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<h2 style="color: #fff">三亚市雪亮工程综治网格化管理系统</h2>
+		<img width="43px" height="45px" style="margin-left: 20px" src='/arjccm/static/images/logo.png'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="font-size:28px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;white-space: nowrap;background: none;">${fns:getConfig('productName_part1')}${fns:getConfig('productName_part2')}</span>
 	</div>
 	<form id="loginForm" class="form-signin" action="${ctx}/login" method="post">
 		<h2 class="loginTip"></h2>

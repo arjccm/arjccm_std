@@ -10,7 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="renderer" content="webkit|ie-comp|ie-stand" />
-	<title>xx市公安局xx镇派出所数据可视化展现</title>
+	<title>${fns:getConfig('productName_part1')}${fns:getConfig('productName_part2')}</title>
 	<script src="${ctxStatic}/jquery/jquery-1.8.3.min.js"></script>
 	<link rel="stylesheet" href="${ctxStatic}/bootstrap/bootstrap3.0/css/bootstrap.min.css">
 	<script src="${ctxStatic}/bootstrap/2.3.1/js/bootstrap.min.js" type="text/javascript"></script>
@@ -66,11 +66,11 @@
 <header class="header">
 	<div class="header_area">
 		<div class="streamer"><div class="lg_animate"></div></div>
-		<div class="header_title">XX市公安局XX镇派出所数据可视化展现</div>
+		<div class="header_title">${fns:getConfig('productName_part1')}${fns:getConfig('productName_part2')}</div>
 		<div class="header_information clearfix">
 			<div class="time">0000-00-00 00:00:00 周？</div>
 			<div class="dividing_Line"></div>
-			<div class="personnel">今日值班民警：李小明，张露露</div>
+			<div class="personnel">今日值班民警：杨小北，马景涛</div>
 		</div>
 	</div>
 </header>

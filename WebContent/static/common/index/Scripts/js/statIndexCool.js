@@ -3,7 +3,7 @@
  */
 /*Object.assign() 之 IE 兼容 （TypeError: 对象不支持“assign”属性或方法）*/
 if (typeof Object.assign != 'function') {
-    Object.assign = function(target) {
+    Object.assign = function (target) {
         'use strict';
         if (target == null) {
             throw new TypeError('Cannot convert undefined or null to object');
@@ -2227,105 +2227,105 @@ function KeyYouthByType(model, data) {
 
 //特殊人群分析
 function SpecialPopByType(model, data) {
-	var option = {
-            tooltip: {
-                trigger: 'item',
-                formatter: "{b}: {c} ({d}%)"
+    var option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            right: '-6%',
+            top: '7%',
+            itemWidth: 10,
+            itemHeight: 10,
+            height: 180,
+
+            textStyle: {
+                lineHeight: 22,
+                color: '#fff',
+                fontsize: 6,
             },
-	        legend: {
-	            orient: 'vertical',
-	            right: '-6%',
-	            top: '7%',
-	            itemWidth: 10,
-	            itemHeight: 10,
-	            height: 180,
+            data: data.name
 
-	            textStyle: {
-	                lineHeight: 22,
-	                color: '#fff',
-	                fontsize: 6,
-	            },
-	            data: data.name
-
-	        },
-	        series: [
-	            {
-	                color: color,
-	                type: 'pie',
-	                radius: ['55', '80'],
-	                center: ['27%', '45%'],
-	                data: data.list,
-	                label: {
-	                    show: false
-	                }
-	            },
-	            {
-	                color: ['#32bcfe'],
-	                type: 'pie',
-	                radius: ['90', '91'],
-	                center: ['27%', '45%'],
-	                hoverAnimation: false,
-	                data: [100],
-	                label: {
-	                    show: false
-	                }
-	            },
-	            {
-	                color: ['#095471'],
-	                type: 'pie',
-	                radius: ['39', '40'],
-	                center: ['27%', '45%'],
-	                hoverAnimation: false,
-	                data: [100],
-	                label: {
-	                    show: false
-	                }
-	            },
-	            {
-	                type: 'gauge',
-	                splitNumber: 15, //刻度数量
-	                min: 0,
-	                max: 20,
-	                radius: '45%',
-	                center: ['27%', '45%'],
-	                startAngle: 90,
-	                endAngle: -269.9999,
-	                axisLine: {
-	                    show: true,
-	                    lineStyle: {
-	                        width: 0,
-	                        shadowBlur: 0,
-	                        color: [
-	                            [0, '#095471'],
-	                            [1, '#095471']
-	                        ]
-	                    }
-	                },
-	                axisTick: {
-	                    show: true,
-	                    lineStyle: {
-	                        color: '#095471',
-	                        width: 2
-	                    },
-	                    length: 6,
-	                    splitNumber: 5
-	                },
-	                splitLine: {
-	                    show: true,
-	                    length: 6,
-	                    lineStyle: {
-	                        color: '#095471',
-	                    }
-	                },
-	                axisLabel: {
-	                    show: false
-	                },
-	                detail: {
-	                    show: false
-	                }
-	            }
-	        ]
-	    };
+        },
+        series: [
+            {
+                color: color,
+                type: 'pie',
+                radius: ['55', '80'],
+                center: ['27%', '45%'],
+                data: data.list,
+                label: {
+                    show: false
+                }
+            },
+            {
+                color: ['#32bcfe'],
+                type: 'pie',
+                radius: ['90', '91'],
+                center: ['27%', '45%'],
+                hoverAnimation: false,
+                data: [100],
+                label: {
+                    show: false
+                }
+            },
+            {
+                color: ['#095471'],
+                type: 'pie',
+                radius: ['39', '40'],
+                center: ['27%', '45%'],
+                hoverAnimation: false,
+                data: [100],
+                label: {
+                    show: false
+                }
+            },
+            {
+                type: 'gauge',
+                splitNumber: 15, //刻度数量
+                min: 0,
+                max: 20,
+                radius: '45%',
+                center: ['27%', '45%'],
+                startAngle: 90,
+                endAngle: -269.9999,
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        width: 0,
+                        shadowBlur: 0,
+                        color: [
+                            [0, '#095471'],
+                            [1, '#095471']
+                        ]
+                    }
+                },
+                axisTick: {
+                    show: true,
+                    lineStyle: {
+                        color: '#095471',
+                        width: 2
+                    },
+                    length: 6,
+                    splitNumber: 5
+                },
+                splitLine: {
+                    show: true,
+                    length: 6,
+                    lineStyle: {
+                        color: '#095471',
+                    }
+                },
+                axisLabel: {
+                    show: false
+                },
+                detail: {
+                    show: false
+                }
+            }
+        ]
+    };
     // 实例化 对象
     var Barchart = echarts.init(document.getElementById(model));
     Barchart.resize();
@@ -2338,9 +2338,9 @@ function SpecialPopByType(model, data) {
 //基础数据
 function getPeopleData(noCache) {
     $.getJSON(ctx + "/report/ccmPeopleAmount/getAnalyzePopNewData", {"noCache": noCache}, function (data) {
-        for(var i=0;i<data.length;i++){
-            if(data[i]>99999){
-                data[i]=(parseInt(data[i]/10000.)+'万');
+        for (var i = 0; i < data.length; i++) {
+            if (data[i] > 99999) {
+                data[i] = (parseInt(data[i] / 10000.) + '万');
             }
         }
         var dataList = [{
@@ -2373,7 +2373,7 @@ function getPeopleData(noCache) {
         $(".rksj3 .rktitle").html(dataList[2].name)
         $(".rksj4 .rknum").html(dataList[3].value)
         $(".rksj4 .rktitle").html(dataList[3].name)
-        var count=(parseInt)(data[0])+(parseInt)(data[1])+(parseInt)(data[2])+(parseInt)(data[3])
+        var count = (parseInt)(data[0]) + (parseInt)(data[1]) + (parseInt)(data[2]) + (parseInt)(data[3])
         $("#rkt1 .rkzs").html(count);
     });
 
@@ -2381,119 +2381,119 @@ function getPeopleData(noCache) {
 
 //基础数据的option
 function showPeopleData(dataList, dataMap, count) {
-   /* var option = {
-        color: ['#0F8CDB', '#F86422', '#E7BA1B', '#3E64D5'],
-        tooltip: {
-            trigger: 'item',
-            formatter: "{b}: {c} ({d}%)"
-        },
-        title: {
-            text: '{title|人口数据}{value|' + count + '}{unit|人}',
-            textStyle: {
-                rich: {
-                    title: {
-                        fontFamily: 'Microsoft YaHei',
-                        fontWeight: 400,
-                        fontSize: 12,
-                        lineHeight: 39,
-                        color: "#FFFFFF"
-                    },
-                    value: {
-                        fontFamily: 'DIN Alternate',
-                        fontWeight: 'bold',
-                        fontSize: 30,
-                        lineHeight: 39,
-                        padding: [0, 9, 0, 30],
-                        color: "#F9CB42"
-                    },
-                    unit: {
-                        fontFamily: 'Microsoft YaHei',
-                        fontWeight: 400,
-                        fontSize: 14,
-                        lineHeight: 39,
-                        color: "#406CA9"
-                    }
-                }
-            },
-            x: 'center'
-        },
-        legend: {
-            orient: 'vertical',
-            x: 'left',
-            data: ['户籍人口', '流动人口', '境外人口', '未落户人口'],
-            left: '50%',
-            top: '20%',
-            itemWidth: 14,
-            formatter: function (name) {
-                return "{title|" + name + "}{value|" + (dataMap[name]) + "}{unit|人}"
-            },
-            textStyle: {
-                rich: {
-                    title: {
-                        fontFamily: 'Microsoft YaHei',
-                        fontWeight: 400,
-                        width: 59,
-                        fontSize: 12,
-                        lineHeight: 25,
-                        color: "#FFFFFF"
-                    },
-                    value: {
-                        fontFamily: 'DIN Alternate',
-                        fontWeight: 'bold',
-                        fontSize: 30,
-                        lineHeight: 25,
-                        padding: [0, 6, 0, 15],
-                        color: "#F9CB42"
-                    },
-                    unit: {
-                        fontFamily: 'Microsoft YaHei',
-                        fontWeight: 400,
-                        fontSize: 14,
-                        lineHeight: 25,
-                        color: "#406CA9"
-                    }
-                }
-            }
-        },
-        graphic: [
-            {
-                type: 'image',
-                id: 'logo',
-                left: '30%',
-                top: '7%',
-                bounding: 'raw',
-                origin: [75, 75],
-                style: {
-                    image: '/arjccm/static/common/index/images/statIndexCool/renkou.png',
-                    width: 18,
-                    height: 14,
-                    opacity: 0.4
-                }
-            },
+    /* var option = {
+         color: ['#0F8CDB', '#F86422', '#E7BA1B', '#3E64D5'],
+         tooltip: {
+             trigger: 'item',
+             formatter: "{b}: {c} ({d}%)"
+         },
+         title: {
+             text: '{title|人口数据}{value|' + count + '}{unit|人}',
+             textStyle: {
+                 rich: {
+                     title: {
+                         fontFamily: 'Microsoft YaHei',
+                         fontWeight: 400,
+                         fontSize: 12,
+                         lineHeight: 39,
+                         color: "#FFFFFF"
+                     },
+                     value: {
+                         fontFamily: 'DIN Alternate',
+                         fontWeight: 'bold',
+                         fontSize: 30,
+                         lineHeight: 39,
+                         padding: [0, 9, 0, 30],
+                         color: "#F9CB42"
+                     },
+                     unit: {
+                         fontFamily: 'Microsoft YaHei',
+                         fontWeight: 400,
+                         fontSize: 14,
+                         lineHeight: 39,
+                         color: "#406CA9"
+                     }
+                 }
+             },
+             x: 'center'
+         },
+         legend: {
+             orient: 'vertical',
+             x: 'left',
+             data: ['户籍人口', '流动人口', '境外人口', '未落户人口'],
+             left: '50%',
+             top: '20%',
+             itemWidth: 14,
+             formatter: function (name) {
+                 return "{title|" + name + "}{value|" + (dataMap[name]) + "}{unit|人}"
+             },
+             textStyle: {
+                 rich: {
+                     title: {
+                         fontFamily: 'Microsoft YaHei',
+                         fontWeight: 400,
+                         width: 59,
+                         fontSize: 12,
+                         lineHeight: 25,
+                         color: "#FFFFFF"
+                     },
+                     value: {
+                         fontFamily: 'DIN Alternate',
+                         fontWeight: 'bold',
+                         fontSize: 30,
+                         lineHeight: 25,
+                         padding: [0, 6, 0, 15],
+                         color: "#F9CB42"
+                     },
+                     unit: {
+                         fontFamily: 'Microsoft YaHei',
+                         fontWeight: 400,
+                         fontSize: 14,
+                         lineHeight: 25,
+                         color: "#406CA9"
+                     }
+                 }
+             }
+         },
+         graphic: [
+             {
+                 type: 'image',
+                 id: 'logo',
+                 left: '30%',
+                 top: '7%',
+                 bounding: 'raw',
+                 origin: [75, 75],
+                 style: {
+                     image: '/arjccm/static/common/index/images/statIndexCool/renkou.png',
+                     width: 18,
+                     height: 14,
+                     opacity: 0.4
+                 }
+             },
 
-        ],
-        series: [
-            {
-                type: 'pie',
-                radius: ['40%', '55%'],
-                avoidLabelOverlap: false,
-                center: ['30%', '50%'],
-                label: {
-                    normal: {
-                        show: false,
-                        position: 'center'
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                },
-                data: dataList
-            }
-        ]
-    };
-    leftContent1Charts.setOption(option);*/
+         ],
+         series: [
+             {
+                 type: 'pie',
+                 radius: ['40%', '55%'],
+                 avoidLabelOverlap: false,
+                 center: ['30%', '50%'],
+                 label: {
+                     normal: {
+                         show: false,
+                         position: 'center'
+                     }
+                 },
+                 labelLine: {
+                     normal: {
+                         show: false
+                     }
+                 },
+                 data: dataList
+             }
+         ]
+     };
+     leftContent1Charts.setOption(option);*/
 }
 
 //人口趋势图
@@ -2645,7 +2645,6 @@ function getCitycomponents(noCache) {
         var datascale2 = new Array();
 
 
-
         if (dataSum1 == 0) {
             var datascale101 = {
                 value: 0,
@@ -2726,10 +2725,6 @@ function getCitycomponents(noCache) {
         datascale2.push(datascale203);
 
 
-
-
-
-
         /*      var datascale101 = {
                   value: -data1["01"].value / dataSum1 * 100,
                   name: dataValue101["value"]
@@ -2762,7 +2757,6 @@ function getCitycomponents(noCache) {
             name: dataValue302["value"]
         };
         datascale2.push(datascale203);*/
-
 
 
         var datacount1 = new Array();
@@ -2908,41 +2902,41 @@ function showCitycomponents(dataRes) {
         },
         yAxis: [
             {
-            type: 'category',
-            top: '10%',
-            inverse: true,
-            axisLine: {
-                show: false,
-            },
-            axisTick: {
-                show: false,
-            },
-            show: true,
-            data: dataRes["name1"],
-            axisLabel: {
-                color: "#9DCCFF",
-                fontSize: 12,
-                padding: [0, 55, 0, 0],
-                interval:0
-            },
+                type: 'category',
+                top: '10%',
+                inverse: true,
+                axisLine: {
+                    show: false,
+                },
+                axisTick: {
+                    show: false,
+                },
+                show: true,
+                data: dataRes["name1"],
+                axisLabel: {
+                    color: "#9DCCFF",
+                    fontSize: 12,
+                    padding: [0, 55, 0, 0],
+                    interval: 0
+                },
             }, {
-            type: 'category',
-            top: '10%',
-            inverse: true,
-            axisLine: {
-                show: false,
-            },
-            axisTick: {
-                show: false,
-            },
-            show: true,
-            data: dataRes["name2"],
-            axisLabel: {
-                color: "#9DCCFF",
-                fontSize: 12,
-                padding: [0, 0, 0, 45]
-            },
-        }],
+                type: 'category',
+                top: '10%',
+                inverse: true,
+                axisLine: {
+                    show: false,
+                },
+                axisTick: {
+                    show: false,
+                },
+                show: true,
+                data: dataRes["name2"],
+                axisLabel: {
+                    color: "#9DCCFF",
+                    fontSize: 12,
+                    padding: [0, 0, 0, 45]
+                },
+            }],
         graphic: [
             {
                 type: 'image',
@@ -3038,7 +3032,7 @@ function showCitycomponents(dataRes) {
                     textStyle: {
                         fontSize: 16,
                         color: '#0360E0',
-                        fontWeight:'bold'
+                        fontWeight: 'bold'
                     },
                     padding: [0, 5, 0, 0]
                 },
@@ -3190,9 +3184,9 @@ function showHouseData(dataList, dataMap, count) {
                 return "{title|" + name + "}{value|" + (dataMap[name]) + "}{unit|  间}"
             },
             textStyle: {
-                align:'right',
+                align: 'right',
                 rich: {
-                    align:'right',
+                    align: 'right',
                     title: {
                         fontFamily: 'Microsoft YaHei',
                         fontWeight: 400,
@@ -3209,7 +3203,7 @@ function showHouseData(dataList, dataMap, count) {
                         padding: [0, 6, 0, 10],
                         color: "#F9CB42",
                         width: 30,
-                        align:'right'
+                        align: 'right'
                     },
                     unit: {
                         fontFamily: 'Microsoft YaHei',
@@ -3380,7 +3374,7 @@ function showKeyenterprisesshow(dataType, dataSeries, maxDataList) {
                         fontSize: 16,
                         fontWeight: 'normal',
                         padding: [0, 0, 0, 10],
-                        rich:{
+                        rich: {
                             unity: {
                                 fontFamily: 'Microsoft YaHei',
                                 fontWeight: 400,
@@ -3413,7 +3407,7 @@ function getKeyEnterprises() {
     keyEnterprisesChart = echarts.init(document.getElementById('echLeftContent1'));
     keyEnterprisesChart.resize();
     keyEnterprisesChart.clear();
-    var noCache =  new Date();
+    var noCache = new Date();
     $.getJSON(ctx + "/org/ccmOrgNpse/getDangCompData", {"noCache": noCache}, function (response) {
         var yes = response[1].value;
         var no = response[0].value;
@@ -3460,7 +3454,7 @@ function getAnalysis() {
     analysisChart = echarts.init(document.getElementById('echRightContent0'));
     analysisChart.resize();
     analysisChart.clear();
-    var noCache =  new Date();
+    var noCache = new Date();
     $.getJSON(ctx + "/event/ccmEventIncident/getSafeAnalysisData", {"noCache": noCache}, function (data) {
         var happen = data["happen"];
         var dataX = new Array();
@@ -3541,58 +3535,66 @@ function getEnterprise() {
 /***************************安全生产End****************************/
 /***************************治安态势Start****************************/
 //今日事件
-function getTodayEvent(){
+function getTodayEvent() {
 
 
     var dataList = [
         {
             name: '待办事件',
             value: ''
-        },{
+        }, {
             name: '办理中事件',
             value: ''
-        },{
+        }, {
             name: '已办事件',
             value: ''
-}]
-    var count=0;
+        }]
+    var count = 0;
     $.ajax({
-        type:"get",
-        url:ctx+"/event/ccmEventCasedeal/getNumByHandelStatus",
-        async:false,
-        success:function (data) {
-           if(count){
-               count=(parseInt)(data.tobe)+(parseInt)(data.done)+(parseInt)(data.ing);
-               dataList[0].value=data.tobe;
-               dataList[1].value=data.done;
-               dataList[2].value=data.ing;
-           }else {
-               count=0;
-               for(var i=0;i<dataList.length;i++){
-                   dataList[i].value=0;
-               }
-           }
+        type: "get",
+        url: ctx + "/event/ccmEventCasedeal/getNumByHandelStatus",
+        async: false,
+        success: function (data) {
+            count = (parseInt)(data.tobe) + (parseInt)(data.done) + (parseInt)(data.ing);
+            if (count) {
+                dataList[0].value = data.tobe;
+                dataList[1].value = data.done;
+                dataList[2].value = data.ing;
+            } else {
+                count = 0;
+                for (var i = 0; i < dataList.length; i++) {
+                    dataList[i].value = 0;
+                }
+            }
 
         }
     })
-    //console.log(count);
-    //console.log(dataList)
-    showTodayEvent(dataList,count);
+    showTodayEvent(dataList, count);
 }
-function showTodayEvent(data,count){
+
+function showTodayEvent(data, count) {
 
     var titleArr = [],
         seriesArr = [];
     colors = [
-        [{type: 'linear',x: 0,y: 0,x2: 0.4,y2: 1, colorStops: [{offset: 0,color: '#CD50F2'}, {
-                offset: 1,color: '#4043FF'}],globalCoord: false}, '#414A58'],
-        [{type: 'linear',x: 0,y: 0,x2: 0.4,y2: 1, colorStops: [{offset: 0,color: '#FF8C2D'}, {
-                offset: 1,color: '#F33758'}],globalCoord: false}, '#414A58'],
-        [{type: 'linear',x: 0,y: 0,x2: 0.4,y2: 1, colorStops: [{offset: 0,color: '#00CAF0'}, {
-                offset: 1,color: '#23FA9D'}],globalCoord: false}, '#414A58']
+        [{
+            type: 'linear', x: 0, y: 0, x2: 0.4, y2: 1, colorStops: [{offset: 0, color: '#CD50F2'}, {
+                offset: 1, color: '#4043FF'
+            }], globalCoord: false
+        }, '#414A58'],
+        [{
+            type: 'linear', x: 0, y: 0, x2: 0.4, y2: 1, colorStops: [{offset: 0, color: '#FF8C2D'}, {
+                offset: 1, color: '#F33758'
+            }], globalCoord: false
+        }, '#414A58'],
+        [{
+            type: 'linear', x: 0, y: 0, x2: 0.4, y2: 1, colorStops: [{offset: 0, color: '#00CAF0'}, {
+                offset: 1, color: '#23FA9D'
+            }], globalCoord: false
+        }, '#414A58']
     ]
     //console.info( colors[0][0]['colorStops'][0]['color'])
-    data.forEach(function(item, index) {
+    data.forEach(function (item, index) {
         titleArr.push({
             text: item.name,
             left: index * 30 + 20 + '%',
@@ -3609,7 +3611,7 @@ function showTodayEvent(data,count){
             name: item.name,
             type: 'pie',
             clockWise: false,
-            radius: [42,53],
+            radius: [42, 53],
             itemStyle: {
                 normal: {
                     color: colors[index][0],
@@ -3629,8 +3631,8 @@ function showTodayEvent(data,count){
                 value: item.value,
                 label: {
                     normal: {
-                        formatter: function(params) {
-                            return params.value ;
+                        formatter: function (params) {
+                            return params.value;
                         },
                         position: 'center',
                         show: true,
@@ -3670,6 +3672,7 @@ function showTodayEvent(data,count){
     echLeftContent.clear();
     echLeftContent.setOption(option);
 }
+
 //案事件处理统计
 function showEventProcessing() {
     var echLeftContent = echarts.init(document.getElementById('echLeftContent1'));
@@ -3836,7 +3839,7 @@ function showSafetyAccident() {
                 axisLabel: {
                     color: '#9DCCFF',
                     fontsize: '12px',
-                    rotate:60,
+                    rotate: 60,
                 }
             }
         ],
@@ -4028,7 +4031,7 @@ function showSafetyAccident() {
                     },
                 },
                 z: -10,
-            }),{
+            }), {
                 name: '事故发生',
                 color: ['#F97952'],
                 type: 'bar',
@@ -4090,7 +4093,7 @@ function showEventDeal() {
                 show: true,
                 color: '#9DCCFF',
                 fontsize: '12px',
-                rotate:60,
+                rotate: 60,
             },
             axisLine: {
                 lineStyle: {
@@ -4099,7 +4102,7 @@ function showEventDeal() {
                 }
             },
             axisTick: {
-                show:false,
+                show: false,
                 alignWithLabel: true,
             }
         }],
@@ -4218,7 +4221,7 @@ function getAreaEch() {
     distributionChart.clear();
     var dataX = arr1;
     var dataY = arr2;
-    var bgNum = [arr2[0], arr2[0], arr2[0], arr2[0],arr2[0]];
+    var bgNum = [arr2[0], arr2[0], arr2[0], arr2[0], arr2[0]];
     var option = showDistribution(dataX, bgNum, dataY);
     distributionChart.setOption(option);
 }
@@ -4286,7 +4289,7 @@ function showKeyEnterprises(persent, no, yes) {
             name: '',
         }
     ]
-    var sum=(Number(yes) + Number(no));
+    var sum = (Number(yes) + Number(no));
     var arr = ['middleLost', yes, val1data2, '今日完成进度']
     var piebg = {
         type: 'pie',
@@ -4320,7 +4323,7 @@ function showKeyEnterprises(persent, no, yes) {
             type: 'liquidFill',
             radius: '45%',
             data: [{
-                value: (Number(arr[1])  / sum).toFixed(1),
+                value: (Number(arr[1]) / sum).toFixed(1),
                 itemStyle: {
                     normal: {
                         color: '#53d5ff',
@@ -4479,7 +4482,7 @@ function showPreventive(dataX, dataY) {
                 }
             },
             max: function (value) {
-                return (value.max + 25)/10*10;
+                return (value.max + 25) / 10 * 10;
             },
             axisLine: {
                 show: true,
@@ -4531,10 +4534,10 @@ function showPreventive(dataX, dataY) {
             },
 
             markPoint: {
-                symbol:'image:///arjccm/static/images/rect.png',
-                symbolKeepAspect:true,
-                symbolSize:[40,40],
-                symbolOffset:[0, -25] ,
+                symbol: 'image:///arjccm/static/images/rect.png',
+                symbolKeepAspect: true,
+                symbolSize: [40, 40],
+                symbolOffset: [0, -25],
                 data: [{
                     type: 'max',
                     name: '最大值'
@@ -4548,7 +4551,7 @@ function showPreventive(dataX, dataY) {
                     color: '#FFFFFF ',
                     fontSize: 16,
                     fontFamily: 'MicrosoftYaHei',
-                    padding:[0,0,8,0],
+                    padding: [0, 0, 8, 0],
                 },
                 itemStyle: {
                     normal: {
@@ -4630,7 +4633,7 @@ function showDistribution(dataX, bgNum, dataY) {
             symbol: 'rect',
             symbolRepeat: true,
             symbolMargin: 1,
-             barMinHeight: 150,
+            barMinHeight: 150,
             symbolSize: [25, 10],
             itemStyle: {
                 normal: {
@@ -4848,7 +4851,7 @@ function showAnalysis(dataListA, legendListA, dataListB, legendListB, dataX, dat
         yAxis: [{
             type: 'value',
             max: function (value) {
-                return (value.max + 25)/10*10;
+                return (value.max + 25) / 10 * 10;
             },
             axisLabel: {
                 formatter: '{value}',
@@ -4933,7 +4936,7 @@ function showAnalysis(dataListA, legendListA, dataListB, legendListB, dataX, dat
                     return str;
                 },
             },
-            color: [ '#5085f2', '#e75fc3', '#f87be2', '#f2719a', '#fca4bb', '#f59a8f', '#fdb301', '#57e7ec', '#cf9ef1', '#57e7ec', '#cf9ef1','#7349F2', '#8A3CBE', '#E16E4E', '#BB9815', '#8d7fec',],
+            color: ['#5085f2', '#e75fc3', '#f87be2', '#f2719a', '#fca4bb', '#f59a8f', '#fdb301', '#57e7ec', '#cf9ef1', '#57e7ec', '#cf9ef1', '#7349F2', '#8A3CBE', '#E16E4E', '#BB9815', '#8d7fec',],
             data: dataListB
         }, {
             name: '事故发生趋势',
@@ -4962,10 +4965,10 @@ function showAnalysis(dataListA, legendListA, dataListB, legendListB, dataX, dat
                 }
             },
             markPoint: {
-                symbol:'image:///arjccm/static/images/rect2.png',
-                symbolKeepAspect:true,
-                symbolSize:[40,40],
-                symbolOffset:[0, -25] ,
+                symbol: 'image:///arjccm/static/images/rect2.png',
+                symbolKeepAspect: true,
+                symbolSize: [40, 40],
+                symbolOffset: [0, -25],
                 data: [{
                     type: 'max',
                     name: '最大值'
@@ -4979,7 +4982,7 @@ function showAnalysis(dataListA, legendListA, dataListB, legendListB, dataX, dat
                     color: '#FFFFFF',
                     fontSize: 16,
                     fontFamily: 'MicrosoftYaHei',
-                    padding:[0,0,8,0],
+                    padding: [0, 0, 8, 0],
                 },
                 itemStyle: {
                     normal: {
@@ -4992,6 +4995,7 @@ function showAnalysis(dataListA, legendListA, dataListB, legendListB, dataX, dat
     };
     analysisChart.setOption(option);
 }
+
 // parent.layer.config({
 //     extend: 'layer.css', //加载您的扩展样式
 //     skin: 'layer-ext-yourskin'
@@ -5008,8 +5012,8 @@ function LayerDialog(src, title, height, width) {
         //btn: [ '确定',  '关闭'], //可以无限个按钮
         content: src,
         zIndex: '1992',
-        skin:"mySkin"
-});
+        skin: "mySkin"
+    });
 
 }
 
@@ -5017,8 +5021,8 @@ function getMapInfo() {
     var formType = $("#formType").val();
     var areaId = $("#areaId").val();
     var formName = $("#formName").val();
-    if(formType == 1 || formType == 2){
-        if($('#areaName').val() == null || $('#areaName').val() == "" || $('#areaName').val() == undefined){
+    if (formType == 1 || formType == 2) {
+        if ($('#areaName').val() == null || $('#areaName').val() == "" || $('#areaName').val() == undefined) {
             // parent.layer.msg("请选择辖区范围!");
             $.jBox.tip('请选择辖区范围!');
             return;
@@ -5538,46 +5542,48 @@ function moreColor(formType, areaId, formName, methods) {
         }
     })
 }
+
 function areaChangeJboxStyle(h) {
     document.getElementById('jbox-iframe').contentWindow.document.body.style.backgroundColor = "transparent";
-    document.getElementById('jbox-iframe').contentWindow.document.body.style.color="white";
-}
-function videoChangeJboxStyle(h) {
-    document.getElementById('jbox-iframe').contentWindow.document.body.style.backgroundColor = "transparent";
-    document.getElementById('jbox-iframe').contentWindow.document.body.style.color="white";
+    document.getElementById('jbox-iframe').contentWindow.document.body.style.color = "white";
 }
 
-function videoTreeselectCallBack(v, h, f){
-	if (v=="ok"){
-		var tree = h.find("iframe")[0].contentWindow.tree;//h.find("iframe").contents();
-		var ids = [], names = [], nodes = [];
-		if ("${checked}" == "true"){
-			nodes = tree.getCheckedNodes(true);
-		}else{
-			nodes = tree.getSelectedNodes();
-		}
-		for(var i=0; i<nodes.length; i++) {
-			if(nodes[i].type == "camera"){
-				ids.push(nodes[i].id);
-				names.push(nodes[i].name);
-			}else{
-				top.$.jBox.tip("不能选择非监控节点（"+nodes[i].name+"）请重新选择。");
-				$("#videoId").val("");
-				$("#videoName").val("");
-				return false;
-			}
-		}
-		var name = names.join(",");
-		var id = ids.join(",").replace(/u_/ig,"");
-		if(name == null || name == "" || name == undefined){
-			$("#videoId").val("");
-			$("#videoName").val("");
-			return false;
-		}else{
-			$("#videoId").val(id);
-			$("#videoName").val(names.join(","));
-			$('#ccmLiveVideoVisualized').attr("src","/arjccm/a/ccmsys/ccmDevice/getDeviceMap?id=" + id);
-			return true;
-		}
-	}
+function videoChangeJboxStyle(h) {
+    document.getElementById('jbox-iframe').contentWindow.document.body.style.backgroundColor = "transparent";
+    document.getElementById('jbox-iframe').contentWindow.document.body.style.color = "white";
+}
+
+function videoTreeselectCallBack(v, h, f) {
+    if (v == "ok") {
+        var tree = h.find("iframe")[0].contentWindow.tree;//h.find("iframe").contents();
+        var ids = [], names = [], nodes = [];
+        if ("${checked}" == "true") {
+            nodes = tree.getCheckedNodes(true);
+        } else {
+            nodes = tree.getSelectedNodes();
+        }
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].type == "camera") {
+                ids.push(nodes[i].id);
+                names.push(nodes[i].name);
+            } else {
+                top.$.jBox.tip("不能选择非监控节点（" + nodes[i].name + "）请重新选择。");
+                $("#videoId").val("");
+                $("#videoName").val("");
+                return false;
+            }
+        }
+        var name = names.join(",");
+        var id = ids.join(",").replace(/u_/ig, "");
+        if (name == null || name == "" || name == undefined) {
+            $("#videoId").val("");
+            $("#videoName").val("");
+            return false;
+        } else {
+            $("#videoId").val(id);
+            $("#videoName").val(names.join(","));
+            $('#ccmLiveVideoVisualized').attr("src", "/arjccm/a/ccmsys/ccmDevice/getDeviceMap?id=" + id);
+            return true;
+        }
+    }
 }
