@@ -506,10 +506,10 @@
 		WHERE
 			a.del_flag = 0 
 			AND a.system_level = c.param_str 
-			AND (
+			/*AND (
 			a.amount_date &gt; date_format( DATE_SUB( curdate( ), INTERVAL 1 MONTH ), '%Y-%m' )
 			AND a.amount_date &lt; date_format( DATE_SUB( curdate( ), INTERVAL 0 MONTH ), '%Y-%m' )
-			)
+			)*/
 	</select>
 
 </mapper>
