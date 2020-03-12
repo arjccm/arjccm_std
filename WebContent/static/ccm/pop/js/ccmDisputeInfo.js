@@ -5,14 +5,14 @@ $(function() {
 	var myChart1 = echarts.init(document.getElementById('ech1'), 'walden');
 	var myChart2 = echarts.init(document.getElementById('ech2'), 'walden');
 	// 标题
-	var title1 = [ "本月矛盾纠纷新增人数", "本月矛盾纠纷总数" ], title2 = [ "新增矛盾纠纷人数", "有矛盾纠纷总人数" ];
+	var title1 = [ "本月闹事行凶报复嫌疑新增人数", "本月闹事行凶报复嫌疑总数" ], title2 = [ "新增闹事行凶报复嫌疑人数", "闹事行凶报复嫌疑总人数" ];
 	// 初始化页面方法
 	showEchart();
 	// 展示 页面的方法
 	function showEchart() {
 		// GetJson 获取数据
 		$.post(context + "/report/ccmPeopleStat/personStat", {
-			title : "矛盾纠纷",
+			title : "闹事行凶报复嫌疑",
 			type : 21
 		}, function(data) {
 			// 图表1 数据
@@ -58,8 +58,8 @@ $(function() {
 				return table;
 			}
 			// 生成图表
-			$.myChartPeople(title1, ajaxDataX1, seriesDate1, myChart1,"矛盾纠纷人数",40,areaToContent);
-			$.myChartPeople(title2, ajaxDataX2, seriesDate2, myChart2,"矛盾纠纷人数",0,optionToContent);
+			$.myChartPeople(title1, ajaxDataX1, seriesDate1, myChart1,"闹事行凶报复嫌疑人数",40,areaToContent);
+			$.myChartPeople(title2, ajaxDataX2, seriesDate2, myChart2,"闹事行凶报复嫌疑人数",0,optionToContent);
 			// 生成 表单
 			$.TableListPeople("echList1", ajaxDataYALL1, ajaxDataX1);
 			$.TableListPeople("echList2", ajaxDataYALL2, ajaxDataX2);

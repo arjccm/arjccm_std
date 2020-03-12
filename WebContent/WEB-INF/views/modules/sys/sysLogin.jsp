@@ -267,7 +267,7 @@
 		<span style="font-size:28px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;white-space: nowrap;background: none;">${fns:getConfig('productName_part1')}${fns:getConfig('productName_part2')}</span>
 	</div>
 	<form id="loginForm" class="form-signin" action="${ctx}/login" method="post">
-		<h2 class="loginTip"></h2>
+		<h2 class="loginTip">账号登录</h2>
 		<img class="userIcon" src='/arjccm/static/images/loginImages/input_user_Icon.png'>
 		<input type="text" id="username" name="username" placeholder="请输入用户名" class="input-block-level required" style="padding-left: 55px" value="${username}">
 		<img class="pwdIcon" src='/arjccm/static/images/loginImages/input_pwd_Icon.png'>

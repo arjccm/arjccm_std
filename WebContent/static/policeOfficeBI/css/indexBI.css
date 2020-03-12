@@ -137,6 +137,15 @@ body{
 .navBasic_data .red_text{
 	color: #ff5313 !important;
 }
+.left_box li:nth-child(2) p:last-child{
+    color: #ff5313 !important;
+}
+.right_box li:nth-child(3) p:last-child{
+    color: #ff5313 !important;
+}
+.right_box li:nth-child(4) p:last-child{
+    color: #ff5313 !important;
+}
 .right_box li:nth-child(5) {
 	background: url("../img/common/navBasic_bg_02.png") no-repeat center;
 }

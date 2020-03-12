@@ -242,13 +242,13 @@
 
 			console.log("============================")
 			$.each(data, function (key, value) {
-				$("#sj_lil").before('<li class="clearfix"><p>'+key+'</p><p class="red_text">'+value+'</p></li>')
+				$("#sj_lil").before('<li class="clearfix"><p>'+key+'</p><p >'+value+'</p></li>')
 			});
 		})
 		$.getJSON(ctx + '/sys/BicMap/countHZ2', function(data) {
 			console.log("============================")
 			$.each(data, function (key, value) {
-				$("#sj_lir").before('<li class="clearfix"><p>'+key+'</p><p class="red_text">'+value+'</p></li>')
+				$("#sj_lir").before('<li class="clearfix"><p>'+key+'</p><p >'+value+'</p></li>')
 			});
 		})
 

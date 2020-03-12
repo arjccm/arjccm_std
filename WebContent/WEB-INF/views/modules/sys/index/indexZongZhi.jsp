@@ -120,7 +120,7 @@
 			<div class="col-md-3 common" style="height: 100%;">
 				<div class="center" style="background-color: white;margin-top: -30px">
 					<div class="center-header zongzhi-color3">
-						<a href="${ctx}/house/ccmHouseSchoolrim/list">社会治安</a>
+						<a href="${ctx}/event/ccmEventKacc/map">社会治安</a>
 					</div>
 					<div class="center-main">
 						<div class="col-md-6 dataDiv">

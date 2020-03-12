@@ -213,6 +213,10 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 				ccmTenantRecord.setCreateDate(new Date());
 				ccmTenantRecord.setLiveDate(new Date());
 				ccmTenantRecord.setLeaveDate(new Date());
+				ccmTenantRecord.setCreateBy(ccmPeople.getCreateBy());
+				ccmTenantRecord.setCreateDate(ccmPeople.getCreateDate());
+				ccmTenantRecord.setUpdateBy(ccmPeople.getUpdateBy());
+				ccmTenantRecord.setUpdateDate(ccmPeople.getUpdateDate());
 				ccmTenantRecordService.save(ccmTenantRecord);
 			}
 		}else {
@@ -225,6 +229,10 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 			ccmTenantRecord.setCreateDate(new Date());
 			ccmTenantRecord.setLiveDate(new Date());
 			ccmTenantRecord.setLeaveDate(new Date());
+			ccmTenantRecord.setCreateBy(ccmPeople.getCreateBy());
+			ccmTenantRecord.setCreateDate(ccmPeople.getCreateDate());
+			ccmTenantRecord.setUpdateBy(ccmPeople.getUpdateBy());
+			ccmTenantRecord.setUpdateDate(ccmPeople.getUpdateDate());
 			ccmTenantRecordService.save(ccmTenantRecord);
 		}
 		super.save(ccmPeople);

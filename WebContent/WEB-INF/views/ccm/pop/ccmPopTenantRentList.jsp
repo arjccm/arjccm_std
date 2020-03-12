@@ -43,13 +43,11 @@
 					title="网格" url="/tree/ccmTree/treeDataArea?type=7&areaid="
 					cssClass="input-medium" allowClear="true"
 					notAllowSelectParent="true" /></li>
-			<%-- 			<li><label>状态：</label> 
-				<form:select path="houseType" class="input-small">
-					<form:option value="" label="全部"/>
-					<form:options items="${fns:getDictList('ccm_pop_tenant_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</li> --%>
-
+			<li class="first-line"><label class="title-text">出租用途：：</label>
+				<form:select path="rentPur" class="input-medium">
+					<form:option value="" label="全部" />
+					<form:options items="${fns:getDictList('ccm_let_use')}" itemLabel="label" itemValue="value" htmlEscape="false" />
+				</form:select></li>
 
 			<li class="first-line"><label class="title-text">房主姓名：</label> <form:input path="houseName"
 					htmlEscape="false" maxlength="50" class="input-medium" /></li>
