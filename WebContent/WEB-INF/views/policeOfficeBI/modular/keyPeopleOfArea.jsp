@@ -60,8 +60,8 @@
                 grid: {
                     top: 'center',
                     height: 180,
-                    left: 105,
-                    right: 60
+                    left: '20%',
+                    right: '20%'
                 },
                 series: [{
                     type: 'pictorialBar',
