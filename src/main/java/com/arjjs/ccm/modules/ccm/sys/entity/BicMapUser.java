@@ -1,5 +1,6 @@
 package com.arjjs.ccm.modules.ccm.sys.entity;
 
+import java.util.List;
 import java.util.Map;
 
 public class BicMapUser {
@@ -7,7 +8,7 @@ public class BicMapUser {
 
     private  String uid;
     private  String name;
-    private Map<String,String> weekedPlan;
+    private  int[] weekedPlan;
 
     public String getUid() {
         return uid;
@@ -25,15 +26,15 @@ public class BicMapUser {
         this.name = name;
     }
 
-    public Map<String, String> getWeekedPlan() {
+    public int[] getWeekedPlan() {
         return weekedPlan;
     }
 
-    public void setWeekedPlan(Map<String, String> weekedPlan) {
+    public void setWeekedPlan(int[] weekedPlan) {
         this.weekedPlan = weekedPlan;
     }
 
-    public BicMapUser(String uid, String name, Map<String, String> weekedPlan) {
+    public BicMapUser(String uid, String name,int[] weekedPlan) {
         this.uid = uid;
         this.name = name;
         this.weekedPlan = weekedPlan;

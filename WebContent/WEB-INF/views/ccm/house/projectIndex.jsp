@@ -73,14 +73,14 @@
            class="label label-info hide"></span><span class="caret" style="margin-top: 18px;"></span>'} --%>
                         </a>
                             <ul class="dropdown-menu">
-                                <li><a href="${ctx}/sys/user/info" target="mainFrame"><i
+                               <%-- <li><a href="${ctx}/sys/user/info" target="mainFrame"><i
                                         class="icon-user"></i>&nbsp; 个人信息</a></li>
                                 <li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i
                                         class="icon-lock"></i>&nbsp; 修改密码</a></li>
                                 <li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i
                                         class="icon-bell"></i>&nbsp; 我的通知 <span id="notifyNum2"
                                                                                 class="label label-info hide"></span></a>
-                                </li>
+                                </li>--%>
                                 <li><a href="${ctx}/logout" title="退出登录"><i class="icon-signout"></i>&nbsp;退出登录</a></li>
                             </ul>
                         </li>

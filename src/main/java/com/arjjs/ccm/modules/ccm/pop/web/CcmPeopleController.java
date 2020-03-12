@@ -248,7 +248,7 @@ public class CcmPeopleController extends BaseController {
 				ccmPeople.setBuildId(ccmPopTenant.getBuildingId());
 			}
 		}
-		ccmPeopleService.save(ccmPeople);
+        ccmPeopleService.save(ccmPeople);
 		addMessage(redirectAttributes, "保存实有人口成功");
 		return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/listCommunist/?repage";
 	}
@@ -626,6 +626,12 @@ public class CcmPeopleController extends BaseController {
 				ccmPeople.setBuildId(ccmPopTenant.getBuildingId());
 			}
 		}
+        if (sign(ccmPeople)){
+            ccmPeople.setFocuPers(1);
+        }
+        else {
+            ccmPeople.setFocuPers(0);
+        }
 		ccmPeopleService.save(ccmPeople);
 		addMessage(redirectAttributes, "保存实有人口成功");
 		return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/?repage";
@@ -2159,5 +2165,72 @@ public class CcmPeopleController extends BaseController {
 		return ccmPeopleService.queryByIdent(ident);
 	}
 
-
+    /*根据标记类型修改重点人员*/
+    public boolean sign(CcmPeople ccmPeople){
+        Integer a =ccmPeople.getIsBehind();               // 是否留守
+        if (null==a){
+            a=0;
+        }
+        Integer b =ccmPeople.getIsRelease();		        // 是否安置帮教
+        if (null==b){
+            b=0;
+        }
+        Integer c =ccmPeople.getIsRectification();		// 是否社区矫正
+        if (null==c){
+            c=0;
+        }
+        Integer d =ccmPeople.getIsAids();		            // 是否艾滋病患者
+        if (null==d){
+            d=0;
+        }
+        Integer e =ccmPeople.getIsPsychogeny();		    // 是否肇事肇祸等严重精神障碍患者
+        if (null==e){
+            e=0;
+        }
+        Integer f =ccmPeople.getIsKym();		            // 是否重点青少年
+        if (null==f){
+            f=0;
+        }
+        Integer g =ccmPeople.getIsDrugs();		        // 是否吸毒
+        if (null==g){
+            g=0;
+        }
+        Integer h =ccmPeople.getIsHarmNational();         //是否危害国家安全
+        if (null==h){
+            h=0;
+        }
+        Integer i =ccmPeople.getIsDeliberatelyIllegal();  //是否故意犯法释放
+        if (null==i){
+            i=0;
+        }
+        Integer j =ccmPeople.getIsCriminalOffense();      //是否严重犯罪嫌疑
+        if (null==j){
+            j=0;
+        }
+        Integer k =ccmPeople.getIsEscape();               //是否在逃
+        if (null==k){
+            k=0;
+        }
+        Integer l =ccmPeople.getIsVisit();		        // 是否重点上访
+        if (null==l){
+            l=0;
+        }
+        Integer m =ccmPeople.getIsHeresy();		        // 是否涉教
+        if (null==m){
+            m=0;
+        }
+        Integer n =ccmPeople.getIsDangerous();		    // 是否危险品从业人员
+        if (null==n){
+            n=0;
+        }
+        String specialCareType = ccmPeople.getSpecialCareType();// 特殊关怀类型
+        if (",null,".equals(specialCareType)){
+            specialCareType="";
+        }
+        Integer num= a+b+c+d+e+f+g+h+i+j+k+l+m+n;
+        if (num!=0||!"".equals(specialCareType)){
+            return true;
+        }
+            return false;
+    }
 }

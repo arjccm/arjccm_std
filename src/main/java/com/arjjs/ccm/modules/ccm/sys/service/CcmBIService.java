@@ -258,4 +258,10 @@ public class CcmBIService {
         }
         return map;
     }
+
+
+    //警力总数
+    public Integer policeCount(){
+        return areaDao.policeCount();
+    }
 }

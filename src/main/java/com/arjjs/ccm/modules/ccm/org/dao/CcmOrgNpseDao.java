@@ -112,4 +112,8 @@ public interface CcmOrgNpseDao extends CrudDao<CcmOrgNpse> {
 
 	//按照风险级别分组
     public List<EchartType> getNpseGroupByRiskType();
+
+	//实有单位个数
+	public Integer unitsCount();
+
 }

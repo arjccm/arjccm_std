@@ -1091,5 +1091,21 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		return ccmPeopleDao.queryByIdent(ident);
 	}
 
+	//常驻人口个数
+	public Integer findPermanentCount(){
+		return dao.findPermanentCount();
+	}
+	//流动人口个数
+	public Integer findMigrantPopulationCount(){
+		return dao.findMigrantPopulationCount();
+	}
+	//重点人口个数
+	public Integer findfocuPersCount(){
+		return dao.findfocuPersCount();
+	}
+	//实有人口个数
+	public Integer peopleCount(){
+		return dao.peopleCount();
+	}
 
 }

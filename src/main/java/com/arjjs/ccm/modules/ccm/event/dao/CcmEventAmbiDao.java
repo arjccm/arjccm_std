@@ -29,7 +29,9 @@ public interface CcmEventAmbiDao extends CrudDao<CcmEventAmbi> {
 
 	//总数统计
 	List<EchartType> findLineMap(CcmEventAmbi ccmEventAmbi);
-	
+
+	Integer monthCount();//本月纠纷个数
+
 	//按登录用户社区统计
 	List<EchartType> findAreaMap(CcmEventAmbi ccmEventAmbi);
 	

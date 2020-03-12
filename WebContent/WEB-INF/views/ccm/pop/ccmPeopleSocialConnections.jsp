@@ -412,8 +412,8 @@
 			<div style="text-align:center;width:100%;height:100%;"><h3>暂无数据</h3></div>
 		</c:if>
 	</div>
-	<div class="tab-pane fade" id="trafficAccommodation">
-		<div id="traffic-div">
+	<div class="tab-pane fade" id="trafficAccommodation" style="overflow: auto">
+		<div id="traffic-div" class="clearfix">
 			<%--<div class="traffic1">
                 <p class="traffic-p">2019-02-18</p>
                 <img src="${ctxStatic}/images/zdry-top2.png" class="traffic-img">

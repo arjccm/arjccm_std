@@ -797,4 +797,20 @@
         WHERE
         a.house_type=#{houseType} AND a2.type=#{type}
     </select>
+
+    <!--实有房屋个数-->
+    <select id="houseCount" resultType="Integer">
+		SELECT count(1) FROM ccm_pop_tenant a LEFT JOIN sys_area a17 ON a17.id = a.area_id WHERE a.del_flag = 0
+	</select>
+
+    <!--出租屋个数-->
+    <select id="letCount" resultType="Integer">
+		 SELECT count(a.id) FROM ccm_pop_tenant a
+		 LEFT JOIN sys_area a17 ON a17.id = a.area_id
+		 LEFT JOIN ccm_house_buildmanage a18 ON a18.id = a.building_id
+		 WHERE a.del_flag = 0 AND a.house_type = 02
+	</select>
+
+
+
 </mapper>
