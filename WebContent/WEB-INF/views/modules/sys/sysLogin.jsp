@@ -207,7 +207,7 @@
 		.checkIcon{
 			position: absolute;
 			top: -20px;
-			height: 48px;
+			height: 46px;
 			z-index: 999;
 		}
 
@@ -267,7 +267,7 @@
 		<h2 style="color: #fff">三亚市雪亮工程综治网格化管理系统</h2>
 	</div>
 	<form id="loginForm" class="form-signin" action="${ctx}/login" method="post">
-		<h2 class="loginTip">账号登陆</h2>
+		<h2 class="loginTip"></h2>
 		<img class="userIcon" src='/arjccm/static/images/loginImages/input_user_Icon.png'>
 		<input type="text" id="username" name="username" placeholder="请输入用户名" class="input-block-level required" style="padding-left: 55px" value="${username}">
 		<img class="pwdIcon" src='/arjccm/static/images/loginImages/input_pwd_Icon.png'>
