@@ -14,9 +14,10 @@
 .padding {
     padding-bottom: 5px; 
 }
-	#plmWorkEmailSReadName,#title{
+	/*去除选择框的白色底色*/
+/*	#plmWorkEmailSReadName,#title{
 		background-color: #fff!important;
-	}
+	}*/
 </style>
 </head>
 <body>
