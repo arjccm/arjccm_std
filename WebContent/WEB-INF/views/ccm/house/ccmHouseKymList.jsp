@@ -87,6 +87,11 @@
 					<form:option value="" label="" />
 					<form:options items="${fns:getDictList('ccm_conc_exte')}" itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select></li>
+			<li class="first-line"><label class="title-text">人员类型：</label>
+				<form:select path="manType" class="input-medium">
+					<form:option value="" label="" />
+					<form:options items="${fns:getDictList('ccm_delp_type')}" itemLabel="label" itemValue="value" htmlEscape="false" />
+				</form:select></li>
 
 <%--			<li class="clearfix"></li>--%>
 			<li class="first-line"><label class="title-text">家庭情况：</label> <form:select path="famiStat" class="input-medium">
