@@ -137,7 +137,27 @@ body{
 .navBasic_data .red_text{
 	color: #ff5313 !important;
 }
-.navBasic_data ul .ts_01{
+.right_box li:nth-child(5) {
+	background: url("../img/common/navBasic_bg_02.png") no-repeat center;
+}
+.right_box li:nth-child(5) p:first-child{
+	width: 72%;
+}
+.right_box li:nth-child(5) p:last-child{
+	width: 28%;
+}
+.right_box li:nth-child(6) {
+	width: 5.5vw;
+	height: 1.0742vw;
+	background: url("../img/common/navBasic_bg_03.png") no-repeat center;
+}
+.right_box li:nth-child(6) p:first-child{
+	width: 59%;
+}
+.right_box li:nth-child(6) p:last-child{
+	width: 41%;
+}
+/*.navBasic_data ul .ts_01{
 	background: url("../img/common/navBasic_bg_02.png") no-repeat center;
 }
 .navBasic_data ul .ts_01 p:first-child{
@@ -156,7 +176,7 @@ body{
  }
 .navBasic_data ul .ts_02 p:last-child{
 	width: 41%;
-}
+}*/
 
 
 /* container*/
