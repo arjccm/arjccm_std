@@ -251,6 +251,8 @@
 				$("#sj_lir").before('<li class="clearfix"><p>'+key+'</p><p class="red_text">'+value+'</p></li>')
 			});
 		})
+
+
 	}
 </script>
 </body>
