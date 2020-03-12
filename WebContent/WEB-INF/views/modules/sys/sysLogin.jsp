@@ -199,7 +199,7 @@
 		.pwdIcon{
 			position: absolute;
 			top: 39.6%;
-			height: 49px;
+			height: 47px;
 			left: 21.6%;
 			z-index: 999;
 		}
