@@ -3810,7 +3810,7 @@ function showSafetyAccident() {
             y: '50%',
         }],
         tooltip: {
-            show: true,
+            show: false,
             trigger: 'item'
         },
         grid: {
