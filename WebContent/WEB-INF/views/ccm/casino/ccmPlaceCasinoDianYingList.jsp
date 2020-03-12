@@ -122,12 +122,23 @@
 					<td><fmt:formatDate value="${ccmPlaceCasino.updateDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="casino:ccmPlaceCasino:edit">
-						<td><a class="btnList"
+						<td>
+							<a class="btnList"
+							   onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/listCheck?placeId=${ccmPlaceCasino.basePlaceId}', '事件关联', '1100px', '700px')"
+							   title="事件关联"><i class="icon-random"></i></a>
+							<a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/casino/ccmPlaceCasino/form?type=04&id=${ccmPlaceCasino.id}', '编辑', '1100px', '700px')"
 							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
 							href="${ctx}/casino/ccmPlaceCasino/delete?id=${ccmPlaceCasino.id}"
 							onclick="return confirmx('确认要删除该电影院场所吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a></td>
+								class="icon-trash"></i></a>
+							<a class="btnList"
+							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceCasino.id}&type=1', '从业人员添加', '1550px', '800px')"
+							   title="从业人员添加"><i class="icon-plus"></i></a>
+							<a class="btnList"
+							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmPlaceCasino.id}&type=1', '从业人员信息', '1550px', '800px')"
+							   title="从业人员信息"><i class="icon-group"></i></a>
+						</td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>
