@@ -71,7 +71,7 @@
                         textStyle: {
                             fontSize: 12
                         },
-                        rotate: 30,
+                        // rotate: 30,
                         align:'right'
                     }
                 },{
@@ -87,7 +87,7 @@
                     }
                 }],
                 yAxis: {
-                    max: data[0],
+                    // max: data[0],
                     splitLine: {show: false},
                     axisTick: {show: false},
                     axisLine: {show: false},
@@ -97,6 +97,7 @@
                     name: 'hill',
                     type: 'pictorialBar',
                     barCategoryGap: '-130%',
+                    // symbolSize:['50%','100%'],
                     barWidth: '200%',
                     symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
                     itemStyle: {

@@ -45,7 +45,7 @@
             ydata0 = data[6];
             ydata1 = data[7];
             datalen = data[5].length;
-            peopleCountOption = {
+            var peopleCountOption = {
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {

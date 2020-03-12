@@ -115,7 +115,7 @@
                 </div>
             </div>
 
-            <div id="policeForceDistribution" style="height:160px;">
+            <div id="policeForceDistribution" style="height:200px;">
 
             </div>
         </div>
@@ -241,9 +241,10 @@ function PoliceForceDistribution() {
                     }
                 },
                 grid: {
-                    y: 30,
-                    x2: 0,
-                    y2: 30
+                    left:'8%',
+                    right:0,
+                    top:'15%',
+                    bottom:'20%'
                 },
                 legend: {
                     data: ["民警","辅警"],
@@ -274,6 +275,7 @@ function PoliceForceDistribution() {
                         },
                         rotate: 30,
                     },
+                    boundaryGap:true
                 },
 
                 yAxis: {
@@ -306,7 +308,9 @@ function PoliceForceDistribution() {
                 series: [{
                     name: '民警',
                     type: 'bar',
-                    barWidth: '15%',
+                    barWidth: 8,
+                    xAxisIndex: 0,
+                    yAxisIndex: 0,
                     itemStyle: {
                         normal: {
                             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -324,7 +328,9 @@ function PoliceForceDistribution() {
                     {
                         name: '辅警',
                         type: 'bar',
-                        barWidth: '15%',
+                        barWidth: 8,
+                        xAxisIndex: 0,
+                        yAxisIndex: 0,
                         itemStyle: {
                             normal: {
                                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -343,8 +349,7 @@ function PoliceForceDistribution() {
             };
 
             myChart.setOption(policeoption);
-
-            var app = 5;
+            var app = 9;
             setInterval(function () {
                 var xdata = data["name"];
                 var ydata0 = data["data"]["民警"];
