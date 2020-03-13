@@ -65,7 +65,7 @@
                         <li id="userInfo" class="dropdown"><a class="dropdown-toggle"
                                                               data-toggle="dropdown" href="#" title="个人信息">
                             <img style=" width: 40px; height: 40px; border-radius: 100%; margin-right: 37px; margin-top: 16px; ${cookie.theme.value eq 'gradient' ? 'margin-top: 16px' :  'margin-top: 0px'};"
-                                 src="${fns:getUser().photo}"/>
+                                 src="${fns:getUser().photo}" onerror="this.src='${ctxStatic}/images/head/headPhoto.jpg';this.onerror=null"/>
                             <%-- <c:if test="!${cookie.theme.value eq 'gradient' }">
                                     ${fns:getUser().name}&nbsp;
                             </c:if>

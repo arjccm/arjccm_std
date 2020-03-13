@@ -4577,8 +4577,8 @@ ArjMap.Map.prototype = {
                                             //图层边框颜色
                                             stroke: new ol.style.Stroke({
                                                 // color: color ? '#fff' : 'white',
-                                                width: 1,
-                                                color: '#A3DAF4'
+                                                width: 2,
+                                                color: '#05f7fc'
                                             }),
                                             //图层文字颜色
                                             /*text: new ol.style.Text({

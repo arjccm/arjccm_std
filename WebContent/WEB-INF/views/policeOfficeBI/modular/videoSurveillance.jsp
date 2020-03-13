@@ -3,6 +3,7 @@
 	#sbzs{
 		width: 100%;
 		text-align: center;
+		margin-bottom: 10px;
 	}
 	#sbzs .sp1{
 	width:85px;
@@ -12,6 +13,7 @@
 	font-weight:400;
 	color:rgba(255,255,255,1);
 	line-height:26px;
+		margin-right: 10px;
 	}
 	#sbzs .sp2{
 		width:19px;
@@ -126,14 +128,15 @@
 					splitLine: {
 						show: true,
 						lineStyle: {
-							color: 'rgba(255,255,255,.2)'
+							color: 'rgba(255,255,255,.2)',
+							type:'dashed'
 						}
 					},
 					axisLine: {
 						show: true,
 						lineStyle: {
-							width: 2,
-							color: 'rgba(255,255,255,.6)'
+							width: 1,
+							color: '#455865'
 						}
 					},
 					axisTick: {
@@ -154,14 +157,15 @@
 					splitLine: {
 						show: true,
 						lineStyle: {
-							color: 'rgba(255,255,255,.2)'
+							color: 'rgba(255,255,255,.2)',
+							type:'dashed'
 						}
 					},
 					axisLine: {
 						show: true,
 						lineStyle: {
-							width: 2,
-							color: 'rgba(255,255,255,.6)'
+							width: 1,
+							color: '#455865'
 						}
 					},
 
