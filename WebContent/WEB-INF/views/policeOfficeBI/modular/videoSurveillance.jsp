@@ -3,6 +3,7 @@
 	#sbzs{
 		width: 100%;
 		text-align: center;
+		margin-bottom: 10px;
 	}
 	#sbzs .sp1{
 	width:85px;
@@ -12,6 +13,7 @@
 	font-weight:400;
 	color:rgba(255,255,255,1);
 	line-height:26px;
+		margin-right: 10px;
 	}
 	#sbzs .sp2{
 		width:19px;

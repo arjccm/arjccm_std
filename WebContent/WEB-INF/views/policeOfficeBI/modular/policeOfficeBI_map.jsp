@@ -51,6 +51,7 @@
 		font-size: 12px;
 		font-family: "MicrosoftYaHei";
 		color: #FFFFFF;
+		padding-left: 17px!important;
 	}
 
 	.sxtback{
@@ -161,11 +162,11 @@
 <%--		<i class="fa fa-pause" aria-hidden="true"></i>--%>
 	</div>
 	<div class="topmapbutton">
-		<button type="button" value="重点人员" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_ry.png) no-repeat 11px 13px;" onclick="getKeyPeopleNum(this)" id="keypeople">重点人员<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
-        <button type="button" value="视频监控"  class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zx.png) no-repeat 4px 16px;" onclick="shipinjiankongFun(this)" id="shipinjiankong">视频监控<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
-		<button type="button" value="出租屋"  class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_czw.png) no-repeat 4px 16px;" onclick="getLetNum(this)" id="getLet">出租屋<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
-		<button type="button" value="场所特业" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_cs.png) no-repeat 4px 16px;" onclick="getBasePlaceMap(this)" id="baseplace">场所特业<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
-		<button type="button" value="警情事件" class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_jq.png) no-repeat 4px 16px;" onclick= "getAlarm(this)" id="alarm">警情事件<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+		<button type="button" value="重点人员" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_ry.png) no-repeat 19px 15px;" onclick="getKeyPeopleNum(this)" id="keypeople">重点人员<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+        <button type="button" value="视频监控"  class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_sxt-zx.png) no-repeat 14px 18px;" onclick="shipinjiankongFun(this)" id="shipinjiankong">视频监控<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+		<button type="button" value="出租屋"  class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_czw.png) no-repeat 17px 17px;" onclick="getLetNum(this)" id="getLet">出租屋<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+		<button type="button" value="场所特业" class="btninp" style="background:url(${ctxStatic}/policeOfficeBI/img/map_cs.png) no-repeat 13px 18px;" onclick="getBasePlaceMap(this)" id="baseplace">场所特业<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
+		<button type="button" value="警情事件" class="btninp"  style="background:url(${ctxStatic}/policeOfficeBI/img/map_jq.png) no-repeat 15px 17px;" onclick= "getAlarm(this)" id="alarm">警情事件<div class="selectBg"><i class="fa fa-check" aria-hidden="true"></i></div></button>
 	</div>
 
 	<div class="sxtback" id="sxtshow" style="display: none">

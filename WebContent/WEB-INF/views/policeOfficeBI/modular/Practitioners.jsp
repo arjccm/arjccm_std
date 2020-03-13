@@ -44,11 +44,11 @@
 					extraCssText: "box-shadow: 0 0 3px rgba(255, 255, 255, 0.4);" //添加阴影
 				},
 				grid: {
-					top: "10%",
-					left: "-3%",
+					top: "15%",
+					left: "5%",
 					right: "5%",
-					bottom: "10%",
-					containLabel: true
+					bottom: "18%",
+					// containLabel: true
 				},
 				xAxis: [{
 					type: "category",
@@ -58,7 +58,8 @@
 					axisLine: {
 						show: true,
 						lineStyle: {
-							color: "#a8e7ff"
+							color: "#354957",
+							width:1
 						}
 					},
 					axisLabel: {
