@@ -245,6 +245,7 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 			ccmTenantRecord.setLeaveDate(new Date());
 			ccmTenantRecordService.save(ccmTenantRecord);
 		}
+
 		super.save(ccmPeople);
 		
 		//上传上级平台记录
