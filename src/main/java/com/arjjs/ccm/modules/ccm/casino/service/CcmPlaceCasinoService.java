@@ -27,18 +27,11 @@ public class CcmPlaceCasinoService extends CrudService<CcmPlaceCasinoDao, CcmPla
 		return super.get(id);
 	}
 
-	//统计网吧个数
-	public Integer conutWb(){
-		return dao.countWb();
+	//统计网吧、Ktv、足浴个数
+	public List<Integer> countCasino(){
+		return dao.countCasino();
 	}
-	//统计足浴个数
-	public Integer conutFootBath(){
-		return dao.conutFootBath();
-	}
-	//统计Ktv个数
-	public Integer conutKtv(){
-		return dao.countKtv();
-	}
+
 	
 	public List<CcmPlaceCasino> findList(CcmPlaceCasino ccmPlaceCasino) {
 		return super.findList(ccmPlaceCasino);

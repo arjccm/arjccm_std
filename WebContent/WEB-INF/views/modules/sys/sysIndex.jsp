@@ -561,7 +561,7 @@ function addTab($this, refresh) {
 					</li> 
 					<li id="userInfo" class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#" title="个人信息">
-						<img style=" width: 29px; height: 29px; border-radius: 100%;margin-right: 18px; margin-top: -9px" src="${fns:getUser().photo}"/>
+						<img style=" width: 29px; height: 29px; border-radius: 100%;margin-right: 18px; margin-top: -9px" src="${fns:getUser().photo}" onerror="this.src='${ctxStatic}/images/head/headPhoto.jpg';this.onerror=null"/>
 							<%-- <c:if test="!${cookie.theme.value eq 'gradient' }">
 								${fns:getUser().name}&nbsp;
 						    </c:if> --%>
