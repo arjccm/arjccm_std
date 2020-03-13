@@ -15,6 +15,10 @@
 /*	background: #09304d;*/
 /*	opacity: 0.9;*/
 /*}*/
+.alarmdata_box table tr{
+	border-bottom: 1px solid #0D70A1;
+	border-top: 1px solid #0D70A1;
+}
 .alarmdata_box table .tb_hd{
 	font-size: 0.455vw;
 	color: #ffffff;
@@ -29,7 +33,7 @@
 	opacity: 0.6;
 	text-align: center;
 	line-height: 2.344vh;
-	border-bottom: 1px solid #0D70A1;
+	/*border-bottom: 1px solid #0D70A1;*/
 	width: 25%;
 	display: -webkit-box;
 	-webkit-line-clamp: 1;
