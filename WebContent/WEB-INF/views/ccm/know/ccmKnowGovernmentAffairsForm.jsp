@@ -76,7 +76,7 @@
 					<div class="control-group">
 						<label class="control-label">详情：</label>
 						<div class="controls">
-							<form:textarea path="details" htmlEscape="false" rows="12" maxlength="1000" class="input-xxlarge "/>
+							<form:textarea path="details" htmlEscape="false" rows="3" maxlength="1000" class="input-xxlarge "/>
 						</div>
 					</div>
 				</td>
