@@ -142,7 +142,8 @@
                     type: 'bar',
                     yAxisIndex: 1,
                     barGap: '-100%',
-                    data: [100, 100, 100, 100, 100],
+                    data: [105, 105, 105, 105, 105],
+                    barCategoryGap:'10%',
                     barWidth: 19,
                     itemStyle: {
                         normal: {

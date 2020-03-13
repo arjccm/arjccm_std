@@ -146,20 +146,22 @@
 					sj_tr.before('<tr><td>NO.'+(i+1)+'</td><td>'+data[i]["content"]+'</td><td>'+data[i]["handleName"]+'</td><td>'+data[i]["state"]+'</td></tr>')
 				}
             }
+			$(".table_list tr:even td").css({
+				"backgroundColor":"#09304d",
+				"opacity":0.9
+			})
+			var trHt =  $(".table_list").find("tr").outerHeight()
+			var tblList = $(".table_list").height(trHt*6)
+			$(".table_list").myScroll({
+				speed:40, //数值越大，速度越慢
+				rowHeight:trHt //li的高度
+			});
 
-        })
 
-		var trHt =  $(".table_list").find("tr").outerHeight()
-		var tblList = $(".table_list").height(trHt*6)
-		$(".table_list").myScroll({
-			speed:40, //数值越大，速度越慢
-			rowHeight:trHt //li的高度
-		});
-
-		$(".table_list tr:even").css({
-			"backgroundColor":"#09304d",
-			"opacity":0.9
 		})
+
+
+
 
 
 
