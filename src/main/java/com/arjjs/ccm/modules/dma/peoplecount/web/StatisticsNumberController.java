@@ -3,7 +3,7 @@ package com.arjjs.ccm.modules.dma.peoplecount.web;
 import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.ccm.event.entity.CcmEventAmbi;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgNpseService;
-import com.arjjs.ccm.modules.ccm.place.service.CcmBasePlaceService;
+import com.arjjs.ccm.modules.ccm.place.base.service.CcmBasePlaceService;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
 import com.arjjs.ccm.tool.EchartType;

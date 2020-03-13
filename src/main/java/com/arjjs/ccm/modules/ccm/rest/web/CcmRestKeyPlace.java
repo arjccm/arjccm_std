@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.utils.StringUtils;
-import com.arjjs.ccm.modules.ccm.event.entity.CcmEventIncident;
-import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlace;
-import com.arjjs.ccm.modules.ccm.place.service.CcmBasePlaceService;
+import com.arjjs.ccm.modules.ccm.place.base.entity.CcmBasePlace;
+import com.arjjs.ccm.modules.ccm.place.base.service.CcmBasePlaceService;
 import com.arjjs.ccm.tool.CommUtilRest;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.web.BaseController;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgNpse;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgNpseService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;

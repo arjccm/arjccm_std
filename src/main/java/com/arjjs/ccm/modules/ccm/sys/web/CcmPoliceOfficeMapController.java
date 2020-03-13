@@ -1,24 +1,21 @@
 package com.arjjs.ccm.modules.ccm.sys.web;
 
 
-import com.arjjs.ccm.modules.ccm.casino.entity.CcmPlaceCasino;
-import com.arjjs.ccm.modules.ccm.casino.service.CcmPlaceCasinoService;
+import com.arjjs.ccm.modules.ccm.place.casino.entity.CcmPlaceCasino;
+import com.arjjs.ccm.modules.ccm.place.casino.service.CcmPlaceCasinoService;
 import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDevice;
 import com.arjjs.ccm.modules.ccm.ccmsys.service.CcmDeviceService;
-import com.arjjs.ccm.modules.ccm.hotel.entity.CcmPlaceHotel;
-import com.arjjs.ccm.modules.ccm.hotel.service.CcmPlaceHotelService;
+import com.arjjs.ccm.modules.ccm.place.hotel.entity.CcmPlaceHotel;
+import com.arjjs.ccm.modules.ccm.place.hotel.service.CcmPlaceHotelService;
 import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
-import com.arjjs.ccm.modules.ccm.place.service.CcmBasePlaceService;
-import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
-import com.arjjs.ccm.modules.ccm.pop.dao.CcmPopTenantDao;
+import com.arjjs.ccm.modules.ccm.place.base.service.CcmBasePlaceService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.rest.entity.AlarmHandleInfo;
 import com.arjjs.ccm.modules.ccm.rest.service.AlarmHandleInfoService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.tool.EchartType;
-import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.tool.geoJson.Features;
 import com.arjjs.ccm.tool.geoJson.GeoJSON;
 import com.arjjs.ccm.tool.geoJson.Geometry;
