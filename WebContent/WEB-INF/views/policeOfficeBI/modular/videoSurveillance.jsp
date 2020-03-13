@@ -128,14 +128,15 @@
 					splitLine: {
 						show: true,
 						lineStyle: {
-							color: 'rgba(255,255,255,.2)'
+							color: 'rgba(255,255,255,.2)',
+							type:'dashed'
 						}
 					},
 					axisLine: {
 						show: true,
 						lineStyle: {
-							width: 2,
-							color: 'rgba(255,255,255,.6)'
+							width: 1,
+							color: '#455865'
 						}
 					},
 					axisTick: {
@@ -156,14 +157,15 @@
 					splitLine: {
 						show: true,
 						lineStyle: {
-							color: 'rgba(255,255,255,.2)'
+							color: 'rgba(255,255,255,.2)',
+							type:'dashed'
 						}
 					},
 					axisLine: {
 						show: true,
 						lineStyle: {
-							width: 2,
-							color: 'rgba(255,255,255,.6)'
+							width: 1,
+							color: '#455865'
 						}
 					},
 
