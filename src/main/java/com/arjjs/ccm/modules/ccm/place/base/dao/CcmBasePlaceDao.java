@@ -1,13 +1,13 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.arjjs.ccm.modules.ccm.place.dao;
+package com.arjjs.ccm.modules.ccm.place.base.dao;
 
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
-import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlace;
-import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceEntity;
-import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceVO;
+import com.arjjs.ccm.modules.ccm.place.base.entity.CcmBasePlace;
+import com.arjjs.ccm.modules.ccm.place.base.entity.CcmBasePlaceEntity;
+import com.arjjs.ccm.modules.ccm.place.base.entity.CcmBasePlaceVO;
 import com.arjjs.ccm.tool.EchartType;
 
 import java.util.List;
