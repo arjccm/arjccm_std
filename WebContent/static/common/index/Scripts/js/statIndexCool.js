@@ -2340,7 +2340,7 @@ function getPeopleData(noCache) {
     $.getJSON(ctx + "/report/ccmPeopleAmount/getAnalyzePopNewData", {"noCache": noCache}, function (data) {
         for (var i = 0; i < data.length; i++) {
             if (data[i] > 99999) {
-                data[i] = (parseInt(data[i] / 10000.) + '万');
+                data[i] = (parseInt(data[i] / 10000) + '万');
             }
         }
         var dataList = [{
@@ -2374,6 +2374,9 @@ function getPeopleData(noCache) {
         $(".rksj4 .rknum").html(dataList[3].value)
         $(".rksj4 .rktitle").html(dataList[3].name)
         var count = (parseInt)(data[0]) + (parseInt)(data[1]) + (parseInt)(data[2]) + (parseInt)(data[3])
+        if(count>99999){
+            count = (parseInt(count / 10000) + '万');
+        }
         $("#rkt1 .rkzs").html(count);
     });
 
