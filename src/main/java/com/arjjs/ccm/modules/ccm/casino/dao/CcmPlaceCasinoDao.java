@@ -7,6 +7,8 @@ import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.casino.entity.CcmPlaceCasino;
 
+import java.util.List;
+
 /**
  * 娱乐场所DAO接口
  * @author ljd
@@ -14,12 +16,7 @@ import com.arjjs.ccm.modules.ccm.casino.entity.CcmPlaceCasino;
  */
 @MyBatisDao
 public interface CcmPlaceCasinoDao extends CrudDao<CcmPlaceCasino> {
-    //统计网吧个数
-    Integer countWb();
+    //统计网吧、Ktv、足浴个数
+    List<Integer> countCasino();
 
-    //统计足浴个数
-    Integer conutFootBath();
-
-    //统计KTV个数
-    Integer countKtv();
 }

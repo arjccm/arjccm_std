@@ -153,12 +153,8 @@ public class CcmBIController {
     public Map<String, Object> concernCompany(){
         // 返回对象结果
         Map<String, Object> map = Maps.newHashMap();
-        //网吧个数
-        Integer internetBar = ccmPlaceCasinoService.conutWb();
-        //足浴个数
-        Integer footBath = ccmPlaceCasinoService.conutFootBath();
-        //统计Ktv个数
-        Integer ktv = ccmPlaceCasinoService.conutKtv();
+        //统计网吧、Ktv、足浴个数
+        List<Integer> casinos = ccmPlaceCasinoService.countCasino();
         //统计酒店个数
         Integer hotel = ccmPlaceHotelService.countHotel();
         //统计加油站个数
@@ -172,9 +168,9 @@ public class CcmBIController {
         map.put("hgc",200);
         map.put("powerStation",200);
         map.put("hotel",hotel);
-        map.put("internetBar",internetBar);
-        map.put("footBath",footBath);
-        map.put("ktv",ktv);
+        map.put("internetBar",casinos.get(0));
+        map.put("footBath",casinos.get(2));
+        map.put("ktv",casinos.get(1));
 
         return map;
     }
