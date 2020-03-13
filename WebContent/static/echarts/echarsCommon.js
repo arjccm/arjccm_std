@@ -185,6 +185,20 @@ $(function () {
 
     //户籍人口类型图形生成
     $.getSeriesDateHuji = function (titleS, ajaxDataYALLS) {
+
+        var color1 = [ '#3fb1e3', '#3fb1e3' ]
+        var barWidth = '30%';
+        if ($.cookie('theme') == undefined) {
+            color1 = [ '#3fb1e3', '#3fb1e3' ]
+            var barWidth = '30%';
+        } else if ($.cookie('theme') == 'gradient') {
+            color1 = [ '#3fb1e3', '#3fb1e3' ]
+            var barWidth = '30%';
+        } else if ($.cookie('theme') == 'black') {
+            color1 = [ '#32F7FF','#0E2A4C' ]
+            var barWidth = '62%';
+        }
+
         // 返回数据
         var seriesDate1 = new Array();
         // // for 循环生成数据
@@ -192,15 +206,15 @@ $(function () {
         seriesDate1.push({
             "name": titleS[1],
             "type": 'bar',
-            "barWidth": '62%',
+            "barWidth": barWidth,
             itemStyle: {
                 normal: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                         offset: 0,
-                        color: '#32F7FF' // 0% 处的颜色
+                        color: color1[0] // 0% 处的颜色
                     }, {
                         offset: 1,
-                        color: '#0E2A4C' // 100% 处的颜色
+                        color: color1[1] // 100% 处的颜色
                     }], false),
                     barBorderRadius: [6, 6, 0, 0],
                 }
