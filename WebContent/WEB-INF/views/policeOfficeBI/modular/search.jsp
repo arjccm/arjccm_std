@@ -42,10 +42,10 @@
                 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAQCAYAAAArij59AAAAx0lEQVQokZ3RvUoDYRCF4We/bPAnqKCSRrHxBsTS2/DGvCexsbYIKIKNFv4UEUMkZo9FdkFibDxwihnemQMzVZKCTexiDz2M8Yz3GjX2cdJ6HXe4xr0kgyRnSS6SjJM0SW6TnCcZ1uhjiFNsWegYR9goKBi0+Z0q7KBf2qLX+qdqlLI09UtlVfPfQP4CgmYF0CAd8ImPJWCCecEX3jBainvCtGCGR1ziBnNcWfxjUiXpYRsHOLQ40Ase8Fol6S651rpqt04x+wZZQEmC4eTFRAAAAABJRU5ErkJggg==';
             option = {
                 grid: {
-                    top: "10%",
+                    top: "5%",
                     left: "10%",
                     right: "5%",
-                    bottom: "10%",
+                    bottom: 0,
                     containLabel: true
                 },
 
@@ -142,7 +142,8 @@
                     type: 'bar',
                     yAxisIndex: 1,
                     barGap: '-100%',
-                    data: [100, 100, 100, 100, 100],
+                    data: [105, 105, 105, 105, 105],
+                    // barCategoryGap:'10%',
                     barWidth: 19,
                     itemStyle: {
                         normal: {

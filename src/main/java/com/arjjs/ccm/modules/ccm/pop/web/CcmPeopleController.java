@@ -626,6 +626,7 @@ public class CcmPeopleController extends BaseController {
 				ccmPeople.setBuildId(ccmPopTenant.getBuildingId());
 			}
 		}
+		//如果有特殊类型被标记，是否为重点人员改为 是
         if (sign(ccmPeople)){
             ccmPeople.setFocuPers(1);
         }
@@ -708,8 +709,7 @@ public class CcmPeopleController extends BaseController {
 
 	/**
 	 * 导出实有人口数据
-	 *
-	 * @param user
+	 * @param ccmPeople
 	 * @param request
 	 * @param response
 	 * @param redirectAttributes
@@ -2167,68 +2167,62 @@ public class CcmPeopleController extends BaseController {
 
     /*根据标记类型修改重点人员*/
     public boolean sign(CcmPeople ccmPeople){
-        Integer a =ccmPeople.getIsBehind();               // 是否留守
-        if (null==a){
-            a=0;
+
+    	int i=0;
+    	// 是否留守
+        if (ccmPeople.getIsBehind()!=null&&ccmPeople.getIsBehind()==1){
+            i++;
         }
-        Integer b =ccmPeople.getIsRelease();		        // 是否安置帮教
-        if (null==b){
-            b=0;
+        // 是否安置帮教
+        if (ccmPeople.getIsRelease()!=null&&ccmPeople.getIsRelease()==1){
+            i++;
         }
-        Integer c =ccmPeople.getIsRectification();		// 是否社区矫正
-        if (null==c){
-            c=0;
+        // 是否社区矫正
+        if (ccmPeople.getIsRectification()!=null&&ccmPeople.getIsRectification()==1){
+            i++;
         }
-        Integer d =ccmPeople.getIsAids();		            // 是否艾滋病患者
-        if (null==d){
-            d=0;
+        // 是否艾滋病患者
+        if (ccmPeople.getIsAids()!=null&&ccmPeople.getIsAids()==1){
+            i++;
         }
-        Integer e =ccmPeople.getIsPsychogeny();		    // 是否肇事肇祸等严重精神障碍患者
-        if (null==e){
-            e=0;
+        // 是否肇事肇祸等严重精神障碍患者
+        if (ccmPeople.getIsPsychogeny()!=null&&ccmPeople.getIsPsychogeny()==1){
+            i++;
         }
-        Integer f =ccmPeople.getIsKym();		            // 是否重点青少年
-        if (null==f){
-            f=0;
+        // 是否吸毒
+        if (ccmPeople.getIsDrugs()!=null&&ccmPeople.getIsDrugs()==1){
+            i++;
         }
-        Integer g =ccmPeople.getIsDrugs();		        // 是否吸毒
-        if (null==g){
-            g=0;
+        //是否危害国家安全
+        if (ccmPeople.getIsHarmNational()!=null&&ccmPeople.getIsHarmNational()==1){
+            i++;
         }
-        Integer h =ccmPeople.getIsHarmNational();         //是否危害国家安全
-        if (null==h){
-            h=0;
+        //是否故意犯法释放
+        if (ccmPeople.getIsDeliberatelyIllegal()!=null&&ccmPeople.getIsDeliberatelyIllegal()==1){
+            i++;
         }
-        Integer i =ccmPeople.getIsDeliberatelyIllegal();  //是否故意犯法释放
-        if (null==i){
-            i=0;
+        //是否严重犯罪嫌疑
+        if (ccmPeople.getIsCriminalOffense()!=null&&ccmPeople.getIsCriminalOffense()==1){
+            i++;
         }
-        Integer j =ccmPeople.getIsCriminalOffense();      //是否严重犯罪嫌疑
-        if (null==j){
-            j=0;
+        //是否在逃
+        if (ccmPeople.getIsEscape()!=null&&ccmPeople.getIsEscape()==1){
+            i++;
         }
-        Integer k =ccmPeople.getIsEscape();               //是否在逃
-        if (null==k){
-            k=0;
+        // 是否重点上访
+        if (ccmPeople.getIsVisit()!=null&&ccmPeople.getIsVisit()==1){
+            i++;
         }
-        Integer l =ccmPeople.getIsVisit();		        // 是否重点上访
-        if (null==l){
-            l=0;
+        // 是否涉教
+        if (ccmPeople.getIsHeresy()!=null&&ccmPeople.getIsHeresy()==1){
+            i++;
         }
-        Integer m =ccmPeople.getIsHeresy();		        // 是否涉教
-        if (null==m){
-            m=0;
+        // 是否危险品从业人员
+        if (ccmPeople.getIsDangerous()!=null&&ccmPeople.getIsDangerous()==1){
+            i++;
         }
-        Integer n =ccmPeople.getIsDangerous();		    // 是否危险品从业人员
-        if (null==n){
-            n=0;
-        }
-        String specialCareType = ccmPeople.getSpecialCareType();// 特殊关怀类型
-        if (",null,".equals(specialCareType)){
-            specialCareType="";
-        }
-        Integer num= a+b+c+d+e+f+g+h+i+j+k+l+m+n;
-        if (num!=0||!"".equals(specialCareType)){
+
+        if (i>0){
             return true;
         }
             return false;

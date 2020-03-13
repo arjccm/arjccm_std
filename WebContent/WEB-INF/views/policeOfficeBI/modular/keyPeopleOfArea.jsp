@@ -58,10 +58,11 @@
                     }
                 },
                 grid: {
-                    top: 'center',
-                    height: 180,
+                    top: '7%',
+                    // height: 180,
                     left: '20%',
-                    right: '20%'
+                    right: '20%',
+                    bottom:'7%',
                 },
                 series: [{
                     type: 'pictorialBar',
