@@ -129,11 +129,21 @@ function findKeyPlace() {
 }
 
 //户籍人口echarts图
+
+/*var color = [ '#219FFC', '#F8C73C' ]
+if ($.cookie('theme') == undefined) {
+	color = [ '#219FFC', '#F8C73C' ]
+} else if ($.cookie('theme') == 'gradient') {
+	color = [ '#219FFC', '#F8C73C' ]
+} else if ($.cookie('theme') == 'black') {
+	color = [ '#FC9A2F','#219ffc' ]
+}*/
+
 function myChartPeople1(datatitle, dataX, dataY, model, mainContent, rotate) {
 	// 指定图表的配置项和数据
 	var option = {
 
-		color : [ '#FC9A2F','#32F7FF' ],
+		color : [ '#FC9A2F','#219ffc' ],
 		grid : {
 			left : '3%',
 			right : '4%',
@@ -303,6 +313,20 @@ function getSeriesDate(titleS, ajaxDataYALLS) {
 }
 
 function getSeriesDate1(titleS, ajaxDataYALLS) {
+
+	var color1 = [ '#3fb1e3', '#3fb1e3' ]
+	var barWidth = '30%';
+	if ($.cookie('theme') == undefined) {
+		color1 = [ '#3fb1e3', '#3fb1e3' ]
+		var barWidth = '30%';
+	} else if ($.cookie('theme') == 'gradient') {
+		color1 = [ '#3fb1e3', '#3fb1e3' ]
+		var barWidth = '30%';
+	} else if ($.cookie('theme') == 'black') {
+		color1 = [ '#32F7FF','#0E2A4C' ]
+		var barWidth = '45%';
+	}
+
 	// 返回数据
 	var seriesDate1 = new Array();
 	// // for 循环生成数据
@@ -310,16 +334,16 @@ function getSeriesDate1(titleS, ajaxDataYALLS) {
 	seriesDate1.push({
 		"name" : titleS[1],
 		"type" : 'bar',
-		"barWidth" : '45%',
+		"barWidth" : barWidth,
 		"data" : ajaxDataYALLS[1],
 		itemStyle: {
 			normal: {
 				color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
 					offset: 0,
-					color: '#32F7FF' // 0% 处的颜色
+					color: color1[0] // 0% 处的颜色
 				}, {
 					offset: 1,
-					color: '#0E2A4C' // 100% 处的颜色
+					color: color1[1] // 100% 处的颜色
 				}], false),
 				barBorderRadius: [6, 6, 0, 0],
 			}
@@ -408,12 +432,9 @@ function PeopleStatistics(type, title) {
 					myChart2, "" + title + "人数", 0);
 			} else {
 				// 生成图表
-				myChartPeople(title2, ajaxDataX2, seriesDate2,
+				myChartPeople1(title2, ajaxDataX2, seriesDate2,
 					myChart2, "" + title + "人数", 0);
 			}
-
-
-
 
 		});
 }
