@@ -306,11 +306,11 @@
                             }
                             $.getJSON(ctx+"/work/ccmWorkNotice/messageList",{ "noCache": noCache,"pageSize":10 },
                                 function(data) {
-                                    if(data.list.length>0){
+                                    if(data.length>0){
                                         var workNotice = "";
-                                        for(var i=0;i<data.list.length;i++){
-                                            workNotice += '<tr><td style="text-align: left;"><a title="公告：'+data.list[i]["title"]+'" onclick="clickWorkNotify(\'' + data.list[i]["id"]
-                                                + '\')" class="ccmEventLayer' + data.list[i]["id"] +' active" > ' +"公告：" +data.list[i]["title"] + '</a></td></tr>';
+                                        for(var i=0;i<data.length;i++){
+                                            workNotice += '<tr><td style="text-align: left;"><a title="公告：'+data[i]["title"]+'" onclick="clickWorkNotify(\'' + data[i]["id"]
+                                                + '\')" class="ccmEventLayer' + data[i]["id"] +' active" > ' +"公告：" +data[i]["title"] + '</a></td></tr>';
                                         }
                                         $("#workNotifyTbody").html(workNotice);
                                         // if($("#allTbody").html() !=  '<tr class="def"> <td>暂无新的消息</td></tr>'){

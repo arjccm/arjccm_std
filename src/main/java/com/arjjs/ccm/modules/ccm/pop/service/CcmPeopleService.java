@@ -204,35 +204,45 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 			if(!ccmPeople.getRoomId().getId().equals(people.getRoomId().getId())) {
 				//删除旧的数据
 				deletePeopleOfHouse(people.getId(), people.getRoomId().getId(), people.getBuildId().getId(), people.getAreaGridId().getId());
-				// 把修改的数据记录到租客记录表里面
+				// 把新增的数据记录到租客记录表里面
 				CcmTenantRecord ccmTenantRecord = new CcmTenantRecord();
 				ccmTenantRecord.setHouseId(ccmPeople.getRoomId().getId());
 				ccmTenantRecord.setIdCard(ccmPeople.getIdent());
 				ccmTenantRecord.setName(ccmPeople.getName());
 				ccmTenantRecord.setPhoneNumber(ccmPeople.getTelephone());
+				if(UserUtils.getUser()==null){
+					ccmTenantRecord.setCreateBy(UserUtils.get("1"));
+					ccmTenantRecord.setUpdateBy(UserUtils.get("1"));
+				}else{
+					ccmTenantRecord.setCreateBy(UserUtils.getUser());
+					ccmTenantRecord.setUpdateBy(UserUtils.getUser());
+				}
 				ccmTenantRecord.setCreateDate(new Date());
+				ccmTenantRecord.setUpdateDate(new Date());
+				ccmTenantRecord.setDelFlag("0");
 				ccmTenantRecord.setLiveDate(new Date());
 				ccmTenantRecord.setLeaveDate(new Date());
-				ccmTenantRecord.setCreateBy(ccmPeople.getCreateBy());
-				ccmTenantRecord.setCreateDate(ccmPeople.getCreateDate());
-				ccmTenantRecord.setUpdateBy(ccmPeople.getUpdateBy());
-				ccmTenantRecord.setUpdateDate(ccmPeople.getUpdateDate());
 				ccmTenantRecordService.save(ccmTenantRecord);
 			}
-		}else {
+		}else{
 			// 把新增的数据记录到租客记录表里面
 			CcmTenantRecord ccmTenantRecord = new CcmTenantRecord();
 			ccmTenantRecord.setHouseId(ccmPeople.getRoomId().getId());
 			ccmTenantRecord.setIdCard(ccmPeople.getIdent());
 			ccmTenantRecord.setName(ccmPeople.getName());
 			ccmTenantRecord.setPhoneNumber(ccmPeople.getTelephone());
+			if(UserUtils.getUser()==null){
+				ccmTenantRecord.setCreateBy(UserUtils.get("1"));
+				ccmTenantRecord.setUpdateBy(UserUtils.get("1"));
+			}else{
+				ccmTenantRecord.setCreateBy(UserUtils.getUser());
+				ccmTenantRecord.setUpdateBy(UserUtils.getUser());
+			}
 			ccmTenantRecord.setCreateDate(new Date());
+			ccmTenantRecord.setUpdateDate(new Date());
+			ccmTenantRecord.setDelFlag("0");
 			ccmTenantRecord.setLiveDate(new Date());
 			ccmTenantRecord.setLeaveDate(new Date());
-			ccmTenantRecord.setCreateBy(ccmPeople.getCreateBy());
-			ccmTenantRecord.setCreateDate(ccmPeople.getCreateDate());
-			ccmTenantRecord.setUpdateBy(ccmPeople.getUpdateBy());
-			ccmTenantRecord.setUpdateDate(ccmPeople.getUpdateDate());
 			ccmTenantRecordService.save(ccmTenantRecord);
 		}
 		super.save(ccmPeople);

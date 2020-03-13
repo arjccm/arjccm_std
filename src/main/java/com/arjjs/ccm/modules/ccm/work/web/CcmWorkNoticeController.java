@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -94,9 +95,9 @@ public class CcmWorkNoticeController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = "messageList")
-	public Page<CcmWorkNotice> messageList(CcmWorkNotice ccmWorkNotice, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public List<CcmWorkNotice> messageList(CcmWorkNotice ccmWorkNotice, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<CcmWorkNotice> page = ccmWorkNoticeService.findPage(new Page<CcmWorkNotice>(request, response), ccmWorkNotice);
-		return page;
+		return page.getList();
 	}
 
 }
