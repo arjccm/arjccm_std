@@ -575,7 +575,7 @@ public class CcmMapController extends BaseController {
 			map_P.put("政治面貌", DictUtils.getDictLabel(orgarea.getPolitics(), "sys_ccm_poli_stat", ""));
 			map_P.put("手机号码", orgarea.getTelephone());
 			map_P.put("人口", orgarea.getMannum() + "");
-			map_P.put("重点人员", orgarea.getKeyPersonnelNum() + "");
+			map_P.put("重点人员", orgarea.getKeyPersonnelNum() != null ? orgarea.getKeyPersonnelNum().toString() :"");
 			map_P.put("工作人员数量", orgarea.getNetPeoNum() + "");
 			map_P.put("名称", orgarea.getArea().getName());
 			map_P.put("户数", orgarea.getNetNum());
@@ -641,7 +641,7 @@ public class CcmMapController extends BaseController {
 			map_P.put("政治面貌", DictUtils.getDictLabel(orgarea.getPolitics(), "sys_ccm_poli_stat", ""));
 			map_P.put("手机号码", orgarea.getTelephone());
 			map_P.put("人口", orgarea.getMannum() + "");
-			map_P.put("重点人员", orgarea.getKeyPersonnelNum() + "");
+			map_P.put("重点人员", orgarea.getKeyPersonnelNum() != null ? orgarea.getKeyPersonnelNum().toString() :"");
 			map_P.put("工作人员数量", orgarea.getNetPeoNum() + "");
 			map_P.put("名称", orgarea.getArea().getName());
 			map_P.put("户数", orgarea.getNetNum());
@@ -708,7 +708,7 @@ public class CcmMapController extends BaseController {
 			map_P.put("手机号码", orgarea.getTelephone());
 			map_P.put("人口", orgarea.getMannum() + "");
 			map_P.put("所属层级", "4");
-			map_P.put("重点人员", orgarea.getKeyPersonnelNum() + "");
+			map_P.put("重点人员", orgarea.getKeyPersonnelNum() != null ? orgarea.getKeyPersonnelNum().toString() :"");
 			map_P.put("工作人员数量", orgarea.getNetPeoNum() + "");
 			map_P.put("名称", orgarea.getArea().getName());
 			map_P.put("户数", orgarea.getNetNum());
