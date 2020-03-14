@@ -496,7 +496,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY rr.updateDate DESC
+				ORDER BY rr.handleDeadline DESC
 			</otherwise>
 		</choose>
 	</select>

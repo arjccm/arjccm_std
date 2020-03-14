@@ -61,7 +61,7 @@
 				<shiro:hasPermission name="event:ccmEventRequest:edit">
 				<li class="btns"><a
 					onclick="parent.LayerDialog('${ctx}/event/ccmEventRequest/form', '添加', '1100px', '700px')"
-					class="btn btn-success"><i class="icon-plus"></i> 添加</a></li>
+					class="btn btn-export"><i class="icon-plus"></i> 添加</a></li>
 			</shiro:hasPermission>
 				<li class="btns">
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary">

@@ -84,7 +84,16 @@
 .ulz {
 	margin-left: 50px;
 }
-	</style>
+.tbl_ct_key td{
+	padding: 8px;
+}
+.follow_checkBox span{
+	display: block;
+	width: 33%;
+	float: left;
+}
+
+</style>
 <script type="text/javascript">
 <script type="text/javascript">
 	$(document).ready(
@@ -113,7 +122,7 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<table border="1px"
-			style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px; width: 100%">
+			style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px; width: 100%" class="tbl_ct_key">
 			<h4>基本信息：</h4>
 			<tr>
 				<td>
@@ -463,7 +472,7 @@
 				<td>
 					<div>
 						<label class="control-label">特殊关注类型：</label>
-						<div class="controls">
+						<div class="controls follow_checkBox clearfix">
 							<form:checkboxes path="specialCareTypeList"
 								items="${fns:getDictList('pop_special_care_type')}"
 								itemLabel="label" itemValue="value" htmlEscape="false" class="" />
@@ -570,7 +579,7 @@
 		<br/>
 		
 		<h4>其他信息：</h4>
-		<table id="person" border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; width: 100%" >
+		<table id="person" border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; width: 100%" class="tbl_ct_key">
 			<tr><td colspan="6">户籍信息：</td></tr>
 			<tr>
 				<td>
