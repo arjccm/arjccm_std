@@ -1559,7 +1559,6 @@ public class CcmMapOtherController extends BaseController {
             // 特征属性
             Features featureDto = new Features();
             Properties properties = new Properties();
-            System.out.println(featureDto.getId());
             // 1 type 默认不填
             // 2 id 添加
             featureDto.setId(basePlace.getId());
