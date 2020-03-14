@@ -53,7 +53,7 @@
 		}
         function HandleTips(_this, id) {
             var html = '';
-            html += '<div style="padding:10px;" >';
+            html += '<div style="padding:10px;"  class="layui_new_content">';
             html += '<p style="margin-botom:20px;">将事件发送至警情</p>';
             html += '<div>';
             html += '<input id="btnSuccess" onclick="Pass('
@@ -72,6 +72,9 @@
                 tips : [ 1, '#20c694' ],
                 time : 3000,
             });
+            $(".layui_new_content").parent().css({
+                width:"auto"
+            })
         }
         function Pass(eventId) {
             $.post('${ctx}/alarm/bphAlarmInfo/eventToAlarmInfo?eventId='+ eventId,function(data){
