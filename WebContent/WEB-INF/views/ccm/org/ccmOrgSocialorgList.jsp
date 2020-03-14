@@ -56,7 +56,7 @@
 				<input name="beginApprDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${ccmOrgSocialorg.beginApprDate}" pattern="yyyy-MM-dd"/>"
 					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> </li>
-			<li class="first-line"><label>结束日期:</label><input name="endApprDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+			<li class="first-line"><label>结束日期：</label><input name="endApprDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${ccmOrgSocialorg.endApprDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
