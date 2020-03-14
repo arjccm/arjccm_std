@@ -114,7 +114,7 @@
 			</li>
 			<li class="btns"><a
 				onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/4', '添加', '1100px', '600px')"
-				class="btn btn-success"><i class="icon-plus"></i> 添加</a></li>
+				class="btn btn-export"><i class="icon-plus"></i> 添加</a></li>
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary"
 				type="submit" value="查询" /></li> -->
 			<li class="btns"><a href="javascript:;" id="btnSubmit"
