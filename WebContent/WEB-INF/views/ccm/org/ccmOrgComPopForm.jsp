@@ -51,14 +51,14 @@
 			}else{
 				$("#show1").html(html1);
 			}
-			/*if(commonalityIdId.length!=0&&flag){
+			if(commonalityIdId.length!=0&&flag){
 				$("#inputForm").submit();
 			}else {
                 parent.layer.msg('日期不能大于当前日期或大于150岁!', {
                     icon: 5
                 });
                 event.preventDefault();
-            }*/
+            }
 		}
 	</script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
@@ -246,7 +246,8 @@
 
 	</table>
 		<div class="form-actions">
-			<shiro:hasPermission name="org:ccmOrgComPop:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
+			<%--<shiro:hasPermission name="org:ccmOrgComPop:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>--%>
+			<shiro:hasPermission name="org:ccmOrgComPop:edit"><input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存">&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

@@ -13,6 +13,7 @@ import com.arjjs.ccm.modules.ccm.sys.entity.CcmAreaPointVo;
 import com.arjjs.ccm.modules.flat.analyst.entity.Count;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.EchartType;
+import com.arjjs.ccm.tool.SearchTab;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -85,14 +86,9 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 
 	//常住人口
 	public List<CcmPeople> findPermanentList(CcmPeople ccmPeople);
-	//常住人口个数
-	public Integer findPermanentCount();
-    //流动人口个数
-    public Integer findMigrantPopulationCount();
-	//重点人口个数
-	public Integer findfocuPersCount();
-	//实有人口个数
-	public Integer peopleCount();
+	//实有、流动、常住、重点、人口个数
+	SearchTab getCountPeople();
+
 
 
 

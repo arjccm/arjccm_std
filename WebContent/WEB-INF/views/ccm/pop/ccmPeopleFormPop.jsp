@@ -92,6 +92,9 @@
 	width: 33%;
 	float: left;
 }
+.select2-container .select2-choice{
+	width: 204px !important;
+}
 
 </style>
 <script type="text/javascript">
@@ -104,7 +107,11 @@
                 data = JSON.parse(jsonString);  
 				$(".fishBone1").fishBone(data, '${ctx}','deal');
 				$(".fishBone2").fishBone(data, '${ctx}','read');
+
+
 			});
+
+
 
 </script>
 </head>
@@ -593,7 +600,7 @@
 						</div>
 					</div>
 				</td>
-				<td>
+				<td width="35%">
 					<div>
 						<label class="control-label">户号：</label>
 						<div class="controls">
@@ -601,7 +608,7 @@
 						</div>
 					</div>
 				</td>
-				<td>
+				<td width="30%">
 					<div>
 						<label class="control-label">户主公民身份号码：</label>
 						<div class="controls">
@@ -925,7 +932,7 @@
 		
 		
 		
-		<div class="form-actions">
+		<div class="form-actions" style="text-align: right; padding: 0 0 20px 0;">
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form><br>
@@ -941,5 +948,19 @@
 			<div class="fishBone2" ></div>
 		</shiro:lacksPermission> 
 	</c:if>
+
+<script>
+	$(document).ready(function(){
+
+		$("#remarks, #personReason").css({
+			"padding":"3px 6px"
+		})
+	})
+	setTimeout(function () {
+		$("#areaComIdName, #areaGridIdName, #roomIdName").css({
+			"width":201
+		})
+	},200)
+</script>
 </body>
 </html>

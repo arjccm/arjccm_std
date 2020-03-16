@@ -80,7 +80,7 @@
 <%--			<li class="clearfix"></li>--%>
 		</ul>
 
-	<sys:message content="${message}" />
+<%--	<sys:message content="${message}" />--%>
 	<div class="clearfix pull-right btn-box">
 		<a
 				onclick="parent.LayerDialog('${ctx}/chemical/ccmPlaceChemical/form', '添加', '1200px', '900px')"
@@ -90,6 +90,7 @@
 		</a>
 	</div>
 	</form:form>
+	<sys:message content="${message}" />
 	<table id="contentTable"
 		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
