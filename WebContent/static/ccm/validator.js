@@ -164,10 +164,28 @@
 			var areaGridId = $("#areaGridIdId").val();
 			//alert(areaComId+"333"+id+"333"+areaGridId);
 			$("#newNet").load(ctx + "/pop/ccmPeople/getNetAreaForm?usedname="+areaComId+"&id="+id+"&name="+areaGridId, {});
-
 			saveForm();
-			
+
 		}
+function onclickNet1(){
+	//社区选择网格
+	var areaComId = $("#areaComIdId").val();
+	var id = $("#id").val();
+	if(id==""){
+		id = "001";
+	}
+	var areaGridId = $("#areaGridIdId").val();
+	//alert(areaComId+"333"+id+"333"+areaGridId);
+	if (areaComId.length>0){
+		$("#newNet").load(ctx + "/pop/ccmPeople/getNetAreaForm?usedname="+areaComId+"&id="+id+"&name="+areaGridId, {});
+		saveForm();
+	}
+	else {
+		alert("请输入社区");
+		return;
+	}
+
+}
 		function onclickHouse(){
 			//社区选择房屋
 			var areaGridId = $("#areaGridIdId").val();
