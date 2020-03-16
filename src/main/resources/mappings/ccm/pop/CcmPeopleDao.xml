@@ -858,22 +858,31 @@
              -->
 		</choose>
 	</select>
-	<!--常驻人口个数-->
-	<select id="findPermanentCount" resultType="Integer">
-		SELECT count(a.id) FROM ccm_people a LEFT JOIN sys_area a21 ON a21.id = a.area_grid_id   WHERE a.del_flag = 0 and a.is_permanent = 1
+	<!--实有、流动、常住、重点、人口个数-->
+	<select id="getCountPeople" resultType="com.arjjs.ccm.tool.SearchTab">
+		SELECT
+		(IFNULL(SUM(a.person_amount),0)+IFNULL(SUM(a.oversea_amount),0)+IFNULL(SUM(a.float_amount),0)+IFNULL(SUM(a.unsettle_amount),0)) AS "value1",
+		IFNULL(SUM(a.float_amount),0) AS "value2",
+		IFNULL(SUM(a.permanent_amount),0) AS "value3",
+		(IFNULL(SUM(a.kym_amount),0)+IFNULL(SUM(a.rectification_amount),0)+IFNULL(SUM(a.release_amount),0)+IFNULL(SUM(a.psychogeny_amount),0)+IFNULL(SUM(a.drugs_amount),0)+IFNULL(SUM(a.visit_amount)+SUM(a.heresy_amount),0)+IFNULL(SUM(a.dangerous_amount),0)+IFNULL(SUM(a.harmNational_amount),0)+IFNULL(SUM(a.seriousCriminalOffense_amount),0)+IFNULL(SUM(a.dispute_amount),0)+IFNULL(SUM(a.deliberatelyIllegal_amount),0)) as "value4"
+
+		FROM
+		ccm_people_amount a
+		LEFT JOIN sys_config c ON c.id = 'system_level'
+		where
+		a.del_flag=0
+		AND c.param_str=a.system_level
+		AND(a.amount_date &gt; date_format(
+		DATE_SUB(curdate()
+		, INTERVAL 0
+		MONTH), '%Y-%m')
+		AND
+		a.amount_date  &lt;
+			date_format( DATE_SUB(curdate(),
+		INTERVAL - 1
+		MONTH), '%Y-%m'))
 	</select>
-	<!--流动人口个数-->
-	<select id="findMigrantPopulationCount" resultType="Integer">
-		SELECT count(a.id) FROM ccm_people a LEFT JOIN sys_area a21 ON a21.id = a.area_grid_id  WHERE a.del_flag = 0 AND a.type =20
-	</select>
-	<!--重点人口个数-->
-	<select id="findfocuPersCount" resultType="Integer">
-		SELECT count(a.id) FROM  ccm_people a LEFT JOIN sys_area a21 ON a21.id = a.area_grid_id WHERE a.del_flag = 0 and a.focu_pers = 1
-	</select>
-	<!--实有人口个数-->
-	<select id="peopleCount" resultType="Integer">
-		SELECT count(a.id) FROM ccm_people a LEFT JOIN sys_area a21 ON a21.id = a.area_grid_id WHERE a.del_flag = 0
-	</select>
+
 
 	<!-- -->
 	<select id="findList" resultType="CcmPeople">

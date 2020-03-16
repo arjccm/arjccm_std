@@ -3,7 +3,7 @@ var timer;
 var mqFlag = true;
 function initRabbitMQ(){
 	alarmVerify();
-	RaMq();
+	// RaMq();
 }
 function initActiveMQ() {
 	var amq = new org.activemq.AmqClass();
