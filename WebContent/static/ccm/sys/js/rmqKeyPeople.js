@@ -4,7 +4,7 @@ var timer;
 var mqFlagKeyProple = true;
 function initRabbitMQKeyProple(){
 	alarmVerifyKeyProple();
-	RaMqKeyProple();
+	// RaMqKeyProple();
 }
 function connectStatusHandlerKeyProple(connected) {
 	if (!connected) {
