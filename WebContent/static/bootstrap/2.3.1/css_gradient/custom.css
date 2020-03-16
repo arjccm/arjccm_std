@@ -739,3 +739,16 @@ a.btnList .icon-group{
  }
  /*table去除虚线*/
  .first_table td{border: 1px solid #c1c1c1 !important;}
+
+ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
+	 background: url(../img/guanbi0.png) no-repeat!important;
+	 position: absolute;
+	 right: -34px;
+	 top: -2px;
+ }
+ .layui-layer-setwin{
+	 position: absolute;
+	 right: 24px!important;
+	 /**right: 0;*/
+	 top: 15px!important;
+ }
