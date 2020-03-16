@@ -64,7 +64,7 @@
 			}
 		}
 		if ($("#${input}Preview").text() == ""){
-			$("#${input}Preview").html("<li style='list-style:none;padding-top:5px;'>无</li>");
+			$("#${input}Preview").html("<li style='list-style:none;'>无</li>");
 		}
 	}
 	${input}Preview();
