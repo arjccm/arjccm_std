@@ -702,8 +702,8 @@
                             color="red">*</font></span>所属网格：</label>
                     <div class="controls">
                         <div class="help-inline" id="newNet" onmouseout=""
-                             onmousemove="onclickNet()">
-                            <sys:treeselect id="areaGridId" name="areaGridId.id"
+                             onmousemove="onclickNet()" onclick="onclickNet1()">
+                            <sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"
                                             value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
                                             labelValue="${ccmPeople.areaGridId.name}" title="区域"
                                             url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""
@@ -753,7 +753,7 @@
             <td colspan="3">
                 <div>
                     <label class="control-label">特殊关注类型：</label>
-                    <div class="controls">
+                    <div class="controls" id="checkBoxe">
                         <form:checkboxes path="specialCareTypeList" cssStyle="padding-right: 10px"
                                          items="${fns:getDictList('pop_special_care_type')}"
                                          itemLabel="label" itemValue="value" htmlEscape="false" class=""/>
@@ -1631,5 +1631,14 @@
         <br>
     </shiro:hasPermission>
 </c:if>
+<script>
+    $("#checkBoxe :checked").each(function(){
+        console.log($(this).val())
+        debugger
+        if ($(this).val()!=null){
+            parent.layui.$("#focuPers1").prop("checked",true);
+        }
+    });
+</script>
 </body>
 </html>
