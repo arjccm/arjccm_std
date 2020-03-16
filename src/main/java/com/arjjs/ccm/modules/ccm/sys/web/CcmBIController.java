@@ -191,10 +191,10 @@ public class CcmBIController {
         return bicMapUsers;
     }
 
-//今日110警情处理
+    //今日110警情处理
     @ResponseBody
     @RequestMapping(value = "alarmData" )
-   public List<BphAlarmInfo2> list() {
+    public List<BphAlarmInfo2> list() {
 
         List<BphAlarmInfo2> list = bphAlarmInfoService.findTodayAlarmInfo();
 
@@ -278,16 +278,8 @@ public class CcmBIController {
 
         for(int i=0;i<police.size();i++){
             name[i] = police.get(i).getTypeO();
-            if(Integer.parseInt(police.get(i).getValue())<=50){
-                mjData[i] = ccmBIService.getRan(50)+50;
-            }else{
-                mjData[i] = Integer.parseInt(police.get(i).getValue());
-            }
-            if(i%2==0){
-                fjData[i] = mjData[i]-15;
-            }else{
-                fjData[i] = mjData[i]-10;
-            }
+            mjData[i] = Integer.parseInt(police.get(i).getValue());
+            fjData[i] = mjData[i]-15;
         }
 
         //总数据 data
@@ -336,16 +328,8 @@ public class CcmBIController {
 
         for(int i=0;i<device.size();i++){
             name[i] = device.get(i).getTypeO();
-            if(Integer.parseInt(device.get(i).getValue())==0){
-                jkData[i] = ccmBIService.getRan(80-1)+1;
-            }else{
-                jkData[i] = Integer.parseInt(device.get(i).getValue());
-            }
-            if(jkData[i]>2){
-                jlData[i] = ran.nextInt(jkData[i]-2)+1;
-            }else{
-                jlData[i] = jkData[i];
-            }
+            jkData[i] = Integer.parseInt(device.get(i).getValue());
+            jlData[i] = Integer.parseInt(device.get(i).getValue());
         }
 
         //总数据 data
