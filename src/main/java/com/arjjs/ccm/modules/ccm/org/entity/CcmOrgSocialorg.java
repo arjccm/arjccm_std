@@ -150,7 +150,7 @@ public class CcmOrgSocialorg extends DataEntity<CcmOrgSocialorg> {
 		this.type = type;
 	}
 
-	@ExcelField(title="负责人证件代码", align=2, sort=10,dictType="sys_ccm_org_papers")
+	@ExcelField(title="负责人证件代码", align=2, sort=10,dictType="legal_person_certificate_type")
 	@Length(min=0, max=3, message="负责人证件代码长度必须介于 0 和 3 之间")
 	public String getPrinCode() {
 		return prinCode;
@@ -397,5 +397,5 @@ public class CcmOrgSocialorg extends DataEntity<CcmOrgSocialorg> {
 	public void setConcExteLable(String concExteLable) {
 		this.concExteLable = concExteLable;
 	}
-		
+
 }

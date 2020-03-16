@@ -84,7 +84,19 @@
 .ulz {
 	margin-left: 50px;
 }
-	</style>
+.tbl_ct_key td{
+	padding: 8px;
+}
+.follow_checkBox span{
+	display: block;
+	width: 33%;
+	float: left;
+}
+.select2-container .select2-choice{
+	width: 204px !important;
+}
+
+</style>
 <script type="text/javascript">
 <script type="text/javascript">
 	$(document).ready(
@@ -95,7 +107,11 @@
                 data = JSON.parse(jsonString);  
 				$(".fishBone1").fishBone(data, '${ctx}','deal');
 				$(".fishBone2").fishBone(data, '${ctx}','read');
+
+
 			});
+
+
 
 </script>
 </head>
@@ -113,7 +129,7 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<table border="1px"
-			style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px; width: 100%">
+			style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px; width: 100%" class="tbl_ct_key">
 			<h4>基本信息：</h4>
 			<tr>
 				<td>
@@ -463,7 +479,7 @@
 				<td>
 					<div>
 						<label class="control-label">特殊关注类型：</label>
-						<div class="controls">
+						<div class="controls follow_checkBox clearfix">
 							<form:checkboxes path="specialCareTypeList"
 								items="${fns:getDictList('pop_special_care_type')}"
 								itemLabel="label" itemValue="value" htmlEscape="false" class="" />
@@ -570,7 +586,7 @@
 		<br/>
 		
 		<h4>其他信息：</h4>
-		<table id="person" border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; width: 100%" >
+		<table id="person" border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; width: 100%" class="tbl_ct_key">
 			<tr><td colspan="6">户籍信息：</td></tr>
 			<tr>
 				<td>
@@ -584,7 +600,7 @@
 						</div>
 					</div>
 				</td>
-				<td>
+				<td width="35%">
 					<div>
 						<label class="control-label">户号：</label>
 						<div class="controls">
@@ -592,7 +608,7 @@
 						</div>
 					</div>
 				</td>
-				<td>
+				<td width="30%">
 					<div>
 						<label class="control-label">户主公民身份号码：</label>
 						<div class="controls">
@@ -916,7 +932,7 @@
 		
 		
 		
-		<div class="form-actions">
+		<div class="form-actions" style="text-align: right; padding: 0 0 20px 0;">
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form><br>
@@ -932,5 +948,19 @@
 			<div class="fishBone2" ></div>
 		</shiro:lacksPermission> 
 	</c:if>
+
+<script>
+	$(document).ready(function(){
+
+		$("#remarks, #personReason").css({
+			"padding":"3px 6px"
+		})
+	})
+	setTimeout(function () {
+		$("#areaComIdName, #areaGridIdName, #roomIdName").css({
+			"width":201
+		})
+	},200)
+</script>
 </body>
 </html>

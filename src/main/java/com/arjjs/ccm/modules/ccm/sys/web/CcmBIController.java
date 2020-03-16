@@ -1,27 +1,21 @@
 package com.arjjs.ccm.modules.ccm.sys.web;
 
-import com.arjjs.ccm.common.persistence.Page;
-import com.arjjs.ccm.modules.ccm.casino.service.CcmPlaceCasinoService;
+import com.arjjs.ccm.modules.ccm.place.casino.service.CcmPlaceCasinoService;
 import com.arjjs.ccm.modules.ccm.event.service.CcmEventAmbiService;
-import com.arjjs.ccm.modules.ccm.hotel.service.CcmPlaceHotelService;
+import com.arjjs.ccm.modules.ccm.place.hotel.service.CcmPlaceHotelService;
 import com.arjjs.ccm.modules.ccm.index.service.IndexChartService;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgNpseService;
-import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
 import com.arjjs.ccm.modules.ccm.sys.entity.BicMapUser;
-import com.arjjs.ccm.modules.ccm.sys.entity.PoliceTrend;
-import com.arjjs.ccm.modules.ccm.traffic.service.CcmPlaceTrafficService;
-import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo;
+import com.arjjs.ccm.modules.ccm.place.traffic.service.CcmPlaceTrafficService;
 import com.arjjs.ccm.modules.flat.alarm.entity.BphAlarmInfo2;
 import com.arjjs.ccm.modules.flat.alarm.service.BphAlarmInfoService;
-import com.arjjs.ccm.tool.SearchTab;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.arjjs.ccm.modules.ccm.sys.service.CcmBIService;
 import com.arjjs.ccm.tool.EchartType;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.arjjs.ccm.modules.ccm.sys.entity.PoliceDigest;
 import com.google.common.collect.Maps;
 import net.sf.json.JSONArray;
@@ -33,10 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -201,10 +191,10 @@ public class CcmBIController {
         return bicMapUsers;
     }
 
-//今日110警情处理
+    //今日110警情处理
     @ResponseBody
     @RequestMapping(value = "alarmData" )
-   public List<BphAlarmInfo2> list() {
+    public List<BphAlarmInfo2> list() {
 
         List<BphAlarmInfo2> list = bphAlarmInfoService.findTodayAlarmInfo();
 
@@ -289,11 +279,7 @@ public class CcmBIController {
         for(int i=0;i<police.size();i++){
             name[i] = police.get(i).getTypeO();
             mjData[i] = Integer.parseInt(police.get(i).getValue());
-            if(Integer.parseInt(police.get(i).getValue())>2){
-                fjData[i] = ran.nextInt(Integer.parseInt(police.get(i).getValue())-2)+1;
-            }else{
-                fjData[i] = Integer.parseInt(police.get(i).getValue());
-            }
+            fjData[i] = mjData[i]-15;
         }
 
         //总数据 data
@@ -343,11 +329,7 @@ public class CcmBIController {
         for(int i=0;i<device.size();i++){
             name[i] = device.get(i).getTypeO();
             jkData[i] = Integer.parseInt(device.get(i).getValue());
-            if(Integer.parseInt(device.get(i).getValue())>2){
-                jlData[i] = ran.nextInt(Integer.parseInt(device.get(i).getValue())-2)+1;
-            }else{
-                jlData[i] = Integer.parseInt(device.get(i).getValue());
-            }
+            jlData[i] = Integer.parseInt(device.get(i).getValue());
         }
 
         //总数据 data

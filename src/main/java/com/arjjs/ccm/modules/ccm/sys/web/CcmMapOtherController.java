@@ -2,7 +2,6 @@ package com.arjjs.ccm.modules.ccm.sys.web;
 
 import com.arjjs.ccm.common.gis.MapUtil;
 import com.arjjs.ccm.common.gis.Point;
-import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.IdGen;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
@@ -24,17 +23,17 @@ import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseSchoolrimService;
 import com.arjjs.ccm.modules.ccm.org.entity.*;
 import com.arjjs.ccm.modules.ccm.org.service.*;
-import com.arjjs.ccm.modules.ccm.place.dao.CcmBasePlaceDao;
-import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlace;
-import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceEntity;
-import com.arjjs.ccm.modules.ccm.place.entity.CcmBasePlaceVO;
-import com.arjjs.ccm.modules.ccm.place.service.CcmBasePlaceService;
+import com.arjjs.ccm.modules.ccm.place.base.dao.CcmBasePlaceDao;
+import com.arjjs.ccm.modules.ccm.place.base.entity.CcmBasePlace;
+import com.arjjs.ccm.modules.ccm.place.base.entity.CcmBasePlaceEntity;
+import com.arjjs.ccm.modules.ccm.place.base.entity.CcmBasePlaceVO;
+import com.arjjs.ccm.modules.ccm.place.base.service.CcmBasePlaceService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
-import com.arjjs.ccm.modules.ccm.religion.entity.CcmPlaceReligion;
-import com.arjjs.ccm.modules.ccm.religion.service.CcmPlaceReligionService;
+import com.arjjs.ccm.modules.ccm.place.religion.entity.CcmPlaceReligion;
+import com.arjjs.ccm.modules.ccm.place.religion.service.CcmPlaceReligionService;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
 import com.arjjs.ccm.modules.ccm.view.entity.VCcmOrg;
@@ -65,7 +64,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sun.plugin.com.Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -1561,7 +1559,6 @@ public class CcmMapOtherController extends BaseController {
             // 特征属性
             Features featureDto = new Features();
             Properties properties = new Properties();
-            System.out.println(featureDto.getId());
             // 1 type 默认不填
             // 2 id 添加
             featureDto.setId(basePlace.getId());

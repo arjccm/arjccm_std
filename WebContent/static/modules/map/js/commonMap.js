@@ -2867,10 +2867,11 @@ ArjMap.Map.prototype = {
         }
     },
     //地图标注信息
-    markInfo: function (id, type, selectedNodes) {
+    markInfo: function (id, type, selectedNodes,name) {
         this.markInfoId = id;
         this.markInfoType = type;
         this.selectedNodes = selectedNodes;
+        this.markInfoName = name;
     },
     //标注加载默认数据
     addGraphical: function (type) {
@@ -3332,6 +3333,7 @@ ArjMap.Map.prototype = {
         }
     },
     //图形删除
+
     removeGraphical: function () {
         // 关闭编辑功能
         this.editGraphical(false);
@@ -3346,7 +3348,7 @@ ArjMap.Map.prototype = {
                 return;
             }
         }
-        top.$.jBox.confirm("是否删除信息吗？", "系统提示", function (v, h, f) {
+        top.$.jBox.confirm("是否删除"+_this.markInfoName+"标注信息？", "系统提示", function (v, h, f) {
             if (v == "ok"){
                 _this.geoStrDraw = '';
                 _this.areaPointDraw = '';
@@ -3443,7 +3445,7 @@ ArjMap.Map.prototype = {
             top.$.jBox.tip('图形未发生变化');
             return;
         }
-        top.$.jBox.confirm("是否保存信息吗？", "系统提示", function (v, h, f) {
+        top.$.jBox.confirm("是否保存"+_this.markInfoName+"标注信息？", "系统提示", function (v, h, f) {
             if (v == "ok") {
                 if(_this.markInfoType == "drawForm"){
                     parent.areaPoint=_this.areaPointDraw;

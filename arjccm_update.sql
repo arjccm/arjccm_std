@@ -531,7 +531,8 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 
 
-
+--菜单表新增图标名
+UPDATE sys_menu SET icon = "dashujuzhanshi" WHERE id="1c67672c043e428db50f772af0eb01c5"
 
 
 
