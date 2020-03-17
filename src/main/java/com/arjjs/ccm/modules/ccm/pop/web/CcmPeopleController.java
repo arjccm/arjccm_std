@@ -271,9 +271,19 @@ public class CcmPeopleController extends BaseController {
 		calendar.setTime(new Date());
 		calendar.add(Calendar.YEAR, 0 - PlmTypes.OLD_AGE);
 		ccmPeople.setBirthday(calendar.getTime());
-		Page<CcmPeople> page = ccmPeopleService.findOlderPage(new Page<CcmPeople>(request, response), ccmPeople);
+//		Page<CcmPeople> page = ccmPeopleService.findOlderPage(new Page<CcmPeople>(request, response), ccmPeople);
+        Pagecount page = new Pagecount<CcmPeople>(request, response);
+        int countnum = page.getPageSize()*8;
+        if(page.getPageNo()>= 6){
+            countnum+=page.getPageNo()/6*page.getPageSize()*8;
+        }
+        page.setCount(countnum);
+        page.initialize();
+        ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
+        ccmPeople.setMaxnum(page.getPageSize());
+        List<CcmPeople> list = ccmPeopleService.findOlderPageBylimit(ccmPeople);
 		// 数组查询id
-		List<CcmPeople> list = page.getList();
+//		List<CcmPeople> list = page.getList();
 		CcmPeople ccmPeople2 = new CcmPeople();
 		String[] listLimite = new String[list.size()];
 		if (list.size() > 0) {

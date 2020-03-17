@@ -186,6 +186,11 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		page.setList(ccmPeopleDao.findOlderPage(ccmPeople));
 		return page;
 	}
+
+	public List<CcmPeople> findOlderPageBylimit(CcmPeople ccmPeople) {
+		return ccmPeopleDao.findOlderPageBylimit(ccmPeople);
+	}
+
 	public List<CcmPeople> findOlderList(CcmPeople ccmPeople) {
 		return ccmPeopleDao.findOlderPage(ccmPeople);
 	}

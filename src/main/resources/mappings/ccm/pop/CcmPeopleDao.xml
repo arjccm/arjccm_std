@@ -567,6 +567,44 @@
 			</otherwise>
 		</choose>
 	</select>
+
+	<!-- 老年人 -->
+	<select id="findOlderPageBylimit" resultType="CcmPeople">
+		SELECT
+		a.id AS "id"
+		FROM ccm_people a
+		<include refid="ccmPeopleJoinsNet"/>
+		<where>
+			a.birthday &lt; #{birthday}
+			AND a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="areaComId != null and areaComId.id != null and areaComId.id != ''">
+				AND a.area_com_id = #{areaComId.id}
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat(#{name},'%')</if>
+			</if>
+			<if test="ident != null and ident != ''">
+				AND a.ident LIKE '%${ident}%'
+				<!-- <if test="dbName == 'oracle'">'%'||#{ident}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{ident}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{ident},'%')</if> -->
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+		Limit #{minnum},#{maxnum};
+	</select>
+
+
 	<!--特殊关怀First -->
 	<select id="findCareFirst" resultType="CcmPeople">
 		SELECT

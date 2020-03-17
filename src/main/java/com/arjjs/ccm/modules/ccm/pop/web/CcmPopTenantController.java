@@ -21,6 +21,7 @@ import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.tool.CommUtil;
+import com.arjjs.ccm.tool.Pagecount;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.sf.json.JSONArray;
@@ -99,16 +100,28 @@ public class CcmPopTenantController extends BaseController {
 	@RequestMapping(value = { "list", "" })
 	public String list(CcmPopTenant ccmPopTenant, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
-		Page<CcmPopTenant> respage = ccmPopTenantService.findListId(new Page<CcmPopTenant>(request, response), ccmPopTenant);
+//		Page<CcmPopTenant> respage = ccmPopTenantService.findListId(new Page<CcmPopTenant>(request, response), ccmPopTenant);
+		Pagecount page = new Pagecount<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmPopTenant.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmPopTenant.setMaxnum(page.getPageSize());
+		List<CcmPopTenant> list = ccmPopTenantService.findListIdBylimit(ccmPopTenant);
 		List<String> idlist = Lists.newArrayList();
-		respage.getList().forEach(item->{
+		list.forEach(item->{
 			idlist.add(item.getId());
 		});
-		ccmPopTenant.setListLimite(idlist);
-		Page<CcmPopTenant> pagelist = ccmPopTenantService.findList_V2(new Page<CcmPopTenant>(request, response), ccmPopTenant);
-		respage.setList(pagelist.getList());
+		if(idlist.size()>0){
+			ccmPopTenant.setListLimite(idlist);
+			Page<CcmPopTenant> pagelist = ccmPopTenantService.findList_V2(new Page<CcmPopTenant>(request, response), ccmPopTenant);
+			page.setList(pagelist.getList());
+		}
 //		Page<CcmPopTenant> page = ccmPopTenantService.findPage(new Page<CcmPopTenant>(request, response), ccmPopTenant);
-		model.addAttribute("page", respage);
+		model.addAttribute("page", page);
 		model.addAttribute("ccmPopTenant", ccmPopTenant);
 		return "ccm/pop/ccmPopTenantList";
 	}
@@ -119,7 +132,18 @@ public class CcmPopTenantController extends BaseController {
 	public String rentList(CcmPopTenant ccmPopTenant, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
 		ccmPopTenant.setHouseType("02");
-		Page<CcmPopTenant> page = ccmPopTenantService.findPage(new Page<CcmPopTenant>(request, response), ccmPopTenant);
+//		Page<CcmPopTenant> page = ccmPopTenantService.findPage(new Page<CcmPopTenant>(request, response), ccmPopTenant);
+		Pagecount page = new Pagecount<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmPopTenant.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmPopTenant.setMaxnum(page.getPageSize());
+		List<CcmPopTenant> list = ccmPopTenantService.findListBylimit(ccmPopTenant);
+		page.setList(list);
 		model.addAttribute("page", page);
 		model.addAttribute("ccmPopTenant", ccmPopTenant);
 		return "ccm/pop/ccmPopTenantRentList";
