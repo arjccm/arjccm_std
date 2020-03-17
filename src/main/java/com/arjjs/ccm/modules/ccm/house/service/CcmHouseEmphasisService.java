@@ -1,9 +1,12 @@
 package com.arjjs.ccm.modules.ccm.house.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.arjjs.ccm.modules.sys.entity.Menu;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,13 +51,27 @@ public class CcmHouseEmphasisService {
 		SysConfig sysConfig = sysConfigService.get(id);
 		String param = sysConfig.getParamStr();
 		List<String> paramStr = Arrays.asList(param.split(","));
+
+		List<String> specificList = meanList();
+
 		for (String str : paramStr) {
 			for (Dict dict : dictList) {
 				if(str.equals(dict.getValue())) {
 					CcmHouseEmphasis houseEmphasis = new CcmHouseEmphasis();
-					houseEmphasis.setLabel(dict.getLabel());
-					houseEmphasis.setType(dict.getRemarks());
-					ccmHouseEmphasisList.add(houseEmphasis);
+					for (String s : specificList) {
+						String label = dict.getLabel();
+						if (label.equals("艾滋病患者")){
+							label="艾滋病";
+						}
+						if (label.equals("危险品从业者")){
+							label="危险品从业";
+						}
+						if(s.contains(label)){
+							houseEmphasis.setLabel(dict.getLabel());
+							houseEmphasis.setType(dict.getRemarks());
+							ccmHouseEmphasisList.add(houseEmphasis);
+						}
+					}
 				}
 			}
 		}
@@ -66,6 +83,20 @@ public class CcmHouseEmphasisService {
 			result.setRet(Result.ERROR_PARAM);
 		}
 		return result;
+	}
+
+	public List<String> meanList()  {
+		List<String> specificList = new ArrayList<>();
+		List<Menu> menuList = UserUtils.getMenuList();
+		for (Menu menu : menuList) {
+			String parentName = menu.getParent().getName();
+			if(parentName!=null&&parentName!=""){
+				if (parentName.equals("特殊信息")){
+					specificList.add(menu.getName());
+				}
+			}
+		}
+		return specificList;
 	}
 	
 	public LayUIBean findEmphasisDataByTableName(CcmPeople ccmPeople) {
