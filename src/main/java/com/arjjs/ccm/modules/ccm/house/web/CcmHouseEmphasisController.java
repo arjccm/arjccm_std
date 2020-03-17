@@ -11,6 +11,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.sys.entity.Menu;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,6 +65,8 @@ public class CcmHouseEmphasisController {
 		CcmHouseEmphasisService emphasisService = SpringContextHolder.getBean("CcmHouseEmphasisService");
 		return emphasisService.findTableName();
 	}
+
+
 	
 	/**
 	 * 方法描述：根据数据库table名称获取列表数据

@@ -50,6 +50,10 @@ public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 
 	private List<String> listLimite;
 
+	private Integer minnum;
+	private Integer maxnum;
+
+
 	public List<String> getListLimite() {
 		return listLimite;
 	}
@@ -325,5 +329,20 @@ public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 	public void setImages(String images) {
 		this.images = images;
 	}
-	
+
+	public Integer getMinnum() {
+		return minnum;
+	}
+
+	public void setMinnum(Integer minnum) {
+		this.minnum = minnum;
+	}
+
+	public Integer getMaxnum() {
+		return maxnum;
+	}
+
+	public void setMaxnum(Integer maxnum) {
+		this.maxnum = maxnum;
+	}
 }

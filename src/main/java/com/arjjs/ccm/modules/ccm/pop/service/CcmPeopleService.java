@@ -149,6 +149,11 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		return super.findList(ccmPeople);
 	}
 
+	public List<CcmPeople> findListBylimit(CcmPeople ccmPeople){
+		return ccmPeopleDao.findListBylimit(ccmPeople);
+	}
+
+
 	public Page<CcmPeople> findPage(Page<CcmPeople> page, CcmPeople ccmPeople) {
 		return super.findPage(page, ccmPeople);
 	}
@@ -471,7 +476,14 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		page.setList(ccmPeopleDao.findPermanentList(ccmPeople));
 		return page;
 	}
-	
+
+	//常住人口
+	public List<CcmPeople> findPermanentListBylimit(CcmPeople ccmPeople) {
+		return ccmPeopleDao.findPermanentListBylimit(ccmPeople);
+	}
+
+
+
 	/**
 	 * 区域内人员统计
 	 */

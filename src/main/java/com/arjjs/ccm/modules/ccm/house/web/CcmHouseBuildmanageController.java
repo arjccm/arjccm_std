@@ -16,8 +16,10 @@ import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
 import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
+import com.arjjs.ccm.tool.Pagecount;
 import com.google.common.collect.Lists;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
@@ -104,15 +106,28 @@ public class CcmHouseBuildmanageController extends BaseController {
 	@RequestMapping(value = { "list", "" })
 	public String list(CcmHouseBuildmanage ccmHouseBuildmanage, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
-		Page<CcmHouseBuildmanage> respage = ccmHouseBuildmanageService.findListId(new Page<CcmHouseBuildmanage>(request, response), ccmHouseBuildmanage);
+//		Page<CcmHouseBuildmanage> respage = ccmHouseBuildmanageService.findListId(new Page<CcmHouseBuildmanage>(request, response), ccmHouseBuildmanage);
+		Pagecount page = new Pagecount<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmHouseBuildmanage.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmHouseBuildmanage.setMaxnum(page.getPageSize());
+		List<CcmHouseBuildmanage> list = ccmHouseBuildmanageService.findListIdBylimit(ccmHouseBuildmanage);
+
 		List<String> idlist = Lists.newArrayList();
-		respage.getList().forEach(item->{
+		list.forEach(item->{
 			idlist.add(item.getId());
 		});
-		ccmHouseBuildmanage.setListLimite(idlist);
-		Page<CcmHouseBuildmanage> pagelist = ccmHouseBuildmanageService.findList_V2(new Page<CcmHouseBuildmanage>(request, response), ccmHouseBuildmanage);
-		respage.setList(pagelist.getList());
-		model.addAttribute("page", respage);
+		if(idlist.size()>0){
+			ccmHouseBuildmanage.setListLimite(idlist);
+			Page<CcmHouseBuildmanage> pagelist = ccmHouseBuildmanageService.findList_V2(new Page<CcmHouseBuildmanage>(request, response), ccmHouseBuildmanage);
+			page.setList(pagelist.getList());
+		}
+		model.addAttribute("page", page);
 		return "ccm/house/ccmHouseBuildmanageList";
 	}
 

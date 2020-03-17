@@ -150,6 +150,7 @@ public class CcmHouseRectificationController extends BaseController {
 		ccmHouseRectificationService.save(ccmHouseRectification,ccmPop);
 		if (ccmPop != null) {
 			ccmPop.setIsRectification(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		addMessage(redirectAttributes, "保存社区矫正人员成功");
@@ -191,6 +192,7 @@ public class CcmHouseRectificationController extends BaseController {
 		CcmPeople ccmPop = ccmPeopleService.get(ccmHouseRectification.getPeopleId());
 		if (ccmPop != null) {
 			ccmPop.setIsRectification(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 
