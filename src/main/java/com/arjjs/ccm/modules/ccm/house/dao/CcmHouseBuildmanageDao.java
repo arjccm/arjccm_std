@@ -77,6 +77,9 @@ public interface CcmHouseBuildmanageDao extends CrudDao<CcmHouseBuildmanage> {
 	//查询楼栋id
 	List<CcmHouseBuildmanage> findListId(CcmHouseBuildmanage ccmHouseBuildmanage);
 
+	//查询楼栋id
+	List<CcmHouseBuildmanage> findListIdBylimit(CcmHouseBuildmanage ccmHouseBuildmanage);
+
 	//查询楼栋列表
 	List<CcmHouseBuildmanage> findList_V2(CcmHouseBuildmanage ccmHouseBuildmanage);
 }
