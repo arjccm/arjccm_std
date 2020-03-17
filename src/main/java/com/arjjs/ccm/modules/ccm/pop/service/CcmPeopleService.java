@@ -1103,6 +1103,11 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		return ccmPeopleDao.queryByIdent(ident);
 	}
 
+	public List<CcmPeople> queryByPersonalIdent(String pident){
+		return ccmPeopleDao.queryByPersonalIdent(pident);
+	}
+
+
 	//实有、流动、常住、重点、人口个数
 	public SearchTab getCountPeople(){
 		SearchTab countPeople = dao.getCountPeople();

@@ -2526,7 +2526,18 @@
 	FROM
 	ccm_people
 	WHERE
-	ident = #{ident}
+	ident = #{accountidentity}
+	AND del_flag = 0
+	</select>
+
+	<!--根据身份证号码查询是否已经存在-->
+	<select id="queryByPersonalIdent" resultType="CcmPeople">
+	SELECT
+	id
+	FROM
+	ccm_people
+	WHERE
+	ident = #{pident}
 	AND del_flag = 0
 	</select>
 

@@ -15,6 +15,7 @@
             src="${ctxStatic}/ccm/event/js/fishBonePop.js"></script>
     <script type="text/javascript"
             src="${ctxStatic}/ccm/event/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
     <style type="text/css">
         .pad {
             padding: 5px;
@@ -395,6 +396,29 @@
 
 
         }
+
+        function isRepeat() {
+            let pident = $("#p_id_card").val();
+            if (pident != null && pident.trim().length > 0) {
+
+                $.ajax({
+                    url: ctx + "/pop/ccmPeople/queryByPersonalIdent?pident=" + pident,
+                    type: "get",
+                    success: function (data) {
+                        if (data.length > 0) {
+                            layer.alert('该身份证号码已注册！！！', {
+                                title: "提示",
+                                skin: 'layui-layer-lan'
+                                ,closeBtn: 0,
+                                btn: "好的"
+                            });
+                        }
+
+                    }
+                })
+            }
+
+        }
     </script>
     <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 
@@ -517,7 +541,7 @@
                     <label class="control-label"><span id="ident0"></span><span class="help-inline"><font
                             color="red">*</font></span>公民身份号码：</label>
                     <div class="controls">
-                        <form:input path="ident" htmlEscape="false" maxlength="18"
+                        <form:input path="ident" id="p_id_card" onmouseout="isRepeat()" htmlEscape="false" maxlength="18"
                                     class="input-xlarge required ident0 card"/>
                     </div>
                 </div>
