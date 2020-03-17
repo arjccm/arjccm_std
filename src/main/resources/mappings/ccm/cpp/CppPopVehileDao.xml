@@ -29,6 +29,7 @@
 		FROM cpp_pop_vehile a
 		<include refid="cppPopVehileJoins"/>
 		WHERE a.id = #{id}
+		AND a.del_flag = '0'
 	</select>
 	
 	<select id="getByRelation" resultType="CppPopVehile">
@@ -37,6 +38,7 @@
 		FROM cpp_pop_vehile a
 		<include refid="cppPopVehileJoins"/>
 		WHERE a.id_card = #{idCard}
+		AND a.del_flag = '0'
 	</select>
 	
 	<select id="findList" resultType="CppPopVehile">
