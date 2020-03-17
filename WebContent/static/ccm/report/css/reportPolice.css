@@ -86,8 +86,11 @@ ul.echartsAlarm-value li{
     /*box-shadow: 1px 1px 1px 1px  #D3D3D3;*/
 }
 .common-pading{
-    padding: 5px;
-    height:95%;
+    padding: 0 15px;
+    height:calc(100% - 46px);
+    display: flex;
+    align-items: center;
+
 }
 .height15{
     height:16.5%;
@@ -112,19 +115,16 @@ ul.echartsAlarm-value li{
     /*height:98%*/
 }
 .top-header{
-    width: 100%;
-    margin: 0 auto;
-    /* background: url('../../type.png') no-repeat center; */
-    background-size: 100% 100%;
-    color: #696969;
-    font-size: 17px;
-    font-weight:bold;
-    line-height: 30px;
-    height: 30px;
-    margin-bottom: 5px;
-    text-align: center;
+    color:#ffffff !important;
+    font-size: 16px;
+    line-height: 100%;
+    text-align: left;
+    padding: 15px;
 }
-
+.top-header .top_header_icon{
+    padding-left: 15px;
+    border-left: 5px solid #04e9eb;
+}
 
 table {
     width: 100%;
@@ -133,7 +133,8 @@ table {
     text-align: center;
 }
 .l-grid-row-alt {
-    background: rgba(0,108,208,0.2);
+    background: #07537a;
+    border: 1px solid #0d70a1;
 }
 .l-grid-row-alt td {
     overflow: hidden;
@@ -141,18 +142,13 @@ table {
     white-space: nowrap;
     line-height: 30px;
 }
-.common-color{
-    color:#eea807;
-    font-size: 85px;
-    font-family: myFirstFont;
-    font-weight: normal;
-}
+
 .echarts {
     width: 100%;
     height: 86%;
 }
 .results {
-    margin-top: 10%;
+    margin-top: 0;
 }
 .contradiction div {
     float: left;
@@ -225,4 +221,98 @@ table {
 }
 .height31{
     height:33%;
+}
+/*  新样式  */
+.reportPolice_area{
+    width: 100%;
+    height: calc(100vh - 10px);
+    overflow: hidden;
+}
+.reportPolice_content{
+    width: 100vw;
+    height: 100%;
+}
+.reportPolice_content .left_box{
+    float: left;
+    width: 24vw;
+    margin: 0 1vw;
+    height: 100%;
+}
+.left_box .left_content{
+    height: calc(50% - 1vw);
+    margin-bottom: 1vw;
+    border: 1px solid #215f85;
+    background: rgba(14,45,80,.95);
+}
+.left_box .left_content:last-child{
+    margin-bottom: 0;
+}
+
+.reportPolice_content .center_box{
+    float: left;
+    width: 48vw;
+    margin-right: 1vw;
+    height: 100%;
+}
+.center_box .center_content{
+    width: 100%;
+    height: calc(33.33% - 1vw);
+    margin-bottom: 1vw;
+    border: 1px solid #215f85;
+    background: rgba(14,45,80,.95);
+}
+.center_box .center_content:last-child{
+    margin-bottom: 0;
+}
+
+.center_tp_bk{
+    width: 100%;
+}
+.center_tp_bk .data_area{
+    float: left;
+    width: 33.3%;
+}
+.center_tp_bk .data_area p{
+    text-align: center;
+    margin: 0 0 20px 0;
+    line-height: 100%;
+}
+.common-color{
+    color:#fde013;
+    font-size: 85px;
+    font-family: myFirstFont;
+    font-weight: bold;
+}
+.center_tp_bk .data_area p:last-child{
+    opacity: 0.7;
+}
+
+
+.reportPolice_content .right_box{
+    float: right;
+    width: 24vw;
+    height: 100%;
+    margin-right: 1vw;
+}
+.right_box .right_content{
+    width: 100%;
+    height: calc(100% - 1vw);
+    border: 1px solid #215f85;
+    background: rgba(14,45,80,.95);
+}
+#alarmTable td{
+    line-height: 30px;
+}
+#alarmTbody tr{
+    border: 1px solid #0d70a1;
+}
+#alarmTbody tr:nth-child(even){
+    background: rgba(7,83,122,.4);
+}
+#alarmTbody td{
+    font-size: 12px;
+    opacity: 0.7;
+}
+.echartsAlarm-tab li{
+    line-height: 30px;
 }

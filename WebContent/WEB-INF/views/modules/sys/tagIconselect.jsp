@@ -356,6 +356,10 @@
 	      <li><i class="icon-stethoscope"></i> icon-stethoscope</li>
 	      <li><i class="icon-user-md"></i> icon-user-md</li>
 	    </ul>
+		<h2 class="page-header">新增图标库</h2>
+		<ul class="the-icons">
+			<li><i class="icon-dashujuzhanshi" style="font-family:iconfont !important"></i> icon-dashujuzhanshi</li>
+		</ul>
 	<br/><br/>
 </div>
 </body>

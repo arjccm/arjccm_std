@@ -5,7 +5,8 @@
 $(function() {
 
     // 基础颜色表
-    var color = ['#aa4644', '#4573a7', '#89a54e', '#71588f', '#4298af', '#db843d', '#93a9d0', '#d09392', '#b9ce96', '#a99bbc', '#92c3d4', '#ffdf5f'];
+    // var color = ['#aa4644', '#4573a7', '#89a54e', '#71588f', '#4298af', '#db843d', '#93a9d0', '#d09392', '#b9ce96', '#a99bbc', '#92c3d4', '#ffdf5f'];
+    var color = ['#df4d66', '#fde013', '#ff7415', '#377fee', '#19abf2', '#19d1f2', '#798cfb', '#a98ff8'];
     // 基础参数
     var windowsHeight, _fontSize = 14,
 
@@ -59,10 +60,10 @@ $(function() {
             },
             color: color,
             grid: {
-                left: '3%',
-                right: '3%',
-                bottom: '3%',
-                top: '3%',
+                left: 0,
+                right: 0,
+                bottom: 0,
+                top: 0,
                 containLabel: true
             },
             series: [{
@@ -73,7 +74,7 @@ $(function() {
                     }    
                 }, 
                 type: 'pie',
-                radius: ['25%', '35%'],
+                radius: ['25%', '55%'],
                 label: {
                     normal: {
                         formatter: '{b|{b}：}{c}  ',
@@ -362,7 +363,7 @@ $(function() {
                 left: '3%',
                 right: '3%',
                 bottom: '5%',
-                top: '15%',
+                top: '5%',
                 containLabel: true
             },
             xAxis: [{
@@ -373,7 +374,14 @@ $(function() {
                 },
                 axisLine: {
                     lineStyle: {
-                        color: FontColor
+                        color: FontColor,
+                        width:1,
+                        opacity:0.3
+                    }
+                },
+                axisTick:{
+                    lineStyle:{
+                        opacity:0.3
                     }
                 },
                 axisLabel: {
@@ -395,8 +403,15 @@ $(function() {
                 },
                 axisLine: {
                     lineStyle: {
-                        color: FontColor
+                        color: FontColor,
+                        width:1,
+                        opacity:0.3
                     }
+                },
+                axisTick:{
+                  lineStyle:{
+                      opacity:0.3
+                  }
                 },
                 splitLine: {
                     show: false
@@ -409,7 +424,24 @@ $(function() {
                 barWidth: 23,
                 itemStyle: {
                     normal: {
-                        color: '#89a54e'
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0,
+                                color: 'rgba(67, 138, 255, 1)' //  0%  处的颜色
+                            },{
+                                offset: 0.4,
+                                color: 'rgba(67, 138, 255, 1)' //  30%  处的颜色
+                            },{
+                                offset: 1,
+                                color: 'rgba(67, 138, 255, .1)' //  100%  处的颜色
+                            }],
+                            global: false //  缺省为  false
+                        }
                     }
                 }
             },
@@ -451,7 +483,14 @@ $(function() {
                 },
                 axisLine: {
                     lineStyle: {
-                        color: FontColor
+                        color: FontColor,
+                        width:1,
+                        opacity:0.3
+                    }
+                },
+                axisTick:{
+                    lineStyle:{
+                        opacity:0.3
                     }
                 },
                 axisLabel: {
@@ -474,7 +513,14 @@ $(function() {
                 },
                 axisLine: {
                     lineStyle: {
-                        color: FontColor
+                        color: FontColor,
+                        width:1,
+                        opacity:0.3
+                    }
+                },
+                axisTick:{
+                    lineStyle:{
+                        opacity:0.3
                     }
                 },
                 splitLine: {
@@ -490,7 +536,14 @@ $(function() {
                 },
                 axisLine: {
                     lineStyle: {
-                        color: FontColor
+                        color: FontColor,
+                        width:1,
+                        opacity:0.3
+                    }
+                },
+                axisTick:{
+                    lineStyle:{
+                        opacity:0.3
                     }
                 },
                 splitLine: {
@@ -504,7 +557,24 @@ $(function() {
                 data: dataY1,
                 itemStyle: {
                     normal: {
-                        color: "#14c1c0",
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0,
+                                color: 'rgba(75, 224, 248, 1)' //  0%  处的颜色
+                            },{
+                                offset: 0.4,
+                                color: 'rgba(75, 224, 248, 1)' //  30%  处的颜色
+                            },{
+                                offset: 1,
+                                color: 'rgba(75, 224, 248, .1)' //  100%  处的颜色
+                            }],
+                            global: false //  缺省为  false
+                        }
                     },
                     textStyle: {
                         color: FontColor,
@@ -547,6 +617,13 @@ $(function() {
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)",
 		        confine:true
+            },
+            grid: {
+                top: '5%',
+                left: '4%',
+                right: '4%',
+                bottom: '5%',
+                containLabel: true
             },
             legend: {
                 // type: 'scroll',
