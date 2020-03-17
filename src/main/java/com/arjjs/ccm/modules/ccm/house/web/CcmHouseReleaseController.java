@@ -172,11 +172,11 @@ public class CcmHouseReleaseController extends BaseController {
 
 		if(ccmPop!=null){
 			ccmPop.setIsRelease(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		addMessage(redirectAttributes, "保存安置帮教人员成功");
 //		return "redirect:" + Global.getAdminPath() + "/house/ccmHouseRelease/?repage";
-
 		PrintWriter out = response.getWriter();
 		CommUtil.openWinExpDiv(out, "保存安置帮教人员成功");
 		ccmPop.setMqTitle("新增重点人员(安置帮教人员)");
@@ -200,6 +200,7 @@ public class CcmHouseReleaseController extends BaseController {
 		CcmPeople ccmPop = ccmPeopleService.get(ccmHouseRelease.getPeopleId());
 		if(ccmPop!=null){
 			ccmPop.setIsRelease(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		
