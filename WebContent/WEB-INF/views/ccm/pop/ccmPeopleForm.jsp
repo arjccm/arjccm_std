@@ -855,16 +855,16 @@
                 <li>
                 <c:forEach items="${fns:getMenuList()}" var="menu" varStatus="idxStatus">
                     <c:if test="${menu.name eq '安置帮教人员管理'&&menu.isShow eq '1'}">
-                        <c:if
-                                test="${ccmPeople.isRelease==0||ccmPeople.isRelease==null||ccmPeople.isRelease==''}">
+                        <c:if test="${ccmPeople.isRelease==1}">
                         <li><a class="znul"
                                onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '700px')">安置帮教人员标记</a>
                         </li>
                         </c:if>
-                        <c:if test="${ccmPeople.isRelease==1}">
-                            <li><a class="znul"
-                                   onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '700px')">安置帮教人员标记</a>
-                            </li>
+                        <c:if
+                                test="${ccmPeople.isRelease==0||ccmPeople.isRelease==null||ccmPeople.isRelease==''}">
+                        <li><a
+                               onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '700px')">安置帮教人员标记</a>
+                        </li>
                         </c:if>
                     </c:if>
 
