@@ -66,6 +66,9 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 	//老年人
 	public List<CcmPeople> findOlderPage(CcmPeople ccmPeople);
 
+	//老年人
+	public List<CcmPeople> findOlderPageBylimit(CcmPeople ccmPeople);
+
 	//特殊关怀First
 	public List<CcmPeople> findCareFirst(CcmPeople ccmPeople);
 
