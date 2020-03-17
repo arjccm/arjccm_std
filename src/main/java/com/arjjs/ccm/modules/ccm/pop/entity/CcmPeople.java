@@ -152,7 +152,12 @@ public class CcmPeople extends DataEntity<CcmPeople> {
 	
 	private Integer pilesNum;  //楼栋层数
 	private Integer floorNum;  //房屋所属层数
-	
+
+	private Integer minnum;
+	private Integer maxnum;
+
+
+
 	@ExcelField(title="楼栋总层数", align=2, sort=22)
 	public Integer getPilesNum() {
 		return pilesNum;
@@ -1346,5 +1351,19 @@ public class CcmPeople extends DataEntity<CcmPeople> {
 		this.che = che;
 	}
 
-	
+	public Integer getMinnum() {
+		return minnum;
+	}
+
+	public void setMinnum(Integer minnum) {
+		this.minnum = minnum;
+	}
+
+	public Integer getMaxnum() {
+		return maxnum;
+	}
+
+	public void setMaxnum(Integer maxnum) {
+		this.maxnum = maxnum;
+	}
 }

@@ -86,6 +86,10 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 
 	//常住人口
 	public List<CcmPeople> findPermanentList(CcmPeople ccmPeople);
+
+	//常住人口
+	public List<CcmPeople> findPermanentListBylimit(CcmPeople ccmPeople);
+
 	//实有、流动、常住、重点、人口个数
 	SearchTab getCountPeople();
 
@@ -191,4 +195,8 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 	 * @return
 	 */
 	List<CcmPeople> queryByIdent(@Param("ident")String ident);
+
+
+	//人口查询分页
+	List<CcmPeople> findListBylimit(CcmPeople ccmPeople);
 }
