@@ -105,9 +105,9 @@
 				<th>负责人联系电话</th>
 				<th>关联组织机构</th>
 				<th>入库时间</th>
-				<%-- 				<shiro:hasPermission name="place:ccmBasePlace:edit">
+				<shiro:hasPermission name="place:ccmBasePlace:edit">
 					<th>操作</th>
-				</shiro:hasPermission> --%>
+				</shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -125,14 +125,22 @@
 					<td>${fns:getDictLabel(ccmBasePlace.relevanceOrg, 'ccm_buss_cate', '')}</td>
 					<td><fmt:formatDate value="${ccmBasePlace.createDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<%-- 					<shiro:hasPermission name="place:ccmBasePlace:edit">
-						<td><a class="btnList"
-							href="${ctx}/place/ccmBasePlace/form?id=${ccmBasePlace.id}"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
-							href="${ctx}/place/ccmBasePlace/delete?id=${ccmBasePlace.id}"
-							onclick="return confirmx('确认要删除该场所信息吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a></td>
-					</shiro:hasPermission> --%>
+					<shiro:hasPermission name="place:ccmBasePlace:edit">
+						<td>
+							<shiro:hasPermission name="log:ccmLogTail:edit">
+								<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmBasePlace.id}&relevance_table=ccm_base_place', '记录信息', '800px', '660px')"
+								   title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
+								<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmBasePlace.id}&relevance_table=ccm_base_place', '添加记录', '800px', '660px')"
+								   title="添加记录"><i class="icon-plus"></i></a>
+							</shiro:hasPermission>
+							<a class="btnList"
+							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
+							   title="从业人员添加"><i class="icon-group"></i></a>
+							<a class="btnList"
+							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmBasePlace.id}&type=1', '从业人员信息', '1550px', '800px')"
+							   title="从业人员信息"><i class="icon-align-justify"></i></a>
+						</td>
+					</shiro:hasPermission>
 				</tr>
 			</c:forEach>
 		</tbody>

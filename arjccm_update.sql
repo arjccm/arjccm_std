@@ -534,11 +534,1100 @@ SET FOREIGN_KEY_CHECKS = 1;
 --菜单表新增图标名
 UPDATE sys_menu SET icon = "dashujuzhanshi" WHERE id="1c67672c043e428db50f772af0eb01c5"
 
+--字典名称修改
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('39102', 'ccm_house_release', '安置帮教人员', 'ccm_log_tail_table', '跟踪信息关联表', 2, '0', '1', '2018-01-23 15:36:51', '1', '2018-01-24 10:09:36', '', '0');
+
+
+--修改COUNT_RECORD_amount_init统计存储过程
+BEGIN
+    DECLARE DT_DATE DATETIME;
+		DECLARE AREA_ID VARCHAR(64);
+		DECLARE AREA_TYPE VARCHAR(1);
+		DECLARE DONE INT DEFAULT FALSE;
+		DECLARE COUNT INT;
+
+		DECLARE CUR CURSOR FOR SELECT id,type from sys_area WHERE del_flag = 0 AND (type = '5' OR type = '6' OR type = '7');
+
+		DECLARE CONTINUE HANDLER FOR NOT FOUND SET DONE = TRUE;
+
+		SET DT_DATE = last_day(curdate());
+
+		OPEN CUR;
+		SELECT COUNT(*) INTO COUNT FROM ccm_people_amount RS WHERE RS.amount_date = DT_DATE AND del_flag = '0';
+
+		READ_LOOP:LOOP
+			FETCH CUR INTO AREA_ID, AREA_TYPE;
+			IF DONE THEN
+				LEAVE READ_LOOP;
+			END IF;
+			IF COUNT = 0 THEN
+				IF AREA_TYPE = '7' THEN
+					INSERT INTO ccm_people_amount(id, area_id, amount_date,system_level, create_by, create_date, update_by, update_date, del_flag) VALUES (UUID(), AREA_ID, DT_DATE,0,'1', NOW(), '1', NOW(), '0');
+				ELSEIF AREA_TYPE = '6' THEN
+					INSERT INTO ccm_people_amount(id, area_id, amount_date,system_level, create_by, create_date, update_by, update_date, del_flag) VALUES (UUID(), AREA_ID, DT_DATE,1,'1', NOW(), '1', NOW(), '0');
+				ELSE
+					INSERT INTO ccm_people_amount(id, area_id, amount_date,system_level, create_by, create_date, update_by, update_date, del_flag) VALUES (UUID(), AREA_ID, DT_DATE,2,'1', NOW(), '1', NOW(), '0');
+				END IF;
+			ELSE
+				UPDATE ccm_people_amount SET update_date = NOW() WHERE area_id = AREA_ID AND del_flag = '0';
+			END IF;
+		END LOOP;
+		CLOSE CUR;
+
+		commit;
+		SET DONE = FALSE;
+
+END
+
+--修改COUNT_RECORD_peopleAmount统计存储过程
+BEGIN
+
+-- 人口类型：户籍
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND type = '10'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.person_amount = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 人口类型：流动
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND type = '20'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.float_amount = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 人口类型：外籍
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND type = '30'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.oversea_amount = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 人口类型：未落户
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND type = '40'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.unsettle_amount = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+
+-- 特殊人群
+    UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				sum(is_behind) AS I_STAT_COUNT_1,
+				sum(is_release) AS I_STAT_COUNT_2,
+				sum(is_rectification) AS I_STAT_COUNT_3,
+				sum(is_aids) AS I_STAT_COUNT_4,
+				sum(is_psychogeny) AS I_STAT_COUNT_5,
+				sum(is_kym) AS I_STAT_COUNT_6,
+				sum(is_drugs) AS I_STAT_COUNT_7,
+				sum(is_visit) AS I_STAT_COUNT_8,
+				sum(is_dangerous) AS I_STAT_COUNT_9,
+				sum(is_heresy) AS I_STAT_COUNT_10,
+				count(special_care_type) AS I_STAT_COUNT_11
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.behind_amount = b.I_STAT_COUNT_1,
+		 a.release_amount = b.I_STAT_COUNT_2,
+		 a.rectification_amount = b.I_STAT_COUNT_3,
+		 a.aids_amount = b.I_STAT_COUNT_4,
+		 a.psychogeny_amount = b.I_STAT_COUNT_5,
+		 a.kym_amount = b.I_STAT_COUNT_6,
+		 a.drugs_amount = b.I_STAT_COUNT_7,
+		 a.visit_amount = b.I_STAT_COUNT_8,
+		 a.dangerous_amount = b.I_STAT_COUNT_9,
+		 a.heresy_amount = b.I_STAT_COUNT_10,
+		 a.care_amount = b.I_STAT_COUNT_11
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+
+-- 党员
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND politics = '01'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.communist_amount = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 男性
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND sex = '0'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.sex_male = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 女性
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND sex = '1'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.sex_female = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 未婚男性
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND sex = '0'
+				AND marriage = '10'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.sex_male_single = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 未婚女性
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND sex = '1'
+				AND marriage = '10'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.sex_female_single = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 教育程度：博士
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND education in ('11', '12', '13')
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.edu_doctor = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 教育程度：研究生
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND education in ('14', '15', '16', '17', '18', '19')
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.edu_master = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 教育程度：大学
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND education in ('20', '21', '22', '23', '30', '31', '32', '33')
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.edu_college = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 教育程度：高中
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND education in ('40','91','92','93','41','42','43','44','45','46','47','48','49','60','61','62','63')
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.edu_senior = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 教育程度：初中及以下
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND education = '50'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.edu_junior = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+
+-- 年龄结构：0-15年龄段
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND birthday >= date_format( DATE_SUB(curdate(), INTERVAL 15 Year), '%Y-%m' )
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.age_child = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 年龄结构：16-40年龄段
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND birthday >= date_format( DATE_SUB(curdate(), INTERVAL 40 Year), '%Y-%m' )
+				AND birthday <= date_format( DATE_SUB(curdate(), INTERVAL 16 Year), '%Y-%m' )
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.age_adult = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 年龄结构：41-64年龄段
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND birthday >= date_format( DATE_SUB(curdate(), INTERVAL 64 Year), '%Y-%m' )
+				AND birthday <= date_format( DATE_SUB(curdate(), INTERVAL 41 Year), '%Y-%m' )
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.age_middle = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 年龄结构：65及以上年龄段
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND birthday <= date_format( DATE_SUB(curdate(), INTERVAL 65 Year), '%Y-%m' )
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.age_old = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+		UPDATE ccm_people_amount a SET a.older_amount = a.age_old WHERE a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 年龄结构：新生儿（1岁以内）
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND birthday >= date_format( DATE_SUB(curdate(), INTERVAL 1 Year), '%Y-%m' )
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.age_newborn = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 关注程度：高
+	  CALL COUNT_RECORD_peopleAttentType_high('01', '');
+		commit;
+-- 关注程度：中
+	  CALL COUNT_RECORD_peopleAttentType_middle('02', '');
+		commit;
+-- 关注程度：低
+	  CALL COUNT_RECORD_peopleAttentType_low('03', '');
+		commit;
+
+
+
+-- 按街道汇总数据表本身的数据，网格 -> 社区
+				UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				sysArea.parent_id AS 'area_id',
+				sum(p.person_amount) AS 'person_amount',
+				sum(p.oversea_amount) AS 'oversea_amount',
+				sum(p.float_amount) AS 'float_amount',
+				sum(p.unsettle_amount) AS 'unsettle_amount',
+				sum(p.aids_amount) AS 'aids_amount',
+				sum(p.psychogeny_amount) AS 'psychogeny_amount',
+				sum(p.rectification_amount) AS 'rectification_amount',
+				sum(p.release_amount) AS 'release_amount',
+				sum(p.drugs_amount) AS 'drugs_amount',
+				sum(p.behind_amount) AS 'behind_amount',
+				sum(p.kym_amount) AS 'kym_amount',
+				sum(p.visit_amount) AS 'visit_amount',
+				sum(p.heresy_amount) AS 'heresy_amount',
+				sum(p.dangerous_amount) AS 'dangerous_amount',
+				sum(p.care_amount) AS 'care_amount',
+				sum(p.older_amount) AS 'older_amount',
+				sum(p.communist_amount) AS 'communist_amount',
+				sum(p.more1) AS 'more1',
+				sum(p.more2) AS 'more2',
+				sum(p.more3) AS 'more3',
+				sum(p.age_child) AS 'age_child',
+				sum(p.age_adult) AS 'age_adult',
+				sum(p.age_middle) AS 'age_middle',
+				sum(p.age_old) AS 'age_old',
+				sum(p.age_newborn) AS 'age_newborn',
+				sum(p.sex_male) AS 'sex_male',
+				sum(p.sex_female) AS 'sex_female',
+				sum(p.sex_male_single) AS 'sex_male_single',
+				sum(p.sex_female_single) AS 'sex_female_single',
+				sum(p.edu_doctor) AS 'edu_doctor',
+				sum(p.edu_master) AS 'edu_master',
+				sum(p.edu_college) AS 'edu_college',
+				sum(p.edu_senior) AS 'edu_senior',
+				sum(p.edu_junior) AS 'edu_junior',
+				sum(p.atte_high) AS 'atte_high',
+				sum(p.atte_middle) AS 'atte_middle',
+				sum(p.atte_low) AS 'atte_low'
+			FROM
+				ccm_people_amount p,
+				sys_area sysArea
+			WHERE
+				p.area_id = sysArea.id
+			AND p.system_level = '0'
+			AND p.amount_date = last_day(curdate())
+			AND p.del_flag = '0'
+			GROUP BY
+				sysArea.parent_id
+		) AS b ON b.area_id = a.area_id
+		SET
+			a.person_amount = b.person_amount,
+			a.oversea_amount = b.oversea_amount,
+			a.float_amount = b.float_amount,
+			a.unsettle_amount = b.unsettle_amount,
+			a.aids_amount = b.aids_amount,
+			a.psychogeny_amount = b.psychogeny_amount,
+			a.rectification_amount = b.rectification_amount,
+			a.release_amount = b.release_amount,
+			a.drugs_amount = b.drugs_amount,
+			a.behind_amount = b.behind_amount,
+			a.kym_amount = b.kym_amount,
+			a.visit_amount = b.visit_amount,
+			a.heresy_amount = b.heresy_amount,
+			a.dangerous_amount = b.dangerous_amount,
+			a.care_amount = b.care_amount,
+			a.older_amount = b.older_amount,
+			a.communist_amount = b.communist_amount,
+			a.more1 = b.more1,
+			a.more2 = b.more2,
+			a.more3 = b.more3,
+			a.age_child = b.age_child,
+			a.age_adult = b.age_adult,
+			a.age_middle = b.age_middle,
+			a.age_old = b.age_old,
+			a.age_newborn = b.age_newborn,
+			a.sex_male = b.sex_male,
+			a.sex_female = b.sex_female,
+			a.sex_male_single = b.sex_male_single,
+			a.sex_female_single = b.sex_female_single,
+			a.edu_doctor = b.edu_doctor,
+			a.edu_master = b.edu_master,
+			a.edu_college = b.edu_college,
+			a.edu_senior = b.edu_senior,
+			a.edu_junior = b.edu_junior,
+			a.atte_high = b.atte_high,
+			a.atte_middle = b.atte_middle,
+			a.atte_low = b.atte_low
+		WHERE a.area_id = b.area_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+
+
+-- 按街道汇总数据表本身的数据，社区 -> 街道
+				UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				sysArea.parent_id AS 'area_id',
+				sum(p.person_amount) AS 'person_amount',
+				sum(p.oversea_amount) AS 'oversea_amount',
+				sum(p.float_amount) AS 'float_amount',
+				sum(p.unsettle_amount) AS 'unsettle_amount',
+				sum(p.aids_amount) AS 'aids_amount',
+				sum(p.psychogeny_amount) AS 'psychogeny_amount',
+				sum(p.rectification_amount) AS 'rectification_amount',
+				sum(p.release_amount) AS 'release_amount',
+				sum(p.drugs_amount) AS 'drugs_amount',
+				sum(p.behind_amount) AS 'behind_amount',
+				sum(p.kym_amount) AS 'kym_amount',
+				sum(p.visit_amount) AS 'visit_amount',
+				sum(p.heresy_amount) AS 'heresy_amount',
+				sum(p.dangerous_amount) AS 'dangerous_amount',
+				sum(p.care_amount) AS 'care_amount',
+				sum(p.older_amount) AS 'older_amount',
+				sum(p.communist_amount) AS 'communist_amount',
+				sum(p.more1) AS 'more1',
+				sum(p.more2) AS 'more2',
+				sum(p.more3) AS 'more3',
+				sum(p.age_child) AS 'age_child',
+				sum(p.age_adult) AS 'age_adult',
+				sum(p.age_middle) AS 'age_middle',
+				sum(p.age_old) AS 'age_old',
+				sum(p.age_newborn) AS 'age_newborn',
+				sum(p.sex_male) AS 'sex_male',
+				sum(p.sex_female) AS 'sex_female',
+				sum(p.sex_male_single) AS 'sex_male_single',
+				sum(p.sex_female_single) AS 'sex_female_single',
+				sum(p.edu_doctor) AS 'edu_doctor',
+				sum(p.edu_master) AS 'edu_master',
+				sum(p.edu_college) AS 'edu_college',
+				sum(p.edu_senior) AS 'edu_senior',
+				sum(p.edu_junior) AS 'edu_junior',
+				sum(p.atte_high) AS 'atte_high',
+				sum(p.atte_middle) AS 'atte_middle',
+				sum(p.atte_low) AS 'atte_low'
+			FROM
+				ccm_people_amount p,
+				sys_area sysArea
+			WHERE
+				p.area_id = sysArea.id
+			AND p.system_level = '1'
+			AND p.amount_date = last_day(curdate())
+			AND p.del_flag = '0'
+			GROUP BY
+				sysArea.parent_id
+		) AS b ON b.area_id = a.area_id
+		SET
+			a.person_amount = b.person_amount,
+			a.oversea_amount = b.oversea_amount,
+			a.float_amount = b.float_amount,
+			a.unsettle_amount = b.unsettle_amount,
+			a.aids_amount = b.aids_amount,
+			a.psychogeny_amount = b.psychogeny_amount,
+			a.rectification_amount = b.rectification_amount,
+			a.release_amount = b.release_amount,
+			a.drugs_amount = b.drugs_amount,
+			a.behind_amount = b.behind_amount,
+			a.kym_amount = b.kym_amount,
+			a.visit_amount = b.visit_amount,
+			a.heresy_amount = b.heresy_amount,
+			a.dangerous_amount = b.dangerous_amount,
+			a.care_amount = b.care_amount,
+			a.older_amount = b.older_amount,
+			a.communist_amount = b.communist_amount,
+			a.more1 = b.more1,
+			a.more2 = b.more2,
+			a.more3 = b.more3,
+			a.age_child = b.age_child,
+			a.age_adult = b.age_adult,
+			a.age_middle = b.age_middle,
+			a.age_old = b.age_old,
+			a.age_newborn = b.age_newborn,
+			a.sex_male = b.sex_male,
+			a.sex_female = b.sex_female,
+			a.sex_male_single = b.sex_male_single,
+			a.sex_female_single = b.sex_female_single,
+			a.edu_doctor = b.edu_doctor,
+			a.edu_master = b.edu_master,
+			a.edu_college = b.edu_college,
+			a.edu_senior = b.edu_senior,
+			a.edu_junior = b.edu_junior,
+			a.atte_high = b.atte_high,
+			a.atte_middle = b.atte_middle,
+			a.atte_low = b.atte_low
+		WHERE a.area_id = b.area_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
 
 
 
 
+-- 人口类型：常住
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND is_permanent = 1
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.permanent_amount = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
 
 
+END
+
+--修改COUNT_RECORD_stat_init统计存储过程
+BEGIN
+    DECLARE DT_DATE DATETIME;
+		DECLARE AREA_ID VARCHAR(64);
+		DECLARE AREA_TYPE VARCHAR(1);
+		DECLARE DONE INT DEFAULT FALSE;
+		DECLARE COUNT INT;
+
+		DECLARE CUR CURSOR FOR SELECT id,type from sys_area WHERE del_flag = 0 AND (type = '5' OR type = '6' OR type = '7');
+
+		DECLARE CONTINUE HANDLER FOR NOT FOUND SET DONE = TRUE;
+
+		SET DT_DATE = last_day(curdate());
+
+		OPEN CUR;
+		SELECT COUNT(*) INTO COUNT FROM ccm_people_stat RS WHERE RS.stat_date = DT_DATE AND del_flag = '0';
+
+		READ_LOOP:LOOP
+			FETCH CUR INTO AREA_ID, AREA_TYPE;
+			IF DONE THEN
+				LEAVE READ_LOOP;
+			END IF;
+			IF COUNT = 0 THEN
+				IF AREA_TYPE = '7' THEN
+					INSERT INTO ccm_people_stat(id, area_id, stat_date,system_level, create_by, create_date, update_by, update_date, del_flag) VALUES (UUID(), AREA_ID, DT_DATE,0, '1', NOW(), '1', NOW(), '0');
+				ELSEIF AREA_TYPE = '6' THEN
+					INSERT INTO ccm_people_stat(id, area_id, stat_date,system_level, create_by, create_date, update_by, update_date, del_flag) VALUES (UUID(), AREA_ID, DT_DATE,1, '1', NOW(), '1', NOW(), '0');
+				ELSE
+					INSERT INTO ccm_people_stat(id, area_id, stat_date,system_level, create_by, create_date, update_by, update_date, del_flag) VALUES (UUID(), AREA_ID, DT_DATE,2, '1', NOW(), '1', NOW(), '0');
+				END IF;
+			ELSE
+				UPDATE ccm_people_stat SET update_date = NOW() WHERE area_id = AREA_ID AND del_flag = '0';
+			END IF;
+		END LOOP;
+		CLOSE CUR;
+
+		commit;
+		SET DONE = FALSE;
+
+END
+
+--修改COUNT_RECORD_peopleStat_month统计存储过程
+BEGIN
+-- 本月新增数统计
+-- 人口类型：户籍新增-迁入
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND type = '10'
+				AND create_date >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+				AND person_type = '01'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.person_new = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+-- 人口类型：户籍-迁出
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND type = '10'
+				AND person_time >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+				AND person_type = '02'
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.person_out = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
 
 
+-- 人口类型：流动-流入
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND type = '20'
+				AND create_date >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.float_new = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 人口类型：流动-流出
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND time >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.float_out_new = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 人口类型：外籍
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND type = '30'
+				AND create_date >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.oversea_new = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 人口类型：未落户
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND type = '40'
+				AND create_date >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.unsettle_new = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+
+-- 特殊人群
+    UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				sum(is_behind) AS I_STAT_COUNT_1,
+				sum(is_release) AS I_STAT_COUNT_2,
+				sum(is_rectification) AS I_STAT_COUNT_3,
+				sum(is_aids) AS I_STAT_COUNT_4,
+				sum(is_psychogeny) AS I_STAT_COUNT_5,
+				sum(is_kym) AS I_STAT_COUNT_6,
+				sum(is_drugs) AS I_STAT_COUNT_7,
+				sum(is_visit) AS I_STAT_COUNT_8,
+				sum(is_dangerous) AS I_STAT_COUNT_9,
+				sum(is_heresy) AS I_STAT_COUNT_10,
+				count(special_care_type) AS I_STAT_COUNT_11,
+				sum(is_dispute) AS I_STAT_COUNT_12,
+				sum(is_escape) AS I_STAT_COUNT_13,
+				sum(is_harm_national) AS I_STAT_COUNT_14,
+				sum(is_deliberately_illegal) AS I_STAT_COUNT_15,
+				sum(is_criminal_offense) AS I_STAT_COUNT_16
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND create_date >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.behind_new = b.I_STAT_COUNT_1,
+		 a.release_new = b.I_STAT_COUNT_2,
+		 a.rectification_new = b.I_STAT_COUNT_3,
+		 a.aids_new = b.I_STAT_COUNT_4,
+		 a.psychogeny_new = b.I_STAT_COUNT_5,
+		 a.kym_new = b.I_STAT_COUNT_6,
+		 a.drugs_new = b.I_STAT_COUNT_7,
+		 a.visit_new = b.I_STAT_COUNT_8,
+		 a.dangerous_new = b.I_STAT_COUNT_9,
+		 a.heresy_new = b.I_STAT_COUNT_10,
+		 a.care_new = b.I_STAT_COUNT_11,
+		 a.dispute_new = b.I_STAT_COUNT_12,
+		 a.escape_new = b.I_STAT_COUNT_13,
+		 a.harmNational_new = b.I_STAT_COUNT_14,
+		 a.deliberatelyIllegal_new = b.I_STAT_COUNT_15,
+		 a.seriousCriminalOffense_new = b.I_STAT_COUNT_16
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+
+-- 党员
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND politics = '01'
+				AND create_date >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.communist_new = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 年龄结构：65及以上年龄段
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND birthday <= date_format( DATE_SUB(curdate(), INTERVAL 65 Year), '%Y-%m' )
+				AND create_date >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.older_new = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+-- 按街道汇总数据表本身的数据，网格 -> 社区
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				sysArea.parent_id AS 'area_id',
+				sum(p.person_new) AS 'person_new',
+				sum(p.person_out) AS 'person_out',
+				sum(p.oversea_new) AS 'oversea_new',
+				sum(p.float_new) AS 'float_new',
+				sum(p.float_out_new) AS 'float_out_new',
+				sum(p.unsettle_new) AS 'unsettle_new',
+				sum(p.aids_new) AS 'aids_new',
+				sum(p.psychogeny_new) AS 'psychogeny_new',
+				sum(p.rectification_new) AS 'rectification_new',
+				sum(p.release_new) AS 'release_new',
+				sum(p.drugs_new) AS 'drugs_new',
+				sum(p.behind_new) AS 'behind_new',
+				sum(p.kym_new) AS 'kym_new',
+				sum(p.visit_new) AS 'visit_new',
+				sum(p.heresy_new) AS 'heresy_new',
+				sum(p.dangerous_new) AS 'dangerous_new',
+				sum(p.care_new) AS 'care_new',
+				sum(p.older_new) AS 'older_new',
+				sum(p.communist_new) AS 'communist_new',
+				sum(p.permanent_new) AS 'permanent_new',
+				sum(p.more1) AS 'more1',
+				sum(p.more2) AS 'more2',
+				sum(p.more3) AS 'more3'
+			FROM
+				ccm_people_stat p,
+				sys_area sysArea
+			WHERE
+				p.area_id = sysArea.id
+			AND p.system_level = '0'
+			AND p.stat_date = last_day(curdate())
+			AND p.del_flag = '0'
+			GROUP BY
+				sysArea.parent_id
+		) AS b ON b.area_id = a.area_id
+		SET
+			a.person_new = b.person_new,
+			a.person_out = b.person_out,
+			a.oversea_new = b.oversea_new,
+			a.float_new = b.float_new,
+			a.float_out_new = b.float_out_new,
+			a.unsettle_new = b.unsettle_new,
+			a.aids_new = b.aids_new,
+			a.psychogeny_new = b.psychogeny_new,
+			a.rectification_new = b.rectification_new,
+			a.release_new = b.release_new,
+			a.drugs_new = b.drugs_new,
+			a.behind_new = b.behind_new,
+			a.kym_new = b.kym_new,
+			a.visit_new = b.visit_new,
+			a.heresy_new = b.heresy_new,
+			a.dangerous_new = b.dangerous_new,
+			a.care_new = b.care_new,
+			a.older_new = b.older_new,
+			a.communist_new = b.communist_new,
+			a.permanent_new = b.permanent_new,
+			a.more1 = b.more1,
+			a.more2 = b.more2,
+			a.more3 = b.more3
+		WHERE a.area_id = b.area_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+		commit;
+
+-- 按街道汇总数据表本身的数据，社区 -> 街道
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				sysArea.parent_id AS 'area_id',
+				sum(p.person_new) AS 'person_new',
+				sum(p.person_out) AS 'person_out',
+				sum(p.oversea_new) AS 'oversea_new',
+				sum(p.float_new) AS 'float_new',
+				sum(p.float_out_new) AS 'float_out_new',
+				sum(p.unsettle_new) AS 'unsettle_new',
+				sum(p.aids_new) AS 'aids_new',
+				sum(p.psychogeny_new) AS 'psychogeny_new',
+				sum(p.rectification_new) AS 'rectification_new',
+				sum(p.release_new) AS 'release_new',
+				sum(p.drugs_new) AS 'drugs_new',
+				sum(p.behind_new) AS 'behind_new',
+				sum(p.kym_new) AS 'kym_new',
+				sum(p.visit_new) AS 'visit_new',
+				sum(p.heresy_new) AS 'heresy_new',
+				sum(p.dangerous_new) AS 'dangerous_new',
+				sum(p.care_new) AS 'care_new',
+				sum(p.older_new) AS 'older_new',
+				sum(p.communist_new) AS 'communist_new',
+				sum(p.permanent_new) AS 'permanent_new',
+				sum(p.more1) AS 'more1',
+				sum(p.more2) AS 'more2',
+				sum(p.more3) AS 'more3'
+			FROM
+				ccm_people_stat p,
+				sys_area sysArea
+			WHERE
+				p.area_id = sysArea.id
+			AND p.system_level = '1'
+			AND p.stat_date = last_day(curdate())
+			AND p.del_flag = '0'
+			GROUP BY
+				sysArea.parent_id
+		) AS b ON b.area_id = a.area_id
+		SET
+			a.person_new = b.person_new,
+			a.person_out = b.person_out,
+			a.oversea_new = b.oversea_new,
+			a.float_new = b.float_new,
+			a.float_out_new = b.float_out_new,
+			a.unsettle_new = b.unsettle_new,
+			a.aids_new = b.aids_new,
+			a.psychogeny_new = b.psychogeny_new,
+			a.rectification_new = b.rectification_new,
+			a.release_new = b.release_new,
+			a.drugs_new = b.drugs_new,
+			a.behind_new = b.behind_new,
+			a.kym_new = b.kym_new,
+			a.visit_new = b.visit_new,
+			a.heresy_new = b.heresy_new,
+			a.dangerous_new = b.dangerous_new,
+			a.care_new = b.care_new,
+			a.older_new = b.older_new,
+			a.communist_new = b.communist_new,
+			a.permanent_new = b.permanent_new,
+			a.more1 = b.more1,
+			a.more2 = b.more2,
+			a.more3 = b.more3
+		WHERE a.area_id = b.area_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+		commit;
+
+
+-- 人口类型：常住
+		UPDATE ccm_people_stat a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND is_permanent = 1
+				AND create_date >= DATE_ADD(curdate(), INTERVAL - day(CURDATE()) + 1 day)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.permanent_new = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.stat_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+END

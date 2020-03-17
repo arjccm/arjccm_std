@@ -133,6 +133,12 @@
 							href="${ctx}/religion/ccmPlaceReligion/delete?id=${ccmPlaceReligion.id}"
 							onclick="return confirmx('确认要删除该宗教场所吗？', this.href)" title="删除"><i
 								class="icon-trash"></i></a></td>
+						<a class="btnList"
+						   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceReligion.ccmPlaceLive.ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
+						   title="从业人员添加"><i class="icon-group"></i></a>
+						<a class="btnList"
+						   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmPlaceReligion.ccmPlaceLive.ccmBasePlace.id}&type=1', '从业人员信息', '1550px', '800px')"
+						   title="从业人员信息"><i class="icon-align-justify"></i></a>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

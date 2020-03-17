@@ -150,7 +150,7 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">面积（平方米）：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>面积（平方米）：</label>
 						<div class="controls">
 							<form:input path="compArea" htmlEscape="false" class="input-xlarge required number" />
 						</div>
