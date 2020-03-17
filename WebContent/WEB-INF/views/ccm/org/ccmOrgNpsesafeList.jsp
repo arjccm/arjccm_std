@@ -204,17 +204,24 @@
 				<td>
 					${fns:getDictLabel(ccmOrgNpse.dangComp, 'yes_no', '')}
 				</td>
-				<td><shiro:hasPermission name="org:ccmOrgNpsesafe:edit">
-				<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpsesafe/form?id=${ccmOrgNpse.id}', '编辑', '1100px', '800px')"title="修改"><i class="icon-pencil"></i></a>
-				<a class="btnList" href="${ctx}/org/ccmOrgNpsesafe/delete?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该安全生产重点吗？', this.href)"  title="删除"><i class="icon-remove-sign"></i></a>
-				</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
-<%--						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmOrgNpse.id}&relevance_table=ccm_org_npsesafe', '添加记录', '800px', '660px')"--%>
-<%--								  title="添加记录"><i class="icon-plus"></i></a>--%>
-					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmOrgNpse.id}&relevance_table=ccm_org_npse', '记录信息', '800px', '660px')" 
-								  title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
-					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmOrgNpse.id}&relevance_table=ccm_org_npse', '添加记录', '800px', '660px')"
-					   title="添加记录"><i class="icon-plus"></i></a>
-						</shiro:hasPermission></td>
+				<td>
+					<shiro:hasPermission name="org:ccmOrgNpsesafe:edit">
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpsesafe/form?id=${ccmOrgNpse.id}', '编辑', '1100px', '800px')"title="修改"><i class="icon-pencil"></i></a>
+						<a class="btnList" href="${ctx}/org/ccmOrgNpsesafe/delete?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该安全生产重点吗？', this.href)"  title="删除"><i class="icon-remove-sign"></i></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="log:ccmLogTail:edit">
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmOrgNpse.id}&relevance_table=ccm_org_npse', '记录信息', '800px', '660px')"
+									  title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmOrgNpse.id}&relevance_table=ccm_org_npse', '添加记录', '800px', '660px')"
+						   title="添加记录"><i class="icon-plus"></i></a>
+					</shiro:hasPermission>
+					<a class="btnList"
+					   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmOrgNpse.id}&type=2', '从业人员添加', '1550px', '800px')"
+					   title="从业人员添加"><i class="icon-group"></i></a>
+					<a class="btnList"
+					   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmOrgNpse.id}&type=2', '从业人员信息', '1550px', '800px')"
+					   title="从业人员信息"><i class="icon-align-justify"></i></a>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>
