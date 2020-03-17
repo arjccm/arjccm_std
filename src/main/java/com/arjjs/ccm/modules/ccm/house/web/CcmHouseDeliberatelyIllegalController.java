@@ -146,6 +146,7 @@ public class CcmHouseDeliberatelyIllegalController extends BaseController {
 		CcmPeople ccmPop = ccmPeopleService.get(ccmHouseDeliberatelyIllegal.getPeopleId());
 		if(ccmPop!=null){
 			ccmPop.setIsDeliberatelyIllegal(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		
@@ -166,6 +167,7 @@ public class CcmHouseDeliberatelyIllegalController extends BaseController {
 		ccmHouseDeliberatelyIllegalService.save(ccmHouseDeliberatelyIllegal,ccmPop);
 		if(ccmPop!=null){
 			ccmPop.setIsDeliberatelyIllegal(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		

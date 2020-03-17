@@ -146,6 +146,7 @@ public class CcmHouseDangerousController extends BaseController {
 		ccmHouseDangerousService.save(ccmHouseDangerous,ccmPop);
 		if(ccmPop!=null){
 			ccmPop.setIsDangerous(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		
@@ -201,6 +202,7 @@ public class CcmHouseDangerousController extends BaseController {
 			CcmPeople ccmPop = ccmPeopleService.get(ccmHouseDangerous.getPeopleId());
 			if(ccmPop!=null){
 				ccmPop.setIsDangerous(1);
+				ccmPop.setFocuPers(1);
 				ccmPeopleService.save(ccmPop);
 			}
 			

@@ -153,6 +153,7 @@ public class CcmHousePsychogenyController extends BaseController {
 
 		if(ccmPop!=null){
 			ccmPop.setIsPsychogeny(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		addMessage(redirectAttributes, "保存肇事肇祸等严重精神障碍患者成功");
@@ -190,6 +191,7 @@ public class CcmHousePsychogenyController extends BaseController {
 		CcmPeople ccmPop = ccmPeopleService.get(ccmHousePsychogeny.getPeopleId());
 		if(ccmPop!=null){
 			ccmPop.setIsPsychogeny(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		

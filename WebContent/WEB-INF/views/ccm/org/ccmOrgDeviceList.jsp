@@ -44,7 +44,7 @@ debugger
 	<div class="control-group" style="padding-top: 8px">
 		<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>监控设备：</label>
 		<div class="controls">
-			<select data-placeholder="选择一个或多个监控设备" style="width: 90%;" name="deviceSelect" id="deviceSelect" class="chosen-select required" multiple tabindex="4">
+			<select data-placeholder="选择一个或多个监控设备" style="width: 90%;" name="deviceSelect" id="deviceSelect" class="chosen-select required" multiple tabindex="4" disabled>
 				<option value=""></option>
 				<c:forEach items="${ccmDevice.deviceList}" var="video">
 					<option value="${video.id}">${video.name}</option>
@@ -55,7 +55,7 @@ debugger
 	</div>
 
 	<div class="form-actions">
-		<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>
+<%--		<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>				--%>
 <%--		<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>--%>
 	</div>
 </form:form>
