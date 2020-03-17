@@ -529,7 +529,8 @@ CREATE TABLE `ccm_place_org_people`  (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-
+--更改跟踪人员信息字典表table
+UPDATE sys_dict SET label = "涉教人员" WHERE id="39127"
 
 --菜单表新增图标名
 UPDATE sys_menu SET icon = "dashujuzhanshi" WHERE id="1c67672c043e428db50f772af0eb01c5"
