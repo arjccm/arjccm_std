@@ -156,11 +156,17 @@
 			<tr>
 				<td><label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>发案地：</label>
 					<div class="controls">
-						<sys:treeselect id="casePlace" name="casePlace"
+						<%--<sys:treeselect id="casePlace" name="casePlace"
 							value="${ccmEventIncidentPreview.casePlace}" labelName="area.name"
 							labelValue="${ccmEventIncidentPreview.area.name}" title="区域"
-							url="/sys/area/treeData" allowClear="true"
-							notAllowSelectParent="true" cssStyle="width: 270px" cssClass=""/>
+							url="/sys/area/treeData"
+							allowClear="true"
+							notAllowSelectParent="true" cssStyle="width: 270px" cssClass=""/>--%>
+								<sys:treeselect id="video" name="videoId"
+												value="" labelName="videoName" placeholder=""
+												labelValue="" title="区域"
+												url="/tree/ccmTree/treeDataNewDispose?type=7"
+												cssClass="inputVideoBox" allowClear="true" notAllowSelectParent="true" />
 						</td>
 				<td><label class="control-label"><span class="help-inline"><font color="red">*</font></span>事件时间：</label>
 					<div class="controls">
