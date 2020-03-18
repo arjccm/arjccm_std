@@ -67,6 +67,9 @@ public class CcmPatrolCheckController extends BaseController {
 		if (!beanValidator(model, ccmPatrolCheck)){
 			return form(ccmPatrolCheck, model);
 		}
+		if (StringUtils.isBlank(ccmPatrolCheck.getScore())) {
+			ccmPatrolCheck.setScore("0");
+		}
 		ccmPatrolCheckService.save(ccmPatrolCheck);
 		addMessage(redirectAttributes, "保存巡检考评成功");
 		return "redirect:"+Global.getAdminPath()+"/patrollog/ccmPatrolCheck/?repage";

@@ -70,6 +70,9 @@ public class CcmPopTenant extends DataEntity<CcmPopTenant> {
 	private Integer letNum;      //出租房屋数量
 	private String type;		// 区域类型：社区、网格等
 
+	private Integer minnum;
+	private Integer maxnum;
+
 	public String getType() {
 		return type;
 	}
@@ -412,5 +415,21 @@ public class CcmPopTenant extends DataEntity<CcmPopTenant> {
 
 	public void setListLimite(List<String> listLimite) {
 		this.listLimite = listLimite;
+	}
+
+	public Integer getMinnum() {
+		return minnum;
+	}
+
+	public void setMinnum(Integer minnum) {
+		this.minnum = minnum;
+	}
+
+	public Integer getMaxnum() {
+		return maxnum;
+	}
+
+	public void setMaxnum(Integer maxnum) {
+		this.maxnum = maxnum;
 	}
 }

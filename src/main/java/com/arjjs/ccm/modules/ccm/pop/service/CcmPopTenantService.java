@@ -45,7 +45,12 @@ public class CcmPopTenantService extends CrudService<CcmPopTenantDao, CcmPopTena
 	public List<CcmPopTenant> findList(CcmPopTenant ccmPopTenant) {
 		return super.findList(ccmPopTenant);
 	}
-	
+
+	public List<CcmPopTenant> findListBylimit(CcmPopTenant ccmPopTenant) {
+		return ccmPopTenantDao.findListBylimit(ccmPopTenant);
+	}
+
+
 	public Page<CcmPopTenant> findPage(Page<CcmPopTenant> page, CcmPopTenant ccmPopTenant) {
 		return super.findPage(page, ccmPopTenant);
 	}	
@@ -234,6 +239,11 @@ public class CcmPopTenantService extends CrudService<CcmPopTenantDao, CcmPopTena
 		ccmPopTenant.setPage(page);
 		return page.setList(ccmPopTenantDao.findListId(ccmPopTenant));
 	}
+
+	public List<CcmPopTenant> findListIdBylimit(CcmPopTenant ccmPopTenant){
+		return ccmPopTenantDao.findListIdBylimit(ccmPopTenant);
+	}
+
 
 	public Page<CcmPopTenant> findList_V2(Page<CcmPopTenant> page, CcmPopTenant ccmPopTenant){
 		ccmPopTenant.setPage(page);

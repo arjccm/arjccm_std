@@ -137,6 +137,7 @@ public class CcmHouseHeresyController extends BaseController {
 		ccmHouseHeresyService.save(ccmHouseHeresy,ccmPop);
 		if(ccmPop!=null){
 			ccmPop.setIsHeresy(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		addMessage(redirectAttributes, "保存涉教人员成功");
@@ -189,6 +190,7 @@ public class CcmHouseHeresyController extends BaseController {
 			CcmPeople ccmPop = ccmPeopleService.get(ccmHouseHeresy.getPeopleId());
 			if(ccmPop!=null){
 				ccmPop.setIsHeresy(1);
+				ccmPop.setFocuPers(1);
 				ccmPeopleService.save(ccmPop);
 			}
 			

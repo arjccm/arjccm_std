@@ -180,6 +180,54 @@
             </otherwise>
         </choose>
     </select>
+
+    <select id="findListIdBylimit" resultType="CcmPopTenant">
+        SELECT
+        a.id
+        FROM ccm_pop_tenant a
+        <include refid="ccmPopTenantJoins" />
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+            <if test="houseBuild != null and houseBuild != ''">
+                AND a.house_build LIKE
+                <if test="dbName == 'oracle'">'%'||#{houseBuild}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{houseBuild}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{houseBuild},'%')</if>
+            </if>
+            <if test="housePlace != null and housePlace != ''">
+                AND a.house_place LIKE
+                <if test="dbName == 'oracle'">'%'||#{housePlace}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{housePlace}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{housePlace},'%')</if>
+            </if>
+            <if test="houseName != null and houseName != ''">
+                AND a.house_name LIKE
+                <if test="dbName == 'oracle'">'%'||#{houseName}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{houseName}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{houseName},'%')</if>
+            </if>
+            <if
+                    test="buildingId != null and buildingId.id != null and buildingId.id != ''">
+                AND a.building_id = #{buildingId.id}
+            </if>
+            <if test="area != null and area.id != null and area.id != ''">
+                AND a.area_id = #{area.id}
+            </if>
+            <if test="houseType != null and houseType != ''">
+                AND a.house_type = #{houseType}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.area_id,a.building_id
+            </otherwise>
+        </choose>
+        Limit #{minnum},#{maxnum};
+    </select>
+
     <select id="findList_V2" resultType="CcmPopTenant">
         SELECT
         <include refid="ccmPopTenantColumns" />
@@ -811,6 +859,54 @@
 		 WHERE a.del_flag = 0 AND a.house_type = 02
 	</select>
 
+
+    <select id="findListBylimit" resultType="CcmPopTenant">
+        SELECT
+        <include refid="ccmPopTenantColumns" />
+        FROM ccm_pop_tenant a
+        <include refid="ccmPopTenantJoins" />
+        <include refid="ccmHouseBuildJoins" />
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+            <if test="houseBuild != null and houseBuild != ''">
+                AND a.house_build LIKE
+                <if test="dbName == 'oracle'">'%'||#{houseBuild}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{houseBuild}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{houseBuild},'%')</if>
+            </if>
+            <if test="housePlace != null and housePlace != ''">
+                AND a.house_place LIKE
+                <if test="dbName == 'oracle'">'%'||#{housePlace}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{housePlace}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{housePlace},'%')</if>
+            </if>
+            <if test="houseName != null and houseName != ''">
+                AND a.house_name LIKE
+                <if test="dbName == 'oracle'">'%'||#{houseName}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{houseName}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{houseName},'%')</if>
+            </if>
+            <if
+                    test="buildingId != null and buildingId.id != null and buildingId.id != ''">
+                AND a.building_id = #{buildingId.id}
+            </if>
+            <if test="area != null and area.id != null and area.id != ''">
+                AND a.area_id = #{area.id}
+            </if>
+            <if test="houseType != null and houseType != ''">
+                AND a.house_type = #{houseType}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.area_id,a.building_id
+            </otherwise>
+        </choose>
+        Limit #{minnum},#{maxnum};
+    </select>
 
 
 </mapper>

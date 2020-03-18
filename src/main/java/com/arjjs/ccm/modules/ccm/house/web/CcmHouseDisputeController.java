@@ -159,6 +159,7 @@ public class CcmHouseDisputeController extends BaseController {
 		CcmPeople ccmPop = ccmPeopleService.get(ccmHouseDispute.getPeopleId());
 		if (ccmPop != null) {
 			ccmPop.setIsDispute(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 
@@ -179,6 +180,7 @@ public class CcmHouseDisputeController extends BaseController {
 		ccmHouseDisputeService.save(ccmHouseDispute,ccmPop);
 		if (ccmPop != null) {
 			ccmPop.setIsDispute(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 
