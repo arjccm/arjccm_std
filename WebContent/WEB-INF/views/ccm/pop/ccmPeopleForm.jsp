@@ -15,6 +15,7 @@
             src="${ctxStatic}/ccm/event/js/fishBonePop.js"></script>
     <script type="text/javascript"
             src="${ctxStatic}/ccm/event/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
     <style type="text/css">
         .pad {
             padding: 5px;
@@ -151,6 +152,26 @@
 
         .hide1, .hide2 {
             display: none
+        }
+        .tip_box_style{
+            background: none !important;
+        }
+        .tip_box_style .layui-layer-content{
+            background: none;
+            color:red;
+            font-size: 16px;
+            box-shadow: 0px 0px 0px 0px #0b0b0b;
+            padding: 4px 15px;
+        }
+        .tip_box_style .layui-layer-content .layui-layer-TipsR{
+
+        }
+        .tip_box_style i.layui-layer-TipsL, .tip_box_style i.layui-layer-TipsR{
+            /*border-right-style: solid;*/
+            /*border-right-color: red;*/
+            top: 6px;
+            border-style: solid;
+            border-color: transparent #FF0000 transparent transparent;
         }
     </style>
     <script type="text/javascript">
@@ -703,12 +724,12 @@
                     <div class="controls">
                         <div class="help-inline" id="newNet" onmouseout=""
                              onmousemove="onclickNet()" onclick="onclickNet1()">
-                            <sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"
-                                            value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
-                                            labelValue="${ccmPeople.areaGridId.name}" title="区域"
-                                            url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""
-                                            allowClear="true" notAllowSelectParent="true"
-                                            cssStyle="width:270px "/>
+<%--                            <sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"--%>
+<%--                                            value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"--%>
+<%--                                            labelValue="${ccmPeople.areaGridId.name}" title="区域"--%>
+<%--                                            url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""--%>
+<%--                                            allowClear="true" notAllowSelectParent="true"--%>
+<%--                                            cssStyle="width:270px "/>--%>
                             <span class="help-inline"><font color="red" id="showGrid">*</font></span>
                         </div>
 
@@ -789,7 +810,7 @@
 
             <td>
                 <div>
-                    tomcat 端口被占用                    <label class="control-label">曾用名：</label>
+                 <label class="control-label">曾用名：</label>
                     <div class="controls">
                         <form:input path="usedname" htmlEscape="false" maxlength="50"
                                     class="input-xlarge "/>
@@ -855,16 +876,16 @@
                 <li>
                 <c:forEach items="${fns:getMenuList()}" var="menu" varStatus="idxStatus">
                     <c:if test="${menu.name eq '安置帮教人员管理'&&menu.isShow eq '1'}">
-                        <c:if test="${ccmPeople.isRelease==1}">
+                        <c:if
+                                test="${ccmPeople.isRelease==0||ccmPeople.isRelease==null||ccmPeople.isRelease==''}">
                         <li><a class="znul"
                                onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '700px')">安置帮教人员标记</a>
                         </li>
                         </c:if>
-                        <c:if
-                                test="${ccmPeople.isRelease==0||ccmPeople.isRelease==null||ccmPeople.isRelease==''}">
-                        <li><a
-                               onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '700px')">安置帮教人员标记</a>
-                        </li>
+                        <c:if test="${ccmPeople.isRelease==1}">
+                            <li><a class="znul"
+                                   onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '700px')">安置帮教人员标记</a>
+                            </li>
                         </c:if>
                     </c:if>
 

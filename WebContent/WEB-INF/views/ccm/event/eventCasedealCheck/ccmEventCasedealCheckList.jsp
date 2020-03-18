@@ -185,7 +185,7 @@
 						<td style="height: 50px">
 					
 						<a  class="btnList" 
-							onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedealCheck/form?id=${ccmEventCasedeal.id}','处理', '1100px', '700px')"><i class="icon-pencil"></i></a>
+							onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedealCheck/form?id=${ccmEventCasedeal.id}','处理', '1100px', '700px')" title="修改"><i class="icon-pencil"></i></a>
 						<a  class="btnList"
 							href="${ctx}/event/ccmEventCasedealCheck/delete?id=${ccmEventCasedeal.id}"
 							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
