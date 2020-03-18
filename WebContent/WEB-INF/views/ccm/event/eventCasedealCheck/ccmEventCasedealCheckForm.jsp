@@ -78,7 +78,7 @@
 				<td>
 					<label class="control-label">处理截至时间：</label>
 					<div class="controls">
-						<input id="checkDate" name="checkDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+						<input id="handleDeadline" name="handleDeadline" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 							   value="<fmt:formatDate value="${ccmEventCasedeal.handleDeadline}" pattern="yyyy-MM-dd"/>"
 							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 
@@ -136,7 +136,7 @@
 				<td>
 						<label class="control-label">处理时间：</label>
 						<div class="controls">
-							<input id="checkDate" name="checkDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+							<input id="handleDate" name="handleDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 								   value="<fmt:formatDate value="${ccmEventCasedeal.handleDate}" pattern="yyyy-MM-dd"/>"
 								   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 
@@ -231,7 +231,7 @@
 		</div>
 	</form:form>
 	<script type="text/javascript">
-	$("#checkDate").val(today());
+	// $("#checkDate").val(today());
 	layui.use(['rate'], function(){
 		var gradeNum = ${ccmEventCasedeal.gradeNum};
 		if(gradeNum === undefined && gradeNum == null && gradeNum == ''){
