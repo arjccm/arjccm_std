@@ -23,6 +23,9 @@ public interface CcmTreeDao extends TreeDao<CcmTree> {
 	 */
 	List<CcmTree> findListTree(CcmTree ccmTree, @Param("type") String type, Area area);
 
+	/*预处理事件添加树状图*/
+	List<CcmTree> findListDispose(CcmTree ccmTree, @Param("type") String type, Area area);
+
 	/***
 	 * 社区网格楼栋房屋
 	 */

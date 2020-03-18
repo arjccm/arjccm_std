@@ -55,6 +55,11 @@ public class CcmTreeService extends TreeService<CcmTreeDao, CcmTree> {
 		// TODO Auto-generated method stub
 		return ccmTreeDao.findListTree(ccmTree,type ,area);
 	}
+
+	public List<CcmTree> findListDispose(CcmTree ccmTree, String type , Area area) {
+		// TODO Auto-generated method stub
+		return ccmTreeDao.findListDispose(ccmTree,type ,area);
+	}
 	
 	
 	/***
