@@ -308,9 +308,9 @@ public class SysUserController extends BaseController {
 					user.setPhoto(Global.getConfig("USER_HEAD_PHOTO_URL"));
 				}
 				this.systemService.saveUser(user);
-				if (user.getLoginName().equals(UserUtils.getUser().getLoginName())) {
-					UserUtils.clearCache();
-				}
+//				if (user.getLoginName().equals(UserUtils.getUser().getLoginName())) {
+//					UserUtils.clearCache();
+//				}
 
 				this.addMessage(redirectAttributes, new String[]{"保存用户'" + user.getLoginName() + "'成功"});
 				return "redirect:" + this.adminPath + "/sys/user/list?repage";
