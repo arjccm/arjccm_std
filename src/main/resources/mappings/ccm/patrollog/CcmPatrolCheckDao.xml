@@ -23,6 +23,7 @@
 	
 	<sql id="ccmPatrolCheckJoins">
 		LEFT JOIN sys_user u ON u.id = a.create_by
+		LEFT JOIN sys_office o ON u.office_id = o.id
 	</sql>
     
 	<select id="get" resultType="CcmPatrolCheck">
