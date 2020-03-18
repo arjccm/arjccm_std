@@ -172,8 +172,8 @@ input.btn{
 
 	color: #fff;
 	/*background-color: #1684c2;*/
-	background: url(../img/cyan-cz.png) no-repeat;
-	background-size: 100% 100%;
+	background: url(../img/cyan-cz.png) no-repeat!important;
+	background-size: 100% 100%!important;
 	border-color: #3bb4f2;
 }
 .nav-tabs .btn-primary{
@@ -186,7 +186,7 @@ input.btn{
 
 	color: #fff;
 	/*background-color: #2493d1;*/
-	background: url(../img/cyan-jh.png);
+	background: url(../img/cyan-jh.png)!important;
 	background-size: 100% 100%;
 	/*border-color: #19a7f0;*/
 }
