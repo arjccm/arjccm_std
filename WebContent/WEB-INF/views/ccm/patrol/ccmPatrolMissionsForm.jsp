@@ -184,7 +184,7 @@
 			<label class="control-label">参与单位：</label>
 			<div class="controls">
 				<sys:treeselect id="office"  name="office" value="${ccmPatrolMissions.office}" labelName="officeName" labelValue="${ccmPatrolMissions.officeName}"
-					title="部门" url="/sys/office/treeData?type=2" checked="true" cssClass="input-xxlarge required" allowClear="true" notAllowSelectParent="true"/>
+					title="部门" url="/sys/office/treeData?type=2" checked="true" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
