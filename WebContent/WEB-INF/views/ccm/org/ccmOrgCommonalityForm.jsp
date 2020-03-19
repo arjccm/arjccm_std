@@ -60,9 +60,9 @@
 				},
 				end:function(){
 					if(!window.isCancel){
-						$("#areaPoint")[0].value = parent.areaPoint;
+						$("#areaPoint").val(parent.areaPoint);
 						parent.areaPoint = null;
-						$("#areaMap")[0].value = parent.areaMap;
+						$("#areaMap").val(parent.areaMap);
 						parent.areaMap = null;
 					}
 					window.isCancel = null;
@@ -218,7 +218,7 @@
 					<div>
 						<label class="control-label">区域图：</label>
 						<div class="controls">
-							<form:input path="areaMap" htmlEscape="false" maxlength="2000" class="input-xlarge " disabled="true"/>
+							<form:input path="areaMap" htmlEscape="false" maxlength="2000" class="input-xlarge " readonly="true"/>
 							<a onclick="ThisLayerDialog('${ctx}/event/ccmEventIncident/drawForm?areaMap='+$('#areaMap').val()+'&areaPoint='+$('#areaPoint').val(), '标注', '1100px', '700px');"
 							   class="btn btn-primary">标 注</a>
 						</div>
@@ -228,7 +228,7 @@
 					<div>
 						<label class="control-label">中心点：</label>
 						<div class="controls">
-							<form:input path="areaPoint" htmlEscape="false" maxlength="40" class="input-xlarge " disabled="true"/>
+							<form:input path="areaPoint" htmlEscape="false" maxlength="40" class="input-xlarge " readonly="true"/>
 						</div>
 					</div>
 				</td>

@@ -324,7 +324,8 @@ public class CcmDevice extends DataEntity<CcmDevice> {
 	public String getParentId() {
 		return parent != null && parent.getId() != null ? parent.getId() : "0";
 	}
-	
+
+	@ExcelField(title="状态", align=1,sort=23,dictType="ccm_devicel_type_vidicon")
 	public String getTypeVidicon() {
 		return typeVidicon;
 	}
