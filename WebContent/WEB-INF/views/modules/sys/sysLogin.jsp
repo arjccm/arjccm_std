@@ -174,7 +174,8 @@
 			display: flex;
 			position: absolute;
 			top: 215px;
-			left: 60%;
+			left: 61.5%;
+			width: 540px;
 		}
 
 		.loginTip {
@@ -263,7 +264,7 @@
 	<img class="loginBig" src='/arjccm/static/images/loginImages/login_big_sany.png'>
 	<%-- <h1 class="form-signin-heading">${fns:getConfig('showName')}系统</h1> --%>
 	<div class="loginTitle">
-		<img width="43px" height="45px" style="margin-left: 20px" src='/arjccm/static/images/logo.png'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<img width="43px" height="45px" style="margin-left: 35px" src='/arjccm/static/images/logo.png'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<span style="font-size:28px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;white-space: nowrap;background: none;">${fns:getConfig('productName_part1')}${fns:getConfig('productName_part2')}</span>
 	</div>
 	<form id="loginForm" class="form-signin" action="${ctx}/login" method="post">
