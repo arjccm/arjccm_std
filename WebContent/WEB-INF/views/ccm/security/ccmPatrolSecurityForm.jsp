@@ -149,21 +149,22 @@
 			margin-left: 5px;
 		}
 	</style>
+	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li ><a href="${ctx}/security/ccmPatrolSecurity/summaryGraph">数据统计</a></li>
-		<li><a href="${ctx}/security/ccmPatrolSecurity/list">警卫列表</a></li>
-		<li class="active"><a href="${ctx}/security/ccmPatrolSecurity/form?id=${ccmPatrolSecurity.id}">警卫<shiro:hasPermission name="security:ccmPatrolSecurity:edit">${not empty ccmPatrolSecurity.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="security:ccmPatrolSecurity:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+		<li ><a style="width: 140px;text-align:center" href="${ctx}/security/ccmPatrolSecurity/summaryGraph">数据统计</a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/security/ccmPatrolSecurity/list">警卫列表</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/security/ccmPatrolSecurity/form?id=${ccmPatrolSecurity.id}">警卫<shiro:hasPermission name="security:ccmPatrolSecurity:edit">${not empty ccmPatrolSecurity.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="security:ccmPatrolSecurity:edit">查看</shiro:lacksPermission></a></li>
+	</ul>
 	<form:form id="inputForm" onmouseover="changeName()" modelAttribute="ccmPatrolSecurity" action="${ctx}/security/ccmPatrolSecurity/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
-		<div class="control-group">
-			<label class="control-label">任务标题：</label>
+		<div class="control-group" style="padding-top: 8px">
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>任务标题：</label>
 			<div class="controls">
 				<form:textarea path="title" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<%--<div class="control-group">--%>
@@ -174,27 +175,27 @@
 			<%--</div>--%>
 		<%--</div>--%>
 		<div class="control-group">
-			<label class="control-label">警卫时间：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>警卫时间：</label>
 			<div class="controls">
 				<input name="securityTime"  id="securityTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 					value="<fmt:formatDate value="${ccmPatrolSecurity.securityTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">结束时间：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>结束时间：</label>
 			<div class="controls">
 				<input name="endTime" id="endTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 					value="<fmt:formatDate value="${ccmPatrolSecurity.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">参与单位：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>参与单位：</label>
 			<div class="controls">
 				<sys:treeselect id="office" name="office" value="${ccmPatrolSecurity.office}" labelName="officeName" labelValue="${ccmPatrolSecurity.officeName}"
 					title="部门" url="/sys/office/treeData?type=2" checked="true" cssClass="input-xxlarge  required" allowClear="true" notAllowSelectParent="true"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
@@ -214,50 +215,50 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">集合时间：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>集合时间：</label>
 			<div class="controls">
 				<input name="collectionTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate  required"
 					value="<fmt:formatDate value="${ccmPatrolSecurity.collectionTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">集合地点：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>集合地点：</label>
 			<div class="controls">
 				<form:input path="collectionPlace" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">状态：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>状态：</label>
 			<div class="controls">
 				<form:select path="status" class="input-xlarge required">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('ccm_patrol_missions_status')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 
 
 		<div class="control-group">
-			<label class="control-label">审核状态：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>审核状态：</label>
 			<div class="controls">
 				<form:select path="auditingStatus" class="input-xlarge required">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('auditing_status')}" itemLabel="label"
 								  itemValue="value" htmlEscape="false"/>
 				</form:select>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">描述信息：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>描述信息：</label>
 			<div class="controls">
 				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="form-actions">

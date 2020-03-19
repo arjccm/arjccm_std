@@ -80,8 +80,14 @@
 		}
 	</script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
-	<style>
 
+	<style type="text/css">
+		.form-horizontal .control-label {
+			float: left;
+			width: 193px;
+			padding-top: 5px;
+			text-align: right;
+		}
 	</style>
 </head>
 <body>

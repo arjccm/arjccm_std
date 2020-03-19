@@ -1,7 +1,7 @@
 #table input, select {
 	height :30px;
 	
-	border: none;
+	/*border: none;*/
 	
 	zoom: 1;
 	outline: medium;
@@ -12,7 +12,7 @@
 #tabletop input, select {
 	height :30px;
 	width:180px;
-	border: none;
+	/*border: none;*/
 	
 	zoom: 1;
 	outline: medium;
@@ -22,7 +22,7 @@
 #table textarea{
 	
 	width: 60%;
-	border: none;
+	/*border: none;*/
 	
 	zoom: 1;
 	outline: medium;
@@ -30,7 +30,7 @@
 	padding: 0px;
 }
 .select2-container .select2-choice {
-	border: 0px solid #ccc;
+	border: 1px solid #ccc;
 }
 
 .select2-container .select2-choice .select2-arrow {
