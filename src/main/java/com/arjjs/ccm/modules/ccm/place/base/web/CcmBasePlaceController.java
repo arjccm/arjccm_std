@@ -107,7 +107,7 @@ public class CcmBasePlaceController extends BaseController {
 		Page<CcmBasePlace> page = ccmBasePlaceService.findPage(new Page<CcmBasePlace>(request, response), ccmBasePlace);
 
 		model.addAttribute("page", page);
-		return "ccm/place/emphasis/ccmBasePlaceList";
+		return "ccm/place/base/emphasis/ccmBasePlaceList";
 	}
 
 	@RequiresPermissions("place:ccmBasePlace:view")
