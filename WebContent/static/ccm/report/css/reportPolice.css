@@ -86,8 +86,11 @@ ul.echartsAlarm-value li{
     /*box-shadow: 1px 1px 1px 1px  #D3D3D3;*/
 }
 .common-pading{
-    padding: 5px;
-    height:95%;
+    padding: 0 15px;
+    height:calc(100% - 46px);
+    display: flex;
+    align-items: center;
+
 }
 .height15{
     height:16.5%;
@@ -112,19 +115,15 @@ ul.echartsAlarm-value li{
     /*height:98%*/
 }
 .top-header{
-    width: 100%;
-    margin: 0 auto;
-    /* background: url('../../type.png') no-repeat center; */
-    background-size: 100% 100%;
-    color: #696969;
-    font-size: 17px;
-    font-weight:bold;
-    line-height: 30px;
-    height: 30px;
-    margin-bottom: 5px;
-    text-align: center;
+    color:#ffffff !important;
+    font-size: 16px;
+    line-height: 100%;
+    text-align: left;
+    padding: 15px;
 }
-
+.top-header .top_header_icon{
+    padding-left: 15px;
+}
 
 table {
     width: 100%;
@@ -133,7 +132,8 @@ table {
     text-align: center;
 }
 .l-grid-row-alt {
-    background: rgba(0,108,208,0.2);
+    background: #07537a;
+    border: 1px solid #0d70a1;
 }
 .l-grid-row-alt td {
     overflow: hidden;
@@ -141,18 +141,13 @@ table {
     white-space: nowrap;
     line-height: 30px;
 }
-.common-color{
-    color:#eea807;
-    font-size: 85px;
-    font-family: myFirstFont;
-    font-weight: normal;
-}
+
 .echarts {
     width: 100%;
     height: 86%;
 }
 .results {
-    margin-top: 10%;
+    margin-top: 0;
 }
 .contradiction div {
     float: left;

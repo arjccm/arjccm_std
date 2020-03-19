@@ -3468,7 +3468,7 @@ function PopLocation() {
                 });
             }
         }
-        var geoJSONIncidentCcmDeviceFeatureCollection = {
+        /*var geoJSONIncidentCcmDeviceFeatureCollection = {
             "type": "FeatureCollection",
             "centpoint": [
                 "117.66011939942837",
@@ -3481,7 +3481,7 @@ function PopLocation() {
             'type': 'keyPerson',
             'data': geoJSONIncidentCcmDeviceFeatureCollection,
             'isShow': true
-        }])
+        }])*/
 
 
         //周围一千米摄像机
@@ -3518,7 +3518,7 @@ function PopLocation() {
                 });
             }
         }
-        var geoJSONIncidentCcmDeviceDataFeatureCollection = {
+        /*var geoJSONIncidentCcmDeviceDataFeatureCollection = {
             "type": "FeatureCollection",
             "centpoint": [
                 "117.64662265777588",
@@ -3530,7 +3530,7 @@ function PopLocation() {
             'type': 'videos',
             'data': geoJSONIncidentCcmDeviceDataFeatureCollection,
             'isShow': true
-        }])
+        }])*/
 
 
         //案事件定位

@@ -154,6 +154,7 @@ public class ccmSeriousCriminalOffenseController extends BaseController {
 		CcmPeople ccmPop = ccmPeopleService.get(ccmSeriousCriminalOffense.getPeopleId());
 		if (ccmPop != null) {
 			ccmPop.setIsCriminalOffense(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 
@@ -175,6 +176,7 @@ public class ccmSeriousCriminalOffenseController extends BaseController {
 		ccmSeriousCriminalOffenseService.save(ccmSeriousCriminalOffense,ccmPop);
 		if (ccmPop != null) {
 			ccmPop.setIsCriminalOffense(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 

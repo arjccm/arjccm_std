@@ -30,92 +30,96 @@
 <script src="${ctxStatic}/ccm/report/js/reportCommon.js"></script>
 <script src="${ctxStatic}/common/index/Scripts/js/index.js"></script>
 </head>
-<body class="alarm-body">
+<body>
 	<%-- <ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/report/ccmIncidentBegin/police">案事件统计</a></li>
 		<li><a href="${ctx}/event/ccmEventIncident/list">案事件列表</a></li>
 	</ul> --%>
-    <div class="container-fluid" style="height: 100%; overflow: hidden"
-        id="main">
+    <div class="reportPolice_area">
         <div class="context" content="${ctx}"></div>
         
-        <div class="row-fluid height100" >
-            <div class="span3  height100" style="overflow:hidden">
-                <div class="height49 shadow">
-                    <div class="top-header">案事件性质统计情况</div>
+        <div class="reportPolice_content clearfix" >
+            <div class="left_box">
+                <div class="left_content">
+                    <div class="top-header"><div class="top_header_icon">案事件性质统计情况</div></div>
                     <div class="common-pading">
                         <div id="AlarmNatureEcharts" class="echarts"></div>
                     </div>
                 </div>
-                <div class="height49 shadow" >
-                    <div class="top-header">案事件类型统计情况</div>
+                <div class="left_content" >
+                    <div class="top-header"><div class="top_header_icon">案事件类型统计情况</div></div>
                     <div class="common-pading">
                         <div id="echarts3-1" class="echarts"></div>
                     </div>
                 </div>
             </div>
-            <div class="span6  height100" >
-                <div class="height31 shadow">
-                    <div class="top-header">案事件处理统计</div>
+            <div class="center_box" >
+                <div class="center_content">
+                    <div class="top-header"><div class="top_header_icon">案事件处理统计</div></div>
                     <div class="common-pading">
-                        <div class="row-fluid results">
-                            <div class="span4">
-                                <b class="common-color" id="CameraTotal"></b> <br>&nbsp;总数
+                        <div class="clearfix center_tp_bk">
+                            <div class="data_area">
+                                <p class="common-color" id="CameraTotal"></p>
+                                <p>总数</p>
                             </div>
-                            <div class="span4">
-                                <b class="common-color" id="OnLineRate"></b> <br>&nbsp;已处理
+                            <div class="data_area">
+                                <p class="common-color" id="OnLineRate"></p>
+                                <p>已处理</p>
                             </div>
-                            <div class="span4">
-                                <b class="common-color" id="OkRate"></b> <br>&nbsp;待处理
+                            <div class="data_area">
+                                <p class="common-color" id="OkRate"></p>
+                                <p>待处理</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="height31 shadow">
-                    <div class="top-header">本月案事件处理率TOP10</div>
+                <div class="center_content">
+                    <div class="top-header"><div class="top_header_icon">本月案事件处理率TOP10</div></div>
                     <div class="common-pading">
                         <div id="AlarmInfoEcharts" class="echarts"></div>
                     </div>
                 </div>
-                <div class="height31 shadow" >
-                    <div class="top-header">案事件报警情况</div>
+                <div class="center_content" >
+                    <div class="top-header"><div class="top_header_icon">案事件报警情况</div></div>
                     <div class="common-pading">
                         <div id="AlarmInfoWeekEcharts" class="echarts"></div>
                     </div>
                 </div>
             </div>
-            <div class="span3  height100">
-                <div class="height99 shadow">
-                    <div class="top-header">案事件级别统计情况</div>
+            <div class="right_box">
+                <div class="right_content">
+                    <div class="top-header"><div class="top_header_icon">案事件级别统计情况</div></div>
                     <div class="common-pading alarm-height" >
-                        <div class="row-fluid alarm-row-fluid1">
-                            <div id="echartsAlarm"  class="echarts" style="height:150px"></div>
-                        </div>
-                        <div class="row-fluid alarm-row-fluid2">
-                            <div class="span12">
-                                <ul class="echartsAlarm-tab clearfix shadow" >
-                                    <li class="active">全部</li>
-                                    <li>涉及命案</li>
-                                    <li>涉及师生</li>
-                                    <li>涉及路线</li>
-                                </ul>
+                        <div style="width: 100%">
+                            <div class="row-fluid alarm-row-fluid1">
+                                <div id="echartsAlarm"  class="echarts" style="height:250px"></div>
                             </div>
-                        </div>
-                        <div class="row-fluid alarm-row-fluid3" >
-                            <div id="alarmTable" style="overflow:auto">
-                                <table>
-                                    <thead>
-                                        <tr class="l-grid-row-alt">
-                                            <td>名称</td>
-                                            <td>重特大</td>
-                                            <td>重大</td>
-                                            <td>较大</td>
-                                            <td>一般</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="alarmTbody">
-                                    </tbody>
-                                </table>
+                            <div class="row-fluid alarm-row-fluid2">
+                                <div class="span12">
+                                    <ul class="echartsAlarm-tab clearfix shadow" >
+                                        <li class="active">全部</li>
+                                        <li>涉及命案</li>
+                                        <li>涉及师生</li>
+                                        <li>涉及路线</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row-fluid alarm-row-fluid3" >
+                                <div id="alarmTable" style="overflow:auto">
+                                    <table>
+                                        <thead>
+                                            <tr class="l-grid-row-alt">
+                                                <td>名称</td>
+                                                <td>重特大</td>
+                                                <td>重大</td>
+                                                <td>较大</td>
+                                                <td>一般</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="alarmTbody">
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

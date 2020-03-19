@@ -23,6 +23,7 @@ public interface CcmTreeDao extends TreeDao<CcmTree> {
 	 */
 	List<CcmTree> findListTree(CcmTree ccmTree, @Param("type") String type, Area area);
 
+
 	/***
 	 * 社区网格楼栋房屋
 	 */

@@ -115,11 +115,11 @@ public class CcmMobileDeviceController extends BaseController {
             userBindingDeviceService.save(userBindingDevice);
 		}
 		addMessage(redirectAttributes, "保存移动设备管理成功");
-		if(ccmMobileDevice.getIsVariable().equals("1")){
-
+		if(ccmMobileDevice.getIsVariable().equals("01")){
 			return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/?repage";
 		}else{
-			return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/list2?repage";
+//			return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/list2?repage";
+			return "redirect:"+Global.getAdminPath()+"/ccmsys/ccmMobileDevice/?repage";
 
 		}
 	}

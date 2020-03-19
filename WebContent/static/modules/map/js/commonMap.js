@@ -3924,7 +3924,7 @@ ArjMap.Map.prototype = {
                         var popInfo = null;
                         var featureName = null;
                         var PopLocationId = null;
-			var _map = _this.map;
+			            var _map = _this.map;
                         var htmls ='<div class="items-top">'
                         var feature = selectedFeatures.getArray().map(function (feature) {
                                     if (!feature.get('features')) {
@@ -4227,6 +4227,7 @@ ArjMap.Map.prototype = {
                             html += '<td><strong>名称：</strong></td>';
                             html += '<td  style="color:#eea807">' + names+ '</td>';
                             html += '</tr>'
+                            delete info['名称'];
                             for (var i in info) {
                                 cameraType = info['监控类型'];
                                 html += '<tr>';
@@ -4340,17 +4341,17 @@ ArjMap.Map.prototype = {
                                 }
                             }
 
-                            if (popInfo!="null") {
-                                html += '<tr>';
-                                html += '<td>信息：</td>';
-                                html += '<td><a class="popclick btn btn-success" href="###" type="'
-                                    + type
-                                    + '" popInfo="'
-                                    + JSON.stringify(popInfo).replace(
-                                        /"/g, '&quot;')
-                                    + '">详情</a></td>';
-                                html += '</tr>'
-                            }
+                            // if (popInfo) {
+                            //     html += '<tr>';
+                            //     html += '<td>信息：</td>';
+                            //     html += '<td><a class="popclick btn btn-success" href="###" type="'
+                            //         + type
+                            //         + '" popInfo="'
+                            //         + JSON.stringify(popInfo).replace(
+                            //             /"/g, '&quot;')
+                            //         + '">详情</a></td>';
+                            //     html += '</tr>'
+                            // }
 
                             html += '</table>'
                             if (content) {

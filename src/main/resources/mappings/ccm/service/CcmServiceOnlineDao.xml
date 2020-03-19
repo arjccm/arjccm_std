@@ -326,7 +326,12 @@
 				AND a.create_date BETWEEN #{beginTime} AND #{endTime}
 			</if>
 			<if test="createBy.office.id != null and createBy.office.id != ''">
-				AND o.id = #{createBy.office.id}
+				AND (
+				o.id = #{createBy.office.id} OR o.parent_ids LIKE
+				<if test="dbName == 'oracle'">'%'||#{createBy.office.id}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{createBy.office.id}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{createBy.office.id},'%')</if>
+				)
 			</if>
 		</where>
 		<choose>

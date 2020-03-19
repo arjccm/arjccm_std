@@ -65,10 +65,10 @@
 <link href="${ctxStatic}/layer-v3.1.1/layer/theme/default/layer.css"
       rel="stylesheet" />
 <script src="${ctxStatic}/web-speech/webSpeech.js"></script>
-<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
+<%--<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>--%>
 <link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css"
       rel="stylesheet">
-<script src="${ctxStatic}/layim/layui/layui.js"></script>
+<script src="${ctxStatic}/layim/layui/layui.all.js"></script>
 <script>
     layui.use('element', function(){
         var element = layui.element; //Tab的切换功能，
@@ -235,19 +235,19 @@
                             }else{
                             	table += '<li class="layui-this"><span class="circleEmptyLeft"></span>全部 <span class="circleEmpty"></span></li>';
                             }
-                            
+
                             if(count1!='0'){
                             	table += '<li>事件 <span class="circle" id="count1">'+count1+'</span></li>';
                             }else{
                             	table += '<li><span class="circleEmptyLeft"></span>事件 <span class="circleEmpty"></span></li>';
                             }
-                            
+
                             if(count2!='0'){
                             	table += '<li>指派 <span class="circle" id="count2">'+count2+'</span></li>';
                             }else{
                             	table += '<li><span class="circleEmptyLeft"></span>指派 <span class="circleEmpty"></span></li>';
                             }
-                            
+
                             if(count3!='0'){
                             	table += '<li>消息 <span class="circle" id="count3">'+count3+'</span></li>';
                             	table += '<li>公告 </li>';
@@ -269,10 +269,15 @@
                             table += '<div class="layui-tab-item">'+content4+'</div>';
                             table += '</div>';
                             table += '</div>';
-
-							layerIndex1 = layer.open({
+                            var min_lt = $(window).outerWidth() - 180;
+                            var restore_lt = $(window).outerWidth() - 300;
+                            var restore_tp = $(window).outerHeight() - 500;
+                            var min_tp = $(window).outerHeight() - 43;
+                            // alert(min_lt);
+                            layerIndex1 = layer.open({
 								type : 1,
 								id:'TodayEvent',
+                                skin: 'xiaoxikuang',
 								title : '今日消息',
 								maxmin : true,
 								shade : 0,
@@ -281,24 +286,32 @@
                                 offset : 'rb',
 								area : [ '300px', '500px' ],
 								content : table,
-								//最小化按钮的回调
+								// 最小化按钮的回调
 								min : function(layero) {
-									layero.css({
-										left : 'auto',
-										bottom : '0',
-										right : '0',
-										top : 'auto'
-									})
+								    setTimeout(function(){
+                                        layero.css({
+                                            left : min_lt,
+                                            top : min_tp
+                                        })
+                                    },0)
+
 								},
 								restore : function(layero) {
-									layero.css({
-										left : 'auto',
-										bottom : '0',
-										right : '0',
-										top : 'auto'
-									})
+                                    setTimeout(function(){
+                                        layero.css({
+                                            left : restore_lt,
+                                            top : restore_tp
+                                        })
+                                    },0)
 								}
 							});
+
+                                setTimeout(function(){
+                                    $(".xiaoxikuang").css({
+                                        left : min_lt,
+                                        top : min_tp
+                                    })
+                                },0)
 							if(noRead){
                                 layer.restore(layerIndex1);
                             }else{

@@ -85,6 +85,10 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 		return page.setList(dao.findListId(ccmHouseBuildmanage));
 	}
 
+	public List<CcmHouseBuildmanage> findListIdBylimit(CcmHouseBuildmanage ccmHouseBuildmanage){
+		return dao.findListIdBylimit(ccmHouseBuildmanage);
+	}
+
 	public Page<CcmHouseBuildmanage> findList_V2(Page<CcmHouseBuildmanage> page, CcmHouseBuildmanage ccmHouseBuildmanage){
 		ccmHouseBuildmanage.setPage(page);
 		return page.setList(dao.findList_V2(ccmHouseBuildmanage));

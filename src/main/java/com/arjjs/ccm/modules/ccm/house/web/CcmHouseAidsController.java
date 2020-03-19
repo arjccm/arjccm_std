@@ -151,6 +151,7 @@ public class CcmHouseAidsController extends BaseController {
 		ccmHouseAidsService.save(ccmHouseAids,ccmPop);
 		if(ccmPop!=null){
 			ccmPop.setIsAids(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		addMessage(redirectAttributes, "保存艾滋病患者成功");
@@ -186,6 +187,7 @@ public class CcmHouseAidsController extends BaseController {
 		CcmPeople ccmPop = ccmPeopleService.get(ccmHouseAids.getPeopleId());
 		if(ccmPop!=null){
 			ccmPop.setIsAids(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		

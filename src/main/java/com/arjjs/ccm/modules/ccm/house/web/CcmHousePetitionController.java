@@ -192,6 +192,7 @@ public class CcmHousePetitionController extends BaseController {
 		ccmHousePetitionService.save(ccmHousePetition,ccmPop);
 		if(ccmPop!=null){
 			ccmPop.setIsVisit(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		
@@ -247,6 +248,7 @@ public class CcmHousePetitionController extends BaseController {
 		CcmPeople ccmPop = ccmPeopleService.get(ccmHousePetition.getPeopleId());
 		if(ccmPop!=null){
 			ccmPop.setIsVisit(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 		

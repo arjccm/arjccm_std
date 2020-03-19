@@ -163,6 +163,7 @@ public class CcmHarmNationalSecurityController extends BaseController {
 		CcmPeople ccmPop = ccmPeopleService.get(ccmHarmNationalSecurity.getPeopleId());
 		if (ccmPop != null) {
 			ccmPop.setIsHarmNational(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 
@@ -184,6 +185,7 @@ public class CcmHarmNationalSecurityController extends BaseController {
 		ccmHarmNationalSecurityService.save(ccmHarmNationalSecurity,ccmPop);
 		if (ccmPop != null) {
 			ccmPop.setIsHarmNational(1);
+			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
 

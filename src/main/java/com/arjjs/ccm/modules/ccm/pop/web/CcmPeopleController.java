@@ -147,10 +147,19 @@ public class CcmPeopleController extends BaseController {
 	@RequiresPermissions("pop:ccmPeople:view")
 	@RequestMapping(value = { "list", "" })
 	public String list(CcmPeople ccmPeople, String updataDate,HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<CcmPeople> page = ccmPeopleService.findPage(new Page<CcmPeople>(request, response), ccmPeople);
-
-		List<CcmPeople> list = page.getList();
-		//
+//		Page<CcmPeople> page = ccmPeopleService.findPage(new Page<CcmPeople>(request, response), ccmPeople);
+//		List<CcmPeople> list = page.getList();
+//      int countnum = ccmPeopleService.findCount();
+		Pagecount page = new Pagecount<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmPeople.setMaxnum(page.getPageSize());
+		List<CcmPeople> list = ccmPeopleService.findListBylimit(ccmPeople);
 		CcmPeople ccmPeople2 = new CcmPeople();
 		String[] listLimite = new String[list.size()];
 		if (list.size() > 0) {
@@ -262,9 +271,19 @@ public class CcmPeopleController extends BaseController {
 		calendar.setTime(new Date());
 		calendar.add(Calendar.YEAR, 0 - PlmTypes.OLD_AGE);
 		ccmPeople.setBirthday(calendar.getTime());
-		Page<CcmPeople> page = ccmPeopleService.findOlderPage(new Page<CcmPeople>(request, response), ccmPeople);
+//		Page<CcmPeople> page = ccmPeopleService.findOlderPage(new Page<CcmPeople>(request, response), ccmPeople);
+        Pagecount page = new Pagecount<CcmPeople>(request, response);
+        int countnum = page.getPageSize()*8;
+        if(page.getPageNo()>= 6){
+            countnum+=page.getPageNo()/6*page.getPageSize()*8;
+        }
+        page.setCount(countnum);
+        page.initialize();
+        ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
+        ccmPeople.setMaxnum(page.getPageSize());
+        List<CcmPeople> list = ccmPeopleService.findOlderPageBylimit(ccmPeople);
 		// 数组查询id
-		List<CcmPeople> list = page.getList();
+//		List<CcmPeople> list = page.getList();
 		CcmPeople ccmPeople2 = new CcmPeople();
 		String[] listLimite = new String[list.size()];
 		if (list.size() > 0) {
@@ -2227,4 +2246,9 @@ public class CcmPeopleController extends BaseController {
         }
             return false;
     }
+
+
+
+
+
 }
