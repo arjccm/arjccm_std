@@ -25,10 +25,6 @@ $(function(){
     	currPage=1;
     	QueryPeople();
     });
-    $('#btnSubmitPeople').click(function(){
-    	currPage=1;
-    	QueryPeople();
-    });
     $('#btnSubmitVideo').click(function(){
     	currPage=1;
     	QueryVideos();
