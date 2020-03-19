@@ -131,6 +131,14 @@
 	
 	} */
 </script>
+	<style type="text/css">
+		#inputForm {
+			/* box-shadow: inset 0px 0px 15px 0px #1684c2; */
+			height: 450px;
+			margin-top: -30px;
+			padding-top: 30px;
+		}
+	</style>
 </head>
 <body>
 	<br>
@@ -145,11 +153,11 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label">日程标题：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font></span>日程标题：</label>
 						<div class="controls">
 							<form:input path="subject" htmlEscape="false" maxlength="256"
 								class="input-xlarge required" />
-							<span class="help-inline"><font color="red">*</font></span>
+
 						</div>
 					</div>
 				</td>
@@ -169,27 +177,26 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label">开始日期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font></span>开始日期：</label>
 						<div class="controls">
 							<input id="beginDate" name="beginDate" type="text"
 								readonly="readonly" maxlength="20"
 								class="input-medium Wdate required"
 								value="<fmt:formatDate value="${plmCalendar.beginDate}" pattern="yyyy-MM-dd"/>"
 								onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});" />
-							<span class="help-inline"><font color="red">*</font></span>
+
 						</div>
 					</div>
 				</td>
 				<td>
 					<div class="control-group">
-						<label class="control-label">开始时间：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font></span>开始时间：</label>
 						<div class="controls">
 							<input name="beginTime" id="beginTime" type="text"
 								readonly="readonly" maxlength="20"
 								class="input-medium Wdate required"
 								value="<fmt:formatDate value="${plmCalendar.beginTime}" pattern="HH:mm"/>"
-								onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false});" /> <span
-								class="help-inline"><font color="red">*</font></span>
+								onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false});" />
 						</div>
 					</div>
 				</td>
@@ -197,27 +204,26 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label">结束日期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font></span>结束日期：</label>
 						<div class="controls">
 							<input id="endDate" name="endDate" type="text"
 								readonly="readonly" maxlength="20"
 								class="input-medium Wdate required"
 								value="<fmt:formatDate value="${plmCalendar.endDate}" pattern="yyyy-MM-dd"/>"
 								onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});" />
-							<span class="help-inline"><font color="red">*</font></span>
+
 						</div>
 					</div>
 				</td>
 				<td>
 					<div class="control-group">
-						<label class="control-label">结束时间：</label>
+						<label class="control-label"> <span class="help-inline"><font color="red">*</font></span>结束时间：</label>
 						<div class="controls">
 							<input id="endTime" name="endTime" type="text"
 								readonly="readonly" maxlength="20"
 								class="input-medium Wdate required"
 								value="<fmt:formatDate value="${plmCalendar.endTime}" pattern="HH:mm"/>"
-								onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false});" /> <span
-								class="help-inline"><font color="red">*</font></span>
+								onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false});" />
 						</div>
 					</div>
 				</td>

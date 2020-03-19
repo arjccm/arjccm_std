@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
+import com.arjjs.ccm.tool.Pagecount;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -95,10 +96,19 @@ public class CcmWorkController extends BaseController {
 			Model model, @PathVariable("type") String type) {
 //		ccmPeople.setIsPermanent("1");  //修改bug，pengjianqiang，各人员类型查询时，不需要设置为常住人员
 		ccmPeople.setType(type);
-		Page<CcmPeople> page = ccmPeopleService.findPermanentPage(new Page<CcmPeople>(request, response), ccmPeople);
-
+		Pagecount page = new Pagecount<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmPeople.setMaxnum(page.getPageSize());
+//		Page<CcmPeople> page = ccmPeopleService.findPermanentPage(new Page<CcmPeople>(request, response), ccmPeople);
+		List<CcmPeople> list = ccmPeopleService.findPermanentListBylimit(ccmPeople);
 		// 数组查询id
-		List<CcmPeople> list = page.getList();
+//		List<CcmPeople> list = page.getList();
 		CcmPeople ccmPeople2 = new CcmPeople();
 		String[] listLimite = new String[list.size()];
 		if (list.size() > 0) {

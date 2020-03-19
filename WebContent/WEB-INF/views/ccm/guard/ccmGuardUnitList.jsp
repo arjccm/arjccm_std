@@ -20,9 +20,10 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/guard/ccmGuardUnit/securityList">警卫任务</a></li>
-		<li class="active"><a href="${ctx}/guard/ccmGuardUnit/">警卫单位列表</a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/guard/ccmGuardUnit/securityList">警卫任务</a></li>
+		<li class="active"  style="width: 140px"><a class="nav-head" href="${ctx}/guard/ccmGuardUnit/">警卫单位列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmGuardUnit" action="${ctx}/guard/ccmGuardUnit/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -94,6 +95,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

@@ -4675,8 +4675,10 @@ ArjMap.Map.prototype = {
                             var nameNum = vectorArr[i].data.features[j].properties.nameNum;
                             var id = vectorArr[i].data.features[j].id;
                             var properties = vectorArr[i].data.features[j].properties;
-                            var x = vectorArr[i].data.features[j].geometry.coordinates[0];
-                            var y = vectorArr[i].data.features[j].geometry.coordinates[1];
+                            if(vectorArr[i].data.features[j].geometry.coordinates!=undefined){
+                                var x = vectorArr[i].data.features[j].geometry.coordinates[0];
+                                var y = vectorArr[i].data.features[j].geometry.coordinates[1];
+                            }
                             if (x != '' && y != '') {
                                 var coordinates = [Number(x), Number(y)];
                                 _this.addGISOverlay(nameNum, coordinates, id, properties)

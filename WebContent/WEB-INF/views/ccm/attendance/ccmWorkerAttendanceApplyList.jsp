@@ -69,11 +69,12 @@
 
 <%--			<li class="clearfix"></li>--%>
 		</ul>
-	<sys:message content="${message}"/>
+
 	<div class="clearfix pull-right btn-box">
 		<input id="btnSubmit" class="btn btn-primary" style="width: 75px;display:inline-block;float: right;" type="submit" value="查询"/>
 	</div>
 	</form:form>
+	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>

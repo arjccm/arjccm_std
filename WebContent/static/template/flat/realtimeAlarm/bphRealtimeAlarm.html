@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../../../modules/map/css/publicinstitutions.css" />
 <link rel="stylesheet" href="../../../flat/commandDispatch/css/jquery.eeyellow.Timeline.css" />
 <link rel="stylesheet" href="../../../ol/ol.css" />
+<link rel="stylesheet" href="../../../bootstrap/2.3.1/css_black/bootstrap.min.css" />
 <link rel="stylesheet" href="../../../modules/map/js/draw/css/p-ol3.min.css" />
 <link rel="stylesheet" href="../../../modules/map/css/mapFlat.css" />
 <link rel="stylesheet" href="../../../jquery-ztree/3.5.12/css/zTreeStyle/zTreeStyle.min.css" />
@@ -349,7 +350,7 @@ if($.cookie('theme')==undefined){
 							<div id="btn-delete" style="display: none;">查询</div>
 						</div>
 						<!-- 开关 -->
-						<a href="#" id="alarmDMS" class="toggle toggle--on"
+						<a href="#" id="alarmDMS" class="toggle toggle--on toggle_primary"
 							style="position: absolute; left: 330px; bottom: 865px; top: 50px; z-index: 99">
 						</a>
 <!-- 						<a href="#" id="videoDMS" class="toggle toggle--off" -->
@@ -439,13 +440,13 @@ if($.cookie('theme')==undefined){
 				<div class="alarm" id="alarm">
 					<input type="hidden" id="active_rcvalarm_ordernum"
 						name="active_rcvalarm_ordernum" value="" />
-					<div class="left-lists">
-						<h5>
-							警情列表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a class="layui-btn layui-btn-normal layui-btn-sm" style="height: 31px;background-color: #20c694;margin-left: 70px;font-size: 15px;width: 60px;padding-left: 25px;margin-bottom: 2px;" type="button" onclick="seaDialog()">
-									<i class="icon-search"  style="margin-left: 156px;width: 15px;height: 17px;background-image: none;margin-top: 9px;"></i>查询
-								</a>
+					<div class="left-lists clearfix">
+						<h5 style="display: inline">
+							警情列表
 						</h5>
+						<a class="btn btn-primary firstbtn" style="width: auto !important; float: right; margin-right: 10px" type="button" onclick="seaDialog()">
+							<i class="icon-search"></i>查询
+						</a>
 					</div>
 					<div id="slides" class="slides-wrap clearfix">
 						<ul id="all-message" class="slide active"></ul>
