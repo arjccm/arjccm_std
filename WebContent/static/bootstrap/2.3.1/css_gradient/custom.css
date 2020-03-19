@@ -557,6 +557,7 @@ a.btnList  i.icon-bell{
 #keyPersonHandleLayer .layer-common-center ,#videoLayer  .layer-common-center,#keyPersonHandleLayer  .layer-common-center,#TodayVideoLayer .layer-common-center,#TodayCommunityLayer .layer-common-center,#TodayHandleLayer  .layer-common-center,#TodayHandleDialogLayer   .layer-common-center,#setIntervalLayer  .layer-common-center,#TodyAlarmLayer  .layer-common-center,#PopInfoLayer .layer-common-center,#showSelect .layer-common-center,
 #keyPersonHandleLayer  .layer-common-center{
 	background:none!important;
+	color: #eff5fb;
 }
 .event-name{
 	color:#333!important;
