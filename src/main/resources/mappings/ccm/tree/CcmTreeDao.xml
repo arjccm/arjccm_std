@@ -564,27 +564,4 @@
 		WHERE id = #{id} OR parent_ids LIKE
 		'%,'||#{id}||',%'
 	</update>
-
-	<select id="findListDispose" resultType="CcmTree">
-		SELECT
-		a.id AS "id",
-		a.parent_id AS "parent.id",
-		a. NAME AS "name",
-		a.type AS "type",
-		a_ex.area_point AS "areaPoint",
-		a_ex.area_map AS "areaMap",
-		"" as "more1",
-		a_ex.area_color as "color"
-		FROM
-		sys_area
-		a
-		LEFT JOIN ccm_org_area a_ex ON a_ex.area_id = a.id
-		WHERE
-		a.parent_id IS
-		NOT NULL
-		<if test="param3 != null and param3.id != null and param3.id != ''">
-			AND ( a.parent_ids LIKE  CONCAT('%',#{param3.id},'%') or a.id=#{param3.id} )
-		</if>
-		AND a.del_flag = 0
-	</select>
 </mapper>
