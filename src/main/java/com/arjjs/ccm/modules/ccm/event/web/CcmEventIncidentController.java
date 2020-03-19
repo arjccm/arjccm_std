@@ -358,6 +358,7 @@ public class CcmEventIncidentController extends BaseController {
         config.setExcludes(new String[]{"createBy", "updateBy", "currentUser", "dbName", "global", "page", "createDate", "updateDate", "sqlMap"});
         config.setIgnoreDefaultExcludes(false);  //设置默认忽略
         config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
         String jsonDocumentList = JSONArray.fromObject(CcmEventCasedealList, config).toString();
         model.addAttribute("CcmEventCasedealList", jsonDocumentList);
         model.addAttribute("CasedealListNumber", CcmEventCasedealList.size());
