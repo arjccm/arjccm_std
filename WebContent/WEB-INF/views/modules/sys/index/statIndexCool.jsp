@@ -253,7 +253,7 @@
 			}
 
 			.jbox-button-panel {
-				height: unset !important;
+				height: auto !important;
 			}
 
 			.jbox-title-panel {
