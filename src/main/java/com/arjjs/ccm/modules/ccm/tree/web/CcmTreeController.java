@@ -326,64 +326,7 @@ public class CcmTreeController extends BaseController {
 		return mapList;
 	}
 
-	/***
-	 * 地图标注树状图
-	 */
-	@RequiresPermissions("user")
-	@ResponseBody
-	@RequestMapping(value = "treeDataNewDispose")
-	public List<Map<String, Object>> treeDataNewDispose(@RequestParam(required = false) String extId,
-												 @RequestParam(required = false) String type, HttpServletResponse response) {
-		List<Map<String, Object>> mapList = Lists.newArrayList();
-		Area parent= UserUtils.getUser().getOffice().getArea();
-		long t1 = System.currentTimeMillis();
-		List<CcmTree> list = ccmTreeService.findListDispose(new CcmTree(), type ,parent);
 
-
-		for (int i = 0; i < list.size(); i++) {
-			CcmTree e = list.get(i);
-			// if (StringUtils.isBlank(extId) || (extId!=null &&
-			// !extId.equals(e.getId()) &&
-			// e.getParentIds().indexOf(","+extId+",")==-1)){
-			// 如果当前的 类别是所需则进行添加
-			if (filterType(e.getType(), type) || StringUtils.isBlank(type)) {
-				// 当前的是否为被取消的内容
-				if (StringUtils.isBlank(extId) || (extId != null && !extId.equals(e.getId()))) {
-					Map<String, Object> map = Maps.newHashMap();
-					map.put("id", e.getId());
-					map.put("pId", e.getParentId());
-					map.put("name", e.getName());
-					map.put("point", StringUtils.isEmpty(e.getAreaPoint()) ? false : true);
-					// 当前城市部件  点线面
-					if ("citycomponents".equals(e.getType())) {
-						if ("01".equals(e.getMore1())) {
-							map.put("pointType", "0");
-						}
-						if ("02".equals(e.getMore1())) {
-							map.put("pointType", "2");
-						}
-						if ("03".equals(e.getMore1())) {
-							map.put("pointType", "1");
-						}
-
-					} else if("broadcast".equals(e.getType())){
-						map.put("pointType", "0");
-					}else {
-						map.put("pointType",
-								"camera".equals(e.getType()) ? "0" : "1");
-					}
-
-					map.put("areaMap", e.getAreaMap());
-					map.put("areaPoint", e.getAreaPoint());
-					map.put("type", e.getType());
-					map.put("icon", "");
-					map.put("color", e.getColor());//区域设置的颜色和透明度
-					mapList.add(map);
-				}
-			}
-		}
-		return mapList;
-	}
 	/***
 	 * 地图标注树状图app
 	 */
