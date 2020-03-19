@@ -52,6 +52,7 @@
 	<style type="text/css">
 		td{padding: 8px;border: 1px dashed #CCCCCC}
 	</style>
+	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <br />
@@ -70,36 +71,36 @@
         <form:hidden path="checkOpinion" />
         <form:hidden path="checkScore" />
         <sys:message content="${message}" />
-        <table border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px; width: 100%;">
+        <table border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;">
 			<tr>
 				<td>
-				<label class="control-label">处理人员：</label>
+				<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font> </span>处理人员：</label>
 				<div class="controls">
 					<sys:treeselect id="handleUser" name="handleUser.id" value="${ccmEventCasedeal.handleUser.id}" labelName="handleUser.name" labelValue="${ccmEventCasedeal.handleUser.name}"
 						title="用户" url="/sys/office/treeData?type=3" cssClass="" allowClear="true" notAllowSelectParent="true"/>
-					<span class="help-inline"><font color="red" id="show1">*</font> </span>
+
 				</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-				<label class="control-label">处理截至时间：</label>
+				<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>处理截至时间：</label>
 				<div class="controls">
 					<input name="handleDeadline" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 						value="<fmt:formatDate value="${ccmEventCasedeal.handleDeadline}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 						onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-					<span class="help-inline"><font color="red">*</font> </span>
+
 				</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-				<label class="control-label">是否督办：</label>
+				<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>是否督办：</label>
 				<div class="controls">
 					<form:select path="isSupervise" class="input-xlarge required">
 						<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 					</form:select>
-					<span class="help-inline"><font color="red">*</font> </span>
+
 				</div>
 				</td>
 			</tr>

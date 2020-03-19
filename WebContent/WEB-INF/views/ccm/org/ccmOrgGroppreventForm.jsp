@@ -192,7 +192,7 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">年龄：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>年龄：</label>
 						<div class="controls">
 							<form:input path="age" htmlEscape="false" maxlength="255" class="input-xlarge digits required" type="number"/>
 						</div>

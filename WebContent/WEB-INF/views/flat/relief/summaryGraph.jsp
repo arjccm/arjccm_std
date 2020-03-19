@@ -30,11 +30,12 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/relief/ccmReliefTask/summaryGraph">统计数据</a></li>
-		<li ><a href="${ctx}/relief/ccmReliefTask/list">备勤任务列表</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/relief/ccmReliefTask/summaryGraph">统计数据</a></li>
+		<li ><a style="width: 140px;text-align:center" href="${ctx}/relief/ccmReliefTask/list">备勤任务列表</a></li>
 		<shiro:hasPermission name="relief:ccmReliefTask:edit">
-			<li><a href="${ctx}/relief/ccmReliefTask/form">备勤任务添加</a></li>
+			<li><a style="width: 140px;text-align:center" href="${ctx}/relief/ccmReliefTask/form">备勤任务添加</a></li>
 		</shiro:hasPermission>
 	</ul>
 	
@@ -51,7 +52,7 @@
 		      
 			
 		    
-	    </div>
+
 	    <br>
 	     <div class="row-fluid">
 	     	  
@@ -242,5 +243,6 @@
 	 
 		
 </script>
+</div>
 </body>
 </html>

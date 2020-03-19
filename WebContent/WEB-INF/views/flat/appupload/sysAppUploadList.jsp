@@ -47,7 +47,7 @@
 	</div>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient" style="table-layout:fixed;">
 		<thead>
 			<tr>
 				<th>APP名称</th>
@@ -68,7 +68,7 @@
 				<td style="height: 50px">
 					${fns:getDictLabel(sysAppUpload.type, 'app_os_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td style="height: auto;white-space: normal;">
 					${sysAppUpload.url}
 				</td>
 				<td style="height: 50px">
@@ -77,7 +77,7 @@
 				<td style="height: 50px">
 					<fmt:formatDate value="${sysAppUpload.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td style="height: auto;white-space: normal;">
 					${sysAppUpload.remarks}
 				</td>
 				<shiro:hasPermission name="appupload:sysAppUpload:edit"><td style="height: 50px">

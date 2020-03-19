@@ -115,7 +115,7 @@
 				<th>公民身份号码</th>
 				<th>所属社区</th>
 				<th>所属网格</th>
-				<th>现住门（楼）详址</th>
+				<th style="width: 133px">现住门（楼）详址</th>
 				<shiro:hasPermission name="pop:ccmPeople:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>

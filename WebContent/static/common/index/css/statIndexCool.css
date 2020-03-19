@@ -48,7 +48,7 @@ div .jbox .jbox-title-panel{
 	background-color: transparent;
 }
 div .jbox .jbox-button-panel{
-	border-top:unset;
+	border-top:none;
 	background-color: transparent;
 }
 div .jbox .treeBody{
