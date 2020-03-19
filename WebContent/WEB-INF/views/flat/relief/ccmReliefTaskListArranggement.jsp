@@ -32,6 +32,7 @@
     </script>
 </head>
 <body>
+<div class="back-list">
 <ul class="nav nav-tabs">
     <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/relief/ccmReliefTask/arrangement">备勤任务安排</a></li>
     <shiro:hasPermission name="relief:ccmReliefTask:edit">
@@ -120,5 +121,6 @@
     </tbody>
 </table>
 <div class="pagination">${page}</div>
+</div>
 </body>
 </html>

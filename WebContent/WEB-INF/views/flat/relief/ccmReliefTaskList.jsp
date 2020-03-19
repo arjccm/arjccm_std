@@ -18,6 +18,7 @@
     </script>
 </head>
 <body>
+<div class="back-list">
 <ul class="nav nav-tabs">
     <li ><a style="width: 140px;text-align:center" href="${ctx}/relief/ccmReliefTask/summaryGraph">统计数据</a></li>
     <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/relief/ccmReliefTask/list">备勤任务列表</a></li>
@@ -111,5 +112,6 @@
     </tbody>
 </table>
 <div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
