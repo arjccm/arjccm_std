@@ -53,6 +53,7 @@ $(function() {
 				});
 				top.$('.jbox-body .jbox-icon').css('top', '55px');
 			});
+
 });
 
 </script>
@@ -98,12 +99,13 @@ $(function() {
 			<i></i><span style="font-size: 12px">查询</span>  </a>
 	</ul>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
-		<thead><tr><th>操作菜单</th><th>操作用户</th><th>所在组织机构</th><th>所在部门</th><th>URI</th><th>提交方式</th><th>操作者IP</th><th>操作时间</th></thead>
+		<thead><tr><th><input id="allboxs" onclick="allcheck1()" type="checkbox"/></th><th>操作菜单</th><th>操作用户</th><th>所在组织机构</th><th>所在部门</th><th>URI</th><th>提交方式</th><th>操作者IP</th><th>操作时间</th></thead>
 		<tbody><%request.setAttribute("strEnter", "\n");request.setAttribute("strTab", "\t");%>
 		<c:forEach items="${page.list}" var="log">
 			<tr>
-		    	<input name="id" type="hidden" value="${log.id}"/>
-				<td style="height: 50px"><input name="check" type="checkbox" value="${log.id}"/>${log.title}</td>
+		    	<input  name="id" type="hidden" value="${log.id}"/>
+				<td><input  name="check" type="checkbox" value="${log.id}"/></td>
+				<td style="height: 50px">${log.title}</td>
 				<td style="height: 50px">${log.createBy.name}</td>
 				<td style="height: 50px">${log.createBy.company.name}</td>
 				<td style="height: 50px">${log.createBy.office.name}</td>
@@ -123,5 +125,26 @@ $(function() {
 		</tbody>
 	</table>
 	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+	<script type="text/javascript">
+
+            //全选、取消
+            function allcheck1() {
+                var nn = $("#allboxs").is(":checked"); //判断th中的checkbox是否被选中，如果被选中则nn为true，反之为false
+                if (nn == true) {
+                    var namebox = $("input[name^='check']");  //获取class值为boxs的所有input
+                    for (i = 0; i < namebox.length; i++) {
+                        namebox[i].checked = true;    //js操作选中checkbox
+                    }
+                }
+                if (nn == false) {
+                    var namebox = $("input[name^='check']");
+                    for (i = 0; i < namebox.length; i++) {
+                        namebox[i].checked = false;
+                    }
+                }
+            }
+
+
+	</script>
 </body>
 </html>
