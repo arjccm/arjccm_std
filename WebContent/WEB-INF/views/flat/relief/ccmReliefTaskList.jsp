@@ -19,10 +19,10 @@
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li ><a href="${ctx}/relief/ccmReliefTask/summaryGraph">统计数据</a></li>
-    <li class="active"><a href="${ctx}/relief/ccmReliefTask/list">备勤任务列表</a></li>
+    <li ><a style="width: 140px;text-align:center" href="${ctx}/relief/ccmReliefTask/summaryGraph">统计数据</a></li>
+    <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/relief/ccmReliefTask/list">备勤任务列表</a></li>
     <shiro:hasPermission name="relief:ccmReliefTask:edit">
-        <li><a href="${ctx}/relief/ccmReliefTask/form">备勤任务添加</a></li>
+        <li><a style="width: 140px;text-align:center" href="${ctx}/relief/ccmReliefTask/form">备勤任务添加</a></li>
     </shiro:hasPermission>
 </ul>
 <form:form id="searchForm" modelAttribute="ccmReliefTask" action="${ctx}/relief/ccmReliefTask/" method="post"
@@ -110,6 +110,6 @@
     </c:forEach>
     </tbody>
 </table>
-<div class="pagination">${page}</div>
+<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </body>
 </html>
