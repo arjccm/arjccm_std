@@ -188,7 +188,8 @@
 						maxlength="32" class="input-xlarge simplePhone" /></td>
 			</tr>
 			<tr>
-				<td class="trtop">联系人</td>
+				<td class="trtop"><span class="help-inline"><font
+						color="red">*</font> </span>联系人</td>
 				<td ><form:input path="emp" htmlEscape="false"
 						maxlength="128" class="input-xlarge required" /></td>
 				<td class="trtop">行业类别</td>

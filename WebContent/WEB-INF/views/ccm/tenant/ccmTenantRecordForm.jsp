@@ -45,13 +45,13 @@
 		<div class="control-group">
 			<label class="control-label">电话号码：</label>
 			<div class="controls">
-				<form:input path="phoneNumber" htmlEscape="false" maxlength="64" class="input-xlarge " value="${ccmTenantRecord.phoneNumber}"/>
+				<form:input path="phoneNumber" htmlEscape="false" maxlength="64" class="input-xlarge phone" value="${ccmTenantRecord.phoneNumber}"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">身份证号码：</label>
 			<div class="controls">
-				<form:input path="idCard" htmlEscape="false" maxlength="64" class="input-xlarge " value="${ccmTenantRecord.idCard}"/>
+				<form:input path="idCard" htmlEscape="false" maxlength="64" class="input-xlarge required ident0 card" value="${ccmTenantRecord.idCard}"/>
 			</div>
 		</div>
 		<div class="control-group" style="display: none;">

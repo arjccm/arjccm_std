@@ -55,7 +55,7 @@ public class CcmTreeService extends TreeService<CcmTreeDao, CcmTree> {
 		// TODO Auto-generated method stub
 		return ccmTreeDao.findListTree(ccmTree,type ,area);
 	}
-	
+
 	
 	/***
 	 * 社区网格楼栋房屋

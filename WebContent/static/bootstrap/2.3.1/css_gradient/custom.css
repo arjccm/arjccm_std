@@ -739,3 +739,120 @@ a.btnList .icon-group{
  }
  /*table去除虚线*/
  .first_table td{border: 1px solid #c1c1c1 !important;}
+
+ /*  新样式  */
+ .reportPolice_area{
+	 width: 100%;
+	 height: calc(100vh - 10px);
+	 overflow: hidden;
+	 margin-top: 0.8vw;
+ }
+ .reportPolice_content{
+	 width: 100vw;
+	 height: 100%;
+ }
+ .reportPolice_content .top-header{
+	 color: #000000 !important;
+ }
+ .reportPolice_content .top_header_icon{
+	 border-left: 5px solid #000000;
+ }
+ .reportPolice_content .left_box{
+	 float: left;
+	 width: 24vw;
+	 margin: 0 1vw;
+	 height: 100%;
+ }
+ .left_box .left_content{
+	 height: calc(50% - 1vw);
+	 margin-bottom: 1vw;
+	 /*border: 1px solid #215f85;*/
+	 background: #ffffff;
+	 box-shadow: 3px 2px 10px #EBECED;
+ }
+ .left_box .left_content:last-child{
+	 margin-bottom: 0;
+ }
+
+ .reportPolice_content .center_box{
+	 float: left;
+	 width: 48vw;
+	 margin-right: 1vw;
+	 height: 100%;
+ }
+ .center_box .center_content{
+	 width: 100%;
+	 height: calc(33.33% - 1vw);
+	 margin-bottom: 1vw;
+	 /*border: 1px solid #215f85;*/
+	 background: #ffffff;
+	 box-shadow: 3px 2px 10px #EBECED;
+ }
+ .center_box .center_content:last-child{
+	 margin-bottom: 0;
+ }
+
+ .center_tp_bk{
+	 width: 100%;
+ }
+ .center_tp_bk .data_area{
+	 float: left;
+	 width: 33.3%;
+ }
+ .center_tp_bk .data_area p{
+	 text-align: center;
+	 margin: 0 0 20px 0;
+	 line-height: 100%;
+ }
+ .common-color{
+	 color:#fde013;
+	 font-size: 85px;
+	 font-family: myFirstFont;
+	 font-weight: bold;
+ }
+ .center_tp_bk .data_area p:last-child{
+	 opacity: 0.7;
+ }
+
+
+ .reportPolice_content .right_box{
+	 float: right;
+	 width: 24vw;
+	 height: 100%;
+	 margin-right: 1vw;
+ }
+ .right_box .right_content{
+	 width: 100%;
+	 height: calc(100% - 1vw);
+	 /*border: 1px solid #215f85;*/
+	 background: #ffffff;
+	 box-shadow: 3px 2px 10px #EBECED;
+ }
+ #alarmTable td{
+	 line-height: 30px;
+ }
+ #alarmTbody tr{
+	 border: 1px solid #e6e6e6;
+ }
+ #alarmTbody tr:nth-child(even){
+		 background: rgba(223,237,254,.4);
+ }
+ #alarmTbody td{
+	 font-size: 12px;
+	 opacity: 0.7;
+ }
+ .echartsAlarm-tab li{
+	 line-height: 30px;
+ }
+ .l-grid-row-alt{
+	 border: 1px solid #e6e6e6 !important;
+	 background: rgba(223,237,254,1) !important;
+ }
+ .shadow{
+	 border: 1px solid #e6e6e6 !important;
+ }
+ .echartsAlarm-tab > li.active, .echartsAlarm-tab > li:hover{
+	 background-color: #0a8ccc !important;
+	 color: #fff !important;
+ }
+
