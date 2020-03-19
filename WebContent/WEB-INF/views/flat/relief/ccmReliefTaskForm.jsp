@@ -140,83 +140,84 @@
             margin-left: 5px;
         }
     </style>
+    <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li><a href="${ctx}/relief/ccmReliefTask/summaryGraph">统计数据</a></li>
-    <li><a href="${ctx}/relief/ccmReliefTask/list">备勤任务列表</a></li>
-    <li class="active"><a href="${ctx}/relief/ccmReliefTask/form?id=${ccmReliefTask.id}">备勤任务<shiro:hasPermission
+    <li><a style="width: 140px" href="${ctx}/relief/ccmReliefTask/summaryGraph">统计数据</a></li>
+    <li><a style="width: 140px" href="${ctx}/relief/ccmReliefTask/list">备勤任务列表</a></li>
+    <li class="active" style="width: 140px;text-align:center"><a class="nav-head" href="${ctx}/relief/ccmReliefTask/form?id=${ccmReliefTask.id}">备勤任务<shiro:hasPermission
             name="relief:ccmReliefTask:edit">${not empty ccmReliefTask.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission
             name="relief:ccmReliefTask:edit">查看</shiro:lacksPermission></a></li>
 </ul>
-<br/>
+
 <form:form id="inputForm" onmouseover="changeName()" modelAttribute="ccmReliefTask"
            action="${ctx}/relief/ccmReliefTask/save" method="post"
            class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
-    <div class="control-group">
-        <label class="control-label">任务名称：</label>
+    <div class="control-group" style="padding-top: 8px">
+        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>任务名称：</label>
         <div class="controls">
             <form:input path="taskName" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-            <span class="help-inline"><font color="red">*</font> </span>
+
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">备勤等级：</label>
+        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>备勤等级：</label>
         <div class="controls">
             <form:select path="reliefLevel" class="input-xlarge required">
                 <form:option value="" label=""/>
                 <form:options items="${fns:getDictList('ccm_relief_level')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>
-            <span class="help-inline"><font color="red">*</font> </span>
+
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">备勤类别：</label>
+        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>备勤类别：</label>
         <div class="controls">
             <form:select path="reliefType" class="input-xlarge required">
                 <form:option value="" label=""/>
                 <form:options items="${fns:getDictList('ccm_relief_type')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>
-            <span class="help-inline"><font color="red">*</font> </span>
+
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">开始时间：</label>
+        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>开始时间：</label>
         <div class="controls">
             <input name="startTime" id="startTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
                    value="<fmt:formatDate value="${ccmReliefTask.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
-            <span class="help-inline"><font color="red">*</font> </span>
+
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">结束时间：</label>
+        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>结束时间：</label>
         <div class="controls">
             <input name="endTime" id="endTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
                    value="<fmt:formatDate value="${ccmReliefTask.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
-            <span class="help-inline"><font color="red">*</font> </span>
+
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">集结地点：</label>
+        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>集结地点：</label>
         <div class="controls">
             <form:input path="massAddress" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-            <span class="help-inline"><font color="red">*</font> </span>
+
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">备勤参与单位：</label>
+        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>备勤参与单位：</label>
         <div class="controls">
             <sys:treeselect id="reliefDept" name="reliefDept" value="${ccmReliefTask.reliefDept}"
                             labelName="reliefDeptName"
                             labelValue="${ccmReliefTask.reliefDeptName}"
                             title="部门" url="/sys/office/treeData?type=2" checked="true"
                             cssClass="input-xlarge required" allowClear="true" notAllowSelectParent="true"/>
-            <span class="help-inline"><font color="red">*</font> </span>
+
         </div>
     </div>
 
@@ -231,26 +232,26 @@
     </div>
 
     <div class="control-group">
-        <label class="control-label">任务状态：</label>
+        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>任务状态：</label>
         <div class="controls">
             <form:select path="reviewStatus" class="input-xlarge required">
                 <form:option value="" label=""/>
                 <form:options items="${fns:getDictList('ccm_patrol_missions_status')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>
-            <span class="help-inline"><font color="red">*</font> </span>
+
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label">审核状态：</label>
+        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>审核状态：</label>
         <div class="controls">
             <form:select path="auditingStatus" class="input-xlarge required">
                 <form:option value="" label=""/>
                 <form:options items="${fns:getDictList('auditing_status')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>
-            <span class="help-inline"><font color="red">*</font> </span>
+
         </div>
     </div>
 

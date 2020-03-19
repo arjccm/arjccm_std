@@ -13,10 +13,10 @@
 <div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 <%--		<li style="float:right;"><a style="background-color:#9f3df8;color:white;" href="${ctx}/event/ccmEventCasedeal/supervise?isSupervise=1">督办事件</a></li>--%>
-		<li style="float:right;" class="active"><a style="background-color:#25cf71;color:white;" href="${ctx}/event/ccmEventCasedeal/?handleStatus=05">已办事件</a></li>
-		<li style="float:right;"><a style="background-color:#eea807;color:white;" href="${ctx}/event/ccmEventCasedeal/?handleStatus=02">办理中事件</a></li>
-		<li style="float:right;"><a style="background-color:#f83d3d;color:white;" href="${ctx}/event/ccmEventCasedeal/?handleStatus=01">待办事件</a></li>
-		<li style="float:right;"><a style="background-color: #3bb4f2;color: white;" href="${ctx}/event/ccmEventCasedeal">事件处理列表</a></li>
+		<li style="float:right;" class="active"><a class="btn btn-danger" href="${ctx}/event/ccmEventCasedeal/?handleStatus=05">已办事件</a></li>
+		<li style="float:right;"><a class="btn btn-success" href="${ctx}/event/ccmEventCasedeal/?handleStatus=02">办理中事件</a></li>
+		<li style="float:right;"><a class="btn btn-warning" href="${ctx}/event/ccmEventCasedeal/?handleStatus=01">待办事件</a></li>
+		<li style="float:right;"><a a class="btn btn-primary" href="${ctx}/event/ccmEventCasedeal">事件处理列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmEventCasedeal"
 		action="${ctx}/event/ccmEventCasedeal/" method="post"
@@ -159,5 +159,10 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
+<style>
+	a.btn{
+		width: auto !important;
+	}
+</style>
 </body>
 </html>

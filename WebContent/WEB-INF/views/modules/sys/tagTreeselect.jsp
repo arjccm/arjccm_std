@@ -96,6 +96,12 @@
 			if(type=="area7"){
 				return ctxStatic+"/modules/map/images/tree_shequ.png";
 			}
+			if(type==6){
+				// return ctxStatic+"/modules/map/images/tree_shequ.png";
+			}
+			if(type==7){
+				// return ctxStatic+"/modules/map/images/tree_shequ.png";
+			}
 
 			if(type=="commonality"){
 				return ctxStatic+"/modules/map/images/tree_shequ.png";

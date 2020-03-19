@@ -67,7 +67,7 @@
 			</li>
 			<li class="second-line"><label>登记部门：</label>
 				<sys:treeselect id="office" name="office.id" value="${ccmWorkBeondutylog.office.id}" labelName="office.name" labelValue="${ccmWorkBeondutylog.office.name}"
-								title="部门"   url="/sys/office/treeData?type=2" cssClass="input-small" allowClear="true" notAllowSelectParent="false"/>
+								title="部门"   url="/sys/office/treeData?type=2" cssClass="input-medium" allowClear="true" notAllowSelectParent="false"/>
 			</li>
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li> -->
 
