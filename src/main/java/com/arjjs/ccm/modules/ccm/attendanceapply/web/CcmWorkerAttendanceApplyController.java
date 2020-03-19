@@ -102,9 +102,9 @@ public class CcmWorkerAttendanceApplyController extends BaseController {
 			ccmWorkerAttendanceService.save(ccmWorkerAttendance);
 			addMessage(redirectAttributes, "申请通过");
 			if(ccmWorkerAttendanceApply.getType().equals("2")){
-				return "redirect:"+Global.getAdminPath()+"/attendance/ccmWorkerAttendance/leavelist?repage";
+				return "redirect:"+Global.getAdminPath()+"/attendanceapply/ccmWorkerAttendanceApply/?repage&type="+ ccmWorkerAttendanceApply.getType();
 			} else if(ccmWorkerAttendanceApply.getType().equals("3")){
-				return "redirect:"+Global.getAdminPath()+"/attendance/ccmWorkerAttendance/workingtimelist?repage";
+				return "redirect:"+Global.getAdminPath()+"/attendanceapply/ccmWorkerAttendanceApply/?repage&type="+ ccmWorkerAttendanceApply.getType();
 			}
 		}
 		addMessage(redirectAttributes, "保存申请成功");
