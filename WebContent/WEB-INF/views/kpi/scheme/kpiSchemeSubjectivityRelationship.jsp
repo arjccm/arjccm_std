@@ -98,7 +98,7 @@
 	KPI分数：<span style="color: red">${kpiSchemeKpi.score}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</span>
 	<c:if test="${not empty schemeUserLst}">
-		<input id="" style="width:100px!important;margin: 5px 5px" class="btn btn-primary" onclick="saveForm()" type="button" value="保存全部"/>
+<%--		<input id="" style="width:100px!important;margin: 5px 5px" class="btn btn-primary" onclick="saveForm()" type="button" value="保存全部"/>--%>
 		<input id="" style="width:50px!important;margin: 5px 5px" class="btn btn-primary" onclick="chanceAllText()" type="button" value="同步"/>
 	</c:if>
 	<sys:message content="${message}"/>
