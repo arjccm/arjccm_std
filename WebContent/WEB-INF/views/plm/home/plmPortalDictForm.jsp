@@ -80,7 +80,7 @@
 			<label class="control-label"><span class="help-inline"><font color="red">*</font></span>内容行数：</label>
 			<div class="controls">
 				<form:input path="line" htmlEscape="false" maxlength="2"
-					class="input-xlarge required" />
+					class="input-xlarge required number"/>
 			</div>
 		</div>
 		<div class="control-group">

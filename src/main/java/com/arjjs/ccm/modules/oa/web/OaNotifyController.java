@@ -104,7 +104,7 @@ public class OaNotifyController extends BaseController {
 
 	@RequiresPermissions("oa:oaNotify:edit")
 	@RequestMapping(value = "save")
-	public void save(OaNotify oaNotify, Model model, RedirectAttributes redirectAttributes,
+	public String save(OaNotify oaNotify, Model model, RedirectAttributes redirectAttributes,
 			HttpServletResponse response) {
 		if (!beanValidator(model, oaNotify)) {
 			// return form(oaNotify, model);
@@ -158,7 +158,9 @@ public class OaNotifyController extends BaseController {
 		}
 
 		CommUtil.openWinExpDiv(writer, "保存通知'" + oaNotify.getTitle() + "'成功");
+		return "redirect:" + adminPath + "/oa/oaNotify/?repage";
 	}
+
 	
 	//定时提醒
 	@RequestMapping(value = "saveOaNotify")
