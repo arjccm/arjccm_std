@@ -452,7 +452,13 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		page.setList(ccmPeopleDao.findCareList(ccmPeople));
 		return page;
 	}
-	
+
+	//特殊关怀
+	public List<CcmPeople> findCareListBylimit(CcmPeople ccmPeople) {
+		return ccmPeopleDao.findCareListBylimit(ccmPeople);
+	}
+
+
 	public Page<CcmPeople> findPopRoomPage(Page<CcmPeople> page, CcmPeople ccmPeople) {
 		ccmPeople.setPage(page);
 		page.setList(ccmPeopleDao.housePopListAdd(ccmPeople));
@@ -474,6 +480,12 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		page.setList(ccmPeopleDao.findCareFirst(ccmPeople));
 		return page;
 	}
+
+	// 特殊关怀First
+	public List<CcmPeople> findCareFirstBylimit(CcmPeople ccmPeople) {
+		return ccmPeopleDao.findCareFirstBylimit(ccmPeople);
+	}
+
 
 	//常住人口
 	public Page<CcmPeople> findPermanentPage(Page<CcmPeople> page, CcmPeople ccmPeople) {
