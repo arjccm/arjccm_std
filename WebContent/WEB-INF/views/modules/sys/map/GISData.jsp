@@ -72,7 +72,9 @@
 <script src="${ctxStatic}/modules/map/js/QianXi.js"></script>
 <script src="${ctxStatic}/ccm/sys/js/GISDataIndex.js"></script>
 <script src="${ctxStatic}/ccm/sys/js/GISData.js"></script>
+<script>
 
+</script>
 <style>
 #toolCenter {
 	width: 250px;
@@ -308,8 +310,8 @@
 	z-index: 199301;
 	left: 14px;
 	bottom: 21px;
-	width: 350px;
-	height: 30px;
+	width: 340px;
+	/*height: 30px;*/
 	border: 1px solid #ccc;
 	border-bottom-right-radius: 8px;
 	border-bottom-left-radius: 8px;
@@ -317,18 +319,23 @@
 	font-size: 12px;
 	opacity: 0.9;
 	overflow: hidden;
+	padding: 5px;
 }
 
 .layui-laypage {
 	margin: 0;
+	float: right;
 }
 #myTabContent table td {
 	text-align: left;
 }
-#pageList .layui-box>a,#pageList .layui-box>span{
-	background: #092D52;
-	color: #fff;
+.layui_page_turning a, .layui_page_turning span{
+	margin-bottom: 0;
 }
+/*#pageList .layui-box>a,#pageList .layui-box>span{*/
+/*	background: #092D52;*/
+/*	color: #fff;*/
+/*}*/
 </style>
 
 </head>
@@ -384,15 +391,15 @@
 											style="height: 30px; margin-top: 0px; margin-bottom: 10px;">
 										</li>
 										<li>
-											<a href="javascript:;" style="margin-left: 10px;"
+											<a class="gis_tool_icon" href="javascript:;" style="margin-left: 10px;"
 											   onclick="selectQuery('Circle','event')"> <img
 													src="${ctxStatic}/images/draw_circle2.png"  title="点圆查询"
 													style="height: 30px;"></a> <%--					<i class="icon-search"></i> 点圆查询 </a>--%>
-											<a href="javascript:;" style="margin-left: 10px;" onclick="selectQuery('Box','event')">
+											<a class="gis_tool_icon" href="javascript:;" style="margin-left: 10px;" onclick="selectQuery('Box','event')">
 												<img src="${ctxStatic}/images/draw_rect2.png" title="拉框查询"
 													 style="height: 30px;">
-											</a> <%--					<i class="icon-search"></i> 拉框查询 </a>--%> <a
-												href="javascript:;" style="margin-left: 10px;" onclick="selectQuery('Polygon','event')">
+											</a> <%--					<i class="icon-search"></i> 拉框查询 </a>--%>
+											<a class="gis_tool_icon" href="javascript:;" style="margin-left: 10px;" onclick="selectQuery('Polygon','event')">
 											<img src="${ctxStatic}/images/draw_poly2.png" title="多边形查询"
 												 style="height: 30px;">
 										</a> <%--					<i class="icon-search"></i> 多边形查询 </a>--%>
@@ -600,8 +607,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="mainBottom">
-					<div id="pageList" style="width: 365px"></div>
+				<div class="mainBottom layui_page_turning">
+					<div id="pageList"></div>
 				</div>
 			</div>
 
@@ -1107,7 +1114,13 @@
 	        $('.unfold').css('left','368px')
 	        $('.map-4').hide();
 	        $('.map-2').show();
-	    }) 
+	    })
+		// $(document).ready(function(){
+		//
+		// 	}
+		// })
+
+
 	</script>
 	<script src="${ctxStatic}/common/wsize.min.js" type="text/javascript"></script>
 	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
@@ -1115,6 +1128,5 @@
 			<img id="bigimg" style="border:5px solid #fff;" src="" />
 		</div>
 	</div>
-
 </body>
 </html>
