@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
-<html>
+<html style="overflow: hidden!important;">
 <head>
 <title>跟踪信息管理</title>
 <meta name="decorator" content="default" />
@@ -88,14 +88,14 @@
 		<form:hidden path="relevanceId" />
 		<form:hidden path="relevanceTable" />
 		<sys:message content="${message}" />
-		<div class="control-group" style="padding-top: 5px">
+		<div style="display: none" class="control-group" >
 			<label class="control-label">跟踪对象：</label>
 			<div class="controls">
 				<input class="input-xlarge " readonly="readonly" type="text"
 					value="${fns:getDictLabels(ccmLogTail.relevanceTable, 'ccm_log_tail_table', '')}" />
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="control-group" style="padding-top: 3px">
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>类型：</label>
 			<div class="controls">
 				<form:select path="type" class="input-xlarge ">
@@ -115,15 +115,15 @@
 		<div class="control-group">
 			<label class="control-label">跟踪内容：</label>
 			<div class="controls">
-				<form:input path="tailContent" htmlEscape="false"
-					class="input-xlarge " />
+				<form:textarea path="tailContent" htmlEscape="false"
+							rows="3" class="input-xxlarge" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>处理人员：</label>
 			<div class="controls">
 				<form:input path="tailPerson" htmlEscape="false" maxlength="100"
-					class="input-xlarge required" />
+					class="input-xlarge required" value="${ccmLogTail.currentUser.name}" />
 
 			</div>
 		</div>
@@ -140,7 +140,7 @@
 			<label class="control-label">处理人联系方式：</label>
 			<div class="controls">
 				<form:input path="more1" htmlEscape="false" maxlength="11"
-					class="input-xlarge phone" />
+					class="input-xlarge phone" value="${ccmLogTail.currentUser.mobile}" />
 			</div>
 		</div>
 		<div class="control-group">
@@ -153,13 +153,13 @@
 		<div class="control-group" style="margin-top: 24px;">
 			<label class="control-label">备注信息：</label>
 			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="5"
+				<form:textarea path="remarks" htmlEscape="false" rows="4"
 					maxlength="500" class="input-xxlarge " style="width:300px !important;" />
 			</div>
 		</div>
-		<div class="form-actions">
+		<div class="form-actions" style="height: 15px;margin-top: 4px">
 			<shiro:hasPermission name="log:ccmLogTail:edit">
-				<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存" />&nbsp;
+				<input id="btnSubmit" style="position: relative;top: 0px" class="btn btn-primary" type="submit" value="保 存" />&nbsp;
 			</shiro:hasPermission>
 			<!-- <input id="btnCancel" class="btn" type="button" value="返 回"
 				onclick="history.go(-1)" /> -->
