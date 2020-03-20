@@ -26,6 +26,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmReportOthers/organization">机构组织分析</a></li>
 		<li><a style="width: 140px;text-align:center" href="${ctx}/org/ccmOrgNpse/list">机构组织列表</a></li>
@@ -85,6 +86,7 @@
 				</div>
 		      </div>
 		 </div>
+</div>
 <script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>
 <script src="${ctxStatic}/jquery/jquery.cookie.js" type="text/javascript"></script>
 <script src="${ctxStatic}/common/index/Scripts/js/echarts.min.js"></script>
