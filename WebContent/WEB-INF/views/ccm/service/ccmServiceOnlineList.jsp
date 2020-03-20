@@ -81,9 +81,7 @@
 				<th>申请人身份证号码</th>
 				<th>申请人联系方式</th>
 				<th>审核状态</th>
-				<th>审核人</th>
 				<th>申请时间</th>
-				<th>审核时间</th>
 				<shiro:hasPermission name="service:ccmServiceOnline:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -104,15 +102,9 @@
 				</td>
 				<td style="height: 50px">
 					${fns:getDictLabel(ccmServiceOnline.status, 'ccm_service_online_handle', '')}
-				</td>
-				<td style="height: 50px">
-					${ccmServiceOnline.reviewer}
-				</td>
+				</td>l
 				<td style="height: 50px">
 					<fmt:formatDate value="${ccmServiceOnline.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</td>
-				<td style="height: 50px">
-					<fmt:formatDate value="${ccmServiceOnline.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="service:ccmServiceOnline:edit"><td style="height: 50px">
 					<c:if test="${etype eq '1'}">

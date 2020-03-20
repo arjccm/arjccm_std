@@ -19,6 +19,7 @@
 	type="text/javascript"></script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/fence/ccmElectronicFence/">数据列表</a></li>
 	</ul>
@@ -41,10 +42,12 @@
 			</li>
 			<li class="btns"><a
 				onclick="parent.LayerDialog('${ctx}/fence/ccmElectronicFence/form', '添加', '1100px', '700px')"
-				class="btn btn-primary"><i class="icon-plus"></i> 添加</a></li>
-			<li class="btns"><a href="javascript:;" id="btnSubmit"
-				class="btn btn-primary"> <i class="icon-search"></i> 查询
-			</a></li>
+				class="btn btn-export" style="width: 49px;/*margin-top: 25px;*/display:inline-block;float: right;"><span style="font-size: 12px">添加</span></a></li>
+<%--			<li class="btns"><a href="javascript:;" id="btnSubmit"--%>
+<%--				class="btn btn-primary" style="width: 49px;margin-top: 5px;display:inline-block;float: right;"> <i > <span style="font-size: 12px">查询</span></i>--%>
+<%--			</a></li>--%>
+			<a href="javascript:;" id="btnSubmit" style="width: 49px;/*margin-top: 25px;*/display:inline-block;float: right;" class="btn btn-primary">
+					<%--<i class="icon-search"></i> --%><span style="font-size: 12px">查询</span> </a>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -84,6 +87,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

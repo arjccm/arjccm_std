@@ -6,11 +6,7 @@
 	<title>矛盾纠纷统计</title>
 	<meta name="decorator" content="default"/>
 	<style>
-	.common-pading{
-	  width:100%;
-	  height:200px;
-	  padding:5px;
-	}
+
 	.echarts{
 	  width:100%;
 	  height:100%;
@@ -77,28 +73,28 @@
 	<sys:message content="${message}"/>
 	<br>
 	    <div class="row-fluid">
-		      <div class="span6" ><h4 style="position: relative;top: 20px;">矛盾化解成功</h4>
-		      <div class="common-pading common-pading1" style="height:350px">
-					<div id="ccmEventAmbiType" class="echarts" style="height:240px;margin-top: 50px;"></div>
+		      <div class="span6" ><h4 >矛盾化解成功</h4>
+		      <div class="common-pading common-pading1" >
+					<div id="ccmEventAmbiType" class="echarts" ></div>
 				</div>
 		      </div>
-		     <div class="span6" ><h4 style="position: relative;top: 20px;">矛盾纠纷规模</h4>
-		     <div class="common-pading common-pading1" style="height:350px">
-					<div id="ccmEventAmbiScale" class="echarts" style="height:240px;margin-top: 50px;"></div>
+		     <div class="span6" ><h4 >矛盾纠纷规模</h4>
+		     <div class="common-pading common-pading1" >
+					<div id="ccmEventAmbiScale" class="echarts" ></div>
 				</div>
 		     </div>
 		     
 	    </div>
 	    <br>
 	     <div class="row-fluid">
-		  <div class="span6" ><h4 style="position: relative;top: 20px;">矛盾纠纷处理状态</h4>
-		      <div class="common-pading common-pading1" style="height:350px">
-					<div id="ccmEventAmbiStatus" class="echarts" style="height:240px;margin-top: 50px;"></div>
+		  <div class="span6" ><h4 >矛盾纠纷处理状态</h4>
+		      <div class="common-pading common-pading1" >
+					<div id="ccmEventAmbiStatus" class="echarts" ></div>
 				</div>
 		      </div>
-		      <div class="span6" ><h4 style="position: relative;top: 20px;">矛盾纠纷近六个月上报趋势图</h4>
-		         <div class="common-pading common-pading1" style="height:350px">
-					<div id="ccmEventAmbiLine" class="echarts"style="height:240px;margin-top: 50px;" ></div>
+		      <div class="span6" ><h4 >矛盾纠纷近六个月上报趋势图</h4>
+		         <div class="common-pading common-pading1" >
+					<div id="ccmEventAmbiLine" class="echarts"></div>
 				 </div>
 		      </div>
 	    </div>

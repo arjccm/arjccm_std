@@ -169,7 +169,7 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">企业联系方式：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font></span>企业联系方式：</label>
 						<div class="controls">
 							<form:input path="compTl" htmlEscape="false" maxlength="50" class="input-xlarge required phone" />
 							

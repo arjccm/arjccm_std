@@ -50,14 +50,14 @@
 		<form:hidden path="relevanceTable" />
 		
 		<sys:message content="${message}" />
-		<div class="control-group" style="padding-top: 8px">
+		<div style="display: none" class="control-group" >
 			<label class="control-label">跟踪对象：</label>
 			<div class="controls">
 				<input class="input-xlarge " readonly="readonly" type="text"
                     value="${fns:getDictLabels(ccmLogTail.relevanceTable, 'ccm_log_tail_table', '')}" />
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="control-group" style="padding-top: 8px">
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>类型：</label>
 			<div class="controls">
 				<form:select path="type" class="input-xlarge ">
@@ -77,14 +77,15 @@
 		<div class="control-group">
 			<label class="control-label">跟踪内容：</label>
 			<div class="controls">
-				<form:input path="tailContent" htmlEscape="false"
-					class="input-xlarge " />
+				<form:textarea path="tailContent" htmlEscape="false"
+							rows="3" class="input-xxlarge" style="width:270px !important;" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>处理人员：</label>
 			<div class="controls">
 				<form:input path="tailPerson" htmlEscape="false" maxlength="100"
+							value="${ccmLogTail.currentUser.name}"
 					class="input-xlarge required" />
 
 			</div>
@@ -102,6 +103,7 @@
 			<label class="control-label">处理人联系方式：</label>
 			<div class="controls">
 				<form:input path="more1" htmlEscape="false" maxlength="100"
+							value="${ccmLogTail.currentUser.mobile}"
 					class="input-xlarge phone" />
 			</div>
 		</div>
@@ -109,7 +111,7 @@
 			<label class="control-label">备注信息：</label>
 			<div class="controls">
 				<form:textarea path="remarks" htmlEscape="false" rows="4"
-					maxlength="255" class="input-xxlarge " />
+					maxlength="255" class="input-xxlarge " style="width:300px !important;" />
 			</div>
 		</div>
 		<div class="form-actions">

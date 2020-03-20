@@ -295,6 +295,7 @@
 
 		}
 	</style>
+	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <div class="layui-fluid" style="border-color: red;">
@@ -306,42 +307,42 @@
 				<table style="height: 800px;">
 					<tr>
 						<td>
-							<label class="control-label" style="width:80px;">围栏名称：</label>
+							<label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>围栏名称：</label>
 							<div>
 								<form:input path="fenceName" htmlEscape="false" maxlength="64"
 											class="input-xlarge required" style="margin-left:10px;" />
-								<span class="help-inline"><font color="red">*</font> </span>
+
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<label class="control-label" style="width:80px;">报警规则：</label>
+							<label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>报警规则：</label>
 							<div>
 								<form:select path="alarmRule" style="margin-left:10px;width:284px;" class="required">
 									<form:option value="" label="请选择" />
 									<form:options items="${fns:getDictList('fence_alarm_rule')}"
 												  itemLabel="label" itemValue="value" htmlEscape="false"/>
 								</form:select>
-								<span class="help-inline"><font color="red">*</font> </span>
+
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td><label class="control-label" style="width:80px;">开始时间：</label>
+						<td><label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>开始时间：</label>
 							<div>
 								<input id="startTime" type="text" readonly="readonly"  name="startTime" maxlength="20"
 									   class="input-medium Wdate required" style="margin-left:10px;" value="<fmt:formatDate value="${ccmElectronicFence.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
-								<span class="help-inline"><font color="red">*</font> </span>
+
 							</div></td>
 					</tr>
 					<tr>
-						<td><label class="control-label" style="width:80px;">结束时间：</label>
+						<td><label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>结束时间：</label>
 							<div>
 								<input  id="endTime" type="text" readonly="readonly" maxlength="20" name="endTime"
 										class="input-medium Wdate required" style="margin-left:10px;"
 										value="<fmt:formatDate value="${ccmElectronicFence.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
-								<span class="help-inline"><font color="red">*</font> </span>
+
 							</div></td>
 					</tr>
 					<tr style="display: none;">

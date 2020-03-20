@@ -28,7 +28,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="message" action="${ctx}/news/message/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>	
 		<div class="control-group">
@@ -44,7 +44,7 @@
 		<div class="control-group">
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>消息内容：</label>
 			<div class="controls">
-				<form:textarea path="content" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge required" disabled="true"/>
+				<form:textarea path="content" htmlEscape="false" rows="3" maxlength="255" class="input-xxlarge required" disabled="true"/>
 
 			</div>
 		</div>
