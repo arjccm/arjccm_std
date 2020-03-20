@@ -1520,3 +1520,6 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
     /**right: 0;*/
     top: 15px!important;
 }
+ input::-ms-clear{
+	 display:none;
+ }

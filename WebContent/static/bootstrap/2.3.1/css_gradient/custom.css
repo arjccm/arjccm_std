@@ -5120,11 +5120,12 @@ ul[class*="nav nav-list"]>li>a:hover{
 	height: 100%;
 }
 .left_box .left_content{
-	height: calc(50% - 1vw);
-	margin-bottom: 1vw;
+	height: calc(50% - 1vw) !important;
+	margin-bottom: 1vw !important;
 	/*border: 1px solid #215f85;*/
-	background: #ffffff;
-	box-shadow: 3px 2px 10px #EBECED;
+	background: #ffffff !important;
+	box-shadow: 3px 2px 10px #EBECED !important;
+	border:none !important;
 }
 .left_box .left_content:last-child{
 	margin-bottom: 0;
@@ -5138,11 +5139,12 @@ ul[class*="nav nav-list"]>li>a:hover{
 }
 .center_box .center_content{
 	width: 100%;
-	height: calc(33.33% - 1vw);
-	margin-bottom: 1vw;
+	height: calc(33.33% - 1vw) !important;
+	margin-bottom: 1vw !important;
 	/*border: 1px solid #215f85;*/
-	background: #ffffff;
-	box-shadow: 3px 2px 10px #EBECED;
+	background: #ffffff !important;
+	box-shadow: 3px 2px 10px #EBECED !important;
+	border:none !important;
 }
 .center_box .center_content:last-child{
 	margin-bottom: 0;
@@ -5178,17 +5180,18 @@ ul[class*="nav nav-list"]>li>a:hover{
 	margin-right: 1vw;
 }
 .right_box .right_content{
-	width: 100%;
-	height: calc(100% - 1vw);
+	width: 100% !important;
+	height: calc(100% - 1vw) !important;
 	/*border: 1px solid #215f85;*/
-	background: #ffffff;
-	box-shadow: 3px 2px 10px #EBECED;
+	background: #ffffff !important;
+	box-shadow: 3px 2px 10px #EBECED !important;
+	border:none !important;
 }
 #alarmTable td{
 	line-height: 30px;
 }
 #alarmTbody tr{
-	border: 1px solid #e6e6e6;
+	border: 1px solid #e6e6e6 !important;
 }
 #alarmTbody tr:nth-child(even){
 	background: rgba(223,237,254,.4);
@@ -5258,3 +5261,6 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
 	background:#ddd !important;
 }
 /* 重点青少年社会关系 end */
+input::-ms-clear{
+	display:none;
+}
