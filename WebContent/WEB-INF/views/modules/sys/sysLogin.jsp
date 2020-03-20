@@ -260,7 +260,7 @@
 			<label id="loginError" class="error">${message}</label>
 		</div>
 	</div>
-	<img class="loginLiuGuang" src='/arjccm/static/images/loginImages/guang.png'>
+<%--	<img class="loginLiuGuang" src='/arjccm/static/images/loginImages/guang.png'>--%>
 	<img class="loginBig" src='/arjccm/static/images/loginImages/login_big_sany.png'>
 	<%-- <h1 class="form-signin-heading">${fns:getConfig('showName')}系统</h1> --%>
 	<div class="loginTitle">

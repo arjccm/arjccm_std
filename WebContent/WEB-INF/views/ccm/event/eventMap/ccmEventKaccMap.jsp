@@ -5,11 +5,7 @@
 	<title>重点地区排查整治分析</title>
 	<meta name="decorator" content="default"/>
 	<style>
-	.common-pading{
-	  width:773px;
-	  height:100%;
-	  padding:0 15px 15px 15px;
-	}
+
 	.echarts{
 	  width:100%;
 	  height:100%;
