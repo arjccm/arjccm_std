@@ -38,7 +38,7 @@
         	return false;
         }
 	</script>
-	<script src="${ctxStatic}/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+
 	<script src="${ctxStatic}/jquery/jquery.cookie.js" type="text/javascript"></script>
 	<link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/bootstrap.min.css" type="text/css" rel="stylesheet" />
 	<link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/custom.css" type="text/css" rel="stylesheet" />
