@@ -26,16 +26,16 @@ $(document).ready(function() {
     });
 });
 </script>
+	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/service/ccmCommunityWork/">数据列表</a></li>
-		<li class="active"><a
+		<li><a style="width: 140px;text-align:center" href="${ctx}/service/ccmCommunityWork/">数据列表</a></li>
+		<li class="active"  style="width: 140px"><a class="nav-head"
 			href="${ctx}/service/ccmCommunityWork/form?id=${ccmCommunityWork.id}">数据<shiro:hasPermission
 					name="service:ccmCommunityWork:edit">${not empty ccmCommunityWork.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="service:ccmCommunityWork:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
-	<br />
 	<div class="ccmCommunityWorkType" style="display: none;"
 		attrType1="${ccmCommunityWork.type1}"
         attrType2="${ccmCommunityWork.type2}" attrPurpose="form"></div>
@@ -45,13 +45,13 @@ $(document).ready(function() {
 		<form:hidden path="id" />
 		<sys:message content="${message}" />
 		<div class="control-group">
-			<label class="control-label">一级分类：</label>
+			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>一级分类：</label>
 			<div class="controls">
 				<form:select path="type1" class="input-xlarge ">
 					<form:options items="${fns:getDictList('ccm_service_type')}"
 						itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
@@ -63,11 +63,11 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">标题：</label>
+			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>标题：</label>
 			<div class="controls">
 				<form:input path="title" htmlEscape="false" maxlength="100"
 					class="input-xlarge required" />
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 		<shiro:hasPermission name="service:ccmCommunityWork:edit">
 			<div class="control-group">
-				<label class="control-label">审核类型：</label>
+				<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>审核类型：</label>
 				<div class="controls">
 				
 					 <c:if test="${not empty ccmCommunityWork.id}">
@@ -112,7 +112,7 @@ $(document).ready(function() {
 						</form:select>
 					</c:if> 
 					
-					<span class="help-inline"><font color="red">*</font> </span>
+
 				</div>
 			</div>
 		</shiro:hasPermission>
