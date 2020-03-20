@@ -109,7 +109,7 @@
 			</ul>
         </div>
 	    <!-- 右键菜单 -->
-	    <%--<script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>--%>
+
 		<script src="${ctxStatic}/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.js"	type="text/javascript"></script>
 		<script>
 			var treeData=${mapList};
