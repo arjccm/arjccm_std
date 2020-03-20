@@ -194,10 +194,17 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 
 	/**
 	 * 根据户主身份证号码查询户主下的人员数据
-	 * @param ident 身份证号码
+	 * @param ident 户主身份证号码
 	 * @return
 	 */
 	List<CcmPeople> queryByIdent(@Param("ident")String ident);
+
+	/**
+	 * 根据身份证号码查询该人员是否已存在
+	 * @param pident 个人身份证号码
+	 * @return
+	 */
+	List<CcmPeople> queryByPersonalIdent(@Param("pident")String pident);
 
 
 	//人口查询分页

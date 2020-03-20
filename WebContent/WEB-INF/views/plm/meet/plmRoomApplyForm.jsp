@@ -44,17 +44,19 @@
 			<tr>
 				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
 					<div>
-						<label class="control-label">会议名称：</label>
+						<label class="control-label"><span class="help-inline"><font
+								color="red">*</font> </span>会议名称：</label>
 						<div class="controls">
-							<form:input path="subject" htmlEscape="false" maxlength="100" class="input-xlarge "/>
+							<form:input path="subject" htmlEscape="false" maxlength="100" class="input-xlarge required"/>
 						</div>
 					</div>
 				</td>
 				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
 					<div>
-						<label class="control-label">会议类型：</label>
+						<label class="control-label"><span class="help-inline"><font
+								color="red">*</font> </span>会议类型：</label>
 						<div class="controls">
-							<form:select path="type" class="input-xlarge ">
+							<form:select path="type" class="input-xlarge required">
 								<form:option value="" label=""/>
 								<form:options items="${fns:getDictList('plm_room_apply_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 							</form:select>
@@ -65,9 +67,10 @@
 			<tr>
 				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
 					<div>
-						<label class="control-label">开始时间：</label>
+						<label class="control-label"><span class="help-inline"><font
+								color="red">*</font> </span>开始时间：</label>
 						<div class="controls">
-							<input name="startTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+							<input name="startTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 								value="<fmt:formatDate value="${plmRoomApply.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 								onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 						</div>
@@ -75,9 +78,10 @@
 				</td>
 				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
 					<div>
-						<label class="control-label">结束时间：</label>
+						<label class="control-label"><span class="help-inline"><font
+								color="red">*</font> </span>结束时间：</label>
 						<div class="controls">
-							<input name="endTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+							<input name="endTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 								value="<fmt:formatDate value="${plmRoomApply.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 								onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 						</div>
@@ -87,9 +91,10 @@
 			<tr>
 				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
 					<div>
-						<label class="control-label">会议地点(会议室)：</label>
+						<label class="control-label"><span class="help-inline"><font
+								color="red">*</font> </span>会议地点(会议室)：</label>
 						<div class="controls">
-							<form:select path="room" class="input-xlarge ">
+							<form:select path="room" class="input-xlarge required">
 								<form:options items="${roomlist}" itemLabel="subject" itemValue="id" htmlEscape="false"/>
 							</form:select>
 						</div>
@@ -97,9 +102,10 @@
 				</td>
 				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
 					<div>
-						<label class="control-label">与会总人数：</label>
+						<label class="control-label"><span class="help-inline"><font
+								color="red">*</font> </span>与会总人数：</label>
 						<div class="controls">
-							<form:input path="number" htmlEscape="false" maxlength="6" class="input-xlarge number"/>
+							<form:input path="number" htmlEscape="false" maxlength="6" class="input-xlarge number required"/>
 						</div>
 					</div>
 				</td>
