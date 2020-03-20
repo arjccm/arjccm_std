@@ -47,7 +47,7 @@
 	<sys:message content="${message}"/>
 	<br>
 	    <div class="row-fluid">
-		      <div class="span6" ><h4>矛盾化解成功</h4>
+		      <div class="span6" ><h4>111矛盾化解成功</h4>
 		      <div class="common-pading common-pading1" style="height:350px">
 					<div id="ccmEventAmbiType" class="echarts" style="height:240px;margin-top: 50px;"></div>
 				</div>

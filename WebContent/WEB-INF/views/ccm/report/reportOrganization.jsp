@@ -5,11 +5,7 @@
 	<title>机构组织分析</title>
 	<meta name="decorator" content="default"/>
 	<style>
-	.common-pading{
-	  width:100%;
-	  height:200px;
-	  padding:5px;
-	}
+
 	.echarts{
 	  width:100%;
 	  height:100%;
@@ -45,11 +41,13 @@
 	<sys:message content="${message}"/>
 	    <div class="row-fluid">
 		 <div class="span6" >
-		     <div class="common-pading"><h4>控股情况类型统计</h4>
+			 <h4>控股情况类型统计</h4>
+		     <div class="common-pading">
 					<div id="ccmOrgNpseHoldCase" class="echarts" ></div>
 				</div>
 		     </div>
-		      <div class="span6" ><h4>机构组织类型统计</h4>
+		      <div class="span6" >
+				  <h4>机构组织类型统计</h4>
 		      <div class="common-pading">
 					<div id="ccmOrgNpseCompType" class="echarts" ></div>
 				</div>
@@ -65,7 +63,8 @@
 				 </div>
 		      </div>
 	     	  <div class="span6" >
-		      <div class="common-pading"><h4>重点类型统计</h4>
+				  <h4>重点类型统计</h4>
+		      <div class="common-pading">
 					<div id="ccmOrgNpseCompImpoType" class="echarts" ></div>
 				</div>
 		      </div>
@@ -80,7 +79,8 @@
 				 </div>
 		      </div>
 			    <div class="span6" >
-		      <div class="common-pading"><h4>危化企业统计</h4>
+					<h4>危化企业统计</h4>
+		      <div class="common-pading">
 					<div id="ccmOrgNpseDangComp" class="echarts" ></div>
 				</div>
 		      </div>

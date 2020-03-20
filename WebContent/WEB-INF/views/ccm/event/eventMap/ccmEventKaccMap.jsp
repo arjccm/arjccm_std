@@ -72,13 +72,13 @@
 	    <div class="row-fluid">
 		      <div class="span6" ><h4 >治安突出问题类型</h4>
 		      <div class="common-pading common-pading1" >
-					<div id="ccmEventKaccSafe" class="echarts"  style="height:305px;"></div>
+					<div id="ccmEventKaccSafe" class="echarts" ></div>
 				</div>
 		      </div>
 		     <div class="span6" >
 			 <h4 >涉及区域类型</h4>
 		     <div class="common-pading common-pading1" >
-					<div id="ccmEventKaccArea" class="echarts" style="height:305px;"></div>
+					<div id="ccmEventKaccArea" class="echarts" ></div>
 				</div>
 		     </div>
 		    
@@ -88,12 +88,12 @@
 		   <div class="span6" >
 		   <h4 >整治效果评估</h4>
 		      <div class="common-pading common-pading1" >
-					<div id="ccmEventKaccAssess" class="echarts" style="height:305px;"></div>
+					<div id="ccmEventKaccAssess" class="echarts" ></div>
 				</div>
 		      </div>
 		      <div class="span6" ><h4>重点地区排查整治近六个月上报趋势图</h4>
 		         <div class="common-pading common-pading1" >
-					<div id="ccmEventKaccLine" class="echarts" style="height:305px;"></div>
+					<div id="ccmEventKaccLine" class="echarts" ></div>
 				 </div>
 		      </div>
 	    </div>
