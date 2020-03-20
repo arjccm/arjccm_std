@@ -5235,3 +5235,26 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
 	border-radius: 3px;
 }
 /* GIS数据  工具样式 end */
+
+/* 重点青少年社会关系 start */
+.nav_tabs_sl>li>a{
+	border-right: 1px solid #ddd !important;
+	margin-left: 0 !important;
+}
+.traffic2{
+	border-left: 1px solid #ddd !important;
+}
+.site-n{
+	background:#f4f4f4 !important;
+	border: 1px solid #ddd;
+}
+.site-n .site-p1{
+	color: #666 !important;
+}
+.site-n .site-p2{
+	color: #333 !important;
+}
+.site-x2{
+	background:#ddd !important;
+}
+/* 重点青少年社会关系 end */

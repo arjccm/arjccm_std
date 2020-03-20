@@ -3816,7 +3816,7 @@ function showSafetyAccident() {
             y: '50%',
         }],
         tooltip: {
-            show: false,
+            show: true,
             trigger: 'item'
         },
         grid: {
@@ -3893,7 +3893,7 @@ function showSafetyAccident() {
                 tooltip: {
                     trigger: 'item',
                     formatter: "{b} : {c}<br/> ({d}%)",
-                    position: ['65%', '65%']
+                    position: ['65%', '65%'],
                 },
                 data: arr1
             },
