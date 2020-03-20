@@ -30,12 +30,13 @@
         	location = '${ctx}/act/model/?pageNo='+n+'&pageSize='+s;
         }
 	</script>
+<%--	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">--%>
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/act/model/">模型管理</a></li>
-		<li class="active"><a href="${ctx}/act/model/create">新建模型</a></li>
-	</ul><br/>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/act/model/">模型管理</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/act/model/create">新建模型</a></li>
+	</ul>
 	<sys:message content="${message}"/>
 	<form id="inputForm" action="${ctx}/act/model/create" target="_blank" method="post" class="form-horizontal">
 		<div class="control-group">
