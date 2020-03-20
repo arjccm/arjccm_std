@@ -33,9 +33,10 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/act/model/">模型管理</a></li>
-		<li><a href="${ctx}/act/model/create">新建模型</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/act/model/">模型管理</a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/act/model/create">新建模型</a></li>
 	</ul>
 	<form id="searchForm" action="${ctx}/act/model/" method="post" class="breadcrumb form-search">
 		<select id="category" name="category" class="input-medium">
@@ -44,7 +45,7 @@
 				<option value="${dict.value}" ${dict.value==category?'selected':''}>${dict.label}</option>
 			</c:forEach>
 		</select>
-		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" style="float: right" value="查询"/>
 	</form>
 	<sys:message content="${message}"/>
 	<table class="table table-striped table-bordered table-condensed table-nowrap">
@@ -80,6 +81,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
