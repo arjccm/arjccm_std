@@ -272,7 +272,7 @@
 		<img class="userIcon" src='/arjccm/static/images/loginImages/input_user_Icon.png'>
 		<input type="text" id="username" name="username" placeholder="请输入用户名" class="input-block-level required" style="padding-left: 55px" value="${username}">
 		<img class="pwdIcon" src='/arjccm/static/images/loginImages/input_pwd_Icon.png'>
-		<input type="password" id="password" name="password" placeholder="请输入密码" class="input-block-level1" style="padding-left: 55px">
+		<input type="password" id="password" name="password" placeholder="请输入密码" class="input-block-level1 required" style="padding-left: 55px" value="${password}">
 
 
 		<c:if test="${isValidateCodeLogin}">
