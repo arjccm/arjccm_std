@@ -19,6 +19,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<form:form id="searchForm" modelAttribute="ccmElecfenceAlarm"
 		action="${ctx}/fenceAlarm/ccmElecfenceAlarm" method="post"
 		class="breadcrumb form-search">
@@ -43,23 +44,23 @@
 				</form:select>
 			</li>
 			<li>
-				<label>日期范围：</label>
+				<label>开始日期：</label>
 				<input name="beginCreateDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${ccmElecfenceAlarm.beginCreateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> - 
-				<input name="endCreateDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/></li>
+				 <li><label>结束日期：</label><input name="endCreateDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${ccmElecfenceAlarm.endCreateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			</li>
 			<li class="btns"><a href="javascript:;" id="btnSubmit"
-				class="btn btn-primary"> <i class="icon-search"></i> 查询
+				class="btn btn-primary"><span style="font-size: 12px">查询</span>
 			</a></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
 	
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>人员姓名</th>
@@ -101,6 +102,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
