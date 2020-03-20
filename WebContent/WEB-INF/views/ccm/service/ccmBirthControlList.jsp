@@ -19,9 +19,10 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/service/ccmBirthControl/">数据列表</a></li>
-		<shiro:hasPermission name="service:ccmBirthControl:edit"><li><a href="${ctx}/service/ccmBirthControl/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/service/ccmBirthControl/">数据列表</a></li>
+		<shiro:hasPermission name="service:ccmBirthControl:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/service/ccmBirthControl/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmBirthControl" action="${ctx}/service/ccmBirthControl/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -30,11 +31,11 @@
 			<li><label>标题：</label>
 				<form:input path="title" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
-			<li><label>日期：</label>
+			<li><label>开始日期：</label>
 				<input name="beginRelDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${ccmBirthControl.beginRelDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> - 
-				<input name="endRelDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> </li>
+			<li><label>结束日期：</label><input name="endRelDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${ccmBirthControl.endRelDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			</li>
@@ -46,8 +47,8 @@
 			</li>
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li> -->
 			<li class="btns">
-			<a href="javascript:;" id="btnSubmit" class="btn btn-primary">
-                <i class="icon-search"></i> 查询 </a>
+			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;margin-top: 5px;display:inline-block;float: right;">
+				<span style="font-size: 12px">查询</span> </a>
 			</li>
 			<li class="clearfix"></li>
 		</ul>
@@ -86,6 +87,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

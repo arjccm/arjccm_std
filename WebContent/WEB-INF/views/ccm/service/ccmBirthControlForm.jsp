@@ -26,39 +26,40 @@
 			});
 		});
 	</script>
+	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/service/ccmBirthControl/">数据列表</a></li>
-		<li class="active"><a href="${ctx}/service/ccmBirthControl/form?id=${ccmBirthControl.id}">数据<shiro:hasPermission name="service:ccmBirthControl:edit">${not empty ccmBirthControl.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="service:ccmBirthControl:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/service/ccmBirthControl/">数据列表</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/service/ccmBirthControl/form?id=${ccmBirthControl.id}">数据<shiro:hasPermission name="service:ccmBirthControl:edit">${not empty ccmBirthControl.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="service:ccmBirthControl:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="ccmBirthControl" action="${ctx}/service/ccmBirthControl/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">标题：</label>
+			<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>标题：</label>
 			<div class="controls">
 				<form:input path="title" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red" id="show1">*</font>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">日期：</label>
+			<label class="control-label"> <span class="help-inline"><font color="red" >*</font> </span>日期：</label>
 			<div class="controls">
 				<input name="relDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 					value="<fmt:formatDate value="${ccmBirthControl.relDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-				<span class="help-inline"><font color="red" >*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">类型：</label>
+			<label class="control-label"><span class="help-inline"><font color="red" >*</font> </span>类型：</label>
 			<div class="controls">
 				<form:select path="type" class="input-xlarge required">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('ccm_birth_control_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
-				<span class="help-inline"><font color="red" >*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
