@@ -297,16 +297,14 @@
 						</div>
 					</div>
 				</td>
-				<td>
+				<%--<td>
 					<div>
 						<label class="control-label">图标：</label>
 						<div class="controls">
 							<sys:iconselect id="image" name="image" value="${ccmPopTenant.image}"/>
 						</div>
 					</div>
-				</td>
-			</tr>
-			<tr>
+				</td>--%>
 				<td>
 					<div>
 						<label class="control-label">房屋产权类型：</label>
@@ -318,6 +316,8 @@
 						</div>
 					</div>
 				</td>
+			</tr>
+			<tr>
 				<td>
 					<div>
 						<label class="control-label">年限：</label>
@@ -329,20 +329,19 @@
 						</div>
 					</div>
 				</td>
-			</tr>
-
-			<tr>
 				<td>
 					<div>
 						<label class="control-label">建筑类型：</label>
 						<div class="controls">
-						<form:select path="buildingType" class="input-xlarge ">
-							<form:option value="" label=""/>
-							<form:options items="${fns:getDictList('ccm_PopTenant_buildingType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						</form:select>
+							<form:select path="buildingType" class="input-xlarge ">
+								<form:option value="" label=""/>
+								<form:options items="${fns:getDictList('ccm_PopTenant_buildingType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+							</form:select>
 						</div>
 					</div>
 				</td>
+			</tr>
+			<tr>
 				<td>
 					<div>
 						<label class="control-label">备注信息：</label>
@@ -559,7 +558,7 @@
 					</div>
 				</td>
 			</tr>
-			<c:if test="${not empty ccmPopTenant.id}">
+			<%--<c:if test="${not empty ccmPopTenant.id}">
 				<shiro:hasPermission name="pop:ccmPopTenant:edit">
 					<tr>
 						<td>
@@ -580,7 +579,7 @@
 						</td>
 					</tr>
 				</shiro:hasPermission>
-			</c:if>
+			</c:if>--%>
 			<tr>
 				<td>
 					<div>
@@ -590,16 +589,14 @@
 						</div>
 					</div>
 				</td>
-				<td>
+				<%--<td>
 					<div>
 						<label class="control-label">图标：</label>
 						<div class="controls">
 							<sys:iconselect id="image" name="image" value="${ccmPopTenant.image}"/>
 						</div>
 					</div>
-				</td>
-			</tr>
-			<tr>
+				</td>--%>
 				<td>
 					<div>
 						<label class="control-label">房屋产权类型：</label>
@@ -611,6 +608,8 @@
 						</div>
 					</div>
 				</td>
+			</tr>
+			<tr>
 				<td>
 					<div>
 						<label class="control-label">年限：</label>
@@ -620,9 +619,6 @@
 						</form:select>
 					</div>
 				</td>
-			</tr>
-
-			<tr>
 				<td>
 					<div>
 						<label class="control-label">建筑类型：</label>
@@ -632,6 +628,8 @@
 						</form:select>
 					</div>
 				</td>
+			</tr>
+			<tr>
 				<td>
 					<div>
 						<label class="control-label">备注信息：</label>
