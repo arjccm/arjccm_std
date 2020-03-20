@@ -424,10 +424,13 @@ a:hover, a:focus {
 }
 
 .row-fluid .span6 {
-	 width: 805px;
+	 width: 48.15vw;
 	margin: 20px 0 0 20px!important;
  }
-.row-fluid .span6>div{
+.row-fluid .span6>.common-pading{
+	width: calc(48.15vw - 30px);
+	height:100%;
+	padding:0 15px 15px 15px;
 	background: none!important;
 	box-shadow: inset 0px 0px 15px 0px #1684c2;
 }
