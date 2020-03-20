@@ -424,8 +424,18 @@ a:hover, a:focus {
 }
 
 .row-fluid .span6 {
-	width: 48.93617021276595%;
-	*width: 48.88297872340425%
+	 width: 805px;
+	margin: 20px 0 0 20px!important;
+ }
+.row-fluid .span6>div{
+	background: none!important;
+	box-shadow: inset 0px 0px 15px 0px #1684c2;
+}
+.row-fluid .span6 h4{
+	height: 40px;
+	background: rgba(6,86,137,1);
+	padding-left: 50px;
+	line-height: 40px;
 }
 
 .row-fluid .span5 {

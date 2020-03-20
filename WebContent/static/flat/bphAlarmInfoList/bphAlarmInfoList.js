@@ -102,11 +102,11 @@ function initTable() {
 					if(val.state=='0'){
 						html='<span class="alarmstatus_0">未处理</span>';
 					}else if(val.state=='1'){
-						html='<span class="alarmstatus_1">已派发</span>';
+						html='<span class="alarmstatus_1">已签收</span>';
 					}else if(val.state=='2'){
-						html='<span class="alarmstatus_2">处理中</span>';
+						html='<span class="alarmstatus_2">已到达</span>';
 					}else if(val.state=='3'){
-						html='<span class="alarmstatus_3">已完成</span>';
+						html='<span class="alarmstatus_3">已反馈</span>';
 					}else{
 						html='<span></span>';
 					}
