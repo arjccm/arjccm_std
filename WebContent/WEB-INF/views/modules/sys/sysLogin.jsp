@@ -260,7 +260,7 @@
 			<label id="loginError" class="error">${message}</label>
 		</div>
 	</div>
-	<img class="loginLiuGuang" src='/arjccm/static/images/loginImages/guang.png'>
+<%--	<img class="loginLiuGuang" src='/arjccm/static/images/loginImages/guang.png'>--%>
 	<img class="loginBig" src='/arjccm/static/images/loginImages/login_big_sany.png'>
 	<%-- <h1 class="form-signin-heading">${fns:getConfig('showName')}系统</h1> --%>
 	<div class="loginTitle">
@@ -272,7 +272,7 @@
 		<img class="userIcon" src='/arjccm/static/images/loginImages/input_user_Icon.png'>
 		<input type="text" id="username" name="username" placeholder="请输入用户名" class="input-block-level required" style="padding-left: 55px" value="${username}">
 		<img class="pwdIcon" src='/arjccm/static/images/loginImages/input_pwd_Icon.png'>
-		<input type="password" id="password" name="password" placeholder="请输入密码" class="input-block-level1" style="padding-left: 55px">
+		<input type="password" id="password" name="password" placeholder="请输入密码" class="input-block-level1 required" style="padding-left: 55px" value="${password}">
 
 
 		<c:if test="${isValidateCodeLogin}">

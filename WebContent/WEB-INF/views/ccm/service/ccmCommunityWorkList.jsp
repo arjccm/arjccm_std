@@ -21,10 +21,11 @@
 </script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/service/ccmCommunityWork/">数据列表</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/service/ccmCommunityWork/">数据列表</a></li>
 		<shiro:hasPermission name="service:ccmCommunityWork:edit">
-			<li><a href="${ctx}/service/ccmCommunityWork/form">数据添加</a></li>
+			<li><a style="width: 140px;text-align:center" href="${ctx}/service/ccmCommunityWork/form">数据添加</a></li>
 		</shiro:hasPermission>
 	</ul>
 	<div class="ccmCommunityWorkType" style="display: none;"
@@ -48,6 +49,16 @@
 				</form:select></li>
 			<li><label>标题：</label> <form:input path="title"
 					htmlEscape="false" maxlength="100" class="input-medium" /></li>
+			<li><label>创建开始时间：</label> <input name="beginCreateDate"
+											  type="text" readonly="readonly" maxlength="20"
+											  class="input-medium Wdate"
+											  value="<fmt:formatDate value="${ccmCommunityWork.beginCreateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+											  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" /></li>
+			<li><label>创建结束日期：</label><input name="endCreateDate" type="text" readonly="readonly"
+											 maxlength="20" class="input-medium Wdate"
+											 value="<fmt:formatDate value="${ccmCommunityWork.endCreateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+											 onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" />
+			</li>
 			<li><label>审核类型：</label> <form:select path="status"
 					class="input-medium">
 					<form:option value="" label="全部" />
@@ -55,28 +66,20 @@
 						itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select></li>
 
-			<li><label>创建时间：</label> <input name="beginCreateDate"
-				type="text" readonly="readonly" maxlength="20"
-				class="input-medium Wdate"
-				value="<fmt:formatDate value="${ccmCommunityWork.beginCreateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-				onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" />
-				- <input name="endCreateDate" type="text" readonly="readonly"
-				maxlength="20" class="input-medium Wdate"
-				value="<fmt:formatDate value="${ccmCommunityWork.endCreateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-				onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" />
-			</li>
+
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary"
 				type="submit" value="查询" /></li> -->
 				<li class="btns">
-			<a href="javascript:;" id="btnSubmit" class="btn btn-primary">
-                <i class="icon-search"></i> 查询 </a>
+                    <a href="javascript:;" id="btnSubmit" style="width: 49px;margin-right: 14px;
+    margin-bottom: 20px;/*margin-top: 25px;*/display:inline-block;float: right;margin-left: 20px" class="btn btn-primary">
+                            <%--<i class="icon-search"></i> --%><span style="font-size: 12px">查询</span> </a>
 			</li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
 	<sys:message content="${message}" />
 	<table id="contentTable"
-		class="table table-striped table-bordered table-condensed">
+		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>一级分类</th>
@@ -118,6 +121,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

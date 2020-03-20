@@ -19,6 +19,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/ccmsys/ccmMobileDevice/list2">数据列表</a></li>
 		<%--<shiro:hasPermission name="ccmsys:ccmMobileDevice:edit"><li><a href="${ctx}/ccmsys/ccmMobileDevice/form2">数据添加</a></li></shiro:hasPermission>--%>
@@ -59,7 +60,7 @@
 			<li class="btns">
 		<!-- 	<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/> -->
 	      	<a href="javascript:;" id="btnSubmit" class="btn btn-primary">
-                <i class="icon-search"></i> 查询 </a>
+				<span style="font-size: 12px">查询</span> </a>
 			</li>
 			<li class="clearfix"></li>
 		</ul>
@@ -123,6 +124,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

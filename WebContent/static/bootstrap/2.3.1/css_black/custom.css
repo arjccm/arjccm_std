@@ -1416,7 +1416,7 @@ cite[class*='t-click']{
 	 line-height: 30px;
  }
 
- /*切换按钮共通样式*/
+ /* 切换按钮共通样式 start */
  .toggle{
 	 position: relative;
 	 display: block;
@@ -1461,6 +1461,25 @@ cite[class*='t-click']{
 	 width: 49px;
 	 height: 30px;
  }
+ /* 切换按钮共通样式 end */
+
+ /* layui 分页样式  start */
+	.layui_page_turning  .layui-laypage-prev, .layui_page_turning .layui-laypage-next{
+		background: #092D52;
+		color: #fff;
+	}
+ /* layui 分页样式  end */
+
+ /* GIS数据  工具样式 start */
+ 	.gis_tool_icon {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		background: #040d1e;
+		border: 1px solid #00cccc;
+		border-radius: 3px;
+	}
+ /* GIS数据  工具样式 end */
 .reportPolice_content .right_box{
     float: right;
     width: 24vw;

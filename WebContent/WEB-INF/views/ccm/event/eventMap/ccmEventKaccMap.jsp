@@ -5,11 +5,7 @@
 	<title>重点地区排查整治分析</title>
 	<meta name="decorator" content="default"/>
 	<style>
-	.common-pading{
-	  width:100%;
-	  height:200px;
-	  padding:5px;
-	}
+
 	.echarts{
 	  width:100%;
 	  height:100%;
@@ -74,17 +70,15 @@
 	</form:form>
 	<sys:message content="${message}"/>
 	    <div class="row-fluid">
-		      <div class="span6" ><h4 style="top: 25px;
-    position: relative;">治安突出问题类型</h4>
-		      <div class="common-pading common-pading1" style="height:350px">
-					<div id="ccmEventKaccSafe" class="echarts" style="height:240px;margin-top: 50px;" ></div>
+		      <div class="span6" ><h4 >治安突出问题类型</h4>
+		      <div class="common-pading common-pading1" >
+					<div id="ccmEventKaccSafe" class="echarts" ></div>
 				</div>
 		      </div>
 		     <div class="span6" >
-			 <h4 style="top: 25px;
-    position: relative;">涉及区域类型</h4>
-		     <div class="common-pading common-pading1" style="height:350px">
-					<div id="ccmEventKaccArea" class="echarts" style="height:240px;margin-top: 50px;"></div>
+			 <h4 >涉及区域类型</h4>
+		     <div class="common-pading common-pading1" >
+					<div id="ccmEventKaccArea" class="echarts" ></div>
 				</div>
 		     </div>
 		    
@@ -92,16 +86,14 @@
 	    <br>
 	     <div class="row-fluid">
 		   <div class="span6" >
-		   <h4 style="top: 25px;
-    position: relative;">整治效果评估</h4>
-		      <div class="common-pading common-pading1" style="height:350px">
-					<div id="ccmEventKaccAssess" class="echarts" style="height:240px;margin-top: 50px;"></div>
+		   <h4 >整治效果评估</h4>
+		      <div class="common-pading common-pading1" >
+					<div id="ccmEventKaccAssess" class="echarts" ></div>
 				</div>
 		      </div>
-		      <div class="span6" ><h4 style="top: 25px;
-    position: relative;">重点地区排查整治近六个月上报趋势图</h4>
-		         <div class="common-pading common-pading1" style="height:350px">
-					<div id="ccmEventKaccLine" class="echarts" style="height:240px;margin-top: 50px;"></div>
+		      <div class="span6" ><h4>重点地区排查整治近六个月上报趋势图</h4>
+		         <div class="common-pading common-pading1" >
+					<div id="ccmEventKaccLine" class="echarts" ></div>
 				 </div>
 		      </div>
 	    </div>

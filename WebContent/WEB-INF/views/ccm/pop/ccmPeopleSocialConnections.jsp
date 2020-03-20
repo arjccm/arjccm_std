@@ -229,9 +229,9 @@
 		.nav-tabs>li>a {
 			border-right:1px solid rgba(2,125,168,1);
 		}
-		body{
-			background: #122E59!important;
-		}
+		/*body{*/
+		/*	background: #122E59!important;*/
+		/*}*/
 
 		.button-backimg{
 			width: 26px;
@@ -318,7 +318,7 @@
 </head>
 <body>
 <input type="hidden" id="ident" name="ident" value="${ident}">
-<ul id="myTab" class="nav nav-tabs">
+<ul id="myTab" class="nav nav-tabs nav_tabs_sl">
 	<li ><a href="#SocialRelations" data-toggle="tab" onclick="showmap(2)">社会关系图谱</a></li>
 	<li ><a href="#roomPop" data-toggle="tab" onclick="showmap(2)">同住人员信息</a></li>
 	<li ><a href="#homePop" data-toggle="tab" onclick="showmap(2)">家庭成员信息</a></li>
@@ -466,7 +466,7 @@
 	</div>--%>
 
 	<div id="pubMap"></div>
-	<div id="mapMask" class="map" style="float:left;width: 600px"></div>
+	<div id="mapMask" class="map" style="float:left;width: 600px;height: 500px;"></div>
 	<div id="tablemap" >
 		<%--<table class="table">
                 <li>
@@ -484,9 +484,9 @@
         </table>--%>
 
 
-		<table class="table" style="width: 423px;height: 610px;position:absolute;float: right;margin-left: 573px;margin-top: -500px;" >
+		<table class="table" style="width: 423px;height: 610px;position:absolute;background: none;top: 37px;right: 5px;" >
 			<tr>
-				<td style="position:absolute;width: 422px;height: 610px;margin-top: 10px">
+				<td style="position:absolute;width: 422px;height: 610px;margin-top: 5px;background: #ffffff;">
 					<label class="lab1" style="margin-top:12px"><span > 姓名:</span ><span id="warpeoplename"></span></label>
 					<label  class="lab2"><span >车牌号:</span> <span id="warcarid"></span></label>
 					<br>
@@ -497,9 +497,10 @@
 						<input name="endBirthday" id="endBirthday" type="text" maxlength="20" class="input-medium Wdate"
 							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 					</li>
-					<li><input class="button-ss" type="button" onclick="getdata()" value="搜索">
-						<input class="button-bf" type="button" value="播放">
-						<input class="button-zt" type="button" value="暂停">
+					<li>
+						<a class="btn btn-primary" onclick="getdata()">搜索</a>
+						<a class="btn btn-export" >播放</a>
+						<a class="btn btn-export" >暂停</a>
 					</li>
                     <li>
                         <div class="site-w">
@@ -508,7 +509,7 @@
                                 <div class="site-x2"></div>
                             </div>
                             <div class="site-n">
-								<p class="site-p1"><span style="color: #FFFFFF">2020-01-05 07:27:09</span></p>
+								<p class="site-p1"><span>2020-01-05 07:27:09</span></p>
 								<p class="site-p2">青岛路与郑州路</p>
                             </div>
                         </div>
@@ -520,7 +521,7 @@
 								<div class="site-x2"></div>
 							</div>
 							<div class="site-n">
-								<p class="site-p1"><span style="color: #FFFFFF">2020-01-05 07:23:37</span></p>
+								<p class="site-p1"><span>2020-01-05 07:23:37</span></p>
 								<p class="site-p2">厦门路与大营路</p>
 							</div>
 						</div>
@@ -532,7 +533,7 @@
 								<div class="site-x2"></div>
 							</div>
 							<div class="site-n">
-								<p class="site-p1"><span style="color: #FFFFFF">2020-01-05 07:22:44</span></p>
+								<p class="site-p1"><span>2020-01-05 07:22:44</span></p>
 								<p class="site-p2">厦门路与苏州路</p>
 							</div>
 						</div>
@@ -544,7 +545,7 @@
 								<div class="site-x2"></div>
 							</div>
 							<div class="site-n">
-								<p class="site-p1"><span style="color: #FFFFFF">2020-01-05 07:21:19</span></p>
+								<p class="site-p1"><span>2020-01-05 07:21:19</span></p>
 								<p class="site-p2">R厦门路与苏州路路口</p>
 							</div>
 						</div>
@@ -556,7 +557,7 @@
 								<div class="site-x2"></div>
 							</div>
 							<div class="site-n">
-								<p class="site-p1"><span style="color: #FFFFFF">2020-01-05 07:21:19</span></p>
+								<p class="site-p1"><span>2020-01-05 07:21:19</span></p>
 								<p class="site-p2">R厦门路与苏州路路口</p>
 							</div>
 						</div>

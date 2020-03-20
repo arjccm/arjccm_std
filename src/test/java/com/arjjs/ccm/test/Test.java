@@ -9,8 +9,8 @@ import com.arjjs.ccm.tool.geoJson.Properties;
 public class Test {
 
 	public static void main(String[] args) {
-		
-		
+
+
 		Features featureDto = new Features();
 		Properties properties = new Properties();
 		// 1 type 默认不填

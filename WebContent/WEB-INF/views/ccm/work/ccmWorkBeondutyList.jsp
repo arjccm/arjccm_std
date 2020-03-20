@@ -90,7 +90,7 @@
 	<div class="clearfix pull-right btn-box">
             <a style="width: 49px;margin-right: 14px;
     margin-bottom: 20px;/*margin-top: 25px;*/display:inline-block;float: right;margin-left: 20px" class="btn btn-export" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkBeonduty/ccmWorkBeondutyPage', '值班批量添加', '500px', '300px')">
-                批量添加</a>
+				<span style="font-size: 12px">批量添加</span> </a>
 			<a href="javascript:;" id="btnSubmit" style="width: 49px;margin-right: 14px;
     margin-bottom: 20px;/*margin-top: 25px;*/display:inline-block;float: right;margin-left: 20px" class="btn btn-primary">
 					<%--<i class="icon-search"></i> --%><span style="font-size: 12px">查询</span> </a>

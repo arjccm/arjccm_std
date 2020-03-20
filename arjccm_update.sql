@@ -529,8 +529,7 @@ CREATE TABLE `ccm_place_org_people`  (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
---更改跟踪人员信息字典表table
-UPDATE sys_dict SET label = "涉教人员" WHERE id="39127"
+
 
 --菜单表新增图标名
 UPDATE sys_menu SET icon = "dashujuzhanshi" WHERE id="1c67672c043e428db50f772af0eb01c5"
@@ -1632,3 +1631,11 @@ BEGIN
 		commit;
 
 END
+
+
+-- 宗教场所字段信新增
+alter table ccm_place_religion add is_monitor varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子围栏id';
+alter table ccm_place_religion add is_pass varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子围栏id';
+alter table ccm_place_religion add is_annihilator varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子围栏id';
+alter table ccm_place_religion add is_sign varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子围栏id';
+alter table ccm_place_religion add is_lighting varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子围栏id';

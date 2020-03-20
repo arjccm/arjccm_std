@@ -32,15 +32,16 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/act/process/">流程管理</a></li>
-		<li><a href="${ctx}/act/process/deploy/">部署流程</a></li>
-		<li class="active"><a href="${ctx}/act/process/running/">运行中的流程</a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/act/process/">流程管理</a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/act/process/deploy/">部署流程</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/act/process/running/">运行中的流程</a></li>
 	</ul>
 	<form id="searchForm" action="${ctx}/act/process/running/" method="post" class="breadcrumb form-search">
 		<label>流程实例ID：</label><input type="text" id="procInsId" name="procInsId" value="${procInsId}" class="input-medium"/>
 		<label>流程定义Key：</label><input type="text" id="procDefKey" name="procDefKey" value="${procDefKey}" class="input-medium"/>
-		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" style="float:right" value="查询"/>
 	</form>
 	<sys:message content="${message}"/>
 	<table class="table table-striped table-bordered table-condensed">
@@ -71,6 +72,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
