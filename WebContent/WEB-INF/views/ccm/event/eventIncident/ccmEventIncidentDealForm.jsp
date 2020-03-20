@@ -84,9 +84,9 @@ td {
 				<td><label class="control-label"><span class="help-inline"><font color="red">*</font></span>处理人员：</label>
 					<div class="controls">
 						<sys:treeselect id="handleUser" name="handleUser.id"
-							value="${ccmEventCasedeal.handleUser.id}"
+							value="${ccmEventCasedeal.currentUser.id}"
 							labelName="handleUser.name"
-							labelValue="${ccmEventCasedeal.handleUser.name}" title="用户"
+							labelValue="${ccmEventCasedeal.currentUser.name}" title="用户"
 							url="/event/ccmEventIncident/officeTreeData?type=3" cssClass="" allowClear="true"
 							notAllowSelectParent="true" />
 						<span class="help-inline"><font color="red" id="show1"></font></span>
