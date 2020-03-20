@@ -63,8 +63,8 @@ height:30px;
 				<form:input path="principalMans" htmlEscape="false" maxlength="1000" class="input-medium"/>
 			</li>
 			<li class="btns">
-				<a href="javascript:;" onclick="initData()" id="btnSubmit" style="width: 49px;display:inline-block;float: right;color: #fff" class="btn btn-primary">
-                <i style="font-size: 12px"></i>查询 </a>
+				<a href="javascript:;" onclick="initData()" id="btnSubmit" class="btn btn-primary " style="width: 49px;display:inline-block;float: right;color: #fff" >
+					<span style="font-size: 12px">查询</span> </a>
 			</li>
 			<li class="clearfix"></li>
 		</ul>
