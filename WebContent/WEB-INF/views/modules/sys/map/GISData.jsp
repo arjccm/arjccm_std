@@ -376,7 +376,7 @@
 											style="height: 30px; margin-top: 10px;"></li>
 										<li><sys:treeselect id="areaEvent" name="areaEvent"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
-												labelValue="" title="区域" url="/sys/area/treeData"
+												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
 												cssClass="" allowClear="true" notAllowSelectParent="false"
 												cssStyle="width: 111px;height:30px;" /> &nbsp; <input
 											id="caseName" placeholder="请输入事件名称 ..." name="caseName"
@@ -420,7 +420,7 @@
 											style="height: 30px; margin-top: 0px; margin-bottom: 10px;">
 											&nbsp; <sys:treeselect id="areaBuild" name="areaBuild"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
-												labelValue="" title="区域" url="/sys/area/treeData"
+												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
 												cssClass="" allowClear="true" notAllowSelectParent="false"
 												cssStyle="width: 110px;height:30px;" /></li>
 										<li>
@@ -461,7 +461,7 @@
 											style="height: 30px; margin-top: 0px; margin-bottom: 10px;">
 											&nbsp; <sys:treeselect id="areaPlace" name="areaPlace"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
-												labelValue="" title="区域" url="/sys/area/treeData"
+												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
 												cssClass="" allowClear="true" notAllowSelectParent="false"
 												cssStyle="width: 110px;height:30px;" /></li>
 										<li>
@@ -510,7 +510,7 @@
 
 											&nbsp; <sys:treeselect id="areaPeople" name="areaPeople"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
-												labelValue="" title="区域" url="/sys/area/treeData"
+												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
 												cssClass="" allowClear="true" notAllowSelectParent="false"
 												cssStyle="width: 111px;height:30px;" /></li>
 										<li><select id="importantType" name="importantType"
@@ -554,7 +554,7 @@
 										</li>
 										<li><sys:treeselect id="areaVideo" name="areaVideo"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
-												labelValue="" title="区域" url="/sys/area/treeData"
+												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
 												cssClass="" allowClear="true" notAllowSelectParent="false"
 												cssStyle="width: 110px;height:30px;" /> &nbsp;</li>
 										<li>
