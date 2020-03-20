@@ -5,16 +5,14 @@
 	<title>建筑物、房屋数据分析</title>
 	<meta name="decorator" content="default"/>
 	<style>
-	.common-pading{
-	  width:100%;
-	  height:260px;
-	  padding:5px;
-	}
+
 	.echarts{
 	  width:100%;
 	  height:100%;
 	}
-	
+	.span12 h4{
+		padding-left: 20px;
+	}
 	
 	</style>
 	<script type="text/javascript">
@@ -39,12 +37,12 @@
 	<sys:message content="${message}"/>
 	    <br>
 	    <div class="row-fluid">
-		      <div class="span4" ><h4 style="margin-bottom: 20px">全部房屋状态类型统计</h4>
+		      <div class="span6" ><h4 >全部房屋状态类型统计</h4>
 		      <div class="common-pading">
 					<div id="ccmPopTenantHouseType" class="echarts" ></div>
 				</div>
 		      </div>
-		      <div class="span8" ><h4 style="margin-bottom: 20px">全部房屋隐患类型统计</h4>
+		      <div class="span6" ><h4 >全部房屋隐患类型统计</h4>
 		         <div class="common-pading">
 					<div id="ccmPopTenantHazard" class="echarts" ></div>
 				 </div>
