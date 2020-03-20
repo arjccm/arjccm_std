@@ -19,9 +19,10 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/ccmsys/ccmDomain/">数据列表</a></li>
-		<shiro:hasPermission name="ccmsys:ccmDomain:edit"><li><a href="${ctx}/ccmsys/ccmDomain/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/ccmsys/ccmDomain/">数据列表</a></li>
+		<shiro:hasPermission name="ccmsys:ccmDomain:edit"><li><a style="width: 140px;text-align:center"  href="${ctx}/ccmsys/ccmDomain/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmDomain" action="${ctx}/ccmsys/ccmDomain/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -31,15 +32,16 @@
 				<form:input path="name" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
 			<!-- <input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/> -->
-			<li class="btns">
-			<a href="javascript:;" id="btnSubmit" class="btn btn-primary">
-                <i class="icon-search"></i> 查询 </a>
-			</li>
+			<div class="clearfix pull-right btn-box">
+				<a href="javascript:;" id="btnSubmit" style="width: 49px;
+   /*margin-top: 25px;*/display:inline-block;float: right" class="btn btn-primary">
+						<%--<i class="icon-search"></i> --%><span style="font-size: 12px">查询</span> </a>
+			</div>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>服务器名称</th>
@@ -73,6 +75,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
