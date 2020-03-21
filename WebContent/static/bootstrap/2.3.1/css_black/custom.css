@@ -1523,3 +1523,7 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
  input::-ms-clear{
 	 display:none;
  }
+ .ztree li ul {
+	 margin: 0;
+	 padding: 0 0 0 10px!important;
+ }
