@@ -185,7 +185,7 @@
 							</c:when>
 							<c:otherwise>
 								<td style="height: 50px"><a
-									href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="查看" class="icon-file"></i></a>&nbsp;
+									href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>&nbsp;
 									<c:if test="${plmCheck.status != '1'}">
 										<a title="check" id="${plmCheck.id}" class="btnList"><i title="盘点" class="icon-search"></i></a>
 									</c:if></td>
@@ -236,7 +236,7 @@
 									</shiro:hasPermission>
 								</c:when>
 								<c:otherwise>
-									<a href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="查看" class="icon-file"></i></a>&nbsp;
+									<a href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>&nbsp;
 							<c:if test="${plmCheck.status != '1'}">
 										<a title="check" id="${plmCheck.id}" class="btnList"><i title="盘点" class="icon-search"></i></a>
 									</c:if>

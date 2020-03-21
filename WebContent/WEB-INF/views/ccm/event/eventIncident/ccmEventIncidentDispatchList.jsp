@@ -329,10 +329,10 @@ text-overflow: ellipsis; text-align: left;">
                    title="任务快速派遣"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
             </shiro:hasPermission>
 <%--                <shiro:hasPermission name="event:ccmEventStakeholder:view">--%>
-<%--                    &lt;%&ndash; <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="icon-user"></i></a> &ndash;%&gt;--%>
+<%--                    &lt;%&ndash; <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a> &ndash;%&gt;--%>
 <%--                    <a class="btnList"--%>
 <%--                       onclick="parent.LayerDialog1('','${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}', '干系人', '1300px', '700px')"--%>
-<%--                       title="干系人"><i class="icon-user"></i></a>--%>
+<%--                       title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a>--%>
 <%--                </shiro:hasPermission>--%>
 <%--                <c:if test="${empty ccmEventIncident.bphAlarmInfoId}">--%>
 <%--                    <a  class="btnList" onclick="HandleTips(this,'${ccmEventIncident.id}')" title="发送警情"><i class="icon-bell"></i></a>--%>

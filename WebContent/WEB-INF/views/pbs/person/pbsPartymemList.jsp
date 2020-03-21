@@ -143,7 +143,7 @@
 								</c:forEach>
 							</form> <a href="#"
 							onclick="document.getElementById('subform${pbsPartymem.id}').submit();return false"><i
-							title="人物信息图"	class="icon icon-group"></i></a> <a
+							title="人物信息图"	class="icon iconfont icon-caozuotubiao-shejiaoguanxi"></i></a> <a
 							href="${ctx}/person/pbsPartymem/form?id=${pbsPartymem.id}"
 							title="修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a> <a
 							href="${ctx}/person/pbsPartymem/delete?id=${pbsPartymem.id}"

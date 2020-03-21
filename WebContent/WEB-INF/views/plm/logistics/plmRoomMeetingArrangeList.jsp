@@ -118,7 +118,7 @@
 	    				    <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/logistics/plmRoomMeetingApplyResource/findlistresource?meetingId=${plmRoom.id}', '附件列表', '800px', '660px')"><i title="附件列表" class="icon-list-ul"></i></a>
 						</c:if>
 						<c:if test="${user.id ne plmRoom.createBy.id and user.id ne '1'}">
-							<a class="btnList" href="${ctx}/logistics/plmRoomMeetingApplyResource/form?id=${plmRoom.id}" title="详情"><i class="icon-file"></i></a>
+							<a class="btnList" href="${ctx}/logistics/plmRoomMeetingApplyResource/form?id=${plmRoom.id}" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						</c:if>
 					</shiro:hasPermission>
 				</tr>

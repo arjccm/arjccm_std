@@ -135,7 +135,7 @@
 							</shiro:hasPermission>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
-							   title="从业人员添加"><i class="icon-group"></i></a>
+							   title="从业人员添加"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmBasePlace.id}&type=1', '从业人员信息', '1550px', '800px')"
 							   title="从业人员信息"><i class="icon-align-justify"></i></a>

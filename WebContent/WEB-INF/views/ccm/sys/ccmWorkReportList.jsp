@@ -126,7 +126,7 @@
                     </c:if></td>
 					<shiro:hasPermission name="sys:ccmWorkReport:edit">
 						<td style="height: 50px"><a class="btnList"
-							href="${ctx}/sys/ccmWorkReport/form?id=${ccmWorkReport.id}" title="查看"><i class="icon-file"></i></a>
+							href="${ctx}/sys/ccmWorkReport/form?id=${ccmWorkReport.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							<a class="btnList"
 							href="${ctx}/sys/ccmWorkReport/delete?id=${ccmWorkReport.id}"
 							onclick="return confirmx('确认要删除该工作日志吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>

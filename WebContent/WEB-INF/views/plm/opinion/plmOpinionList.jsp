@@ -95,7 +95,7 @@
 						<c:if test="${not empty plmOpinion.procInsId}">
 							<a
 								href="${ctx}/opinion/plmOpinion/form?id=${plmOpinion.id}"
-								title="显示详情"><i class="icon-file"></i></a>
+								title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						</c:if></td>
 					</tr>
 				</c:forEach>
@@ -144,7 +144,7 @@
 							
 							<c:if test="${not empty plmOpinion.procInsId}">
 								<a href="${ctx}/opinion/plmOpinion/form?id=${plmOpinion.id}"
-									title="显示详情"><i class="icon-file"></i></a>
+									title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</c:if>
 						</div>
 					</div>

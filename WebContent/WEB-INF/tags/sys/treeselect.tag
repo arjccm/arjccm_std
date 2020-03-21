@@ -33,6 +33,20 @@
 <script type="text/javascript">
 	$("#${id}Button, #${id}Name").click(function(){
 		// 是否限制选择，如果限制，设置为disabled
+		if($("#isreact").val() && $("#${id}Button").hasClass("disabled")){
+			layer.tips('请选择社区', '#areaComIdName', {
+				tips: 2,
+				area:["80px","38px"],
+				skin: 'tip_box_style'
+			});
+			return true;
+		}
+
+		if($("#areaGridIdId").val()!=""){
+			$("#areaGridIdButton").removeClass("disabled");
+		}
+
+		// 是否限制选择，如果限制，设置为disabled
 		if ($("#${id}Button").hasClass("disabled")){
 			return true;
 		}
@@ -42,7 +56,9 @@
 		var UrlType = "";
 		if(patorlTimeType !=""){
 			UrlType ="iframe:${ctx}/tag/treeselect?url="+encodeURIComponent("${url}")+"&module="+patorlTimeType+"&checked=${checked}&extId=${extId}&isAll=${isAll}";
-		}else{
+		}else if($("#isreact").val() && this.id=="areaGridIdName" && $("#areaComIdId").val()!=""){
+			UrlType= "iframe:${ctx}/tag/treeselect?url="+encodeURIComponent("${url}"+$("#areaComIdId").val())+"&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}";
+		}else {
 			UrlType= "iframe:${ctx}/tag/treeselect?url="+encodeURIComponent("${url}")+"&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}";
 		}
 		// 正常打开
@@ -95,10 +111,24 @@
 					}
 					$("#${id}Id").val(ids.join(",").replace(/u_/ig,""));
 					$("#${id}Name").val(names.join(","));
-				}//<c:if test="${allowClear}">
+
+
+					if($("#isreact").val()&& $("#areaComIdId").val()!="" && $("#areaComIdName").val()!=""){
+						$("#areaGridIdButton").removeClass("disabled");
+					}
+
+
+				}
+
+				//<c:if test="${allowClear}">
 				else if (v=="clear"){
 					$("#${id}Id").val("");
 					$("#${id}Name").val("");
+					if($("#isreact").val() && $("#areaComIdId").val()=="" && $("#areaComIdName").val()==""){
+						$("#areaGridIdButton").addClass("disabled");
+						$("#areaGridIdId").val("");
+						$("#areaGridIdName").val("");
+					}
                 }//</c:if>
 				if(typeof ${id}TreeselectCallBack == 'function'){
 					return ${id}TreeselectCallBack(v, h, f);

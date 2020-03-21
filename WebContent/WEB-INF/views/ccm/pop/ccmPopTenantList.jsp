@@ -120,7 +120,7 @@
 								class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<a class="btnList"
 								href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${ccmPopTenant.id}&type=house"
-								title="住户管理"><i class="icon-group"></i></a>
+								title="住户管理"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
 						</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPopTenant.id}&relevance_table=ccm_pop_tenant', '记录信息', '800px', '660px')" 
 								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
@@ -129,7 +129,7 @@
 								title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/tenant/ccmTenantRecord/${ccmPopTenant.id}', '历史住户信息', '800px', '660px')"
-								title="历史住户信息"><i class="icon-eye-open"></i></a>
+								title="历史住户信息"><i class="iconfont icon-caozuotubiao-lishizukejiluliebiao"></i></a>
 						</shiro:hasPermission></td>
 				</tr>
 			</c:forEach>

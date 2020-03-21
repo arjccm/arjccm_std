@@ -147,7 +147,7 @@
 						<td><shiro:hasPermission name="car:plmCarViolation:view">
 								<a class="btnList"
 									onclick="parent.LayerDialog('${ctx}/car/plmCarViolation/addFromUseList?driver.id=${plmCarDriver.id}', '违章记录', '1000px', '700px')"
-									title="违章记录"><i class="icon-file"></i></a>
+									title="违章记录"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</shiro:hasPermission> <shiro:hasPermission name="car:plmCarDriver:edit">
 								<a class="btnList"
 									href="${ctx}/car/plmCarDriver/form?id=${plmCarDriver.id}"
@@ -194,7 +194,7 @@
 							<shiro:hasPermission name="car:plmCarViolation:view">
 								<a class="btnList"
 									onclick="parent.LayerDialog('${ctx}/car/plmCarViolation/addFromUseList?driver.id=${plmCarDriver.id}', '违章记录', '1000px', '700px')"
-									title="违章记录"><i class="icon-file"></i></a>
+									title="违章记录"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</shiro:hasPermission>
 							<shiro:hasPermission name="car:plmCarDriver:edit">
 								<a class="btnList"
