@@ -61,7 +61,7 @@
 			<shiro:hasPermission name="remote:ccmRemoteControl:edit">
 				<li class="btns">
 					<a onclick="parent.LayerDialog('${ctx}/remote/ccmRemoteControl/form', '添加重点人员设备管理信息', '1100px', '370px')" class="btn btn-primary">
-						<i class="icon-plus"></i>添加
+						<i class="iconfont icon-caozuotubiao-tianjiachuli"></i>添加
 					</a>
 				</li>
 			</shiro:hasPermission>
@@ -105,7 +105,7 @@
 				</td>
 				<shiro:hasPermission name="remote:ccmRemoteControl:edit"><td style="text-align:center;vertical-align:middle;">
 					<a class="btnList" title="详情" onclick="parent.LayerDialog('${ctx}/remote/ccmRemoteControl/detail?id=${ccmRemoteControl.id}', '重点人员设备管理信息', '1100px', '370px')"><i class="icon-eye-open"></i></a>
-    				<a class="btnList" title="编辑" onclick="parent.LayerDialog('${ctx}/remote/ccmRemoteControl/form?id=${ccmRemoteControl.id}', '编辑重点人员设备管理信息', '1100px', '370px')"><i class="icon-pencil"></i></a>
+    				<a class="btnList" title="编辑" onclick="parent.LayerDialog('${ctx}/remote/ccmRemoteControl/form?id=${ccmRemoteControl.id}', '编辑重点人员设备管理信息', '1100px', '370px')"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/remote/ccmRemoteControl/close?id=${ccmRemoteControl.id}" onclick="return confirmx('确认要关闭该远程机器吗？', this.href)" title="关机"><i class="icon-off"></i></a>
 					<a class="btnList" href="${ctx}/remote/ccmRemoteControl/init?id=${ccmRemoteControl.id}" onclick="return confirmx('确认要开启该远程机器吗？', this.href)" title="初始化"><i class="icon-refresh"></i></a>
 				</td></shiro:hasPermission>

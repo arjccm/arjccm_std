@@ -58,8 +58,8 @@
 					<fmt:formatDate value="${pbsQuestionRule.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="question:pbsQuestionRule:edit"><td>
-    				<a href="${ctx}/question/pbsQuestionRule/form?id=${pbsQuestionRule.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/question/pbsQuestionRule/delete?id=${pbsQuestionRule.id}" onclick="return confirmx('确认要删除该评分规则定义吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a href="${ctx}/question/pbsQuestionRule/form?id=${pbsQuestionRule.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/question/pbsQuestionRule/delete?id=${pbsQuestionRule.id}" onclick="return confirmx('确认要删除该评分规则定义吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

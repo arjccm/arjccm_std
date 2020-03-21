@@ -53,7 +53,7 @@
 			</li>
 			<li class="btns"><a
 					onclick="parent.parent.parent.LayerDialog('${ctx}/partyteam/ccmPartyVolunteerTeam/form', '添加', '1230px', '600px')"
-					class="btn btn-success"><i class="icon-plus"></i> 添加</a></li>
+					class="btn btn-success"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a></li>
 			<li class="btns">
 				<a href="javascript:;" id="btnSubmit" class="btn btn-primary"> 
 					<i class="icon-search"></i> 查询
@@ -100,10 +100,10 @@
     				<%--<a href="${ctx}/partyteam/ccmPartyVolunteerTeam/form?id=${ccmPartyVolunteerTeam.id}">修改</a>--%>
 					<%--<a href="${ctx}/partyteam/ccmPartyVolunteerTeam/delete?id=${ccmPartyVolunteerTeam.id}" onclick="return confirmx('确认要删除该队伍管理吗？', this.href)">删除</a>--%>
 						<a  class="btnList"
-							onclick="parent.parent.parent.LayerDialog('${ctx}/partyteam/ccmPartyVolunteerTeam/form?id=${ccmPartyVolunteerTeam.id}', '修改', '1230px', '600px')"><i class="icon-pencil"></i></a>
+							onclick="parent.parent.parent.LayerDialog('${ctx}/partyteam/ccmPartyVolunteerTeam/form?id=${ccmPartyVolunteerTeam.id}', '修改', '1230px', '600px')"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a  class="btnList"
 							href="${ctx}/partyteam/ccmPartyVolunteerTeam/delete?id=${ccmPartyVolunteerTeam.id}"
-							onclick="return confirmx('确认要删除该队伍信息管理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							onclick="return confirmx('确认要删除该队伍信息管理吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

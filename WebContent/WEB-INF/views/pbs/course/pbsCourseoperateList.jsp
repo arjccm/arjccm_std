@@ -93,11 +93,11 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="course:pbsCourseoperate:edit">
 						<td><a
-							href="${ctx}/course/pbsCourseoperate/form?id=${pbsCourseoperate.id}" title = "修改"><i class="icon icon-pencil"></i>
+							href="${ctx}/course/pbsCourseoperate/form?id=${pbsCourseoperate.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i>
 							</a>
 							<a
 							href="${ctx}/course/pbsCourseoperate/delete?id=${pbsCourseoperate.id}"
-							onclick="return confirmx('确认要删除该课程操作信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+							onclick="return confirmx('确认要删除该课程操作信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

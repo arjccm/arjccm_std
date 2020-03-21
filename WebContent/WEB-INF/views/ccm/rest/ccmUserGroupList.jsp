@@ -65,8 +65,8 @@
 					${ccmUserGroup.remarks}
 				</td>
 				<shiro:hasPermission name="rest:ccmUserGroup:edit"><td style="height: 50px">
-					<a class="btnList" href="${ctx}/rest/ccmUserGroup/form?id=${ccmUserGroup.id}"><i title="修改" class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/rest/ccmUserGroup/delete?id=${ccmUserGroup.id}" onclick="return confirmx('确认要删除该用户好友分组吗？', this.href)"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i> </a>
+					<a class="btnList" href="${ctx}/rest/ccmUserGroup/form?id=${ccmUserGroup.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/rest/ccmUserGroup/delete?id=${ccmUserGroup.id}" onclick="return confirmx('确认要删除该用户好友分组吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i> </a>
 				
     				<%-- <a href="${ctx}/rest/ccmUserGroup/form?id=${ccmUserGroup.id}">修改</a>
 					<a href="${ctx}/rest/ccmUserGroup/delete?id=${ccmUserGroup.id}" onclick="return confirmx('确认要删除该用户好友分组吗？', this.href)">删除</a> --%>

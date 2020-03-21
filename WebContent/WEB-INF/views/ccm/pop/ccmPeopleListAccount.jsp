@@ -85,8 +85,8 @@
 					<fmt:formatDate value="${ccmPeople.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td><shiro:hasPermission name="pop:ccmPeople:edit">
-						<a class="btnList"  href="${ctx}/pop/ccmPeople/formAccount?id=${ccmPeople.id}" title="修改"><i class="icon-pencil"></i></a>
-				    	<a class="btnList" href="${ctx}/pop/ccmPeople/deleteAccount?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该户籍人口吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+						<a class="btnList"  href="${ctx}/pop/ccmPeople/formAccount?id=${ccmPeople.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+				    	<a class="btnList" href="${ctx}/pop/ccmPeople/deleteAccount?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该户籍人口吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				        	    			  
 	    			   <%-- <a class="btn btn-success" href="${ctx}/pop/ccmPeople/specialform?id=${ccmPeople.id}">人员标记</a>
 						<a class="btn btn-danger" href="${ctx}/pop/ccmPeople/delete?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该实有人口吗？', this.href)">删除</a>

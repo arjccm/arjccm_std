@@ -101,11 +101,11 @@ p {
 						<td><shiro:hasPermission name="car:plmCarRepair:edit">
 								<a class="btnList"
 									href="${ctx}/car/plmCarRepair/form?id=${plmCarRepair.id}"
-									title="修改"><i class="icon-pencil"></i></a>
+									title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/car/plmCarRepair/delete?id=${plmCarRepair.id}"
 									onclick="return confirmx('确认要删除该维保单位吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission></td>
 					</tr>
 				</c:forEach>
@@ -137,11 +137,11 @@ p {
 							<shiro:hasPermission name="car:plmCarRepair:edit">
 								<a class="btnList"
 									href="${ctx}/car/plmCarRepair/form?id=${plmCarRepair.id}"
-									title="修改"><i class="icon-pencil"></i></a>
+									title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/car/plmCarRepair/delete?id=${plmCarRepair.id}"
 									onclick="return confirmx('确认要删除该维保单位吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission>
 						</div>
 					</div>

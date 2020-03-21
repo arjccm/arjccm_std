@@ -71,7 +71,7 @@
 				
 				<shiro:hasPermission name="score:kpiSchemeScoreSubjective:edit"><td style="height: 50px">
 					<c:if test="${kpiSchemeKpi.schemeState != '' and not empty kpiSchemeKpi.schemeState and kpiSchemeKpi.schemeState != '0' }">
-						<a class="btnList" href="${ctx}/score/kpiSchemeScoreSubjective/form?id=${kpiSchemeKpi.id}" title="数据录入"><i class="icon-pencil"></i></a>
+						<a class="btnList" href="${ctx}/score/kpiSchemeScoreSubjective/form?id=${kpiSchemeKpi.id}" title="数据录入"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					</c:if>
 					<c:if test="${kpiSchemeKpi.schemeState eq '' or empty kpiSchemeKpi.schemeState or kpiSchemeKpi.schemeState eq '0' }">
 						未发布

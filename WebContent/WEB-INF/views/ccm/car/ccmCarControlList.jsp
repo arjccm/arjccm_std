@@ -40,7 +40,7 @@
 				</form:select></li>
 			<li class="btns"><a
 				onclick="parent.LayerDialog('${ctx}/car/ccmCarControl/form', '添加', '1100px', '700px')"
-				class="btn btn-primary"><i class="icon-plus"></i> 添加</a></li>
+				class="btn btn-primary"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a></li>
 			<li class="btns"><a href="javascript:;" id="btnSubmit"
 				class="btn btn-primary"> <i class="icon-search"></i> 查询
 			</a></li>
@@ -82,10 +82,10 @@
 					<shiro:hasPermission name="car:ccmCarControl:edit">
 						<td><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/car/ccmCarControl/form?id=${ccmCarControl.id}', '编辑', '1100px', '700px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/car/ccmCarControl/delete?id=${ccmCarControl.id}"
 							onclick="return confirmx('确认要删除该车辆布控记录吗？', this.href)" title="删除"><i
-								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 
 

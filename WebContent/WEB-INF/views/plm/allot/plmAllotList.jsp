@@ -107,11 +107,11 @@
 							</c:if>
 							<c:if test="${!e}">
 								<a href="${ctx}/allot/plmAllot/form?id=${plmAllot.id}"
-									title="提交申请"><i class="icon-pencil"></i></a>
+									title="提交申请"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/allot/plmAllot/delete?id=${plmAllot.id}"
 									onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</c:if>
 					</td>
 				</tr>
@@ -145,11 +145,11 @@
 							</c:if>
 							<c:if test="${!e}">
 								<a href="${ctx}/allot/plmAllot/form?id=${plmAllot.id}"
-									title="提交申请"><i class="icon-pencil"></i></a>
+									title="提交申请"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/allot/plmAllot/delete?id=${plmAllot.id}"
 									onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</c:if>
 						</div>
 					</div>

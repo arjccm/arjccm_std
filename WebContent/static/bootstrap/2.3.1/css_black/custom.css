@@ -411,10 +411,39 @@ a.btnList  i.icon-tint:before{
 	-o-transform: rotate(180deg);
 	transform: rotate(180deg);
 }
+
+/*  修改按钮  */
+ a>i.icon-caozuotubiao-xiugai{
+	 color: #2B8BEF;
+}
 /*  删除按钮  */
-a>i.icon-icondaohangtubiao-shujucaijifenxi{
+a>i.icon-caozuotubiao-shanchu{
 	color: #da3844;
 }
+ /*  位置信息按钮  */
+ a>i.icon-caozuotubiao-weizhixinxi{
+	 color: #1296db;
+ }
+ /*  户籍家庭按钮  */
+ a>i.icon-caozuotubiao-hujijiating{
+	 color: #9850fa;
+ }
+ /*  记录信息按钮  */
+ a>i.icon-caozuotubiao-jiluxinxi{
+	 color: #3CC7AB;
+ }
+ /*  添加按钮  */
+ a>i.icon-caozuotubiao-tianjiachuli{
+	 color: #3CC753;
+ }
+ /*  布控按钮  */
+ a>i.icon-caozuotubiao-bukong{
+	 color: #F6BF33;
+ }
+ /*  撤控按钮  */
+ a>i.icon-caozuotubiao-chekong{
+	 color: #FC6133;
+ }
 
 
 /* 濡楀牅绨ㄦ禒璺哄絺閸忓鐡ф担锟� */
@@ -1622,4 +1651,11 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
  }
  .layui-text{
 	 color: #fafafa;
+ }
+ .layui-layer-content{
+	 background-color: #065689;
+ }
+ .help-inline1{
+     background-color: #0b486f!important;
+     border: 1px solid #00cccc !important;
  }

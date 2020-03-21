@@ -198,8 +198,8 @@
 					${ccmOrgNpse.legalReprName}
 				</td>
 				<td><shiro:hasPermission name="org:ccmOrgNpse:edit">
-    				<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpse/formData?id=${ccmOrgNpse.id}', '编辑', '1100px', '800px')"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/org/ccmOrgNpse/delete?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该非公有制经济组织吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpse/formData?id=${ccmOrgNpse.id}', '编辑', '1100px', '800px')"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/org/ccmOrgNpse/delete?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该非公有制经济组织吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					<a class="btnList"
 					   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmOrgNpse.id}&type=2', '从业人员添加', '1550px', '800px')"
 					   title="从业人员添加"><i class="icon-group"></i></a>

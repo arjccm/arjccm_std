@@ -114,7 +114,7 @@
 			</li>
 			<li class="btns"><a
 				onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/4', '添加', '1100px', '600px')"
-				class="btn btn-export"><i class="icon-plus"></i> 添加</a></li>
+				class="btn btn-export"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a></li>
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary"
 				type="submit" value="查询" /></li> -->
 			<li class="btns"><a href="javascript:;" id="btnSubmit"
@@ -157,10 +157,10 @@
 					<shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
 						<td><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/4?id=${ccmEventIncidentPreview.id}', '编辑', '1100px', '600px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/preview/ccmEventIncidentPreview/delete?id=${ccmEventIncidentPreview.id}"
 							onclick="return confirmx('确认要删除该app信息上报吗？', this.href)"
-							title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<c:if test="${ccmEventIncidentPreview.status eq '03' || ccmEventIncidentPreview.status eq '02'}">
 							<a  class="btnList" title="已处理"><i class="icon-legal" style="color: #656565;"></i></a>
 							</c:if>

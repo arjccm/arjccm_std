@@ -116,8 +116,8 @@
 					${ccmWorkBeondutylog.adds}
 				</td>
 				<shiro:hasPermission name="work:ccmWorkBeondutylog:edit"><td style="height: 50px">
-    				<a class="btnList"  href="${ctx}/work/ccmWorkBeondutylog/form?id=${ccmWorkBeondutylog.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList"  href="${ctx}/work/ccmWorkBeondutylog/delete?id=${ccmWorkBeondutylog.id}" onclick="return confirmx('确认要删除该值班日志表吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList"  href="${ctx}/work/ccmWorkBeondutylog/form?id=${ccmWorkBeondutylog.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList"  href="${ctx}/work/ccmWorkBeondutylog/delete?id=${ccmWorkBeondutylog.id}" onclick="return confirmx('确认要删除该值班日志表吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

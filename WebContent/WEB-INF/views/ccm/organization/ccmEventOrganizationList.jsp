@@ -35,7 +35,7 @@
 			</li>   --%>
 			<li class="btns">
 				<a onclick="parent.parent.LayerDialog('${ctx}/organization/ccmEventOrganization/form', '添加', '700px', '700px')"
-					class="btn btn-success"><i class="icon-plus"></i> 添加</a>
+					class="btn btn-success"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a>
 			</li>
 			<li class="btns">
 				<a href="javascript:;" id="btnSubmit" class="btn btn-primary"> 
@@ -73,10 +73,10 @@
 				</td>
 				<shiro:hasPermission name="organization:ccmEventOrganization:edit"><td>
 					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/organization/ccmEventOrganization/form?id=${ccmEventOrganization.id}', '修改', '700px', '700px')" title="修改">
-						<i class="icon-pencil"></i>
+						<i class="iconfont icon-caozuotubiao-xiugai"></i>
 					</a>
 					<a class="btnList" href="${ctx}/organization/ccmEventOrganization/delete?id=${ccmEventOrganization.id}" onclick="return confirmx('确认要删除该调解组织吗？', this.href)" title="删除">
-						<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
+						<i class="iconfont icon-caozuotubiao-shanchu"></i>
 					</a>
 				</td></shiro:hasPermission>
 			</tr>

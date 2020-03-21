@@ -252,7 +252,7 @@
         <shiro:hasPermission name="event:ccmEventIncident:edit">
             <li class="btns"><a
                     onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/form', '添加', '1200px', '800px')" style="width: 49px;/*margin-top: 25px;*/display:inline-block;"
-                    class="btn btn-export">&lt;%&ndash;<i class="icon-plus"></i> &ndash;%&gt;<span style="font-size: 12px">添加</span></a></li>
+                    class="btn btn-export">&lt;%&ndash;<i class="iconfont icon-caozuotubiao-tianjiachuli"></i> &ndash;%&gt;<span style="font-size: 12px">添加</span></a></li>
         </shiro:hasPermission>
         <li class="btns">
             <a href="javascript:;" id="btnSubmit" style="width: 49px;/*margin-top: 25px;*/display:inline-block;" class="btn btn-export">
@@ -282,7 +282,7 @@
         <shiro:hasPermission name="event:ccmEventIncident:edit">
             <a
                     onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/form', '添加', '1200px', '800px')" style="width: 49px;/*margin-top: 25px;*/display:inline-block;float: right;"
-                    class="btn btn-export"><%--<i class="icon-plus"></i> --%><span style="font-size: 12px">添加</span></a>
+                    class="btn btn-export"><%--<i class="iconfont icon-caozuotubiao-tianjiachuli"></i> --%><span style="font-size: 12px">添加</span></a>
         </shiro:hasPermission>
 
             <a href="javascript:;" id="btnSubmit" style="width: 49px;/*margin-top: 25px;*/display:inline-block;float: right;" class="btn btn-primary">
@@ -370,21 +370,21 @@ text-overflow: ellipsis; text-align: left;">
 
                 <a class="btnList"
                    onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/form?id=${ccmEventIncident.id}', '修改', '1100px', '700px')"><i
-                        class="icon-pencil"></i></a>
+                        class="iconfont icon-caozuotubiao-xiugai"></i></a>
                 <a class="btnList"
                    href="${ctx}/event/ccmEventIncident/delete?id=${ccmEventIncident.id}"
-                   onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+                   onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
                 <a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventIncident.id}')" title="位置信息"><i
-                        class="icon-map-marker "></i></a>
+                        class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 
             </shiro:hasPermission> <!-- 事件处理 编辑权限  --> <shiro:hasPermission
                     name="event:ccmEventCasedeal:edit">
                 <!-- <a class="btnList"
-                href="${ctx}/event/ccmEventCasedeal/dealform?eventIncidentId=${ccmEventIncident.id}" title="添加处理"><i class="icon-plus"></i></a>
+                href="${ctx}/event/ccmEventCasedeal/dealform?eventIncidentId=${ccmEventIncident.id}" title="添加处理"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
                 -->
                 <a class="btnList"
                    onclick="LayerDialogWithReload('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_incident&objId=${ccmEventIncident.id}', '任务快速派遣', '700px', '500px')"
-                   title="任务快速派遣"><i class="icon-plus"></i></a>
+                   title="任务快速派遣"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
             </shiro:hasPermission>
                 <shiro:hasPermission name="event:ccmEventStakeholder:view">
                     <%-- <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="icon-user"></i></a> --%>

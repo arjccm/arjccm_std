@@ -86,7 +86,7 @@
 	                    </div>
 	                </div>
 	                <div style="margin:5px">
-	                    <a id="okBtn" class="btn btn-primary" style="background: #0687fd !important;" href="javascript:;" onclick="okFun()"><i class="icon-plus"></i>生成</a>
+	                    <a id="okBtn" class="btn btn-primary" style="background: #0687fd !important;" href="javascript:;" onclick="okFun()"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i>生成</a>
 	                    <a id="removeBtn" class="btn btn-primary" style="background: #f50b4b !important;" href="javascript:;" onclick="removeBtnFun()"><i class="icon-remove"></i>清除</a>
 	                </div>
             	</div>

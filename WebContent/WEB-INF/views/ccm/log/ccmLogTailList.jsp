@@ -96,10 +96,10 @@
 					<td style="height: 50px">${ccmLogTail.more1}</td>
 					<shiro:hasPermission name="log:ccmLogTail:edit">
 						<td><a class="btnList"
-							href="${ctx}/log/ccmLogTail/formPro?id=${ccmLogTail.id}&relevance_id=${ccmPeople.id}&relevance_table=ccm_people"  title="修改"><i class="icon-pencil"></i></a> <a
+							href="${ctx}/log/ccmLogTail/formPro?id=${ccmLogTail.id}&relevance_id=${ccmPeople.id}&relevance_table=ccm_people"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a
 							class="btnList"
 							href="${ctx}/log/ccmLogTail/delete?id=${ccmLogTail.id}&relevance_id=${ccmPeople.id}&relevance_table=ccm_people"
-							onclick="return confirmx('确认要删除该跟踪信息吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+							onclick="return confirmx('确认要删除该跟踪信息吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

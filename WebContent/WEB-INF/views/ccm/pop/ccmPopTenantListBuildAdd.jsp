@@ -74,7 +74,7 @@
 					<td>${ccmPopTenant.area.name}</td>
 					<td>${ccmPopTenant.buildingId.buildname}</td>
 					<td><shiro:hasPermission name="pop:ccmPopTenant:edit">
-						<a class="btnList"  href="javascript:;"  onclick="PopAdd(this,'${ccmPopTenant.id}','${bId}','${aId}')"   title="绑定"><i class="icon-plus"></i></a>
+						<a class="btnList"  href="javascript:;"  onclick="PopAdd(this,'${ccmPopTenant.id}','${bId}','${aId}')"   title="绑定"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 					</shiro:hasPermission></td>
 						
 				</tr>

@@ -120,19 +120,19 @@
 					${ccmEventAmbi.partName}
 				</td>
 				<td style="height: 50px"><shiro:hasPermission name="event:ccmEventAmbi:edit">
-    				<a class="btnList" href="${ctx}/event/ccmEventAmbi/form?id=${ccmEventAmbi.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/event/ccmEventAmbi/delete?id=${ccmEventAmbi.id}" onclick="return confirmx('确认要删除该矛盾纠纷排查化解吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-					<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventAmbi.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
+    				<a class="btnList" href="${ctx}/event/ccmEventAmbi/form?id=${ccmEventAmbi.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/event/ccmEventAmbi/delete?id=${ccmEventAmbi.id}" onclick="return confirmx('确认要删除该矛盾纠纷排查化解吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+					<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventAmbi.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 			
 				</shiro:hasPermission> 
 				<!--  
 				<shiro:hasPermission name="log:ccmLogTail:edit">
 							<a	class="btnList"
-								href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmEventAmbi.id}&relevance_table=ccm_event_ambi" title="添加记录"><i class="icon-plus"></i></a>
+								href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmEventAmbi.id}&relevance_table=ccm_event_ambi" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 				</shiro:hasPermission>-->
 				<!-- 事件处理 编辑权限  --> 
 				<%-- <shiro:hasPermission name="event:ccmEventCasedeal:edit">
-					<a class="btnList" onclick="LayerDialogWithReload('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_ambi&objId=${ccmEventAmbi.id}', '处理', '700px', '500px')" title="添加处理"><i class="icon-plus"></i></a>
+					<a class="btnList" onclick="LayerDialogWithReload('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_ambi&objId=${ccmEventAmbi.id}', '处理', '700px', '500px')" title="添加处理"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 				</shiro:hasPermission> --%>
 						
 				</td>

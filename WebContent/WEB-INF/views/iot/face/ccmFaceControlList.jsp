@@ -40,7 +40,7 @@
 				</form:select></li>
 			<li class="btns"><a
 				onclick="parent.LayerDialog('${ctx}/face/ccmFaceControl/form', '添加','1100px', '410px')"
-				class="btn btn-primary"><i class="icon-plus"></i> 添加</a></li>
+				class="btn btn-primary"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a></li>
 			<li class="btns"><a href="javascript:;" id="btnSubmit"
 				class="btn btn-primary"> <i class="icon-search"></i> 查询
 			</a></li>
@@ -78,10 +78,10 @@
 					<shiro:hasPermission name="face:ccmFaceControl:edit">
 						<td><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/face/ccmFaceControl/form?id=${ccmFaceControl.id}', '编辑', '1100px', '410px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/face/ccmFaceControl/delete?id=${ccmFaceControl.id}"
 							onclick="return confirmx('确认要删除该人脸布控记录吗？', this.href)" title="删除"><i
-								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

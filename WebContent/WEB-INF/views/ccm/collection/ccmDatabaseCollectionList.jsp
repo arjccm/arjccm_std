@@ -150,7 +150,7 @@
 								</div>
 								<div class="footbtn" style="text-align: right;">
 									<shiro:hasPermission name="collection:ccmDatabaseCollection:edit"><td>
-										<a href="${ctx}/collection/ccmDatabaseCollection/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										<a href="${ctx}/collection/ccmDatabaseCollection/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 									</td></shiro:hasPermission>
 								</div>
 								</div>
@@ -190,7 +190,7 @@
 								</div>
 								<div class="footbtn" style="text-align: right;">
 									<shiro:hasPermission name="collection:ccmDatabaseCollection:edit"><td>
-										<a href="${ctx}/collection/ccmDatabaseCollection/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										<a href="${ctx}/collection/ccmDatabaseCollection/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 									</td></shiro:hasPermission>
 								</div>
 				</li>

@@ -128,10 +128,10 @@
 								title="事件关联"><i class="icon-random"></i></a>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/hotel/ccmPlaceHotel/form?id=${ccmPlaceHotel.id}', '编辑', '1100px', '700px')"
-								title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+								title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 								href="${ctx}/hotel/ccmPlaceHotel/delete?id=${ccmPlaceHotel.id}"
 								onclick="return confirmx('确认要删除该酒店住宿吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceHotel.ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
 							   title="从业人员添加"><i class="icon-group"></i></a>
