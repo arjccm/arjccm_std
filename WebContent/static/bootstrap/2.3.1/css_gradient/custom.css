@@ -5264,6 +5264,38 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
 input::-ms-clear{
 	display:none;
 }
+
+/* 综治组织-辖区信息 start */
+.explain_area{
+	background: #f4f4f4 !important;
+}
+.explain_box .text{
+	color: #333 !important;
+}
+.gt_title{
+	color: #333 !important;
+}
+.explain_box .image{
+	background: #ddd !important;
+}
+.personnel_area{
+	background: #f4f4f4 !important;
+}
+.personnel_box ul li{
+	background: #ddd !important;
+}
+.personnel_box ul li .text{
+	color: #333 !important;
+}
+.personnel_box ul li{
+	width: 11.75vw !important;
+}
+.personnel_box ul li a img{
+	filter: grayscale(100%) !important;
+	filter: gray !important;
+	opacity: 0.5 !important;
+}
+/* 综治组织-辖区信息 end */
 /* ztree 调整 */
 .ztree li ul {
 	margin: 0;
