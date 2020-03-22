@@ -139,6 +139,7 @@
 			padding-top: 30px;
 		}
 	</style>
+	<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<br>
