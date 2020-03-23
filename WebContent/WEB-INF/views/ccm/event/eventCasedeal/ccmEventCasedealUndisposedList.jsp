@@ -197,8 +197,7 @@
 					<shiro:hasPermission name="event:ccmEventCasedeal:edit">
 						<td>
 					
-						<a  class="btnList" 
-							onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/form?id=${ccmEventCasedeal.id}','处理', '1200px', '700px')"><i class="icon-pencil"></i></a>
+						<a  class="btnList" title="事件处理"><i class="icon-pencil" style="color: #656565;"></i></a>
 						<a  class="btnList"
 							href="${ctx}/event/ccmEventCasedeal/delete?handleSta=01&id=${ccmEventCasedeal.id}"
 							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
