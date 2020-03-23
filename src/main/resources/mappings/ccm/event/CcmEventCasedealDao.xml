@@ -693,6 +693,12 @@
 		WHERE id = #{id}
 	</update>
 
+	<update id="deletegrade">
+		UPDATE ccm_event_casedeal SET
+			grade_num = 0
+		WHERE id = #{id}
+	</update>
+
 
 	<select id="findAssignUser" resultType="User">
 		SELECT user.* FROM sys_user user
