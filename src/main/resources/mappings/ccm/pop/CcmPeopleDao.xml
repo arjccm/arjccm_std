@@ -2870,15 +2870,15 @@
 		LEFT JOIN ccm_place_org_people b ON a.id = b.people_id
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			AND a.id not in ( SELECT people_id FROM ccm_place_org_people )
+			AND b.people_id is null
 			<if test="residencedetail != null and residencedetail != ''">
 				AND a.residencedetail LIKE
 				<if test="dbName == 'oracle'">'%'||#{residencedetail}||'%'</if>
 				<if test="dbName == 'mssql'">'%'+#{residencedetail}+'%'</if>
-				<if test="dbName == 'mysql'">concat('%',#{residencedetail},'%')</if>
+				<if test="dbName == 'mysql'">concat(#{residencedetail},'%')</if>
 			</if>
 			<if test="ident != null and ident != ''">
-				AND a.ident LIKE '%${ident}%'
+				AND a.ident LIKE '${ident}%'
 			</if>
 			<if test="name != null and name != ''">
 				AND a.name LIKE
@@ -2887,14 +2887,15 @@
 				<if test="dbName == 'mysql'">concat(#{name},'%')</if>
 			</if>
 		</where>
-		<choose>
+		<!--<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
 				ORDER BY a.update_date DESC
 			</otherwise>
-		</choose>
+		</choose>-->
+		Limit #{minnum},#{maxnum};
 	</select>
 
 	<!--根据户主身份证号码查询户主下的人员数据-->
