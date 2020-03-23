@@ -30,6 +30,7 @@
 </script>
 </head>
 <body>
+<div class="back-list">
 	<form:form id="searchForm" modelAttribute="ccmEventIncidentPreview"
 		action="${ctx}/preview/ccmEventIncidentPreview/check/list"
 		method="post" class="breadcrumb form-search">
@@ -59,7 +60,7 @@
 	</form:form>
 	<sys:message content="${message}" />
 	<table id="contentTable"
-		class="table table-striped table-bordered table-condensed">
+		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>事件A名称</th>
@@ -104,7 +105,7 @@
 							<td style="height: 50px"><font size="3" color="#3bb4f2">${CcmEventIncidentSimilarty.titleSim}%</font></td>
 						</c:when>
 						<c:otherwise>
-							<td style="height: 50px"><font size="3" color="black">${CcmEventIncidentSimilarty.titleSim}%</font></td>
+							<td style="height: 50px"><font size="3" color="#5CACEE">${CcmEventIncidentSimilarty.titleSim}%</font></td>
 						</c:otherwise>
 					</c:choose>
 
@@ -122,7 +123,7 @@
 							<td style="height: 50px"><font size="3" color="#3bb4f2">${CcmEventIncidentSimilarty.contentSim}%</font></td>
 						</c:when>
 						<c:otherwise>
-							<td style="height: 50px"><font size="3" color="black">${CcmEventIncidentSimilarty.contentSim}%</font></td>
+							<td style="height: 50px"><font size="3" color="#5CACEE">${CcmEventIncidentSimilarty.contentSim}%</font></td>
 						</c:otherwise>
 					</c:choose>
 
@@ -136,5 +137,6 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
+</div>
 </body>
 </html>
