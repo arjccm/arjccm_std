@@ -165,7 +165,7 @@
 <%--        <c:if name="event:ccmEventIncident:edit">--%>
         <shiro:hasPermission name="event:ccmEventIncident:edit">
             <c:if test="${not empty ccmEventIncident.id}">
-                <c:if test="${isDispatch eq 1}">任务指派</c:if>
+                <c:if test="${isDispatch eq 1}">事件详情及处置</c:if>
                 <c:if test="${isDispatch ne 1}">事件修改</c:if>
             </c:if>
             <c:if test="${empty ccmEventIncident.id}">事件添加</c:if>
