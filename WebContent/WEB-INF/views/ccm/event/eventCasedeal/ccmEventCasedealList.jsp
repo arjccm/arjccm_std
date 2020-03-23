@@ -258,9 +258,13 @@
 					</td>
 					<shiro:hasPermission name="event:ccmEventCasedeal:edit">
 						<td style="height: 50px">
-
-						<a  class="btnList"
-							onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/form?id=${ccmEventCasedeal.id}','处理', '1100px', '700px')"><i class="icon-pencil"></i></a>
+						<c:if test="${ccmEventCasedeal.handleStatus ne '01'}">
+							<a  class="btnList"
+								onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/form?id=${ccmEventCasedeal.id}','事件', '1100px', '700px')" title="事件处理"><i class="icon-pencil"></i></a>
+						</c:if>
+						<c:if test="${ccmEventCasedeal.handleStatus eq '01'}">
+						<a  class="btnList" title="事件处理"><i class="icon-pencil" style="color: #656565;"></i></a>
+						</c:if>
 						<a  class="btnList"
 							href="${ctx}/event/ccmEventCasedeal/delete?id=${ccmEventCasedeal.id}"
 							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
