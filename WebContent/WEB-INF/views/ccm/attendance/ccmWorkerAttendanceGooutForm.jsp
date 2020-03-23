@@ -24,7 +24,29 @@
 					}
 				}
 			});
+
+
 		});
+		//计算天数
+		function endTime(){
+			var strTim = $("#attendanceBegin").val()
+			strTim =  strTim.replace(new RegExp("-","gm"),"/");
+			var startHs = (new Date(strTim)).getTime();
+
+			var endTim = $("#attendanceEnd").val()
+			endTim =  endTim.replace(new RegExp("-","gm"),"/");
+			var sendHs = (new Date(endTim)).getTime();
+			$("#attendanceEnd").blur()
+			var dayHs = sendHs -startHs
+			var days = Math.floor(dayHs/1000/60/60/24);
+
+			console.log(days)
+
+			$("#hqdays").val(days)
+
+		}
+
+
 	</script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 	<style>
@@ -56,7 +78,7 @@
 			<div class="controls">
 				<input name="attendanceBegin" id="attendanceBegin"  type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 					value="<fmt:formatDate value="${ccmWorkerAttendance.attendanceBegin}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({maxDate: '#F{$dp.$D(\'attendanceEnd\')}',dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					   onFocus="WdatePicker({maxDate: '#F{$dp.$D(\'attendanceEnd\')}',dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 
 			</div>
 		</div>
@@ -65,14 +87,14 @@
 			<div class="controls">
 				<input name="attendanceEnd" id="attendanceEnd" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 					value="<fmt:formatDate value="${ccmWorkerAttendance.attendanceEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({minDate:'#F{$dp.$D(\'attendanceBegin\')}',dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					   onFocus="WdatePicker({onpicking:endTime(),minDate:'#F{$dp.$D(\'attendanceBegin\')}',dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>天数：</label>
 			<div class="controls">
-				<form:input path="days" htmlEscape="false" maxlength="5" class="input-xlarge number required positiveNumber"/>
+				<form:input path="days" id="hqdays" htmlEscape="false" maxlength="5" class="input-xlarge number required positiveNumber"/>
 			</div>
 		</div>
 		<div class="control-group">
