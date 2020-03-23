@@ -1126,7 +1126,7 @@ cite[class*='t-click']{
     position: absolute;
     margin-right: 10px;
     /* border: 1px solid #d4d4d4; */
-    background-color: #0e2a4c;
+    background-color: #0e2a4c!important;
     border-radius: 5px;
     overflow: hidden;
 }

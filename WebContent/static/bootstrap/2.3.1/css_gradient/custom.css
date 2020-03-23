@@ -3973,7 +3973,7 @@ a.btnList  i.icon-bell{
 }
 .portletcolumn
 {
-	background-color:white;
+	background-color:white!important;
 }
 .menu .iconfont.icon-ai-home{
 	color: #fff;
