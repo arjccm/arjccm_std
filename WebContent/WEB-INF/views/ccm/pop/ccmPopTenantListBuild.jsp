@@ -35,8 +35,8 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li class="btns">
-				<a class="btn btn-primary" onclick="parent.LayerDialog1('','${ctx}/pop/ccmPopTenant/listBuildAdd?bId=${buildingId}&aId=${buildingAreaId}', '绑定房屋', '1200px', '700px')" title="绑定房屋">
-					绑定房屋</a>
+				<%--<a class="btn btn-primary" onclick="parent.LayerDialog1('','${ctx}/pop/ccmPopTenant/listBuildAdd?bId=${buildingId}&aId=${buildingAreaId}', '绑定房屋', '1200px', '700px')" title="绑定房屋">
+					绑定房屋</a>--%>
 			</li>
 			<li class="clearfix"></li>
 		</ul>
