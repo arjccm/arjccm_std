@@ -3445,6 +3445,11 @@ ArjMap.Map.prototype = {
             top.$.jBox.tip('图形未发生变化');
             return;
         }
+        if (_this.markInfoName==undefined) {
+            top.$.jBox.tip('请选择资源进行操作');
+            return;
+        }
+
         top.$.jBox.confirm("是否保存"+_this.markInfoName+"标注信息？", "系统提示", function (v, h, f) {
             if (v == "ok") {
                 if(_this.markInfoType == "drawForm"){

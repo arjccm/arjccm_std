@@ -43,6 +43,7 @@
 		}
 		
 	</script>
+	<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<br/>
@@ -50,12 +51,12 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>	
 		<div class="control-group">
-			<label class="control-label">内容：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font></span>内容：</label>
 			<div class="controls">
 				<form:select path="portalDictId" class="input-xlarge required" onchange="selectsubmit()" >				
 					<form:options items="${plmPortalDictList}" itemLabel="title" itemValue="id" htmlEscape="false"/>
 				</form:select>
-				<span class="help-inline"><font color="red">*</font></span>
+
 			</div>
 		</div>
 		<div class="control-group">

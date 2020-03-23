@@ -12,14 +12,14 @@
 <script src="${ctxStatic}/common/alarm.js" type="text/javascript"></script>
 <style type="text/css">
   .tree-left{
-   background: #f0f3f4;
+   background: #FFFFFF;
    width: 350px;
    float: left;
    margin-right: 10px;
    min-height: 600px;
   }
     .tree-right{
-   background: #f0f3f4;
+   background: #FFFFFF;
    width: 350px;
    float: left;
     min-height: 600px;
@@ -30,7 +30,7 @@
  height: 600px;
   }
   .tree-action{
-    background: #f0f3f4;
+    background: #FFFFFF;
    width: 350px;
    float: left;
     min-height: 600px;

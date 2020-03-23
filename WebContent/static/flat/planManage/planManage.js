@@ -24,6 +24,10 @@ $(document).ready(function () {
 	plotDrawInit();//标绘初始化
 	liveStreamingData();
 });
+setInterval(queryStatus,3000);
+setInterval(planProcessData,3000);
+setTimeout(liSelected,500)
+
 function loadingPerResource(){
 	
 	//所有类型都显示的资源
@@ -271,36 +275,71 @@ function findHanleLogFlow(){
 }
 //过程
 function planProcessData(){
+
 	$.post(ctx+'/flat/planManage/planProcessData',{'planId':planId},function(data){
+		debugger
 		var data = JSON.parse(data);
 		console.log(data)
 		//动作关联
 		var html = '';
 		//案件流程预案
 		var flowHtml='';
+
 		flowHtml+='<div class="step-hap">事件发生</div>';
 		flowHtml+='<div class="step-hap-arrow"><i class="iconfont icon-314"></i></div>'; 
 		flowHtml+='<div class="step-name" style="">警情核实</div>';
 		flowHtml+='<div class="step-arrow"><i class="iconfont icon-jiantou2"></i></div>'; 
 		for(var i = 0;i < data.length;i++){
 			//动作关联
-			 html+='<li id="'+(data[i].id || "")+'" data-stepId="'+(data[i].id || "")+'" class="select" onclick="planActionData(this)" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 70px;display: block;" title="'+(data[i].name || "")+'">'+(data[i].name || "")+'</li>';
+			 html+='<li id="'+(data[i].id || "")+'" data-stepId="'+(data[i].id || "")+'" class="'+i+'" onclick="planActionData(this)" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 70px;display: block;" title="'+(data[i].name || "")+'">'+(data[i].name || "")+'</li>';
 			    //案件流程预案
 			 flowHtml+='<div class="step-name-cus">'+(data[i].name || "")+'</div>'; 
 			 flowHtml+='<div class="step-arrow"><i class="iconfont  icon-jiantou2"></i></div>';
+
 		}
 		flowHtml+='<div class="step-name-sus">警情归档</div>';
 		flowHtml+='<div class="step-arrow"><i class="iconfont  icon-jiantou2"></i></div>'; 
-		flowHtml+='<div class="step-name-sus">指挥结束</div>'; 
+		flowHtml+='<div class="step-name-sus">指挥结束</div>';
+
 		$('#planInfoLi').html(html);
-		$("#planInfoLi li:first-child").click();
+		// $("#planInfoLi li:first-child").click();
 		$('#bottom-flow').html(flowHtml);
+
+
+
+
+
+			// $("#planInfoLi li").click(function(){
+			//
+			// 	var indexLi = function(){
+			// 		$(this).index();
+			// 	}
+			// 	return indexLi
+			//
+			// })
+		// alert(indexLi)
+
+			// $("#planInfoLi li").eq(i).click()
+
+
+			// alert(indexLi)
+
+
 	})
 }
+function liSelected(){
+	$("#planInfoLi li").eq(0).click();
+}
+
+
 //步驟动作
 function planActionData(_this){
 	$('#planInfoLi li').removeClass('selected');
 	$(_this).addClass('selected');
+	// var aaa = $(_this).index()
+	// 	return aaa
+
+	// debugger
 	stepId=$(_this).attr('id');
 	$.getJSON(ctx+'/flat/planManage/planActionData',{'stepId':stepId},function(data){
 		var html = '';
