@@ -4,11 +4,7 @@
 <head>
 <title>工作日志管理</title>
 <meta name="decorator" content="default" />
-<style>
-.logWorkRep li {
-	margin-left: 160px;
-}
-</style>
+
 <script type="text/javascript" src="${ctxStatic}/ccm/sys/js/ccmWorkReportinfo.js">
 		$(document).ready(function() {
 			
@@ -40,6 +36,18 @@
 		});
 </script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
+
+	<style>
+		.logWorkRep li {
+			margin-left: 160px;
+		}
+		.control-label {
+			width: 120px!important;
+		}
+		.controls {
+			margin-left: 130px!important;
+		}
+	</style>
 </head>
 <body>
 
@@ -64,111 +72,165 @@
 				</div>
 			</div>
 		</c:if>
-		<div class="control-group" style="padding-top: 7px">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>行政区划：</label>
-			<div class="controls">
-				<form:input path="name" htmlEscape="false" maxlength="100"
-					class="input-xlarge required" readonly="true"/>
+	<table border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;">
+		<tr>
+			<td>
+				<div class="control-group" style="padding-top: 7px">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>行政区划：</label>
+					<div class="controls">
+						<form:input path="name" htmlEscape="false" maxlength="100"
+									class="input-xlarge required" readonly="true"/>
 
-			</div>
-		</div>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>社工姓名：</label>
+					<div class="controls">
+						<form:input path="createName" htmlEscape="false" maxlength="100"
+									class="input-xlarge required" readonly="true"/>
+
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>电话：</label>
+					<div class="controls">
+						<form:input path="telephone" htmlEscape="false" maxlength="100"
+									class="input-xlarge phone required" />
+
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>日志类型：</label>
+					<div class="controls">
+						<form:select path="type" class="input-xlarge ">
+							<form:options items="${fns:getDictList('ccm_work_report_type')}"
+										  itemLabel="label" itemValue="value" htmlEscape="false" />
+						</form:select>
+
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>事件类型：</label>
+					<div class="controls">
+						<form:select path="eventtypeid" class="input-xlarge ">
+							<form:options items="${fns:getDictList('ccm_event_sort')}"
+										  itemLabel="label" itemValue="value" htmlEscape="false" />
+						</form:select>
+
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>开始日期：</label>
+					<div class="controls">
+						<input name="beginDate" id="beginDate" type="text" readonly="readonly"
+							   maxlength="20" class="input-medium Wdate required"
+							   value="<fmt:formatDate value="${ccmWorkReport.beginDate}" pattern="yyyy-MM-dd"/>"
+							   onclick="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}',dateFmt:'yyyy-MM-dd',isShowClear:false});" />
+
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>结束日期：</label>
+					<div class="controls">
+						<input name="endDate" id="endDate" type="text" readonly="readonly" maxlength="20"
+							   class="input-medium Wdate required"
+							   value="<fmt:formatDate value="${ccmWorkReport.endDate}" pattern="yyyy-MM-dd"/>"
+							   onclick="WdatePicker({minDate:'#F{$dp.$D(\'beginDate\')}',dateFmt:'yyyy-MM-dd',isShowClear:false});" />
+
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>标题：</label>
+					<div class="controls">
+						<form:input path="title" htmlEscape="false" maxlength="100"
+									class="input-xlarge required" />
+
+					</div>
+				</div>
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label">内容：</label>
+					<div class="controls">
+						<form:textarea path="content" htmlEscape="false" rows="5"
+									   maxlength="1000" class="input-xxlarge " />
+					</div>
+				</div>
+
+			</td>
+			<td>
+				<c:if test="${ccmWorkReport.type eq 02 || ccmWorkReport.type eq 03}">
+					<div class="control-group">
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>地点：</label>
+						<div class="controls">
+							<form:input path="place" htmlEscape="false" maxlength="100"
+										class="input-xlarge required" />
+
+						</div>
+					</div>
+				</c:if>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label">附件：</label>
+					<div class="controls">
+						<form:hidden id="files" path="files" htmlEscape="false"
+									 maxlength="1000" class="input-xlarge" />
+						<sys:ckfinder input="files" type="files"
+									  uploadPath="/sys/ccmWorkReport" selectMultiple="true" />
+					</div>
+				</div>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+
 		
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>社工姓名：</label>
-			<div class="controls">
-				<form:input path="createName" htmlEscape="false" maxlength="100"
-					class="input-xlarge required" readonly="true"/>
 
-			</div>
-		</div>
 		
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>电话：</label>
-			<div class="controls">
-				<form:input path="telephone" htmlEscape="false" maxlength="100"
-					class="input-xlarge phone required" />
 
-			</div>
-		</div>
 		
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>日志类型：</label>
-			<div class="controls">
-				<form:select path="type" class="input-xlarge ">
-					<form:options items="${fns:getDictList('ccm_work_report_type')}"
-						itemLabel="label" itemValue="value" htmlEscape="false" />
-				</form:select>
 
-			</div>
-		</div>
 		
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>事件类型：</label>
-			<div class="controls">
-				<form:select path="eventtypeid" class="input-xlarge ">
-					<form:options items="${fns:getDictList('ccm_event_sort')}"
-						itemLabel="label" itemValue="value" htmlEscape="false" />
-				</form:select>
 
-			</div>
-		</div>
 		
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>开始日期：</label>
-			<div class="controls">
-				<input name="beginDate" id="beginDate" type="text" readonly="readonly"
-					maxlength="20" class="input-medium Wdate required"
-					value="<fmt:formatDate value="${ccmWorkReport.beginDate}" pattern="yyyy-MM-dd"/>"
-					onclick="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}',dateFmt:'yyyy-MM-dd',isShowClear:false});" />
 
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>结束日期：</label>
-			<div class="controls">
-				<input name="endDate" id="endDate" type="text" readonly="readonly" maxlength="20"
-					class="input-medium Wdate required"
-					value="<fmt:formatDate value="${ccmWorkReport.endDate}" pattern="yyyy-MM-dd"/>"
-					onclick="WdatePicker({minDate:'#F{$dp.$D(\'beginDate\')}',dateFmt:'yyyy-MM-dd',isShowClear:false});" />
 
-			</div>
-		</div>
-		<c:if test="${ccmWorkReport.type eq 02 || ccmWorkReport.type eq 03}">
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>地点：</label>
-			<div class="controls">
-				<form:input path="place" htmlEscape="false" maxlength="100"
-					class="input-xlarge required" />
 
-			</div>
-		</div>
-		</c:if>
 		
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>标题：</label>
-			<div class="controls">
-				<form:input path="title" htmlEscape="false" maxlength="100"
-					class="input-xlarge required" />
 
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">内容：</label>
-			<div class="controls">
-				<form:textarea path="content" htmlEscape="false" rows="15"
-					maxlength="1000" class="input-xxlarge " />
-			</div>
-		</div>
+
 		
-		<div class="control-group">
-			<label class="control-label">附件：</label>
-			<div class="controls">
-				<form:hidden id="files" path="files" htmlEscape="false"
-					maxlength="1000" class="input-xlarge" />
-				<sys:ckfinder input="files" type="files"
-					uploadPath="/sys/ccmWorkReport" selectMultiple="true" />
-			</div>
-		</div>
+
 
 		<c:if test="${viewRep  eq 01 }">
 				<div class="panel-group control-group" id="accordion">
@@ -243,7 +305,7 @@
 		<div class="form-actions">
 			<c:if test="${viewRep  eq 02 }">
 				<shiro:hasPermission name="sys:ccmWorkReport:edit">
-					<input id="btnSubmit" class="btn btn-primary" type="submit"
+					<input id="btnSubmit" class="btn btn-primary" type="submit" style=" margin-left: -45px;"
 						value="保 存" />&nbsp;</shiro:hasPermission>
 			</c:if>
 			<input id="btnCancel" class="btn" type="button" 

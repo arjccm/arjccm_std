@@ -89,7 +89,7 @@
 				<div class="control-group">
 					<label class="control-label">服务场所：</label>
 					<div class="controls">
-						<form:textarea path="adds" htmlEscape="false" rows="2" maxlength="256" class="input-xxlarge "/>
+						<form:textarea path="adds" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
 					</div>
 				</div>
 			</td>
@@ -97,7 +97,7 @@
 				<div class="control-group">
 					<label class="control-label">工作内容：</label>
 					<div class="controls">
-						<form:textarea path="details" htmlEscape="false" rows="12" maxlength="1024" class="input-xxlarge "/>
+						<form:textarea path="details" htmlEscape="false" rows="4" maxlength="1024" class="input-xxlarge "/>
 					</div>
 				</div>
 			</td>
@@ -111,28 +111,18 @@
 					</div>
 				</div>
 			</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>
-				<div class="control-group">
-					<label class="control-label">附件：</label>
-					<div class="controls">
-						<form:hidden id="file" path="file" htmlEscape="false" maxlength="256" class="input-xlarge"/>
-						<sys:ckfinder input="file" type="files" uploadPath="/service/ccmServiceCivil" selectMultiple="true"/>
-					</div>
+			<div class="control-group">
+				<label class="control-label">附件：</label>
+				<div class="controls">
+					<form:hidden id="file" path="file" htmlEscape="false" maxlength="256" class="input-xlarge"/>
+					<sys:ckfinder input="file" type="files" uploadPath="/service/ccmServiceCivil" selectMultiple="true"/>
 				</div>
-			</td>
-			<td></td>
+			</div>
+		</td>
 		</tr>
+
 	</table>
-
-
-
-
-
-
-
 
 	<div class="form-actions">
 		<shiro:hasPermission name="service:ccmServiceCivil:edit"><input id="btnSubmit" class="btn btn-primary"  type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>

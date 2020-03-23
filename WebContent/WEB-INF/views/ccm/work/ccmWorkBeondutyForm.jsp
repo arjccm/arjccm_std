@@ -131,21 +131,20 @@
 				</td>
 			</tr>
 			<tr>
+
 				<td>
 					<div class="control-group">
-						<label class="control-label"><span class="help-inline"><font color="red" >*</font> </span>值班负责人：</label>
+						<label class="control-label">值班队伍：</label>
 						<div class="controls">
-							<sys:treeselect id="principal" name="principal" value="${ccmWorkBeonduty.principal.id}" labelName="" labelValue="${ccmWorkBeonduty.principal.name}"
-											title="用户" url="/sys/office/treeData?type=3" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
-							<span class="help-inline"><font color="red" id="show1"></font> </span>
+							<form:textarea path="principalMans" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div class="control-group">
-						<label class="control-label">值班队伍：</label>
+						<label class="control-label">备注信息：</label>
 						<div class="controls">
-							<form:textarea path="principalMans" htmlEscape="false" rows="2" maxlength="1000" class="input-xxlarge "/>
+							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
 						</div>
 					</div>
 				</td>
@@ -155,7 +154,7 @@
 					<div class="control-group">
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>值班地点：</label>
 						<div class="controls">
-							<form:textarea path="adds" htmlEscape="false" rows="2" maxlength="100" class="input-xxlarge required"/>
+							<form:textarea path="adds" htmlEscape="false" rows="4" maxlength="100" class="input-xxlarge required"/>
 
 						</div>
 					</div>
@@ -164,7 +163,7 @@
 					<div class="control-group">
 						<label class="control-label">工作重点：</label>
 						<div class="controls">
-							<form:textarea path="details" htmlEscape="false" rows="12" maxlength="1000" class="input-xxlarge "/>
+							<form:textarea path="details" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
 						</div>
 					</div>
 				</td>
@@ -172,9 +171,11 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label">备注信息：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font> </span>值班负责人：</label>
 						<div class="controls">
-							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+							<sys:treeselect id="principal" name="principal" value="${ccmWorkBeonduty.principal.id}" labelName="" labelValue="${ccmWorkBeonduty.principal.name}"
+											title="用户" url="/sys/office/treeData?type=3" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
+							<span class="help-inline"><font color="red" id="show1"></font> </span>
 						</div>
 					</div>
 				</td>

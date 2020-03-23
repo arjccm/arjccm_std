@@ -90,9 +90,6 @@
 						</div>
 					</div>
 				</td>
-
-			</tr>
-			<tr>
 				<td>
 					<div class="control-group">
 						<label class="control-label">附件：</label>
@@ -103,6 +100,7 @@
 					</div>
 				</td>
 			</tr>
+
 		</table>
 		<div class="form-actions">
 			<shiro:hasPermission name="know:ccmKnowGovernmentAffairs:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>

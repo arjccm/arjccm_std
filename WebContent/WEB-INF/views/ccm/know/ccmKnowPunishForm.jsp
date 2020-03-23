@@ -38,25 +38,6 @@
 		<sys:message content="${message}"/>
 		<table>
 			<tr>
-				<td rowspan="1">
-					<div class="control-group" style="padding-top: 9px">
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>简介：</label>
-						<div class="controls">
-							<form:textarea path="name" htmlEscape="false" rows="4" maxlength="100" class="input-xxlarge required"/>
-
-						</div>
-					</div>
-				</td>
-				<td>
-					<div class="control-group">
-						<label class="control-label">处罚明细：</label>
-						<div class="controls">
-							<form:textarea path="num" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
 				<td>
 					<div class="control-group">
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>类别：</label>
@@ -81,7 +62,28 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td rowspan="1">
+					<div class="control-group" style="padding-top: 9px">
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>简介：</label>
+						<div class="controls">
+							<form:textarea path="name" htmlEscape="false" rows="4" maxlength="100" class="input-xxlarge required"/>
+
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label">处罚明细：</label>
+						<div class="controls">
+							<form:textarea path="num" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+
+				<td>
 					<div class="control-group">
 						<label class="control-label">备注信息：</label>
 						<div class="controls">
@@ -89,8 +91,6 @@
 						</div>
 					</div>
 				</td>
-			</tr>
-			<tr>
 				<td><div class="control-group">
 					<label class="control-label">附件：</label>
 					<div class="controls">
@@ -98,6 +98,9 @@
 						<sys:ckfinder input="file" type="files" uploadPath="/know/ccmKnowPunish" selectMultiple="true"/>
 					</div>
 				</div></td>
+			</tr>
+			<tr>
+
 
 			</tr>
 		</table>

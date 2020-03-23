@@ -36,13 +36,15 @@
 			});
 		});
 	</script>
+	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+
 	<ul class="nav nav-tabs">
 		<li><a style="width: 140px;text-align:center" href="${ctx}/logistics/plmRoom/?category=01">会议室列表</a></li>
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/logistics/plmRoom/form?id=${plmRoom.id}&category=01">会议室<shiro:hasPermission name="logistics:plmRoom:edit">${not empty plmRoom.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="logistics:plmRoom:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
-	<form:form id="inputForm" style="margin: 30px 100px;" modelAttribute="plmRoom" action="${ctx}/logistics/plmRoom/save" method="post" class="form-horizontal">
+	<form:form id="inputForm"  modelAttribute="plmRoom" action="${ctx}/logistics/plmRoom/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<input type="hidden" name="category" value="01"/>
 		<sys:message content="${message}"/>	
@@ -67,7 +69,25 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
+				<td  style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
+					<div>
+						<label class="control-label">会议室介绍：</label>
+						<div class="controls">
+							<form:textarea path="memo" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
+						</div>
+					</div>
+				</td>
+				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
+					<div>
+						<label class="control-label">备注信息：</label>
+						<div class="controls">
+							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
 					<div>
 						<label class="control-label"><font color="red">*</font>会议室地址：</label>
 						<div class="controls">
@@ -75,8 +95,6 @@
 						</div>
 					</div>
 				</td>
-			</tr>
-			<tr>
 				<td style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
 					<div>
 						<label class="control-label">会议室照片：</label>
@@ -87,26 +105,7 @@
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2" style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
-					<div>
-						<label class="control-label">会议室介绍：</label>
-						<div class="controls">
-							<form:textarea path="memo" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="padding: 10px; border: 0px dashed rgb(204, 204, 204);">
-					<div>
-						<label class="control-label">备注信息：</label>
-						<div class="controls">
-							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
-						</div>
-					</div>
-				</td>
-			</tr>
+
 		</table>
 		
 		<div class="form-actions position:fixed">
