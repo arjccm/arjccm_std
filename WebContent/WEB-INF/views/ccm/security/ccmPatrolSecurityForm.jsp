@@ -199,9 +199,9 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">单位人数：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>单位人数：</label>
 			<div class="controls">
-				<form:input path="numberUnits" style="display: none;" value="${ccmPatrolSecurity.numberUnits}" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+				<form:input path="numberUnits"  value="${ccmPatrolSecurity.numberUnits}" htmlEscape="false" maxlength="255" class="input-xlarge number"/>
 				<div id="peopleNum">
 
 				</div>
