@@ -8,19 +8,24 @@
 		$(document).ready(function(){
 			top.$.jBox.tip.mess = null;
 		});
-		function page(n,s){
-        	location = '${ctx}/act/process/?pageNo='+n+'&pageSize='+s;
-        }
 		function updateCategory(id, category){
 			$.jBox($("#categoryBox").html(), {title:"设置分类", buttons:{"关闭":true}, submit: function(){}});
 			$("#categoryBoxId").val(id);
 			$("#categoryBoxCategory").val(category);
+		}
+		function page(n,s){
+			$("#pageNo").val(n);
+			$("#pageSize").val(s);
+			$("#searchForm").submit();
+			return false;
 		}
 	</script>
 	<script type="text/template" id="categoryBox">
 		<form id="categoryForm" action="${ctx}/act/process/updateCategory" method="post" enctype="multipart/form-data"
 			style="text-align:center;" class="form-search" onsubmit="loading('正在设置，请稍等...');"><br/>
 			<input id="categoryBoxId" type="hidden" name="procDefId" value="" />
+			<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+			<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 			<select id="categoryBoxCategory" name="category">
 				<option value="">无分类</option>
 				<c:forEach items="${fns:getDictList('act_category')}" var="dict">
