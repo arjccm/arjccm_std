@@ -5301,3 +5301,28 @@ input::-ms-clear{
 	margin: 0;
 	padding: 0 0 0 10px!important;
 }
+
+
+.row-fluid .spEchar {
+	width: calc(47.8vw + 2px);
+	margin: 20px 0 0 20px!important;
+}
+.row-fluid .spEchar>.common-pading{
+	width: 47.8vw;
+	height: calc(34.62vh + 1px)!important;
+	padding: 0!important;
+	background: none!important;
+	border:1px solid rgba(215,225,237,1);
+}
+.row-fluid .spEchar>.common-pading>div{
+	height: 34.62vh!important;
+}
+
+.row-fluid .spEchar>h4{
+	height: 40px;
+	background:rgba(223,237,254,1);
+
+	padding-left: 50px;
+	line-height: 40px;
+	width: calc(47.8vw - 48px);
+}
