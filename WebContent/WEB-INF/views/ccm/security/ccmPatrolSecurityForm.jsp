@@ -113,10 +113,10 @@
 				for (var i = 0; i < split.length; i++) {
 					temp+="<div class=\"input-prepend input-append\">\n" +
 							"<span class=\"add-on\">"+split[i]+":</span>\n" +
-							"<input onchange='changeNumber()' class=\"span2 people-num \" value='"+(str[i]||'')+"' type=\"text\">\n" +
+							"<input  onchange='changeNumber()' class=\"span2 people-num \" value='"+(str[i]||'')+"' type=\"text\">\n" +
 							"<span class=\"add-on\">人数</span>\n" +
 							"</div>" +
-							"<span class=\"help-inline\"><font color=\"red\">*</font> </span><br/>"
+							"<span class=\"help-inline\">"+split[i]+"人数 </span><br/>"
 				}
 
 			}else if (officeName) {
@@ -124,7 +124,8 @@
 						"<span class=\"add-on\">"+officeName+":</span>\n" +
 						"<input onchange='changeNumber()' class=\"span2 people-num \" value='"+(str[0]||"")+"' type=\"text\">\n" +
 						"<span class=\"add-on\">人数</span>\n" +
-						"</div><span class=\"help-inline\"><font color=\"red\">*</font> </span>"
+						"</div>" /*+
+                    "<span class=\"help-inline\"><font color=\"red\">*</font> </span>"*/
 			}
 			$("#peopleNum").html(temp);
 
@@ -201,7 +202,7 @@
 		<div class="control-group">
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>单位人数：</label>
 			<div class="controls">
-				<form:input path="numberUnits"  value="${ccmPatrolSecurity.numberUnits}" htmlEscape="false" maxlength="255" class="input-xlarge number"/>
+				<form:input path="numberUnits" style="display: none;" value="${ccmPatrolSecurity.numberUnits}" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 				<div id="peopleNum">
 
 				</div>
