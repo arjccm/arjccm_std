@@ -124,13 +124,13 @@
 					<form:options items="${fns:getDictList('sys_ccm_people')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</li>
-			<li class="first-line"><label>姓名：</label>
+			<li class="first-line"><label style="width: 119px">姓名：</label>
 				<form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"  cssStyle=""/>
 			</li>
-			<li class="first-line"><label>公民身份号码：</label>
+			<li class="first-line"><label style="width: 118px">公民身份号码：</label>
 				<form:input path="ident" htmlEscape="false" maxlength="18" class="input-medium"/>
 			</li>
-			<li class="first-line"><label>是否常住：</label>
+			<li class="first-line"><label style="width: 133px">是否常住：</label>
 				<form:select id="isPermanent" path="isPermanent" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
@@ -221,7 +221,7 @@
 
 
 <%--                <li class="clearfix selectHidden hide"></li>--%>
-			<li class="selectHidden hide"><label style="width: 115px">现住门（楼）详址：</label>
+			<li class="selectHidden hide"><label style="width: 117px">现住门（楼）详址：</label>
 				<form:input path="residencedetail" htmlEscape="false" maxlength="50" class="input-medium"  />
 			</li>
 
