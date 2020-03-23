@@ -156,6 +156,9 @@
 						<c:if test="${PeoTypeBy eq 'ByHouse' }">
 							<a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house"  title="修改"><i class="icon-pencil"></i></a>
 						</c:if>
+                        <c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
+                            <a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=hire"  title="修改"><i class="icon-pencil"></i></a>
+                        </c:if>
 						<a class="btnList" href="${ctx}/pop/ccmPeople/deletePeople?id=${ccmPeople.id}&houseId=${houseId}&type=${PeoTypeBy}&buildId=${buildId}&netId=${netId}"
 							onclick="return confirmx('确认要在此房屋中移除该成员吗？', this.href)"  title="移除成员"><i class="icon-remove-sign"></i></a>
 					</shiro:hasPermission>
