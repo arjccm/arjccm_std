@@ -1311,10 +1311,13 @@
         </table>
         <br/>
     </c:if>
-    <h4 id="otherid" class="color-bg6">户籍信息</h4>
+    <%--<h4 id="otherid" class="color-bg6">户籍信息</h4>--%>
 
     <table id="person" border="0px"
            style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%">
+        <tr>
+            <td colspan="6" >户籍信息：</td>
+        </tr>
 
         <tr>
             <td>
@@ -1723,7 +1726,7 @@
     </div>
 </form:form>
 <br>
-<c:if test="${documentNumber > 0}">
+<%--<c:if test="${documentNumber > 0}">
     <shiro:hasPermission name="log:ccmLogTail:edit">
         <h4 class="hide2">&nbsp;跟踪信息：</h4>
         <br>
@@ -1740,7 +1743,7 @@
         <h2 class="hide2">&nbsp;&nbsp;暂无跟踪信息</h2>
         <br>
     </shiro:hasPermission>
-</c:if>
+</c:if>--%>
 <script>
     $("#checkBoxe :checked").each(function(){
         console.log($(this).val())
