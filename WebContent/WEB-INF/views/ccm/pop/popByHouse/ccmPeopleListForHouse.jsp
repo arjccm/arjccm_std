@@ -162,7 +162,7 @@
 					<shiro:hasPermission name="tenant:ccmTenantRecord:view">
 							<a class="btnList"
 							   onclick="parent.LayerDialog(encodeURI('${ctx}/tenant/ccmTenantRecord/form?idCard=${ccmPeople.ident}&name=${ccmPeople.name}&houseId=${ccmPeople.roomIdString}&phoneNumber=${ccmPeople.telephone}'), '租房详情登记', '800px', '550px')"
-								title="租房详情"><i class=" icon-time"></i></a>
+								title="变更登记"><i class=" icon-time"></i></a>
 					</shiro:hasPermission></td>
 				</tr>
 			</c:forEach>

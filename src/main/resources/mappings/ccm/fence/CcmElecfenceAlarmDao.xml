@@ -54,7 +54,7 @@
 			<if test="beginCreateDate != null and endCreateDate != null and beginCreateDate != '' and endCreateDate != ''">
 				AND a.alarm_time BETWEEN #{beginCreateDate} AND #{endCreateDate}
 			</if>
-			<if test="alarmType != null and alarType != ''">
+			<if test="alarmType != null and alarmType != ''">
 				AND a.alarm_type = #{alarmType}
 			</if>
 		</where>

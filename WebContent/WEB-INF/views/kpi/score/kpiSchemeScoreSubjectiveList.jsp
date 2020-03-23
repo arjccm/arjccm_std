@@ -43,7 +43,7 @@
 				<th>方案名称</th>
 				<th>方案状态</th>
 				<th>kpi名称</th>
-				<th>kpi描述</th>
+				<th>kpi分数</th>
 				<shiro:hasPermission name="score:kpiSchemeScoreSubjective:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -66,7 +66,7 @@
 					${kpiSchemeKpi.name}
 				</td>
 				<td style="height: 50px">
-					${kpiSchemeKpi.remarks}
+					${kpiSchemeKpi.score}
 				</td>
 				
 				<shiro:hasPermission name="score:kpiSchemeScoreSubjective:edit"><td style="height: 50px">

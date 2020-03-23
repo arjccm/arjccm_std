@@ -152,7 +152,7 @@
 
 <ul class="nav nav-tabs" >
     <li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventIncident/archive">事件归档列表</a></li>
-    <li class="active" style="width: 140px" ><a class="nav-head" href="${ctx}/event/ccmEventIncident/archiveForm?id=${ccmEventIncident.id}">事件详情</a></li>
+    <li class="active" style="width: 140px" ><a class="nav-head" href="${ctx}/event/ccmEventIncident/archiveForm?id=${ccmEventIncident.id}">事件详情及处置</a></li>
 </ul>
 
 <div id="left" style="width: 15%;height: 876px;display: block;clear: both;overflow-x: hidden;overflow-y: auto; background: none!important;margin-top: 8px;">

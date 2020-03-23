@@ -311,8 +311,8 @@ text-overflow: ellipsis; text-align: left;">
                     name="event:ccmEventIncident:edit">
 
                 <a class="btnList"
-                   onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/form?id=${ccmEventIncident.id}&isDispatch=1', '任务指派', '1100px', '700px')"><i
-                        title="任务指派" class="icon-list-alt"></i></a>
+                   onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/form?id=${ccmEventIncident.id}&isDispatch=1', '事件详情及处置', '1100px', '700px')"><i
+                        title="事件详情及处置" class="icon-list-alt"></i></a>
 <%--                <a class="btnList"--%>
 <%--                   href="${ctx}/event/ccmEventIncident/delete?id=${ccmEventIncident.id}"--%>
 <%--                   onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>--%>
@@ -325,8 +325,8 @@ text-overflow: ellipsis; text-align: left;">
                 href="${ctx}/event/ccmEventCasedeal/dealform?eventIncidentId=${ccmEventIncident.id}" title="添加处理"><i class="icon-plus"></i></a>
                 -->
                 <a class="btnList"
-                   onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_incident&objId=${ccmEventIncident.id}', '处理', '700px', '500px')"
-                   title="添加处理"><i class="icon-plus"></i></a>
+                   onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_incident&objId=${ccmEventIncident.id}', '任务快速派遣', '700px', '500px')"
+                   title="任务快速派遣"><i class="icon-plus"></i></a>
             </shiro:hasPermission>
 <%--                <shiro:hasPermission name="event:ccmEventStakeholder:view">--%>
 <%--                    &lt;%&ndash; <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="icon-user"></i></a> &ndash;%&gt;--%>

@@ -105,10 +105,10 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label">开始时间段：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font> </span>开始时间段：</label>
 
 						<div class="controls">
-							<input name="beginDatas" id="beginDatas" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+							<input name="beginDatas" id="beginDatas" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 								   value="<fmt:formatDate value="${beginDatas}" pattern="HH:mm"/>"
 								   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false});"/>
 						</div>
@@ -121,9 +121,9 @@
 				</td>
 				<td>
 					<div class="control-group">
-						<label class="control-label">结束时间段：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font> </span>结束时间段：</label>
 						<div class="controls">
-							<input name="endDatas" id="endDatas" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+							<input name="endDatas" id="endDatas" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 								   value="<fmt:formatDate value="${endDatas}" pattern="HH:mm"/>"
 								   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false});"/>
 						</div>
