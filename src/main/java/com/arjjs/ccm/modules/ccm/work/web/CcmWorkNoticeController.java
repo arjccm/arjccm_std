@@ -68,6 +68,13 @@ public class CcmWorkNoticeController extends BaseController {
 		model.addAttribute("userSelfId", UserUtils.getUser());
 		return "ccm/work/ccmWorkNoticeForm";
 	}
+	@RequiresPermissions("work:ccmWorkNotice:view")
+	@RequestMapping(value = "form1")
+	public String form1(CcmWorkNotice ccmWorkNotice, Model model) {
+		model.addAttribute("ccmWorkNotice", ccmWorkNotice);
+		model.addAttribute("userSelfId", UserUtils.getUser());
+		return "ccm/work/ccmWorkNoticeForm1";
+	}
 
 	@RequiresPermissions("work:ccmWorkNotice:edit")
 	@RequestMapping(value = "save")

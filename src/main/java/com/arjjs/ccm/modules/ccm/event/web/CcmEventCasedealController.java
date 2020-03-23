@@ -145,6 +145,13 @@ public class CcmEventCasedealController extends BaseController {
 		return "ccm/event/eventCasedeal/ccmEventCasedealForm";
 	}
 
+	@RequiresPermissions("event:ccmEventCasedeal:view")
+	@RequestMapping(value = "form1")
+	public String form1(CcmEventCasedeal ccmEventCasedeal, Model model) {
+		model.addAttribute("ccmEventCasedeal", ccmEventCasedeal);
+		return "ccm/event/eventCasedeal/ccmEventCasedealForm1";
+	}
+
 	/**
 	 * @see 返回只读页面
 	 * @param ccmEventCasedeal 事件处理原型

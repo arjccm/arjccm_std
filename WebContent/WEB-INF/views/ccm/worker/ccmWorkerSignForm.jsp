@@ -49,9 +49,9 @@
 				<form:input path="content" htmlEscape="false" maxlength="64" class="input-xlarge required" readonly="true"/>
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="control-group" >
 			<label class="control-label">签到类型：</label>
-			<div class="controls">
+			<div class="controls" style="width: 290px">
 				<form:select path="type" class="input-xlarge required" disabled="true">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('ccm_worker_sign_type')}" itemLabel="label" itemValue="value" htmlEscape="false" />
