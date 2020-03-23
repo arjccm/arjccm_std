@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="${ctxStatic}/common/home/css/homeedit.css">
 </head>
 <body>
+
+
 	<div id="topdiv">
 		<form:form id="searchForm1" modelAttribute="plmPortalPlan" action="${ctx}/home/plmHome/edit" method="post" class="breadcrumb form-search">
 			<ul class="ul-form">
@@ -116,6 +118,7 @@
 		</c:if>
 		<c:if test="${!e}">当前没有数据！！ </c:if>
 	</div>
+
 	<script type="text/javascript">
 		//预编辑方案内容（不改数据库）
 // 		function bjfanr() {

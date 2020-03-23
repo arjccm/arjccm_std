@@ -1126,7 +1126,7 @@ cite[class*='t-click']{
     position: absolute;
     margin-right: 10px;
     /* border: 1px solid #d4d4d4; */
-    background-color: #0e2a4c;
+    background-color: #0e2a4c!important;
     border-radius: 5px;
     overflow: hidden;
 }
@@ -1526,4 +1526,36 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
  .ztree li ul {
 	 margin: 0;
 	 padding: 0 0 0 10px!important;
+ }
+
+ .row-fluid .spEchar {
+	  width: 47.8vw;
+	 margin: 20px 0 0 20px!important;
+	 background: none!important;
+	 box-shadow: inset 0px 0px 15px 0px #1684c2;
+ }
+ .row-fluid .spEchar>.common-pading{
+	 width: calc(47.8vw - 30px);
+	 height: calc(34.62vh + 1px);
+	 margin:0 15px 15px 15px;
+
+ }
+ .row-fluid .spEchar>.common-pading>div{
+	 height: 34.62vh!important;
+ }
+ .row-fluid .spEchar h4{
+	 height: 40px;
+	 background: rgba(6,86,137,1);
+	 padding-left: 50px;
+	 line-height: 40px;
+	 width: calc(47.8vw - 50px);
+ }
+ /**弹出框的文本框样式*/
+ .input-xlarge{
+	background-color: #0b486f!important;
+	border: 1px solid #00cccc!important;
+}
+ .input-xxlarge{
+	 background-color: #0b486f!important;
+	 border: 1px solid #00cccc!important;
  }

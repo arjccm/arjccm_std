@@ -221,6 +221,25 @@ public class CcmWorkReportController extends BaseController {
 		return "redirect:" + adminPath + "/sys/ccmWorkReport/self?repage";
 	}
 
+	@RequestMapping(value = "view1")
+	public String view1(CcmWorkReport ccmWorkReport, Model model) {
+		model.addAttribute("viewRep", "02");
+		if (StringUtils.isNotBlank(ccmWorkReport.getId())) {
+			CcmLogTail ccmLogTailDto = new CcmLogTail();
+			ccmLogTailDto.setRelevanceId(ccmWorkReport.getId());
+			ccmLogTailDto.setRelevanceTable("ccm_sys_workreport");
+			List<CcmLogTail> ccmLogTailList = ccmLogTailService.findListByObject(ccmLogTailDto);
+			// 返回查询结果
+			model.addAttribute("ccmLogTailList", ccmLogTailList);
+			ccmWorkReportService.updateReadFlag(ccmWorkReport);
+			ccmWorkReport = ccmWorkReportService.getRecordList(ccmWorkReport);
+			model.addAttribute("ccmWorkReport", ccmWorkReport);
+
+			return "/ccm/sys/ccmWorkReportForm1";
+		}
+		return "redirect:" + adminPath + "/sys/ccmWorkReport/self?repage";
+	}
+
 	/**
 	 * 查看我的通知-数据
 	 */

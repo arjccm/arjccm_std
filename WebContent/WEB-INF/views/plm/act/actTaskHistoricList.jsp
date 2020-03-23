@@ -14,6 +14,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<form:form id="searchForm" modelAttribute="act" action="${ctx}/act/taskSelf/historic/" method="get" class="breadcrumb form-search">
 		<ul class="ul-form">
 			<li><label>完成开始日期：</label>
@@ -31,7 +32,7 @@
 		
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>标题</th>
@@ -70,6 +71,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination"  style="float: right; margin-top: 12px" >${page}</div>
+</div>
 </body>
 </html>

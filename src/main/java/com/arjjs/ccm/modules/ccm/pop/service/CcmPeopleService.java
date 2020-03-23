@@ -1089,10 +1089,8 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	}
 
 	//批量添加从业人员列
-	public Page<CcmPeople> findPlaceOfPopAdd(Page<CcmPeople> page, CcmPeople ccmPeople) {
-		ccmPeople.setPage(page);
-		page.setList(ccmPeopleDao.findPlaceOfPopAdd(ccmPeople));
-		return page;
+	public List<CcmPeople> findPlaceOfPopAdd(CcmPeople ccmPeople) {
+		return ccmPeopleDao.findPlaceOfPopAdd(ccmPeople);
 	}
 
 	public void deletePeopleOfHouse(String id, String houseId, String buildId, String netId) {

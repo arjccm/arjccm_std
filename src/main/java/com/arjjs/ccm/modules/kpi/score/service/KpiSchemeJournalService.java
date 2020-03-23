@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.kpi.score.service;
 
 import java.util.List;
 
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,13 @@ public class KpiSchemeJournalService extends CrudService<KpiSchemeJournalDao, Kp
 	}
 	
 	public Page<KpiSchemeJournal> findPage(Page<KpiSchemeJournal> page, KpiSchemeJournal kpiSchemeJournal) {
+		if(UserUtils.getUser().getId()!=null){
+			kpiSchemeJournal.getSqlMap().put("dsf", dataScopeFilter( UserUtils.getUser(), "c", "b"));
+		} else {
+			if(kpiSchemeJournal.getCurrentUser().getId()!=null){
+				kpiSchemeJournal.getSqlMap().put("dsf", dataScopeFilter( kpiSchemeJournal.getCurrentUser(), "c", "b"));
+			}
+		}
 		return super.findPage(page, kpiSchemeJournal);
 	}
 	

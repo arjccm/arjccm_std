@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.tool.CommUtil;
+import com.arjjs.ccm.tool.Pagecount;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -149,8 +150,17 @@ public class CcmPlaceOrgPeopleController extends BaseController {
 		ccmPeople.setMore5(placeType);
 		ccmPeople.setMore3(placeOrgId);
 		// 查询 人员列表
-        Page<CcmPeople> page = ccmPeopleService.findPlaceOfPopAdd(new Page<CcmPeople>(request, response), ccmPeople);
-
+		Pagecount page = new Pagecount<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmPeople.setMaxnum(page.getPageSize());
+        List<CcmPeople> list = ccmPeopleService.findPlaceOfPopAdd(ccmPeople);
+		page.setList(list);
         model.addAttribute("page", page);
         model.addAttribute("ccmPeople", ccmPeople);
 		model.addAttribute("type", placeType);

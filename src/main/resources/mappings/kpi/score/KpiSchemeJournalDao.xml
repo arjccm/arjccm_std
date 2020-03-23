@@ -22,7 +22,12 @@
 	<sql id="kpiSchemeJournalJoins">
 		LEFT JOIN sys_user u2 ON u2.id = a.user_id
 	</sql>
-    
+	<sql id="kpiSchemeJournalJoins_User">
+		LEFT JOIN sys_user b ON a.create_by = b.id
+	</sql>
+	<sql id="kpiSchemeJournalJoins_Office">
+		LEFT JOIN sys_office c ON b.office_id = c.id
+	</sql>
 	<select id="get" resultType="KpiSchemeJournal">
 		SELECT 
 			<include refid="kpiSchemeJournalColumns"/>
@@ -36,6 +41,8 @@
 			<include refid="kpiSchemeJournalColumns"/>
 		FROM kpi_scheme_journal a
 		<include refid="kpiSchemeJournalJoins"/>
+		<include refid="kpiSchemeJournalJoins_User"/>
+		<include refid="kpiSchemeJournalJoins_Office"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="user != null and user.id != null and user.id != ''">
@@ -62,6 +69,8 @@
 					<if test="dbName == 'mssql'">'%'+#{notifyStaffName}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{notifyStaffName},'%')</if>
 			</if>
+			<!-- 数据范围过滤 -->
+			${sqlMap.dsf}
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

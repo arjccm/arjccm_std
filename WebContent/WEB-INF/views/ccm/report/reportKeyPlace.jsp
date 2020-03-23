@@ -56,7 +56,7 @@
 	    </div>
 	    <br>
 	     <div class="row-fluid">
-	     	  	<div class="span12" ><h4>社区房屋报表统计</h4>
+	     	  	<div class="span12" ><h4>重点场所类型列表</h4>
 					<div style="height:571px;overflow: auto">
 				<table id="contentTable" class="table table-striped table-bordered table-condensed">
 					<thead>
