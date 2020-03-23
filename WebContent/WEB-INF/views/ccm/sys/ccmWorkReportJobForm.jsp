@@ -86,7 +86,7 @@
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>电话：</label>
 			<div class="controls">
 				<form:input path="telephone" htmlEscape="false" maxlength="100"
-					class="input-xlarge required" />
+					class="input-xlarge phone required" />
 
 			</div>
 		</div>

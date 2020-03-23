@@ -19,6 +19,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/org/ccmOrgInfovideo/">数据列表</a></li>
 		<shiro:hasPermission name="org:ccmOrgInfovideo:edit"><li><a href="${ctx}/org/ccmOrgInfovideo/form">数据添加</a></li></shiro:hasPermission>
@@ -94,5 +95,6 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
+</div>
 </body>
 </html>

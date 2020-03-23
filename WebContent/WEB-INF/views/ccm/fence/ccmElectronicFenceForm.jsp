@@ -294,95 +294,104 @@
 			margin: 0;
 
 		}
+		.left_input_area{
+			width: 450px;
+			height: 646px;
+			position: absolute;
+			left: 5px;
+			top: 5px;
+			z-index: 999;
+
+		}
+		.map_area{
+			width: 100%;
+			height: 700px;
+		}
+		.left_input_area form{
+			/*background: rgba(32,68,122,.9);*/
+			border-radius: 6px;
+		}
+		.input_list_box{
+			padding: 8px 0;
+		}
+		.form-horizontal .form-actions{
+			padding-left: 160px;
+		}
 	</style>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <div class="layui-fluid" style="border-color: red;">
 	<div class="layui-row">
-		<div class="layui-col-sm3">
+		<div class="left_input_area">
 			<form:form id="inputForm" modelAttribute="ccmElectronicFence" action="${ctx}/fence/ccmElectronicFence/save" method="post" class="form-horizontal">
 				<form:hidden path="id" />
 				<sys:message content="${message}" />
-				<table style="height: 800px;">
-					<tr>
-						<td>
-							<label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>围栏名称：</label>
-							<div>
-								<form:input path="fenceName" htmlEscape="false" maxlength="64"
-											class="input-xlarge required" style="margin-left:10px;" />
+				<div class="input_list_box">
+					<label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>围栏名称：</label>
+					<div>
+						<form:input path="fenceName" htmlEscape="false" maxlength="64"
+									class="input-xlarge required" style="margin-left:10px;" />
 
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>报警规则：</label>
-							<div>
-								<form:select path="alarmRule" style="margin-left:10px;width:284px;" class="required">
-									<form:option value="" label="请选择" />
-									<form:options items="${fns:getDictList('fence_alarm_rule')}"
-												  itemLabel="label" itemValue="value" htmlEscape="false"/>
-								</form:select>
+					</div>
+				</div>
+				<div class="input_list_box">
+					<label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>报警规则：</label>
+					<div>
+						<form:select path="alarmRule" style="margin-left:10px;width:284px;" class="required">
+							<form:option value="" label="请选择" />
+							<form:options items="${fns:getDictList('fence_alarm_rule')}"
+										  itemLabel="label" itemValue="value" htmlEscape="false"/>
+						</form:select>
 
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>开始时间：</label>
-							<div>
-								<input id="startTime" type="text" readonly="readonly"  name="startTime" maxlength="20"
-									   class="input-medium Wdate required" style="margin-left:10px;" value="<fmt:formatDate value="${ccmElectronicFence.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
+					</div>
+				</div>
+				<div class="input_list_box">
+					<label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>开始时间：</label>
+					<div>
+						<input id="startTime" type="text" readonly="readonly"  name="startTime" maxlength="20"
+							   class="input-medium Wdate required" style="margin-left:10px;" value="<fmt:formatDate value="${ccmElectronicFence.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
 
-							</div></td>
-					</tr>
-					<tr>
-						<td><label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>结束时间：</label>
-							<div>
-								<input  id="endTime" type="text" readonly="readonly" maxlength="20" name="endTime"
-										class="input-medium Wdate required" style="margin-left:10px;"
-										value="<fmt:formatDate value="${ccmElectronicFence.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
+					</div>
+				</div>
+				<div class="input_list_box">
+					<label class="control-label" style="width:80px;"> <span class="help-inline"><font color="red">*</font> </span>结束时间：</label>
+					<div>
+						<input  id="endTime" type="text" readonly="readonly" maxlength="20" name="endTime"
+								class="input-medium Wdate required" style="margin-left:10px;"
+								value="<fmt:formatDate value="${ccmElectronicFence.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
 
-							</div></td>
-					</tr>
-					<tr style="display: none;">
-						<td>
-							<label class="control-label" style="width:80px;">标注类型：</label>
-							<div>
-								<form:input path="gravity" htmlEscape="false" maxlength="512"
-											class="input-xlarge " style="margin-left:10px;" readonly="true"/>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="control-label" style="width:80px;">围栏中心点：</label>
-							<div>
-								<form:input path="areaPoint" htmlEscape="false" maxlength="512"
-											class="input-xlarge " style="margin-left:10px;" readonly="true"/>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="control-label" style="width:80px;">围栏范围：</label>
-							<div>
-								<form:input path="areaMap" htmlEscape="false" maxlength="512"
-											class="input-xlarge " style="margin-left:10px;" readonly="true"/>
-							</div>
-						</td>
-					</tr>
+					</div>
+				</div>
+				<div style="display: none;" class="input_list_box">
+					<label class="control-label" style="width:80px;">标注类型：</label>
+					<div>
+						<form:input path="gravity" htmlEscape="false" maxlength="512"
+									class="input-xlarge " style="margin-left:10px;" readonly="true"/>
+					</div>
+				</div>
+				<div class="input_list_box">
+					<label class="control-label" style="width:80px;">围栏中心点：</label>
+					<div>
+						<form:input path="areaPoint" htmlEscape="false" maxlength="512"
+									class="input-xlarge " style="margin-left:10px;" readonly="true"/>
+					</div>
+				</div>
+				<div class="input_list_box">
+					<label class="control-label" style="width:80px;">围栏范围：</label>
+					<div>
+						<form:input path="areaMap" htmlEscape="false" maxlength="512"
+									class="input-xlarge " style="margin-left:10px;" readonly="true"/>
+					</div>
+				</div>
+				<div class="input_list_box">
+					<label class="control-label" style="width:80px;">备注信息：</label>
+					<div>
+						<form:textarea path="remarks" htmlEscape="false" rows="4"
+									   maxlength="255" class="input-xlarge "  style="margin-left:10px;"/>
+					</div>
+				</div>
 
-					<tr>
-						<td>
-							<label class="control-label" style="width:80px;">备注信息：</label>
-							<div>
-								<form:textarea path="remarks" htmlEscape="false" rows="4"
-											   maxlength="255" class="input-xlarge "  style="margin-left:10px;"/>
-							</div>
-						</td>
-					</tr>
-				</table>
 				<div class="form-actions">
 					<shiro:hasPermission name="fence:ccmElectronicFence:edit">
 						<input id="btnSubmit" class="btn btn-primary" type="submit"
@@ -393,7 +402,7 @@
 				</div>
 			</form:form>
 		</div>
-		<div class="layui-col-sm9" style="height: 890px;">
+		<div class="map_area">
 			<!-- 地图布局 -->
 			<div id="tool">
 				<div id="toolCenter">

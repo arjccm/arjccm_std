@@ -112,7 +112,8 @@
 					<input  type="hidden" name="id" value="${kpiSpecialScore.id}"/>
 				</td>
 				<td>
-					<input  maxlength="64" class="input-xlarge " type="text" name="weights" value="${kpiSpecialScore.weights}"  data-id="${kpiSpecialScore.id}"/>
+
+					<input  maxlength="64" class="input-xlarge " type="number" name="weights" value="${kpiSpecialScore.weights}"  data-id="${kpiSpecialScore.id}"/>
 				</td>
 				<td>
 					<input  maxlength="64" class="input-xlarge " type="text" name="remarks" value="${kpiSpecialScore.remarks}"/>
