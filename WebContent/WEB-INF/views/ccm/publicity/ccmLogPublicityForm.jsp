@@ -31,7 +31,17 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a style="width: 140px;text-align:center" href="${ctx}/publicity/ccmLogPublicity/">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head"href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}">数据<shiro:hasPermission name="publicity:ccmLogPublicity:edit">${not empty ccmLogPublicity.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="publicity:ccmLogPublicity:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active" style="width: 140px"><a class="nav-head"href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}">数据
+
+            <shiro:hasPermission name="publicity:ccmLogPublicity:edit">
+			<c:if test="${user.id eq ccmLogPublicity.createBy.id or user.id eq '1'}">
+				${not empty ccmLogPublicity.id?'修改':'添加'}
+			</c:if>
+			<c:if test="${user.id ne ccmLogPublicity.createBy.id and user.id ne '1'}">
+                ${not empty ccmLogPublicity.id?'查看':'添加'}
+			</c:if>
+            </shiro:hasPermission>
+			</a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmLogPublicity" action="${ctx}/publicity/ccmLogPublicity/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
