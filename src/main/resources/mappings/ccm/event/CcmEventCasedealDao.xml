@@ -311,7 +311,10 @@
 					AND a.handle_status = #{handleStatus}
 				</if>
 				<if test="evaluate == '1'.toString()">
-					AND a.check_user IS NOT NULL
+					AND a.grade_num &gt;0
+				</if>
+				<if test="evaluate == '0'.toString()">
+					AND a.grade_num = 0
 				</if>
 			</where>
 			

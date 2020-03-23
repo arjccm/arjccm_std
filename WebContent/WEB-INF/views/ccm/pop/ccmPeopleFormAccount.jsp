@@ -182,7 +182,7 @@
 
 				<td>
 					<div>
-						<label class="control-label">出生日期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>出生日期：</label>
 						<div class="controls">
 							<input name="birthday" type="text" readonly="readonly"
 								   maxlength="20" class="input-medium Wdate "
@@ -193,17 +193,17 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">联系方式：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>联系方式：</label>
 						<div class="controls">
 							<form:input path="telephone" htmlEscape="false" maxlength="18"
-										class="input-xlarge telephone0" />
+										class="input-xlarge telephone0 phone" />
 							<span id="telephone0"></span>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">公民身份号码：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>公民身份号码：</label>
 						<div class="controls">
 							<form:input path="ident" htmlEscape="false" maxlength="18"
 										class="input-xlarge ident0 card ident0" />
@@ -216,7 +216,7 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">民族：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>民族：</label>
 						<div class="controls">
 							<form:select path="nation" class="input-xlarge ">
 								<form:option value="" label="" />
@@ -620,7 +620,7 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">户主公民身份号码：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>户主公民身份号码：</label>
 						<div class="controls">
 							<form:input path="accountidentity" htmlEscape="false"
 								maxlength="18" class="input-xlarge ident1 card" />
@@ -653,7 +653,7 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">户主联系方式：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>户主联系方式：</label>
 						<div class="controls">
 							<form:input path="accounttelephone" htmlEscape="false"
 								maxlength="50" class="input-xlarge telephone1" />
@@ -665,7 +665,7 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">户籍状态：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>户籍状态：</label>
 						<div class="controls">
 							<form:select path="personType" class="input-xlarge ">
 								<form:option value="" label="" />
