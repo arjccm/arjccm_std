@@ -2520,7 +2520,7 @@
 				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
 			</if>
 			<if test="roomId != null and roomId.id != null and roomId.id != ''">
-				AND a.room_id != #{roomId.id}
+				AND IFNULL(a.room_id,'') != #{roomId.id}
 			</if>
 			<if test="ident != null and ident != ''">
 				AND a.ident LIKE '%${ident}%'
