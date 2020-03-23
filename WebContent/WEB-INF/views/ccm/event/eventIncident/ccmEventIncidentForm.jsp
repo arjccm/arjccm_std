@@ -165,7 +165,7 @@
 <%--        <c:if name="event:ccmEventIncident:edit">--%>
         <shiro:hasPermission name="event:ccmEventIncident:edit">
             <c:if test="${not empty ccmEventIncident.id}">
-                <c:if test="${isDispatch eq 1}">任务指派</c:if>
+                <c:if test="${isDispatch eq 1}">事件详情及处置</c:if>
                 <c:if test="${isDispatch ne 1}">事件修改</c:if>
             </c:if>
             <c:if test="${empty ccmEventIncident.id}">事件添加</c:if>
@@ -319,16 +319,18 @@
                                 </td>--%>
             <td style="padding: 8px;border: 0px dashed #CCCCCC">
                 <div>
-                    <label class="control-label"><span class="help-inline"><font color="red">*</font></span>中心点：</label>
+                    <label class="control-label"><span class="help-inline"><font color="red">*</font></span>发生地坐标：</label>
                     <div class="controls">
                         <form:input path="areaPoint" readonly="true" htmlEscape="false"
                                     maxlength="40" class="input-xlarge disabled1 required"/>
+                        <a onclick="ThisLayerDialog('${ctx}/event/ccmEventIncident/drawForm?areaMap='+$('#areaMap').val()+'&areaPoint='+$('#areaPoint').val(), '标注', '1100px', '700px');"
+                           class="btn hide1 btn-primary">标 注</a>
                             <%--							<input id="draw" class="btn btn-primary" onclick="drawPoint()" type="button"--%>
                             <%--								   value="标 注" />--%>
                     </div>
                 </div>
             </td>
-            <td style="padding: 8px;border: 0px dashed #CCCCCC">
+            <%--<td style="padding: 8px;border: 0px dashed #CCCCCC">
                 <div>
                     <label class="control-label"><span class="help-inline"><font color="red">*</font></span>区域图：</label>
                     <div class="controls">
@@ -338,7 +340,7 @@
                            class="btn hide1 btn-primary">标 注</a>
                     </div>
                 </div>
-            </td>
+            </td>--%>
         </tr>
         <tr>
             <td style="padding: 8px;border: 0px dashed #CCCCCC">

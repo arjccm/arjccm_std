@@ -3437,7 +3437,7 @@ ArjMap.Map.prototype = {
         var _this = this;
         if(_this.markInfoType !== "elecFence"&&_this.markInfoType !== "drawForm") {//电子围栏-添加不需要判断
             if (_this.markInfoId == null || _this.markInfoId == '') {
-                top.$.jBox.tip('请选择资源进行操作');
+                top.$.jBox.tip('请点击资源进行操作');
                 return;
             }
         }
@@ -3446,8 +3446,7 @@ ArjMap.Map.prototype = {
             return;
         }
         if (_this.markInfoName==undefined) {
-            top.$.jBox.tip('请选择资源进行操作');
-            return;
+            _this.markInfoName = "";
         }
 
         top.$.jBox.confirm("是否保存"+_this.markInfoName+"标注信息？", "系统提示", function (v, h, f) {

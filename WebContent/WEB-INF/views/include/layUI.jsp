@@ -439,7 +439,7 @@
 			shadeClose: true, //点击遮罩区域是否关闭页面
 			shade: 0.8,  //遮罩透明度
 			area: ['1000px', '600px'],  //弹出层页面比例
-			content: '${ctx}/event/ccmEventCasedeal/form?id='+id  //弹出层的url
+			content: '${ctx}/event/ccmEventCasedeal/form1?id='+id  //弹出层的url
 		});
     }
     function clickNotify(id) {
@@ -468,7 +468,7 @@
 			shadeClose: true, //点击遮罩区域是否关闭页面
 			shade: 0.8,  //遮罩透明度
 			area: ['1000px', '600px'],  //弹出层页面比例
-			content: '${ctx}/oa/oaNotify/viewRead?id='+id  //弹出层的url
+			content: '${ctx}/oa/oaNotify/viewRead0?id='+id  //弹出层的url
 		}); 
     }
     function clickLeaveRequest(id) {
@@ -526,7 +526,7 @@
 			shadeClose: true, //点击遮罩区域是否关闭页面
 			shade: 0.8,  //遮罩透明度
 			area: ['1000px', '600px'],  //弹出层页面比例
-			content: '${ctx}/sys/ccmWorkReport/view?id='+id  //弹出层的url
+			content: '${ctx}/sys/ccmWorkReport/view1?id='+id  //弹出层的url
 		}); 
     }
     function clickVisit(id) {
@@ -561,7 +561,7 @@
 			shadeClose: true, //点击遮罩区域是否关闭页面
 			shade: 0.8,  //遮罩透明度
 			area: ['1000px', '600px'],  //弹出层页面比例
-			content: '${ctx}/work/ccmWorkNotice/form?id='+id  //弹出层的url
+			content: '${ctx}/work/ccmWorkNotice/form1?id='+id  //弹出层的url
 		}); 
     }
 </script>

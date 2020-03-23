@@ -41,13 +41,13 @@
 	<div class="context" content="${ctx}"></div>
 	<sys:message content="${message}"/>
 	    <div class="row-fluid">
-		 <div class="span6" >
+		 <div class="span6 spEchar" >
 			 <h4>控股情况类型统计</h4>
 		     <div class="common-pading">
 					<div id="ccmOrgNpseHoldCase" class="echarts" ></div>
 				</div>
 		     </div>
-		      <div class="span6" >
+		      <div class="span6 spEchar" >
 				  <h4>机构组织类型统计</h4>
 		      <div class="common-pading">
 					<div id="ccmOrgNpseCompType" class="echarts" ></div>
@@ -58,12 +58,12 @@
 	    </div>
 	    <br>
 	     <div class="row-fluid">
-   <div class="span6" ><h4>安全隐患类型统计图</h4>
+   <div class="span6 spEchar" ><h4>安全隐患类型统计图</h4>
 		         <div class="common-pading">
 					<div id="ccmOrgNpseSafeHazaType" class="echarts" ></div>
 				 </div>
 		      </div>
-	     	  <div class="span6" >
+	     	  <div class="span6 spEchar" >
 				  <h4>重点类型统计</h4>
 		      <div class="common-pading">
 					<div id="ccmOrgNpseCompImpoType" class="echarts" ></div>

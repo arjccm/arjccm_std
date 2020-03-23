@@ -628,6 +628,32 @@
 			</otherwise>
 		</choose>
 	</select>
+
+	<!--特殊关怀First -->
+	<select id="findCareFirstBylimit" resultType="CcmPeople">
+		SELECT
+		a.id AS "id"
+		FROM ccm_people a
+		<include refid="ccmPeopleJoinsNet"/>
+		<where>
+			(
+			a.special_care_type !=''
+			AND a.special_care_type IS not NULL
+			AND a.special_care_type !=',null,'
+			)
+			<!-- AND a.del_flag = #{DEL_FLAG_NORMAL} -->
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+		Limit #{minnum},#{maxnum};
+	</select>
+
 	<!--特殊关怀 -->
 	<select id="findCareList" resultType="CcmPeople">
 		SELECT
@@ -668,6 +694,50 @@
 			</otherwise>
 		</choose>
 	</select>
+
+	<!--特殊关怀 -->
+	<select id="findCareListBylimit" resultType="CcmPeople">
+		SELECT
+		a.id AS "id"
+		FROM ccm_people a
+		<include refid="ccmPeopleJoinsNet"/>
+		<where>
+			<if test="specialCareTypes != null and specialCareTypes.length > 0">
+				(
+				<foreach collection="specialCareTypes" item="m" separator=" OR ">
+					<if test="m != null and m != ''">
+						a.special_care_type LIKE concat('%',#{m},'%')
+					</if>
+				</foreach>
+				)
+			</if>
+			<!-- AND a.del_flag = #{DEL_FLAG_NORMAL} -->
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="sex != null and sex != ''">
+				AND a.sex = #{sex}
+			</if>
+			<if test="areaComId != null and areaComId.id != null and areaComId.id != ''">
+				AND a.area_com_id = #{areaComId.id}
+			</if>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+		Limit #{minnum},#{maxnum};
+	</select>
+
+
 	<!-- 特殊关怀人员数量 -->
 	<select id="findListNum" resultType="int">
 		SELECT
@@ -2800,15 +2870,15 @@
 		LEFT JOIN ccm_place_org_people b ON a.id = b.people_id
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			AND a.id not in ( SELECT people_id FROM ccm_place_org_people )
+			AND b.people_id is null
 			<if test="residencedetail != null and residencedetail != ''">
 				AND a.residencedetail LIKE
 				<if test="dbName == 'oracle'">'%'||#{residencedetail}||'%'</if>
 				<if test="dbName == 'mssql'">'%'+#{residencedetail}+'%'</if>
-				<if test="dbName == 'mysql'">concat('%',#{residencedetail},'%')</if>
+				<if test="dbName == 'mysql'">concat(#{residencedetail},'%')</if>
 			</if>
 			<if test="ident != null and ident != ''">
-				AND a.ident LIKE '%${ident}%'
+				AND a.ident LIKE '${ident}%'
 			</if>
 			<if test="name != null and name != ''">
 				AND a.name LIKE
@@ -2817,14 +2887,15 @@
 				<if test="dbName == 'mysql'">concat(#{name},'%')</if>
 			</if>
 		</where>
-		<choose>
+		<!--<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
 				ORDER BY a.update_date DESC
 			</otherwise>
-		</choose>
+		</choose>-->
+		Limit #{minnum},#{maxnum};
 	</select>
 
 	<!--根据户主身份证号码查询户主下的人员数据-->

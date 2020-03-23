@@ -242,18 +242,18 @@ font-size:18px;
 						<div  class="title-fontsize">总人口变化趋势</div>
 					</div>
 					<div class="show height100 common-center">
-						<div class="row-fluid" style="height:82%">
+						<div class="row-fluid" style="height:100%">
 							<div class="span12 height100">
 							  <div class="common-pading">
 								<div id="popChangeArea" class="echarts" ></div>
 							</div>
 							</div>
 						</div>
-						<div class="row-fluid">
+						<%--<div class="row-fluid">
 							<div class="span12" style="text-align: left;margin-top: 5px;    padding-left: 10px;">
 							    <span   class="fontsize-common" style="color:#fff">预测人口：&nbsp;</span>下个月新增人口<span  class="fontsize-common">&nbsp;${subForecast}&nbsp;</span>人，总数达<span  class="fontsize-common">&nbsp;${forecast}&nbsp;</span>人
 							</div>
-						</div>
+						</div>--%>
 					</div>
 				</div>
 			</div>

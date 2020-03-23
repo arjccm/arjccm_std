@@ -37,12 +37,12 @@
 	<sys:message content="${message}"/>
 	    <br>
 	    <div class="row-fluid">
-		      <div class="span6" ><h4 >全部房屋状态类型统计</h4>
+		      <div class="span6 spEchar" ><h4 >全部房屋状态类型统计</h4>
 		      <div class="common-pading">
 					<div id="ccmPopTenantHouseType" class="echarts" ></div>
 				</div>
 		      </div>
-		      <div class="span6" ><h4 >全部房屋隐患类型统计</h4>
+		      <div class="span6 spEchar" ><h4 >全部房屋隐患类型统计</h4>
 		         <div class="common-pading">
 					<div id="ccmPopTenantHazard" class="echarts" ></div>
 				 </div>

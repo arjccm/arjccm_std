@@ -13,6 +13,7 @@ import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.CommUtil;
+import com.arjjs.ccm.tool.Pagecount;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -215,13 +216,22 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 		}
 		ccmPeople.setMore5(placeType);
 		ccmPeople.setMore3(placeOrgId);
+		Pagecount page = new Pagecount<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmPeople.setMaxnum(page.getPageSize());
 		// 查询 人员列表
-		Page<CcmPeople> page = ccmPeopleService.findPlaceOfPopAdd(new Page<CcmPeople>(request, response), ccmPeople);
+		List<CcmPeople> list = ccmPeopleService.findPlaceOfPopAdd(ccmPeople);
 		result.setCode(CcmRestType.OK);
-		if(page.getList()==null||page.getList().size()<=0) {
+		if(list.size()<=0) {
 			result.setResult("");
 		}else {
-			result.setResult(page.getList());
+			result.setResult(list);
 		}
 		return result;
 	}

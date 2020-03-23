@@ -3,7 +3,7 @@ var rmqUrl = ""
 var timer;
 var mqFlagKeyProple = true;
 function initRabbitMQKeyProple(){
-	alarmVerifyKeyProple();
+	// alarmVerifyKeyProple();
 	// RaMqKeyProple();
 }
 function connectStatusHandlerKeyProple(connected) {

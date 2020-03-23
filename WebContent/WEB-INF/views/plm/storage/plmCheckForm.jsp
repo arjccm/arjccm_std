@@ -88,8 +88,15 @@
 		<li><a style="width: 140px;text-align:center" href="${ctx}/storage/plmCheck/">盘点单列表</a></li>
 		<li class="active" style="width: 140px"><a class="nav-head" id="checkForm"
 			href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}">盘点单<shiro:hasPermission
-					name="storage:plmCheck:edit">${not empty plmCheck.id?'查看':'添加'}</shiro:hasPermission>
-				<shiro:lacksPermission name="storage:plmCheck:edit">查看</shiro:lacksPermission></a></li>
+					name="storage:plmCheck:edit">
+			<c:if test="${empty plmCheck.id || plmCheck.status == '1'}">
+				${not empty plmCheck.id?'修改':'添加'}
+			</c:if>
+			<c:if test="${!empty plmCheck.id && plmCheck.status != '1'}">
+				${not empty plmCheck.id?'查看':'添加'}
+			</c:if>
+
+		</shiro:hasPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="plmCheck"
 		action="${ctx}/storage/plmCheck/save" method="post"

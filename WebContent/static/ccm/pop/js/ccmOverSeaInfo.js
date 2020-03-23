@@ -60,7 +60,7 @@ $(function() {
 			}
 			// 生成图表
 			$.myChartPeople(title1, ajaxDataX1, seriesDate1, myChart1,"境外人数",40,areaToContent);
-			$.myChartPeople(title2, ajaxDataX2, seriesDate2, myChart2,"境外人数",0,optionToContent);
+			$.myChartPeople(title2, ajaxDataX2, seriesDate2, myChart2,"境外人数变化趋势",0,optionToContent);
 			// 生成 表单
 			$.TableListPeople("echList1", ajaxDataYALL1, ajaxDataX1);
 			$.TableListPeople("echList2", ajaxDataYALL2, ajaxDataX2);

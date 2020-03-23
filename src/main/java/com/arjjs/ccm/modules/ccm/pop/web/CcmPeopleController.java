@@ -358,9 +358,19 @@ public class CcmPeopleController extends BaseController {
 	@RequestMapping(value = "listCareFirst")
 	public String listCareFirst(CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
-		Page<CcmPeople> page = ccmPeopleService.findCareFirst(new Page<CcmPeople>(request, response), ccmPeople);
+//		Page<CcmPeople> page = ccmPeopleService.findCareFirst(new Page<CcmPeople>(request, response), ccmPeople);
+		Pagecount page = new Pagecount<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmPeople.setMaxnum(page.getPageSize());
+		List<CcmPeople> list = ccmPeopleService.findCareFirstBylimit(ccmPeople);
 		// 数组查询id
-		List<CcmPeople> list = page.getList();
+//		List<CcmPeople> list = page.getList();
 		CcmPeople ccmPeople2 = new CcmPeople();
 		String[] listLimite = new String[list.size()];
 		if (list.size() > 0) {
@@ -401,9 +411,20 @@ public class CcmPeopleController extends BaseController {
 			}
 			ccmPeople.setSpecialCareTypes(specialCareTypes);
 		}
-		Page<CcmPeople> page = ccmPeopleService.findCarePage(new Page<CcmPeople>(request, response), ccmPeople);
+		Pagecount page = new Pagecount<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmPeople.setMaxnum(page.getPageSize());
+//		Page<CcmPeople> page = ccmPeopleService.findCarePage(new Page<CcmPeople>(request, response), ccmPeople);
+		List<CcmPeople> list = ccmPeopleService.findCareListBylimit(ccmPeople);
+
 		// 数组查询id
-		List<CcmPeople> list = page.getList();
+//		List<CcmPeople> list = page.getList();
 		CcmPeople ccmPeople2 = new CcmPeople();
 		String[] listLimite = new String[list.size()];
 		if (list.size() > 0) {
