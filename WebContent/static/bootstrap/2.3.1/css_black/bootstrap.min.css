@@ -424,27 +424,9 @@ a:hover, a:focus {
 }
 
 .row-fluid .span6 {
-	 width: 47.8vw;
-	margin: 20px 0 0 20px!important;
-	background: none!important;
-	box-shadow: inset 0px 0px 15px 0px #1684c2;
+	width: 48.93617021276595%;
+	*width: 48.88297872340425%;
  }
-.row-fluid .span6>.common-pading{
-	width: calc(47.8vw - 30px);
-	height: calc(34.62vh + 1px);
-	margin:0 15px 15px 15px;
-
-}
-.row-fluid .span6>.common-pading>div{
-	height: 34.62vh!important;
-}
-.row-fluid .span6 h4{
-	height: 40px;
-	background: rgba(6,86,137,1);
-	padding-left: 50px;
-	line-height: 40px;
-	width: calc(47.8vw - 50px);
-}
 
 .row-fluid .span5 {
 	width: 40.42553191489362%;
