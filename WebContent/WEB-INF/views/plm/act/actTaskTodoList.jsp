@@ -24,6 +24,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<form:form id="searchForm" modelAttribute="act" action="${ctx}/act/taskSelf/todo/" method="get" class="breadcrumb form-search">
 		<ul class="ul-form">
 			<li><label>开始日期：</label>
@@ -40,7 +41,7 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>标题</th>
@@ -99,5 +100,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+</div>
 </body>
 </html>
