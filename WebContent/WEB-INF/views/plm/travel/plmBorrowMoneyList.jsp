@@ -72,6 +72,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<form:form id="searchForm" modelAttribute="plmBorrowMoney" action="${ctx}/travel/plmBorrowMoney/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
@@ -101,8 +102,13 @@
 		<a class="thumbnailbtn"><i class="icon-th "></i></a>&nbsp; <a
 			class="listbtn"> <i class="icon-th-list "></i></a>
 	</div>
+<%--	<!-- 列表缩略图切换按钮 -->--%>
+<%--	<div id="switchbtn" style="margin-top: 35px;margin-right: 100px">--%>
+<%--		<a class="thumbnailbtn"><i class="icon-th "></i></a>&nbsp; <a--%>
+<%--			class="listbtn" style="margin-right: 20px"> <i class="icon-th-list2 "></i></a>--%>
+<%--	</div>--%>
 	<div id="prodInfo_List">
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>标题</th>
@@ -202,6 +208,7 @@
 			</c:forEach>
 		</div>
 	</div>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
