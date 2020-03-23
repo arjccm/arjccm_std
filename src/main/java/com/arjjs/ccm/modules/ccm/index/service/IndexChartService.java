@@ -79,7 +79,7 @@ public class IndexChartService {
 			t.append("-");
 			t.append(dateCalendar.get(Calendar.MONTH) + 1);
 			dateCalendar.add(Calendar.MONTH, 1);
-			if (flag && t.toString().equals(list.get(count).getType())) {
+			if (flag && list.size()>0 && t.toString().equals(list.get(count).getType())) {
 				result.add(list.get(count));
 				if (count == list.size() - 1) {
 					flag = false;

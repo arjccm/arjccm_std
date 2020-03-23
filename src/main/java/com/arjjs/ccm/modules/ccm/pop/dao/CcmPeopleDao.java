@@ -72,9 +72,15 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 	//特殊关怀First
 	public List<CcmPeople> findCareFirst(CcmPeople ccmPeople);
 
+	//特殊关怀First
+	public List<CcmPeople> findCareFirstBylimit(CcmPeople ccmPeople);
+
 	//特殊关怀
 	public List<CcmPeople> findCareList(CcmPeople ccmPeople);
-	
+
+	//特殊关怀
+	public List<CcmPeople> findCareListBylimit(CcmPeople ccmPeople);
+
 	//房屋人口添加
 	public List<CcmPeople> housePopListAdd(CcmPeople ccmPeople);
 	
