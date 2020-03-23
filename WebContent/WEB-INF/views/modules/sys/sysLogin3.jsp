@@ -49,9 +49,9 @@
 		
 		.mid {
 			color: #fff;
-			font-size: 28px;
+			font-size: 24px;
 			line-height: 23px;
-			margin-left: 60px;
+			margin-left: 36px;
 			font-weight: 600;
 			vertical-align: middle;
 		}
@@ -155,7 +155,7 @@
 		}
 		.img-bj2{
 			position: absolute;
-			top: 161px;
+			top: 160px;
 			right: 268px;
 		}
     </style>
@@ -234,7 +234,7 @@
 		<c:if test="${isValidateCodeLogin}">
 			<div class="validateCode">
 				<label class="mid" for="validateCode">验证码：</label>
-				<sys:validateCode name="validateCode" inputCssStyle="margin-bottom:0;" />
+				<sys:validateCode1 name="validateCode" inputCssStyle="margin-bottom:0;width: 85px;" />
 			</div>
 		</c:if>
 		<input class="btn btn-large btn-primary" type="submit" value="登&nbsp;&nbsp;&nbsp;&nbsp;录" />
