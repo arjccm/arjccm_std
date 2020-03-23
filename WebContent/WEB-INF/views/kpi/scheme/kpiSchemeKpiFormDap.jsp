@@ -121,7 +121,7 @@
 		<div class="control-group">
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>KPI分数：</label>
 			<div class="controls">
-				<form:input path="score" htmlEscape="false" class="input-xlarge required number"/>
+				<form:input path="score" htmlEscape="false" maxlength="4" class="input-xlarge required number"/>
 			</div>
 		</div>
 		<div class="control-group">

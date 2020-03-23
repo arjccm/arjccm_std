@@ -25,7 +25,7 @@ $(document).ready(function() {
 				"type2" : no2Type,
 				"purposeType":purposeType
 			}, function() {
-				$("#type2").val(no2Type).select2();
+				$("#type2").val("").select2();
 			});
 		}else{
 			$("#type2").load(ctx + "/service/ccmCommunityWork/selectType", {
@@ -38,10 +38,18 @@ $(document).ready(function() {
 		
 	});
 	
-	/*// 二级分类变动事件
-	$("#type2").off().on("change", function() {
+	// 二级分类变动事件
+	/*$("#type2").off().on("change", function() {
 		var index = document.getElementById("type2").selectedIndex;//获取当前选择项的索引.
 		var data = document.getElementById("type2").options[index].text;//获取当前选择项的值.
 		console.info(data);
 	});*/
+	$("#type2").off().on("change", function() {
+		if($("#type1").val()==""){//判断一级分类为全部时二级分类也显示全部
+			top.$.jBox.tip('请选择第一类别');
+			$("#type2").val("").select2();
+		}
+	});
+
+
 });
