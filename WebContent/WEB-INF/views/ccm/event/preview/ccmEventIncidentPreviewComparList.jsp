@@ -129,7 +129,7 @@
 
 					<shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
 						<td style="height: 50px"><a class="btnList"
-							onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/check/form?idA=${CcmEventIncidentSimilarty.eventA.id}&idB=${CcmEventIncidentSimilarty.eventB.id}', '编辑', '1200px', '600px')"
+							onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/check/form?idA=${CcmEventIncidentSimilarty.eventA.id}&idB=${CcmEventIncidentSimilarty.eventB.id}', '对比', '1200px', '600px')"
 							title="对比"><i class="icon-eye-close"></i></a>
 					</shiro:hasPermission>
 				</tr>
