@@ -46,4 +46,7 @@ public interface CcmEventCasedealDao extends CrudDao<CcmEventCasedeal> {
 	List<CcmEventCasedeal> findListByEventId(CcmEventIncident ccmEventIncident);
 
     List<CcmEventCasedeal> detectDeadline();
+
+    int deletegrade(String id);
+
 }
