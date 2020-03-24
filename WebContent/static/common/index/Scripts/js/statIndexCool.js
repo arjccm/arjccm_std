@@ -3817,7 +3817,7 @@ function showSafetyAccident() {
         }],
         tooltip: {
             show: true,
-            trigger: 'item'
+            // trigger: 'item'
         },
         grid: {
             left: '6%',
@@ -3891,9 +3891,11 @@ function showSafetyAccident() {
                     }
                 },
                 tooltip: {
-                    trigger: 'item',
-                    formatter: "{b} : {c}<br/> ({d}%)",
-                    position: ['65%', '65%'],
+                    formatter: function () {
+                        var none =""
+                        return none
+                    }
+                    // position: ['65%', '65%'],
                 },
                 data: arr1
             },
@@ -3901,6 +3903,13 @@ function showSafetyAccident() {
             Object.assign({}, piebg, {
                 radius: ['0', '51'],
                 center: ['20%', '22%'],
+                tooltip: {
+                    formatter: function () {
+                        var none =""
+                        return none
+                    }
+                    // position: ['65%', '65%'],
+                },
                 itemStyle: {
                     normal: {
                         color: {
@@ -3945,16 +3954,29 @@ function showSafetyAccident() {
                         },
                     }
                 },
+                // tooltip: {
+                    // trigger: 'item',
+                    // formatter: "{b} : {c}<br/> ({d}%)"
+                    // position: ['65%', '65%']
+
+                // },
                 tooltip: {
-                    trigger: 'item',
-                    formatter: "{b} : {c}<br/> ({d}%)",
-                    position: ['65%', '65%']
+                    formatter: function () {
+                        var none =""
+                        return none
+                    }
                 },
                 data: arr2
             },
             Object.assign({}, piebg, {
                 radius: ['0', '51'],
                 center: ['50%', '22%'],
+                tooltip: {
+                    formatter: function () {
+                        var none =""
+                        return none
+                    }
+                },
                 itemStyle: {
                     normal: {
                         color: {
@@ -3988,10 +4010,17 @@ function showSafetyAccident() {
                 radius: [0, 40],
                 roseType: 'radius',
                 center: ['80%', '22%'],
+                // tooltip: {
+                //     // trigger: 'item',
+                //     formatter: "{b} : {c}<br/> ({d}%)"
+                //     // position: ['65%', '65%']
+                // },
                 tooltip: {
-                    trigger: 'item',
-                    formatter: "{b} : {c}<br/> ({d}%)",
-                    position: ['65%', '65%']
+                    formatter: function () {
+                        var none =""
+                        return none
+                    }
+                    // position: ['65%', '65%'],
                 },
                 itemStyle: {
                     normal: {
@@ -4009,6 +4038,13 @@ function showSafetyAccident() {
             Object.assign({}, piebg, {
                 radius: ['0', '51'],
                 center: ['80%', '22%'],
+                tooltip: {
+                    formatter: function () {
+                        var none =""
+                        return none
+                    }
+                    // position: ['65%', '65%'],
+                },
                 itemStyle: {
                     normal: {
                         color: {
