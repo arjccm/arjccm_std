@@ -20,4 +20,6 @@ public interface CcmWorkerAttendanceDao extends CrudDao<CcmWorkerAttendance> {
 	public List<CcmWorkerAttendance> getcountPage(CcmWorkerAttendance ccmWorkerAttendance);
 
 	CcmWorkerAttendance getByapplyId(String id);
+
+	List<CcmWorkerAttendance> findPageByCreateBy(CcmWorkerAttendance ccmWorkerAttendance);
 }

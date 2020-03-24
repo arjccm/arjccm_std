@@ -80,10 +80,9 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label">发起部门：</label>
+						<label class="control-label">专项工作计划：</label>
 						<div class="controls">
-							<sys:treeselect id="office" name="office.id" value="${ccmKnowKeyJob.office.id}" labelName="office.name" labelValue="${ccmKnowKeyJob.office.name}"
-											title="部门" url="/sys/office/treeData?type=2" cssClass="" allowClear="true" notAllowSelectParent="fasle"/>
+							<form:textarea path="plan" htmlEscape="false" rows="4" maxlength="512" class="input-xxlarge "/>
 						</div>
 					</div>
 				</td>
@@ -98,10 +97,11 @@
 			</tr>
 			<tr>
 				<td>
+
 					<div class="control-group">
-						<label class="control-label">专项工作计划：</label>
+						<label class="control-label">备注信息：</label>
 						<div class="controls">
-							<form:textarea path="plan" htmlEscape="false" rows="4" maxlength="512" class="input-xxlarge "/>
+							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
 						</div>
 					</div>
 				</td>
@@ -117,17 +117,6 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label">备注信息：</label>
-						<div class="controls">
-							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
-						</div>
-					</div>
-				</td>
-
-			</tr>
-			<tr>
-				<td>
-					<div class="control-group">
 						<label class="control-label">附件：</label>
 						<div class="controls">
 							<form:hidden id="file" path="file" htmlEscape="false" maxlength="256" class="input-xlarge"/>
@@ -135,6 +124,17 @@
 						</div>
 					</div>
 				</td>
+				<td>
+					<div class="control-group">
+					<label class="control-label">发起部门：</label>
+					<div class="controls">
+						<sys:treeselect id="office" name="office.id" value="${ccmKnowKeyJob.office.id}" labelName="office.name" labelValue="${ccmKnowKeyJob.office.name}"
+										title="部门" url="/sys/office/treeData?type=2" cssClass="" allowClear="true" notAllowSelectParent="fasle"/>
+					</div>
+				</div>
+
+				</td>
+
 			</tr>
 		</table>
 		<div class="control-group">
