@@ -227,6 +227,23 @@
 			left: -100px;
 			height: 670px;
 		}
+		.gbClose{
+			position: relative;
+			top: -2px;
+			right: -21px;
+			line-height: 20px;
+			padding: 0;
+			cursor: pointer;
+			background: transparent;
+			border: 0;
+			-webkit-appearance: none;
+			color: #fff;
+			opacity: 0.8;
+			float: right;
+			font-size: 20px;
+			font-weight: bold;
+			text-shadow: 0 1px 0 #fff!;
+		}
     </style>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -243,20 +260,23 @@
 					error.appendTo($("#loginError").parent());
 				} 
 			});
-
+			$(".gbClose").click(function () {
+			   $("#messageBox").hide();
+            })
 		});
 		// 如果在框架或在对话框中，则弹出提示并跳转到首页
 		if(self.frameElement && self.frameElement.tagName == "IFRAME" || $('#left').length > 0 || $('.jbox').length > 0){
 			alert('未登录或登录超时。请重新登录，谢谢！');
 			top.location = "${ctx}";
 		}
+
 	</script>
 </head>
 <body>
 	<!--[if lte IE 6]><br/><div class='alert alert-block' style="text-align:left;padding-bottom:10px;"><a class="close" data-dismiss="alert">x</a><h4>温馨提示：</h4><p>你使用的浏览器版本过低。为了获得更好的浏览体验，我们强烈建议您 <a href="http://browsehappy.com" target="_blank">升级</a> 到最新版本的IE浏览器，或者使用较新版本的 Chrome、Firefox、Safari 等。</p></div><![endif]-->
 	<div class="header">
 		<div id="messageBox" class="alert alert-error ${empty message ? 'hide' : ''}">
-			<button data-dismiss="alert" class="close">×</button>
+			<button  class="gbClose">×</button>
 			<label id="loginError" class="error">${message}</label>
 		</div>
 	</div>

@@ -8,6 +8,7 @@ import com.arjjs.ccm.common.service.CrudService;
 import com.arjjs.ccm.modules.ccm.attendanceapply.dao.CcmWorkerAttendanceApplyDao;
 import com.arjjs.ccm.modules.ccm.attendanceapply.entity.CcmWorkerAttendanceApply;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,9 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 public class CcmWorkerAttendanceApplyService extends CrudService<CcmWorkerAttendanceApplyDao, CcmWorkerAttendanceApply> {
+
+	@Autowired
+	private CcmWorkerAttendanceApplyDao ccmWorkerAttendanceApplyDao;
 
 	public CcmWorkerAttendanceApply get(String id) {
 		return super.get(id);
@@ -50,5 +54,17 @@ public class CcmWorkerAttendanceApplyService extends CrudService<CcmWorkerAttend
 	public void delete(CcmWorkerAttendanceApply ccmWorkerAttendanceApply) {
 		super.delete(ccmWorkerAttendanceApply);
 	}
-	
+
+	public Page<CcmWorkerAttendanceApply> findPageByOffice(Page<CcmWorkerAttendanceApply> page, CcmWorkerAttendanceApply ccmWorkerAttendanceApply) {
+		if(UserUtils.getUser().getId()!=null){
+			ccmWorkerAttendanceApply.getSqlMap().put("dsf", dataScopeFilter( UserUtils.getUser(), "c", "b"));
+		} else {
+			if(ccmWorkerAttendanceApply.getCurrentUser().getId()!=null){
+				ccmWorkerAttendanceApply.getSqlMap().put("dsf", dataScopeFilter( ccmWorkerAttendanceApply.getCurrentUser(), "c", "b"));
+			}
+		}
+		ccmWorkerAttendanceApply.setPage(page);
+		page.setList(ccmWorkerAttendanceApplyDao.findPageByOffice(ccmWorkerAttendanceApply));
+		return page;
+	}
 }

@@ -62,5 +62,10 @@ public class CcmWorkerAttendanceService extends CrudService<CcmWorkerAttendanceD
 	public CcmWorkerAttendance getByapplyId(String applyId){
 		return ccmWorkerAttendanceDao.getByapplyId(applyId);
 	}
-			
+
+	public Page<CcmWorkerAttendance> findPageByCreateBy(Page<CcmWorkerAttendance> page, CcmWorkerAttendance ccmWorkerAttendance) {
+		ccmWorkerAttendance.setPage(page);
+		page.setList(ccmWorkerAttendanceDao.findPageByCreateBy(ccmWorkerAttendance));
+		return page;
+	}
 }
