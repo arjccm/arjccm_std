@@ -3246,7 +3246,7 @@ ArjMap.Map.prototype={
 								//如果为视频，则添加播放功能
 								html += '<tr>';
 								html += '<td class="td_color"><strong>视频监控：</strong></td>';
-								html += '<td><a class="videoPlay btn btn-success"  href="###" videoIp="'+ data[i].get('video')['ip']+'"  videoId="'+ data[i].get('video')['id']+ '" >' +
+								html += '<td><a class="videoPlay"  href="###" videoIp="'+ data[i].get('video')['ip']+'"  videoId="'+ data[i].get('video')['id']+ '" >' +
 									'<button class="btn btn-success" style="width: 78px;\n' +
 									'    height: 30px;\n' +
 									'    background-color: #5bb75b;\n' +

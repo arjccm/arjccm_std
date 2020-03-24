@@ -22,9 +22,10 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/patrol/ccmPatrolMissions/arrangement">巡逻任务安排</a></li>
-		<li class="active"><a href="${ctx}/patrol/ccmPatrolUnit/">巡逻单位任务列表</a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/patrol/ccmPatrolMissions/arrangement">巡逻任务安排</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/patrol/ccmPatrolUnit/">巡逻单位任务列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPatrolUnit" action="${ctx}/patrol/ccmPatrolUnit/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -59,7 +60,7 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 		<tr>
 			<th>巡逻民警</th>
@@ -112,6 +113,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

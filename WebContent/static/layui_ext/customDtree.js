@@ -17,8 +17,9 @@ layui.extend({dtree: ctxStatic+'/layui_ext/dtree/dtree'}).use(['layer', 'dtree',
 			$(this).html('<input id="'+$(this).attr('id')+'Id" name="'+$(this).attr('name')+'" type="hidden"><input type="text" id="'+$(this).attr('id')+'Name" name="'+$(this).attr('labelName')+'" readonly="readonly" class="'+$(this).attr('cssClass')+'" style="'+$(this).attr('cssStyle')+'"><a href="javascript:" style="font-size:x-large;" class="btn" >&nbsp;<i class="icon-search"></i>&nbsp;</a>&nbsp;&nbsp;');
 		}
 	});
-	$(".openTree_btn >input,.openTree_btn > a ").click(function(e) {
-		var $thisclick = $(this).parent();
+	$(".openTree_btn").click(function(e) {
+
+		var $thisclick = $(this);
 		layer.open({
 			type: 1,
 			//type:0 也行

@@ -528,6 +528,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
 	 -moz-transition: border linear .2s, box-shadow linear .2s !important;
 	 -o-transition: border linear .2s, box-shadow linear .2s !important;
  }
+
  .select2-container .select2-choice{
 	    color: #fafafa!important;
 	    background-color:#0b486f!important;
@@ -1557,5 +1558,11 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
      border: 1px solid #00cccc!important;
      background-color: #0b486f!important;
      color: #fff!important;
+ }
+ /* 文本框自动填充样式修改 */
+ input:-webkit-autofill {
+     box-shadow: 0 0 0px 1000px #0b486f inset !important;
+     text-fill-color: #fafafa;
+     -webkit-text-fill-color: white;
  }
 
