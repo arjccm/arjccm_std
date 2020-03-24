@@ -1,12 +1,16 @@
 package com.arjjs.ccm.modules.ccm.pop.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
+import com.arjjs.ccm.tool.CommUtil;
 import com.arjjs.ccm.tool.Pagecount;
+import org.apache.http.HttpResponse;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -271,9 +275,9 @@ public class CcmWorkController extends BaseController {
 
 	@RequiresPermissions("pop:ccmWork:edit")
 	@RequestMapping(value = "save/residence")
-	public String saveByResidence(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes) {
+	public void saveByResidence(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes, HttpServletResponse response) {
 		if (!beanValidator(model, ccmPeople)) {
-			return form(ccmPeople, model);
+			//return form(ccmPeople, model);
 		}
 		// 注入楼栋id
 		if (ccmPeople.getRoomId() != null && ccmPeople.getRoomId().getId() != null
@@ -285,14 +289,21 @@ public class CcmWorkController extends BaseController {
 			}
 		}
 		ccmPeopleService.save(ccmPeople);
-		addMessage(redirectAttributes, "保存户籍人口成功");
-		return "redirect:" + Global.getAdminPath() + "/pop/ccmWork/list/10?repage";
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		CommUtil.openWinExpDiv(out,"保存户籍人口成功");
+		//addMessage(redirectAttributes, "保存户籍人口成功");
+		//return "redirect:" + Global.getAdminPath() + "/pop/ccmWork/list/10?repage";
 	}
 	@RequiresPermissions("pop:ccmWork:edit")
 	@RequestMapping(value = "save/flow")
-	public String saveByFlow(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes) {
+	public void saveByFlow(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmPeople)) {
-			return form(ccmPeople, model);
+			//return form(ccmPeople, model);
 		}
 		// 注入楼栋id
 		if (ccmPeople.getRoomId() != null && ccmPeople.getRoomId().getId() != null
@@ -304,14 +315,21 @@ public class CcmWorkController extends BaseController {
 			}
 		}
 		ccmPeopleService.save(ccmPeople);
-		addMessage(redirectAttributes, "保存流动人口成功");
-		return "redirect:" + Global.getAdminPath() + "/pop/ccmWork/list/20?repage";
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		CommUtil.openWinExpDiv(out,"保存流动人口成功");
+		//addMessage(redirectAttributes, "保存流动人口成功");
+		//return "redirect:" + Global.getAdminPath() + "/pop/ccmWork/list/20?repage";
 	}
 	@RequiresPermissions("pop:ccmWork:edit")
 	@RequestMapping(value = "save/overseas")
-	public String saveByOverseas(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes) {
+	public void saveByOverseas(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmPeople)) {
-			return form(ccmPeople, model);
+			//return form(ccmPeople, model);
 		}
 		// 注入楼栋id
 		if (ccmPeople.getRoomId() != null && ccmPeople.getRoomId().getId() != null
@@ -323,14 +341,21 @@ public class CcmWorkController extends BaseController {
 			}
 		}
 		ccmPeopleService.save(ccmPeople);
-		addMessage(redirectAttributes, "保存境外人口成功");
-		return "redirect:" + Global.getAdminPath() + "/pop/ccmWork/list/30?repage";
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		CommUtil.openWinExpDiv(out,"保存境外人口成功");
+		//addMessage(redirectAttributes, "保存境外人口成功");
+		//return "redirect:" + Global.getAdminPath() + "/pop/ccmWork/list/30?repage";
 	}
 	@RequiresPermissions("pop:ccmWork:edit")
 	@RequestMapping(value = "save/noSettle")
-	public String saveByNoSettle(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes) {
+	public void saveByNoSettle(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmPeople)) {
-			return form(ccmPeople, model);
+			//return form(ccmPeople, model);
 		}
 		// 注入楼栋id
 		if (ccmPeople.getRoomId() != null && ccmPeople.getRoomId().getId() != null
@@ -342,8 +367,15 @@ public class CcmWorkController extends BaseController {
 			}
 		}
 		ccmPeopleService.save(ccmPeople);
-		addMessage(redirectAttributes, "保存未落户人口成功");
-		return "redirect:" + Global.getAdminPath() + "/pop/ccmWork/list/40?repage";
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		CommUtil.openWinExpDiv(out,"保存未落户人口成功");
+		//addMessage(redirectAttributes, "保存未落户人口成功");
+		//return "redirect:" + Global.getAdminPath() + "/pop/ccmWork/list/40?repage";
 	}
 
 	@RequiresPermissions("pop:ccmWork:edit")
