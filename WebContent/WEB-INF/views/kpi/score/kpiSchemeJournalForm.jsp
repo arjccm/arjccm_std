@@ -55,53 +55,85 @@
 	</ul>
 	<form:form id="inputForm" modelAttribute="kpiSchemeJournal" action="${ctx}/score/kpiSchemeJournal/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>		
-		<div class="control-group head_Space" >
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>被考核人：</label>
-			<div class="controls">
-				<sys:treeselect id="user" name="user.id" value="${kpiSchemeJournal.user.id}" labelName="user.name" labelValue="${kpiSchemeJournal.user.name}"
-					title="用户" url="/sys/office/treeData?type=3" cssClass="" allowClear="true" notAllowSelectParent="true"/>
-				<lable id="show1"></lable>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>分数：</label>
-			<div class="controls">
-				<form:input path="score" id="score" htmlEscape="false" class="input-xlarge required number"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>事由：</label>
-			<div class="controls">
-				<form:textarea path="reson" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge required"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>通报日期：</label>
-			<div class="controls">
-				<input name="notifyDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-					value="<fmt:formatDate value="${kpiSchemeJournal.notifyDate}" pattern="yyyy-MM-dd"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>通报形式：</label>
-			<div class="controls">
-				<form:input path="notifyType" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>通报人姓名：</label>
-			<div class="controls">
-				<form:input path="notifyStaffName" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">备注信息：</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
-			</div>
-		</div>
+		<sys:message content="${message}"/>
+	<table>
+		<tr>
+			<td>
+				<div class="control-group head_Space" >
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>被考核人：</label>
+					<div class="controls">
+						<sys:treeselect id="user" name="user.id" value="${kpiSchemeJournal.user.id}" labelName="user.name" labelValue="${kpiSchemeJournal.user.name}"
+										title="用户" url="/sys/office/treeData?type=3" cssClass="" allowClear="true" notAllowSelectParent="true"/>
+						<lable id="show1"></lable>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>分数：</label>
+					<div class="controls">
+						<form:input path="score" id="score" htmlEscape="false" class="input-xlarge required number"/>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>通报日期：</label>
+					<div class="controls">
+						<input name="notifyDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+							   value="<fmt:formatDate value="${kpiSchemeJournal.notifyDate}" pattern="yyyy-MM-dd"/>"
+							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>通报形式：</label>
+					<div class="controls">
+						<form:input path="notifyType" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>事由：</label>
+					<div class="controls">
+						<form:textarea path="reson" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge required"/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">备注信息：</label>
+					<div class="controls">
+						<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>通报人姓名：</label>
+					<div class="controls">
+						<form:input path="notifyStaffName" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+					</div>
+				</div>
+			</td>
+
+		</tr>
+	</table>
+
+
+
+
+
+
+
 		<div class="form-actions">
 			<shiro:hasPermission name="score:kpiSchemeJournal:edit"><input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
