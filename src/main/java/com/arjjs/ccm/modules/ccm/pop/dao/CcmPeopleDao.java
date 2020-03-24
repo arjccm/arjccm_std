@@ -203,7 +203,7 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 	 * @param ident 户主身份证号码
 	 * @return
 	 */
-	List<CcmPeople> queryByIdent(@Param("ident")String ident);
+	List<CcmPeople> queryByIdent(@Param("accountidentity")String ident);
 
 	/**
 	 * 根据身份证号码查询该人员是否已存在

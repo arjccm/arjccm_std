@@ -417,25 +417,31 @@
 
         }
 
-        function isRepeat() {
-            let pident = $("#p_id_card").val();
-            if (pident != null && pident.trim().length > 0) {
+        function isRepeat(id) {
 
-                $.ajax({
-                    url: ctx + "/pop/ccmPeople/queryByPersonalIdent?pident=" + pident,
-                    type: "get",
-                    success: function (data) {
-                        if (data.length > 0) {
-                            layer.alert('该身份证号码已注册！！！', {
-                                title: "提示",
-                                skin: 'layui-layer-lan'
-                                ,closeBtn: 0,
-                                btn: "好的"
-                            });
+            // 新增
+            if (id.trim().length <= 0) {
+
+                let pident = $("#p_id_card").val();
+                if (pident != null && pident.trim().length > 0) {
+
+                    $.ajax({
+                        url: ctx + "/pop/ccmPeople/queryByPersonalIdent?pident=" + pident,
+                        type: "get",
+                        success: function (data) {
+                            if (data.length > 0) {
+                                layer.alert('该身份证号码已注册！！！', {
+                                    title: "提示",
+                                    skin: 'layui-layer-lan'
+                                    ,closeBtn: 0,
+                                    btn: "好的"
+                                });
+                            }
+
                         }
+                    })
+                }
 
-                    }
-                })
             }
 
         }
@@ -561,7 +567,7 @@
                     <label class="control-label"><span id="ident0"></span><span class="help-inline"><font
                             color="red">*</font></span>公民身份号码：</label>
                     <div class="controls">
-                        <form:input path="ident" id="p_id_card" onmouseout="isRepeat()" htmlEscape="false" maxlength="18"
+                        <form:input path="ident" id="p_id_card" onmouseout="isRepeat('${ccmPeople.id}')" htmlEscape="false" maxlength="18"
                                     class="input-xlarge required ident0 card"/>
                     </div>
                 </div>
