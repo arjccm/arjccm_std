@@ -7,6 +7,8 @@ import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.attendanceapply.entity.CcmWorkerAttendanceApply;
 
+import java.util.List;
+
 /**
  * 加班请假申请DAO接口
  * @author yi
@@ -14,5 +16,7 @@ import com.arjjs.ccm.modules.ccm.attendanceapply.entity.CcmWorkerAttendanceApply
  */
 @MyBatisDao
 public interface CcmWorkerAttendanceApplyDao extends CrudDao<CcmWorkerAttendanceApply> {
-	
+
+    List<CcmWorkerAttendanceApply> findPageByOffice(CcmWorkerAttendanceApply ccmWorkerAttendanceApply);
+
 }
