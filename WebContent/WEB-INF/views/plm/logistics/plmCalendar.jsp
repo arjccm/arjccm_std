@@ -202,10 +202,15 @@ function cal_onerror(type,data)
 }    
 function View(data)
 {   
-	if(data[9]==01){
+	/*if(data[9]==01){
 		var vurl="${ctx}/logistics/plmRoomMeetingApply/form?id="+data[0];
 	}else{
 		var vurl="${ctx}/logistics/plmRoomReceptionApply/form?id="+data[0];
+	}*/
+	if(data[9]==01){
+		var vurl="${ctx}/logistics/plmRoomMeetingApplyResource/form?id="+data[0];
+	}else{
+		var vurl="${ctx}/logistics/plmRoomMeetingApplyResource/form?id="+data[0];
 	}
 	if(data)
 	{   
