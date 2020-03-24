@@ -72,8 +72,15 @@ public class CcmWorkerAttendanceApplyController extends BaseController {
 	@RequiresPermissions("attendanceapply:ccmWorkerAttendanceApply:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(CcmWorkerAttendanceApply ccmWorkerAttendanceApply, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<CcmWorkerAttendanceApply> page = ccmWorkerAttendanceApplyService.findPage(new Page<CcmWorkerAttendanceApply>(request, response), ccmWorkerAttendanceApply);
-		model.addAttribute("page", page);
+		User user = UserUtils.getUser();
+		ccmWorkerAttendanceApply.setCreateBy(user);
+		if("1".equals(user.getId())){
+			Page<CcmWorkerAttendanceApply> page = ccmWorkerAttendanceApplyService.findPage(new Page<CcmWorkerAttendanceApply>(request, response), ccmWorkerAttendanceApply);
+			model.addAttribute("page", page);
+		}else{
+			Page<CcmWorkerAttendanceApply> page = ccmWorkerAttendanceApplyService.findPageByOffice(new Page<CcmWorkerAttendanceApply>(request, response), ccmWorkerAttendanceApply);
+			model.addAttribute("page", page);
+		}
 		model.addAttribute("type" , ccmWorkerAttendanceApply.getType());
 		return "ccm/attendance/ccmWorkerAttendanceApplyList";
 	}

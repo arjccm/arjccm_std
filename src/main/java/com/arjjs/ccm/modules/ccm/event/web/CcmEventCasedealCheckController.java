@@ -118,4 +118,18 @@ public class CcmEventCasedealCheckController extends BaseController {
 		return "redirect:" + Global.getAdminPath() + "/event/ccmEventCasedeal/?repage";
 	}
 
+	/**
+	 * @see
+	 * @param ccmEventCasedeal 事件删除评分
+	 * @param redirectAttributes
+	 * @return
+	 */
+	@RequiresPermissions("event:ccmEventCasedeal:edit")
+	@RequestMapping(value = "deletegrade")
+	public String deletegrade(CcmEventCasedeal ccmEventCasedeal, RedirectAttributes redirectAttributes) {
+		ccmEventCasedealService.deletegrade(ccmEventCasedeal.getId());
+		addMessage(redirectAttributes, "删除事件评分成功");
+		return "redirect:" + Global.getAdminPath() + "/event/ccmEventCasedealCheck/?repage";
+	}
+
 }

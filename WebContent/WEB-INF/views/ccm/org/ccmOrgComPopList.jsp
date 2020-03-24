@@ -55,18 +55,18 @@
 					<form:options items="${fns:getDictList('sys_volk')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</li>  -->
-			<li class="first-line"><label>政治面貌：</label>
-				<form:select path="politics" class="input-medium">
-					<form:option value="" label="全部"/>
-					<form:options items="${fns:getDictList('sys_ccm_poli_stat')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</li>
-			<li class="second-line"><label>学历：</label>
-				<form:select path="education" class="input-medium">
-					<form:option value="" label="全部"/>
-					<form:options items="${fns:getDictList('sys_ccm_degree')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</li>
+<%--			<li class="first-line"><label>政治面貌：</label>--%>
+<%--				<form:select path="politics" class="input-medium">--%>
+<%--					<form:option value="" label="全部"/>--%>
+<%--					<form:options items="${fns:getDictList('sys_ccm_poli_stat')}" itemLabel="label" itemValue="value" htmlEscape="false"/>--%>
+<%--				</form:select>--%>
+<%--			</li>--%>
+<%--			<li class="second-line"><label>学历：</label>--%>
+<%--				<form:select path="education" class="input-medium">--%>
+<%--					<form:option value="" label="全部"/>--%>
+<%--					<form:options items="${fns:getDictList('sys_ccm_degree')}" itemLabel="label" itemValue="value" htmlEscape="false"/>--%>
+<%--				</form:select>--%>
+<%--			</li>--%>
 			<!--<li><label>职务：</label>
 				<form:input path="service" htmlEscape="false" maxlength="30" class="input-medium"/>
 			</li>  -->
@@ -76,14 +76,14 @@
 			<li class="second-line"><label>手机号码：</label>
 				<form:input path="telephone" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
-			<li class="second-line"><label>出生开始日期：</label>
-				<input name="beginBirthday" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${ccmOrgComPop.beginBirthday}" pattern="yyyy-MM-dd"/>"
-					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/></li>
-				<li class="second-line"><label>出生结束日期：</label><input name="endBirthday" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${ccmOrgComPop.endBirthday}" pattern="yyyy-MM-dd"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
-			</li>
+<%--			<li class="second-line"><label>出生开始日期：</label>--%>
+<%--				<input name="beginBirthday" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"--%>
+<%--					value="<fmt:formatDate value="${ccmOrgComPop.beginBirthday}" pattern="yyyy-MM-dd"/>"--%>
+<%--					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/></li>--%>
+<%--				<li class="second-line"><label>出生结束日期：</label><input name="endBirthday" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"--%>
+<%--					value="<fmt:formatDate value="${ccmOrgComPop.endBirthday}" pattern="yyyy-MM-dd"/>"--%>
+<%--					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>--%>
+<%--			</li>--%>
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li> -->
 <%--			<li class="clearfix"></li>--%>
 		</ul>
@@ -98,14 +98,15 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
+				<th>照片</th>
 				<th>编号</th>
 				<th>所属机构</th>
 				<th>姓名</th>
 				<th>性别</th>
-				<th>民族</th>
-				<th>政治面貌</th>
+<%--				<th>民族</th>--%>
+<%--				<th>政治面貌</th>--%>
 				<th>证件号码</th>
-				<th>出生日期</th>
+<%--				<th>出生日期</th>--%>
 				<th>职务</th>
 				<th>手机号码</th>
 				<shiro:hasPermission name="org:ccmOrgComPop:edit"><th>操作</th></shiro:hasPermission>
@@ -114,6 +115,9 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmOrgComPop">
 			<tr>
+				<td style="height: 50px">
+					<img src="${ccmOrgComPop.images}" style="height:50px;" class="pimg"/>
+				</td>
 				<td style="height: 50px">
 					${ccmOrgComPop.code}
 				</td>
@@ -126,18 +130,18 @@
 				<td style="height: 50px">
 					${fns:getDictLabel(ccmOrgComPop.sex, 'sex', '')}
 				</td>
-				<td style="height: 50px">
-					${fns:getDictLabel(ccmOrgComPop.nation, 'sys_volk', '')}
-				</td>
-				<td style="height: 50px">
-					${fns:getDictLabel(ccmOrgComPop.politics, 'sys_ccm_poli_stat', '')}
-				</td>
+<%--				<td style="height: 50px">--%>
+<%--					${fns:getDictLabel(ccmOrgComPop.nation, 'sys_volk', '')}--%>
+<%--				</td>--%>
+<%--				<td style="height: 50px">--%>
+<%--					${fns:getDictLabel(ccmOrgComPop.politics, 'sys_ccm_poli_stat', '')}--%>
+<%--				</td>--%>
 				<td style="height: 50px">
 					${ccmOrgComPop.idenNum}
 				</td>
-				<td style="height: 50px">
-					<fmt:formatDate value="${ccmOrgComPop.birthday}" pattern="yyyy-MM-dd"/>
-				</td>
+<%--				<td style="height: 50px">--%>
+<%--					<fmt:formatDate value="${ccmOrgComPop.birthday}" pattern="yyyy-MM-dd"/>--%>
+<%--				</td>--%>
 				<td style="height: 50px">
 					${ccmOrgComPop.service}
 				</td>

@@ -311,7 +311,10 @@
 					AND a.handle_status = #{handleStatus}
 				</if>
 				<if test="evaluate == '1'.toString()">
-					AND a.check_user IS NOT NULL
+					AND a.grade_num &gt;0
+				</if>
+				<if test="evaluate == '0'.toString()">
+					AND a.grade_num = 0
 				</if>
 			</where>
 			
@@ -690,6 +693,12 @@
 	<update id="delete">
 		UPDATE ccm_event_casedeal SET 
 			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+
+	<update id="deletegrade">
+		UPDATE ccm_event_casedeal SET
+			grade_num = 0
 		WHERE id = #{id}
 	</update>
 

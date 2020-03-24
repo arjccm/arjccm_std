@@ -104,7 +104,7 @@ if($.cookie('theme')==undefined){
 				<label>处理单位：</label>
 				<!--class="openTree_btn"必填  treeUrl(请求接口路径  必填)，allowClear(是否有清除按钮  默认为  false )，treeTitle(树形标题名称  默认为 ‘请选择’)，
 				notAllowSelectParent(不能选择父节点  默认为false )，initLevel(展开层级1开始  默认为1)，rootParentId(设置跟节点ParentId 默认为0)-->
-				<button onclick="return false;" id="officeId" name="officeId" labelName="officeName"
+				<button id="officeId" name="officeId" labelName="officeName"
 					class="input-append openTree_btn"
 					treeUrl="/tree/officeTreeData" allowClear="true"
 					treeTitle="选择单位" notAllowSelectParent="true" initLevel="2"

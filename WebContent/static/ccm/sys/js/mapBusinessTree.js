@@ -2,10 +2,10 @@ $(function() {
 	/*-----------------------------------------------业务---------------------------------------------------------*/
 	var   businessList =[{id : "keyPerson",name : "重点人员楼栋",icon : ctxStatic + '/modules/map/images/mapBusiness/keyPerson3.png'},
 		                // {id : "keyPersonCountry",name : "重点人员分布",icon : ctxStatic + '/modules/map/images/mapBusiness/keyPersonCountry.png'}, 
-		                 {id : "keyPersonHandle",name : "重点人员管控",icon : ctxStatic + '/modules/map/images/mapBusiness/keyPersonHandle.png'}, 
+		                //  {id : "keyPersonHandle",name : "重点人员管控",icon : ctxStatic + '/modules/map/images/mapBusiness/keyPersonHandle.png'},
 		                 {id : "rentingPerson",name : "出租屋楼栋",icon : ctxStatic + '/modules/map/images/mapBusiness/rentingPerson.png'}, 
 		                 /*{id : "event",name : "案事件",icon : ctxStatic + '/modules/map/images/mapBusiness/event1.png'},*/
-		                 {id : "PopulationDensity",name : "人口密度",icon : ctxStatic + '/modules/map/images/mapBusiness/PopulationDensity.png'},
+		                 // {id : "PopulationDensity",name : "人口密度",icon : ctxStatic + '/modules/map/images/mapBusiness/PopulationDensity.png'},
 		               /*  {id : "PopLocation",name : "实时定位",icon : ctxStatic + '/modules/map/images/mapBusiness/PopLocation.png'} */
 		                
 		                ]                  

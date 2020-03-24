@@ -23,6 +23,7 @@
     </style>
 </head>
 <body>
+<div class="back-list">
 <input type="hidden" id="hasPermission" value="${fns:getUser().hasPermission}"/>
 <div class="context" content="${ctx}"></div>
 <ul class="nav nav-tabs">
@@ -32,8 +33,9 @@
 <div class="row-fluid">
     <div class="">
         <div class="help-inline">
-            <label class="control-label">开始时间:</label>
             <div class="controls">
+                <label class="control-label" style="color: #fafafa;font-size: 12px;margin-top: 17px">开始时间:</label>
+
                 <input type="text" id="startDate" onchange="changeDate()" readonly="readonly" class="input-medium Wdate"
                        onclick="WdatePicker()"/>
                 <label for="startDate" style="display: none;" class="error">开始时间不能大于结束时间</label>
@@ -41,15 +43,16 @@
 
         </div>
         <div class="help-inline">
-            <label class="control-label">结束时间:</label>
-            <div class="controls">
+
+            <div class="controls" >
+                <label class="control-label" style="color: #fafafa;font-size: 12px;margin-top: 17px">结束时间:</label>
                 <input type="text" id="endDate" onchange="changeDate()" readonly="readonly" class="input-medium Wdate" onclick="WdatePicker()"/>
                 <label for="endDate" style="display: none;" class="error">开始时间和结束时间不能超过10天</label>
             </div>
 
         </div>
-        <div class="help-inline" style="margin-top: 10px;">
-            <input class="btn btn-primary" type="button" onclick="changeCharData()" value="查询"/>
+        <div class="help-inline" style=" margin-top: 3px;padding-left: 20px">
+            <input class="btn btn-primary"  type="button" onclick="changeCharData()" value="查询"/>
             <%--<input class="btn btn-info export" type="button" value="导出测试"/>--%>
         </div>
     </div>
@@ -292,5 +295,6 @@
 
 
 </script>
+</div>
 </body>
 </html>

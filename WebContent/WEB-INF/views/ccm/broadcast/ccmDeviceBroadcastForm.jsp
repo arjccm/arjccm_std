@@ -80,11 +80,13 @@
 		<tr>
 			<td>
 				<div>
-					<label class="control-label">设备参数信息：</label>
+
+					<label class="control-label">版本：</label>
 					<div class="controls">
-						<form:textarea path="param" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
+						<form:input path="version" htmlEscape="false" maxlength="64" class="input-xlarge "/>
 					</div>
 				</div>
+
 			</td>
 			<td>
 				<div>
@@ -160,10 +162,9 @@
 
 			<td>
 				<div>
-
-					<label class="control-label">版本：</label>
+					<label class="control-label">设备参数信息：</label>
 					<div class="controls">
-						<form:input path="version" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+						<form:textarea path="param" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
 					</div>
 				</div>
 			</td>

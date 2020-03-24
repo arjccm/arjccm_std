@@ -377,7 +377,7 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
         ccmTenantRecord.setIdCard(ccmPeople.getIdent());
         ccmTenantRecord.setName(ccmPeople.getName());
         ccmTenantRecord.setPhoneNumber(ccmPeople.getTelephone());
-        if(UserUtils.getUser()==null){
+        if(StringUtils.isBlank(UserUtils.getUser().getId())){
             ccmTenantRecord.setCreateBy(UserUtils.get("1"));
             ccmTenantRecord.setUpdateBy(UserUtils.get("1"));
         }else{

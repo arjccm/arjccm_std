@@ -417,25 +417,31 @@
 
         }
 
-        function isRepeat() {
-            let pident = $("#p_id_card").val();
-            if (pident != null && pident.trim().length > 0) {
+        function isRepeat(id) {
 
-                $.ajax({
-                    url: ctx + "/pop/ccmPeople/queryByPersonalIdent?pident=" + pident,
-                    type: "get",
-                    success: function (data) {
-                        if (data.length > 0) {
-                            layer.alert('该身份证号码已注册！！！', {
-                                title: "提示",
-                                skin: 'layui-layer-lan'
-                                ,closeBtn: 0,
-                                btn: "好的"
-                            });
+            // 新增
+            if (id.trim().length <= 0) {
+
+                let pident = $("#p_id_card").val();
+                if (pident != null && pident.trim().length > 0) {
+
+                    $.ajax({
+                        url: ctx + "/pop/ccmPeople/queryByPersonalIdent?pident=" + pident,
+                        type: "get",
+                        success: function (data) {
+                            if (data.length > 0) {
+                                layer.alert('该身份证号码已注册！！！', {
+                                    title: "提示",
+                                    skin: 'layui-layer-lan'
+                                    ,closeBtn: 0,
+                                    btn: "好的"
+                                });
+                            }
+
                         }
+                    })
+                }
 
-                    }
-                })
             }
 
         }
@@ -561,7 +567,7 @@
                     <label class="control-label"><span id="ident0"></span><span class="help-inline"><font
                             color="red">*</font></span>公民身份号码：</label>
                     <div class="controls">
-                        <form:input path="ident" id="p_id_card" onmouseout="isRepeat()" htmlEscape="false" maxlength="18"
+                        <form:input path="ident" id="p_id_card" onmouseout="isRepeat('${ccmPeople.id}')" htmlEscape="false" maxlength="18"
                                     class="input-xlarge required ident0 card"/>
                     </div>
                 </div>
@@ -1311,10 +1317,13 @@
         </table>
         <br/>
     </c:if>
-    <h4 id="otherid" class="color-bg6">户籍信息</h4>
+    <%--<h4 id="otherid" class="color-bg6">户籍信息</h4>--%>
 
     <table id="person" border="0px"
            style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%">
+        <tr>
+            <td colspan="6" >户籍信息：</td>
+        </tr>
 
         <tr>
             <td>
@@ -1723,7 +1732,7 @@
     </div>
 </form:form>
 <br>
-<c:if test="${documentNumber > 0}">
+<%--<c:if test="${documentNumber > 0}">
     <shiro:hasPermission name="log:ccmLogTail:edit">
         <h4 class="hide2">&nbsp;跟踪信息：</h4>
         <br>
@@ -1740,7 +1749,7 @@
         <h2 class="hide2">&nbsp;&nbsp;暂无跟踪信息</h2>
         <br>
     </shiro:hasPermission>
-</c:if>
+</c:if>--%>
 <script>
     $("#checkBoxe :checked").each(function(){
         console.log($(this).val())

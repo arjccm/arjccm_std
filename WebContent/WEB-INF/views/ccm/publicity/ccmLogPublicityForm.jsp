@@ -45,51 +45,77 @@
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmLogPublicity" action="${ctx}/publicity/ccmLogPublicity/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>		
-		<div class="control-group" style="padding-top: 8px">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>标题：</label>
-			<div class="controls">
-				<form:input path="title" htmlEscape="false" maxlength="200" class="input-xlarge required"/>
+		<sys:message content="${message}"/>
+	<table>
+		<tr>
+			<td>
+				<div class="control-group" style="padding-top: 8px">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>标题：</label>
+					<div class="controls">
+						<form:input path="title" htmlEscape="false" maxlength="200" class="input-xlarge required"/>
 
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>内容：</label>
-			<div class="controls">
-				<form:textarea path="content" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge required"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>类型：</label>
-			<div class="controls">
-				<form:select path="type" class="input-xlarge required">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('ccm_log_publiciy_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">附件：</label>
-			<div class="controls">
-				<form:hidden id="files" path="files" htmlEscape="false" maxlength="2000" class="input-xlarge"/>
-				<sys:ckfinder input="files" type="files" uploadPath="/publicity/ccmLogPublicity" selectMultiple="true"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>状态：</label>
-			<div class="controls">
-				<form:select path="status" class="input-xlarge required">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('ccm_log_publiciy_status')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">备注信息：</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
-			</div>
-		</div>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>类型：</label>
+					<div class="controls">
+						<form:select path="type" class="input-xlarge required">
+							<form:option value="" label=""/>
+							<form:options items="${fns:getDictList('ccm_log_publiciy_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+						</form:select>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>内容：</label>
+					<div class="controls">
+						<form:textarea path="content" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge required"/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">备注信息：</label>
+					<div class="controls">
+						<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>状态：</label>
+					<div class="controls">
+						<form:select path="status" class="input-xlarge required">
+							<form:option value="" label=""/>
+							<form:options items="${fns:getDictList('ccm_log_publiciy_status')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+						</form:select>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">附件：</label>
+					<div class="controls">
+						<form:hidden id="files" path="files" htmlEscape="false" maxlength="2000" class="input-xlarge"/>
+						<sys:ckfinder input="files" type="files" uploadPath="/publicity/ccmLogPublicity" selectMultiple="true"/>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+
+
+
+
+
 		<div class="form-actions">
 			<c:if test="${user.id eq ccmLogPublicity.createBy.id or user.id eq '1' or ccmLogPublicity.createBy==null}">
 				<shiro:hasPermission name="publicity:ccmLogPublicity:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
