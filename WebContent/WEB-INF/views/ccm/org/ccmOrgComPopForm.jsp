@@ -112,15 +112,27 @@
 			</div>
 			</div>
 		</td>
-		<td>
-			<div class="control-group">
-				<label class="control-label">证件类型：</label>
-				<div class="controls">
-					<form:select path="idenCode" class="input-xlarge " items="${fns:getDictList('legal_person_certificate_type')}"
-								 itemLabel="label" itemValue="value" htmlEscape="false"></form:select>
+
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label">证件类型：</label>
+					<div class="controls">
+						<form:select path="idenCode" class="input-xlarge " items="${fns:getDictList('legal_person_certificate_type')}"
+									 itemLabel="label" itemValue="value" htmlEscape="false"></form:select>
+					</div>
 				</div>
-			</div>
-		</td>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font></span>证件号码：</label>
+					<div class="controls">
+						<form:input path="idenNum" htmlEscape="false" maxlength="30" class="input-xlarge required"/>
+
+					</div>
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -161,15 +173,7 @@
 			</div>
 		</div>
 	</td>
-	<td>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font></span>证件号码：</label>
-			<div class="controls">
-				<form:input path="idenNum" htmlEscape="false" maxlength="30" class="input-xlarge required"/>
 
-			</div>
-		</div>
-	</td>
 </tr>
 
 		<tr>
