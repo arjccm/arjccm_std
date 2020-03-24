@@ -17,6 +17,7 @@ $(function(){
 		 $('#pType').val('1');
 		 $('#IncidentList').html('');
 	})
+	QueryCollect();
 })
 
 function initMap(){
