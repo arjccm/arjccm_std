@@ -107,26 +107,13 @@
 				</td>
 				<td>
 					<div class="control-group">
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>活动类别：</label>
-						<div class="controls">
-							<form:select path="type" class="input-xlarge ">
-								<form:options items="${fns:getDictList('ccm_know_key_activity_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-							</form:select>
-
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="control-group">
 						<label class="control-label">备注信息：</label>
 						<div class="controls">
 							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
 						</div>
 					</div>
-				</td>
 
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -138,7 +125,20 @@
 						</div>
 					</div>
 				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>活动类别：</label>
+						<div class="controls">
+							<form:select path="type" class="input-xlarge ">
+								<form:options items="${fns:getDictList('ccm_know_key_activity_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+							</form:select>
+
+						</div>
+					</div>
+				</td>
+
 			</tr>
+
 		</table>
 		<div class="form-actions">
 			<shiro:hasPermission name="know:ccmKnowKeyActivity:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>

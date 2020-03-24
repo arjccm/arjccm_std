@@ -59,7 +59,7 @@
 				<td><div class="control-group">
 					<label class="control-label">摘要：</label>
 					<div class="controls">
-						<form:textarea path="abstracts" htmlEscape="false" rows="2" maxlength="256" class="input-xxlarge "/>
+						<form:textarea path="abstracts" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
 					</div>
 				</div></td>
 				<td><div class="control-group">

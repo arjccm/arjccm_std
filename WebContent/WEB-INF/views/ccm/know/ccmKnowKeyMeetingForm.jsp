@@ -84,16 +84,13 @@
 				</div></td>
 			</tr>
 			<tr>
-				<td>
-					<div class="control-group">
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>会议类型：</label>
-						<div class="controls">
-							<form:select path="type" class="input-xlarge ">
-								<form:options items="${fns:getDictList('ccm_know_key_meeting_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-							</form:select>
-
-						</div>
-					</div></td>
+				<td><div class="control-group">
+					<label class="control-label">会议督办：</label>
+					<div class="controls">
+						<form:textarea path="handle" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
+					</div>
+				</div>
+					</td>
 				<td><div class="control-group">
 					<label class="control-label">缺席人员：</label>
 					<div class="controls">
@@ -118,16 +115,20 @@
 				</div></td>
 			</tr>
 			<tr>
-				<td><div class="control-group">
-					<label class="control-label">会议督办：</label>
-					<div class="controls">
-						<form:textarea path="handle" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
-					</div>
-				</div></td>
-				<td><div class="control-group">
+				<td>
+					<div class="control-group">
 					<label class="control-label">备注信息：</label>
 					<div class="controls">
 						<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+					</div>
+				</div></td>
+				<td><div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>会议类型：</label>
+					<div class="controls">
+						<form:select path="type" class="input-xlarge ">
+							<form:options items="${fns:getDictList('ccm_know_key_meeting_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+						</form:select>
+
 					</div>
 				</div></td>
 			</tr>
