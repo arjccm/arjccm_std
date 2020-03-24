@@ -28,6 +28,26 @@
 
 		});
 		//计算天数
+		function startTime(){
+			var strTim = $("#attendanceBegin").val()
+			strTim =  strTim.replace(new RegExp("-","gm"),"/");
+			var startHs = (new Date(strTim)).getTime();
+
+			var endTim = $("#attendanceEnd").val()
+			endTim =  endTim.replace(new RegExp("-","gm"),"/");
+			var sendHs = (new Date(endTim)).getTime();
+			$("#attendanceEnd").blur()
+			var dayHs = sendHs -startHs
+			var days = Math.floor(dayHs/1000/60/60/24);
+
+			console.log(days)
+
+			$("#hqdays").val(days)
+			if($("#hqdays").val() == "NaN"){
+				$("#hqdays").val("")
+			}
+
+		}
 		function endTime(){
 			var strTim = $("#attendanceBegin").val()
 			strTim =  strTim.replace(new RegExp("-","gm"),"/");
@@ -43,7 +63,9 @@
 			console.log(days)
 
 			$("#hqdays").val(days)
-
+			if($("#hqdays").val() == "NaN"){
+				$("#hqdays").val("")
+			}
 		}
 
 
@@ -78,7 +100,7 @@
 			<div class="controls">
 				<input name="attendanceBegin" id="attendanceBegin"  type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 					value="<fmt:formatDate value="${ccmWorkerAttendance.attendanceBegin}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					   onFocus="WdatePicker({maxDate: '#F{$dp.$D(\'attendanceEnd\')}',dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					   onFocus="WdatePicker({onpicking:startTime(),maxDate: '#F{$dp.$D(\'attendanceEnd\')}',dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 
 			</div>
 		</div>
