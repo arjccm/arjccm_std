@@ -1550,15 +1550,7 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
 	 line-height: 40px;
 	 width: calc(47.8vw - 50px);
  }
- /**弹出框的文本框样式*/
- .input-xlarge{
-	background-color: #0b486f!important;
-	/*border: 1px solid #00cccc;*/
-}
- .input-xxlarge{
-	 background-color: #0b486f!important;
-	 /*border: 1px solid #00cccc;*/
- }
+
  /**流程管理弹出框的文本框样式*/
 .jbox .jbox-button{
      width: 64px;
