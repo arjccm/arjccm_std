@@ -57,7 +57,8 @@ var bjckid="-1";//选中窗口id
 		  $("#portletcontent${portlet.id}").html(data);
 		  }
 		  });	  
-});   
+});
+
   </script> 
   
   </c:forEach>
@@ -71,6 +72,12 @@ var bjckid="-1";//选中窗口id
 	 $("#bodydiv").height($(window).height());
 
    })
+ function page(n, s) {
+     $("#pageNo").val(n);
+     $("#pageSize").val(s);
+     $("#searchForm").submit();
+     return false;
+ }
  </script>
 </body>
 </html>

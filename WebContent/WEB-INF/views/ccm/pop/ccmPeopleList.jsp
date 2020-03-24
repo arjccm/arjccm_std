@@ -382,9 +382,7 @@
 					${fns:getDictLabel(ccmPeople.type, 'sys_ccm_people', '')}
 				</td>
 				<td class="tc">
-					<c:if test="${ccmPeople.isControl eq 1}">
-						<i class="icon-facetime-video" style="color: red;"></i>
-					</c:if>
+
 					<a href="${ctx}/pop/ccmPeople/form?id=${ccmPeople.id}">
 					${ccmPeople.name}</a>
 				</td>
@@ -424,9 +422,24 @@
 								 title="添加记录"><i class="icon-plus"></i></a>
 				  	</shiro:hasPermission>
 					<shiro:hasPermission name="overallControl:ccmOverallControl:edit">
-						<a class="btnList" onclick="parent.LayerDialog('${ctx}/overallControl/ccmOverallControl/form?id=${ccmPeople.id}', '布控', '1100px', '700px')"
-						   title="布控"><i class="icon-cloud-upload"></i></a>
-						<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i class="icon-cloud-download"></i></a>
+						<c:if test="${ccmPeople.isControl eq 1}">
+							<a class="btnList" onclick="parent.LayerDialog('${ctx}/overallControl/ccmOverallControl/form?id=${ccmPeople.id}', '布控', '1100px', '700px')"
+							   title="已布控"><i class="icon-cloud-upload"></i></a>
+						</c:if>
+						<c:if test="${ccmPeople.isControl ne 1}">
+							<a class="btnList" onclick="parent.LayerDialog('${ctx}/overallControl/ccmOverallControl/form?id=${ccmPeople.id}', '布控', '1100px', '700px')"
+							   title="布控"><i style="color: #1cdd1c" class="icon-cloud-upload"></i></a>
+						</c:if>
+						<c:if test="${ccmPeople.isControl eq 1}">
+							<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i class="icon-cloud-download"></i></a>
+						</c:if>
+						<c:if test="${ccmPeople.isControl ne 1}">
+							<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i style="cursor:not-allowed; color: #999999;" class="icon-cloud-download"></i></a>
+						</c:if>
+
+						<%--<a class="btnList" onclick="parent.LayerDialog('${ctx}/overallControl/ccmOverallControl/form?id=${ccmPeople.id}', '布控', '1100px', '700px')"
+						   title="布控"><i class="icon-cloud-upload"></i></a>--%>
+<%--						<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i class="icon-cloud-download"></i></a>--%>
 					</shiro:hasPermission>
 				  	
 				</td>
