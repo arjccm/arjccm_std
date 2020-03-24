@@ -32,6 +32,7 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form pull-left">
+		<ul class="ul-form pull-left">
 			<li class="first-line"><label>事项分类：</label>
 				<form:select path="type" class="input-medium">
 					<form:option value="" label="全部"/>
@@ -102,7 +103,7 @@
 				</td>
 				<td style="height: 50px">
 					${fns:getDictLabel(ccmServiceOnline.status, 'ccm_service_online_handle', '')}
-				</td>l
+				</td>
 				<td style="height: 50px">
 					<fmt:formatDate value="${ccmServiceOnline.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>

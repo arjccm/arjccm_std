@@ -66,7 +66,7 @@
 					<div class="control-group">
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>值班地点：</label>
 						<div class="controls">
-							<form:textarea path="adds" htmlEscape="false" rows="2" maxlength="100" class="input-xxlarge required"/>
+							<form:textarea path="adds" htmlEscape="false" rows="4" maxlength="100" class="input-xxlarge required"/>
 
 						</div>
 					</div>
@@ -75,7 +75,7 @@
 					<div class="control-group">
 						<label class="control-label">内容：</label>
 						<div class="controls">
-							<form:textarea path="details" htmlEscape="false" rows="12" maxlength="1000" class="input-xxlarge "/>
+							<form:textarea path="details" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
 						</div>
 					</div>
 				</td>
