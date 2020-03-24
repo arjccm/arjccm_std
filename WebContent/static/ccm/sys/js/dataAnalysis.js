@@ -132,7 +132,7 @@ function AreaEcharts(lendData,echartsData){
 		    },
 		    series: [
 		        {
-		            name: '数据采集对比分析',
+		            name: '采集数量',
 		            type: 'bar',
 		            label: {
 		                normal: {
