@@ -79,6 +79,12 @@ public class CcmEventCasedealService extends CrudService<CcmEventCasedealDao, Cc
 	public void delete(CcmEventCasedeal ccmEventCasedeal) {
 		super.delete(ccmEventCasedeal);
 	}
+
+	@Transactional(readOnly = false)
+	public void deletegrade(String id) {
+		ccmEventCasedealDao.deletegrade(id);
+	}
+
 	
 	//查询obj_id
 	public List<CcmEventCasedeal> findCasedealList(String id) {
