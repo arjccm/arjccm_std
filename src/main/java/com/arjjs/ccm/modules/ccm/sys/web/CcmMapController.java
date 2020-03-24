@@ -163,6 +163,11 @@ public class CcmMapController extends BaseController {
 	@Autowired
 	private CcmPeopleAntiepidemicService ccmPeopleAntiepidemicService;
 
+	//公共机构人员
+	@Autowired
+	private CcmOrgComPopService ccmOrgComPopService;
+
+
 	private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 	/**
@@ -402,7 +407,23 @@ public class CcmMapController extends BaseController {
 			map.put("负责人姓名", ccmOrgCommonality.getPrincipalName());
 			map.put("负责人电话", ccmOrgCommonality.getPrincipalTel());
 			map.put("所属区域", ccmOrgCommonality.getArea().toString() + "");
-
+			//公共机构人员
+			CcmOrgComPop ccmOrgComPop = new CcmOrgComPop();
+			ccmOrgComPop.setCommonalityId(ccmOrgCommonality);
+			List<CcmOrgComPop> listCcmOrgComPops = ccmOrgComPopService.findList(ccmOrgComPop);
+			if (listCcmOrgComPops.size() > 0) {
+				JsonConfig config = new JsonConfig();
+				config.setExcludes(new String[]{"createBy", "updateBy", "createDate", "updateDate", "delFlag", "page",
+						"beginBirthday", "birthday", "commonalityId", "dbName", "files", "global", "id", "image", "isNewRecord",
+						"more1", "more2", "more3", "orgCode", "orgTel", "principalName", "principalTel", "sqlMap", "type",
+						"currentUser", "education", "endBirthday", "fixTel", "idenCode", "nation", "politics", "profExpertise"});
+				config.setIgnoreDefaultExcludes(false);  //设置默认忽略
+				config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+				String listCcmOrgComPop = JSONArray.fromObject(listCcmOrgComPops, config).toString(); //
+				map.put("公共机构人员", listCcmOrgComPop);
+			} else {
+				map.put("公共机构人员", "[{\"code\":\"\",\"idenNum\":\"\",\"images\":\"\",\"name\":\"\",\"remarks\":\"\",\"service\":\"\",\"sex\":\"\",\"telephone\":\"\"}]");
+			}
 			properties.addInfo(map);
 			featureList.add(featureDto);
 			featureDto.setProperties(properties);

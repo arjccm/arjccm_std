@@ -1812,8 +1812,8 @@ $(function () {
                 // Map.layersIsShow('PopLocation',true);
                 Map.layersIsShow('parts', false);
                 Map.layersIsShow('publicPlace', false);
-                Map.layersIsShow('jingwushi', false);
-                Map.layersIsShow('gongzuozhan', false);
+                Map.layersIsShow('jingwushi', true);
+                Map.layersIsShow('gongzuozhan', true);
                 $.each(idArrjingwushi2, function (index, val) {
                     Pubmap.removeOverlay(Map['' + val + 'Overlay'])
                 });
@@ -3131,8 +3131,8 @@ function PopInfoFun(_this) {
     fujing += '<ul style="overflow-y: auto;overflow-x: hidden;width:100%;height:auto;margin:0">辅警:';
     fujing += '<li  class="clearfix" style="overflow-y: auto;overflow-x: hidden;width:100%;height:auto">';
     for (var i = 0; i < len; i++) {
-        var src = popinfoData[i]['images'] || popinfoData[i]['photo'];
-        var telephone = popinfoData[i]['telephone'] || popinfoData[i]['phone'];
+        var src = popinfoData[i]['images'] || popinfoData[i]['photo'] ;
+        var telephone = popinfoData[i]['telephone'] || popinfoData[i]['phone'] || "";
 
         if (popinfoData[i]['no']) {//新密市警务室、工作站
             var name = popinfoData[i]['name'];
@@ -3898,7 +3898,7 @@ var idArrjingwushi = [];
 function jingwushiFun(_this) {
     if (jingwushiFlag) {
         Map.removeLayer('policeroom');
-        $.getJSON('' + ctx + '/sys/map/orgCommonlityMap?type=10', function (data) {
+        $.getJSON('' + ctx + '/sys/map/orgCommonlityMap?type=11', function (data) {
             // var features=data.features;
             // var len=features.length;
             // idArrjingwushi=[];
@@ -3932,7 +3932,7 @@ var idArrgongzuozhan = [];
 function gongzuozhanFun(_this) {
     if (gongzuozhanFlag) {
         Map.removeLayer('workstation');
-        $.getJSON('' + ctx + '/sys/map/orgCommonlityMap?type=11', function (data) {
+        $.getJSON('' + ctx + '/sys/map/orgCommonlityMap?type=10', function (data) {
             var features = data.features;
             var len = features.length;
             idArrgongzuozhan = [];

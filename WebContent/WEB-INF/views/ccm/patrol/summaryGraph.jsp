@@ -30,10 +30,11 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/patrol/ccmPatrolMissions/summaryGraph">统计数据</a></li>
-		<li><a href="${ctx}/patrol/ccmPatrolMissions/">数据列表</a></li>
-		<li ><a href="${ctx}/patrol/ccmPatrolMissions/form?id=${ccmPatrolMissions.id}">巡逻任务<shiro:hasPermission name="patrol:ccmPatrolMissions:edit">${not empty ccmPatrolMissions.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrol:ccmPatrolMissions:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/patrol/ccmPatrolMissions/summaryGraph">统计数据</a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/patrol/ccmPatrolMissions/">数据列表</a></li>
+		<li ><a style="width: 140px;text-align:center" href="${ctx}/patrol/ccmPatrolMissions/form?id=${ccmPatrolMissions.id}">巡逻任务<shiro:hasPermission name="patrol:ccmPatrolMissions:edit">${not empty ccmPatrolMissions.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrol:ccmPatrolMissions:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	
 	<sys:message content="${message}"/>
@@ -49,13 +50,13 @@
 		      
 			
 		    
-	    </div>
+
 	    <br>
 	     <div class="row-fluid">
 	     	  
 			<div class="span12" ><h4>巡逻单位任务完成情况</h4>
 					<div style="height:571px;overflow: auto">
-				<table id="contentTable" class="table table-striped table-bordered table-condensed">
+				<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 					<thead>
 						<tr id="th">
 							<th>单位名称</th>
@@ -235,5 +236,6 @@
 	 
 		
 </script>
+</div>
 </body>
 </html>

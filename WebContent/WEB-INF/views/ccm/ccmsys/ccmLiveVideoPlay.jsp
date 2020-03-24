@@ -114,7 +114,7 @@
 			<c:if test="${ccmDevice.typeVidicon == 4}">
 				<iframe name="ccmLiveVideo" id="ccmLiveVideoTest"  src="${ctx}/ccmsys/ccmDevice/getDeviceMap?id=${ccmDevice.id}" style="overflow: visible;" scrolling="yes" frameborder="no" width="1030" height="590" allowfullscreen="true" allowtransparency="true"></iframe>
 			</c:if>
-				<iframe name="ccmLiveVideo" id="ccmLiveVideoTest"  src="${ctx}/ccmsys/ccmDevice/getDeviceMap?id=${ccmDevice.id}" style="overflow: visible;" scrolling="yes" frameborder="no" width="1030" height="590" allowfullscreen="true" allowtransparency="true"></iframe>
+				<%--<iframe name="ccmLiveVideo" id="ccmLiveVideoTest"  src="${ctx}/ccmsys/ccmDevice/getDeviceMap?id=${ccmDevice.id}" style="overflow: visible;" scrolling="yes" frameborder="no" width="1030" height="590" allowfullscreen="true" allowtransparency="true"></iframe>--%>
 		</div>
        	<div class="divStatusBar">
         </div>

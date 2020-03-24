@@ -3948,8 +3948,8 @@ ArjMap.Map.prototype = {
                                         }
                                         if (video) {
                                             type = video['protocol'];
-											videoUrl = video['param']
-                                            videoId = feature.getId()
+											videoUrl = video['param'];
+                                            videoId = feature.getId();
                                             videoIp = video['ip'];
                                             videoPort = video['port'];
                                             videoUsername = video['username'];

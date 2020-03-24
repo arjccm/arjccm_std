@@ -145,47 +145,48 @@
 			margin-left: 5px;
 		}
 	</style>
+	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body >
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/patrol/ccmPatrolMissions/summaryGraph">统计数据</a></li>
-		<li><a href="${ctx}/patrol/ccmPatrolMissions/">数据列表</a></li>
-		<li class="active"><a href="${ctx}/patrol/ccmPatrolMissions/form?id=${ccmPatrolMissions.id}">巡逻任务<shiro:hasPermission name="patrol:ccmPatrolMissions:edit">${not empty ccmPatrolMissions.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrol:ccmPatrolMissions:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/patrol/ccmPatrolMissions/summaryGraph">统计数据</a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/patrol/ccmPatrolMissions/">数据列表</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/patrol/ccmPatrolMissions/form?id=${ccmPatrolMissions.id}">巡逻任务<shiro:hasPermission name="patrol:ccmPatrolMissions:edit">${not empty ccmPatrolMissions.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrol:ccmPatrolMissions:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form  id="inputForm"  onmouseover="changeName()" modelAttribute="ccmPatrolMissions" action="${ctx}/patrol/ccmPatrolMissions/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">巡逻任务：</label>
+			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>巡逻任务：</label>
 			<div class="controls">
 				<form:textarea path="patrolContent" htmlEscape="false"  class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">巡逻时间：</label>
+			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>巡逻时间：</label>
 			<div class="controls">
 				<input name="patrolTime" id="patrolTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 					value="<fmt:formatDate value="${ccmPatrolMissions.patrolTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">结束时间：</label>
+			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>结束时间：</label>
 			<div class="controls">
 				<input name="endTime" type="text"  id="endTime"readonly="readonly" maxlength="20" class="input-medium Wdate required"
 					value="<fmt:formatDate value="${ccmPatrolMissions.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">参与单位：</label>
+			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>参与单位：</label>
 			<div class="controls">
 				<sys:treeselect id="office"  name="office" value="${ccmPatrolMissions.office}" labelName="officeName" labelValue="${ccmPatrolMissions.officeName}"
 					title="部门" url="/sys/office/treeData?type=2" checked="true" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div style="line-height: 40px;"  class="control-group">
@@ -205,11 +206,11 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">巡逻辖区：</label>
+			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>巡逻辖区：</label>
 			<div class="controls">
 				<sys:treeselect id="area" name="area.id" value="${ccmPatrolMissions.area.id}" labelName="area.name" labelValue="${ccmPatrolMissions.area.name}"
 					title="区域" url="/sys/area/treeData" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		 <%-- <div class="control-group">
@@ -224,14 +225,14 @@
 		</div> --%> 
 
 		<div class="control-group">
-			<label class="control-label">审核状态：</label>
+			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>审核状态：</label>
 			<div class="controls">
 				<form:select path="auditingStatus" class="input-xlarge required">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('auditing_status')}" itemLabel="label"
 								  itemValue="value" htmlEscape="false"/>
 				</form:select>
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 
