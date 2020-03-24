@@ -44,87 +44,119 @@ $(document).ready(function() {
 		class="form-horizontal">
 		<form:hidden path="id" />
 		<sys:message content="${message}" />
-		<div class="control-group">
-			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>一级分类：</label>
-			<div class="controls">
-				<form:select path="type1" class="input-xlarge ">
-					<form:options items="${fns:getDictList('ccm_service_type')}"
-						itemLabel="label" itemValue="value" htmlEscape="false" />
-				</form:select>
-
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">二级分类：</label>
-			<div class="controls">
-				<form:select path="type2" class="input-xlarge ">
-
-				</form:select>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>标题：</label>
-			<div class="controls">
-				<form:input path="title" htmlEscape="false" maxlength="100"
-					class="input-xlarge required" />
-
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">内容：</label>
-			<div class="controls">
-				<form:textarea path="content" htmlEscape="false" rows="4"
-					maxlength="1000" class="input-xxlarge " />
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">附件：</label>
-			<div class="controls">
-				<form:hidden id="files" path="files" htmlEscape="false"
-					maxlength="1000" class="input-xlarge" />
-				<sys:ckfinder input="files" type="files"
-					uploadPath="/sys/ccmWorkReport" selectMultiple="true" />
-			</div>
-		</div>
-
-		<shiro:hasPermission name="service:ccmCommunityWork:edit">
-			<div class="control-group">
-				<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>审核类型：</label>
-				<div class="controls">
-				
-					 <c:if test="${not empty ccmCommunityWork.id}">
-					
-						<form:select path="status" class="input-xlarge ">
-							<%-- <form:options items="${fns:getDictList('ccm_service_handle')}"
-								itemLabel="label" itemValue="value" htmlEscape="false" /> --%>
-								 <%-- <form:option value="" label=""/> --%>
-						<form:options items="${fns:getDictList('ccm_service_handle')}" itemLabel="label" 
-						itemValue="value" htmlEscape="false"/>
+	<table>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>一级分类：</label>
+					<div class="controls">
+						<form:select path="type1" class="input-xlarge ">
+							<form:options items="${fns:getDictList('ccm_service_type')}"
+										  itemLabel="label" itemValue="value" htmlEscape="false" />
 						</form:select>
-					</c:if>
-					<c:if test="${empty ccmCommunityWork.id}">
-						<%-- <form:select path="status" class="input-xlarge " disabled="true">
-							<form:option value="02" label="待审核" />
-						</form:select> --%>
-						<form:select path="status" class="input-xlarge ">
-							<form:options items="${fns:getDictList('ccm_service_handle')}"
-								itemLabel="label" itemValue="value" htmlEscape="false" />
-						</form:select>
-					</c:if> 
-					
 
+					</div>
 				</div>
-			</div>
-		</shiro:hasPermission>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">二级分类：</label>
+					<div class="controls">
+						<form:select path="type2" class="input-xlarge ">
+
+						</form:select>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>标题：</label>
+					<div class="controls">
+						<form:input path="title" htmlEscape="false" maxlength="100"
+									class="input-xlarge required" />
+
+					</div>
+				</div>
+			</td>
+			<td>
+				<shiro:hasPermission name="service:ccmCommunityWork:edit">
+					<div class="control-group">
+						<label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>审核类型：</label>
+						<div class="controls">
+
+							<c:if test="${not empty ccmCommunityWork.id}">
+
+								<form:select path="status" class="input-xlarge ">
+									<%-- <form:options items="${fns:getDictList('ccm_service_handle')}"
+                                        itemLabel="label" itemValue="value" htmlEscape="false" /> --%>
+									<%-- <form:option value="" label=""/> --%>
+									<form:options items="${fns:getDictList('ccm_service_handle')}" itemLabel="label"
+												  itemValue="value" htmlEscape="false"/>
+								</form:select>
+							</c:if>
+							<c:if test="${empty ccmCommunityWork.id}">
+								<%-- <form:select path="status" class="input-xlarge " disabled="true">
+                                    <form:option value="02" label="待审核" />
+                                </form:select> --%>
+								<form:select path="status" class="input-xlarge ">
+									<form:options items="${fns:getDictList('ccm_service_handle')}"
+												  itemLabel="label" itemValue="value" htmlEscape="false" />
+								</form:select>
+							</c:if>
+
+
+						</div>
+					</div>
+				</shiro:hasPermission>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label">内容：</label>
+					<div class="controls">
+						<form:textarea path="content" htmlEscape="false" rows="4"
+									   maxlength="1000" class="input-xxlarge " />
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">备注信息：</label>
+					<div class="controls">
+						<form:textarea path="remarks" htmlEscape="false" rows="4"
+									   maxlength="255" class="input-xxlarge " />
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label">附件：</label>
+					<div class="controls">
+						<form:hidden id="files" path="files" htmlEscape="false"
+									 maxlength="1000" class="input-xlarge" />
+						<sys:ckfinder input="files" type="files"
+									  uploadPath="/sys/ccmWorkReport" selectMultiple="true" />
+					</div>
+				</div>
+			</td>
+
+		</tr>
+	</table>
+
+
+
+
+
+
+
 		<!-- cms_del_flag  -->
 
-		<div class="control-group">
-			<label class="control-label">备注信息：</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4"
-					maxlength="255" class="input-xxlarge " />
-			</div>
-		</div>
+
 		<div class="form-actions">
 
 			<c:if test="${ ccmCommunityWork.status ne '0' }">

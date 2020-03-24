@@ -158,9 +158,30 @@
 			top: 160px;
 			right: 268px;
 		}
+		.gbClose{
+			position: relative;
+			top: -2px;
+			right: -21px;
+			line-height: 20px;
+			padding: 0;
+			cursor: pointer;
+			background: transparent;
+			border: 0;
+			-webkit-appearance: none;
+			color: #000;
+			float: right;
+			font-size: 20px;
+			font-weight: bold;
+			text-shadow: 0 1px 0 #fff;
+		}
     </style>
 	<script type="text/javascript">
 		$(document).ready(function() {
+		    //错误提示点击隐藏
+            $(".gbClose").click(function () {
+                $("#messageBox").hide();
+            })
+
 			$("#loginForm").validate({
 				rules: {
 					validateCode: {remote: "${pageContext.request.contextPath}/servlet/validateCodeServlet"}
@@ -210,7 +231,7 @@
 		</div>
 	</div>
 	<div class="header">
-		<div id="messageBox" class="alert alert-error ${empty message ? 'hide' : ''}"><button data-dismiss="alert" class="close">×</button>
+		<div id="messageBox" class="alert alert-error ${empty message ? 'hide' : ''}"><button  class="gbClose">×</button>
 			<label id="loginError" class="error">${message}</label>
 		</div>
 	</div>

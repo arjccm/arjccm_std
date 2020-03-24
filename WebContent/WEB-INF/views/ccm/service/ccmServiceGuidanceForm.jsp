@@ -68,24 +68,6 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
-					<div class="control-group">
-						<label class="control-label">办公时间：</label>
-						<div class="controls">
-							<form:input path="officeHours" htmlEscape="false" maxlength="256" class="input-xlarge "/>
-						</div>
-					</div>
-				</td>
-				<td>
-					<div class="control-group">
-						<label class="control-label">办事地点：</label>
-						<div class="controls">
-							<form:input path="pcsAdd" htmlEscape="false" maxlength="256" class="input-xlarge "/>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
 
 			</tr>
 			<tr>
@@ -145,11 +127,23 @@
 				</td>
 
 			</tr>
-
-
-
-
 			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label">办公时间：</label>
+						<div class="controls">
+							<form:input path="officeHours" htmlEscape="false" maxlength="256" class="input-xlarge "/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label">办事地点：</label>
+						<div class="controls">
+							<form:input path="pcsAdd" htmlEscape="false" maxlength="256" class="input-xlarge "/>
+						</div>
+					</div>
+				</td>
 				<td>
 					<div class="control-group">
 						<label class="control-label">相关附件：</label>

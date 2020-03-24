@@ -45,6 +45,9 @@
 </head>
 <body>
 	<div class="container-fluid">
+		<table>
+			<tr>
+				<td>
 		<form:form id="inputForm" modelAttribute="eventA"
 			style="width:48%;float:left"
 			action="${ctx}/preview/ccmEventIncidentPreview/check/delete?id=${eventA.id}"
@@ -154,6 +157,8 @@
 				</shiro:hasPermission>
 			</div>
 		</form:form>
+				</td>
+				<td>
 		<form:form id="inputForm" modelAttribute="eventB"
 			style="width:48%;float:left"
 			action="${ctx}/preview/ccmEventIncidentPreview/check/delete?id=${eventB.id}"
@@ -262,6 +267,9 @@
 						value="移除" />&nbsp;</shiro:hasPermission>
 			</div>
 		</form:form>
+				</td>
+			</tr>
+	</table>
 	</div>
 
 </body>

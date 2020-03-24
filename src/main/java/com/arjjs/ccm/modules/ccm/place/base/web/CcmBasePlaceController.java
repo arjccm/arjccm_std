@@ -154,7 +154,8 @@ public class CcmBasePlaceController extends BaseController {
 		 * "redirect:" + Global.getAdminPath() +
 		 * "/place/ccmBasePlace/?id="+ccmBasePlace.getJuniorId(); }
 		 */
-		return "ccm/place/emphasis/ccmBasePlaceForm";
+		model.addAttribute("ccmBasePlace", ccmBasePlace);
+		return "ccm/place/base/ccmBasePlaceForm";
 	}
 
 	@RequiresPermissions("place:ccmBasePlace:view")

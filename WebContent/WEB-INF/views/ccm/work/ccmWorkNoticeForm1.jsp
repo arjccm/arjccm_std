@@ -26,6 +26,7 @@
 			});
 		});
 	</script>
+	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <%--	<ul class="nav nav-tabs">--%>
@@ -65,9 +66,9 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<c:if test="${userSelfId eq ccmWorkNotice.createBy.id or userSelfId eq '1'}">
-				<shiro:hasPermission name="work:ccmWorkNotice:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
-			</c:if>
+<%--			<c:if test="${userSelfId eq ccmWorkNotice.createBy.id or userSelfId eq '1'}">--%>
+<%--				<shiro:hasPermission name="work:ccmWorkNotice:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>--%>
+<%--			</c:if>--%>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

@@ -117,9 +117,16 @@ public class CcmWorkerAttendanceController extends BaseController {
 	@RequiresPermissions("attendance:ccmWorkerAttendance:view")
 	@RequestMapping(value = {"gooutlist"})
 	public String gooutlist(CcmWorkerAttendance ccmWorkerAttendance, HttpServletRequest request, HttpServletResponse response, Model model) {
+		User user = UserUtils.getUser();
 		ccmWorkerAttendance.setType("1");
-		Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.findPage(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance); 
-		model.addAttribute("page", page);
+		ccmWorkerAttendance.setCreateBy(user);
+		if("1".equals(user.getId())){
+			Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.findPage(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
+			model.addAttribute("page", page);
+		}else{
+			Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.findPageByCreateBy(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
+			model.addAttribute("page", page);
+		}
 		return "ccm/attendance/ccmWorkerAttendanceGooutList";
 	}
 
@@ -174,23 +181,44 @@ public class CcmWorkerAttendanceController extends BaseController {
 	@RequiresPermissions("attendance:ccmWorkerAttendance:view")
 	@RequestMapping(value = {"leavelist"})
 	public String leavelist(CcmWorkerAttendance ccmWorkerAttendance, HttpServletRequest request, HttpServletResponse response, Model model) {
+		User sysUser = UserUtils.getUser();
 		ccmWorkerAttendance.setType("2");
-		Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.findPage(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
-		if(page.getList().size()>0){
-			for(CcmWorkerAttendance res : page.getList()){
-				if(StringUtils.isNotEmpty(res.getApplyId())){
-					CcmWorkerAttendanceApply ccmWorkerAttendanceApply = ccmWorkerAttendanceApplyService.get(res.getApplyId());
-					User user = UserUtils.get(ccmWorkerAttendanceApply.getCreateBy().getId());
-					if(user!=null) {
-						res.setCreateByname(user.getName());
-						res.setCreateBy(user);
-					}else {
-						continue;
+		ccmWorkerAttendance.setCreateBy(sysUser);
+		if("1".equals(sysUser.getId())){
+			Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.findPage(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
+			if(page.getList().size()>0){
+				for(CcmWorkerAttendance res : page.getList()){
+					if(StringUtils.isNotEmpty(res.getApplyId())){
+						CcmWorkerAttendanceApply ccmWorkerAttendanceApply = ccmWorkerAttendanceApplyService.get(res.getApplyId());
+						User user = UserUtils.get(ccmWorkerAttendanceApply.getCreateBy().getId());
+						if(user!=null) {
+							res.setCreateByname(user.getName());
+							res.setCreateBy(user);
+						}else {
+							continue;
+						}
 					}
 				}
 			}
+			model.addAttribute("page", page);
+		}else{
+			Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.findPageByCreateBy(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
+			if(page.getList().size()>0){
+				for(CcmWorkerAttendance res : page.getList()){
+					if(StringUtils.isNotEmpty(res.getApplyId())){
+						CcmWorkerAttendanceApply ccmWorkerAttendanceApply = ccmWorkerAttendanceApplyService.get(res.getApplyId());
+						User user = UserUtils.get(ccmWorkerAttendanceApply.getCreateBy().getId());
+						if(user!=null) {
+							res.setCreateByname(user.getName());
+							res.setCreateBy(user);
+						}else {
+							continue;
+						}
+					}
+				}
+			}
+			model.addAttribute("page", page);
 		}
-		model.addAttribute("page", page);
 		return "ccm/attendance/ccmWorkerAttendanceLeaveList";
 	}
 
@@ -245,23 +273,44 @@ public class CcmWorkerAttendanceController extends BaseController {
 	@RequiresPermissions("attendance:ccmWorkerAttendance:view")
 	@RequestMapping(value = {"workingtimelist"})
 	public String workingtimelist(CcmWorkerAttendance ccmWorkerAttendance, HttpServletRequest request, HttpServletResponse response, Model model) {
+		User sysUser = UserUtils.getUser();
 		ccmWorkerAttendance.setType("3");
-		Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.findPage(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
-		if(page.getList().size()>0){
-			for(CcmWorkerAttendance res : page.getList()){
-				if(StringUtils.isNotEmpty(res.getApplyId())){
-					CcmWorkerAttendanceApply ccmWorkerAttendanceApply = ccmWorkerAttendanceApplyService.get(res.getApplyId());
-					User user = UserUtils.get(ccmWorkerAttendanceApply.getCreateBy().getId());
-					if(user!=null) {
-						res.setCreateByname(user.getName());
-						res.setCreateBy(user);
-					}else {
-						
+		ccmWorkerAttendance.setCreateBy(sysUser);
+		if("1".equals(sysUser.getId())){
+			Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.findPage(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
+			if(page.getList().size()>0){
+				for(CcmWorkerAttendance res : page.getList()){
+					if(StringUtils.isNotEmpty(res.getApplyId())){
+						CcmWorkerAttendanceApply ccmWorkerAttendanceApply = ccmWorkerAttendanceApplyService.get(res.getApplyId());
+						User user = UserUtils.get(ccmWorkerAttendanceApply.getCreateBy().getId());
+						if(user!=null) {
+							res.setCreateByname(user.getName());
+							res.setCreateBy(user);
+						}else {
+							continue;
+						}
 					}
 				}
 			}
+			model.addAttribute("page", page);
+		}else{
+			Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.findPageByCreateBy(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
+			if(page.getList().size()>0){
+				for(CcmWorkerAttendance res : page.getList()){
+					if(StringUtils.isNotEmpty(res.getApplyId())){
+						CcmWorkerAttendanceApply ccmWorkerAttendanceApply = ccmWorkerAttendanceApplyService.get(res.getApplyId());
+						User user = UserUtils.get(ccmWorkerAttendanceApply.getCreateBy().getId());
+						if(user!=null) {
+							res.setCreateByname(user.getName());
+							res.setCreateBy(user);
+						}else {
+							continue;
+						}
+					}
+				}
+			}
+			model.addAttribute("page", page);
 		}
-		model.addAttribute("page", page);
 		return "ccm/attendance/ccmWorkerAttendanceWorkingTimeList";
 	}
 

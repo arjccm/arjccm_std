@@ -64,16 +64,7 @@
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<div class="control-group">
-						<label class="control-label">主管领导：</label>
-						<div class="controls">
-							<form:input path="chief" htmlEscape="false" maxlength="64" class="input-xlarge "/>
-						</div>
-					</div>
-				</td>
-			</tr>
+
 			<tr>
 				<td>
 					<div class="control-group">
@@ -87,7 +78,7 @@
 					<div class="control-group">
 						<label class="control-label">岗位职责：</label>
 						<div class="controls">
-							<form:textarea path="duty" htmlEscape="false" rows="8" maxlength="512" class="input-xxlarge "/>
+							<form:textarea path="duty" htmlEscape="false" rows="4" maxlength="512" class="input-xxlarge "/>
 						</div>
 					</div>
 				</td>
@@ -114,6 +105,14 @@
 						<label class="control-label">备注信息：</label>
 						<div class="controls">
 							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label">主管领导：</label>
+						<div class="controls">
+							<form:input path="chief" htmlEscape="false" maxlength="64" class="input-xlarge "/>
 						</div>
 					</div>
 				</td>

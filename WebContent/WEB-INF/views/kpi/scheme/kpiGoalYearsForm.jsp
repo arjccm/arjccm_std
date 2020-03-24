@@ -46,59 +46,93 @@
 	</ul>
 	<form:form id="inputForm" modelAttribute="kpiGoalYears" action="${ctx}/scheme/kpiGoalYears/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>		
-		<div class="control-group head_Space" >
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>部门：</label>
-			<div class="controls">
-				<sys:treeselect id="office" name="office.id" value="${kpiGoalYears.office.id}" labelName="office.name" labelValue="${kpiGoalYears.office.name}"
-					title="部门" url="/sys/office/treeData?type=2" cssClass="" allowClear="true" notAllowSelectParent="fasle"/>
-				<span class="help-inline"><font color="red" id="show1"></font> </span>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>年度：</label>
-			<div class="controls">
-				<input name="years" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-					   value="${kpiGoalYears.years}"
-					   onclick="WdatePicker({dateFmt:'yyyy',isShowClear:false});"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>目标：</label>
-			<div class="controls">
-				<form:textarea path="goal" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge required"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">目标计划：</label>
-			<div class="controls">
-				<form:textarea path="goalPlan" htmlEscape="false" rows="8" maxlength="512" class="input-xxlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">完成进度：</label>
-			<div class="controls">
-				<form:textarea path="progress" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">是否完成：</label>
-			<div class="controls">
-				<form:radiobuttons path="finished" items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false" class=""/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">考核结论：</label>
-			<div class="controls">
-				<form:textarea path="conclusion" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">备注信息：</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
-			</div>
-		</div>
+		<sys:message content="${message}"/>
+	<table>
+		<tr>
+			<td>
+				<div class="control-group head_Space" >
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>部门：</label>
+					<div class="controls">
+						<sys:treeselect id="office" name="office.id" value="${kpiGoalYears.office.id}" labelName="office.name" labelValue="${kpiGoalYears.office.name}"
+										title="部门" url="/sys/office/treeData?type=2" cssClass="" allowClear="true" notAllowSelectParent="fasle"/>
+						<span class="help-inline"><font color="red" id="show1"></font> </span>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>年度：</label>
+					<div class="controls">
+						<input name="years" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+							   value="${kpiGoalYears.years}"
+							   onclick="WdatePicker({dateFmt:'yyyy',isShowClear:false});"/>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>目标：</label>
+					<div class="controls">
+						<form:textarea path="goal" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge required"/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">目标计划：</label>
+					<div class="controls">
+						<form:textarea path="goalPlan" htmlEscape="false" rows="4" maxlength="512" class="input-xxlarge "/>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label">完成进度：</label>
+					<div class="controls">
+						<form:textarea path="progress" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">考核结论：</label>
+					<div class="controls">
+						<form:textarea path="conclusion" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label">是否完成：</label>
+					<div class="controls">
+						<form:radiobuttons path="finished" items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false" class=""/>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">备注信息：</label>
+					<div class="controls">
+						<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+
+
+
+
+
+
+
 		<div class="form-actions">
 			<shiro:hasPermission name="scheme:kpiGoalYears:edit"><input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
