@@ -3131,8 +3131,8 @@ function PopInfoFun(_this) {
     fujing += '<ul style="overflow-y: auto;overflow-x: hidden;width:100%;height:auto;margin:0">辅警:';
     fujing += '<li  class="clearfix" style="overflow-y: auto;overflow-x: hidden;width:100%;height:auto">';
     for (var i = 0; i < len; i++) {
-        var src = popinfoData[i]['images'] || popinfoData[i]['photo'];
-        var telephone = popinfoData[i]['telephone'] || popinfoData[i]['phone'];
+        var src = popinfoData[i]['images'] || popinfoData[i]['photo'] ;
+        var telephone = popinfoData[i]['telephone'] || popinfoData[i]['phone'] || "";
 
         if (popinfoData[i]['no']) {//新密市警务室、工作站
             var name = popinfoData[i]['name'];
