@@ -159,8 +159,10 @@
 									<a class="btnList"
 										href="${ctx}/storage/plmIncomingEntry/delete?id=${plmIncomingEntry.id}"
 										onclick="return confirmx('确认要删除该入库单吗？', this.href)"><i title="删除" class="icon-trash"></i></a> 
-									<a class="btnList" title="addDetail"
-										href="${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}"><i title="添加物资" class="icon-plus"></i></a>
+<%--									<a class="btnList" title="addDetail"--%>
+<%--										href="${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}"><i title="添加物资" class="icon-plus"></i></a>--%>
+									<a class="btnList" title=""
+									   onclick="parent.LayerDialog('${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}','添加物资','1000px','700px')"><i title="添加物资" class="icon-plus"></i></a>
 								</c:if>
 								<c:if test="${plmIncomingEntry.type != '0'}">
 									<a class="btnList"
@@ -205,8 +207,8 @@
 									<a class="btnList"
 										href="${ctx}/storage/plmIncomingEntry/delete?id=${plmIncomingEntry.id}"
 										onclick="return confirmx('确认要删除该入库单吗？', this.href)"><i title="删除" class="icon-trash"></i></a> 
-									<a class="btnList" title="addDetail"
-										href="${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}"><i title="添加物资" class="icon-plus"></i></a>
+									<a class="btnList" title=""
+									   onclick="parent.LayerDialog('${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}','添加物资','1000px','700px')"><i title="添加物资" class="icon-plus"></i></a>
 								</c:if>
 								<c:if test="${plmIncomingEntry.type != '0'}">
 									<a class="btnList"
