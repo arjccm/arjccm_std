@@ -384,7 +384,7 @@ width: 113px;
 								 <option value="4">企业</option>
 								 <option value="5">场所</option>
 						    </select>
-							<a href="javascript:;" id="btnSubmitQueryCollect" onclick="QueryCollect()" class="btn btn-primary firstbtn">
+							<a href="javascript:;" id="btnSubmitQueryCollect" class="btn btn-primary firstbtn">
 							 <i class="icon-search"></i>
 										查询
 								</a>
