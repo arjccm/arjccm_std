@@ -503,7 +503,7 @@
 			</tr>
 		</table>
 		<br />
-		<shiro:hasPermission name="pop:ccmPeople:edit">
+		<%--<shiro:hasPermission name="pop:ccmPeople:edit">
 			<ul class="nav nav-pills ulz">
 				<li><h4 id="zd1">
 						<i class="icon-tags"></i>特殊人群标记：
@@ -588,9 +588,9 @@
 			</ul>
 		</shiro:hasPermission>
 		
-		<br/>
+		<br/>--%>
 		
-		<h4 class="color-bg6">其他信息：</h4>
+		<%--<h4 class="color-bg6">其他信息：</h4>--%>
 		<table id="person" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%" >
 			<tr><td colspan="6">户籍信息：</td></tr>
 			<tr>
@@ -943,7 +943,7 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form><br>
-	<c:if test="${documentNumber > 0}">
+	<%--<c:if test="${documentNumber > 0}">
 		<shiro:hasPermission name="log:ccmLogTail:edit">
 			<h4>&nbsp;跟踪信息：</h4>
 			<br>
@@ -954,6 +954,6 @@
 			<br>
 			<div class="fishBone2" ></div>
 		</shiro:lacksPermission> 
-	</c:if>
+	</c:if>--%>
 </body>
 </html>
