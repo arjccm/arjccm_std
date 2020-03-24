@@ -203,7 +203,7 @@
 		                    <td>
 		                    	<c:if test="${kpiScheme.state eq '1'}">
 <%--		                   			<input class="update" type="button" id="${staffScore.user.id}" value="确认修改"/>--%>
-		                   			<input class="btn btn-primary" type="button" id="${staffScore.user.id}" value="确认修改"/>
+		                   			<input class="btn btn-primary update" type="button" id="${staffScore.user.id}" value="确认修改"/>
 		                   		</c:if>
 		                   		<c:if test="${kpiScheme.state eq '2'}">
 		                   			<span style='color:red'>${fns:getDictLabel(kpiScheme.state, 'kpi_scheme_state', '')}</span>
