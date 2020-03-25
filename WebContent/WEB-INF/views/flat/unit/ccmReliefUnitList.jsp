@@ -60,7 +60,7 @@
     <c:forEach items="${page.list}" var="ccmReliefUnit">
         <tr>
             <td><a href="${ctx}/unit/ccmReliefUnit/form2?id=${ccmReliefUnit.id}">
-                    ${ccmReliefUnit.userName}
+                    ${ccmReliefUnit.user.name}
             </a></td>
             <td>
                     ${ccmReliefUnit.missionsId}
