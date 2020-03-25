@@ -18,6 +18,7 @@ public class KpiGoalYears extends DataEntity<KpiGoalYears> {
 	private static final long serialVersionUID = 1L;
 	private Office office;		// 部门
 	private String years;		// 年度
+	private String quarter;    //季度
 	private String goal;		// 目标
 	private String goalPlan;		// 目标计划
 	private String progress;		// 完成进度
@@ -93,5 +94,12 @@ public class KpiGoalYears extends DataEntity<KpiGoalYears> {
 	public void setConclusion(String conclusion) {
 		this.conclusion = conclusion;
 	}
-	
+
+	public String getQuarter() {
+		return quarter;
+	}
+
+	public void setQuarter(String quarter) {
+		this.quarter = quarter;
+	}
 }

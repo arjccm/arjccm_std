@@ -6,6 +6,7 @@
 		a.id AS "id",
 		a.office_id AS "office.id",
 		a.years AS "years",
+		a.quarter AS "quarter",
 		a.goal AS "goal",
 		a.goal_plan AS "goalPlan",
 		a.progress AS "progress",
@@ -51,6 +52,9 @@
 			<if test="finished != null and finished != ''">
 				AND a.finished = #{finished}
 			</if>
+			<if test="quarter != null and quarter != ''">
+				AND a.quarter = #{quarter}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -85,6 +89,7 @@
 			id,
 			office_id,
 			years,
+			quarter,
 			goal,
 			goal_plan,
 			progress,
@@ -100,6 +105,7 @@
 			#{id},
 			#{office.id},
 			#{years},
+			#{quarter},
 			#{goal},
 			#{goalPlan},
 			#{progress},
@@ -118,6 +124,7 @@
 		UPDATE kpi_goal_years SET 	
 			office_id = #{office.id},
 			years = #{years},
+			quarter = #{quarter},
 			goal = #{goal},
 			goal_plan = #{goalPlan},
 			progress = #{progress},
