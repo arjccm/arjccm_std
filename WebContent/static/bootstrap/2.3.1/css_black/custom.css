@@ -1583,6 +1583,8 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
      box-shadow: 0 0 0px 1000px #0b486f inset !important;
      text-fill-color: #fafafa;
      -webkit-text-fill-color: white;
+     font-family: Helvetica, Georgia, Arial, sans-serif, 宋体;
+     font-size: 13px;
  }
  /*.input-append2{*/
 	/* width: 100px;*/
