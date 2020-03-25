@@ -521,6 +521,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
     background-color: #0b486f!important;
 }
  textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{
+	 color: #fafafa;
 	 background-color: #0b486f !important;
 	 border: 1px solid #00cccc !important;
 	 -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;
@@ -1583,4 +1584,34 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
      text-fill-color: #fafafa;
      -webkit-text-fill-color: white;
  }
-
+ /*.input-append2{*/
+	/* width: 100px;*/
+	/* height: 20px;*/
+ /*}*/
+ /*.input-medium2{*/
+	/* margin-top: -3px;*/
+	/* margin-left: -2px;*/
+	/* width: 150px!important;*/
+	/* height: 30px!important;*/
+ /*}*/
+/*#alarmstate{*/
+/*	background: #0b486f;!*背景色和透明度，可以设置为url地址的图片*!*/
+/*	width: 298px;!*宽度*!*/
+/*	height: 60px;!*高度*!*/
+/*	margin-top: 50px;!*上边距*!*/
+/*	margin-left: 150px;*/
+/*	font-size: 25px;*/
+/*	border-radius: 10px;*/
+/*	overflow: hidden;*/
+/*}*/
+#officeId.input-append.openTree_btn{
+	background-color: #041938;
+	border: 0px solid;
+}
+ .btn-primary2{
+	 line-height: 25px;
+	 height: 27px;
+ }
+ .layui-text{
+	 color: #fafafa;
+ }
