@@ -1639,3 +1639,9 @@ alter table ccm_place_religion add is_pass varchar(2) CHARACTER SET utf8 COLLATE
 alter table ccm_place_religion add is_annihilator varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子围栏id';
 alter table ccm_place_religion add is_sign varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子围栏id';
 alter table ccm_place_religion add is_lighting varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子围栏id';
+
+
+-- 出库类别新增字典
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('2b16c4aa1d3c494bbc11e423eba1d7e2','12','调拨','plm_out_type','出库类别','11','0','1','2020-03-25 13:44:27','1','2020-03-25 13:44:27','','0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('a1dabe7a5bfe48b3a368f34ed38bfa7f','13','自用','plm_out_type','出库类别','12','0','1','2020-03-25 13:44:50','1','2020-03-25 13:44:50','','0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('473943ee6da04a89b7ef31cf4e354b22','14','其他','plm_out_type','出库类别','13','0','1','2020-03-25 13:45:07','1','2020-03-25 13:45:07','','0');
