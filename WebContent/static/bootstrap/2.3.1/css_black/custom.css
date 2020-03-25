@@ -1469,6 +1469,24 @@ cite[class*='t-click']{
 		background: #092D52;
 		color: #fff;
 	}
+ 	.layui-laypage .layui-laypage-spr{
+		background: #0b486f;
+	}
+	.layui-laypage-last{
+		background: #0b486f !important;
+		color: #ffffff !important;
+	}
+	 .layui-laypage .layui-laypage-curr em{
+		color: #999 !important;
+	 }
+	 .layui-laypage .layui-laypage-curr .layui-laypage-em{
+		background: #FFFFFF !important;
+	 }
+ .layui-laypage a, .layui-laypage span{
+	 background: #0b486f !important;
+	 color: #ffffff !important;
+ }
+
  /* layui 分页样式  end */
 
  /* GIS数据  工具样式 start */
