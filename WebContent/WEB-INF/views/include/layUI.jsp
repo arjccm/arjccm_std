@@ -138,7 +138,7 @@
                                             + data[i]["caseName"] + '" > ' + content + '</a></td></tr>';
                                         content1 += html;
                                         contentAll += html;
-                                    }else if(data[i]["type"]=="02"||data[i]["type"]=="04"){
+                                    }else if(data[i]["type"]=="02"){
                                         if(content2 == '<table class="table layer"><tbody id="caseDealTbody" class="tBody"><tr class="def"> <td>暂无新的消息</td></tr>'){
                                             content2 = '<table class="table layer"><tbody id="caseDealTbody" class="tBody">';
                                         }
@@ -153,7 +153,22 @@
                                             + '\')" class="ccmEventLayer' + data[i]["objId"] + ' '+readFlag +' active" > ' + content + '</a></td></tr>';
                                         content2 += html;
                                         contentAll += html;
-                                    }else if(data[i]["type"]=="03"){
+                                    }else if(data[i]["type"]=="04"){
+                                        debugger
+                                        if(content2 == '<table class="table layer"><tbody id="caseDealTbody" class="tBody"><tr class="def"> <td>暂无新的消息</td></tr>'){
+                                            content2 = '<table class="table layer"><tbody id="caseDealTbody" class="tBody">';
+                                        }
+                                        var content=decodeURIComponent(data[i]["content"]);
+                                        var readFlag = "";
+                                        if(data[i]["readFlag"]=="0"){
+                                            count2 += 1;
+                                            noRead = true;
+                                            readFlag = "masked";
+                                        }
+                                        var html = '<tr><td style="text-align: left;"><a title="'+content+'" onclick="exceedTime(\'' + data[i]["content"] + '\')" class="ccmEventLayer' + data[i]["objId"] + ' '+readFlag +' active" > ' + content + '</a></td></tr>';
+                                        content2 += html;
+                                        contentAll += html;
+                                    } else if(data[i]["type"]=="03"){
                                         if(content3 == '<table class="table layer"><tbody id="notifyTbody" class="tBody"><tr class="def"> <td>暂无新的消息</td></tr>'){
                                             content3 = '<table class="table layer"><tbody id="notifyTbody" class="tBody">';
                                         }
@@ -413,6 +428,12 @@
             }
         });
     }
+
+    function exceedTime(content) {
+
+        top.$.jBox.tip(content)
+    }
+
     function clickEventCaseDeal(id) {
         // 左侧栏隐藏
         //$('#left,#openClose').hide();
