@@ -690,9 +690,13 @@ public class CcmEventIncidentController extends BaseController {
     @RequestMapping(value = {"listCheck"})
     public String listCheck(CcmEventIncident ccmEventIncident, HttpServletRequest request, HttpServletResponse response,
                        Model model) {
+
+        List<CcmEventIncident> byPlaceIdList = ccmEventIncidentService.findByPlaceId(ccmEventIncident.getPlaceId());
+
         Page<CcmEventIncident> page = ccmEventIncidentService.findPage(new Page<CcmEventIncident>(request, response),
                 ccmEventIncident);
         model.addAttribute("page", page);
+        model.addAttribute("byPlaceIdList", byPlaceIdList);
         return "ccm/event/eventIncident/ccmEventIncidentCheck";
     }
     
