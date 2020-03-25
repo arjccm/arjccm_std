@@ -57,6 +57,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -1731,6 +1733,7 @@ public class CcmPeopleController extends BaseController {
 		return "/ccm/pop/area/netArea";
 	}
 
+
 	// getHouseAreaForm网格选择房屋
 	@RequestMapping(value = "getHouseAreaForm")
 	public String getHouseAreaForm(CcmPeople ccmPeople, Model model) {
@@ -1980,9 +1983,9 @@ public class CcmPeopleController extends BaseController {
 	 */
 	@RequiresPermissions("pop:ccmPeople:edit")
 	@RequestMapping(value = "saveByHouse")
-	public String saveByHouse(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes) {
+	public void saveByHouse(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmPeople)) {
-			return form(ccmPeople, model);
+			//return form(ccmPeople, model);
 		}
 		// 注入楼栋id
 		if (ccmPeople.getRoomId() != null && ccmPeople.getRoomId().getId() != null
@@ -1994,9 +1997,16 @@ public class CcmPeopleController extends BaseController {
 			}
 		}
 		ccmPeopleService.save(ccmPeople);
-		addMessage(redirectAttributes, "保存房屋成员成功");
-		return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/getPeoListByHouse?houseId="
-				+ ccmPeople.getRoomId().getId() + "&type=house&repage";
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        CommUtil.openWinExpDiv(out,"保存房屋成员成功");
+		//addMessage(redirectAttributes, "保存房屋成员成功");
+		/*return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/getPeoListByHouse?houseId="
+				+ ccmPeople.getRoomId().getId() + "&type=house&repage";*/
 	}
 
 	// 删除人口返回房屋页面列表
