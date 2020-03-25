@@ -196,6 +196,7 @@
 	
 	<select id="getcountPage" resultType="CcmWorkerAttendance">
 		SELECT
+			count(case when a.type = 3 then 1 else null end) as "jiabanCount",
 	    	SUM(IF(goout_type = 10, days, 0)) AS "chuchai",
 			SUM(IF(goout_type = 20, days, 0)) AS "waichu",
 			SUM(IF(leave_type = 10, days, 0)) AS "bingjia",

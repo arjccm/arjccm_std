@@ -39,6 +39,7 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 	private String createByname;
 	private String officename;
 	private String applyId;
+	private String jiabanCount;
 
 
 	public CcmWorkerAttendance() {
@@ -222,5 +223,13 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 
 	public void setApplyId(String applyId) {
 		this.applyId = applyId;
+	}
+
+	public String getJiabanCount() {
+		return jiabanCount;
+	}
+
+	public void setJiabanCount(String jiabanCount) {
+		this.jiabanCount = jiabanCount;
 	}
 }
