@@ -874,4 +874,14 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 		return ccmEventIncidentDao.worker(uid,w2);
     }
 
+	/**
+	 *
+	 * @param placeId 查询场所的关联事件
+	 * @return
+	 */
+	public List<CcmEventIncident> findByPlaceId(String placeId) {
+		List<CcmEventIncident> list = ccmEventIncidentDao.findByPlaceId(placeId);
+		return list;
+	}
+
 }

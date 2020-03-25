@@ -480,6 +480,11 @@ border-top:0.6px solid  #efefef;
 	<input type="hidden" value="${ccmPeople.ident}" id="ccmPeopleIdent" />
 	<input type="hidden" value="${ccmPeople.residencedetail}"
 		id="ccmPeopleresidencedetail" />
+
+     <input type="hidden" value="${Buildmanage.id}" id="buildid" />
+	 <input type="hidden" value="${Buildmanage.buildname}" id="buildname" />
+	 <input type="hidden" value="${Buildmanage.pilesNum}" id="pilesNum" />
+	 <input type="hidden" value="${Buildmanage.elemNum}" id="elemNum" />
 	<!-- 人员定位信息   -->
 	<!-- 案事件定位信息 -->
 	<input type="hidden" value="${areaPointIncident}" id="AlarmAreaPoint" />
@@ -1286,10 +1291,11 @@ border-top:0.6px solid  #efefef;
 		var areaPoint = $('#areaPoint').val()
 		var ccmPeopleName = $('#ccmPeopleName').val()
 		// 事件定位
-	var AlarmAreaPoint = $('#AlarmAreaPoint').val()
+		var AlarmAreaPoint = $('#AlarmAreaPoint').val()
 		if ((areaPoint != "" && ccmPeopleName != "")||(AlarmAreaPoint != "")) {
-			// leftWidth=0;
+			leftWidth=0;
 			$("#left").css("display","none");
+			$(".unfold").css("display","none");
 		}
 		function wSize() {
 			var strs = getWindowSize().toString().split(",");

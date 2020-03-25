@@ -1668,4 +1668,13 @@
         SELECT COUNT(u.id) FROM sys_user u LEFT JOIN sys_office o ON u.office_id = o.id WHERE o.id = #{w1} OR o.parent_ids LIKE #{w2}
 
     </select>
+
+    <select id="findByPlaceId" resultType="CcmEventIncident">
+        select * FROM ccm_event_incident c
+	    LEFT JOIN ccm_event_place p on c.id = p.event_id
+        LEFT JOIN ccm_base_place b ON p.place_id = b.id
+        where
+	    b.id = #{placeId}
+    </select>
+
 </mapper>

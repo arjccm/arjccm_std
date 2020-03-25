@@ -1718,8 +1718,10 @@ public class CcmMapController extends BaseController {
 		EchartType echartType = new EchartType();
 		echartType.setType(type);
 		echartType.setTypeO(name);
-		point = point.substring(0, point.length()-1);
-		echartType.setValue(point);
+		if(StringUtils.isNotEmpty(point)){
+			point = point.substring(0, point.length()-1);
+			echartType.setValue(point);
+		}
 		map.add(echartType);
 		
 		// 输出结果

@@ -656,3 +656,8 @@ a.btnList .icon-group{
 	 width: 49px;
 	 height: 30px;
  }
+ #officeId.input-append.openTree_btn{
+	 background-color: #f1f3f6;
+	 border: 0px solid;
+
+ }

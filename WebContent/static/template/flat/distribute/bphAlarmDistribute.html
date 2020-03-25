@@ -9,6 +9,8 @@
 	type="text/javascript"></script>
 <script src="../../../bootstrap/2.3.1/js/bootstrap.min.js"
 	type="text/javascript"></script>
+    <script src="../../../bootstrap/2.3.1/js/bootstrap.min.css"
+            type="text/javascript"></script>
 <link href="../../../bootstrap/2.3.1/awesome/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
 <link href="../../../flat/bphAlarmDistribute/css/index.css"
@@ -42,6 +44,10 @@ if($.cookie('theme')==undefined){
 }
 
 </script>
+	<link href="../../../jquery-select2/3.4/select2.min.css"
+		  type="text/css" rel="stylesheet">
+	<script src="../../../jquery-select2/3.4/select2.min.js"
+			type="text/javascript"></script>
 <!-- 树形弹窗 引入css js 结束-->
 <style type="text/css">
 .btns {
@@ -109,17 +115,16 @@ if($.cookie('theme')==undefined){
 					treeUrl="/tree/officeTreeData" allowClear="true"
 					treeTitle="选择单位" notAllowSelectParent="true" initLevel="2"
 					rootParentId="-1" cssStyle="height: 28px;"
-					cssClass="input-medium"></button>
+					cssClass="input-medium" ></button>
 			</li>
 			<li>
 				<label>警情状态：</label>
-				<span id="alarmStateTd"></span>
+				<span id="alarmStateTd" class="input-medium"></span>
 			</li>
 			<li class="btns">
-				<a id="btnSubmit" class="btn btn-primary" href="javascript:;">
-					<i class="icon-search"></i>
-					查询
-				</a>
+				<a id="btnSubmit" class="btn btn-primary btn-primary2" style="width: 55px!important;display:inline-block;float: left;" href="javascript:;">
+                    <span style="font-size: 12px">查询</span>
+                </a>
 			</li>
 		</ul>
 	</form>
@@ -272,11 +277,12 @@ if($.cookie('theme')==undefined){
 							<div class="layui-timeline-title">
 								<div class="control-group">
 									<label class="control-label">警情状态：</label>
-									<div class="controls">
-										<div id="alarmStateFromTd"></div>
+									<div class="controls" >
+										<div id="alarmStateFromTd" class="input-medium" ></div>
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</li>
 					<li class="layui-timeline-item">
@@ -286,7 +292,7 @@ if($.cookie('theme')==undefined){
 								<div class="control-group">
 									<label class="control-label">警情类型：</label>
 									<div class="controls">
-										<div id="alarmTypeTd"></div>
+										<div id="alarmTypeTd" class="input-medium" ></div>
 									</div>
 								</div>
 							</div>
@@ -299,7 +305,7 @@ if($.cookie('theme')==undefined){
 								<div class="control-group">
 									<label class="control-label">警情类别：</label>
 									<div class="controls">
-										<div id="alarmClassTd"></div>
+										<div id="alarmClassTd" class="input-medium" ></div>
 									</div>
 								</div>
 							</div>
@@ -312,7 +318,7 @@ if($.cookie('theme')==undefined){
 								<div class="control-group">
 									<label class="control-label">报警方式：</label>
 									<div class="controls">
-										<div id="alarmFromTd"></div>
+										<div id="alarmFromTd" class="input-medium" ></div>
 									</div>
 								</div>
 							</div>
@@ -404,7 +410,7 @@ if($.cookie('theme')==undefined){
 						</div>
 					</li>
 				</ul>
-				<div class="form-actions" style="margin-bottom: 0px;">
+				<div class="form-actions" style="margin-bottom: 0px;height: 35px;padding-top: 12px">
 					<input id="orderSubmit" onclick="orderFun()"
 						style="margin-left: 100px;" class="btn btn-primary" type="button"
 						value="分发">
@@ -427,6 +433,11 @@ if($.cookie('theme')==undefined){
 			htmlObj.height(strs[0]);
 			mainObj.height(htmlObj.height() - 60);
 		}
+		window.onload=function(){
+			$("#alarmState").select2({
+			});
+		}
+
 	</script>
 	<script src="../../../common/wsize.min.js" type="text/javascript"></script>
 	<script src="../../../flat/alarmCommon.js"></script>

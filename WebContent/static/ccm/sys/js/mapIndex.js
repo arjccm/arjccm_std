@@ -1801,17 +1801,17 @@ $(function () {
                 Map.layersIsShow('streets', false);
                 Map.layersIsShow('grids', false);
                 Map.layersIsShow('builds', false);
-                Map.layersIsShow('schoolPlace', false);
-                Map.layersIsShow('keyPlace', false);
+                Map.layersIsShow('schoolPlace', true);
+                Map.layersIsShow('keyPlace', true);
                 Map.layersIsShow('events', true);
-                Map.layersIsShow('keyPerson', false);
-                Map.layersIsShow('rentingPerson', false);
-                Map.layersIsShow('lands', false);
+                Map.layersIsShow('keyPerson', true);
+                Map.layersIsShow('rentingPerson', true);
+                Map.layersIsShow('lands', true);
                 //Map.layersIsShow('videos', false);
                 // Map.layersIsShow('heatMap', true);
                 // Map.layersIsShow('PopLocation',true);
                 Map.layersIsShow('parts', false);
-                Map.layersIsShow('publicPlace', false);
+                Map.layersIsShow('publicPlace', true);
                 Map.layersIsShow('jingwushi', true);
                 Map.layersIsShow('gongzuozhan', true);
                 $.each(idArrjingwushi2, function (index, val) {
@@ -3366,10 +3366,14 @@ function PopLocation() {
         }
 
 
-        var ccmPeopleareaComId = $('#ccmPeopleareaComId').val()
-        var ccmPeopleareaGridId = $('#ccmPeopleareaGridId').val()
-        var ccmPeopleIdent = $('#ccmPeopleIdent').val()
-        var residencedetail = $('#ccmPeopleresidencedetail').val()
+        var ccmPeopleareaComId = $('#ccmPeopleareaComId').val();
+        var ccmPeopleareaGridId = $('#ccmPeopleareaGridId').val();
+        var ccmPeopleIdent = $('#ccmPeopleIdent').val();
+        var residencedetail = $('#ccmPeopleresidencedetail').val();
+        var buildid = $('#buildid').val();
+        var buildname = $('#buildname').val();
+        var pilesNum = $('#pilesNum').val();
+        var elemNum = $('#elemNum').val();
         areaPoint = areaPoint.split(',')
         var PopDat = {
             "type": "FeatureCollection",
@@ -3385,9 +3389,12 @@ function PopLocation() {
                         "生日": Birthday,
                         "社区": ccmPeopleareaComId,
                         "网格": ccmPeopleareaGridId,
-                        "住址": residencedetail
+                        "住址": residencedetail,
+                        "id":buildid,
+                        "楼栋名称": buildname,
+                        "层数": pilesNum,
+                        "单元数": elemNum,
                     },
-
                     "coordinateCentre": areaPoint
                 },
                 "geometry": {

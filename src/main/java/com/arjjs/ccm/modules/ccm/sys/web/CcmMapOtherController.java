@@ -871,13 +871,13 @@ public class CcmMapOtherController extends BaseController {
     @RequestMapping(value = "buildKeyManMap", method = RequestMethod.GET)
     public String buildKeyManMap(Model model, String peopleId) {
         CcmPeople ccmPeople = new CcmPeople();
+        CcmHouseBuildmanage ccmHouseBuildmanage = new CcmHouseBuildmanage();
         ccmPeople = ccmPeopleService.get(peopleId);
         String areaPoint = "";
         if (ccmPeople != null && ccmPeople.getRoomId() != null && ccmPeople.getRoomId().getId() != null && !"".equals(ccmPeople.getRoomId().getId())) {
             CcmPopTenant ccmPopTenant = new CcmPopTenant();
             ccmPopTenant = ccmPopTenantService.get(ccmPeople.getRoomId().getId());
             if (ccmPopTenant != null && ccmPopTenant.getBuildingId() != null && ccmPopTenant.getBuildingId().getId() != null && !"".equals(ccmPopTenant.getBuildingId().getId())) {
-                CcmHouseBuildmanage ccmHouseBuildmanage = new CcmHouseBuildmanage();
                 ccmHouseBuildmanage = ccmHouseBuildmanageService.get(ccmPopTenant.getBuildingId().getId());
                 if (ccmHouseBuildmanage != null) {
                     areaPoint = ccmHouseBuildmanage.getAreaPoint();
@@ -886,6 +886,7 @@ public class CcmMapOtherController extends BaseController {
         }
         model.addAttribute("areaPoint", areaPoint);
         model.addAttribute("ccmPeople", ccmPeople);
+        model.addAttribute("Buildmanage", ccmHouseBuildmanage);
         return "modules/sys/map/mapIndex";
     }
 
