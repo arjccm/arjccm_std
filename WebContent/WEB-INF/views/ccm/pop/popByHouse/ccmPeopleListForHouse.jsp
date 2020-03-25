@@ -75,7 +75,6 @@
 			<%-- <shiro:hasPermission name="tenant:ccmTenantRecord:view">
 			<li><a href="${ctx}/tenant/ccmTenantRecord/${houseId}">历史租客记录列表</a></li>
 			</shiro:hasPermission> --%>
-		
 		<c:if test="${PeoTypeBy eq 'ByHouse_Build' }">
 			<li><a href="${ctx}/house/ccmHouseBuildmanage/">楼栋列表</a></li>
 			<li><a href="${ctx}/house/ccmHouseBuildmanage/form">楼栋添加</a></li>
@@ -83,13 +82,16 @@
 			<shiro:hasPermission name="pop:ccmPopTenant:edit">
 				<li><a href="${ctx}/pop/ccmPopTenant/formBuild?buildingIdId=${buildId}&area.id=${netId}">房屋新增</a></li>
 			</shiro:hasPermission>
-			<li class="active"><a href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${houseId}&type=houseBuild&buildId=${buildId}&netId=${netId}">现有人员列表</a></li>
+			<%--<li class="active"><a href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${houseId}&type=houseBuild&buildId=${buildId}&netId=${netId}">现有人员列表</a></li>--%>
 		</c:if>
 		<!-- 当前的页面为 房屋 则进行展示  -->
 		<c:if test="${PeoTypeBy eq 'ByHouse' }">
 			<shiro:hasPermission name="pop:ccmPeople:edit">
-				<li><a
-					href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house">成员新增</a></li>
+				<%--<li><a
+					href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house">成员新增</a></li>--%>
+
+                <li><a onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house', '成员新增', '1500px', '700px')"
+                      >成员新增</a></li>
 			</shiro:hasPermission>
 		</c:if>
 		<c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
@@ -154,7 +156,10 @@
 					<td>${ccmPeople.residencedetail}</td>
 					<td><shiro:hasPermission name="pop:ccmPeople:edit">
 						<c:if test="${PeoTypeBy eq 'ByHouse' }">
-							<a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house"  title="修改"><i class="icon-pencil"></i></a>
+							<%--<a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house"  title="修改"><i class="icon-pencil"></i></a>--%>
+							<a class="btnList"
+							   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house', '编辑', '1500px', '700px')"
+							   title="修改"><i class="icon-pencil"></i></a>
 						</c:if>
                         <c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
                             <a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=hire"  title="修改"><i class="icon-pencil"></i></a>
