@@ -1801,17 +1801,17 @@ $(function () {
                 Map.layersIsShow('streets', false);
                 Map.layersIsShow('grids', false);
                 Map.layersIsShow('builds', false);
-                Map.layersIsShow('schoolPlace', false);
-                Map.layersIsShow('keyPlace', false);
+                Map.layersIsShow('schoolPlace', true);
+                Map.layersIsShow('keyPlace', true);
                 Map.layersIsShow('events', true);
-                Map.layersIsShow('keyPerson', false);
+                Map.layersIsShow('keyPerson', true);
                 Map.layersIsShow('rentingPerson', true);
-                Map.layersIsShow('lands', false);
+                Map.layersIsShow('lands', true);
                 //Map.layersIsShow('videos', false);
                 // Map.layersIsShow('heatMap', true);
                 // Map.layersIsShow('PopLocation',true);
                 Map.layersIsShow('parts', false);
-                Map.layersIsShow('publicPlace', false);
+                Map.layersIsShow('publicPlace', true);
                 Map.layersIsShow('jingwushi', true);
                 Map.layersIsShow('gongzuozhan', true);
                 $.each(idArrjingwushi2, function (index, val) {
