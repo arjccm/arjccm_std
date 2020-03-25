@@ -1,6 +1,6 @@
 $(function() {
 	/*-----------------------------------------------业务---------------------------------------------------------*/
-	var   businessList =[{id : "keyPerson",name : "重点人员楼栋",icon : ctxStatic + '/modules/map/images/mapBusiness/keyPerson3.png'},
+	var   businessList =[{id : "keyPerson",name : "重点人员",icon : ctxStatic + '/modules/map/images/mapBusiness/keyPerson3.png'},
 		                // {id : "keyPersonCountry",name : "重点人员分布",icon : ctxStatic + '/modules/map/images/mapBusiness/keyPersonCountry.png'}, 
 		                //  {id : "keyPersonHandle",name : "重点人员管控",icon : ctxStatic + '/modules/map/images/mapBusiness/keyPersonHandle.png'},
 		                 {id : "rentingPerson",name : "出租屋楼栋",icon : ctxStatic + '/modules/map/images/mapBusiness/rentingPerson.png'}, 
