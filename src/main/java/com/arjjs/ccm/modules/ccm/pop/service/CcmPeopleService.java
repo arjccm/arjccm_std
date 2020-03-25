@@ -217,10 +217,10 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
                     if(!ccmPeople.getRoomId().getId().equals(people.getRoomId().getId())) {
                         //删除旧的数据
                         deletePeopleOfHouse(people.getId(), people.getRoomId().getId(), people.getBuildId().getId(), people.getAreaGridId().getId());
-                        saveTenantRecord(ccmPeople);
+                        //saveTenantRecord(ccmPeople);
                     }
                 }else{
-                    saveTenantRecord(ccmPeople);
+                   // saveTenantRecord(ccmPeople);
                 }
             }else{
 			    if(StringUtils.isNotEmpty(people.getRoomId().getId())) {
@@ -230,7 +230,7 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
             }
 		}else{
 		    if(StringUtils.isNotEmpty(ccmPeople.getRoomId().getId())){
-                saveTenantRecord(ccmPeople);
+                //saveTenantRecord(ccmPeople);
             }
 		}
 
