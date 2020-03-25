@@ -3366,10 +3366,14 @@ function PopLocation() {
         }
 
 
-        var ccmPeopleareaComId = $('#ccmPeopleareaComId').val()
-        var ccmPeopleareaGridId = $('#ccmPeopleareaGridId').val()
-        var ccmPeopleIdent = $('#ccmPeopleIdent').val()
-        var residencedetail = $('#ccmPeopleresidencedetail').val()
+        var ccmPeopleareaComId = $('#ccmPeopleareaComId').val();
+        var ccmPeopleareaGridId = $('#ccmPeopleareaGridId').val();
+        var ccmPeopleIdent = $('#ccmPeopleIdent').val();
+        var residencedetail = $('#ccmPeopleresidencedetail').val();
+        var buildid = $('#buildid').val();
+        var buildname = $('#buildname').val();
+        var pilesNum = $('#pilesNum').val();
+        var elemNum = $('#elemNum').val();
         areaPoint = areaPoint.split(',')
         var PopDat = {
             "type": "FeatureCollection",
@@ -3385,9 +3389,12 @@ function PopLocation() {
                         "生日": Birthday,
                         "社区": ccmPeopleareaComId,
                         "网格": ccmPeopleareaGridId,
-                        "住址": residencedetail
+                        "住址": residencedetail,
+                        "id":buildid,
+                        "楼栋名称": buildname,
+                        "层数": pilesNum,
+                        "单元数": elemNum,
                     },
-
                     "coordinateCentre": areaPoint
                 },
                 "geometry": {
