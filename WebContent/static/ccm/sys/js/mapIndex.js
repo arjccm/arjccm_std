@@ -1805,7 +1805,7 @@ $(function () {
                 Map.layersIsShow('keyPlace', false);
                 Map.layersIsShow('events', true);
                 Map.layersIsShow('keyPerson', false);
-                Map.layersIsShow('rentingPerson', false);
+                Map.layersIsShow('rentingPerson', true);
                 Map.layersIsShow('lands', false);
                 //Map.layersIsShow('videos', false);
                 // Map.layersIsShow('heatMap', true);
