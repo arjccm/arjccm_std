@@ -119,13 +119,13 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<ul class="nav nav-tabs">
+	<%--<ul class="nav nav-tabs">
 		<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmWork/list/40">数据列表</a></li>
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmWork/form/noSettle?id=${ccmPeople.id}">数据<shiro:hasPermission name="pop:ccmWork:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmWork:edit">查看</shiro:lacksPermission></a></li>
-		<%-- <c:if test="${not empty ccmPeople.id}">
+		&lt;%&ndash; <c:if test="${not empty ccmPeople.id}">
 			<li><a href="${ctx}/log/ccmLogTail/formProPermanent?relevance_id=${ccmPeople.id}&relevance_table=ccm_people">跟踪信息<shiro:hasPermission name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a></li>
-		</c:if> --%>
-	</ul>
+		</c:if> &ndash;%&gt;
+	</ul>--%>
 	<form:form id="inputForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmWork/save/noSettle" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
@@ -511,7 +511,7 @@
 			</tr>
 		</table>
 		<br />
-		<shiro:hasPermission name="pop:ccmPeople:edit">
+		<%--<shiro:hasPermission name="pop:ccmPeople:edit">
 			<ul class="nav nav-pills ulz">
 				<li><h4 id="zd1">
 						<i class="icon-tags"></i>特殊人群标记：
@@ -598,7 +598,7 @@
 		
 		<br/>
 		
-		<h4 class="color-bg6">其他信息：</h4>
+		<h4 class="color-bg6">其他信息：</h4>--%>
 		<table id="person" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%" >
 			<tr><td colspan="6">户籍信息：</td></tr>
 			<tr>
@@ -951,7 +951,7 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form><br>
-	<c:if test="${documentNumber > 0}">
+	<%--<c:if test="${documentNumber > 0}">
 		<shiro:hasPermission name="log:ccmLogTail:edit">
 			<h4>&nbsp;跟踪信息：</h4>
 			<br>
@@ -962,6 +962,6 @@
 			<br>
 			<div class="fishBone2" ></div>
 		</shiro:lacksPermission> 
-	</c:if>
+	</c:if>--%>
 </body>
 </html>

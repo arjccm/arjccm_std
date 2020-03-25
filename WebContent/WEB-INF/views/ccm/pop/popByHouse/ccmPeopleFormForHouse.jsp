@@ -449,7 +449,7 @@ label.error {
 			</tr>
 
 
-			<!-- 
+		<%--	<!--
 			<tr>
 				<td  class="pad">是否留守：</td>
 				<td  class="pad">
@@ -497,12 +497,12 @@ label.error {
 				</td>
 			</tr>
 			
-			 -->
-			<%@include file="/WEB-INF/views/include/ccmlog.jsp"%>
-		</table>
+			 -->--%>
+	<%--		<%@include file="/WEB-INF/views/include/ccmlog.jsp"%>
+		</table>--%>
 
 
-		<c:if test="${not empty ccmPeople.id}">
+		<%--<c:if test="${not empty ccmPeople.id}">
 			<br>
 			<h4>特殊标记信息：</h4>
 			<table id="mark" border="0px"
@@ -593,11 +593,11 @@ label.error {
 
 			</table>
 
-		</c:if>
+		</c:if>--%>
 
 		<br />
 
-		<h4 class="color-bg6">其他信息：</h4>
+		<%--<h4 class="color-bg6">其他信息：</h4>--%>
 		<table id="person" border="0px"
 			style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%">
 			<tr>
