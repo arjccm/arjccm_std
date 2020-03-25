@@ -41,6 +41,12 @@
 					   value="${kpiGoalYears.years}"
 					   onclick="WdatePicker({dateFmt:'yyyy',isShowClear:true});" />
 			</li>
+			<li class="first-line"><label>季度日期：</label>
+				<form:select path="quarter" class="input-medium">
+					<form:option value="" label="全部"/>
+					<form:options items="${fns:getDictList('quarter')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
 			<li class="first-line"><label>是否完成：</label>
 				<form:select path="finished" class="input-medium">
 					<form:option value="" label="全部"/>
@@ -64,6 +70,7 @@
 			<tr>
 				<th>部门</th>
 				<th>年度</th>
+				<th>季度</th>
 				<th>是否完成</th>
 				<th>更新时间</th>
 				<shiro:hasPermission name="scheme:kpiGoalYears:edit"><th>操作</th></shiro:hasPermission>
@@ -77,6 +84,9 @@
 				</a></td>
 				<td style="height: 50px">
 					${kpiGoalYears.years}
+				</td>
+				<td style="height: 50px">
+					${fns:getDictLabel(kpiGoalYears.quarter, 'quarter', '')}
 				</td>
 				<td style="height: 50px">
 					${fns:getDictLabel(kpiGoalYears.finished, 'yes_no', '')}

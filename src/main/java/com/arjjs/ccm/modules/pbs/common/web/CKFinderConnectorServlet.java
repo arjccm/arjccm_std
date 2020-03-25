@@ -37,7 +37,7 @@ public class CKFinderConnectorServlet extends ConnectorServlet {
 		prepareGetResponse(request, response, true);
 		super.doPost(request, response);
 	}
-	
+
 	private void prepareGetResponse(final HttpServletRequest request,
 			final HttpServletResponse response, final boolean post) throws ServletException {
 		Principal principal = (Principal) UserUtils.getPrincipal();

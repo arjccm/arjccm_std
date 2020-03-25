@@ -69,6 +69,19 @@
 					</div>
 				</div>
 			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font
+							color="red">*</font> </span>季度：</label>
+					<div class="controls">
+						<form:select path="quarter" class="input-xlarge required" cssStyle="width:284px!important;">
+							<form:options items="${fns:getDictList('quarter')}"
+										  itemLabel="label" itemValue="value" htmlEscape="false"/>
+						</form:select>
+					</div>
+
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td>

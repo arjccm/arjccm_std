@@ -542,14 +542,14 @@
 				AND a.area_id = #{area.id}
 			</if>
 		</where>
-		<choose>
+		<!--<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
 				ORDER BY a.update_date DESC
 			</otherwise>
-		</choose>
+		</choose>-->
 	</select>
 	<update id="updateCoordinates">
 		UPDATE ccm_house_buildmanage SET

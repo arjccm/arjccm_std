@@ -58,9 +58,11 @@ $(function() {
 		if ($("#diyBtn_" + treeNode.tId).length > 0)
 			return;
 		if (treeNode.level == 0) {
-			var editStr = "&nbsp;<span class='diyBtn1' id='addBtn' title='新增' onfocus='this.blur();'><i class='icon-plus'></i></span>&nbsp;";					
+
+			var editStr = "&nbsp;<span class='diyBtn1 addBtn_sl' id='addBtn' title='新增' onfocus='this.blur();'><i class='icon-plus'></i></span>&nbsp;";
 			$("#collectZtree").prepend(editStr);
-			
+			var addbtnLen = $(".addBtn_sl").length
+			$(".addBtn_sl").not($(".addBtn_sl").eq(0)).css({"display":"none"})
 			$("#addBtn").on("click",function() {
 				
 				 top.$.jBox('<br><form  class="form-search" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="addInput" class="input-medium"   type="text" style="width:229px"/>&nbsp;&nbsp;&nbsp;　'						

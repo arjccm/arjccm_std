@@ -7,7 +7,7 @@ function LocationOpen (id){
 		if(data==""){
 			top.$.jBox.tip("暂无位置信息")
 		}else{
-			windowOpen(context+"/sys/map/buildKeyManMap?peopleId="+id,"位置信息",1000,700)
+			windowOpen(context+"/sys/map/buildKeyManMap?peopleId="+id,"位置信息",1600,788)
 		}
 	})
 }

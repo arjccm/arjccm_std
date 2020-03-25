@@ -183,7 +183,7 @@ $(function(){
 	inittree();
 	MoveFlow.bindDom();
 })
-function inittree(){
+var inittree= function(){
 	var ReservePlanSetting = {
 		edit: {
 			enable: true,
@@ -320,7 +320,8 @@ function inittree(){
 			}
 			$.fn.zTree.init($("#StepTree"), StepSetting,data);
 		})
-		$.getJSON(ctx+'/fiow/planFlowManage/actionList',function(data){
+		$.getJSON(ctx+'/fiow/planFlowManage/actionList?time='+new Date().getTime(),function(data){
+			console.log(data)
 			var len=data.length;
 			var html='';
 			if(len>0){

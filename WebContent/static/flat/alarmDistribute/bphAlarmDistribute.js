@@ -166,34 +166,41 @@ function AlarmDistribute() {
 
 // 警情状态下拉框
 function initAlarmState() {
-	var alarmTypeSelectNode = $("<select id='alarmState'></select>");
+	var alarmTypeSelectNode = $("<select id='alarmState' class='input-medium'></select>");
 	alarmTypeSelectNode.append("<option value='' >全部</option>");
 	$.getJSON(ctx + '/sys/dict/listData?type=bph_alarm_info_state', function(datas) {
 		for (var i = 0; i < datas.length; i++) {
 			alarmTypeSelectNode.append("<option value='" + datas[i].value + "'>" + datas[i].label + "</option>");
 		}
 	})
+
 	$("#alarmStateTd").append(alarmTypeSelectNode);
 }
 
 function initTableAlarmState(state) {
-	var alarmTypeSelectNode = $("<select id='stateTd'></select>");
+	var alarmTypeSelectNode = $("<select id='stateTd' class='input-medium'></select>");
 	$.getJSON(ctx + '/sys/dict/listData?type=bph_alarm_info_state', function(datas) {
 		for (var i = 0; i < datas.length; i++) {
 			if (state == datas[i].value) {
 				alarmTypeSelectNode.append("<option value='" + datas[i].value + "' selected>" + datas[i].label + "</option>");
+				$("#stateTd").select2({
+					placeholder:datas[i].value
+				});
 			} else {
 				alarmTypeSelectNode.append("<option value='" + datas[i].value + "'>" + datas[i].label + "</option>");
 			}
 		}
 	})
 	$("#alarmStateFromTd").html(alarmTypeSelectNode);
+	$("#stateTd").select2({});
+
 }
 
 //查询结果-行点击事件
 function getAlarmInfo(id) {
 	$.get(ctx + '/alarmdistribute/bphAlarmDistribute/alarm?id=' + id, function(data) {
 		var data = JSON.parse(data);
+		console.log(data)
 		var officeId = '', officeName = '';
 		if (data.office !== undefined && data.office != null && data.office != '') {
 			officeId = data.office.id;
@@ -223,13 +230,18 @@ function getAlarmInfo(id) {
 		});
 		audioInit();//初始化audio
 		initTableAlarmState(data.state);//初始化警情状态下拉框
-		var alarmTypeSelectNode = $("<select id='alarmType'></select>");//警情类型下拉框
-		var alarmClassSelectNode = $("<select id='alarmClass'></select>");//警情类别下拉框
+
+		var alarmTypeSelectNode = $("<select id='alarmType' class='input-medium'></select>");//警情类型下拉框
+		var alarmClassSelectNode = $("<select id='alarmClass' class='input-medium'></select>");//警情类别下拉框
 		$("#alarmTypeTd").html(alarmTypeSelectNode);
+		$("#alarmType").select2({});
 		$.getJSON(ctx+'/sys/dict/listData?type=bph_alarm_info_typecode',function(datas){
 			for(var i=0;i<datas.length;i++){
 				if(data.typeCode == datas[i].value){
 					alarmTypeSelectNode.append("<option data-id='"+datas[i].id+"' value='"+datas[i].value+"' selected='selected'>"+datas[i].label+"</option>");
+					$("#alarmType").select2({
+						placeholder:datas[i].value
+					});
 				}else{
 					alarmTypeSelectNode.append("<option data-id='"+datas[i].id+"' value='"+datas[i].value+"'>"+datas[i].label+"</option>");
 				}
@@ -241,12 +253,16 @@ function getAlarmInfo(id) {
 				for(var i=0;i<datas.length;i++){
 					if(data.genreCode == datas[i].value){
 						alarmClassSelectNode.append("<option value='"+datas[i].value+"' selected='selected'>"+datas[i].label+"</option>");
+						$("#alarmClass").select2({
+							placeholder:datas[i].value
+						});
 					}else{
 						alarmClassSelectNode.append("<option value='"+datas[i].value+"'>"+datas[i].label+"</option>");
 					}
 				}
 			});
 			$("#alarmClassTd").html(alarmClassSelectNode);
+			$("#alarmClass").select2({});
 		});
 		
 		$("#alarmType").change(function(){
@@ -262,17 +278,21 @@ function getAlarmInfo(id) {
 			});
 		});
 		// 报警方式下拉框
-		var alarmFromSelectNode = $("<select id='alarmFrom'></select>");
+		var alarmFromSelectNode = $("<select id='alarmFrom' class='input-medium'></select>");
 		$.getJSON(ctx+ '/sys/dict/listData?type=bph_alarm_from',function(datas) {
 			for (var i = 0; i < datas.length; i++) {
 				if (data.alarmFrom == datas[i].value) {
 					alarmFromSelectNode.append("<option value='" + datas[i].value + "' selected='selected'>" + datas[i].label + "</option>");
+					$("#alarmFrom").select2({
+						placeholder:datas[i].value
+					});
 				} else {
 					alarmFromSelectNode.append("<option value='" + datas[i].value + "'>" + datas[i].label + "</option>");
 				}
 			}
 		});
 		$("#alarmFromTd").html(alarmFromSelectNode);
+		$("#alarmFrom").select2({});
 	})
 }
 function deleteAlarm(id){
@@ -280,7 +300,7 @@ function deleteAlarm(id){
 		skin: 'layui-layer-lan',
 		type : 1,
 		title : "提示信息",
-		area : [ "200px" , "140px" ],
+		area : [ "200px" , "150px" ],
 		maxmin : false,
 		btn : [ "确定" , "取消" ], // /可以无限个按钮
 		content :'<div><span style="font-size:14px;color:red;"><b>确定将该警情改成无效警情？</b></span></div>',

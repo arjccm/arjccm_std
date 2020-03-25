@@ -3878,7 +3878,11 @@ ArjMap.Map.prototype = {
            
 			selectedFeatures(_this.selectClick)
 			// 点击添加饼形图--勿删
-			map.addInteraction(selectSingleClick);
+            if (($('#areaPoint').val() != "" && $('#ccmPeopleName').val() != "")||($('#AlarmAreaPoint').val() != "")) {
+
+            } else {
+                map.addInteraction(selectSingleClick);
+            }
 			selectSingleClick.on('select', function(e) {
 				$('#detailsDialog').html('');
 				$('#detailsDialog').show();
@@ -3891,13 +3895,13 @@ ArjMap.Map.prototype = {
 						return feature.get('info')['所属层级'];// 社区网格id
 					})
  					// var id = $('#detailsDialog').attr('infoId');
-// if(type=='4'){
-// $("#detailsDialog").load(
-// ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
-// }else{
-// $("#detailsDialog").load(
-// ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
-// }
+                    // if(type=='4'){
+                    // $("#detailsDialog").load(
+                    // ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
+                    // }else{
+                    // $("#detailsDialog").load(
+                    // ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
+                    // }
 					$("#detailsDialog").load(ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
 					
 
@@ -4299,8 +4303,10 @@ ArjMap.Map.prototype = {
                             			html += '</td>';
                             			
                                     }else{
-                                    	html += '<td><strong>' + i + '：</strong></td>';
-                                        html += '<td style="color:#eea807">' + ((info[i] == null || info[i] == "null") ? '' : info[i]) + '</td>';
+                                        if(i!="楼栋名称" && i!= "层数" && i!="单元数"){
+                                            html += '<td><strong>' + i + '：</strong></td>';
+                                            html += '<td style="color:#eea807">' + ((info[i] == null || info[i] == "null") ? '' : info[i]) + '</td>';
+                                        }
                                     }
 
 
