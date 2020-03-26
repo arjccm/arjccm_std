@@ -322,6 +322,27 @@ width: 113px;
 .input-append {
    margin-bottom: 0px;
 }
+#contentTable th{
+	padding: 0px 15px !important;
+}
+#TableCon{
+	/*position: absolute;*/
+	bottom: 0;
+}
+.drag_drop{
+	width: 100%;
+	height: 5px;
+	background: #0a8ccc;
+	cursor: n-resize;
+}
+.drag_drop:hover{
+	opacity: 0.8;
+}
+.brn_list{
+	width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+}
 </style>
 
 </head>
@@ -405,38 +426,37 @@ width: 113px;
 						class="btn btn-primary" type="button" value="展开" />
 				</div>
 				<!--历史轨迹 底部grid列表数据 -->
-				<div id="hideOrShowDiv" style="position: absolute;width:100%; bottom: 0px; right: 3px; height: 0px; transition: height 1s; z-index: 1992">
-					<!-- 收起按钮 -->
-					<div
-						style="position: absolute; right: 0px; bottom: -30px; transition: bottom 1s;"
-						id="hideDiv">
-						<input onclick="HideDiv()"
-							style="background-color: #3bb4f2 !important; border: 0px;"
-							class="btn btn-primary" type="button" value="关闭" />
+				<div id="hideOrShowDiv" style="position: absolute;width:100%; bottom: 0px; right: 3px; transition: height 1s; z-index: 1992">
+					<div class="brn_list clearfix">
+						<!-- 收起按钮 -->
+						<div style="float: right; margin-right: 8px;display: none;" id="hideDiv">
+							<input onclick="HideDiv()"
+								   style="background-color: #3bb4f2 !important; border: 0px;"
+								   class="btn btn-primary" type="button" value="关闭" />
+						</div>
+						<!-- 倍速回放 -->
+						<div style="float: left; margin-left: 8px; display: none;" id="playBack">
+							<input id="speed" name="" class="input-medium" type="number"
+								   min="1" max="1000" value="30"
+								   style="width: 55px; margin: 0; margin-right: 5px;"> <input
+								id="start"
+								style="background-color: #3bb4f2 !important; border: 0px;"
+								class="btn btn-primary" type="button" value="开始" /> <input
+								id="stop"
+								style="background-color: #3bb4f2 !important; border: 0px;"
+								class="btn btn-primary" type="button" value="停止" /> <input
+								id="tempstop"
+								style="background-color: #3bb4f2 !important; border: 0px;"
+								class="btn btn-primary" type="button" value="暂停" /> <input
+								id="next"
+								style="background-color: #3bb4f2 !important; border: 0px;"
+								class="btn btn-primary" type="button" value="前进" /> <input
+								id="prev"
+								style="background-color: #3bb4f2 !important; border: 0px;"
+								class="btn btn-primary" type="button" value="后退" />
+						</div>
 					</div>
-					<!-- 倍速回放 -->
-					<div
-						style="position: absolute; left: 3px; bottom: -30px; transition: bottom 1s;"
-						id="playBack">
-						<input id="speed" name="" class="input-medium" type="number"
-							min="1" max="1000" value="30"
-							style="width: 55px; margin: 0; margin-right: 5px;"> <input
-							id="start"
-							style="background-color: #3bb4f2 !important; border: 0px;"
-							class="btn btn-primary" type="button" value="开始" /> <input
-							id="stop"
-							style="background-color: #3bb4f2 !important; border: 0px;"
-							class="btn btn-primary" type="button" value="停止" /> <input
-							id="tempstop"
-							style="background-color: #3bb4f2 !important; border: 0px;"
-							class="btn btn-primary" type="button" value="暂停" /> <input
-							id="next"
-							style="background-color: #3bb4f2 !important; border: 0px;"
-							class="btn btn-primary" type="button" value="前进" /> <input
-							id="prev"
-							style="background-color: #3bb4f2 !important; border: 0px;"
-							class="btn btn-primary" type="button" value="后退" />
-					</div>
+
 					<!-- grid列表 -->
 					<div id="TableCon" style="width: 100%;"></div>
 				</div>

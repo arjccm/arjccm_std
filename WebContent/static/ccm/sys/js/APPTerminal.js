@@ -123,7 +123,8 @@ function TableInit(data) {
 	}
 }
 function dataTableInit(tableData) {
-	$('#TableCon').html('<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered table-condensed" id="contentTable"></table>');
+	debugger
+	$('#TableCon').html('<div class="drag_drop" onmousedown="drag()"></div><table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered table-condensed" id="contentTable"></table>');
 	$('#contentTable').dataTable({
 		"data" : tableData,
 		"searching" : false,
@@ -142,27 +143,53 @@ function dataTableInit(tableData) {
 			"title" : "时间"
 		} ]
 	});
+
+
 }
 
+	function drag(e){
+		// alert(123)
+		e = e||event;
+		var dir = "";  //设置好方向
+		var zgys = $(".dataTables_scrollBody")
+		var firstX = e.clientX;
+		var firstY = e.clientY;
+		var height = zgys.outerHeight();  //获取到元素的高度
+		var Top = zgys.offset().top;   //获取到距离上边的距离
+		var winHt = $(document).outerHeight();
+		document.onmousemove = function(e){
+			e = e||event;
+			console.log(e.clientY)
+			zgys.css({
+				"maxHeight":winHt-e.clientY-47+"px"
+			})
+		}
+		document.onmouseup = function() {
+			// alert(2)
+			document.onmousemove = document.onmouseup = null;
+		}
+		return false;
+	}
+
 function ShowDiv() {
-	$("#hideOrShowDiv").height(200);
+	$("#hideOrShowDiv").height("auto");
 	$("#showDiv").css({
 		'bottom' : -30
 	});
 	$("#hideDiv").css({
-		'bottom' : 200
+		'display' : "block"
 	});
 	$("#playBack").css({
-		'bottom' : 200
+		'display' : "block"
 	});
 }
 function HideDiv() {
 	$("#hideOrShowDiv").height(0);
 	$("#hideDiv").css({
-		'bottom' : -30
+		'display' : "none"
 	});
 	$("#playBack").css({
-		'bottom' : -30
+		'display' : "none"
 	});
 	$("#showDiv").css({
 		'bottom' : 0
