@@ -144,7 +144,7 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 	public void setType(String type) {
 		this.type = type;
 	}
-	@ExcelField(title="出差", align=1,sort=3)
+	@ExcelField(title="出差(天)", align=1,sort=3)
 	public String getChuchai() {
 		return chuchai;
 	}
@@ -152,7 +152,7 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 	public void setChuchai(String chuchai) {
 		this.chuchai = chuchai;
 	}
-	@ExcelField(title="外出", align=1,sort=4)
+	@ExcelField(title="外出(天)", align=1,sort=4)
 	public String getWaichu() {
 		return waichu;
 	}
@@ -160,7 +160,7 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 	public void setWaichu(String waichu) {
 		this.waichu = waichu;
 	}
-	@ExcelField(title="病假", align=1,sort=5)
+	@ExcelField(title="病假(天)", align=1,sort=5)
 	public String getBingjia() {
 		return bingjia;
 	}
@@ -168,7 +168,7 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 	public void setBingjia(String bingjia) {
 		this.bingjia = bingjia;
 	}
-	@ExcelField(title="事假", align=1,sort=6)
+	@ExcelField(title="事假(天)", align=1,sort=6)
 	public String getShijia() {
 		return shijia;
 	}
@@ -176,7 +176,7 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 	public void setShijia(String shijia) {
 		this.shijia = shijia;
 	}
-	@ExcelField(title="年休", align=1,sort=7)
+	@ExcelField(title="年休(天)", align=1,sort=7)
 	public String getNianxiu() {
 		return nianxiu;
 	}
@@ -184,7 +184,7 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 	public void setNianxiu(String nianxiu) {
 		this.nianxiu = nianxiu;
 	}
-	@ExcelField(title="调休", align=1,sort=8)
+	@ExcelField(title="调休(天)", align=1,sort=8)
 	public String getTiaoxiu() {
 		return tiaoxiu;
 	}
@@ -192,7 +192,7 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 	public void setTiaoxiu(String tiaoxiu) {
 		this.tiaoxiu = tiaoxiu;
 	}
-	@ExcelField(title="加班", align=1,sort=9)
+	@ExcelField(title="加班(天)", align=1,sort=9)
 	public String getJiaban() {
 		return jiaban;
 	}
@@ -225,6 +225,7 @@ public class CcmWorkerAttendance extends DataEntity<CcmWorkerAttendance> {
 		this.applyId = applyId;
 	}
 
+	@ExcelField(title="加班次数", align=1,sort=10)
 	public String getJiabanCount() {
 		return jiabanCount;
 	}
