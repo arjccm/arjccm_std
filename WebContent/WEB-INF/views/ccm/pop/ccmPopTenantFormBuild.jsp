@@ -166,17 +166,17 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">房主姓名：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>房主姓名：</label>
 						<div class="controls">
-							<form:input path="houseName" htmlEscape="false" maxlength="50" class="input-xlarge "/>
+							<form:input path="houseName" htmlEscape="false" maxlength="50" class="input-xlarge required"/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">房主联系方式：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>房主联系方式：</label>
 						<div class="controls">
-							<form:input path="houseTl" htmlEscape="false" maxlength="11" class="input-xlarge phone"/>
+							<form:input path="houseTl" htmlEscape="false" maxlength="11" class="input-xlarge phone required"/>
 						</div>
 					</div>
 				</td>
@@ -184,9 +184,9 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">证件类型：</label>
+						<label class="control-label"><font color="red">*</font> </span>证件类型：</label>
 						<div class="controls">
-							<form:select path="idenCode" onchange="idenCodeChange()" class="input-xlarge ">
+							<form:select path="idenCode" onchange="idenCodeChange()" class="input-xlarge required">
 								<form:option value="" label=""/>
 								<form:options items="${fns:getDictList('sys_ccm_org_papers')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 						    </form:select>
@@ -205,9 +205,9 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">隐患类型：</label>
+						<label class="control-label"><font color="red">*</font> </span>隐患类型：</label>
 						<div class="controls">
-							<form:select path="hazard" class="input-xlarge ">
+							<form:select path="hazard" class="input-xlarge required ">
 								<form:option value="" label=""/>
 								<form:options items="${fns:getDictList('ccm_hidd_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 						    </form:select>
@@ -216,9 +216,9 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">房主现在居住详细地址：</label>
+						<label class="control-label"><font color="red">*</font> </span>房主现在居住详细地址：</label>
 						<div class="controls">
-							<form:input path="houseCur" htmlEscape="false" maxlength="200" class="input-xlarge "/>
+							<form:input path="houseCur" htmlEscape="false" maxlength="200" class="input-xlarge required "/>
 						</div>
 					</div>
 				</td>
@@ -226,17 +226,17 @@
 			<tr class="selectHidden">
 				<td>
 					<div>
-						<label class="control-label">承租人姓名：</label>
+						<label class="control-label"><font color="red">*</font> </span>承租人姓名：</label>
 						<div class="controls">
-							<form:input path="tenantName" htmlEscape="false" maxlength="50" class="input-xlarge "/>
+							<form:input path="tenantName" htmlEscape="false" maxlength="50" class="input-xlarge required"/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">承租人公民身份号码：</label>
+						<label class="control-label"><font color="red">*</font> </span>承租人公民身份号码：</label>
 						<div class="controls">
-							<form:input path="tenantId" htmlEscape="false" maxlength="18" class="input-xlarge"/>
+							<form:input path="tenantId" htmlEscape="false" maxlength="18" class="input-xlarge required"/>
 						</div>
 					</div>
 				</td>
@@ -244,17 +244,17 @@
 			<tr class="selectHidden">
 				<td>
 					<div>
-						<label class="control-label">承租人联系方式：</label>
+						<label class="control-label"><font color="red">*</font> </span>承租人联系方式：</label>
 						<div class="controls">
-							<form:input path="tenantTl" htmlEscape="false" maxlength="50" class="input-xlarge phone"/>
+							<form:input path="tenantTl" htmlEscape="false" maxlength="50" class="input-xlarge phone required"/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">出租用途：</label>
+						<label class="control-label"><font color="red">*</font> </span>出租用途：</label>
 						<div class="controls">
-							<form:select path="rentPur" class="input-xlarge ">
+							<form:select path="rentPur" class="input-xlarge required">
 								<form:option value="" label=""/>
 								<form:options items="${fns:getDictList('ccm_let_use')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 						    </form:select>
