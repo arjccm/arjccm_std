@@ -174,7 +174,7 @@
 					</shiro:hasPermission>
 					<shiro:hasPermission name="tenant:ccmTenantRecord:view">
 							<a class="btnList"
-							   onclick="parent.LayerDialog(encodeURI('${ctx}/tenant/ccmTenantRecord/form?idCard=${ccmPeople.ident}&name=${ccmPeople.name}&houseId=${ccmPeople.roomIdString}&phoneNumber=${ccmPeople.telephone}'), '租房详情变更', '800px', '550px')"
+							   onclick="parent.LayerDialog(encodeURI('${ctx}/tenant/ccmTenantRecord/form?idCard=${ccmPeople.ident}&name=${ccmPeople.name}&phoneNumber=${ccmPeople.telephone}&id=${ccmPeople.id}&houseId=${houseId}&type=${PeoTypeBy}&buildId=${buildId}&netId=${netId}'), '租房详情变更', '800px', '550px')"
 								title="变更登记"><i class=" icon-time"></i></a>
 					</shiro:hasPermission></td>
 				</tr>
