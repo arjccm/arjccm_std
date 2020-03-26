@@ -115,7 +115,7 @@ $(function() {
 				<td style="height: 50px"><fmt:formatDate value="${log.createDate}" type="both"/></td>
 			</tr>
 			<c:if test="${not empty log.exception}"><tr>
-				<td colspan="8" style="word-wrap:break-word;word-break:break-all;">
+				<td colspan="8" style="word-wrap:break-word;word-break:break-all;text-align: left;">
 <%-- 					用户代理: ${log.userAgent}<br/> --%>
 <%-- 					提交参数: ${fns:escapeHtml(log.params)} <br/> --%>
 					异常信息: <br/>
