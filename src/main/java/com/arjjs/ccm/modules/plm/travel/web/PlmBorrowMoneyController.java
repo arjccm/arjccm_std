@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.activiti.engine.ActivitiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -146,7 +147,14 @@ public class PlmBorrowMoneyController extends BaseController {
 		}
 		plmBorrowMoneyService.save(plmBorrowMoney);
 		if (StringUtils.isBlank(plmBorrowMoney.getProcInsId())) {
-			Map<String, String> returnMap  = actUtConfigService.getProcInsId(PlmTypes.BORROW_MONEY, plmBorrowMoney, plmBorrowMoney.getId());
+			Map<String, String> returnMap  = null;
+			try {
+				returnMap = actUtConfigService.getProcInsId(PlmTypes.BORROW_MONEY, plmBorrowMoney, plmBorrowMoney.getId());
+			} catch (ActivitiException e) {
+				e.printStackTrace();
+				addMessage(redirectAttributes, "申请失败：部门没有设置对应负责人");
+				return "redirect:" + Global.getAdminPath() + "/act/task/apply/";
+			}
 			plmBorrowMoney.setProcInsId(returnMap.get("procInsId"));
 			plmBorrowMoneyService.save(plmBorrowMoney);
 			
