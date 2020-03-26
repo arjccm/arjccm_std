@@ -48,12 +48,6 @@
 		});
 	}
 </script>
-	<style>
-		#messageBox{
-			position: absolute;
-			left: 36%;
-		}
-	</style>
 </head>
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
@@ -113,7 +107,7 @@
 			</li>
 		</ul>
 
-	<sys:message content="${message}" />
+
 	<div class="clearfix pull-right btn-box">
 
 			<shiro:hasPermission name="house:ccmHouseBuildmanage:edit">
@@ -133,6 +127,7 @@
 
 	</div>
 	</form:form>
+	<sys:message content="${message}" />
 	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
