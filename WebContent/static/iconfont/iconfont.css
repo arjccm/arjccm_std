@@ -5,6 +5,12 @@
   url('iconfont.woff?t=1554451736034') format('woff'),
   url('iconfont.ttf?t=1554451736034') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
   url('iconfont.svg?t=1554451736034#iconfont') format('svg'); /* iOS 4.1- */
+
+  url('interCmn.woff?t=1585214870586') format('woff'),
+  url('interCmn.ttf?t=1585214870586') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('interCmn.svg?t=1585214870586#iconfont') format('svg'); /* iOS 4.1- */
+
+
 }
 @font-face {font-family: "iconfont";
   src: url('../iconfont1.eot?t=1584168013847'); /* IE9 */
@@ -21,6 +27,9 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon-interCmn:before {
+  content: "\e610";
 }
 
 .icon-xingren:before {
