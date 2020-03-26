@@ -4836,7 +4836,7 @@ ArjMap.Map.prototype = {
             } else if (i == '事件ID'){
             	html += '<tr>';
                 html += '<td><strong>事件详情：</strong></td>';
-                html += '<td>' + '<button type="button" onclick="parent.LayerDialog(ctx+\'/event/ccmEventIncident/form/?id=' + infoData[i] + '\', \'详情\', \'1200px\', \'800px\')" class="btn btn-mini btn-success">详细</button>' +'</td>';
+                html += '<td>' + '<button type="button" onclick="parent.LayerDialog(ctx+\'/event/ccmEventIncident/form1/?id=' + infoData[i] + '\', \'详情\', \'1200px\', \'800px\')" class="btn btn-mini btn-success">详细</button>' +'</td>';
                 html += '</tr>';
             }else {
                 html += '<tr>';

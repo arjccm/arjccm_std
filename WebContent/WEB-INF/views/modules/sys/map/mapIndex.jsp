@@ -447,7 +447,7 @@ border-top:0.6px solid  #efefef;
 								type="text" value="" maxlength="100"
 								style="width: 172px; height: 30px; margin-left: 1px;">
 							<a id="areaButton" href="javascript:" class="btn"
-								style="border-radius: 0 14px 14px 0;display: inline-block;">&nbsp;<i
+								style="border-radius: 0 14px 14px 0;display: inline-block;width: 24px!important;">&nbsp;<i
 								class="icon-search"></i>&nbsp;
 							</a>&nbsp;&nbsp;
 						</div>
