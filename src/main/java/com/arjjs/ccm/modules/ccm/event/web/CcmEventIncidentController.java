@@ -370,6 +370,31 @@ public class CcmEventIncidentController extends BaseController {
         return "ccm/event/eventIncident/ccmEventIncidentForm";
     }
 
+    @RequiresPermissions("event:ccmEventIncident:view")
+    @RequestMapping(value = "form1")
+    public String form1(CcmEventIncident ccmEventIncident, Model model) {
+        List<CcmEventCasedeal> CcmEventCasedealList = ccmEventIncidentService.findList(ccmEventIncident.getId());
+		/*for (CcmEventCasedeal ccmEventCasedeal : CcmEventCasedealList) {
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String date = sdf.format(ccmEventCasedeal.getCreateDate());
+//			ccmEventCasedeal.setDealDate(date);todo
+		}*/
+        JsonConfig config = new JsonConfig();
+        config.setExcludes(new String[]{"createBy", "updateBy", "currentUser", "dbName", "global", "page", "createDate", "updateDate", "sqlMap"});
+        config.setIgnoreDefaultExcludes(false);  //设置默认忽略
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+        String jsonDocumentList = JSONArray.fromObject(CcmEventCasedealList, config).toString();
+        model.addAttribute("CcmEventCasedealList", jsonDocumentList);
+        model.addAttribute("CasedealListNumber", CcmEventCasedealList.size());
+        model.addAttribute("ccmEventIncident", ccmEventIncident);
+        if(ccmEventIncident.getIsDispatch()!=null&&ccmEventIncident.getIsDispatch().equals("1")){
+            model.addAttribute("ccmEventCasedeal",new CcmEventCasedeal());
+        }
+        model.addAttribute("isDispatch",ccmEventIncident.getIsDispatch());
+        return "ccm/event/eventIncident/ccmEventIncidentForm1";
+    }
+
     @RequestMapping(value = "historyLegacyForm")
     public String historyLegacyForm(CcmEventIncident ccmEventIncident, Model model) {
         List<CcmEventCasedeal> CcmEventCasedealList = ccmEventIncidentService.findList(ccmEventIncident.getId());
