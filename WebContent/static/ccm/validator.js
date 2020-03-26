@@ -169,6 +169,7 @@
 		}
 function onclickNet1(){
 	//社区选择网格
+
 	var areaComId = $("#areaComIdId").val();
 	var id = $("#id").val();
 	if(id==""){
@@ -181,8 +182,12 @@ function onclickNet1(){
 		saveForm();
 	}
 	else {
-		alert("请输入社区");
-		return;
+		layer.tips('请选择社区', '#areaComIdName', {
+			tips: 2,
+            area:["80px","38px"],
+			skin: 'tip_box_style'
+		});
+		return false;
 	}
 
 }

@@ -3151,6 +3151,7 @@ ArjMap.Map.prototype = {
             }, function (data) {
                 top.$.jBox.tip(data);
                 _this.selectedNodes[0].color = areaColor;
+                _this.previewArea(color , opacity);
             })
         }
     },

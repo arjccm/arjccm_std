@@ -76,6 +76,15 @@ $(function() {
 		var name=selectedNodes[0].name;
 		if (selectedNodes[0].checked) {//该节点未选中时，点击完变为选中状态
 			Map.markInfo(id,treeTypeData,selectedNodes,name);
+			if(selectedNodes[0].color){
+				var num = selectedNodes[0].color.toString().lastIndexOf(',');
+				var color = selectedNodes[0].color.toString().substring(5,num);
+				var num1 = Number(color.split(',')[0]);
+				var num2 = Number(color.split(',')[1]);
+				var num3 = Number(color.split(',')[2]);
+				document.getElementById('a_color').jscolor.fromRGB(num1,num2,num3);
+			}
+
 			if(areaPoint==""&&areaMap==""){
 				// top.$.jBox.tip('请标注添加坐标信息');
 //				Map.removeLayer('vectorMark'); //pengjianqiang

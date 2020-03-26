@@ -771,10 +771,10 @@
                 <div>
                     <label class="control-label">所属房屋：</label>
                     <div class="controls" id="newHouse" onmousemove="onclickHouse()">
-                        <!--
+                      <%--  <!--
 							<sys:treeselect id="roomId" name="roomId.id" value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild" labelValue="${ccmPeople.roomId.houseBuild}"
 							title="房屋" url="/pop/ccmPopTenant/treeData?type=7" cssClass="" allowClear="true" notAllowSelectParent="true" cssStyle="width: 150px"/>
-							-->
+							-->--%>
                         <sys:treeselect id="roomId" name="roomId.id"
                                         value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild"
                                         labelValue="${ccmPeople.roomId.houseBuild}" title="房屋"
