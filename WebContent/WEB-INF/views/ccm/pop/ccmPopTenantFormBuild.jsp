@@ -379,7 +379,7 @@
 		$(function(){
 			var buildDoorNumVal=$('#buildDoorNum').val();
 			$.getJSON("${ctx}/house/ccmHouseBuildmanage/getBuildentrance?id=${ccmPopTenant.buildingId.id}",function(data){
-				var html='<option value="0" class="required">请选择</option>';
+				var html='<option value="" class="required">请选择</option>';
 				for(var i in data){
 					html+='<option value="'+data[i].entranceNum+'" class="required">'+data[i].entranceName+'</option>'
 				}
@@ -387,7 +387,7 @@
 				if(buildDoorNumVal != ''){
 					$("#buildDoorNumSelect").val(buildDoorNumVal).select2()
 				}else{
-					$("#buildDoorNumSelect").val('0').select2()
+					$("#buildDoorNumSelect").val('').select2()
 				}
 			})
 			$('#buildDoorNumSelect').change(function(){
