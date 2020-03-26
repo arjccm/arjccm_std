@@ -209,31 +209,6 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 			ccmPeople.setPersonType("01");
 		}
 
-		//租客记录
-		if(StringUtils.isNotEmpty(ccmPeople.getId())) {
-            CcmPeople people = get(ccmPeople.getId());
-			if(StringUtils.isNotEmpty(ccmPeople.getRoomId().getId())){
-			    if(StringUtils.isNotEmpty(people.getRoomId().getId())){
-                    if(!ccmPeople.getRoomId().getId().equals(people.getRoomId().getId())) {
-                        //删除旧的数据
-                        deletePeopleOfHouse(people.getId(), people.getRoomId().getId(), people.getBuildId().getId(), people.getAreaGridId().getId());
-                        //saveTenantRecord(ccmPeople);
-                    }
-                }else{
-                   // saveTenantRecord(ccmPeople);
-                }
-            }else{
-			    if(StringUtils.isNotEmpty(people.getRoomId().getId())) {
-                    //删除旧的数据
-                    deletePeopleOfHouse(people.getId(), people.getRoomId().getId(), people.getBuildId().getId(), people.getAreaGridId().getId());
-                }
-            }
-		}else{
-		    if(StringUtils.isNotEmpty(ccmPeople.getRoomId().getId())){
-                //saveTenantRecord(ccmPeople);
-            }
-		}
-
 		super.save(ccmPeople);
 		
 		//上传上级平台记录
@@ -1091,38 +1066,6 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	//批量添加从业人员列
 	public List<CcmPeople> findPlaceOfPopAdd(CcmPeople ccmPeople) {
 		return ccmPeopleDao.findPlaceOfPopAdd(ccmPeople);
-	}
-
-	public void deletePeopleOfHouse(String id, String houseId, String buildId, String netId) {
-		CcmPeople ccmPeople = new CcmPeople();
-		ccmPeople = get(id);
-		String houseIdString = ccmPeople.getRoomId().getId();
-		// ccmPeopleService.delete(ccmPeople);
-		CcmPopTenant ccmPopTenant = new CcmPopTenant(); // 移除房屋ID
-		ccmPeople.setRoomId(ccmPopTenant);
-		// 修改记录表离开时间
-		CcmTenantRecord ccmTenantRecord = new CcmTenantRecord();
-		ccmTenantRecord.setHouseId(houseIdString);
-		ccmTenantRecord.setIdCard(ccmPeople.getIdent());
-		List<CcmTenantRecord> list = ccmTenantRecordService.findList(ccmTenantRecord);
-
-		if (list.size() != 0) {
-			for (int i = 0; i < list.size(); i++) {
-				for (int j = 0; j < list.size() - i - 1; j++) {// 注意第二重循环的条件
-					long a =list.get(j).getLiveDate().getTime();
-					long b = list.get(j + 1).getLiveDate().getTime();
-					if (a > b) {
-						CcmTenantRecord temp = list.get(j);
-						list.set(j, list.get(j + 1));
-						list.set(j + 1, temp);
-					}
-				}
-			}
-			CcmTenantRecord ccmTenantRecord2 = list.get(list.size() - 1);
-			ccmTenantRecord2.setLeaveDate(new Date());
-			ccmTenantRecordService.save(ccmTenantRecord2);
-		}
-
 	}
 
 	public List<CcmPeople> queryByIdent(String ident){

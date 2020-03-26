@@ -7,10 +7,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +43,8 @@ import com.arjjs.ccm.tool.CommUtil;
 @RequestMapping(value = "${adminPath}/tenant/ccmTenantRecord")
 public class CcmTenantRecordController extends BaseController {
 
+	@Autowired
+	private CcmPeopleService ccmPeopleService;
 	@Autowired
 	private CcmTenantRecordService ccmTenantRecordService;
 	
@@ -75,7 +82,7 @@ public class CcmTenantRecordController extends BaseController {
 
 	@RequiresPermissions("tenant:ccmTenantRecord:edit")
 	@RequestMapping(value = "save")
-	public void save(CcmTenantRecord ccmTenantRecord, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
+	public void save(CcmPeople ccmPeople,CcmTenantRecord ccmTenantRecord, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmTenantRecord)){
 		//	return form(ccmTenantRecord, model);
 		}
@@ -98,9 +105,20 @@ public class CcmTenantRecordController extends BaseController {
 			ccmTenantRecord2.setRemarks(ccmTenantRecord.getRemarks());
 			ccmTenantRecordService.save(ccmTenantRecord2);
 		}else {
-			ccmTenantRecordService.save(ccmTenantRecord);
+			//ccmTenantRecord.setIsNewRecord(true);
+			ccmTenantRecord.setCreateBy(UserUtils.getUser());
+			ccmTenantRecord.setUpdateBy(UserUtils.getUser());
+			ccmTenantRecord.setDelFlag("0");
+			ccmTenantRecord.setCreateDate(new Date());
+			ccmTenantRecord.setUpdateDate(new Date());
+			ccmTenantRecordService.findSave(ccmTenantRecord);
 		}
-		addMessage(redirectAttributes, "保存历史租客记录成功");
+		ccmPeople = ccmPeopleService.get(ccmPeople.getId());
+		String houseIdString = ccmPeople.getRoomId().getId();
+		CcmPopTenant ccmPopTenant = new CcmPopTenant(); // 移除房屋ID
+		ccmPeople.setRoomId(ccmPopTenant);
+		ccmPeopleService.save(ccmPeople);
+		//addMessage(redirectAttributes, "保存历史租客记录成功");
 		PrintWriter out = null;
 		try {
 			out = response.getWriter();
