@@ -65,7 +65,7 @@
 					<td>${ccmTenantRecord.name}</td>
 					<td>${ccmTenantRecord.idCard}</td>
 					<td>${ccmTenantRecord.phoneNumber}</td>
-					<td><fmt:formatDate value="${ccmTenantRecord.createDate}"
+					<td><fmt:formatDate value="${ccmTenantRecord.liveDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<td><fmt:formatDate value="${ccmTenantRecord.leaveDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>		
