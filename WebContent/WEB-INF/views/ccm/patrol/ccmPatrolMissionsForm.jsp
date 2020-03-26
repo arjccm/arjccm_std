@@ -143,7 +143,10 @@
 	</script>
 	<style>
 		#peopleNum{
-			margin-left: 5px;
+			/*margin-left: 5px;*/
+		}
+		#peopleNum .people-num{
+			border-radius: 4px;
 		}
 	</style>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
