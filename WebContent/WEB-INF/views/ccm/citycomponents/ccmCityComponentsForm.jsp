@@ -138,14 +138,14 @@
 					</div>
 				</td>
 			</tr>
-					<tr>
+				<%--	<tr>
 				<td>
 					<div>
 						<label class="control-label"><span class="help-inline"><font
 								color="red">*</font></span>数量：</label>
 						<div class="controls">
 							<form:input path="componentsNum" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-							<%--<span class="help-inline"><font color="red">*</font> </span>--%>
+							&lt;%&ndash;<span class="help-inline"><font color="red">*</font> </span>&ndash;%&gt;
 						</div>
 					</div>
 				</td>
@@ -159,7 +159,7 @@
 						</div>
 					</div>
 				</td>
-			</tr>		
+			</tr>--%>
 			<tr>
 				<td>
 					<div>

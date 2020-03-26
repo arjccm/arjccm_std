@@ -1645,3 +1645,42 @@ alter table ccm_place_religion add is_lighting varchar(2) CHARACTER SET utf8 COL
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('2b16c4aa1d3c494bbc11e423eba1d7e2','12','调拨','plm_out_type','出库类别','11','0','1','2020-03-25 13:44:27','1','2020-03-25 13:44:27','','0');
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('a1dabe7a5bfe48b3a368f34ed38bfa7f','13','自用','plm_out_type','出库类别','12','0','1','2020-03-25 13:44:50','1','2020-03-25 13:44:50','','0');
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('473943ee6da04a89b7ef31cf4e354b22','14','其他','plm_out_type','出库类别','13','0','1','2020-03-25 13:45:07','1','2020-03-25 13:45:07','','0');
+
+
+
+-- 增加绩效考核季度字段
+ALTER TABLE `kpi_goal_years`
+ADD COLUMN `quarter` varchar(32) NULL COMMENT '季度' AFTER `years`;
+
+-- 增加季度数据字典
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('2531722e8b064681b0775a66f56a34a8', '4', '四季度', 'quarter', '四季度', 40, '0', '1', '2020-03-25 17:58:46', '1', '2020-03-25 17:58:46', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('7016c5c4ffca4fafbd9840bd0a8eba4f', '3', '三季度', 'quarter', '三季度', 30, '0', '1', '2020-03-25 17:58:24', '1', '2020-03-25 17:58:24', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('266d47e561834389861e87ac4587171e', '2', '二季度', 'quarter', '二季度', 20, '0', '1', '2020-03-25 17:57:58', '1', '2020-03-25 17:57:58', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('d9152f8848bc4a98ac6dd5fcc1f2b9b0', '1', '一季度', 'quarter', '一季度', 10, '0', '1', '2020-03-25 17:57:31', '1', '2020-03-25 17:57:31', '', '0');
+
+
+-- 绩效目标管理菜单修改
+UPDATE sys_menu SET parent_id = '50e6dcfe48414f87a68fda5a771fcff5', parent_ids = '0,1,6611617ad88549aabd105dc438b21f14,50e6dcfe48414f87a68fda5a771fcff5,', name = '部门绩效目标管理', href = '/scheme/kpiGoalYears', target = '', icon = '', sort = 30, is_show = '1', permission = '', update_by = '1', update_date = '2020-03-26 09:08:42.459', remarks = ''
+ WHERE id = '293b99b15c83421696d93d48fa5f474a';
+
+UPDATE sys_menu SET parent_id = '293b99b15c83421696d93d48fa5f474a', parent_ids = '0,1,6611617ad88549aabd105dc438b21f14,50e6dcfe48414f87a68fda5a771fcff5,293b99b15c83421696d93d48fa5f474a,'
+ WHERE id = 'dc3173db6b344e9cb536724729acd471';
+
+--  6  2020-03-26 09:08:42,522 DEBUG [modules.sys.dao.MenuDao.updateParentIds] - ==>
+UPDATE sys_menu SET parent_id = '293b99b15c83421696d93d48fa5f474a', parent_ids = '0,1,6611617ad88549aabd105dc438b21f14,50e6dcfe48414f87a68fda5a771fcff5,293b99b15c83421696d93d48fa5f474a,'
+ WHERE id = 'c58749fbcccf479f98625bf07b8a6a82';
+
+-- 字典表数据修改
+update sys_dict set label = '完成出库' where id = '50def344c97848fbbe43da829437b6c7'
+
+
+
+
+
+
+
+
+
+
+
+

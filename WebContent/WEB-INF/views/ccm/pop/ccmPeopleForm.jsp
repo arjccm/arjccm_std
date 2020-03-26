@@ -1442,13 +1442,13 @@
         <tr>
             <td>
                 <div>
-                    <label class="control-label">流入原因：</label>
+                    <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>流入原因：</label>
                     <div class="controls">
                         <form:select path="flowRea" class="input-xlarge required">
                             <form:options items="${fns:getDictList('ccm_flow_res')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false"/>
                         </form:select>
-                        <span class="help-inline"><font color="red">*</font> </span>
+
                     </div>
                 </div>
             </td>
@@ -1499,13 +1499,13 @@
             </td>
             <td>
                 <div>
-                    <label class="control-label">住所类型：</label>
+                    <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>住所类型：</label>
                     <div class="controls">
                         <form:select path="domiType" class="input-xlarge required">
                             <form:options items="${fns:getDictList('ccm_dom_type')}"
                                           itemLabel="label" itemValue="value" htmlEscape="false"/>
                         </form:select>
-                        <span class="help-inline"><font color="red">*</font> </span>
+
                     </div>
                 </div>
             </td>

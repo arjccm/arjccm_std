@@ -113,7 +113,7 @@
 							"<input onchange='changeNumber()' class=\"span2 people-num \" value='"+(str[i]||'')+"' type=\"text\">\n" +
 							"<span class=\"add-on\">人数</span>\n" +
 							"</div>" +
-							 "<span class=\"help-inline\"><font color=\"red\">*</font> </span><br/>"
+							 "<span class=\"help-inline\">"+split[i]+"人数 </span><br/>"
 				}
 
 			}else if (officeName) {
@@ -121,7 +121,8 @@
 						"<span class=\"add-on\">"+officeName+":</span>\n" +
 						"<input onchange='changeNumber()' class=\"span2 people-num \" value='"+(str[0]||"")+"' type=\"text\">\n" +
 						"<span class=\"add-on\">人数</span>\n" +
-						"</div><span class=\"help-inline\"><font color=\"red\">*</font> </span>"
+						"</div>" +
+						"<span class=\"help-inline\">"+split[i]+"人数 </span><br/>"
 			}
 			$("#peopleNum").html(temp);
 
