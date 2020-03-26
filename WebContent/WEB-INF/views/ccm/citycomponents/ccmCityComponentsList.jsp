@@ -69,8 +69,8 @@
 				<th>部件类型</th>
 				<th>名称</th>
 				<th>编号</th>
-				<th>数量</th>
-				<th>是否是危险品</th>
+				<%--<th>数量</th>
+				<th>是否是危险品</th>--%>
 				<th>设备所在区域</th>
 				<th>状态</th>
 				<shiro:hasPermission name="citycomponents:ccmCityComponents:edit"><th>操作</th></shiro:hasPermission>
@@ -88,12 +88,12 @@
 				<td style="height: 50px">
 					${ccmCityComponents.code}
 				</td>
-				<td>
+				<%--<td>
 					${ccmCityComponents.componentsNum}
 				</td>
 				 <td>
 					${fns:getDictLabel(ccmCityComponents.isDanger, 'yes_no', '')}
-				</td> 
+				</td> --%>
 				<td>
 					${ccmCityComponents.area.name}
 				</td>
