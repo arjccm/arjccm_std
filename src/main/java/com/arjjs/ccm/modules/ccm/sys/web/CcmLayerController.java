@@ -145,7 +145,7 @@ public class CcmLayerController extends BaseController {
         ccmOrgArea = ccmOrgAreaService.findCcmOrgArea(ccmOrgArea);
         model.addAttribute("areaIncident", area);
         model.addAttribute("ccmOrgAreaIncident", ccmOrgArea);
-        model.addAttribute("netMapIncident", ccmOrgArea.getAreaMap());
+        model.addAttribute("netMapIncident", ccmOrgArea!=null?ccmOrgArea.getAreaMap():"");
 
         // 嫌疑人
         CcmPeople ccmPeopleIncident = new CcmPeople();
