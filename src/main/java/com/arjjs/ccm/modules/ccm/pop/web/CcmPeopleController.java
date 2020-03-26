@@ -1641,7 +1641,7 @@ public class CcmPeopleController extends BaseController {
 			double popPop = 0;
 			if (ccmOrgArea != null) {
 				if (ccmOrgArea.getNetArea() != null) {
-					areaNew = ccmOrgArea.getNetArea() / 1000000;// 区域面积
+					areaNew = ccmOrgArea.getNetArea() / 1000;// 区域面积
 				}
 				/*
 				 * if(ccmOrgArea.getMannum()!=null){ popPop = ccmOrgArea.getMannum() /

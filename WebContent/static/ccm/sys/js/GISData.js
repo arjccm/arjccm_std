@@ -837,7 +837,11 @@ function QueryVideos(){
 			if(x==''||y==''||featuresData[i].geometry.coordinates.length==0){
 				html+='<div class="col-row" data-id="'+id+'"><span style="color:red;font-size: 8px;margin-left: -7px;" data-id="'+id+'">〔暂无坐标〕</span></div>';
 			}
-			html+='<div class="col-row" data-id="'+id+'">'+data.features[i].properties.info['IP地址']+'</div>';
+			if(data.features[i].properties.info['IP地址'] == undefined || data.features[i].properties.info['IP地址'] == null || data.features[i].properties.info['IP地址'] == "") {
+				html+='<div class="col-row" data-id="'+id+'"><span style="color:red;font-size: 8px;margin-left: -7px;" data-id="'+id+'">〔暂无IP〕</span></div>';
+			} else {
+				html+='<div class="col-row" data-id="'+id+'">'+data.features[i].properties.info['IP地址']+'</div>';
+			}
 			html+='<div class="col-row" data-id="'+id+'">'+data.features[i].properties.info['安装位置']+'</div>';
 			html+='</div>';
 			html+='</div>';
