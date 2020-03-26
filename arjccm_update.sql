@@ -1670,6 +1670,9 @@ UPDATE sys_menu SET parent_id = '293b99b15c83421696d93d48fa5f474a', parent_ids =
 UPDATE sys_menu SET parent_id = '293b99b15c83421696d93d48fa5f474a', parent_ids = '0,1,6611617ad88549aabd105dc438b21f14,50e6dcfe48414f87a68fda5a771fcff5,293b99b15c83421696d93d48fa5f474a,'
  WHERE id = 'c58749fbcccf479f98625bf07b8a6a82';
 
+-- 字典表数据修改
+update sys_dict set label = '完成出库' where id = '50def344c97848fbbe43da829437b6c7'
+
 
 
 
