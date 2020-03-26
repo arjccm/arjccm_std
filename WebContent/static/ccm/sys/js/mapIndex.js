@@ -2245,7 +2245,7 @@ $(function () {
             shade: false,
             title: false, // 不显示标题
             area: ["600px", "400px"],
-            offset: ['500px', '1300px'],
+            // offset: ['500px', '1300px'],
             move: '.layer-common-header',
             resize: false,
             fixed: false,
