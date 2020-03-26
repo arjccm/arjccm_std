@@ -48,6 +48,12 @@
 		});
 	}
 </script>
+	<style>
+		#messageBox{
+			position: absolute;
+			left: 36%;
+		}
+	</style>
 </head>
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
