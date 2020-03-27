@@ -35,6 +35,7 @@
 	</ul> --%>
 	<form:form id="inputForm" modelAttribute="ccmTenantRecord" action="${ctx}/tenant/ccmTenantRecord/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
+		<form:hidden path="ccmPeople.id" value="${ccmTenantRecord.ccmPeople.id}"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group" style="padding-top: 8px">
 			<label class="control-label">姓名：</label>

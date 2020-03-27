@@ -76,7 +76,7 @@
 						<i class="icon-pencil"></i>
 					</a>
 					<a class="btnList" href="${ctx}/organization/ccmEventOrganization/delete?id=${ccmEventOrganization.id}" onclick="return confirmx('确认要删除该调解组织吗？', this.href)" title="删除">
-						<i class="icon-remove-sign"></i>
+						<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
 					</a>
 				</td></shiro:hasPermission>
 			</tr>

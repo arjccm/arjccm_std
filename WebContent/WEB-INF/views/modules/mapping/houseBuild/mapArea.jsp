@@ -555,7 +555,7 @@ font-size:18px;
 					</div>
 					-->
 					<div class="common-header">
-						<div class="title-fontsize">流入流出分析</div>
+						<div class="title-fontsize">流动人员来源地TOP10</div>
 					</div>
 					<div class="show height100 common-center">
 						<div class="row-fluid height100">
@@ -764,11 +764,14 @@ font-size:18px;
 				$("#chuzufang").html(data);
 		});
 		//流入流出分析
-		$.getJSON(context + "/report/ccmPeopleStat/findFloatOutInArea?area.id=${area.id}",
+		/*$.getJSON(context + "/report/ccmPeopleStat/findFloatOutInArea?area.id=${area.id}",
 			function(data) {
 				// 填充数据
 				$.FloatOutInAreaSheets("FloatOutInArea", data);
-		}); 
+		});*/
+
+		$.FloatOutInAreaSheets();
+
 		/* $.getJSON(context + "/know/ccmEconomicsMonth/getShuiShouData",
 			function(data) {
 				//接收参数
@@ -1173,7 +1176,106 @@ font-size:18px;
 
     }
   	//流入流出分析
-	$.FloatOutInAreaSheets = function(model,data) {
+
+	$.FloatOutInAreaSheets = function () {
+		$.post(context + "/sys/BicMap/modular_02", {}, function (data) {
+			var myChart1 = echarts.init(document.getElementById('FloatOutInArea'));
+			var wz = 270;
+			var policeoption = {
+				color: [new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+					offset: 0,
+					color: "#0d2a3a"
+				}, {
+					offset: 0.3,
+					color: "#32d6ee"
+				}, {
+					offset: 0.5,
+					color: "#32d6ee"
+				}, {
+					offset: 1,
+					color: "#9d426f"
+				}], false)],
+				grid: {
+					left: '0%',
+					right: '7%',
+					top: '5%',
+					bottom: '5%',
+					containLabel: true
+				},
+				tooltip: {
+					show: "true",
+					trigger: 'axis',
+					axisPointer: {
+						type: 'shadow'
+					}
+				},
+				yAxis: [{
+					data: data["name"],
+					axisTick: {
+						show: false
+					},
+					axisLine: {
+						show: false
+					},
+					axisLabel: {
+						show: true,
+						color: "#fff",
+						fontSize: 12
+					}
+
+				},{
+					data:data["jlData"],
+					axisTick: {
+						show: false
+					},
+					axisLine: {
+						show: false
+					},
+					axisLabel: {
+						show: true,
+						color: "#fff",
+						fontSize: 12
+					}
+
+				}],
+				xAxis: [{
+					axisTick: {
+						show: false
+					},
+					type: 'value',
+					axisLine: {
+						show: false
+					},
+					axisLabel: {
+						show: false
+					},
+					splitLine: {
+						show: false
+					}
+				}],
+				series: [{
+					name: '违规',
+					type: 'bar',
+					barWidth: 12,
+					barCategoryGap: '10%',
+					label: {
+						normal: {
+							show: false,
+							position: 'right',
+							textStyle: {
+								color: "#fff",
+								fontSize: 12
+							}
+						}
+					},
+					data:data["jlData"]
+				}]
+			};
+			myChart1.setOption(policeoption);
+		})
+	};
+
+	/*$.FloatOutInAreaSheets = function(model,data) {
 	   	var name = [];
 	   	name.push("流入");
 	   	name.push("流出");
@@ -1185,9 +1287,9 @@ font-size:18px;
 	   		datas1.push(Number(data[one]["value1"]));
 	   		datas2.push(Number(data[one]["value2"]));
 	   	}
-	
+
 	   var 	option = {
-	
+
 	       legend: {
 	           data:[name[0],name[1]],
 	           textStyle: {
@@ -1226,7 +1328,7 @@ font-size:18px;
 	           }
 	       ],
 	       yAxis : [
-	           {  show:false, 
+	           {  show:false,
 	               type : 'value'
 	           }
 	       ],
@@ -1243,12 +1345,12 @@ font-size:18px;
 	           }
 	       ]
 	   };
-	
+
 	   // 实例化对象
        var Barchart = echarts.init(document.getElementById(model));
        // 传参
        Barchart.setOption(option);
-    }
+    }*/
 	
 	//年龄结构分析
 	$.GetAgeSheets = function(model,data) {

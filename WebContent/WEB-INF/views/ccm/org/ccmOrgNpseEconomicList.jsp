@@ -171,7 +171,7 @@
 							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
 							href="${ctx}/org/ccmOrgNpseEconomic/delete?id=${ccmOrgNpseEconomic.id}"
 							onclick="return confirmx('确认要删除该企业经济运行数据吗？', this.href)"
-							title="删除"><i class="icon-remove-sign"></i></a></td>
+							title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

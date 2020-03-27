@@ -315,7 +315,7 @@ text-overflow: ellipsis; text-align: left;">
                         title="事件详情及处置" class="icon-list-alt"></i></a>
 <%--                <a class="btnList"--%>
 <%--                   href="${ctx}/event/ccmEventIncident/delete?id=${ccmEventIncident.id}"--%>
-<%--                   onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>--%>
+<%--                   onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>--%>
 <%--                <a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventIncident.id}')" title="位置信息"><i--%>
 <%--                        class="icon-tint"></i></a>--%>
 

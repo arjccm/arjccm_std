@@ -83,7 +83,7 @@
 				</td>
 				<shiro:hasPermission name="broadcast:ccmDeviceBroadcast:edit"><td style="height: 50px">
     				<a href="${ctx}/broadcast/ccmDeviceBroadcast/form?id=${ccmDeviceBroadcast.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a href="${ctx}/broadcast/ccmDeviceBroadcast/delete?id=${ccmDeviceBroadcast.id}" onclick="return confirmx('确认要删除该广播站吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a href="${ctx}/broadcast/ccmDeviceBroadcast/delete?id=${ccmDeviceBroadcast.id}" onclick="return confirmx('确认要删除该广播站吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

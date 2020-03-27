@@ -251,7 +251,7 @@
 				</td>
 				<td><shiro:hasPermission name="pop:ccmPermanent:edit">
 	    				<a class="btnList"  href="${ctx}/pop/ccmWork/form?id=${ccmPeople.id}"  title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/pop/ccmWork/delete?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该实有人口吗？', this.href)"  title="删除"><i class="icon-remove-sign"></i></a>
+						<a class="btnList" href="${ctx}/pop/ccmWork/delete?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该实有人口吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				   <a class="btnList"
 								href="javascript:;" onclick="LocationOpen('${ccmPeople.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
 					<%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')"

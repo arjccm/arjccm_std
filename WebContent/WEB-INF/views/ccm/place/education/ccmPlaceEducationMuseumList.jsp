@@ -129,7 +129,7 @@
 							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
 							href="${ctx}/education/ccmPlaceEducation/delete?id=${ccmPlaceEducation.id}"
 							onclick="return confirmx('确认要删除该美术馆或博物院吗？', this.href)"
-							title="删除"><i class="icon-remove-sign"></i></a>
+							title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceEducation.ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
 							   title="从业人员添加"><i class="icon-group"></i></a>

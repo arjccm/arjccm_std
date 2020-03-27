@@ -68,6 +68,9 @@ public class MessageController extends BaseController {
 			if("33".equals(list.get(i).getType())) {
 				list.get(i).setType("03");
 			}
+			if("43".equals(list.get(i).getType())) {
+				list.get(i).setType("03");
+			}
 		}
 		model.addAttribute("page", page);
 		return "ccm/news/messageList";

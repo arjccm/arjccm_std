@@ -92,7 +92,7 @@
 				</td>
 				<shiro:hasPermission name="calendar:plmCalendar:edit"><td>
     				<a title='updateDetail' href="${ctx}/calendar/plmCalendar/form?id=${plmCalendar.id}"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/calendar/plmCalendar/delete?id=${plmCalendar.id}" onclick="return confirmx('确认要删除该工作日历吗？', this.href)"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/calendar/plmCalendar/delete?id=${plmCalendar.id}" onclick="return confirmx('确认要删除该工作日历吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

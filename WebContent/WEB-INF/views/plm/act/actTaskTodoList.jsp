@@ -88,7 +88,7 @@
 						</c:if>
 						<shiro:hasPermission name="act:process:edit">
 							<c:if test="${empty task.executionId}">
-								<a class="btnList" href="${ctx}/act/task/deleteTask?taskId=${task.id}&reason=" onclick="return promptx('删除任务','删除原因',this.href);" title="删除任务"><i class="icon-remove-sign"></i></a>
+								<a class="btnList" href="${ctx}/act/task/deleteTask?taskId=${task.id}&reason=" onclick="return promptx('删除任务','删除原因',this.href);" title="删除任务"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</c:if>
 						</shiro:hasPermission>
 						<a class="btnList" target="_blank" href="${pageContext.request.contextPath}/act/diagram-viewer?processDefinitionId=${task.processDefinitionId}&processInstanceId=${task.processInstanceId}" title="跟踪"><i class="icon-forward"></i></a>

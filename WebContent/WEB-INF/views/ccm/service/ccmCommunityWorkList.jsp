@@ -115,7 +115,7 @@
 							href="${ctx}/service/ccmCommunityWork/form?id=${ccmCommunityWork.id}" title="修改"><i class="icon-pencil"></i></a>
 							<a class="btnList"
 							href="${ctx}/service/ccmCommunityWork/delete?id=${ccmCommunityWork.id}"
-							onclick="return confirmx('确认要删除该社区服务吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+							onclick="return confirmx('确认要删除该社区服务吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

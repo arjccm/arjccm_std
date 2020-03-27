@@ -147,7 +147,7 @@
 	      <li><i class="icon-refresh"></i> icon-refresh</li>
 	      <li><i class="icon-remove"></i> icon-remove</li>
 	      <li><i class="icon-remove-circle"></i> icon-remove-circle</li>
-	      <li><i class="icon-remove-sign"></i> icon-remove-sign</li>
+	      <li><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i> iconfont icon-icondaohangtubiao-shujucaijifenxi</li>
 	      <li><i class="icon-reorder"></i> icon-reorder</li>
 	      <li><i class="icon-reply"></i> icon-reply</li>
 	      <li><i class="icon-resize-horizontal"></i> icon-resize-horizontal</li>

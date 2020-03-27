@@ -71,18 +71,21 @@ public class CcmTenantRecordController extends BaseController {
 
 	@RequiresPermissions("tenant:ccmTenantRecord:view")
 	@RequestMapping(value = "form")
-	public String form(CcmTenantRecord ccmTenantRecord, Model model) {
+	public String form(CcmTenantRecord ccmTenantRecord,String pid, Model model) {
 		List<CcmTenantRecord> getlist = ccmTenantRecordService.findList(ccmTenantRecord);
 		if(getlist.size()>0) {
 			ccmTenantRecord = getlist.get(0);
 		}
+		CcmPeople ccmPeople = new CcmPeople();
+		ccmPeople.setId(pid);
+		ccmTenantRecord.setCcmPeople(ccmPeople);
 		model.addAttribute("ccmTenantRecord", ccmTenantRecord);
 		return "ccm/tenant/ccmTenantRecordForm";
 	}
 
 	@RequiresPermissions("tenant:ccmTenantRecord:edit")
 	@RequestMapping(value = "save")
-	public void save(CcmPeople ccmPeople,CcmTenantRecord ccmTenantRecord, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
+	public void save(CcmTenantRecord ccmTenantRecord, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmTenantRecord)){
 		//	return form(ccmTenantRecord, model);
 		}
@@ -111,9 +114,10 @@ public class CcmTenantRecordController extends BaseController {
 			ccmTenantRecord.setDelFlag("0");
 			ccmTenantRecord.setCreateDate(new Date());
 			ccmTenantRecord.setUpdateDate(new Date());
+			ccmTenantRecord.setId(UUID.randomUUID().toString());
 			ccmTenantRecordService.findSave(ccmTenantRecord);
 		}
-		ccmPeople = ccmPeopleService.get(ccmPeople.getId());
+		CcmPeople ccmPeople = ccmPeopleService.get(ccmTenantRecord.getCcmPeople().getId());
 		String houseIdString = ccmPeople.getRoomId().getId();
 		CcmPopTenant ccmPopTenant = new CcmPopTenant(); // 移除房屋ID
 		ccmPeople.setRoomId(ccmPopTenant);

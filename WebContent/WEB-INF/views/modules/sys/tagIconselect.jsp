@@ -147,7 +147,7 @@
 	      <li><i class="icon-refresh"></i> icon-refresh</li>
 	      <li><i class="icon-remove"></i> icon-remove</li>
 	      <li><i class="icon-remove-circle"></i> icon-remove-circle</li>
-	      <li><i class="icon-remove-sign"></i> icon-remove-sign</li>
+	      <li><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i> iconfont icon-icondaohangtubiao-shujucaijifenxi</li>
 	      <li><i class="icon-reorder"></i> icon-reorder</li>
 	      <li><i class="icon-reply"></i> icon-reply</li>
 	      <li><i class="icon-resize-horizontal"></i> icon-resize-horizontal</li>
@@ -358,7 +358,81 @@
 	    </ul>
 		<h2 class="page-header">新增图标库</h2>
 		<ul class="the-icons">
-			<li><i class="icon-dashujuzhanshi" style="font-family:iconfont !important"></i> icon-dashujuzhanshi</li>
+			<li><i class="iconfont icon-dashujuzhanshi"></i> icon-dashujuzhanshi</li>
+		</ul>
+
+		<h2 class="page-header">操作图标</h2>
+		<ul class="the-icons">
+			<li><i class="iconfont icon-icondaohangtubiao-APPbanbenguanli"></i> icon-icondaohangtubiao-APPbanbenguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-bumenguanli"></i> icon-icondaohangtubiao-bumenguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-dizhikuguanli"></i> icon-icondaohangtubiao-dizhikuguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-GISshuju"></i> icon-icondaohangtubiao-GISshuju</li>
+			<li><i class="iconfont icon-icondaohangtubiao-changsuoguanli"></i> icon-icondaohangtubiao-changsuoguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-ditubiaozhu"></i> icon-icondaohangtubiao-ditubiaozhu</li>
+			<li><i class="iconfont icon-icondaohangtubiao-gerenbangong"></i> icon-icondaohangtubiao-gerenbangong</li>
+			<li><i class="iconfont icon-icondaohangtubiao-huluhuxian"></i> icon-icondaohangtubiao-huluhuxian</li>
+			<li><i class="iconfont icon-icondaohangtubiao-fangwuguanli"></i> icon-icondaohangtubiao-fangwuguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-renkouguanli"></i> icon-icondaohangtubiao-renkouguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-gongzuozhushou"></i> icon-icondaohangtubiao-gongzuozhushou</li>
+			<li><i class="iconfont icon-icondaohangtubiao-jixiaokaohe"></i> icon-icondaohangtubiao-jixiaokaohe</li>
+			<li><i class="iconfont icon-icondaohangtubiao-maodunjiufenpaicha"></i> icon-icondaohangtubiao-maodunjiufenpaicha</li>
+			<li><i class="iconfont icon-icondaohangtubiao-wenjianguanli"></i> icon-icondaohangtubiao-wenjianguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i> icon-icondaohangtubiao-shujucaijifenxi</li>
+			<li><i class="iconfont icon-icondaohangtubiao-jingqingguanli"></i> icon-icondaohangtubiao-jingqingguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-yingjizhihuichuzhi"></i> icon-icondaohangtubiao-yingjizhihuichuzhi</li>
+			<li><i class="iconfont icon-icondaohangtubiao-yingjiwuzibaozhang"></i> icon-icondaohangtubiao-yingjiwuzibaozhang</li>
+			<li><i class="iconfont icon-icondaohangtubiao-APPzhongduan"></i> icon-icondaohangtubiao-APPzhongduan</li>
+			<li><i class="iconfont icon-icondaohangtubiao-xuanchuanxinxi"></i> icon-icondaohangtubiao-xuanchuanxinxi</li>
+			<li><i class="iconfont icon-icondaohangtubiao-richangzhishou"></i> icon-icondaohangtubiao-richangzhishou</li>
+			<li><i class="iconfont icon-icondaohangtubiao-zhuanxiangkaoheguanli"></i> icon-icondaohangtubiao-zhuanxiangkaoheguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-rizhiguanli"></i> icon-icondaohangtubiao-rizhiguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-zhibanguanli"></i> icon-icondaohangtubiao-zhibanguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-xiaoyuananquan"></i> icon-icondaohangtubiao-xiaoyuananquan</li>
+			<li><i class="iconfont icon-icondaohangtubiao-youxiangguanli"></i> icon-icondaohangtubiao-youxiangguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-zuzhijigou"></i> icon-icondaohangtubiao-zuzhijigou</li>
+			<li><i class="iconfont icon-icondaohangtubiao-tongzhigonggao"></i> icon-icondaohangtubiao-tongzhigonggao</li>
+			<li><i class="iconfont icon-icondaohangtubiao-shijianguanli"></i> icon-icondaohangtubiao-shijianguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-shijiantongjifenxi"></i> icon-icondaohangtubiao-shijiantongjifenxi</li>
+			<li><i class="iconfont icon-icondaohangtubiao-shequshiwu"></i> icon-icondaohangtubiao-shequshiwu</li>
+			<li><i class="iconfont icon-icondaohangtubiao-shebeiguanli"></i> icon-icondaohangtubiao-shebeiguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-zhuye"></i> icon-icondaohangtubiao-zhuye</li>
+			<li><i class="iconfont icon-icondaohangtubiao-shishitaishi"></i> icon-icondaohangtubiao-shishitaishi</li>
+			<li><i class="iconfont icon-icondaohangtubiao-wanggeyuanguanli"></i> icon-icondaohangtubiao-wanggeyuanguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-yuanguanli"></i> icon-icondaohangtubiao-yuanguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-zhongdianqingshaonian"></i> icon-icondaohangtubiao-zhongdianqingshaonian</li>
+			<li><i class="iconfont icon-icondaohangtubiao-keshihuazhihui"></i> icon-icondaohangtubiao-keshihuazhihui</li>
+			<li><i class="iconfont icon-icondaohangtubiao-shehuizhian"></i> icon-icondaohangtubiao-shehuizhian</li>
+			<li><i class="iconfont icon-icondaohangtubiao-xitongshezhi"></i> icon-icondaohangtubiao-xitongshezhi</li>
+			<li><i class="iconfont icon-icondaohangtubiao-yonghuguanli"></i> icon-icondaohangtubiao-yonghuguanli</li>
+			<li><i class="iconfont icon-icondaohangtubiao-yewukaohe"></i> icon-icondaohangtubiao-yewukaohe</li>
+			<li><i class="iconfont icon-icondaohangtubiao-zhongdianrenyuan"></i> icon-icondaohangtubiao-zhongdianrenyuan</li>
+			<li><i class="iconfont icon-icondaohangtubiao-yuchulixitong"></i> icon-icondaohangtubiao-yuchulixitong</li>
+			<li><i class="iconfont icon-icondaohangtubiao-zongzhizuzhi"></i> icon-icondaohangtubiao-zongzhizuzhi</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-xiangqing"></i> icon-iconcaozuotubiao-xiangqing</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-chuliyichuli"></i> icon-iconcaozuotubiao-chuliyichuli</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-fujianliebiao"></i> icon-iconcaozuotubiao-fujianliebiao</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-fasongjingqing"></i> icon-iconcaozuotubiao-fasongjingqing</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-hujijiating"></i> icon-iconcaozuotubiao-hujijiating</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-fanganmingxi"></i> icon-iconcaozuotubiao-fanganmingxi</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-qianshou"></i> icon-iconcaozuotubiao-qianshou</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-paiqijilu"></i> icon-iconcaozuotubiao-paiqijilu</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-tianjiaxingbiao"></i> icon-iconcaozuotubiao-tianjiaxingbiao</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-shenhe"></i> icon-iconcaozuotubiao-shenhe</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-guidang"></i> icon-iconcaozuotubiao-guidang</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-pingfen"></i> icon-iconcaozuotubiao-pingfen</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-bukong"></i> icon-iconcaozuotubiao-bukong</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-xiugai"></i> icon-iconcaozuotubiao-xiugai</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-lishizukejiluliebiao"></i> icon-iconcaozuotubiao-lishizukejiluliebiao</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-tianjiachuli"></i> icon-iconcaozuotubiao-tianjiachuli</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-jiluxinxi"></i> icon-iconcaozuotubiao-jiluxinxi</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-ganxiren"></i> icon-iconcaozuotubiao-ganxiren</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-shijianguanlian"></i> icon-iconcaozuotubiao-shijianguanlian</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-shejiaoguanxi"></i> icon-iconcaozuotubiao-shejiaoguanxi</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-shanchu"></i> icon-iconcaozuotubiao-shanchu</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-zoufangjilu"></i> icon-iconcaozuotubiao-zoufangjilu</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-pandian"></i> icon-iconcaozuotubiao-pandian</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-weizhixinxi"></i> icon-iconcaozuotubiao-weizhixinxi</li>
+			<li><i class="iconfont icon-iconcaozuotubiao-chekong"></i> icon-iconcaozuotubiao-chekong</li>
 		</ul>
 	<br/><br/>
 </div>

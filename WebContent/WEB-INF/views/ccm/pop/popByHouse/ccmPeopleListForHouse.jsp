@@ -170,11 +170,11 @@
 							   title="修改"><i class="icon-pencil"></i></a>
 						</c:if>
 						<%--<a class="btnList" href="${ctx}/pop/ccmPeople/deletePeople?id=${ccmPeople.id}&houseId=${houseId}&type=${PeoTypeBy}&buildId=${buildId}&netId=${netId}"
-							onclick="return confirmx('确认要在此房屋中移除该成员吗？', this.href)"  title="移除成员"><i class="icon-remove-sign"></i></a>--%>
+							onclick="return confirmx('确认要在此房屋中移除该成员吗？', this.href)"  title="移除成员"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>--%>
 					</shiro:hasPermission>
 					<shiro:hasPermission name="tenant:ccmTenantRecord:view">
 							<a class="btnList"
-							   onclick="parent.LayerDialog(encodeURI('${ctx}/tenant/ccmTenantRecord/form?idCard=${ccmPeople.ident}&name=${ccmPeople.name}&phoneNumber=${ccmPeople.telephone}&id=${ccmPeople.id}&houseId=${houseId}&type=${PeoTypeBy}&buildId=${buildId}&netId=${netId}'), '租房详情变更', '800px', '550px')"
+							   onclick="parent.LayerDialog(encodeURI('${ctx}/tenant/ccmTenantRecord/form?idCard=${ccmPeople.ident}&name=${ccmPeople.name}&phoneNumber=${ccmPeople.telephone}&pid=${ccmPeople.id}&houseId=${houseId}&type=${PeoTypeBy}&buildId=${buildId}&netId=${netId}'), '租房详情变更', '800px', '550px')"
 								title="变更登记"><i class=" icon-time"></i></a>
 					</shiro:hasPermission></td>
 				</tr>

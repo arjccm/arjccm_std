@@ -87,7 +87,7 @@
 					</a> 
 					<a class="btnList" href="${ctx}/list/ccmList/delete?id=${ccmList.id}"
 							onclick="return confirmx('确认要删除该名单库吗？', this.href)" title="删除">
-						<i class="icon-remove-sign"></i>
+						<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
 					</a>
 				</td>
 				</shiro:hasPermission>

@@ -207,7 +207,7 @@
 				<td>
 					<shiro:hasPermission name="org:ccmOrgNpsesafe:edit">
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpsesafe/form?id=${ccmOrgNpse.id}', '编辑', '1100px', '800px')"title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/org/ccmOrgNpsesafe/delete?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该安全生产重点吗？', this.href)"  title="删除"><i class="icon-remove-sign"></i></a>
+						<a class="btnList" href="${ctx}/org/ccmOrgNpsesafe/delete?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该安全生产重点吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 					</shiro:hasPermission>
 					<shiro:hasPermission name="log:ccmLogTail:edit">
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmOrgNpse.id}&relevance_table=ccm_org_npse', '记录信息', '800px', '660px')"

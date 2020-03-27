@@ -61,20 +61,20 @@ public class CcmPatrolPatrolReportController {
     private CcmPatrolUnitService ccmPatrolUnitService;
 
 
-    private final int ONE_DAY=86400000;
+    private final int ONE_DAY = 86400000;
 
     @RequestMapping(value = "/")
-    public String index(){
+    public String index() {
 
         return "ccm/patrol/ccmPeoplePatrolReport";
     }
 
     @RequestMapping(value = "/getChartData")
     @ResponseBody
-    public JsonResult getChartData(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
+    public JsonResult getChartData(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
 
-        if(startDate==null || endDate==null){
-            return  JsonResult.error("时间为空");
+        if (startDate == null || endDate == null) {
+            return JsonResult.error("时间为空");
         }
 
         //开始时间
@@ -85,45 +85,45 @@ public class CcmPatrolPatrolReportController {
         long time1 = date.getTime();
         //开始时间time
         long time2 = date1.getTime();
-        int day= (int) (time1 - time2) / ONE_DAY;
-        Set<String> officeSet=new HashSet<>();
+        int day = (int) (time1 - time2) / ONE_DAY;
+        Set<String> officeSet = new HashSet<>();
         List<CcmPatrolMissions> listByDate = ccmPatrolMissionsService.findListByDate(date1, date);
-        Map<String,Map> map=new HashMap<>();
-        List<String> key= Lists.newArrayList();
-        Integer [] taskNum=new Integer[day];
+        Map<String, Map> map = new HashMap<>();
+        List<String> key = Lists.newArrayList();
+        Integer[] taskNum = new Integer[day];
         for (int i = 1; i <= day; i++) {
             long time = ONE_DAY * i;
-            long stemp=time2+time;
-            long etemp=time2+time+ONE_DAY;
+            long stemp = time2 + time;
+            long etemp = time2 + time + ONE_DAY;
             //每个部门下的任务数量
-            int z=0;
-            Map<String,Integer> stringIntegerMap=new HashMap<>();
+            int z = 0;
+            Map<String, Integer> stringIntegerMap = new HashMap<>();
             for (CcmPatrolMissions item : listByDate) {
-                if(item.getCreateDate().getTime()>stemp && item.getCreateDate().getTime()<etemp){
+                if (item.getCreateDate().getTime() > stemp && item.getCreateDate().getTime() < etemp) {
                     z++;
-                    item.setOfficeName(item.getOffice().indexOf(",")!=-1 ?
+                    item.setOfficeName(item.getOffice().indexOf(",") != -1 ?
                             idToOfficeName(item.getOffice().split(",")) :
-                            item.getOffice().length()>0 ? officeService.get(item.getOffice()).getName() :"");
+                            item.getOffice().length() > 0 ? officeService.get(item.getOffice()).getName() : "");
                     //判断是否 数组
-                    if(item.getOfficeName().indexOf(",")!=-1){
+                    if (item.getOfficeName().indexOf(",") != -1) {
                         String[] split = item.getOfficeName().split(",");
                         //循环加入
                         for (int i1 = 0; i1 < split.length; i1++) {
                             //判断原先有值吗
-                            if(stringIntegerMap.get(split[i1])==null && split[i1]!=""){
-                                stringIntegerMap.put(split[i1],1);
-                            }else if(split[i1]!=""){
-                                stringIntegerMap.put(split[i1],stringIntegerMap.get(split[i1])+1);
+                            if (stringIntegerMap.get(split[i1]) == null && split[i1] != "") {
+                                stringIntegerMap.put(split[i1], 1);
+                            } else if (split[i1] != "") {
+                                stringIntegerMap.put(split[i1], stringIntegerMap.get(split[i1]) + 1);
                             }
                             officeSet.add(split[i1]);
                         }
-                    }else{
+                    } else {
                         officeSet.add(item.getOfficeName());
                         //判断原先有值吗
-                        if(stringIntegerMap.get(item.getOfficeName())==null && item.getOfficeName()!=null){
-                            stringIntegerMap.put(item.getOfficeName(),1);
-                        }else if(item.getOfficeName()!=""){
-                            stringIntegerMap.put(item.getOfficeName(),stringIntegerMap.get(item.getOfficeName())+1);
+                        if (stringIntegerMap.get(item.getOfficeName()) == null && item.getOfficeName() != null) {
+                            stringIntegerMap.put(item.getOfficeName(), 1);
+                        } else if (item.getOfficeName() != "") {
+                            stringIntegerMap.put(item.getOfficeName(), stringIntegerMap.get(item.getOfficeName()) + 1);
                         }
                     }
 
@@ -131,12 +131,12 @@ public class CcmPatrolPatrolReportController {
                 }
             }
             //天数对应的任务数量
-            taskNum[i-1]=z;
+            taskNum[i - 1] = z;
 
             try {
                 String toStr = DateTools.dateToStr(new Date(stemp));
                 key.add(toStr);
-                map.put(toStr,stringIntegerMap);
+                map.put(toStr, stringIntegerMap);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -144,18 +144,18 @@ public class CcmPatrolPatrolReportController {
 
         }
 
-        List<String> stringObjectMap=Lists.newArrayList();
+        List<String> stringObjectMap = Lists.newArrayList();
         //列表数据转换格式
         for (int i = 0; i < key.size(); i++) {
-            String temp=key.get(i);
-            Map<String,Integer>  map1 = map.get(temp);
-            StringBuilder stringBuilder=new StringBuilder();
-            AtomicInteger intTem= new AtomicInteger();
-            map1.forEach((item,inte)->{
-                if(StringUtils.isBlank(stringBuilder.toString()) ){
+            String temp = key.get(i);
+            Map<String, Integer> map1 = map.get(temp);
+            StringBuilder stringBuilder = new StringBuilder();
+            AtomicInteger intTem = new AtomicInteger();
+            map1.forEach((item, inte) -> {
+                if (StringUtils.isBlank(stringBuilder.toString())) {
                     stringBuilder.append(item);
                     intTem.addAndGet(inte);
-                }else{
+                } else {
                     stringBuilder.append(",");
                     stringBuilder.append(item);
                     intTem.addAndGet(inte);
@@ -163,50 +163,50 @@ public class CcmPatrolPatrolReportController {
 
 
             });
-            stringObjectMap.add(temp+"|"+stringBuilder.toString()+"|"+taskNum[i]);
+            stringObjectMap.add(temp + "|" + stringBuilder.toString() + "|" + taskNum[i]);
         }
 
 
-        Map<String,Integer[]> stringIntegerMap=new HashMap<>();
+        Map<String, Integer[]> stringIntegerMap = new HashMap<>();
         //统计图数据格式
         for (String s : officeSet) {
-            Integer [] intArr=new Integer[key.size()];
+            Integer[] intArr = new Integer[key.size()];
             for (int i = 0; i < key.size(); i++) {
-                String temp=key.get(i);
-                Map<String,Integer>  map1 = map.get(temp);
-                if(map1.get(s)!=null){
-                    intArr[i]=map1.get(s);
-                }else{
-                    intArr[i]=0;
+                String temp = key.get(i);
+                Map<String, Integer> map1 = map.get(temp);
+                if (map1.get(s) != null) {
+                    intArr[i] = map1.get(s);
+                } else {
+                    intArr[i] = 0;
                 }
 
             }
-            stringIntegerMap.put(s,intArr);
+            stringIntegerMap.put(s, intArr);
 
         }
 
-        Map<String,Object> data=new HashMap<>();
-        data.put("intArr",stringIntegerMap);
-        data.put("key",key);
-        data.put("officeSet",officeSet);
-        data.put("stringList",stringObjectMap);
+        Map<String, Object> data = new HashMap<>();
+        data.put("intArr", stringIntegerMap);
+        data.put("key", key);
+        data.put("officeSet", officeSet);
+        data.put("stringList", stringObjectMap);
         return JsonResult.ok(data);
     }
 
     /**
-     *如果为null 则没有权限查询
+     * 如果为null 则没有权限查询
      */
-    private String idToOfficeName(String [] strings){
-        StringBuilder name=new StringBuilder();
+    private String idToOfficeName(String[] strings) {
+        StringBuilder name = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
 
             Office office = officeService.get(strings[i]);
-            if(office==null){
+            if (office == null) {
                 return null;
             }
-            if(i==0){
+            if (i == 0) {
                 name.append(office.getName());
-            }else{
+            } else {
                 name.append(",");
                 name.append(office.getName());
             }
@@ -215,33 +215,33 @@ public class CcmPatrolPatrolReportController {
     }
 
     @RequestMapping(value = "ListByDate")
-    public String ListByDate(String date, Model model){
-        if(StringUtils.isBlank(date)){
+    public String ListByDate(String date, Model model) {
+        if (StringUtils.isBlank(date)) {
             return "/error/404";
         }
 
         Date strToDate = DateTools.strToDate(date);
-        Date endDate=new Date(strToDate.getTime()+ONE_DAY);
+        Date endDate = new Date(strToDate.getTime() + ONE_DAY);
         List<CcmPatrolMissions> listByDate = ccmPatrolMissionsService.findListByDate(strToDate, endDate);
-        listByDate.forEach(item->item.setOfficeName(item.getOffice().indexOf(",")!=-1 ?
+        listByDate.forEach(item -> item.setOfficeName(item.getOffice().indexOf(",") != -1 ?
                 idToOfficeName(item.getOffice().split(",")) :
-                item.getOffice().length()>0 ? officeService.get(item.getOffice()).getName() :""
+                item.getOffice().length() > 0 ? officeService.get(item.getOffice()).getName() : ""
         ));
 
-        model.addAttribute("list",listByDate);
+        model.addAttribute("list", listByDate);
         return "ccm/patrol/ccmPatrolMissionsListByDate";
     }
 
 
     @RequestMapping(value = "downloadImg")
     @ResponseBody
-    public JsonResult downloadImg(String baseStr){
-        baseStr=baseStr.split(",")[1];
-        BASE64Decoder base64Decoder=new BASE64Decoder();
+    public JsonResult downloadImg(String baseStr) {
+        baseStr = baseStr.split(",")[1];
+        BASE64Decoder base64Decoder = new BASE64Decoder();
         try {
             byte[] bytes = base64Decoder.decodeBuffer(baseStr);
             // 处理数据
-            OutputStream outputStream=new FileOutputStream("C:\\Users\\dongqikai\\Videos\\a\\1.jpeg");
+            OutputStream outputStream = new FileOutputStream("C:\\Users\\dongqikai\\Videos\\a\\1.jpeg");
             outputStream.write(bytes);
             outputStream.flush();
             outputStream.close();
@@ -252,17 +252,17 @@ public class CcmPatrolPatrolReportController {
     }
 
     /**
-     *如果为null 则没有权限查询
+     * 如果为null 则没有权限查询
      */
-    private String idToUserName(String [] strings){
-        StringBuffer name=new StringBuffer();
+    private String idToUserName(String[] strings) {
+        StringBuffer name = new StringBuffer();
         for (int i = 0; i < strings.length; i++) {
 
             User user = systemService.getUser(strings[i]);
-            if(user==null){
+            if (user == null) {
                 continue;
             }
-            if(name.length()>0){
+            if (name.length() > 0) {
                 name.append(",");
             }
             name.append(user.getName());
@@ -273,6 +273,7 @@ public class CcmPatrolPatrolReportController {
 
     /**
      * java2word 方式导出
+     *
      * @param dateStr
      * @param baseStr
      * @param request
@@ -282,11 +283,11 @@ public class CcmPatrolPatrolReportController {
      */
     @RequestMapping(value = "exportWord")
     @ResponseBody
-    public JsonResult exportWord(String dateStr,String baseStr, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public JsonResult exportWord(String dateStr, String baseStr, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String outPath = Global.getConfig("FILE_DOWNLOAD_PATH");
 
-        File path=new File(outPath);
-        if(!path.exists()){
+        File path = new File(outPath);
+        if (!path.exists()) {
             path.mkdir();
         }
 
@@ -303,37 +304,48 @@ public class CcmPatrolPatrolReportController {
 
         //查询当天的数据
         Date strToDate = DateTools.strToDate(dateStr);
-        Date endDate=new Date(strToDate.getTime()+ONE_DAY);
+        Date endDate = new Date(strToDate.getTime() + ONE_DAY);
         List<CcmPatrolMissions> listByDate = ccmPatrolMissionsService.findListByDate(strToDate, endDate);
         //数据字典
         Dict dict = new Dict();
         dict.setLabel("");
         //总数据
         List<Object> detail = new ArrayList<>();
+
         //添加每行
-        listByDate.forEach(item->{
+        listByDate.forEach(item -> {
             //当前行
             Map<String, String> map1 = new HashMap<>();
             //查询状态
-            dict.setValue(item.getStatus());
+
+            /*dict.setValue(item.getStatus());
             List<Dict> all = dictService.findAll(dict);
             if(all.size()>0){
                 map1.put("status", all.get(0).getName());
-            }
+            }*/
+
+            int code = detail.size() + 1;
+            map1.put("status",code+"");
+
             //查询人员
             CcmPatrolUnit ccmPatrolUnit = new CcmPatrolUnit();
             ccmPatrolUnit.setMissions(item);
             List<CcmPatrolUnit> list = ccmPatrolUnitService.findList(ccmPatrolUnit);
-            if(list.size()>0){
-                map1.put("people",  LjpTools.IfNull(list.get(0).getUserName(),""));
+            String peopleStr = "";
+
+            for (int i = 0; i < list.size(); i++) {
+                peopleStr += list.get(i).getUser().getName().concat(",");
+            }
+            if (list.size() > 0) {
+                map1.put("people", LjpTools.IfNull(peopleStr.substring(0, peopleStr.length() - 1), ""));
                 //巡逻车辆
-                map1.put("car", LjpTools.IfNull(list.get(0).getPatrolVehicles(),""));
+                map1.put("car", LjpTools.IfNull(list.get(0).getPatrolVehicles(), ""));
                 //车载设备
-                map1.put("device", LjpTools.IfNull(list.get(0).getVehicleEquipment(),"") );
+                map1.put("device", LjpTools.IfNull(list.get(0).getVehicleEquipment(), ""));
                 //单兵装备
-                map1.put("equipment", LjpTools.IfNull(list.get(0).getIndividualEquipment(),""));
-            }else{
-                map1.put("people","" );
+                map1.put("equipment", LjpTools.IfNull(list.get(0).getIndividualEquipment(), ""));
+            } else {
+                map1.put("people", "");
                 //巡逻车辆
                 map1.put("car", "");
                 //车载设备
@@ -357,8 +369,8 @@ public class CcmPatrolPatrolReportController {
         configuration.setDirectoryForTemplateLoading(new File(rootPath + "static\\template\\word"));
 
         //以utf-8的编码读取ftl文件
-        Template t =  configuration.getTemplate("template.ftl","utf-8");
-        Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), "utf-8"),1024);
+        Template t = configuration.getTemplate("template.ftl", "utf-8");
+        Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), "utf-8"), 1024);
         try {
             t.process(dataMap, out);
         } catch (TemplateException e) {
@@ -369,15 +381,14 @@ public class CcmPatrolPatrolReportController {
     }
 
 
-
     @RequestMapping(method = RequestMethod.GET, value = "/download/{filename:.+}/{downloadName}")
     public void getDownload(@PathVariable String filename, @PathVariable("downloadName") String downloadName, HttpServletRequest request,
                             HttpServletResponse response) throws FileNotFoundException {
         String rootPath = Global.getConfig("FILE_DOWNLOAD_PATH");
 
-        File file=new File(rootPath + filename + ".doc");
-        if(!file.exists()){
-            throw new FileNotFoundException("没有找到文件:"+filename + ".doc");
+        File file = new File(rootPath + filename + ".doc");
+        if (!file.exists()) {
+            throw new FileNotFoundException("没有找到文件:" + filename + ".doc");
         }
 
         // 读到流中

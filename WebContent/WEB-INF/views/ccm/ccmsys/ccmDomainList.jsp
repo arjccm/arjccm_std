@@ -69,7 +69,7 @@
 				<shiro:hasPermission name="ccmsys:ccmDomain:edit"><td>
     				<a class="btnList" href="${ctx}/ccmsys/ccmDomain/form?id=${ccmDomain.id}" title="修改"><i class="icon-pencil"></i></a>
 					<a class="btnList" href="${ctx}/ccmsys/ccmDomain/updateDomain?id=${ccmDomain.id}" onclick="return confirmx('确认要获取该下级域服务器的基础数据吗？', this.href)" title="获取下级域基础数据"><i class="icon-download-alt"></i></a>
-					<a class="btnList" href="${ctx}/ccmsys/ccmDomain/delete?id=${ccmDomain.id}" onclick="return confirmx('确认要删除该下级域服务器吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/ccmsys/ccmDomain/delete?id=${ccmDomain.id}" onclick="return confirmx('确认要删除该下级域服务器吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

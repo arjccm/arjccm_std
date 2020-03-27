@@ -345,28 +345,6 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		}
 	}
 
-	private void saveTenantRecord(CcmPeople ccmPeople){
-        // 把新增的数据记录到租客记录表里面
-        CcmTenantRecord ccmTenantRecord = new CcmTenantRecord();
-        ccmTenantRecord.setHouseId(ccmPeople.getRoomId().getId());
-        ccmTenantRecord.setIdCard(ccmPeople.getIdent());
-        ccmTenantRecord.setName(ccmPeople.getName());
-        ccmTenantRecord.setPhoneNumber(ccmPeople.getTelephone());
-        if(StringUtils.isBlank(UserUtils.getUser().getId())){
-            ccmTenantRecord.setCreateBy(UserUtils.get("1"));
-            ccmTenantRecord.setUpdateBy(UserUtils.get("1"));
-        }else{
-            ccmTenantRecord.setCreateBy(UserUtils.getUser());
-            ccmTenantRecord.setUpdateBy(UserUtils.getUser());
-        }
-        ccmTenantRecord.setCreateDate(new Date());
-        ccmTenantRecord.setUpdateDate(new Date());
-        ccmTenantRecord.setDelFlag("0");
-        ccmTenantRecord.setLiveDate(new Date());
-        ccmTenantRecord.setLeaveDate(new Date());
-        ccmTenantRecordService.save(ccmTenantRecord);
-    }
-
 	/**
 	 * @see 返回 以整月 下的 list求和数
 	 * @param user

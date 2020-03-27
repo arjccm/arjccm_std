@@ -321,7 +321,7 @@ ul.ztree.zTreeDragUL{
 					<td>${ccmHouseBuildmanage.buildPname}</td>
 					<td><shiro:hasPermission name="house:ccmHouseBuildmanage:edit">
 						<a class="btnList" href="${ctx}/house/ccmHouseBuildmanage/form?id=${ccmHouseBuildmanage.id}" title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/house/ccmHouseBuildmanage/delete?id=${ccmHouseBuildmanage.id}" onclick="return confirmx('确认要删除该建筑物吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+						<a class="btnList" href="${ctx}/house/ccmHouseBuildmanage/delete?id=${ccmHouseBuildmanage.id}" onclick="return confirmx('确认要删除该建筑物吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						<a class="btnList" href="${ctx}/pop/ccmPopTenant/listBuild?buildingId.id=${ccmHouseBuildmanage.id}&area.id=${ccmHouseBuildmanage.area.id}" title="住房管理"><i class="iconfont icon-ai-home"></i></a>
 						</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseBuildmanage.id}&relevance_table=ccm_house_buildmanage', '记录信息', '800px', '660px')" 

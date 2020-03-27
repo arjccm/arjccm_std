@@ -81,7 +81,7 @@
 							<td>
 							<a class="btnList"
 								href="${ctx}/resource/plmOtherResource/delete?rId=${plmResource.id}"
-								onclick="return confirmx('确认要删除该资源共享吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a></td>
+								onclick="return confirmx('确认要删除该资源共享吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 						</shiro:hasPermission>
 					</tr>
 				</c:forEach>
@@ -113,7 +113,7 @@
 							<shiro:hasPermission name="resource:plmOtherResource:edit">
 								<a class="btnList"
 									href="${ctx}/resource/plmOtherResource/delete?id=${plmResource.id}"
-									onclick="return confirmx('确认要删除该资源共享吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+									onclick="return confirmx('确认要删除该资源共享吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission>
 						</div>
 					</div>

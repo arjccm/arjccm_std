@@ -208,7 +208,12 @@
 					${ccmPeople.residencedetail}
 				</td>
 				<td class="tc"><shiro:hasPermission name="pop:ccmPeople:edit">
-    				<a class="btnList"  href="${ctx}/pop/ccmPeople/formCare?id=${ccmPeople.id}"  title="修改"><i class="icon-pencil"></i></a>
+    				<%--<a class="btnList"  href="${ctx}/pop/ccmPeople/formCare?id=${ccmPeople.id}"  title="修改"><i class="icon-pencil"></i></a>--%>
+
+					<a class="btnList"
+					   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formCare?id=${ccmPeople.id}', '编辑', '1500px', '700px')"
+					   title="修改"><i class="icon-pencil"></i></a>
+
 					<a class="btnList" href="${ctx}/pop/ccmPeople/deleteCare?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该实有人口吗？', this.href)"  title="删除"><i class="icon-remove-sign"></i></a>
 			    	<a class="btnList"
 								href="javascript:;" onclick="LocationOpen('${ccmPeople.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
