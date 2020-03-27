@@ -608,8 +608,10 @@ public class CcmPeopleController extends BaseController {
 		int ageIdent = 0;
 		try {
 			String ident = ccmPeople.getIdent();
-			Date birthDate = CommUtil.getBirthDay(ident);
-			ageIdent = CommUtil.getAge(birthDate);
+			if(StringUtils.isNotEmpty(ident)){
+				Date birthDate = CommUtil.getBirthDay(ident);
+				ageIdent = CommUtil.getAge(birthDate);
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -618,7 +620,9 @@ public class CcmPeopleController extends BaseController {
 		int ageBirth = 0;
 		try {
 			Date birthday = ccmPeople.getBirthday();
-			ageBirth = CommUtil.getAge(birthday);
+			if(birthday!=null){
+				ageBirth = CommUtil.getAge(birthday);
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
