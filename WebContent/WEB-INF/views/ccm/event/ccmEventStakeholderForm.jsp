@@ -342,7 +342,7 @@
                             <input name="isKym" id="isKym" style="display: none" />
 							<form:radiobuttons path="isKym" disabled="true" items="${fns:getDictList('yes_no')}"
 			        			itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
-                            <span class="help-inline"><font color="red">青少年为已满6周岁不满25周岁</font> </span>
+                            <span class="help-inline"><font color="red">青少年为13到19周岁之间</font> </span>
 						</div>
 					</div>
 				</td>
