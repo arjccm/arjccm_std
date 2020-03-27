@@ -65,7 +65,7 @@
 					<td><fmt:formatDate value="${task.endTime}" type="both"/></td>
 					<td>
 						<a href="${ctx}/act/task/form?taskId=${task.id}&taskName=${fns:urlEncode(task.name)}&taskDefKey=${task.taskDefinitionKey}&procInsId=${task.processInstanceId}&procDefId=${task.processDefinitionId}&status=${status}" 
-					class="btnList" 	title="显示详情"><i class="icon-file"></i></a>
+					class="btnList" 	title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

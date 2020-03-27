@@ -96,7 +96,7 @@
 							 
 								<c:if test="${not empty plmEquApply.procInsId}">
 									<a href="${ctx}/equapply/plmEquApply/form?id=${plmEquApply.id}"
-										title="显示详情"><i class="icon-file"></i></a>
+										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 								</c:if>
 							</td>
 					</tr>
@@ -140,7 +140,7 @@
 							
 								<c:if test="${not empty plmEquApply.procInsId}">
 									<a href="${ctx}/equapply/plmEquApply/form?id=${plmEquApply.id}"
-										title="显示详情"><i class="icon-file"></i></a>
+										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 								</c:if>
 							
 						</div>

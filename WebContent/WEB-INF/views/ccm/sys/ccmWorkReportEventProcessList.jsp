@@ -118,7 +118,7 @@
 					<shiro:hasPermission name="sys:ccmWorkReport:edit">
 						<td style="height: 50px"><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/sys/ccmWorkReport/Jobform?id=${ccmWorkReport.id}', '日常工作详情', '900px', '700px')"
-							title="查看"><i class="icon-file"></i></a>
+							title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							<a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/sys/ccmWorkReport/SaveJobform?id=${ccmWorkReport.id}', '日常工作编辑', '900px', '700px')"
 							title="编辑"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

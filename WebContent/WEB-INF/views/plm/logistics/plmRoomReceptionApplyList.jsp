@@ -108,7 +108,7 @@
 					<c:if test="${not empty plmRoomApply.procInsId}" var="condition">
 							<a
 								href="${ctx}/logistics/plmRoomReceptionApply/form?id=${plmRoomApply.id}"
-								title="显示详情"><i class="icon-file"></i></a>
+								title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 					</c:if>
 					<c:if test="${!condition}">
 							<a
@@ -149,7 +149,7 @@
 							<c:if test="${not empty plmRoomApply.procInsId}" var="condition">
 									<a
 										href="${ctx}/logistics/plmRoomReceptionApply/form?id=${plmRoomApply.id}"
-										title="显示详情"><i class="icon-file"></i></a>
+										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</c:if>
 							<c:if test="${!condition}">
 									<a

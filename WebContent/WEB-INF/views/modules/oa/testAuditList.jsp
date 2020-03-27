@@ -45,7 +45,7 @@
 				<td>${testAudit.content}</td>
 				<td><fmt:formatDate value="${testAudit.createDate}" type="both" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				<shiro:hasPermission name="oa:testAudit:edit"><td>
-    				<a class="btnList" href="${ctx}/oa/testAudit/form?id=${testAudit.id}" title="查看"><i class="icon-file"></i></a>
+    				<a class="btnList" href="${ctx}/oa/testAudit/form?id=${testAudit.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 					<a class="btnList" href="${ctx}/oa/testAudit/delete?id=${testAudit.id}" onclick="return confirmx('确认要删除该审批吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>

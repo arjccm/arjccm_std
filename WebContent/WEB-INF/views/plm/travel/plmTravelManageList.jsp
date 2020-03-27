@@ -127,7 +127,7 @@
 				<c:if test="${not empty plmTravelManage.procInsId}" var="e">
 								
 									<a class="btnList" href="${ctx}/travel/plmTravelManage/form?id=${plmTravelManage.id}"
-										title="显示详情"><i class="icon-file"></i></a>
+										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							
 							</c:if>
 							<c:if test="${!e}">
@@ -178,7 +178,7 @@
 							<c:if test="${not empty plmTravelManage.procInsId}" var="e">
 								
 									<a class="btnList" href="${ctx}/travel/plmTravelManage/form?id=${plmTravelManage.id}"
-										title="显示详情"><i class="icon-file"></i></a>
+										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 								
 							</c:if>
 							<c:if test="${!e}">

@@ -97,7 +97,7 @@
 				</td>
 				<shiro:hasPermission name="carpass:ccmCarPass:edit"><td>
 					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/carpass/ccmCarPass/form?id=${ccmCarPass.id}', '详情', '900px', '800px')" title="详情"><i class="icon-list-ul"></i></a>
-					<%-- <a class="btnList" href="${ctx}/carpass/ccmCarPass/form?id=${ccmCarPass.id}" title="查看"><i class="icon-file"></i></a> --%>
+					<%-- <a class="btnList" href="${ctx}/carpass/ccmCarPass/form?id=${ccmCarPass.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a> --%>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
