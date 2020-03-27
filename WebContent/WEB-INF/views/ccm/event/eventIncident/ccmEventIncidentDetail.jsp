@@ -8,7 +8,6 @@
 	<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<br />
 	<form:form id="inputForm" modelAttribute="ccmEventIncident"
 		action="${ctx}/event/ccmEventIncident/save" method="post"
 		class="form-horizontal">
