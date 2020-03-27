@@ -240,7 +240,7 @@
         <li class="btns"><a class="btn btn-export" type="button"
                             style="width: 49px;/* margin-top: 25px;*/display:inline-block;"
                             &lt;%&ndash;style="background-color: #28bece;border-color: #28bece;"&ndash;%&gt; onclick="incident('ratify')">&lt;%&ndash;<i
-                class=" icon-user"></i>&ndash;%&gt;<span style="font-size: 12px">领导批示</span></a></li>
+                class=" iconfont icon-caozuotubiao-ganxiren"></i>&ndash;%&gt;<span style="font-size: 12px">领导批示</span></a></li>
         <li class="btns"><a class="btn btn-export" type="button"
                             style="width: 49px;/*margin-top: 25px;*/display:inline-block;"
                             &lt;%&ndash;style="background-color: #d81e06;border-color: #d81e06;" &ndash;%&gt;onclick="incident('urgent')">&lt;%&ndash;<i
@@ -270,7 +270,7 @@
        <a class="btn btn-export" type="button"
                             style="width: 49px;/* margin-top: 25px;*/display:inline-block;float: right;"
         <%--style="background-color: #28bece;border-color: #28bece;"--%> onclick="incident('ratify')"><%--<i
-                class=" icon-user"></i>--%><span style="font-size: 12px">领导批示</span></a>
+                class=" iconfont icon-caozuotubiao-ganxiren"></i>--%><span style="font-size: 12px">领导批示</span></a>
        <a class="btn btn-export" id="btn-jiaji" type="button"
                             style="width: 49px;/*margin-top: 25px;*/display:inline-block;float: right;"
                             <%--style="background-color: #d81e06;border-color: #d81e06;" --%>onclick="incident('urgent')"><%--<i
@@ -387,22 +387,22 @@ text-overflow: ellipsis; text-align: left;">
                    title="任务快速派遣"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
             </shiro:hasPermission>
                 <shiro:hasPermission name="event:ccmEventStakeholder:view">
-                    <%-- <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="icon-user"></i></a> --%>
+                    <%-- <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a> --%>
                     <a class="btnList"
                        onclick="parent.LayerDialog1('','${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}', '干系人', '1300px', '700px')"
-                       title="干系人"><i class="icon-user"></i></a>
+                       title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a>
                 </shiro:hasPermission>
                 <c:if test="${not empty ccmEventIncident.eventScale && ccmEventIncident.eventScale eq '03'}">
-                    <a class="btnList nohover"><i class="icon-bell" style="cursor:not-allowed; color: #999999;"></i> </a>
+                    <a class="btnList nohover"><i class="iconfont icon-caozuotubiao-fasongjingqing" style="cursor:not-allowed; color: #999999;"></i> </a>
                 </c:if>
                 <c:if test="${not empty ccmEventIncident.eventScale && ccmEventIncident.eventScale eq '04'}">
-                    <a class="btnList nohover"><i class="icon-bell" style="cursor:not-allowed; color: #999999;"></i> </a>
+                    <a class="btnList nohover"><i class="iconfont icon-caozuotubiao-fasongjingqing" style="cursor:not-allowed; color: #999999;"></i> </a>
                 </c:if>
                 <c:if test="${empty ccmEventIncident.bphAlarmInfoId && (ccmEventIncident.eventScale eq '01' || ccmEventIncident.eventScale eq '02')}">
-                    <a  class="btnList" onclick="HandleTips(this,'${ccmEventIncident.id}')" title="发送警情"><i class="icon-bell" style="color: #1cdd1c;"></i></a>
+                    <a  class="btnList" onclick="HandleTips(this,'${ccmEventIncident.id}')" title="发送警情"><i class="iconfont icon-caozuotubiao-fasongjingqing" style="color: #1cdd1c;"></i></a>
                 </c:if>
                 <c:if test="${not empty ccmEventIncident.bphAlarmInfoId && (ccmEventIncident.eventScale eq '01' || ccmEventIncident.eventScale eq '02')}">
-                    <a  class="btnList"  title="已发送"><i class="icon-bell"  ></i></a>
+                    <a  class="btnList"  title="已发送"><i class="iconfont icon-caozuotubiao-fasongjingqing"  ></i></a>
                 </c:if>
 
             </td>

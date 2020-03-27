@@ -444,6 +444,46 @@ a>i.icon-caozuotubiao-shanchu{
  a>i.icon-caozuotubiao-chekong{
 	 color: #FC6133;
  }
+ /*  详情按钮  */
+ a>i.icon-caozuotubiao-xiangqing{
+	 color: #0EB7E0;
+ }
+ /*  社交关系按钮  */
+ a>i.icon-caozuotubiao-shejiaoguanxi{
+	 color: #9850fa;
+ }
+ /*  历史租客记录列表按钮  */
+ a>i.icon-caozuotubiao-lishizukejiluliebiao{
+	 color: #9850fa;
+ }
+ /*  干系人按钮  */
+ a>i.icon-caozuotubiao-ganxiren{
+	 color: #F7C02E;
+ }
+ /*  走访记录按钮  */
+ a>i.icon-caozuotubiao-zoufangjilu{
+	 color: #3CC7AB;
+ }
+ /*  事件关联按钮  */
+ a>i.icon-caozuotubiao-shijianguanlian{
+	 color: #3CC753;
+ }
+ /*  处理 & 已处理 按钮  */
+ a>i.icon-caozuotubiao-chuliyichuli{
+	 color: #0EB7E0;
+ }
+ /*  签收 按钮  */
+ a>i.icon-caozuotubiao-qianshou{
+	 color: #3CC753;
+ }
+ /*  归档 按钮  */
+ a>i.icon-caozuotubiao-guidang{
+	 color: #2B8BEF;
+ }
+ /*  发送警情按钮  */
+ a>i.icon-caozuotubiao-fasongjingqing{
+	 color: #2B8BEF;
+ }
 
 
 /* 濡楀牅绨ㄦ禒璺哄絺閸忓鐡ф担锟� */

@@ -90,7 +90,7 @@
     				<c:if test="${not empty plmApplyForReimbursement.procInsId}" var="e">
 						
 							<a href="${ctx}/travel/plmApplyForReimbursement/form?id=${plmApplyForReimbursement.id}"
-								title="显示详情"><i class="icon-file"></i></a>
+								title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 					
 					</c:if>
 					<c:if test="${!e}">
@@ -131,7 +131,7 @@
 							<c:if test="${not empty plmApplyForReimbursement.procInsId}" var="e">
 								
 									<a href="${ctx}/travel/plmApplyForReimbursement/form?id=${plmApplyForReimbursement.id}"
-										title="显示详情"><i class="icon-file"></i></a>
+										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 								
 							</c:if>
 							<c:if test="${!e}">

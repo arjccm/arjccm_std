@@ -57,7 +57,7 @@
 		<sys:message content="${message}" />
 		<div class="control-group blue" style="height: 29px;">
 			<%--<c:if test="${isSent}">
-				<a id="btnReedit" class="btn" href="javascript:;" ><i class="icon-file"></i>再次编辑</a>&nbsp;
+				<a id="btnReedit" class="btn" href="javascript:;" ><i class="iconfont icon-caozuotubiao-xiangqing"></i>再次编辑</a>&nbsp;
 			</c:if>
 			<c:if test="${!isSent}">
 				<a id="btnReply" class="btn" href="javascript:;"><i class="icon-share"></i>回复</a>&nbsp;
@@ -116,7 +116,7 @@
 
 		<div class="control-group blue">
 			<c:if test="${isSent}">
-				<a id="btnReedit" class="btn" href="javascript:;" ><i class="icon-file"></i>再次编辑</a>&nbsp;
+				<a id="btnReedit" class="btn" href="javascript:;" ><i class="iconfont icon-caozuotubiao-xiangqing"></i>再次编辑</a>&nbsp;
 			</c:if>
 			<c:if test="${!isSent}">
 				<a id="btnReply" class="btn" href="javascript:;"><i class="icon-share"></i>回复</a>&nbsp;

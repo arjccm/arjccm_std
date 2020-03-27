@@ -58,6 +58,8 @@
 			UrlType ="iframe:${ctx}/tag/treeselect?url="+encodeURIComponent("${url}")+"&module="+patorlTimeType+"&checked=${checked}&extId=${extId}&isAll=${isAll}";
 		}else if($("#isreact").val() && this.id=="areaGridIdName" && $("#areaComIdId").val()!=""){
 			UrlType= "iframe:${ctx}/tag/treeselect?url="+encodeURIComponent("${url}"+$("#areaComIdId").val())+"&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}";
+		}else if($("#isreact").val() && this.id=="roomIdName" && $("#areaGridIdId").val()!=""){
+			UrlType= "iframe:${ctx}/tag/treeselect?url="+encodeURIComponent("${url}"+$("#areaGridIdId").val())+"&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}";
 		}else {
 			UrlType= "iframe:${ctx}/tag/treeselect?url="+encodeURIComponent("${url}")+"&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}";
 		}

@@ -173,6 +173,16 @@
             border-style: solid;
             border-color: transparent #FF0000 transparent transparent;
         }
+
+        .error1{
+            background-position: 0 2px;
+            background: url('${ctxStatic}/jquery-validation/1.11.1/images/unchecked.gif') no-repeat 0 0;
+            padding-left: 18px;
+            padding-bottom: 2px;
+            font-weight: bold;
+            color: #ea5200;
+            margin-left: 10px;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -254,7 +264,7 @@
         function saveForm() {
             var areaComIdId = $("#areaComIdId").val();
             var areaGridIdId = $("#areaGridIdId").val();
-            var html1 = '<label for="" class="error">必选字段 <label>';
+            var html1 = '<label for="" class="error1">必选字段<label>';
             if (areaComIdId.length != 0) {
                 $("#showCom").html("*");
             } else {
@@ -745,6 +755,7 @@
                                         url="/tree/ccmTree/treeDataArea?type=6" cssClass="required"
                                         allowClear="true" notAllowSelectParent="true"
                                         cssStyle="width: 270px"/>
+                          <span class="help-inline"  id="showCom"></span>
                     </div>
                 </div>
             </td>
@@ -759,10 +770,10 @@
                         <sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"
                                         value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
                                         labelValue="${ccmPeople.areaGridId.name}" title="区域"
-                                        url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""
+                                        url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="required"
                                         allowClear="true" notAllowSelectParent="true"
                                         cssStyle="width:270px "/>
-                            <span class="help-inline"><font color="red" id="showGrid">*</font></span>
+                            <span class="help-inline"  id="showGrid"></span>
                         </div>
 
                     </div>
@@ -772,8 +783,9 @@
             </td>
             <td>
                 <div>
-                    <label class="control-label">所属房屋：</label>
-                    <div class="controls" id="newHouse" onmousemove="onclickHouse()">
+                    <label class="control-label"><span class="help-inline"><font color="red">*</font></span>所属房屋：</label>
+<%--                    <div class="controls" id="newHouse" onmousemove="onclickHouse()">--%>
+                        <div class="controls">
                       <%--  <!--
 							<sys:treeselect id="roomId" name="roomId.id" value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild" labelValue="${ccmPeople.roomId.houseBuild}"
 							title="房屋" url="/pop/ccmPopTenant/treeData?type=7" cssClass="" allowClear="true" notAllowSelectParent="true" cssStyle="width: 150px"/>
@@ -781,7 +793,7 @@
                         <sys:treeselect id="roomId" name="roomId.id"
                                         value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild"
                                         labelValue="${ccmPeople.roomId.houseBuild}" title="房屋"
-                                        url="/tree/ccmTree/treeDataArea?type=9&areaid=" cssClass=""
+                                        url="/tree/ccmTree/treeDataAreaByareaGrid?type=9&areaid=" cssClass=""
                                         allowClear="true" notAllowSelectParent="true"
                                         cssStyle="width: 270px"/>
 

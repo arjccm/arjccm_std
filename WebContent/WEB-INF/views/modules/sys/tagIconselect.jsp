@@ -101,7 +101,7 @@
 	      <li><i class="icon-gift"></i> icon-gift</li>
 	      <li><i class="icon-glass"></i> icon-glass</li>
 	      <li><i class="icon-globe"></i> icon-globe</li>
-	      <li><i class="icon-group"></i> icon-group</li>
+	      <li><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i> iconfont icon-caozuotubiao-shejiaoguanxi</li>
 	      <li><i class="icon-hdd"></i> icon-hdd</li>
 	      <li><i class="icon-headphones"></i> icon-headphones</li>
 	      <li><i class="icon-heart"></i> icon-heart</li>
@@ -202,8 +202,8 @@
 	    <h2 class="page-header">文本编辑器图标</h2>
 	  
 	    <ul class="the-icons">
-	      <li><i class="icon-file"></i> icon-file</li>
-	      <li><i class="icon-file-alt"></i> icon-file-alt</li>
+	      <li><i class="iconfont icon-caozuotubiao-xiangqing"></i> iconfont icon-caozuotubiao-xiangqing</li>
+	      <li><i class="iconfont icon-caozuotubiao-xiangqing-alt"></i> iconfont icon-caozuotubiao-xiangqing-alt</li>
 	      <li><i class="icon-cut"></i> icon-cut</li>
 	      <li><i class="icon-copy"></i> icon-copy</li>
 	      <li><i class="icon-paste"></i> icon-paste</li>

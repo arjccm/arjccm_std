@@ -203,7 +203,7 @@
 							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 						<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventCasedeal.objId}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 							<c:if test="${ccmEventCasedeal.handleStatus eq '01'}">
-							<a  class="btnList" onclick="HandleTips(this,'${ccmEventCasedeal.id}')" title="签收"><i class="icon-edit"></i></a>
+							<a  class="btnList" onclick="HandleTips(this,'${ccmEventCasedeal.id}')" title="签收"><i class="iconfont icon-caozuotubiao-qianshou"></i></a>
 							</c:if>
 					</shiro:hasPermission>
 				</tr>

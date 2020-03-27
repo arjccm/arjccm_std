@@ -153,7 +153,7 @@
 				<td>${fns:getDictLabel(ccmHouseHeresy.isChange, 'yes_no', '')}</td>
 				<td><shiro:hasPermission name="house:ccmHouseHeresy:edit">
 					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseHeresy/form?id=${ccmHouseHeresy.id}&hide1=true&hide2=false', '详情', '1200px', '800px')" title="详情"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
-						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseHeresy/form?id=${ccmHouseHeresy.id}&hide1=false&hide2=true', '走访记录', '1200px', '500px')" title="走访记录"><i class="icon-list-ul"></i></a>
+						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseHeresy/form?id=${ccmHouseHeresy.id}&hide1=false&hide2=true', '走访记录', '1200px', '500px')" title="走访记录"><i class="iconfont icon-caozuotubiao-zoufangjilu"></i></a>
 				</shiro:hasPermission>
 				<shiro:hasPermission name="log:ccmLogTail:edit">
 					<%-- <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseHeresy.id}&relevance_table=ccm_house_heresy', '记录信息', '800px', '660px')" title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a> --%>

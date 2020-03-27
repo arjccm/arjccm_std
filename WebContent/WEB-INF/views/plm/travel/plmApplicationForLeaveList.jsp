@@ -130,7 +130,7 @@
     				<c:if test="${not empty plmApplicationForLeave.procInsId}" var="e">
 						
 							<a href="${ctx}/travel/plmApplicationForLeave/form?id=${plmApplicationForLeave.id}"
-								title="显示详情"><i class="icon-file"></i></a>
+								title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						
 					</c:if>
 					<c:if test="${!e}">
@@ -171,7 +171,7 @@
 							<c:if test="${not empty plmApplicationForLeave.procInsId}" var="e">
 								
 									<a href="${ctx}/travel/plmApplicationForLeave/form?id=${plmApplicationForLeave.id}"
-										title="显示详情"><i class="icon-file"></i></a>
+										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 								
 							</c:if>
 							<c:if test="${!e}">

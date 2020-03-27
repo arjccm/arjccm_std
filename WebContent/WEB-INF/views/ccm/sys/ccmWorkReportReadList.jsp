@@ -117,7 +117,7 @@
 					<td style="height: 50px">${fns:getDictLabel(ccmWorkReport.readFlag, 'oa_notify_read', '')}</td>
 					<shiro:hasPermission name="sys:ccmWorkReport:edit">
 						<td style="height: 50px">
-							<a class="btnList" href="${ctx}/sys/ccmWorkReport/view?id=${ccmWorkReport.id}" title="查看"><i class="icon-file"></i></a>
+							<a class="btnList" href="${ctx}/sys/ccmWorkReport/view?id=${ccmWorkReport.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						</td>
 					</shiro:hasPermission>
 				</tr>
