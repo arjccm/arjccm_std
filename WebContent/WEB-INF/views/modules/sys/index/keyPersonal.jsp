@@ -44,6 +44,8 @@
     <script src="${ctxStatic}/d3/d3.v4.min.js"></script>
     <script src="${ctxStatic}/modules/map/js/mapconfig.js"></script>
     <script src="${ctxStatic}/modules/map/js/commonMap.js"></script>
+    // 设定地图层级
+    <script src="${ctxStatic}/common/index/Scripts/js/keyPersonal.js"></script>
     <script src="${ctxStatic}/mapv/mapv.min.js"></script>
     <script src="${ctxStatic}/supermapopenlayers/iclient-openlayers.min.js"></script>
     <script src="${ctxStatic}/common/index/Scripts/js/echarts.min.js"></script>
@@ -55,6 +57,78 @@
     <script src="${ctxStatic}/common/index/Scripts/js/statIndexZjkeypeople.js"></script>
     <script src="${ctxStatic}/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <script src="${ctxStatic}/common/index/Scripts/js/echarts-liquidfill.min.js"></script>
+
+    <script type="text/javascript">
+        var map;
+        var drivingRoute;
+        var zoom = 13;
+        var _CarTrack;
+        var startIcon = "${ctxStatic}/static/images/key_personal/start.png";    //起点图标
+        var endIcon = "${ctxStatic}/static/images/key_personal/end.png";        //终点图标
+        function onLoad() {
+            map = new ol.Map('mapDiv');
+            map.centerAndZoom(new ol.LngLat(116.40069, 39.89945), zoom);
+            map.addControl(TMAP_HYBRID_MAP);
+            var config = {
+                policy: 0,    //驾车策略
+                onSearchComplete: searchResult    //检索完成后的回调函数
+            };
+            drivingRoute = new T.DrivingRoute(map, config);
+            searchDrivingRoute()
+        }
+
+        function searchDrivingRoute() {
+            map.clearOverLays();
+            var startLngLat = new T.LngLat(116.354060,39.905650);
+            var endLngLat = new T.LngLat(116.428130,39.903550);
+            //驾车路线搜索
+            drivingRoute.search(startLngLat, endLngLat);
+        }
+
+        function createRoute(lnglats, lineColor) {
+            _CarTrack = new T.CarTrack(map, {
+                interval: 15,
+                speed: 25,
+                dynamicLine: true,
+                Datas: lnglats,
+                polylinestyle: {color: "#2C64A7", width: 5, opacity: 0.9}
+            })
+        }
+
+        //添加起始点
+        function createStartMarker(result) {
+            var startMarker = new T.Marker(result.getStart(), {
+                icon: new T.Icon({
+                    iconUrl: startIcon,
+                    iconSize: new T.Point(44, 34),
+                    iconAnchor: new T.Point(12, 31)
+                })
+            });
+            map.addOverLay(startMarker);
+            var endMarker = new T.Marker(result.getEnd(), {
+                icon: new T.Icon({
+                    iconUrl: endIcon,
+                    iconSize: new T.Point(44, 34),
+                    iconAnchor: new T.Point(12, 31)
+                })
+            });
+            map.addOverLay(endMarker);
+        }
+
+        function searchResult(result) {
+            //添加起始点
+            createStartMarker(result);
+            obj = result;
+            //获取方案个数
+            var routes = result.getNumPlans();
+            for (var i = 0; i < routes; i++) {
+                //获得单条驾车方案结果对象
+                var plan = result.getPlan(i);
+                createRoute(plan.getPath());
+
+            }
+        }
+    </script>
 
     <script>
         function showKey(idCard) {
@@ -279,7 +353,7 @@
     </script>
 </head>
 
-<body>
+<body onload="onload()">
 <div id="main">
     <form id="loginForm" class="form-signin" action="" method="post">
         <input type="hidden" id="username" name="username" value="${user.loginName}">
@@ -467,72 +541,19 @@
 
             <div id="pubMap"></div>
             <div id="mapMask" class="map"></div>
+
+<%--            <!--地图容器-->
+            <div id="mapDiv" style="width: 600px;height: 400px；position:absolute; z-index: 9999"></div>
+            <div>
+                <input type="button" value="开始" onClick="_CarTrack.start();"/>
+                <input type="button" value="暂停" onClick="_CarTrack.pause();"/>
+                <input type="button" value="结束" onClick="_CarTrack.stop();"/>
+            </div>--%>
+
+            <%-- 轨迹容器 --%>
             <div id="timeline" style="display: none" class="track-rcol">
                 <div class="track-list">
                     <ul class="u_line">
-                        <%--						<li>
-                                                    <i class="node-icon"></i>
-                                                    <div class="line_div">
-                                                        <span class="time">2016-03-10 18:07:15</span>
-                                                        <br />
-                                                        <br />
-                                                        <span class="txt">创新六路和一路交叉口</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <i class="node-icon"></i>
-                                                    <div class="line_div">
-                                                        <span class="time">2016-03-10 18:07:15</span>
-                                                        <br />
-                                                        <br />
-                                                        <span class="txt">创新六路和一路交叉口</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <i class="node-icon"></i>
-                                                    <div class="line_div">
-                                                        <span class="time">2016-03-10 18:07:15</span>
-                                                        <br />
-                                                        <br />
-                                                        <span class="txt">创新六路和一路交叉口</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <i class="node-icon"></i>
-                                                    <div class="line_div">
-                                                        <span class="time">2016-03-10 18:07:15</span>
-                                                        <br />
-                                                        <br />
-                                                        <span class="txt">创新六路和一路交叉口</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <i class="node-icon"></i>
-                                                    <div class="line_div">
-                                                        <span class="time">2016-03-10 18:07:15</span>
-                                                        <br />
-                                                        <br />
-                                                        <span class="txt">创新六路和一路交叉口</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <i class="node-icon"></i>
-                                                    <div class="line_div">
-                                                        <span class="time">2016-03-10 18:07:15</span>
-                                                        <br />
-                                                        <br />
-                                                        <span class="txt">创新六路和一路交叉口</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <i class="node-icon"></i>
-                                                    <div class="line_div">
-                                                        <span class="time">2016-03-10 18:07:15</span>
-                                                        <br />
-                                                        <br />
-                                                        <span class="txt">创新六路和一路交叉口</span>
-                                                    </div>
-                                                </li>--%>
                     </ul>
                 </div>
                 <div id="d_car">
@@ -623,14 +644,16 @@
                 success: function (ref) {
                     if (ref.code == 200) {
                         var html = '';
+                        var idCard;
                         $.each(ref.data, function (index, ele) {
+                            idCard = ele.idCard;
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
                                 '<td>' + ele.time + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
-                                '<a class="guiji">' + '</a>' +
+                                '<a class="guiji"' + 'onclick="showKey(\'' + idCard + '\')"' + '>' + '</a>' +
                                 '<a class="dingwei">' + '</a>' +
                                 '</td>' +
                                 '        </tr>';
@@ -655,14 +678,16 @@
             success: function (ref) {
                 if (ref.code == 200) {
                     var html = '';
+                    var idCard;
                     $.each(ref.data, function (index, ele) {
+                        idCard = ele.idCard;
                         html += ' <tr>' +
                             '<td>' + ele.name + '</td>' +
                             '<td>' + ele.time + '</td>' +
                             '<td>' + ele.address + '</td>' +
                             '<td class="clearfix">' +
                             '<a class="dangan">' + '</a>' +
-                            '<a class="guiji">' + '</a>' +
+                            '<a class="guiji"' + 'onclick="showKey(\'' + idCard + '\')"' + '>' + '</a>' +
                             '<a class="dingwei">' + '</a>' +
                             '</td>' +
                             '        </tr>';
@@ -711,14 +736,16 @@
                 success: function (ref) {
                     if (ref.code == 200) {
                         var html = '';
+                        var idCard;
                         $.each(ref.data, function (index, ele) {
+                            idCard = ele.idCard;
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
                                 '<td>' + ele.time + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
-                                '<a class="guiji">' + '</a>' +
+                                '<a class="guiji"' + 'onclick="showKey(\'' + idCard + '\')"' + '>' + '</a>' +
                                 '<a class="dingwei">' + '</a>' +
                                 '</td>' +
                                 '        </tr>';
@@ -768,14 +795,16 @@
                 success: function (ref) {
                     if (ref.code == 200) {
                         var html = '';
+                        var idCard;
                         $.each(ref.data, function (index, ele) {
+                            idCard = ele.idCard;
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
                                 '<td>' + ele.time + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
-                                '<a class="guiji">' + '</a>' +
+                                '<a class="guiji"' + 'onclick="showKey(\'' + idCard + '\')"' + '>' + '</a>' +
                                 '<a class="dingwei">' + '</a>' +
                                 '</td>' +
                                 '        </tr>';
@@ -819,14 +848,16 @@
                 success: function (ref) {
                     if (ref.code == 200) {
                         var html = '';
+                        var idCard;
                         $.each(ref.data, function (index, ele) {
+                            idCard = ele.idCard;
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
                                 '<td>' + ele.time + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
-                                '<a class="guiji">' + '</a>' +
+                                '<a class="guiji"' + 'onclick="showKey(\'' + idCard + '\')"' + '>' + '</a>' +
                                 '<a class="dingwei">' + '</a>' +
                                 '</td>' +
                                 '        </tr>';

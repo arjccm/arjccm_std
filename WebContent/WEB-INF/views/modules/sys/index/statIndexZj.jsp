@@ -41,6 +41,8 @@
 
 	<script src="${ctxStatic}/ol/ol.js"></script>
 	<script src="${ctxStatic}/d3/d3.v4.min.js"></script>
+	// 设定地图层级
+	<script src="${ctxStatic}/common/index/Scripts/js/keyPersonal.js"></script>
 	<script src="${ctxStatic}/modules/map/js/mapconfig.js"></script>
 	<script src="${ctxStatic}/modules/map/js/commonMap.js"></script>
 	<script src="${ctxStatic}/mapv/mapv.min.js"></script>
@@ -774,10 +776,10 @@
                     <div class="bottom_icon" onclick="yiyuanFun(this)">
                         <span class="pub-icon icon-yiyuan"></span></span><span class="pub-name">医院</span>
                     </div>
-                    <!-- 加油站 -->
-                    <div class="bottom_icon" onclick="jiayouzhanFun(this)">
-                        <span class="pub-icon icon-jiayouzhans"></span></span><span class="pub-name">加油站</span>
-                    </div>
+					<!-- 警务室-->
+					<div class="bottom_icon" onclick="jingwushiFun(this)">
+						<span class="pub-icon icon-jingwushi"></span> <span class="pub-name">警务室</span>
+					</div>
 				</div>
 			</div>
 
