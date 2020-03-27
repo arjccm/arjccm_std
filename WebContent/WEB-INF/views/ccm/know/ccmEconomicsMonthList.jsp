@@ -86,8 +86,8 @@
 					${ccmEconomicsMonth.revenue}
 				</td>
 				<shiro:hasPermission name="know:ccmEconomicsMonth:edit"><td>
-    				<a class="btnList" href="${ctx}/know/ccmEconomicsMonth/form?id=${ccmEconomicsMonth.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/know/ccmEconomicsMonth/delete?id=${ccmEconomicsMonth.id}" onclick="return confirmx('确认要删除该经济运行数据-月吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/know/ccmEconomicsMonth/form?id=${ccmEconomicsMonth.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/know/ccmEconomicsMonth/delete?id=${ccmEconomicsMonth.id}" onclick="return confirmx('确认要删除该经济运行数据-月吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

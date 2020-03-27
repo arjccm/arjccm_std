@@ -33,12 +33,12 @@
                 </td>
                 <shiro:hasPermission name="book:ccmDatabaseBook:edit"><td nowrap>
                     <a class="btnList"
-                            onclick="parent.LayerDialog('${ctx}/book/ccmDatabaseBook/add?id=${menu.id}', '修改', '1200px', '900px')"><i class="icon-pencil"></i></a>
-                    <%--<a class="btnList" href="${ctx}/book/ccmDatabaseBook/add?id=${menu.id}" title="修改"><i class="icon-pencil"></i></a>--%>
-                    <a class="btnList" href="${ctx}/book/ccmDatabaseBook/delete?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+                            onclick="parent.LayerDialog('${ctx}/book/ccmDatabaseBook/add?id=${menu.id}', '修改', '1200px', '900px')"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+                    <%--<a class="btnList" href="${ctx}/book/ccmDatabaseBook/add?id=${menu.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
+                    <a class="btnList" href="${ctx}/book/ccmDatabaseBook/delete?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
                     <a class="btnList"
-                            onclick="parent.LayerDialog('${ctx}/book/ccmDatabaseBook/add?parent.id=${menu.id}', '添加下级菜单', '800px', '400px')"><i class="icon-plus"></i></a>
-                    <%--<a class="btnList" href="${ctx}/book/ccmDatabaseBook/add?parent.id=${menu.id}" title="添加下级菜单"><i class="icon-plus"></i></a>--%>
+                            onclick="parent.LayerDialog('${ctx}/book/ccmDatabaseBook/add?parent.id=${menu.id}', '添加下级菜单', '800px', '400px')"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+                    <%--<a class="btnList" href="${ctx}/book/ccmDatabaseBook/add?parent.id=${menu.id}" title="添加下级菜单"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>--%>
                 </td></shiro:hasPermission>
             </tr>
         </c:forEach></tbody>

@@ -98,9 +98,9 @@
 				</td>
 				<shiro:hasPermission name="ccmsys:ccmUploadLog:edit"><td>
 					<c:if test="${ccmUploadLog.uploadStatus eq '3' }">
-    					<a class="btnList" href="${ctx}/ccmsys/ccmUploadLog/form?id=${ccmUploadLog.id}" title="修改"><i class="icon-pencil"></i></a>
+    					<a class="btnList" href="${ctx}/ccmsys/ccmUploadLog/form?id=${ccmUploadLog.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					</c:if>
-					<a class="btnList" href="${ctx}/ccmsys/ccmUploadLog/delete?id=${ccmUploadLog.id}" onclick="return confirmx('确认要删除该待上传上级平台记录吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					<a class="btnList" href="${ctx}/ccmsys/ccmUploadLog/delete?id=${ccmUploadLog.id}" onclick="return confirmx('确认要删除该待上传上级平台记录吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

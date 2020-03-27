@@ -158,19 +158,19 @@
 					<td>${ccmPeople.residencedetail}</td>
 					<td><shiro:hasPermission name="pop:ccmPeople:edit">
 						<c:if test="${PeoTypeBy eq 'ByHouse' }">
-							<%--<a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house"  title="修改"><i class="icon-pencil"></i></a>--%>
+							<%--<a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house', '编辑', '1500px', '700px')"
-							   title="修改"><i class="icon-pencil"></i></a>
+							   title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						</c:if>
                         <c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
-                            <%--<a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=hire"  title="修改"><i class="icon-pencil"></i></a>--%>
+                            <%--<a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=hire"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=hire', '编辑', '1500px', '700px')"
-							   title="修改"><i class="icon-pencil"></i></a>
+							   title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						</c:if>
 						<%--<a class="btnList" href="${ctx}/pop/ccmPeople/deletePeople?id=${ccmPeople.id}&houseId=${houseId}&type=${PeoTypeBy}&buildId=${buildId}&netId=${netId}"
-							onclick="return confirmx('确认要在此房屋中移除该成员吗？', this.href)"  title="移除成员"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>--%>
+							onclick="return confirmx('确认要在此房屋中移除该成员吗？', this.href)"  title="移除成员"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>--%>
 					</shiro:hasPermission>
 					<shiro:hasPermission name="tenant:ccmTenantRecord:view">
 							<a class="btnList"

@@ -69,8 +69,8 @@
 					<fmt:formatDate value="${ccmNotebook.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="notebook:ccmNotebook:edit"><td style="height: 50px">
-					<a class="btnList" href="${ctx}/notebook/ccmNotebook/form?id=${ccmNotebook.id}"><i title="修改" class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/notebook/ccmNotebook/delete?id=${ccmNotebook.id}" onclick="return confirmx('确认要删除该记事本吗？', this.href)"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i> </a>
+					<a class="btnList" href="${ctx}/notebook/ccmNotebook/form?id=${ccmNotebook.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/notebook/ccmNotebook/delete?id=${ccmNotebook.id}" onclick="return confirmx('确认要删除该记事本吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i> </a>
     				<!-- <a href="${ctx}/notebook/ccmNotebook/form?id=${ccmNotebook.id}">修改</a>
 					<a href="${ctx}/notebook/ccmNotebook/delete?id=${ccmNotebook.id}" onclick="return confirmx('确认要删除该记事本吗？', this.href)">删除</a> -->
 				</td></shiro:hasPermission>

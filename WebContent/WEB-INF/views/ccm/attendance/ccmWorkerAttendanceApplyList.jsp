@@ -131,7 +131,7 @@
 					${fns:getDictLabel(ccmWorkerAttendanceApply.applyType, 'worker_type', '')}
 				</td>
 				<shiro:hasPermission name="attendanceapply:ccmWorkerAttendanceApply:edit"><td style="height: 50px">
-    				<a href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/form?id=${ccmWorkerAttendanceApply.id}&type=${type}" title="审核"><i class="icon-pencil"></i></a>
+    				<a href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/form?id=${ccmWorkerAttendanceApply.id}&type=${type}" title="审核"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<%--<a href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/delete?id=${ccmWorkerAttendanceApply.id}" onclick="return confirmx('确认要删除该加班请假申请吗？', this.href)">删除</a>--%>
 				</td></shiro:hasPermission>
 			</tr>

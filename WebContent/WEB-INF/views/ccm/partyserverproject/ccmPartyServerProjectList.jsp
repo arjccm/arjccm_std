@@ -41,7 +41,7 @@
 			</li>
 			<li class="btns"><a id="add"
 							   onclick="parent.parent.parent.LayerDialog('${ctx}/partyserverproject/ccmPartyServerProject/form', '添加', '1120px', '650px')"
-							   class="btn btn-success"><i class="icon-plus"></i> 添加</a></li>
+							   class="btn btn-success"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a></li>
 			<li class="btns">
 				<a href="javascript:;" id="btnSubmit" class="btn btn-primary"> 
 					<i class="icon-search"></i> 查询
@@ -94,13 +94,13 @@
 
 					<a  class="btnList" title="编辑"
 						onclick="parent.parent.parent.LayerDialog('${ctx}/partyserverproject/ccmPartyServerProject/form?id=${ccmPartyServerProject.id}', '修改', '1100px', '700px')">
-                        <i class="icon-pencil"></i></a>
+                        <i class="iconfont icon-caozuotubiao-xiugai"></i></a>
                     <a  class="btnList" title="认领"
                         onclick="parent.parent.parent.LayerDialog('${ctx}/partyprojectpost/ccmPartyProjectPost/form?type=1&proPost=${ccmPartyServerProject.id}', '认领', '620px', '200px')">
                         <i class="icon-folder-open" style="    color: maroon"></i></a>
 					<a  class="btnList"
 						href="${ctx}/partyserverproject/ccmPartyServerProject/delete?id=${ccmPartyServerProject.id}"
-						onclick="return confirmx('确认要删除该双报道情况管理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+						onclick="return confirmx('确认要删除该双报道情况管理吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -76,8 +76,8 @@
 					${ccmUserRelationship.remarks}
 				</td>
 				<shiro:hasPermission name="rest:ccmUserRelationship:edit"><td style="height: 50px">
-					<a class="btnList" href="${ctx}/rest/ccmUserRelationship/form?id=${ccmUserRelationship.id}"><i title="修改" class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/rest/ccmUserRelationship/delete?id=${ccmUserRelationship.id}" onclick="return confirmx('确认要删除该用户关系吗？', this.href)"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i> </a>
+					<a class="btnList" href="${ctx}/rest/ccmUserRelationship/form?id=${ccmUserRelationship.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/rest/ccmUserRelationship/delete?id=${ccmUserRelationship.id}" onclick="return confirmx('确认要删除该用户关系吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i> </a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -106,8 +106,8 @@
 					${ccmOrgNpseEconomic.liabilities}
 				</td>
 				<shiro:hasPermission name="org:ccmOrgNpseEconomic:edit"><td>
-    				<a class="btnList" href="${ctx}/org/ccmOrgNpseEconomic/formEconomic?id=${ccmOrgNpseEconomic.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/org/ccmOrgNpseEconomic/deleteEconomic?id=${ccmOrgNpseEconomic.id}" onclick="return confirmx('确认要删除该经济运行数据吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/org/ccmOrgNpseEconomic/formEconomic?id=${ccmOrgNpseEconomic.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/org/ccmOrgNpseEconomic/deleteEconomic?id=${ccmOrgNpseEconomic.id}" onclick="return confirmx('确认要删除该经济运行数据吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
