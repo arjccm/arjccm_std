@@ -131,7 +131,7 @@
 										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="查看" class="icon-file"></i></a>
 									</c:otherwise>
 								</c:choose> <a href="${ctx}/storage/plmOut/delete?id=${plmOut.id}"
-								onclick="return confirmx('确认要删除该出库单吗？', this.href)" class="btnList"><i title="删除" class="icon-trash"></i></a></td>
+								onclick="return confirmx('确认要删除该出库单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 						</shiro:hasPermission>
 					</tr>
 				</c:forEach>
@@ -180,7 +180,7 @@
 									</c:otherwise>
 								</c:choose>
 								<a href="${ctx}/storage/plmOut/delete?id=${plmOut.id}"
-									onclick="return confirmx('确认要删除该出库单吗？', this.href)" class="btnList"><i title="删除" class="icon-trash"></i></a>
+									onclick="return confirmx('确认要删除该出库单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission>
 
 						</div>

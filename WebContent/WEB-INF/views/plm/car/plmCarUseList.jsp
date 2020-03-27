@@ -92,7 +92,7 @@
 					</shiro:hasPermission>					
 					<shiro:hasPermission name="car:plmCarUse:edit">
 	    				<a class="btnList" href="${ctx}/car/plmCarUse/form?id=${plmCarUse.id}"><i title="修改" class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/car/plmCarUse/delete?id=${plmCarUse.id}" onclick="return confirmx('确认要删除该领用记录吗？', this.href)"><i title="删除" class="icon-trash"></i> </a>
+						<a class="btnList" href="${ctx}/car/plmCarUse/delete?id=${plmCarUse.id}" onclick="return confirmx('确认要删除该领用记录吗？', this.href)"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i> </a>
 					</shiro:hasPermission>
 				</td>
 			</tr>

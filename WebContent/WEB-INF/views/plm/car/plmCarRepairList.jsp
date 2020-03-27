@@ -105,7 +105,7 @@ p {
 								<a class="btnList"
 									href="${ctx}/car/plmCarRepair/delete?id=${plmCarRepair.id}"
 									onclick="return confirmx('确认要删除该维保单位吗？', this.href)" title="删除"><i
-									class="icon-trash"></i></a>
+									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission></td>
 					</tr>
 				</c:forEach>
@@ -141,7 +141,7 @@ p {
 								<a class="btnList"
 									href="${ctx}/car/plmCarRepair/delete?id=${plmCarRepair.id}"
 									onclick="return confirmx('确认要删除该维保单位吗？', this.href)" title="删除"><i
-									class="icon-trash"></i></a>
+									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission>
 						</div>
 					</div>

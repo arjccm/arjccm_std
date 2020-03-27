@@ -72,7 +72,7 @@
 							href="${ctx}/vote/pbsVoteSubject/form?id=${pbsVoteSubject.id}" title = "修改"><i class="icon icon-pencil"></i></a>
 							<a
 							href="${ctx}/vote/pbsVoteSubject/delete?id=${pbsVoteSubject.id}"
-							onclick="return confirmx('确认要删除该题目吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a></td>
+							onclick="return confirmx('确认要删除该题目吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

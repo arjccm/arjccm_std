@@ -100,7 +100,7 @@
 							<a class="btnList"
 								href="${ctx}/travel/plmApplyForReimbursement/delete?id=${plmApplyForReimbursement.id}"
 								onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a>
+								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 					
 					</c:if>
 				</td>
@@ -141,7 +141,7 @@
 									<a class="btnList"
 										href="${ctx}/travel/plmApplyForReimbursement/delete?id=${plmApplyForReimbursement.id}"
 										onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-										class="icon-trash"></i></a>
+										class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</c:if>
 						</div>
 					</div>

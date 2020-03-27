@@ -155,7 +155,7 @@
 								<a class="btnList"
 									href="${ctx}/car/plmCarDriver/delete?id=${plmCarDriver.id}"
 									onclick="return confirmx('确认要删除该驾驶员吗？', this.href)" title="删除"><i
-									class="icon-trash"></i></a>
+									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission></td>
 					</tr>
 				</c:forEach>
@@ -203,7 +203,7 @@
 								<a class="btnList"
 									href="${ctx}/car/plmCarDriver/delete?id=${plmCarDriver.id}"
 									onclick="return confirmx('确认要删除该驾驶员吗？', this.href)" title="删除"><i
-									class="icon-trash"></i></a>
+									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission>
 						</div>
 					</div>

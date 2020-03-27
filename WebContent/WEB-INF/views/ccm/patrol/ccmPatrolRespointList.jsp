@@ -61,7 +61,7 @@
 							href="${ctx}/patrol/ccmPatrolRespoint/form?id=${ccmPatrolRespoint.id}" title="修改"><i class="icon-pencil"></i></a>
 							<a class="btnList"
 							href="${ctx}/patrol/ccmPatrolRespoint/delete?id=${ccmPatrolRespoint.id}"
-							onclick="return confirmx('确认要删除该巡逻点位结果吗？', this.href)" title="删除"><i class="icon-trash"></i></a>
+							onclick="return confirmx('确认要删除该巡逻点位结果吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						</td>
 					</shiro:hasPermission>
 				</tr>

@@ -72,7 +72,7 @@
 							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
 							href="${ctx}/org/ccmOrgControl/delete?id=${ccmOrgControl.id}"
 							onclick="return confirmx('确认要删除该车辆布控记录吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a>
+								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

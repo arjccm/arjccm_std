@@ -67,7 +67,7 @@
 				</td>
 				<shiro:hasPermission name="person:pbsDepartmentbind:edit"><td>
     				<a href="${ctx}/person/pbsDepartmentbind/form?id=${pbsDepartmentbind.id}" title="修改"><i class="icon icon-pencil"></i> </a>
-					<a href="${ctx}/person/pbsDepartmentbind/delete?id=${pbsDepartmentbind.id}" title="删除" onclick="return confirmx('确认要删除该学员部门关系吗？', this.href)"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/person/pbsDepartmentbind/delete?id=${pbsDepartmentbind.id}" title="删除" onclick="return confirmx('确认要删除该学员部门关系吗？', this.href)"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

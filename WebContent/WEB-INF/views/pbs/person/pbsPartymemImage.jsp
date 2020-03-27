@@ -113,7 +113,7 @@
 						title="修改"><i class="icon icon-pencil"></i></a> <a
 						href="${ctx}/person/pbsPartymem/delete?id=${pbsPartymem.id}"
 						onclick="return confirmx('确认要删除该学员信息吗？', this.href)" title="删除"><i
-							class="icon icon-trash"></i></a>
+							class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						</div>	
 						<div style="padding-left:20%;margin-top:10px">	
 							 <a

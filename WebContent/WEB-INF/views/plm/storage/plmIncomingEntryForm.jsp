@@ -443,7 +443,7 @@
 						<shiro:hasPermission name="storage:plmMinusandAddDetail:edit">
 				<td>
 				<a title="updateDetail2" href="${ctx}/storage/plmMinusandAddDetail/form?id=${plmMinusandAddDetail.id}"><i title="修改" class="icon-pencil"></i></a>
-				<a  onclick="del('${plmMinusandAddDetail.id}')" ><i title="删除" class="icon-trash"></i></a>
+				<a  onclick="del('${plmMinusandAddDetail.id}')" ><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 					<c:if test="${flag == '1'}">
 					 <a title="incomingEquipment"
 					href="${ctx}/storage/plmMinusandAddDetail/incomingEquipment?id=${plmMinusandAddDetail.id}"><i title="物资入库" class="icon-plus"></i></a></td>

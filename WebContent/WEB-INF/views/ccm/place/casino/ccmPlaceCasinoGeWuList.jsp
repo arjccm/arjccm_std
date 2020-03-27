@@ -129,7 +129,7 @@
 							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
 							href="${ctx}/casino/ccmPlaceCasino/delete?id=${ccmPlaceCasino.id}"
 							onclick="return confirmx('确认要删除该歌舞厅场所吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a>
+								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceCasino.ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
 							   title="从业人员添加"><i class="icon-group"></i></a>

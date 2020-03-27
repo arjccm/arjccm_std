@@ -94,7 +94,7 @@
 				 
 				<shiro:hasPermission name="map:pbsGeographical:edit"><td>
     				<a href="${ctx}/map/pbsGeographical/form?id=${pbsGeographical.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/map/pbsGeographical/delete?id=${pbsGeographical.id}" onclick="return confirmx('确认要删除该地图信息表吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/map/pbsGeographical/delete?id=${pbsGeographical.id}" onclick="return confirmx('确认要删除该地图信息表吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

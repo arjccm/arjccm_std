@@ -99,7 +99,7 @@
 							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
 							href="${ctx}/bayonet/ccmCarBayonet/delete?id=${ccmCarBayonet.id}"
 							onclick="return confirmx('确认要删除该车辆卡口吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a></td>
+								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

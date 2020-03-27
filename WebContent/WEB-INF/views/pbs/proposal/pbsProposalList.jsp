@@ -72,7 +72,7 @@
 				</td> --%>
 				<shiro:hasPermission name="proposal:pbsProposal:edit"><td>
     				<a href="${ctx}/proposal/pbsProposal/form?id=${pbsProposal.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/proposal/pbsProposal/delete?id=${pbsProposal.id}" onclick="return confirmx('确认要删除该建议信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/proposal/pbsProposal/delete?id=${pbsProposal.id}" onclick="return confirmx('确认要删除该建议信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
