@@ -84,17 +84,17 @@
 	</style>
 </head>
 <body>
-	<%--<ul class="nav nav-tabs">
+<%--	<ul class="nav nav-tabs">
 		<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPeople/">实有人口列表</a></li>
 		<li><a style="width: 140px;text-align:center"
 			href="${ctx}/pop/ccmPeople/listAccount?account=${ccmPeople.account}">户籍家庭人员列表</a></li>
 		<li class="active" style="width: 140px"><a class="nav-head" href="">户籍家庭人员<shiro:hasPermission
 					name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
-				<shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></a></li>--%>
-		<%-- <c:if test="${not empty ccmPeople.id}">
+				<shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></a></li>
+		&lt;%&ndash; <c:if test="${not empty ccmPeople.id}">
 			<li><a href="${ctx}/log/ccmLogTail/formProAccount?relevance_id=${ccmPeople.id}&relevance_table=ccm_people">跟踪信息<shiro:hasPermission name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a></li>
-		</c:if> --%>
-	</ul>
+		</c:if> &ndash;%&gt;
+	</ul>--%>
 	<form:form id="inputForm" modelAttribute="ccmPeople"
 		action="${ctx}/pop/ccmPeople/saveAccount" method="post"
 		class="form-horizontal">
