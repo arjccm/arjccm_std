@@ -75,7 +75,7 @@
 					<shiro:hasPermission name="task:pbsTaskrec:edit">
 						<td><a href="${ctx}/task/pbsTaskrec/form?id=${pbsTaskrec.id}" title = "修改"><i class="icon icon-pencil"></i></a>
 							<a href="${ctx}/task/pbsTaskrec/delete?id=${pbsTaskrec.id}"
-							onclick="return confirmx('确认要删除该工作安排记录吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a></td>
+							onclick="return confirmx('确认要删除该工作安排记录吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

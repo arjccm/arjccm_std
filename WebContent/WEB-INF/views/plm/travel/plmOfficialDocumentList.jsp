@@ -122,7 +122,7 @@
 				
     				<a class="btnList" href="${ctx}/travel/plmOfficialDocument/form?id=${plmOfficialDocument.id}" title="提交申请"><i class="icon-pencil"></i></a>
 					<a class="btnList" href="${ctx}/travel/plmOfficialDocument/delete?id=${plmOfficialDocument.id}" onclick="return confirmx('确认要删除该公文吗？', this.href)" title="删除"><i
-										class="icon-trash"></i></a>
+										class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				
 				</c:if>
 				</td>
@@ -174,7 +174,7 @@
 									<a class="btnList"
 										href="${ctx}/travel/plmOfficialDocument/delete?id=${plmOfficialDocument.id}"
 										onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-										class="icon-trash"></i></a>
+										class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 								
 							</c:if>
 						</div>

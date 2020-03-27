@@ -125,7 +125,7 @@
 								href="${ctx}/storage/plmProvideInfo/form?id=${plmProvideInfo.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
 								<a
 								href="${ctx}/storage/plmProvideInfo/delete?id=${plmProvideInfo.id}"
-								onclick="return confirmx('确认要删除该供应商信息吗？', this.href)" class="btnList"><i title="删除" class="icon-trash"></i></a></td>
+								onclick="return confirmx('确认要删除该供应商信息吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 						</shiro:hasPermission>
 					</tr>
 				</c:forEach>
@@ -162,7 +162,7 @@
 									href="${ctx}/storage/plmProvideInfo/form?id=${plmProvideInfo.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
 								<a
 									href="${ctx}/storage/plmProvideInfo/delete?id=${plmProvideInfo.id}"
-									onclick="return confirmx('确认要删除该供应商信息吗？', this.href)" class="btnList"><i title="删除" class="icon-trash"></i></a>
+									onclick="return confirmx('确认要删除该供应商信息吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission>
 
 						</div>

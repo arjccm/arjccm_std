@@ -68,7 +68,7 @@
 				</td>
 				<shiro:hasPermission name="thinkingreport:pbsThinkingreport:edit"><td>
     				<a href="${ctx}/thinkingreport/pbsThinkingreport/form?id=${pbsThinkingreport.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/thinkingreport/pbsThinkingreport/delete?id=${pbsThinkingreport.id}" onclick="return confirmx('确认要删除该思想汇报信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/thinkingreport/pbsThinkingreport/delete?id=${pbsThinkingreport.id}" onclick="return confirmx('确认要删除该思想汇报信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

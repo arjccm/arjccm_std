@@ -106,7 +106,7 @@
     			</c:if>	
     				 <c:if test="${plmAct.status!='02'}" >
 					<a class="btnList" <%-- href="${ctx}/act/plmAct/delete?id=${plmAct.id}" --%> onclick="del('${plmAct.id}')"title="删除"><i
-										class="icon-trash"></i></a>
+										class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 					</c:if>						
 				</td></shiro:hasPermission>
 			</tr>

@@ -73,7 +73,7 @@
 				</td>
 				<shiro:hasPermission name="patrol:ccmPatrolPoint:edit"><td>
     				<a class="btnList" href="${ctx}/patrol/ccmPatrolPoint/form?id=${ccmPatrolPoint.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/patrol/ccmPatrolPoint/delete?id=${ccmPatrolPoint.id}" onclick="return confirmx('确认要删除该巡逻点位吗？', this.href)" title="删除"><i class="icon-trash"></i></a>
+					<a class="btnList" href="${ctx}/patrol/ccmPatrolPoint/delete?id=${ccmPatrolPoint.id}" onclick="return confirmx('确认要删除该巡逻点位吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

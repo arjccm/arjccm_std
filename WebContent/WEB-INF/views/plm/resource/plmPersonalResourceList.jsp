@@ -169,7 +169,7 @@
 							</c:if>
 								<a class="btnList"
 								href="${ctx}/resource/plmPersonalResource/delete?id=${plmResource.id}"
-								onclick="return confirmx('确认要删除吗？', this.href)"><i title="删除" class="icon-trash"></i></a></td>
+								onclick="return confirmx('确认要删除吗？', this.href)"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 						</shiro:hasPermission>
 						<td>
 							<a id="btnSubmit1"  class="fenxiang"  rid='${plmResource.id}' ><i class="icon-bookmark-empty" title="分享"></i></a>
@@ -217,7 +217,7 @@
 								<a class="btnList"
 									href="${ctx}/resource/plmPersonalResource/delete?id=${plmResource.id}"
 									onclick="return confirmx('确认要删除该资源共享吗？', this.href)" title="删除"><i
-									class="icon-trash"></i></a>
+									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission>
 							<a id="btnSubmit1"  class="fenxiang"  rid='${plmResource.id}' ><i class="icon-bookmark-empty" title="分享"></i></a>
 						</div>

@@ -143,7 +143,7 @@
 								href="${ctx}/storage/plmEquipment/form?id=${plmEquipment.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
 								<a
 								href="${ctx}/storage/plmEquipment/delete?id=${plmEquipment.id}"
-								onclick="return confirmx('确认要删除该装备物资吗？', this.href)" class="btnList"><i title="删除" class="icon-trash"></i></a></td>
+								onclick="return confirmx('确认要删除该装备物资吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 						</shiro:hasPermission>
 					</tr>
 				</c:forEach>
@@ -180,7 +180,7 @@
 								<a href="${ctx}/storage/plmEquipment/form?id=${plmEquipment.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
 								<a
 									href="${ctx}/storage/plmEquipment/delete?id=${plmEquipment.id}"
-									onclick="return confirmx('确认要删除该装备物资吗？', this.href)" class="btnList"><i title="删除" class="icon-trash"></i></a>
+									onclick="return confirmx('确认要删除该装备物资吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission>
 
 						</div>

@@ -91,7 +91,7 @@
 						<td><a
 							href="${ctx}/flow/pbsFlownode/form?id=${pbsFlownode.id}" title = "修改"><i class="icon icon-pencil"></i></a> <a
 							href="${ctx}/flow/pbsFlownode/delete?id=${pbsFlownode.id}"
-							onclick="return confirmx('确认要删除该流程节点吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a></td>
+							onclick="return confirmx('确认要删除该流程节点吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

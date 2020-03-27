@@ -107,7 +107,7 @@ p {
 								<a class="btnList"
 									href="${ctx}/logistics/plmRoom/delete?id=${plmRoom.id}"
 									onclick="return confirmx('确认要删除该会议室吗？', this.href)" title="删除"><i
-									class="icon-trash"></i></a>
+									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission> <a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/logistics/plmRoom/scheduList?id=${plmRoom.id}', '【${plmRoom.subject}】排期记录', '1200px', '800px')"
 							title="排期记录"><i class="icon-fast-forward"></i></a></td>
@@ -147,7 +147,7 @@ p {
 								<a class="btnList"
 									href="${ctx}/logistics/plmRoom/delete?id=${plmRoom.id}"
 									onclick="return confirmx('确认要删除该会议室吗？', this.href)" title="删除"><i
-									class="icon-trash"></i></a>
+									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</shiro:hasPermission>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/logistics/plmRoom/scheduList?id=${plmRoom.id}', '【${plmRoom.subject}】排期记录', '1200px', '800px')"
