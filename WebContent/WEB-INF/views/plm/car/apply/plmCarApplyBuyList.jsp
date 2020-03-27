@@ -103,11 +103,11 @@
 								
 									<a class="btnList"
 										href="${ctx}/car/apply/plmCarApplyBuy/form?id=${plmCarApplyBuy.id}"
-										title="提交申请"><i class="icon-pencil"></i></a>
+										title="提交申请"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/car/apply/plmCarApplyBuy/delete?id=${plmCarApplyBuy.id}"
 										onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-										class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										class="iconfont icon-caozuotubiao-shanchu"></i></a>
 								
 							</c:if>
 					</td>
@@ -153,11 +153,11 @@
 								
 									<a class="btnList"
 										href="${ctx}/car/apply/plmCarApplyBuy/form?id=${plmCarApplyBuy.id}"
-										title="提交申请"><i class="icon-pencil"></i></a>
+										title="提交申请"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/car/apply/plmCarApplyBuy/delete?id=${plmCarApplyBuy.id}"
 										onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-										class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										class="iconfont icon-caozuotubiao-shanchu"></i></a>
 								
 							</c:if>
 						</div>

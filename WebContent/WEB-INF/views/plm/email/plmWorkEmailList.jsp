@@ -108,7 +108,7 @@
 								$("#list${plmWorkEmail.id}").attr("src","${ctxStatic}/plm/email/images/star_no.png");
 							}
 						</script>
-						<a class="btnList" href="${ctx}/email/plmWorkEmail/delete?id=${plmWorkEmail.id}" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+						<a class="btnList" href="${ctx}/email/plmWorkEmail/delete?id=${plmWorkEmail.id}" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

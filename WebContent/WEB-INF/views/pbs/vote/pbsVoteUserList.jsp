@@ -48,8 +48,8 @@
 					${pbsVoteUser.remarks}
 				</td>
 				<shiro:hasPermission name="vote:pbsVoteUser:edit"><td>
-    				<a href="${ctx}/vote/pbsVoteUser/form?id=${pbsVoteUser.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/vote/pbsVoteUser/delete?id=${pbsVoteUser.id}" onclick="return confirmx('确认要删除该投票主题用户信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a href="${ctx}/vote/pbsVoteUser/form?id=${pbsVoteUser.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/vote/pbsVoteUser/delete?id=${pbsVoteUser.id}" onclick="return confirmx('确认要删除该投票主题用户信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

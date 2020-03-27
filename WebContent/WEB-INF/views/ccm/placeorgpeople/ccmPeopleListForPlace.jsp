@@ -108,9 +108,9 @@
 					<td>${ccmPeople.areaGridId.name}</td>
 					<td>${ccmPeople.residencedetail}</td>
 					<td><shiro:hasPermission name="pop:ccmPeople:edit">
-                        <a class="btnList" href="${ctx}/placeorgpeople/ccmPlaceOrgPeople/toUpdatePeople?peopleId=${ccmPeople.more4}"  title="修改"><i class="icon-pencil"></i></a>
+                        <a class="btnList" href="${ctx}/placeorgpeople/ccmPlaceOrgPeople/toUpdatePeople?peopleId=${ccmPeople.more4}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/placeorgpeople/ccmPlaceOrgPeople/deletePeople?id=${ccmPeople.more2}"
-							onclick="return confirmx('确认要移除此从业人员吗？', this.href)"  title="移除成员"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							onclick="return confirmx('确认要移除此从业人员吗？', this.href)"  title="移除成员"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

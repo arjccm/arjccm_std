@@ -74,9 +74,9 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="exam:pbsExampaper:edit">
 						<td><a
-							href="${ctx}/exam/pbsExampaper/formOnline?id=${pbsExampaper.id}" title = "修改"><i class="icon icon-pencil"></i></a>
+							href="${ctx}/exam/pbsExampaper/formOnline?id=${pbsExampaper.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a href="${ctx}/exam/pbsExampaper/delete?id=${pbsExampaper.id}"
-							onclick="return confirmx('确认要删除该试卷信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a> <a
+							onclick="return confirmx('确认要删除该试卷信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a> <a
 							href="${ctx}/exam/pbsExampaper/handleform?id=${pbsExampaper.id}&sStat=1&sWay=0"
 							onclick="return confirmx('确认要发布该试卷信息吗？', this.href)" title = "发布"><i class="icon-fankui"></i></a> <a
 							href="${ctx}/exam/pbsExampaper/handleform?id=${pbsExampaper.id}&sStat=0&sWay=0"

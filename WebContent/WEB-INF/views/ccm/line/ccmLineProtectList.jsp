@@ -94,12 +94,12 @@
 				</td>
 				<td style="height: 50px">
 				<shiro:hasPermission name="line:ccmLineProtect:edit">
-    				<a class="btnList" href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/line/ccmLineProtect/delete?id=${ccmLineProtect.id}" onclick="return confirmx('确认要删除该护路护线吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/line/ccmLineProtect/delete?id=${ccmLineProtect.id}" onclick="return confirmx('确认要删除该护路护线吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</shiro:hasPermission>
 				<!-- 事件 编辑权限  --> 
 				<shiro:hasPermission name="event:ccmEventIncident:edit">
-					<a class="btnList" href="${ctx}/event/ccmEventIncident/formIncident?otherId=${ccmLineProtect.id}" title="添加案事件信息"><i class="icon-plus"></i></a>
+					<a class="btnList" href="${ctx}/event/ccmEventIncident/formIncident?otherId=${ccmLineProtect.id}" title="添加案事件信息"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 				</shiro:hasPermission>
 				
 				</td>

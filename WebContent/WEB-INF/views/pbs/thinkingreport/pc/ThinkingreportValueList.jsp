@@ -69,7 +69,7 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<td><a
 						href="${ctx}/thinkingreport/Pc/thinkRepInfo?id=${pbsThinkingreport.id}"
-						title="修改"><i class="icon icon-pencil"></i></a></td>
+						title="修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

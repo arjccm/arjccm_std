@@ -300,7 +300,7 @@
 			</c:if>
 		</table>
 		<div class="form-actions">
-				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="icon-print"></i>提交申请</a>&nbsp;
+				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="iconfont icon-caozuotubiao-jiluxinxi"></i>提交申请</a>&nbsp;
 				<c:if test="${not empty plmEquApply.procInsId}">
 					<a id="btnSubmit2" class="btn btn-primary" href="javascript:;"><i class="icon-minus-sign"></i>销毁申请</a>&nbsp;
 					</c:if>

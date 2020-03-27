@@ -71,10 +71,10 @@
 					<td>${pbsProposalarea.remarks}</td>
 					<shiro:hasPermission name="proposal:pbsProposalarea:edit">
 						<td><a
-							href="${ctx}/proposal/pbsProposalarea/form?id=${pbsProposalarea.id}" title = "修改"><i class="icon icon-pencil"></i></a>
+							href="${ctx}/proposal/pbsProposalarea/form?id=${pbsProposalarea.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a
 							href="${ctx}/proposal/pbsProposalarea/delete?id=${pbsProposalarea.id}"
-							onclick="return confirmx('确认要删除该建议分区吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+							onclick="return confirmx('确认要删除该建议分区吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

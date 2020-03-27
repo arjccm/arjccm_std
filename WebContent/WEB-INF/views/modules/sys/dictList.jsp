@@ -58,9 +58,9 @@
 				<td style="height: 50px">${dict.description}</td>
 				<td style="height: 50px">${dict.sort}</td>
 				<shiro:hasPermission name="sys:dict:edit"><td style="height: 50px">
-    				<a class="btnList" href="${ctx}/sys/dict/form?id=${dict.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/sys/dict/delete?id=${dict.id}&type=${dict.type}" onclick="return confirmx('确认要删除该字典吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-    				<a class="btnList" href="<c:url value='${fns:getAdminPath()}/sys/dict/form?type=${dict.type}&sort=${dict.sort+10}'><c:param name='description' value='${dict.description}'/></c:url>" title="添加键值"><i class="icon-plus"></i></a>
+    				<a class="btnList" href="${ctx}/sys/dict/form?id=${dict.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/sys/dict/delete?id=${dict.id}&type=${dict.type}" onclick="return confirmx('确认要删除该字典吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+    				<a class="btnList" href="<c:url value='${fns:getAdminPath()}/sys/dict/form?type=${dict.type}&sort=${dict.sort+10}'><c:param name='description' value='${dict.description}'/></c:url>" title="添加键值"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

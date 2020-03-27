@@ -59,7 +59,7 @@
     				    <c:if test="${not empty plmRoom.resourceAddress}">
     				    	<a class="btnList" href="${path}${fn:replace(plmRoom.resourceAddress,'|','')}" download="${fns:getDictLabel(plmRoom.resourceName, 'plm_room_resource_type', '')}.${fn:substringAfter(plmRoom.resourceAddress, '.')}" title="下载"><i class="icon-download"></i></a>
     				    </c:if>	 
-    				    <a class="btnList" href="${ctx}/logistics/plmRoomMeetingApplyResource/deletesource?id=${plmRoom.id}"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				    <a class="btnList" href="${ctx}/logistics/plmRoomMeetingApplyResource/deletesource?id=${plmRoom.id}"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

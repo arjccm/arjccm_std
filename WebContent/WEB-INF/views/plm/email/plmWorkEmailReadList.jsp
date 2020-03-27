@@ -133,12 +133,12 @@
 					
 					
 						<c:if test="${plmWorkEmail.readStatus eq '1'}">
-							<a class="btnList" href="${ctx}/email/plmWorkEmail/self/delete?reportId=${plmWorkEmail.id}&view=${view ? true : false}" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							<a class="btnList" href="${ctx}/email/plmWorkEmail/self/delete?reportId=${plmWorkEmail.id}&view=${view ? true : false}" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 						</c:if>
 						<c:if test="${plmWorkEmail.readStatus eq '2'}"> 
 						
 							<a class="btnList" href="${ctx}/email/plmWorkEmail/self/delete2?reportId=${plmWorkEmail.id}" 
-							title="彻底删除" onclick="return confirmx('彻底删除后邮件将无法恢复，您确定要删除吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							title="彻底删除" onclick="return confirmx('彻底删除后邮件将无法恢复，您确定要删除吗？', this.href)"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							
 							<a class="btnList" href="${ctx}/email/plmWorkEmail/self/recover?reportId=${plmWorkEmail.id}" 
 								title="还原" onclick="return confirmx('还原后邮件将保存到删除前位置，您确定要还原吗？', this.href)"><i class="icon-upload"></i></a>
@@ -147,14 +147,14 @@
 						<c:if test="${plmWorkEmail.readStatus eq ''}">
 							<c:if test="${plmWorkEmail.delFlag eq '1'}">
 								<a class="btnList" href="${ctx}/email/plmWorkEmail/delete2?id=${plmWorkEmail.id}" 
-								title="彻底删除" onclick="return confirmx('彻底删除后邮件将无法恢复，您确定要删除吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+								title="彻底删除" onclick="return confirmx('彻底删除后邮件将无法恢复，您确定要删除吗？', this.href)"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 								
 								<a class="btnList" href="${ctx}/email/plmWorkEmail/recover?id=${plmWorkEmail.id}" 
 								title="还原" onclick="return confirmx('还原后邮件将保存到删除前位置，您确定要还原吗？', this.href)"><i class="icon-retweet"></i></a>
 								
 							</c:if>
 							<c:if test="${plmWorkEmail.delFlag eq '0'}">
-								<a class="btnList" href="${ctx}/email/plmWorkEmail/delete?id=${plmWorkEmail.id}&view=${view ? true : false}" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+								<a class="btnList" href="${ctx}/email/plmWorkEmail/delete?id=${plmWorkEmail.id}&view=${view ? true : false}" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</c:if>
 						</c:if>
 						

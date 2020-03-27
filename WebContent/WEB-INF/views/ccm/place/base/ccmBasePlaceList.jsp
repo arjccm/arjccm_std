@@ -129,9 +129,9 @@
 						<td>
 							<shiro:hasPermission name="log:ccmLogTail:edit">
 								<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmBasePlace.id}&relevance_table=ccm_base_place', '记录信息', '800px', '660px')"
-								   title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
+								   title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
 								<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmBasePlace.id}&relevance_table=ccm_base_place', '添加记录', '800px', '660px')"
-								   title="添加记录"><i class="icon-plus"></i></a>
+								   title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 							</shiro:hasPermission>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"

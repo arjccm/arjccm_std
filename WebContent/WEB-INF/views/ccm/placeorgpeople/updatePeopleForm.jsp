@@ -264,14 +264,14 @@ li .mark-icon:HOVER {
 								name = info.name2;
 							}
 							$jsonlxfs.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"'+info.id+'>'+info.type+'-'+name+'<i title="编辑" onclick="markPopEidt(\''+info.id+'\')" '+
-								'class="icon-pencil mark-icon"></i></li>');
+								'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></li>');
 						}else{
 							$jsonlxfs.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"'+info.id+'>'+info.type+'-'+info.name1+'<i title="编辑" onclick="markPopEidt(\''+info.id+'\')" '+
-								'class="icon-pencil mark-icon"></i></li>');
+								'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></li>');
 						}	
         	          });
 					}
-					$jsonlxfs.append('<li class="mark-add "><i class="icon-plus mark-icon" onclick="markPopAdd()"  title="添加"></i></li>')
+					$jsonlxfs.append('<li class="mark-add "><i class="iconfont icon-caozuotubiao-tianjiachuli mark-icon" onclick="markPopAdd()"  title="添加"></i></li>')
 			   });
 	   }
 	   /* 人际关系添加 */
@@ -293,10 +293,10 @@ li .mark-icon:HOVER {
 					if(!jQuery.isEmptyObject(data)){
 					$.each(data.object1, function(infoIndex, info) {
 						$jsonlxfs.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"'+info.id+'>'+info.subType+'-'+info.textName+'<i title="编辑" onclick="markPhoneEidt(\''+info.id+'\')" '+
-									'class="icon-pencil mark-icon"></i></li>');	
+									'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></li>');
         	          });
 					}
-					$jsonlxfs.append('<li class="mark-add "><i class="icon-plus mark-icon" onclick="markPhoneAdd()"  title="添加"></i></li>')
+					$jsonlxfs.append('<li class="mark-add "><i class="iconfont icon-caozuotubiao-tianjiachuli mark-icon" onclick="markPhoneAdd()"  title="添加"></i></li>')
 			   });
 	  }
 	   /* 联系方式添加 */
@@ -319,10 +319,10 @@ li .mark-icon:HOVER {
 					if(!jQuery.isEmptyObject(data)){
 					$.each(data.object1, function(infoIndex, info) {
 						$jsonvehile.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"'+info.id+'>'+info.subType+'-'+info.textName+'<i title="编辑" onclick="markVehileEidt(\''+info.id+'\')" '+
-									'class="icon-pencil mark-icon"></i></span></li>');	
+									'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></span></li>');
        	          });
 					}
-					$jsonvehile.append('<li class="mark-add "><i class="icon-plus mark-icon" onclick="markVehileAdd()"  title="添加"></i></li>')
+					$jsonvehile.append('<li class="mark-add "><i class="iconfont icon-caozuotubiao-tianjiachuli mark-icon" onclick="markVehileAdd()"  title="添加"></i></li>')
 			   });
 	  }
 	   /* 使用车辆添加 */
@@ -345,10 +345,10 @@ li .mark-icon:HOVER {
 					if(!jQuery.isEmptyObject(data)){
 					$.each(data.object1, function(infoIndex, info) {
 						$jsonweb.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"'+info.id+'>'+info.subType+'-'+info.textName+'<i title="编辑" onclick="markWebEidt(\''+info.id+'\')" '+
-									'class="icon-pencil mark-icon"></i></li>');	
+									'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></li>');
        	          });
 					}
-					$jsonweb.append('<li class="mark-add "><i class="icon-plus mark-icon" onclick="markWebAdd()"  title="添加"></i></li>')
+					$jsonweb.append('<li class="mark-add "><i class="iconfont icon-caozuotubiao-tianjiachuli mark-icon" onclick="markWebAdd()"  title="添加"></i></li>')
 			   });
 	  }
 	   /*网络账号添加 */

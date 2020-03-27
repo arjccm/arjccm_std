@@ -204,7 +204,7 @@
 				{{row.mobile}}
 			</td>
 			<shiro:hasPermission name="view:vCcmTeam:edit"><td style="height: 50px">
-   				<a class="btnList" href="${ctx}/view/vCcmTeam/form?id={{row.id}}"  title="修改"><i class="icon-pencil"></i></a>
+   				<a class="btnList" href="${ctx}/view/vCcmTeam/form?id={{row.id}}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 			</td></shiro:hasPermission>
 		</tr>
 	</script>

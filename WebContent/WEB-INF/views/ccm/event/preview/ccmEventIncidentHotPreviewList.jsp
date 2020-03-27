@@ -162,10 +162,10 @@
 					<shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
 						<td style="height: 50px"><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/3?id=${ccmEventIncidentPreview.id}', '编辑', '1100px', '600px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/preview/ccmEventIncidentPreview/delete?id=${ccmEventIncidentPreview.id}"
 							onclick="return confirmx('确认要删除该app信息上报吗？', this.href)"
-							title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<c:if test="${ccmEventIncidentPreview.status eq '03' || ccmEventIncidentPreview.status eq '02'}">
 								<a  class="btnList" title="已处理"><i class="icon-legal" style="color:  #656565;"></i></a>
 							</c:if>

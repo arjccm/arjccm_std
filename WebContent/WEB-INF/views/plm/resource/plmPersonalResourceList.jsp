@@ -165,11 +165,11 @@
 							<td> 
 							<c:if test="${plmResource.type!='03'}">
 							<a id="hide" class="btnList"
-								href="${ctx}/resource/plmPersonalResource/form?id=${plmResource.id}"><i title="修改" class="icon-pencil"></i></a>
+								href="${ctx}/resource/plmPersonalResource/form?id=${plmResource.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 							</c:if>
 								<a class="btnList"
 								href="${ctx}/resource/plmPersonalResource/delete?id=${plmResource.id}"
-								onclick="return confirmx('确认要删除吗？', this.href)"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+								onclick="return confirmx('确认要删除吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 						</shiro:hasPermission>
 						<td>
 							<a id="btnSubmit1"  class="fenxiang"  rid='${plmResource.id}' ><i class="icon-bookmark-empty" title="分享"></i></a>
@@ -212,12 +212,12 @@
 								<c:if test="${plmResource.type!='03'}">
 								<a class="btnList"
 									href="${ctx}/resource/plmPersonalResource/form?id=${plmResource.id}"
-									title="修改"><i class="icon-pencil"></i></a>
+									title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								</c:if>
 								<a class="btnList"
 									href="${ctx}/resource/plmPersonalResource/delete?id=${plmResource.id}"
 									onclick="return confirmx('确认要删除该资源共享吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission>
 							<a id="btnSubmit1"  class="fenxiang"  rid='${plmResource.id}' ><i class="icon-bookmark-empty" title="分享"></i></a>
 						</div>

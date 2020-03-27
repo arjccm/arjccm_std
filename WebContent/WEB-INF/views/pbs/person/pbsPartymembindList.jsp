@@ -64,10 +64,10 @@
 					<td>${pbsPartymembind.remarks}</td>
 					<shiro:hasPermission name="person:pbsPartymembind:edit">
 						<td><a
-							href="${ctx}/person/pbsPartymembind/form?id=${pbsPartymembind.id}" title = "修改"><i class="icon icon-pencil"></i></a>
+							href="${ctx}/person/pbsPartymembind/form?id=${pbsPartymembind.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a
 							href="${ctx}/person/pbsPartymembind/delete?id=${pbsPartymembind.id}"
-							onclick="return confirmx('确认要删除该学员表关系吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+							onclick="return confirmx('确认要删除该学员表关系吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

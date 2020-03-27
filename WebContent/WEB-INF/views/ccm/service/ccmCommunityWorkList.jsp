@@ -112,10 +112,10 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="service:ccmCommunityWork:edit">
 						<td><a class="btnList"
-							href="${ctx}/service/ccmCommunityWork/form?id=${ccmCommunityWork.id}" title="修改"><i class="icon-pencil"></i></a>
+							href="${ctx}/service/ccmCommunityWork/form?id=${ccmCommunityWork.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a class="btnList"
 							href="${ctx}/service/ccmCommunityWork/delete?id=${ccmCommunityWork.id}"
-							onclick="return confirmx('确认要删除该社区服务吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							onclick="return confirmx('确认要删除该社区服务吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

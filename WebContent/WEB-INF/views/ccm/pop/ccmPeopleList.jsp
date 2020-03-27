@@ -405,41 +405,41 @@
 					${ccmPeople.residencedetail}
 				</td>
 				<td class="tc"><shiro:hasPermission name="pop:ccmPeople:edit">
-	    				<a class="btnList"  href="${ctx}/pop/ccmPeople/form?id=${ccmPeople.id}" title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/pop/ccmPeople/delete?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该实有人口吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-				       	<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmPeople.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
+	    				<a class="btnList"  href="${ctx}/pop/ccmPeople/form?id=${ccmPeople.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+						<a class="btnList" href="${ctx}/pop/ccmPeople/delete?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该实有人口吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+				       	<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmPeople.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 				       	<c:if test="${ccmPeople.type ne '10'}">
-				       		<a class="btnList"  href="javascript:return false;"  title="户籍家庭"><i class="iconfont   icon-ai-home" style="color: #656565"></i></a>
+				       		<a class="btnList"  href="javascript:return false;"  title="户籍家庭"><i class="iconfont   icon-caozuotubiao-hujijiating" style="color: #656565"></i></a>
 				       	</c:if>
 				       	<c:if test="${ccmPeople.type eq '10'}">
-				       		<a class="btnList"  href="${ctx}/pop/ccmPeople/listAccount?account=${ccmPeople.account}"  title="户籍家庭"><i class="iconfont   icon-ai-home"></i></a>
+				       		<a class="btnList"  href="${ctx}/pop/ccmPeople/listAccount?account=${ccmPeople.account}"  title="户籍家庭"><i class="iconfont   icon-caozuotubiao-hujijiating"></i></a>
 				       	</c:if>
 				    </shiro:hasPermission> 
 				    <shiro:hasPermission name="log:ccmLogTail:edit">
 				    	<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPeople.id}&relevance_table=ccm_people', '记录信息', '800px', '660px')"
-								  title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
+								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
 				 		<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPeople.id}&relevance_table=ccm_people', '添加记录', '800px', '660px')"
-								 title="添加记录"><i class="icon-plus"></i></a>
+								 title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 				  	</shiro:hasPermission>
 					<shiro:hasPermission name="overallControl:ccmOverallControl:edit">
 						<c:if test="${ccmPeople.isControl eq 1}">
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/overallControl/ccmOverallControl/form?id=${ccmPeople.id}', '布控', '1100px', '700px')"
-							   title="已布控"><i class="icon-cloud-upload"></i></a>
+							   title="已布控"><i class="iconfont icon-caozuotubiao-bukong"></i></a>
 						</c:if>
 						<c:if test="${ccmPeople.isControl ne 1}">
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/overallControl/ccmOverallControl/form?id=${ccmPeople.id}', '布控', '1100px', '700px')"
-							   title="布控"><i style="color: #1cdd1c" class="icon-cloud-upload"></i></a>
+							   title="布控"><i style="color: #1cdd1c" class="iconfont icon-caozuotubiao-bukong"></i></a>
 						</c:if>
 						<c:if test="${ccmPeople.isControl eq 1}">
-							<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i class="icon-cloud-download"></i></a>
+							<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i class="iconfont icon-caozuotubiao-chekong"></i></a>
 						</c:if>
 						<c:if test="${ccmPeople.isControl ne 1}">
-							<a class="btnList" title="撤控"><i style="cursor:not-allowed; color: #999999;" class="icon-cloud-download"></i></a>
+							<a class="btnList" title="撤控"><i style="cursor:not-allowed; color: #999999;" class="iconfont icon-caozuotubiao-chekong"></i></a>
 						</c:if>
 
 						<%--<a class="btnList" onclick="parent.LayerDialog('${ctx}/overallControl/ccmOverallControl/form?id=${ccmPeople.id}', '布控', '1100px', '700px')"
-						   title="布控"><i class="icon-cloud-upload"></i></a>--%>
-<%--						<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i class="icon-cloud-download"></i></a>--%>
+						   title="布控"><i class="iconfont icon-caozuotubiao-bukong"></i></a>--%>
+<%--						<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i class="iconfont icon-caozuotubiao-chekong"></i></a>--%>
 					</shiro:hasPermission>
 				  	
 				</td>

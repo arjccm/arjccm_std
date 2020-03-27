@@ -123,12 +123,12 @@
 				<td>${ccmHouseSchoolrim.headName}</td>
 				<td>${ccmHouseSchoolrim.headTl}</td>
 				<td><shiro:hasPermission name="house:ccmHouseSchoolrim:edit">
-    				<a class="btnList" href="${ctx}/house/ccmHouseSchoolrim/form?id=${ccmHouseSchoolrim.id}"  title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/house/ccmHouseSchoolrim/delete?id=${ccmHouseSchoolrim.id}" onclick="return confirmx('确认要删除该学校吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/house/ccmHouseSchoolrim/form?id=${ccmHouseSchoolrim.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/house/ccmHouseSchoolrim/delete?id=${ccmHouseSchoolrim.id}" onclick="return confirmx('确认要删除该学校吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseSchoolrim.id}&relevance_table=ccm_house_school', '记录信息', '800px', '660px')" 
-								  title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
-					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseSchoolrim.id}&relevance_table=ccm_house_school', '添加记录', '800px', '660px')" title="添加记录"><i class="icon-plus"></i></a>
+								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
+					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseSchoolrim.id}&relevance_table=ccm_house_school', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 					</shiro:hasPermission></td>
 			</tr>
 		</c:forEach>
