@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="${ctxStatic}/ccm/event/css/fishBonePop.css" />
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/fishBonePop.js"></script>
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/jquery.SuperSlide.2.1.1.js"></script>
-
+<script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 <style type="text/css">
 .pad {
 	padding: 5px;
@@ -40,7 +40,20 @@
 .input-xlarge {
 	width: 200px;
 }
-
+.tip_box_style .layui-layer-content{
+	background: none;
+	color:red;
+	font-size: 16px;
+	box-shadow: 0px 0px 0px 0px #0b0b0b;
+	padding: 4px 15px;
+}
+.tip_box_style i.layui-layer-TipsL, .tip_box_style i.layui-layer-TipsR{
+	/*border-right-style: solid;*/
+	/*border-right-color: red;*/
+	top: 6px;
+	border-style: solid;
+	border-color: transparent #FF0000 transparent transparent;
+}
 /*.select2-container.input-xlarge {
 	width: 215px;
 }*/
@@ -361,38 +374,41 @@
 
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font
-								color="red">*</font></span>所属社区：</label>
-						<div class="controls" onmouseout="onclickNet()">
-							<!--
-							<sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}" labelName="areaComId.name" labelValue="${ccmPeople.areaComId.name}"
-							title="区域" url="/sys/area/treeData" cssClass="" allowClear="true" notAllowSelectParent="false" cssStyle="width: 150px"/>
-							-->
-							<sys:treeselect id="areaComId" name="areaComId.id"
-											value="${ccmPeople.areaComId.id}" labelName="areaComId.name"
-											labelValue="${ccmPeople.areaComId.name}" title="区域"
-											url="/tree/ccmTree/treeDataArea?type=6" cssClass="required"
-											allowClear="true" notAllowSelectParent="true"
-											cssStyle="width: 270px"/>
-						</div>
+							<input type="hidden" id="isreact" value="true">
+							<label class="control-label"><span class="help-inline"><font
+									color="red">*</font></span>所属社区：</label>
+								<%--<div class="controls" onmouseout="onclickNet()">--%>
+							<div class="controls">
+									<%--  <!--
+                                          <sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}" labelName="areaComId.name" labelValue="${ccmPeople.areaComId.name}"
+                                          title="区域" url="/sys/area/treeData" cssClass="" allowClear="true" notAllowSelectParent="false" cssStyle="width: 150px"/>
+                                          -->--%>
+								<sys:treeselect id="areaComId" name="areaComId.id"
+												value="${ccmPeople.areaComId.id}" labelName="areaComId.name"
+												labelValue="${ccmPeople.areaComId.name}" title="区域"
+												url="/tree/ccmTree/treeDataArea?type=6" cssClass="required"
+												allowClear="true" notAllowSelectParent="true"
+												cssStyle="width: 270px"/>
+							</div>
 
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="showGrid">*</font></span>所属网格：</label>
+						<label class="control-label"><span class="help-inline"><font
+								color="red">*</font></span>所属网格：</label>
 						<div class="controls">
-							<div class="help-inline" id="newNet">
-								<sys:treeselect id="areaGridId" name="areaGridId.id"
+								<%--<div class="help-inline" id="newNet" onmouseout=""
+                                     onmousemove="onclickNet()" onclick="onclickNet1()">--%>
+							<div class="help-inline" >
+								<sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"
 												value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
 												labelValue="${ccmPeople.areaGridId.name}" title="区域"
 												url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""
 												allowClear="true" notAllowSelectParent="true"
-												cssStyle="width: 150px" />
+												cssStyle="width:270px "/>
 							</div>
-
-						</div>
 					</div>
 				</td>
 				<td>
