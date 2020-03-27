@@ -137,9 +137,9 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">人口类型：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>人口类型：</label>
 						<div class="controls">
-							<form:select path="type" class="input-xlarge " id="sel"
+							<form:select path="type" class="input-xlarge required" id="sel"
 								onchange="sels()">
 								<form:options items="${fns:getDictList('sys_ccm_people')}"
 									itemLabel="label" itemValue="value" htmlEscape="false" />
