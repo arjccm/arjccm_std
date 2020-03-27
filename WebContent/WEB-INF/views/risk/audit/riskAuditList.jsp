@@ -96,7 +96,7 @@
 				</c:if>	
 				</td>
 				<shiro:hasPermission name="audit:riskAudit:edit"><td>
-    				<a class="btnList" href="${ctx}/audit/riskAudit/form?id=${riskAudit.id}" title="审核"><i class="icon-pencil"></i></a>
+    				<a class="btnList" href="${ctx}/audit/riskAudit/form?id=${riskAudit.id}" title="审核"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

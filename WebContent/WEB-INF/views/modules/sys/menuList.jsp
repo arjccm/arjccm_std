@@ -43,9 +43,9 @@
 					<td>${menu.isShow eq '1'?'显示':'隐藏'}</td>
 					<td title="${menu.permission}">${fns:abbr(menu.permission,30)}</td>
 					<shiro:hasPermission name="sys:menu:edit"><td nowrap>
-						<a class="btnList" href="${ctx}/sys/menu/form?id=${menu.id}" title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/sys/menu/delete?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-						<a class="btnList" href="${ctx}/sys/menu/form?parent.id=${menu.id}" title="添加下级菜单"><i class="icon-plus"></i></a>
+						<a class="btnList" href="${ctx}/sys/menu/form?id=${menu.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+						<a class="btnList" href="${ctx}/sys/menu/delete?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+						<a class="btnList" href="${ctx}/sys/menu/form?parent.id=${menu.id}" title="添加下级菜单"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 					</td></shiro:hasPermission>
 				</tr>
 			</c:forEach></tbody>

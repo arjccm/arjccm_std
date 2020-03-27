@@ -136,11 +136,11 @@ p {
 									title="违章记录"><i class="icon-file"></i></a>
 							</shiro:hasPermission> <shiro:hasPermission name="car:plmCar:edit">
 								<a class="btnList" href="${ctx}/car/plmCar/form?id=${plmCar.id}"
-									title="修改"><i class="icon-pencil"></i></a>
+									title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/car/plmCar/delete?id=${plmCar.id}"
 									onclick="return confirmx('确认要删除该车辆吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission></td>
 					</tr>
 				</c:forEach>
@@ -182,11 +182,11 @@ p {
 							</shiro:hasPermission>
 							<shiro:hasPermission name="car:plmCar:edit">
 								<a class="btnList" href="${ctx}/car/plmCar/form?id=${plmCar.id}"
-									title="修改"><i class="icon-pencil"></i></a>
+									title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/car/plmCar/delete?id=${plmCar.id}"
 									onclick="return confirmx('确认要删除该车辆吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission>
 						</div>
 					</div>

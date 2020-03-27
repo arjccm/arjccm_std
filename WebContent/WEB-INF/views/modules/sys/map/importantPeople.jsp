@@ -116,7 +116,7 @@ height:100px;
 .waring-address{
   color:#4595c6;
 }
-.waring-right .icon-map-marker{
+.waring-right .iconfont icon-caozuotubiao-weizhixinxi{
     font-size: 17px;
     margin-right: 3px;
 }
@@ -534,7 +534,7 @@ line-height: 24px;
 <%--			 	         <div class="waring-right">--%>
 <%--			 	            <!-- <div class="waring-name">张三  <div class="waring-time">2018-10-24 12:34:56</div></div>--%>
 <%--			 	            <div class="waring-details">在逃人员出现</div>--%>
-<%--			 	            <div class="waring-address"><i class="icon-map-marker"></i>清平街平安路中医院门口</div> -->--%>
+<%--			 	            <div class="waring-address"><i class="iconfont icon-caozuotubiao-weizhixinxi"></i>清平街平安路中医院门口</div> -->--%>
 <%--			 	         </div>--%>
 <%--			 	      </div>--%>
 <%--			 	      <div  id="PlaceWarning"   class="waring">--%>
@@ -542,7 +542,7 @@ line-height: 24px;
 <%--			 	         <div class="waring-right">--%>
 <%--			 	             <!-- <div class="waring-name">张三 、张四  <div class="waring-time">2018-10-24 12:34:56</div></div>--%>
 <%--			 	            <div class="waring-details">涉毒人员聚集</div>--%>
-<%--			 	            <div class="waring-address"><i class="icon-map-marker"></i>清平街XXX酒店</div> -->--%>
+<%--			 	            <div class="waring-address"><i class="iconfont icon-caozuotubiao-weizhixinxi"></i>清平街XXX酒店</div> -->--%>
 <%--			 	         </div>--%>
 <%--			 	      </div>--%>
 <%--			 	      <div  id="CarWarning"   class="waring">--%>
@@ -550,7 +550,7 @@ line-height: 24px;
 <%--			 	         <div class="waring-right">--%>
 <%--                            <!--  <div class="waring-name">京A234322  <div class="waring-time">2018-10-24 12:34:56</div></div>--%>
 <%--			 	            <div class="waring-details">可疑车辆布控</div>--%>
-<%--			 	            <div class="waring-address"><i class="icon-map-marker"></i>清平街XXX路口</div> -->--%>
+<%--			 	            <div class="waring-address"><i class="iconfont icon-caozuotubiao-weizhixinxi"></i>清平街XXX路口</div> -->--%>
 <%--			 	         </div>--%>
 <%--			 	      </div>--%>
 <%--			 	      <div  id="VideoleWarning" class="waring">--%>
@@ -558,7 +558,7 @@ line-height: 24px;
 <%--			 	          <div class="waring-right">--%>
 <%--			 	           <!--  <div class="waring-name">XXX摄像头  <div class="waring-time">2018-10-24 12:34:56</div></div>--%>
 <%--			 	            <div class="waring-details">视频移动告警</div>--%>
-<%--			 	            <div class="waring-address"><i class="icon-map-marker"></i>清平街XXX路口</div> -->--%>
+<%--			 	            <div class="waring-address"><i class="iconfont icon-caozuotubiao-weizhixinxi"></i>清平街XXX路口</div> -->--%>
 <%--			 	          </div>--%>
 <%--			 	      </div>--%>
 <%--			 	      <div  id="EventWarning"   class="waring">--%>
@@ -566,7 +566,7 @@ line-height: 24px;
 <%--			 	          <div class="waring-right">--%>
 <%--			 	            <!-- <div class="waring-name">民警：王五  <div class="waring-time">2018-10-24 12:34:56</div></div>--%>
 <%--			 	            <div class="waring-details">发现可疑人员</div>--%>
-<%--			 	            <div class="waring-address"><i class="icon-map-marker"></i>清平街XXX路口</div> -->--%>
+<%--			 	            <div class="waring-address"><i class="iconfont icon-caozuotubiao-weizhixinxi"></i>清平街XXX路口</div> -->--%>
 <%--			 	          </div>--%>
 <%--			 	      </div>--%>
 			 	   </div>

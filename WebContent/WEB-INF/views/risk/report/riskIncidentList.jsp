@@ -130,14 +130,14 @@
 					${fns:getDictLabel(riskIncident.disposeType, 'ccm_event_status', '')}
 				</td>
 				<td><shiro:hasPermission name="report:riskIncident:edit">
-    				<a class="btnList" href="${ctx}/report/riskIncident/form?id=${riskIncident.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/report/riskIncident/delete?id=${riskIncident.id}" onclick="return confirmx('确认要删除该风险事件管理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/report/riskIncident/form?id=${riskIncident.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/report/riskIncident/delete?id=${riskIncident.id}" onclick="return confirmx('确认要删除该风险事件管理吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</shiro:hasPermission>
 				<shiro:hasPermission name="log:ccmLogTail:edit">
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${riskIncident.id}&relevance_table=risk_incident', '记录信息', '800px', '660px')" 
-								  title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
+								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formProPermanent?relevance_id=${riskIncident.id}&relevance_table=risk_incident', '添加记录', '800px', '660px')"
-								  title="添加记录"><i class="icon-plus"></i></a>
+								  title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 				</shiro:hasPermission></td>
 			</tr>
 		</c:forEach>
