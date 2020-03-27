@@ -220,7 +220,7 @@
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmPeople.id}', '社交关系', '1000px', '700px')"
 						  title="社交关系"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
 					<%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')"
-						  title="定时提醒"><i class="icon-bell"></i></a> --%>
+						  title="定时提醒"><i class="iconfont icon-caozuotubiao-fasongjingqing"></i></a> --%>
 			    </shiro:hasPermission> 
 			    <shiro:hasPermission name="log:ccmLogTail:edit">
 			  	<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPeople.id}&relevance_table=ccm_people', '记录信息', '800px', '660px')" 

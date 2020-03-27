@@ -128,7 +128,7 @@
 						<td>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/listCheck?placeId=${ccmPlaceScenic.basePlaceId}', '事件关联', '1100px', '700px')"
-								title="事件关联"><i class="icon-random"></i></a>
+								title="事件关联"><i class="iconfont icon-caozuotubiao-shijianguanlian"></i></a>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/scenic/ccmPlaceScenic/form?id=${ccmPlaceScenic.id}', '编辑', '1100px', '700px')"
 								title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"

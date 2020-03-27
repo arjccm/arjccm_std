@@ -78,7 +78,7 @@
                                 <li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i
                                         class="icon-lock"></i>&nbsp; 修改密码</a></li>
                                 <li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i
-                                        class="icon-bell"></i>&nbsp; 我的通知 <span id="notifyNum2"
+                                        class="iconfont icon-caozuotubiao-fasongjingqing"></i>&nbsp; 我的通知 <span id="notifyNum2"
                                                                                 class="label label-info hide"></span></a>
                                 </li>--%>
                                 <li><a href="${ctx}/logout" title="退出登录"><i class="icon-signout"></i>&nbsp;退出登录</a></li>
