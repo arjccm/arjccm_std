@@ -99,7 +99,7 @@
 						<a class="btnList" href="${ctx}/publicity/ccmLogPublicity/delete?id=${ccmLogPublicity.id}" onclick="return confirmx('确认要删除该宣传信息吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i> </a>
 					</c:if>
 					<c:if test="${user.id ne ccmLogPublicity.createBy.id and user.id ne '1'}">
-						<a class="btnList" href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}"><i title="详情" class="icon-file"></i></a>
+						<a class="btnList" href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}"><i title="详情" class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 					</c:if>
     				<!-- <a href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}">修改</a>
 					<a href="${ctx}/publicity/ccmLogPublicity/delete?id=${ccmLogPublicity.id}" onclick="return confirmx('确认要删除该宣传信息吗？', this.href)">删除</a> -->

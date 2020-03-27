@@ -174,7 +174,7 @@
 							href="${ctx}/house/ccmSeriousCriminalOffense/delete?id=${ccmSeriousCriminalOffense.id}&permissionKey=${permissionKey}"
 							onclick="return confirmx('确认要删除该严重刑事犯罪人口吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmSeriousCriminalOffense.peopleId}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
-							<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmSeriousCriminalOffense.peopleId}', '社交关系', '1000px', '700px')" title="社交关系"><i class="icon-group"></i></a>
+							<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmSeriousCriminalOffense.peopleId}', '社交关系', '1000px', '700px')" title="社交关系"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
 							<%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')" title="定时提醒"><i class="icon-bell"></i></a> --%>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="log:ccmLogTail:edit">

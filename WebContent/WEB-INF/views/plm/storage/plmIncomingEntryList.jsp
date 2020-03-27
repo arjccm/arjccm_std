@@ -166,7 +166,7 @@
 								</c:if>
 								<c:if test="${plmIncomingEntry.type != '0'}">
 									<a class="btnList"
-										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="查看" class="icon-file"></i></a>
+										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 								</c:if>
 							</td>
 						</shiro:hasPermission>
@@ -212,7 +212,7 @@
 								</c:if>
 								<c:if test="${plmIncomingEntry.type != '0'}">
 									<a class="btnList"
-										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="查看" class="icon-file"></i></a>
+										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 								</c:if>
 							</shiro:hasPermission>
 						</div>

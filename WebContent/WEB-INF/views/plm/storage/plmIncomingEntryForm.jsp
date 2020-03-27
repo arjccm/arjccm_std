@@ -450,7 +450,7 @@
 									</c:if></shiro:hasPermission>
 								</c:when>
 								<c:otherwise>
-									<td><a title="updateDetail2" href="${ctx}/storage/plmMinusandAddDetail/form?id=${plmMinusandAddDetail.id}"><i title="查看" class="icon-file"></i></a></td>
+									<td><a title="updateDetail2" href="${ctx}/storage/plmMinusandAddDetail/form?id=${plmMinusandAddDetail.id}"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a></td>
 								</c:otherwise>
 							</c:choose>
 			</tr>

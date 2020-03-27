@@ -102,7 +102,7 @@
     				<a class="btnList"  href="${ctx}/act/plmAct/form?id=${plmAct.id}"title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
     			</c:if>	
     			 <c:if test="${!e}" >
-    				<a class="btnList"  href="${ctx}/act/plmAct/form?id=${plmAct.id}"title="显示详情"><i class="icon-file"></i></a>
+    				<a class="btnList"  href="${ctx}/act/plmAct/form?id=${plmAct.id}"title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
     			</c:if>	
     				 <c:if test="${plmAct.status!='02'}" >
 					<a class="btnList" <%-- href="${ctx}/act/plmAct/delete?id=${plmAct.id}" --%> onclick="del('${plmAct.id}')"title="删除"><i

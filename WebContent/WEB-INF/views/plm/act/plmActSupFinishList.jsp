@@ -79,7 +79,7 @@
 					<fmt:formatDate value="${plmAct.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="act:plmAct:edit"><td>
-    				<a href="${ctx}/act/plmAct/form?id=${plmAct.id}"title="显示详情"><i class="icon-file"></i></a>
+    				<a href="${ctx}/act/plmAct/form?id=${plmAct.id}"title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 					<%-- <a href="${ctx}/act/plmAct/delete?id=${plmAct.id}" onclick="return confirmx('确认要删除该业务申请单主表吗？', this.href)">删除</a> --%>
 				</td></shiro:hasPermission>
 			</tr>

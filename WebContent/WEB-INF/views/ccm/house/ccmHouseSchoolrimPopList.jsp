@@ -241,7 +241,7 @@
 				<td>${fns:getDictLabel(ccmPeople.isVisit, 'yes_no', '')}</td>
 				<td>${fns:getDictLabel(ccmPeople.isHeresy, 'yes_no', '')}</td>
 				<td><shiro:hasPermission name="pop:ccmPeople:edit">
-				<a class="btnList" href="${ctx}/pop/ccmPeople/formPop?id=${ccmPeople.id}" title="查看"><i class="icon-file"></i></a>
+				<a class="btnList" href="${ctx}/pop/ccmPeople/formPop?id=${ccmPeople.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 				</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 					<a class="btnList" onclick="top.LayerDialog1('','${ctx}/log/ccmLogTail/list?relevance_id=${ccmPeople.id}&relevance_table=ccm_house_schoolrim', '记录信息', '800px', '660px')"
 								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>

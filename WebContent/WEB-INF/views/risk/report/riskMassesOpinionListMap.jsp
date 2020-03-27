@@ -90,7 +90,7 @@
 					${riskMassesOpinion.remarks}
 				</td>
 				<shiro:hasPermission name="report:riskMassesOpinion:edit"><td>
-    				<a class="btnList" href="${ctx}/report/riskMassesOpinion/formMap?id=${riskMassesOpinion.id}" title="查看"><i class="icon-file"></i></a>
+    				<a class="btnList" href="${ctx}/report/riskMassesOpinion/formMap?id=${riskMassesOpinion.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

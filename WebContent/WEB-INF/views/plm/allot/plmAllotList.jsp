@@ -103,7 +103,7 @@
 					<td>
 		   				<c:if test="${not empty plmAllot.procInsId}" var="e">
 							<a href="${ctx}/allot/plmAllot/form?id=${plmAllot.id}"
-									title="显示详情"><i class="icon-file"></i></a>
+									title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</c:if>
 							<c:if test="${!e}">
 								<a href="${ctx}/allot/plmAllot/form?id=${plmAllot.id}"
@@ -141,7 +141,7 @@
 						<div class="footbtn" style="text-align: right;">
 							<c:if test="${not empty plmAllot.procInsId}" var="e">
 								<a href="${ctx}/allot/plmAllot/form?id=${plmAllot.id}"
-									title="显示详情"><i class="icon-file"></i></a>
+									title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</c:if>
 							<c:if test="${!e}">
 								<a href="${ctx}/allot/plmAllot/form?id=${plmAllot.id}"

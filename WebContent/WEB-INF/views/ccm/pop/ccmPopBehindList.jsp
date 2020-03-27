@@ -198,7 +198,7 @@
 							<a class="btnList"
 								href="javascript:;" onclick="LocationOpen('${ccmPopBehind.peopleId}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmPopBehind.peopleId}', '社交关系', '1000px', '700px')"
-								  title="社交关系"><i class="icon-group"></i></a>
+								  title="社交关系"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
 							<%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')"
 								  title="定时提醒"><i class="icon-bell"></i></a> --%>
 						</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">

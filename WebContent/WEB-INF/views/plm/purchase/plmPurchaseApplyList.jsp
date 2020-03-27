@@ -116,7 +116,7 @@ $(document).ready(function() {
 								
 									<a class="btnList"
 										href="${ctx}/purchase/plmPurchaseApply/form?id=${plmPurchaseApply.id}"
-										title="显示详情"><i class="icon-file"></i></a>
+										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</c:if> <c:if test="${!e}">
 									<a class="btnList"
 										href="${ctx}/purchase/plmPurchaseApply/form?id=${plmPurchaseApply.id}"
@@ -160,7 +160,7 @@ $(document).ready(function() {
 							<c:if test="${not empty plmPurchaseApply.procInsId}" var="e">
 									<a
 										href="${ctx}/purchase/plmPurchaseApply/form?id=${plmPurchaseApply.id}"
-										title="显示详情"><i class="icon-file"></i></a>
+										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</c:if>
 							<c:if test="${!e}">
 									<a
