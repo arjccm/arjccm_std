@@ -88,7 +88,7 @@
 				</td>
 				<shiro:hasPermission name="know:ccmKnowKeyRegion:edit"><td style="height: 50px">
     				<a class="btnList" href="${ctx}/know/ccmKnowKeyRegion/form?id=${ccmKnowKeyRegion.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/know/ccmKnowKeyRegion/delete?id=${ccmKnowKeyRegion.id}" onclick="return confirmx('确认要删除该重点地区标准吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/know/ccmKnowKeyRegion/delete?id=${ccmKnowKeyRegion.id}" onclick="return confirmx('确认要删除该重点地区标准吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

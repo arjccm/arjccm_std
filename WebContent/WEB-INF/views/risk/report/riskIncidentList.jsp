@@ -131,7 +131,7 @@
 				</td>
 				<td><shiro:hasPermission name="report:riskIncident:edit">
     				<a class="btnList" href="${ctx}/report/riskIncident/form?id=${riskIncident.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/report/riskIncident/delete?id=${riskIncident.id}" onclick="return confirmx('确认要删除该风险事件管理吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/report/riskIncident/delete?id=${riskIncident.id}" onclick="return confirmx('确认要删除该风险事件管理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</shiro:hasPermission>
 				<shiro:hasPermission name="log:ccmLogTail:edit">
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${riskIncident.id}&relevance_table=risk_incident', '记录信息', '800px', '660px')" 

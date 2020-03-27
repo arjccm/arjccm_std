@@ -69,7 +69,7 @@
 				<shiro:hasPermission name="place:ccmPlaceControl:edit"><td>
 					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/place/ccmPlaceControl/form?id=${ccmPlaceControl.id}&hide1=true', '详情', '750px', '500px')" title="详情"><i class="icon-list-alt"></i></a>
 					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/warning/ccmEarlyWarning/placeList', '预警列表', '1200px', '500px')" title="预警列表"><i class="icon-list-ul"></i></a>
-					<a href="${ctx}/place/ccmPlaceControl/delete?id=${ccmPlaceControl.id}" onclick="return confirmx('确认要删除该场所布控吗？', this.href)" title="删除" style="margin-left: 5px;"><i class="icon-remove-sign"></i></a>
+					<a href="${ctx}/place/ccmPlaceControl/delete?id=${ccmPlaceControl.id}" onclick="return confirmx('确认要删除该场所布控吗？', this.href)" title="删除" style="margin-left: 5px;"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

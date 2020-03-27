@@ -88,7 +88,7 @@
 						<c:if test="${!process.suspended}">
 							<a class="btnList" href="${ctx}/act/process/update/suspend?procDefId=${process.id}" onclick="return confirmx('确认要挂起吗？', this.href)" title="挂起"><i class="icon-pushpin"></i></a>
 						</c:if>
-						<a class="btnList" href='${ctx}/act/process/delete?deploymentId=${process.deploymentId}' onclick="return confirmx('确认要删除该流程吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+						<a class="btnList" href='${ctx}/act/process/delete?deploymentId=${process.deploymentId}' onclick="return confirmx('确认要删除该流程吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
                         <a class="btnList" href='${ctx}/act/process/convert/toModel?procDefId=${process.id}' onclick="return confirmx('确认要转换为模型吗？', this.href)" title="转换为模型"><i class="icon-inbox"></i></a>
 					</td>
 				</tr>

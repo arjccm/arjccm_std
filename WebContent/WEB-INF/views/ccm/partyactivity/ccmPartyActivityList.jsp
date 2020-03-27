@@ -108,7 +108,7 @@
 							onclick="parent.parent.parent.LayerDialog('${ctx}/partyactivity/ccmPartyActivity/form?id=${ccmPartyActivity.id}', '修改', '1100px', '700px')"><i class="icon-pencil"></i></a>
 						<a  class="btnList"
 							href="${ctx}/partyactivity/ccmPartyActivity/delete?id=${ccmPartyActivity.id}"
-							onclick="return confirmx('确认要删除该党员活动信息吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+							onclick="return confirmx('确认要删除该党员活动信息吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -77,7 +77,7 @@
 							href="${ctx}/event/ccmEventRequestdeal/form?id=${ccmEventRequestdeal.id}" title="处理"><i class="icon-pencil"></i></a>
 							<a class="btnList"
 							href="${ctx}/event/ccmEventRequestdeal/delete?id=${ccmEventRequestdeal.id}"
-							onclick="return confirmx('确认要删除该请求处理吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+							onclick="return confirmx('确认要删除该请求处理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

@@ -93,7 +93,7 @@
 				   <a href="${ctx}/statistics/plmStatisticsDetail/list?pid=${plmStatisticsPlan.id}" title="方案明细"><i class="icon-edit"></i></a>
     				<a  onclick="bj('${plmStatisticsPlan.id}')" title="修改"><i class="icon-pencil"></i></a>
 					<a class="btnList" href="${ctx}/statistics/plmStatisticsPlan/delete?id=${plmStatisticsPlan.id}" title="删除"  onclick="return confirmx('确认要删除该门户方案吗？', this.href)">
-					<i class="icon-remove-sign"></i></a>
+					<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

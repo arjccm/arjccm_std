@@ -75,7 +75,7 @@
 				</td>
 				<shiro:hasPermission name="oa:ccmOfficialDocument:edit"><td>
     				<a class="btnList" href="${ctx}/oa/ccmOfficialDocument/form?id=${ccmOfficialDocument.id}" title="查看"><i class="icon-file"></i></a>
-					<a class="btnList" href="${ctx}/oa/ccmOfficialDocument/delete?id=${ccmOfficialDocument.id}" onclick="return confirmx('确认要删除该公文吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/oa/ccmOfficialDocument/delete?id=${ccmOfficialDocument.id}" onclick="return confirmx('确认要删除该公文吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

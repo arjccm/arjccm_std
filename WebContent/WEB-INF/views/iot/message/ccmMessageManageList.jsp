@@ -70,7 +70,7 @@
 				</td>
 				<shiro:hasPermission name="message:ccmMessageManage:edit"><td>
     				<a href="${ctx}/message/ccmMessageManage/send?id=${ccmMessageManage.id}&remoteid=${id}&num=${num}" onclick="return confirmx('确认要发送该消息吗？', this.href)" title="发送消息"><i class="icon-upload"></i></a>
-					<a href="${ctx}/message/ccmMessageManage/delete?id=${ccmMessageManage.id}&remoteid=${id}&num=${num}" onclick="return confirmx('确认要删除该消息吗？', this.href)" title="删除消息"><i class="icon-remove-sign"></i></a>
+					<a href="${ctx}/message/ccmMessageManage/delete?id=${ccmMessageManage.id}&remoteid=${id}&num=${num}" onclick="return confirmx('确认要删除该消息吗？', this.href)" title="删除消息"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

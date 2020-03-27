@@ -48,12 +48,6 @@
 		});
 	}
 </script>
-	<style>
-		#messageBox{
-			position: absolute;
-			left: 36%;
-		}
-	</style>
 </head>
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
@@ -113,7 +107,7 @@
 			</li>
 		</ul>
 
-	<sys:message content="${message}" />
+
 	<div class="clearfix pull-right btn-box">
 
 			<shiro:hasPermission name="house:ccmHouseBuildmanage:edit">
@@ -133,6 +127,7 @@
 
 	</div>
 	</form:form>
+	<sys:message content="${message}" />
 	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
@@ -175,7 +170,7 @@
 					<td>${fns:getDictLabel(ccmHouseKym.delinquency, 'yes_no', '')}</td>
 					<td><shiro:hasPermission name="house:ccmHouseKym:edit">
 						<a class="btnList"  onclick="parent.LayerDialog('${ctx}/house/ccmHouseKym/form?id=${ccmHouseKym.id}', '信息', '1200px', '900px')" title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/house/ccmHouseKym/delete?id=${ccmHouseKym.id}" onclick="return confirmx('确认要删除该重点青少年吗？', this.href)"  title="删除"><i class="icon-remove-sign"></i></a>
+						<a class="btnList" href="${ctx}/house/ccmHouseKym/delete?id=${ccmHouseKym.id}" onclick="return confirmx('确认要删除该重点青少年吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmHouseKym.peopleId}')" title="位置信息"><i class="icon-map-marker "></i></a>
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmHouseKym.peopleId}', '社交关系', '1000px', '700px')" title="社交关系"><i class="icon-group"></i></a>
 						<%-- <a class="btnList" onclick="parent.LayerDialog('${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')" title="定时提醒"><i class="icon-bell"></i></a> --%>

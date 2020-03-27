@@ -95,7 +95,7 @@
 				<td style="height: 50px">
 				<shiro:hasPermission name="line:ccmLineProtect:edit">
     				<a class="btnList" href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/line/ccmLineProtect/delete?id=${ccmLineProtect.id}" onclick="return confirmx('确认要删除该护路护线吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/line/ccmLineProtect/delete?id=${ccmLineProtect.id}" onclick="return confirmx('确认要删除该护路护线吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</shiro:hasPermission>
 				<!-- 事件 编辑权限  --> 
 				<shiro:hasPermission name="event:ccmEventIncident:edit">

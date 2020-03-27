@@ -101,7 +101,7 @@
 							<i class="icon-folder-open" style="    color: maroon"></i></a>
 						<a  class="btnList"
 							href="${ctx}/partyvolutterpost/ccmPartyVolutterPost/delete?id=${ccmPartyVolutterPost.id}"
-							onclick="return confirmx('确认要删除该党员信息管理吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+							onclick="return confirmx('确认要删除该党员信息管理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

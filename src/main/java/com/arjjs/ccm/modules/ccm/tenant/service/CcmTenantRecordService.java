@@ -51,6 +51,10 @@ public class CcmTenantRecordService extends CrudService<CcmTenantRecordDao, CcmT
 	public void delete(CcmTenantRecord ccmTenantRecord) {
 		super.delete(ccmTenantRecord);
 	}
-	
-	
+
+
+	@Transactional(readOnly = false)
+	public void findSave(CcmTenantRecord ccmTenantRecord) {
+		ccmTenantRecordDao.insert(ccmTenantRecord);
+	}
 }

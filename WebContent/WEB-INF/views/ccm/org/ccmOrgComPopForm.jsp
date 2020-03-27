@@ -91,8 +91,31 @@
 					</div>
 				</div>
 			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">民族：</label>
+					<div class="controls">
+						<form:select path="nation" class="input-xlarge ">
+							<form:option value="" label=""/>
+							<form:options items="${fns:getDictList('sys_volk')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+						</form:select>
+					</div>
+				</div>
+			</td>
 		</tr>
 		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>出生日期：</label>
+					<div class="controls">
+						<input name="birthday" type="text" readonly="readonly" onchange="initAge(this.value)" maxlength="20" class="input-medium Wdate "
+							   value="<fmt:formatDate value="${ccmOrgComPop.birthday}" pattern="yyyy-MM-dd"/>"
+							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+
+						<span id="tshi" class="help-inline" style="display: none"><font color="red">日期不能大于当前日期或大于150岁</font> </span>
+					</div>
+				</div>
+			</td>
 		<td>
 			<div class="control-group" >
 				<label class="control-label" ><span class="help-inline"><font color="red">*</font> </span>所属机构：</label>
@@ -133,6 +156,17 @@
 					</div>
 				</div>
 			</td>
+			<td>
+				<div class="control-group">
+					<label class="control-label">政治面貌：</label>
+					<div class="controls">
+						<form:select path="politics" class="input-xlarge ">
+							<form:option value="" label=""/>
+							<form:options items="${fns:getDictList('sys_ccm_poli_stat')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+						</form:select>
+					</div>
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -147,47 +181,8 @@
 			</td>
 		</tr>
 
-
-<tr>
-	<td>
-		<div class="control-group">
-			<label class="control-label">民族：</label>
-			<div class="controls">
-				<form:select path="nation" class="input-xlarge ">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('sys_volk')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</div>
-		</div>
-	</td>
-
-	<td>
-		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>出生日期：</label>
-			<div class="controls">
-				<input name="birthday" type="text" readonly="readonly" onchange="initAge(this.value)" maxlength="20" class="input-medium Wdate "
-					   value="<fmt:formatDate value="${ccmOrgComPop.birthday}" pattern="yyyy-MM-dd"/>"
-					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
-
-				<span id="tshi" class="help-inline" style="display: none"><font color="red">日期不能大于当前日期或大于150岁</font> </span>
-			</div>
-		</div>
-	</td>
-
-</tr>
-
 		<tr>
-			<td>
-				<div class="control-group">
-					<label class="control-label">政治面貌：</label>
-					<div class="controls">
-						<form:select path="politics" class="input-xlarge ">
-							<form:option value="" label=""/>
-							<form:options items="${fns:getDictList('sys_ccm_poli_stat')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						</form:select>
-					</div>
-				</div>
-			</td>
+
 			<td>
 				<div class="control-group">
 					<label class="control-label">学历：</label>
@@ -207,8 +202,6 @@
 					</div>
 				</div>
 			</td>
-		</tr>
-		<tr>
 			<td>
 				<div class="control-group">
 					<label class="control-label">专业特长：</label>
@@ -217,6 +210,9 @@
 					</div>
 				</div>
 			</td>
+		</tr>
+		<tr>
+
 			<td>
 				<div class="control-group">
 					<label class="control-label">手机号码：</label>

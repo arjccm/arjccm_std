@@ -73,7 +73,7 @@
 				</td></shiro:hasPermission> --%>
 				<td>
     				<a class="btnList" href="${ctx}/work/ccmWorkTiming/form?id=${ccmWorkTiming.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/work/ccmWorkTiming/delete?id=${ccmWorkTiming.id}" onclick="return confirmx('确认要删除该定时提醒吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/work/ccmWorkTiming/delete?id=${ccmWorkTiming.id}" onclick="return confirmx('确认要删除该定时提醒吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td>
 			</tr>
 		</c:forEach>

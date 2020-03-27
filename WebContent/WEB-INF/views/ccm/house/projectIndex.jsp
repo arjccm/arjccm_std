@@ -108,7 +108,7 @@
                         <c:if test="${not empty menu.href}">
                             <a class="menu"
                                href="${fn:indexOf(menu.href, '://') eq -1 ? ctx : ''}${menu.href}" data-id="${menu.id}">
-                                <i class=""></i>
+                                <i class="nav-icon iconfont icon-interCmn" style="color: rgb(0, 67, 255)"></i>
                                 <span class="nav-name">${menu.name}</span>
                             </a>
                         </c:if>

@@ -7,10 +7,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +44,8 @@ import com.arjjs.ccm.tool.CommUtil;
 public class CcmTenantRecordController extends BaseController {
 
 	@Autowired
+	private CcmPeopleService ccmPeopleService;
+	@Autowired
 	private CcmTenantRecordService ccmTenantRecordService;
 	
 	@ModelAttribute
@@ -64,11 +71,14 @@ public class CcmTenantRecordController extends BaseController {
 
 	@RequiresPermissions("tenant:ccmTenantRecord:view")
 	@RequestMapping(value = "form")
-	public String form(CcmTenantRecord ccmTenantRecord, Model model) {
+	public String form(CcmTenantRecord ccmTenantRecord,String pid, Model model) {
 		List<CcmTenantRecord> getlist = ccmTenantRecordService.findList(ccmTenantRecord);
 		if(getlist.size()>0) {
 			ccmTenantRecord = getlist.get(0);
 		}
+		CcmPeople ccmPeople = new CcmPeople();
+		ccmPeople.setId(pid);
+		ccmTenantRecord.setCcmPeople(ccmPeople);
 		model.addAttribute("ccmTenantRecord", ccmTenantRecord);
 		return "ccm/tenant/ccmTenantRecordForm";
 	}
@@ -98,9 +108,21 @@ public class CcmTenantRecordController extends BaseController {
 			ccmTenantRecord2.setRemarks(ccmTenantRecord.getRemarks());
 			ccmTenantRecordService.save(ccmTenantRecord2);
 		}else {
-			ccmTenantRecordService.save(ccmTenantRecord);
+			//ccmTenantRecord.setIsNewRecord(true);
+			ccmTenantRecord.setCreateBy(UserUtils.getUser());
+			ccmTenantRecord.setUpdateBy(UserUtils.getUser());
+			ccmTenantRecord.setDelFlag("0");
+			ccmTenantRecord.setCreateDate(new Date());
+			ccmTenantRecord.setUpdateDate(new Date());
+			ccmTenantRecord.setId(UUID.randomUUID().toString());
+			ccmTenantRecordService.findSave(ccmTenantRecord);
 		}
-		addMessage(redirectAttributes, "保存历史租客记录成功");
+		CcmPeople ccmPeople = ccmPeopleService.get(ccmTenantRecord.getCcmPeople().getId());
+		String houseIdString = ccmPeople.getRoomId().getId();
+		CcmPopTenant ccmPopTenant = new CcmPopTenant(); // 移除房屋ID
+		ccmPeople.setRoomId(ccmPopTenant);
+		ccmPeopleService.save(ccmPeople);
+		//addMessage(redirectAttributes, "保存历史租客记录成功");
 		PrintWriter out = null;
 		try {
 			out = response.getWriter();

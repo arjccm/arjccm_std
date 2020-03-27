@@ -76,7 +76,7 @@
 				</td>
 				<shiro:hasPermission name="proposal:ccmDatabaseProposal:edit"><td>
     				<%--<a href="${ctx}/proposal/ccmDatabaseProposal/form?id=${ccmDatabaseProposal.id}">修改</a>--%>
-					<a href="${ctx}/proposal/ccmDatabaseProposal/delete?id=${ccmDatabaseProposal.id}" onclick="return confirmx('确认要删除该公告建议管理吗？', this.href)"><i class="icon-remove-sign"></i></a>
+					<a href="${ctx}/proposal/ccmDatabaseProposal/delete?id=${ccmDatabaseProposal.id}" onclick="return confirmx('确认要删除该公告建议管理吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

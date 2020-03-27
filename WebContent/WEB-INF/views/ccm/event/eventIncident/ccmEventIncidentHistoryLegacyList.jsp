@@ -200,7 +200,7 @@
 								onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/historyLegacyForm?id=${ccmEventIncident.id}', '修改', '1200px', '700px')"><i class="icon-pencil"></i></a>
 							<a  class="btnList"
 								href="${ctx}/event/ccmEventIncident/historyLegacyDelete?id=${ccmEventIncident.id}"
-								onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+								onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventIncident.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
 						</shiro:hasPermission> <!-- 事件处理 编辑权限  --> <shiro:hasPermission
 							name="event:ccmEventCasedeal:edit">

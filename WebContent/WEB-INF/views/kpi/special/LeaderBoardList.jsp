@@ -141,7 +141,7 @@
 				</li>
 				<li id="showQuarter" class="first-line"><label>选择季度：</label>
 					<form:select id="quarter" path="quarter" class="input-medium">
-						<form:options items="${fns:getDictList('kpi_score_quarter')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+						<form:options items="${fns:getDictList('quarter')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 					</form:select>
 				</li>
 			</ul>	
