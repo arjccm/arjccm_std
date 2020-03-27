@@ -80,9 +80,29 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>房屋编号：</label>
+						<label class="control-label">所属楼栋：</label>
 						<div class="controls">
-							<form:input path="houseBuild" htmlEscape="false" maxlength="50" class="input-xlarge required"/>
+							<form:input path="buildingId" htmlEscape="false" maxlength="2000" class="input-xlarge " value="${ccmPopTenant.buildingId.buildname}" readOnly="true"/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>楼门号：</label>
+						<div class="controls">
+							<form:input path="buildDoorNum" htmlEscape="false" maxlength="4" class="input-xlarge" style="display:none"/>
+							<select id="buildDoorNumSelect" class="input-xlarge required" name="buildDoorNumSelect"></select>
+
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>层数：</label>
+						<div class="controls">
+							<form:input path="floorNum" htmlEscape="false" maxlength="3" class="input-xlarge required digits" type= "number"/>
 
 						</div>
 					</div>
@@ -95,59 +115,15 @@
 
 						</div>
 					</div>
-					
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>楼门号：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>房屋编号：</label>
 						<div class="controls">
-				  			<form:input path="buildDoorNum" htmlEscape="false" maxlength="4" class="input-xlarge" style="display:none"/>
-							<select id="buildDoorNumSelect" class="input-xlarge required" name="buildDoorNumSelect"></select>
+							<form:input path="houseBuild" htmlEscape="false" maxlength="50" class="input-xlarge required"/>
 
-						</div>
-					</div>
-				</td>
-				<td>
-					<div>
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>层数：</label>
-						<div class="controls">
-							<form:input path="floorNum" htmlEscape="false" maxlength="3" class="input-xlarge required digits" type= "number"/>
-
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div>
-						<label class="control-label">建筑用途：</label>
-						<div class="controls">
-							<form:select path="housePrup" class="input-xlarge ">
-								<form:option value="" label=""/>
-								<form:options items="${fns:getDictList('ccm_str_use')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						    </form:select>
-						</div>
-					</div>
-				</td>
-				<td>
-					<div>
-						<label class="control-label">建筑面积(平方米）：</label>
-						<div class="controls">
-							<form:input path="houseArea" htmlEscape="false" class="input-xlarge " type="number"/>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div>
-						<label class="control-label">状态：</label>
-						<div class="controls">
-							<form:select path="houseType" class="input-xlarge"  id="sel"  onchange="sels()" >
-								<form:options items="${fns:getDictList('ccm_pop_tenant_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						    </form:select>
 						</div>
 					</div>
 				</td>
@@ -162,6 +138,84 @@
 				</td>
 			</tr>
 			<tr>
+				<td>
+					<div>
+						<label class="control-label">建筑面积(平方米）：</label>
+						<div class="controls">
+							<form:input path="houseArea" htmlEscape="false" class="input-xlarge " type="number"/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">建筑用途：</label>
+						<div class="controls">
+							<form:select path="housePrup" class="input-xlarge ">
+								<form:option value="" label=""/>
+								<form:options items="${fns:getDictList('ccm_str_use')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+							</form:select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+
+					<%--<td>
+                        <div>
+                            <label class="control-label">图标：</label>
+                            <div class="controls">
+                                <sys:iconselect id="image" name="image" value="${ccmPopTenant.image}"/>
+                            </div>
+                        </div>
+                    </td>--%>
+				<td>
+					<div>
+						<label class="control-label">状态：</label>
+						<div class="controls">
+							<form:select path="houseType" class="input-xlarge"  id="sel"  onchange="sels()" >
+								<form:options items="${fns:getDictList('ccm_pop_tenant_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+							</form:select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">房屋产权类型：</label>
+						<div class="controls">
+							<form:select path="propertyType" class="input-xlarge ">
+								<form:option value="" label=""/>
+								<form:options items="${fns:getDictList('ccm_PopTenant_propertyType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+							</form:select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">年限：</label>
+						<div class="controls">
+							<form:select path="buildingYears" class="input-xlarge ">
+								<form:option value="" label=""/>
+								<form:options items="${fns:getDictList('ccm_PopTenant_buildingYears')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+							</form:select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">建筑类型：</label>
+						<div class="controls">
+							<form:select path="buildingType" class="input-xlarge ">
+								<form:option value="" label=""/>
+								<form:options items="${fns:getDictList('ccm_PopTenant_buildingType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+							</form:select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+
 				<td>
 					<div>
 						<label class="control-label">房主姓名：</label>
@@ -288,59 +342,7 @@
 					</tr>
 				</shiro:hasPermission>
 			</c:if>--%>
-			<tr>
-				<td>
-					<div>
-						<label class="control-label">所属楼栋：</label>
-						<div class="controls">
-						<form:input path="buildingId" htmlEscape="false" maxlength="2000" class="input-xlarge " value="${ccmPopTenant.buildingId.buildname}" readOnly="true"/>
-						</div>
-					</div>
-				</td>
-				<%--<td>
-					<div>
-						<label class="control-label">图标：</label>
-						<div class="controls">
-							<sys:iconselect id="image" name="image" value="${ccmPopTenant.image}"/>
-						</div>
-					</div>
-				</td>--%>
-				<td>
-					<div>
-						<label class="control-label">房屋产权类型：</label>
-						<div class="controls">
-							<form:select path="propertyType" class="input-xlarge ">
-								<form:option value="" label=""/>
-								<form:options items="${fns:getDictList('ccm_PopTenant_propertyType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-							</form:select>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div>
-						<label class="control-label">年限：</label>
-						<div class="controls">
-						<form:select path="buildingYears" class="input-xlarge ">
-							<form:option value="" label=""/>
-							<form:options items="${fns:getDictList('ccm_PopTenant_buildingYears')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						</form:select>
-						</div>
-					</div>
-				</td>
-				<td>
-					<div>
-						<label class="control-label">建筑类型：</label>
-						<div class="controls">
-							<form:select path="buildingType" class="input-xlarge ">
-								<form:option value="" label=""/>
-								<form:options items="${fns:getDictList('ccm_PopTenant_buildingType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-							</form:select>
-						</div>
-					</div>
-				</td>
-			</tr>
+
 			<tr>
 				<td>
 					<div>
