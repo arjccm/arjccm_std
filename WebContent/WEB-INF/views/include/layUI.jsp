@@ -228,6 +228,21 @@
                                             + '\')" href="javascript:void(0);" class="ccmEventLayer' + data[i]["objId"] + ' '+readFlag +' active" > ' + content + '</a></td></tr>';
                                         content3 += html;
                                         contentAll += html;
+                                    }else if(data[i]["type"]=="43"){
+                                        if(content3 == '<table class="table layer"><tbody id="notifyTbody" class="tBody"><tr class="def"> <td>暂无新的消息</td></tr>'){
+                                            content3 = '<table class="table layer"><tbody id="notifyTbody" class="tBody">';
+                                        }
+                                        var content=decodeURIComponent(data[i]["content"]);
+                                        var readFlag = "";
+                                        if(data[i]["readFlag"]=="0"){
+                                            count3 += 1;
+                                            noRead = true;
+                                            readFlag = "masked";
+                                        }
+                                        var html = '<tr><td style="text-align: left;"><a title="'+content+'" onclick="clickMessage(\'' + data[i]["id"]
+                                            + '\')" href="javascript:void(0);" class="ccmEventLayer' + data[i]["objId"] + ' '+readFlag +' active" > ' + content + '</a></td></tr>';
+                                        content3 += html;
+                                        contentAll += html;
                                     }
                                 }
                                 countAll = count1 + count2 + count3;
@@ -584,5 +599,35 @@
 			area: ['1000px', '600px'],  //弹出层页面比例
 			content: '${ctx}/work/ccmWorkNotice/form1?id='+id  //弹出层的url
 		}); 
+    }
+
+    function clickMessage(id) {
+        // 左侧栏隐藏
+        //$('#left,#openClose').hide();
+        // 右侧撑开
+        //$("#right").width($("#content").width() - 5);
+        // 导航栏去除所有的选中标识
+        //$("#menu li").removeClass("active");
+        // 第一个添加 选中显示
+        //$("ul#menu li:first").addClass("active");
+        // 获取对象
+        var a1 = $(".ccmEventLayer" + id);
+        if(a1.hasClass('masked')) {
+            a1.removeClass('active')//去掉闪光字体
+            a1.removeClass('masked')//去掉闪光字体
+            var countAll = $("#countAll").text();
+            $("#countAll").text(parseInt(countAll) - 1);
+            var count3 = $("#count3").text();
+            $("#count3").text(parseInt(count3) - 1);
+        }
+        layer.open({
+            type: 2, //类型，解析url
+            closeBtn: 1, //关闭按钮是否显示 1显示0不显示
+            title: '消息', //页面标题
+            shadeClose: true, //点击遮罩区域是否关闭页面
+            shade: 0.8,  //遮罩透明度
+            area: ['500px', '300px'],  //弹出层页面比例
+            content: '${ctx}/news/message/form?id='+id  //弹出层的url
+        });
     }
 </script>

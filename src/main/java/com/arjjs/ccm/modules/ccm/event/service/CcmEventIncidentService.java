@@ -12,11 +12,16 @@ import com.arjjs.ccm.modules.ccm.event.dao.CcmEventCasedealDao;
 import com.arjjs.ccm.modules.ccm.event.dao.CcmEventIncidentDao;
 import com.arjjs.ccm.modules.ccm.event.entity.CcmEventCasedeal;
 import com.arjjs.ccm.modules.ccm.event.entity.CcmEventIncident;
+import com.arjjs.ccm.modules.ccm.house.entity.CcmExpireUser;
+import com.arjjs.ccm.modules.ccm.house.service.CcmHouseEmphasisService;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
+import com.arjjs.ccm.modules.ccm.message.entity.CcmMessage;
+import com.arjjs.ccm.modules.ccm.message.service.CcmMessageService;
 import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmAreaPoint;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
+import com.arjjs.ccm.modules.ccm.rest.web.CcmRestEvent;
 import com.arjjs.ccm.modules.ccm.sys.entity.CcmAreaPointVo;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
@@ -41,6 +46,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -73,6 +79,10 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 	private CcmEventCasedealService ccmEventCasedealService;
 	@Autowired
 	private OfficeDao officeDao;
+	@Autowired
+	private CcmMessageService ccmMessageService;
+	@Autowired
+	private CcmHouseEmphasisService ccmHouseEmphasisService;
 
 	public CcmEventIncident get(String id) {
 		return super.get(id);
@@ -816,6 +826,29 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 				ccmEventCasedeal.setCheckScore(0);
 				ccmEventCasedeal.setGradeNum(0);
 				ccmEventCasedealService.save(ccmEventCasedeal);
+			}
+		}else if(sysConfig.getParamInt() == 2){
+			//将信息存入事件
+			List<CcmMessage> list = new ArrayList<CcmMessage>();
+			List<CcmExpireUser> CcmExpireUserList = ccmHouseEmphasisService.findUserByPeople(ccmPeople);
+			for (CcmExpireUser ccmExpireUser : CcmExpireUserList) {
+				CcmMessage ccmMessage = new CcmMessage();
+				User user = new User("1");
+				ccmMessage.setCreateBy(user);
+				ccmMessage.setUpdateBy(user);
+				ccmMessage.setType("43");//通知消息
+				ccmMessage.setContent("新增重点人员-" + ccmPeople.getName() + "，请关注！");
+				ccmMessage.setReadFlag("0");//未读
+				ccmMessage.setObjId(ccmPeople.getId());
+				ccmMessage.preInsert();
+				ccmMessage.setUserId(ccmExpireUser.getUserId());
+				list.add(ccmMessage);
+			}
+			if(list.size() > 0) {
+				//批量添加
+				ccmMessageService.insertEventAll(list);
+				//发送mq
+				CcmRestEvent.sendMessageToMq(list);
 			}
 		}
 	}
