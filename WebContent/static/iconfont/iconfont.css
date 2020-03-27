@@ -10,10 +10,7 @@
   url('interCmn.ttf?t=1585214870586') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
   url('interCmn.svg?t=1585214870586#iconfont') format('svg'); /* iOS 4.1- */
 
-/*  操作图标  */
-  url('icon_operation.woff?t=1585277031134') format('woff'),
-  url('icon_operation.ttf?t=1585277031134') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('icon_operation.svg?t=1585277031134#iconfont') format('svg'); /* iOS 4.1- */
+
 
 
 }
@@ -25,6 +22,15 @@
   url('../iconfont1.ttf?t=1584168013847') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
   url('../iconfont1.svg?t=1584168013847#iconfont') format('svg'); /* iOS 4.1- */
 }
+@font-face {font-family: "iconfont";
+  /*  操作图标  */
+  src: url('icon_operation.eot?t=1585293465630'); /* IE9 */
+  src: url('icon_operation.eot?t=1585293465630#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2'),
+  url('icon_operation.woff?t=1585293465630') format('woff'),
+  url('icon_operation.ttf?t=1585293465630') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('icon_operation.svg?t=1585293465630#iconfont') format('svg'); /* iOS 4.1- */
+}
 
 .iconfont {
   font-family: "iconfont" !important;
@@ -33,287 +39,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/*  新增操作图标  */
-.icon-icondaohangtubiao-APPbanbenguanli:before {
-  content: "\e61d";
-}
 
-.icon-icondaohangtubiao-bumenguanli:before {
-  content: "\e61e";
-}
-
-.icon-icondaohangtubiao-dizhikuguanli:before {
-  content: "\e61f";
-}
-
-.icon-icondaohangtubiao-GISshuju:before {
-  content: "\e620";
-}
-
-.icon-icondaohangtubiao-changsuoguanli:before {
-  content: "\e621";
-}
-
-.icon-icondaohangtubiao-ditubiaozhu:before {
-  content: "\e622";
-}
-
-.icon-icondaohangtubiao-gerenbangong:before {
-  content: "\e623";
-}
-
-.icon-icondaohangtubiao-huluhuxian:before {
-  content: "\e624";
-}
-
-.icon-icondaohangtubiao-fangwuguanli:before {
-  content: "\e625";
-}
-
-.icon-icondaohangtubiao-renkouguanli:before {
-  content: "\e626";
-}
-
-.icon-icondaohangtubiao-gongzuozhushou:before {
-  content: "\e627";
-}
-
-.icon-icondaohangtubiao-jixiaokaohe:before {
-  content: "\e628";
-}
-
-.icon-icondaohangtubiao-maodunjiufenpaicha:before {
-  content: "\e629";
-}
-
-.icon-icondaohangtubiao-wenjianguanli:before {
-  content: "\e62a";
-}
-
-.icon-icondaohangtubiao-shujucaijifenxi:before {
-  content: "\e62b";
-}
-
-.icon-icondaohangtubiao-jingqingguanli:before {
-  content: "\e62c";
-}
-
-.icon-icondaohangtubiao-yingjizhihuichuzhi:before {
-  content: "\e62d";
-}
-
-.icon-icondaohangtubiao-yingjiwuzibaozhang:before {
-  content: "\e62e";
-}
-
-.icon-icondaohangtubiao-APPzhongduan:before {
-  content: "\e62f";
-}
-
-.icon-icondaohangtubiao-xuanchuanxinxi:before {
-  content: "\e630";
-}
-
-.icon-icondaohangtubiao-richangzhishou:before {
-  content: "\e631";
-}
-
-.icon-icondaohangtubiao-zhuanxiangkaoheguanli:before {
-  content: "\e632";
-}
-
-.icon-icondaohangtubiao-rizhiguanli:before {
-  content: "\e633";
-}
-
-.icon-icondaohangtubiao-zhibanguanli:before {
-  content: "\e634";
-}
-
-.icon-icondaohangtubiao-xiaoyuananquan:before {
-  content: "\e635";
-}
-
-.icon-icondaohangtubiao-youxiangguanli:before {
-  content: "\e636";
-}
-
-.icon-icondaohangtubiao-zuzhijigou:before {
-  content: "\e637";
-}
-
-.icon-icondaohangtubiao-tongzhigonggao:before {
-  content: "\e638";
-}
-
-.icon-icondaohangtubiao-shijianguanli:before {
-  content: "\e639";
-}
-
-.icon-icondaohangtubiao-shijiantongjifenxi:before {
-  content: "\e63a";
-}
-
-.icon-icondaohangtubiao-shequshiwu:before {
-  content: "\e63b";
-}
-
-.icon-icondaohangtubiao-shebeiguanli:before {
-  content: "\e63c";
-}
-
-.icon-icondaohangtubiao-zhuye:before {
-  content: "\e63d";
-}
-
-.icon-icondaohangtubiao-shishitaishi:before {
-  content: "\e63e";
-}
-
-.icon-icondaohangtubiao-wanggeyuanguanli:before {
-  content: "\e63f";
-}
-
-.icon-icondaohangtubiao-yuanguanli:before {
-  content: "\e640";
-}
-
-.icon-icondaohangtubiao-zhongdianqingshaonian:before {
-  content: "\e641";
-}
-
-.icon-icondaohangtubiao-keshihuazhihui:before {
-  content: "\e642";
-}
-
-.icon-icondaohangtubiao-shehuizhian:before {
-  content: "\e643";
-}
-
-.icon-icondaohangtubiao-xitongshezhi:before {
-  content: "\e644";
-}
-
-.icon-icondaohangtubiao-yonghuguanli:before {
-  content: "\e645";
-}
-
-.icon-icondaohangtubiao-yewukaohe:before {
-  content: "\e646";
-}
-
-.icon-icondaohangtubiao-zhongdianrenyuan:before {
-  content: "\e647";
-}
-
-.icon-icondaohangtubiao-yuchulixitong:before {
-  content: "\e648";
-}
-
-.icon-icondaohangtubiao-zongzhizuzhi:before {
-  content: "\e649";
-}
-
-.icon-iconcaozuotubiao-xiangqing:before {
-  content: "\e618";
-}
-
-.icon-iconcaozuotubiao-chuliyichuli:before {
-  content: "\e604";
-}
-
-.icon-iconcaozuotubiao-fujianliebiao:before {
-  content: "\e605";
-}
-
-.icon-iconcaozuotubiao-fasongjingqing:before {
-  content: "\e606";
-}
-
-.icon-iconcaozuotubiao-hujijiating:before {
-  content: "\e607";
-}
-
-.icon-iconcaozuotubiao-fanganmingxi:before {
-  content: "\e608";
-}
-
-.icon-iconcaozuotubiao-qianshou:before {
-  content: "\e609";
-}
-
-.icon-iconcaozuotubiao-paiqijilu:before {
-  content: "\e60a";
-}
-
-.icon-iconcaozuotubiao-tianjiaxingbiao:before {
-  content: "\e60b";
-}
-
-.icon-iconcaozuotubiao-shenhe:before {
-  content: "\e60c";
-}
-
-.icon-iconcaozuotubiao-guidang:before {
-  content: "\e60d";
-}
-
-.icon-iconcaozuotubiao-pingfen:before {
-  content: "\e60e";
-}
-
-.icon-iconcaozuotubiao-bukong:before {
-  content: "\e60f";
-}
-
-.icon-iconcaozuotubiao-xiugai:before {
-  content: "\e610";
-}
-
-.icon-iconcaozuotubiao-lishizukejiluliebiao:before {
-  content: "\e611";
-}
-
-.icon-iconcaozuotubiao-tianjiachuli:before {
-  content: "\e612";
-}
-
-.icon-iconcaozuotubiao-jiluxinxi:before {
-  content: "\e613";
-}
-
-.icon-iconcaozuotubiao-ganxiren:before {
-  content: "\e614";
-}
-
-.icon-iconcaozuotubiao-shijianguanlian:before {
-  content: "\e615";
-}
-
-.icon-iconcaozuotubiao-shejiaoguanxi:before {
-  content: "\e616";
-}
-
-.icon-iconcaozuotubiao-shanchu:before {
-  content: "\e617";
-}
-
-.icon-iconcaozuotubiao-zoufangjilu:before {
-  content: "\e619";
-}
-
-.icon-iconcaozuotubiao-pandian:before {
-  content: "\e61a";
-}
-
-.icon-iconcaozuotubiao-weizhixinxi:before {
-  content: "\e61b";
-}
-
-.icon-iconcaozuotubiao-chekong:before {
-  content: "\e61c";
-}
-/*   新增操作图标end  */
 
 .icon-interCmn:before {
   content: "\e610";
@@ -1987,4 +1713,107 @@
   height: 34.17px;
 }
 
+
+/*  新增操作图标  */
+.icon-caozuotubiao-chuliyichuli:before {
+  content: "\e604";
+}
+
+.icon-caozuotubiao-fujianliebiao:before {
+  content: "\e605";
+}
+
+.icon-caozuotubiao-fasongjingqing:before {
+  content: "\e606";
+}
+
+.icon-caozuotubiao-hujijiating:before {
+  content: "\e607";
+}
+
+.icon-caozuotubiao-fanganmingxi:before {
+  content: "\e608";
+}
+
+.icon-caozuotubiao-qianshou:before {
+  content: "\e609";
+}
+
+.icon-caozuotubiao-paiqijilu:before {
+  content: "\e60a";
+}
+
+.icon-caozuotubiao-tianjiaxingbiao:before {
+  content: "\e60b";
+}
+
+.icon-caozuotubiao-shenhe:before {
+  content: "\e60c";
+}
+
+.icon-caozuotubiao-guidang:before {
+  content: "\e60d";
+}
+
+.icon-caozuotubiao-pingfen:before {
+  content: "\e60e";
+}
+
+.icon-caozuotubiao-bukong:before {
+  content: "\e60f";
+}
+
+.icon-caozuotubiao-xiugai:before {
+  content: "\e610";
+}
+
+.icon-caozuotubiao-lishizukejiluliebiao:before {
+  content: "\e611";
+}
+
+.icon-caozuotubiao-tianjiachuli:before {
+  content: "\e612";
+}
+
+.icon-caozuotubiao-jiluxinxi:before {
+  content: "\e613";
+}
+
+.icon-caozuotubiao-ganxiren:before {
+  content: "\e614";
+}
+
+.icon-caozuotubiao-shijianguanlian:before {
+  content: "\e615";
+}
+
+.icon-caozuotubiao-shejiaoguanxi:before {
+  content: "\e616";
+}
+
+.icon-caozuotubiao-shanchu:before {
+  content: "\e617";
+}
+
+.icon-caozuotubiao-zoufangjilu:before {
+  content: "\e619";
+}
+
+.icon-caozuotubiao-pandian:before {
+  content: "\e61a";
+}
+
+.icon-caozuotubiao-weizhixinxi:before {
+  content: "\e61b";
+}
+
+.icon-caozuotubiao-chekong:before {
+  content: "\e61c";
+}
+
+.icon-caozuotubiao-xiangqing:before {
+  content: "\e618";
+}
+
+/*   新增操作图标end  */
 
