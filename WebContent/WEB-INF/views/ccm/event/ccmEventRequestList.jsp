@@ -104,7 +104,7 @@
 								onclick="parent.LayerDialog('${ctx}/event/ccmEventRequest/form?id=${ccmEventRequest.id}','编辑', '1100px', '700px')"><i class="icon-pencil"></i></a>
 							<a	class="btnList"
 								href="${ctx}/event/ccmEventRequest/delete?id=${ccmEventRequest.id}"
-								onclick="return confirmx('确认要删除该请求登记吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+								onclick="return confirmx('确认要删除该请求登记吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 										<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventRequest.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
 					
 						</shiro:hasPermission> 

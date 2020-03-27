@@ -138,7 +138,7 @@
 							onclick="parent.LayerDialog('${ctx}/contradiction/ccmContradictionDeal/form?id=${ccmEventCasedeal.id}','处理', '1100px', '700px')"><i class="icon-pencil"></i></a>
 						<a  class="btnList"
 							href="${ctx}/contradiction/ccmContradictionDeal/delete?id=${ccmEventCasedeal.id}"
-							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						
 						</td>
 					</shiro:hasPermission>

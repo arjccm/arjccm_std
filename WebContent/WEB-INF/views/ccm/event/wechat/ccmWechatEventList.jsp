@@ -96,7 +96,7 @@
 				</td>
 				<shiro:hasPermission name="event:wechat:ccmWechatEvent:edit"><td>
     				<a class="btnList" onclick="parent.LayerDialog('${ctx}/event/wechat/ccmWechatEvent/form?id=${ccmWechatEvent.id}','编辑', '1100px', '700px')"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/event/wechat/ccmWechatEvent/delete?id=${ccmWechatEvent.id}" onclick="return confirmx('确认要删除该微信信息上报吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/event/wechat/ccmWechatEvent/delete?id=${ccmWechatEvent.id}" onclick="return confirmx('确认要删除该微信信息上报吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/event/wechat/ccmWechatEventReply/list?event.id=${ccmWechatEvent.id}&type=chatEvent','回复列表', '1100px', '700px')"><img src="${ctxStatic}/images/weixinko.png" />
 					</a>
 				</shiro:hasPermission>

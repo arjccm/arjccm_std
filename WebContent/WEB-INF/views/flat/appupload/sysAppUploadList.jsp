@@ -82,7 +82,7 @@
 				</td>
 				<shiro:hasPermission name="appupload:sysAppUpload:edit"><td style="height: 50px">
 					<a class="btnList" href="${ctx}/appupload/sysAppUpload/form?id=${sysAppUpload.id}"  title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/appupload/sysAppUpload/delete?id=${sysAppUpload.id}" onclick="return confirmx('确认要删除该App 上传记录表吗？', this.href)"  title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/appupload/sysAppUpload/delete?id=${sysAppUpload.id}" onclick="return confirmx('确认要删除该App 上传记录表吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

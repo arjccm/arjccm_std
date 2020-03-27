@@ -133,7 +133,7 @@
 								title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
 								href="${ctx}/chemical/ccmPlaceChemical/delete?id=${ccmPlaceChemical.id}"
 								onclick="return confirmx('确认要删除该危化品经营场所吗？', this.href)"
-								title="删除"><i class="icon-remove-sign"></i></a>
+								title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceChemical.ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
 							   title="从业人员添加"><i class="icon-group"></i></a>

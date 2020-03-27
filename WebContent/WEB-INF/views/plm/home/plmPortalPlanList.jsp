@@ -107,7 +107,7 @@
 								class="icon-pencil"></i></a> <a class="btnList"
 							href="${ctx}/home/plmPortalPlan/delete?id=${plmPortalPlan.id}"
 							onclick="return confirmx('确认要删除该门户方案吗？', this.href)" title="删除">
-								<i class="icon-remove-sign"></i>
+								<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
 						</a></td>
 					</shiro:hasPermission>
 				</tr>

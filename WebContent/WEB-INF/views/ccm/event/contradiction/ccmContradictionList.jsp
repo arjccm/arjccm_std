@@ -115,7 +115,7 @@
 							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
 							href="${ctx}/contradiction/ccmContradiction/delete?id=${ccmEventIncidentPreview.id}"
 							onclick="return confirmx('确认要删除该app信息上报吗？', this.href)"
-							title="删除"><i class="icon-remove-sign"></i></a> </td>
+							title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a> </td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

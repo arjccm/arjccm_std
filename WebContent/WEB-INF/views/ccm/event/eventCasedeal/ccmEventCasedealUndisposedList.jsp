@@ -200,7 +200,7 @@
 						<a  class="btnList" title="事件处理"><i class="icon-pencil" style="color: #656565;"></i></a>
 						<a  class="btnList"
 							href="${ctx}/event/ccmEventCasedeal/delete?handleSta=01&id=${ccmEventCasedeal.id}"
-							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventCasedeal.objId}')"  title="位置信息"><i class="icon-map-marker "></i></a>
 							<c:if test="${ccmEventCasedeal.handleStatus eq '01'}">
 							<a  class="btnList" onclick="HandleTips(this,'${ccmEventCasedeal.id}')" title="签收"><i class="icon-edit"></i></a>

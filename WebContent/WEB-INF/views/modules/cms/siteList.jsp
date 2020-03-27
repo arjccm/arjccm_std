@@ -46,7 +46,7 @@
 				<td>${site.theme}</td>
 				<shiro:hasPermission name="cms:site:edit"><td>
     				<a class="btnList" href="${ctx}/cms/site/form?id=${site.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/cms/site/delete?id=${site.id}${site.delFlag ne 0?'&isRe=true':''}" onclick="return confirmx('确认要${site.delFlag ne 0?'恢复':''}删除该站点吗？', this.href)" title="删除">${site.delFlag ne 0?'恢复':''}<i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/cms/site/delete?id=${site.id}${site.delFlag ne 0?'&isRe=true':''}" onclick="return confirmx('确认要${site.delFlag ne 0?'恢复':''}删除该站点吗？', this.href)" title="删除">${site.delFlag ne 0?'恢复':''}<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

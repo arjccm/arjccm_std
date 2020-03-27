@@ -113,7 +113,7 @@
 					<shiro:hasPermission name="logistics:plmRoom:edit">
 						<c:if test="${user.id eq plmRoom.createBy.id or user.id eq '1'}">
 							<a class="btnList" href="${ctx}/logistics/plmRoomMeetingApplyResource/form?id=${plmRoom.id}&update=ok" title="修改"><i class="icon-pencil"></i></a>
-							<a class="btnList" href="${ctx}/logistics/plmRoomMeetingApplyResource/delete?id=${plmRoom.id}" onclick="return confirmx('确认要删除该会议安排吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+							<a class="btnList" href="${ctx}/logistics/plmRoomMeetingApplyResource/delete?id=${plmRoom.id}" onclick="return confirmx('确认要删除该会议安排吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 		    				<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/logistics/plmRoomMeetingApplyResource/getroomresource?id=${plmRoom.id}', '附件上传', '800px', '660px')" title="附件上传"><i class="icon-plus"></i></a>
 	    				    <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/logistics/plmRoomMeetingApplyResource/findlistresource?meetingId=${plmRoom.id}', '附件列表', '800px', '660px')"><i title="附件列表" class="icon-list-ul"></i></a>
 						</c:if>

@@ -55,7 +55,7 @@
 			<td><textarea style="width: 300px;height: 30px">{{row.remarks}}</textarea></td>
 			<shiro:hasPermission name="sys:office:edit"><td>
 				<a class="btnList" href="${ctx}/sys/office/form?id={{row.id}}" title="修改"><i class="icon-pencil"></i></a>
-				<a class="btnList" href="${ctx}/sys/office/delete?id={{row.id}}" onclick="return confirmx('要删除该机构及所有子机构项吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+				<a class="btnList" href="${ctx}/sys/office/delete?id={{row.id}}" onclick="return confirmx('要删除该机构及所有子机构项吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				<a class="btnList" href="${ctx}/sys/office/form?parent.id={{row.id}}" title="添加下级机构"><i class="icon-plus"></i></a>
 			</td></shiro:hasPermission>
 		</tr>

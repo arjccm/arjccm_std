@@ -95,7 +95,7 @@
 				</td>
 				<shiro:hasPermission name="patrollog:ccmPatrolCheck:edit"><td>
 					<a class="btnList" href="${ctx}/patrollog/ccmPatrolCheck/form?id=${ccmPatrolCheck.id}" title="评分"><i class="icon-check"></i></a>
-					<%-- <a class="btnList" href="${ctx}/patrollog/ccmPatrolCheck/delete?id=${ccmPatrolCheck.id}" onclick="return confirmx('确认要删除该巡检考评吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a> --%>
+					<%-- <a class="btnList" href="${ctx}/patrollog/ccmPatrolCheck/delete?id=${ccmPatrolCheck.id}" onclick="return confirmx('确认要删除该巡检考评吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a> --%>
     <%-- 				<a href="${ctx}/patrollog/ccmPatrolCheck/form?id=${ccmPatrolCheck.id}">修改</a>
 					<a href="${ctx}/patrollog/ccmPatrolCheck/delete?id=${ccmPatrolCheck.id}" onclick="return confirmx('确认要删除该巡检考评吗？', this.href)">删除</a> --%>
 				</td></shiro:hasPermission>

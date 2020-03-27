@@ -187,7 +187,7 @@
 								  title="修改"><i class="icon-pencil"></i></a>
 							<a class="btnList"
 							href="${ctx}/house/ccmHouseDrugs/delete?id=${ccmHouseDrugs.id}&permissionKey=${permissionKey}"
-							onclick="return confirmx('确认要删除该吸毒人口吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+							onclick="return confirmx('确认要删除该吸毒人口吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							<a class="btnList"
 								href="javascript:;" onclick="LocationOpen('${ccmHouseDrugs.peopleId}')"  title="位置信息"><i class="icon-map-marker "></i></a>
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmHouseDrugs.peopleId}', '社交关系', '1000px', '700px')"
