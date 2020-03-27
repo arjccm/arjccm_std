@@ -120,14 +120,6 @@
 
 </head>
 <body>
-	<%--<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatOlder">数据统计</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPeople/listOlder">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmPeople/formOlder?id=${ccmPeople.id}">老年人<shiro:hasPermission name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></a></li>
-		&lt;%&ndash; <c:if test="${not empty ccmPeople.id}">
-			<li><a href="${ctx}/log/ccmLogTail/formProOlder?relevance_id=${ccmPeople.id}&relevance_table=ccm_people">跟踪信息<shiro:hasPermission name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a></li>
-		</c:if> &ndash;%&gt;
-	</ul>--%>
 	<form:form id="inputForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/saveOlder" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
@@ -150,10 +142,10 @@
 				</td>
 				<td style="width: 35%">
 					<div>
-						<label class="control-label">性别：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>性别：</label>
 						<div class="controls">
 							<form:radiobuttons path="sex" items="${fns:getDictList('sex')}"
-								itemLabel="label" itemValue="value" htmlEscape="false" class="" />
+								itemLabel="label" itemValue="value" htmlEscape="false" class="required" />
 						</div>
 					</div>
 				</td>
@@ -183,10 +175,10 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">出生日期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>出生日期：</label>
 						<div class="controls">
 							<input name="birthday" type="text" readonly="readonly"
-								   maxlength="20" class="input-medium Wdate "
+								   maxlength="20" class="input-medium Wdate required"
 								   value="<fmt:formatDate value="${ccmPeople.birthday}" pattern="yyyy-MM-dd"/>"
 								   onclick="WdatePicker({minDate:'{%y-150}-%M-%d',maxDate: '%y-%M-%d',dateFmt:'yyyy-MM-dd',isShowClear:false});" />
 						</div>
@@ -210,9 +202,9 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">民族：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>民族：</label>
 						<div class="controls">
-							<form:select path="nation" class="input-xlarge ">
+							<form:select path="nation" class="input-xlarge required">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_volk')}"
 											  itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -223,10 +215,10 @@
 
 				<td>
 					<div>
-						<label class="control-label">公民身份号码：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>公民身份号码：</label>
 						<div class="controls">
 							<form:input path="ident" htmlEscape="false" maxlength="18"
-								class="input-xlarge ident0 card" />
+								class="input-xlarge ident0 card required" />
 							<span id="ident0"></span>
 						</div>
 					</div>
@@ -237,7 +229,7 @@
 								color="red" id="show1">*</font> </span>联系方式：</label>
 						<div class="controls">
 							<form:input path="telephone" htmlEscape="false" maxlength="18"
-										class="input-xlarge telephone0 phone" />
+										class="input-xlarge telephone0 phone required" />
 							<span id="telephone0"></span>
 						</div>
 					</div>
@@ -248,18 +240,18 @@
 
 				<td>
 					<div>
-						<label class="control-label">籍贯：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>籍贯：</label>
 						<div class="controls">
 							<form:input path="censu" htmlEscape="false" maxlength="6"
-								class="input-xlarge " />
+								class="input-xlarge required " />
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">婚姻状况：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>婚姻状况：</label>
 						<div class="controls">
-							<form:select path="marriage" class="input-xlarge ">
+							<form:select path="marriage" class="input-xlarge required ">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_ccm_mari_stat')}"
 									itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -269,9 +261,9 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">政治面貌：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>政治面貌：</label>
 						<div class="controls">
-							<form:select path="politics" class="input-xlarge ">
+							<form:select path="politics" class="input-xlarge required ">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_ccm_poli_stat')}"
 									itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -285,9 +277,9 @@
 
 				<td>
 					<div>
-						<label class="control-label">学历：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>学历：</label>
 						<div class="controls">
-							<form:select path="education" class="input-xlarge ">
+							<form:select path="education" class="input-xlarge required ">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_ccm_degree')}"
 									itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -309,10 +301,10 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">职业类别：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>职业类别：</label>
 						<div class="controls">
 							<form:input path="profType" htmlEscape="false" maxlength="5"
-								class="input-xlarge " />
+								class="input-xlarge required " />
 						</div>
 					</div>
 				</td>
@@ -321,7 +313,7 @@
 
 				<td>
 					<div>
-						<label class="control-label">职业：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>职业：</label>
 						<div class="controls">
 							<form:input path="profession" htmlEscape="false" maxlength="30"
 								class="input-xlarge " />
@@ -355,30 +347,30 @@
 
 				<td>
 					<div>
-						<label class="control-label">是否常住：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>是否常住：</label>
 						<div class="controls">
 							<form:radiobuttons path="isPermanent"
 								items="${fns:getDictList('yes_no')}" itemLabel="label"
-								itemValue="value" htmlEscape="false" class="" />
+								itemValue="value" htmlEscape="false" class="required" />
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">是否重点关注人员：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>是否重点关注人员：</label>
 						<div class="controls">
 							<form:radiobuttons path="focuPers"
 								items="${fns:getDictList('yes_no')}" itemLabel="label"
-								itemValue="value" htmlEscape="false" class="" />
+								itemValue="value" htmlEscape="false" class="required" />
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">户籍地：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户籍地：</label>
 						<div class="controls">
 							<form:input path="domicile" htmlEscape="false" maxlength="6"
-								class="input-xlarge " />
+								class="input-xlarge required " />
 						</div>
 					</div>
 				</td>
@@ -390,10 +382,10 @@
 					<div>
 						<label class="control-label"><span class="help-inline"><font color="red" id="showCom">*</font></span>所属社区：</label>
 						<div class="controls" onmouseout="onclickNet()">
-							<!--  
-							<sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}" labelName="areaComId.name" labelValue="${ccmPeople.areaComId.name}"
+
+							<%--<sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}" labelName="areaComId.name" labelValue="${ccmPeople.areaComId.name}"
 							title="区域" url="/sys/area/treeData" cssClass="" allowClear="true" notAllowSelectParent="false" cssStyle=""/>
-							-->
+							--%>
 							<sys:treeselect id="areaComId" name="areaComId.id"
 								value="${ccmPeople.areaComId.id}" labelName="areaComId.name"
 								labelValue="${ccmPeople.areaComId.name}" title="区域"
@@ -423,12 +415,12 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">所属房屋：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>所属房屋：</label>
 						<div class="controls" id="newHouse" onmousemove="onclickHouse()">
-							<!--  
+							<%--<!--
 							<sys:treeselect id="roomId" name="roomId.id" value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild" labelValue="${ccmPeople.roomId.houseBuild}"
 							title="房屋" url="/pop/ccmPopTenant/treeData?type=7" cssClass="" allowClear="true" notAllowSelectParent="true" cssStyle=""/>
-							-->
+							-->--%>
 							<sys:treeselect id="roomId" name="roomId.id"
 								value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild"
 								labelValue="${ccmPeople.roomId.houseBuild}" title="房屋"
@@ -443,20 +435,20 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">户籍门（楼）详址：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户籍门（楼）详址：</label>
 						<div class="controls">
 							<form:input path="domiciledetail" htmlEscape="false"
-								maxlength="80" class="input-xlarge " />
+								maxlength="80" class="input-xlarge required " />
 						</div>
 					</div>
 				</td>
 
 				<td>
 					<div>
-						<label class="control-label">现住地：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>现住地：</label>
 						<div class="controls">
 							<form:input path="residence" htmlEscape="false" maxlength="6"
-								class="input-xlarge " />
+								class="input-xlarge required " />
 						</div>
 					</div>
 				</td>
@@ -486,10 +478,10 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">现住门（楼）详址：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>现住门（楼）详址：</label>
 						<div class="controls">
 							<form:input path="residencedetail" htmlEscape="false"
-								maxlength="80" class="input-xlarge " />
+								maxlength="80" class="input-xlarge required " />
 						</div>
 					</div>
 				</td>
@@ -509,104 +501,16 @@
 			</tr>
 		</table>
 		<br />
-		<shiro:hasPermission name="pop:ccmPeople:edit">
-			<ul class="nav nav-pills ulz">
-				<li><h4 id="zd1">
-						<i class="icon-tags"></i>特殊人群标记：
-					</h4>
-				<li>
-				<c:if test="${ccmPeople.isRelease==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '900px')">安置帮教人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isRectification==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseRectification/specialform?id=${ccmPeople.id}', '社区矫正人员标记', '1200px', '900px')">社区矫正人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isPsychogeny==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/specialform?id=${ccmPeople.id}', '肇事肇祸等严重精神障碍患者', '1200px', '900px')">肇事肇祸等严重精神障碍患者</a></li>
-					</c:if> <c:if test="${ccmPeople.isAids==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseAids/specialform?id=${ccmPeople.id}', '艾滋病危险人员标记', '1200px', '900px')">艾滋病危险人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isDangerous==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseDangerous/specialform?id=${ccmPeople.id}', '危险品从业人员标记', '1200px', '900px')">危险品从业人员标记</a></li>
-					</c:if> 
-				<c:if test="${ccmPeople.isDrugs==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/specialform?id=${ccmPeople.id}', '吸毒人员标记', '1200px', '900px')">吸毒人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isVisit==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHousePetition/specialform?id=${ccmPeople.id}', '重点上访人员标记', '1200px', '900px')">重点上访人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isHeresy==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseHeresy/specialform?id=${ccmPeople.id}', '涉教人员标记', '1200px', '900px')">涉教人员标记</a></li>
-					</c:if>
-					<c:if
-						test="${ccmPeople.isRelease==0||ccmPeople.isRelease==null||ccmPeople.isRelease==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '900px')">安置帮教人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isRectification==0||ccmPeople.isRectification==null||ccmPeople.isRectification==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseRectification/specialform?id=${ccmPeople.id}', '社区矫正人员标记', '1200px', '900px')">社区矫正人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isPsychogeny==0||ccmPeople.isPsychogeny==null||ccmPeople.isPsychogeny==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/specialform?id=${ccmPeople.id}', '肇事肇祸等严重精神障碍患', '1200px', '900px')">肇事肇祸等严重精神障碍患者</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isAids==0||ccmPeople.isAids==null||ccmPeople.isAids==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseAids/specialform?id=${ccmPeople.id}', '艾滋病危险人员标记', '1200px', '900px')">艾滋病危险人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isDangerous==0||ccmPeople.isDangerous==null||ccmPeople.isDangerous==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseDangerous/specialform?id=${ccmPeople.id}', '危险品从业人员标记', '1200px', '900px')">危险品从业人员标记</a></li>
-					</c:if>
-					<c:if
-						test="${ccmPeople.isDrugs==0||ccmPeople.isDrugs==null||ccmPeople.isDrugs==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/specialform?id=${ccmPeople.id}', '吸毒人员标记', '1200px', '900px')">吸毒人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isVisit==0||ccmPeople.isVisit==null||ccmPeople.isVisit==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHousePetition/specialform?id=${ccmPeople.id}', '重点上访人员标记', '1200px', '900px')">重点上访人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isHeresy==0||ccmPeople.isHeresy==null||ccmPeople.isHeresy==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseHeresy/specialform?id=${ccmPeople.id}', '涉教人员标记', '1200px', '900px')">涉教人员标记</a></li>
-					</c:if> 
-			</ul>
 
-			
-
-			<ul class="nav nav-pills ulz">
-				<li><h4 id="zd3">
-						<i class="icon-tags"></i>重点人群标记：
-					</h4>
-				<li> <c:if test="${ccmPeople.isKym==1}">
-						<li><a class="gzul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseKym/specialform?id=${ccmPeople.id}', '重点青少年标记', '1200px', '900px')">重点青少年标记</a></li>
-					</c:if><c:if
-						test="${ccmPeople.isKym==0||ccmPeople.isKym==null||ccmPeople.isKym==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseKym/specialform?id=${ccmPeople.id}', '重点青少年标记', '1200px', '900px')">重点青少年标记</a></li>
-					</c:if>
-			</ul>
-		</shiro:hasPermission>
-		
-		
-		
 		<br/>
-		
-		<h4 class="color-bg6">其他信息：</h4>
 		<table id="person" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%" >
 			<tr><td colspan="6">户籍信息：</td></tr>
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">人户一致标识：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>人户一致标识：</label>
 						<div class="controls">
-							<form:select path="uniformlogo" class="input-xlarge ">
+							<form:select path="uniformlogo" class="input-xlarge required ">
 								<form:option value="" label=""/>
 								<form:options items="${fns:getDictList('ccm_huh_cst')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 							</form:select>
@@ -615,17 +519,17 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">户号：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户号：</label>
 						<div class="controls">
-							<form:input path="account" htmlEscape="false" maxlength="9" class="input-xlarge "/>
+							<form:input path="account" htmlEscape="false" maxlength="9" class="input-xlarge required "/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">户主公民身份号码：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户主公民身份号码：</label>
 						<div class="controls">
-							<form:input path="accountidentity" htmlEscape="false" maxlength="18" class="input-xlarge ident1 card"/>
+							<form:input path="accountidentity" htmlEscape="false" maxlength="18" class="input-xlarge ident1 card required"/>
 							<span id="ident1"></span>
 						</div>
 					</div>
@@ -634,17 +538,17 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">户主姓名：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户主姓名：</label>
 						<div class="controls">
-							<form:input path="accountname" htmlEscape="false" maxlength="10" class="input-xlarge "/>
+							<form:input path="accountname" htmlEscape="false" maxlength="10" class="input-xlarge required "/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">与户主关系：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>与户主关系：</label>
 						<div class="controls">
-							<form:select path="accountrelation" class="input-xlarge ">
+							<form:select path="accountrelation" class="input-xlarge required ">
 								<form:option value="" label=""/>
 								<form:options items="${fns:getDictList('sys_ccm_fami_ties')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 							</form:select>
@@ -706,9 +610,9 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">流入原因：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>流入原因：</label>
 						<div class="controls">
-							<form:select path="flowRea" class="input-xlarge ">
+							<form:select path="flowRea" class="input-xlarge required ">
 								<form:option value="" label=""/>
 								<form:options items="${fns:getDictList('ccm_flow_res')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 							</form:select>
@@ -758,7 +662,7 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">住所类型：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>住所类型：</label>
 						<div class="controls">
 							<form:select path="domiType" class="input-xlarge ">
 								<form:option value="" label=""/>
@@ -809,25 +713,25 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">外文姓：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>外文姓：</label>
 						<div class="controls">
-							<form:input path="esurname" htmlEscape="false" maxlength="40" class="input-xlarge "/>
+							<form:input path="esurname" htmlEscape="false" maxlength="40" class="input-xlarge required "/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">外文名：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>外文名：</label>
 						<div class="controls">
-							<form:input path="ename" htmlEscape="false" maxlength="40" class="input-xlarge "/>
+							<form:input path="ename" htmlEscape="false" maxlength="40" class="input-xlarge required "/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">国籍（地区）：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>国籍（地区）：</label>
 						<div class="controls">
-							<form:input path="nationality" htmlEscape="false" maxlength="3" class="input-xlarge "/>
+							<form:input path="nationality" htmlEscape="false" maxlength="3" class="input-xlarge required "/>
 						</div>
 					</div>
 				</td>
@@ -835,26 +739,26 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">证件类型：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>证件类型：</label>
 						<div class="controls">
-							<form:select path="idenCode" class="input-xlarge " items="${fns:getDictList('sys_ccm_org_papers')}" itemLabel="label" itemValue="value" htmlEscape="false">
+							<form:select path="idenCode" class="input-xlarge required " items="${fns:getDictList('sys_ccm_org_papers')}" itemLabel="label" itemValue="value" htmlEscape="false">
 							</form:select>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">证件号码（境外）：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>证件号码（境外）：</label>
 						<div class="controls">
-							<form:input path="idenNum" htmlEscape="false" maxlength="30" class="input-xlarge "/>
+							<form:input path="idenNum" htmlEscape="false" maxlength="30" class="input-xlarge required "/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">证件有效期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>证件有效期：</label>
 						<div class="controls">
-							<input name="idenDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+							<input name="idenDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 							value="<fmt:formatDate value="${ccmPeople.idenDate}" pattern="yyyy-MM-dd"/>"
 							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 						</div>
@@ -864,9 +768,9 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">来华目的：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>来华目的：</label>
 						<div class="controls">
-							<form:select path="purpose" class="input-xlarge ">
+							<form:select path="purpose" class="input-xlarge required ">
 								<form:option value="" label=""/>
 								<form:options items="${fns:getDictList('ccm_cn_aim')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 							</form:select>
@@ -875,9 +779,9 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">抵达日期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>抵达日期：</label>
 						<div class="controls">
-							<input name="arriDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+							<input name="arriDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 							value="<fmt:formatDate value="${ccmPeople.arriDate}" pattern="yyyy-MM-dd"/>"
 							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 						</div>
@@ -885,9 +789,9 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">预计离开日期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>预计离开日期：</label>
 						<div class="controls">
-							<input name="departDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+							<input name="departDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 							value="<fmt:formatDate value="${ccmPeople.departDate}" pattern="yyyy-MM-dd"/>"
 							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 						</div>
@@ -949,20 +853,8 @@
 		<div class="form-actions">
 			<shiro:hasPermission name="pop:ccmPeople:edit">
 			<input id="btnSubmit" class="btn btn-primary" type="submit" onclick="saveForm()" value="保 存" />&nbsp;</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<%--<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>--%>
 		</div>
 	</form:form><br>
-	<%--<c:if test="${documentNumber > 0}">
-		<shiro:hasPermission name="log:ccmLogTail:edit">
-			<h4>&nbsp;跟踪信息：</h4>
-			<br>
-			<div class="fishBone1" ></div>
-		</shiro:hasPermission>
-		<shiro:lacksPermission name="log:ccmLogTail:edit">
-			<h4>&nbsp;查看跟踪信息：</h4>
-			<br>
-			<div class="fishBone2" ></div>
-		</shiro:lacksPermission> 
-	</c:if>--%>
 </body>
 </html>
