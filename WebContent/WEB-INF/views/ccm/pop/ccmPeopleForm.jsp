@@ -42,9 +42,9 @@
             width: 200px;
         }
 
-        .select2-container.input-xlarge {
+        /*.select2-container.input-xlarge {
             width: 215px;
-        }
+        }*/
 
         .input-medium.Wdate {
             width: 200px;
@@ -568,7 +568,7 @@
                             color="red">*</font></span>公民身份号码：</label>
                     <div class="controls">
                         <form:input path="ident" id="p_id_card" onmouseout="isRepeat('${ccmPeople.id}')" htmlEscape="false" maxlength="18"
-                                    class="input-xlarge required ident0 card"/>
+                                    class="input-xlarge required ident0 card "/>
                     </div>
                 </div>
             </td>
