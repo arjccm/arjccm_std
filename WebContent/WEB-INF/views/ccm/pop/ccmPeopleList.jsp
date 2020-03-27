@@ -434,7 +434,7 @@
 							<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i class="icon-cloud-download"></i></a>
 						</c:if>
 						<c:if test="${ccmPeople.isControl ne 1}">
-							<a class="btnList" href="${ctx}/overallControl/ccmOverallControl/deleteAllControl?ident=${ccmPeople.ident}&id=${ccmPeople.id}" onclick="return confirmx('确认要删除该人员所有布控吗？', this.href)" title="撤控"><i style="cursor:not-allowed; color: #999999;" class="icon-cloud-download"></i></a>
+							<a class="btnList" title="撤控"><i style="cursor:not-allowed; color: #999999;" class="icon-cloud-download"></i></a>
 						</c:if>
 
 						<%--<a class="btnList" onclick="parent.LayerDialog('${ctx}/overallControl/ccmOverallControl/form?id=${ccmPeople.id}', '布控', '1100px', '700px')"
