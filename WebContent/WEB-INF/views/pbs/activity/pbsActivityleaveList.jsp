@@ -81,10 +81,10 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="activity:pbsActivityleave:edit">
 						<td><a
-							href="${ctx}/activity/pbsActivityleave/form?id=${pbsActivityleave.id}" title = "修改"><i class="icon icon-pencil"></i></a>
+							href="${ctx}/activity/pbsActivityleave/form?id=${pbsActivityleave.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a
 							href="${ctx}/activity/pbsActivityleave/delete?id=${pbsActivityleave.id}"
-							onclick="return confirmx('确认要删除该活动请假吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+							onclick="return confirmx('确认要删除该活动请假吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

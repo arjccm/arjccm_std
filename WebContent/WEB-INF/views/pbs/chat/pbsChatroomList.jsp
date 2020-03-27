@@ -61,8 +61,8 @@
 				</td>
 				<shiro:hasPermission name="chat:pbsChatroom:edit"><td>
 					<%--<a href="${ctx}/chat/pbsChatroom/getIntoRoom?roomid=${pbsChatroom.id}" title = "进入房间"><i class="icon-circle-arrow-right"></i></a>--%>
-    				<a href="${ctx}/chat/pbsChatroom/form?id=${pbsChatroom.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/chat/pbsChatroom/delete?id=${pbsChatroom.id}" onclick="return confirmx('确认要删除该聊天室吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a href="${ctx}/chat/pbsChatroom/form?id=${pbsChatroom.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/chat/pbsChatroom/delete?id=${pbsChatroom.id}" onclick="return confirmx('确认要删除该聊天室吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

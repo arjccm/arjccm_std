@@ -62,8 +62,8 @@
 					${pbsQuestionProject.remarks}
 				</td>
 				<shiro:hasPermission name="question:pbsQuestionProject:edit"><td>
-    				<a href="${ctx}/question/pbsQuestionProject/form?id=${pbsQuestionProject.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/question/pbsQuestionProject/delete?id=${pbsQuestionProject.id}" onclick="return confirmx('确认要删除该科目信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a href="${ctx}/question/pbsQuestionProject/form?id=${pbsQuestionProject.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/question/pbsQuestionProject/delete?id=${pbsQuestionProject.id}" onclick="return confirmx('确认要删除该科目信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
