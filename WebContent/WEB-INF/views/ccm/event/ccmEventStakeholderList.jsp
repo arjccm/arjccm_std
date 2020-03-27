@@ -20,6 +20,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
 		<%-- <li><a href="${ctx}/event/ccmEventIncident/list">案（事）件登记列表</a></li>
 	    <!-- 案（事）件登记编辑权限  -->
@@ -62,7 +63,7 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed" >
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient" >
 		<thead>
 			<tr>
 				<th>姓名</th>
@@ -112,13 +113,14 @@
 					${fns:getDictLabel(ccmEventStakeholder.isKym, 'yes_no', '')}
 				</td>--%>
 				<shiro:hasPermission name="event:ccmEventStakeholder:edit"><td style="height: 50px">
-    				<a class="btnList" href="${ctx}/event/ccmEventStakeholder/form?id=${ccmEventStakeholder.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList"  href="${ctx}/event/ccmEventStakeholder/delete?id=${ccmEventStakeholder.id}" onclick="return confirmx('确认要删除该案（事）件干系人吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/event/ccmEventStakeholder/form?id=${ccmEventStakeholder.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList"  href="${ctx}/event/ccmEventStakeholder/delete?id=${ccmEventStakeholder.id}" onclick="return confirmx('确认要删除该案（事）件干系人吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
 		</tbody>
 	</table>
 	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

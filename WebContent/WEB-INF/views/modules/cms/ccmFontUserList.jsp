@@ -47,7 +47,7 @@
 			<li class="btns">
 			<a onclick="parent.parent.LayerDialog('${ctx}/cms/ccmFontUser/form', '添加', '700px', '750px')"
 				class="btn btn-success">
-				<i class="icon-plus"></i> 添加</a> 
+				<i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a>
 			</li>
 			
 			<li class="clearfix"></li>
@@ -89,7 +89,7 @@
 					${ccmFontUser.remarks}
 				</td>
 				<shiro:hasPermission name="cms:ccmFontUser:edit"><td>
-    				<a onclick="parent.parent.LayerDialog('${ctx}/cms/ccmFontUser/form?id=${ccmFontUser.id}', '修改', '700px', '750px')" title="修改"><i class="icon-pencil"></i></a>
+    				<a onclick="parent.parent.LayerDialog('${ctx}/cms/ccmFontUser/form?id=${ccmFontUser.id}', '修改', '700px', '750px')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<%-- <a href="${ctx}/cms/ccmFontUser/delete?id=${ccmFontUser.id}" onclick="return confirmx('确认要删除该居民用户管理吗？', this.href)">删除</a> --%>
 				</td></shiro:hasPermission>
 			</tr>

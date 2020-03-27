@@ -61,7 +61,7 @@
 				<shiro:hasPermission name="event:ccmEventRequest:edit">
 				<li class="btns"><a
 					onclick="parent.LayerDialog('${ctx}/event/ccmEventRequest/form', '添加', '1100px', '700px')"
-					class="btn btn-export"><i class="icon-plus"></i> 添加</a></li>
+					class="btn btn-export"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a></li>
 			</shiro:hasPermission>
 				<li class="btns">
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary">
@@ -101,18 +101,18 @@
 					<td>${ccmEventRequest.createName}</td>
 					<td><shiro:hasPermission name="event:ccmEventRequest:edit">
 							<a	class="btnList"
-								onclick="parent.LayerDialog('${ctx}/event/ccmEventRequest/form?id=${ccmEventRequest.id}','编辑', '1100px', '700px')"><i class="icon-pencil"></i></a>
+								onclick="parent.LayerDialog('${ctx}/event/ccmEventRequest/form?id=${ccmEventRequest.id}','编辑', '1100px', '700px')"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a	class="btnList"
 								href="${ctx}/event/ccmEventRequest/delete?id=${ccmEventRequest.id}"
-								onclick="return confirmx('确认要删除该请求登记吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-										<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventRequest.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
+								onclick="return confirmx('确认要删除该请求登记吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+										<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventRequest.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 					
 						</shiro:hasPermission> 
 						<!-- 事件处理 编辑权限  --> 
 						<shiro:hasPermission name="event:ccmEventCasedeal:edit">
 							<%-- <a	class="btnList"
-								href="${ctx}/event/ccmEventRequestdeal/dealform?eventRequestId=${ccmEventRequest.id}" title="添加处理信息"><i class="icon-plus"></i></a>
-							 --%><a class="btnList" onclick="LayerDialogWithReload('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_request&objId=${ccmEventRequest.id}', '处理', '700px', '500px')" title="添加处理"><i class="icon-plus"></i></a>
+								href="${ctx}/event/ccmEventRequestdeal/dealform?eventRequestId=${ccmEventRequest.id}" title="添加处理信息"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+							 --%><a class="btnList" onclick="LayerDialogWithReload('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_request&objId=${ccmEventRequest.id}', '处理', '700px', '500px')" title="添加处理"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 						</shiro:hasPermission>
 					</td>
 				</tr>

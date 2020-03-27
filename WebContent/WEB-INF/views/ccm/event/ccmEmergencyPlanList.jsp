@@ -77,8 +77,8 @@
 					${ccmEmergencyPlan.principle}
 				</td>
 				<shiro:hasPermission name="event:ccmEmergencyPlan:edit"><td style="min-width: 130px;">
-    				<a class="btnList" href="${ctx}/event/ccmEmergencyPlan/form?id=${ccmEmergencyPlan.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/event/ccmEmergencyPlan/delete?id=${ccmEmergencyPlan.id}" onclick="return confirmx('确认要删除该应急预案吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/event/ccmEmergencyPlan/form?id=${ccmEmergencyPlan.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/event/ccmEmergencyPlan/delete?id=${ccmEmergencyPlan.id}" onclick="return confirmx('确认要删除该应急预案吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

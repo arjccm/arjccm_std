@@ -85,7 +85,7 @@
 				</td>
 				<shiro:hasPermission name="warning:ccmEarlyWarning:edit"><td>
     				<%-- <a href="${ctx}/warning/ccmEarlyWarning/form?id=${ccmEarlyWarning.id}">修改</a> --%>
-					<a href="${ctx}/warning/ccmEarlyWarning/delete?id=${ccmEarlyWarning.id}" onclick="return confirmx('确认要删除该预警记录吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					<a href="${ctx}/warning/ccmEarlyWarning/delete?id=${ccmEarlyWarning.id}" onclick="return confirmx('确认要删除该预警记录吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -79,7 +79,7 @@ text-overflow: ellipsis;height: 50px">
 					${sysArea.remarks}
 				</td>
 				<shiro:hasPermission name="org:ccmOrgArea:edit"><td style="height: 50px">
-    				<a class="btnList" href="${ctx}/org/ccmOrgArea/form?id=${sysArea.idEx}&area.id=${sysArea.id}&type=${sysArea.type}&area.name="+ encodeURI({sysArea.name}) title="修改"><i class="icon-pencil"></i></a>
+    				<a class="btnList" href="${ctx}/org/ccmOrgArea/form?id=${sysArea.idEx}&area.id=${sysArea.id}&type=${sysArea.type}&area.name="+ encodeURI({sysArea.name}) title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

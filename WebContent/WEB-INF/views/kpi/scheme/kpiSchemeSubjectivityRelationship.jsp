@@ -124,7 +124,7 @@
 					<textarea rows="3" style="width: 95%" id="remarks${kpiFinalScore.user.id}"  attrId="${kpiFinalScore.user.id}" disabled="true" class="input-xlarge remarks" data="${kpiFinalScore.remarks}">${kpiFinalScore.remarks}</textarea>
 				</td>
 				<td width="20%">
-    				<a class="btnList" onclick="remarksAdd('remarks${kpiFinalScore.user.id}','${kpiFinalScore.user.name}')"><i class="icon-plus"></i></a>
+    				<a class="btnList" onclick="remarksAdd('remarks${kpiFinalScore.user.id}','${kpiFinalScore.user.name}')"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 				</td>
 
 			</tr>

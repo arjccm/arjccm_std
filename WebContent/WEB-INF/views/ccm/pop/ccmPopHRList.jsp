@@ -79,9 +79,9 @@
 					${ccmPopHR.remarks}
 				</td>
 				<shiro:hasPermission name="pop:ccmPopHR:edit"><td>
-    				<a class="btnList"  href="${ctx}/pop/ccmPopHR/form?id=${ccmPopHR.id}" title="修改"><i class="icon-pencil"></i></a>
+    				<a class="btnList"  href="${ctx}/pop/ccmPopHR/form?id=${ccmPopHR.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" 
-					href="${ctx}/pop/ccmPopHR/delete?id=${ccmPopHR.id}" onclick="return confirmx('确认要删除该户籍人口吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					href="${ctx}/pop/ccmPopHR/delete?id=${ccmPopHR.id}" onclick="return confirmx('确认要删除该户籍人口吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

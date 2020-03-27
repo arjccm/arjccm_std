@@ -82,8 +82,8 @@
 					${fns:getDictLabel(riskEventGreat.isReserve, 'yes_no', '')}
 				</td>
 				<shiro:hasPermission name="report:riskEventGreat:edit"><td>
-    				<a class="btnList" href="${ctx}/report/riskEventGreat/form?id=${riskEventGreat.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/report/riskEventGreat/delete?id=${riskEventGreat.id}" onclick="return confirmx('确认要删除该重大事项报备吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/report/riskEventGreat/form?id=${riskEventGreat.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/report/riskEventGreat/delete?id=${riskEventGreat.id}" onclick="return confirmx('确认要删除该重大事项报备吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

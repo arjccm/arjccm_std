@@ -168,10 +168,10 @@
 					<shiro:hasPermission name="org:ccmOrgNpseEconomic:edit">
 						<td style="height: 50px"><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseEconomic/form?id=${ccmOrgNpseEconomic.id}', '编辑', '1100px', '720px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/org/ccmOrgNpseEconomic/delete?id=${ccmOrgNpseEconomic.id}"
 							onclick="return confirmx('确认要删除该企业经济运行数据吗？', this.href)"
-							title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+							title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

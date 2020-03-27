@@ -40,7 +40,7 @@
 			</li>
 			<li class="btns">
 				<a onclick="parent.parent.LayerDialog('${ctx}/group/ccmGroupMember/form', '添加', '700px', '600px')"
-					class="btn btn-success"><i class="icon-plus"></i> 添加</a>
+					class="btn btn-success"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a>
 			</li>
 			<li class="btns">
 				<a href="javascript:;" id="btnSubmit" class="btn btn-primary"> 
@@ -81,8 +81,8 @@
 					<fmt:formatDate value="${ccmGroupMember.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="group:ccmGroupMember:edit"><td>
-					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/group/ccmGroupMember/form?id=${ccmGroupMember.id}', '修改', '700px', '600px')" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/group/ccmGroupMember/delete?id=${ccmGroupMember.id}" onclick="return confirmx('确认要删除该群成员吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/group/ccmGroupMember/form?id=${ccmGroupMember.id}', '修改', '700px', '600px')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/group/ccmGroupMember/delete?id=${ccmGroupMember.id}" onclick="return confirmx('确认要删除该群成员吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

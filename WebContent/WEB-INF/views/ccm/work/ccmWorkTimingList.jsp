@@ -72,8 +72,8 @@
 					<a href="${ctx}/work/ccmWorkTiming/delete?id=${ccmWorkTiming.id}" onclick="return confirmx('确认要删除该定时提醒吗？', this.href)">删除</a>
 				</td></shiro:hasPermission> --%>
 				<td>
-    				<a class="btnList" href="${ctx}/work/ccmWorkTiming/form?id=${ccmWorkTiming.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/work/ccmWorkTiming/delete?id=${ccmWorkTiming.id}" onclick="return confirmx('确认要删除该定时提醒吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/work/ccmWorkTiming/form?id=${ccmWorkTiming.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/work/ccmWorkTiming/delete?id=${ccmWorkTiming.id}" onclick="return confirmx('确认要删除该定时提醒吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td>
 			</tr>
 		</c:forEach>

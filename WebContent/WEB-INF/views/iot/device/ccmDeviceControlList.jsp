@@ -82,7 +82,7 @@
 			</li>
 			<li class="btns"><a
 					onclick="parent.LayerDialog('${ctx}/device/ccmDeviceControl/form?controlBy=${controlBy}', '添加', '1100px', '700px')"
-					class="btn btn-primary"><i class="icon-plus"></i> 添加</a></li>
+					class="btn btn-primary"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a></li>
 			<li class="btns"><a href="javascript:;" id="btnSubmit"
 								class="btn btn-primary"> <i class="icon-search"></i> 查询
 			</a></li>

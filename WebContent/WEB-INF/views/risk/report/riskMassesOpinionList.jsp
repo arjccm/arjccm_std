@@ -114,8 +114,8 @@
 					${riskMassesOpinion.remarks}
 				</td>
 				<shiro:hasPermission name="report:riskMassesOpinion:edit"><td>
-    				<a class="btnList" href="${ctx}/report/riskMassesOpinion/form?id=${riskMassesOpinion.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/report/riskMassesOpinion/delete?id=${riskMassesOpinion.id}" onclick="return confirmx('确认要删除该社情民意调查吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/report/riskMassesOpinion/form?id=${riskMassesOpinion.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/report/riskMassesOpinion/delete?id=${riskMassesOpinion.id}" onclick="return confirmx('确认要删除该社情民意调查吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -68,8 +68,8 @@
 					<fmt:formatDate value="${pbsFlowdefinition.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="flow:pbsFlowdefinition:edit"><td>
-    				<a href="${ctx}/flow/pbsFlowdefinition/checkform?id=${pbsFlowdefinition.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/flow/pbsFlowdefinition/delete?id=${pbsFlowdefinition.id}" onclick="return confirmx('确认要删除该流程定义信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a href="${ctx}/flow/pbsFlowdefinition/checkform?id=${pbsFlowdefinition.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/flow/pbsFlowdefinition/delete?id=${pbsFlowdefinition.id}" onclick="return confirmx('确认要删除该流程定义信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

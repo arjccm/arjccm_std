@@ -82,11 +82,11 @@
 								<c:if test="${ empty plmEquApply.procInsId}">
 									<a class="btnList"
 										href="${ctx}/equapply/plmEquApplyMaintenance/form?id=${plmEquApply.id}"
-										title="修改"><i class="icon-pencil"></i></a>
+										title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/equapply/plmEquApplyMaintenance/delete?id=${plmEquApply.id}"
 										onclick="return confirmx('确认要删除该物资申请吗？', this.href)"
-										title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 								</c:if>
 							 
 								<c:if test="${not empty plmEquApply.procInsId}">
@@ -128,11 +128,11 @@
 								<c:if test="${ empty plmEquApply.procInsId}">
 									<a class="btnList"
 										href="${ctx}/equapply/plmEquApplyMaintenance/form?id=${plmEquApply.id}"
-										title="修改"><i class="icon-pencil"></i></a>
+										title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/equapply/plmEquApplyMaintenance/delete?id=${plmEquApply.id}"
 										onclick="return confirmx('确认要删除该物资申请吗？', this.href)"
-										title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 								</c:if>
 							
 							

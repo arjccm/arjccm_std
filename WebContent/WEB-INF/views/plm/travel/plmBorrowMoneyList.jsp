@@ -84,7 +84,7 @@
 			<li><label>借款日期：</label>
 				<input name="beginBorrowDate" id="beginBorrowDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${plmBorrowMoney.beginBorrowDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true});"/> - 
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true});"/> -
 				<input name="endBorrowDate" id="endBorrowDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${plmBorrowMoney.endBorrowDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true});"/>
@@ -155,11 +155,11 @@
 					<c:if test="${!e}">
 						
 							<a href="${ctx}/travel/plmBorrowMoney/form?id=${plmBorrowMoney.id}"
-								title="提交申请"><i class="icon-pencil"></i></a>
+								title="提交申请"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a class="btnList"
 								href="${ctx}/travel/plmBorrowMoney/delete?id=${plmBorrowMoney.id}"
 								onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a>
 						
 					</c:if>
 				</td>
@@ -196,11 +196,11 @@
 							<c:if test="${!e}">
 								
 									<a href="${ctx}/travel/plmBorrowMoney/form?id=${plmBorrowMoney.id}"
-										title="提交申请"><i class="icon-pencil"></i></a>
+										title="提交申请"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/travel/plmBorrowMoney/delete?id=${plmBorrowMoney.id}"
 										onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-										class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</c:if>
 						</div>
 					</div>

@@ -87,8 +87,8 @@
 					${fns:getDictLabel(ccmOrgInfovideo.officeAllday, 'yes_no', '')}
 				</td>
 				<shiro:hasPermission name="org:ccmOrgInfovideo:edit"><td>
-    				<a class="btnList" href="${ctx}/org/ccmOrgInfovideo/form?id=${ccmOrgInfovideo.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/org/ccmOrgInfovideo/delete?id=${ccmOrgInfovideo.id}" onclick="return confirmx('确认要删除该综治视联网信息中心吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/org/ccmOrgInfovideo/form?id=${ccmOrgInfovideo.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/org/ccmOrgInfovideo/delete?id=${ccmOrgInfovideo.id}" onclick="return confirmx('确认要删除该综治视联网信息中心吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

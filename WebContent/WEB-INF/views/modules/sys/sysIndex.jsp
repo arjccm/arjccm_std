@@ -511,7 +511,7 @@ function addTab($this, refresh) {
 					<!-- <li><a href="#" target="_blank" onclick="pbsSubmit();"title="访问智慧党建系统">智慧党建</a></li>
 					<li><a href="#" target="_blank" onclick="videoSubmit();" title="访问视频融合系统">视频融合</a></li> -->
 					<%--<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}" title="访问网页" target="_blank"><i class="icon-globe"></i></a></li>--%>
-					<%-- <li><a href="${ctx}/sys/map/statIndexCom" title="访问大数据主页"><i class="iconfont  icon-ai-home"></i></a></li> --%>
+					<%-- <li><a href="${ctx}/sys/map/statIndexCom" title="访问大数据主页"><i class="iconfont  icon-caozuotubiao-hujijiating"></i></a></li> --%>
 					<li><a href="${ctx}/sys/map/projectIndex" title="主面板"><i class="iconfont  icon-ai-shouye"></i></a></li>
 					<%-- <li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="icon-home"></i></a></li>
 					--%><li id="themeSwitch" class="dropdown">

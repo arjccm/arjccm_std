@@ -113,20 +113,20 @@
 					<td class="tc" style=" width:230px;height: 50px  "><shiro:hasPermission name="pop:ccmPopTenant:edit">
 							<a class="btnList"
 								href="${ctx}/pop/ccmPopTenant/formByHouse?id=${ccmPopTenant.id}"
-								title="修改"><i class="icon-pencil"></i></a>
+								title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a class="btnList"
 								href="${ctx}/pop/ccmPopTenant/delete?id=${ccmPopTenant.id}"
 								onclick="return confirmx('确认要删除该房屋吗？', this.href)" title="删除"><i
-								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<a class="btnList"
 								href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${ccmPopTenant.id}&type=house"
 								title="住户管理"><i class="icon-group"></i></a>
 						</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPopTenant.id}&relevance_table=ccm_pop_tenant', '记录信息', '800px', '660px')" 
-								  title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
+								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPopTenant.id}&relevance_table=ccm_pop_tenant', '添加记录', '800px', '660px')"
-								title="添加记录"><i class="icon-plus"></i></a>
+								title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/tenant/ccmTenantRecord/${ccmPopTenant.id}', '历史住户信息', '800px', '660px')"
 								title="历史住户信息"><i class="icon-eye-open"></i></a>

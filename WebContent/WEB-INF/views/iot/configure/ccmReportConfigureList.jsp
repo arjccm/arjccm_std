@@ -37,7 +37,7 @@
 			<shiro:hasPermission name="grabber:ccmGrabberManage:edit">
 				<li class="btns">
 					<a onclick="parent.LayerDialog('${ctx}/configure/ccmReportConfigure/form', '添加', '1100px', '700px')" class="btn btn-primary">
-						<i class="icon-plus"></i>添加
+						<i class="iconfont icon-caozuotubiao-tianjiachuli"></i>添加
 					</a>
 				</li>
 			</shiro:hasPermission>
@@ -90,8 +90,8 @@
 
 				<shiro:hasPermission name="configure:ccmReportConfigure:edit"><td style="text-align:center;vertical-align:middle;">
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/configure/ccmReportConfigure/detail?id=${ccmReportConfigure.id}', '详情', '1100px', '700px')" title="详情"><i class="icon-comment-alt"></i></a>
-    				<a class="btnList" onclick="parent.LayerDialog('${ctx}/configure/ccmReportConfigure/form?id=${ccmReportConfigure.id}', '编辑', '1100px', '700px')" title="编辑"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/configure/ccmReportConfigure/delete?id=${ccmReportConfigure.id}" onclick="return confirmx('确认要删除该报警配置吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" onclick="parent.LayerDialog('${ctx}/configure/ccmReportConfigure/form?id=${ccmReportConfigure.id}', '编辑', '1100px', '700px')" title="编辑"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/configure/ccmReportConfigure/delete?id=${ccmReportConfigure.id}" onclick="return confirmx('确认要删除该报警配置吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
