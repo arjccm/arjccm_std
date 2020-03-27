@@ -1957,17 +1957,6 @@ public class CcmPeopleController extends BaseController {
 		ccmPeopleService.save(ccmPeople);
 		addMessage(redirectAttributes, "添加成员成功");
 
-		// 把添加的人员记录到租客记录表里面
-		/*CcmTenantRecord ccmTenantRecord = new CcmTenantRecord();
-		ccmTenantRecord.setHouseId(houseId);
-		ccmTenantRecord.setIdCard(ccmPeople.getIdent());
-		ccmTenantRecord.setName(ccmPeople.getName());
-		ccmTenantRecord.setPhoneNumber(ccmPeople.getTelephone());
-		ccmTenantRecord.setCreateDate(new Date());
-		ccmTenantRecord.setLiveDate(new Date());
-		ccmTenantRecord.setLeaveDate(new Date());
-		ccmTenantRecordService.save(ccmTenantRecord);*/
-
 		List<String> list = new ArrayList<>();
 		list.add(ccmPeople.getId());
 		list.add("添加成员成功");
