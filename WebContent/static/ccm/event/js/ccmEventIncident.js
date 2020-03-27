@@ -38,13 +38,13 @@ function allcheck() {
 function openLogTail(ids, tailCase, ccmEventIncident) {
     var html = '';
     html += '<div id="logTail"><table class="table table-striped table-bordered table-condensed"><tr>';
-    html += '<td><label><span class="help-inline"><font color="red">*</font></span>处理人姓名：</label>';
-    html += '<input id="tailPerson" style="width:170px;border: 1px solid #ccc;border-radius: 4px;padding: 4px 6px;" htmlEscape="false"  class="input-xlarge required" /></td>';
+    html += '<td><label><span class="help-inline "><font color="red">*</font></span>处理人姓名：</label>';
+    html += '<input id="tailPerson"  style="width:170px;border: 1px solid #ccc;border-radius: 4px;padding: 4px 6px;" htmlEscape="false"  class="input-xlarge help-inline1 required" /></td>';
     html += '<td><label><span class="help-inline"><font color="red">*</font></span>联系方式：</label>';
-    html += '<input id="more1" style="width:170px;border: 1px solid #ccc;border-radius: 4px;padding: 4px 6px;" htmlEscape="false"  class="input-xlarge telephone0 phone required" />';
+    html += '<input id="more1" style="width:170px;border: 1px solid #ccc;border-radius: 4px;padding: 4px 6px;" htmlEscape="false"  class="input-xlarge help-inline1 telephone0 phone required" />';
     html += '</td></tr><tr>';
     html += '<td colspan="2"><label><span class="help-inline"><font color="red">*</font></span>反馈信息：</label>';
-    html += '<input id="tailContent" style="height: 100px;border: 1px solid #ccc;border-radius: 4px;padding: 4px 6px;" htmlEscape="false"  class="input-xxlarge" />';
+    html += '<input id="tailContent" style="height: 100px;border: 1px solid #ccc;border-radius: 4px;padding: 4px 6px;" htmlEscape="false"  class="input-xxlarge help-inline1" />';
     html += '</td></tr></table></div>';
     layer.open({
         type: 1
