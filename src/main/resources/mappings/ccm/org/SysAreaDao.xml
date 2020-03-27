@@ -455,63 +455,67 @@
 	<select id="ccmPeopleCountHj" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT
 			a.id AS 'type',
-			a. NAME AS 'typeO',
-			count(p.id) AS 'value'
+			a.NAME AS 'typeO',
+			IFNULL(p.person_amount,0) AS 'value'
 		FROM
 			sys_area a
-		LEFT JOIN ccm_people p ON a.id = p.area_grid_id and p.del_flag = 0
+		LEFT JOIN ccm_people_amount p ON a.id = p.area_id
 		WHERE
 			a.type = 7
-		GROUP BY
-			a.id
+			and (p.amount_date &gt;
+			date_format(DATE_SUB(curdate(), INTERVAL 0
+			MONTH),'%Y-%m')
+			AND
+			p.amount_date &lt; date_format(DATE_SUB(curdate(), INTERVAL -1
+			MONTH),'%Y-%m'))
 	</select>
 
 	<!--实有人口数据汇总（流动）-->
 	<select id="ccmPeopleCountLd" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT
 			a.id AS 'type',
-			a. NAME AS 'typeO',
-			count(p.id) AS 'value'
+			a.NAME AS 'typeO',
+			IFNULL(p.float_amount,0) AS 'value'
 		FROM
 			sys_area a
-		LEFT JOIN ccm_people p ON a.id = p.area_grid_id and p.del_flag = 0 and p.type = 20
+		LEFT JOIN ccm_people_amount p ON a.id = p.area_id
 		WHERE
 			a.type = 7
-		GROUP BY
-			a.id
+			and (p.amount_date &gt;
+			date_format(DATE_SUB(curdate(), INTERVAL 0
+			MONTH),'%Y-%m')
+			AND
+			p.amount_date &lt; date_format(DATE_SUB(curdate(), INTERVAL -1
+			MONTH),'%Y-%m'))
 	</select>
 
 	<!--重点人员区域分布TOP5-->
 	<select id="keyPeopleOfArea" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT
 			a.id AS 'type',
-			a. NAME AS 'typeO',
-			count(p.id) AS 'value'
+			a.NAME AS 'typeO',
+			(IFNULL(p.aids_amount,0)+IFNULL(p.psychogeny_amount,0)
+			+IFNULL(p.rectification_amount,0)+IFNULL(p.release_amount,0)
+			+IFNULL(p.drugs_amount,0)+IFNULL(p.behind_amount,0)
+			+IFNULL(p.kym_amount,0)+IFNULL(p.visit_amount,0)
+			+IFNULL(p.heresy_amount,0)+IFNULL(p.dangerous_amount,0)) AS 'value'
 		FROM
 			sys_area a
-		LEFT JOIN ccm_people p ON a.id = p.area_grid_id and p.del_flag = 0
-		and (
-		p.is_aids = 1
-		or p.is_behind = 1
-		or p.is_release = 1
-		or p.is_rectification = 1
-		or p.is_psychogeny = 1
-		or p.is_kym = 1
-		or p.is_dangerous = 1
-		or p.is_visit = 1
-		or p.is_drugs = 1
-		or p.is_heresy = 1
-		or p.is_criminal_offense = 1
-		or p.is_escape = 1
-		or p.is_harm_national = 1
-		or p.is_dispute = 1
-		)
+		LEFT JOIN ccm_people_amount p ON a.id = p.area_id
 		WHERE
 			a.type = 7
-		GROUP BY
-			a.id
+			and (p.amount_date &gt;
+			date_format(DATE_SUB(curdate(), INTERVAL 0
+			MONTH),'%Y-%m')
+			AND
+			p.amount_date &lt; date_format(DATE_SUB(curdate(), INTERVAL -1
+			MONTH),'%Y-%m'))
 		ORDER BY
-			count(p.id) DESC
+			(IFNULL(p.aids_amount,0)+IFNULL(p.psychogeny_amount,0)
+			+IFNULL(p.rectification_amount,0)+IFNULL(p.release_amount,0)
+			+IFNULL(p.drugs_amount,0)+IFNULL(p.behind_amount,0)
+			+IFNULL(p.kym_amount,0)+IFNULL(p.visit_amount,0)
+			+IFNULL(p.heresy_amount,0)+IFNULL(p.dangerous_amount,0)) DESC
 		LIMIT 5
 	</select>
 
@@ -519,7 +523,7 @@
 	<select id="rentalHouseOfArea" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT
 			a.id AS 'type',
-			a. NAME AS 'typeO',
+			a.NAME AS 'typeO',
 			count(tenant.id) AS 'value'
 		FROM
 			sys_area a
@@ -538,7 +542,7 @@
 	<select id="policeForceDistribution" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT
 			a.id AS 'type',
-			a. NAME AS 'typeO',
+			a.NAME AS 'typeO',
 			count(u.id) AS 'value'
 		FROM
 			sys_area a
@@ -554,7 +558,7 @@
 	<select id="policeEquipmentMD" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT
 			a.id AS 'type',
-			a. NAME AS 'typeO',
+			a.NAME AS 'typeO',
 			count(d.id) AS 'value'
 		FROM
 			sys_area a
@@ -569,7 +573,7 @@
 	<select id="alarmOfArea" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT
 			a.id AS 'type',
-			a. NAME AS 'typeO',
+			a.NAME AS 'typeO',
 			count(d.id) AS 'value'
 			FROM
 				sys_area a
