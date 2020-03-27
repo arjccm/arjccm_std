@@ -98,7 +98,7 @@
 						</c:otherwise>
 					</c:choose>
 					<td style="height: 50px;"><a class="btnList" href="${ctx}/userBindingDevice/userBindingDevice/form?id=${userBindingDevice.id}&userId=${userBindingDevice.userId}" title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/userBindingDevice/userBindingDevice/delete?id=${userBindingDevice.id}" onclick="return confirmx('确认要删除该用户绑定设备数据吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+						<a class="btnList" href="${ctx}/userBindingDevice/userBindingDevice/delete?id=${userBindingDevice.id}" onclick="return confirmx('确认要删除该用户绑定设备数据吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

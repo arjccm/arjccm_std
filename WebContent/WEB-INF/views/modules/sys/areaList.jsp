@@ -48,7 +48,7 @@
 			<td>{{row.remarks}}</td>
 			<shiro:hasPermission name="sys:area:edit"><td>
 				<a class="btnList" href="${ctx}/sys/area/form?id={{row.id}}" title="修改"><i class="icon-pencil"></i></a>
-				<a class="btnList" href="${ctx}/sys/area/delete?id={{row.id}}" onclick="return confirmx('要删除该区域及所有子区域项吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+				<a class="btnList" href="${ctx}/sys/area/delete?id={{row.id}}" onclick="return confirmx('要删除该区域及所有子区域项吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				<a class="btnList" href="${ctx}/sys/area/form?parent.id={{row.id}}" title="添加下级区域"><i class="icon-plus"></i></a>
 			</td></shiro:hasPermission>
 		</tr>

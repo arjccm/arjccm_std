@@ -97,7 +97,7 @@
 						<i class="icon-pencil"></i>
 					</a>
 					<a href="${ctx}/group/ccmGroupControl/delete?id=${ccmGroupControl.id}" onclick="return confirmx('确认要删除该自治群吗？', this.href)" title="删除" class="btnList">
-						<i class="icon-remove-sign"></i>
+						<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
 					</a>
 				</td></shiro:hasPermission>
 			</tr>

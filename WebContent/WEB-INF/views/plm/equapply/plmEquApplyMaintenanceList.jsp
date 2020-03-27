@@ -86,7 +86,7 @@
 									<a class="btnList"
 										href="${ctx}/equapply/plmEquApplyMaintenance/delete?id=${plmEquApply.id}"
 										onclick="return confirmx('确认要删除该物资申请吗？', this.href)"
-										title="删除"><i class="icon-remove-sign"></i></a>
+										title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 								</c:if>
 							 
 								<c:if test="${not empty plmEquApply.procInsId}">
@@ -132,7 +132,7 @@
 									<a class="btnList"
 										href="${ctx}/equapply/plmEquApplyMaintenance/delete?id=${plmEquApply.id}"
 										onclick="return confirmx('确认要删除该物资申请吗？', this.href)"
-										title="删除"><i class="icon-remove-sign"></i></a>
+										title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 								</c:if>
 							
 							

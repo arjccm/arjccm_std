@@ -87,7 +87,7 @@
 				</td>
 				<shiro:hasPermission name="org:ccmOrgSyncentre:edit"><td style="height: 50px">
     				<a class="btnList" href="${ctx}/org/ccmOrgSyncentre/form?id=${ccmOrgSyncentre.id}"  title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/org/ccmOrgSyncentre/delete?id=${ccmOrgSyncentre.id}" onclick="return confirmx('确认要删除该综治中心吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/org/ccmOrgSyncentre/delete?id=${ccmOrgSyncentre.id}" onclick="return confirmx('确认要删除该综治中心吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

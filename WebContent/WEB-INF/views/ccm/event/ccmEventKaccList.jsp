@@ -109,7 +109,7 @@
 				</td>
 				<shiro:hasPermission name="event:ccmEventKacc:edit"><td style="height: 50px">
     				<a class="btnList" href="${ctx}/event/ccmEventKacc/form?id=${ccmEventKacc.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/event/ccmEventKacc/delete?id=${ccmEventKacc.id}" onclick="return confirmx('确认要删除该重点地区排查整治吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/event/ccmEventKacc/delete?id=${ccmEventKacc.id}" onclick="return confirmx('确认要删除该重点地区排查整治吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

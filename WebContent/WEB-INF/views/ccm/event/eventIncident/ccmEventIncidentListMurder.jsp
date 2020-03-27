@@ -170,7 +170,7 @@
 								href="${ctx}/event/ccmEventIncident/formMurder?id=${ccmEventIncident.id}" title="修改"><i class="icon-pencil"></i></a>
 							<a  class="btnList"
 								href="${ctx}/event/ccmEventIncident/deleteMurder?id=${ccmEventIncident.id}"
-								onclick="return confirmx('确认要删除该案案（事）件吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+								onclick="return confirmx('确认要删除该案案（事）件吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 										<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventIncident.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
 					
 						</shiro:hasPermission> <!-- 事件处理 编辑权限  --> <shiro:hasPermission

@@ -84,7 +84,7 @@
 				</td>
 				<shiro:hasPermission name="report:riskReport:edit"><td>
     				<a class="btnList" href="${ctx}/report/riskReport/form?id=${riskReport.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/report/riskReport/delete?id=${riskReport.id}" onclick="return confirmx('确认要删除该事项评估报告吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/report/riskReport/delete?id=${riskReport.id}" onclick="return confirmx('确认要删除该事项评估报告吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

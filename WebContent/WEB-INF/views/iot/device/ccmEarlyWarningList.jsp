@@ -187,7 +187,7 @@
                             <%--					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/device/ccmDeviceControl/form?id=${ccmDeviceControl.id}&hide1=true', '详情', '1200px', '800px')" title="详情"><i class="icon-list-alt"></i></a>--%>
                             <%--    				<a href="${ctx}/device/ccmDeviceControl/form?id=${ccmDeviceControl.id}">修改</a>--%>
                             <%--					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseKym/form?id=${ccmHouseKym.id}&hide1=false&hide2=true', '预警列表', '1200px', '500px')" title="预警列表"><i class="icon-list-ul"></i></a>--%>
-                        <a class="btnList" href="${ctx}/device/ccmDeviceControl/earlyWarningDelete?id=${ccmEarlyWarning.id}&idCard=${ccmEarlyWarning.idCard}&controlBy=${controlBy}" onclick="return confirmx('确认要删除该预警记录吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+                        <a class="btnList" href="${ctx}/device/ccmDeviceControl/earlyWarningDelete?id=${ccmEarlyWarning.id}&idCard=${ccmEarlyWarning.idCard}&controlBy=${controlBy}" onclick="return confirmx('确认要删除该预警记录吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
                     </td></shiro:hasPermission>
                 </tr>
             </c:if>

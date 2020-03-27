@@ -78,7 +78,7 @@
 				</td>
 				<shiro:hasPermission name="report:riskEventGreat:edit"><td>
     				<a class="btnList" href="${ctx}/report/riskEventGreat/formDatabase?id=${riskEventGreat.id}" title="查看"><i class="icon-search"></i></a>
-					<a class="btnList" href="${ctx}/report/riskEventGreat/deleteDatabase?id=${riskEventGreat.id}" onclick="return confirmx('确认要删除该库的重大事项吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/report/riskEventGreat/deleteDatabase?id=${riskEventGreat.id}" onclick="return confirmx('确认要删除该库的重大事项吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

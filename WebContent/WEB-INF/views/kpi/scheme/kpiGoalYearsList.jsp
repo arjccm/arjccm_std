@@ -96,7 +96,7 @@
 				</td>
 				<shiro:hasPermission name="scheme:kpiGoalYears:edit"><td style="height: 50px">
     				<a class="btnList" href="${ctx}/scheme/kpiGoalYears/form?id=${kpiGoalYears.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/scheme/kpiGoalYears/delete?id=${kpiGoalYears.id}" onclick="return confirmx('确认要删除该部门年度目标吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/scheme/kpiGoalYears/delete?id=${kpiGoalYears.id}" onclick="return confirmx('确认要删除该部门年度目标吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

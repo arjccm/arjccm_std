@@ -203,7 +203,7 @@
 					<shiro:hasPermission name="org:ccmOrgNpse:edit">
 						<a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpse/form?id=${ccmOrgNpse.id}', '编辑', '1100px', '800px')"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/org/ccmOrgNpse/deleteData?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该机构济组织吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+						<a class="btnList" href="${ctx}/org/ccmOrgNpse/deleteData?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该机构济组织吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						<shiro:hasPermission name="org:ccmOrgNpseEconomic:view">
 							<a onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseEconomic/listEconomic?naspId=${ccmOrgNpse.id}', '经济运行数据', '1100px', '800px')" title="经济运行数据">
 								<i class="icon-list"></i>

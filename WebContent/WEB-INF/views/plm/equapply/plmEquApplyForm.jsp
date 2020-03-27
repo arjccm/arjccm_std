@@ -228,7 +228,7 @@
 						<td class="trtop" colspan="2">${plmEquApplyDetail.spec}</td>
 						<td class="trtop" colspan="1">${plmEquApplyDetail.number}</td>
 						<td class="trtop" colspan="2"><fmt:formatDate value="${plmEquApplyDetail.validityDate}" pattern="yyyy-MM-dd"/></td>
-						<td class="trtop" colspan="1"><a title="deleteDetail"><i class="icon-remove-sign"></i>删除</a>&nbsp;
+						<td class="trtop" colspan="1"><a title="deleteDetail"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>删除</a>&nbsp;
 						<input id="${plmEquApplyDetail.id}" type="hidden" value="${plmEquApplyDetail.id}"/>
 						</td>
 					</tr>

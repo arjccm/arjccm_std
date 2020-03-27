@@ -92,7 +92,7 @@
 						<i class="icon-pencil"></i>
 					</a> 
 					<%-- <a class="btnList" href="${ctx}/duty/ccmWorkerDuty/form?id=${ccmWorkerDuty.id}" title="修改"><i class="icon-pencil"></i></a> --%>
-					<a class="btnList" href="${ctx}/duty/ccmWorkerDuty/delete?id=${ccmWorkerDuty.id}" onclick="return confirmx('确认要删除该社工职责吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/duty/ccmWorkerDuty/delete?id=${ccmWorkerDuty.id}" onclick="return confirmx('确认要删除该社工职责吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

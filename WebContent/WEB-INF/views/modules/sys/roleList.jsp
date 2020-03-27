@@ -27,7 +27,7 @@
 					<c:if test="${(role.sysData eq fns:getDictValue('是', 'yes_no', '1') && fns:getUser().admin)||!(role.sysData eq fns:getDictValue('是', 'yes_no', '1'))}">
 						<a class="btnList" href="${ctx}/sys/role/form?id=${role.id}" title="修改"><i class="icon-pencil"></i></a>
 					</c:if>
-					<a class="btnList"  href="${ctx}/sys/role/delete?id=${role.id}" onclick="return confirmx('确认要删除该角色吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList"  href="${ctx}/sys/role/delete?id=${role.id}" onclick="return confirmx('确认要删除该角色吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>	
 			</tr>
 		</c:forEach>

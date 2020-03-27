@@ -94,7 +94,7 @@
 				</td>
 				<shiro:hasPermission name="holiday:ccmWorkerHoliday:edit"><td style="height: 50px">
     				<a class="btnList" href="${ctx}/holiday/ccmWorkerHoliday/form?id=${ccmWorkerHoliday.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/holiday/ccmWorkerHoliday/delete?id=${ccmWorkerHoliday.id}" onclick="return confirmx('确认要删除该假日信息吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/holiday/ccmWorkerHoliday/delete?id=${ccmWorkerHoliday.id}" onclick="return confirmx('确认要删除该假日信息吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

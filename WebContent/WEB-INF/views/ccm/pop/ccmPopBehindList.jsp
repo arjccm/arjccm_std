@@ -194,7 +194,7 @@
 							title="修改"><i class="icon-pencil"></i> </a>
 							<a class="btnList"
 								href="${ctx}/pop/ccmPopBehind/delete?id=${ccmPopBehind.id}"
-								onclick="return confirmx('确认要删除该留守人员吗？', this.href)"  title="删除"><i class="icon-remove-sign"></i></a>
+								onclick="return confirmx('确认要删除该留守人员吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							<a class="btnList"
 								href="javascript:;" onclick="LocationOpen('${ccmPopBehind.peopleId}')"  title="位置信息"><i class="icon-map-marker "></i></a>
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmPopBehind.peopleId}', '社交关系', '1000px', '700px')"
