@@ -210,7 +210,7 @@
 							<a class="btnList"
 								href="${ctx}/org/ccmOrgNpseSdyq/delete?id=${ccmOrgNpse.id}"
 								onclick="return confirmx('确认要删除该单位吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a>
+								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmOrgNpse.id}&relevance_table=ccm_org_npseSdyq', '记录信息', '800px', '660px')" 
 								  title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>

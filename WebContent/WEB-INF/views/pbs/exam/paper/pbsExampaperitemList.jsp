@@ -60,7 +60,7 @@
 				</td>
 				<shiro:hasPermission name="exam:pbsExampaperitem:edit"><td>
     				<a href="${ctx}/exam/pbsExampaperitem/form?id=${pbsExampaperitem.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/exam/pbsExampaperitem/delete?id=${pbsExampaperitem.id}" onclick="return confirmx('确认要删除该试卷题目吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/exam/pbsExampaperitem/delete?id=${pbsExampaperitem.id}" onclick="return confirmx('确认要删除该试卷题目吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -87,7 +87,7 @@
 				</td>
 				<shiro:hasPermission name="activity:pbsActivityrec:edit"><td>
     				<a href="${ctx}/activity/pbsActivityrec/form?id=${pbsActivityrec.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/activity/pbsActivityrec/delete?id=${pbsActivityrec.id}" onclick="return confirmx('确认要删除该活动信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/activity/pbsActivityrec/delete?id=${pbsActivityrec.id}" onclick="return confirmx('确认要删除该活动信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -148,7 +148,7 @@
 							title="修改"><i class="icon icon-pencil"></i></a> <a
 							href="${ctx}/person/pbsPartymem/delete?id=${pbsPartymem.id}"
 							onclick="return confirmx('确认要删除该学员信息吗？', this.href)" title="删除"><i
-								class="icon icon-trash"></i></a> <a
+								class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a> <a
 							href="${ctx}/person/pbsPartymembind/adduser?partymemid=${pbsPartymem.id}&sSource=sys_user"><i
 								class="icon icon-plus" title="添加学员用户关系"></i></a> <a
 							href="${ctx}/person/pbsDepartmentbind/addoffice?partymemid=${pbsPartymem.id}&sSource=sys_office&pageTurn=add"><i

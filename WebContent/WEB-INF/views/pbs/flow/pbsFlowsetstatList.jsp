@@ -66,7 +66,7 @@
 				</td>
 				<shiro:hasPermission name="flow:pbsFlowsetstat:edit"><td>
     				<a href="${ctx}/flow/pbsFlowsetstat/form?id=${pbsFlowsetstat.id}"></a>
-					<a href="${ctx}/flow/pbsFlowsetstat/delete?id=${pbsFlowsetstat.id}" onclick="return confirmx('确认要删除该节点操作后吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/flow/pbsFlowsetstat/delete?id=${pbsFlowsetstat.id}" onclick="return confirmx('确认要删除该节点操作后吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

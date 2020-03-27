@@ -78,7 +78,7 @@
 							href="${ctx}/wechat/pbsWebchatsendmsg/form?id=${pbsWebchatsendmsg.id}" title = "修改"><i class="icon icon-pencil"></i></a>
 							<a
 							href="${ctx}/wechat/pbsWebchatsendmsg/delete?id=${pbsWebchatsendmsg.id}"
-							onclick="return confirmx('确认要删除该微信消息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a> <a
+							onclick="return confirmx('确认要删除该微信消息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a> <a
 							href="${ctx}/wechat/sendmessage?id=${pbsWebchatsendmsg.id}"
 							onclick="return confirmx('一个月只能发送4次群发消息,确认要发布该微信消息吗？', this.href)" title = "发布"><i class="icon-fankui"></i></a>
 						</td>

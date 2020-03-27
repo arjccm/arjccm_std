@@ -117,7 +117,7 @@
 							<a class="btnList"
 								href="${ctx}/pop/ccmPopTenant/delete?id=${ccmPopTenant.id}"
 								onclick="return confirmx('确认要删除该房屋吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a>
+								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							<a class="btnList"
 								href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${ccmPopTenant.id}&type=house"
 								title="住户管理"><i class="icon-group"></i></a>

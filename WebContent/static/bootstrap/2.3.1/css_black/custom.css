@@ -411,6 +411,12 @@ a.btnList  i.icon-tint:before{
 	-o-transform: rotate(180deg);
 	transform: rotate(180deg);
 }
+/*  删除按钮  */
+a>i.icon-icondaohangtubiao-shujucaijifenxi{
+	color: #da3844;
+}
+
+
 /* 濡楀牅绨ㄦ禒璺哄絺閸忓鐡ф担锟� */
 @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) { 
     .masked.active{

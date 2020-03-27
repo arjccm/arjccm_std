@@ -89,7 +89,7 @@
 							href="${ctx}/patrol/ccmPatrolResult/form?id=${ccmPatrolResult.id}" title="修改"><i class="icon-pencil"></i></a>
 							<a class="btnList"
 							href="${ctx}/patrol/ccmPatrolResult/delete?id=${ccmPatrolResult.id}"
-							onclick="return confirmx('确认要删除该巡逻结果吗？', this.href)" title="删除"><i class="icon-trash"></i></a>
+							onclick="return confirmx('确认要删除该巡逻结果吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						</td>
 					</shiro:hasPermission>
 				</tr>

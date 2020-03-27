@@ -93,7 +93,7 @@
 				</td>
 				<shiro:hasPermission name="question:pbsQuestionRuleitem:edit"><td>
     				<a href="${ctx}/question/pbsQuestionRuleitem/form?id=${pbsQuestionRuleitem.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/question/pbsQuestionRuleitem/delete?id=${pbsQuestionRuleitem.id}" onclick="return confirmx('确认要删除该评分规则定义吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/question/pbsQuestionRuleitem/delete?id=${pbsQuestionRuleitem.id}" onclick="return confirmx('确认要删除该评分规则定义吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

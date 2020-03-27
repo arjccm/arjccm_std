@@ -116,7 +116,7 @@
 				</td>
 				<shiro:hasPermission name="car:plmCarViolation:edit"><td>
     				<a class="btnList" href="${ctx}/car/plmCarViolation/form?id=${plmCarViolation.id}&isCar=1"><i title="修改" class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/car/plmCarViolation/delete?id=${plmCarViolation.id}" onclick="return confirmx('确认要删除该违章记录吗？', this.href)"><i title="删除" class="icon-trash"></i></a>
+					<a class="btnList" href="${ctx}/car/plmCarViolation/delete?id=${plmCarViolation.id}" onclick="return confirmx('确认要删除该违章记录吗？', this.href)"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -64,7 +64,7 @@
 				</td>
 				<shiro:hasPermission name="flow:pbsFlowentercond:edit"><td>
     				<a href="${ctx}/flow/pbsFlowentercond/form?id=${pbsFlowentercond.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/flow/pbsFlowentercond/delete?id=${pbsFlowentercond.id}" onclick="return confirmx('确认要删除该进入节点条件信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/flow/pbsFlowentercond/delete?id=${pbsFlowentercond.id}" onclick="return confirmx('确认要删除该进入节点条件信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

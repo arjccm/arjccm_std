@@ -81,7 +81,7 @@
                             </c:if>
 						<a href="${ctx}/flow/pbsFlowworknode/form?id=${pbsFlowworknode.id}" title = "修改"><i class="icon icon-pencil"></i></a>
 						<a href="${ctx}/flow/pbsFlowworknode/delete?id=${pbsFlowworknode.id}"
-							onclick="return confirmx('确认要删除该工作节点记录吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a> 
+							onclick="return confirmx('确认要删除该工作节点记录吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						
 						</td>
 					</shiro:hasPermission>

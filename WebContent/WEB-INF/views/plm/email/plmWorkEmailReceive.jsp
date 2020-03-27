@@ -126,7 +126,7 @@
 			<c:if test="${empty isDel}">
 				<a id="btnDelete" class="btn" href="javascript:;"><i class="icon-remove-circle"></i>删除</a>&nbsp;
 			</c:if>
-			<a id="btnDelete2" class="btn" style="width: 75px!important;" href="javascript:;"><i class="icon-trash"  ></i>彻底删除</a>&nbsp;
+			<a id="btnDelete2" class="btn" style="width: 75px!important;" href="javascript:;"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"  ></i>彻底删除</a>&nbsp;
 			<a id="btnCancel" class="btn"  onclick="history.go(-1);location.replace(document.referrer);"><i class="icon-reply"></i>返回</a>
 		</div>
 	</form:form>

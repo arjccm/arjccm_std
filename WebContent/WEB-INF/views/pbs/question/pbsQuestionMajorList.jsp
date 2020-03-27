@@ -63,7 +63,7 @@
 				</td> --%>
 				<shiro:hasPermission name="question:pbsQuestionMajor:edit"><td>
     				<a href="${ctx}/question/pbsQuestionMajor/form?id=${pbsQuestionMajor.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/question/pbsQuestionMajor/delete?id=${pbsQuestionMajor.id}" onclick="return confirmx('确认要删除该专业信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+					<a href="${ctx}/question/pbsQuestionMajor/delete?id=${pbsQuestionMajor.id}" onclick="return confirmx('确认要删除该专业信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

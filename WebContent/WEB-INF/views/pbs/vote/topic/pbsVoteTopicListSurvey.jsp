@@ -102,7 +102,7 @@
 							<a
 							href="${ctx}/vote/pbsVoteTopic/formsurvey?id=${pbsVoteTopic.id}" title = "修改"><i class="icon icon-pencil"></i></a>
 							<a href="${ctx}/vote/pbsVoteTopic/delete?id=${pbsVoteTopic.id}"
-							onclick="return confirmx('确认要删除该调查主题信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+							onclick="return confirmx('确认要删除该调查主题信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							<a class="btnExport" topid ="${pbsVoteTopic.id}" sBelongfunc="1" title = "导出"><i class="icon-download-alt"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
