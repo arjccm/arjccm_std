@@ -260,15 +260,15 @@
 						<td style="height: 50px">
 						<c:if test="${ccmEventCasedeal.handleStatus ne '01'}">
 							<a  class="btnList"
-								onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/form?id=${ccmEventCasedeal.id}','事件', '1100px', '700px')" title="事件处理"><i class="icon-pencil"></i></a>
+								onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/form?id=${ccmEventCasedeal.id}','事件', '1100px', '700px')" title="事件处理"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						</c:if>
 						<c:if test="${ccmEventCasedeal.handleStatus eq '01'}">
-						<a  class="btnList" title="事件处理"><i class="icon-pencil" style="color: #656565;"></i></a>
+						<a  class="btnList" title="事件处理"><i class="iconfont icon-caozuotubiao-xiugai" style="color: #656565;"></i></a>
 						</c:if>
 						<a  class="btnList"
 							href="${ctx}/event/ccmEventCasedeal/delete?id=${ccmEventCasedeal.id}"
-							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-						<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventCasedeal.objId}')"  title="位置信息"><i class="icon-map-marker "></i></a>
+							onclick="return confirmx('确认要删除该事件处理吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+						<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventCasedeal.objId}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 						<c:if test="${ccmEventCasedeal.handleStatus ne '01'}">
 							<a  class="btnList" title="签收"><i class="icon-edit" style="color: #656565 ;"></i></a>
 						</c:if>

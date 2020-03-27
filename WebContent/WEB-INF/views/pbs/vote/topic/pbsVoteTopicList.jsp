@@ -97,9 +97,9 @@
 							href="${ctx}/vote/pbsVoteTopic/handleform?id=${pbsVoteTopic.id}&sStat=1&sBelongfunc=0" title = "发布"><i class="icon-fankui"></i></a>
 							<a
 							href="${ctx}/vote/pbsVoteTopic/handleform?id=${pbsVoteTopic.id}&sStat=0&sBelongfunc=0" title = "撤销"><i class="icon-reply"></i></a>
-							<a href="${ctx}/vote/pbsVoteTopic/form?id=${pbsVoteTopic.id}" title = "修改"><i class="icon icon-pencil"></i></a>
+							<a href="${ctx}/vote/pbsVoteTopic/form?id=${pbsVoteTopic.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a href="${ctx}/vote/pbsVoteTopic/delete?id=${pbsVoteTopic.id}"
-							onclick="return confirmx('确认要删除该投票主题信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a> <a
+							onclick="return confirmx('确认要删除该投票主题信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a> <a
 							class="btnExport" topid="${pbsVoteTopic.id}" sBelongfunc="1" title = "导出"><i class="icon-download-alt"></i></a>
 						</td>
 					</shiro:hasPermission>

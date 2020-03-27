@@ -139,10 +139,10 @@
 					<shiro:hasPermission name="sys:user:edit">
 						<td><a class="btnList"
 							href="${ctx}/sys/user/form?id=${user.id}" title="修改"><i
-								class="icon-pencil"></i></a> <a class="btnList"
+								class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/sys/user/delete?id=${user.id}"
 							onclick="return confirmx('确认要删除该用户吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a></td>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

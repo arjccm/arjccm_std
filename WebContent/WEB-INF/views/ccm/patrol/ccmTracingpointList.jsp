@@ -78,8 +78,8 @@
 					${ccmTracingpoint.remarks}
 				</td>
 				<shiro:hasPermission name="patrol:ccmTracingpoint:edit"><td>
-    				<a class="btnList" href="${ctx}/patrol/ccmTracingpoint/form?id=${ccmTracingpoint.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/patrol/ccmTracingpoint/delete?id=${ccmTracingpoint.id}" onclick="return confirmx('确认要删除该实时轨迹点吗？', this.href)" title="删除"><i class="icon-trash"></i></a>
+    				<a class="btnList" href="${ctx}/patrol/ccmTracingpoint/form?id=${ccmTracingpoint.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/patrol/ccmTracingpoint/delete?id=${ccmTracingpoint.id}" onclick="return confirmx('确认要删除该实时轨迹点吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

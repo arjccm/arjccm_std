@@ -75,7 +75,7 @@
 					htmlEscape="false" maxlength="255" class="input-medium" /></li>
 			<li class="btns"><a
 				onclick="parent.LayerDialog('${ctx}/traffic/ccmPlaceTraffic/form?type=02', '添加', '1100px', '700px')"
-				class="btn btn-success"><i class="icon-plus"></i> 添加 </a></li>
+				class="btn btn-success"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加 </a></li>
 			<li class="btns"><a href="javascript:;" id="btnSubmit"
 				class="btn btn-primary"> <i class="icon-search"></i> 查询
 			</a></li>
@@ -120,10 +120,10 @@
 							title="事件关联"><i class="icon-random"></i></a> 
 						<a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/traffic/ccmPlaceTraffic/form?id=${ccmPlaceTraffic.id}', '编辑', '1100px', '700px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/traffic/ccmPlaceTraffic/delete?id=${ccmPlaceTraffic.id}"
 							onclick="return confirmx('确认要删除该停车场吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a></td>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 						<a class="btnList"
 						   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceTraffic.ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
 						   title="从业人员添加"><i class="icon-group"></i></a>

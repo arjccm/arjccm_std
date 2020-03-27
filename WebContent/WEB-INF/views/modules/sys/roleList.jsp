@@ -23,11 +23,11 @@
 				<td style="height: 50px">${role.office.name}</td>
 				<td style="height: 50px">${fns:getDictLabel(role.dataScope, 'sys_data_scope', '无')}</td>
 				<shiro:hasPermission name="sys:role:edit"><td style="height: 50px">
-					<a class="btnList" href="${ctx}/sys/role/assign?id=${role.id}" title="分配"><i class="icon-plus"></i></a>
+					<a class="btnList" href="${ctx}/sys/role/assign?id=${role.id}" title="分配"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 					<c:if test="${(role.sysData eq fns:getDictValue('是', 'yes_no', '1') && fns:getUser().admin)||!(role.sysData eq fns:getDictValue('是', 'yes_no', '1'))}">
-						<a class="btnList" href="${ctx}/sys/role/form?id=${role.id}" title="修改"><i class="icon-pencil"></i></a>
+						<a class="btnList" href="${ctx}/sys/role/form?id=${role.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					</c:if>
-					<a class="btnList"  href="${ctx}/sys/role/delete?id=${role.id}" onclick="return confirmx('确认要删除该角色吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					<a class="btnList"  href="${ctx}/sys/role/delete?id=${role.id}" onclick="return confirmx('确认要删除该角色吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>	
 			</tr>
 		</c:forEach>

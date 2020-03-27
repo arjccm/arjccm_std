@@ -69,10 +69,10 @@
 				<shiro:hasPermission name="org:ccmOrgControl:edit"><td>
 				<a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/org/ccmOrgControl/form?id=${ccmOrgControl.id}', '编辑', '1100px', '700px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/org/ccmOrgControl/delete?id=${ccmOrgControl.id}"
 							onclick="return confirmx('确认要删除该车辆布控记录吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

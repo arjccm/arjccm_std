@@ -1291,7 +1291,7 @@ function house(buildingId){
                  html+='<table>';
                  //单元大于1，添加删除单元
                  if(residentialUnitArr[j]>1){
-                     html+='<td><span>'+residentialUnitArr[j]+'单元<a class="btnList" title="删除该单元" onclick="removeUnit('+residentialUnitArr[j]+')"><i class="icon-trash"></i></a></span></td>';
+                     html+='<td><span>'+residentialUnitArr[j]+'单元<a class="btnList" title="删除该单元" onclick="removeUnit('+residentialUnitArr[j]+')"><i class="iconfont icon-caozuotubiao-shanchu"></i></a></span></td>';
                  }else{
                      html+='<td><span>'+residentialUnitArr[j]+'单元</span></td>';
                  }

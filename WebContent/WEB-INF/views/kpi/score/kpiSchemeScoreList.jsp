@@ -96,7 +96,7 @@
 				
 				<shiro:hasPermission name="score:kpiSchemeScore:edit"><td style="height: 50px">
 					<c:if test="${kpiScheme.state != '' and not empty kpiScheme.state and kpiScheme.state != '0' }">
-						<a class="btnList" href="${ctx}/score/kpiSchemeScore/form?id=${kpiScheme.id}" title="数据录入"><i class="icon-pencil"></i></a>
+						<a class="btnList" href="${ctx}/score/kpiSchemeScore/form?id=${kpiScheme.id}" title="数据录入"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					</c:if>
 				</td></shiro:hasPermission>
 			</tr>

@@ -70,8 +70,8 @@
 					<fmt:formatDate value="${pbsApplyrec.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="apply:pbsApplyrec:edit"><td>
-    				<a href="${ctx}/apply/pbsApplyrec/form?id=${pbsApplyrec.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/apply/pbsApplyrec/delete?id=${pbsApplyrec.id}" onclick="return confirmx('确认要删除该申请记录吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+    				<a href="${ctx}/apply/pbsApplyrec/form?id=${pbsApplyrec.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/apply/pbsApplyrec/delete?id=${pbsApplyrec.id}" onclick="return confirmx('确认要删除该申请记录吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

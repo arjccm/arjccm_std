@@ -129,11 +129,11 @@
 							title="事件关联"><i class="icon-random"></i></a> 
 							<a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/live/ccmPlaceLive/form?id=${ccmPlaceLive.id}', '编辑', '1100px', '700px')"
-							title="修改"><i class="icon-pencil"></i></a> 
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a class="btnList"
 							href="${ctx}/live/ccmPlaceLive/delete?id=${ccmPlaceLive.id}"
 							onclick="return confirmx('确认要删除该农贸市场吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceLive.ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
 							   title="从业人员添加"><i class="icon-group"></i></a>

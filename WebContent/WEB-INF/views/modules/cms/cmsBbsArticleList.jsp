@@ -99,7 +99,7 @@
 							<a class="btnList" onclick="HandleTips(this,'${cmsBbsArticle.id}')" title="审核"><i class="icon-legal"></i></a>
 			   			</c:otherwise>
 		   		  	</c:choose>
-                    <a class="btnList" href="${ctx}/cms/cmsBbsArticle/delete?id=${cmsBbsArticle.id}" onclick="return confirmx('确认要删除该网上论坛帖子吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+                    <a class="btnList" href="${ctx}/cms/cmsBbsArticle/delete?id=${cmsBbsArticle.id}" onclick="return confirmx('确认要删除该网上论坛帖子吗？', this.href)"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
                 </td>
             </shiro:hasPermission>
         </tr>

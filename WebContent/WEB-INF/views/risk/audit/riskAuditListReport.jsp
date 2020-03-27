@@ -97,7 +97,7 @@
 				</td>
 				<shiro:hasPermission name="audit:riskAudit:edit"><td>
     				<a class="btnList" href="${ctx}/audit/riskAudit/formReport?id=${riskReport.id}&readNum=${riskReport.readNum}" title="上报"><i class="icon-file"></i></a>
-					<a class="btnList" href="${ctx}/audit/riskAudit/deleteReport?id=${riskReport.id}" onclick="return confirmx('确认要删除该重大事项的上报吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					<a class="btnList" href="${ctx}/audit/riskAudit/deleteReport?id=${riskReport.id}" onclick="return confirmx('确认要删除该重大事项的上报吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

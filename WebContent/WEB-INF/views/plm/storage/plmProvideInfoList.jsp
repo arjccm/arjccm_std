@@ -122,10 +122,10 @@
 						</td>
 						<shiro:hasPermission name="storage:plmProvideInfo:edit">
 							<td style="height: 50px"><a
-								href="${ctx}/storage/plmProvideInfo/form?id=${plmProvideInfo.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
+								href="${ctx}/storage/plmProvideInfo/form?id=${plmProvideInfo.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a
 								href="${ctx}/storage/plmProvideInfo/delete?id=${plmProvideInfo.id}"
-								onclick="return confirmx('确认要删除该供应商信息吗？', this.href)" class="btnList"><i title="删除" class="icon-trash"></i></a></td>
+								onclick="return confirmx('确认要删除该供应商信息吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 						</shiro:hasPermission>
 					</tr>
 				</c:forEach>
@@ -159,10 +159,10 @@
 						<div class="footbtn" style="text-align: right;">
 							<shiro:hasPermission name="storage:plmProvideInfo:edit">
 								<a
-									href="${ctx}/storage/plmProvideInfo/form?id=${plmProvideInfo.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
+									href="${ctx}/storage/plmProvideInfo/form?id=${plmProvideInfo.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a
 									href="${ctx}/storage/plmProvideInfo/delete?id=${plmProvideInfo.id}"
-									onclick="return confirmx('确认要删除该供应商信息吗？', this.href)" class="btnList"><i title="删除" class="icon-trash"></i></a>
+									onclick="return confirmx('确认要删除该供应商信息吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission>
 
 						</div>

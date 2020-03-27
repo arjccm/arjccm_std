@@ -121,7 +121,8 @@
 		AND(((
 		(a.create_date &gt;= date_format(DATE_SUB(curdate(), INTERVAL 0 DAY), '%Y-%m-%d') AND
 		a.create_date &lt; date_format(DATE_SUB(curdate(),INTERVAL - 1 DAY), '%Y-%m-%d'))
-		OR a.read_flag = 0) AND a.type != "04")
+		OR a.read_flag = 0))
+		-- AND a.type != "04")
 		OR (a.type = "04" AND a.read_flag = 0 AND a.deadline IS NOT NULL AND a.deadline &lt; now()
 		))
 		ORDER BY

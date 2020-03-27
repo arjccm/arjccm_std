@@ -70,10 +70,10 @@
 					${plmStatisticsDict.remarks}
 				</td>
 				<shiro:hasPermission name="statistics:plmStatisticsDict:edit"><td>
-    				<a href="${ctx}/statistics/plmStatisticsDict/form?id=${plmStatisticsDict.id}" title="修改"><i class="icon-pencil"></i></a>
+    				<a href="${ctx}/statistics/plmStatisticsDict/form?id=${plmStatisticsDict.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/statistics/plmStatisticsDict/delete?id=${plmStatisticsDict.id}" 
 					onclick="return confirmx('确认要删除该统计首页字典吗？', this.href)">
-					<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					<i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

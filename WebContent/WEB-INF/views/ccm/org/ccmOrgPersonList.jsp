@@ -144,10 +144,10 @@
 				<shiro:hasPermission name="org:ccmOrgPerson:edit"><td>
     				<a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/org/ccmOrgPerson/form?id=${ccmOrgPerson.id}', '编辑', '1100px', '700px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/org/ccmOrgPerson/delete?id=${ccmOrgPerson.id}"
 							onclick="return confirmx('确认要删除该车辆布控记录吗？', this.href)" title="删除"><i
-								class="icon-trash"></i></a>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a>
     			<%-- 	
     				<a href="${ctx}/org/ccmOrgPerson/form?id=${ccmOrgPerson.id}">修改</a>
 					<a href="${ctx}/org/ccmOrgPerson/delete?id=${ccmOrgPerson.id}" onclick="return confirmx('确认要删除该人员吗？', this.href)">删除</a> --%>

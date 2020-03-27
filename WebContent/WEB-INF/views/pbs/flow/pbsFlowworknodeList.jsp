@@ -79,9 +79,9 @@
                         <a href="${ctx}/flow/pbsFlowworknode/refusehandle?id=${pbsFlowworknode.id}"
                             onclick="return confirmx('确认要审核驳回该节点吗？', this.href)" title = "驳回"><i class="icon-remove-circle"></i></a>
                             </c:if>
-						<a href="${ctx}/flow/pbsFlowworknode/form?id=${pbsFlowworknode.id}" title = "修改"><i class="icon icon-pencil"></i></a>
+						<a href="${ctx}/flow/pbsFlowworknode/form?id=${pbsFlowworknode.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a href="${ctx}/flow/pbsFlowworknode/delete?id=${pbsFlowworknode.id}"
-							onclick="return confirmx('确认要删除该工作节点记录吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a> 
+							onclick="return confirmx('确认要删除该工作节点记录吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 						
 						</td>
 					</shiro:hasPermission>

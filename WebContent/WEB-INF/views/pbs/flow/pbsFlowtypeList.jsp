@@ -55,8 +55,8 @@
 					<fmt:formatDate value="${pbsFlowtype.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="flow:pbsFlowtype:edit"><td>
-    				<a href="${ctx}/flow/pbsFlowtype/form?id=${pbsFlowtype.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/flow/pbsFlowtype/delete?id=${pbsFlowtype.id}" onclick="return confirmx('确认要删除该流程类型吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+    				<a href="${ctx}/flow/pbsFlowtype/form?id=${pbsFlowtype.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/flow/pbsFlowtype/delete?id=${pbsFlowtype.id}" onclick="return confirmx('确认要删除该流程类型吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

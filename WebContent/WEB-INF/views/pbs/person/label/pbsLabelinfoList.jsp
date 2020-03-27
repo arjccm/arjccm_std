@@ -63,8 +63,8 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="person:pbsLabelinfo:edit">
 						<td>
-							<a href="${ctx}/person/pbsLabelinfo/form?id=${pbsLabelinfo.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-							<a href="${ctx}/person/pbsLabelinfo/delete?id=${pbsLabelinfo.id}" onclick="return confirmx('确认要删除该建议分区吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+							<a href="${ctx}/person/pbsLabelinfo/form?id=${pbsLabelinfo.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+							<a href="${ctx}/person/pbsLabelinfo/delete?id=${pbsLabelinfo.id}" onclick="return confirmx('确认要删除该建议分区吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 						</td>
 					</shiro:hasPermission>
 				</tr>

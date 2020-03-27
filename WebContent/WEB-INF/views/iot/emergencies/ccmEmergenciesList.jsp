@@ -172,7 +172,7 @@
 <%--				</td>--%>
 				<shiro:hasPermission name="emergencies:ccmEmergencies:edit"><td>
 <%--    				<a href="${ctx}/emergencies/ccmEmergencies/form?id=${ccmEarlyWarning.id}">修改</a>--%>
-					<a class="btnList" href="${ctx}/emergencies/ccmEmergencies/delete?id=${ccmEarlyWarning.id}" onclick="return confirmx('确认要删除该突发事件吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					<a class="btnList" href="${ctx}/emergencies/ccmEmergencies/delete?id=${ccmEarlyWarning.id}" onclick="return confirmx('确认要删除该突发事件吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -84,10 +84,10 @@
 						<td>${plmResource.remarks}</td>
 						<td>
 						<shiro:hasPermission name="resource:plmResource:edit">
-								<a class="btnList" href="${ctx}/resource/plmResource/form?id=${plmResource.id}"><i title="修改" class="icon-pencil"></i></a>
+								<a class="btnList" href="${ctx}/resource/plmResource/form?id=${plmResource.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/resource/plmResource/delete?id=${plmResource.id}"
-									onclick="return confirmx('确认要删除该资源共享吗？', this.href)"><i title="删除" class="icon-trash"></i></a>
+									onclick="return confirmx('确认要删除该资源共享吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission></td>
 					</tr>
 				</c:forEach>
@@ -125,11 +125,11 @@
 							<shiro:hasPermission name="resource:plmResource:edit">
 								<a class="btnList"
 									href="${ctx}/resource/plmResource/form?id=${plmResource.id}"
-									title="修改"><i class="icon-pencil"></i></a>
+									title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/resource/plmResource/delete?id=${plmResource.id}"
 									onclick="return confirmx('确认要删除该资源共享吗？', this.href)" title="删除"><i
-									class="icon-trash"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission>
 						</div>
 					</div>

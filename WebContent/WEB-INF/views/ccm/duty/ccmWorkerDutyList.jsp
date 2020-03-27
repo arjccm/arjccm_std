@@ -89,10 +89,10 @@
 						<a class="btnList" onclick="alertx('此信息已发布')" title="发布"><i class="icon-plane"></i></a>
 					</c:if> --%>
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/duty/ccmWorkerDuty/form?id=${ccmWorkerDuty.id}', '编辑', '1100px','700px')" title="修改">
-						<i class="icon-pencil"></i>
+						<i class="iconfont icon-caozuotubiao-xiugai"></i>
 					</a> 
-					<%-- <a class="btnList" href="${ctx}/duty/ccmWorkerDuty/form?id=${ccmWorkerDuty.id}" title="修改"><i class="icon-pencil"></i></a> --%>
-					<a class="btnList" href="${ctx}/duty/ccmWorkerDuty/delete?id=${ccmWorkerDuty.id}" onclick="return confirmx('确认要删除该社工职责吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					<%-- <a class="btnList" href="${ctx}/duty/ccmWorkerDuty/form?id=${ccmWorkerDuty.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> --%>
+					<a class="btnList" href="${ctx}/duty/ccmWorkerDuty/delete?id=${ccmWorkerDuty.id}" onclick="return confirmx('确认要删除该社工职责吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

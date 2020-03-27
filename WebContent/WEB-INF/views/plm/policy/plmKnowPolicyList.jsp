@@ -82,11 +82,11 @@
 						<td>${plmKnowPolicy.remarks}</td>
 						<shiro:hasPermission name="policy:plmKnowPolicy:edit">
 							<td><a class="btnList"
-									href="${ctx}/policy/plmKnowPolicy/form?id=${plmKnowPolicy.id}" title="修改"><i class="icon-pencil"></i></a>
+									href="${ctx}/policy/plmKnowPolicy/form?id=${plmKnowPolicy.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 									href="${ctx}/policy/plmKnowPolicy/delete?id=${plmKnowPolicy.id}"
 									onclick="return confirmx('确认要删除该政策法规吗？', this.href)" title="删除"><i
-										class="icon-trash"></i></a></td>
+										class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 						</shiro:hasPermission>
 					</tr>
 				</c:forEach>
@@ -123,11 +123,11 @@
 						<div class="footbtn" style="text-align: right;">
 							<shiro:hasPermission name="policy:plmKnowPolicy:edit">
 								<a class="btnList"
-									href="${ctx}/policy/plmKnowPolicy/form?id=${plmKnowPolicy.id}" title="修改"><i class="icon-pencil"></i></a>
+									href="${ctx}/policy/plmKnowPolicy/form?id=${plmKnowPolicy.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 									href="${ctx}/policy/plmKnowPolicy/delete?id=${plmKnowPolicy.id}"
 									onclick="return confirmx('确认要删除该政策法规吗？', this.href)" title="删除"><i
-										class="icon-trash"></i></a>
+										class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission>
 						</div>
 					</div>

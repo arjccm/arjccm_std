@@ -75,8 +75,8 @@
 					${pbsProposalareaHis.remarks}
 				</td>
 				<shiro:hasPermission name="proposal:pbsProposalareaHis:edit"><td>
-    				<a href="${ctx}/proposal/pbsProposalareaHis/form?id=${pbsProposalareaHis.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/proposal/pbsProposalareaHis/delete?id=${pbsProposalareaHis.id}" onclick="return confirmx('确认要删除该建议分区历史信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+    				<a href="${ctx}/proposal/pbsProposalareaHis/form?id=${pbsProposalareaHis.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/proposal/pbsProposalareaHis/delete?id=${pbsProposalareaHis.id}" onclick="return confirmx('确认要删除该建议分区历史信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

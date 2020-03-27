@@ -280,7 +280,7 @@
 				
 			<a id="btnSubmit" class="btn btn-primary" onclick="$('#flag').val('yes')"><i class="icon-ok-sign"></i>同 意</a>&nbsp;
 			<c:if test="${rejectedBtn}">
-			<a id="btnSubmit" class="btn btn-inverse" onclick="$('#flag').val('no')"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>驳 回</a>&nbsp;
+			<a id="btnSubmit" class="btn btn-inverse" onclick="$('#flag').val('no')"><i class="iconfont icon-caozuotubiao-shanchu"></i>驳 回</a>&nbsp;
 			</c:if>	
 				
 			<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i class="icon-reply"></i>返回</a>

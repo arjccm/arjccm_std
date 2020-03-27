@@ -113,8 +113,8 @@
 					${ccmPatrolSecurity.remarks}
 				</td>
 				<shiro:hasPermission name="security:ccmPatrolSecurity:edit"><td>
-    				<a href="${ctx}/security/ccmPatrolSecurity/form?id=${ccmPatrolSecurity.id}"><i style="color:#2fa4e7;" class="icon-pencil" title="修改"></i></a>
-					<a href="${ctx}/security/ccmPatrolSecurity/delete?id=${ccmPatrolSecurity.id}" onclick="return confirmx('确认要删除该警卫吗？', this.href)"><i style="color:red;" class="icon-trash" title="删除"></i></a>
+    				<a href="${ctx}/security/ccmPatrolSecurity/form?id=${ccmPatrolSecurity.id}"><i style="color:#2fa4e7;" class="iconfont icon-caozuotubiao-xiugai" title="修改"></i></a>
+					<a href="${ctx}/security/ccmPatrolSecurity/delete?id=${ccmPatrolSecurity.id}" onclick="return confirmx('确认要删除该警卫吗？', this.href)"><i style="color:red;" class="iconfont icon-caozuotubiao-shanchu" title="删除"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

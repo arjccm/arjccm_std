@@ -120,11 +120,11 @@ $(document).ready(function() {
 							</c:if> <c:if test="${!e}">
 									<a class="btnList"
 										href="${ctx}/purchase/plmPurchaseApply/form?id=${plmPurchaseApply.id}"
-										title="修改"><i class="icon-pencil"></i></a>
+										title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/purchase/plmPurchaseApply/delete?id=${plmPurchaseApply.id}"
 										onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-										class="icon-trash"></i></a>
+										class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</c:if></td>
 					</tr>
 				</c:forEach>
@@ -165,11 +165,11 @@ $(document).ready(function() {
 							<c:if test="${!e}">
 									<a
 										href="${ctx}/purchase/plmPurchaseApply/form?id=${plmPurchaseApply.id}"
-										title="提交申请"><i class="icon-pencil"></i></a>
+										title="提交申请"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/purchase/plmPurchaseApply/delete?id=${plmPurchaseApply.id}"
 										onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
-										class="icon-trash"></i></a>
+										class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</c:if>
 						</div>
 					</div>

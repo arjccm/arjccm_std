@@ -151,7 +151,7 @@
 					</td>
 					<td>
 						<shiro:hasPermission name="pop:ccmPeople:edit">
-							<a class="btnList" href="javascript:;"  onclick="PopAdd(this,'${ccmPeople.id}','${houseId}')"  title="添加成员"><i class="icon-plus"></i></a>
+							<a class="btnList" href="javascript:;"  onclick="PopAdd(this,'${ccmPeople.id}','${houseId}')"  title="添加成员"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 						</shiro:hasPermission>
 					</td>
 				</tr>

@@ -74,10 +74,10 @@
 					<td>${ccmEventRequestdeal.remarks}</td>
 					<shiro:hasPermission name="event:ccmEventRequestdeal:edit">
 						<td><a class="btnList"
-							href="${ctx}/event/ccmEventRequestdeal/form?id=${ccmEventRequestdeal.id}" title="处理"><i class="icon-pencil"></i></a>
+							href="${ctx}/event/ccmEventRequestdeal/form?id=${ccmEventRequestdeal.id}" title="处理"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a class="btnList"
 							href="${ctx}/event/ccmEventRequestdeal/delete?id=${ccmEventRequestdeal.id}"
-							onclick="return confirmx('确认要删除该请求处理吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							onclick="return confirmx('确认要删除该请求处理吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

@@ -180,11 +180,11 @@
 						<td style="height: 50px;">
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '编辑', '1100px', '600px')" title="修改">
-								<i class="icon-pencil"></i>
+								<i class="iconfont icon-caozuotubiao-xiugai"></i>
 							</a>
 							<a class="btnList"	href="${ctx}/preview/ccmEventIncidentPreview/delete?id=${ccmEventIncidentPreview.id}"
 							   onclick="return confirmx('确认要删除该app信息上报吗？', this.href)"		title="删除">
-								<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
+								<i class="iconfont icon-caozuotubiao-shanchu"></i>
 							</a>
 
 							<c:if test="${ccmEventIncidentPreview.status eq '03' || ccmEventIncidentPreview.status eq '02'}">

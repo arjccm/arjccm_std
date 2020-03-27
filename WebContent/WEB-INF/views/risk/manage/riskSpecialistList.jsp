@@ -81,8 +81,8 @@
 					${riskSpecialist.domain}
 				</td>
 				<shiro:hasPermission name="manage:riskSpecialist:edit"><td>
-    				<a class="btnList" href="${ctx}/manage/riskSpecialist/form?id=${riskSpecialist.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/manage/riskSpecialist/delete?id=${riskSpecialist.id}" onclick="return confirmx('确认要删除该专家库吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/manage/riskSpecialist/form?id=${riskSpecialist.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/manage/riskSpecialist/delete?id=${riskSpecialist.id}" onclick="return confirmx('确认要删除该专家库吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

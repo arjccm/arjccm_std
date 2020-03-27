@@ -73,10 +73,10 @@
 					<%-- <td>${pbsActivitytype.remarks}</td> --%>
 					<shiro:hasPermission name="activity:pbsActivitytype:edit">
 						<td><a
-							href="${ctx}/activity/pbsActivitytype/form?id=${pbsActivitytype.id}" title = "修改"><i class="icon icon-pencil"></i></a>
+							href="${ctx}/activity/pbsActivitytype/form?id=${pbsActivitytype.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a
 							href="${ctx}/activity/pbsActivitytype/delete?id=${pbsActivitytype.id}"
-							onclick="return confirmx('确认要删除该活动定义吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a></td>
+							onclick="return confirmx('确认要删除该活动定义吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

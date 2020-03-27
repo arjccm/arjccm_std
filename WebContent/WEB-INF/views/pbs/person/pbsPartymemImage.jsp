@@ -110,17 +110,17 @@
 						onclick="document.getElementById('subform').submit();return false"><i
 						title="人物信息图"	class="icon icon-group"></i></a> <a
 						href="${ctx}/person/pbsPartymem/form?id=${pbsPartymem.id}"
-						title="修改"><i class="icon icon-pencil"></i></a> <a
+						title="修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a> <a
 						href="${ctx}/person/pbsPartymem/delete?id=${pbsPartymem.id}"
 						onclick="return confirmx('确认要删除该学员信息吗？', this.href)" title="删除"><i
-							class="icon icon-trash"></i></a>
+							class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 						</div>	
 						<div style="padding-left:20%;margin-top:10px">	
 							 <a
 						href="${ctx}/person/pbsPartymembind/adduser?partymemid=${pbsPartymem.id}&sSource=sys_user"><i
-							class="icon icon-plus" title="添加学员用户关系"></i></a> <a
+							class="icon iconfont icon-caozuotubiao-tianjiachuli" title="添加学员用户关系"></i></a> <a
 						href="${ctx}/person/pbsDepartmentbind/addoffice?partymemid=${pbsPartymem.id}&sSource=sys_office"><i
-						class="icon icon-plus-sign" title="添加学员部门关系"></i></a>
+						class="icon iconfont icon-caozuotubiao-tianjiachuli-sign" title="添加学员部门关系"></i></a>
 						</div>
 				</div>
 				<div style="height:100%;margin-left:5px;width:70%; background: -webkit-gradient(linear, left top, left bottom, from(#E8E8E8), to(#B2B4B4)); float:left;">

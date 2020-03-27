@@ -103,8 +103,8 @@
 					${fns:getDictLabel(ccmWorkerAttendance.leaveType, 'ccm_worker_attendance_leave_type', '')}
 				</td>
 				<shiro:hasPermission name="attendance:ccmWorkerAttendance:edit"><td style="height: 50px">
-    				<a  class="btnList" href="${ctx}/attendance/ccmWorkerAttendance/leaveform?id=${ccmWorkerAttendance.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a  class="btnList" href="${ctx}/attendance/ccmWorkerAttendance/delete?id=${ccmWorkerAttendance.id}&deleteType=2" onclick="return confirmx('确认要删除该社工考勤登记吗？', this.href) title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a  class="btnList" href="${ctx}/attendance/ccmWorkerAttendance/leaveform?id=${ccmWorkerAttendance.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a  class="btnList" href="${ctx}/attendance/ccmWorkerAttendance/delete?id=${ccmWorkerAttendance.id}&deleteType=2" onclick="return confirmx('确认要删除该社工考勤登记吗？', this.href) title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

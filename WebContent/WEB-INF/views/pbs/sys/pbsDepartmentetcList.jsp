@@ -68,8 +68,8 @@
 					${pbsDepartmentetc.remarks}
 				</td> --%>
 				<shiro:hasPermission name="sys:pbsDepartmentetc:edit"><td>
-    				<a href="${ctx}/sys/pbsDepartmentetc/form?id=${pbsDepartmentetc.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/sys/pbsDepartmentetc/delete?id=${pbsDepartmentetc.id}" onclick="return confirmx('确认要删除该学员部门扩展信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+    				<a href="${ctx}/sys/pbsDepartmentetc/form?id=${pbsDepartmentetc.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/sys/pbsDepartmentetc/delete?id=${pbsDepartmentetc.id}" onclick="return confirmx('确认要删除该学员部门扩展信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

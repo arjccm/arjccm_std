@@ -65,7 +65,7 @@
 					<td>${procIns.suspended}</td>
 					<td>
 						<shiro:hasPermission name="act:process:edit">
-							<a href="${ctx}/act/process/deleteProcIns?procInsId=${procIns.processInstanceId}&reason=" onclick="return promptx('删除流程','删除原因',this.href);" title="删除流程"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							<a href="${ctx}/act/process/deleteProcIns?procInsId=${procIns.processInstanceId}&reason=" onclick="return promptx('删除流程','删除原因',this.href);" title="删除流程"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 						</shiro:hasPermission>&nbsp;
 					</td>
 				</tr>

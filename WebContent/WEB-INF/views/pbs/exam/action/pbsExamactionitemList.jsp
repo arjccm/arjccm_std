@@ -70,8 +70,8 @@
 					<fmt:formatDate value="${pbsExamactionitem.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="exam:pbsExamactionitem:edit"><td>
-    				<a href="${ctx}/exam/pbsExamactionitem/form?id=${pbsExamactionitem.id}" title = "修改"><i class="icon icon-pencil"></i></a>
-					<a href="${ctx}/exam/pbsExamactionitem/delete?id=${pbsExamactionitem.id}" onclick="return confirmx('确认要删除该考试题目信息吗？', this.href)" title = "删除"><i class="icon icon-trash"></i></a>
+    				<a href="${ctx}/exam/pbsExamactionitem/form?id=${pbsExamactionitem.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/exam/pbsExamactionitem/delete?id=${pbsExamactionitem.id}" onclick="return confirmx('确认要删除该考试题目信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

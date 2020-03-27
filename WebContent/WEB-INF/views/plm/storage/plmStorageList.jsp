@@ -84,10 +84,10 @@
 				{{row.remarks}}
 			</td>
 			<shiro:hasPermission name="storage:plmStorage:edit"><td style="height: 50px">
-   				<a class="btnList" href="${ctx}/storage/plmStorage/form?id={{row.id}}" title="修改"><i class="icon-pencil"></i></a>
+   				<a class="btnList" href="${ctx}/storage/plmStorage/form?id={{row.id}}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 				<a  class="btnList" href="${ctx}/storage/plmStorage/delete?id={{row.id}}" title="删除" onclick="return confirmx('确认要删除该仓库信息及所有子仓库信息吗？', this.href)"><i
-										class="icon-trash"></i></a>
-				<a class="btnList" href="${ctx}/storage/plmStorage/form?parent.id={{row.id}}" title="添加下级仓库信息"><i  class="icon-plus"></i></a> 
+										class="iconfont icon-caozuotubiao-shanchu"></i></a>
+				<a class="btnList" href="${ctx}/storage/plmStorage/form?parent.id={{row.id}}" title="添加下级仓库信息"><i  class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 			</td></shiro:hasPermission>
 		</tr>
 	</script>

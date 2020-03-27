@@ -117,8 +117,8 @@
 					<fmt:formatDate value="${ccmMobileDevice.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="ccmsys:ccmMobileDevice:edit"><td>
-    				<a class="btnList" href="${ctx}/ccmsys/ccmMobileDevice/form2?id=${ccmMobileDevice.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/ccmsys/ccmMobileDevice/delete?id=${ccmMobileDevice.id}" onclick="return confirmx('确认要删除该移动设备吗？', this.href)" title="删除"><i class="icon-trash"></i></a>
+    				<a class="btnList" href="${ctx}/ccmsys/ccmMobileDevice/form2?id=${ccmMobileDevice.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/ccmsys/ccmMobileDevice/delete?id=${ccmMobileDevice.id}" onclick="return confirmx('确认要删除该移动设备吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

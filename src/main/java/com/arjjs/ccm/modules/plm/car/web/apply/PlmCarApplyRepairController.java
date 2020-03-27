@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.activiti.engine.ActivitiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -127,7 +128,14 @@ public class PlmCarApplyRepairController extends BaseController {
 		if (!beanValidator(model, plmCarApplyRepair)){
 			return form(plmCarApplyRepair, model);
 		}
-		plmCarApplyRepairService.apply(plmCarApplyRepair);
+		try {
+			plmCarApplyRepairService.apply(plmCarApplyRepair);
+		} catch (
+				ActivitiException e) {
+			e.printStackTrace();
+			addMessage(redirectAttributes, "申请失败：部门没有设置对应负责人");
+			return "redirect:" + Global.getAdminPath() + "/act/task/apply/";
+		}
 
 		addMessage(redirectAttributes, "提交维修(保养)申请成功");
 		return "redirect:" + Global.getAdminPath() + "/act/task/apply/";

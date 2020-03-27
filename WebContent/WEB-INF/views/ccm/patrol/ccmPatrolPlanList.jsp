@@ -98,8 +98,8 @@
 					${fns:getDictLabel(ccmPatrolPlan.pointType, 'ccm_patrol_point_type', '')}
 				</td>
 				<shiro:hasPermission name="patrol:ccmPatrolPlan:edit"><td>
-    				<a class="btnList" href="${ctx}/patrol/ccmPatrolPlan/form?id=${ccmPatrolPlan.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/patrol/ccmPatrolPlan/delete?id=${ccmPatrolPlan.id}" onclick="return confirmx('确认要删除该巡逻计划吗？', this.href)" title="删除"><i class="icon-trash"></i></a>
+    				<a class="btnList" href="${ctx}/patrol/ccmPatrolPlan/form?id=${ccmPatrolPlan.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/patrol/ccmPatrolPlan/delete?id=${ccmPatrolPlan.id}" onclick="return confirmx('确认要删除该巡逻计划吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					<a class="btnList" href="${ctx}/patrol/ccmPatrolResult/startplan?planId=${ccmPatrolPlan.id}" onclick="return confirmx('确认要开启该巡逻计划吗？', this.href)" title="开启计划"><i class="icon-play"></i></a>
 				</td></shiro:hasPermission>
 			</tr>

@@ -98,8 +98,8 @@
 					<fmt:formatDate value="${ccmKnowSpace.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="know:ccmKnowSpace:edit"><td style="height: 50px">
-    				<a class="btnList" href="${ctx}/know/ccmKnowSpace/form?id=${ccmKnowSpace.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/know/ccmKnowSpace/delete?id=${ccmKnowSpace.id}" onclick="return confirmx('确认要删除该地方政策吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/know/ccmKnowSpace/form?id=${ccmKnowSpace.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/know/ccmKnowSpace/delete?id=${ccmKnowSpace.id}" onclick="return confirmx('确认要删除该地方政策吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

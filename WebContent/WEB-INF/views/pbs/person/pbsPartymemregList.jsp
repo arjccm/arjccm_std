@@ -102,10 +102,10 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="person:pbsPartymemreg:edit">
 						<td><a
-							href="${ctx}/person/pbsPartymemreg/form?id=${pbsPartymemreg.id}"  title = "修改"><i class="icon icon-pencil"></i></a>
+							href="${ctx}/person/pbsPartymemreg/form?id=${pbsPartymemreg.id}"  title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a
 							href="${ctx}/person/pbsPartymemreg/delete?id=${pbsPartymemreg.id}"
-							onclick="return confirmx('确认要删除该学员登记信息吗？', this.href)"  title = "删除"><i class="icon icon-trash"></i></a></td>
+							onclick="return confirmx('确认要删除该学员登记信息吗？', this.href)"  title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>
