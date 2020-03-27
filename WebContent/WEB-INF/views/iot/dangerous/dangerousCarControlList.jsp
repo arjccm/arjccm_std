@@ -80,7 +80,7 @@
 							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
 							href="${ctx}/dangerous/dangerousCarControl/delete?id=${dangerousCarControl.id}"
 							onclick="return confirmx('确认要删除该危化品车辆布控记录吗？', this.href)"
-							title="删除"><i class="icon-remove-sign"></i></a></td>
+							title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

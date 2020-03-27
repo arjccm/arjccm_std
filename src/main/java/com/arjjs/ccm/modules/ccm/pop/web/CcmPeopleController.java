@@ -337,9 +337,9 @@ public class CcmPeopleController extends BaseController {
 	// 老年人保存
 	@RequiresPermissions("pop:ccmPeople:edit")
 	@RequestMapping(value = "saveOlder")
-	public String saveOlder(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes) {
+	public void saveOlder(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmPeople)) {
-			return form(ccmPeople, model);
+			//return form(ccmPeople, model);
 		}
 		// 注入楼栋id
 		if (ccmPeople.getRoomId() != null && ccmPeople.getRoomId().getId() != null
@@ -351,8 +351,15 @@ public class CcmPeopleController extends BaseController {
 			}
 		}
 		ccmPeopleService.save(ccmPeople);
-		addMessage(redirectAttributes, "保存实有人口成功");
-		return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/listOlder/?repage";
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		CommUtil.openWinExpDiv(out,"保存实有人口成功");
+		//addMessage(redirectAttributes, "保存实有人口成功");
+		//return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/listOlder/?repage";
 	}
 
 	// 特殊关怀First
@@ -478,9 +485,9 @@ public class CcmPeopleController extends BaseController {
 	// 特殊关怀保存
 	@RequiresPermissions("pop:ccmPeople:edit")
 	@RequestMapping(value = "saveCare")
-	public String saveCare(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes) {
+	public void saveCare(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmPeople)) {
-			return form(ccmPeople, model);
+			//return form(ccmPeople, model);
 		}
 		// 注入楼栋id
 		if (ccmPeople.getRoomId() != null && ccmPeople.getRoomId().getId() != null
@@ -492,8 +499,14 @@ public class CcmPeopleController extends BaseController {
 			}
 		}
 		ccmPeopleService.save(ccmPeople);
-		addMessage(redirectAttributes, "保存实有人口成功");
-		return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/listCareFirst/?repage";
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		CommUtil.openWinExpDiv(out,"保存实有人口成功");
+		//return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/listCareFirst/?repage";
 	}
 
 	// 人员信息弹框

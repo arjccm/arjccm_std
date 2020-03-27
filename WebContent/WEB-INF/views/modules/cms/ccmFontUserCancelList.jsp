@@ -82,7 +82,7 @@
 					${ccmFontUser.remarks}
 				</td>
 				<shiro:hasPermission name="cms:ccmFontUser:edit"><td>
-					<a href="${ctx}/cms/ccmFontUser/delete?id=${ccmFontUser.id}"  title="注销" onclick="return confirmx('确认要删除该居民用户吗？', this.href)"><i class="icon-remove-sign"></i></a>
+					<a href="${ctx}/cms/ccmFontUser/delete?id=${ccmFontUser.id}"  title="注销" onclick="return confirmx('确认要删除该居民用户吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

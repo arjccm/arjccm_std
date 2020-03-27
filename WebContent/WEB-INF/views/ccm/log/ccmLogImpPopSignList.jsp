@@ -125,7 +125,7 @@
 				</td>
 				<shiro:hasPermission name="log:ccmLogImpPopSign:edit"><td class="tc">
     				<a class="btnList" href="${ctx}/log/ccmLogImpPopSign/form?id=${ccmLogImpPopSign.id}"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/log/ccmLogImpPopSign/delete?id=${ccmLogImpPopSign.id}" onclick="return confirmx('确认要删除该重点人员签到记录吗？', this.href)"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/log/ccmLogImpPopSign/delete?id=${ccmLogImpPopSign.id}" onclick="return confirmx('确认要删除该重点人员签到记录吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 				
 			</tr>

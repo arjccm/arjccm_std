@@ -73,7 +73,7 @@
     				<a href="${ctx}/statistics/plmStatisticsDict/form?id=${plmStatisticsDict.id}" title="修改"><i class="icon-pencil"></i></a>
 					<a class="btnList" href="${ctx}/statistics/plmStatisticsDict/delete?id=${plmStatisticsDict.id}" 
 					onclick="return confirmx('确认要删除该统计首页字典吗？', this.href)">
-					<i class="icon-remove-sign"></i></a>
+					<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

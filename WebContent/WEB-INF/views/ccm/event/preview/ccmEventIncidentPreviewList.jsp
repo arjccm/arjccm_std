@@ -184,7 +184,7 @@
 							</a>
 							<a class="btnList"	href="${ctx}/preview/ccmEventIncidentPreview/delete?id=${ccmEventIncidentPreview.id}"
 							   onclick="return confirmx('确认要删除该app信息上报吗？', this.href)"		title="删除">
-								<i class="icon-remove-sign"></i>
+								<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
 							</a>
 
 							<c:if test="${ccmEventIncidentPreview.status eq '03' || ccmEventIncidentPreview.status eq '02'}">

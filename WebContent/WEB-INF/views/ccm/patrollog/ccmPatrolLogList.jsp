@@ -90,7 +90,7 @@
 				</td>
 				<shiro:hasPermission name="patrollog:ccmPatrolLog:edit"><td>
 					<a class="btnList" href="${ctx}/patrollog/ccmPatrolLog/form?id=${ccmPatrolLog.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/patrollog/ccmPatrolCheck/delete?id=${ccmPatrolLog.id}" onclick="return confirmx('确认要删除该巡检日志吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/patrollog/ccmPatrolCheck/delete?id=${ccmPatrolLog.id}" onclick="return confirmx('确认要删除该巡检日志吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 <%--     				<a href="${ctx}/patrollog/ccmPatrolLog/form?id=${ccmPatrolLog.id}">修改</a>
 					<a href="${ctx}/patrollog/ccmPatrolLog/delete?id=${ccmPatrolLog.id}" onclick="return confirmx('确认要删除该巡检日志吗？', this.href)">删除</a> --%>
 				</td></shiro:hasPermission>

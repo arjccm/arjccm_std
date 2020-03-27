@@ -170,7 +170,7 @@
 					<td class="tc">${fns:getDictLabel(ccmHousePsychogeny.dangAsse, 'ccm_nors_asle', '')}</td> 
 					<td class="tc"><shiro:hasPermission name="house:ccmHousePsychogeny:edit">
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}', '修改', '1200px', '900px')" title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/house/ccmHousePsychogeny/delete?id=${ccmHousePsychogeny.id}&permissionKey=${permissionKey}" onclick="return confirmx('确认要删除该肇事肇祸等严重精神障碍患者吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+						<a class="btnList" href="${ctx}/house/ccmHousePsychogeny/delete?id=${ccmHousePsychogeny.id}&permissionKey=${permissionKey}" onclick="return confirmx('确认要删除该肇事肇祸等严重精神障碍患者吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmHousePsychogeny.peopleId}')"  title="位置信息"><i class="icon-map-marker "></i></a>
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmHousePsychogeny.peopleId}', '社交关系', '1000px', '700px')" title="社交关系"><i class="icon-group"></i></a>
 						<%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')" title="定时提醒"><i class="icon-bell"></i></a> --%>

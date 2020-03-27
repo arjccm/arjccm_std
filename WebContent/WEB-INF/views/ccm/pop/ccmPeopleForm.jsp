@@ -753,12 +753,12 @@
                     <div class="controls">
                         <div class="help-inline" id="newNet" onmouseout=""
                              onmousemove="onclickNet()" onclick="onclickNet1()">
-<%--                            <sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"--%>
-<%--                                            value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"--%>
-<%--                                            labelValue="${ccmPeople.areaGridId.name}" title="区域"--%>
-<%--                                            url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""--%>
-<%--                                            allowClear="true" notAllowSelectParent="true"--%>
-<%--                                            cssStyle="width:270px "/>--%>
+                            <sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"
+                                           value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
+                                            labelValue="${ccmPeople.areaGridId.name}" title="区域"
+                                            url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""
+                                           allowClear="true" notAllowSelectParent="true"
+                                            cssStyle="width:270px "/>
                             <span class="help-inline"><font color="red" id="showGrid">*</font></span>
                         </div>
 

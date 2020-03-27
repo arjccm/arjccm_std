@@ -105,7 +105,7 @@
 				</td>
 				<shiro:hasPermission name="know:ccmEconomicsYear:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmEconomicsYear/form?id=${ccmEconomicsYear.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/know/ccmEconomicsYear/delete?id=${ccmEconomicsYear.id}" onclick="return confirmx('确认要删除该经济运行数据-年吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/know/ccmEconomicsYear/delete?id=${ccmEconomicsYear.id}" onclick="return confirmx('确认要删除该经济运行数据-年吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

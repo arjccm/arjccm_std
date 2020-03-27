@@ -89,7 +89,7 @@
 				</td>
 				<shiro:hasPermission name="service:ccmServiceWechat:edit"><td>
     				<a class="btnList" href="${ctx}/service/ccmServiceWechat/form?id=${ccmServiceWechat.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/service/ccmServiceWechat/delete?id=${ccmServiceWechat.id}" onclick="return confirmx('确认要删除该公众信息上报吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/service/ccmServiceWechat/delete?id=${ccmServiceWechat.id}" onclick="return confirmx('确认要删除该公众信息上报吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

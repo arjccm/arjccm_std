@@ -68,7 +68,7 @@
 
 				<shiro:hasPermission name="moral:ccmMoral:edit"><td>
     				<a class="btnList" href="${ctx}/moral/ccmMoral/form?id=${ccmMoral.id}" title="编辑"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/moral/ccmMoral/delete?id=${ccmMoral.id}" onclick="return confirmx('确认要删除该道德模范表吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+					<a class="btnList" href="${ctx}/moral/ccmMoral/delete?id=${ccmMoral.id}" onclick="return confirmx('确认要删除该道德模范表吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -109,7 +109,7 @@
 					</td>
 					<shiro:hasPermission name="book:ccmDatabaseBook:edit"><td>
 						<a href="${ctx}/book/ccmDatabaseBook/form?id=${ccmDatabaseBook.id}"><i class="icon-pencil"></i></a>
-						<a href="${ctx}/book/ccmDatabaseBook/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="icon-remove-sign"></i></a>
+						<a href="${ctx}/book/ccmDatabaseBook/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 					</td></shiro:hasPermission>
 				</tr>
 			</c:forEach>
@@ -143,7 +143,7 @@
 								<%--<a onclick="parent.LayerDialog('${ctx}/book/ccmDatabaseBook/form?id=${ccmDatabaseBook.id}', '编辑', '800px', '600px')"
 								   class="btn btn-success"><i class="icon-pencil"></i></a>--%>
 								<%--<a href="${ctx}/book/ccmDatabaseBook/form?id=${ccmDatabaseBook.id}"><i class="icon-pencil"></i></a>--%>
-								<a href="${ctx}/book/ccmDatabaseBook/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="icon-remove-sign"></i></a>
+								<a href="${ctx}/book/ccmDatabaseBook/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 							</td></shiro:hasPermission>
 						</div>
 					</div>

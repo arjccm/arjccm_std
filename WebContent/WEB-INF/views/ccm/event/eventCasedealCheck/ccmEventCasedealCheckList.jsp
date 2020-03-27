@@ -188,7 +188,7 @@
 							onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedealCheck/form?id=${ccmEventCasedeal.id}','处理', '1100px', '700px')" title="修改"><i class="icon-pencil"></i></a>
 						<a  class="btnList"
 							href="${ctx}/event/ccmEventCasedealCheck/deletegrade?id=${ccmEventCasedeal.id}"
-							onclick="return confirmx('确认要删除该事件评分吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+							onclick="return confirmx('确认要删除该事件评分吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 				        <a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventCasedeal.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
 						</td>
 					</shiro:hasPermission>

@@ -44,7 +44,7 @@
 					<td title="${menu.permission}">${fns:abbr(menu.permission,30)}</td>
 					<shiro:hasPermission name="sys:menu:edit"><td nowrap>
 						<a class="btnList" href="${ctx}/sys/menu/form?id=${menu.id}" title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/sys/menu/delete?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" title="删除"><i class="icon-remove-sign"></i></a>
+						<a class="btnList" href="${ctx}/sys/menu/delete?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
 						<a class="btnList" href="${ctx}/sys/menu/form?parent.id=${menu.id}" title="添加下级菜单"><i class="icon-plus"></i></a>
 					</td></shiro:hasPermission>
 				</tr>
