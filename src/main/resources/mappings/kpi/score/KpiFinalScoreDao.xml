@@ -175,7 +175,7 @@
 				AND usr.user_type = #{user.userType}
 			</if>
 			<if test="user != null and user.name != null and user.name != ''">
-				AND usr.NAME = #{user.name}
+				AND usr.NAME LIKE concat('%',#{user.name},'%')
 			</if>
 			<if test="schemeId != null and schemeId != ''">
 				AND scheme.id = #{schemeId}
