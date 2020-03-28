@@ -90,7 +90,7 @@
 					${plmStatisticsPlan.remarks}
 				</td> 
 				<shiro:hasPermission name="statistics:plmStatisticsPlan:edit"><td>
-				   <a href="${ctx}/statistics/plmStatisticsDetail/list?pid=${plmStatisticsPlan.id}" title="方案明细"><i class="icon-edit"></i></a>
+				   <a href="${ctx}/statistics/plmStatisticsDetail/list?pid=${plmStatisticsPlan.id}" title="方案明细"><i class="iconfont icon-caozuotubiao-fanganmingxi"></i></a>
     				<a  onclick="bj('${plmStatisticsPlan.id}')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/statistics/plmStatisticsPlan/delete?id=${plmStatisticsPlan.id}" title="删除"  onclick="return confirmx('确认要删除该门户方案吗？', this.href)">
 					<i class="iconfont icon-caozuotubiao-shanchu"></i></a>

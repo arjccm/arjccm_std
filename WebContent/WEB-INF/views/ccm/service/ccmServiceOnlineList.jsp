@@ -113,7 +113,7 @@
 						<a class="btnList" href="${ctx}/service/ccmServiceOnline/delete?id=${ccmServiceOnline.id}" onclick="return confirmx('确认要删除该在线办事吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</c:if>
 					<c:if test="${etype eq '2'}">
-						<a class="btnList" href="${ctx}/service/ccmServiceOnline/form?id=${ccmServiceOnline.id}&etype=${etype}" title="审核"><i class="icon-user"></i></a>
+						<a class="btnList" href="${ctx}/service/ccmServiceOnline/form?id=${ccmServiceOnline.id}&etype=${etype}" title="审核"><i class="iconfont icon-caozuotubiao-shenhe"></i></a>
 					</c:if>
 				</td></shiro:hasPermission>
 			</tr>
