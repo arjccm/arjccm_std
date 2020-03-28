@@ -394,4 +394,21 @@ public class PbsOfficeController extends BaseController {
 		}
 		return "redirect:" + adminPath + "/sys/office/list?repage";
 	}
+
+
+	@ResponseBody
+	@RequestMapping(value = "isDelete")
+	public Boolean isDelete(PbsOffice office){
+		if(UserUtils.getUser().isAdmin()){
+			return true;
+		}
+		List<PbsOffice> listoffice = officeService.findList(true);
+		Boolean flag = false;
+		for(PbsOffice resoffice:listoffice){
+			if(resoffice.getId().equals(office.getId())){
+				flag = true;
+			}
+		}
+		return flag;
+	}
 }

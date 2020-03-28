@@ -79,8 +79,8 @@
 				<%-- <td>${bphPlanInfo.num}</td> --%>
 				<shiro:hasPermission name="planinfo:bphPlanInfo:edit">
 					<td style="height: 50px">
-	    				<a class="btnList" href="${ctx}/planinfo/bphPlanInfo/form?id=${bphPlanInfo.id}" title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/planinfo/bphPlanInfo/delete?id=${bphPlanInfo.id}" onclick="return confirmx('确认要删除该数字化预案吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+	    				<a class="btnList" href="${ctx}/planinfo/bphPlanInfo/form?id=${bphPlanInfo.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+						<a class="btnList" href="${ctx}/planinfo/bphPlanInfo/delete?id=${bphPlanInfo.id}" onclick="return confirmx('确认要删除该数字化预案吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</td>
 				</shiro:hasPermission>
 			</tr>

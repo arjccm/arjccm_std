@@ -111,8 +111,8 @@
 					${fns:getDictLabel(ccmShakePovertyPeople.spReason, 'ccm_shake_poverty_people_sp_reason', '')}
 				</td>
 				<shiro:hasPermission name="shake:ccmShakePovertyPeople:edit"><td>
-    				<a class="btnList" href="${ctx}/shake/ccmShakePovertyPeople/form?id=${ccmShakePovertyPeople.id}" title="编辑"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/shake/ccmShakePovertyPeople/delete?id=${ccmShakePovertyPeople.id}" onclick="return confirmx('确认要删除该脱贫攻坚吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/shake/ccmShakePovertyPeople/form?id=${ccmShakePovertyPeople.id}" title="编辑"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/shake/ccmShakePovertyPeople/delete?id=${ccmShakePovertyPeople.id}" onclick="return confirmx('确认要删除该脱贫攻坚吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

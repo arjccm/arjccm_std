@@ -101,8 +101,8 @@
 					${fns:getDictLabel(ccmCityComponents.status, 'ccm_city_components_status', '')}
 				</td>
 				<shiro:hasPermission name="citycomponents:ccmCityComponents:edit"><td style="height: 50px">
-    				<a class="btnList" href="${ctx}/citycomponents/ccmCityComponents/form?id=${ccmCityComponents.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/citycomponents/ccmCityComponents/delete?id=${ccmCityComponents.id}" onclick="return confirmx('确认要删除该城市部件吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/citycomponents/ccmCityComponents/form?id=${ccmCityComponents.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/citycomponents/ccmCityComponents/delete?id=${ccmCityComponents.id}" onclick="return confirmx('确认要删除该城市部件吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

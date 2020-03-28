@@ -75,10 +75,10 @@
 					<td>${pbsQuestionObjective.SLevel}</td>
 					<shiro:hasPermission name="question:pbsQuestionObjective:edit">
 						<td><a
-							href="${ctx}/question/pbsQuestionObjective/checkform?id=${pbsQuestionObjective.id}" title = "修改"><i class="icon icon-pencil"></i></a>
+							href="${ctx}/question/pbsQuestionObjective/checkform?id=${pbsQuestionObjective.id}" title = "修改"><i class="icon iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a
 							href="${ctx}/question/pbsQuestionObjective/delete?id=${pbsQuestionObjective.id}"
-							onclick="return confirmx('确认要删除该客观题信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+							onclick="return confirmx('确认要删除该客观题信息吗？', this.href)" title = "删除"><i class="icon iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

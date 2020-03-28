@@ -219,7 +219,7 @@
 <%--        <shiro:hasPermission name="event:ccmEventIncident:edit">--%>
 <%--            <li class="btns"><a--%>
 <%--                    onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/form', '添加', '1200px', '800px')"--%>
-<%--                    class="btn btn-success"><i class="icon-plus"></i> 添加</a></li>--%>
+<%--                    class="btn btn-success"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a></li>--%>
 <%--        </shiro:hasPermission>--%>
 <%--        <li class="clearfix"></li>--%>
     </ul>
@@ -315,30 +315,30 @@ text-overflow: ellipsis; text-align: left;">
                         title="事件详情及处置" class="icon-list-alt"></i></a>
 <%--                <a class="btnList"--%>
 <%--                   href="${ctx}/event/ccmEventIncident/delete?id=${ccmEventIncident.id}"--%>
-<%--                   onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>--%>
+<%--                   onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>--%>
 <%--                <a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventIncident.id}')" title="位置信息"><i--%>
 <%--                        class="icon-tint"></i></a>--%>
 
             </shiro:hasPermission> <!-- 事件处理 编辑权限  --> <shiro:hasPermission
                     name="event:ccmEventCasedeal:edit">
                 <!-- <a class="btnList"
-                href="${ctx}/event/ccmEventCasedeal/dealform?eventIncidentId=${ccmEventIncident.id}" title="添加处理"><i class="icon-plus"></i></a>
+                href="${ctx}/event/ccmEventCasedeal/dealform?eventIncidentId=${ccmEventIncident.id}" title="添加处理"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
                 -->
                 <a class="btnList"
                    onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_incident&objId=${ccmEventIncident.id}', '任务快速派遣', '700px', '500px')"
-                   title="任务快速派遣"><i class="icon-plus"></i></a>
+                   title="任务快速派遣"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
             </shiro:hasPermission>
 <%--                <shiro:hasPermission name="event:ccmEventStakeholder:view">--%>
-<%--                    &lt;%&ndash; <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="icon-user"></i></a> &ndash;%&gt;--%>
+<%--                    &lt;%&ndash; <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a> &ndash;%&gt;--%>
 <%--                    <a class="btnList"--%>
 <%--                       onclick="parent.LayerDialog1('','${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}', '干系人', '1300px', '700px')"--%>
-<%--                       title="干系人"><i class="icon-user"></i></a>--%>
+<%--                       title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a>--%>
 <%--                </shiro:hasPermission>--%>
 <%--                <c:if test="${empty ccmEventIncident.bphAlarmInfoId}">--%>
-<%--                    <a  class="btnList" onclick="HandleTips(this,'${ccmEventIncident.id}')" title="发送警情"><i class="icon-bell"></i></a>--%>
+<%--                    <a  class="btnList" onclick="HandleTips(this,'${ccmEventIncident.id}')" title="发送警情"><i class="iconfont icon-caozuotubiao-fasongjingqing"></i></a>--%>
 <%--                </c:if>--%>
 <%--                <c:if test="${not empty ccmEventIncident.bphAlarmInfoId}">--%>
-<%--                    <a  class="btnList"  title="发送警情"><i class="icon-bell"  style="color: #666;"></i></a>--%>
+<%--                    <a  class="btnList"  title="发送警情"><i class="iconfont icon-caozuotubiao-fasongjingqing"  style="color: #666;"></i></a>--%>
 <%--                </c:if>--%>
             </td>
         </tr>

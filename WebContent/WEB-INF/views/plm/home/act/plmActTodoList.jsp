@@ -55,11 +55,11 @@
 						</c:if>
 						<c:if test="${not empty task.assignee}"><%--
 							<a href="${ctx}${procExecUrl}/exec/${task.taskDefinitionKey}?procInsId=${task.processInstanceId}&act.taskId=${task.id}">办理</a> --%>
-							<a class="btnList" href="${ctx}/act/task/form?taskId=${task.id}&taskName=${fns:urlEncode(task.name)}&taskDefKey=${task.taskDefinitionKey}&procInsId=${task.processInstanceId}&procDefId=${task.processDefinitionId}&status=${status}" title="任务办理"><i class="icon-pencil"></i></a>
+							<a class="btnList" href="${ctx}/act/task/form?taskId=${task.id}&taskName=${fns:urlEncode(task.name)}&taskDefKey=${task.taskDefinitionKey}&procInsId=${task.processInstanceId}&procDefId=${task.processDefinitionId}&status=${status}" title="任务办理"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						</c:if>
 						<shiro:hasPermission name="act:process:edit">
 							<c:if test="${empty task.executionId}">
-								<a class="btnList" href="${ctx}/act/task/deleteTask?taskId=${task.id}&reason=" onclick="return promptx('删除任务','删除原因',this.href);" title="删除任务"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+								<a class="btnList" href="${ctx}/act/task/deleteTask?taskId=${task.id}&reason=" onclick="return promptx('删除任务','删除原因',this.href);" title="删除任务"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</c:if>
 						</shiro:hasPermission>
 						<a class="btnList" target="_blank" href="${pageContext.request.contextPath}/act/diagram-viewer?processDefinitionId=${task.processDefinitionId}&processInstanceId=${task.processInstanceId}" title="跟踪"><i class="icon-forward"></i></a>

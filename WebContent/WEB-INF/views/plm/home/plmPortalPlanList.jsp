@@ -102,12 +102,12 @@
 					<shiro:hasPermission name="home:plmPortalPlan:edit">
 						<td style="height: 50px"><a
 							href="${ctx}/home/plmPortalDetail/list?pid=${plmPortalPlan.id}"
-							title="方案明细"><i class="icon-edit"></i></a> <a
+							title="方案明细"><i class="iconfont icon-caozuotubiao-fanganmingxi"></i></a> <a
 							onclick="bj('${plmPortalPlan.id}')" title="修改"><i
-								class="icon-pencil"></i></a> <a class="btnList"
+								class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/home/plmPortalPlan/delete?id=${plmPortalPlan.id}"
 							onclick="return confirmx('确认要删除该门户方案吗？', this.href)" title="删除">
-								<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
+								<i class="iconfont icon-caozuotubiao-shanchu"></i>
 						</a></td>
 					</shiro:hasPermission>
 				</tr>

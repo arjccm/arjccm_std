@@ -153,16 +153,16 @@
 				<td class="tc"><fmt:formatDate value="${ccmHouseDispute.firstDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				<td class="tc">${ccmHouseDispute.discoverPhone}</td>
 				<td class="tc"><shiro:hasPermission name="house:ccmHarmNationalSecurity:edit">
-					<a class="btnList" onclick="parent.LayerDialog('${ctx}/house/ccmHouseDispute/form?id=${ccmHouseDispute.id}', '修改', '1200px', '900px')" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/house/ccmHouseDispute/delete?id=${ccmHouseDispute.id}&permissionKey=${permissionKey}" onclick="return confirmx('确认要删除闹事行凶报复嫌疑人口吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-					<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmHouseDispute.peopleId}')"  title="位置信息"><i class="icon-map-marker "></i></a>
-					<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmHouseDispute.peopleId}', '社交关系', '1000px', '700px')" title="社交关系"><i class="icon-group"></i></a>
-					<%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')" title="定时提醒"><i class="icon-bell"></i></a> --%>
+					<a class="btnList" onclick="parent.LayerDialog('${ctx}/house/ccmHouseDispute/form?id=${ccmHouseDispute.id}', '修改', '1200px', '900px')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/house/ccmHouseDispute/delete?id=${ccmHouseDispute.id}&permissionKey=${permissionKey}" onclick="return confirmx('确认要删除闹事行凶报复嫌疑人口吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+					<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmHouseDispute.peopleId}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
+					<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmHouseDispute.peopleId}', '社交关系', '1000px', '700px')" title="社交关系"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
+					<%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')" title="定时提醒"><i class="iconfont icon-caozuotubiao-fasongjingqing"></i></a> --%>
 					</shiro:hasPermission> 
 					<shiro:hasPermission name="log:ccmLogTail:edit">
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseDispute.id}&relevance_table=ccm_house_dispute', '记录信息', '800px', '660px')" 
-								  title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
-						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseDispute.id}&relevance_table=ccm_house_dispute', '添加记录', '800px', '660px')" title="添加记录"><i class="icon-plus"></i></a>
+								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseDispute.id}&relevance_table=ccm_house_dispute', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 					</shiro:hasPermission>
 				</td>
 			</tr>

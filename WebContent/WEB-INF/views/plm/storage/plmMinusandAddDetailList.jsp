@@ -90,10 +90,10 @@
 				<shiro:hasPermission name="storage:plmIncomingEntry:edit"><td>
 					<c:choose>
 						<c:when test="${plmEquipment.typeId == '0'}">
-							<a href="${ctx}/storage/plmMinusandAddDetail/getEquipmentDemo?id=${plmEquipment.id}"><i title="使用模板" class="icon-file"></i></a>
+							<a href="${ctx}/storage/plmMinusandAddDetail/getEquipmentDemo?id=${plmEquipment.id}"><i title="使用模板" class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						</c:when>
 						<c:otherwise>
-							<a href="${ctx}/storage/plmMinusandAddDetail/getEquipmentDemo?name=${plmEquipment.name}&spec=${plmEquipment.spec}&typeId=${plmEquipment.typeId}&typeChild=${plmEquipment.typeChild}"><i title="使用模板" class="icon-file"></i></a>
+							<a href="${ctx}/storage/plmMinusandAddDetail/getEquipmentDemo?name=${plmEquipment.name}&spec=${plmEquipment.spec}&typeId=${plmEquipment.typeId}&typeChild=${plmEquipment.typeChild}"><i title="使用模板" class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						</c:otherwise>
 					</c:choose>
 				</td></shiro:hasPermission>

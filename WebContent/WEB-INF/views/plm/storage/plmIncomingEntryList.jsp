@@ -155,18 +155,18 @@
 							<td style="height: 50px">
 								<c:if test="${plmIncomingEntry.type == '0'}">
 									<a class="btnList"
-										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="修改" class="icon-pencil"></i></a>
+										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/storage/plmIncomingEntry/delete?id=${plmIncomingEntry.id}"
-										onclick="return confirmx('确认要删除该入库单吗？', this.href)"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										onclick="return confirmx('确认要删除该入库单吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 <%--									<a class="btnList" title="addDetail"--%>
-<%--										href="${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}"><i title="添加物资" class="icon-plus"></i></a>--%>
+<%--										href="${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}"><i title="添加物资" class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>--%>
 									<a class="btnList" title=""
-									   onclick="parent.LayerDialog('${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}','添加物资','1000px','700px')"><i title="添加物资" class="icon-plus"></i></a>
+									   onclick="parent.LayerDialog('${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}','添加物资','1000px','700px')"><i title="添加物资" class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 								</c:if>
 								<c:if test="${plmIncomingEntry.type != '0'}">
 									<a class="btnList"
-										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="查看" class="icon-file"></i></a>
+										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 								</c:if>
 							</td>
 						</shiro:hasPermission>
@@ -203,16 +203,16 @@
 							<shiro:hasPermission name="storage:plmIncomingEntry:edit">
 								<c:if test="${plmIncomingEntry.type == '0'}">
 									<a class="btnList"
-										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="修改" class="icon-pencil"></i></a>
+										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/storage/plmIncomingEntry/delete?id=${plmIncomingEntry.id}"
-										onclick="return confirmx('确认要删除该入库单吗？', this.href)"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										onclick="return confirmx('确认要删除该入库单吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 									<a class="btnList" title=""
-									   onclick="parent.LayerDialog('${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}','添加物资','1000px','700px')"><i title="添加物资" class="icon-plus"></i></a>
+									   onclick="parent.LayerDialog('${ctx}/storage/plmMinusandAddDetail/countEquipmentByType?incomingId=${plmIncomingEntry.id}','添加物资','1000px','700px')"><i title="添加物资" class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 								</c:if>
 								<c:if test="${plmIncomingEntry.type != '0'}">
 									<a class="btnList"
-										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="查看" class="icon-file"></i></a>
+										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 								</c:if>
 							</shiro:hasPermission>
 						</div>

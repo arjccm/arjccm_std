@@ -57,7 +57,7 @@
 		<sys:message content="${message}" />
 		<div class="control-group blue" style="height: 29px;">
 			<%--<c:if test="${isSent}">
-				<a id="btnReedit" class="btn" href="javascript:;" ><i class="icon-file"></i>再次编辑</a>&nbsp;
+				<a id="btnReedit" class="btn" href="javascript:;" ><i class="iconfont icon-caozuotubiao-xiangqing"></i>再次编辑</a>&nbsp;
 			</c:if>
 			<c:if test="${!isSent}">
 				<a id="btnReply" class="btn" href="javascript:;"><i class="icon-share"></i>回复</a>&nbsp;
@@ -67,7 +67,7 @@
 			<c:if test="${empty isDel}">
 				<a id="btnDelete" class="btn" href="javascript:;"><i class="icon-remove-circle"></i>删除</a>&nbsp;
 			</c:if>
-			<a id="btnDelete2" class="btn" href="javascript:;"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>彻底删除</a>&nbsp;
+			<a id="btnDelete2" class="btn" href="javascript:;"><i class="iconfont icon-caozuotubiao-shanchu"></i>彻底删除</a>&nbsp;
 			<a id="btnCancel" class="btn"  onclick="history.go(-1);location.replace(document.referrer);"><i class="icon-reply"></i>返回</a>--%>
 		</div>
 		<div class="control-group gray">
@@ -116,7 +116,7 @@
 
 		<div class="control-group blue">
 			<c:if test="${isSent}">
-				<a id="btnReedit" class="btn" href="javascript:;" ><i class="icon-file"></i>再次编辑</a>&nbsp;
+				<a id="btnReedit" class="btn" href="javascript:;" ><i class="iconfont icon-caozuotubiao-xiangqing"></i>再次编辑</a>&nbsp;
 			</c:if>
 			<c:if test="${!isSent}">
 				<a id="btnReply" class="btn" href="javascript:;"><i class="icon-share"></i>回复</a>&nbsp;
@@ -126,7 +126,7 @@
 			<c:if test="${empty isDel}">
 				<a id="btnDelete" class="btn" href="javascript:;"><i class="icon-remove-circle"></i>删除</a>&nbsp;
 			</c:if>
-			<a id="btnDelete2" class="btn" style="width: 75px!important;" href="javascript:;"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"  ></i>彻底删除</a>&nbsp;
+			<a id="btnDelete2" class="btn" style="width: 75px!important;" href="javascript:;"><i class="iconfont icon-caozuotubiao-shanchu"  ></i>彻底删除</a>&nbsp;
 			<a id="btnCancel" class="btn"  onclick="history.go(-1);location.replace(document.referrer);"><i class="icon-reply"></i>返回</a>
 		</div>
 	</form:form>

@@ -42,9 +42,9 @@
             width: 200px;
         }
 
-        .select2-container.input-xlarge {
+        /*.select2-container.input-xlarge {
             width: 215px;
-        }
+        }*/
 
         .input-medium.Wdate {
             width: 200px;
@@ -173,6 +173,16 @@
             border-style: solid;
             border-color: transparent #FF0000 transparent transparent;
         }
+
+        .error1{
+            background-position: 0 2px;
+            background: url('${ctxStatic}/jquery-validation/1.11.1/images/unchecked.gif') no-repeat 0 0;
+            padding-left: 18px;
+            padding-bottom: 2px;
+            font-weight: bold;
+            color: #ea5200;
+            margin-left: 10px;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -254,7 +264,7 @@
         function saveForm() {
             var areaComIdId = $("#areaComIdId").val();
             var areaGridIdId = $("#areaGridIdId").val();
-            var html1 = '<label for="" class="error">必选字段 <label>';
+            var html1 = '<label for="" class="error1">必选字段<label>';
             if (areaComIdId.length != 0) {
                 $("#showCom").html("*");
             } else {
@@ -284,14 +294,14 @@
                                 name = info.name2;
                             }
                             $jsonlxfs.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"' + info.id + '>' + info.type + '-' + name + '<i title="编辑" onclick="markPopEidt(\'' + info.id + '\')" ' +
-                                'class="icon-pencil mark-icon"></i></li>');
+                                'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></li>');
                         } else {
                             $jsonlxfs.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"' + info.id + '>' + info.type + '-' + info.name1 + '<i title="编辑" onclick="markPopEidt(\'' + info.id + '\')" ' +
-                                'class="icon-pencil mark-icon"></i></li>');
+                                'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></li>');
                         }
                     });
                 }
-                $jsonlxfs.append('<li class="mark-add "><i class="icon-plus mark-icon" onclick="markPopAdd()"  title="添加"></i></li>')
+                $jsonlxfs.append('<li class="mark-add "><i class="iconfont icon-caozuotubiao-tianjiachuli mark-icon" onclick="markPopAdd()"  title="添加"></i></li>')
             });
         }
 
@@ -316,10 +326,10 @@
                 if (!jQuery.isEmptyObject(data)) {
                     $.each(data.object1, function (infoIndex, info) {
                         $jsonlxfs.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"' + info.id + '>' + info.subType + '-' + info.textName + '<i title="编辑" onclick="markPhoneEidt(\'' + info.id + '\')" ' +
-                            'class="icon-pencil mark-icon"></i></li>');
+                            'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></li>');
                     });
                 }
-                $jsonlxfs.append('<li class="mark-add "><i class="icon-plus mark-icon" onclick="markPhoneAdd()"  title="添加"></i></li>')
+                $jsonlxfs.append('<li class="mark-add "><i class="iconfont icon-caozuotubiao-tianjiachuli mark-icon" onclick="markPhoneAdd()"  title="添加"></i></li>')
             });
         }
 
@@ -344,10 +354,10 @@
                 if (!jQuery.isEmptyObject(data)) {
                     $.each(data.object1, function (infoIndex, info) {
                         $jsonvehile.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"' + info.id + '>' + info.subType + '-' + info.textName + '<i title="编辑" onclick="markVehileEidt(\'' + info.id + '\')" ' +
-                            'class="icon-pencil mark-icon"></i></span></li>');
+                            'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></span></li>');
                     });
                 }
-                $jsonvehile.append('<li class="mark-add "><i class="icon-plus mark-icon" onclick="markVehileAdd()"  title="添加"></i></li>')
+                $jsonvehile.append('<li class="mark-add "><i class="iconfont icon-caozuotubiao-tianjiachuli mark-icon" onclick="markVehileAdd()"  title="添加"></i></li>')
             });
         }
 
@@ -372,10 +382,10 @@
                 if (!jQuery.isEmptyObject(data)) {
                     $.each(data.object1, function (infoIndex, info) {
                         $jsonweb.append('<li class="markli" style="background-color:#6495ED;color:#FFF;" id="li"' + info.id + '>' + info.subType + '-' + info.textName + '<i title="编辑" onclick="markWebEidt(\'' + info.id + '\')" ' +
-                            'class="icon-pencil mark-icon"></i></li>');
+                            'class="iconfont icon-caozuotubiao-xiugai mark-icon"></i></li>');
                     });
                 }
-                $jsonweb.append('<li class="mark-add "><i class="icon-plus mark-icon" onclick="markWebAdd()"  title="添加"></i></li>')
+                $jsonweb.append('<li class="mark-add "><i class="iconfont icon-caozuotubiao-tianjiachuli mark-icon" onclick="markWebAdd()"  title="添加"></i></li>')
             });
         }
 
@@ -568,7 +578,7 @@
                             color="red">*</font></span>公民身份号码：</label>
                     <div class="controls">
                         <form:input path="ident" id="p_id_card" onmouseout="isRepeat('${ccmPeople.id}')" htmlEscape="false" maxlength="18"
-                                    class="input-xlarge required ident0 card"/>
+                                    class="input-xlarge required ident0 card "/>
                     </div>
                 </div>
             </td>
@@ -730,19 +740,22 @@
         <tr>
             <td>
                 <div>
+                    <input type="hidden" id="isreact" value="true">
                     <label class="control-label"><span class="help-inline"><font
                             color="red">*</font></span>所属社区：</label>
-                    <div class="controls" onmouseout="onclickNet()">
-                        <!--
+                    <%--<div class="controls" onmouseout="onclickNet()">--%>
+                    <div class="controls">
+                      <%--  <!--
 							<sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}" labelName="areaComId.name" labelValue="${ccmPeople.areaComId.name}"
 							title="区域" url="/sys/area/treeData" cssClass="" allowClear="true" notAllowSelectParent="false" cssStyle="width: 150px"/>
-							-->
+							-->--%>
                         <sys:treeselect id="areaComId" name="areaComId.id"
                                         value="${ccmPeople.areaComId.id}" labelName="areaComId.name"
                                         labelValue="${ccmPeople.areaComId.name}" title="区域"
                                         url="/tree/ccmTree/treeDataArea?type=6" cssClass="required"
                                         allowClear="true" notAllowSelectParent="true"
                                         cssStyle="width: 270px"/>
+                          <span class="help-inline"  id="showCom"></span>
                     </div>
                 </div>
             </td>
@@ -751,15 +764,16 @@
                     <label class="control-label"><span class="help-inline"><font
                             color="red">*</font></span>所属网格：</label>
                     <div class="controls">
-                        <div class="help-inline" id="newNet" onmouseout=""
-                             onmousemove="onclickNet()" onclick="onclickNet1()">
-                            <sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"
-                                           value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
-                                            labelValue="${ccmPeople.areaGridId.name}" title="区域"
-                                            url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""
-                                           allowClear="true" notAllowSelectParent="true"
-                                            cssStyle="width:270px "/>
-                            <span class="help-inline"><font color="red" id="showGrid">*</font></span>
+                        <%--<div class="help-inline" id="newNet" onmouseout=""
+                             onmousemove="onclickNet()" onclick="onclickNet1()">--%>
+                        <div class="help-inline" >
+                        <sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"
+                                        value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
+                                        labelValue="${ccmPeople.areaGridId.name}" title="区域"
+                                        url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="required"
+                                        allowClear="true" notAllowSelectParent="true"
+                                        cssStyle="width:270px "/>
+                            <span class="help-inline"  id="showGrid"></span>
                         </div>
 
                     </div>
@@ -769,8 +783,9 @@
             </td>
             <td>
                 <div>
-                    <label class="control-label">所属房屋：</label>
-                    <div class="controls" id="newHouse" onmousemove="onclickHouse()">
+                    <label class="control-label"><span class="help-inline"><font color="red">*</font></span>所属房屋：</label>
+<%--                    <div class="controls" id="newHouse" onmousemove="onclickHouse()">--%>
+                        <div class="controls">
                       <%--  <!--
 							<sys:treeselect id="roomId" name="roomId.id" value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild" labelValue="${ccmPeople.roomId.houseBuild}"
 							title="房屋" url="/pop/ccmPopTenant/treeData?type=7" cssClass="" allowClear="true" notAllowSelectParent="true" cssStyle="width: 150px"/>
@@ -778,7 +793,7 @@
                         <sys:treeselect id="roomId" name="roomId.id"
                                         value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild"
                                         labelValue="${ccmPeople.roomId.houseBuild}" title="房屋"
-                                        url="/tree/ccmTree/treeDataArea?type=9&areaid=" cssClass=""
+                                        url="/tree/ccmTree/treeDataAreaByareaGrid?type=9&areaid=" cssClass=""
                                         allowClear="true" notAllowSelectParent="true"
                                         cssStyle="width: 270px"/>
 

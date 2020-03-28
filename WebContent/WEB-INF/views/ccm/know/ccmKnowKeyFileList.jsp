@@ -75,8 +75,8 @@
 					${ccmKnowKeyFile.abstracts}
 				</td>
 				<shiro:hasPermission name="know:ccmKnowKeyFile:edit"><td style="height: 50px">
-    				<a class="btnList" href="${ctx}/know/ccmKnowKeyFile/form?id=${ccmKnowKeyFile.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/know/ccmKnowKeyFile/delete?id=${ccmKnowKeyFile.id}" onclick="return confirmx('确认要删除该重要文件吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/know/ccmKnowKeyFile/form?id=${ccmKnowKeyFile.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/know/ccmKnowKeyFile/delete?id=${ccmKnowKeyFile.id}" onclick="return confirmx('确认要删除该重要文件吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

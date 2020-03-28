@@ -110,6 +110,17 @@
 		$("#inputForm").submit();
 
 	}
+	//销毁按钮事件
+	function xiaohui() {
+		jBox.confirm('您确认销毁申请吗？', "系统提示", function(v, h, f) {
+			if (v == "ok") {
+				$('#flag').val('no');
+				$("#inputForm").submit();
+			}
+		}, {
+			buttonsFocus : 1
+		});
+	}
 </script>
 </head>
 <body>
@@ -237,12 +248,12 @@
 		</table>
 
 		<div class="form-actions">
-			<a id="btnSubmit" class="btn btn-primary" href="javascript:;" onclick="tijiao()"><i class="icon-print"></i>提交申请</a>&nbsp;
+			<a id="btnSubmit" class="btn btn-primary" href="javascript:;" onclick="tijiao()"><i class="iconfont icon-caozuotubiao-jiluxinxi"></i>提交申请</a>&nbsp;
 			<c:if test="${ empty plmContractSign.procInsId}">
 				<a id="btnSubmit" class="btn "onclick="baocun()" href="javascript:;"><i class="icon-ok"></i>保存</a>&nbsp;
 			</c:if>
 			<c:if test="${not empty plmContractSign.procInsId}">
-				<a id="btnSubmit2" class="btn " onclick="$('#flag').val('no')" href="javascript:;"><i class="icon-minus-sign"></i>销毁申请</a>&nbsp;
+				<a id="btnSubmit2" class="btn " onclick="xiaohui()" href="javascript:;"><i class="icon-minus-sign"></i>销毁申请</a>&nbsp;
 			</c:if>		
 			<c:if test="${not empty plmContractSign.id}">
 			<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i class="icon-reply"></i>返回</a>

@@ -58,7 +58,7 @@
 			</li>
 			<li class="btns"><a
 					onclick="parent.parent.parent.LayerDialog('${ctx}/partyactivity/ccmPartyActivity/form?type=1', '添加', '1100px', '560px')"
-					class="btn btn-success"><i class="icon-plus"></i> 添加</a></li>
+					class="btn btn-success"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加</a></li>
 			<li class="btns">
 				<a href="javascript:;" id="btnSubmit" class="btn btn-primary"> 
 					<i class="icon-search"></i> 查询
@@ -105,10 +105,10 @@
     				<%--<a href="${ctx}/partyactivity/ccmPartyActivity/form?id=${ccmPartyActivity.id}">修改</a>
 					<a href="${ctx}/partyactivity/ccmPartyActivity/delete?id=${ccmPartyActivity.id}" onclick="return confirmx('确认要删除该党员活动管理吗？', this.href)">删除</a>--%>
 						<a  class="btnList"
-							onclick="parent.parent.parent.LayerDialog('${ctx}/partyactivity/ccmPartyActivity/form?id=${ccmPartyActivity.id}', '修改', '1100px', '700px')"><i class="icon-pencil"></i></a>
+							onclick="parent.parent.parent.LayerDialog('${ctx}/partyactivity/ccmPartyActivity/form?id=${ccmPartyActivity.id}', '修改', '1100px', '700px')"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a  class="btnList"
 							href="${ctx}/partyactivity/ccmPartyActivity/delete?id=${ccmPartyActivity.id}"
-							onclick="return confirmx('确认要删除该党员活动信息吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+							onclick="return confirmx('确认要删除该党员活动信息吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

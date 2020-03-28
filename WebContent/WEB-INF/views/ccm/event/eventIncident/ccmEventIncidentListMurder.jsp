@@ -167,21 +167,21 @@
 						<!-- 案（事）件登记编辑权限  --> <shiro:hasPermission
 							name="event:ccmEventIncident:edit">
 							<a  class="btnList" 
-								href="${ctx}/event/ccmEventIncident/formMurder?id=${ccmEventIncident.id}" title="修改"><i class="icon-pencil"></i></a>
+								href="${ctx}/event/ccmEventIncident/formMurder?id=${ccmEventIncident.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a  class="btnList"
 								href="${ctx}/event/ccmEventIncident/deleteMurder?id=${ccmEventIncident.id}"
-								onclick="return confirmx('确认要删除该案案（事）件吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-										<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventIncident.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
+								onclick="return confirmx('确认要删除该案案（事）件吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+										<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventIncident.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 					
 						</shiro:hasPermission> <!-- 事件处理 编辑权限  --> <shiro:hasPermission
 							name="event:ccmEventCasedeal:edit">
-						<!--	<a class="btnList" href="${ctx}/event/ccmEventCasedeal/dealformMurder?eventIncidentId=${ccmEventIncident.id}" title="添加处理信息"><i class="icon-plus"></i></a>    -->
-							<a class="btnList" onclick="LayerDialogWithReload('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_incident&objId=${ccmEventIncident.id}', '处理', '700px', '500px')" title="添加处理"><i class="icon-plus"></i></a>
+						<!--	<a class="btnList" href="${ctx}/event/ccmEventCasedeal/dealformMurder?eventIncidentId=${ccmEventIncident.id}" title="添加处理信息"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>    -->
+							<a class="btnList" onclick="LayerDialogWithReload('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_incident&objId=${ccmEventIncident.id}', '处理', '700px', '500px')" title="添加处理"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="event:ccmEventStakeholder:view">
-							<%-- <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="icon-user"></i></a> --%>
+							<%-- <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a> --%>
 							<a class="btnList" onclick="parent.LayerDialog1('','${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}', '干系人', '1300px', '700px')"
-								 title="干系人"><i class="icon-user"></i></a>
+								 title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a>
 						</shiro:hasPermission>
 					</td>
 				</tr>

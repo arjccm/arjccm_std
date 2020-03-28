@@ -428,7 +428,7 @@
 									<td class="detailSum">${plmAllotDetail.sum}</td>
 									<td><img src="data:image/jpeg;base64,${plmAllotDetail.qrCode}"/></td>
 									<td><input id="${plmAllotDetail.equCode}" type="text" value="${plmAllotDetail.remarks}" onchange="updateRemark(this);"/></td>
-									<td><a href="javascript:void(0);" onclick="removeSelect(this);"><i title="删除" class='iconfont icon-icondaohangtubiao-shujucaijifenxi'></i></a></td>
+									<td><a href="javascript:void(0);" onclick="removeSelect(this);"><i title="删除" class='iconfont icon-caozuotubiao-shanchu'></i></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -207,7 +207,7 @@
 			<tr>
 				<td class="trtop" colspan="9">
 					<a title="addDetail" style="color: #fff; background-color: #19a7f0; width: 60px; height: 20px; background-repeat: no-repeat;"
-					class="btn" onclick="LayerDialog('${ctx}/equapply/plmEquApply/findListBySpec', '添加装备', '80%', '80%')"><i class="icon-plus"></i>添加装备</a>
+					class="btn" onclick="LayerDialog('${ctx}/equapply/plmEquApply/findListBySpec', '添加装备', '80%', '80%')"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i>添加装备</a>
 					</td>
 			</tr>
 			<tr>
@@ -228,7 +228,7 @@
 						<td class="trtop" colspan="2">${plmEquApplyDetail.spec}</td>
 						<td class="trtop" colspan="1">${plmEquApplyDetail.number}</td>
 						<td class="trtop" colspan="2"><fmt:formatDate value="${plmEquApplyDetail.validityDate}" pattern="yyyy-MM-dd"/></td>
-						<td class="trtop" colspan="1"><a title="deleteDetail"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>删除</a>&nbsp;
+						<td class="trtop" colspan="1"><a title="deleteDetail"><i class="iconfont icon-caozuotubiao-shanchu"></i>删除</a>&nbsp;
 						<input id="${plmEquApplyDetail.id}" type="hidden" value="${plmEquApplyDetail.id}"/>
 						</td>
 					</tr>
@@ -269,7 +269,7 @@
 		<input name='details' type='hidden' value="">
 		<div class="form-actions">
 			
-				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="icon-print"></i>提交申请</a>&nbsp;
+				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="iconfont icon-caozuotubiao-jiluxinxi"></i>提交申请</a>&nbsp;
 				<c:if test="${not empty plmEquApply.procInsId}">
 					<a id="btnSubmit2" class="btn btn-primary" href="javascript:;"><i class="icon-minus-sign"></i>销毁申请</a>&nbsp;
 				</c:if>

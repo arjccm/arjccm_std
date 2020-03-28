@@ -442,15 +442,15 @@
 					<c:when test="${plmMinusandAddDetail.flag == '0'}">
 						<shiro:hasPermission name="storage:plmMinusandAddDetail:edit">
 				<td>
-				<a title="updateDetail2" href="${ctx}/storage/plmMinusandAddDetail/form?id=${plmMinusandAddDetail.id}"><i title="修改" class="icon-pencil"></i></a>
-				<a  onclick="del('${plmMinusandAddDetail.id}')" ><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+				<a title="updateDetail2" href="${ctx}/storage/plmMinusandAddDetail/form?id=${plmMinusandAddDetail.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
+				<a  onclick="del('${plmMinusandAddDetail.id}')" ><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					<c:if test="${flag == '1'}">
 					 <a title="incomingEquipment"
-					href="${ctx}/storage/plmMinusandAddDetail/incomingEquipment?id=${plmMinusandAddDetail.id}"><i title="物资入库" class="icon-plus"></i></a></td>
+					href="${ctx}/storage/plmMinusandAddDetail/incomingEquipment?id=${plmMinusandAddDetail.id}"><i title="物资入库" class="iconfont icon-caozuotubiao-tianjiachuli"></i></a></td>
 									</c:if></shiro:hasPermission>
 								</c:when>
 								<c:otherwise>
-									<td><a title="updateDetail2" href="${ctx}/storage/plmMinusandAddDetail/form?id=${plmMinusandAddDetail.id}"><i title="查看" class="icon-file"></i></a></td>
+									<td><a title="updateDetail2" href="${ctx}/storage/plmMinusandAddDetail/form?id=${plmMinusandAddDetail.id}"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a></td>
 								</c:otherwise>
 							</c:choose>
 			</tr>
@@ -466,7 +466,7 @@
 				<c:if test="${flag == '1'}">
 					<a id="incomingEquipmentAll" class="btn" href="javascript:;" ><i class="icon-home"></i>全部入库</a>&nbsp;</c:if>
 					<c:if test="${flag == '0'}">
-					<a id="updateDetail" class="btn" href="javascript:;" style="width: 60px!important;"><i class="icon-plus"></i>添加物资</a>
+					<a id="updateDetail" class="btn" href="javascript:;" style="width: 60px!important;"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i>添加物资</a>
 					&nbsp;<a id="addComplate" class="btn" href="javascript:;" style="width: 60px!important"><i class="icon-ok-sign"></i>完成添加</a>&nbsp;</c:if>
 				</c:if>
 			</shiro:hasPermission>

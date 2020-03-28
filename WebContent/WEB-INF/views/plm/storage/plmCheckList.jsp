@@ -178,14 +178,14 @@
 							<c:when test="${plmCheck.status == '1'}">
 								<shiro:hasPermission name="storage:plmCheck:edit">
 									<td style="height: 50px"><a
-										href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a> <a
+										href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a> <a
 										href="${ctx}/storage/plmCheck/delete?id=${plmCheck.id}"
-										onclick="return confirmx('确认要删除该盘点单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+										onclick="return confirmx('确认要删除该盘点单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 								</shiro:hasPermission>
 							</c:when>
 							<c:otherwise>
 								<td style="height: 50px"><a
-									href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="查看" class="icon-file"></i></a>&nbsp;
+									href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>&nbsp;
 									<c:if test="${plmCheck.status != '1'}">
 										<a title="check" id="${plmCheck.id}" class="btnList"><i title="盘点" class="icon-search"></i></a>
 									</c:if></td>
@@ -230,13 +230,13 @@
 							<c:choose>
 								<c:when test="${plmCheck.status == '1'}">
 									<shiro:hasPermission name="storage:plmCheck:edit">
-										<a href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
+										<a href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 										<a href="${ctx}/storage/plmCheck/delete?id=${plmCheck.id}"
-											onclick="return confirmx('确认要删除该盘点单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+											onclick="return confirmx('确认要删除该盘点单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 									</shiro:hasPermission>
 								</c:when>
 								<c:otherwise>
-									<a href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="查看" class="icon-file"></i></a>&nbsp;
+									<a href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}" class="btnList"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>&nbsp;
 							<c:if test="${plmCheck.status != '1'}">
 										<a title="check" id="${plmCheck.id}" class="btnList"><i title="盘点" class="icon-search"></i></a>
 									</c:if>

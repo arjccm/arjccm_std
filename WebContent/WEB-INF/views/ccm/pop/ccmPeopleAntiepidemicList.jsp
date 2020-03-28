@@ -234,9 +234,9 @@
 				</td>
 		
 				<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><td style="height: 50px">
-					<a class="btnList"  href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/pop/ccmPeopleAntiepidemic/delete?id=${ccmPeopleAntiepidemic.id}" onclick="return confirmx('确认要删除该人员疫情吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-					<a class="btnList" href="${ctx}/pop/ccmPeopleAntiepidemic/details?id=${ccmPeopleAntiepidemic.id}" title="详情"><i class="icon-file"></i></a>
+					<a class="btnList"  href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/pop/ccmPeopleAntiepidemic/delete?id=${ccmPeopleAntiepidemic.id}" onclick="return confirmx('确认要删除该人员疫情吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+					<a class="btnList" href="${ctx}/pop/ccmPeopleAntiepidemic/details?id=${ccmPeopleAntiepidemic.id}" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						<%--<a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">修改</a>--%>
 				</td></shiro:hasPermission>
 			</tr>

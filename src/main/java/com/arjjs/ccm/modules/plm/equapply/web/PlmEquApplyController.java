@@ -12,6 +12,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.activiti.engine.ActivitiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +51,7 @@ import net.sf.json.JSONObject;
 
 /**
  * 物资申请Controller
- * 
+ *
  * @author liucong
  * @version 2018-06-30
  */
@@ -58,284 +59,288 @@ import net.sf.json.JSONObject;
 @RequestMapping(value = "${adminPath}/equapply/plmEquApply")
 public class PlmEquApplyController extends BaseController {
 
-	@Autowired
-	private PlmEquApplyService plmEquApplyService;
+    @Autowired
+    private PlmEquApplyService plmEquApplyService;
 
-	@Autowired
-	private PlmEquApplyDetailService plmEquApplyDetailService;
-	@Autowired
-	private PlmActService plmActService;
-	@Autowired
-	private PlmStatisticsDictService plmStatisticsDictService;
-	@Autowired
-	PlmEquipmentService plmEquipmentService;
-	@Autowired
-	private ActTaskService actTaskService;
-	@ModelAttribute
-	public PlmEquApply get(@RequestParam(required = false) String id,@RequestParam(required = false) String ids) {
-		PlmEquApply entity = null;
-		if (StringUtils.isNotBlank(id)) {
-			entity = plmEquApplyService.get(id);
-			// 添加业务流程主表信息
-			if ((ids == "" || ids == null) && entity != null) {
-				PlmAct plmAct = plmActService.getByTable(entity.getId(), PlmTypes.EQU_APPLY_RECEIVE);
-				if(plmAct!=null) {
-					entity.setPlmAct(plmAct);
-				}
-			}
-		}
-		if (entity == null) {
-			entity = new PlmEquApply();
-		}
-		return entity;
-	}
+    @Autowired
+    private PlmEquApplyDetailService plmEquApplyDetailService;
+    @Autowired
+    private PlmActService plmActService;
+    @Autowired
+    private PlmStatisticsDictService plmStatisticsDictService;
+    @Autowired
+    PlmEquipmentService plmEquipmentService;
+    @Autowired
+    private ActTaskService actTaskService;
 
-	/**
-	 * 
-	 * @param plmEquApply
-	 * @param request
-	 * @param response
-	 * @param model
-	 * @return 查询全部返回list页面
-	 */
-	@RequestMapping(value = { "list", "" })
-	public String list(PlmEquApply plmEquApply, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<PlmEquApply> page = plmEquApplyService.findPage(new Page<PlmEquApply>(request, response), plmEquApply);
-		model.addAttribute("page", page);
-		return "plm/equapply/plmEquApplyList";
-	}
+    @ModelAttribute
+    public PlmEquApply get(@RequestParam(required = false) String id, @RequestParam(required = false) String ids) {
+        PlmEquApply entity = null;
+        if (StringUtils.isNotBlank(id)) {
+            entity = plmEquApplyService.get(id);
+            // 添加业务流程主表信息
+            if ((ids == "" || ids == null) && entity != null) {
+                PlmAct plmAct = plmActService.getByTable(entity.getId(), PlmTypes.EQU_APPLY_RECEIVE);
+                if (plmAct != null) {
+                    entity.setPlmAct(plmAct);
+                }
+            }
+        }
+        if (entity == null) {
+            entity = new PlmEquApply();
+        }
+        return entity;
+    }
 
-	/**
-	 * 
-	 * @param plmEquApply
-	 * @param model
-	 * @return 跳转到添加申请信息form页面
-	 */
-	
-	@RequestMapping(value = "form")
-	public String form(PlmEquApply plmEquApply, Model model) {
-		plmEquApply.setType("1"); // 记录类型为申请
-		if (StringUtils.isNotBlank(plmEquApply.getId())) {
-			PlmEquApplyDetail plmEquApplyDetail = new PlmEquApplyDetail();
-			plmEquApplyDetail.setApplyId(plmEquApply.getId());
-			List<PlmEquApplyDetail> applyDetails = plmEquApplyDetailService.findList(plmEquApplyDetail);
-			model.addAttribute("applyDetails", applyDetails);
-		}
-		plmEquApply.getAct().setProcInsId(plmEquApply.getProcInsId());
-		String view = "plmEquApplyForm";
-		if (StringUtils.isNotBlank(plmEquApply.getProcInsId())) {
-			plmEquApply.getAct().setProcInsId(plmEquApply.getProcInsId());
-			// 环节编号
-			String taskDefKey = plmEquApply.getAct().getTaskDefKey();
-			// 查看工单
-			if (plmEquApply.getAct().isFinishTask()) {
-				view = "plmEquApplyView";
-			} else if ("modify".equals(taskDefKey)) {
-				// 修改环节
-				view = "plmEquApplyForm";
-			} else {
-				// 审核环节
-				view = "plmEquApplyAudit";
-			}
-		}
-		String cancelFlag = "0";
-		if (StringUtils.isNotBlank(plmEquApply.getCancelFlag()) && "02".equals(plmEquApply.getCancelFlag())) {
-			cancelFlag = "1";
-		}
-		model.addAttribute("cancelFlag", cancelFlag);
-		model.addAttribute("plmEquApply", plmEquApply);
-		return "plm/equapply/" + view;
-	}
+    /**
+     * @param plmEquApply
+     * @param request
+     * @param response
+     * @param model
+     * @return 查询全部返回list页面
+     */
+    @RequestMapping(value = {"list", ""})
+    public String list(PlmEquApply plmEquApply, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<PlmEquApply> page = plmEquApplyService.findPage(new Page<PlmEquApply>(request, response), plmEquApply);
+        model.addAttribute("page", page);
+        return "plm/equapply/plmEquApplyList";
+    }
 
-	/**
-	 * 
-	 * @param plmEquApply
-	 * @param model
-	 * @param redirectAttributes
-	 * @param request
-	 * @return 实现物品的添加/修改到数据的功能返回list页面
-	 */
-	
-	
-	@RequestMapping(value = "save")
-	public String save(PlmEquApply plmEquApply, Model model, RedirectAttributes redirectAttributes,
-			ServletRequest request) {
-		// plmEquApply.setType("1");
-		if (!beanValidator(model, plmEquApply)) {
-			return form(plmEquApply, model);
-		}
-		plmEquApplyService.save(plmEquApply);
-		String[] detailJsons = plmEquApply.getDetails();
-		if (detailJsons != null && detailJsons.length > 0) {
-			for (String jsonString : detailJsons) {
-				if (StringUtils.isBlank(jsonString))
-					continue;
-				PlmEquApplyDetail plmEquApplyDetail = new PlmEquApplyDetail();
-				plmEquApplyDetail.setApplyId(plmEquApply.getId());
-				JSONObject detailJson = JSONObject.fromObject(jsonString);
-				plmEquApplyDetail.setName(detailJson.getString("name"));
-				plmEquApplyDetail.setSpec(detailJson.getString("spec"));
-				plmEquApplyDetail.setNumber(detailJson.getString("number"));
-				try {
-					plmEquApplyDetail.setValidityDate(DateUtils.parseDate(detailJson.getString("validityDate"), "yyyy-MM-dd"));
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				plmEquApplyDetailService.save(plmEquApplyDetail);
-			}
-		}
-		addMessage(redirectAttributes, "提交申请成功");
-		return "redirect:" + Global.getAdminPath() + "/act/task/apply/";
-	}
+    /**
+     * @param plmEquApply
+     * @param model
+     * @return 跳转到添加申请信息form页面
+     */
 
-	/**
-	 * 保存不提交
-	 * 
-	 * @param plmEquApply
-	 * @param model
-	 * @param redirectAttributes
-	 * @return
-	 */
-	@RequestMapping(value = "notCommit")
-	public String notCommit(PlmEquApply plmEquApply, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, plmEquApply)) {
-			return form(plmEquApply, model);
-		}
-		plmEquApplyService.notCommit(plmEquApply);
-		String[] detailJsons = plmEquApply.getDetails();
-		if (detailJsons != null && detailJsons.length > 0) {
-			for (String jsonString : detailJsons) {
-				if (StringUtils.isBlank(jsonString))
-					continue;
-				PlmEquApplyDetail plmEquApplyDetail = new PlmEquApplyDetail();
-				plmEquApplyDetail.setApplyId(plmEquApply.getId());
-				JSONObject detailJson = JSONObject.fromObject(jsonString);
-				plmEquApplyDetail.setName(detailJson.getString("name"));
-				plmEquApplyDetail.setSpec(detailJson.getString("spec"));
-				plmEquApplyDetail.setNumber(detailJson.getString("number"));
-				try {
-					plmEquApplyDetail.setValidityDate(DateUtils.parseDate(detailJson.getString("validityDate"), "yyyy-MM-dd"));
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				plmEquApplyDetailService.save(plmEquApplyDetail);
-			}
-		}
-		addMessage(redirectAttributes, "保存成功");
-		return "redirect:" + Global.getAdminPath() + "/act/task/apply/";
-	}
+    @RequestMapping(value = "form")
+    public String form(PlmEquApply plmEquApply, Model model) {
+        plmEquApply.setType("1"); // 记录类型为申请
+        if (StringUtils.isNotBlank(plmEquApply.getId())) {
+            PlmEquApplyDetail plmEquApplyDetail = new PlmEquApplyDetail();
+            plmEquApplyDetail.setApplyId(plmEquApply.getId());
+            List<PlmEquApplyDetail> applyDetails = plmEquApplyDetailService.findList(plmEquApplyDetail);
+            model.addAttribute("applyDetails", applyDetails);
+        }
+        plmEquApply.getAct().setProcInsId(plmEquApply.getProcInsId());
+        String view = "plmEquApplyForm";
+        if (StringUtils.isNotBlank(plmEquApply.getProcInsId())) {
+            plmEquApply.getAct().setProcInsId(plmEquApply.getProcInsId());
+            // 环节编号
+            String taskDefKey = plmEquApply.getAct().getTaskDefKey();
+            // 查看工单
+            if (plmEquApply.getAct().isFinishTask()) {
+                view = "plmEquApplyView";
+            } else if ("modify".equals(taskDefKey)) {
+                // 修改环节
+                view = "plmEquApplyForm";
+            } else {
+                // 审核环节
+                view = "plmEquApplyAudit";
+            }
+        }
+        String cancelFlag = "0";
+        if (StringUtils.isNotBlank(plmEquApply.getCancelFlag()) && "02".equals(plmEquApply.getCancelFlag())) {
+            cancelFlag = "1";
+        }
+        model.addAttribute("cancelFlag", cancelFlag);
+        model.addAttribute("plmEquApply", plmEquApply);
+        return "plm/equapply/" + view;
+    }
 
-	/**
-	 * 
-	 * @param plmEquApply
-	 * @param model
-	 * @return
-	 */
-	
-	@RequestMapping(value = "saveAudit")
-	public String saveAudit(PlmEquApply plmEquApply, Model model) {
-		if (StringUtils.isBlank(plmEquApply.getAct().getFlag())
-				|| StringUtils.isBlank(plmEquApply.getAct().getComment())) {
-			addMessage(model, "请填写审核意见。");
-			return form(plmEquApply, model);
-		}
-		plmEquApplyService.auditSave(plmEquApply);
-		return "redirect:" + adminPath + "/act/task/todo/";
-	}
+    /**
+     * @param plmEquApply
+     * @param model
+     * @param redirectAttributes
+     * @param request
+     * @return 实现物品的添加/修改到数据的功能返回list页面
+     */
 
-	@RequestMapping(value = "delete")
-	public String delete(PlmEquApply plmEquApply, RedirectAttributes redirectAttributes) {
-		plmEquApplyService.delete(plmEquApply);
-		addMessage(redirectAttributes, "删除物资申请成功");
-		return "redirect:" + Global.getAdminPath() + "/equapply/plmEquApply/?repage&type=1";
-	}
-	
-	@RequestMapping(value = "deleteDetail")
-	@ResponseBody
-	public void deleteId(PlmEquApplyDetail plmEquApplyDetail, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		AjaxResultEntity resultEntity = new AjaxResultEntity();
-		if (StringUtils.isBlank(plmEquApplyDetail.getId())) {
-			resultEntity.setRet(AjaxResultEntity.ERROR_PARAM);
-			resultEntity.setMessage("id为空！");
-			response.getWriter().print(JSONObject.fromObject(resultEntity).toString());
-			return;
-		}
-		plmEquApplyDetailService.delete(plmEquApplyDetail);
-		resultEntity.setRet(AjaxResultEntity.ERROR_OK);
-		response.getWriter().print(JSONObject.fromObject(resultEntity).toString());
-	}
-	
-	@RequestMapping(value = {"selectNumEquApply"})
-	public String selectNumEquApply(HttpServletRequest request, HttpServletResponse response ,String height,String width , String content,String sid) {
-		PlmStatisticsDict PlmStatisticsDict= plmStatisticsDictService.typeAndLine(content);
-		request.setAttribute("porline", PlmStatisticsDict.getLine()); 
-		request.setAttribute("portype", PlmStatisticsDict.getType());
-		List<EchartType> list = plmEquApplyService.selectNumEquApply();
-		for (EchartType echartType : list) {
-			echartType.setType(DictUtils.getDictLabel(echartType.getType(), "plm_equ_apply_type", ""));
-		}
-		JSONArray jsondata = JSONArray.fromObject(list); 
-		request.setAttribute("porid", sid);
-		request.setAttribute("jsondata", jsondata);
-		request.setAttribute("porheigh", height);
-		request.setAttribute("porwidth", width);
-		return "plm/statistics/equapply/selectNumEquApply";
-	}
-	
-	@RequestMapping(value = {"findListBySpec"})
-	public String findListBySpec(PlmEquipment plmEquipment,HttpServletRequest request, HttpServletResponse response,Model model ) {
-		List<PlmEquipment> list = plmEquipmentService.findListBySpec(plmEquipment);
-		model.addAttribute("list", list);
-		return "plm/equapply/plmEquipmentName";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "printPdfIo")
-	public void printPdfIo(PlmEquApply plmEquApply, Model model, RedirectAttributes redirectAttributes ,HttpServletRequest request ,HttpServletResponse response ) throws DocumentGeneratingException{
-		
-		
-		      //将对象转成map 并将时间类型格式化"yyyy-MM-dd"
-		      Map<String, Object> purmap=ResourceUitle.transBean2Map(plmEquApply);	
-		      
-		      //有数据字典的  要换成名称
-		      if(StringUtils.isNotBlank(plmEquApply.getPlmAct().getIsSup())){
-		    	  purmap.put("isSup",DictUtils.getDictLabel(plmEquApply.getPlmAct().getIsSup(),"yes_no",""));
-		      }
-		      PlmEquApplyDetail plmEquApplyDetail = new PlmEquApplyDetail();
-				plmEquApplyDetail.setApplyId(plmEquApply.getId());
-		      List<PlmEquApplyDetail> applyDetails = plmEquApplyDetailService.findList(plmEquApplyDetail);
-		      
-         String detail="";
-		      
-		      for (PlmEquApplyDetail plmEquApplyDetail2 : applyDetails) {
-		    	 
-		    	  
-				detail+="<tr>\n" + 
-						"					<td class='trtop' colspan='2'>"+plmEquApplyDetail2.getName()+"</td>\n" + 
-						"					<td class='trtop' colspan='2'>"+plmEquApplyDetail2.getSpec()+"</td>\n" + 
-						"					<td class='trtop' colspan='2'>"+plmEquApplyDetail2.getNumber()+"</td>\n" + 
-						"				</tr>";
-			}
-		      
-		         
-		      purmap.put("detail", detail.replaceAll("null", ""));
-		      
-		      
-		      //流转信息  actProcIns
-		      plmEquApply.getAct().setProcInsId(plmEquApply.getProcInsId());
-		      
-			//1: ProcInsId   2审批内容跨列数Colspan      3审批标题跨列数titleColspan
-		      purmap.put("actProcIns",actTaskService.histoicTable(plmEquApply.getProcInsId(), "6" ,"2"));
-		      
-		      
-		     //获取项目根路径
-		     String path=request.getSession().getServletContext().getRealPath("/");
-		       // classpath 中模板路径
-				String template = "WEB-INF/views/plm/equapply/plmEquApplyViewTemplate.html";
-				PdfDocumentGenerator pdfGenerator = new PdfDocumentGenerator();
-				// 生成pdf 返回流			
-				pdfGenerator.generate(template, purmap, path,response);			          		            
-		              
-		            		
-	}
+
+    @RequestMapping(value = "save")
+    public String save(PlmEquApply plmEquApply, Model model, RedirectAttributes redirectAttributes,
+                       ServletRequest request) {
+        // plmEquApply.setType("1");
+        if (!beanValidator(model, plmEquApply)) {
+            return form(plmEquApply, model);
+        }
+        try {
+            plmEquApplyService.save(plmEquApply);
+        } catch (
+                ActivitiException e) {
+            e.printStackTrace();
+            addMessage(redirectAttributes, "申请失败：部门没有设置对应负责人");
+            return "redirect:" + Global.getAdminPath() + "/act/task/apply/";
+        }
+        String[] detailJsons = plmEquApply.getDetails();
+        if (detailJsons != null && detailJsons.length > 0) {
+            for (String jsonString : detailJsons) {
+                if (StringUtils.isBlank(jsonString))
+                    continue;
+                PlmEquApplyDetail plmEquApplyDetail = new PlmEquApplyDetail();
+                plmEquApplyDetail.setApplyId(plmEquApply.getId());
+                JSONObject detailJson = JSONObject.fromObject(jsonString);
+                plmEquApplyDetail.setName(detailJson.getString("name"));
+                plmEquApplyDetail.setSpec(detailJson.getString("spec"));
+                plmEquApplyDetail.setNumber(detailJson.getString("number"));
+                try {
+                    plmEquApplyDetail.setValidityDate(DateUtils.parseDate(detailJson.getString("validityDate"), "yyyy-MM-dd"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                plmEquApplyDetailService.save(plmEquApplyDetail);
+            }
+        }
+        addMessage(redirectAttributes, "提交申请成功");
+        return "redirect:" + Global.getAdminPath() + "/act/task/apply/";
+    }
+
+    /**
+     * 保存不提交
+     *
+     * @param plmEquApply
+     * @param model
+     * @param redirectAttributes
+     * @return
+     */
+    @RequestMapping(value = "notCommit")
+    public String notCommit(PlmEquApply plmEquApply, Model model, RedirectAttributes redirectAttributes) {
+        if (!beanValidator(model, plmEquApply)) {
+            return form(plmEquApply, model);
+        }
+        plmEquApplyService.notCommit(plmEquApply);
+        String[] detailJsons = plmEquApply.getDetails();
+        if (detailJsons != null && detailJsons.length > 0) {
+            for (String jsonString : detailJsons) {
+                if (StringUtils.isBlank(jsonString))
+                    continue;
+                PlmEquApplyDetail plmEquApplyDetail = new PlmEquApplyDetail();
+                plmEquApplyDetail.setApplyId(plmEquApply.getId());
+                JSONObject detailJson = JSONObject.fromObject(jsonString);
+                plmEquApplyDetail.setName(detailJson.getString("name"));
+                plmEquApplyDetail.setSpec(detailJson.getString("spec"));
+                plmEquApplyDetail.setNumber(detailJson.getString("number"));
+                try {
+                    plmEquApplyDetail.setValidityDate(DateUtils.parseDate(detailJson.getString("validityDate"), "yyyy-MM-dd"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                plmEquApplyDetailService.save(plmEquApplyDetail);
+            }
+        }
+        addMessage(redirectAttributes, "保存成功");
+        return "redirect:" + Global.getAdminPath() + "/act/task/apply/";
+    }
+
+    /**
+     * @param plmEquApply
+     * @param model
+     * @return
+     */
+
+    @RequestMapping(value = "saveAudit")
+    public String saveAudit(PlmEquApply plmEquApply, Model model) {
+        if (StringUtils.isBlank(plmEquApply.getAct().getFlag())
+                || StringUtils.isBlank(plmEquApply.getAct().getComment())) {
+            addMessage(model, "请填写审核意见。");
+            return form(plmEquApply, model);
+        }
+        plmEquApplyService.auditSave(plmEquApply);
+        return "redirect:" + adminPath + "/act/task/todo/";
+    }
+
+    @RequestMapping(value = "delete")
+    public String delete(PlmEquApply plmEquApply, RedirectAttributes redirectAttributes) {
+        plmEquApplyService.delete(plmEquApply);
+        addMessage(redirectAttributes, "删除物资申请成功");
+        return "redirect:" + Global.getAdminPath() + "/equapply/plmEquApply/?repage&type=1";
+    }
+
+    @RequestMapping(value = "deleteDetail")
+    @ResponseBody
+    public void deleteId(PlmEquApplyDetail plmEquApplyDetail, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        AjaxResultEntity resultEntity = new AjaxResultEntity();
+        if (StringUtils.isBlank(plmEquApplyDetail.getId())) {
+            resultEntity.setRet(AjaxResultEntity.ERROR_PARAM);
+            resultEntity.setMessage("id为空！");
+            response.getWriter().print(JSONObject.fromObject(resultEntity).toString());
+            return;
+        }
+        plmEquApplyDetailService.delete(plmEquApplyDetail);
+        resultEntity.setRet(AjaxResultEntity.ERROR_OK);
+        response.getWriter().print(JSONObject.fromObject(resultEntity).toString());
+    }
+
+    @RequestMapping(value = {"selectNumEquApply"})
+    public String selectNumEquApply(HttpServletRequest request, HttpServletResponse response, String height, String width, String content, String sid) {
+        PlmStatisticsDict PlmStatisticsDict = plmStatisticsDictService.typeAndLine(content);
+        request.setAttribute("porline", PlmStatisticsDict.getLine());
+        request.setAttribute("portype", PlmStatisticsDict.getType());
+        List<EchartType> list = plmEquApplyService.selectNumEquApply();
+        for (EchartType echartType : list) {
+            echartType.setType(DictUtils.getDictLabel(echartType.getType(), "plm_equ_apply_type", ""));
+        }
+        JSONArray jsondata = JSONArray.fromObject(list);
+        request.setAttribute("porid", sid);
+        request.setAttribute("jsondata", jsondata);
+        request.setAttribute("porheigh", height);
+        request.setAttribute("porwidth", width);
+        return "plm/statistics/equapply/selectNumEquApply";
+    }
+
+    @RequestMapping(value = {"findListBySpec"})
+    public String findListBySpec(PlmEquipment plmEquipment, HttpServletRequest request, HttpServletResponse response, Model model) {
+        List<PlmEquipment> list = plmEquipmentService.findListBySpec(plmEquipment);
+        model.addAttribute("list", list);
+        return "plm/equapply/plmEquipmentName";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "printPdfIo")
+    public void printPdfIo(PlmEquApply plmEquApply, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) throws DocumentGeneratingException {
+
+
+        //将对象转成map 并将时间类型格式化"yyyy-MM-dd"
+        Map<String, Object> purmap = ResourceUitle.transBean2Map(plmEquApply);
+
+        //有数据字典的  要换成名称
+        if (StringUtils.isNotBlank(plmEquApply.getPlmAct().getIsSup())) {
+            purmap.put("isSup", DictUtils.getDictLabel(plmEquApply.getPlmAct().getIsSup(), "yes_no", ""));
+        }
+        PlmEquApplyDetail plmEquApplyDetail = new PlmEquApplyDetail();
+        plmEquApplyDetail.setApplyId(plmEquApply.getId());
+        List<PlmEquApplyDetail> applyDetails = plmEquApplyDetailService.findList(plmEquApplyDetail);
+
+        String detail = "";
+
+        for (PlmEquApplyDetail plmEquApplyDetail2 : applyDetails) {
+
+
+            detail += "<tr>\n" +
+                    "					<td class='trtop' colspan='2'>" + plmEquApplyDetail2.getName() + "</td>\n" +
+                    "					<td class='trtop' colspan='2'>" + plmEquApplyDetail2.getSpec() + "</td>\n" +
+                    "					<td class='trtop' colspan='2'>" + plmEquApplyDetail2.getNumber() + "</td>\n" +
+                    "				</tr>";
+        }
+
+
+        purmap.put("detail", detail.replaceAll("null", ""));
+
+
+        //流转信息  actProcIns
+        plmEquApply.getAct().setProcInsId(plmEquApply.getProcInsId());
+
+        //1: ProcInsId   2审批内容跨列数Colspan      3审批标题跨列数titleColspan
+        purmap.put("actProcIns", actTaskService.histoicTable(plmEquApply.getProcInsId(), "6", "2"));
+
+
+        //获取项目根路径
+        String path = request.getSession().getServletContext().getRealPath("/");
+        // classpath 中模板路径
+        String template = "WEB-INF/views/plm/equapply/plmEquApplyViewTemplate.html";
+        PdfDocumentGenerator pdfGenerator = new PdfDocumentGenerator();
+        // 生成pdf 返回流
+        pdfGenerator.generate(template, purmap, path, response);
+
+
+    }
 }

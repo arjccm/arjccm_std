@@ -169,15 +169,15 @@
 					<td class="tc">${fns:getDictLabel(ccmHousePsychogeny.acciHist, 'yes_no', '')}</td>
 					<td class="tc">${fns:getDictLabel(ccmHousePsychogeny.dangAsse, 'ccm_nors_asle', '')}</td> 
 					<td class="tc"><shiro:hasPermission name="house:ccmHousePsychogeny:edit">
-						<a class="btnList" onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}', '修改', '1200px', '900px')" title="修改"><i class="icon-pencil"></i></a>
-						<a class="btnList" href="${ctx}/house/ccmHousePsychogeny/delete?id=${ccmHousePsychogeny.id}&permissionKey=${permissionKey}" onclick="return confirmx('确认要删除该肇事肇祸等严重精神障碍患者吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
-						<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmHousePsychogeny.peopleId}')"  title="位置信息"><i class="icon-map-marker "></i></a>
-						<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmHousePsychogeny.peopleId}', '社交关系', '1000px', '700px')" title="社交关系"><i class="icon-group"></i></a>
-						<%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')" title="定时提醒"><i class="icon-bell"></i></a> --%>
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}', '修改', '1200px', '900px')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+						<a class="btnList" href="${ctx}/house/ccmHousePsychogeny/delete?id=${ccmHousePsychogeny.id}&permissionKey=${permissionKey}" onclick="return confirmx('确认要删除该肇事肇祸等严重精神障碍患者吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+						<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmHousePsychogeny.peopleId}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmHousePsychogeny.peopleId}', '社交关系', '1000px', '700px')" title="社交关系"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
+						<%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')" title="定时提醒"><i class="iconfont icon-caozuotubiao-fasongjingqing"></i></a> --%>
 				        </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 			  			<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHousePsychogeny.id}&relevance_table=ccm_house_psychogeny', '记录信息', '800px', '660px')" 
-								  title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a>
-			  			<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHousePsychogeny.id}&relevance_table=ccm_house_psychogeny', '添加记录', '800px', '660px')"  title="添加记录"><i class="icon-plus"></i></a>
+								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
+			  			<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHousePsychogeny.id}&relevance_table=ccm_house_psychogeny', '添加记录', '800px', '660px')"  title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 						</shiro:hasPermission></td>
 				</tr>
 			</c:forEach>

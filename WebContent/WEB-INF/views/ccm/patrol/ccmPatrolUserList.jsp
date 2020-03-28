@@ -54,8 +54,8 @@
 					${ccmPatrolUser.remarks}
 				</td>
 				<shiro:hasPermission name="patrol:ccmPatrolUser:edit"><td>
-    				<a class="btnList" href="${ctx}/patrol/ccmPatrolUser/form?id=${ccmPatrolUser.id}" title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/patrol/ccmPatrolUser/delete?id=${ccmPatrolUser.id}" onclick="return confirmx('确认要删除该巡逻人员吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/patrol/ccmPatrolUser/form?id=${ccmPatrolUser.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/patrol/ccmPatrolUser/delete?id=${ccmPatrolUser.id}" onclick="return confirmx('确认要删除该巡逻人员吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

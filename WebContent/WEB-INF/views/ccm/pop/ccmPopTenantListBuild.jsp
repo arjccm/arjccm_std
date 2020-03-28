@@ -82,11 +82,11 @@
 				</td>
 				<td><shiro:hasPermission name="pop:ccmPopTenant:edit">
     				<a class="btnList"  
-    				href="${ctx}/pop/ccmPopTenant/formBuild?buildingIdId=${ccmPopTenant.buildingId.id}&id=${ccmPopTenant.id}" title="修改"><i class="icon-pencil"></i></a>
+    				href="${ctx}/pop/ccmPopTenant/formBuild?buildingIdId=${ccmPopTenant.buildingId.id}&id=${ccmPopTenant.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" 
-					href="${ctx}/pop/ccmPopTenant/deleteHouse?id=${ccmPopTenant.id}&buildingId=${buildingId}&buildingAreaId=${buildingAreaId}" onclick="return confirmx('确认要解除该房屋的绑定吗？', this.href)" title="解除绑定"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					href="${ctx}/pop/ccmPopTenant/deleteHouse?id=${ccmPopTenant.id}&buildingId=${buildingId}&buildingAreaId=${buildingAreaId}" onclick="return confirmx('确认要解除该房屋的绑定吗？', this.href)" title="解除绑定"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					<a class="btnList"  
-                     href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${ccmPopTenant.id}&buildId=${buildingId}&type=houseBuild&netId=${buildingAreaId}" title="住户管理"><i class="icon-group"></i></a>
+                     href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${ccmPopTenant.id}&buildId=${buildingId}&type=houseBuild&netId=${buildingAreaId}" title="住户管理"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
 				 </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 				  			<%-- <a	class="btn btn-success"
 								href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPopTenant.id}&relevance_table=ccm_pop_tenant">添加记录</a> --%>

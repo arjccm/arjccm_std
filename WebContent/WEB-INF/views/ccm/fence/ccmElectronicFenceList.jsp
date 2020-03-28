@@ -78,10 +78,10 @@
 					<shiro:hasPermission name="fence:ccmElectronicFence:edit">
 						<td><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/fence/ccmElectronicFence/form?id=${ccmElectronicFence.id}', '编辑', '1100px', '700px')"
-							title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/fence/ccmElectronicFence/delete?id=${ccmElectronicFence.id}"
 							onclick="return confirmx('确认要删除该电子围栏吗？', this.href)" title="删除"><i
-								class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

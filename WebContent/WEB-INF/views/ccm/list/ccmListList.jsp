@@ -39,7 +39,7 @@
 
 			<li class="btns">
 				<a onclick="parent.LayerDialog('${ctx}/list/ccmList/form', '添加', '600px', '500px')" class="btn btn-primary">
-					<i class="icon-plus"></i> 添加
+					<i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加
 				</a>
 			</li>
 			<li class="btns">
@@ -83,11 +83,11 @@
 				<shiro:hasPermission name="list:ccmList:edit">
 				<td>
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/list/ccmList/form?id=${ccmList.id}', '编辑', '600px', '500px')" title="修改">
-						<i class="icon-pencil"></i>
+						<i class="iconfont icon-caozuotubiao-xiugai"></i>
 					</a> 
 					<a class="btnList" href="${ctx}/list/ccmList/delete?id=${ccmList.id}"
 							onclick="return confirmx('确认要删除该名单库吗？', this.href)" title="删除">
-						<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
+						<i class="iconfont icon-caozuotubiao-shanchu"></i>
 					</a>
 				</td>
 				</shiro:hasPermission>

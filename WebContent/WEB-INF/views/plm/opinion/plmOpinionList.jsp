@@ -85,17 +85,17 @@
 							<c:if test="${ empty plmOpinion.procInsId}">
 									<a class="btnList"
 										href="${ctx}/opinion/plmOpinion/form?id=${plmOpinion.id}"
-										title="修改"><i class="icon-pencil"></i></a>
+										title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/opinion/plmOpinion/delete?id=${plmOpinion.id}"
 										onclick="return confirmx('确认要删除该建议意见吗？', this.href)"
-										title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 								</c:if>
 						
 						<c:if test="${not empty plmOpinion.procInsId}">
 							<a
 								href="${ctx}/opinion/plmOpinion/form?id=${plmOpinion.id}"
-								title="显示详情"><i class="icon-file"></i></a>
+								title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						</c:if></td>
 					</tr>
 				</c:forEach>
@@ -135,16 +135,16 @@
 								<c:if test="${ empty plmOpinion.procInsId}">
 									<a class="btnList"
 										href="${ctx}/opinion/plmOpinion/form?id=${plmOpinion.id}"
-										title="修改"><i class="icon-pencil"></i></a>
+										title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/opinion/plmOpinion/delete?id=${plmOpinion.id}"
 										onclick="return confirmx('确认要删除该建议意见吗？', this.href)"
-										title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+										title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 								</c:if>
 							
 							<c:if test="${not empty plmOpinion.procInsId}">
 								<a href="${ctx}/opinion/plmOpinion/form?id=${plmOpinion.id}"
-									title="显示详情"><i class="icon-file"></i></a>
+									title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</c:if>
 						</div>
 					</div>

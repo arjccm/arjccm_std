@@ -70,7 +70,7 @@
 			</li>
 			<li class="btns"><a
 						onclick="parent.LayerDialog('${ctx}/book/ccmDatabaseBook/form', '添加', '800px', '600px')"
-						class="btn btn-success"><i class="icon-plus"></i> 添加 </a></li>
+						class="btn btn-success"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加 </a></li>
 			<li class="btns">
 				<a href="javascript:;" id="btnSubmit" class="btn btn-primary">
 					<i class="icon-search"></i> 查询 </a>
@@ -108,8 +108,8 @@
 						<fmt:formatDate value="${ccmDatabaseBook.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 					</td>
 					<shiro:hasPermission name="book:ccmDatabaseBook:edit"><td>
-						<a href="${ctx}/book/ccmDatabaseBook/form?id=${ccmDatabaseBook.id}"><i class="icon-pencil"></i></a>
-						<a href="${ctx}/book/ccmDatabaseBook/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+						<a href="${ctx}/book/ccmDatabaseBook/form?id=${ccmDatabaseBook.id}"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+						<a href="${ctx}/book/ccmDatabaseBook/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</td></shiro:hasPermission>
 				</tr>
 			</c:forEach>
@@ -141,9 +141,9 @@
 						<div class="footbtn" style="text-align: right;">
 							<shiro:hasPermission name="book:ccmDatabaseBook:edit"><td>
 								<%--<a onclick="parent.LayerDialog('${ctx}/book/ccmDatabaseBook/form?id=${ccmDatabaseBook.id}', '编辑', '800px', '600px')"
-								   class="btn btn-success"><i class="icon-pencil"></i></a>--%>
-								<%--<a href="${ctx}/book/ccmDatabaseBook/form?id=${ccmDatabaseBook.id}"><i class="icon-pencil"></i></a>--%>
-								<a href="${ctx}/book/ccmDatabaseBook/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+								   class="btn btn-success"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
+								<%--<a href="${ctx}/book/ccmDatabaseBook/form?id=${ccmDatabaseBook.id}"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
+								<a href="${ctx}/book/ccmDatabaseBook/delete?id=${ccmDatabaseBook.id}" onclick="return confirmx('确认要删除该书籍吗？', this.href)"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</td></shiro:hasPermission>
 						</div>
 					</div>

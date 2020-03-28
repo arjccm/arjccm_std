@@ -140,10 +140,10 @@
 						</td>
 						<shiro:hasPermission name="storage:plmEquipment:edit">
 							<td style="height: 50px"><a
-								href="${ctx}/storage/plmEquipment/form?id=${plmEquipment.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
+								href="${ctx}/storage/plmEquipment/form?id=${plmEquipment.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a
 								href="${ctx}/storage/plmEquipment/delete?id=${plmEquipment.id}"
-								onclick="return confirmx('确认要删除该装备物资吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+								onclick="return confirmx('确认要删除该装备物资吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 						</shiro:hasPermission>
 					</tr>
 				</c:forEach>
@@ -177,10 +177,10 @@
 
 						<div class="footbtn" style="text-align: right;">
 							<shiro:hasPermission name="storage:plmEquipment:edit">
-								<a href="${ctx}/storage/plmEquipment/form?id=${plmEquipment.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
+								<a href="${ctx}/storage/plmEquipment/form?id=${plmEquipment.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a
 									href="${ctx}/storage/plmEquipment/delete?id=${plmEquipment.id}"
-									onclick="return confirmx('确认要删除该装备物资吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									onclick="return confirmx('确认要删除该装备物资吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission>
 
 						</div>

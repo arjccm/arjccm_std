@@ -125,13 +125,13 @@
 						<shiro:hasPermission name="storage:plmOut:edit">
 							<td style="height: 50px"><c:choose>
 									<c:when test="${plmOut.type == '3'}">
-										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
+										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									</c:when>
 									<c:otherwise>
-										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="查看" class="icon-file"></i></a>
+										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 									</c:otherwise>
 								</c:choose> <a href="${ctx}/storage/plmOut/delete?id=${plmOut.id}"
-								onclick="return confirmx('确认要删除该出库单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a></td>
+								onclick="return confirmx('确认要删除该出库单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
 						</shiro:hasPermission>
 					</tr>
 				</c:forEach>
@@ -173,14 +173,14 @@
 							<shiro:hasPermission name="storage:plmOut:edit">
 								<c:choose>
 									<c:when test="${plmOut.type == '3'}">
-										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="修改" class="icon-pencil"></i></a>
+										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									</c:when>
 									<c:otherwise>
-										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="查看" class="icon-file"></i></a>
+										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="查看" class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 									</c:otherwise>
 								</c:choose>
 								<a href="${ctx}/storage/plmOut/delete?id=${plmOut.id}"
-									onclick="return confirmx('确认要删除该出库单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									onclick="return confirmx('确认要删除该出库单吗？', this.href)" class="btnList"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission>
 
 						</div>

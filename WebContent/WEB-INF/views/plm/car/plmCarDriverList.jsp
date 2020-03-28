@@ -147,15 +147,15 @@
 						<td><shiro:hasPermission name="car:plmCarViolation:view">
 								<a class="btnList"
 									onclick="parent.LayerDialog('${ctx}/car/plmCarViolation/addFromUseList?driver.id=${plmCarDriver.id}', '违章记录', '1000px', '700px')"
-									title="违章记录"><i class="icon-file"></i></a>
+									title="违章记录"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</shiro:hasPermission> <shiro:hasPermission name="car:plmCarDriver:edit">
 								<a class="btnList"
 									href="${ctx}/car/plmCarDriver/form?id=${plmCarDriver.id}"
-									title="修改"><i class="icon-pencil"></i></a>
+									title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/car/plmCarDriver/delete?id=${plmCarDriver.id}"
 									onclick="return confirmx('确认要删除该驾驶员吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission></td>
 					</tr>
 				</c:forEach>
@@ -194,16 +194,16 @@
 							<shiro:hasPermission name="car:plmCarViolation:view">
 								<a class="btnList"
 									onclick="parent.LayerDialog('${ctx}/car/plmCarViolation/addFromUseList?driver.id=${plmCarDriver.id}', '违章记录', '1000px', '700px')"
-									title="违章记录"><i class="icon-file"></i></a>
+									title="违章记录"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							</shiro:hasPermission>
 							<shiro:hasPermission name="car:plmCarDriver:edit">
 								<a class="btnList"
 									href="${ctx}/car/plmCarDriver/form?id=${plmCarDriver.id}"
-									title="修改"><i class="icon-pencil"></i></a>
+									title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a class="btnList"
 									href="${ctx}/car/plmCarDriver/delete?id=${plmCarDriver.id}"
 									onclick="return confirmx('确认要删除该驾驶员吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission>
 						</div>
 					</div>

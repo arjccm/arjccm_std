@@ -128,16 +128,16 @@
 						<td>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/listCheck?placeId=${ccmPlaceHospital.basePlaceId}', '事件关联', '1100px', '700px')"
-								title="事件关联"><i class="icon-random"></i></a>
+								title="事件关联"><i class="iconfont icon-caozuotubiao-shijianguanlian"></i></a>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/hospital/ccmPlaceHospital/form?id=${ccmPlaceHospital.id}', '编辑', '1100px', '700px')"
-								title="修改"><i class="icon-pencil"></i></a> <a class="btnList"
+								title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 								href="${ctx}/hospital/ccmPlaceHospital/delete?id=${ccmPlaceHospital.id}"
 								onclick="return confirmx('确认要删除该医疗卫生场所吗？', this.href)" title="删除"><i
-									class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceHospital.ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
-							   title="从业人员添加"><i class="icon-group"></i></a>
+							   title="从业人员添加"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
 							<a class="btnList"
 							   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmPlaceHospital.ccmBasePlace.id}&type=1', '从业人员信息', '1550px', '800px')"
 							   title="从业人员信息"><i class="icon-align-justify"></i></a>

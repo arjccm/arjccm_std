@@ -51,7 +51,7 @@
 			</li>
 			
 			<li class="btns"><a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="icon-search"></i> 查询</a>
-			 <a id="btnSubmit" class="btn btn-primary" href="javascript:;" onclick="bj('')"><i class="icon-plus"></i>添加</a></li>
+			 <a id="btnSubmit" class="btn btn-primary" href="javascript:;" onclick="bj('')"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i>添加</a></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -90,10 +90,10 @@
 					${plmStatisticsPlan.remarks}
 				</td> 
 				<shiro:hasPermission name="statistics:plmStatisticsPlan:edit"><td>
-				   <a href="${ctx}/statistics/plmStatisticsDetail/list?pid=${plmStatisticsPlan.id}" title="方案明细"><i class="icon-edit"></i></a>
-    				<a  onclick="bj('${plmStatisticsPlan.id}')" title="修改"><i class="icon-pencil"></i></a>
+				   <a href="${ctx}/statistics/plmStatisticsDetail/list?pid=${plmStatisticsPlan.id}" title="方案明细"><i class="iconfont icon-caozuotubiao-fanganmingxi"></i></a>
+    				<a  onclick="bj('${plmStatisticsPlan.id}')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/statistics/plmStatisticsPlan/delete?id=${plmStatisticsPlan.id}" title="删除"  onclick="return confirmx('确认要删除该门户方案吗？', this.href)">
-					<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+					<i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

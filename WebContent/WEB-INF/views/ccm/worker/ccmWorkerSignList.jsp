@@ -125,8 +125,8 @@
 					<a href="${ctx}/worker/ccmWorkerSign/delete?id=${ccmWorkerSign.id}" onclick="return confirmx('确认要删除该社工签到吗？', this.href)">删除</a>
 				</td></shiro:hasPermission> --%>
 				<td style="height: 50px">
-				<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/worker/ccmWorkerSign/form?id=${ccmWorkerSign.id}&hide1=true&hide2=false', '详情', '500px', '275px')" title="详情"><i class="icon-list-alt"></i></a>
-				<a class="btnList" href="javascript:;" onclick="getAreaPointMap('${ccmWorkerSign.id}')"  title="位置信息"><i class="icon-map-marker "></i></a>
+				<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/worker/ccmWorkerSign/form?id=${ccmWorkerSign.id}&hide1=true&hide2=false', '详情', '500px', '275px')" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
+				<a class="btnList" href="javascript:;" onclick="getAreaPointMap('${ccmWorkerSign.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 				</td>
 			</tr>
 		</c:forEach>

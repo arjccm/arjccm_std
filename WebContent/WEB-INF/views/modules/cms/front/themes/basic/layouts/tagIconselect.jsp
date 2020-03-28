@@ -63,8 +63,8 @@
 	      <li><i class="icon-circle"></i> icon-circle</li>
 	      <li><i class="icon-circle-blank"></i> icon-circle-blank</li>
 	      <li><i class="icon-cloud"></i> icon-cloud</li>
-	      <li><i class="icon-cloud-download"></i> icon-cloud-download</li>
-	      <li><i class="icon-cloud-upload"></i> icon-cloud-upload</li>
+	      <li><i class="iconfont icon-caozuotubiao-chekong"></i> iconfont icon-caozuotubiao-chekong</li>
+	      <li><i class="iconfont icon-caozuotubiao-bukong"></i> iconfont icon-caozuotubiao-bukong</li>
 	      <li><i class="icon-coffee"></i> icon-coffee</li>
 	      <li><i class="icon-cog"></i> icon-cog</li>
 	      <li><i class="icon-cogs"></i> icon-cogs</li>
@@ -101,7 +101,7 @@
 	      <li><i class="icon-gift"></i> icon-gift</li>
 	      <li><i class="icon-glass"></i> icon-glass</li>
 	      <li><i class="icon-globe"></i> icon-globe</li>
-	      <li><i class="icon-group"></i> icon-group</li>
+	      <li><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i> iconfont icon-caozuotubiao-shejiaoguanxi</li>
 	      <li><i class="icon-hdd"></i> icon-hdd</li>
 	      <li><i class="icon-headphones"></i> icon-headphones</li>
 	      <li><i class="icon-heart"></i> icon-heart</li>
@@ -121,7 +121,7 @@
 
 	      <li><i class="icon-magic"></i> icon-magic</li>
 	      <li><i class="icon-magnet"></i> icon-magnet</li>
-	      <li><i class="icon-map-marker"></i> icon-map-marker</li>
+	      <li><i class="iconfont icon-caozuotubiao-weizhixinxi"></i> iconfont icon-caozuotubiao-weizhixinxi</li>
 	      <li><i class="icon-minus"></i> icon-minus</li>
 	      <li><i class="icon-minus-sign"></i> icon-minus-sign</li>
 	      <li><i class="icon-mobile-phone"></i> icon-mobile-phone</li>
@@ -132,12 +132,12 @@
 	      <li><i class="icon-ok"></i> icon-ok</li>
 	      <li><i class="icon-ok-circle"></i> icon-ok-circle</li>
 	      <li><i class="icon-ok-sign"></i> icon-ok-sign</li>
-	      <li><i class="icon-pencil"></i> icon-pencil</li>
+	      <li><i class="iconfont icon-caozuotubiao-xiugai"></i> iconfont icon-caozuotubiao-xiugai</li>
 	      <li><i class="icon-picture"></i> icon-picture</li>
 	      <li><i class="icon-plane"></i> icon-plane</li>
-	      <li><i class="icon-plus"></i> icon-plus</li>
-	      <li><i class="icon-plus-sign"></i> icon-plus-sign</li>
-	      <li><i class="icon-print"></i> icon-print</li>
+	      <li><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> iconfont icon-caozuotubiao-tianjiachuli</li>
+	      <li><i class="iconfont icon-caozuotubiao-tianjiachuli-sign"></i> iconfont icon-caozuotubiao-tianjiachuli-sign</li>
+	      <li><i class="iconfont icon-caozuotubiao-jiluxinxi"></i> iconfont icon-caozuotubiao-jiluxinxi</li>
 	      <li><i class="icon-pushpin"></i> icon-pushpin</li>
 	      <li><i class="icon-qrcode"></i> icon-qrcode</li>
 	      <li><i class="icon-question-sign"></i> icon-question-sign</li>
@@ -147,7 +147,7 @@
 	      <li><i class="icon-refresh"></i> icon-refresh</li>
 	      <li><i class="icon-remove"></i> icon-remove</li>
 	      <li><i class="icon-remove-circle"></i> icon-remove-circle</li>
-	      <li><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i> iconfont icon-icondaohangtubiao-shujucaijifenxi</li>
+	      <li><i class="iconfont icon-caozuotubiao-shanchu"></i> iconfont icon-caozuotubiao-shanchu</li>
 	      <li><i class="icon-reorder"></i> icon-reorder</li>
 	      <li><i class="icon-reply"></i> icon-reply</li>
 	      <li><i class="icon-resize-horizontal"></i> icon-resize-horizontal</li>
@@ -181,7 +181,7 @@
 	      <li><i class="icon-thumbs-up"></i> icon-thumbs-up</li>
 	      <li><i class="icon-time"></i> icon-time</li>
 	      <li><i class="icon-tint"></i> icon-tint</li>
-	      <li><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i> iconfont icon-icondaohangtubiao-shujucaijifenxi</li>
+	      <li><i class="iconfont icon-caozuotubiao-shanchu"></i> iconfont icon-caozuotubiao-shanchu</li>
 	      <li><i class="icon-trophy"></i> icon-trophy</li>
 	      <li><i class="icon-truck"></i> icon-truck</li>
 	      <li><i class="icon-umbrella"></i> icon-umbrella</li>
@@ -202,8 +202,8 @@
 	    <h2 class="page-header">文本编辑器图标</h2>
 	  
 	    <ul class="the-icons">
-	      <li><i class="icon-file"></i> icon-file</li>
-	      <li><i class="icon-file-alt"></i> icon-file-alt</li>
+	      <li><i class="iconfont icon-caozuotubiao-xiangqing"></i> iconfont icon-caozuotubiao-xiangqing</li>
+	      <li><i class="iconfont icon-caozuotubiao-xiangqing-alt"></i> iconfont icon-caozuotubiao-xiangqing-alt</li>
 	      <li><i class="icon-cut"></i> icon-cut</li>
 	      <li><i class="icon-copy"></i> icon-copy</li>
 	      <li><i class="icon-paste"></i> icon-paste</li>
@@ -350,7 +350,7 @@
 	    
 
 	      <li><i class="icon-medkit"></i> icon-medkit</li>
-	      <li><i class="icon-plus-sign-alt"></i> icon-plus-sign-alt</li>
+	      <li><i class="iconfont icon-caozuotubiao-tianjiachuli-sign-alt"></i> iconfont icon-caozuotubiao-tianjiachuli-sign-alt</li>
 	    
 
 	      <li><i class="icon-stethoscope"></i> icon-stethoscope</li>

@@ -85,18 +85,18 @@
 										<%-- <a href="${ctx}/equapply/plmEquApply/update?id=${plmEquApply.id}&submitType=2"
 										onclick="return	confirmx('确认提交申请吗？提交申请后将不能修改申请内容哦！！',this.href)" >提交申请</a> --%>
 										<%-- 	<a class="btnList" 	href="${ctx}/equapply/plmEquApply/form?id=${plmEquApply.id}"
-										id="hidden" title="修改"><i class="icon-pencil"></i></a>
+										id="hidden" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/equapply/plmEquApply/delete?id=${plmEquApply.id}"
 										onclick="return confirmx('确认要删除该物资申请吗？', this.href)" id="hidden"
-										title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a> --%>
+										title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a> --%>
 									
 								</c:when>
 								<c:otherwise>
 									
 										<a
 											href="${ctx}/equapply/plmEquApplyScrap/form?id=${plmEquApply.id}"
-											title="显示详情"><i class="icon-file"></i></a>
+											title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 									
 									<script type="text/javascript">
 										$("#hidden").removeAttr("href");
@@ -138,18 +138,18 @@
 										<%-- <a href="${ctx}/equapply/plmEquApply/update?id=${plmEquApply.id}&submitType=2"
 										onclick="return	confirmx('确认提交申请吗？提交申请后将不能修改申请内容哦！！',this.href)" >提交申请</a> --%>
 										<%-- 	<a class="btnList" 	href="${ctx}/equapply/plmEquApply/form?id=${plmEquApply.id}"
-										id="hidden" title="修改"><i class="icon-pencil"></i></a>
+										id="hidden" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									<a class="btnList"
 										href="${ctx}/equapply/plmEquApply/delete?id=${plmEquApply.id}"
 										onclick="return confirmx('确认要删除该物资申请吗？', this.href)" id="hidden"
-										title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a> --%>
+										title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a> --%>
 									
 								</c:when>
 								<c:otherwise>
 									
 										<a
 											href="${ctx}/equapply/plmEquApplyScrap/form?id=${plmEquApply.id}"
-											title="显示详情"><i class="icon-file"></i></a>
+											title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 									
 									<script type="text/javascript">
 										$("#hidden").removeAttr("href");

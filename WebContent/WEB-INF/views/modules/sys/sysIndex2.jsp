@@ -225,7 +225,7 @@
                         </li>
                         <li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i class="icon-lock"></i>&nbsp; 修改密码</a>
                         </li>
-                        <li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i class="icon-bell"></i>&nbsp; 我的通知
+                        <li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i class="iconfont icon-caozuotubiao-fasongjingqing"></i>&nbsp; 我的通知
                             <span id="notifyNum2" class="label label-info hide"></span></a></li>
                     </ul>
                 </li>--%>

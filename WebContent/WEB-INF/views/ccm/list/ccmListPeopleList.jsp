@@ -52,7 +52,7 @@
 			</li>
 			<li class="btns">
 				<a onclick="onAddClick()" class="btn btn-primary">
-					<i class="icon-plus"></i> 添加
+					<i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加
 				</a>
 			</li>
 			<li class="btns">
@@ -102,11 +102,11 @@
 				<shiro:hasPermission name="list:ccmListPeople:edit">
 				<td>
 					<a class="btnList" id="${ccmListPeople.id}" onclick="onModifyClick(this.id)" title="修改">
-						<i class="icon-pencil"></i>
+						<i class="iconfont icon-caozuotubiao-xiugai"></i>
 					</a>
 					<a class="btnList" href="${ctx}/list/ccmListPeople/delete?id=${ccmListPeople.id}&type=${type}"
 							onclick="return confirmx('确认要删除该${title}人员吗？', this.href)" title="删除">
-						<i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i>
+						<i class="iconfont icon-caozuotubiao-shanchu"></i>
 					</a>
 				</td>
 				</shiro:hasPermission>

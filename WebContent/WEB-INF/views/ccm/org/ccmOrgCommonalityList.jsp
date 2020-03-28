@@ -96,8 +96,8 @@
 					${ccmOrgCommonality.orgTel}
 				</td>
 				<shiro:hasPermission name="org:ccmOrgCommonality:edit"><td style="height: 50px">
-    				<a class="btnList" href="${ctx}/org/ccmOrgCommonality/form?id=${ccmOrgCommonality.id}"  title="修改"><i class="icon-pencil"></i></a>
-					<a class="btnList" href="${ctx}/org/ccmOrgCommonality/delete?id=${ccmOrgCommonality.id}" onclick="return confirmx('确认要删除该公共机构管理吗？', this.href)"  title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>
+    				<a class="btnList" href="${ctx}/org/ccmOrgCommonality/form?id=${ccmOrgCommonality.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a class="btnList" href="${ctx}/org/ccmOrgCommonality/delete?id=${ccmOrgCommonality.id}" onclick="return confirmx('确认要删除该公共机构管理吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				<%--<c:if test="${ccmOrgCommonality.type == 10 ||  ccmOrgCommonality.type == 11}" >--%>
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgDevice/form?id=${ccmOrgCommonality.id}', '视频绑定', '1120px', '350px')"
 					   title="视频绑定"				class="btn btn-success"><i class="icon-align-left"></i></a>

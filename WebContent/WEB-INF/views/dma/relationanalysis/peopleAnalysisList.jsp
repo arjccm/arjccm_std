@@ -300,7 +300,7 @@
 				</td>
 				<td>
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/relationAnalysis/dmaPeopleAnalysis/peopleAnalays?ident=${ccmPeople.ident}&name=${ccmPeople.name}&residencedetail=${ccmPeople.residencedetail}', '关联分析', '900px', '800px')"
-								  title="关联分析"><i class="icon-group"></i></a>
+								  title="关联分析"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
 				</td>
 			</tr>
 		</c:forEach>

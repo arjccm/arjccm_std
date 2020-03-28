@@ -125,7 +125,7 @@
 			</td>
 			<td><textarea style="width: 300px;height: 30px">{{row.remarks}}</textarea></td>
 			<shiro:hasPermission name="view:vCcmOrg:edit"><td>
-   				<a class="btnList" href="${ctx}/view/vCcmOrg/form?id={{row.id}}"  title="修改"><i class="icon-pencil"></i></a>
+   				<a class="btnList" href="${ctx}/view/vCcmOrg/form?id={{row.id}}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 			</td></shiro:hasPermission>
 		</tr>
 	</script>

@@ -91,7 +91,7 @@
 					<fmt:formatDate value="${message.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="news:message:edit"><td style="height: 50px">
-					<a class="btnList" onclick="parent.LayerDialog('${ctx}/news/message/form?id=${message.id}', '详情', '800px', '300px')" title="详情"><i class="icon-pencil"></i></a>
+					<a class="btnList" onclick="parent.LayerDialog('${ctx}/news/message/form?id=${message.id}', '详情', '800px', '300px')" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

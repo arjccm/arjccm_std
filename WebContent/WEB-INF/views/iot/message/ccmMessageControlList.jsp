@@ -95,8 +95,8 @@
 				</td>
 				<shiro:hasPermission name="message:ccmMessageManage:edit">
 					<td style="text-align:center;vertical-align:middle;">
-						<a class="btnList" title="添加消息"  onclick="parent.LayerDialog('${ctx}/message/ccmMessageManage/form?equipmentId=${ccmRemoteControl.id}&equipmentNum=${ccmRemoteControl.equipmentNum}', '${ccmRemoteControl.equipmentName}添加发送消息', '1100px', '700px')"><i class="icon-plus"></i></a>
-						<a class="btnList" title="消息记录"  onclick="parent.LayerDialog('${ctx}/message/ccmMessageManage/getlist?id=${ccmRemoteControl.id}&num=${ccmRemoteControl.equipmentNum}', '${ccmRemoteControl.equipmentName}发送消息列表', '1100px', '700px')"><i class="icon-file"></i></a>
+						<a class="btnList" title="添加消息"  onclick="parent.LayerDialog('${ctx}/message/ccmMessageManage/form?equipmentId=${ccmRemoteControl.id}&equipmentNum=${ccmRemoteControl.equipmentNum}', '${ccmRemoteControl.equipmentName}添加发送消息', '1100px', '700px')"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+						<a class="btnList" title="消息记录"  onclick="parent.LayerDialog('${ctx}/message/ccmMessageManage/getlist?id=${ccmRemoteControl.id}&num=${ccmRemoteControl.equipmentNum}', '${ccmRemoteControl.equipmentName}发送消息列表', '1100px', '700px')"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 					</td>
 				</shiro:hasPermission>
 			</tr>

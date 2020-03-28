@@ -149,11 +149,11 @@
 					<td>${fns:getDictLabel(ccmHousePsychogeny.acciHist, 'have_no', '')}</td>
 					<td>${fns:getDictLabel(ccmHousePsychogeny.dangAsse, 'ccm_nors_asle', '')}</td> 
 					<td><shiro:hasPermission name="house:ccmHousePsychogeny:edit">
-						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}&hide1=true&hide2=false', '详情', '1200px', '800px')" title="详情"><i class="icon-pencil"></i></a>
-						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}&hide1=false&hide2=true', '走访记录', '1200px', '500px')" title="走访记录"><i class="icon-list-ul"></i></a>
+						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}&hide1=true&hide2=false', '详情', '1200px', '800px')" title="详情"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}&hide1=false&hide2=true', '走访记录', '1200px', '500px')" title="走访记录"><i class="iconfont icon-caozuotubiao-zoufangjilu"></i></a>
 				        </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
-							<%-- <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHousePsychogeny.id}&relevance_table=ccm_house_psychogeny', '记录信息', '800px', '660px')" title="记录信息"><i class="icon-print" style="color: cornflowerblue;"></i></a> --%>
-							<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHousePsychogeny.id}&relevance_table=ccm_house_psychogeny', '添加记录', '800px', '660px')"  title="添加记录"><i class="icon-plus"></i></a>
+							<%-- <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHousePsychogeny.id}&relevance_table=ccm_house_psychogeny', '记录信息', '800px', '660px')" title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a> --%>
+							<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHousePsychogeny.id}&relevance_table=ccm_house_psychogeny', '添加记录', '800px', '660px')"  title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 						</shiro:hasPermission></td>
 				</tr>
 			</c:forEach>
