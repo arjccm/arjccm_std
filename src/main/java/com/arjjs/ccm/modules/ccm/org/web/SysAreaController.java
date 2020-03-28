@@ -6,6 +6,9 @@ package com.arjjs.ccm.modules.ccm.org.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.sys.entity.Area;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
+import com.arjjs.ccm.plugins.InterceptorEntity;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.arjjs.ccm.common.config.Global;
@@ -21,6 +25,8 @@ import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
+
+import java.util.List;
 
 /**
  * 区域扩展表（区域查询）Controller
@@ -80,5 +86,27 @@ public class SysAreaController extends BaseController {
 		addMessage(redirectAttributes, "删除区域成功");
 		return "redirect:"+Global.getAdminPath()+"/org/sysArea/?repage";
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "isDelete")
+	public Boolean isDelete(Area area){
+		if(UserUtils.getUser().isAdmin()){
+			return true;
+		}
+		String parentIds = UserUtils.getUser().getOffice().getArea().getParentIds();
+		String id = UserUtils.getUser().getOffice().getArea().getId();
+		InterceptorEntity interceptorEntity = new InterceptorEntity();
+		interceptorEntity.setId(id);
+		interceptorEntity.setParentIds( parentIds + id );
+		List<String> areaIds = sysAreaService.selectAreaIdByParentIdAndId(interceptorEntity);
+		Boolean flag = false;
+		for(String areaid:areaIds){
+			if(areaid.equals(area.getId())){
+				flag = true;
+			}
+		}
+		return flag;
+	}
+
 
 }
