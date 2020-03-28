@@ -167,14 +167,14 @@
 							onclick="return confirmx('确认要删除该app信息上报吗？', this.href)"
 							title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<c:if test="${ccmEventIncidentPreview.status eq '03' || ccmEventIncidentPreview.status eq '02'}">
-								<a  class="btnList" title="已处理"><i class="icon-legal" style="color:  #656565;"></i></a>
+								<a  class="btnList" title="已处理"><i class="iconfont icon-caozuotubiao-chuliyichuli" style="color:  #656565;"></i></a>
 							</c:if>
 							<c:if test="${ccmEventIncidentPreview.status eq '01'}">
-								<a class="btnList" onclick="HandleTips(this,'${ccmEventIncidentPreview.id}')"	title="处理">	<i class="icon-legal"></i>	</a>
+								<a class="btnList" onclick="HandleTips(this,'${ccmEventIncidentPreview.id}')"	title="处理">	<i class="iconfont icon-caozuotubiao-chuliyichuli"></i>	</a>
 							</c:if>
 							<%--<a class="btnList"
 							onclick="HandleTips(this,'${ccmEventIncidentPreview.id}')"
-							title="处理"><i class="icon-legal"></i></a></td>--%>
+							title="处理"><i class="iconfont icon-caozuotubiao-chuliyichuli"></i></a></td>--%>
 						</td>
 					</shiro:hasPermission>
 

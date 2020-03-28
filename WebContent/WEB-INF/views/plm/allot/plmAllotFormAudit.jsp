@@ -31,6 +31,17 @@
 				}
 			});
 		});
+
+		function agree() {
+			$('#flag').val('yes')
+			$('#inputForm').submit();
+		}
+
+		function refuse() {
+			$('#flag').val('no')
+			$('#inputForm').submit();
+		}
+
 	</script>
 	<style type="text/css">
 	
@@ -198,9 +209,9 @@
 		</table>
 		<div class="form-actions">
 			
-			<input id="btnConmit" class="btn btn-primary" type="submit" value="同 意" onclick="$('#flag').val('yes')"/>&nbsp;
+			<input id="btnConmit" class="btn btn-primary" type="submit" value="同 意" onclick="javascript:;agree()"/>&nbsp;
 			<c:if test="${rejectedBtn}">
-			<input id="btnCancel" class="btn btn-inverse" type="submit" value="驳 回" onclick="$('#flag').val('no')"/>&nbsp;
+			<input id="btnCancel" class="btn btn-inverse" type="submit" value="驳 回" onclick="javascript:;refuse()"/>&nbsp;
 			</c:if>	
 		
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>

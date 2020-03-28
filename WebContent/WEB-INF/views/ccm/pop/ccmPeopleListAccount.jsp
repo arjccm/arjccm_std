@@ -34,7 +34,14 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/pop/ccmPeople/">实有人口列表</a></li>
 		<li class="active"><a href="">户籍家庭人员列表</a></li>
-		<shiro:hasPermission name="pop:ccmPeople:edit"><li><a href="${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}">户籍家庭人员添加</a></li></shiro:hasPermission>
+		<shiro:hasPermission name="pop:ccmPeople:edit">
+			<li>
+				<%--<a href="${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}">户籍家庭人员添加</a>--%>
+			<li><a onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}', '户籍家庭人员添加', '1500px', '700px')"
+			>户籍家庭人员添加</a></li>
+
+			</li>
+		</shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -85,8 +92,13 @@
 					<fmt:formatDate value="${ccmPeople.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td><shiro:hasPermission name="pop:ccmPeople:edit">
-						<a class="btnList"  href="${ctx}/pop/ccmPeople/formAccount?id=${ccmPeople.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
-				    	<a class="btnList" href="${ctx}/pop/ccmPeople/deleteAccount?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该户籍人口吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+						<%--<a class="btnList"  href="${ctx}/pop/ccmPeople/formAccount?id=${ccmPeople.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
+
+					<a class="btnList"
+					   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?id=${ccmPeople.id}', '编辑', '1500px', '700px')"
+					   title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+
+					<a class="btnList" href="${ctx}/pop/ccmPeople/deleteAccount?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该户籍人口吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				        	    			  
 	    			   <%-- <a class="btn btn-success" href="${ctx}/pop/ccmPeople/specialform?id=${ccmPeople.id}">人员标记</a>
 						<a class="btn btn-danger" href="${ctx}/pop/ccmPeople/delete?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该实有人口吗？', this.href)">删除</a>

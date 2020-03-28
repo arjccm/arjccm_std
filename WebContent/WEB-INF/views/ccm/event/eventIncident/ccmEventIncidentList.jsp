@@ -393,16 +393,16 @@ text-overflow: ellipsis; text-align: left;">
                        title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a>
                 </shiro:hasPermission>
                 <c:if test="${not empty ccmEventIncident.eventScale && ccmEventIncident.eventScale eq '03'}">
-                    <a class="btnList nohover"><i class="icon-bell" style="cursor:not-allowed; color: #999999;"></i> </a>
+                    <a class="btnList nohover"><i class="iconfont icon-caozuotubiao-fasongjingqing" style="cursor:not-allowed; color: #999999;"></i> </a>
                 </c:if>
                 <c:if test="${not empty ccmEventIncident.eventScale && ccmEventIncident.eventScale eq '04'}">
-                    <a class="btnList nohover"><i class="icon-bell" style="cursor:not-allowed; color: #999999;"></i> </a>
+                    <a class="btnList nohover"><i class="iconfont icon-caozuotubiao-fasongjingqing" style="cursor:not-allowed; color: #999999;"></i> </a>
                 </c:if>
                 <c:if test="${empty ccmEventIncident.bphAlarmInfoId && (ccmEventIncident.eventScale eq '01' || ccmEventIncident.eventScale eq '02')}">
-                    <a  class="btnList" onclick="HandleTips(this,'${ccmEventIncident.id}')" title="发送警情"><i class="icon-bell" style="color: #1cdd1c;"></i></a>
+                    <a  class="btnList" onclick="HandleTips(this,'${ccmEventIncident.id}')" title="发送警情"><i class="iconfont icon-caozuotubiao-fasongjingqing" style="color: #1cdd1c;"></i></a>
                 </c:if>
                 <c:if test="${not empty ccmEventIncident.bphAlarmInfoId && (ccmEventIncident.eventScale eq '01' || ccmEventIncident.eventScale eq '02')}">
-                    <a  class="btnList"  title="已发送"><i class="icon-bell"  ></i></a>
+                    <a  class="btnList"  title="已发送"><i class="iconfont icon-caozuotubiao-fasongjingqing"  ></i></a>
                 </c:if>
 
             </td>
