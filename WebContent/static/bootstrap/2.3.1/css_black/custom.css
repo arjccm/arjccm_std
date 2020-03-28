@@ -125,6 +125,9 @@
 	/*   background-color: #f1f2f7;*/
 
 }
+body{
+	color: #ffffff;
+}
  .title-text{
 	 font-family: "Microsoft YaHei", "微软雅黑";
 	 font-size: 12px;
