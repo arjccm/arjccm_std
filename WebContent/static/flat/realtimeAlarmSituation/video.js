@@ -32,7 +32,7 @@ function videoDialog(id){
 		move: '.layer-common-header',
 		resize: false,
 		fixed: false,
-		id : "videoDialog",
+		id : "videoDialog" +id,
 		content : html,
 		cancel : function() {
 			// 关闭事件
