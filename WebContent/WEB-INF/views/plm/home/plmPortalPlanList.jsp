@@ -102,7 +102,7 @@
 					<shiro:hasPermission name="home:plmPortalPlan:edit">
 						<td style="height: 50px"><a
 							href="${ctx}/home/plmPortalDetail/list?pid=${plmPortalPlan.id}"
-							title="方案明细"><i class="icon-edit"></i></a> <a
+							title="方案明细"><i class="iconfont icon-caozuotubiao-fanganmingxi"></i></a> <a
 							onclick="bj('${plmPortalPlan.id}')" title="修改"><i
 								class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/home/plmPortalPlan/delete?id=${plmPortalPlan.id}"

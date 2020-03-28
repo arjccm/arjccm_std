@@ -5,6 +5,7 @@
 	<title>区域管理</title>
 	<meta name="decorator" content="default"/>
 	<%@include file="/WEB-INF/views/include/treetable.jsp" %>
+	<script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var tpl = $("#treeTableTpl").html().replace(/(\/\/\<!\-\-)|(\/\/\-\->)/g,"");
@@ -24,6 +25,20 @@
 					addRow(list, tpl, data, row.id);
 				}
 			}
+		}
+		function isDelete(areaid) {
+			$.ajax({
+				url: ctx + "/org/sysArea/isDelete?id=" + areaid,
+				type: "get",
+				success: function (data) {
+					if(data){
+						return confirmx('要删除该区域及所有子区域项吗？', "${ctx}/sys/area/delete?id="+areaid);
+					} else {
+						layer.msg('操作错误');
+					}
+				}
+			})
+
 		}
 	</script>
 </head>
@@ -48,7 +63,8 @@
 			<td>{{row.remarks}}</td>
 			<shiro:hasPermission name="sys:area:edit"><td>
 				<a class="btnList" href="${ctx}/sys/area/form?id={{row.id}}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
-				<a class="btnList" href="${ctx}/sys/area/delete?id={{row.id}}" onclick="return confirmx('要删除该区域及所有子区域项吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+<%--				<a class="btnList" href="${ctx}/sys/area/delete?id={{row.id}}" onclick="return confirmx('要删除该区域及所有子区域项吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>--%>
+				<a class="btnList" href="###" onclick="isDelete('{{row.id}}')" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				<a class="btnList" href="${ctx}/sys/area/form?parent.id={{row.id}}" title="添加下级区域"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 			</td></shiro:hasPermission>
 		</tr>
