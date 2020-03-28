@@ -68,6 +68,7 @@
 </script>
 </head>
 <body>
+<div class="back-list">
 	<ul class="nav nav-tabs">
 		<li style="float: right;"><a class="btn btn-danger"
 			href="${ctx}/preview/ccmEventIncidentPreview/4?status=03">已拒绝</a></li>
@@ -175,6 +176,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
