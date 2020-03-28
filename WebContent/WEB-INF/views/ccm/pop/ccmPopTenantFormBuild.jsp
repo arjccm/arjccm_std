@@ -82,7 +82,7 @@
 		<table border="0px"
 			style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;border-top-color: white">
 			<tr>
-				<td>
+				<td width="50%">
 					<div>
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>房屋编号：</label>
 						<div class="controls">
@@ -91,7 +91,7 @@
 						</div>
 					</div>
 				</td>
-				<td>
+				<td width="50%">
 					<div>
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>门牌号：</label>
 						<div class="controls">
