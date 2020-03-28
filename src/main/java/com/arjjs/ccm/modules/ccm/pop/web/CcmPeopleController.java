@@ -38,6 +38,7 @@ import com.arjjs.ccm.modules.ccm.tenant.entity.CcmTenantRecord;
 import com.arjjs.ccm.modules.ccm.tenant.service.CcmTenantRecordService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.Dict;
+import com.arjjs.ccm.modules.sys.entity.Log;
 import com.arjjs.ccm.modules.sys.service.AreaService;
 import com.arjjs.ccm.modules.sys.service.DictService;
 import com.arjjs.ccm.tool.*;
@@ -850,16 +851,26 @@ public class CcmPeopleController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmPeople> list = ei.getDataList(CcmPeople.class);
+
+			//系统中所有人口数据
+			Map<String, Object> peopleMap = ccmPeopleService.queryAllToMap();
+
 			//系统中所有网格数据
 			SysArea sysArea = new SysArea();
 			sysArea.setType("7");
 			List<SysArea> listGrid = sysAreaService.findList(sysArea);
 			//系统中所有楼栋数据
-			CcmHouseBuildmanage ccmHouseBuildmanage = new CcmHouseBuildmanage();
-			List<CcmHouseBuildmanage> listBuild = ccmHouseBuildmanageService.findList(ccmHouseBuildmanage);
+/*			CcmHouseBuildmanage ccmHouseBuildmanage = new CcmHouseBuildmanage();
+			List<CcmHouseBuildmanage> listBuild = ccmHouseBuildmanageService.findList(ccmHouseBuildmanage);*/
+
+			List<CcmHouseBuildmanage> listBuild = ccmHouseBuildmanageService.queryAllForImport();
+
 			//系统中所有房屋数据
-			CcmPopTenant room = new CcmPopTenant();
-			List<CcmPopTenant> listRoom = ccmPopTenantService.findList(room);
+/*			CcmPopTenant room = new CcmPopTenant();
+			List<CcmPopTenant> listRoom = ccmPopTenantService.findList(room);*/
+
+			List<CcmPopTenant> listRoom = ccmPopTenantService.queryAllForImport();
+
 			//声明3个临时变量，用于优化网格、楼栋、房屋处理前的判断
 			SysArea tmpGrid = new SysArea();
 			CcmHouseBuildmanage tmpBuild = new CcmHouseBuildmanage();
@@ -870,7 +881,7 @@ public class CcmPeopleController extends BaseController {
 			List<CcmPeople> listFailure = new ArrayList<CcmPeople>();
 			
 			for (CcmPeople People : list) {
-				
+
 				if(EntityTools.isEmpty(People)){
 					continue;
 				}
@@ -959,14 +970,25 @@ public class CcmPeopleController extends BaseController {
 				}
 
 				// 进行身份证验证 ,如果已经存在则进行 失败条目的添加。 并跳过当前的内容
-				if (ccmPeopleService.checkPeopleIden(People)) {
+/*				if (ccmPeopleService.checkPeopleIden(People)) {
+					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "当前的用户的身份证材料已经存在于当前的数据库中。");
+					People.setName(People.getName() + "，失败原因：身份证信息已存在");
+					listFailure.add(People);
+					failureNum++;
+					continue;
+				}*/
+
+				// 进行身份证验证 ,如果已经存在则进行 失败条目的添加。 并跳过当前的内容
+				if (peopleMap.containsKey(People.getIdent())) {
 					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "当前的用户的身份证材料已经存在于当前的数据库中。");
 					People.setName(People.getName() + "，失败原因：身份证信息已存在");
 					listFailure.add(People);
 					failureNum++;
 					continue;
 				}
-				
+
+
+
 				// 户主身份证号验证
 				if("10".equals(People.getType())){
 					if (StringUtils.isBlank(People.getAccountidentity()) || People.getAccountidentity().length() != 18) {
@@ -975,7 +997,7 @@ public class CcmPeopleController extends BaseController {
 						failureNum++;
 						continue;
 					}
-					
+
 					if (StringUtils.isEmpty(People.getAccount())) {
 						failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "户号信息错误。");
 						People.setName(People.getName() + "，失败原因：户号信息为空。");
@@ -1001,7 +1023,7 @@ public class CcmPeopleController extends BaseController {
 							}
 						}
 					}
-					
+
 					/**楼栋数据非空判断**/
 					if (StringUtils.isBlank(People.getBuildName())) {//网格为空，则数据不导入
 						failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "所属楼栋为空。");
@@ -1056,7 +1078,7 @@ public class CcmPeopleController extends BaseController {
 							People.setBuildId(build);
 						}
 					}
-					
+
 					/**房屋数据非空判断**/
 					if (StringUtils.isBlank(People.getRoomName())) {//网格为空，则数据不导入
 						failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "所属房屋为空。");
@@ -1086,7 +1108,7 @@ public class CcmPeopleController extends BaseController {
 						}
 						if (!isRoomExist) {//房屋不存在，增加房屋
 							CcmPopTenant room2 = new CcmPopTenant();
-							room2.setId(UUID.randomUUID().toString());  
+							room2.setId(UUID.randomUUID().toString());
 							room2.setHouseBuild(People.getRoomName());  //房屋编号
 							if (People.getAreaGridId() != null) {
 //								Area area = new Area();
@@ -1110,7 +1132,7 @@ public class CcmPeopleController extends BaseController {
 							People.setRoomId(room2);
 						}
 					}
-					
+
 					//性别
 					if (!CommUtil.isNumeric(People.getSex())) {//Excel中读取过来的和数据字典中的不匹配的
 						if (People.getSex() != null && People.getSex().contains("男")) {
@@ -1124,7 +1146,7 @@ public class CcmPeopleController extends BaseController {
 							People.setSex(sex);
 						}
 					}
-					
+
 					//民族
 					if (!CommUtil.isNumeric(People.getNation())) {//Excel中读取过来的和数据字典中的不匹配的
 						if (People.getNation() != null) {
@@ -1146,7 +1168,7 @@ public class CcmPeopleController extends BaseController {
 							People.setMarriage("90");
 						}
 					}
-					
+
 
 					//学历
 					if (!CommUtil.isNumeric(People.getEducation())) {//Excel中读取过来的和数据字典中的不匹配的
@@ -1172,14 +1194,14 @@ public class CcmPeopleController extends BaseController {
 							People.setEducation("90");
 						}
 					}
-					
+
 					//宗教信仰
 					if (!CommUtil.isNumeric(People.getBelief())) {//Excel中读取过来的和数据字典中的不匹配的
 						if (People.getBelief() != null) {
 							People.setBelief(CommUtil.getBeliefValue(People.getBelief()));
 						}
 					}
-					
+
 
 					//人口类型O
 					if (!CommUtil.isNumeric(People.getType())) {//Excel中读取过来的和数据字典中的不匹配的
@@ -1195,7 +1217,7 @@ public class CcmPeopleController extends BaseController {
 							People.setType("20");
 						}
 					}
-					
+
 					//政治面貌
 					if (!CommUtil.isNumeric(People.getPolitics())) {//Excel中读取过来的和数据字典中的不匹配的
 						if (People.getPolitics() != null && People.getPolitics().contains("党")) {
@@ -1206,9 +1228,9 @@ public class CcmPeopleController extends BaseController {
 							People.setPolitics("09");
 						}
 					}
-					
 
-					
+
+
 					ccmPeopleService.save(People);
 					successNum++;
 				} catch (ConstraintViolationException ex) {

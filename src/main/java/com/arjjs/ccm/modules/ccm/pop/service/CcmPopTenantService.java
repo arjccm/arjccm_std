@@ -267,5 +267,9 @@ public class CcmPopTenantService extends CrudService<CcmPopTenantDao, CcmPopTena
 		return dao.letCount();
 	}
 
+	// 导入 查询全部
+	public List<CcmPopTenant> queryAllForImport() {
+		return ccmPopTenantDao.queryAllForImport();
+	}
 
 }

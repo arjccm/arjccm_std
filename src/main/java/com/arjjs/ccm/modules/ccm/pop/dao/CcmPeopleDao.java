@@ -14,9 +14,11 @@ import com.arjjs.ccm.modules.flat.analyst.entity.Count;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.EchartType;
 import com.arjjs.ccm.tool.SearchTab;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 实有人口DAO接口
@@ -215,4 +217,8 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 
 	//人口查询分页
 	List<CcmPeople> findListBylimit(CcmPeople ccmPeople);
+
+	// 导入优化 查询id，ident
+	@MapKey("ident")
+	Map<String, Object> queryAllToMap();
 }

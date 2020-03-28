@@ -1061,4 +1061,8 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		return countPeople;
 	}
 
+	public Map<String, Object> queryAllToMap(){
+		return ccmPeopleDao.queryAllToMap();
+	}
+
 }
