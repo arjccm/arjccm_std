@@ -217,7 +217,7 @@
        class="table table-striped table-bordered table-condensed table-gradient">
     <thead>
     <tr>
-        <th><input id="allboxs" onclick="allcheck()" type="checkbox"/></th>
+<%--        <th><input id="allboxs" onclick="allcheck()" type="checkbox"/></th>--%>
         <th>图片</th>
         <th width="14%">事件名称</th>
         <th>发生日期</th>
@@ -236,7 +236,7 @@
     <tbody>
     <c:forEach items="${page.list}" var="ccmEventIncident">
         <tr>
-            <td><input name="boxs" type="checkbox" value="${ccmEventIncident.id}"/></td>
+<%--            <td><input name="boxs" type="checkbox" value="${ccmEventIncident.id}"/></td>--%>
             <td width="100px">
 						<img src="${ccmEventIncident.file1}"   class="pic-size pimg" <%--onclick="openPhoto('${ccmEventIncident.file1}')" --%>/>
             </td>

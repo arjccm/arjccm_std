@@ -110,7 +110,7 @@ p {
 									class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</shiro:hasPermission> <a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/logistics/plmRoom/scheduList?id=${plmRoom.id}', '【${plmRoom.subject}】排期记录', '1200px', '800px')"
-							title="排期记录"><i class="icon-fast-forward"></i></a></td>
+							title="排期记录"><i class="iconfont icon-caozuotubiao-paiqijilu"></i></a></td>
 					</tr>
 					</tr>
 				</c:forEach>
@@ -151,7 +151,7 @@ p {
 							</shiro:hasPermission>
 							<a class="btnList"
 								onclick="parent.LayerDialog('${ctx}/logistics/plmRoom/scheduList?id=${plmRoom.id}', '【${plmRoom.subject}】排期记录', '1200px', '800px')"
-								title="排期记录"><i class="icon-fast-forward"></i></a>
+								title="排期记录"><i class="iconfont icon-caozuotubiao-paiqijilu"></i></a>
 						</div>
 					</div>
 				</div>

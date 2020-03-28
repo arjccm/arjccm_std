@@ -59,6 +59,8 @@
 					</div>
 				</div>
 			</td>
+		</tr>
+		<tr>
 			<td>
 				<div class="control-group">
 					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>年度：</label>
@@ -104,6 +106,16 @@
 		<tr>
 			<td>
 				<div class="control-group">
+					<label class="control-label">是否完成：</label>
+					<div class="controls">
+						<form:radiobuttons path="finished" items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false" class=""/>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
 					<label class="control-label">完成进度：</label>
 					<div class="controls">
 						<form:textarea path="progress" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
@@ -120,14 +132,6 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				<div class="control-group">
-					<label class="control-label">是否完成：</label>
-					<div class="controls">
-						<form:radiobuttons path="finished" items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false" class=""/>
-					</div>
-				</div>
-			</td>
 			<td>
 				<div class="control-group">
 					<label class="control-label">备注信息：</label>
