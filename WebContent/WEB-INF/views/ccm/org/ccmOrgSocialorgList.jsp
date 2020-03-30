@@ -7,6 +7,18 @@
 	
 <script type="text/javascript"
 	src="${ctxStatic}/ccm/org/js/ccmSocialorgInfo.js"></script>
+	<script type="text/javascript">
+        function saveImport() {
+            debugger;
+            var s = $("#importForm")[0][0].files.length;
+            if(s == 0){
+                alert("请选择文件！");
+                return;
+            }else{
+                $("#importForm").submit();
+            }
+        }
+	</script>
 </head>
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
@@ -25,7 +37,7 @@
 				   class="btn btn-primary"  type="button" value="模板下载 "
 				   onclick="location.href='${ctxStatic}/template/excel/kymTemplate.xlsx'"/>
 			<input id="btnImportSubmit"
-				class="btn btn-primary" type="submit" value="导  入 " />
+				class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 " />
 		</form>
 	</div>
 	

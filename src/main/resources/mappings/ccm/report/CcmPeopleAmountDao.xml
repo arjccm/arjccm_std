@@ -603,10 +603,27 @@
 		ccm_people_amount a
 		LEFT JOIN sys_area a2
 		ON a2.id = a.area_id
-		LEFT JOIN sys_config c ON c.param_str=a.system_level
 		WHERE
 		a.del_flag = 0
-		AND c.id = 'system_level' 
+		<if test="areaType != null and areaType != '' and areaType == 7">
+			AND a.area_id = #{areaId}
+		</if>
+		<if test="areaType != null and areaType != '' and areaType == 6">
+			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+			AND a2.type = 7
+		</if>
+		<if test="areaType != null and areaType != '' and areaType == 5">
+			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+			AND a2.type = 6
+		</if>
+		<if test="areaType != null and areaType != '' and areaType != 5 and areaType != 6 and areaType != 7">
+			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+			AND a2.type = 5
+		</if>
+		<if test="areaType == null or areaType == ''">
+			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+			AND a2.type = 5
+		</if>
 		GROUP BY
 		a.amount_date
 		ORDER BY
@@ -642,10 +659,27 @@
 		ccm_people_amount a
 		LEFT JOIN sys_area a2
 		ON a2.id = a.area_id
-		LEFT JOIN sys_config c ON c.param_str=a.system_level
 		WHERE
 		a.del_flag = 0
-		AND c.id = 'system_level' 
+		<if test="areaType != null and areaType != '' and areaType == 7">
+			AND a.area_id = #{areaId}
+		</if>
+		<if test="areaType != null and areaType != '' and areaType == 6">
+			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+			AND a2.type = 7
+		</if>
+		<if test="areaType != null and areaType != '' and areaType == 5">
+			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+			AND a2.type = 6
+		</if>
+		<if test="areaType != null and areaType != '' and areaType != 5 and areaType != 6 and areaType != 7">
+			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+			AND a2.type = 5
+		</if>
+		<if test="areaType == null or areaType == ''">
+			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+			AND a2.type = 5
+		</if>
 		and (a.amount_date &gt;
 		date_format(DATE_SUB(curdate(), INTERVAL 0
 		MONTH),'%Y-%m')
