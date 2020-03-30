@@ -1724,9 +1724,9 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
  .layui-text{
 	 color: #fafafa;
  }
- .layui-layer-content{
-	 background-color: #065689;
- }
+ /*.layui-layer-content2{*/
+	/* background-color: #065689;*/
+ /*}*/
  .help-inline1{
      background-color: #0b486f!important;
      border: 1px solid #00cccc !important;
