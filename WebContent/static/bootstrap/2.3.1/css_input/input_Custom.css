@@ -84,8 +84,8 @@ input.input-xxlarge{
 
 #inputForm{
     padding: 15px;
-    box-shadow: inset 0px 0px 15px 0px #1684c2;
-    height: calc(100vh - 74px);
+    /*box-shadow: inset 0px 0px 15px 0px #1684c2;*/
+    /*height: calc(100vh - 74px);*/
 }
 .nav-tabs {
     margin-bottom: 0px;
