@@ -209,7 +209,7 @@
 				</td>
 				<td>
 					<shiro:hasPermission name="org:ccmOrgNpseElse:edit">
-						<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseElse/form?id=${ccmOrgNpse.id}', '编辑', '1100px', '600px')"title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseElse/form?id=${ccmOrgNpse.id}', '编辑', '1100px', '800px')"title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/org/ccmOrgNpseElse/delete?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该其他重点吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</shiro:hasPermission>
 					<shiro:hasPermission name="log:ccmLogTail:edit">
