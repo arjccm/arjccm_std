@@ -74,7 +74,7 @@
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="ccmOrgNpse" action="${ctx}/org/ccmOrgNpseElse/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
-		<input type="hidden" name="compImpoType" value="05">
+		<%--<input type="hidden" name="compImpoType" value="05">--%>
 		<sys:message content="${message}"/>	
 		<table border="0px"
 			style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;">
@@ -92,29 +92,10 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>名称：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>企业名称：</label>
 						<div class="controls">
-							<form:input path="compName" htmlEscape="false" maxlength="100" class="input-xlarge required"/>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div>
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>类别：</label>
-						<div class="controls">
-							<form:select path="compType" class="input-xlarge required">
-								<form:options items="${fns:getDictList('ccm_buss_cate')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						    </form:select>
-						</div>
-					</div>
-				</td>
-				<td>
-					<div>
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>场所地址：</label>
-						<div class="controls">
-							<form:input path="compAdd" htmlEscape="false" maxlength="200" class="input-xlarge required"/>
+							<form:input path="compName" htmlEscape="false" maxlength="100"
+										class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
@@ -124,17 +105,19 @@
 					<div>
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>工商执照注册号：</label>
 						<div class="controls">
-							<form:input path="compId" htmlEscape="false" maxlength="64" class="input-xlarge required" />
+							<form:input path="compId" htmlEscape="false" maxlength="64"
+										class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">登记注册日期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>企业类别：</label>
 						<div class="controls">
-							<input name="registerDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-							value="<fmt:formatDate value="${ccmOrgNpse.registerDate}" pattern="yyyy-MM-dd"/>"
-							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+							<form:select path="compType" class="input-xlarge required">
+								<form:options items="${fns:getDictList('ccm_buss_cate')}"
+											  itemLabel="label" itemValue="value" htmlEscape="false" />
+							</form:select>
 						</div>
 					</div>
 				</td>
@@ -142,17 +125,326 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>负责人姓名：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>登记注册类型：</label>
 						<div class="controls">
-							<form:input path="entePrinName" htmlEscape="false" maxlength="50" class="input-xlarge required"/>
+							<form:select path="regiType" class="input-xlarge ">
+								<form:options items="${fns:getDictList('sys_ccm_regi_type')}"
+											  itemLabel="label" itemValue="value" htmlEscape="false" />
+							</form:select>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">负责人联系方式：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>企业地址：</label>
 						<div class="controls">
-							<form:input path="entePrincipalTl" htmlEscape="false" maxlength="50" class="input-xlarge phone" />
+							<form:input path="compAdd" htmlEscape="false" maxlength="200"
+										class="input-xlarge required" />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>面积（平方米）：</label>
+						<div class="controls">
+							<form:input path="compArea" htmlEscape="false"
+										class="input-xlarge number required "/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">所属行业：</label>
+						<div class="controls">
+							<sys:treeselect id="industry" name="industry"
+											value="${ccmOrgNpse.industry}" labelName="dicts.label"
+											labelValue="${ccmOrgNpse.industry}" title="行业"
+											url="/sys/sysDicts/treeData?type=ccm_profession"
+											extId="${sysDicts.id}" cssClass="" allowClear="true"
+											dicts="true"/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>企业联系方式：</label>
+						<div class="controls">
+							<form:input path="compTl" htmlEscape="false" maxlength="50"
+										class="input-xlarge required phone" />
+
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>企业员工数：</label>
+						<div class="controls">
+							<form:input path="companyNum" htmlEscape="false" maxlength="6"
+										class="input-xlarge digits number required" />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">注册资金：</label>
+						<div class="controls">
+							<form:input path="registeredFund" htmlEscape="false"
+										class="input-xlarge number"/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">登记注册日期：</label>
+						<div class="controls">
+							<input name="registerDate" type="text" readonly="readonly"
+								   maxlength="20" class="input-medium Wdate "
+								   value="<fmt:formatDate value="${ccmOrgNpse.registerDate}" pattern="yyyy-MM-dd"/>"
+								   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>法定代表人证件类型：</label>
+						<div class="controls">
+							<form:select path="legalReprCode" class="input-xlarge "
+										 items="${fns:getDictList('sys_ccm_org_papers')}"
+										 itemLabel="label" itemValue="value" htmlEscape="false">
+							</form:select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>法定代表人证件号码：</label>
+						<div class="controls">
+							<form:input path="legalReprId" htmlEscape="false" maxlength="50"
+										class="input-xlarge ident0 card required" />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>法定代表人姓名：</label>
+						<div class="controls">
+							<form:input path="legalReprName" htmlEscape="false"
+										maxlength="80" class="input-xlarge required" />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>法定代表人联系方式：</label>
+						<div class="controls">
+							<form:input path="legalReprTl" htmlEscape="false" maxlength="50"
+										class="input-xlarge required phone" />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>治保负责人姓名：</label>
+						<div class="controls">
+							<form:input path="secuName" htmlEscape="false" maxlength="50"
+										class="input-xlarge required" />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>治保负责人联系方式：</label>
+						<div class="controls">
+							<form:input path="secuPhone" htmlEscape="false" maxlength="50"
+										class="input-xlarge required phone" />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>单位负责人姓名：</label>
+						<div class="controls">
+							<form:input path="entePrinName" htmlEscape="false" maxlength="50"
+										class="input-xlarge required" />
+						</div>
+					</div>
+				</td>
+
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>单位负责人联系方式：</label>
+						<div class="controls">
+							<form:input path="entePrincipalTl" htmlEscape="false"
+										maxlength="50" class="input-xlarge phone "/>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>控股情况：</label>
+						<div class="controls">
+							<form:select path="holdCase" class="input-xlarge ">
+								<form:options items="${fns:getDictList('ccm_hold_cond')}"
+											  itemLabel="label" itemValue="value" htmlEscape="false" />
+							</form:select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>是否具备建立中共党组织条件：</label>
+						<div class="controls">
+							<form:radiobuttons path="estaOrgaCond"
+											   items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class="required" />
+						</div>
+					</div>
+				</td>
+
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>中共党员数量：</label>
+						<div class="controls">
+							<form:input path="partyMem" htmlEscape="false" maxlength="6"
+										class="input-xlarge number digits required" />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>是否有中共党组织：</label>
+						<div class="controls">
+							<form:radiobuttons path="estaOrga"
+											   items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class="required" />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>工会会员数量：</label>
+						<div class="controls">
+							<form:input path="laborUnionNum" htmlEscape="false" maxlength="6"
+										class="input-xlarge number digits required" />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>是否有工会：</label>
+						<div class="controls">
+							<form:radiobuttons path="laborUnion"
+											   items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class="required" />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>共青团团员数量：</label>
+						<div class="controls">
+							<form:input path="youthLeagOrgaNum" htmlEscape="false"
+										maxlength="6" class="input-xlarge number digits required" />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>是否有共青团组织：</label>
+						<div class="controls">
+							<form:radiobuttons path="youthLeagOrga"
+											   items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class="required" />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>妇女数量：</label>
+						<div class="controls">
+							<form:input path="womenNum" htmlEscape="false" maxlength="6"
+										class="input-xlarge number digits required" />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>是否有妇联组织：</label>
+						<div class="controls">
+							<form:radiobuttons path="womenOrg"
+											   items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class="required" />
+						</div>
+					</div>
+				</td>
+			</tr>
+
+
+			<tr>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>安全隐患类型：</label>
+						<div class="controls">
+							<form:select path="safeHazaType" class="input-xlarge ">
+								<form:options items="${fns:getDictList('ccm_pori_type')}"
+											  itemLabel="label" itemValue="value" htmlEscape="false" />
+							</form:select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>是否危化企业：</label>
+						<div class="controls">
+							<form:radiobuttons path="dangComp"
+											   items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class="required" />
+						</div>
+					</div>
+				</td>
+
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">隐患情况：</label>
+						<div class="controls">
+							<form:textarea path="dangerCase" htmlEscape="false" rows="4"
+										   maxlength="200" class="input-xlarge "/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">安全整改情况：</label>
+						<div class="controls">
+							<form:textarea path="reformCase" htmlEscape="false" rows="4"
+										   maxlength="255" class="input-xlarge "/>
 						</div>
 					</div>
 				</td>
@@ -162,66 +454,168 @@
 					<div>
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>关注程度：</label>
 						<div class="controls">
-							<form:select path="concExte" class="input-xlarge required">
-								<form:options items="${fns:getDictList('ccm_conc_exte')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						    </form:select>
+							<form:select path="concExte" class="input-xlarge ">
+								<form:options items="${fns:getDictList('ccm_conc_exte')}"
+											  itemLabel="label" itemValue="value" htmlEscape="false" />
+							</form:select>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">风险级别：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>风险级别：</label>
 						<div class="controls">
 							<form:select path="riskRank" class="input-xlarge ">
-								<form:options items="${fns:getDictList('ccm_npse_risk_rank')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						    </form:select>
+								<form:options items="${fns:getDictList('ccm_npse_risk_rank')}"
+											  itemLabel="label" itemValue="value" htmlEscape="false" />
+							</form:select>
+						</div>
+					</div>
+				</td>
+
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>重点企业类型：</label>
+						<div class="controls">
+							<form:select path="compImpoType" class="input-xlarge required"
+										 id="sel" onchange="sels()">
+								<form:options items="${fns:getDictList('comp_impo_type')}"
+											  itemLabel="label" itemValue="value" htmlEscape="false" />
+							</form:select>
 						</div>
 					</div>
 				</td>
 			</tr>
-			<tr>
+
+
+			<tr class="selectHidden">
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>安全隐患类型：</label>
+						<label class="control-label">服务品牌：</label>
 						<div class="controls">
-							<form:select path="safeHazaType" class="input-xlarge required">
-								<form:options items="${fns:getDictList('ccm_pori_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						    </form:select>
+							<form:input path="servBrand" htmlEscape="false" maxlength="50"
+										class="input-xlarge "/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">中心点：</label>
+						<label class="control-label">监控摄像机数量：</label>
 						<div class="controls">
-							<form:input path="areaPoint" htmlEscape="false" maxlength="40" class="input-xlarge " />
+							<form:input path="survCameNum" htmlEscape="false" maxlength="5"
+										class="input-xlarge digits" type="number"/>
 						</div>
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<%-- <td>
+			<tr class="selectHidden">
+				<td>
 					<div>
-						<label class="control-label">图标：</label>
+						<label class="control-label">X光机数量：</label>
 						<div class="controls">
-							<sys:iconselect id="icon" name="icon" value="${ccmOrgNpse.icon}"/>
+							<form:input path="xRayNum" htmlEscape="false" maxlength="4"
+										class="input-xlarge digits" type="number"/>
 						</div>
 					</div>
-				</td> --%>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">是否落实100%X光机安检：</label>
+						<div class="controls">
+							<form:radiobuttons path="xRayChec"
+											   items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class=""/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr class="selectHidden">
+				<td>
+					<div>
+						<label class="control-label">是否落实100%先验视后封箱：</label>
+						<div class="controls">
+							<form:radiobuttons path="checPack"
+											   items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class=""/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">是否落实100%寄递实名制：</label>
+						<div class="controls">
+							<form:radiobuttons path="realName"
+											   items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class=""/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr class="selectHidden">
+				<td colspan="2">
+					<div>
+						<label class="control-label">经营范围：</label>
+						<div class="controls">
+							<form:checkboxes path="manageScopeList"
+											 items="${fns:getDictList('ccm_busi_scope')}" itemLabel="label"
+											 itemValue="value" htmlEscape="false" class=""/>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+				<%-- <tr>
+                    <td>
+                        <div>
+                            <label class="control-label">中心点：</label>
+                            <div class="controls">
+                                <form:input path="areaPoint" htmlEscape="false" maxlength="40"
+                                    class="input-xlarge " />
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label class="control-label">区域图：</label>
+                            <div class="controls">
+                                <form:input path="areaMap" htmlEscape="false" maxlength="2000"
+                                    class="input-xlarge " />
+                            </div>
+                        </div>
+                    </td>
+                </tr> --%>
+				<%-- <tr>
+                    <td>
+                        <div>
+                            <label class="control-label">图标：</label>
+                            <div class="controls">
+                                <sys:iconselect id="icon" name="icon" value="${ccmOrgNpse.icon}" />
+                            </div>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr> --%>
+			<tr>
 				<td>
 					<div>
 						<label class="control-label">备注信息：</label>
 						<div class="controls">
-							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+							<form:textarea path="remarks" htmlEscape="false" rows="4"
+										   maxlength="255" class="input-xlarge "/>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">图片</label>
+						<label class="control-label">图片：</label>
 						<div class="controls">
-							<form:hidden id="images" path="images" htmlEscape="false" maxlength="255" class="input-xlarge"/>
-							<sys:ckfinder input="images" type="images" uploadPath="/org/FeiGongYouZhiZuZhi" selectMultiple="false" maxWidth="240" maxHeight="360"/>	
+							<form:hidden id="images" path="images" htmlEscape="false"
+										 maxlength="255" class="input-xlarge"/>
+							<sys:ckfinder input="images" type="images"
+										  uploadPath="/org/FeiGongYouZhiZuZhi" selectMultiple="false"
+										  maxWidth="240" maxHeight="360"/>
 						</div>
 					</div>
 				</td>
