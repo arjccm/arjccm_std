@@ -13,6 +13,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.arjjs.ccm.modules.sys.entity.Area;
+import com.arjjs.ccm.modules.sys.entity.User;
+import com.arjjs.ccm.modules.sys.service.AreaService;
 import com.google.common.collect.Lists;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +59,8 @@ public class CcmPeopleStatController extends BaseController {
 	private CcmPeopleStatService ccmPeopleStatService;
 	@Autowired
 	private CcmPeopleAmountService ccmPeopleAmountService;
+	@Autowired
+	private AreaService areaService;
 
 	// 新增人口统计列
 	private static String[] columnListNew = { "person_new", "oversea_new", "float_new", "aids_new", "psychogeny_new",
@@ -120,16 +127,19 @@ public class CcmPeopleStatController extends BaseController {
 
 		// 返回对象结果
 		Map<String, Object> map = Maps.newHashMap();
+		User user = UserUtils.getUser();
+		String areaId = user.getOffice().getArea().getId();
+		String areaType = areaService.get(areaId).getType();
 		// 1. 根据于地区为分界线
 		// 1)本月新增人员数据 2)本月人员总数
-		List<EchartType> list1 = ccmPeopleStatService.findListByMon(columnListNew[type]);
-		List<EchartType> list2 = ccmPeopleAmountService.findListByMon(columnListAmount[type]);
+		List<EchartType> list1 = ccmPeopleStatService.findListByMon(columnListNew[type],areaId,areaType);
+		List<EchartType> list2 = ccmPeopleAmountService.findListByMon(columnListAmount[type],areaId,areaType);
 		map.put("本月"+title+"新增人数", list1);
 		map.put("本月"+title+"总数", list2);
 		// 2. 根据于月份为分界线
 		// 1) 所有新增日新增总和 2)所有人数地区总和
-		List<EchartType> list3 = ccmPeopleStatService.findListBySum(columnListNew[type]);
-		List<EchartType> list4 = ccmPeopleAmountService.findListBySum(columnListAmount[type]);
+		List<EchartType> list3 = ccmPeopleStatService.findListBySum(columnListNew[type],areaId,areaType);
+		List<EchartType> list4 = ccmPeopleAmountService.findListBySum(columnListAmount[type],areaId,areaType);
 		map.put("新增"+title+"人数", list3);
 		map.put(title+"总人数", list4);
 		return map;
