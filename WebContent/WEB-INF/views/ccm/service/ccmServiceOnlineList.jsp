@@ -31,7 +31,7 @@
 	<form:form id="searchForm" modelAttribute="ccmServiceOnline" action="${ctx}/service/ccmServiceOnline/jumplist?etype=${etype}" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form pull-left">
+<%--		<ul class="ul-form pull-left">--%>
 		<ul class="ul-form pull-left">
 			<li class="first-line"><label>事项分类：</label>
 				<form:select path="type" class="input-medium">
