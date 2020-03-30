@@ -10,8 +10,19 @@
 <script type="text/javascript" src="${ctxStatic}/echarts/walden.js"></script>
 <script type="text/javascript"
 	src="${ctxStatic}/echarts/echarsCommon.js"></script>
+	<style>
+		.row-fluid{
+			width: calc(100vw - 40px);
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		.back-list{
+			padding-bottom: 0;
+		}
+	</style>
 </head>
 <body>
+<div class="back-list">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li>
@@ -61,6 +72,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<script type="text/javascript"
 		src="${ctxStatic}/ccm/pop/js/ccmUnsettleInfo.js"></script>
 </body>
