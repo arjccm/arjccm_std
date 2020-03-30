@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 <input type="hidden" id="hasPermission" value="${fns:getUser().hasPermission}"/>
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">

@@ -22,13 +22,10 @@
             padding-right: 20px;
         }
 
-        .back-list {
-            padding-bottom: 0;
-        }
     </style>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
     <input type="hidden" id="hasPermission" value="${fns:getUser().hasPermission}"/>
 
 	<div class="context" content="${ctx}"></div>

@@ -33,7 +33,7 @@
             src="${ctxStatic}/echarts/echarsCommon.js"></script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li>

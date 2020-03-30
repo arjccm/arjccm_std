@@ -17,7 +17,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li ><a style="width: 140px;text-align:center" href="${ctx}/security/ccmPatrolSecurity/summaryGraph">数据统计</a></li>
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/security/ccmPatrolSecurity/list">警卫任务列表</a></li>

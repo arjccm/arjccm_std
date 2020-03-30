@@ -158,7 +158,7 @@ h4.nav2 {
 </style>
 </head>
 <body>
-	<div class="back-list">
+	<div class="back-list clearfix">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="javascript:window.navigate(location)">辖区信息</a></li>
 		</ul>

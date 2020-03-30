@@ -20,7 +20,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<%-- <li><a href="${ctx}/event/ccmEventIncident/list">案（事）件登记列表</a></li>
 	    <!-- 案（事）件登记编辑权限  -->

@@ -22,7 +22,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">矛盾纠纷排查</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 <div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventAmbi/map">矛盾纠纷统计</a></li>

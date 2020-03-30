@@ -17,7 +17,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px" ><a class="nav-head" href="${ctx}/guard/ccmGuardUnit/securityList/">警卫任务安排</a></li>
 		<li ><a style="width: 140px;text-align:center" href="${ctx}/guard/ccmGuardUnit/">警卫单位列表</a></li>

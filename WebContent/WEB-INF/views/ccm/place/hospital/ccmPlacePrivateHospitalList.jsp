@@ -61,7 +61,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">场所管理</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/hospital/ccmPlaceHospital/02">数据列表</a></li>
 		<%-- <shiro:hasPermission name="hospital:ccmPlaceHospital:edit"><li><a href="${ctx}/hospital/ccmPlaceHospital/form">医疗卫生场所添加</a></li></shiro:hasPermission> --%>

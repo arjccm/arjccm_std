@@ -30,7 +30,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"style="width: 170px"><a class="nav-head" href="${ctx}/event/ccmEventAmbi/map">矛盾纠纷统计</a></li>
 		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventAmbi/">矛盾纠纷列表</a></li>

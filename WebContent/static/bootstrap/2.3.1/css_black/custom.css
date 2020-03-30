@@ -1182,15 +1182,12 @@ cite[class*='t-click']{
 .back-list{
     background-color: #0e2a4c;
     width: 100%;
-    /*高度自适应*/
-    /*height: 970px;*/
-    padding-bottom: 80px;
-    /*margin-left: 5px;*/
+    padding-bottom: 20px;
     margin-top: 0px;
     position: relative;
     box-shadow: inset 0px 0px 15px 0px #1684c2;
-    /*	 border: 1px solid #ddd;*/
 }
+
 .table-gradient{
     margin-left: 20px;
     margin-top:20px;

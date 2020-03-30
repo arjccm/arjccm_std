@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
     <div class="context" content="${ctx}"></div>
     <ul class="nav nav-tabs">
         <li class="active"><a href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li>

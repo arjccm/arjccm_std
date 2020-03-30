@@ -19,7 +19,7 @@
 	type="text/javascript"></script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/fence/ccmElectronicFence/">数据列表</a></li>
 	</ul>

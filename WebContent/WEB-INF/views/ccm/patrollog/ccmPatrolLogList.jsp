@@ -27,7 +27,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">日常值守</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/patrollog/ccmPatrolLog/">巡检日志列表</a></li>
 		<shiro:hasPermission name="patrollog:ccmPatrolLog:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/patrollog/ccmPatrolLog/form">巡检日志添加</a></li></shiro:hasPermission>

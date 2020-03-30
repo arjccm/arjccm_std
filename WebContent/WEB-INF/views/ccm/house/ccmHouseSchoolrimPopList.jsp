@@ -111,7 +111,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="">校园周边重点人员列表</a></li>
 	</ul> 

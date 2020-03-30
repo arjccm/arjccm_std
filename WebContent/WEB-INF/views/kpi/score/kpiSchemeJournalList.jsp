@@ -21,7 +21,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">绩效考核</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/score/kpiSchemeJournal/">数据列表</a></li>
 		<shiro:hasPermission name="score:kpiSchemeJournal:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/score/kpiSchemeJournal/form">数据添加</a></li></shiro:hasPermission>

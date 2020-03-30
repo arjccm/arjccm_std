@@ -30,7 +30,7 @@
 </script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<form:form id="searchForm" modelAttribute="ccmEventIncidentPreview"
 		action="${ctx}/preview/ccmEventIncidentPreview/check/list"
 		method="post" class="breadcrumb form-search">
