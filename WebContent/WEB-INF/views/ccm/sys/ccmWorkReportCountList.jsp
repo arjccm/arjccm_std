@@ -24,7 +24,6 @@
 					});
 					top.$('.jbox-body .jbox-icon').css('top', '55px');
 				});
-		
 	});
 	function page(n, s) {
 		$("#pageNo").val(n);
@@ -56,7 +55,16 @@
 						itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select></li> --%>
 			<li class="first-line"><label>社工姓名：</label> <form:input path="createName"
-					htmlEscape="false" maxlength="100" class="input-medium" /></li>	
+					htmlEscape="false" maxlength="100" class="input-medium" /></li>
+				<li class="first-line"><label>开始日期：</label>
+					<input id="beginDate" name="beginDate"  type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+						   value="<fmt:formatDate value="${ccmWorkReport.beginDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+						   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> </li>
+				<li class="first-line"><label>结束日期：</label>
+					<input id="endDate" name="endDate"  type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${ccmWorkReport.endDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				</li>
 						
 			<%-- <li><label>提交时间：</label> <input name="beginDate" type="text"
 				readonly="readonly" maxlength="20" class="input-medium Wdate"
@@ -121,5 +129,6 @@
 	</table>
 	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </ul>
+<script src="${ctxStatic}/common/common.js" type="text/javascript"></script>
 </body>
 </html>
