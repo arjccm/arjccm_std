@@ -114,7 +114,7 @@
 <%--			<li class="clearfix"></li>--%>
 		</ul>
 
-	<sys:message content="${message}" />
+
 <div class="clearfix pull-right btn-box">
 	<shiro:hasPermission
 			name="org:ccmOrgNpseEconomic:edit">
@@ -134,6 +134,7 @@
 	</a>
 </div>
 	</form:form>
+	<sys:message content="${message}" />
 	<table id="contentTable"
 		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>

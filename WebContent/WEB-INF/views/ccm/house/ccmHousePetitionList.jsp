@@ -50,6 +50,16 @@
 			$(this).fadeOut("fast");
 		});
 	}
+    function saveImport() {
+        debugger;
+        var s = $("#importForm")[0][0].files.length;
+        if(s == 0){
+            alert("请选择文件！");
+            return;
+        }else{
+            $("#importForm").submit();
+        }
+    }
 </script>
 </head>
 <body>
@@ -62,7 +72,7 @@
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/house/ccmHousePetition/import" method="post" enctype="multipart/form-data" class="form-search" style="padding-left: 20px; text-align: center;" onsubmit="loading('正在导入，请稍等...');"><br />
 			<input id="uploadFile" name="file" type="file" style="width: 330px" /><br /> <br />
-			<input id="btnImportSubmit" class="btn btn-primary" type="submit" value="导  入 " />
+			<input id="btnImportSubmit" class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 " />
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
@@ -105,7 +115,7 @@
 			</li>
 		</ul>
 
-	<sys:message content="${message}"/>
+
 	<div class="clearfix pull-right btn-box">
 
 			<!-- <input id="btnSubmit" class="btn btn-primary"
@@ -127,6 +137,7 @@
 			</shiro:hasPermission>
 	</div>
 	</form:form>
+	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>

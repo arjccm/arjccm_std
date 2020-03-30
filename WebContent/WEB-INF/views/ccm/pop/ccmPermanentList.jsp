@@ -274,10 +274,18 @@
 				<td class="tc"><shiro:hasPermission name="pop:ccmPermanent:edit">
 	    				<a class="btnList"  href="${ctx}/pop/ccmPermanent/form?id=${ccmPeople.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/pop/ccmPermanent/delete?id=${ccmPeople.id}" onclick="return confirmx('确认要删除该实有人口吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
-				   <a class="btnList"
-								href="javascript:;" onclick="LocationOpen('${ccmPeople.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
+				   <%--<a class="btnList"
+								href="javascript:;" onclick="LocationOpen('${ccmPeople.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>--%>
 					<%-- <a class="btnList" onclick="parent.LayerDialog('${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')"
 						  title="定时提醒"><i class="iconfont icon-caozuotubiao-fasongjingqing"></i></a> --%>
+
+					<c:if test="${!empty ccmPeople.roomIdString}">
+						<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmPeople.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
+					</c:if>
+					<c:if test="${empty ccmPeople.roomIdString}">
+						<a class="btnList" href="javascript:;" title="位置信息"><i style="cursor:not-allowed; color: #999999;" class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
+					</c:if>
+
 				    </shiro:hasPermission> 
 				    <shiro:hasPermission name="log:ccmLogTail:edit">
 				  	<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPeople.id}&relevance_table=ccm_people', '记录信息', '800px', '660px')" 

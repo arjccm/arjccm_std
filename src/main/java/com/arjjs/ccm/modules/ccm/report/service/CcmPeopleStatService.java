@@ -69,12 +69,12 @@ public class CcmPeopleStatService extends CrudService<CcmPeopleStatDao, CcmPeopl
 		super.delete(ccmPeopleStat);
 	}
 
-	public List<EchartType> findListBySum(String column) {
-		return ccmPeopleStatDao.findListBySum(column);
+	public List<EchartType> findListBySum(String column, String areaId, String areaType) {
+		return ccmPeopleStatDao.findListBySum(column,areaId,areaType);
 	}
 
-	public List<EchartType> findListByMon(String column) {
-		return ccmPeopleStatDao.findListByMon(column);
+	public List<EchartType> findListByMon(String column, String areaId, String areaType) {
+		return ccmPeopleStatDao.findListByMon(column,areaId,areaType);
 	}
 	
 	//首页社区弹框：本月新增人口

@@ -26,14 +26,14 @@ public interface CcmPeopleAmountDao extends CrudDao<CcmPeopleAmount> {
 	 * @param column
 	 * @return
 	 */
-	List<EchartType> findListBySum(@Param("column")String column);
+	List<EchartType> findListBySum(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
 
 	/**
 	 * @see 查询当日的新增人口数量
 	 * @param column
 	 * @return
 	 */
-	List<EchartType> findListByMon(@Param("column")String column);
+	List<EchartType> findListByMon(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
 	/**
 	 * @see 实有人口统计情况
 	 * @param column
