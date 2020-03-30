@@ -54,6 +54,10 @@
 </script>
 <style type="text/css">
 	td{padding: 8px;border:0px dashed #CCCCCC}
+	.titleArea{
+		font-size: 16px !important;
+		padding-left: 20px;
+	}
 </style>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
@@ -78,7 +82,7 @@
         <form:hidden path="checkScore" />
 		<sys:message content="${message}" />
 		
-		<h4 class="color-bg6">任务安排：</h4>
+		<h4 class="color-bg6 titleArea">任务安排：</h4>
 		<br>
 		<table border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;">
 			<tr>
@@ -88,12 +92,15 @@
 						${ccmEventCasedeal.handleUser.name}
 					</div>
 				</td>
+
+			</tr>
+			<tr>
 				<td>
 					<label class="control-label">处理截至时间：</label>
 					<div class="controls">
 						<fmt:formatDate value="${ccmEventCasedeal.handleDeadline}" pattern="yyyy-MM-dd HH:mm:ss"/>
 					</div>
-				
+
 				</td>
 			</tr>
 			<tr>
@@ -114,9 +121,6 @@
 				
 				</td>
 			</tr>
-			
-			<tr>
-			</tr>
 			<tr>
 				<td colspan="2">
 					<label class="control-label">事件说明及任务安排：</label>
@@ -128,7 +132,7 @@
 		</table>
 		
 		<br>
-		<h4 class="color-bg6">处理信息：</h4>
+		<h4 class="color-bg6 titleArea">处理信息：</h4>
 		<br>
 		<table border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;">
 			<tr>
@@ -149,6 +153,20 @@
 <%--							</form:select>--%>
 <%--						</div>--%>
 <%--				</td>--%>
+
+			</tr>
+
+			
+			<tr>
+				<td>
+						<label class="control-label">处理措施：</label>
+						<div class="controls">
+							<form:textarea path="handleStep" htmlEscape="false" rows="4" maxlength="256" class="input-xlarge "/>
+						</div>
+				</td>
+
+			</tr>
+			<tr>
 				<td>
 					<div>
 						<label class="control-label">附件：</label>
@@ -169,19 +187,12 @@
 					</div>
 				</td>
 			</tr>
-			
 			<tr>
 				<td>
-						<label class="control-label">处理措施：</label>
-						<div class="controls">
-							<form:textarea path="handleStep" htmlEscape="false" rows="4" maxlength="256" class="input-xlarge "/>
-						</div>
-				</td>
-				<td>
-						<label class="control-label">案事件反馈：</label>
-						<div class="controls">
-							<form:textarea path="handleFeedback" htmlEscape="false" rows="4" maxlength="256" class="input-xlarge "/>
-						</div>
+					<label class="control-label">案事件反馈：</label>
+					<div class="controls">
+						<form:textarea path="handleFeedback" htmlEscape="false" rows="4" maxlength="256" class="input-xlarge "/>
+					</div>
 				</td>
 			</tr>
 			<!--  进行事件处理时，下述不显示
