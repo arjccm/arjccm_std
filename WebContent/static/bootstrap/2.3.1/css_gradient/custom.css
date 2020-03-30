@@ -329,6 +329,107 @@ a.btnList  i.icon-bell{
 }
 
 
+/*  修改按钮  */
+a>i.icon-caozuotubiao-xiugai{
+	color: #2B8BEF;
+}
+/*  删除按钮  */
+a>i.icon-caozuotubiao-shanchu{
+	color: #da3844;
+}
+/*  位置信息按钮  */
+a>i.icon-caozuotubiao-weizhixinxi{
+	color: #1296db;
+}
+/*  户籍家庭按钮  */
+a>i.icon-caozuotubiao-hujijiating{
+	color: #9850fa;
+}
+/*  记录信息按钮  */
+a>i.icon-caozuotubiao-jiluxinxi{
+	color: #3CC7AB;
+}
+/*  添加按钮  */
+a>i.icon-caozuotubiao-tianjiachuli{
+	color: #3CC753;
+}
+/*  布控按钮  */
+a>i.icon-caozuotubiao-bukong{
+	color: #F6BF33;
+}
+/*  撤控按钮  */
+a>i.icon-caozuotubiao-chekong{
+	color: #FC6133;
+}
+/*  详情按钮  */
+a>i.icon-caozuotubiao-xiangqing{
+	color: #0EB7E0;
+}
+/*  社交关系按钮  */
+a>i.icon-caozuotubiao-shejiaoguanxi{
+	color: #9850fa;
+}
+/*  历史租客记录列表按钮  */
+a>i.icon-caozuotubiao-lishizukejiluliebiao{
+	color: #9850fa;
+}
+/*  干系人按钮  */
+a>i.icon-caozuotubiao-ganxiren{
+	color: #F7C02E;
+}
+/*  走访记录按钮  */
+a>i.icon-caozuotubiao-zoufangjilu{
+	color: #3CC7AB;
+}
+/*  事件关联按钮  */
+a>i.icon-caozuotubiao-shijianguanlian{
+	color: #3CC753;
+}
+/*  处理 & 已处理 按钮  */
+a>i.icon-caozuotubiao-chuliyichuli{
+	color: #0EB7E0;
+}
+/*  签收 按钮  */
+a>i.icon-caozuotubiao-qianshou{
+	color: #3CC753;
+}
+/*  归档 按钮  */
+a>i.icon-caozuotubiao-guidang{
+	color: #2B8BEF;
+}
+/*  发送警情按钮  */
+a>i.icon-caozuotubiao-fasongjingqing{
+	color: #2B8BEF;
+}
+/*  排期按钮  */
+a>i.icon-caozuotubiao-paiqijilu{
+	color: #2B8BEF;
+}
+/*  附件按钮  */
+a>i.icon-caozuotubiao-fujianliebiao{
+	color: #3CC7AB;
+}
+/*  审核按钮  */
+a>i.icon-caozuotubiao-shenhe{
+	color: #F7C02E	;
+}
+/*  星标按钮  */
+a>i.icon-caozuotubiao-tianjiaxingbiao{
+	color: #F7C02E	;
+}
+/*  评分按钮  */
+a>i.icon-caozuotubiao-pingfen{
+	color: #F7C02E	;
+}
+/*  盘点按钮  */
+a>i.icon-caozuotubiao-pandian{
+	color: #3CC7AB	;
+}
+/*  方案明细按钮  */
+a>i.icon-caozuotubiao-fanganmingxi{
+	color: #3CC7AB;
+}
+
 
 
 /* 濡楀牅绨ㄦ禒璺哄絺閸忓鐡ф担锟� */
@@ -5325,4 +5426,7 @@ input::-ms-clear{
 	padding-left: 50px;
 	line-height: 40px;
 	width: calc(47.8vw - 48px);
+}
+#todaylivedialog{
+	color: #eff5fb;
 }

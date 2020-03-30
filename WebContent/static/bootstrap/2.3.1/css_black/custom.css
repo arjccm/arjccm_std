@@ -1185,7 +1185,7 @@ cite[class*='t-click']{
     /*高度自适应*/
     /*height: 970px;*/
     padding-bottom: 80px;
-    margin-left: 5px;
+    /*margin-left: 5px;*/
     margin-top: 0px;
     position: relative;
     box-shadow: inset 0px 0px 15px 0px #1684c2;
@@ -1277,6 +1277,7 @@ cite[class*='t-click']{
     color: #fff;
     background: url(../img/blue-cz.png) no-repeat;
     background-size: 100% 100%;
+	border-color: #4593d4;
 }
 #btnCancel:hover{
     color: #fff;
@@ -1351,7 +1352,7 @@ cite[class*='t-click']{
 }
 /*添加记录页面顶部线条颜色*/
 .layui-layer-title {
-    border-bottom: 1px solid #3f87c7!important;
+    border-bottom: 1px solid #0e2d50!important;
 }
 .color-bg6{
     font-size: 14px!important;
@@ -1723,9 +1724,9 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
  .layui-text{
 	 color: #fafafa;
  }
- .layui-layer-content{
-	 background-color: #065689;
- }
+ /*.layui-layer-content2{*/
+	/* background-color: #065689;*/
+ /*}*/
  .help-inline1{
      background-color: #0b486f!important;
      border: 1px solid #00cccc !important;

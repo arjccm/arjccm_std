@@ -1,27 +1,39 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-<title>户籍人口统计</title>
-<meta name="decorator" content="default" />
-<link href="${ctxStatic}/ccm/pop/css/ccmPepInfo.css" rel="stylesheet" />
-<style>
-#ech, #ech1, #ech2 {
+    <title>户籍人口统计</title>
+    <meta name="decorator" content="default"/>
+    <link href="${ctxStatic}/ccm/pop/css/ccmPepInfo.css" rel="stylesheet"/>
+    <style>
+        #ech, #ech1, #ech2 {
 
-	height:395px;
-}
-.ToAuto {
-	overflow: auto;
-	height: 395px;
-}
-</style>
-<script type="text/javascript"
-	src="${ctxStatic}/echarts/echarts.common.min.js"></script>
-<script type="text/javascript" src="${ctxStatic}/echarts/walden.js"></script>
-<script type="text/javascript"
-	src="${ctxStatic}/echarts/echarsCommon.js"></script>
+            height: 395px;
+        }
+
+        .ToAuto {
+            overflow: auto;
+            height: 395px;
+        }
+
+        .row-fluid {
+            width: calc(100vw - 40px);
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .back-list {
+            padding-bottom: 0;
+        }
+    </style>
+    <script type="text/javascript"
+            src="${ctxStatic}/echarts/echarts.common.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/echarts/walden.js"></script>
+    <script type="text/javascript"
+            src="${ctxStatic}/echarts/echarsCommon.js"></script>
 </head>
 <body>
+<div class="back-list">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li>
@@ -71,6 +83,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<script type="text/javascript"
 		src="${ctxStatic}/ccm/pop/js/ccmPersonInfo.js"></script>
 </body>

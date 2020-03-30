@@ -1,22 +1,34 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-<title>危害国家安全活动嫌疑人口统计</title>
-<meta name="decorator" content="default" />
-<link href="${ctxStatic}/ccm/pop/css/ccmPepInfo.css" rel="stylesheet" />
-<script type="text/javascript"
-	src="${ctxStatic}/echarts/echarts.common.min.js"></script>
-<script type="text/javascript" src="${ctxStatic}/echarts/walden.js"></script>
-<script type="text/javascript"
-	src="${ctxStatic}/echarts/echarsCommon.js"></script>
-	 <link href="${ctxStatic}/layer-v3.1.1/layer/theme/default/layer.css"
-	rel="stylesheet" />
-	<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
-<script type="text/javascript"
-		src="${ctxStatic}/common/HasSecret.js"></script>
+    <title>危害国家安全活动嫌疑人口统计</title>
+    <meta name="decorator" content="default"/>
+    <link href="${ctxStatic}/ccm/pop/css/ccmPepInfo.css" rel="stylesheet"/>
+    <script type="text/javascript"
+            src="${ctxStatic}/echarts/echarts.common.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/echarts/walden.js"></script>
+    <script type="text/javascript"
+            src="${ctxStatic}/echarts/echarsCommon.js"></script>
+    <link href="${ctxStatic}/layer-v3.1.1/layer/theme/default/layer.css"
+          rel="stylesheet"/>
+    <script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript"
+            src="${ctxStatic}/common/HasSecret.js"></script>
+    <style>
+        .row-fluid {
+            width: calc(100vw - 40px);
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .back-list {
+            padding-bottom: 0;
+        }
+    </style>
 </head>
 <body>
+<div class="back-list">
 <input type="hidden" id="hasPermission" value="${fns:getUser().hasPermission}"/>
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
@@ -60,6 +72,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<script type="text/javascript"
 		src="${ctxStatic}/ccm/pop/js/ccmHarmNationalInfo.js"></script>
 </body>

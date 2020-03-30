@@ -3732,6 +3732,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	border-bottom: 1px solid #3b6e8e;
 	background: #122e59;
 	box-shadow: 0px 8px 13px -10px #1684c2;
+	width: 100%;
 }
 
 .nav-tabs>li {
@@ -3743,9 +3744,9 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	padding-bottom: 8px;
 	line-height: 20px;
 	border: 1px solid transparent;
-	-webkit-border-radius: 4px 4px 0 0;
-	-moz-border-radius: 4px 4px 0 0;
-	border-radius: 4px 4px 0 0
+	/*-webkit-border-radius: 4px 4px 0 0;*/
+	/*-moz-border-radius: 4px 4px 0 0;*/
+	/*border-radius: 4px 4px 0 0*/
 }
 
 .nav-tabs>li>a:hover, .nav-tabs>li>a:focus {
