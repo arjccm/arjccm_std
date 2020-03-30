@@ -583,6 +583,7 @@ public class CcmPeopleAmountController extends BaseController {
 	// 全部房屋类型统计
 	@ResponseBody
 	@RequestMapping(value = "getListTypeAll")
+	@RequiresPermissions("report:ccmHouseBuildStat:view")
 	public String getListTypeAll(Model model) {
 		// 返回对象结果
 //		SearchTabMore searchTabMore = new SearchTabMore();

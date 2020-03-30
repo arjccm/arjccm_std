@@ -1714,6 +1714,12 @@ UPDATE sys_menu SET parent_id = '7549b37b7c454434aadc05340cf041e4', parent_ids =
 UPDATE sys_menu SET parent_id = '7549b37b7c454434aadc05340cf041e4', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,7549b37b7c454434aadc05340cf041e4,', name = '编辑', href = '', target = '', icon = '', sort = 60, is_show = '0', permission = 'pop:ccmCare:edit', update_by = '1', update_date = '2020-03-30 15:11:07.492', remarks = ''
  WHERE id = '03892dbfb3a3413f9f584cdcb56498c5';
 
+-- 添加建筑物统计页权限标识
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'f52c84194db3499bb0464fae835047a2', '1301012', '0,1,70a1747ee8334e439b2b24ebe947ecdd,c7a14a5931c245928691e00e634400b9,1301012,', '统计页显示', '', '', '', 90, '0', 'report:ccmHouseBuildStat:view', '1', '2020-03-30 16:30:03.044', '1', '2020-03-30 16:30:03.044', '', '0' );
+
+-- 添加矛盾纠纷统计权限标识
+UPDATE sys_menu SET parent_id = '672dd8c9900b4b309a78155a935195c5', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,b839bd8d81a44e23b2605bb820d4fc2f,672dd8c9900b4b309a78155a935195c5,', name = '统计页显示', href = '', target = '', icon = '', sort = 90, is_show = '0', permission = 'report:ccmEventAmbi:view', update_by = '1', update_date = '2020-03-30 17:34:09.299', remarks = ''
+ WHERE id = '02017349f345405ba2ed4e797cd49d09';
 
 
 
