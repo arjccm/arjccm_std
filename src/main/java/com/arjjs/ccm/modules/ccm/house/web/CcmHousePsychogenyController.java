@@ -91,6 +91,7 @@ public class CcmHousePsychogenyController extends BaseController {
 		return entity;
 	}
 
+	@RequiresPermissions("house:ccmHousePsychogeny:view")
 	@RequestMapping(value = { "list", "" })
 	public String list(@Param("tableType")String tableType,CcmHousePsychogeny ccmHousePsychogeny, HttpServletRequest request, HttpServletResponse response,
 			Model model) {

@@ -1694,10 +1694,25 @@ UPDATE `sys_menu` SET `parent_id` = 'b3b0c87bb91345bd93903fb7fa267b9d', `parent_
 UPDATE `sys_menu` SET `parent_id` = 'b3b0c87bb91345bd93903fb7fa267b9d', `parent_ids` = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,', `name` = '安置帮教人员管理', `sort` = 310, `href` = '/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatRelease', `target` = '', `icon` = 'bell', `is_show` = '1', `permission` = '', `create_by` = '1', `create_date` = '2013-05-27 08:00:00', `update_by` = '1', `update_date` = '2020-03-28 14:25:39', `remarks` = '/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatRelease', `del_flag` = '0' WHERE `id` = Cast('130301' AS Binary(6));
 UPDATE `sys_menu` SET `parent_id` = 'b3b0c87bb91345bd93903fb7fa267b9d', `parent_ids` = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,', `name` = '社区矫正人员管理', `sort` = 300, `href` = '/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatRectification', `target` = '', `icon` = 'bell', `is_show` = '1', `permission` = '', `create_by` = '1', `create_date` = '2013-05-27 08:00:00', `update_by` = '1', `update_date` = '2020-03-28 14:25:03', `remarks` = '/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatRectification', `del_flag` = '0' WHERE `id` = Cast('130302' AS Binary(6));
 
+-- 添加人口管理中 特殊信息 闹事行凶报复嫌疑统计页菜单 权限标识
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '0e578db78d19484a8a6a66326c102842', '0a5043def4f64ebe8227585015bb532c', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,0a5043def4f64ebe8227585015bb532c,', '统计页显示', '', '', '', 30, '0', 'report:ccmPeopleStat:view', '1', '2020-03-30 14:11:37.374', '1', '2020-03-30 14:11:37.374', '', '0' );
+UPDATE sys_menu SET parent_id = '0a5043def4f64ebe8227585015bb532c', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,0a5043def4f64ebe8227585015bb532c,', name = '显示', href = '', target = '', icon = '', sort = 60, is_show = '0', permission = 'house:ccmHouseDispute:view', update_by = '1', update_date = '2020-03-30 14:14:24.506', remarks = ''
+ WHERE id = '43ab509768d84476ba4fe4ef222ef48e';
+UPDATE sys_menu SET parent_id = '0a5043def4f64ebe8227585015bb532c', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,0a5043def4f64ebe8227585015bb532c,', name = '编辑', href = '', target = '', icon = '', sort = 90, is_show = '0', permission = 'house:ccmHouseDispute:edit', update_by = '1', update_date = '2020-03-30 14:14:57.91', remarks = ''
+ WHERE id = '9567132244a84e7195228431d1c1765e';
 
 
+-- 添加老年人管理模块的权限标识
+UPDATE sys_menu SET parent_id = '81349c6f45614556a51ad2626ea4e594', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,81349c6f45614556a51ad2626ea4e594,', name = '显示', href = '', target = '', icon = '', sort = 30, is_show = '0', permission = 'pop:ccmOlder:view', update_by = '1', update_date = '2020-03-30 14:27:43.723', remarks = ''
+ WHERE id = '7fc1bed486b34304ae689207563e02bd';
+UPDATE sys_menu SET parent_id = '81349c6f45614556a51ad2626ea4e594', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,81349c6f45614556a51ad2626ea4e594,', name = '编辑', href = '', target = '', icon = '', sort = 60, is_show = '0', permission = 'pop:ccmOlder:edit', update_by = '1', update_date = '2020-03-30 14:29:19.059', remarks = ''
+ WHERE id = 'fa598015d3d748aab0879c8f3b477b18';
 
-
+-- 添加特殊人关怀模块的权限标识
+UPDATE sys_menu SET parent_id = '7549b37b7c454434aadc05340cf041e4', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,7549b37b7c454434aadc05340cf041e4,', name = '显示', href = '', target = '', icon = '', sort = 30, is_show = '0', permission = 'pop:ccmCare:view', update_by = '1', update_date = '2020-03-30 15:10:12.836', remarks = ''
+ WHERE id = '30a65ab541d3489d949b91181c6f7fff';
+UPDATE sys_menu SET parent_id = '7549b37b7c454434aadc05340cf041e4', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,7549b37b7c454434aadc05340cf041e4,', name = '编辑', href = '', target = '', icon = '', sort = 60, is_show = '0', permission = 'pop:ccmCare:edit', update_by = '1', update_date = '2020-03-30 15:11:07.492', remarks = ''
+ WHERE id = '03892dbfb3a3413f9f584cdcb56498c5';
 
 
 

@@ -25,7 +25,7 @@
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPeople/">数据列表</a></li>
+		<shiro:hasPermission name="pop:ccmPeople:view"><li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPeople/">数据列表</a></li></shiro:hasPermission>
 	</ul>
 	<ul class="nav nav-tabs">
 			<li class="active"><a href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">户籍人口统计</a></li>

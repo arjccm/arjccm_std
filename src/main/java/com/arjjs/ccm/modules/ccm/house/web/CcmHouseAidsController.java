@@ -90,6 +90,7 @@ public class CcmHouseAidsController extends BaseController {
 		return entity;
 	}
 
+	@RequiresPermissions("house:ccmHouseAids:view")
 	@RequestMapping(value = { "list", "" })
 	public String list(CcmHouseAids ccmHouseAids, HttpServletRequest request, HttpServletResponse response,
 			Model model,@Param("tableType")String tableType) {

@@ -21,7 +21,7 @@
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatAids">数据统计</a></li>
-		<li><a style="width: 140px;text-align:center" href="javascript:;" data-href="${ctx}/house/ccmHouseAids" onclick="HasSecret(this)">数据列表</a></li>
+		<shiro:hasPermission name="house:ccmHouseAids:view"><li><a style="width: 140px;text-align:center" href="javascript:;" data-href="${ctx}/house/ccmHouseAids" onclick="HasSecret(this)">数据列表</a></li></shiro:hasPermission>
 	</ul>
 	<div class="row-fluid">
 		<div id="ech1" class="span9"></div>

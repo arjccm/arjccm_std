@@ -190,7 +190,7 @@
 				<th>公民身份号码</th>
 				<th>所属社区</th>
 				<th>现住门（楼）详址</th>
-				<shiro:hasPermission name="pop:ccmPeople:edit"><th>操作</th></shiro:hasPermission>
+				<shiro:hasPermission name="pop:ccmCare:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -217,7 +217,7 @@
 				<td class="tp">
 					${ccmPeople.residencedetail}
 				</td>
-				<td class="tc"><shiro:hasPermission name="pop:ccmPeople:edit">
+				<td class="tc"><shiro:hasPermission name="pop:ccmCare:edit">
     				<%--<a class="btnList"  href="${ctx}/pop/ccmPeople/formCare?id=${ccmPeople.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
 
 					<a class="btnList"
