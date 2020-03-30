@@ -30,27 +30,34 @@
 </head>
 <body>
  
-	
+	<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/pop/ccmPeople/">实有人口列表</a></li>
 		<li class="active"><a href="">户籍家庭人员列表</a></li>
-		<shiro:hasPermission name="pop:ccmPeople:edit">
+		<%--<shiro:hasPermission name="pop:ccmPeople:edit">
 			<li>
-				<%--<a href="${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}">户籍家庭人员添加</a>--%>
-			<li><a onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}', '户籍家庭人员添加', '1500px', '700px')"
-			>户籍家庭人员添加</a></li>
+				<a href="${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}">户籍家庭人员添加</a>
+			<li>
+			<a onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}', '户籍家庭人员添加', '1500px', '700px')">户籍家庭人员添加</a></li>
 
 			</li>
-		</shiro:hasPermission>
+		</shiro:hasPermission>--%>
 	</ul>
-	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post" class="breadcrumb form-search">
-		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
-		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-<!-- 		<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" style="float: right;margin-right: 3%"/> -->
-	
+	<%--<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post" class="breadcrumb form-search clearfix">--%>
+	<div class="clearfix btn-box breadcrumb">
+		<shiro:hasPermission name="pop:ccmPeople:edit">
+		<a class="btn btn-primary btns pull-right" style="width: 20px;display:inline-block;" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}', '户籍家庭人员添加', '1500px', '700px')"><i></i><span style="font-size: 12px">添加</span></a>
+		</shiro:hasPermission>
+	</div>
+	<%--</form:form>--%>
+	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post">
+        <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+        <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
+ 		<%--<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" style="float: right;margin-right: 3%"/> --%>
+
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>姓名</th>
@@ -59,7 +66,7 @@
 				<th>户号</th>
 				<th>户主姓名</th>
 				<th>与户主关系</th>
-				<th>公民身份号码</th>				
+				<th>公民身份号码</th>
 				<th>更新时间</th>
 				<shiro:hasPermission name="pop:ccmPeople:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -87,7 +94,7 @@
 				</td>
 				<td>
 					${ccmPeople.ident}
-				</td>				
+				</td>
 				<td>
 					<fmt:formatDate value="${ccmPeople.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
@@ -111,6 +118,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-right: 8px;">${page}</div>
+    </div>
 </body>
 </html>
