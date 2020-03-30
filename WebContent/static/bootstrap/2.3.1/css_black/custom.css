@@ -1277,6 +1277,7 @@ cite[class*='t-click']{
     color: #fff;
     background: url(../img/blue-cz.png) no-repeat;
     background-size: 100% 100%;
+	border-color: #4593d4;
 }
 #btnCancel:hover{
     color: #fff;
