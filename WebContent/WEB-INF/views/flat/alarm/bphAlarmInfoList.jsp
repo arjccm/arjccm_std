@@ -19,7 +19,7 @@ var ctxStatic='${ctxStatic}',ctx='${ctx}';
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">警情管理</span>--%>
-<div class="back-list" style="height: 925px">
+<div class="back-list clearfix" style="height: 925px">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 		<li class="active"><a class="nav-head" href="${ctx}/alarm/bphAlarmInfo/index">警情管理列表</a></li>

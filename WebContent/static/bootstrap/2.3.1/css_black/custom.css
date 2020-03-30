@@ -1182,15 +1182,12 @@ cite[class*='t-click']{
 .back-list{
     background-color: #0e2a4c;
     width: 100%;
-    /*高度自适应*/
-    /*height: 970px;*/
-    padding-bottom: 80px;
-    margin-left: 5px;
+    padding-bottom: 20px;
     margin-top: 0px;
     position: relative;
     box-shadow: inset 0px 0px 15px 0px #1684c2;
-    /*	 border: 1px solid #ddd;*/
 }
+
 .table-gradient{
     margin-left: 20px;
     margin-top:20px;
@@ -1224,10 +1221,10 @@ cite[class*='t-click']{
     background-size: 100% 100%;
 }
 .first-line{
-    margin-top: 9px;
+    /*margin-top: 9px;*/
 }
 .second-line{
-    margin-top: 13px;
+    /*margin-top: 13px;*/
 }
 /*新增*/
 .portletcolumn {
@@ -1352,7 +1349,7 @@ cite[class*='t-click']{
 }
 /*添加记录页面顶部线条颜色*/
 .layui-layer-title {
-    border-bottom: 1px solid #3f87c7!important;
+    border-bottom: 1px solid #0e2d50!important;
 }
 .color-bg6{
     font-size: 14px!important;
@@ -1724,10 +1721,16 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
  .layui-text{
 	 color: #fafafa;
  }
- .layui-layer-content{
-	 background-color: #065689;
- }
+ /*.layui-layer-content2{*/
+	/* background-color: #065689;*/
+ /*}*/
  .help-inline1{
      background-color: #0b486f!important;
      border: 1px solid #00cccc !important;
+ }
+/*数据统计页 row-fluid左右边距*/
+ .custom-row-fluid {
+     width: calc(100vw - 40px);
+     padding-left: 20px;
+     padding-right: 20px;
  }

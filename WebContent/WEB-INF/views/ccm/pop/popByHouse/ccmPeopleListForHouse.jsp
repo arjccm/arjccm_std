@@ -50,7 +50,7 @@
 </style>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<!-- 导入、导出模块 -->
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/pop/ccmPeople/import"
@@ -116,7 +116,7 @@
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable"
-		class="table table-striped table-bordered table-condensed">
+		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>人口类型</th>

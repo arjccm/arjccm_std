@@ -19,7 +19,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<form:form id="searchForm" modelAttribute="ccmElecfenceAlarm"
 		action="${ctx}/fenceAlarm/ccmElecfenceAlarm" method="post"
 		class="breadcrumb form-search">

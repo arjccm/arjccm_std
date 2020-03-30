@@ -32,7 +32,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="width: 140px;text-align:center" href="${ctx}/act/process/">流程管理</a></li>
 		<li><a style="width: 140px;text-align:center" href="${ctx}/act/process/deploy/">部署流程</a></li>

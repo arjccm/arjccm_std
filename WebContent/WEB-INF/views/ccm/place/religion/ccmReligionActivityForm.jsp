@@ -26,11 +26,12 @@
 			});
 		});
 	</script>
+	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/religion/ccmReligionActivity/">数据列表</a></li>
-		<li class="active"><a href="${ctx}/religion/ccmReligionActivity/form?id=${ccmReligionActivity.id}">数据<shiro:hasPermission name="religion:ccmReligionActivity:edit">${not empty ccmReligionActivity.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="religion:ccmReligionActivity:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="width: 140px;text-align:center" href="${ctx}/religion/ccmReligionActivity/">数据列表</a></li>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/religion/ccmReligionActivity/form?id=${ccmReligionActivity.id}">数据<shiro:hasPermission name="religion:ccmReligionActivity:edit">${not empty ccmReligionActivity.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="religion:ccmReligionActivity:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="ccmReligionActivity" action="${ctx}/religion/ccmReligionActivity/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -39,65 +40,65 @@
 		<table>
 			<tr>
 				<td>
-					<label class="control-label">活动名称：</label>
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>活动名称：</label>
 					<div class="controls">
 						<form:input path="name" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-						<span class="help-inline"><font color="red">*</font> </span>
+
 					</div>
 				</td>
 				<td>
-					<label class="control-label">活动主办方：</label>
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>活动主办方：</label>
 					<div class="controls">
 						<form:input path="host" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-						<span class="help-inline"><font color="red">*</font> </span>
+
 					</div>
 				</td>
 			</tr>
 
 			<tr>
 				<td>
-					<label class="control-label">活动开始日期：</label>
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>活动开始日期：</label>
 					<div class="controls">
 						<input name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 							   value="<fmt:formatDate value="${ccmReligionActivity.beginDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-						<span class="help-inline"><font color="red">*</font> </span>
+
 					</div>
 				</td>
 				<td>
-					<label class="control-label">活动结束日期：</label>
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>活动结束日期：</label>
 					<div class="controls">
 						<input name="endDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 							   value="<fmt:formatDate value="${ccmReligionActivity.endDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-						<span class="help-inline"><font color="red">*</font> </span>
+
 					</div>
 				</td>
 			</tr>
 
 			<tr>
 				<td>
-					<label class="control-label">活动负责人：</label>
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>活动负责人：</label>
 					<div class="controls">
 						<form:input path="head" htmlEscape="false" maxlength="16" class="input-xlarge required"/>
-						<span class="help-inline"><font color="red">*</font> </span>
+
 					</div>
 				</td>
 				<td>
-					<label class="control-label">负责人身份证号码：</label>
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>负责人身份证号码：</label>
 					<div class="controls">
 						<form:input path="headCard" htmlEscape="false" maxlength="32" class="input-xlarge ident1 card required"/>
-						<span class="help-inline"><font color="red">*</font> </span>
+
 					</div>
 				</td>
 			</tr>
 
 			<tr>
 				<td>
-					<label class="control-label">负责人联系方式：</label>
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>负责人联系方式：</label>
 					<div class="controls">
 						<form:input path="headPhone" htmlEscape="false" maxlength="16" class="input-xlarge telephone0 phone required"/>
-						<span class="help-inline"><font color="red">*</font> </span>
+
 					</div>
 				</td>
 				<td>
@@ -135,10 +136,10 @@
 
 			<tr>
 				<td>
-					<label class="control-label">活动地点：</label>
+					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>活动地点：</label>
 					<div class="controls">
 						<form:input path="address" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-						<span class="help-inline"><font color="red">*</font> </span>
+
 					</div>
 				</td>
 			</tr>

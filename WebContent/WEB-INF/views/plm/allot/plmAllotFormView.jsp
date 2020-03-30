@@ -71,7 +71,7 @@
 	<style type="text/css">
 	
 	 #table .ntable td {
-    	border: 0;
+    	border: 1;
 	}
 	.btn-select {
 		color: #fff;

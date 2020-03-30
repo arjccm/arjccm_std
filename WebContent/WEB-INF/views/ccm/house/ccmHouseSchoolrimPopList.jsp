@@ -5,6 +5,31 @@
 	<title>校园周边重点人员</title>
 	<meta name="decorator" content="default"/>
 	<link href="${ctxStatic}/form/css/form.css" rel="stylesheet" />
+	<style>
+		table{
+			width: 98%;
+			margin-left: 10px;
+		}
+		table th{
+			height: 36px;
+		}
+		.form-horizontal{
+			padding: 0 !important;
+			background: none;
+		}
+		#formdisplay h4{
+			padding: 8px 15px;
+		}
+		#searchForm{
+			margin-bottom: 0;
+			margin-top: 20px;
+		}
+		.pagination{
+			margin-top: 20px;
+			padding: 0 10px;
+			float: right;
+		}
+	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//$("#name").focus();
@@ -26,7 +51,7 @@
 				}
 			});
 			$("td").css({"padding":"8px"});
-			$("td").css({"border":"1px dashed #CCCCCC"});
+			$("td").css({"border":"1px solid #CCCCCC"});
 			var dis = $("#id").val();
 			if(dis==null||dis==""){
 				//$("#formdisplay").css("display","none");
@@ -86,6 +111,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="">校园周边重点人员列表</a></li>
 	</ul> 
@@ -94,7 +120,7 @@
 	<h4><c:if test="${not empty ccmHouseSchoolrim.id}">${ccmHouseSchoolrim.schoolName }</c:if><c:if test="${empty ccmHouseSchoolrim.id}">所有学校</c:if>基本信息：</h4>
 		<form:hidden id="id" path="id"/>
 		<sys:message content="${message}"/>		
-		<table border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px; width: 100%;">
+		<table border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px;">
 			<tr>
 				<td>
 					<div>
@@ -211,7 +237,7 @@
 		<h4><c:if test="${not empty ccmHouseSchoolrim.id}">${ccmHouseSchoolrim.schoolName }</c:if><c:if test="${empty ccmHouseSchoolrim.id}">所有校园</c:if>周边重点人员列表：</h4>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px; width: 100%;">
+	<table border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px;">
 		<thead>
 			<tr>
 				<th>人员图片</th>
@@ -257,5 +283,6 @@
 			</div>
 		</div>
 	<div class="pagination">${page}</div>
+</div>
 </body>
 </html>

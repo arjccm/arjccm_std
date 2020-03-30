@@ -62,7 +62,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">事件管理</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 <div class="context" content="${ctx}"></div>
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/house/ccmHouseKym/import" method="post" enctype="multipart/form-data" class="form-search" style="padding-left: 20px; text-align: center;" onsubmit="loading('正在导入，请稍等...');"><br />

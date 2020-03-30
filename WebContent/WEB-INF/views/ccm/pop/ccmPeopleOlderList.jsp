@@ -105,7 +105,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">人口管理</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 <div class="context" content="${ctx}"></div>
  <!-- 导入、导出模块 -->
 	<div id="importBox" class="hide">
@@ -175,7 +175,7 @@
 				<th>年龄</th>
 				<th>所属社区</th>
 				<th>现住门（楼）详址</th>
-				<shiro:hasPermission name="pop:ccmPeople:edit"><th>操作</th></shiro:hasPermission>
+				<shiro:hasPermission name="pop:ccmOlder:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -205,7 +205,7 @@
 				<td class="tp">
 					${ccmPeople.residencedetail}
 				</td>
-				<td class="tc"><shiro:hasPermission name="pop:ccmPeople:edit">
+				<td class="tc"><shiro:hasPermission name="pop:ccmOlder:edit">
     				<%--<a class="btnList"  href="${ctx}/pop/ccmPeople/formOlder?id=${ccmPeople.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
 					<a class="btnList"
 					   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formOlder?id=${ccmPeople.id}', '编辑', '1500px', '700px')"

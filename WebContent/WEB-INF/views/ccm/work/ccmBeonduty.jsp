@@ -47,7 +47,7 @@ height:30px;
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">值班管理</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 <div style="padding-top:50px;">  
 	<form:form id="searchForm" modelAttribute="ccmWorkBeonduty" action="" method="post" class="breadcrumb form-search">
 		<ul class="ul-form">

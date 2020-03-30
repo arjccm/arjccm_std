@@ -474,7 +474,7 @@
 			title: '指派', //页面标题
 			shadeClose: true, //点击遮罩区域是否关闭页面
 			shade: 0.8,  //遮罩透明度
-			area: ['1000px', '600px'],  //弹出层页面比例
+			area: ['700px', '600px'],  //弹出层页面比例
 			content: '${ctx}/event/ccmEventCasedeal/form1?id='+id  //弹出层的url
 		});
     }

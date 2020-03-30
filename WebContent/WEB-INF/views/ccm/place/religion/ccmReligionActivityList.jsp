@@ -17,9 +17,10 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a href="${ctx}/religion/ccmReligionActivity/">数据列表</a></li>
-		<shiro:hasPermission name="religion:ccmReligionActivity:edit"><li style="width: 112px"><a href="${ctx}/religion/ccmReligionActivity/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active" style="width: 140px"><a  class="nav-head" href="${ctx}/religion/ccmReligionActivity/">数据列表</a></li>
+		<shiro:hasPermission name="religion:ccmReligionActivity:edit"><li  style="width: 112px"><a style="width: 140px;text-align:center" href="${ctx}/religion/ccmReligionActivity/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmReligionActivity" action="${ctx}/religion/ccmReligionActivity/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -49,7 +50,7 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>活动名称</th>
@@ -101,6 +102,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

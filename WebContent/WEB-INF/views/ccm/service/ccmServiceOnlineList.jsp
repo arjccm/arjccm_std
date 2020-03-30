@@ -21,7 +21,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">社区事务</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/service/ccmServiceOnline/jumplist?etype=${etype}">数据列表</a></li>
 		<!--  
@@ -31,7 +31,7 @@
 	<form:form id="searchForm" modelAttribute="ccmServiceOnline" action="${ctx}/service/ccmServiceOnline/jumplist?etype=${etype}" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form pull-left">
+<%--		<ul class="ul-form pull-left">--%>
 		<ul class="ul-form pull-left">
 			<li class="first-line"><label>事项分类：</label>
 				<form:select path="type" class="input-medium">

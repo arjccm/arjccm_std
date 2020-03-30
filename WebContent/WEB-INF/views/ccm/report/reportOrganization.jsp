@@ -26,7 +26,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmReportOthers/organization">机构组织分析</a></li>
 		<li><a style="width: 140px;text-align:center" href="${ctx}/org/ccmOrgNpse/list">机构组织列表</a></li>
@@ -74,12 +74,12 @@
 	    </div>
 		<br>
 		 <div class="row-fluid">
-		 <div class="span6" ><h4>关注程度统计图</h4>
+		 <div class="span6 spEchar" ><h4>关注程度统计图</h4>
 		         <div class="common-pading">
 					<div id="ccmOrgNpseConcExte" class="echarts" ></div>
 				 </div>
 		      </div>
-			    <div class="span6" >
+			    <div class="span6 spEchar" >
 					<h4>危化企业统计</h4>
 		      <div class="common-pading">
 					<div id="ccmOrgNpseDangComp" class="echarts" ></div>

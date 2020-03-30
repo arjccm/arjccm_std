@@ -30,6 +30,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmReportOthers/keyPlace">重点场所数据分析</a></li>
 	</ul>
@@ -58,7 +59,7 @@
 	     <div class="row-fluid">
 	     	  	<div class="span12" ><h4>重点场所类型列表</h4>
 					<div style="height:571px;overflow: auto">
-				<table id="contentTable" class="table table-striped table-bordered table-condensed">
+				<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 					<thead>
 						<tr>
 							<th>归属社区</th>
@@ -391,5 +392,6 @@
 	 
 		
 </script>
+</div>
 </body>
 </html>

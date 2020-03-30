@@ -19,7 +19,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">事件管理</span>--%>
-<ul class="back-list">
+<ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a class="nav-head" href="${ctx}/attendanceapply/ccmWorkerAttendanceApply?type=${type}"><c:if test="${type == 3}">加班</c:if><c:if test="${type == 2}">请假</c:if>申请列表</a></li>
 		<%--<shiro:hasPermission name="attendanceapply:ccmWorkerAttendanceApply:edit"><li><a href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/form">加班请假申请添加</a></li></shiro:hasPermission>--%>

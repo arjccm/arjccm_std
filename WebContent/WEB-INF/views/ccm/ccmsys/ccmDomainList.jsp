@@ -19,7 +19,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/ccmsys/ccmDomain/">数据列表</a></li>
 		<shiro:hasPermission name="ccmsys:ccmDomain:edit"><li><a style="width: 140px;text-align:center"  href="${ctx}/ccmsys/ccmDomain/form">数据添加</a></li></shiro:hasPermission>

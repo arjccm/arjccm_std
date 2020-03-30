@@ -68,7 +68,7 @@
 </script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li style="float: right;"><a class="btn btn-danger"
 			href="${ctx}/preview/ccmEventIncidentPreview/4?status=03">已拒绝</a></li>

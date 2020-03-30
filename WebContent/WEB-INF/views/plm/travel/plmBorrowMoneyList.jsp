@@ -72,7 +72,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<form:form id="searchForm" modelAttribute="plmBorrowMoney" action="${ctx}/travel/plmBorrowMoney/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>

@@ -15,8 +15,11 @@
 <!-- /列表缩略图切换 -->
 <style type="text/css">
 .input-select {
-	width: 117px;
+	width: 158px;
 }
+	.input-append{
+		margin-right: 0 !important;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -36,7 +39,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">应急物资保障</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/storage/plmEquipment/">物资列表</a></li>
 		

@@ -19,7 +19,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/org/ccmOrgInfovideo/">数据列表</a></li>
 		<shiro:hasPermission name="org:ccmOrgInfovideo:edit"><li><a href="${ctx}/org/ccmOrgInfovideo/form">数据添加</a></li></shiro:hasPermission>

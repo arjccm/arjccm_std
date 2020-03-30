@@ -28,7 +28,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 160px"><a class="nav-head" href="${ctx}/event/ccmEventKacc/map">排查整治分析</a></li>
 		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventKacc/">排查整治列表</a></li>
@@ -51,13 +51,13 @@
 			<c:if test="${level eq '1'}">
 			<li><label>所属区域：</label>
 				<sys:treeselect id="area" name="area.id" value="${ccmEventKacc.area.id}" labelName="area.name" labelValue="${ccmEventKacc.area.name}"
-					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-small" allowClear="true" notAllowSelectParent="false"/>
+					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-medium" allowClear="true" notAllowSelectParent="false"/>
 			</li>
 			</c:if>
 			<c:if test="${level eq '2'}">
 			<li><label>所属区域：</label>
 				<sys:treeselect id="area" name="area.id" value="${ccmEventKacc.area.id}" labelName="area.name" labelValue="${ccmEventKacc.area.name}"
-					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-small" allowClear="true" notAllowSelectParent="false"/>
+					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-medium" allowClear="true" notAllowSelectParent="false"/>
 			</li>
 			</c:if>
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li> -->

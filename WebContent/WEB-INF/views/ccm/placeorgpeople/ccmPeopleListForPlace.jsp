@@ -61,7 +61,7 @@
 </style>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<!-- 导入、导出模块 -->
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/pop/ccmPeople/import"

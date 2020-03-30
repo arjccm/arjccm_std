@@ -126,12 +126,13 @@ public class CcmHousePetitionController extends BaseController {
 		}
 		return "redirect:" + adminPath + "/house/ccmHousePetition/?repage";
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+	@RequiresPermissions("house:ccmHousePetition:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(@Param("tableType")String tableType,CcmHousePetition ccmHousePetition, HttpServletRequest request, HttpServletResponse response, Model model) {
 //		Page<CcmHousePetition> page = ccmHousePetitionService.findPage(new Page<CcmHousePetition>(request, response), ccmHousePetition); 
