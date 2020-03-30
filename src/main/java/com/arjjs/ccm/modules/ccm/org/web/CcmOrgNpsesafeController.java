@@ -94,7 +94,7 @@ public class CcmOrgNpsesafeController extends BaseController {
 			//return form(ccmOrgNpse, model);
 		}
 		ccmOrgNpseService.save(ccmOrgNpse);
-		addMessage(redirectAttributes, "保存安全生产重点成功");
+		//addMessage(redirectAttributes, "保存安全生产重点成功");
 	//	return "redirect:"+Global.getAdminPath()+"/org/ccmOrgNpsesafe/?repage";
 		PrintWriter out = null;
 		try {
@@ -103,7 +103,7 @@ public class CcmOrgNpsesafeController extends BaseController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		CommUtil.openWinExpDiv(out, "保存消防安全重点成功");
+		CommUtil.openWinExpDiv(out, "保存安全生产重点成功");
 		
 	}
 	
