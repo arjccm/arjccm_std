@@ -85,6 +85,7 @@ public class CcmHouseRectificationController extends BaseController {
 		return entity;
 	}
 
+	@RequiresPermissions("house:ccmHouseRectification:view")
 	@RequestMapping(value = { "list", "" })
 	public String list(@Param("tableType") String tableType, CcmHouseRectification ccmHouseRectification,
 			HttpServletRequest request, HttpServletResponse response, Model model) {

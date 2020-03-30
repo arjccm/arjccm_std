@@ -70,7 +70,7 @@ public class PlmRoomController extends BaseController {
 		}else{
 			return "plm/logistics/plmRoomReceptionList";
 		}
-		
+
 	}
 
 	@RequiresPermissions("logistics:plmRoom:view")

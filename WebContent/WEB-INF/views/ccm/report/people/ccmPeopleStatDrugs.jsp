@@ -29,54 +29,51 @@
 </head>
 <body>
 <div class="back-list">
-    <input type="hidden" id="hasPermission" value="${fns:getUser().hasPermission}"/>
-    <div class="context" content="${ctx}"></div>
-    <ul class="nav nav-tabs">
-        <li class="active" style="width: 140px"><a class="nav-head"
-                                                   href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatDrugs">数据统计</a>
-        </li>
-        <li><a style="width: 140px;text-align:center" href="javascript:;" data-href="${ctx}/house/ccmHouseDrugs"
-               onclick="HasSecret(this)">数据列表</a></li>
-    </ul>
-    <div class="row-fluid">
-        <div id="ech1" class="span9"></div>
-        <div id="echList1" class="span3">
-            <div class="ToAuto">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>区域</th>
-                        <th title="本月吸毒新增人数">本月吸毒新增人数</th>
-                        <th title="本月吸毒总数">本月吸毒总数</th>
-                    </tr>
-                    </thead>
-                    <tbody class="body">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="row-fluid">
-        <div id="ech2" class="span9"></div>
-        <div id="echList2" class="span3">
-            <div class="ToAuto">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>时间</th>
-                        <th title="新增吸毒人数">新增吸毒人数</th>
-                        <th title="吸毒总人数">吸毒总人数</th>
-                    </tr>
-                    </thead>
-                    <tbody class="body">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<input type="hidden" id="hasPermission" value="${fns:getUser().hasPermission}"/>
+	<div class="context" content="${ctx}"></div>
+	<ul class="nav nav-tabs">
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatDrugs">数据统计</a></li>
+		<shiro:hasPermission name="house:ccmHouseDrugs:view"><a style="width: 140px;text-align:center" href="javascript:;" data-href="${ctx}/house/ccmHouseDrugs" onclick="HasSecret(this)">数据列表</a></li></shiro:hasPermission><li>
+	</ul>
+	<div class="row-fluid">
+		<div id="ech1" class="span9"></div>
+		<div id="echList1" class="span3">
+			<div class="ToAuto">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>区域</th>
+							<th title="本月吸毒新增人数">本月吸毒新增人数</th>
+							<th title="本月吸毒总数">本月吸毒总数</th>
+						</tr>
+					</thead>
+					<tbody class="body">
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row-fluid">
+		<div id="ech2" class="span9"></div>
+		<div id="echList2" class="span3">
+			<div class="ToAuto">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>时间</th>
+							<th title="新增吸毒人数">新增吸毒人数</th>
+							<th title="吸毒总人数">吸毒总人数</th>
+						</tr>
+					</thead>
+					<tbody class="body">
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
-<script type="text/javascript"
-        src="${ctxStatic}/ccm/pop/js/ccmDrugsInfo.js"></script>
+	<script type="text/javascript"
+		src="${ctxStatic}/ccm/pop/js/ccmDrugsInfo.js"></script>
 </body>
 </html>
