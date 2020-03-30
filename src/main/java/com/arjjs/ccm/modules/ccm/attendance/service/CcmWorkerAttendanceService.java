@@ -53,6 +53,12 @@ public class CcmWorkerAttendanceService extends CrudService<CcmWorkerAttendanceD
 		page.setList(ccmWorkerAttendanceDao.getcountPage(ccmWorkerAttendance));
 		return page;
 	}
+
+	public Page<CcmWorkerAttendance> getcountPageByOffice(Page<CcmWorkerAttendance> page, CcmWorkerAttendance ccmWorkerAttendance) {
+		ccmWorkerAttendance.setPage(page);
+		page.setList(ccmWorkerAttendanceDao.getcountPageByOffice(ccmWorkerAttendance));
+		return page;
+	}
 	
 	public List<CcmWorkerAttendance> getcountexport(CcmWorkerAttendance ccmWorkerAttendance){
 		List<CcmWorkerAttendance> list = ccmWorkerAttendanceDao.getcountPage(ccmWorkerAttendance);
