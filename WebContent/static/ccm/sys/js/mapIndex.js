@@ -2168,7 +2168,7 @@ $(function () {
                     + '</td>'
                 html += '</tr>'
                 html += '<tr>'
-                html += '<td style="text-align: center;">' + nameArr[i].tel
+                html += '<td style="text-align: center;">' +"&nbsp;"+ nameArr[i].tel
                     + '</td>'
                 html += '</tr>'
                 html += '<tr>'

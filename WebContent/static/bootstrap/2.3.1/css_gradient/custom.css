@@ -5326,3 +5326,6 @@ input::-ms-clear{
 	line-height: 40px;
 	width: calc(47.8vw - 48px);
 }
+#todaylivedialog{
+	color: #eff5fb;
+}
