@@ -156,7 +156,7 @@ public class CcmPeople extends DataEntity<CcmPeople> {
 	private Integer minnum;
 	private Integer maxnum;
 
-
+	private String isOrderBy; //是否排序
 
 	@ExcelField(title="楼栋总层数", align=2, sort=22)
 	public Integer getPilesNum() {
@@ -1365,5 +1365,13 @@ public class CcmPeople extends DataEntity<CcmPeople> {
 
 	public void setMaxnum(Integer maxnum) {
 		this.maxnum = maxnum;
+	}
+
+	public String getIsOrderBy() {
+		return isOrderBy;
+	}
+
+	public void setIsOrderBy(String isOrderBy) {
+		this.isOrderBy = isOrderBy;
 	}
 }

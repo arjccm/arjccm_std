@@ -1357,7 +1357,7 @@
                 <div>
                     <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>户号：</label>
                     <div class="controls">
-                        <form:input path="account" id="account" htmlEscape="false" maxlength="9"
+                        <form:input path="account" id="account" htmlEscape="false" maxlength="12"
                                     class="input-xlarge required"/>
                     </div>
                 </div>

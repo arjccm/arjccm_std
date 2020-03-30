@@ -162,6 +162,12 @@ public class CcmPeopleController extends BaseController {
 		page.initialize();
 		ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
 		ccmPeople.setMaxnum(page.getPageSize());
+		if(StringUtils.isNotEmpty(ccmPeople.getName())){
+			ccmPeople.setIsOrderBy("true");
+		}
+		if(StringUtils.isNotEmpty(ccmPeople.getIdent())){
+			ccmPeople.setIsOrderBy("true");
+		}
 		List<CcmPeople> list = ccmPeopleService.findListBylimit(ccmPeople);
 		CcmPeople ccmPeople2 = new CcmPeople();
 		String[] listLimite = new String[list.size()];

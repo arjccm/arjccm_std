@@ -1397,7 +1397,7 @@
 				AND a.politics = #{politics}
 			</if>
 			<if test="ident != null and ident != ''">
-				AND a.ident LIKE '%${ident}%'
+				AND a.ident LIKE '${ident}%'
 			</if>
 			<if test="specialCareTypes != null and specialCareTypes.length > 0">
 				AND (
@@ -1420,8 +1420,15 @@
 			<!-- 数据范围过滤 -->
 			${sqlMap.dsf}
 		</where>
-			ORDER BY a.update_date DESC
-				Limit #{minnum},#{maxnum};
+		<choose>
+			<when test="isOrderBy !=null and isOrderBy != ''">
+
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+			Limit #{minnum},#{maxnum};
 	</select>
 
 
