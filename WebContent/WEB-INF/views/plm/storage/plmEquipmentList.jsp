@@ -15,8 +15,11 @@
 <!-- /列表缩略图切换 -->
 <style type="text/css">
 .input-select {
-	width: 117px;
+	width: 158px;
 }
+	.input-append{
+		margin-right: 0 !important;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
