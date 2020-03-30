@@ -15,16 +15,6 @@
             overflow: auto;
             height: 395px;
         }
-
-        .row-fluid {
-            width: calc(100vw - 40px);
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        .back-list {
-            padding-bottom: 0;
-        }
     </style>
     <script type="text/javascript"
             src="${ctxStatic}/echarts/echarts.common.min.js"></script>
@@ -45,7 +35,7 @@
 			<li><a href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatOverSea">境外人口统计</a></li>
 			<li><a href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatUnsettle">未落户人口统计</a></li>
 		</ul>
-	<div class="row-fluid">
+	<div class="row-fluid custom-row-fluid ">
 		
 		<div id="ech1" class="span9"></div>
 		<div id="echList1" class="span3">
@@ -65,7 +55,7 @@
 		</div>
 	</div>
 	<br>
-	<div class="row-fluid">
+	<div class="row-fluid custom-row-fluid">
 		<div id="ech2" class="span9"></div>
 		<div id="echList2" class="span3">
 			<div class="ToAuto">

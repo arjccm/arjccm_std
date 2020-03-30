@@ -10,17 +10,6 @@
     <script type="text/javascript" src="${ctxStatic}/echarts/walden.js"></script>
     <script type="text/javascript"
             src="${ctxStatic}/echarts/echarsCommon.js"></script>
-    <style>
-        .row-fluid {
-            width: calc(100vw - 40px);
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        .back-list {
-            padding-bottom: 0;
-        }
-    </style>
 </head>
 <body>
 <div class="back-list clearfix">
@@ -29,7 +18,7 @@
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatOlder">数据统计</a></li>
 		<shiro:hasPermission name="pop:ccmOlder:view"><li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPeople/listOlder">数据列表</a></li></shiro:hasPermission>
 	</ul>
-	<div class="row-fluid">
+	<div class="row-fluid custom-row-fluid">
 		<div id="ech1" class="span9"></div>
 		<div id="echList1" class="span3">
 			<div class="ToAuto">
@@ -48,7 +37,7 @@
 		</div>
 	</div>
 	<br>
-	<div class="row-fluid">
+	<div class="row-fluid custom-row-fluid">
 		<div id="ech2" class="span9"></div>
 		<div id="echList2" class="span3">
 			<div class="ToAuto">

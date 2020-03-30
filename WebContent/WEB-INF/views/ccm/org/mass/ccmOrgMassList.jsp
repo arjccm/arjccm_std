@@ -62,7 +62,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">组织机构</span>--%>
-<ul class="back-list">
+<ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/org/ccmOrgNpse/list?compType=05">数据列表</a></li>
 	</ul>

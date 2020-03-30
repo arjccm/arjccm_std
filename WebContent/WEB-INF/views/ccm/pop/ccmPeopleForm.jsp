@@ -464,7 +464,6 @@
 
 </head>
 <body>
-
     <ul class="nav nav-tabs hide1">
         <li><a style="width: 140px;text-align:center"
                href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li>

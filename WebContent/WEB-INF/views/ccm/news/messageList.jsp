@@ -21,7 +21,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">通知公告</span>--%>
-<ul class="back-list">
+<ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a class="nav-head" href="${ctx}/news/message/">消息管理列表</a></li>
 		<%-- <shiro:hasPermission name="news:message:edit"><li><a href="${ctx}/news/message/form">消息管理添加</a></li></shiro:hasPermission> --%>

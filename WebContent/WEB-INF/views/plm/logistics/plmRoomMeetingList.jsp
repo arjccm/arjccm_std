@@ -39,7 +39,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">个人办公</span>--%>
-<ul class="back-list">
+<ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 124px"><a class="nav-head" href="${ctx}/logistics/plmRoom?category=01">会议室列表</a></li>
 		<shiro:hasPermission name="logistics:plmRoom:edit"><li style="width: 124px"><a style="text-align: center" href="${ctx}/logistics/plmRoom/form?category=01">会议室添加</a></li></shiro:hasPermission>
