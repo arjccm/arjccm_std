@@ -48,7 +48,7 @@
 		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" style="float: right" value="查询"/>
 	</form>
 	<sys:message content="${message}"/>
-	<table class="table table-striped table-bordered table-condensed table-nowrap table-gradient">
+	<table class="table table-striped table-bordered table-condensed table  -nowrap table-gradient">
 		<thead>
 			<tr>
 				<th>流程分类</th>
