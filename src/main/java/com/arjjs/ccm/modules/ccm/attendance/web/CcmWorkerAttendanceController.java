@@ -362,7 +362,7 @@ public class CcmWorkerAttendanceController extends BaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequiresPermissions("attendance:ccmWorkerAttendance:view")
+	@RequiresPermissions("attendance:ccmWorkerAttendanceCount:view")
 	@RequestMapping(value = {"getcount"})
 	public String getcount(CcmWorkerAttendance ccmWorkerAttendance, HttpServletRequest request, HttpServletResponse response, Model model) {
 		User user = UserUtils.getUser();
@@ -392,7 +392,7 @@ public class CcmWorkerAttendanceController extends BaseController {
 	 * @param redirectAttributes
 	 * @return
 	 */
-	@RequiresPermissions("attendance:ccmWorkerAttendance:view")
+	@RequiresPermissions("attendance:ccmWorkerAttendanceCount:edit")
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmWorkerAttendance ccmWorkerAttendance, HttpServletRequest request,HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
