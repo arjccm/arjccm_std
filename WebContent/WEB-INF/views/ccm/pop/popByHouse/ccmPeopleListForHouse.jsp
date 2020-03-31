@@ -84,16 +84,16 @@
 			</shiro:hasPermission>
 			<%--<li class="active"><a href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${houseId}&type=houseBuild&buildId=${buildId}&netId=${netId}">现有人员列表</a></li>--%>
 		</c:if>
-		<!-- 当前的页面为 房屋 则进行展示  -->
+		<%--<!-- 当前的页面为 房屋 则进行展示  -->
 		<c:if test="${PeoTypeBy eq 'ByHouse' }">
 			<shiro:hasPermission name="pop:ccmPeople:edit">
-				<%--<li><a
-					href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house">成员新增</a></li>--%>
+				&lt;%&ndash;<li><a
+					href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house">成员新增</a></li>&ndash;%&gt;
 
                 <li><a onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house', '成员新增', '1500px', '700px')"
                       >成员新增</a></li>
 			</shiro:hasPermission>
-		</c:if>
+		</c:if>--%>
 		<c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
 			<shiro:hasPermission name="pop:ccmPeople:edit">
 				<%--<li><a
@@ -108,8 +108,20 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li class="btns">
-				<a class="btn btn-primary" onclick="LayerDialog('','${ctx}/pop/ccmPeople/listPopAdd?houseId=${houseId}', '添加成员', '1200px', '700px')" title="添加成员">
-					添加成员</a>
+				<!-- 当前的页面为 房屋 则进行展示  -->
+				<c:if test="${PeoTypeBy eq 'ByHouse' }">
+					<shiro:hasPermission name="pop:ccmPeople:edit">
+						<%--<li><a
+                            href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house">成员新增</a></li>--%>
+
+						<a class="btn btn-primary" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house', '成员新增', '1500px', '700px')"
+						   title="成员新增">成员新增</a>
+					</shiro:hasPermission>
+				</c:if>
+
+				<a class="btn btn-primary" onclick="LayerDialog('','${ctx}/pop/ccmPeople/listPopAdd?houseId=${houseId}', '批量添加', '1200px', '700px')" title="添加成员">
+					批量添加</a>
+
 			</li>
 			<li class="clearfix"></li>
 		</ul>
