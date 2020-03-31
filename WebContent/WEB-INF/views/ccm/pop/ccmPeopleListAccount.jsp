@@ -44,13 +44,11 @@
 			</li>
 		</shiro:hasPermission>--%>
 	</ul>
-	<%--<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post" class="breadcrumb form-search clearfix">--%>
 	<div class="clearfix btn-box breadcrumb">
 		<shiro:hasPermission name="pop:ccmPeople:edit">
-		<a class="btn btn-primary btns pull-right" style="width: 20px;display:inline-block;" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?'+pathData, '户籍家庭人员添加', '1500px', '700px')"><i></i><span style="font-size: 12px">添加</span></a>
+		<a class="btn btn-primary btns pull-right" style="width: 20px;display:inline-block;" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?'+pathData, '户籍家庭人员添加', '1500px', '700px')"><i></i><span style="font-size: 12px">成员添加</span></a>
 		</shiro:hasPermission>
 	</div>
-	<%--</form:form>--%>
 	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post">
         <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
@@ -100,7 +98,6 @@
 					<fmt:formatDate value="${ccmPeople.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td><shiro:hasPermission name="pop:ccmPeople:edit">
-						<%--<a class="btnList"  href="${ctx}/pop/ccmPeople/formAccount?id=${ccmPeople.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
 
 					<a class="btnList"
 					   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?id=${ccmPeople.id}', '编辑', '1500px', '700px')"
