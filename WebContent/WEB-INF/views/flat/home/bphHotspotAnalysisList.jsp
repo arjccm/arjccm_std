@@ -136,13 +136,23 @@
         //加载地图
 
         initMap();
-        $('#Controls').toggle(function () {
-            stop();
-            $(this).addClass('suspend');
-        }, function () {
-            start();
-            $(this).removeClass('suspend');
-        });
+        // $('#Controls').toggle(function () {
+        //     stop();
+        //     $(this).addClass('suspend');
+        // }, function () {
+        //     start();
+        //     $(this).removeClass('suspend');
+        // });
+        $('#Controls').click(function(){
+            if ($(this).hasClass("suspend")){
+                $(this).removeClass('suspend');
+                start();
+            }else {
+                $(this).addClass('suspend');
+                stop();
+
+            }
+        })
         getAlarmType()
         addHeatMap();
         addMonth();

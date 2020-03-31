@@ -56,7 +56,7 @@
             <%--<input class="btn btn-info export" type="button" value="导出测试"/>--%>
         </div>
     </div>
-    <div id="ech2" class="span11"></div>
+    <div id="ech2" class="span11 spEchar2"></div>
 </div>
 <div class="row-fluid">
     <div class="ToAuto">

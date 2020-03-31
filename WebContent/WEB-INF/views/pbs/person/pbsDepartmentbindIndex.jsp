@@ -39,7 +39,7 @@
 
 
 	<div id="content" class="row-fluid">
-		<div id="left" class="accordion-group">
+		<div id="left" class="accordion-group treeArea">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" style="color:#000;">组织机构<i
 					class="icon-refresh pull-right" onclick="refreshTree();"></i></a>

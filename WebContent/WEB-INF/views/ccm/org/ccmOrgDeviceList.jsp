@@ -10,7 +10,6 @@
 		$(document).ready(function() {
 			//$("#name").focus();
 			if("${ccmDevice.deviceList}"!=null&&"${ccmDevice.deviceList}"!=""){
-debugger
 				var deviceList = "${deviceIdList}".split(",");
 				$("#deviceSelect").val(deviceList).select2();
 			}
@@ -41,15 +40,15 @@ debugger
 <form:form id="inputForm" modelAttribute="ccmOrgDevice" action="${ctx}/org/ccmOrgDevice/save" method="post" class="form-horizontal">
 	<form:hidden path="orgId"/>
 	<sys:message content="${message}"/>
+
 	<div class="control-group" style="padding-top: 8px">
 		<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>监控设备：</label>
-		<div class="controls">
-			<select data-placeholder="选择一个或多个监控设备" style="width: 90%;" name="deviceSelect" id="deviceSelect" class="chosen-select required" multiple tabindex="4" disabled>
-				<option value=""></option>
+		<div class="controls div_font_type" >
+
 				<c:forEach items="${ccmDevice.deviceList}" var="video">
 					<option value="${video.id}">${video.name}</option>
 				</c:forEach>
-			</select>
+
 
 		</div>
 	</div>

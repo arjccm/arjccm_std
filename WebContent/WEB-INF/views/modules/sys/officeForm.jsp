@@ -173,9 +173,9 @@
 				</td>
 				<td>
 					<div class="control-group">
-						<label class="control-label">负责人:</label>
+						<label class="control-label">邮箱:</label>
 						<div class="controls">
-							<form:input path="master" htmlEscape="false" maxlength="50"/>
+							<form:input path="email" htmlEscape="false" maxlength="50" class="email"/>
 						</div>
 					</div>
 				</td>
@@ -201,10 +201,14 @@
 			<tr>
 				<td>
 					<div class="control-group">
-						<label class="control-label">邮箱:</label>
-						<div class="controls">
-							<form:input path="email" htmlEscape="false" maxlength="50" class="email"/>
-						</div>
+						<c:if test="${empty office.id}">
+							<div class="control-group">
+								<label class="control-label">快速添加下级部门:</label>
+								<div class="controls">
+									<form:checkboxes path="childDeptList" items="${fns:getDictList('sys_office_common')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+								</div>
+							</div>
+						</c:if>
 					</div>
 				</td>
 				<td>
@@ -214,21 +218,6 @@
 							<form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
 						</div>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<c:if test="${empty office.id}">
-						<div class="control-group">
-							<label class="control-label">快速添加下级部门:</label>
-							<div class="controls">
-								<form:checkboxes path="childDeptList" items="${fns:getDictList('sys_office_common')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-							</div>
-						</div>
-					</c:if>
-				</td>
-				<td>
-
 				</td>
 			</tr>
 		</table >

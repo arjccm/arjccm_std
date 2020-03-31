@@ -65,7 +65,7 @@ public class VCcmOrgController extends BaseController {
 	@RequiresPermissions("view:vCcmOrg:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(VCcmOrg vCcmOrg, HttpServletRequest request, HttpServletResponse response, Model model) {
-		List<VCcmOrg> list = vCcmOrgService.findList(vCcmOrg); 
+		List<VCcmOrg> list = vCcmOrgService.findList(vCcmOrg);
 		model.addAttribute("list", list);
 		model.addAttribute("vCcmOrg",vCcmOrg);
 		
