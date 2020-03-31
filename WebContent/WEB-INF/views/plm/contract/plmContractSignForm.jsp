@@ -187,7 +187,7 @@
 
 			</tr>
 			<tr>
-				<td class="trtop">项目负责人</td>
+				<td class="trtop">项目负责人<font color="red">*</font></td>
 				<td><sys:treeselect id="user" name="user.id" value="${plmContractSign.user.id}" labelName="user.name" labelValue="${plmContractSign.user.name}"
 					title="用户" url="/sys/office/treeData?type=3" cssClass="required" allowClear="true" notAllowSelectParent="true" isAll="true"/></td>
 				<td class="trtop">是否标准合同</td>
