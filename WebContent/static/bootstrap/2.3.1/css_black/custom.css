@@ -172,11 +172,10 @@ input.btn{
 }
 
 .btn-primary {
-
 	color: #fff;
+    background: url(../img/cyan-cz.png) no-repeat!important;
+    background-size: 100% 100%!important;
 	/*background-color: #1684c2;*/
-	background: url(../img/cyan-cz.png) no-repeat!important;
-	background-size: 100% 100%!important;
 	border-color: #3bb4f2;
 }
 .nav-tabs .btn-primary{
@@ -188,9 +187,7 @@ input.btn{
 .btn-primary:hover {
 
 	color: #fff;
-	/*background-color: #2493d1;*/
-	background: url(../img/cyan-jh.png)!important;
-	background-size: 100% 100%!important;
+	background-color: #2493d1;
 	/*border-color: #19a7f0;*/
 }
  .nav-tabs .btn-primary:hover{
@@ -1283,12 +1280,19 @@ cite[class*='t-click']{
     background-size: 100% 100%;
 }
 /*大联动模块数据展示页		全部、未处理等按钮样式*/
-.nav-tabs>li>.btn-primary{
+
+ /*选择状态*/
+ .nav-tabs>li>.btn-xz{
+	 background: url(../img/cyan-jh.png)!important;
+	 background-size: 100% 100%!important;
+ }
+
+.nav-tabs>li>.btn-qb{
     background: none;
     color: #37C2F0 !important;
     border: 1px solid #007CA5;
 }
-.nav-tabs>li>.btn-primary:hover{
+.nav-tabs>li>.btn-qb:hover{
     background-color: #044d73;
     color: #37C2F0 !important;
     border: 1px solid #007CA5;
@@ -1383,7 +1387,7 @@ cite[class*='t-click']{
     FontColor: #fff !important;
 }
 #blackech2{
-    background: rgb(14, 42, 76) !important;
+    background: rgb(14, 42, 76) ;
     FontColor: #fff !important;
 }
 
@@ -1654,7 +1658,7 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
 	 margin: 0;
 	 padding: 0 0 0 10px!important;
  }
-
+/*深色统计图样式调整*/
  .row-fluid .spEchar {
 	  width: 47.8vw;
 	 margin: 20px 0 0 20px!important;
@@ -1677,6 +1681,33 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
 	 line-height: 40px;
 	 width: calc(47.8vw - 50px);
  }
+
+ .row-spEchar2{
+	 background: none!important;
+ }
+ .row-fluid .spEchar2 {
+	 width: calc(99vw - 20px);;
+	 margin-left: 20px !important;
+	 background: none!important;
+	 box-shadow: inset 0px 0px 15px 0px #1684c2;
+ }
+ .row-fluid .spEchar2>.common-pading{
+	 width: calc(99vw - 20px);
+	 height: calc(34.62vh + 1px);
+	 margin:0 15px 15px 15px;
+
+ }
+ .row-fluid .spEchar2>.common-pading>div{
+	 height: 34.62vh!important;
+ }
+ .row-fluid .spEchar2 h4{
+	 height: 40px;
+	 background: rgba(6,86,137,1);
+	 padding-left: 50px;
+	 line-height: 40px;
+	 width: calc(99vw - 70px);
+ }
+
 
  /**流程管理弹出框的文本框样式*/
 .jbox .jbox-button{
@@ -1754,4 +1785,26 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
  /**在大业务联动添加字体颜色*/
  .body_color{
 	 color: #fff;
+ }
+
+ /*  树模块样式start  */
+ .treeArea{
+	 height: 98vh !important;
+ }
+ .treeArea .accordion-heading{
+	 background: #122e59;
+ }
+ .treeArea .ztree{
+	 box-shadow: inset 0px 0px 15px 0px #1684c2;
+ }
+ /*  树模块样式end  */
+ .div_font_type{
+	 border: 1px solid #00cccc;
+	 width: 300px;
+	 border-radius: 6px;
+	 font-family: Helvetica, Georgia, Arial, sans-serif, 宋体;
+	 font-size: 13px;
+	 padding-top: 5px;
+	 padding-left: 3px;
+	 padding-bottom: 5px;
  }
