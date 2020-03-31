@@ -78,7 +78,7 @@
 	<%-- <%@include file="/WEB-INF/views/include/layUI.jsp" %> --%>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/pop/ccmPeopleAntiepidemic/">人员疫情列表</a></li>
 		<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><li><a href="${ctx}/pop/ccmPeopleAntiepidemic/form">人员疫情添加</a></li></shiro:hasPermission>

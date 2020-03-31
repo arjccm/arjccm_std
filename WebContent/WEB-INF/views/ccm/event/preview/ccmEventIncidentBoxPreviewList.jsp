@@ -70,7 +70,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">预处理系统</span>--%>
-<ul class="back-list">
+<ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li style="float: right;"><a class="btn btn-danger"
 			href="${ctx}/preview/ccmEventIncidentPreview/5?status=03">已拒绝</a></li>

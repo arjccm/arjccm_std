@@ -689,12 +689,19 @@
 		where a.id=b.create_by
 		AND a.office_id=d.id 
 		AND d.area_id=c.id
+
+		<if test="beginDate != null and beginDate != ''">
+			AND b.begin_date &gt;= #{beginDate}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			AND b.end_date &lt;= #{endDate}
+		</if>
 		<if test="createName != null and createName != ''">
 			AND a.name like 
 			<if test="dbName == 'oracle'">'%'||#{createName}||'%'</if>
 			<if test="dbName == 'mssql'">'%'+#{createName}+'%'</if>
 			<if test="dbName == 'mysql'">concat('%',#{createName},'%')</if>
-		</if> 
+		</if>
 		GROUP BY b.create_by
 	</select>
 	

@@ -272,7 +272,7 @@ public class CcmPeopleController extends BaseController {
 	}
 
 	// 老年人
-	@RequiresPermissions("pop:ccmPeople:view")
+	@RequiresPermissions("pop:ccmOlder:view")
 	@RequestMapping(value = "listOlder")
 	public String listOlder(CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
@@ -309,7 +309,7 @@ public class CcmPeopleController extends BaseController {
 	}
 
 	// 老年人表单
-	@RequiresPermissions("pop:ccmPeople:view")
+	@RequiresPermissions("pop:ccmOlder:view")
 	@RequestMapping(value = "formOlder")
 	public String formOlder(CcmPeople ccmPeople, Model model) {
 		// 创建 查询对象 建立查询条件
@@ -333,7 +333,7 @@ public class CcmPeopleController extends BaseController {
 	}
 
 	// 老年人删除
-	@RequiresPermissions("pop:ccmPeople:edit")
+	@RequiresPermissions("pop:ccmOlder:edit")
 	@RequestMapping(value = "deleteOlder")
 	public String deleteOlder(CcmPeople ccmPeople, RedirectAttributes redirectAttributes) {
 		ccmPeopleService.delete(ccmPeople);
@@ -342,7 +342,7 @@ public class CcmPeopleController extends BaseController {
 	}
 
 	// 老年人保存
-	@RequiresPermissions("pop:ccmPeople:edit")
+	@RequiresPermissions("pop:ccmOlder:edit")
 	@RequestMapping(value = "saveOlder")
 	public void saveOlder(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmPeople)) {
@@ -370,7 +370,7 @@ public class CcmPeopleController extends BaseController {
 	}
 
 	// 特殊关怀First
-	@RequiresPermissions("pop:ccmPeople:view")
+	@RequiresPermissions("pop:ccmCare:view")
 	@RequestMapping(value = "listCareFirst")
 	public String listCareFirst(CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
@@ -403,7 +403,7 @@ public class CcmPeopleController extends BaseController {
 	}
 
 	// 特殊关怀
-	@RequiresPermissions("pop:ccmPeople:view")
+	@RequiresPermissions("pop:ccmCare:view")
 	@RequestMapping(value = "listCare")
 	public String listCare(CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response, Model model) {
 		String specialCareTypeStr = "";
@@ -457,7 +457,7 @@ public class CcmPeopleController extends BaseController {
 	}
 
 	// 特殊关怀表单
-	@RequiresPermissions("pop:ccmPeople:view")
+	@RequiresPermissions("pop:ccmCare:view")
 	@RequestMapping(value = "formCare")
 	public String formCare(CcmPeople ccmPeople, Model model) {
 		// 创建 查询对象 建立查询条件
@@ -481,7 +481,7 @@ public class CcmPeopleController extends BaseController {
 	}
 
 	// 特殊关怀删除
-	@RequiresPermissions("pop:ccmPeople:edit")
+	@RequiresPermissions("pop:ccmCare:edit")
 	@RequestMapping(value = "deleteCare")
 	public String deleteCare(CcmPeople ccmPeople, RedirectAttributes redirectAttributes) {
 		ccmPeopleService.delete(ccmPeople);
@@ -490,7 +490,7 @@ public class CcmPeopleController extends BaseController {
 	}
 
 	// 特殊关怀保存
-	@RequiresPermissions("pop:ccmPeople:edit")
+	@RequiresPermissions("pop:ccmCare:edit")
 	@RequestMapping(value = "saveCare")
 	public void saveCare(CcmPeople ccmPeople, Model model, RedirectAttributes redirectAttributes,HttpServletResponse response) {
 		if (!beanValidator(model, ccmPeople)) {

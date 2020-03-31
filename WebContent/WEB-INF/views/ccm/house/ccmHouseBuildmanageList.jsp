@@ -252,7 +252,7 @@ ul.ztree.zTreeDragUL{
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">地址库管理</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 	<!-- 导入、导出模块 -->
 	<div id="context" class="hide">
 		<form id="importForm" action="${ctx}/house/ccmHouseBuildmanage/import" method="post" enctype="multipart/form-data" class="form-search" style="padding-left: 20px; text-align: center;" onsubmit="loading('正在导入，请稍等...');">
@@ -261,7 +261,7 @@ ul.ztree.zTreeDragUL{
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
-		<li style="width: 112px"><a href="${ctx}/report/ccmReportOthers/houseAndBuild" style="text-align: center">数据统计</a></li>
+		<shiro:hasPermission name="report:ccmHouseBuildStat:view"><li style="width: 112px"><a href="${ctx}/report/ccmReportOthers/houseAndBuild" style="text-align: center">数据统计</a></li></shiro:hasPermission>
 		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/house/ccmHouseBuildmanage/">数据列表</a></li>
 		<shiro:hasPermission name="house:ccmHouseBuildmanage:edit">
 			<li style="width: 112px"><a  href="${ctx}/house/ccmHouseBuildmanage/form" style="text-align: center">数据添加</a></li>

@@ -70,7 +70,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">组织机构</span>--%>
-<ul class="back-list">
+<ul class="back-list clearfix">
 	<!-- 导入、导出模块 -->
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/org/ccmOrgNpseEconomic/import"
@@ -114,7 +114,7 @@
 <%--			<li class="clearfix"></li>--%>
 		</ul>
 
-	<sys:message content="${message}" />
+
 <div class="clearfix pull-right btn-box">
 	<shiro:hasPermission
 			name="org:ccmOrgNpseEconomic:edit">
@@ -134,6 +134,7 @@
 	</a>
 </div>
 	</form:form>
+	<sys:message content="${message}" />
 	<table id="contentTable"
 		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>

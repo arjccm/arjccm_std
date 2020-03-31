@@ -224,6 +224,43 @@
 		GROUP BY a.create_by 
 	</select>
 
+	<select id="getcountPageByOffice" resultType="CcmWorkerAttendance">
+		SELECT
+		count(case when a.type = 3 then 1 else null end) as "jiabanCount",
+		SUM(IF(goout_type = 10, days, 0)) AS "chuchai",
+		SUM(IF(goout_type = 20, days, 0)) AS "waichu",
+		SUM(IF(leave_type = 10, days, 0)) AS "bingjia",
+		SUM(IF(leave_type = 20, days, 0)) AS "shijia",
+		SUM(IF(leave_type = 30, days, 0)) AS "nianxiu",
+		SUM(IF(leave_type = 40, days, 0)) AS "tiaoxiu",
+		SUM(IF(a.type = 3, days, 0)) AS "jiaban",
+		b.name AS "createBy.name",
+		c.name AS "createBy.office.name",
+		b.name AS "createByname",
+		c.name AS "officename"
+		FROM
+		ccm_worker_attendance a
+		<include refid="ccmWorkerAttendanceJoins"/>
+		<include refid="ccmWorkerAttendanceJoins_User"/>
+		<include refid="ccmWorkerAttendanceJoins_Office"/>
+		WHERE
+		a.del_flag = 0
+		<if test="attendanceBegin != null and attendanceBegin != ''">
+			AND a.attendance_begin &gt;= #{attendanceBegin}
+		</if>
+		<if test="attendanceEnd != null and attendanceEnd != ''">
+			AND a.attendance_end &lt;= #{attendanceEnd}
+		</if>
+		<if test="createBy.office.id != null and createBy.office.id != ''">
+			AND (c.id = #{createBy.office.id} OR c.parent_ids LIKE
+			<if test="dbName == 'oracle'">'%'||#{createBy.office.id}||'%'</if>
+			<if test="dbName == 'mssql'">'%'+#{createBy.office.id}+'%'</if>
+			<if test="dbName == 'mysql'">concat('%',#{createBy.office.id},'%')</if>
+			)
+		</if>
+		GROUP BY a.create_by
+	</select>
+
 	<select id="getByapplyId" resultType="CcmWorkerAttendance">
 		select
 			a.id AS "id",

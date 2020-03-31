@@ -61,7 +61,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">组织机构</span>--%>
-<ul class="back-list">
+<ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/org/ccmOrgNpseElse/">数据列表</a></li>
 		<%-- <shiro:hasPermission name="org:ccmOrgNpseElse:edit"><li><a href="${ctx}/org/ccmOrgNpseElse/form">其他重点添加</a></li></shiro:hasPermission> --%>
@@ -209,7 +209,7 @@
 				</td>
 				<td>
 					<shiro:hasPermission name="org:ccmOrgNpseElse:edit">
-						<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseElse/form?id=${ccmOrgNpse.id}', '编辑', '1100px', '600px')"title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseElse/form?id=${ccmOrgNpse.id}', '编辑', '1100px', '800px')"title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/org/ccmOrgNpseElse/delete?id=${ccmOrgNpse.id}" onclick="return confirmx('确认要删除该其他重点吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</shiro:hasPermission>
 					<shiro:hasPermission name="log:ccmLogTail:edit">

@@ -39,7 +39,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">设备管理</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 	<div id="importBox" class="hide">
 		<form name="importForm" id="importForm" action="${ctx}/ccmsys/ccmDevice/import"
 			method="post" enctype="multipart/form-data" class="form-search"

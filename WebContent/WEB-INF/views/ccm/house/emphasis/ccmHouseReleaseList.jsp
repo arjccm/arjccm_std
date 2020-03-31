@@ -55,7 +55,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">重点人员</span>--%>
-<div class="back-list">
+<div class="back-list clearfix" style="margin-left: 0">
 <input type="hidden" id="hasPermission" value="${fns:getUser().hasPermission}"/>
 <div class="context" content="${ctx}"></div>
 

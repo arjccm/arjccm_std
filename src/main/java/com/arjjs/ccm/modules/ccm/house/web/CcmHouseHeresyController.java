@@ -78,7 +78,8 @@ public class CcmHouseHeresyController extends BaseController {
 		}
 		return entity;
 	}
-	
+
+	@RequiresPermissions("house:ccmHouseHeresy:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(@Param("tableType")String tableType,CcmHouseHeresy ccmHouseHeresy, HttpServletRequest request, HttpServletResponse response, Model model) {
 //		Page<CcmHouseHeresy> page = ccmHouseHeresyService.findPage(new Page<CcmHouseHeresy>(request, response), ccmHouseHeresy); 

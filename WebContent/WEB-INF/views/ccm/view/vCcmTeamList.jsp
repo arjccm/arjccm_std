@@ -80,12 +80,22 @@
 				}
 			}
 		}
+        function saveImport() {
+            debugger;
+            var s = $("#importForm")[0][0].files.length;
+            if(s == 0){
+                alert("请选择文件！");
+                return;
+            }else{
+                $("#importForm").submit();
+            }
+        }
 	</script>
 </head>
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">综治组织</span>--%>
-<ul class="back-list" style="height: 100%">
+<ul class="back-list clearfix" style="height: 100%">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/view/vCcmTeam/list?office.id=${office.id}&office.parentIds=,${office.id},">数据列表</a></li>
 	</ul>
@@ -99,7 +109,7 @@
 			<input id="btnImportTemplate"
 				   class="btn btn-primary"  type="button" value="模板下载 " onclick="location.href='${ctxStatic}/template/excel/socialTemplate.xlsx'"/>
 			<input id="btnImportSubmit"
-				   class="btn btn-primary" type="submit" value="导  入 " />
+				   class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 " />
 		</form>
 	</div>
 	<form:form id="searchForm" modelAttribute="vCcmTeam" action="${ctx}/view/vCcmTeam/findform" method="post" class="breadcrumb form-search clearfix">

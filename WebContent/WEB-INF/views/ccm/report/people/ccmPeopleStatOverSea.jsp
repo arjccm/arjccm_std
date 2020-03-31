@@ -12,6 +12,7 @@
 	src="${ctxStatic}/echarts/echarsCommon.js"></script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li>
@@ -23,7 +24,7 @@
 			<li class="active"><a href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatOverSea">境外人口统计</a></li>
 			<li><a href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatUnsettle">未落户人口统计</a></li>
 		</ul>
-	<div class="row-fluid">
+	<div class="row-fluid custom-row-fluid">
 		
 		<div id="ech1" class="span9"></div>
 		<div id="echList1" class="span3">
@@ -43,7 +44,7 @@
 		</div>
 	</div>
 	<br>
-	<div class="row-fluid">
+	<div class="row-fluid custom-row-fluid">
 		<div id="ech2" class="span9"></div>
 		<div id="echList2" class="span3">
 		<div class="ToAuto">
@@ -61,6 +62,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<script type="text/javascript"
 		src="${ctxStatic}/ccm/pop/js/ccmOverSeaInfo.js"></script>
 </body>

@@ -47,12 +47,22 @@
 			$(this).fadeOut("fast");
 		});
 	}
+    function saveImport() {
+        debugger;
+        var s = $("#importForm")[0][0].files.length;
+        if(s == 0){
+            alert("请选择文件！");
+            return;
+        }else{
+            $("#importForm").submit();
+        }
+    }
 </script>
 </head>
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">事件管理</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 <div class="context" content="${ctx}"></div>
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/house/ccmHouseKym/import" method="post" enctype="multipart/form-data" class="form-search" style="padding-left: 20px; text-align: center;" onsubmit="loading('正在导入，请稍等...');"><br />
@@ -60,7 +70,7 @@
 			<input id="btnImportTemplate"
 				   class="btn btn-primary"  type="button" value="模板下载 "
 				   onclick="location.href='${ctxStatic}/template/excel/kymPeopleTemplate.xlsx'"/>
-		<input id="btnImportSubmit" class="btn btn-primary" type="submit" value="导  入 " />
+		<input id="btnImportSubmit" class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 " />
 		</form>
 	</div>
 	<ul class="nav nav-tabs">

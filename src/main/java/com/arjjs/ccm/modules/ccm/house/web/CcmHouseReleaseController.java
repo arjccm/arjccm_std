@@ -96,6 +96,7 @@ public class CcmHouseReleaseController extends BaseController {
 	 * @param model
 	 * @return
 	 */
+	@RequiresPermissions("house:ccmHouseRelease:view")
 	@RequestMapping(value = { "list", "" })
 	public String list(@Param("tableType")String tableType,CcmHouseRelease ccmHouseRelease, HttpServletRequest request, HttpServletResponse response,
 			Model model) {

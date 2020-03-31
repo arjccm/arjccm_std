@@ -112,7 +112,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list" style="height: 970px;">
+<div class="back-list clearfix" style="height: 970px;">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/special/kpiSpecialScore/getLeaderBoard">排行榜</a></li>

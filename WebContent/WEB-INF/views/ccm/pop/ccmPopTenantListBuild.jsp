@@ -9,7 +9,7 @@
 	src="${ctxStatic}/ccm/pop/js/ccmTenantInfo.js"></script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/pop/ccmPopTenant/import"
 			method="post" enctype="multipart/form-data" class="form-search"

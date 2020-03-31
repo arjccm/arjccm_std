@@ -21,7 +21,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">社会治安</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/org/ccmOrgComPop/">数据列表</a></li>
 		<shiro:hasPermission name="org:ccmOrgComPop:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/org/ccmOrgComPop/form">数据添加</a></li></shiro:hasPermission>

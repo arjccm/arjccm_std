@@ -109,7 +109,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">事件管理</span>--%>
-<ul class="back-list">
+<ul class="back-list clearfix">
 <div class="context" content="${ctx}"></div>
 <%--<ul class="nav nav-tabs">
 	<li class="active"><a href="${ctx}/event/ccmEventCasedeal/list">任务处理列表</a></li>

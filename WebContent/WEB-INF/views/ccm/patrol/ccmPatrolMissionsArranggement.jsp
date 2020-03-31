@@ -18,7 +18,7 @@
     </script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 <ul class="nav nav-tabs">
     <li class="active"  style="width: 140px"><a class="nav-head" href="${ctx}/patrol/ccmPatrolMissions/arrangement">巡逻任务安排</a></li>
     <li><a  style="width: 140px;text-align:center" href="${ctx}/patrol/ccmPatrolUnit/">巡逻单位任务列表</a></li>

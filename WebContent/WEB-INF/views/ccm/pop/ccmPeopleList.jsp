@@ -81,6 +81,16 @@
 				$(this).fadeOut("fast");
 			});
 		}
+        function saveImport() {
+            debugger;
+            var s = $("#importForm")[0][0].files.length;
+            if(s == 0){
+                alert("请选择文件！");
+                return;
+            }else{
+                $("#importForm").submit();
+            }
+        }
 	</script>
 	<script type="text/javascript"
 	      src="${ctxStatic}/ccm/pop/js/ccmPeopleInfo.js">
@@ -91,7 +101,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">人口管理</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 <div class="context" content="${ctx}"></div>
  <!-- 导入、导出模块 -->
 	<div id="importBox" class="hide">
@@ -104,7 +114,7 @@
 				<input id="btnImportTemplate"
 				class="btn btn-primary"  type="button" value="模板下载 " onclick="location.href='${ctxStatic}/template/excel/template.xlsx'"/>
 				<input id="btnImportSubmit"
-				class="btn btn-primary" type="submit" value="导  入 " />
+				class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 " />
 		</form>
 	</div>
 	

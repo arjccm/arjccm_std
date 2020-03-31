@@ -79,7 +79,7 @@ public class CcmEventAmbiController extends BaseController {
 	
 	
 	//矛盾纠纷排查报表
-	@RequiresPermissions("event:ccmEventAmbi:view")
+	@RequiresPermissions("report:ccmEventAmbi:view")
 	@RequestMapping(value ="map")
 	public String map(CcmEventAmbi ccmEventAmbi, HttpServletRequest request, HttpServletResponse response, Model model) {
 		//系统级别
@@ -93,6 +93,7 @@ public class CcmEventAmbiController extends BaseController {
 	//报表:矛盾纠纷排查报表-化解是否成功统计
 	@ResponseBody
 	@RequestMapping(value = "findSuccessMap")
+	@RequiresPermissions("report:ccmEventAmbi:view")
 	public String findSuccessMap(CcmEventAmbi ccmEventAmbi, Model model) {
 		List<EchartType> listSuccess = ccmEventAmbiService.findSuccessMap(ccmEventAmbi);//化解是否成功统计
 		EchartType newEchartType = new EchartType();//非空判断
@@ -113,6 +114,7 @@ public class CcmEventAmbiController extends BaseController {
 	//报表:矛盾纠纷排查报表-矛盾纠纷规模统计
 	@ResponseBody
 	@RequestMapping(value = "findScaleMap")
+	@RequiresPermissions("report:ccmEventAmbi:view")
 	public String findScaleMap(CcmEventAmbi ccmEventAmbi, Model model) {
 		List<EchartType> listScale = ccmEventAmbiService.findScaleMap(ccmEventAmbi);//矛盾纠纷规模统计
 		EchartType newEchartType = new EchartType();//非空判断
@@ -133,6 +135,7 @@ public class CcmEventAmbiController extends BaseController {
 	//报表:矛盾纠纷排查报表-处理状态统计
 	@ResponseBody
 	@RequestMapping(value = "findStatusMap")
+	@RequiresPermissions("report:ccmEventAmbi:view")
 	public String findStatusMap(CcmEventAmbi ccmEventAmbi, Model model) {
 		List<EchartType> listStatus = ccmEventAmbiService.findStatusMap(ccmEventAmbi);//处理状态统计
 		EchartType newEchartType = new EchartType();//非空判断
@@ -153,6 +156,7 @@ public class CcmEventAmbiController extends BaseController {
 	//报表:矛盾纠纷排查报表-总数统计
 	@ResponseBody
 	@RequestMapping(value = "findLineMap")
+	@RequiresPermissions("report:ccmEventAmbi:view")
 	public String findLineMap(CcmEventAmbi ccmEventAmbi, Model model) {
 		List<EchartType> listLine = ccmEventAmbiService.findLineMap(ccmEventAmbi);//总数统计
 		EchartType newEchartType = new EchartType();//非空判断

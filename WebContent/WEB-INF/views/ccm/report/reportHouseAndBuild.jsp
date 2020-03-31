@@ -28,10 +28,10 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmReportOthers/houseAndBuild">数据统计</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">数据列表</a></li>
+		<shiro:hasPermission name="house:ccmHouseBuildmanage:view"><li><a style="width: 140px;text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">数据列表</a></li></shiro:hasPermission>
 	</ul>
 	<div class="context" content="${ctx}"></div>
 	<sys:message content="${message}"/>

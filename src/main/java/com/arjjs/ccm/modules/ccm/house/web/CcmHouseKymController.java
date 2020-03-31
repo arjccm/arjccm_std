@@ -85,6 +85,7 @@ public class CcmHouseKymController extends BaseController {
 	}
 
 	@RequestMapping(value = { "list", "" })
+	@RequiresPermissions("house:ccmHouseKym:view")
 	public String list(@Param("tableType")String tableType,CcmHouseKym ccmHouseKym, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<CcmHouseKym> page = ccmHouseKymService.findPage(new Page<CcmHouseKym>(request, response), ccmHouseKym);
 		model.addAttribute("page", page);

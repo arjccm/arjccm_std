@@ -365,8 +365,17 @@ public class CcmWorkerAttendanceController extends BaseController {
 	@RequiresPermissions("attendance:ccmWorkerAttendance:view")
 	@RequestMapping(value = {"getcount"})
 	public String getcount(CcmWorkerAttendance ccmWorkerAttendance, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.getcountPage(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance); 
-		model.addAttribute("page", page);
+		User user = UserUtils.getUser();
+		ccmWorkerAttendance.setCreateBy(user);
+		if("1".equals(user.getId())){
+			Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.getcountPage(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
+			model.addAttribute("page", page);
+		}else{
+
+			Page<CcmWorkerAttendance> page = ccmWorkerAttendanceService.getcountPageByOffice(new Page<CcmWorkerAttendance>(request, response), ccmWorkerAttendance);
+			model.addAttribute("page", page);
+		}
+
 		return "ccm/attendance/ccmWorkerAttendanceList";
 	}
 	

@@ -17,7 +17,9 @@ import com.arjjs.ccm.modules.ccm.attendance.entity.CcmWorkerAttendance;
 @MyBatisDao
 public interface CcmWorkerAttendanceDao extends CrudDao<CcmWorkerAttendance> {
 	
-	public List<CcmWorkerAttendance> getcountPage(CcmWorkerAttendance ccmWorkerAttendance);
+	List<CcmWorkerAttendance> getcountPage(CcmWorkerAttendance ccmWorkerAttendance);
+
+	List<CcmWorkerAttendance> getcountPageByOffice(CcmWorkerAttendance ccmWorkerAttendance);
 
 	CcmWorkerAttendance getByapplyId(String id);
 

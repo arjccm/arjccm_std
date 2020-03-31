@@ -46,11 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 工作日志Controller
@@ -402,6 +398,22 @@ public class CcmWorkReportController extends BaseController {
 	@RequestMapping(value = { "Count" })
 	public String Countlist(CcmWorkReport ccmWorkReport, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
+		//本月第一天
+		String formatBegin=getMonthStart();
+		//本月最后一天
+		String formatEnd = getMonthEnd();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+		Date parseBegin=null;
+		Date parseEnd=null;
+		try {
+			parseBegin = sdf.parse(formatBegin);
+			parseEnd = sdf.parse(formatEnd);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		ccmWorkReport.setBeginDate(parseBegin);
+		ccmWorkReport.setEndDate(parseEnd);
 		ccmWorkReport.setCreateBy(UserUtils.getUser());
 		Page<CcmWorkReport> page = ccmWorkReportService.findCountPage(new Page<CcmWorkReport>(request, response),ccmWorkReport);
 		model.addAttribute("page", page);
@@ -515,5 +527,19 @@ public class CcmWorkReportController extends BaseController {
 		} catch (Exception e) {
 			System.out.println("导出事件处理数据失败！失败信息：" + e.getMessage());
 		}
+	}
+
+	public static String getMonthStart(){
+		Calendar cal=Calendar.getInstance();
+		cal.add(Calendar.MONTH, 0);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		Date time=cal.getTime();
+		return new SimpleDateFormat("yyyy-MM-dd").format(time)+" 00:00:00";
+	}
+	public static String getMonthEnd(){
+		Calendar cal=Calendar.getInstance();
+		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+		Date time=cal.getTime();
+		return new SimpleDateFormat("yyyy-MM-dd").format(time)+" 23:59:59";
 	}
 }

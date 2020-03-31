@@ -24,7 +24,7 @@
 	</script>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<form:form id="searchForm" modelAttribute="act" action="${ctx}/act/taskSelf/todo/" method="get" class="breadcrumb form-search">
 		<ul class="ul-form">
 			<li><label>开始日期：</label>

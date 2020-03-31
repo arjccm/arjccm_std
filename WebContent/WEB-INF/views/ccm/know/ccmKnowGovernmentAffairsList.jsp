@@ -21,7 +21,7 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">民政事务</span>--%>
-<div class="back-list">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/know/ccmKnowGovernmentAffairs/">数据列表</a></li>
 		<shiro:hasPermission name="know:ccmKnowGovernmentAffairs:edit"><li style="width: 112px"><a style="text-align: center" href="${ctx}/know/ccmKnowGovernmentAffairs/form">数据添加</a></li></shiro:hasPermission>

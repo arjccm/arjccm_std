@@ -38,6 +38,17 @@
 			}
 		});
 	}
+
+    function saveImport() {
+        debugger;
+        var s = $("#importForm")[0][0].files.length;
+        if(s == 0){
+            alert("请选择文件！");
+            return;
+        }else{
+            $("#importForm").submit();
+        }
+    }
 </script>
 <script type="text/javascript"
 	src="${ctxStatic}/ccm/pop/js/ccmPeopleInfo.js">
@@ -50,7 +61,7 @@
 </style>
 </head>
 <body>
-<div class="back-list">
+<div class="back-list clearfix">
 	<!-- 导入、导出模块 -->
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/pop/ccmPeople/import"
@@ -59,7 +70,7 @@
 			onsubmit="loading('正在导入，请稍等...');">
 			<br /> <input id="uploadFile" name="file" type="file"
 				style="width: 330px" /><br /> <br /> <input id="btnImportSubmit"
-				class="btn btn-primary" type="submit" value="导  入 " />
+				class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 " />
 		</form>
 	</div>
 
