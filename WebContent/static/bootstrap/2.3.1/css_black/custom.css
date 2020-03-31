@@ -190,7 +190,7 @@ input.btn{
 	color: #fff;
 	/*background-color: #2493d1;*/
 	background: url(../img/cyan-jh.png)!important;
-	background-size: 100% 100%;
+	background-size: 100% 100%!important;
 	/*border-color: #19a7f0;*/
 }
  .nav-tabs .btn-primary:hover{
