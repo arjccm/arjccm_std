@@ -13,6 +13,9 @@
 		.accordion-heading{
 			background-image: none
 		}
+		.accordion-group2{
+			height: 831px!important;
+		}
 	</style>
 </head>
 <body>
@@ -23,7 +26,7 @@
 			<div class="accordion-heading">
 		    	<a class="accordion-toggle">组织机构<i class="icon-refresh pull-right" onclick="refreshTree();"></i></a>
 		    </div>
-			<div id="ztree" class="ztree"></div>
+			<div id="ztree" class="ztree accordion-group2"></div>
 		</div>
 		<!--  -->
 		<div id="openClose" class="close">&nbsp;</div>
