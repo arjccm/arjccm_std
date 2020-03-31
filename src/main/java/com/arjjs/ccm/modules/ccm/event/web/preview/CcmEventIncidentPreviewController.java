@@ -132,6 +132,44 @@ public class CcmEventIncidentPreviewController extends BaseController {
 		return "ccm/event/preview/ccmEventIncidentPreviewForm";
 	}
 
+	@RequiresPermissions("preview:ccmEventIncidentPreview:view")
+	@RequestMapping(value = "formById")
+	public String formById(CcmEventIncidentPreview ccmEventIncidentPreview, HttpServletRequest request,
+						   HttpServletResponse response, Model model) {
+		CcmEventIncidentPreview entity = null;
+		if (StringUtils.isNotBlank(ccmEventIncidentPreview.getId())) {
+			entity = ccmEventIncidentPreviewService.get(ccmEventIncidentPreview.getId());
+		}
+		if (entity == null) {
+			entity = new CcmEventIncidentPreview();
+		}
+		model.addAttribute("ccmEventIncidentPreview", entity);
+		// App上报页面
+		if ("1".equals(ccmEventIncidentPreview.getReportType())) {
+			model.addAttribute("reportType", "1");
+//			return "ccm/event/preview/ccmEventIncidentPreviewForm";
+		}
+		// 短信预处理页面
+		if ("2".equals(ccmEventIncidentPreview.getReportType())) {
+			model.addAttribute("reportType", "2");
+//			return "ccm/event/preview/ccmEventIncidentPreviewMessForm";
+		}
+		// 热线预处理
+		if ("3".equals(ccmEventIncidentPreview.getReportType())) {
+			model.addAttribute("reportType", "3");
+//			return "ccm/event/preview/ccmEventIncidentPreviewHotForm";
+		} // 网站预处理
+		if ("4".equals(ccmEventIncidentPreview.getReportType())) {
+			model.addAttribute("reportType", "4");
+//			return "ccm/event/preview/ccmEventIncidentPreviewNetForm";
+		}
+		if ("5".equals(ccmEventIncidentPreview.getReportType())) {
+			model.addAttribute("reportType", "5");
+//			return "ccm/event/preview/ccmEventIncidentPreviewBoxForm";
+		}
+		return "ccm/event/preview/ccmEventIncidentPreviewForm";
+	}
+
 	@RequiresPermissions("preview:ccmEventIncidentPreview:edit")
 	@RequestMapping(value = "save/{reportType}")
 	public void save(CcmEventIncidentPreview ccmEventIncidentPreview, HttpServletResponse response, Model model,
