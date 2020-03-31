@@ -2300,6 +2300,8 @@ $(function () {
 
     TodayHandleDialogLayerClose = function () {
         layer.close(TodayHandleDialogLayer);
+        layer.msg("任务下发成功！",{time: 1000});
+        window.parent.location.reload();
     }
 
     // 事件实时获取

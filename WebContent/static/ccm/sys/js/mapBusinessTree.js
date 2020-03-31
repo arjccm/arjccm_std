@@ -9,17 +9,17 @@ $(function() {
 		               /*  {id : "PopLocation",name : "实时定位",icon : ctxStatic + '/modules/map/images/mapBusiness/PopLocation.png'} */
 		                
 		                ]                  
-	  /* -------------------重点人员楼栋子集------------------  */                
-	var keyPersonlist = [{id : "xingman",pId : "keyPerson",name : "安置帮教人员",icon : ctxStatic + '/modules/map/images/mapBusiness/bangpai1.png',flag : "5",},
-		                 {id : "shequ",pId : "keyPerson",name : "社区矫正人员",icon : ctxStatic + '/modules/map/images/mapBusiness/jiaozheng1.png',flag : "6",}, 
-		                 {id : "jingshen",pId : "keyPerson",name : "肇事肇祸等严重精神障碍患者",icon : ctxStatic + '/modules/map/images/mapBusiness/tree_psy1.png',flag : "2",},
-		                 {id : "xidu",pId : "keyPerson",name : "吸毒人员",icon : ctxStatic + '/modules/map/images/mapBusiness/drug1.png',flag : "4",}, 
-		                 {id : "aizi",pId : "keyPerson",name : "艾滋病危险人员",icon : ctxStatic + '/modules/map/images/mapBusiness/aids1.png',flag : "1",},
-		                 {id : "shangfang",pId : "keyPerson",name : "重点上访人员",icon : ctxStatic + '/modules/map/images/mapBusiness/shangfang1.png',flag : "8",},
-                         {id : "shejiao",pId : "keyPerson",name : "涉教人员",icon : ctxStatic + '/modules/map/images/mapBusiness/shejiao1.png',flag : "9",}, 
-                         {id : "weixian",pId : "keyPerson",name : "危险品工作人员",icon : ctxStatic + '/modules/map/images/mapBusiness/weixianpin1.png',flag : "10",}, 
-                         {id : "liushou",pId : "keyPerson",name : "留守人员",icon : ctxStatic + '/modules/map/images/mapBusiness/liushou1.png',flag : "7",}, 
-                         {id : "qingshaonian",pId : "keyPerson",name : "重点青少年",icon : ctxStatic + '/modules/map/images/mapBusiness/boy1.png',flag : "3",} 
+	  /* -------------------重点人员楼栋子集------------------  */
+	var keyPersonlist = [{id : "xingman",pId : "keyPerson",name : "安置帮教人员",icon : ctxStatic + '/common/index/images/statIndexCool/video/azbj.png',flag : "5",},
+		                 {id : "shequ",pId : "keyPerson",name : "社区矫正人员",icon : ctxStatic + '/common/index/images/statIndexCool/video/sqjz.png',flag : "6",},
+		                 {id : "jingshen",pId : "keyPerson",name : "肇事肇祸等严重精神障碍患者",icon : ctxStatic + '/common/index/images/statIndexCool/video/jsza.png',flag : "2",},
+		                 {id : "xidu",pId : "keyPerson",name : "吸毒人员",icon : ctxStatic + '/common/index/images/statIndexCool/video/drug.png',flag : "4",},
+		                 {id : "aizi",pId : "keyPerson",name : "艾滋病危险人员",icon : ctxStatic + '/common/index/images/statIndexCool/video/aids.png',flag : "1",},
+		                 {id : "shangfang",pId : "keyPerson",name : "重点上访人员",icon : ctxStatic + '/common/index/images/statIndexCool/video/visit.png',flag : "8",},
+                         {id : "shejiao",pId : "keyPerson",name : "涉教人员",icon : ctxStatic + '/common/index/images/statIndexCool/video/sjry.png',flag : "9",},
+                         {id : "weixian",pId : "keyPerson",name : "危险品工作人员",icon : ctxStatic + '/common/index/images/statIndexCool/video/dangures.png',flag : "10",},
+                         {id : "liushou",pId : "keyPerson",name : "留守人员",icon : ctxStatic + '/common/index/images/statIndexCool/video/lsry.png',flag : "7",},
+                         {id : "qingshaonian",pId : "keyPerson",name : "重点青少年",icon : ctxStatic + '/common/index/images/statIndexCool/video/key.png',flag : "3",}
                          ];
 	  /* -------------------重点人员分布子集------------------     */    
 var	keyPersonCountrylist =[{id : "aiziCountry",pId : "keyPersonCountry",name : "艾滋病危险人员",icon : ctxStatic + '/modules/map/images/mapBusiness/aids2.png',flag : "1",},

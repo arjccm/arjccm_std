@@ -586,7 +586,7 @@ public class CcmEventCasedealController extends BaseController {
 	@RequiresPermissions("event:ccmEventCasedeal:edit")
 	@RequestMapping(value = "saveCasedealCommonMap")
 	public void saveCasedealCommonMap(HttpServletRequest request,
-			HttpServletResponse response, CcmEventCasedeal ccmEventCasedeal, Model model, RedirectAttributes redirectAttributes) throws Exception {
+			HttpServletResponse response, CcmEventCasedeal ccmEventCasedeal, Model model) throws Exception {
 		if (!beanValidator(model, ccmEventCasedeal)) {
 //			return dealform(ccmEventCasedeal, model);
 		}
@@ -611,7 +611,7 @@ public class CcmEventCasedealController extends BaseController {
 		//return "redirect:" + Global.getAdminPath() + "/event/ccmEventIncident/list?repage";
 		PrintWriter out = response.getWriter();
 		CommUtil.openWinExpDiv(out, "下发事件处理任务成功");
-		out.println("<script language='javascript'>parent.layer.close(parent.layer.getFrameIndex(window.name));</script>");	//关闭jBox
+		// out.println("<script language='javascript'>parent.layer.close(parent.layer.getFrameIndex(window.name));</script>");	//关闭jBox
 	}
 	
 	
