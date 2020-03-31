@@ -78,6 +78,7 @@ public class CcmEventIncidentPreviewController extends BaseController {
 		Page<CcmEventIncidentPreview> page = ccmEventIncidentPreviewService
 				.findPage(new Page<CcmEventIncidentPreview>(request, response), ccmEventIncidentPreview);
 		model.addAttribute("page", page);
+		model.addAttribute("status",status);
 		// App上报页面
 		if ("1".equals(reportType)) {
 			return "ccm/event/preview/ccmEventIncidentPreviewList";

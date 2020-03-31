@@ -172,11 +172,8 @@ input.btn{
 }
 
 .btn-primary {
-
 	color: #fff;
-	/*background-color: #1684c2;*/
-	background: url(../img/cyan-cz.png) no-repeat!important;
-	background-size: 100% 100%!important;
+	background-color: #1684c2;
 	border-color: #3bb4f2;
 }
 .nav-tabs .btn-primary{
@@ -188,9 +185,7 @@ input.btn{
 .btn-primary:hover {
 
 	color: #fff;
-	/*background-color: #2493d1;*/
-	background: url(../img/cyan-jh.png)!important;
-	background-size: 100% 100%!important;
+	background-color: #2493d1;
 	/*border-color: #19a7f0;*/
 }
  .nav-tabs .btn-primary:hover{
@@ -1283,6 +1278,13 @@ cite[class*='t-click']{
     background-size: 100% 100%;
 }
 /*大联动模块数据展示页		全部、未处理等按钮样式*/
+
+ /*选择状态*/
+ .nav-tabs>li>.btn-xz{
+	 background: url(../img/cyan-jh.png)!important;
+	 background-size: 100% 100%!important;
+ }
+
 .nav-tabs>li>.btn-primary{
     background: none;
     color: #37C2F0 !important;
