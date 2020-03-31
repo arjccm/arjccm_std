@@ -85,6 +85,11 @@
 			});
 		});
 	</script>
+	<style type="text/css">
+		.input-xxlarge{
+			width: 720px;
+		}
+	</style>
 </head>
 <body>
 	<form:form id="inputForm" modelAttribute="plmBorrowMoney" action="${ctx}/travel/plmBorrowMoney/save" method="post" class="form-horizontal">
@@ -113,40 +118,40 @@
 				<td class="tabletop" colspan="2" width="33.33%">申请编号(系统生成):&nbsp;&nbsp; &nbsp;&nbsp;<span>${plmBorrowMoney.code}</span>&nbsp;&nbsp; &nbsp;&nbsp;</td>
 			</tr>
 		</table>
-		<table id="table" class="table table-condensed">
+		<table id="table" class="table table-condensed ">
 			<tr>
-				<td class="trtop" colspan="1">主题<span class="help-inline"><font color="red">*</font></span></td>
-				<td colspan="5"><form:input path="title" htmlEscape="false" maxlength="50" class="input-xlarge required"/></td>
+				<td class="trtop " colspan="1">主题<span class="help-inline"><font color="red">*</font></span></td>
+				<td colspan="5"><form:input path="title" htmlEscape="false" maxlength="50" class="input-xlarge required input-gradText"/></td>
 			</tr>
 			<tr>
 				<td class="trtop" colspan="1">借款时间<span class="help-inline"><font color="red">*</font> </span></td>
-				<td colspan="1"><input name="borrowDate" id="borrowDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+				<td colspan="1"><input name="borrowDate" id="borrowDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate input-gradText required"
 					value="<fmt:formatDate value="${plmBorrowMoney.borrowDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/></td>
 				<td class="trtop" colspan="1">截止日期<span class="help-inline"><font color="red">*</font> </span></td>
-				<td colspan="1"><input name="deadlineDate" id="deadlineDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+				<td colspan="1"><input name="deadlineDate" id="deadlineDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate input-gradText required"
 					value="<fmt:formatDate value="${plmBorrowMoney.deadlineDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/></td>
 				<td class="trtop" colspan="1">借款总额(元)<span class="help-inline"><font color="red">*</font> </span></td>
-				<td colspan="1"><form:input path="sum" htmlEscape="false" maxlength="11" class="input-xlarge required lrunlv72"/></td>
+				<td colspan="1"><form:input path="sum" htmlEscape="false" maxlength="11" class="input-xlarge input-gradText required lrunlv72"/></td>
 			</tr>
 			<tr>
 				<td class="trtop" colspan="1">借款原因<span class="help-inline"><font color="red">*</font> </span></td>
-				<td colspan="5"><form:textarea path="cause" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge required"/></td>
+				<td colspan="5"><form:textarea path="cause" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge input-gradText required"/></td>
 			</tr>
 			<tr>
 				<td class="trtop" colspan="1">借款用途<span class="help-inline"><font color="red">*</font> </span></td>
-				<td colspan="5"><form:textarea path="purpose" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge required"/></td>
+				<td colspan="5"><form:textarea path="purpose" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge input-gradText required"/></td>
 			</tr>
 			<tr>
 				<td class="trtop" colspan="1">账号<span class="help-inline"><font color="red">*</font> </span></td>
-				<td colspan="2"><form:input path="accountCode" htmlEscape="false" maxlength="19" class="input-xlarge required number"/></td>
+				<td colspan="2"><form:input path="accountCode" htmlEscape="false" maxlength="19" class="input-xlarge input-gradText required number"/></td>
 				<td class="trtop" colspan="1">账户名<span class="help-inline"><font color="red">*</font> </span></td>
-				<td colspan="2"><form:input path="accountName" htmlEscape="false" maxlength="256" class="input-xlarge required"/></td>
+				<td colspan="2"><form:input path="accountName" htmlEscape="false" maxlength="256" class="input-xlarge input-gradText required"/></td>
 			</tr>
 			<tr>
 				<td class="trtop" colspan="1">备注信息</td>
-				<td colspan="5"><form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/></td>
+				<td colspan="5"><form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge input-gradText "/></td>
 			</tr>
 			<tr>
 				<td class="trtop" colspan="1" style="width: 20%">是否督办</td>
@@ -156,13 +161,13 @@
 				<td class="trtop isSup" colspan="1" style="width: 20%">督办人</td>
 				<td class="isSup" colspan="2" style="width: 30%">
 					<sys:treeselect id="supExe" name="plmAct.supExe.id" value="${plmBorrowMoney.plmAct.supExe.id}" labelName="plmAct.supExe.name" labelValue="${plmBorrowMoney.plmAct.supExe.name}"
-					title="用户" url="/sys/office/treeData?type=3" cssClass="" allowClear="true" notAllowSelectParent="true" isAll="true"/>
+					title="用户" url="/sys/office/treeData?type=3" cssClass="input-gradText" allowClear="true" notAllowSelectParent="true" isAll="true"/>
 				</td>
 			</tr>		
 			<tr class="isSup">
 				<td class="trtop" colspan="1">督办明细</td>
 				<td colspan="5">
-					<form:textarea path="plmAct.supDetail" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge "/>
+					<form:textarea path="plmAct.supDetail" htmlEscape="false" rows="4" maxlength="256" class="input-xxlarge input-gradText "/>
 				</td>
 			</tr>			
 			<c:if test="${not empty plmBorrowMoney.procInsId}">
