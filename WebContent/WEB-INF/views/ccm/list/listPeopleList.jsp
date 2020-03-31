@@ -23,7 +23,7 @@
 </head>
 <body>
 	<div id="content" class="row-fluid">
-		<div id="left" class="accordion-group">
+		<div id="left" class="accordion-group treeArea">
 			<div style="font-family: 黑体;font-size: 14px;padding: 12px 15px;">
 		    	<a class="accordion-toggle">${title}库<i class="icon-refresh pull-right" onclick="refreshTree();"></i></a>
 		    </div>
