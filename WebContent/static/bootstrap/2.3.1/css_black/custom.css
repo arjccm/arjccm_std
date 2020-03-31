@@ -1755,3 +1755,13 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
  .body_color{
 	 color: #fff;
  }
+ .div_font_type{
+	 border: 1px solid #00cccc;
+	 width: 300px;
+	 border-radius: 6px;
+	 font-family: Helvetica, Georgia, Arial, sans-serif, 宋体;
+	 font-size: 13px;
+	 padding-top: 5px;
+	 padding-left: 3px;
+	 padding-bottom: 5px;
+ }

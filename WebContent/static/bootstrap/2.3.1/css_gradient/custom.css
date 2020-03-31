@@ -5403,3 +5403,13 @@ input::-ms-clear{
 .input-gradText{
 	border: 1px solid #ddd !important;
 }
+.div_font_type{
+	border: 1px solid #ddd;
+	width: 300px;
+	border-radius: 6px;
+	font-family: Helvetica, Georgia, Arial, sans-serif, 宋体;
+	font-size: 13px;
+	padding-top: 5px;
+	padding-left: 3px;
+	padding-bottom: 5px;
+}
