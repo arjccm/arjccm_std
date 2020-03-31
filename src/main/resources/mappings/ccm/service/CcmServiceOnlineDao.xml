@@ -23,6 +23,7 @@
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
 		a.del_flag AS "delFlag",
+		a.review_date as "reviewDate",
 		(case a.type 
 			when 01 then '上访申请' 
 			when 02 then '司法调解申请' 
@@ -136,7 +137,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			review_date
 		) VALUES (
 			#{id},
 			#{type},
@@ -157,7 +159,8 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{reviewDate}
 		)
 	</insert>
 	
@@ -178,7 +181,8 @@
 			extend2 = #{extend2},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
-			remarks = #{remarks}
+			remarks = #{remarks},
+			review_date = #{reviewDate}
 		WHERE id = #{id}
 	</update>
 	

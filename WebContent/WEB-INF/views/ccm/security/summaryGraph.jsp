@@ -56,7 +56,7 @@
 	     	  
 			<div class="span12" ><h4>警卫单位任务完成情况</h4>
 					<div style="height:571px;overflow: auto">
-				<table id="contentTable" class="table table-striped table-bordered table-condensed">
+				<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 					<thead>
 						<tr id="th">
 							<th>单位名称</th>

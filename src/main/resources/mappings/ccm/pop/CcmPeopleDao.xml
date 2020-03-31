@@ -2927,4 +2927,14 @@
 	AND del_flag = 0
 	</select>
 
+
+	<!-- 导入优化 查询id，ident -->
+	<select id="queryAllToMap" resultType="java.util.HashMap">
+	SELECT
+	ident,id
+	FROM
+	`ccm_people`
+	where del_flag = 0
+	</select>
+
 </mapper>

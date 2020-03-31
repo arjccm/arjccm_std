@@ -60,7 +60,7 @@
 	</script>
 </head>
 <body style="position: relative;">
-    
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/fiow/planFlowManage/list">预案流程管理</a></li>
 	</ul>
@@ -79,6 +79,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<script src="${ctxStatic}/flat/flow/planFlowManageList.js" type="text/javascript"></script>
 </body>
 </html>

@@ -4779,6 +4779,22 @@ ArjMap.Map.prototype = {
         var isplace = 0;
         var popflag = 0;
         var placeflag = 0;
+        var video = info.video;
+        var type = null;
+        var videoIp = null;
+        var videoId = null;
+        var videoPort = null;
+        var videoUsername = null;
+        var videoPassword = null;
+        if (video) {
+            type = video['protocol'];
+            videoUrl = video['param'];
+            videoId = getid;
+            videoIp = video['ip'];
+            videoPort = video['port'];
+            videoUsername = video['username'];
+            videoPassword = video['password'];
+        }
         for (var i in infoData) {
             if (i == '住所楼栋区域') {
                 continue
@@ -4861,6 +4877,12 @@ ArjMap.Map.prototype = {
                 html += '</tr>';
             }
 
+        }
+        if (video) {
+            html += '<tr>';
+            html += '<td><strong>视频监控：</strong></td>';
+            html += '<td><a class="click btn btn-success"  href="###" onclick="playVideo(\''+ videoId + '\')" videoIp="' + videoIp + '"  videoId="' + videoId + '">播放</a></td>';
+            html += '</tr>'
         }
         if (isplace == 1) {
             html += '<tr>';

@@ -1734,3 +1734,7 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
      padding-left: 20px;
      padding-right: 20px;
  }
+ /*数据添加页阴影*/
+ #inputForm{
+	 box-shadow: inset 0px 0px 15px 0px #1684c2;
+ }

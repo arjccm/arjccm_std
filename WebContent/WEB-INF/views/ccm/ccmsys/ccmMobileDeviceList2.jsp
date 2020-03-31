@@ -66,7 +66,7 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>设备唯一标识码</th>

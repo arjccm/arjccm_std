@@ -20,7 +20,7 @@
 			
 			if(handleUserId.length!=0){
 				$("#inputForm").submit();
-				parent.TodayHandleDialogLayerClose()
+				parent.TodayHandleDialogLayerClose();
 			}
 		
 			

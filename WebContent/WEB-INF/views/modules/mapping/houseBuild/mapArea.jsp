@@ -147,7 +147,7 @@ font-size:18px;
 		<li id="clickFloatingPop"><a class="color" onclick="showFloatingPop()">&nbsp;&nbsp;&nbsp;流动分析&nbsp;&nbsp;&nbsp;</a></li>
 	</ul>
 	
- 	<a href="#" id="myTabContentCloser" class=" icon-remove " title="关闭"" onclick="detailsDialogFun()" style="position: absolute; display: block; cursor: pointer; top: 11px; right: 11px; width: 15px; height: 15px;color:#fff"></a>
+ 	<a href="#" id="myTabContentCloser" class=" icon-remove " title="关闭" onclick="detailsDialogFun()" style="position: absolute; display: block; cursor: pointer; top: 11px; right: 11px; width: 15px; height: 15px;color:#fff"></a>
 </div>
 
 	
@@ -158,7 +158,7 @@ font-size:18px;
 				<div class="details-common common-small-right">
 					<div class="common-header">
 						<div  class="title-fontsize">
-							总人数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>${popAll}&nbsp;</span>人
+							实际采集人数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>${popAll}&nbsp;</span>人
 						</div>
 					</div>
 					<div class="show height100 common-center">
@@ -223,12 +223,12 @@ font-size:18px;
 										<td align="left"><span  class="fontsize-common">${popArea}&nbsp;</span>人/km<sup>2</sup></td>
 									</tr>
 									<tr>
-										<td align="right">楼栋总面积：</td>
-										<td align="left"><span  class="fontsize-common"><span id="BuildArea">0</span>&nbsp;</span>m<sup>2</sup></td>
+										<td align="right">党员人数：</td>
+										<td align="left"><span  class="fontsize-common"><span>${ccmOrgArea.partyMembersNum}</span>&nbsp;</span>人</td>
 									</tr>
 									<tr>
-										<td align="right">人均住房面积：</td>
-										<td align="left"><span  class="fontsize-common"><span id="BuildPopArea">0</span>&nbsp;</span>m<sup>2</sup>/人</td>
+										<td align="right">总户数：</td>
+										<td align="left"><span  class="fontsize-common"><span>${ccmOrgArea.netNum}</span>&nbsp;</span>人</td>
 									</tr>
 								</table>
 							</div>

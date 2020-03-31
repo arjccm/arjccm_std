@@ -586,7 +586,7 @@ public class CcmEventCasedealController extends BaseController {
 	@RequiresPermissions("event:ccmEventCasedeal:edit")
 	@RequestMapping(value = "saveCasedealCommonMap")
 	public void saveCasedealCommonMap(HttpServletRequest request,
-			HttpServletResponse response, CcmEventCasedeal ccmEventCasedeal, Model model, RedirectAttributes redirectAttributes) {
+			HttpServletResponse response, CcmEventCasedeal ccmEventCasedeal, Model model) throws Exception {
 		if (!beanValidator(model, ccmEventCasedeal)) {
 //			return dealform(ccmEventCasedeal, model);
 		}
@@ -595,11 +595,11 @@ public class CcmEventCasedealController extends BaseController {
 		/**修改对应的事件状态为进行中**/
 		if ("ccm_event_incident".equals(ccmEventCasedeal.getObjType())) {
 			CcmEventIncident ccmEventIncident = ccmEventIncidentService.get(ccmEventCasedeal.getObjId());
-			ccmEventIncident.setStatus("02");
+			// ccmEventIncident.setStatus("02");		不修改事件状态
 			ccmEventIncidentService.save(ccmEventIncident,UserUtils.getUser());//修改案事件状态为：进行中
 		} else if ("ccm_event_ambi".equals(ccmEventCasedeal.getObjType())) {
 			CcmEventAmbi ccmEventAmbi = ccmEventAmbiService.get(ccmEventCasedeal.getObjId());
-			ccmEventAmbi.setStatus("02");
+			// ccmEventAmbi.setStatus("02");			不修改事件状态
 			ccmEventAmbiService.save(ccmEventAmbi);//修改矛盾纠纷状态为：进行中
 		}else if ("ccm_event_request".equals(ccmEventCasedeal.getObjType())) {
 			CcmEventRequest ccmEventRequest = ccmEventRequestService.get(ccmEventCasedeal.getObjId());
@@ -609,9 +609,9 @@ public class CcmEventCasedealController extends BaseController {
 		
 		//addMessage(redirectAttributes, "下发事件处理任务成功");
 		//return "redirect:" + Global.getAdminPath() + "/event/ccmEventIncident/list?repage";
-		//PrintWriter out = response.getWriter();
-		//openWinExpDiv(out, "下发事件处理任务成功");
-		//out.println("<script language='javascript'>parent.layer.close(parent.layer.getFrameIndex(window.name));</script>");	//关闭jBox
+		PrintWriter out = response.getWriter();
+		CommUtil.openWinExpDiv(out, "下发事件处理任务成功");
+		// out.println("<script language='javascript'>parent.layer.close(parent.layer.getFrameIndex(window.name));</script>");	//关闭jBox
 	}
 	
 	

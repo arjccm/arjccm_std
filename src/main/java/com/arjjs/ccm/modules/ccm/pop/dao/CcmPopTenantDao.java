@@ -92,6 +92,7 @@ public interface CcmPopTenantDao extends CrudDao<CcmPopTenant> {
 	//查询出租房
 	List<CcmPopTenant> findListBylimit(CcmPopTenant ccmPopTenant);
 
-
+	// 导入 查询全部
+	List<CcmPopTenant> queryAllForImport();
 
 }

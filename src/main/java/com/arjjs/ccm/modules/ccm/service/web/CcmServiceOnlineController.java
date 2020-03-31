@@ -3,6 +3,7 @@
  */
 package com.arjjs.ccm.modules.ccm.service.web;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,6 @@ import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.service.entity.CcmServiceOnline;
 import com.arjjs.ccm.modules.ccm.service.service.CcmServiceOnlineService;
-import com.arjjs.ccm.modules.ccm.sys.entity.CcmWorkReport;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.EchartType;
 
@@ -88,7 +88,7 @@ public class CcmServiceOnlineController extends BaseController {
 			model.addAttribute("page", page);
 		}
 		model.addAttribute("etype", etype);
-		return "ccm/service/ccmServiceOnlineList";
+		return "ccm/service/ccmServiceOnlineReviewList";
 	}
 	
 	@RequiresPermissions("service:ccmServiceOnline:view")
@@ -140,15 +140,21 @@ public class CcmServiceOnlineController extends BaseController {
 	}
 	@RequiresPermissions("service:ccmServiceOnline:edit")
 	@RequestMapping(value = "save")
-	public String save(String etype, CcmServiceOnline ccmServiceOnline, Model model, RedirectAttributes redirectAttributes) {
+	public String save(String etype, CcmServiceOnline ccmServiceOnline, Model model, RedirectAttributes redirectAttributes){
 		if (!beanValidator(model, ccmServiceOnline)){
 			return form(etype, ccmServiceOnline, model);
 		}
-		ccmServiceOnlineService.save(ccmServiceOnline);
-		addMessage(redirectAttributes, "保存在线办事成功");
+
 		if("1".equals(etype)) {
+			ccmServiceOnlineService.save(ccmServiceOnline);
+			addMessage(redirectAttributes, "保存在线办事成功");
 			return "redirect:"+Global.getAdminPath()+"/service/ccmServiceOnline/list?repage";
 		}else {
+			if (("02").equals(ccmServiceOnline.getStatus()) || ("03").equals(ccmServiceOnline.getStatus())) {
+				// 赋值当前时间为审核时间
+				ccmServiceOnline.setReviewDate(new Date());
+				ccmServiceOnlineService.save(ccmServiceOnline);
+			}
 			return "redirect:"+Global.getAdminPath()+"/service/ccmServiceOnline/examinelist?repage";
 		}
 	}

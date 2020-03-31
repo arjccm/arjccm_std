@@ -2300,6 +2300,8 @@ $(function () {
 
     TodayHandleDialogLayerClose = function () {
         layer.close(TodayHandleDialogLayer);
+        layer.msg("任务下发成功！",{time: 1000});
+        window.parent.location.reload();
     }
 
     // 事件实时获取
@@ -2439,11 +2441,11 @@ $(function () {
         var TodatStatusSpan = "未处理"
         var TodatEventScaleSpan = "一般"
         if (TodatStatus == "01") {
-            TodatStatusSpan = "未处理"
+            TodatStatusSpan = "未完结"
         } else if (TodatStatus == "02") {
-            TodatStatusSpan = "处理中"
+            TodatStatusSpan = "完结归档"
         } else if (TodatStatus == "03") {
-            TodatStatusSpan = "已完成"
+            TodatStatusSpan = "正常办结"
         }
 
         if (TodatEventScale == "01") {

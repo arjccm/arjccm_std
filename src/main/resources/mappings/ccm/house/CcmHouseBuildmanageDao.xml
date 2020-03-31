@@ -774,4 +774,19 @@
 		</if>
 
 	</select>
+
+	<!-- 导入  查询全部 -->
+	<select id="queryAllForImport" resultType="CcmHouseBuildmanage">
+	SELECT
+	a.id AS "id",
+	a.buildname AS "buildname",
+	a17.NAME AS "area.name",
+	a.area_id AS "area.id"
+	FROM
+	ccm_house_buildmanage a
+	LEFT JOIN sys_area a17 ON a17.id = a.area_id
+	WHERE
+	a.del_flag = 0
+	</select>
+
 </mapper>

@@ -36,7 +36,18 @@ public class CcmServiceOnline extends DataEntity<CcmServiceOnline> {
 	private String areaId;  //审核辖区
 	private Date beginTime;		// 开始时间(查询时间条件)
 	private Date endTime;		// 结束时间(查询时间条件)
-	
+
+	private Date reviewDate;	// 审核日期
+
+
+	public Date getReviewDate() {
+		return reviewDate;
+	}
+
+	public void setReviewDate(Date reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+
 	public Date getBeginTime() {
 		return beginTime;
 	}

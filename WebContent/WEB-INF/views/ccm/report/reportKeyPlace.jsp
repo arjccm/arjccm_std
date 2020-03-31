@@ -37,9 +37,8 @@
 	
 	<div class="context" content="${ctx}"></div>
 	<sys:message content="${message}"/>
-	    <br>
 	    <div class="row-fluid">
-			<div class="span6" >
+			<div class="span6 spEchar" >
 		
 				<h4>重点场所类型统计</h4>
 				<div class="common-pading">
@@ -47,7 +46,7 @@
 				</div>
 
 			</div>
-		      <div class="span6" >
+		      <div class="span6 spEchar" >
 			     
 				<h4>学校办学类型统计</h4>
 				<div class="common-pading">
@@ -57,7 +56,7 @@
 	    </div>
 	    <br>
 	     <div class="row-fluid">
-	     	  	<div class="span12" ><h4>重点场所类型列表</h4>
+	     	  	<div class="span12 " ><h4>重点场所类型列表</h4>
 					<div style="height:571px;overflow: auto">
 				<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 					<thead>
