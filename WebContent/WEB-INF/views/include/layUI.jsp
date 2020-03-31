@@ -354,6 +354,9 @@
                         },0)
                     }
                 });
+                $("#TodayEvent .layui-tab-title li").css({
+                    "color":"#fff"
+                })
 
                 setTimeout(function(){
                     $(".xiaoxikuang").css({
@@ -448,6 +451,17 @@
                     var count1 = $("#count1").text();
                     $("#count1").text(parseInt(count1)-1);
                 }
+                // alert($("#count1").text())
+                if($("#countAll").text() == 0){
+                    $("#countAll").css({
+                        "display":"none"
+                    })
+                }
+                if($("#count1").text() == 0){
+                    $("#count1").css({
+                        "display":"none"
+                    })
+                }
                 // 添加显示
                 $('#mainFrame').attr(
                     'src',
@@ -481,6 +495,16 @@
             $("#countAll").text(parseInt(countAll) - 1);
             var count2 = $("#count2").text();
             $("#count2").text(parseInt(count2) - 1);
+        }
+        if($("#countAll").text() == 0){
+            $("#countAll").css({
+                "display":"none"
+            })
+        }
+        if($("#count2").text() == 0){
+            $("#count2").css({
+                "display":"none"
+            })
         }
         layer.open({
             type: 2, //类型，解析url
@@ -545,6 +569,16 @@
             $("#countAll").text(parseInt(countAll) - 1);
             var count3 = $("#count3").text();
             $("#count3").text(parseInt(count3) - 1);
+        }
+        if($("#countAll").text() == 0){
+            $("#countAll").css({
+                "display":"none"
+            })
+        }
+        if($("#count3").text() == 0){
+            $("#count3").css({
+                "display":"none"
+            })
         }
         layer.open({
             type: 2, //类型，解析url
