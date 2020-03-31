@@ -243,9 +243,9 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">婚姻状况：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>婚姻状况：</label>
 						<div class="controls">
-							<form:select path="marriage" class="input-xlarge ">
+							<form:select path="marriage" class="input-xlarge required">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_ccm_mari_stat')}"
 											  itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -316,9 +316,9 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">是否公职人员：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>是否公职人员：</label>
 						<div class="controls">
-							<form:select path="isPublicServants" class="input-xlarge ">
+							<form:select path="isPublicServants" class="input-xlarge required">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('yes_no')}"
 											  itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -351,7 +351,7 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">是否重点关注人员：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>是否重点关注人员：</label>
 						<div class="controls">
 							<form:radiobuttons path="focuPers"
 											   items="${fns:getDictList('yes_no')}" itemLabel="label"
@@ -433,10 +433,10 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">户籍门（楼）详址：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户籍门（楼）详址：</label>
 						<div class="controls">
 							<form:input path="domiciledetail" htmlEscape="false"
-										maxlength="80" class="input-xlarge " />
+										maxlength="80" class="input-xlarge required" />
 						</div>
 					</div>
 				</td>
