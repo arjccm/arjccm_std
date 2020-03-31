@@ -1374,6 +1374,7 @@ cite[class*='t-click']{
     background: url(../img/blue-jh.png) no-repeat;
     background-size: 100% 100%;
 }
+
 /*table去除虚线*/
 .first_table td{border: 1px solid #00cccc !important;}
 
@@ -1385,6 +1386,7 @@ cite[class*='t-click']{
     background: rgb(14, 42, 76) !important;
     FontColor: #fff !important;
 }
+
 /*
 #searchForm{
     background: #0E2A4C!important;
@@ -1730,6 +1732,16 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
      border: 1px solid #00cccc !important;
  }
 /*数据统计页 row-fluid左右边距*/
+.custom-row-fluid {
+    width: calc(100vw - 40px);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*数据添加页阴影*/
+#inputForm {
+    box-shadow: inset 0px 0px 15px 0px #1684c2;
+}
  .custom-row-fluid {
      width: calc(100vw - 40px);
      padding-left: 20px;
