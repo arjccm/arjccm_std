@@ -96,6 +96,11 @@
 </script>
 	<%--引入文本框外部样式--%>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
+	<style type="text/css">
+        .select2-container .select2-choice{
+			width: 261px!important;
+		}
+	</style>
 </head>
 <body>
 	<ul class="nav nav-tabs">
