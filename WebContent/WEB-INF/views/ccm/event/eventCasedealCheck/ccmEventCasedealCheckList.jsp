@@ -5,7 +5,7 @@
 <head>
 <title>事件处理考核</title>
 <meta name="decorator" content="default" />
-<link href="${ctxStatic}/layui/css/layui.css" rel="stylesheet" />
+<%--<link href="${ctxStatic}/layui/css/layui.css" rel="stylesheet" />--%>
 <script type="text/javascript" src="${ctxStatic}/layui/layui.js"></script>
 	<link rel="stylesheet" href="${ctxStatic}/ccm/event/css/eventCasedeal.css" type="text/css">
 	<script src="${ctxStatic}/common/common.js" type="text/javascript"></script>
