@@ -173,7 +173,9 @@ input.btn{
 
 .btn-primary {
 	color: #fff;
-	background-color: #1684c2;
+    background: url(../img/cyan-cz.png) no-repeat!important;
+    background-size: 100% 100%!important;
+	/*background-color: #1684c2;*/
 	border-color: #3bb4f2;
 }
 .nav-tabs .btn-primary{
@@ -1285,12 +1287,12 @@ cite[class*='t-click']{
 	 background-size: 100% 100%!important;
  }
 
-.nav-tabs>li>.btn-primary{
+.nav-tabs>li>.btn-qb{
     background: none;
     color: #37C2F0 !important;
     border: 1px solid #007CA5;
 }
-.nav-tabs>li>.btn-primary:hover{
+.nav-tabs>li>.btn-qb:hover{
     background-color: #044d73;
     color: #37C2F0 !important;
     border: 1px solid #007CA5;
