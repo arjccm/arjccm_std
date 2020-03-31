@@ -346,7 +346,7 @@ text-overflow: ellipsis; text-align: left;">
                     <div class="nourgent" ></div>
                 </c:if>
                 <a style="padding-left: 10px;color: #555"
-                   onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/form?id=${ccmEventIncident.id}', '','1200px', '800px')">
+                   onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/form?id=${ccmEventIncident.id}', '&nbsp;','1200px', '800px')">
                         ${ccmEventIncident.caseName} </a></td>
             <td><fmt:formatDate value="${ccmEventIncident.happenDate}"
                                 pattern="yyyy-MM-dd HH:mm:ss"/></td>
