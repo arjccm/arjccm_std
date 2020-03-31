@@ -24,7 +24,7 @@
 <body>
 	<sys:message content="${message}" />
 	<div id="content" class="row-fluid">
-		<div id="left" class="accordion-group">
+		<div id="left" class="accordion-group treeArea">
 			<div class="accordion-heading">
 				<a class="accordion-toggle">全部列表<i
 					class="icon-refresh pull-right" onclick="refreshTree();"></i></a>

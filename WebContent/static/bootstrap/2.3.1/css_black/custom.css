@@ -1755,3 +1755,15 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
  .body_color{
 	 color: #fff;
  }
+
+ /*  树模块样式start  */
+ .treeArea{
+	 height: 98vh !important;
+ }
+ .treeArea .accordion-heading{
+	 background: #122e59;
+ }
+ .treeArea .ztree{
+	 box-shadow: inset 0px 0px 15px 0px #1684c2;
+ }
+ /*  树模块样式end  */
