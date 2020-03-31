@@ -21,8 +21,8 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/org/ccmOrgInfovideo/">数据列表</a></li>
-		<shiro:hasPermission name="org:ccmOrgInfovideo:edit"><li><a href="${ctx}/org/ccmOrgInfovideo/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/org/ccmOrgInfovideo/">数据列表</a></li>
+		<shiro:hasPermission name="org:ccmOrgInfovideo:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/org/ccmOrgInfovideo/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmOrgInfovideo" action="${ctx}/org/ccmOrgInfovideo/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -49,7 +49,7 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>中心名称</th>
@@ -94,7 +94,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </div>
 </body>
 </html>

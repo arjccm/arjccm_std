@@ -18,6 +18,7 @@
 				$(".selectHidden").show();
 			}
 		});
+
 		function page(n,s){
 			$("#pageNo").val(n);
 			$("#pageSize").val(s);
@@ -91,6 +92,21 @@
                 $("#importForm").submit();
             }
         }
+
+		/*var pathData
+		$(document).ready(function() {
+			pathData = "uniformlogo=${ccmPeople.uniformlogo}&account=${ccmPeople.account}&accountidentity=${ccmPeople.accountidentity}&accountname=${ccmPeople.accountname}&accountrelation=${ccmPeople.accountrelation}&accounttelephone=${ccmPeople.accounttelephone}&personType=${ccmPeople.personType}&personTime=${ccmPeople.personTime}"
+
+			href="${ctx}/pop/ccmPeople/listAccount?uniformlogo=${ccmPeople.uniformlogo}&account=${ccmPeople.account}&accountidentity=${ccmPeople.accountidentity}&accountname=${ccmPeople.accountname}&accounttelephone=${ccmPeople.accounttelephone}&personType=${ccmPeople.personType}&personTime=${ccmPeople.personTime}&personReason=${ccmPeople.personReason}"
+
+		});*/
+
+		function toAccount(options) {
+			var url = options.attr('val');
+			debugger
+			window.location.href = url;
+		}
+
 	</script>
 	<script type="text/javascript"
 	      src="${ctxStatic}/ccm/pop/js/ccmPeopleInfo.js">
@@ -429,7 +445,16 @@
 				       		<a class="btnList"  href="javascript:return false;"  title="户籍家庭"><i class="iconfont   icon-caozuotubiao-hujijiating" style="color: #656565"></i></a>
 				       	</c:if>
 				       	<c:if test="${ccmPeople.type eq '10'}">
-				       		<a class="btnList"  href="${ctx}/pop/ccmPeople/listAccount?account=${ccmPeople.account}"  title="户籍家庭"><i class="iconfont   icon-caozuotubiao-hujijiating"></i></a>
+				       		<a class="btnList"  href="javascript:;" onclick="toAccount($(this))" title="户籍家庭"
+							   val="${ctx}/pop/ccmPeople/listAccount?uniformlogo=${ccmPeople.uniformlogo}
+							   &account=${ccmPeople.account}
+							   &accountidentity=${ccmPeople.accountidentity}
+							   &accountname=${ccmPeople.accountname}
+							   &accounttelephone=${ccmPeople.accounttelephone}
+							   &personType=${ccmPeople.personType}
+							   &personTime=${ccmPeople.personTime}
+							   &personReason=${ccmPeople.personReason}" >
+								<i class="iconfont   icon-caozuotubiao-hujijiating"></i></a>
 				       	</c:if>
 				    </shiro:hasPermission> 
 				    <shiro:hasPermission name="log:ccmLogTail:edit">
