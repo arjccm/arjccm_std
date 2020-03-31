@@ -60,7 +60,7 @@
 </div>
 <div class="row-fluid">
     <div class="ToAuto">
-        <table class="table table-striped">
+        <table class="table table-striped table-gradient">
             <thead>
             <tr>
                 <th>日期</th>

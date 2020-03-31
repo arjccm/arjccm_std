@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<title>视频监控</title>
-	
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/video-js.css">
     <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/bootstrap.min.css">
     <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/bootstrap-select.min.css">
-	
+
     <script src="${ctxStatic}/ccm/liveVideo/js/jquery.min.js"></script>
     <%--<script src="${ctxStatic}/ccm/liveVideo/js/video.min.js"></script>
     <script src="${ctxStatic}/ccm/liveVideo/js/videojs5.flvjs.js"></script>
@@ -24,8 +24,8 @@
 	<script src="${ctxStatic}/Hk.WEB-SDK/CN_WEB3.0_Win32/demo/codebase/webVideoCtrl.js"></script> --%>
 	<link rel="stylesheet" href="${ctxStatic}/Hk.WEB-SDK/ocx/ocx.css">
 	<%--<script src="${ctxStatic}/Hk.WEB-SDK/ocx/ocx.js"></script> --%>
-	<script src="${ctxStatic}/ccm/liveVideo/js/bootstrap.min.js"></script> 
-	<script src="${ctxStatic}/ccm/liveVideo/js/bootstrap-select.min.js"></script> 
+	<script src="${ctxStatic}/ccm/liveVideo/js/bootstrap.min.js"></script>
+	<script src="${ctxStatic}/ccm/liveVideo/js/bootstrap-select.min.js"></script>
 	<script>
 		ctx="${ctx}";
 		ctxStatic="${ctxStatic}";
@@ -60,7 +60,7 @@
 					<param name="toolbar" value="true" />
 					<param name='loop' value='true' />
 					<param name='fullscreen' value='false' />
-			    </OBJECT>  
+			    </OBJECT>
 			</c:if>
 			<c:if test="${ccmDevice.typeVidicon == 1}">
 				<iframe name="ccmLiveVideo" id="ccmLiveVideoTest" src="${ctx}/ccmsys/ccmDevice/getDeviceMap?id=${ccmDevice.id}" style="overflow: visible;" scrolling="yes" frameborder="no" width="1030" height="640" allowfullscreen="true" allowtransparency="true"></iframe>
@@ -120,7 +120,7 @@
         </div>
 		<br>
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>	
+		<sys:message content="${message}"/>
 		<ul class="ul-form">
 			<li style="float: left;">
 				<label class="video-label" style="color: ${cookie.theme.value eq 'gradient' ? '#333' : '#fff'}">设备编号：</label>
@@ -187,7 +187,7 @@
 		var data = new Array();
 		for(var i=0;i<val.length;i++){
 			data.push({"id":val[i]});
-		}	
+		}
 		 $.ajax({
 			url :  "${ctx}/ccmsys/ccmLiveVideo/getvedioPlay",
 			type : "post",
@@ -212,7 +212,7 @@
 		var ccmDeviceAccount = obj[num].account;
 		var ccmDevicePassword = obj[num].password;
 		var CamList = obj[num].code;
-		init(ccmDeviceProtocol,ccmDeviceParaml,ccmDeviceTypeVidicon,ccmDeviceIp,ccmDevicePort,ccmDeviceAccount,ccmDevicePassword,CamList);  
+		init(ccmDeviceProtocol,ccmDeviceParaml,ccmDeviceTypeVidicon,ccmDeviceIp,ccmDevicePort,ccmDeviceAccount,ccmDevicePassword,CamList);
 		num++;
 		if(num == obj.length){
 			num=0;
@@ -319,7 +319,7 @@
 	        }
             // 关闭浏览器
 		    // $(window).unload(function () {
-			//	
+			//
 		    // 	  var param = 'hikvideoclient://VersionTag:artemis;Exit:1;';
 		    //       play_ocx_do(param);
 		    // });
@@ -330,7 +330,7 @@
 		        alert("您还未安装过插件，双击开发包目录里的WebComponentsKit.exe安装！");
 		        return;
 		    }
-            
+
 		    var oPlugin = {
 		        iWidth: 1140,             // plugin width
 		        iHeight: 640             // plugin height
@@ -397,14 +397,14 @@
 			var g_curSpeed = 4; //默认的正常速度
 			var htmlStChn1 = '';
 			var recInfosByFile = [];
-		
+
 			//加载插件到网页中去。
 			loadPageOcx();
-			
+
 			//登录设备
 			LoginDevice();
 			RealPlay();
-			
+
 			/**
 			 * 检测浏览器是否存在视频插件
 			 * @return {Boolean}
