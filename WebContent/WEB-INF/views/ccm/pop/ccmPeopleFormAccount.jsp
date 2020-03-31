@@ -509,7 +509,6 @@
 						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>人户一致标识：</label>
 						<div class="controls">
 							<form:select path="uniformlogo" class="input-xlarge required ">
-								<form:option value="" label=""/>
 								<form:options items="${fns:getDictList('ccm_huh_cst')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 							</form:select>
 						</div>
@@ -579,7 +578,8 @@
 					<div>
 						<label class="control-label">户籍变动时间：</label>
 						<div class="controls">
-							<input name="personTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+							<input name="personTime" type="text" readonly="readonly" maxlength="20"
+								   class="input-medium Wdate "
 								   value="<fmt:formatDate value="${ccmPeople.personTime}" pattern="yyyy-MM-dd"/>"
 								   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 						</div>

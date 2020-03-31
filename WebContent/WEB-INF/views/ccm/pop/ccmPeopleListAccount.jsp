@@ -5,8 +5,9 @@
 	<title>实有人口管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
+		var pathData
 		$(document).ready(function() {
-			
+			pathData = "uniformlogo=${ccmPeople.uniformlogo}&account=${ccmPeople.account}&accountidentity=${ccmPeople.accountidentity}&accountname=${ccmPeople.accountname}&accountrelation=${ccmPeople.accountrelation}&accounttelephone=${ccmPeople.accounttelephone}&personType=${ccmPeople.personType}&personTime=${ccmPeople.personTime}&personReason=${ccmPeople.personReason}"
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -29,15 +30,15 @@
 	</style>
 </head>
 <body>
- 
-	
+
+
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/pop/ccmPeople/">实有人口列表</a></li>
-		<li class="active"><a href="">户籍家庭人员列表</a></li>
+		<li class="active"><a href="javascript:;">户籍家庭人员列表</a></li>
 		<shiro:hasPermission name="pop:ccmPeople:edit">
 			<li>
 				<%--<a href="${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}">户籍家庭人员添加</a>--%>
-			<li><a onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}', '户籍家庭人员添加', '1500px', '700px')"
+			<li><a onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?'+pathData, '户籍家庭人员添加', '1500px', '700px')"
 			>户籍家庭人员添加</a></li>
 
 			</li>
