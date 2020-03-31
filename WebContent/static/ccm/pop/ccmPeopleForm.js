@@ -1,7 +1,6 @@
 /**
  * 表单验证-实有人口
  */
-
 		$(document).ready(function() {
 			//$("#name").focus();
 			$("#inputForm").validate({
@@ -84,21 +83,29 @@
 				$("#float").hide();
 				$("#oversea").hide();
 				$("#unsettle").hide();
+				$(".labName").html("<span id='ident0'></span><span class='help-inline'><font color='red'>*</font></span>公民身份号码：")
+				$("#p_id_card").addClass("required")
 			}else if(s=="20"){
 				$("#person").hide();
 				$("#float").show();
 				$("#oversea").hide();
 				$("#unsettle").hide();
+				$(".labName").html("<span id='ident0'></span><span class='help-inline'><font color='red'>*</font></span>公民身份号码:")
+				$("#p_id_card").addClass("required")
 			}else if(s=="30"){
 				$("#person").hide();
 				$("#float").hide();
 				$("#oversea").show();
 				$("#unsettle").hide();
+				$(".labName").html("<span id='ident0'></span><span class='help-inline'><font color='red'>*</font></span>身份证识别码:")
+				$("#p_id_card").addClass("required")
 			}else if(s=="40"){
 				$("#person").hide();
 				$("#float").hide();
 				$("#oversea").hide();
 				$("#unsettle").show();
+				$(".labName").text("身份识别号码:")
+				$("#p_id_card").removeClass("required")
 			}else{
 				$("#person").hide();
 				$("#float").hide();
