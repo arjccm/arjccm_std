@@ -261,7 +261,7 @@ ul.ztree.zTreeDragUL{
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
-		<li style="width: 112px"><a href="${ctx}/report/ccmReportOthers/houseAndBuild" style="text-align: center">数据统计</a></li>
+		<shiro:hasPermission name="report:ccmHouseBuildStat:view"><li style="width: 112px"><a href="${ctx}/report/ccmReportOthers/houseAndBuild" style="text-align: center">数据统计</a></li></shiro:hasPermission>
 		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/house/ccmHouseBuildmanage/">数据列表</a></li>
 		<shiro:hasPermission name="house:ccmHouseBuildmanage:edit">
 			<li style="width: 112px"><a  href="${ctx}/house/ccmHouseBuildmanage/form" style="text-align: center">数据添加</a></li>

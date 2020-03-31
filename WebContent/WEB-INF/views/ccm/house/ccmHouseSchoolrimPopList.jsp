@@ -51,7 +51,7 @@
 				}
 			});
 			$("td").css({"padding":"8px"});
-			$("td").css({"border":"1px solid #CCCCCC"});
+			// $("td").css({"border":"1px solid #CCCCCC"});
 			var dis = $("#id").val();
 			if(dis==null||dis==""){
 				//$("#formdisplay").css("display","none");
@@ -120,7 +120,7 @@
 	<h4><c:if test="${not empty ccmHouseSchoolrim.id}">${ccmHouseSchoolrim.schoolName }</c:if><c:if test="${empty ccmHouseSchoolrim.id}">所有学校</c:if>基本信息：</h4>
 		<form:hidden id="id" path="id"/>
 		<sys:message content="${message}"/>		
-		<table border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px;">
+		<table border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px;">
 			<tr>
 				<td>
 					<div>

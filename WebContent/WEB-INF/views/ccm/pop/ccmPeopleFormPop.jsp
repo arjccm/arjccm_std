@@ -102,7 +102,7 @@
 	$(document).ready(
 			function() {
 				$("td").css({"padding":"8px"});
-				$("td").css({"border":"1px dashed #CCCCCC"});
+				$("td").css({"border":"0px dashed #CCCCCC"});
 				var jsonString = '${documentList}';
                 data = JSON.parse(jsonString);  
 				$(".fishBone1").fishBone(data, '${ctx}','deal');
@@ -128,8 +128,8 @@
 	<form:form id="inputForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
-		<table border="1px"
-			style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px; width: 100%" class="tbl_ct_key">
+		<table border="0px"
+			style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%" class="tbl_ct_key">
 			<h4>基本信息：</h4>
 			<tr>
 				<td>
@@ -169,11 +169,11 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label">姓名：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font></span> 姓名：</label>
 						<div class="controls">
 							<form:input path="name" htmlEscape="false" maxlength="50"
 								class="input-xlarge required" />
-							<span class="help-inline"><font color="red" id="show1">*</font>
+
 							</span>
 						</div>
 					</div>
@@ -217,12 +217,12 @@
 
 				<td>
 					<div>
-						<label class="control-label">联系方式：</label>
+						<label class="control-label"><span class="help-inline"><font
+								color="red" id="show1">*</font> </span>联系方式：</label>
 						<div class="controls">
 							<form:input path="telephone" htmlEscape="false" maxlength="18"
 								class="input-xlarge telephone0 phone" />
-							<span id="telephone0"></span> <span class="help-inline"><font
-								color="red" id="show1">*</font> </span>
+							<span id="telephone0"></span>
 						</div>
 					</div>
 				</td>
@@ -383,36 +383,36 @@
 
 				<td>
 					<div>
-						<label class="control-label">所属社区：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="showCom">*</font></span>所属社区：</label>
 						<div class="controls" onmouseout="onclickNet()">
 							<!--  
 							<sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}" labelName="areaComId.name" labelValue="${ccmPeople.areaComId.name}"
-							title="区域" url="/sys/area/treeData" cssClass="" allowClear="true" notAllowSelectParent="false" cssStyle="width: 150px"/>
+							title="区域" url="/sys/area/treeData" cssClass="" allowClear="true" notAllowSelectParent="false" />
 							-->
 							<sys:treeselect id="areaComId" name="areaComId.id"
 								value="${ccmPeople.areaComId.id}" labelName="areaComId.name"
 								labelValue="${ccmPeople.areaComId.name}" title="区域"
 								url="/tree/ccmTree/treeDataArea?type=6" cssClass=""
 								allowClear="true" notAllowSelectParent="true"
-								cssStyle="width: 150px" />
-							<span class="help-inline"><font color="red" id="showCom">*</font></span>
+								 />
+
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label">所属网格：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="showGrid">*</font></span>所属网格：</label>
 						<div class="controls">
-						<div class="help-inline" id="newNet" onmouseout="onclickHouse()"
+						<div class="help-inline" id="newNet"  onmouseout="onclickHouse()"
 							onmousemove="onclickNet()">
 							<sys:treeselect id="areaGridId" name="areaGridId.id"
 								value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
 								labelValue="${ccmPeople.areaGridId.name}" title="区域"
-								url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""
+								url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="width: 215px"
 								allowClear="true" notAllowSelectParent="true"
-								cssStyle="width: 150px" />
+								 />
 						</div>
-						<span class="help-inline"><font color="red" id="showGrid">*</font></span>
+
 						</div>
 					</div>
 				</td>
@@ -422,14 +422,14 @@
 						<div class="controls" id="newHouse" onmousemove="onclickHouse()">
 							<!--  
 							<sys:treeselect id="roomId" name="roomId.id" value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild" labelValue="${ccmPeople.roomId.houseBuild}"
-							title="房屋" url="/pop/ccmPopTenant/treeData?type=7" cssClass="" allowClear="true" notAllowSelectParent="true" cssStyle="width: 150px"/>
+							title="房屋" url="/pop/ccmPopTenant/treeData?type=7" cssClass="" allowClear="true" notAllowSelectParent="true" />
 							-->
 							<sys:treeselect id="roomId" name="roomId.id"
 								value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild"
 								labelValue="${ccmPeople.roomId.houseBuild}" title="房屋"
-								url="/tree/ccmTree/treeDataArea?type=9&areaid=" cssClass=""
+								url="/tree/ccmTree/treeDataArea?type=9&areaid=" cssClass="width: 215px"
 								allowClear="true" notAllowSelectParent="true"
-								cssStyle="width: 150px" />
+								 />
 
 						</div>
 					</div>
@@ -586,7 +586,7 @@
 		<br/>
 		
 		<h4>其他信息：</h4>
-		<table id="person" border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; width: 100%" class="tbl_ct_key">
+		<table id="person" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%" class="tbl_ct_key">
 			<tr><td colspan="6">户籍信息：</td></tr>
 			<tr>
 				<td>
@@ -686,7 +686,7 @@
 		
 		
 		
-		<table id="float" border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; width: 100%" >
+		<table id="float" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%" >
 			
 			<tr><td colspan="6">流动信息：</td></tr>
 			
@@ -790,7 +790,7 @@
 		
 		
 		
-		<table id="oversea" border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC;  width: 100%" >	
+		<table id="oversea" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC;  width: 100%" >
 			
 			<tr><td colspan="6">境外信息：</td></tr>
 			<tr>
@@ -883,7 +883,7 @@
 			</tr>
 		</table>
 		
-		<table id="unsettle" border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC;  width: 100%" >	
+		<table id="unsettle" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC;  width: 100%" >
 			
 			<tr><td colspan="6">未落户信息：</td></tr>
 			<tr>

@@ -1671,7 +1671,11 @@ UPDATE sys_menu SET parent_id = '293b99b15c83421696d93d48fa5f474a', parent_ids =
  WHERE id = 'c58749fbcccf479f98625bf07b8a6a82';
 
 -- 字典表数据修改
-update sys_dict set label = '完成出库' where id = '50def344c97848fbbe43da829437b6c7'
+update sys_dict set label = '完成出库' where id = '50def344c97848fbbe43da829437b6c7';
+
+update sys_dict set label = '季度排名' where id = '287f6ce3858a416d88e8948a58192094';
+update sys_dict set label = '月度排名' where id = 'e54b3cdf0fb04025b3b307fbdda27c29';
+update sys_dict set label = '年度排名' where id = 'fbcf969b2c58405da96304fd2000818d';
 
 -- 新增重点人员同步到事件或消息配置修改
 UPDATE `sys_config` SET `param_str` = NULL, `param_int` = 2, `param_date` = NULL, `table_name` = NULL, `obj_id` = NULL, `create_by` = '1', `create_date` = '2019-09-11 09:43:30', `update_by` = '1', `update_date` = '2019-09-11 09:43:30', `remarks` = '特殊人员添加触发事件和消息0关闭，1事件，2消息', `del_flag` = '0' WHERE `id` = 'special_personnel_event';
@@ -1714,6 +1718,12 @@ UPDATE sys_menu SET parent_id = '7549b37b7c454434aadc05340cf041e4', parent_ids =
 UPDATE sys_menu SET parent_id = '7549b37b7c454434aadc05340cf041e4', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,7549b37b7c454434aadc05340cf041e4,', name = '编辑', href = '', target = '', icon = '', sort = 60, is_show = '0', permission = 'pop:ccmCare:edit', update_by = '1', update_date = '2020-03-30 15:11:07.492', remarks = ''
  WHERE id = '03892dbfb3a3413f9f584cdcb56498c5';
 
+-- 添加建筑物统计页权限标识
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'f52c84194db3499bb0464fae835047a2', '1301012', '0,1,70a1747ee8334e439b2b24ebe947ecdd,c7a14a5931c245928691e00e634400b9,1301012,', '统计页显示', '', '', '', 90, '0', 'report:ccmHouseBuildStat:view', '1', '2020-03-30 16:30:03.044', '1', '2020-03-30 16:30:03.044', '', '0' );
+
+-- 添加矛盾纠纷统计权限标识
+UPDATE sys_menu SET parent_id = '672dd8c9900b4b309a78155a935195c5', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,b839bd8d81a44e23b2605bb820d4fc2f,672dd8c9900b4b309a78155a935195c5,', name = '统计页显示', href = '', target = '', icon = '', sort = 90, is_show = '0', permission = 'report:ccmEventAmbi:view', update_by = '1', update_date = '2020-03-30 17:34:09.299', remarks = ''
+ WHERE id = '02017349f345405ba2ed4e797cd49d09';
 
 
 

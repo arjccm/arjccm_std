@@ -56,7 +56,9 @@ $(function() {
             tooltip: {
                 trigger: 'item',
                 formatter: "{a} <br/>{b}: {c} ({d}%)",
-		        confine:true
+		        confine:true,
+                borderWidth:1,
+                borderColor:"#fff"
             },
             color: color,
             grid: {
@@ -221,7 +223,9 @@ $(function() {
     		    tooltip : {
     		        trigger: 'item',
     		        formatter: "{a} <br/>{b} : {c} ({d}%)",
-    		        confine:true
+    		        confine:true,
+                    borderWidth:1,
+                    borderColor:"#fff"
     		    },
     		    legend: {
     		    	 //   top: '20%',
@@ -357,7 +361,9 @@ $(function() {
                     type: 'shadow'
                 },
                 formatter: "{b} :<br/> {c}%",
-		        confine:true
+		        confine:true,
+                borderWidth:1,
+                borderColor:"#fff"
             },
             grid: {
                 left: '3%',
@@ -457,7 +463,9 @@ $(function() {
             tooltip: {
                 trigger: 'axis',
                 formatter: '{b}<br/>{a}: {c0}<br/>{a1}:{c1}%',
-		        confine:true
+		        confine:true,
+                borderWidth:1,
+                borderColor:"#fff"
             },
             grid: {
                 top: '18%',
@@ -616,7 +624,9 @@ $(function() {
             tooltip: {
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)",
-		        confine:true
+		        confine:true,
+                borderWidth:1,
+                borderColor:"#fff"
             },
             grid: {
                 top: '5%',

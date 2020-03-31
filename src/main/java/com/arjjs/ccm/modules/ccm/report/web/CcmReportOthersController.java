@@ -105,7 +105,7 @@ public class CcmReportOthersController extends BaseController {
 	
 	
 	//报表:楼栋房屋
-	@RequiresPermissions("report:ccmReportOthers:view")
+	@RequiresPermissions("report:ccmHouseBuildStat:view")
 	@RequestMapping(value ="houseAndBuild")
 	public String houseAndBuild(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return "ccm/report/reportHouseAndBuild";
@@ -113,6 +113,7 @@ public class CcmReportOthersController extends BaseController {
 	//报表:楼栋房屋getJSON
 	@ResponseBody
 	@RequestMapping(value = "getHouseAndBuild")
+	@RequiresPermissions("report:ccmHouseBuildStat:view")
 	public List<SearchTabMore> getHouseAndBuild(Model model) {
 		SearchTabMore searchTabMore = new SearchTabMore();
 		searchTabMore.setValue5("all");
@@ -152,6 +153,7 @@ public class CcmReportOthersController extends BaseController {
 	//报表:房屋安全隐患统计
 	@ResponseBody
 	@RequestMapping(value = "getHouseHazard")
+	@RequiresPermissions("report:ccmHouseBuildStat:view")
 	public String getHouseHazard(Model model) {
 		List<EchartType> list = ccmPopTenantService.getHouseHazard();
 		
