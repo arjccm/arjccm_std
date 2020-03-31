@@ -41,6 +41,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/view/vCcmOrg/list">数据列表</a></li>
 		<shiro:hasPermission name="view:vCcmOrg:edit"></shiro:hasPermission>
@@ -100,7 +101,7 @@
 	</form:form>
 	  -->
 	<sys:message content="${message}"/>
-	<table id="treeTable" class="table table-striped table-bordered table-condensed">
+	<table id="treeTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>名称</th>
@@ -112,6 +113,7 @@
 		</thead>
 		<tbody id="treeTableList"></tbody>
 	</table>
+</div>
 	<script type="text/template" id="treeTableTpl">
 		<tr id="{{row.id}}" pId="{{pid}}">
 			<td><a href="${ctx}/view/vCcmOrg/form?id={{row.id}}">
