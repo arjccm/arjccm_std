@@ -1725,5 +1725,11 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 UPDATE sys_menu SET parent_id = '672dd8c9900b4b309a78155a935195c5', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,b839bd8d81a44e23b2605bb820d4fc2f,672dd8c9900b4b309a78155a935195c5,', name = '统计页显示', href = '', target = '', icon = '', sort = 90, is_show = '0', permission = 'report:ccmEventAmbi:view', update_by = '1', update_date = '2020-03-30 17:34:09.299', remarks = ''
  WHERE id = '02017349f345405ba2ed4e797cd49d09';
 
+-- 添加指挥调度视频监控权限标识
+UPDATE sys_menu SET parent_id = '5ec397ba19a14a8cba3b9c4270159854', parent_ids = '0,1,ef61dbc7960f4272b360de7ad7d59a07,5ec397ba19a14a8cba3b9c4270159854,', name = '监控视频', href = '/ccmsys/ccmLiveVideo/index', target = '', icon = 'eye-open', sort = 330, is_show = '1', permission = 'ccmsys:ccmLiveVideo:view', update_by = '1', update_date = '2020-03-31 18:07:45.489', remarks = ''
+ WHERE id = '3f02b4a20ad84dca837c8dd363397e13';
 
+-- 添加网格员考勤统计权限标识
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'f441f4056660464e8998095d684c4b54', '6533dbc83144476291dd1c85fa08ec45', '0,1,3b3a641046be4558b92178d07f93b280,30d0d8e0446b4c7982a93352b5eae35b,01f29a340a9c49ce9d287a14c2ea9a45,6533dbc83144476291dd1c85fa08ec45,', '显示', '', '', '', 30, '0', 'attendance:ccmWorkerAttendanceCount:view', '1', '2020-03-31 18:16:54.905', '1', '2020-03-31 18:16:54.905', '', '0' );
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'd6d9270e2b844feb86cf5ae8db846fcb', '6533dbc83144476291dd1c85fa08ec45', '0,1,3b3a641046be4558b92178d07f93b280,30d0d8e0446b4c7982a93352b5eae35b,01f29a340a9c49ce9d287a14c2ea9a45,6533dbc83144476291dd1c85fa08ec45,', '编辑', '', '', '', 60, '0', 'attendance:ccmWorkerAttendanceCount:edit', '1', '2020-03-31 18:18:43.166', '1', '2020-03-31 18:18:43.166', '', '0' );
 
