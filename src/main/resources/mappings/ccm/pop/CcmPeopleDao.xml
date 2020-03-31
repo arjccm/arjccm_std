@@ -240,7 +240,14 @@
 		a.type_spec AS "typeSpec",
 		a.ident AS "ident",
 		a.telephone AS "telephone",
+		a.uniformlogo AS "uniformlogo",
 		a.account AS "account",
+		a.accountidentity AS "accountidentity",
+		a.accountname AS "accountname",
+		a.accounttelephone AS "accounttelephone",
+		a.person_type AS "personType",
+		a.person_time AS "personTime",
+		a.person_reason AS "personReason",
 		a.images AS "images",
 		a.more1 AS "more1",
 		TIMESTAMPDIFF(YEAR, a.birthday, CURDATE()) AS "age",
@@ -2925,6 +2932,16 @@
 	WHERE
 	ident = #{pident}
 	AND del_flag = 0
+	</select>
+
+
+	<!-- 导入优化 查询id，ident -->
+	<select id="queryAllToMap" resultType="java.util.HashMap">
+	SELECT
+	ident,id
+	FROM
+	`ccm_people`
+	where del_flag = 0
 	</select>
 
 </mapper>

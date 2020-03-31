@@ -908,5 +908,18 @@
         Limit #{minnum},#{maxnum};
     </select>
 
+    <!-- 导入  查询全部 -->
+    <select id="queryAllForImport" resultType="CcmPopTenant">
+    SELECT
+	a.id AS "id",
+	a.house_build AS "houseBuild",
+	a.building_id AS "buildingId.id",
+	( CASE WHEN a18.buildname IS NULL THEN '' ELSE a18.buildname END ) AS "buildingId.buildname"
+    FROM
+	ccm_pop_tenant a
+	LEFT JOIN ccm_house_buildmanage a18 ON a18.id = a.building_id
+    WHERE
+	a.del_flag = 0
+	</select>
 
 </mapper>

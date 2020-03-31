@@ -229,4 +229,9 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 	public List<CcmHouseBuildmanage> selectByAreaId(String areaId){
 		return dao.selectByAreaId(areaId);
 	}
+
+	// 导入 查询全部
+	public List<CcmHouseBuildmanage> queryAllForImport() {
+		return ccmHouseBuildmanageDao.queryAllForImport();
+	}
 }

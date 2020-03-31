@@ -261,8 +261,8 @@ public class OaNotifyController extends BaseController {
 		}
 		return "redirect:" + adminPath + "/oa/oaNotify/self?repage";
 	}
-	
-	
+
+
 	/**
 	 * 查看我的通知-数据
 	 */

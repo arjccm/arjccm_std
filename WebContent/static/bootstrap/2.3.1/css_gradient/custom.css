@@ -5400,3 +5400,6 @@ input::-ms-clear{
 #todaylivedialog{
 	color: #eff5fb;
 }
+.input-gradText{
+	border: 1px solid #ddd !important;
+}

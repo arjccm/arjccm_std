@@ -61,35 +61,35 @@
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">事件管理</span>--%>
-<ul class="back-list clearfix">
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/religion/ccmPlaceReligion/list1">数据列表</a></li>
 		<shiro:hasPermission name="religion:ccmPlaceReligion:edit"><li style="width: 112px"><a href="${ctx}/religion/ccmPlaceReligion/form1" style="text-align: center">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPlaceReligion"
 		action="${ctx}/religion/ccmPlaceReligion/list1" method="post"
-		class="breadcrumb form-search">
+		class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}" />
 		<input id="pageSize" name="pageSize" type="hidden"
 			value="${page.pageSize}" />
-		<ul class="ul-form">
+		<ul class="ul-form clearfix pull-left">
 			<li class="first-line"><label>场所名称：</label> <form:input path="placeName"
 					htmlEscape="false" maxlength="255" class="input-medium" /></li>
 			<li class="first-line"><label>负责人姓名：</label> <form:input path="leaderName"
 					htmlEscape="false" maxlength="255" class="input-medium" /></li>
-
-			<li class="clearfix"></li>
 		</ul>
-	</form:form>
-	<sys:message content="${message}" />
-	<ul>
+
+
+	<div class="clearfix pull-right btn-box">
 		<%--<li class="btns"><a
 				onclick="parent.LayerDialog('${ctx}/religion/ccmPlaceReligion/form', '添加', '1100px', '700px')"
 				class="btn btn-export" style="width: 49px;display:inline-block;float: right;margin-left: 20px;margin-right: 14px;margin-bottom: 20px"><i></i> <span style="font-size: 12px">添加</span> </a></li>--%>
-		<li class="btns"><a href="javascript:;" id="btnSubmit"
-							class="btn btn-primary" style="width: 49px;display:inline-block;float: right;margin-left: 20px;margin-bottom: 20px"> <i></i><span style="font-size: 12px">查询</span>
-		</a></li>
-	</ul>
+		<a href="javascript:;" id="btnSubmit"
+							class="btn btn-primary" style="width: 49px;display:inline-block;float: left;" > <i></i><span style="font-size: 12px">查询</span>
+		</a>
+	</div>
+	</form:form>
+	<sys:message content="${message}" />
 	<table id="contentTable"
 		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
@@ -132,13 +132,13 @@
 							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/religion/ccmPlaceReligion/delete?id=${ccmPlaceReligion.id}"
 							onclick="return confirmx('确认要删除该宗教场所吗？', this.href)" title="删除"><i
-								class="iconfont icon-caozuotubiao-shanchu"></i></a></td>
+								class="iconfont icon-caozuotubiao-shanchu"></i></a>
 						<a class="btnList"
 						   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmPlaceReligion.ccmBasePlace.id}&type=1', '从业人员添加', '1550px', '800px')"
 						   title="从业人员添加"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
 						<a class="btnList"
 						   onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmPlaceReligion.ccmBasePlace.id}&type=1', '从业人员信息', '1550px', '800px')"
-						   title="从业人员信息"><i class="icon-align-justify"></i></a>
+						   title="从业人员信息"><i class="icon-align-justify"></i></a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>

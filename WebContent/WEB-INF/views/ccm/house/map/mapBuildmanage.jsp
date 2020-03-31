@@ -132,6 +132,7 @@ overflow: auto}
 	font-weight: bold;
 }
 
+
 .mapView .mapView-p-head {
 	position: absolute;
 	width: 100%;
@@ -349,6 +350,18 @@ width: 158px!important;
 	left: auto;
 	right: 0;
 	top: 60px;
+}
+.mapView{
+	position: absolute;
+	z-index: 199202;
+	top: 10px;
+	left: 14px;
+	width: 350px;
+	height: 100px;
+	border-radius: 8px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	overflow:hidden;
 }
 </style>
 <%--<script src="${ctxStatic}/ccm/house/js/mapBuildmanage.js"></script> --%>

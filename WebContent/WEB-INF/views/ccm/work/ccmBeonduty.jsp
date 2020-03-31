@@ -42,6 +42,9 @@
 .ul-form input{
 height:30px;
 }
+	table{
+		background:none;
+	}
 </style>
 </head>
 <body>

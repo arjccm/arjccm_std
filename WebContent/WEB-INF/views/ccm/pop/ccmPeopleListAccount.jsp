@@ -5,8 +5,9 @@
 	<title>实有人口管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
+		var pathData
 		$(document).ready(function() {
-			
+			pathData = "uniformlogo=${ccmPeople.uniformlogo}&account=${ccmPeople.account}&accountidentity=${ccmPeople.accountidentity}&accountname=${ccmPeople.accountname}&accountrelation=${ccmPeople.accountrelation}&accounttelephone=${ccmPeople.accounttelephone}&personType=${ccmPeople.personType}&personTime=${ccmPeople.personTime}&personReason=${ccmPeople.personReason}"
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -46,7 +47,7 @@
 	<%--<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post" class="breadcrumb form-search clearfix">--%>
 	<div class="clearfix btn-box breadcrumb">
 		<shiro:hasPermission name="pop:ccmPeople:edit">
-		<a class="btn btn-primary btns pull-right" style="width: 20px;display:inline-block;" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?account=${ccmPeopleAccount.account}', '户籍家庭人员添加', '1500px', '700px')"><i></i><span style="font-size: 12px">添加</span></a>
+		<a class="btn btn-primary btns pull-right" style="width: 20px;display:inline-block;" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formAccount?'+pathData, '户籍家庭人员添加', '1500px', '700px')"><i></i><span style="font-size: 12px">添加</span></a>
 		</shiro:hasPermission>
 	</div>
 	<%--</form:form>--%>
@@ -66,7 +67,7 @@
 				<th>户号</th>
 				<th>户主姓名</th>
 				<th>与户主关系</th>
-				<th>公民身份号码</th>
+				<th>公民身份号码</th>				
 				<th>更新时间</th>
 				<shiro:hasPermission name="pop:ccmPeople:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -94,7 +95,7 @@
 				</td>
 				<td>
 					${ccmPeople.ident}
-				</td>
+				</td>				
 				<td>
 					<fmt:formatDate value="${ccmPeople.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
