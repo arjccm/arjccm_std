@@ -7,7 +7,9 @@ import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDevice;
 import com.arjjs.ccm.modules.ccm.ccmsys.service.CcmDeviceService;
 import com.arjjs.ccm.modules.ccm.event.entity.*;
+import com.arjjs.ccm.modules.ccm.event.entity.preview.CcmEventIncidentPreview;
 import com.arjjs.ccm.modules.ccm.event.service.*;
+import com.arjjs.ccm.modules.ccm.event.service.preview.CcmEventIncidentPreviewService;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
 import com.arjjs.ccm.modules.ccm.line.entity.CcmLineProtect;
@@ -38,6 +40,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.PropertyFilter;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,6 +74,8 @@ public class CcmRestEvent extends BaseController {
     @Autowired
     private CcmEventIncidentService ccmEventIncidentService;
     @Autowired
+    private CcmEventIncidentPreviewService ccmEventIncidentPreviewService;
+    @Autowired
     private CcmEventCasedealService ccmEventCasedealService;
     @Autowired
     private CcmEventKaccService ccmEventKaccService;
@@ -96,8 +101,8 @@ public class CcmRestEvent extends BaseController {
     private SysAreaService sysAreaService;
     @Autowired
     private CcmLineProtectService ccmLineProtectService;
-	@Autowired
-	private SysConfigService sysConfigService;
+    @Autowired
+    private SysConfigService sysConfigService;
 
     /**
      * @param id ID
@@ -374,10 +379,11 @@ public class CcmRestEvent extends BaseController {
     public CcmRestResult save(String userId, HttpServletRequest req, CcmEventIncident ccmEventIncident, Model model,
                               RedirectAttributes redirectAttributes) {
         CcmRestResult result = new CcmRestResult();
+        CcmEventIncidentPreview ccmEventIncidentPreview = new CcmEventIncidentPreview();
         if(StringUtils.isEmpty(ccmEventIncident.getAreaMap())) {
-        	if(StringUtils.isNotEmpty(ccmEventIncident.getAreaPoint())) {
-        		ccmEventIncident.setAreaMap(ccmEventIncident.getAreaPoint());
-        	}
+            if(StringUtils.isNotEmpty(ccmEventIncident.getAreaPoint())) {
+                ccmEventIncident.setAreaMap(ccmEventIncident.getAreaPoint());
+            }
         }
 /*        if (!beanValidator(model, ccmEventIncident)) {
             result.setCode(CcmRestType.ERROR_PARAM);
@@ -538,75 +544,111 @@ public class CcmRestEvent extends BaseController {
                 ccmEventIncident.setImage(image);
             }
         }
-        ccmEventIncidentService.save(ccmEventIncident,new User(userId));
+        //手机上报的事件添加到事件预处理
+        if(StringUtils.isNotEmpty(ccmEventIncident.getAreaMap())){
+            ccmEventIncidentPreview.setAreaMap(ccmEventIncident.getAreaMap());
+        }
+        if(StringUtils.isNotEmpty(ccmEventIncident.getAreaPoint())){
+            ccmEventIncidentPreview.setAreaPoint(ccmEventIncident.getAreaPoint());
+        }
 
-		// 判断预处理系统是否开启
-		SysConfig sysConfig = sysConfigService.get("preview_system_config");
-		if (sysConfig.getParamInt() == 1) { // 开启的话，判断是否是纠纷，是纠纷的话则插入到矛盾纠纷调解中去
+        //将事件处理的数据同步到事件预处理中
+        BeanUtils.copyProperties(ccmEventIncident, ccmEventIncidentPreview);
 
-			// 判断事件类型是否是矛盾纠纷
-			if (!ccmEventIncident.getEventKind().equals("99")) { // 是
-				CcmEventAmbi ccmEventAmbi = new CcmEventAmbi();
-				if (StringUtils.isNotEmpty(ccmEventIncident.getCaseName())) {
-					ccmEventAmbi.setName(ccmEventIncident.getCaseName());
-				}
-				if (null != ccmEventIncident.getHappenDate()) {
-					ccmEventAmbi.setSendDate(ccmEventIncident.getHappenDate());
-				}
-				if (StringUtils.isNoneEmpty(ccmEventIncident.getCaseCondition())) {
-					ccmEventAmbi.setEventSket(ccmEventIncident.getCaseCondition());
-				}
-				if (null != ccmEventIncident.getArea()) {
-					ccmEventAmbi.setArea(ccmEventIncident.getArea());
-				}
-				if (StringUtils.isNotEmpty(ccmEventIncident.getHappenPlace())) {
-					ccmEventAmbi.setSendAdd(ccmEventIncident.getHappenPlace());
-				}
-				if (StringUtils.isNotEmpty(ccmEventIncident.getEventScale())) {
-					ccmEventAmbi.setEventScale(ccmEventIncident.getEventScale());
-				}
-				if (StringUtils.isNotEmpty(ccmEventIncident.getEventSort())) {
-					ccmEventAmbi.setEventType(ccmEventIncident.getEventSort());
-				}
-				if (StringUtils.isNotEmpty(ccmEventIncident.getFile1())) {
-					ccmEventAmbi.setIcon(ccmEventIncident.getFile1());
-				}
-				ccmEventAmbi.setStatus("01");
-				ccmEventAmbi.setId(UUID.randomUUID().toString());
-				ccmEventAmbi.setIsNewRecord(true);
-				ccmEventAmbi.setCreateBy(new User(userId));
-				ccmEventAmbi.setUpdateBy(new User(userId));
-				ccmEventAmbiService.save(ccmEventAmbi);
-			}
-
-		}
-        
-        
-        // addMessage(redirectAttributes, "保存案事件登记成功");
+        // 判断预处理系统是否开启
+        SysConfig sysConfig = sysConfigService.get("preview_system_config");
+        if(StringUtils.isEmpty(ccmEventIncident.getId())){
+            if(sysConfig.getParamInt() == 1){
+                //预处理系统开启，则将事件保存到预处理中
+                ccmEventIncidentPreview.setReportType("1");
+                ccmEventIncidentPreview.setCasePlace(ccmEventIncident.getArea().getId());
+                ccmEventIncidentPreviewService.save(ccmEventIncidentPreview,new User(userId));
+                // 判断事件类型是否是矛盾纠纷
+                if (!ccmEventIncident.getEventKind().equals("99")) { // 是
+                    CcmEventAmbi ccmEventAmbi = new CcmEventAmbi();
+                    if (StringUtils.isNotEmpty(ccmEventIncident.getCaseName())) {
+                        ccmEventAmbi.setName(ccmEventIncident.getCaseName());
+                    }
+                    if (null != ccmEventIncident.getHappenDate()) {
+                        ccmEventAmbi.setSendDate(ccmEventIncident.getHappenDate());
+                    }
+                    if (StringUtils.isNoneEmpty(ccmEventIncident.getCaseCondition())) {
+                        ccmEventAmbi.setEventSket(ccmEventIncident.getCaseCondition());
+                    }
+                    if (null != ccmEventIncident.getArea()) {
+                        ccmEventAmbi.setArea(ccmEventIncident.getArea());
+                    }
+                    if (StringUtils.isNotEmpty(ccmEventIncident.getHappenPlace())) {
+                        ccmEventAmbi.setSendAdd(ccmEventIncident.getHappenPlace());
+                    }
+                    if (StringUtils.isNotEmpty(ccmEventIncident.getEventScale())) {
+                        ccmEventAmbi.setEventScale(ccmEventIncident.getEventScale());
+                    }
+                    if (StringUtils.isNotEmpty(ccmEventIncident.getEventSort())) {
+                        ccmEventAmbi.setEventType(ccmEventIncident.getEventSort());
+                    }
+                    if (StringUtils.isNotEmpty(ccmEventIncident.getFile1())) {
+                        ccmEventAmbi.setIcon(ccmEventIncident.getFile1());
+                    }
+                    ccmEventAmbi.setStatus("01");
+                    ccmEventAmbi.setId(UUID.randomUUID().toString());
+                    ccmEventAmbi.setIsNewRecord(true);
+                    ccmEventAmbi.setCreateBy(new User(userId));
+                    ccmEventAmbi.setUpdateBy(new User(userId));
+                    ccmEventAmbiService.save(ccmEventAmbi);
+                }
+            }else{
+                //预处理系统未开启，则将事件保存到事件处理中
+                ccmEventIncidentService.save(ccmEventIncident,new User(userId));
+            }
+        }else{
+            ccmEventIncidentService.save(ccmEventIncident,new User(userId));
+        }
 
         if (flag) {
             User user1 = UserUtils.get(userId);
+            String areaParentIds = null;
+            String areaId = null;
             ccmLogTailService.addEventLogTail(ccmEventIncident,user1);
-            SysArea entity = sysAreaService.get(ccmEventIncident.getArea().getId());
-            List<String> parentIds = Arrays.asList(entity.getParentIds().split(","));
+            if(sysConfig.getParamInt() == 1){
+                areaParentIds = sysAreaService.get(ccmEventIncidentPreview.getArea().getId()).getParentIds();
+                areaId = ccmEventIncidentPreview.getArea().getId();
+            }else{
+                areaParentIds = sysAreaService.get(ccmEventIncident.getArea().getId()).getParentIds();
+                areaId = ccmEventIncident.getArea().getId();
+            }
+            List<String> parentIds = Arrays.asList(areaParentIds.split(","));
             // 查询需要发送的用户
-            List<User> assignUser = ccmEventCasedealService.findAssignUser(ccmEventIncident.getArea().getId(), parentIds);
+            List<User> assignUser = ccmEventCasedealService.findAssignUser(areaId, parentIds);
             //拼接数据
             if (assignUser.size() > 0) {
                 List<CcmMessage> list = new ArrayList<CcmMessage>();
                 for (User user : assignUser) {
                     CcmMessage ccmMessage = new CcmMessage();
                     ccmMessage.preInsert();
-                    ccmMessage.setType("01");//事件上报消息
+                    if(sysConfig.getParamInt() == 1){
+                        ccmMessage.setType("11");//事件预处理上报消息
 
-                    Date createDate = ccmEventIncident.getCreateDate();
-                    String str = "MM-dd HH:mm:ss";
-                    SimpleDateFormat sdf = new SimpleDateFormat(str);
-                    ccmMessage.setContent("事件上报：" + sdf.format(createDate) + "：" + ccmEventIncident.getCaseName());
-                    ccmMessage.setReadFlag("0");//未读
-                    ccmMessage.setObjId(ccmEventIncident.getId());
-                    ccmMessage.setCreateBy(ccmEventIncident.getCreateBy());
-                    ccmMessage.setUpdateBy(ccmEventIncident.getCreateBy());
+                        Date createDate = ccmEventIncidentPreview.getCreateDate();
+                        String str = "MM-dd HH:mm:ss";
+                        SimpleDateFormat sdf = new SimpleDateFormat(str);
+                        ccmMessage.setContent("事件预处理上报：" + sdf.format(createDate) + "：" + ccmEventIncidentPreview.getCaseName());
+                        ccmMessage.setReadFlag("0");//未读
+                        ccmMessage.setObjId(ccmEventIncidentPreview.getId());
+                        ccmMessage.setCreateBy(ccmEventIncidentPreview.getCreateBy());
+                        ccmMessage.setUpdateBy(ccmEventIncidentPreview.getCreateBy());
+                    }else{
+                        ccmMessage.setType("01");//事件上报消息
+
+                        Date createDate = ccmEventIncident.getCreateDate();
+                        String str = "MM-dd HH:mm:ss";
+                        SimpleDateFormat sdf = new SimpleDateFormat(str);
+                        ccmMessage.setContent("事件上报：" + sdf.format(createDate) + "：" + ccmEventIncident.getCaseName());
+                        ccmMessage.setReadFlag("0");//未读
+                        ccmMessage.setObjId(ccmEventIncident.getId());
+                        ccmMessage.setCreateBy(ccmEventIncident.getCreateBy());
+                        ccmMessage.setUpdateBy(ccmEventIncident.getCreateBy());
+                    }
                     ccmMessage.setUserId(user.getId());
                     list.add(ccmMessage);
                 }
@@ -639,7 +681,7 @@ public class CcmRestEvent extends BaseController {
 				}
 			}
 		}*/
-//			sendMessage(JSONObject.fromObject(ccmEventIncident, jsonConfig).toString());	
+//			sendMessage(JSONObject.fromObject(ccmEventIncident, jsonConfig).toString());
         // }
 
         result.setCode(CcmRestType.OK);
@@ -785,7 +827,7 @@ public class CcmRestEvent extends BaseController {
             }
         }
 //		RabbitMQTools.sendMessage(clientId,JSONObject.fromObject(ccmEventIncident, jsonConfig).toString());
-//		sendMessage(JSONObject.fromObject(ccmEventIncident, jsonConfig).toString());	
+//		sendMessage(JSONObject.fromObject(ccmEventIncident, jsonConfig).toString());
 
         result.setCode(CcmRestType.OK);
         result.setResult(ccmEventIncident);
