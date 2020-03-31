@@ -104,7 +104,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="row-fluid alarm-row-fluid3" >
+                            <div class="row-fluid alarm-row-fluid3 body_color" >
                                 <div id="alarmTable" style="overflow:auto">
                                     <table>
                                         <thead>
