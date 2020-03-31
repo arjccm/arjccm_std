@@ -259,9 +259,9 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">婚姻状况：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>婚姻状况：</label>
 						<div class="controls">
-							<form:select path="marriage" class="input-xlarge ">
+							<form:select path="marriage" class="input-xlarge required">
 								<form:option value="" label="" />
 								<form:options items="${fns:getDictList('sys_ccm_mari_stat')}"
 									itemLabel="label" itemValue="value" htmlEscape="false" />
@@ -367,11 +367,11 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label">是否重点关注人员：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>是否重点关注人员：</label>
 						<div class="controls">
 							<form:radiobuttons path="focuPers"
 								items="${fns:getDictList('yes_no')}" itemLabel="label"
-								itemValue="value" htmlEscape="false" class="required" />
+								itemValue="value" htmlEscape="false" class="required required" />
 						</div>
 					</div>
 				</td>
@@ -608,13 +608,8 @@
 			</tr>
 			
 		</table>
-		
-		
-		
-		
-		
+
 		<table id="float" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%" >
-			
 			<tr><td colspan="6">流动信息：</td></tr>
 			
 			<tr>
@@ -712,13 +707,8 @@
 			</tr>
 			
 		</table>
-		
-		
-		
-		
-		
+
 		<table id="oversea" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC;  width: 100%" >
-			
 			<tr><td colspan="6">境外信息：</td></tr>
 			<tr>
 				<td>
@@ -865,17 +855,5 @@
 			<%--<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>--%>
 		</div>
 	</form:form><br>
-	<%--<c:if test="${documentNumber > 0}">
-		<shiro:hasPermission name="log:ccmLogTail:edit">
-			<h4>&nbsp;跟踪信息：</h4>
-			<br>
-			<div class="fishBone1" ></div>
-		</shiro:hasPermission>
-		<shiro:lacksPermission name="log:ccmLogTail:edit">
-			<h4>&nbsp;查看跟踪信息：</h4>
-			<br>
-			<div class="fishBone2" ></div>
-		</shiro:lacksPermission> 
-	</c:if>--%>
 </body>
 </html>
