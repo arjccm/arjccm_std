@@ -1628,6 +1628,7 @@ cite[class*='t-click']{
 #alarmTbody td{
     font-size: 12px;
     opacity: 0.7;
+	color: #FFFFFF;
 }
 .echartsAlarm-tab li{
     line-height: 30px;
