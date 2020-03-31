@@ -1671,7 +1671,11 @@ UPDATE sys_menu SET parent_id = '293b99b15c83421696d93d48fa5f474a', parent_ids =
  WHERE id = 'c58749fbcccf479f98625bf07b8a6a82';
 
 -- 字典表数据修改
-update sys_dict set label = '完成出库' where id = '50def344c97848fbbe43da829437b6c7'
+update sys_dict set label = '完成出库' where id = '50def344c97848fbbe43da829437b6c7';
+
+update sys_dict set label = '季度排名' where id = '287f6ce3858a416d88e8948a58192094';
+update sys_dict set label = '月度排名' where id = 'e54b3cdf0fb04025b3b307fbdda27c29';
+update sys_dict set label = '年度排名' where id = 'fbcf969b2c58405da96304fd2000818d';
 
 -- 新增重点人员同步到事件或消息配置修改
 UPDATE `sys_config` SET `param_str` = NULL, `param_int` = 2, `param_date` = NULL, `table_name` = NULL, `obj_id` = NULL, `create_by` = '1', `create_date` = '2019-09-11 09:43:30', `update_by` = '1', `update_date` = '2019-09-11 09:43:30', `remarks` = '特殊人员添加触发事件和消息0关闭，1事件，2消息', `del_flag` = '0' WHERE `id` = 'special_personnel_event';
