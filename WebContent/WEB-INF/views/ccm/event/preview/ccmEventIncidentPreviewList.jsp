@@ -111,7 +111,7 @@
         <li style="float: right;"><a id="wcl" class="btn btn-warning btn-sm"
                                      href="${ctx}/preview/ccmEventIncidentPreview/1?status=01" style="color: #ffffff">未处理</a>
         </li>
-        <li style="float: right;"><a id="qb" class="btn btn-primary btn-sm"
+        <li style="float: right;"><a id="qb" class="btn btn-qb btn-sm"
                                      href="${ctx}/preview/ccmEventIncidentPreview/1" style="color: #ffffff">全部</a></li>
 
     </ul>

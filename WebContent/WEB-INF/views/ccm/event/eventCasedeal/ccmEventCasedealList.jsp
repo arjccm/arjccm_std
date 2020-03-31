@@ -13,6 +13,19 @@
 	  rel="stylesheet" />
 <script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 <script type="text/javascript">
+    $(function() {
+        //右上角选项卡选中状态
+        if ($("#statusClass").val() == '') {
+            $("#sjcl").addClass('btn-xz');
+        } else if ($("#statusClass").val() == '01') {
+            $("#dbsj").addClass('btn-xz');
+        } else if ($("#statusClass").val() == '02') {
+            $("#blz").addClass('btn-xz');
+        } else if ($("#statusClass").val() == '05') {
+            $("#ybsj").addClass('btn-xz');
+        }
+    });
+
 	function HandleTips(_this, id) {
 		var html = '';
 		html += '<div style="padding:10px;" >';
@@ -117,14 +130,15 @@
 	<ul class="nav nav-tabs" >
 <%--		<li style="float:right;"><a style="background-color:#9f3df8;color:white;" href="${ctx}/event/ccmEventCasedeal/supervise?isSupervise=1">督办事件</a></li>--%>
 	    <li class="active"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal/list">任务处理列表</a></li>
-		<li style="float:right;"><a class="btn btn-danger" href="${ctx}/event/ccmEventCasedeal/?handleStatus=05">已办事件</a></li>
-		<li style="float:right;"><a class="btn btn-success" href="${ctx}/event/ccmEventCasedeal/?handleStatus=02">办理中事件</a></li>
-		<li style="float:right;"><a class="btn btn-warning" href="${ctx}/event/ccmEventCasedeal/?handleStatus=01">待办事件</a></li>
-		<li style="float:right;" class="active"><a class="btn btn-primary" href="${ctx}/event/ccmEventCasedeal">事件处理列表</a></li>
+		<li style="float:right;"><a id="ybsj" class="btn btn-danger" href="${ctx}/event/ccmEventCasedeal/?handleStatus=05">已办事件</a></li>
+		<li style="float:right;"><a id="clz" class="btn btn-success" href="${ctx}/event/ccmEventCasedeal/?handleStatus=02">办理中事件</a></li>
+		<li style="float:right;"><a id="dbsj" class="btn btn-warning" href="${ctx}/event/ccmEventCasedeal/?handleStatus=01">待办事件</a></li>
+		<li style="float:right;"><a id="sjcl" class="btn btn-qb" href="${ctx}/event/ccmEventCasedeal">事件处理列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmEventCasedeal"
 		action="${ctx}/event/ccmEventCasedeal/" method="post"
 		class="breadcrumb form-search clearfix">
+        <input id="statusClass" name="statusClass" type="hidden" value="${status}" />
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}" />
 		<input id="pageSize" name="pageSize" type="hidden"
 			value="${page.pageSize}" />

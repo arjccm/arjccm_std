@@ -88,7 +88,7 @@
 			href="${ctx}/preview/ccmEventIncidentPreview/3?status=02">已处理</a></li>
 		<li style="float: right;"><a id="wcl" class="btn btn-warning"
 			href="${ctx}/preview/ccmEventIncidentPreview/3?status=01">未处理</a></li>
-		<li style="float: right;"><a id="qb" class="btn btn-primary"
+		<li style="float: right;"><a id="qb" class="btn btn-qb"
 			href="${ctx}/preview/ccmEventIncidentPreview/3">全部</a></li>
 
 	</ul>

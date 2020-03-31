@@ -104,6 +104,7 @@ public class CcmEventCasedealController extends BaseController {
 		Page<CcmEventCasedeal> page = ccmEventCasedealService.findPage(new Page<CcmEventCasedeal>(request, response),
 				ccmEventCasedeal);
 		model.addAttribute("page", page);
+		model.addAttribute("status",ccmEventCasedeal.getHandleStatus());
 		if("01".equals(ccmEventCasedeal.getHandleStatus())){//待签收
 			return "ccm/event/eventCasedeal/ccmEventCasedealUndisposedList";
 		}else if("02".equals(ccmEventCasedeal.getHandleStatus())) {//处理中
