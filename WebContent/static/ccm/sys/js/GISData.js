@@ -1410,3 +1410,50 @@ function imgShow(outerdiv, innerdiv, bigimg, _this){
     });
     event.cancelBubble=true;
 }
+
+// 海康视频
+	function playVideo(videoId) {
+			/*console.log('...............................',cameraType);
+            console.log('...............................',id);*/
+			var id = videoId;
+
+			// 捕获页
+			var html = "";
+
+			html += '<div class="layer-common"  style="width: 632px;height: auto; position: relative;padding: 14px 0 0 0; float: left">'
+
+			html += '<div class="layer-common-header" style="top: 1px; left: 36px;display: inline-block; padding: 5px 30px; border: 1px solid #0343a3; transform: skew(-20deg); background: #0343a3;color: #fff; font-weight: bold; position: absolute; z-index: 9999;">'
+			html += '<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">视频监控</div>'
+			html += '</div>'
+			html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; border: 1px solid #10559a;margin-left: 10px;background: url('
+				+ ctxStatic
+				+ '/common/index/images/showbg.png);background-size: 100% 100%;">'
+			html += '<iframe  name="mainFrame" src="'
+				+ ctx
+				+ '/ccmsys/ccmDevice/getDeviceMap?id='
+				+ id
+				+ '" style="overflow: visible;" scrolling="yes" frameborder="no" width="870" height="360" allowfullscreen="true" allowtransparency="true"></iframe>'
+
+			html += '</div>'
+
+			html += '</div>'
+
+
+			layer.open({
+				type: 1,
+				shade: false,
+				title: false, // 不显示标题
+				area: ["850px", "408px"],
+				move: '.layer-common-header',
+				resize: false,
+				fixed: false,
+				id: "videoLayer" +id,
+				content: html,
+				cancel: function () {
+					// 关闭事件
+					// layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构',
+					// {time: 5000, icon:6});
+				}
+			});
+			$('#videoLayer').attr("style", "overflow:hidden");
+		}
