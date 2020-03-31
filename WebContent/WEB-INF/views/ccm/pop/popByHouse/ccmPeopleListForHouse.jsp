@@ -94,14 +94,14 @@
                       >成员新增</a></li>
 			</shiro:hasPermission>
 		</c:if>--%>
-		<c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
+		<%--<c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
 			<shiro:hasPermission name="pop:ccmPeople:edit">
-				<%--<li><a
-					href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=hire">成员新增</a></li>--%>
+				&lt;%&ndash;<li><a
+					href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=hire">成员新增</a></li>&ndash;%&gt;
 				<li><li><a onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=hire', '成员新增', '1500px', '700px')"
 			>成员新增</a></li></li>
 			</shiro:hasPermission>
-		</c:if>
+		</c:if>--%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPopTenant" action="${ctx}/pop/ccmPopTenant/listBuild?buildingId.id=${buildId}&area.id=${netId}" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -119,6 +119,13 @@
 					</shiro:hasPermission>
 				</c:if>
 
+                <c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
+                <shiro:hasPermission name="pop:ccmPeople:edit">
+           <%--<li><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=hire">成员新增</a></li>--%>
+            <a class="btn btn-primary" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=hire', '成员新增', '1500px', '700px')"
+       title="成员新增" >成员新增</a>
+            </shiro:hasPermission>
+            </c:if>
 				<a class="btn btn-primary" onclick="LayerDialog('','${ctx}/pop/ccmPeople/listPopAdd?houseId=${houseId}', '批量添加', '1200px', '700px')" title="添加成员">
 					批量添加</a>
 
