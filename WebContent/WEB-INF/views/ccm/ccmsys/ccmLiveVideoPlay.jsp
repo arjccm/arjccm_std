@@ -4,16 +4,19 @@
 <html lang="en">
 <head>
 	<title>视频监控</title>
-
+	
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/livedemo.css">
     <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/video-js.css">
-    <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/bootstrap.min.css">
+<%--    <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/bootstrap.min.css">--%>
     <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="${ctxStatic}/bootstrap/2.3.1/css_black/bootstrap.min.css">
+	<link rel="stylesheet" href="${ctxStatic}/bootstrap/2.3.1/css_black/custom.css">
+	<link rel="stylesheet" href="${ctxStatic}/jquery-select2/3.4/select2.min.css">
 
-    <script src="${ctxStatic}/ccm/liveVideo/js/jquery.min.js"></script>
+	<script src="${ctxStatic}/ccm/liveVideo/js/jquery.min.js"></script>
     <%--<script src="${ctxStatic}/ccm/liveVideo/js/video.min.js"></script>
     <script src="${ctxStatic}/ccm/liveVideo/js/videojs5.flvjs.js"></script>
     <script src="${ctxStatic}/ccm/liveVideo/js/videojs-contrib-hls.js"></script>
@@ -22,10 +25,13 @@
 	<script src="${ctxStatic}/jquery/jquery.cookie.js" type="text/javascript"></script>
     <%--<script type="text/javascript">videojs.options.flash.swf = "${ctxStatic}/ccm/liveVideo/js/video-js.swf";</script>
 	<script src="${ctxStatic}/Hk.WEB-SDK/CN_WEB3.0_Win32/demo/codebase/webVideoCtrl.js"></script> --%>
-	<link rel="stylesheet" href="${ctxStatic}/Hk.WEB-SDK/ocx/ocx.css">
+<%--	<link rel="stylesheet" href="${ctxStatic}/Hk.WEB-SDK/ocx/ocx.css">--%>
 	<%--<script src="${ctxStatic}/Hk.WEB-SDK/ocx/ocx.js"></script> --%>
-	<script src="${ctxStatic}/ccm/liveVideo/js/bootstrap.min.js"></script>
-	<script src="${ctxStatic}/ccm/liveVideo/js/bootstrap-select.min.js"></script>
+	<script src="${ctxStatic}/ccm/liveVideo/js/bootstrap.min.js"></script> 
+<%--	<script src="${ctxStatic}/ccm/liveVideo/js/bootstrap-select.min.js"></script>--%>
+
+	<script src="${ctxStatic}/jquery-select2/3.4/select2.min.js"></script>
+	<link rel="stylesheet" href="${ctxStatic}/common/jeesite.css">
 	<script>
 		ctx="${ctx}";
 		ctxStatic="${ctxStatic}";
@@ -49,8 +55,7 @@
 	</script>
 </head>
 <body>
-	<form:form id="inputForm" modelAttribute="ccmDevice" action="" method="post" class="form-horizontal">
-		<br>
+	<form:form id="inputForm" modelAttribute="ccmDevice" action="" method="post" class="form-horizontal form-search" cssStyle="padding:10px">
 		<div id="divPlugin" style="width:100%;height:640px;background:#4C4B4B">
 			<c:if test="${ccmDevice.typeVidicon == 2}">
 				 <OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" id="vlc" width="1030" height="640" id="vlc" events="True">
@@ -60,7 +65,7 @@
 					<param name="toolbar" value="true" />
 					<param name='loop' value='true' />
 					<param name='fullscreen' value='false' />
-			    </OBJECT>
+			    </OBJECT>  
 			</c:if>
 			<c:if test="${ccmDevice.typeVidicon == 1}">
 				<iframe name="ccmLiveVideo" id="ccmLiveVideoTest" src="${ctx}/ccmsys/ccmDevice/getDeviceMap?id=${ccmDevice.id}" style="overflow: visible;" scrolling="yes" frameborder="no" width="1030" height="640" allowfullscreen="true" allowtransparency="true"></iframe>
@@ -118,21 +123,21 @@
 		</div>
        	<div class="divStatusBar">
         </div>
-		<br>
+
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>
-		<ul class="ul-form">
-			<li style="float: left;">
+		<sys:message content="${message}"/>	
+		<ul class="ul-form clearfix" style="margin-top: 10px;">
+			<li class="first-line" style="float: left;">
 				<label class="video-label" style="color: ${cookie.theme.value eq 'gradient' ? '#333' : '#fff'}">设备编号：</label>
-				<form:input path="code" htmlEscape="false" maxlength="64" class="input-xlarge"/>&nbsp;&nbsp;&nbsp;&nbsp;
+				<form:input path="code" htmlEscape="false" maxlength="64" class="input-medium"/>&nbsp;&nbsp;&nbsp;&nbsp;
 			</li>
-			<li style="float: left;">
+			<li class="first-line" style="float: left;">
 				<label class="video-label" style="color: ${cookie.theme.value eq 'gradient' ? '#333' : '#fff'}">设备名称：</label>
-				<form:input path="name" htmlEscape="false" maxlength="64" class="input-xlarge"/>&nbsp;&nbsp;&nbsp;&nbsp;
+				<form:input path="name" htmlEscape="false" maxlength="64" class="input-medium"/>&nbsp;&nbsp;&nbsp;&nbsp;
 			</li>
-			<li>
+			<li class="first-line">
 				<label class="video-label" style="color: ${cookie.theme.value eq 'gradient' ? '#333' : '#fff'}">网络地址：</label>
-				<form:input path="ip" htmlEscape="false" maxlength="15" class="input-xlarge"/>
+				<form:input path="ip" htmlEscape="false" maxlength="15" class="input-medium"/>
 			</li>
 			<%-- <li><label class="video-label">设备状态：</label>
 				<form:select path="status" class="input-xlarge">
@@ -140,26 +145,23 @@
 					<form:options items="${fns:getDictList('ccm_device_status')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</li> --%>
-			<br>
-			<li>
-				<div >
-					<div style="float:left;">
-						<label class="video-label" style="color: ${cookie.theme.value eq 'gradient' ? '#333' : '#fff'};margin-right: 30px;">视频巡检：</label>
-						<select class="selectpicker"  data-width="fit"  title="请选择" multiple="multiple" id="option">
-						</select>
-					</div>
-					<div style="float: left" >
-						<input id="btn" class="btn btn-primary" onclick="startOcx()"  type="button"   value="开始" />
-						<input class="btn btn-primary" onclick="tostop()"  type="button"   value="结束" />
-					</div>
+			<li class="first-line">
+				<label style="color: ${cookie.theme.value eq 'gradient' ? '#333' : '#fff'}">视频巡检：</label>
+				<select class="input-medium" id="option"></select>
+			</li>
+
+			<li class="first-line">
+				<div style="width: 321px;margin-bottom: 20px;text-align: right;" >
+					<input id="btn" class="btn btn-primary" onclick="startOcx()"  type="button"   value="开始" />
+					<input class="btn btn-primary" onclick="tostop()"  type="button"   value="结束" />
 				</div>
 			</li>
-			<li class="clearfix"></li>
 		</ul>
 	</form:form>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
+
 		var ccmDeviceProtocol = "${ccmDevice.protocol}";
 		var ccmDeviceParaml = '${ccmDevice.param}';
 		var ccmDeviceTypeVidicon='${ccmDevice.typeVidicon}'
@@ -178,6 +180,10 @@
 	 	   str += '<option value="'+ maplist[i].id +'">'+ maplist[i].name +'</option>'
 		}
 	 	$('#option').html(str);
+		$("#option").select2({
+			placeholder: "请选择",
+			allowClear: true
+		})
 	}
 	var num = 0;
 	var obj;
@@ -187,7 +193,7 @@
 		var data = new Array();
 		for(var i=0;i<val.length;i++){
 			data.push({"id":val[i]});
-		}
+		}	
 		 $.ajax({
 			url :  "${ctx}/ccmsys/ccmLiveVideo/getvedioPlay",
 			type : "post",
@@ -212,7 +218,7 @@
 		var ccmDeviceAccount = obj[num].account;
 		var ccmDevicePassword = obj[num].password;
 		var CamList = obj[num].code;
-		init(ccmDeviceProtocol,ccmDeviceParaml,ccmDeviceTypeVidicon,ccmDeviceIp,ccmDevicePort,ccmDeviceAccount,ccmDevicePassword,CamList);
+		init(ccmDeviceProtocol,ccmDeviceParaml,ccmDeviceTypeVidicon,ccmDeviceIp,ccmDevicePort,ccmDeviceAccount,ccmDevicePassword,CamList);  
 		num++;
 		if(num == obj.length){
 			num=0;
@@ -319,7 +325,7 @@
 	        }
             // 关闭浏览器
 		    // $(window).unload(function () {
-			//
+			//	
 		    // 	  var param = 'hikvideoclient://VersionTag:artemis;Exit:1;';
 		    //       play_ocx_do(param);
 		    // });
@@ -330,7 +336,7 @@
 		        alert("您还未安装过插件，双击开发包目录里的WebComponentsKit.exe安装！");
 		        return;
 		    }
-
+            
 		    var oPlugin = {
 		        iWidth: 1140,             // plugin width
 		        iHeight: 640             // plugin height
@@ -397,14 +403,14 @@
 			var g_curSpeed = 4; //默认的正常速度
 			var htmlStChn1 = '';
 			var recInfosByFile = [];
-
+		
 			//加载插件到网页中去。
 			loadPageOcx();
-
+			
 			//登录设备
 			LoginDevice();
 			RealPlay();
-
+			
 			/**
 			 * 检测浏览器是否存在视频插件
 			 * @return {Boolean}
@@ -463,5 +469,6 @@
 		    document.getElementById('divPlugin').innerHTML = '<p style="color:#fff;text-align:center">请选择左侧视频监控设备</p>';
 		}
 	}
+
 	</script>
 </html>
