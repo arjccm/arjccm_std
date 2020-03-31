@@ -5,7 +5,7 @@
 <head>
 <title>事件处理考核</title>
 <meta name="decorator" content="default" />
-<link href="${ctxStatic}/layui/css/layui.css" rel="stylesheet" />
+<%--<link href="${ctxStatic}/layui/css/layui.css" rel="stylesheet" />--%>
 <script type="text/javascript" src="${ctxStatic}/layui/layui.js"></script>
 	<link rel="stylesheet" href="${ctxStatic}/ccm/event/css/eventCasedeal.css" type="text/css">
 	<script src="${ctxStatic}/common/common.js" type="text/javascript"></script>
@@ -75,7 +75,7 @@
 <%--			<li class="clearfix"></li>--%>
 		</ul>
 
-	<sys:message content="${message}" />
+
 	<div class="clearfix pull-right btn-box">
 
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;">
@@ -83,6 +83,7 @@
 
 	</div>
 	</form:form>
+	<sys:message content="${message}" />
 	<table id="contentTable"
 		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>

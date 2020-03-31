@@ -45,6 +45,13 @@ height:30px;
 	table{
 		background:none;
 	}
+SPAN{
+	font-family: Helvetica, Georgia, Arial, sans-serif, 宋体;
+}
+A:link{
+	color: #fff;
+}
+
 </style>
 </head>
 <body>
@@ -66,7 +73,7 @@ height:30px;
 				<form:input path="principalMans" htmlEscape="false" maxlength="1000" class="input-medium"/>
 			</li>
 			<li class="btns">
-				<a href="javascript:;" onclick="initData()" id="btnSubmit" class="btn btn-primary " style="width: 49px;display:inline-block;float: right;color: #fff" >
+				<a href="javascript:;" onclick="initData()" id="btnSubmit" class="btn btn-primary " style="width: 49px;display:inline-block;float: right;" >
 					<span style="font-size: 12px">查询</span> </a>
 			</li>
 			<li class="clearfix"></li>
