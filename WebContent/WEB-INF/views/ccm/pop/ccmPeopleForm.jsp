@@ -197,6 +197,7 @@
                 if (r != null) return unescape(r[2]);
                 return null; //返回参数值
             };
+            sels();
             //跟踪信息
             var hide1 = getUrlParam('hide1');
             var hide2 = getUrlParam('hide2');
@@ -578,12 +579,11 @@
             </td>
             <td>
                 <div>
-                    <label class="control-label"><span id="ident0"></span><span class="help-inline"><font
-                            color="red">*</font></span>公民身份号码：</label>
+                    <label class="control-label labName"><span id="ident0"></span><span class="help-inline"><font color="red">*</font></span>公民身份号码：</label>
                     <div class="controls">
                         <form:input path="ident" id="p_id_card" onmouseout="isRepeat('${ccmPeople.id}')"
                                     htmlEscape="false" maxlength="18"
-                                    class="input-xlarge required ident0 card "/>
+                                    class="input-xlarge ident0 card "/>
                     </div>
                 </div>
             </td>
@@ -1338,7 +1338,6 @@
         </table>
         <br/>
     </c:if>
-    <%--<h4 id="otherid" class="color-bg6">户籍信息</h4>--%>
 
     <table id="person" border="0px"
            style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%">
