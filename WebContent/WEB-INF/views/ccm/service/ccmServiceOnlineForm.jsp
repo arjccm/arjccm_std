@@ -33,12 +33,12 @@
 <body>
 	<ul class="nav nav-tabs">
 		<c:if test="${etype eq '1'}">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/service/ccmServiceOnline/list">数据列表</a></li>
+			<li><a style="text-align:center" href="${ctx}/service/ccmServiceOnline/list">数据列表</a></li>
 		</c:if>
 		<c:if test="${etype eq '2'}">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/service/ccmServiceOnline/examinelist">数据列表</a></li>
+			<li><a style="text-align:center" href="${ctx}/service/ccmServiceOnline/examinelist">数据列表</a></li>
 		</c:if>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/service/ccmServiceOnline/form?id=${ccmServiceOnline.id}">数据<shiro:hasPermission name="service:ccmServiceOnline:edit">${not empty ccmServiceOnline.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="service:ccmServiceOnline:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/service/ccmServiceOnline/form?id=${ccmServiceOnline.id}">数据<shiro:hasPermission name="service:ccmServiceOnline:edit">${not empty ccmServiceOnline.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="service:ccmServiceOnline:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmServiceOnline" action="${ctx}/service/ccmServiceOnline/save?etype=${etype}" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
