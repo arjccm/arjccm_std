@@ -178,7 +178,7 @@
 						<td>${fns:getDictLabel(ccmHousePsychogeny.atteType, 'ccm_conc_exte', '')} </td>
 					</c:if>
 					<td class="tc">${fns:getDictLabel(ccmHousePsychogeny.acciHist, 'yes_no', '')}</td>
-					<td class="tc">${fns:getDictLabel(ccmHousePsychogeny.dangAsse, 'ccm_nors_asle', '')}</td> 
+					<td class="tc">${fns:getDictLabel(ccmHousePsychogeny.dangAsse, 'ccm_nors_asle', '')}</td>
 					<td class="tc"><shiro:hasPermission name="house:ccmHousePsychogeny:edit">
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}', '修改', '1200px', '900px')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/house/ccmHousePsychogeny/delete?id=${ccmHousePsychogeny.id}&permissionKey=${permissionKey}" onclick="return confirmx('确认要删除该肇事肇祸等严重精神障碍患者吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
