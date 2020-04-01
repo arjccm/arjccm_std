@@ -31,7 +31,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">专项考核管理</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/scheme/kpiScheme/treeList">方案KPI管理</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/scheme/kpiScheme/treeList">方案KPI管理</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="kpiScheme" action="${ctx}/scheme/kpiScheme/treeList" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

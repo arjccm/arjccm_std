@@ -357,8 +357,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/storage/plmOut/">出库单列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" id="incomingEntry"
+		<li><a style="text-align:center" href="${ctx}/storage/plmOut/">出库单列表</a></li>
+		<li class="active"><a class="nav-head" id="incomingEntry"
 			href="${ctx}/storage/plmOut/form?id=${plmIncomingEntry.id}">
 				 <c:choose>
 					<c:when test="${flag == '5'}">出库单查看</c:when>

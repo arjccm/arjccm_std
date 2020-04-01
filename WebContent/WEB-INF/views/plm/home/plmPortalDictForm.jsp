@@ -41,8 +41,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/home/plmPortalDict/">门户字典列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head"
+		<li><a style="text-align:center" href="${ctx}/home/plmPortalDict/">门户字典列表</a></li>
+		<li class="active"><a class="nav-head"
 			href="${ctx}/home/plmPortalDict/form?id=${plmPortalDict.id}">门户字典<shiro:hasPermission
 					name="home:plmPortalDict:edit">${not empty plmPortalDict.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="home:plmPortalDict:edit">查看</shiro:lacksPermission></a></li>

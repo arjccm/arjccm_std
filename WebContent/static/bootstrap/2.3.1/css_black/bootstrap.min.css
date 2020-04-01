@@ -3741,7 +3741,10 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	border-right: 1px solid #336d90;
 }
 .nav-tabs>li.fstCli{
-	border-left: 1px solid #336d90;;
+	border-left: 1px solid #336d90;
+}
+.nav-tabs>li:first-child{
+	border-left: 1px solid #336d90;
 }
 
 .nav-tabs>li>a {

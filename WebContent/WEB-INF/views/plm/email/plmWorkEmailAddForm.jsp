@@ -28,7 +28,7 @@
 		<c:if test="${plmWorkEmail.status eq '1'}">
 			<li><a href="${ctx}/email/plmWorkEmail/?status=1">草稿箱</a></li>
 		</c:if>
-			<li class="active" style="width: 140px"><a class="nav-head"
+			<li class="active"><a class="nav-head"
 				href="${ctx}/email/plmWorkEmail/form?id=${plmWorkEmail.id}">邮件<shiro:hasPermission
 						name="email:plmWorkEmail:edit">${not empty plmWorkEmail.id ?'编辑':'添加'}</shiro:hasPermission>
 					<shiro:lacksPermission name="email:plmWorkEmail:edit">查看</shiro:lacksPermission></a></li>

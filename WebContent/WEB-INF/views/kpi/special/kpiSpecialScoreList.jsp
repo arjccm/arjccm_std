@@ -65,7 +65,7 @@
 <div class="back-list clearfix">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/special/kpiSpecialScore/">专项考核列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/special/kpiSpecialScore/">专项考核列表</a></li>
 		<%-- <shiro:hasPermission name="special:kpiSpecialScore:edit"><li><a href="${ctx}/special/kpiSpecialScore/form">专项考核添加</a></li></shiro:hasPermission> --%>
 	</ul>
 	<%-- <form:form  modelAttribute="kpiSpecialScore"  class="breadcrumb form-search">

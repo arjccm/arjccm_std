@@ -115,7 +115,7 @@
 <div class="back-list clearfix" style="height: 970px;">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/special/kpiSpecialScore/getLeaderBoard">排行榜</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/special/kpiSpecialScore/getLeaderBoard">排行榜</a></li>
 	</ul>
 		<sys:message content="${message}"/>
 		<form:form id="searchForm"  modelAttribute="kpiSpecialScore" action="${ctx}/special/kpiSpecialScore/getLeaderBoard" method="post" class="breadcrumb form-search clearfix">

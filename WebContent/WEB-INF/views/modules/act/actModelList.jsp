@@ -35,8 +35,8 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/act/model/">模型管理</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/act/model/create">新建模型</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/act/model/">模型管理</a></li>
+		<li><a style="text-align:center" href="${ctx}/act/model/create">新建模型</a></li>
 	</ul>
 	<form id="searchForm" action="${ctx}/act/model/" method="post" class="breadcrumb form-search">
 		<select id="category" name="category" class="input-medium">

@@ -23,8 +23,8 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">通知通告</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/oa/oaNotify/self">通知列表</a></li>
-		<c:if test="${!oaNotify.self}"><shiro:hasPermission name="oa:oaNotify:edit"><li style="width: 112px"><a style="text-align: center" href="${ctx}/oa/oaNotify/form">通知添加</a></li></shiro:hasPermission></c:if>
+		<li class="active"><a class="nav-head" href="${ctx}/oa/oaNotify/self">通知列表</a></li>
+		<c:if test="${!oaNotify.self}"><shiro:hasPermission name="oa:oaNotify:edit"><li><a style="text-align: center" href="${ctx}/oa/oaNotify/form">通知添加</a></li></shiro:hasPermission></c:if>
 	</ul>
 	<form:form id="searchForm" modelAttribute="oaNotify" action="${ctx}/oa/oaNotify/self" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

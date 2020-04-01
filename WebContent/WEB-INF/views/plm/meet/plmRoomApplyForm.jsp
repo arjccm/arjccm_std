@@ -28,9 +28,9 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/logistics/plmRoomMeetingApplyResource/getroombyuserId">会议室安排</a></li>
+		<li><a style="text-align:center" href="${ctx}/logistics/plmRoomMeetingApplyResource/getroombyuserId">会议室安排</a></li>
 		<c:if test="${update eq 'ok'}">
-			<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/logistics/plmRoomMeetingApplyResource/form?id=${plmRoomApply.id}&update=ok">会议室安排<shiro:hasPermission name="logistics:plmRoom:edit">${not empty plmRoomApply.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="logistics:plmRoom:edit">查看</shiro:lacksPermission></a></li>
+			<li class="active"><a class="nav-head" href="${ctx}/logistics/plmRoomMeetingApplyResource/form?id=${plmRoomApply.id}&update=ok">会议室安排<shiro:hasPermission name="logistics:plmRoom:edit">${not empty plmRoomApply.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="logistics:plmRoom:edit">查看</shiro:lacksPermission></a></li>
 		</c:if>
 		<c:if test="${update ne 'ok'}">
 			<li class="active"><a href="${ctx}/logistics/plmRoomMeetingApplyResource/form?id=${plmRoomApply.id}">会议室安排详情查看</a></li>

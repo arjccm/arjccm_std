@@ -104,8 +104,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/storage/plmProvideInfo/">供应商信息列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head"
+		<li><a style="text-align:center" href="${ctx}/storage/plmProvideInfo/">供应商信息列表</a></li>
+		<li class="active"><a class="nav-head"
 			href="${ctx}/storage/plmProvideInfo/form?id=${plmProvideInfo.id}">供应商信息<shiro:hasPermission
 					name="storage:plmProvideInfo:edit">${not empty plmProvideInfo.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="storage:plmProvideInfo:edit">查看</shiro:lacksPermission></a></li>
