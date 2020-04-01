@@ -123,8 +123,6 @@ public class SysCodesService extends CrudService<SysCodesDao, SysCodes> {
 	public SysCodes applyCodeOfDB(String id, int num) {
 		id = id.substring(id.lastIndexOf(".")+1);
 		SysCodes sysCodes = null;
-		boolean successFlag = true;
-		while(successFlag) {
 			sysCodes = super.get(id);
 			if(sysCodes!=null) {
 				if(sysCodes.getCodeE()!=null && sysCodes.getCodeE()!="") {
@@ -132,9 +130,7 @@ public class SysCodesService extends CrudService<SysCodesDao, SysCodes> {
 				}
 			}
 			//更新六位编码
-			int count = saveCodeColumn(sysCodes);
-			successFlag = count > 0 ? false : true;
-		}
+		saveCodeColumn(sysCodes);
 		return sysCodes;
 	}
 	
