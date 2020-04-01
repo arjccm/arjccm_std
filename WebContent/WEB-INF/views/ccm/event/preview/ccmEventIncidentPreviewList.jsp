@@ -190,6 +190,9 @@
         <c:forEach items="${page.list}" var="ccmEventIncidentPreview">
             <tr>
                 <td style="height: 50px"><a
+                        <%--<shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
+                        onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '编辑', '1100px', '600px')"
+                        </shiro:hasPermission>--%>
                         onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '编辑', '1100px', '600px')">${ccmEventIncidentPreview.caseName}</a>
                 </td>
                 <td style="height: 50px">${ccmEventIncidentPreview.reportPerson}</td>
