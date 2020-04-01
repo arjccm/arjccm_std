@@ -96,6 +96,7 @@
                 data = JSON.parse(jsonString);  
 				$(".fishBone1").fishBone(data, '${ctx}','deal');
 				$(".fishBone2").fishBone(data, '${ctx}','read');
+                sels();
 			});
 	
 	function saveForm(){
