@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${ctxStatic}/ccm/event/css/fishBonePop.css" />
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/fishBonePop.js"></script>
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 	<style type="text/css">
 		.pad{padding: 5px; padding-left: 10px}
 		#person{display: none;}
@@ -221,11 +222,11 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>公民身份号码：</label>
+						<label class="control-label labName"><span id="ident0"></span><span class="help-inline"><font color="red">*</font></span>公民身份号码：</label>
 						<div class="controls">
-							<form:input path="ident" htmlEscape="false" maxlength="18"
-								class="input-xlarge ident0 card required" />
-							<span id="ident0"></span>
+							<form:input path="ident" id="p_id_card" onmouseout="isRepeat('${ccmPeople.id}')"
+										htmlEscape="false" maxlength="18"
+										class="input-xlarge ident0 card "/>
 						</div>
 					</div>
 				</td>
