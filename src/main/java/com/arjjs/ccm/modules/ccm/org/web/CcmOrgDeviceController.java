@@ -86,11 +86,20 @@ public class CcmOrgDeviceController extends BaseController {
 
 	@RequestMapping(value = "form")
 	public String form(String id, Model model) {
+		CcmOrgDeviceInfo ccmDevice =  ccmOrgDeviceService.queryDeviceByOrgDeviceId(id);
+		String deviceIdList = "";
+		if (ccmDevice != null){
+			List<CcmDeviceVo> deviceList = ccmDevice.getDeviceList();
+			for (CcmDeviceVo deviceVo : deviceList){
+				deviceIdList += StringUtils.join(deviceVo.getId(),",");
+			}
+		}
 		CcmOrgDevice ccmOrgDevice = new CcmOrgDevice();
 		CcmOrgCommonality ccmOrgCommonality = ccmOrgCommonalityService.get(id);
 		ccmOrgDevice.setOrgId(id);
 		ccmOrgDevice.setOrgName(ccmOrgCommonality.getName());
 		model.addAttribute("ccmOrgDevice", ccmOrgDevice);
+		model.addAttribute("deviceIdList", deviceIdList);
 		List<CcmDevice> list = ccmDeviceService.findList(new CcmDevice());
 		model.addAttribute("videoList", list);
 		return "ccm/org/ccmOrgDeviceForm";

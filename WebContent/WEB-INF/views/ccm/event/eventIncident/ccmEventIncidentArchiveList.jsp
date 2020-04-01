@@ -199,7 +199,7 @@
         <li class="second-line"><label>发案地：</label>
             <sys:treeselect id="area" name="area.id" value="${ccmEventIncident.area.id}" labelName="area.name"
                             labelValue="${ccmEventIncident.area.name}" title="区域" url="/sys/area/treeData" cssClass=""
-                            allowClear="true" notAllowSelectParent="true" cssStyle="width: 158px"/>
+                            allowClear="true" notAllowSelectParent="true" cssStyle="width: 163px"/>
         </li>
 
 <%--        <li class="clearfix"></li>--%>

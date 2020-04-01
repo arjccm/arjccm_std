@@ -7,6 +7,12 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//$("#name").focus();
+			debugger
+            if("${deviceIdList}"!=null&&"${deviceIdList}"!=""){
+                debugger
+                var deviceList = "${deviceIdList}".split(",");
+                $("#deviceSelect").val(deviceList).select2();
+            }
 			$("#inputForm").validate({
 				submitHandler: function(form){
 					$("#btnSubmit").attr("disabled", true);
@@ -45,8 +51,8 @@
 		<div class="control-group">
 			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>监控设备：</label>
 			<div class="controls">
-				<select data-placeholder="选择一个或多个监控设备" style="width: 90%;" name="deviceSelect" class="chosen-select required" multiple tabindex="4">
-					<option value=""></option>
+				<select data-placeholder="选择一个或多个监控设备" style="width: 90%;" name="deviceSelect" id="deviceSelect" class="chosen-select required" multiple tabindex="4">
+					<%--<option value=""></option>--%>
 					<c:forEach items="${videoList}" var="video">
 						<option value="${video.id}">${video.name}</option>
 					</c:forEach>
