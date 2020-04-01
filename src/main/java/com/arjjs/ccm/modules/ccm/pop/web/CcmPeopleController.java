@@ -2258,7 +2258,8 @@ public class CcmPeopleController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "queryByPersonalIdent")
 	public List<CcmPeople> queryByPersonalIdent(String pident,String id) {
-		return ccmPeopleService.queryByPersonalIdent(pident,id);
+		List<CcmPeople> ccmPeoples = ccmPeopleService.queryByPersonalIdent(pident, id);
+		return ccmPeoples;
 	}
 
     /*根据标记类型修改重点人员*/
