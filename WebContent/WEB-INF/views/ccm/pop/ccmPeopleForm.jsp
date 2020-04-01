@@ -428,38 +428,8 @@
                     }
                 })
             }
-
-
         }
 
-        function isRepeat(id) {
-
-            // 新增
-            if (id.trim().length <= 0) {
-
-                let pident = $("#p_id_card").val();
-                if (pident != null && pident.trim().length > 0) {
-
-                    $.ajax({
-                        url: ctx + "/pop/ccmPeople/queryByPersonalIdent?pident=" + pident,
-                        type: "get",
-                        success: function (data) {
-                            if (data.length > 0) {
-                                layer.alert('该身份证号码已注册！！！', {
-                                    title: "提示",
-                                    skin: 'layui-layer-lan'
-                                    , closeBtn: 0,
-                                    btn: "好的"
-                                });
-                            }
-
-                        }
-                    })
-                }
-
-            }
-
-        }
     </script>
     <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 
@@ -601,7 +571,6 @@
         </tr>
 
         <tr>
-
             <td>
                 <div>
                     <label class="control-label"><span class="help-inline"><font
