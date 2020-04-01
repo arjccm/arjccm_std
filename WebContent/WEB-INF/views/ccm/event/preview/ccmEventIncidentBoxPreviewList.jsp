@@ -87,11 +87,11 @@
 <ul class="back-list clearfix">
     <ul class="nav nav-tabs">
         <li style="float: right;"><a id="yjj" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=03">已拒绝</a></li>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=03" style="color: #ff3a47">已拒绝</a></li>
         <li style="float: right;"><a id="ytg" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=02">已通过</a></li>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=02" style="color: #5dbabd">已通过</a></li>
         <li style="float: right;"><a id="wcl" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=01">未处理</a></li>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=01" style="color: #dc9166">未处理</a></li>
         <li class="fstCli" style="float: right;"><a id="qb" class="nav-head"
                                      href="${ctx}/preview/ccmEventIncidentPreview/5">全部</a></li>
 

@@ -103,16 +103,16 @@
 <ul class="back-list clearfix">
     <ul class="nav nav-tabs">
         <li style="float: right;"><a id="yjj" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=03" style="color: #ffffff">已拒绝</a>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=03" style="color: #ff3a47">已拒绝</a>
         </li>
         <li style="float: right;"><a id="ytg" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=02" style="color: #ffffff">已通过</a>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=02" style="color: #5dbabd">已通过</a>
         </li>
         <li style="float: right;"><a id="wcl" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=01" style="color: #ffffff">未处理</a>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=01" style="color: #dc9166">未处理</a>
         </li>
         <li class="fstCli" style="float: right;"><a id="qb" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/1" style="color: #ffffff">全部</a></li>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/1">全部</a></li>
 
     </ul>
     <form:form id="searchForm" modelAttribute="ccmEventIncidentPreview"
