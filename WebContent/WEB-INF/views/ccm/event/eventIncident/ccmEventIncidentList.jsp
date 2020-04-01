@@ -178,9 +178,9 @@
                    onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
         </li>
         
-        <li class="first-line"><label class="title-text">事件名称：</label> <form:input path="caseName"
+        <li class="first-line"><label>事件名称：</label> <form:input path="caseName"
                                              htmlEscape="false" maxlength="100" class="input-medium"/></li>
-        <li class="first-line"><label class="title-text">事件分级：</label> <form:select path="eventScale"
+        <li class="first-line"><label>事件分级：</label> <form:select path="eventScale"
                                               class="input-medium">
             <form:option value="" label="全部"/>
             <form:options items="${fns:getDictList('ccm_case_grad')}"
@@ -209,29 +209,29 @@
                      onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
         </li>--%>
 
-        <li class="first-line"><label class="title-text">事件类型：</label> <form:select path="eventType"
+        <li class="first-line"><label>事件类型：</label> <form:select path="eventType"
                                               class="input-medium">
             <form:option value="" label="全部"/>
             <form:options items="${fns:getDictList('ccm_case_type')}" itemLabel="label" itemValue="value"
                           htmlEscape="false"/>
         </form:select></li>
-        <li class="second-line"><label class="title-text">处理状态：</label>
+        <li class="second-line"><label>处理状态：</label>
             <form:select path="status" class="input-medium">
                 <form:option value="" label="全部"/>
                 <form:options items="${fns:getDictList('ccm_event_status')}" itemLabel="label" itemValue="value"
                               htmlEscape="false"/>
             </form:select>
         </li>
-        <li class="second-line"><label class="title-text">事件模块分类：</label> <form:select path="eventKind"
+        <li class="second-line"><label>事件模块分类：</label> <form:select path="eventKind"
                                                 class="input-medium">
             <form:option value="" label="全部"/>
             <form:options items="${fns:getDictList('ccm_event_inci_kind')}" itemLabel="label" itemValue="value"
                           htmlEscape="false"/>
         </form:select></li>
-        <li class="second-line"> <%--style="padding-right: 300px;--%><label class="title-text">发案地：</label>
+        <li class="second-line"> <%--style="padding-right: 300px;--%><label>发案地：</label>
             <sys:treeselect id="area" name="area.id" value="${ccmEventIncident.area.id}" labelName="area.name"
                             labelValue="${ccmEventIncident.area.name}" title="区域" url="/sys/area/treeData" cssClass=""
-                            allowClear="true" notAllowSelectParent="true" cssStyle="width: 158px;"/>
+                            allowClear="true" notAllowSelectParent="true" cssStyle="width: 163px;"/>
         </li>
 <%--        <li class="btns"><a class="btn btn-export" type="button"
                             style="width: 49px;display:inline-block;"
