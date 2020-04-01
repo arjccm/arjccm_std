@@ -130,10 +130,10 @@
 	<ul class="nav nav-tabs" >
 <%--		<li style="float:right;"><a style="background-color:#9f3df8;color:white;" href="${ctx}/event/ccmEventCasedeal/supervise?isSupervise=1">督办事件</a></li>--%>
 	    <li class="active"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal/list">任务处理列表</a></li>
-		<li style="float:right;"><a id="ybsj" class="btn btn-danger" href="${ctx}/event/ccmEventCasedeal/?handleStatus=05">已办事件</a></li>
-		<li style="float:right;"><a id="clz" class="btn btn-success" href="${ctx}/event/ccmEventCasedeal/?handleStatus=02">办理中事件</a></li>
-		<li style="float:right;"><a id="dbsj" class="btn btn-warning" href="${ctx}/event/ccmEventCasedeal/?handleStatus=01">待办事件</a></li>
-		<li style="float:right;"><a id="sjcl" class="btn btn-qb" href="${ctx}/event/ccmEventCasedeal">事件处理列表</a></li>
+		<li style="float:right;"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal/?handleStatus=05">已办事件</a></li>
+		<li style="float:right;"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal/?handleStatus=02">办理中事件</a></li>
+		<li style="float:right;"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal/?handleStatus=01">待办事件</a></li>
+		<li class="active" style="float:right;"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal">事件处理列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmEventCasedeal"
 		action="${ctx}/event/ccmEventCasedeal/" method="post"
