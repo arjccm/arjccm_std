@@ -495,6 +495,7 @@
 			</div>
 		</div>
 	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+
 </div>
 </body>
 </html>

@@ -41,7 +41,7 @@
         <div class="reportPolice_content clearfix" >
             <div class="left_box">
                 <div class="left_content">
-                    <div class="top-header"><div class="top_header_icon">案事件性质统计情况</div></div>
+                    <div class="top-header"><div class="top_header_icon">案事件性质统计情况1</div></div>
                     <div class="common-pading">
                         <div id="AlarmNatureEcharts" class="echarts"></div>
                     </div>

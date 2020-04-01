@@ -1735,3 +1735,32 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 
 -- 开启事件
 set global event_scheduler = (1/ON)
+
+--修改大联动业务协同平台首页权限标识
+UPDATE sys_menu SET parent_id = '4d834769daac4011ac0fad2c41e74722', parent_ids = '0,1,4d834769daac4011ac0fad2c41e74722,', name = '首页', href = '/report/ccmIncidentBegin/police', target = '', icon = 'ai-home', sort = 30, is_show = '1', permission = 'report:ccmIncidentBegin:view', update_by = '1', update_date = '2020-04-01 15:15:45.571', remarks = ''
+ WHERE id = '976650ee9ff849efa5e01983c1694426';
+
+--删除大联动业务协同平台事件管理下多余显示
+UPDATE sys_menu SET del_flag = '1'
+ WHERE id = 'b495ad8186894783bf0b9d0a1aa5029b' OR parent_ids LIKE CONCAT('%,', 'b495ad8186894783bf0b9d0a1aa5029b', ',%');
+
+
+--添加首页门户字典配置权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '5a02ffe710284c3aac3c856c4b45f64e', '765b89564cc8475a9f6afb77642e289a', '0,1,2,3,19f750085a2642879c38548913ae7782,765b89564cc8475a9f6afb77642e289a,', '编辑', '', '', '', 10, '0', 'home:plmPortalDict:edit', '1', '2020-04-01 13:53:18.953', '1', '2020-04-01 13:53:18.953', '', '0' );
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'e80e87b045c64ca3b03080bc5ec34004', '765b89564cc8475a9f6afb77642e289a', '0,1,2,3,19f750085a2642879c38548913ae7782,765b89564cc8475a9f6afb77642e289a,', '显示', '', '', '', 40, '0', 'home:plmPortalDict:view', '1', '2020-04-01 13:56:04.588', '1', '2020-04-01 13:56:04.588', '', '0' );
+--添加app版本管理权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '1e9dfc7229ae401b8356bdf57f7bd588', '8bff6204e023489b9f475283fd04a02e', '0,1,2,8bff6204e023489b9f475283fd04a02e,', '编辑', '', '', '', 60, '1', 'appupload:sysAppUpload:edit', '1', '2020-04-01 11:32:43.103', '1', '2020-04-01 11:32:43.103', '', '0' );
+
+
+
+
+-- 添加流程管理操作权限
+UPDATE sys_menu SET parent_id = '69', parent_ids = '0,1,2,62,69,', name = '流程管理', href = '/act/process', target = '', icon = 'road', sort = 50, is_show = '1', permission = '', update_by = '1', update_date = '2020-04-01 14:41:37.043', remarks = ''
+ WHERE id = '70';
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'f082d335c9334e7fa3b2a33e6c0bf912', '70', '0,1,2,62,69,70,', '显示', '', '', '', 30, '0', 'act:process:view', '1', '2020-04-01 14:44:28.053', '1', '2020-04-01 14:44:28.053', '', '0' );
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '10651f472cb548098e116f75c04abb2f', '70', '0,1,2,62,69,70,', '编辑', '', '', '', 60, '0', 'act:process:edit', '1', '2020-04-01 14:47:29.714', '1', '2020-04-01 14:47:29.714', '', '0' );
+
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '42f9737aa5fc44af81e8b4cd46bf2db4', '72', '0,1,2,62,69,72,', '显示', '', '', '', 30, '0', 'act:model:view', '1', '2020-04-01 10:52:05.827', '1', '2020-04-01 10:52:05.827', '', '0' );
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'aaabc47a26504804bd590bde409c25a3', '72', '0,1,2,62,69,72,', '编辑', '', '', '', 60, '0', 'act:model:edit', '1', '2020-04-01 10:53:59.639', '1', '2020-04-01 10:53:59.639', '', '0' );
+UPDATE sys_menu SET parent_id = '69', parent_ids = '0,1,2,62,69,', name = '模型管理', href = '/act/model', target = '', icon = 'road', sort = 100, is_show = '1', permission = '', update_by = '1', update_date = '2020-04-01 10:52:51.847', remarks = ''
+ WHERE id = '72';

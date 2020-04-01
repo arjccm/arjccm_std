@@ -20,9 +20,9 @@
         <li class="active" style="float:right;"><a class="nav-head"
                                     href="${ctx}/event/ccmEventCasedeal/?handleStatus=05">已办事件</a></li>
         <li style="float:right;"><a class="nav-head"
-                                    href="${ctx}/event/ccmEventCasedeal/?handleStatus=02">办理中事件</a></li>
+                                    href="${ctx}/event/ccmEventCasedeal/?handleStatus=02" style="color: #3CC7AB;">办理中事件</a></li>
         <li style="float:right;"><a class="nav-head"
-                                    href="${ctx}/event/ccmEventCasedeal/?handleStatus=01">待办事件</a></li>
+                                    href="${ctx}/event/ccmEventCasedeal/?handleStatus=01" style="color: #ee7c40;">待办事件</a></li>
         <li class="fstCli" style="float:right;"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal">事件处理列表</a></li>
     </ul>
     <form:form id="searchForm" modelAttribute="ccmEventCasedeal"
@@ -176,7 +176,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <div class="pagination"  style="float: right; margin-top: 12px">${page}</div>
+    <div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </div>
 <style>
     a.btn {
