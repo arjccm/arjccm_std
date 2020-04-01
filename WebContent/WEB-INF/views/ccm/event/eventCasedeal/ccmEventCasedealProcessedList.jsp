@@ -9,18 +9,7 @@
     <script src="${ctxStatic}/common/common.js" type="text/javascript"></script>
     <script src="${ctxStatic}/ccm/event/js/eventCasedeal.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(function () {
-            //右上角选项卡选中状态
-            if ($("#statusClass").val() == '') {
-                $("#sjcl").addClass('btn-xz');
-            } else if ($("#statusClass").val() == '01') {
-                $("#dbsj").addClass('btn-xz');
-            } else if ($("#statusClass").val() == '02') {
-                $("#blz").addClass('btn-xz');
-            } else if ($("#statusClass").val() == '05') {
-                $("#ybsj").addClass('btn-xz');
-            }
-        });
+
     </script>
 </head>
 <body>

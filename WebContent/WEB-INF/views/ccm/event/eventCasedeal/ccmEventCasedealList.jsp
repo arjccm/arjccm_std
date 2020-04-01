@@ -13,18 +13,7 @@
 	  rel="stylesheet" />
 <script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 <script type="text/javascript">
-    $(function() {
-        //右上角选项卡选中状态
-        if ($("#statusClass").val() == '') {
-            $("#sjcl").addClass('btn-xz');
-        } else if ($("#statusClass").val() == '01') {
-            $("#dbsj").addClass('btn-xz');
-        } else if ($("#statusClass").val() == '02') {
-            $("#blz").addClass('btn-xz');
-        } else if ($("#statusClass").val() == '05') {
-            $("#ybsj").addClass('btn-xz');
-        }
-    });
+
 
 	function HandleTips(_this, id) {
 		var html = '';

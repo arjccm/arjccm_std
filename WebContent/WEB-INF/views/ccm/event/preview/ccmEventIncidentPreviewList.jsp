@@ -22,13 +22,13 @@
             });
             //右上角选项卡选中状态
             if ($("#statusClass").val() == '') {
-                $("#qb").addClass('btn-xz');
+                $("#qb").parent().addClass('active');
             } else if ($("#statusClass").val() == '01') {
-                $("#wcl").addClass('btn-xz');
+                $("#wcl").parent().addClass('active');
             } else if ($("#statusClass").val() == '02') {
-                $("#ytg").addClass('btn-xz');
+                $("#ytg").parent().addClass('active');
             } else if ($("#statusClass").val() == '03') {
-                $("#yjj").addClass('btn-xz');
+                $("#yjj").parent().addClass('active');
             }
         });
 
@@ -102,16 +102,16 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">预处理系统</span>--%>
 <ul class="back-list clearfix">
     <ul class="nav nav-tabs">
-        <li style="float: right;"><a id="yjj" class="btn btn-danger"
+        <li style="float: right;"><a id="yjj" class="nav-head"
                                      href="${ctx}/preview/ccmEventIncidentPreview/1?status=03" style="color: #ffffff">已拒绝</a>
         </li>
-        <li style="float: right;"><a id="ytg" class="btn btn-success"
+        <li style="float: right;"><a id="ytg" class="nav-head"
                                      href="${ctx}/preview/ccmEventIncidentPreview/1?status=02" style="color: #ffffff">已通过</a>
         </li>
-        <li style="float: right;"><a id="wcl" class="btn btn-warning btn-sm"
+        <li style="float: right;"><a id="wcl" class="nav-head"
                                      href="${ctx}/preview/ccmEventIncidentPreview/1?status=01" style="color: #ffffff">未处理</a>
         </li>
-        <li style="float: right;"><a id="qb" class="btn btn-qb btn-sm"
+        <li class="fstCli" style="float: right;"><a id="qb" class="nav-head"
                                      href="${ctx}/preview/ccmEventIncidentPreview/1" style="color: #ffffff">全部</a></li>
 
     </ul>

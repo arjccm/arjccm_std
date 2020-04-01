@@ -20,16 +20,16 @@
 				}
 				$("#searchForm").submit();
 			});
-            //右上角选项卡选中状态
-            if ($("#statusClass").val() == '') {
-                $("#qb").addClass('btn-xz');
-            } else if ($("#statusClass").val() == '01') {
-                $("#wcl").addClass('btn-xz');
-            } else if ($("#statusClass").val() == '02') {
-                $("#ytg").addClass('btn-xz');
-            } else if ($("#statusClass").val() == '03') {
-                $("#yjj").addClass('btn-xz');
-            }
+			//右上角选项卡选中状态
+			if ($("#statusClass").val() == '') {
+				$("#qb").parent().addClass('active');
+			} else if ($("#statusClass").val() == '01') {
+				$("#wcl").parent().addClass('active');
+			} else if ($("#statusClass").val() == '02') {
+				$("#ytg").parent().addClass('active');
+			} else if ($("#statusClass").val() == '03') {
+				$("#yjj").parent().addClass('active');
+			}
 		});
 	function page(n, s) {
 		$("#pageNo").val(n);
@@ -82,13 +82,13 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">预处理系统</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li style="float: right;"><a id="yjj" class="btn btn-danger"
+		<li style="float: right;"><a id="yjj" class="nav-head"
 			href="${ctx}/preview/ccmEventIncidentPreview/3?status=03">已拒绝</a></li>
-		<li style="float: right;"><a id="ycl" class="btn btn-success"
+		<li style="float: right;"><a id="ycl" class="nav-head"
 			href="${ctx}/preview/ccmEventIncidentPreview/3?status=02">已处理</a></li>
-		<li style="float: right;"><a id="wcl" class="btn btn-warning"
+		<li style="float: right;"><a id="wcl" class="nav-head"
 			href="${ctx}/preview/ccmEventIncidentPreview/3?status=01">未处理</a></li>
-		<li style="float: right;"><a id="qb" class="btn btn-qb"
+		<li class="fstCli" style="float: right;"><a id="qb" class="nav-head"
 			href="${ctx}/preview/ccmEventIncidentPreview/3">全部</a></li>
 
 	</ul>
