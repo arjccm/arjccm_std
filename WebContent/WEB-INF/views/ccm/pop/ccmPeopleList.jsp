@@ -43,7 +43,8 @@
 			});
 		}
 		$(function(){
-			$(".pimg").click(function(){
+			$(".pimg").click(
+					function(){
 				var _this = $(this);//将当前的pimg元素作为_this传入函数
 				imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
 			});
@@ -83,7 +84,6 @@
 			});
 		}
         function saveImport() {
-            debugger;
             var s = $("#importForm")[0][0].files.length;
             if(s == 0){
                 alert("请选择文件！");
@@ -142,7 +142,7 @@
 	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		
+
 		<ul class="ul-form pull-left">
 			<li class="first-line"><label>人口类型：</label>
 				<form:select id="type" path="type" class="input-medium">
@@ -216,7 +216,7 @@
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-			
+
 			<li class="selectHidden hide"><label>是否留守：</label>
 				<form:select path="isBehind" class="input-medium">
 					<form:option value="" label="全部"/>
@@ -456,7 +456,7 @@
 							   &personReason=${ccmPeople.personReason}" >
 								<i class="iconfont   icon-caozuotubiao-hujijiating"></i></a>
 				       	</c:if>
-				    </shiro:hasPermission> 
+				    </shiro:hasPermission>
 				    <shiro:hasPermission name="log:ccmLogTail:edit">
 				    	<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPeople.id}&relevance_table=ccm_people', '记录信息', '800px', '660px')"
 								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>

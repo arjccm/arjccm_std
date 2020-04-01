@@ -5876,7 +5876,7 @@ to {
 }
 
 .accordion-inner .nav-list>li>a, .accordion-heading a {
-	color: #7f8796;
+	color: #ffffff;
 	text-shadow: none;
 	-moz-transition: all .1s;
 	-webkit-transition: all .1s;
@@ -5895,12 +5895,14 @@ to {
 
 .accordion-heading>a.active {
 	color: #fff;
-	background: none
+	background: none;
+	box-shadow: inset 0px 0px 26px 2px #1684c2;
 }
 /*左侧菜单选择添加颜色*/
 .accordion-heading>li>a.active {
     color: #fff;
-    background: none
+    background: none;
+	box-shadow: inset 0px 0px 26px 2px #1684c2;
 }
 
 .accordion-heading>a.active i {
@@ -5923,7 +5925,8 @@ to {
 }
 
 .accordion-inner .nav-list li a {
-	padding: 8px 8px 8px 44px;
+	padding: 14px 8px 14px 44px;
+	color: #2fa8c4;
 }
 
 .accordion-inner .nav-list>li>a:hover, .accordion-heading a:hover {
@@ -5970,10 +5973,15 @@ to {
 	color: #fff;
 	text-shadow: none;
 	/*background-color: #1684c2;*/
-	background: none;
+	background:none;
 	/*左侧选中背景图*/
-	background: url(../img/left-xz.png) no-repeat;
+	/*background: url(../img/left-xz.png) no-repeat;*/
+	background-image: linear-gradient(to right,rgba(6,55,91,.1),rgba(6,55,91,1),rgba(6,55,91,.1));
 	position: relative;
+}
+.accordion-inner .twoMenu li{
+	border-bottom: 1px solid;
+	border-image: linear-gradient(90deg, rgba(255,255,255,0.00) 0%,#296c90 50%, rgba(255,255,255,0.00) 99%) 2 2 2 2;
 }
 
 .accordion-inner .nav-list>.active>a i {
