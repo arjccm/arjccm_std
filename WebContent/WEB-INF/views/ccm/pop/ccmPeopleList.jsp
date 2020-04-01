@@ -135,9 +135,9 @@
 	</div>
 	
 	<ul class="nav nav-tabs">
-		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li></shiro:hasPermission>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmPeople/">数据列表</a></li>
-		<shiro:hasPermission name="pop:ccmPeople:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPeople/form?hide1=add&hide2=false">数据添加</a></li></shiro:hasPermission>
+		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmPeople/">数据列表</a></li>
+		<shiro:hasPermission name="pop:ccmPeople:edit"><li><a style="text-align:center" href="${ctx}/pop/ccmPeople/form?hide1=add&hide2=false">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

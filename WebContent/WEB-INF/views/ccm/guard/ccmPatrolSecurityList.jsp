@@ -20,7 +20,7 @@
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 140px" ><a class="nav-head" href="${ctx}/guard/ccmGuardUnit/securityList/">警卫任务安排</a></li>
-		<li ><a style="width: 140px;text-align:center" href="${ctx}/guard/ccmGuardUnit/">警卫单位列表</a></li>
+		<li ><a style="text-align:center" href="${ctx}/guard/ccmGuardUnit/">警卫单位列表</a></li>
 		<%--<shiro:hasPermission name="guard:ccmGuardUnit:edit"><li><a href="${ctx}/guard/ccmGuardUnit/form">警卫单位添加</a></li></shiro:hasPermission>--%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPatrolSecurity" action="${ctx}/security/ccmPatrolSecurity/" method="post" class="breadcrumb form-search">

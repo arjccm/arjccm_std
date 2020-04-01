@@ -33,7 +33,7 @@
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"style="width: 170px"><a class="nav-head" href="${ctx}/event/ccmEventAmbi/map">矛盾纠纷统计</a></li>
-		<shiro:hasPermission name="event:ccmEventAmbi:view"><li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventAmbi/">矛盾纠纷列表</a></li></shiro:hasPermission>
+		<shiro:hasPermission name="event:ccmEventAmbi:view"><li><a style="text-align:center" href="${ctx}/event/ccmEventAmbi/">矛盾纠纷列表</a></li></shiro:hasPermission>
 	</ul>
 	<div class="context" content="${ctx}"></div>
 	<form:form id="searchForm" modelAttribute="ccmEventAmbi" action="${ctx}/event/ccmEventAmbi/map" method="post" class="breadcrumb form-search">

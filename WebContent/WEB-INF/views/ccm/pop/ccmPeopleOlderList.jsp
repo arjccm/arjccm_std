@@ -120,8 +120,8 @@
 	</div>
 	
 	<ul class="nav nav-tabs">
-		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatOlder">数据统计</a></li></shiro:hasPermission>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmPeople/listOlder">数据列表</a></li>
+		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatOlder">数据统计</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmPeople/listOlder">数据列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/listOlder" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

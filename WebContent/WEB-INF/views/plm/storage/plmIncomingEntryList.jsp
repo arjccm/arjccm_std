@@ -63,9 +63,9 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">应急物资保障</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/storage/plmIncomingEntry/">入库单列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/storage/plmIncomingEntry/">入库单列表</a></li>
 		<shiro:hasPermission name="storage:plmIncomingEntry:edit">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/storage/plmIncomingEntry/form">入库单添加</a></li>
+			<li><a style="text-align:center" href="${ctx}/storage/plmIncomingEntry/form">入库单添加</a></li>
 		</shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="plmIncomingEntry"

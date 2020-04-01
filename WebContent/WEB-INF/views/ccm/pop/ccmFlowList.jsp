@@ -89,7 +89,7 @@
 	</div>
 	
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmWork/list/20">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmWork/list/20">数据列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmWork/list/20" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

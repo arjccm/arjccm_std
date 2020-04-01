@@ -64,10 +64,10 @@
 </head>
 <body> 
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">楼栋列表</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/house/ccmHouseBuildmanage/form">楼栋添加</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPopTenant/listBuild?buildingId.id=${ccmPopTenant.buildingId.id}&area.id=${ccmPopTenant.area.id}">房屋列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="">房屋<shiro:hasPermission name="pop:ccmPopTenant:edit">${not empty ccmPopTenant.id?'修改':'新增'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmPopTenant:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">楼栋列表</a></li>
+		<li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/form">楼栋添加</a></li>
+		<li><a style="text-align:center" href="${ctx}/pop/ccmPopTenant/listBuild?buildingId.id=${ccmPopTenant.buildingId.id}&area.id=${ccmPopTenant.area.id}">房屋列表</a></li>
+		<li class="active"><a class="nav-head" href="">房屋<shiro:hasPermission name="pop:ccmPopTenant:edit">${not empty ccmPopTenant.id?'修改':'新增'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmPopTenant:edit">查看</shiro:lacksPermission></a></li>
 	<%-- <li><a
 		href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPopTenant.id}&relevance_table=ccm_pop_tenant">房屋跟踪信息<shiro:hasPermission
 				name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission>

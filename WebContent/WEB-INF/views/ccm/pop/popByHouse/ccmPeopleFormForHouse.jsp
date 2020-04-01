@@ -84,25 +84,25 @@ label.error {
 	<ul class="nav nav-tabs">
 		<!-- 房屋 -->
 		<%--<c:if test="${PeoTypeBy eq 'ByHouse'}">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPopTenant/">房屋列表</a></li>
-			<li><a style="width: 140px;text-align:center"
+			<li><a style="text-align:center" href="${ctx}/pop/ccmPopTenant/">房屋列表</a></li>
+			<li><a style="text-align:center"
 				href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${houseId}&type=house">现有人员列表</a></li>
 			&lt;%&ndash; <shiro:hasPermission name="tenant:ccmTenantRecord:view">
 				<li><a href="${ctx}/tenant/ccmTenantRecord/${houseId}">历史租客记录列表</a></li>
 			</shiro:hasPermission> &ndash;%&gt;
-			<li class="active" style="width: 140px"><a class="nav-head" href="##"> 成员<shiro:hasPermission
+			<li class="active"><a class="nav-head" href="##"> 成员<shiro:hasPermission
 						name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'新增'}</shiro:hasPermission>
 					<shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission>
 			</a></li>
 		</c:if>--%>
 		<%--<c:if test="${PeoTypeBy eq 'ByHouse_hire'}">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPopTenant/list/rent">房屋列表</a></li>
-			<li><a style="width: 140px;text-align:center"
+			<li><a style="text-align:center" href="${ctx}/pop/ccmPopTenant/list/rent">房屋列表</a></li>
+			<li><a style="text-align:center"
 				href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${houseId}&type=hire">现有人员列表</a></li>
 			&lt;%&ndash; <shiro:hasPermission name="tenant:ccmTenantRecord:view">
 				<li><a href="${ctx}/tenant/ccmTenantRecord/${houseId}">历史租客记录列表</a></li>
 			</shiro:hasPermission> &ndash;%&gt;
-			<li class="active" style="width: 140px"><a class="nav-head" href="##"> 成员<shiro:hasPermission
+			<li class="active"><a class="nav-head" href="##"> 成员<shiro:hasPermission
 						name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'新增'}</shiro:hasPermission>
 					<shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission>
 			</a></li>

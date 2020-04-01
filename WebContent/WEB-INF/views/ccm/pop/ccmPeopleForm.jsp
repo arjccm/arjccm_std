@@ -436,10 +436,10 @@
 </head>
 <body>
 <ul class="nav nav-tabs hide1">
-    <li><a style="width: 140px;text-align:center"
+    <li><a style="text-align:center"
            href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li>
-    <li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPeople/">数据列表</a></li>
-    <li class="active" style="width: 140px"><a class="nav-head"
+    <li><a style="text-align:center" href="${ctx}/pop/ccmPeople/">数据列表</a></li>
+    <li class="active"><a class="nav-head"
                                                href="${ctx}/pop/ccmPeople/form?id=${ccmPeople.id}">数据<shiro:hasPermission
             name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
         <shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></a></li>

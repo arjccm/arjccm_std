@@ -84,7 +84,7 @@
 	</div>
 
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/org/ccmOrgNpseEconomic/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/org/ccmOrgNpseEconomic/">数据列表</a></li>
 		<%-- <shiro:hasPermission name="org:ccmOrgNpseEconomic:edit"><li><a href="${ctx}/org/ccmOrgNpseEconomic/form">企业经济运行数据添加</a></li></shiro:hasPermission> --%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmOrgNpseEconomic"

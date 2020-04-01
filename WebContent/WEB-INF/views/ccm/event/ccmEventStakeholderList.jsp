@@ -28,9 +28,9 @@
 			<li><a href="${ctx}/event/ccmEventIncident/form">案（事）件登记添加</a></li>
 		</shiro:hasPermission> --%>
 		<!-- 事件干系人 -->
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${incidentId}">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${incidentId}">数据列表</a></li>
 		<c:if test="${not empty incidentId}">
-			<shiro:hasPermission name="event:ccmEventStakeholder:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventStakeholder/form?incidentId=${incidentId}">案（事）件干系人添加</a></li></shiro:hasPermission>
+			<shiro:hasPermission name="event:ccmEventStakeholder:edit"><li><a style="text-align:center" href="${ctx}/event/ccmEventStakeholder/form?incidentId=${incidentId}">案（事）件干系人添加</a></li></shiro:hasPermission>
 		</c:if>
 		
 	</ul>

@@ -21,9 +21,9 @@
 <body>
 <div class="back-list clearfix">
 <ul class="nav nav-tabs">
-    <li><a style="width: 140px;text-align:center" href="${ctx}/relief/ccmReliefTask/arrangement">备勤任务安排</a></li>
+    <li><a style="text-align:center" href="${ctx}/relief/ccmReliefTask/arrangement">备勤任务安排</a></li>
     <shiro:hasPermission name="relief:ccmReliefTask:edit">
-        <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/unit/ccmReliefUnit/">备勤单位任务列表</a></li>
+        <li class="active"><a class="nav-head" href="${ctx}/unit/ccmReliefUnit/">备勤单位任务列表</a></li>
     </shiro:hasPermission>
 </ul>
 <form:form id="searchForm" modelAttribute="ccmReliefUnit" action="${ctx}/unit/ccmReliefUnit/" method="post"

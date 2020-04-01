@@ -97,7 +97,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">综治组织</span>--%>
 <ul class="back-list clearfix" style="height: 100%">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/view/vCcmTeam/list?office.id=${office.id}&office.parentIds=,${office.id},">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/view/vCcmTeam/list?office.id=${office.id}&office.parentIds=,${office.id},">数据列表</a></li>
 	</ul>
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/view/vCcmTeam/import"

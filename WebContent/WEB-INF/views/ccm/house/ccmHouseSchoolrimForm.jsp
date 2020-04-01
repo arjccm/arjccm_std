@@ -92,8 +92,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/house/ccmHouseSchoolrim/list">学校列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/house/ccmHouseSchoolrim/form?id=${ccmHouseSchoolrim.id}">学校<shiro:hasPermission name="house:ccmHouseSchoolrim:edit">${not empty ccmHouseSchoolrim.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="house:ccmHouseSchoolrim:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/house/ccmHouseSchoolrim/list">学校列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/house/ccmHouseSchoolrim/form?id=${ccmHouseSchoolrim.id}">学校<shiro:hasPermission name="house:ccmHouseSchoolrim:edit">${not empty ccmHouseSchoolrim.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="house:ccmHouseSchoolrim:edit">查看</shiro:lacksPermission></a></li>
 		<%-- <c:if test="${not empty ccmHouseSchoolrim.id}">
 			<li><a
 				href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseSchoolrim.id}&relevance_table=ccm_house_school">跟踪信息<shiro:hasPermission

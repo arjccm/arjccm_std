@@ -30,8 +30,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/publicity/ccmLogPublicity/">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head"href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}">数据
+		<li><a style="text-align:center" href="${ctx}/publicity/ccmLogPublicity/">数据列表</a></li>
+		<li class="active"><a class="nav-head"href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}">数据
 
             <shiro:hasPermission name="publicity:ccmLogPublicity:edit">
 			<c:if test="${user.id eq ccmLogPublicity.createBy.id or user.id eq '1'}">

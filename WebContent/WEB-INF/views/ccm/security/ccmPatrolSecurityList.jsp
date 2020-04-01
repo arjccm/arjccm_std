@@ -19,9 +19,9 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li ><a style="width: 140px;text-align:center" href="${ctx}/security/ccmPatrolSecurity/summaryGraph">数据统计</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/security/ccmPatrolSecurity/list">警卫任务列表</a></li>
-		<shiro:hasPermission name="security:ccmPatrolSecurity:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/security/ccmPatrolSecurity/form">警卫任务添加</a></li></shiro:hasPermission>
+		<li ><a style="text-align:center" href="${ctx}/security/ccmPatrolSecurity/summaryGraph">数据统计</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/security/ccmPatrolSecurity/list">警卫任务列表</a></li>
+		<shiro:hasPermission name="security:ccmPatrolSecurity:edit"><li><a style="text-align:center" href="${ctx}/security/ccmPatrolSecurity/form">警卫任务添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPatrolSecurity" action="${ctx}/security/ccmPatrolSecurity/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

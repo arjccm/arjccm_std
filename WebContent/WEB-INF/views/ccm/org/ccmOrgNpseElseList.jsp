@@ -63,7 +63,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">组织机构</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/org/ccmOrgNpseElse/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/org/ccmOrgNpseElse/">数据列表</a></li>
 		<%-- <shiro:hasPermission name="org:ccmOrgNpseElse:edit"><li><a href="${ctx}/org/ccmOrgNpseElse/form">其他重点添加</a></li></shiro:hasPermission> --%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmOrgNpse" action="${ctx}/org/ccmOrgNpseElse/" method="post" class="breadcrumb form-search clearfix">

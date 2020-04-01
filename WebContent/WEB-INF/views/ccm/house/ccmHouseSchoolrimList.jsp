@@ -63,8 +63,8 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">校园安全</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/house/ccmHouseSchoolrim/list">学校列表</a></li>
-		<shiro:hasPermission name="house:ccmHouseSchoolrim:edit"><li style="width: 112px"><a href="${ctx}/house/ccmHouseSchoolrim/form" style="text-align: center">学校添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/house/ccmHouseSchoolrim/list">学校列表</a></li>
+		<shiro:hasPermission name="house:ccmHouseSchoolrim:edit"><li><a href="${ctx}/house/ccmHouseSchoolrim/form" style="text-align: center">学校添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmHouseSchoolrim" action="${ctx}/house/ccmHouseSchoolrim/list" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

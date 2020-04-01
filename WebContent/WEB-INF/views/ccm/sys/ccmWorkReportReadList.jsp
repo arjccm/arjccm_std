@@ -38,9 +38,9 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">个人办公</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/sys/ccmWorkReport/self">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/sys/ccmWorkReport/self">数据列表</a></li>
 		<shiro:hasPermission name="sys:ccmWorkReportRead:edit">
-			<li style="width: 112px"><a style="text-align: center" href="${ctx}/sys/ccmWorkReport/form">数据添加</a></li>
+			<li><a style="text-align: center" href="${ctx}/sys/ccmWorkReport/form">数据添加</a></li>
 		</shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmWorkReport"

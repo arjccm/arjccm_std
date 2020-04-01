@@ -40,9 +40,9 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/act/process/">流程管理</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/act/process/deploy/">部署流程</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/act/process/running/">运行中的流程</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/act/process/">流程管理</a></li>
+		<li><a style="text-align:center" href="${ctx}/act/process/deploy/">部署流程</a></li>
+		<li><a style="text-align:center" href="${ctx}/act/process/running/">运行中的流程</a></li>
 	</ul>
 	<form id="searchForm" action="${ctx}/act/process/" method="post" class="breadcrumb form-search">
 		<select id="category" name="category" class="input-medium">

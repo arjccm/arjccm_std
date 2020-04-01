@@ -158,7 +158,7 @@
 <div class="back-list clearfix">
 <div class="context" content="${ctx}"></div>
 <ul class="nav nav-tabs">
-    <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/event/ccmEventIncident/list">事件管理列表</a></li>
+    <li class="active"><a class="nav-head" href="${ctx}/event/ccmEventIncident/list">事件管理列表</a></li>
 </ul>
 <form:form id="searchForm" modelAttribute="ccmEventIncident"
            action="${ctx}/event/ccmEventIncident/list" method="post"

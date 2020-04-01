@@ -147,8 +147,8 @@
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPermanent">数据列表</a></li>
-    <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmPermanent/form?id=${ccmPeople.id}">数据<shiro:hasPermission
+    <li><a style="text-align:center" href="${ctx}/pop/ccmPermanent">数据列表</a></li>
+    <li class="active"><a class="nav-head" href="${ctx}/pop/ccmPermanent/form?id=${ccmPeople.id}">数据<shiro:hasPermission
             name="pop:ccmPermanent:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission
             name="pop:ccmPermanent:edit">查看</shiro:lacksPermission></a></li>
     <%-- <c:if test="${not empty ccmPeople.id}">

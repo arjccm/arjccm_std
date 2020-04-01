@@ -32,8 +32,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/view/vCcmTeam/list?office.id=${office.id}&office.parentIds=,${office.id},">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/view/vCcmTeam/form?id=${vCcmTeam.id}">数据<shiro:hasPermission name="view:vCcmTeam:edit">${not empty vCcmTeam.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="view:vCcmTeam:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/view/vCcmTeam/list?office.id=${office.id}&office.parentIds=,${office.id},">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/view/vCcmTeam/form?id=${vCcmTeam.id}">数据<shiro:hasPermission name="view:vCcmTeam:edit">${not empty vCcmTeam.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="view:vCcmTeam:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="vCcmTeam" action="${ctx}/org/ccmOrgTeam/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

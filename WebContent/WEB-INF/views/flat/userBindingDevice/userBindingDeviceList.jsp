@@ -24,7 +24,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">设备管理</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/userBindingDevice/userBindingDevice/finduserBindingDeviceList">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/userBindingDevice/userBindingDevice/finduserBindingDeviceList">数据列表</a></li>
 		<li style="display:none;"><a href="${ctx}/userBindingDevice/userBindingDevice/form">绑定</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="userBindingDevice" action="${ctx}/userBindingDevice/userBindingDevice/finduserBindingDeviceList" method="post" class="breadcrumb form-search clearfix">

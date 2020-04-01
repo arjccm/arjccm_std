@@ -3722,9 +3722,9 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 
 .nav-tabs>li>a, .nav-pills>li>a {
-	padding-right: 12px;
-	padding-left: 12px;
-	margin-right: 2px;
+	padding-right: 28px;
+	padding-left: 28px;
+	/*margin-right: 2px;*/
 	line-height: 14px
 }
 
@@ -3736,7 +3736,15 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 
 .nav-tabs>li {
-	margin-bottom: -1px
+	margin-bottom: -1px;
+	border-top: 1px solid #336d90;
+	border-right: 1px solid #336d90;
+}
+.nav-tabs>li.fstCli{
+	border-left: 1px solid #336d90;
+}
+.nav-tabs>li:first-child{
+	border-left: 1px solid #336d90;
 }
 
 .nav-tabs>li>a {

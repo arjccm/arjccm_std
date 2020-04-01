@@ -34,8 +34,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/act/model/">模型管理</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/act/model/create">新建模型</a></li>
+		<li><a style="text-align:center" href="${ctx}/act/model/">模型管理</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/act/model/create">新建模型</a></li>
 	</ul>
 	<sys:message content="${message}"/>
 	<form id="inputForm" action="${ctx}/act/model/create" target="_blank" method="post" class="form-horizontal">

@@ -77,8 +77,8 @@
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
-		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatDangerous">数据统计</a></li></shiro:hasPermission>
-		<li class="active" style="width: 140px"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHouseDangerous" onclick="HasSecret(this)">数据列表</a></li>
+		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatDangerous">数据统计</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHouseDangerous" onclick="HasSecret(this)">数据列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmHouseDangerous" action="${ctx}/house/ccmHouseDangerous/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

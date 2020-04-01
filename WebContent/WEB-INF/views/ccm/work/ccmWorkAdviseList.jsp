@@ -23,8 +23,8 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">通知公告</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/work/ccmWorkAdvise/">数据列表</a></li>
-		<shiro:hasPermission name="work:ccmWorkAdvise:edit"><li style="width: 112px"><a style="text-align: center" href="${ctx}/work/ccmWorkAdvise/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/work/ccmWorkAdvise/">数据列表</a></li>
+		<shiro:hasPermission name="work:ccmWorkAdvise:edit"><li><a style="text-align: center" href="${ctx}/work/ccmWorkAdvise/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmWorkAdvise" action="${ctx}/work/ccmWorkAdvise/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

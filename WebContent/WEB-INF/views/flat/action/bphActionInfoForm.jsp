@@ -135,8 +135,8 @@ textarea.input-xxlarge {
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" id="bphActionInfoList" href="${ctx}/action/bphActionInfo/"><span>执行动作配置列表</span></a></li>
-		<li class="active" style="width: 140px"><a class="nav-head"
+		<li><a style="text-align:center" id="bphActionInfoList" href="${ctx}/action/bphActionInfo/"><span>执行动作配置列表</span></a></li>
+		<li class="active"><a class="nav-head"
 			href="${ctx}/action/bphActionInfo/form?id=${bphActionInfo.id}">执行动作配置<shiro:hasPermission
 					name="action:bphActionInfo:edit">${not empty bphActionInfo.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="action:bphActionInfo:edit">查看</shiro:lacksPermission></a></li>

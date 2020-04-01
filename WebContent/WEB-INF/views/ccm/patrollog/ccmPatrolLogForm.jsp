@@ -38,8 +38,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/patrollog/ccmPatrolLog/">巡检日志列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/patrollog/ccmPatrolLog/form?id=${ccmPatrolLog.id}">巡检日志<shiro:hasPermission name="patrollog:ccmPatrolLog:edit">${not empty ccmPatrolLog.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrollog:ccmPatrolLog:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/patrollog/ccmPatrolLog/">巡检日志列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/patrollog/ccmPatrolLog/form?id=${ccmPatrolLog.id}">巡检日志<shiro:hasPermission name="patrollog:ccmPatrolLog:edit">${not empty ccmPatrolLog.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrollog:ccmPatrolLog:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPatrolLog" action="${ctx}/patrollog/ccmPatrolLog/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

@@ -78,8 +78,8 @@
 	<ul class="nav nav-tabs">
 		<%-- <li class="active"><a href="${ctx}/house/ccmHouseDispute/">闹事行凶报复嫌疑列表</a></li>
 		<shiro:hasPermission name="house:ccmHouseDispute:edit"><li><a href="${ctx}/house/ccmHouseDispute/form">闹事行凶报复嫌疑添加</a></li></shiro:hasPermission> --%>
-			<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatDispute">数据统计</a></li></shiro:hasPermission>
-		<li class="active" style="width: 140px"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHouseDispute" onclick="HasSecret(this)">数据列表</a></li>
+			<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatDispute">数据统计</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHouseDispute" onclick="HasSecret(this)">数据列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmHouseDispute" action="${ctx}/house/ccmHouseDispute/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

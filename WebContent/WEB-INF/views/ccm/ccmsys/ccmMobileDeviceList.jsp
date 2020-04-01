@@ -23,8 +23,8 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">设备管理</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/ccmsys/ccmMobileDevice/">数据列表</a></li>
-		<shiro:hasPermission name="ccmsys:ccmMobileDevice:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/ccmsys/ccmMobileDevice/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/ccmsys/ccmMobileDevice/">数据列表</a></li>
+		<shiro:hasPermission name="ccmsys:ccmMobileDevice:edit"><li><a style="text-align:center" href="${ctx}/ccmsys/ccmMobileDevice/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmMobileDevice" action="${ctx}/ccmsys/ccmMobileDevice/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

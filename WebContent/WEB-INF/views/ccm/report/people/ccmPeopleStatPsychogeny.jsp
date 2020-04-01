@@ -21,11 +21,11 @@
     <input type="hidden" id="hasPermission" value="${fns:getUser().hasPermission}"/>
     <div class="context" content="${ctx}"></div>
     <ul class="nav nav-tabs">
-        <li class="active" style="width: 140px"><a class="nav-head"
+        <li class="active"><a class="nav-head"
                                                    href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPsychogeny">数据统计</a>
         </li>
         <shiro:hasPermission name="house:ccmHousePsychogeny:view">
-            <li><a style="width: 140px;text-align:center" href="javascript:;"
+            <li><a style="text-align:center" href="javascript:;"
                    data-href="${ctx}/house/ccmHousePsychogeny" onclick="HasSecret(this)">数据列表</a></li>
         </shiro:hasPermission>
     </ul>

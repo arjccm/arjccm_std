@@ -34,9 +34,9 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/act/process/">流程管理</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/act/process/deploy/">部署流程</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/act/process/running/">运行中的流程</a></li>
+		<li><a style="text-align:center" href="${ctx}/act/process/">流程管理</a></li>
+		<li><a style="text-align:center" href="${ctx}/act/process/deploy/">部署流程</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/act/process/running/">运行中的流程</a></li>
 	</ul>
 	<form id="searchForm" action="${ctx}/act/process/running/" method="post" class="breadcrumb form-search">
 		<label>流程实例ID：</label><input type="text" id="procInsId" name="procInsId" value="${procInsId}" class="input-medium"/>

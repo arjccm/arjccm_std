@@ -77,7 +77,7 @@
 	</div>
 	
 	<ul class="nav nav-tabs">
-		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatRectification">数据统计</a></li></shiro:hasPermission>
+		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatRectification">数据统计</a></li></shiro:hasPermission>
 		<li class="active" style="width: 140px;"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHouseRectification" onclick="HasSecret(this)">数据列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmHouseRectification" action="${ctx}/house/ccmHouseRectification/" method="post" class="breadcrumb form-search clearfix">

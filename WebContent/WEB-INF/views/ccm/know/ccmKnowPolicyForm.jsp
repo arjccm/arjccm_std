@@ -33,8 +33,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/know/ccmKnowPolicy/">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/know/ccmKnowPolicy/form?id=${ccmKnowPolicy.id}">数据<shiro:hasPermission name="know:ccmKnowPolicy:edit">${not empty ccmKnowPolicy.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="know:ccmKnowPolicy:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/know/ccmKnowPolicy/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/know/ccmKnowPolicy/form?id=${ccmKnowPolicy.id}">数据<shiro:hasPermission name="know:ccmKnowPolicy:edit">${not empty ccmKnowPolicy.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="know:ccmKnowPolicy:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmKnowPolicy" action="${ctx}/know/ccmKnowPolicy/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

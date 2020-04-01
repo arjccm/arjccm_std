@@ -19,8 +19,8 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a  class="nav-head" href="${ctx}/religion/ccmReligionActivity/">数据列表</a></li>
-		<shiro:hasPermission name="religion:ccmReligionActivity:edit"><li  style="width: 112px"><a style="width: 140px;text-align:center" href="${ctx}/religion/ccmReligionActivity/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active"><a  class="nav-head" href="${ctx}/religion/ccmReligionActivity/">数据列表</a></li>
+		<shiro:hasPermission name="religion:ccmReligionActivity:edit"><li  style="width: 112px"><a style="text-align:center" href="${ctx}/religion/ccmReligionActivity/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmReligionActivity" action="${ctx}/religion/ccmReligionActivity/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

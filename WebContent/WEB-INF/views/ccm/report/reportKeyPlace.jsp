@@ -32,7 +32,7 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmReportOthers/keyPlace">重点场所数据分析</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/report/ccmReportOthers/keyPlace">重点场所数据分析</a></li>
 	</ul>
 	
 	<div class="context" content="${ctx}"></div>

@@ -30,7 +30,7 @@ $(document).ready(function() {
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/service/ccmCommunityWork/">数据列表</a></li>
+		<li><a style="text-align:center" href="${ctx}/service/ccmCommunityWork/">数据列表</a></li>
 		<li class="active"  style="width: 140px"><a class="nav-head"
 			href="${ctx}/service/ccmCommunityWork/form?id=${ccmCommunityWork.id}">数据<shiro:hasPermission
 					name="service:ccmCommunityWork:edit">${not empty ccmCommunityWork.id?'修改':'添加'}</shiro:hasPermission>

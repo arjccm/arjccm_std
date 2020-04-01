@@ -31,8 +31,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/work/ccmWorkRelation/">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/work/ccmWorkRelation/form?id=${ccmWorkRelation.id}">数据<shiro:hasPermission name="work:ccmWorkRelation:edit">${not empty ccmWorkRelation.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="work:ccmWorkRelation:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/work/ccmWorkRelation/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/work/ccmWorkRelation/form?id=${ccmWorkRelation.id}">数据<shiro:hasPermission name="work:ccmWorkRelation:edit">${not empty ccmWorkRelation.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="work:ccmWorkRelation:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmWorkRelation" action="${ctx}/work/ccmWorkRelation/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

@@ -151,7 +151,7 @@
 <body>
 
 <ul class="nav nav-tabs" >
-    <li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventIncident/archive">事件归档列表</a></li>
+    <li><a style="text-align:center" href="${ctx}/event/ccmEventIncident/archive">事件归档列表</a></li>
     <li class="active" style="width: 140px" ><a class="nav-head" href="${ctx}/event/ccmEventIncident/archiveForm?id=${ccmEventIncident.id}">事件详情及处置</a></li>
 </ul>
 

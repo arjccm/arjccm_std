@@ -63,7 +63,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">社会治安</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/place/ccmBasePlace/emphasisList">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/place/ccmBasePlace/emphasisList">数据列表</a></li>
 <%-- 		<shiro:hasPermission name="place:ccmBasePlace:edit"> --%>
 <%-- 			<li><a href="${ctx}/place/ccmBasePlace/form">场所信息添加</a></li> --%>
 <%-- 		</shiro:hasPermission> --%>

@@ -23,8 +23,8 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">民政事务</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/know/ccmKnowGovernmentAffairs/">数据列表</a></li>
-		<shiro:hasPermission name="know:ccmKnowGovernmentAffairs:edit"><li style="width: 112px"><a style="text-align: center" href="${ctx}/know/ccmKnowGovernmentAffairs/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/know/ccmKnowGovernmentAffairs/">数据列表</a></li>
+		<shiro:hasPermission name="know:ccmKnowGovernmentAffairs:edit"><li><a style="text-align: center" href="${ctx}/know/ccmKnowGovernmentAffairs/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmKnowGovernmentAffairs" action="${ctx}/know/ccmKnowGovernmentAffairs/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
