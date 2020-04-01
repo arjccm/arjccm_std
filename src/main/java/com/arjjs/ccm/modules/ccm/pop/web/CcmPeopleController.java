@@ -558,8 +558,7 @@ public class CcmPeopleController extends BaseController {
 				ccmPeople.setBuildId(ccmPopTenant.getBuildingId());
 			}
 		}
-		ccmPeopleService.save(ccmPeople);
-		PrintWriter out = null;
+		ccmPeopleService.save(ccmPeople);		PrintWriter out = null;
 		try {
 			out = response.getWriter();
 		} catch (IOException e) {
@@ -2258,8 +2257,8 @@ public class CcmPeopleController extends BaseController {
 	// 根据身份证号码查询该人员是否已存在
 	@ResponseBody
 	@RequestMapping(value = "queryByPersonalIdent")
-	public List<CcmPeople> queryByPersonalIdent(String pident) {
-		return ccmPeopleService.queryByPersonalIdent(pident);
+	public List<CcmPeople> queryByPersonalIdent(String pident,String id) {
+		return ccmPeopleService.queryByPersonalIdent(pident,id);
 	}
 
     /*根据标记类型修改重点人员*/
