@@ -150,13 +150,13 @@
 					<form:options items="${fns:getDictList('sys_ccm_people')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</li>
-			<li class="first-line"><label style="width: 119px">姓名：</label>
+			<li class="first-line"><label>姓名：</label>
 				<form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"  cssStyle=""/>
 			</li>
-			<li class="first-line"><label style="width: 118px">公民身份号码：</label>
+			<li class="first-line"><label>公民身份号码：</label>
 				<form:input path="ident" htmlEscape="false" maxlength="18" class="input-medium"/>
 			</li>
-			<li class="first-line"><label style="width: 133px">是否常住：</label>
+			<li class="first-line"><label>是否常住：</label>
 				<form:select id="isPermanent" path="isPermanent" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
@@ -172,31 +172,31 @@
 		<ul class="ul-form pull-left">
 
 			<li class="selectHidden hide"><label >性别：</label>
-				<form:select path="sex" class="input-small ">
+				<form:select path="sex" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('sex')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-            <li class="selectHidden hide"><label style="width: 175px">是否社区矫正：</label>
-                <form:select path="isRectification" class="input-small ">
+            <li class="selectHidden hide"><label>是否社区矫正：</label>
+                <form:select path="isRectification" class="input-medium">
                     <form:option value="" label="全部"/>
                     <form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
                 </form:select>
             </li>
-			<li class="selectHidden hide"><label style="width: 175px">是否安置帮教：</label>
-				<form:select path="isRelease" class="input-small ">
+			<li class="selectHidden hide"><label>是否安置帮教：</label>
+				<form:select path="isRelease" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
 
-			<li class="selectHidden hide"><label style="width: 190px;">肇事肇祸等精神障碍：</label>
-				<form:select path="isPsychogeny" class="input-small ">
+			<li class="selectHidden hide"><label>肇事肇祸等精神障碍：</label>
+				<form:select path="isPsychogeny" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-			<li class="selectHidden hide"><label style="width: 130px">所属网格：</label>
+			<li class="selectHidden hide"><label>所属网格：</label>
 					<sys:treeselect id="areaGridId" name="areaGridId.id" value="${ccmPeople.areaGridId.id}"
 									labelName="areaGridId.name" labelValue="${ccmPeople.areaGridId.name}"
 									title="网格" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-medium" allowClear="true" notAllowSelectParent="true"/>
@@ -204,32 +204,32 @@
 
 
           <li class="selectHidden hide"><label>是否吸毒：</label>
-				<form:select path="isDrugs" class="input-small ">
+				<form:select path="isDrugs" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
 
-			<li class="selectHidden hide"><label style="width: 175px;" >是否艾滋病危险：</label>
-				<form:select path="isAids" class="input-small ">
+			<li class="selectHidden hide"><label>是否艾滋病危险：</label>
+				<form:select path="isAids" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
 			
-			<li class="selectHidden hide"><label style="width: 175px">是否留守：</label>
-				<form:select path="isBehind" class="input-small ">
+			<li class="selectHidden hide"><label>是否留守：</label>
+				<form:select path="isBehind" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-			<li class="selectHidden hide"><label style="width: 190px">是否重点青少年：</label>
-				<form:select path="isKym" class="input-small ">
+			<li class="selectHidden hide"><label>是否重点青少年：</label>
+				<form:select path="isKym" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-			<li class="selectHidden hide"><label style="width: 130px" >所属社区：</label>
+			<li class="selectHidden hide"><label>所属社区：</label>
 					<sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}"
 									labelName="areaComId.name" 	labelValue="${ccmPeople.areaComId.name}"
 									title="社区" url="/tree/ccmTree/treeDataArea?type=6" cssClass="input-medium" allowClear="true" notAllowSelectParent="true"/>
@@ -247,7 +247,7 @@
 
 
 <%--                <li class="clearfix selectHidden hide"></li>--%>
-			<li class="selectHidden hide"><label style="width: 117px">现住门（楼）详址：</label>
+			<li class="selectHidden hide"><label>现住门（楼）详址：</label>
 				<form:input path="residencedetail" htmlEscape="false" maxlength="50" class="input-medium"  />
 			</li>
 
