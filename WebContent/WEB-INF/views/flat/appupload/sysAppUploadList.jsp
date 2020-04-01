@@ -81,8 +81,8 @@
 					${sysAppUpload.remarks}
 				</td>
 				<shiro:hasPermission name="appupload:sysAppUpload:edit"><td style="height: 50px">
-					<a class="btnList" href="${ctx}/appupload/sysAppUpload/form?id=${sysAppUpload.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
-					<a class="btnList" href="${ctx}/appupload/sysAppUpload/delete?id=${sysAppUpload.id}" onclick="return confirmx('确认要删除该App 上传记录表吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+					<shiro:hasPermission name="appupload:sysAppUpload:edit"><a class="btnList" href="${ctx}/appupload/sysAppUpload/form?id=${sysAppUpload.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a></shiro:hasPermission>
+					<shiro:hasPermission name="appupload:sysAppUpload:edit"><a class="btnList" href="${ctx}/appupload/sysAppUpload/delete?id=${sysAppUpload.id}" onclick="return confirmx('确认要删除该App 上传记录表吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a></shiro:hasPermission>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

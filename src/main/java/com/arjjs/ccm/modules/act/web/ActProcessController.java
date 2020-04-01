@@ -45,7 +45,7 @@ public class ActProcessController extends BaseController {
 	/**
 	 * 流程定义列表
 	 */
-	@RequiresPermissions("act:process:edit")
+	@RequiresPermissions("act:process:view")
 	@RequestMapping(value = {"list", ""})
 	public String processList(String category, HttpServletRequest request, HttpServletResponse response, Model model) {
 		/*
@@ -60,7 +60,7 @@ public class ActProcessController extends BaseController {
 	/**
 	 * 运行中的实例列表
 	 */
-	@RequiresPermissions("act:process:edit")
+	@RequiresPermissions("act:process:view")
 	@RequestMapping(value = "running")
 	public String runningList(String procInsId, String procDefKey, HttpServletRequest request, HttpServletResponse response, Model model) {
 	    Page<ProcessInstance> page = actProcessService.runningList(new Page<ProcessInstance>(request, response), procInsId, procDefKey);

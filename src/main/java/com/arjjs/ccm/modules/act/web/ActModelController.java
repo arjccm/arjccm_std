@@ -40,7 +40,7 @@ public class ActModelController extends BaseController {
     /**
      * 流程模型列表
      */
-    @RequiresPermissions("act:model:edit")
+    @RequiresPermissions("act:model:view")
     @RequestMapping(value = {"list", ""})
     public String modelList(String category, HttpServletRequest request, HttpServletResponse response, Model model) {
 
