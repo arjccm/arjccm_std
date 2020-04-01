@@ -102,13 +102,13 @@
 		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
+				<th>图片</th>
 				<th>场所名称</th>
 				<th>重点场所类型</th>
 				<th>负责人姓名</th>
 				<th>负责人联系电话</th>
 				<th>关联组织机构</th>
 				<th>地址</th>
-				<th>图片</th>
 				<shiro:hasPermission name="place:ccmBasePlace:edit">
 					<th>操作</th>
 				</shiro:hasPermission>
@@ -117,6 +117,8 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="ccmBasePlace">
 				<tr>
+					<td width="200px"><img src="${ccmBasePlace.placePicture}"
+										   class="pic-size pimg"/></td>
 					<td style="height: 50px"><a onclick="parent.LayerDialog('${ctx}/place/ccmBasePlace/emphasisForm?id=${ccmBasePlace.id}', '编辑', '1200px', '900px')" >
 							${ccmBasePlace.placeName} </a></td>
 					<td style="height: 50px">${fns:getDictLabel(ccmBasePlace.placeType, 'place_types', '')}</td>
@@ -124,8 +126,7 @@
 					<td style="height: 50px">${ccmBasePlace.leaderContact}</td>
 					<td style="height: 50px">${fns:getDictLabel(ccmBasePlace.relevanceOrg, 'ccm_buss_cate', '')}</td>
 					<td style="height: 50px">${ccmBasePlace.address}</td>
-                    <td width="200px"><img src="${ccmBasePlace.placePicture}"
-                                           class="pic-size pimg"/></td>
+
 					<shiro:hasPermission name="place:ccmBasePlace:edit">
 						<td style="height: 50px">
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/place/ccmBasePlace/emphasisForm?id=${ccmBasePlace.id}', '编辑', '1200px', '650px')" ><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
