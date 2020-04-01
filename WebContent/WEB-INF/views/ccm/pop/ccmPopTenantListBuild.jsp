@@ -22,12 +22,12 @@
 	</div>
 	
 	<ul class="nav nav-tabs">		 
-		<li><a style="width: 140px;text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">楼栋列表</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/house/ccmHouseBuildmanage/form">楼栋添加</a></li>
+		<li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">楼栋列表</a></li>
+		<li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/form">楼栋添加</a></li>
 		
-        <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmPopTenant/listBuild?buildingId.id=${buildingId}&area.id=${buildingAreaId}">房屋列表</a></li>
+        <li class="active"><a class="nav-head" href="${ctx}/pop/ccmPopTenant/listBuild?buildingId.id=${buildingId}&area.id=${buildingAreaId}">房屋列表</a></li>
  		<shiro:hasPermission name="pop:ccmPopTenant:edit">
- 			<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPopTenant/formBuild?buildingIdId=${buildingId}&area.id=${buildingAreaId}">房屋新增</a></li>
+ 			<li><a style="text-align:center" href="${ctx}/pop/ccmPopTenant/formBuild?buildingIdId=${buildingId}&area.id=${buildingAreaId}">房屋新增</a></li>
  		</shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPopTenant" action="${ctx}/pop/ccmPopTenant/listBuild?buildingId.id=${buildingId}&area.id=${buildingAreaId}" method="post" class="breadcrumb form-search">

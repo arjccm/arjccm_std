@@ -24,8 +24,8 @@
 <div class="back-list clearfix">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/pop/ccmRoadAddress/">数据列表</a></li>
-		<shiro:hasPermission name="pop:ccmRoadAddress:edit"><li style="width: 112px"><a style="text-align: center" href="${ctx}/pop/ccmRoadAddress/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmRoadAddress/">数据列表</a></li>
+		<shiro:hasPermission name="pop:ccmRoadAddress:edit"><li><a style="text-align: center" href="${ctx}/pop/ccmRoadAddress/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmRoadAddress" action="${ctx}/pop/ccmRoadAddress/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

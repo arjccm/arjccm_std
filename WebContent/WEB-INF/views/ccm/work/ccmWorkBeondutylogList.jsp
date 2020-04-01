@@ -39,9 +39,9 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">值班管理</span>--%>
 <div class="back-list clearfix">
     <ul class="nav nav-tabs">
-        <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/work/ccmWorkBeondutylog/">数据列表</a></li>
+        <li class="active"><a class="nav-head" href="${ctx}/work/ccmWorkBeondutylog/">数据列表</a></li>
         <shiro:hasPermission name="work:ccmWorkBeondutylog:edit">
-            <li><a style="width: 140px;text-align:center" href="${ctx}/work/ccmWorkBeondutylog/form">数据添加</a></li>
+            <li><a style="text-align:center" href="${ctx}/work/ccmWorkBeondutylog/form">数据添加</a></li>
         </shiro:hasPermission>
     </ul>
     <form:form id="searchForm" modelAttribute="ccmWorkBeondutylog" action="${ctx}/work/ccmWorkBeondutylog/"

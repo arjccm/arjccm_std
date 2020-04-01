@@ -57,12 +57,12 @@
 <body>
 	<ul class="nav nav-tabs">
 		<c:if test="${type eq 'hire' }">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPopTenant/list/rent">数据列表</a></li>
+			<li><a style="text-align:center" href="${ctx}/pop/ccmPopTenant/list/rent">数据列表</a></li>
 		</c:if>
 		<c:if test="${type eq 'house' }">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPopTenant/list">数据列表</a></li>
+			<li><a style="text-align:center" href="${ctx}/pop/ccmPopTenant/list">数据列表</a></li>
 		</c:if>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmPopTenant/form?id=${ccmPopTenant.id}">数据<shiro:hasPermission name="pop:ccmPopTenant:edit">${not empty ccmPopTenant.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmPopTenant:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmPopTenant/form?id=${ccmPopTenant.id}">数据<shiro:hasPermission name="pop:ccmPopTenant:edit">${not empty ccmPopTenant.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmPopTenant:edit">查看</shiro:lacksPermission></a></li>
 <%-- 	<li><a
 		href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPopTenant.id}&relevance_table=ccm_pop_tenant">跟踪信息<shiro:hasPermission
 				name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission>

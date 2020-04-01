@@ -120,8 +120,8 @@
 </head>
 <body>
 	<%--<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmWork/list/40">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmWork/form/noSettle?id=${ccmPeople.id}">数据<shiro:hasPermission name="pop:ccmWork:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmWork:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/pop/ccmWork/list/40">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmWork/form/noSettle?id=${ccmPeople.id}">数据<shiro:hasPermission name="pop:ccmWork:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmWork:edit">查看</shiro:lacksPermission></a></li>
 		&lt;%&ndash; <c:if test="${not empty ccmPeople.id}">
 			<li><a href="${ctx}/log/ccmLogTail/formProPermanent?relevance_id=${ccmPeople.id}&relevance_table=ccm_people">跟踪信息<shiro:hasPermission name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a></li>
 		</c:if> &ndash;%&gt;

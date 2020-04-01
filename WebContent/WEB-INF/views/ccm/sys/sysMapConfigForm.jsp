@@ -34,7 +34,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/sys/sysConfig/listForm">地图信息配置</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/sys/sysConfig/listForm">地图信息配置</a></li>
 	</ul>
 	<!--<sys:message content="${message}"/>	-->
 	<!-- 系统应用级别 -->
