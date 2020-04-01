@@ -159,10 +159,12 @@
 
         <sys:message content="${message}"/>
         <div class="clearfix pull-right btn-box">
-            <a
-                    onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1', '添加', '1100px', '600px')"
-                    class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i></i> <span
-                    style="font-size: 12px">添加</span></a>
+            <shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
+                <a onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1', '添加', '1100px', '600px')"
+                        class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i></i> <span
+                        style="font-size: 12px">添加</span></a>
+            </shiro:hasPermission>
+
             <a href="javascript:;" id="btnSubmit"
                class="btn btn-primary" style="width: 49px;display:inline-block;float: right;"> <i></i> <span
                     style="font-size: 12px">查询</span>

@@ -176,7 +176,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <div class="pagination"  style="float: right; margin-top: 12px">${page}</div>
+    <div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </div>
 <style>
     a.btn {

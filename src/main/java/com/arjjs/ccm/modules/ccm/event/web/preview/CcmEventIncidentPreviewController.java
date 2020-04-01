@@ -171,7 +171,7 @@ public class CcmEventIncidentPreviewController extends BaseController {
 		return "ccm/event/preview/ccmEventIncidentPreviewForm";
 	}
 
-	@RequiresPermissions("preview:ccmEventIncidentPreview:edit")
+	@RequiresPermissions("preview:ccmEventIncidentPreview1:edit")
 	@RequestMapping(value = "save/{reportType}")
 	public void save(CcmEventIncidentPreview ccmEventIncidentPreview, HttpServletResponse response, Model model,
 			RedirectAttributes redirectAttributes, @PathVariable("reportType") String reportType) {

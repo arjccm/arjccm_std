@@ -1735,3 +1735,11 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 
 -- 开启事件
 set global event_scheduler = (1/ON)
+
+--修改大联动业务协同平台首页权限标识
+UPDATE sys_menu SET parent_id = '4d834769daac4011ac0fad2c41e74722', parent_ids = '0,1,4d834769daac4011ac0fad2c41e74722,', name = '首页', href = '/report/ccmIncidentBegin/police', target = '', icon = 'ai-home', sort = 30, is_show = '1', permission = 'report:ccmIncidentBegin:view', update_by = '1', update_date = '2020-04-01 15:15:45.571', remarks = ''
+ WHERE id = '976650ee9ff849efa5e01983c1694426';
+
+--删除大联动业务协同平台事件管理下多余显示
+UPDATE sys_menu SET del_flag = '1'
+ WHERE id = 'b495ad8186894783bf0b9d0a1aa5029b' OR parent_ids LIKE CONCAT('%,', 'b495ad8186894783bf0b9d0a1aa5029b', ',%');

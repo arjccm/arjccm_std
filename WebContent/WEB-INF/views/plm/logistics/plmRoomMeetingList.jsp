@@ -86,7 +86,9 @@
 					<th>座位数</th>
 					<th>更新时间</th>
 					<th style="display:none;">备注信息</th>
-					<shiro:hasPermission name="logistics:plmRoom:edit"><th>操作</th></shiro:hasPermission>
+                    <th>
+                        <shiro:hasPermission name="logistics:plmRoom:edit">操作</shiro:hasPermission>
+                    </th>
 				</tr>
 			</thead>
 			<tbody>

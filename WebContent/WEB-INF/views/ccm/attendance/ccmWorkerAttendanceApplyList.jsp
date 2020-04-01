@@ -93,6 +93,7 @@
 				<th>事由</th>
 				<th>申请状态</th>
 				<shiro:hasPermission name="attendanceapply:ccmWorkerAttendanceApply:edit"><th>操作</th></shiro:hasPermission>
+
 			</tr>
 		</thead>
 		<tbody>
