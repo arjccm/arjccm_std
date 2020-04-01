@@ -57,9 +57,9 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/line/ccmLineProtect/">护路护线列表</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/line/ccmLineProtect/form?id=${ccmEventIncident.otherId}">护路护线修改</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/event/ccmEventIncident/formIncident?otherId=${ccmEventIncident.otherId}&id=${ccmEventIncident.id}">案事件信息<shiro:hasPermission
+		<li><a style="text-align:center" href="${ctx}/line/ccmLineProtect/">护路护线列表</a></li>
+		<li><a style="text-align:center" href="${ctx}/line/ccmLineProtect/form?id=${ccmEventIncident.otherId}">护路护线修改</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/event/ccmEventIncident/formIncident?otherId=${ccmEventIncident.otherId}&id=${ccmEventIncident.id}">案事件信息<shiro:hasPermission
 					name="event:ccmEventIncident:edit">${not empty ccmEventIncident.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="event:ccmEventIncident:edit">查看</shiro:lacksPermission></a></li>
 		<!--  编辑处理权限  

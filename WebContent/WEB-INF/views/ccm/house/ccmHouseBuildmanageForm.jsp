@@ -101,9 +101,9 @@
 </head>
 <body>
     <ul class="nav nav-tabs hide1">
-        <li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmReportOthers/houseAndBuild">数据统计</a></li>
-        <li><a style="width: 140px;text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">数据列表</a></li>
-        <li class="active" style="width: 140px"><a class="nav-head"
+        <li><a style="text-align:center" href="${ctx}/report/ccmReportOthers/houseAndBuild">数据统计</a></li>
+        <li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">数据列表</a></li>
+        <li class="active"><a class="nav-head"
                                                    href="${ctx}/house/ccmHouseBuildmanage/form?id=${ccmHouseBuildmanage.id}">数据<shiro:hasPermission
                 name="house:ccmHouseBuildmanage:edit">${not empty ccmHouseBuildmanage.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission
                 name="house:ccmHouseBuildmanage:edit">查看</shiro:lacksPermission></a></li>

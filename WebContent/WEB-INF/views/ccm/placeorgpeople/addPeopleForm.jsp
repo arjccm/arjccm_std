@@ -370,7 +370,7 @@ li .mark-icon:HOVER {
 <body>
 	<%--<div class="back"></div>
 	<ul class="nav nav-tabs hide1">
-		<li class="active" style="width: 140px">数据<shiro:hasPermission
+		<li class="active">数据<shiro:hasPermission
 					name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></li>
 		&lt;%&ndash; <c:if test="${not empty ccmPeople.id}">

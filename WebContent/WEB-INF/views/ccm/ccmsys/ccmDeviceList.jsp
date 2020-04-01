@@ -51,8 +51,8 @@
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/ccmsys/ccmDevice/">数据列表</a></li>
-		<shiro:hasPermission name="ccmsys:ccmDevice:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/ccmsys/ccmDevice/form">设备添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/ccmsys/ccmDevice/">数据列表</a></li>
+		<shiro:hasPermission name="ccmsys:ccmDevice:edit"><li><a style="text-align:center" href="${ctx}/ccmsys/ccmDevice/form">设备添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmDevice" action="${ctx}/ccmsys/ccmDevice/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

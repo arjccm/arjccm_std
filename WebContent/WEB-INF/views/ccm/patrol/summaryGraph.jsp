@@ -32,9 +32,9 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/patrol/ccmPatrolMissions/summaryGraph">统计数据</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/patrol/ccmPatrolMissions/">数据列表</a></li>
-		<li ><a style="width: 140px;text-align:center" href="${ctx}/patrol/ccmPatrolMissions/form?id=${ccmPatrolMissions.id}">巡逻任务<shiro:hasPermission name="patrol:ccmPatrolMissions:edit">${not empty ccmPatrolMissions.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrol:ccmPatrolMissions:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/patrol/ccmPatrolMissions/summaryGraph">统计数据</a></li>
+		<li><a style="text-align:center" href="${ctx}/patrol/ccmPatrolMissions/">数据列表</a></li>
+		<li ><a style="text-align:center" href="${ctx}/patrol/ccmPatrolMissions/form?id=${ccmPatrolMissions.id}">巡逻任务<shiro:hasPermission name="patrol:ccmPatrolMissions:edit">${not empty ccmPatrolMissions.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrol:ccmPatrolMissions:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	
 	<sys:message content="${message}"/>

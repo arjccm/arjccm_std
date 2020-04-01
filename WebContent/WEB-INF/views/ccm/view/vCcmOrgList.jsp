@@ -44,7 +44,7 @@
 <body>
 <div class="back-list clearfix">
     <ul class="nav nav-tabs">
-        <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/view/vCcmOrg/list">数据列表</a></li>
+        <li class="active"><a class="nav-head" href="${ctx}/view/vCcmOrg/list">数据列表</a></li>
         <shiro:hasPermission name="view:vCcmOrg:edit"></shiro:hasPermission>
     </ul>
     <!--

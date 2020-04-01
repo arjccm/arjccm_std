@@ -34,8 +34,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/broadcast/ccmDeviceBroadcast/">应急广播列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/broadcast/ccmDeviceBroadcast/form?id=${ccmDeviceBroadcast.id}">应急广播<shiro:hasPermission name="broadcast:ccmDeviceBroadcast:edit">${not empty ccmDeviceBroadcast.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="broadcast:ccmDeviceBroadcast:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/broadcast/ccmDeviceBroadcast/">应急广播列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/broadcast/ccmDeviceBroadcast/form?id=${ccmDeviceBroadcast.id}">应急广播<shiro:hasPermission name="broadcast:ccmDeviceBroadcast:edit">${not empty ccmDeviceBroadcast.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="broadcast:ccmDeviceBroadcast:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmDeviceBroadcast" action="${ctx}/broadcast/ccmDeviceBroadcast/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

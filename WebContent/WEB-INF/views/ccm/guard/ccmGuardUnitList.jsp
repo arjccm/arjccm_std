@@ -22,7 +22,7 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/guard/ccmGuardUnit/securityList">警卫任务</a></li>
+		<li><a style="text-align:center" href="${ctx}/guard/ccmGuardUnit/securityList">警卫任务</a></li>
 		<li class="active"  style="width: 140px"><a class="nav-head" href="${ctx}/guard/ccmGuardUnit/">警卫单位列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmGuardUnit" action="${ctx}/guard/ccmGuardUnit/" method="post" class="breadcrumb form-search">

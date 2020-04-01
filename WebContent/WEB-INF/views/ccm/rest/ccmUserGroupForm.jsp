@@ -39,8 +39,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/rest/ccmUserGroup/">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/rest/ccmUserGroup/form?id=${ccmUserGroup.id}">数据<shiro:hasPermission name="rest:ccmUserGroup:edit">${not empty ccmUserGroup.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="rest:ccmUserGroup:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/rest/ccmUserGroup/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/rest/ccmUserGroup/form?id=${ccmUserGroup.id}">数据<shiro:hasPermission name="rest:ccmUserGroup:edit">${not empty ccmUserGroup.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="rest:ccmUserGroup:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmUserGroup" action="${ctx}/rest/ccmUserGroup/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

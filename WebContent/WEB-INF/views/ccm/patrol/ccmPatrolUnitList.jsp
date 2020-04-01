@@ -24,8 +24,8 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/patrol/ccmPatrolMissions/arrangement">巡逻任务安排</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/patrol/ccmPatrolUnit/">巡逻单位任务列表</a></li>
+		<li><a style="text-align:center" href="${ctx}/patrol/ccmPatrolMissions/arrangement">巡逻任务安排</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/patrol/ccmPatrolUnit/">巡逻单位任务列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPatrolUnit" action="${ctx}/patrol/ccmPatrolUnit/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

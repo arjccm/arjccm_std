@@ -23,8 +23,8 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">巡检考评</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/patrollog/ccmPatrolCheck/">巡检考评列表</a></li>
-		<shiro:hasPermission name="patrollog:ccmPatrolCheck:edit"><li style="display:none;"><a style="width: 140px;text-align:center" href="${ctx}/patrollog/ccmPatrolCheck/form">巡检考评添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/patrollog/ccmPatrolCheck/">巡检考评列表</a></li>
+		<shiro:hasPermission name="patrollog:ccmPatrolCheck:edit"><li style="display:none;"><a style="text-align:center" href="${ctx}/patrollog/ccmPatrolCheck/form">巡检考评添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPatrolCheck" action="${ctx}/patrollog/ccmPatrolCheck/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
