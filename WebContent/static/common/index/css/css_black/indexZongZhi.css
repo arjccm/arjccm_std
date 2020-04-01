@@ -120,6 +120,10 @@ margin-top:12px;
 	float: right;
 	border-color: transparent;
 	background-color: transparent;
+	width: auto !important;
+}
+#PeopleStatistics li{
+	border: none !important;
 }
 #PeopleStatistics a{
 	background-color: transparent;
