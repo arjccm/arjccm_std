@@ -53,32 +53,6 @@
 				</form:select>
 			</li>
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li> -->
-    <ul class="nav nav-tabs">
-        <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/scheme/kpiScheme/treeList">方案KPI管理</a>
-        </li>
-    </ul>
-    <form:form id="searchForm" modelAttribute="kpiScheme" action="${ctx}/scheme/kpiScheme/treeList" method="post"
-               class="breadcrumb form-search clearfix">
-    <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
-    <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-    <ul class="ul-form pull-left">
-        <li class="first-line"><label>方案名称：</label>
-            <form:input path="name" htmlEscape="false" maxlength="64" class="input-medium"/>
-        </li>
-        <li class="first-line"><label>所属部门：</label>
-            <sys:treeselect id="office" name="office.id" value="${kpiScheme.office.id}" labelName="office.name"
-                            labelValue="${kpiScheme.office.name}"
-                            title="部门" url="/sys/office/treeData?type=2" cssClass="input-small" allowClear="true"
-                            notAllowSelectParent="true"/>
-        </li>
-        <li class="first-line"><label>考核人员类别：</label>
-            <form:select path="userType" class="input-medium">
-                <form:option value="" label="全部"/>
-                <form:options items="${fns:getDictList('sys_user_type')}" itemLabel="label" itemValue="value"
-                              htmlEscape="false"/>
-            </form:select>
-        </li>
-        <!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li> -->
 
 
         <li class="first-line"><label>开始时间：</label>
