@@ -114,15 +114,15 @@
 					<%--<select class="city" disabled="disabled" name="domicile"></select>--%>
 				<%--</div>--%>
 			</li>
-			<li class="first-line" style="margin-top: 10px"><label>采取何种措施：</label>
-				<form:select path="takeSteps" cssStyle="width: 175px">
+			<li class="first-line"><label>采取何种措施：</label>
+				<form:select path="takeSteps" class="input-medium">
 						<form:option value="" label="" />
 						<form:options items="${fns:getDictList('sys_ccm_people_takeSteps')}"
 							itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select>
 			</li>
-				<li class="first-line" style="margin-top: 10px"><label>身体状况：</label>
-					<form:select path="health" cssStyle="width: 175px">
+				<li class="first-line"><label>身体状况：</label>
+					<form:select path="health" class="input-medium">
 						<form:option value="" label="" />
 						<form:options items="${fns:getDictList('sys_ccm_people_health')}"
 									  itemLabel="label" itemValue="value" htmlEscape="false" />
