@@ -3763,7 +3763,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 
 .nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus
 	{
-	color: #fff;
+	color: #fff !important;
 	cursor: default;
 	background-color:#007ca5;
 	border: 1px solid #1684c2;
