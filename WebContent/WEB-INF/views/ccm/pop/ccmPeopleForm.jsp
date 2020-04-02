@@ -441,8 +441,8 @@
     <li><a style="text-align:center" href="${ctx}/pop/ccmPeople/">数据列表</a></li>
     <li class="active"><a class="nav-head"
                           href="${ctx}/pop/ccmPeople/form?id=${ccmPeople.id}">数据<shiro:hasPermission
-            name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
-        <shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></a></li>
+            name="pop:ccmOlder:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
+        <shiro:lacksPermission name="pop:ccmOlder:edit">查看</shiro:lacksPermission></a></li>
     <%-- <c:if test="${not empty ccmPeople.id}">
         <li><a href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPeople.id}&relevance_table=ccm_people">跟踪信息<shiro:hasPermission name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a></li>
     </c:if> --%>
