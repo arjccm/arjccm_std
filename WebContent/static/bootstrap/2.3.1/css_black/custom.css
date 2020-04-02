@@ -1809,3 +1809,14 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
 	 padding-left: 3px;
 	 padding-bottom: 5px;
  }
+
+ .small_bg{
+	box-shadow: inset 0px 0px 15px 0px #1684c2;
+ }
+ .small_bg h4{
+	 background: #07558a;
+	 font-size: 14px;
+	 color: #ffffff;
+	 line-height: 40px;
+	 padding-left: 20px;
+ }

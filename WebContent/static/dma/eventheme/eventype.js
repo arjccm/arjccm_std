@@ -80,11 +80,12 @@ function countEventPreviewData() {
 function showEventPreview(data){
 	// 指定图表的配置项和数据
 	var option = {
-		title : {
-			text: '事件报警量统计',
-			subtext: '预处理事件',
-			x:'center'
-		},
+		// title : {
+		// 	text: '事件报警量统计',
+		// 	subtext: '预处理事件',
+		// 	x:'center'
+		// },
+
 		tooltip : {
 			trigger: 'item',
 			formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -106,10 +107,60 @@ function showEventPreview(data){
 		calculable : true,
 		series : [
 			{
+				name:"外圆",
+				type:'pie',
+				radius : ['0%', '60%'],
+				center:['50%', "50%"],
+				tooltip: {
+					formatter: function (parms) {
+						return "";
+					}
+				},
+				itemStyle:{
+					color:{
+						type: 'radial',
+						x: 0.5,
+						y: 0.5,
+						r: 0.5,
+						colorStops: [{
+							offset: 0, color: 'rgba(1,124,167,0)' // 0% 处的颜色
+						}, {
+							offset: 0.93, color: 'rgba(1,124,167,0)' // 0% 处的颜色
+						},{
+							offset: 1, color: 'rgba(1,124,167,.7)' // 100% 处的颜色
+						}],
+						global: false // 缺省为 false
+					}
+
+				},
+				z:5,
+				labelLine:{
+					show:false
+				},
+				data: ['100']
+			},
+			{
+				name:"内圆",
+				type:'pie',
+				radius : ['0%', '25%'],
+				center:['50%', "50%"],
+				itemStyle:{
+					color: "#0e2a4c",
+					shadowColor:"rgba(1,124,167,1)",
+					shadowBlur: 20
+
+				},
+				z:3,
+				labelLine:{
+					show:false
+				},
+				data: ['100']
+			},
+			{
 				name: '访问来源',
 				type: 'pie',
-				radius : '55%',
-				center: ['50%', '60%'],
+				radius : ['30%', '55%'],
+				center: ['50%', '50%'],
 				
 				data:data,
 				itemStyle: {
@@ -118,9 +169,11 @@ function showEventPreview(data){
 						shadowOffsetX: 0,
 						shadowColor: 'rgba(0, 0, 0, 0.5)'
 					}
-				}
-			}
-		]
+				},
+				z:10
+			}],
+		color:['#07cdf1','#2875ec','#09a2f1','#ff6803', '#fdde01','#ff747b','#be25c7', '#dd3f60'],
+		backgroundColor:'transparent'
 	};
 
 	var Barchart = echarts.init(document.getElementById('eventPreviewEcharts'),'theme');
@@ -140,11 +193,11 @@ function countEventData() {
 }
 function showEvent(data){
 	var option = {
-		title : {
-			text: '事件实际发生量统计',
-			subtext: '已发生事件',
-			x:'center'
-		},
+		// title : {
+		// 	text: '事件实际发生量统计',
+		// 	subtext: '已发生事件',
+		// 	x:'center'
+		// },
 		tooltip : {
 			trigger: 'item2',
 			formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -156,10 +209,60 @@ function showEvent(data){
 		},
 		series : [
 			{
+				name:"外圆",
+				type:'pie',
+				radius : ['0%', '60%'],
+				center:['50%', "50%"],
+				tooltip: {
+					formatter: function (parms) {
+						return "";
+					}
+				},
+				itemStyle:{
+					color:{
+						type: 'radial',
+						x: 0.5,
+						y: 0.5,
+						r: 0.5,
+						colorStops: [{
+							offset: 0, color: 'rgba(1,124,167,0)' // 0% 处的颜色
+						}, {
+							offset: 0.93, color: 'rgba(1,124,167,0)' // 0% 处的颜色
+						},{
+							offset: 1, color: 'rgba(1,124,167,.7)' // 100% 处的颜色
+						}],
+						global: false // 缺省为 false
+					}
+
+				},
+				z:5,
+				labelLine:{
+					show:false
+				},
+				data: ['100']
+			},
+			{
+				name:"内圆",
+				type:'pie',
+				radius : ['0%', '25%'],
+				center:['50%', "50%"],
+				itemStyle:{
+					color: "#0e2a4c",
+					shadowColor:"rgba(1,124,167,1)",
+					shadowBlur: 20
+
+				},
+				z:3,
+				labelLine:{
+					show:false
+				},
+				data: ['100']
+			},
+			{
 				name:'访问来源',
 				type:'pie',
-				radius : '55%',
-				center: ['50%', '60%'],
+				radius : ['30%','55%'],
+				center: ['50%', '50%'],
 			
 				data:data,
 				itemStyle: {
@@ -168,9 +271,12 @@ function showEvent(data){
 						shadowOffsetX: 0,
 						shadowColor: 'rgba(0, 0, 0, 0.5)'
 					}
-				}
+				},
+				z:10
 			}
-		]
+		],
+		color:['#07cdf1','#2875ec','#09a2f1','#ff6803', '#fdde01','#ff747b','#be25c7', '#dd3f60'],
+		backgroundColor:'transparent'
 	};
 	var Barchart = echarts.init(document.getElementById('eventEcharts'),'theme');
 	Barchart.setOption(option);

@@ -49,10 +49,10 @@ function countEventAreaData() {
 function showEventArea(data){
 	// 指定图表的配置项和数据
 	option = {
-		title : {
-			text: '事件分区域统计',
-			subtext: '分区域-分类型'
-		},
+		// title : {
+		// 	text: '事件分区域统计',
+		// 	subtext: '分区域-分类型'
+		// },
 		tooltip : {
 			trigger: 'axis'
 		},
