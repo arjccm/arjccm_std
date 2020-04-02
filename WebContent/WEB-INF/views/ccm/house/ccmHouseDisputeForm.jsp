@@ -71,6 +71,11 @@ display: none
 			data = JSON.parse(jsonString);
 			$(".fishBone1").fishBone(data, '${ctx}', 'deal');
 			$(".fishBone2").fishBone(data, '${ctx}', 'read');
+
+            //关闭弹框事件
+            $('#btnCancel').click(function() {
+                parent.layer.close(parent.layerIndex);
+            })
 		});
 	</script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
@@ -352,6 +357,7 @@ display: none
 		<div class="form-actions">
 			<shiro:hasPermission name="house:ccmHouseDispute:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<!-- <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/> -->
+            <input id="btnCancel" class="btn btn-danger" type="button" value="关闭" />
 		</div>
 	</form:form>
 	<br>
