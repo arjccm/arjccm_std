@@ -2322,3 +2322,7 @@ INSERT INTO `sys_dicts` (`id`, `parent_id`, `parent_ids`, `value`, `label`, `typ
 
 
 
+
+
+--添加信息采集社会治安 嫌疑人显示权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a42670932dad468989033c1455681abd', 'bda5b1b6bb5649a7a0b5f53ab91554b9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,72907f43bb8d43ac8973b253ef575f85,bda5b1b6bb5649a7a0b5f53ab91554b9,', '显示', '', '', '', 30, '0', 'event:ccmEventStakeholder:view', '1', '2020-04-02 16:21:03.545', '1', '2020-04-02 16:21:03.545', '', '0' );

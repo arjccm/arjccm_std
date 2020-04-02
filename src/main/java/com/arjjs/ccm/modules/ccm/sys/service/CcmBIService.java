@@ -264,4 +264,8 @@ public class CcmBIService {
     public Integer policeCount(){
         return areaDao.policeCount();
     }
+    //查询流动人员流入原因
+    public List<EchartType> listFlawService() {
+        return areaDao.listFlawService();
+    }
 }

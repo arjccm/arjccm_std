@@ -122,6 +122,17 @@
 
 </head>
 <body>
+<ul class="nav nav-tabs">
+    <shiro:hasPermission name="report:ccmPeopleStat:view">
+        <li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatOlder">数据统计</a>
+        </li>
+    </shiro:hasPermission>
+    <li><a class="nav-head" href="${ctx}/pop/ccmPeople/listOlder">数据列表</a></li>
+    <li class="active"><a class="nav-head"
+                          href="${ctx}/pop/ccmPeople/formOlder?id=${ccmPeople.id}">数据<shiro:hasPermission
+            name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
+        <shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></a></li>
+</ul>
 	<form:form id="inputForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/saveOlder" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

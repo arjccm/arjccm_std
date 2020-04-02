@@ -141,6 +141,18 @@
     <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<ul class="nav nav-tabs">
+    <shiro:hasPermission name="report:ccmPeopleStat:view">
+        <li><a style="text-align:center"
+               href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatCare">数据统计</a>
+        </li>
+    </shiro:hasPermission>
+    <li><a class="nav-head" href="${ctx}/pop/ccmPeople/listCareFirst">数据列表</a></li>
+    <li class="active"><a class="nav-head"
+                          href="${ctx}/pop/ccmPeople/formCare?id=${ccmPeople.id}">数据<shiro:hasPermission
+            name="pop:ccmCare:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
+        <shiro:lacksPermission name="pop:ccmCare:edit">查看</shiro:lacksPermission></a></li>
+</ul>
 <form:form id="inputForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/saveCare" method="post"
            class="form-horizontal">
     <form:hidden path="id"/>

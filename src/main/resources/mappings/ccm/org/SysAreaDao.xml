@@ -598,6 +598,19 @@
 		GROUP BY
 			a.id)  aa
 	</select>
-
-
+	<!--流动人员流入原因-->
+	<select id="listFlawService" resultType="com.arjjs.ccm.tool.EchartType">
+	SELECT
+		a.id,
+		b.label AS 'name',
+		count(b.label) AS 'num'
+	FROM
+		ccm_people a
+	LEFT JOIN sys_dict b ON a.flow_rea = b.`value`
+	AND b.type = 'ccm_flow_res'
+	WHERE
+		a.type = '20'
+	GROUP BY
+		(b.label)
+	</select>
 </mapper>

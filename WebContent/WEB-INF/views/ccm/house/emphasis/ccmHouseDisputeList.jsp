@@ -103,7 +103,7 @@
 				<th>关注程度</th>
 				<th>初次时间</th>
 				<th>发现人联系方式</th>
-				<shiro:hasPermission name="house:ccmHouseDispute:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

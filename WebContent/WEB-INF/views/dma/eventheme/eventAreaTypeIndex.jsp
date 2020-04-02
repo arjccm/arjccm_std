@@ -34,7 +34,11 @@
 		.title-div{margin-top: 20px;margin-left: 20px;}
 		.title_font{ font-size: large;}
 		.condition{margin-left: 20px;font-size: 15px;}
-		.condition_input{margin-left: 50px;}
+		.condition input{
+			margin-left: 5px;
+			margin-right: 5px;
+			margin-bottom: 0;
+		}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -43,23 +47,24 @@
 	</script>
 </head>
 <body>
-	<div class="title">
-		<div class="title-div">
-			<label   class="title_font" >事件分区域统计 </label>
-			<hr style="  width: 99%;">
-		</div>
-		<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
-			<li class="condition" > 统计时间 ：
+	<div class="back-list clearfix">
+		<ul class="nav nav-tabs">
+			<li class="active"><a class="nav-head" href="">事件分区域统计</a></li>
+		</ul>
+
+		<div class="breadcrumb clearfix"> <!-- 注意：这一层元素并不是必须的 -->
+			<div class="condition pull-right" > 统计时间 ：
 				<input  class="condition_input"  type="text" class="demo-input" placeholder="统计开始时间" id="beginHappenDate" readonly="">
 			-  <input type="text" class="demo-input" placeholder="统计结束时间" id="endHappenDate" readonly="">
-			<input id="btnSubmit" class="btn btn-primary" onclick="queryEventInfo()" value="查询" style=" margin-left: 50px; margin-bottom: 15px;"/>
-			</li>
+				<a id="btnSubmit" class="btn btn-primary" onclick="queryEventInfo()">查询</a>
+			</div>
 		</div>
 		<div class="container-fluid" style="height: 100%; overflow: hidden"
 			 id="main">
 			<div class="context" content="${ctx}"></div>
 			<div class="row-fluid height100">
-				<div class="shadow" >
+				<div class="span12 small_bg" >
+					<h4>事件分区域统计 - 分区域，分类型</h4>
 					<%--<div class="top-header">事件报警量统计</div>--%>
 					<div class="common-pading">
 						<div id="eventAreaEcharts" class="echarts" style="width: 100%;height: 100%;"></div>
