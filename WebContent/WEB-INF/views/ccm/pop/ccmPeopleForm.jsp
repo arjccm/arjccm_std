@@ -637,8 +637,12 @@
                     <label class="control-label"><span class="help-inline"><font
                             color="red">*</font> </span>职业类别：</label>
                     <div class="controls">
-                        <form:input path="profType" htmlEscape="false" maxlength="5"
-                                    class="input-xlarge required"/>
+                        <sys:treeselect id="profType" name="profType"
+                                        value="${ccmPeople.profType}" labelName="dicts.label"
+                                        labelValue="${ccmPeople.profType}" title="职业类别"
+                                        url="/sys/sysDicts/treeData?type=ccm_occupation"
+                                        extId="${sysDicts.id}" cssClass="" allowClear="true"
+                                        dicts="true"/>
                     </div>
                 </div>
             </td>
