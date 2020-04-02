@@ -341,4 +341,10 @@ public class CcmOrgNpseService extends CrudService<CcmOrgNpseDao, CcmOrgNpse> {
 	public Integer unitsCount(){
 		return dao.unitsCount();
 	}
+
+	// 查询该工商号是否已添加
+	public List<CcmOrgNpse> findByCompId(String compId, String id) {
+		return ccmOrgNpseDao.findByCompId(compId,id);
+	}
+
 }

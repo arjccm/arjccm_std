@@ -126,9 +126,9 @@
 		<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;"> <i
 		></i><span style="font-size: 12px">导出</span>
 		</a>
-	</shiro:hasPermission> <a
+	</shiro:hasPermission> <%--<a
 			onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseEconomic/form', '添加', '1100px', '720px')"
-			class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i class="icon-export"></i> <span style="font-size: 12px">添加</span></a> <a
+			class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i class="icon-export"></i> <span style="font-size: 12px">添加</span></a>--%> <a
 			href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;"
 			onclick="saveForm()"> <i></i><span style="font-size: 12px">查询</span>
 	</a>
