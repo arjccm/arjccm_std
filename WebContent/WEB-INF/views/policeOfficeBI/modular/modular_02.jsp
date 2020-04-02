@@ -7,7 +7,7 @@
 	<div class="box_header">
 		<div class="box_header_title">
 			<div class="left_bg"></div>
-			<p>流动人员来源地TOP10</p>
+			<p>流动人员流入原因</p>
 			<div class="right_bg"></div>
 		</div>
 		<div class="box_bg_01">
@@ -67,7 +67,7 @@ function modular_02(){
 					}
 
 				},{
-					data:data["jlData"],
+					data:data["num"],
 					axisTick: {
 						show: false
 					},
@@ -97,7 +97,7 @@ function modular_02(){
 					}
 				}],
 				series: [{
-					name: '违规',
+					name: '',
 					type: 'bar',
 					barWidth: 12,
 					barCategoryGap: '10%',
@@ -111,7 +111,7 @@ function modular_02(){
 							}
 						}
 					},
-					data:data["jlData"]
+					data:data["num"]
 				}]
 			};
 			myChart1.setOption(policeoption);
