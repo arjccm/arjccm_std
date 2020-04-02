@@ -33,7 +33,7 @@
                 </c:forEach>
             </select>
             <br/><br/>　　
-            <input id="categorySubmit" class="btn btn-primary" type="submit" value="   保    存   "/>　　
+<shiro:hasPermission name="act:model:edit"><input id="categorySubmit" class="btn btn-primary" type="submit" value="   保    存   "/> </shiro:hasPermission>　　
         </form>
     </script>
 </head>

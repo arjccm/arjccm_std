@@ -67,7 +67,7 @@
 		<li><a href="${ctx}/house/ccmHouseDangerous/specialform?id=${ccmPeople.id}">危险品从业人员标记</a></li>
 		<li><a href="${ctx}/pop/ccmPopBehind/specialform?id=${ccmPeople.id}">留守人员标记</a></li>
 		<li><a href="${ctx}/house/ccmHouseKym/specialform?id=${ccmPeople.id}">重点青少年标记</a></li>
-            
+
 	</ul> --%>
 
 	<form:form id="inputForm" modelAttribute="ccmSeriousCriminalOffense" action="${ctx}/house/ccmSeriousCriminalOffense/save" method="post" class="form-horizontal">
@@ -97,7 +97,7 @@
 								<form:options items="${fns:getDictList('danger_level_dict')}" itemLabel="label" itemValue="value" htmlEscape="false" />
 							</form:select>
 						</div>
-						
+
 					</div>
 				</td>
 			</tr>
@@ -134,7 +134,7 @@
 						<div class="controls">
 							<form:input path="discoverIdCards" htmlEscape="false" maxlength="20" class="input-xlarge ident0 card" />
 						</div>
-						
+
 					</div>
 				</td>
 			</tr>
@@ -195,7 +195,7 @@
 						<div class="controls">
 							<form:textarea path="activityDescription" htmlEscape="false" rows="4" maxlength="2048" class="input-xlarge required" />
 						</div>
-						
+
 					</div>
 				</td>
 			</tr>
