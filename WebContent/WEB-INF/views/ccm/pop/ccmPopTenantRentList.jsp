@@ -85,9 +85,7 @@
 				<th>房主姓名</th>
 				<th>房屋地址</th>
 				<th>建筑面积(平方米）</th>
-				<shiro:hasPermission name="pop:ccmPopTenant:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

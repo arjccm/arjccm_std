@@ -111,7 +111,7 @@
 				<th>危险程度</th>
 				<th>有无犯罪史</th>
 				<th>嫌疑类型</th>
-				<shiro:hasPermission name="house:ccmHarmNationalSecurity:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

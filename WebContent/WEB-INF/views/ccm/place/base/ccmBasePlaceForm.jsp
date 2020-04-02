@@ -281,9 +281,9 @@
 			</tr>
 		</table>
 		<div class="form-actions">
-			<%-- 						<shiro:hasPermission name="place:ccmBasePlace:edit">
+			 						<shiro:hasPermission name="place:ccmBasePlace:edit">
 				<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button"
-					value="保 存" />&nbsp;</shiro:hasPermission> --%>
+					value="保 存" />&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn btn-danger" type="button" value="关闭" />
 		</div>
 	</form:form>
