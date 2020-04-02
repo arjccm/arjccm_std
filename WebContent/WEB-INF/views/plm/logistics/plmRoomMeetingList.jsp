@@ -87,7 +87,7 @@
 					<th>更新时间</th>
 					<th style="display:none;">备注信息</th>
                     <th>
-                        <shiro:hasPermission name="logistics:plmRoom:edit">操作</shiro:hasPermission>
+                        操作
                     </th>
 				</tr>
 			</thead>
