@@ -2,62 +2,63 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>专项考核管理</title>
-	<meta name="decorator" content="default"/>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var contexturl = $(".context").attr("content");
-			
-			$("#btn").click(function(){
-				var sum=0;
-				var param="";
-				var data=new Array();
-				$("#tbody").find("tr").each(function(index, content){
-					if($(content).find("[name='weights']").val()!=null){
-						sum+=Number($(content).find("[name='weights']").val());
-					}
-	            
-			/* 		param += "&kpiSpecialScoreList["+index+"].id="+$(content).find("[name='id']").val() 
-						  + "&kpiSpecialScoreList["+index+"].weights="+$(content).find("[name='weights']").val() 
-						  + "&kpiSpecialScoreList["+index+"].remarks="+$(content).find("[name='remarks']").val();  */
-					var id = $(content).find("[name='id']").val();
-					var weights = $(content).find("[name='weights']").val();
-					var remarks = $(content).find("[name='remarks']").val();
-						  
-					data.push({"id":id,"weights": weights,"remarks": remarks});
-				});
+    <title>专项考核管理</title>
+    <meta name="decorator" content="default"/>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var contexturl = $(".context").attr("content");
 
-				if(sum!=100){
-					alert("添加权重合计应为100")
-					return;
-				}
-				 $.ajax({
-						url : contexturl + "/special/kpiSpecialScore/saveList",
-						type : "post",
-						cache : false,
-						data : {'param':JSON.stringify(data)},
-						dataType : "html",
-						success : function(result) {
-							/* $("#btn").attr("disabled", false); */
-							location.reload(); 
-							$("#btn").attr("disabled", false);
-						},
-						error : function() {
-						}
-					});
-			});
-			
-			
-		});
-		function page(n,s){
-			$("#pageNo").val(n);
-			$("#pageSize").val(s);
-			$("#searchForm").submit();
-        	return false;
+            $("#btn").click(function () {
+                var sum = 0;
+                var param = "";
+                var data = new Array();
+                $("#tbody").find("tr").each(function (index, content) {
+                    if ($(content).find("[name='weights']").val() != null) {
+                        sum += Number($(content).find("[name='weights']").val());
+                    }
+
+                    /* 		param += "&kpiSpecialScoreList["+index+"].id="+$(content).find("[name='id']").val()
+                                  + "&kpiSpecialScoreList["+index+"].weights="+$(content).find("[name='weights']").val()
+                                  + "&kpiSpecialScoreList["+index+"].remarks="+$(content).find("[name='remarks']").val();  */
+                    var id = $(content).find("[name='id']").val();
+                    var weights = $(content).find("[name='weights']").val();
+                    var remarks = $(content).find("[name='remarks']").val();
+
+                    data.push({"id": id, "weights": weights, "remarks": remarks});
+                });
+
+                if (sum != 100) {
+                    alert("添加权重合计应为100")
+                    return;
+                }
+                $.ajax({
+                    url: contexturl + "/special/kpiSpecialScore/saveList",
+                    type: "post",
+                    cache: false,
+                    data: {'param': JSON.stringify(data)},
+                    dataType: "html",
+                    success: function (result) {
+                        /* $("#btn").attr("disabled", false); */
+                        location.reload();
+                        $("#btn").attr("disabled", false);
+                    },
+                    error: function () {
+                    }
+                });
+            });
+
+
+        });
+
+        function page(n, s) {
+            $("#pageNo").val(n);
+            $("#pageSize").val(s);
+            $("#searchForm").submit();
+            return false;
         }
-		
-		
-	</script>
+
+
+    </script>
 </head>
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
@@ -65,7 +66,7 @@
 <div class="back-list clearfix">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/special/kpiSpecialScore/">专项考核列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/special/kpiSpecialScore/">专项考核列表</a></li>
 		<%-- <shiro:hasPermission name="special:kpiSpecialScore:edit"><li><a href="${ctx}/special/kpiSpecialScore/form">专项考核添加</a></li></shiro:hasPermission> --%>
 	</ul>
 	<%-- <form:form  modelAttribute="kpiSpecialScore"  class="breadcrumb form-search">
@@ -113,19 +114,25 @@
 				</td>
 				<td>
 
-					<input  maxlength="64" class="input-xlarge " type="number" name="weights" value="${kpiSpecialScore.weights}"  data-id="${kpiSpecialScore.id}"/>
-				</td>
-				<td>
-					<input  maxlength="64" class="input-xlarge " type="text" name="remarks" value="${kpiSpecialScore.remarks}"/>
-				</td>
-				<%-- <shiro:hasPermission name="special:kpiSpecialScore:edit"><td>
-    				<a href="${ctx}/special/kpiSpecialScore/form?id=${kpiSpecialScore.id}">修改</a>
-				</td></shiro:hasPermission> --%>
-			</tr>
-		</c:forEach>
-		
-		</tbody>
-	</table>
-	<div><input id="btn" class="btn btn-primary"  style="float: right;margin-right: 14px;" type="submit" value="保存"/></div>
+                    <input maxlength="64" class="input-xlarge " type="number" name="weights"
+                           value="${kpiSpecialScore.weights}" data-id="${kpiSpecialScore.id}"/>
+                </td>
+                <td>
+                    <input maxlength="64" class="input-xlarge " type="text" name="remarks"
+                           value="${kpiSpecialScore.remarks}"/>
+                </td>
+                    <%-- <shiro:hasPermission name="special:kpiSpecialScore:edit"><td>
+                        <a href="${ctx}/special/kpiSpecialScore/form?id=${kpiSpecialScore.id}">修改</a>
+                    </td></shiro:hasPermission> --%>
+            </tr>
+        </c:forEach>
+
+        </tbody>
+    </table>
+    <shiro:hasPermission name="special:kpiSpecialScore:ediw">
+    <div>
+		<input id="btn" class="btn btn-primary" style="float: right;margin-right: 14px;" type="submit" value="保存"/>
+    </div>
+    </shiro:hasPermission>
 </body>
 </html>

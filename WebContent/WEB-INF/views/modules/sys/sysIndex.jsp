@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>${fns:getConfig('productName')}</title>
+    <link rel="icon" type="image/x-icon" href="${ctxStatic}/images/logo.ico"/>
 <meta name="decorator" content="blank" />
 
 <style type="text/css">

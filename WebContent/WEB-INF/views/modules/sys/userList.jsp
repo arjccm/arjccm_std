@@ -74,10 +74,10 @@
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/sys/user/list">用户列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/sys/user/list">用户列表</a></li>
 		<%-- 	<li><a href="${ctx}/sys/userAuthstr/list?loginFlag=0">待审核用户列表</a></li> --%>
 		<shiro:hasPermission name="sys:user:edit">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/sys/user/form">用户添加</a></li>
+			<li><a style="text-align:center" href="${ctx}/sys/user/form">用户添加</a></li>
 		</shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="user"

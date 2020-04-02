@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${ctxStatic}/ccm/event/css/fishBonePop.css"/>
     <script type="text/javascript" src="${ctxStatic}/ccm/event/js/fishBonePop.js"></script>
     <script type="text/javascript" src="${ctxStatic}/ccm/event/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
     <style type="text/css">
         .pad {
             padding: 5px;
@@ -112,6 +113,7 @@
     </style>
     <script type="text/javascript">
         $(document).ready(
+
             function () {
                 $("td").css({"padding": "8px"});
                 $("td").css({"border": "0px dashed #CCCCCC"});
@@ -120,7 +122,7 @@
                 data = JSON.parse(jsonString);
                 $(".fishBone1").fishBone(data, '${ctx}', 'deal');
                 $(".fishBone2").fishBone(data, '${ctx}', 'read');
-            });
+                sels(); });
 
         function saveForm() {
             var areaComIdId = $("#areaComIdId").val();
@@ -145,8 +147,8 @@
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPermanent">数据列表</a></li>
-    <li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmPermanent/form?id=${ccmPeople.id}">数据<shiro:hasPermission
+    <li><a style="text-align:center" href="${ctx}/pop/ccmPermanent">数据列表</a></li>
+    <li class="active"><a class="nav-head" href="${ctx}/pop/ccmPermanent/form?id=${ccmPeople.id}">数据<shiro:hasPermission
             name="pop:ccmPermanent:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission
             name="pop:ccmPermanent:edit">查看</shiro:lacksPermission></a></li>
     <%-- <c:if test="${not empty ccmPeople.id}">
@@ -164,7 +166,7 @@
         <tr>
             <td>
                 <div style="padding-top: 8px">
-                    <label class="control-label"><span class="help-inline"><font
+                    <label class="control-label "><span class="help-inline"><font
                             color="red">*</font></span>人口类型：</label>
                     <div class="controls">
                         <form:select path="type" class="input-xlarge required" id="sel"
@@ -251,12 +253,12 @@
             </td>
             <td>
                 <div>
-                    <label class="control-label"><span id="ident0"></span><span class="help-inline"><font
-                            color="red">*</font></span>公民身份号码：</label>
+                    <label class="control-label labName"><span id="ident0"></span><span class="help-inline"><font color="red">*</font></span>公民身份号码：</label>
                     <div class="controls">
-                        <form:input path="ident" htmlEscape="false" maxlength="18"
-                                    class="input-xlarge required ident0 card"/>
-                        <span id="ident0"></span>
+                        <form:input path="ident" id="p_id_card" onmouseout="isRepeat('${ccmPeople.id}')"
+                                    htmlEscape="false" maxlength="18"
+                                    class="input-xlarge ident0 card "/>
+                    </div>
                     </div>
                 </div>
             </td>
@@ -707,7 +709,7 @@
 
     <br/>
 
-    <h4 class="color-bg6">其他信息：</h4>
+   <%-- <h4 class="color-bg6">其他信息：</h4>--%>
     <table id="person" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%">
         <tr>
             <td colspan="6">户籍信息：</td>
@@ -1097,7 +1099,7 @@
         <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
     </div>
 </form:form><br>
-<c:if test="${documentNumber > 0}">
+<%--<c:if test="${documentNumber > 0}">
     <shiro:hasPermission name="log:ccmLogTail:edit">
         <h4>&nbsp;跟踪信息：</h4>
         <br>
@@ -1108,6 +1110,6 @@
         <br>
         <div class="fishBone2"></div>
     </shiro:lacksPermission>
-</c:if>
+</c:if>--%>
 </body>
 </html>

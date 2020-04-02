@@ -35,7 +35,7 @@
 <ul class="back-list clearfix">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/worker/ccmWorkerSign/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/worker/ccmWorkerSign/">数据列表</a></li>
 		<%-- <shiro:hasPermission name="worker:ccmWorkerSign:edit"><li><a href="${ctx}/worker/ccmWorkerSign/form">社工签到添加</a></li></shiro:hasPermission> --%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmWorkerSign" action="${ctx}/worker/ccmWorkerSign/" method="post" class="breadcrumb form-search clearfix">

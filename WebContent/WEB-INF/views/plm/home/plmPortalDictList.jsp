@@ -23,9 +23,9 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">系统设置</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/home/plmPortalDict/">门户字典列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/home/plmPortalDict/">门户字典列表</a></li>
 		<shiro:hasPermission name="home:plmPortalDict:edit">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/home/plmPortalDict/form">门户字典添加</a></li>
+			<li><a style="text-align:center" href="${ctx}/home/plmPortalDict/form">门户字典添加</a></li>
 		</shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="plmPortalDict"

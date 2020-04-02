@@ -23,9 +23,9 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">通知公告</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/work/ccmWorkNotice/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/work/ccmWorkNotice/">数据列表</a></li>
 		<c:if test="${user.id eq '1'}">
-			<shiro:hasPermission name="work:ccmWorkNotice:edit"><li style="width: 112px"><a style="text-align: center" href="${ctx}/work/ccmWorkNotice/form">数据添加</a></li></shiro:hasPermission>
+			<shiro:hasPermission name="work:ccmWorkNotice:edit"><li><a style="text-align: center" href="${ctx}/work/ccmWorkNotice/form">数据添加</a></li></shiro:hasPermission>
 		</c:if>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmWorkNotice" action="${ctx}/work/ccmWorkNotice/" method="post" class="breadcrumb form-search clearfix">

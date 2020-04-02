@@ -11,6 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="renderer" content="webkit|ie-comp|ie-stand" />
 	<title>${fns:getConfig('productName_part1')}${fns:getConfig('productName_part2')}</title>
+    <link rel="icon" type="image/x-icon" href="${ctxStatic}/images/logo.ico"/>
 	<script src="${ctxStatic}/jquery/jquery-1.8.3.min.js"></script>
 	<link rel="stylesheet" href="${ctxStatic}/bootstrap/bootstrap3.0/css/bootstrap.min.css">
 	<script src="${ctxStatic}/bootstrap/2.3.1/js/bootstrap.min.js" type="text/javascript"></script>

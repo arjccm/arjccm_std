@@ -24,7 +24,7 @@
 	</div>
 
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/pop/ccmPopTenant/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmPopTenant/">数据列表</a></li>
 		<%-- 去掉添加功能 		<shiro:hasPermission name="pop:ccmPopTenant:edit"><li><a href="${ctx}/pop/ccmPopTenant/form">房屋添加</a></li></shiro:hasPermission> --%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPopTenant"

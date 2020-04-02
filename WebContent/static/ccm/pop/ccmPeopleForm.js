@@ -21,7 +21,7 @@
 				}
 				
 			});
-			
+
 			//社区选择网格
 			var areaComId = $("#areaComIdId").val();
 			var id = $("#id").val();
@@ -72,9 +72,51 @@
 				$("#oversea").hide();
 				$("#unsettle").hide();
 			}
-			
-			
 		});
+var isRepeat= function(id) {
+	debugger;
+	// 新增
+	var aid=id;
+	if (id.trim().length <= 0) {
+		var pident = $("#p_id_card").val();
+		if (pident != null && pident.trim().length > 0) {
+
+			$.ajax({
+				url: ctx + "/pop/ccmPeople/queryByPersonalIdent?pident=" + pident,
+				type: "get",
+				success: function (data) {
+					if (data.length > 0) {
+						layer.alert('该身份证号码已注册！！！', {
+							title: "提示",
+							skin: 'layui-layer-lan'
+							, closeBtn: 0,
+							btn: "好的"
+						});
+					}
+				}
+			})
+		}
+	}else {
+		// 编辑
+		var pident = $("#p_id_card").val();
+		if (pident != null && pident.trim().length > 0) {
+			$.ajax({
+				url: ctx + "/pop/ccmPeople/queryByPersonalIdent?pident=" + pident+"&id="+aid,
+				type: "get",
+				success: function (data) {
+					if (data.length > 0) {
+						layer.alert('该身份证号码已注册！！！', {
+							title: "提示",
+							skin: 'layui-layer-lan'
+							, closeBtn: 0,
+							btn: "好的"
+						});
+					}
+				}
+			})
+		}
+	}
+}
 		//隐藏显示
 		function sels(){
 			var s = $("#sel").val();
@@ -83,7 +125,7 @@
 				$("#float").hide();
 				$("#oversea").hide();
 				$("#unsettle").hide();
-				$(".labName").html("<span id='ident0'></span><span class='help-inline'><font color='red'>*</font></span>公民身份号码：")
+				$(".labName").html("<span id='ident0'></span><span class='help-inline'><font color='red'>*</font></span>公民身份号码: ")
 				$("#p_id_card").addClass("required")
 			}else if(s=="20"){
 				$("#person").hide();
@@ -113,6 +155,8 @@
 				$("#unsettle").hide();
 			}
 		}
+
+
 		
 		
 		

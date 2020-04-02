@@ -30,8 +30,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs hide1">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmRoadAddress/">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmRoadAddress/form?id=${ccmRoadAddress.id}">数据<shiro:hasPermission name="pop:ccmRoadAddress:edit">${not empty ccmRoadAddress.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmRoadAddress:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/pop/ccmRoadAddress/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmRoadAddress/form?id=${ccmRoadAddress.id}">数据<shiro:hasPermission name="pop:ccmRoadAddress:edit">${not empty ccmRoadAddress.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmRoadAddress:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmRoadAddress" action="${ctx}/pop/ccmRoadAddress/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

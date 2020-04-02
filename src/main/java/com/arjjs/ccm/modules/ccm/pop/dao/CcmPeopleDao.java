@@ -212,7 +212,7 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 	 * @param pident 个人身份证号码
 	 * @return
 	 */
-	List<CcmPeople> queryByPersonalIdent(@Param("pident")String pident);
+	List<CcmPeople> queryByPersonalIdent(@Param("pident")String pident,@Param("id")String id);
 
 
 	//人口查询分页

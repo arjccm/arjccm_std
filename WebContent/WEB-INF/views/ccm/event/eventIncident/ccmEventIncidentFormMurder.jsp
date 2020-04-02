@@ -86,8 +86,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventIncident/listMurder">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head"
+		<li><a style="text-align:center" href="${ctx}/event/ccmEventIncident/listMurder">数据列表</a></li>
+		<li class="active"><a class="nav-head"
 			href="${ctx}/event/ccmEventIncident/formMurder?id=${ccmEventIncident.id}">数据<shiro:hasPermission
 					name="event:ccmEventIncident:edit">${not empty ccmEventIncident.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="event:ccmEventIncident:edit">查看</shiro:lacksPermission></a></li>

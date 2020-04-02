@@ -13,18 +13,7 @@
 	  rel="stylesheet" />
 <script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 <script type="text/javascript">
-    $(function() {
-        //右上角选项卡选中状态
-        if ($("#statusClass").val() == '') {
-            $("#sjcl").addClass('btn-xz');
-        } else if ($("#statusClass").val() == '01') {
-            $("#dbsj").addClass('btn-xz');
-        } else if ($("#statusClass").val() == '02') {
-            $("#blz").addClass('btn-xz');
-        } else if ($("#statusClass").val() == '05') {
-            $("#ybsj").addClass('btn-xz');
-        }
-    });
+
 
 	function HandleTips(_this, id) {
 		var html = '';
@@ -130,10 +119,10 @@
 	<ul class="nav nav-tabs" >
 <%--		<li style="float:right;"><a style="background-color:#9f3df8;color:white;" href="${ctx}/event/ccmEventCasedeal/supervise?isSupervise=1">督办事件</a></li>--%>
 	    <li class="active"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal/list">任务处理列表</a></li>
-		<li style="float:right;"><a id="ybsj" class="btn btn-danger" href="${ctx}/event/ccmEventCasedeal/?handleStatus=05">已办事件</a></li>
-		<li style="float:right;"><a id="clz" class="btn btn-success" href="${ctx}/event/ccmEventCasedeal/?handleStatus=02">办理中事件</a></li>
-		<li style="float:right;"><a id="dbsj" class="btn btn-warning" href="${ctx}/event/ccmEventCasedeal/?handleStatus=01">待办事件</a></li>
-		<li style="float:right;"><a id="sjcl" class="btn btn-qb" href="${ctx}/event/ccmEventCasedeal">事件处理列表</a></li>
+		<li style="float:right;"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal/?handleStatus=05" style="color: #25cf71;">已办事件</a></li>
+		<li style="float:right;"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal/?handleStatus=02" style="color: #3CC7AB;">办理中事件</a></li>
+		<li style="float:right;"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal/?handleStatus=01" style="color: #ee7c40;">待办事件</a></li>
+		<li class="active" style="float:right;"><a class="nav-head" href="${ctx}/event/ccmEventCasedeal">事件处理列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmEventCasedeal"
 		action="${ctx}/event/ccmEventCasedeal/" method="post"
@@ -202,9 +191,7 @@
 				<th>处理截至时间</th>
 				<th>是否督办</th>
 				<th>任务处理状态</th>
-				<shiro:hasPermission name="event:ccmEventCasedeal:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -270,8 +257,9 @@
 							<%--							</span>--%>
 							<%--						</c:if>--%>
 					</td>
+                    <td style="height: 50px">
 					<shiro:hasPermission name="event:ccmEventCasedeal:edit">
-						<td style="height: 50px">
+
 						<c:if test="${ccmEventCasedeal.handleStatus ne '01'}">
 							<a  class="btnList"
 								onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/form?id=${ccmEventCasedeal.id}','事件', '1100px', '700px')" title="事件处理"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
@@ -298,6 +286,7 @@
 						<a  class="btnList" title="归档"><i class="iconfont icon-caozuotubiao-guidang" style="color: #000;"></i></a>
 						</c:if>
 					</shiro:hasPermission>
+                    </td>
 				</tr>
 			</c:forEach>
 		</tbody>

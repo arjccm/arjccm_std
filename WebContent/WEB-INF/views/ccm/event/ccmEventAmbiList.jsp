@@ -25,9 +25,9 @@
 <div class="back-list clearfix">
 <div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
-		<shiro:hasPermission name="report:ccmEventAmbi:view"><li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventAmbi/map">矛盾纠纷统计</a></li></shiro:hasPermission>
-		<li class="active" style="width: 140px"><a class="nav-head"  href="${ctx}/event/ccmEventAmbi/">矛盾纠纷列表</a></li>
-		<shiro:hasPermission name="event:ccmEventAmbi:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventAmbi/form">矛盾纠纷添加</a></li></shiro:hasPermission>
+		<shiro:hasPermission name="report:ccmEventAmbi:view"><li><a style="text-align:center" href="${ctx}/event/ccmEventAmbi/map">矛盾纠纷统计</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head"  href="${ctx}/event/ccmEventAmbi/">矛盾纠纷列表</a></li>
+		<shiro:hasPermission name="event:ccmEventAmbi:edit"><li><a style="text-align:center" href="${ctx}/event/ccmEventAmbi/form">矛盾纠纷添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmEventAmbi" action="${ctx}/event/ccmEventAmbi/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

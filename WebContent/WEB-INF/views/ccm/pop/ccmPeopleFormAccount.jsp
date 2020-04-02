@@ -98,10 +98,10 @@
 </head>
 <body>
 <%--	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPeople/">实有人口列表</a></li>
-		<li><a style="width: 140px;text-align:center"
+		<li><a style="text-align:center" href="${ctx}/pop/ccmPeople/">实有人口列表</a></li>
+		<li><a style="text-align:center"
 			href="${ctx}/pop/ccmPeople/listAccount?account=${ccmPeople.account}">户籍家庭人员列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="">户籍家庭人员<shiro:hasPermission
+		<li class="active"><a class="nav-head" href="">户籍家庭人员<shiro:hasPermission
 					name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></a></li>
 		&lt;%&ndash; <c:if test="${not empty ccmPeople.id}">

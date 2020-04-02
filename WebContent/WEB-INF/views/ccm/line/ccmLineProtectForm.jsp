@@ -39,8 +39,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/line/ccmLineProtect/">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head"
+		<li><a style="text-align:center" href="${ctx}/line/ccmLineProtect/">数据列表</a></li>
+		<li class="active"><a class="nav-head"
 			href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}">数据<shiro:hasPermission
 					name="line:ccmLineProtect:edit">${not empty ccmLineProtect.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="line:ccmLineProtect:edit">查看</shiro:lacksPermission></a></li>

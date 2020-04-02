@@ -83,7 +83,7 @@
 		</shiro:hasPermission> --%>
 		<!-- 事件干系人 -->
 		<c:if test="${not empty ccmEventStakeholder.incidentId}">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventStakeholder.incidentId}">数据列表</a></li>
+		<li><a style="text-align:center" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventStakeholder.incidentId}">数据列表</a></li>
 		</c:if>
 		<c:if test="${empty ccmEventStakeholder.incidentId}">
 		<li><a href="${ctx}/event/ccmEventStakeholder/list?preventType=${ccmEventStakeholder.preventType}">数据列表</a></li>

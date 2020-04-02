@@ -63,7 +63,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">场所管理</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/live/ccmPlaceLive/2">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/live/ccmPlaceLive/2">数据列表</a></li>
 		<%-- 		<shiro:hasPermission name="live:ccmPlaceLive:edit">
 			<li><a href="${ctx}/live/ccmPlaceLive/form">公共厕所添加</a></li>
 		</shiro:hasPermission> --%>

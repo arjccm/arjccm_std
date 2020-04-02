@@ -28,8 +28,8 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmReportOthers/organization">机构组织分析</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/org/ccmOrgNpse/list">机构组织列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/report/ccmReportOthers/organization">机构组织分析</a></li>
+		<li><a style="text-align:center" href="${ctx}/org/ccmOrgNpse/list">机构组织列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmEventKacc" action="${ctx}/event/ccmEventKacc/map" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

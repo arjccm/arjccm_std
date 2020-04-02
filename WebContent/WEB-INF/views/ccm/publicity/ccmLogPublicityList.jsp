@@ -24,7 +24,7 @@
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"style="width: 140px"><a class="nav-head" href="${ctx}/publicity/ccmLogPublicity/">数据列表</a></li>
-		<shiro:hasPermission name="publicity:ccmLogPublicity:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/publicity/ccmLogPublicity/form">数据添加</a></li></shiro:hasPermission>
+		<shiro:hasPermission name="publicity:ccmLogPublicity:edit"><li><a style="text-align:center" href="${ctx}/publicity/ccmLogPublicity/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmLogPublicity" action="${ctx}/publicity/ccmLogPublicity/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

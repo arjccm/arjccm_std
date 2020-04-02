@@ -62,7 +62,7 @@
 <body style="position: relative;">
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/fiow/planFlowManage/list">预案流程管理</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/fiow/planFlowManage/list">预案流程管理</a></li>
 	</ul>
 	<div class="tree-left" style="overflow-y:scroll;overflow-x:hidden;">
 		<ul id="ReservePlanTree" class="ztree" style="height: 814px;"></ul>

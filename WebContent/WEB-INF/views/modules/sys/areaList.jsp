@@ -47,8 +47,8 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">用户管理</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/sys/area/">区域列表</a></li>
-		<shiro:hasPermission name="sys:area:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/sys/area/form">区域添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/sys/area/">区域列表</a></li>
+		<shiro:hasPermission name="sys:area:edit"><li><a style="text-align:center" href="${ctx}/sys/area/form">区域添加</a></li></shiro:hasPermission>
 	</ul>
 	<sys:message content="${message}"/>
 	<table id="treeTable" class="table table-striped table-bordered table-condensed table-gradient">

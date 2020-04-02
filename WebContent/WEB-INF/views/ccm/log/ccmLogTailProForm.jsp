@@ -33,15 +33,15 @@
 <ul class="nav nav-tabs">
     <c:if test="${ccmLogTail.relevanceTable eq 'ccm_sys_workreport'}">
         <li>
-            <a style="width: 140px;text-align:center" href="${ctx}/sys/ccmWorkReport/self">数据列表</a>
+            <a style="text-align:center" href="${ctx}/sys/ccmWorkReport/self">数据列表</a>
         </li>
         <li>
-            <a style="width: 140px;text-align:center" href="${ctx}/sys/ccmWorkReport/view?id=${ccmLogTail.relevanceId}">
+            <a style="text-align:center" href="${ctx}/sys/ccmWorkReport/view?id=${ccmLogTail.relevanceId}">
                 数据<shiro:hasPermission
                     name="sys:ccmWorkReport:edit">${not empty ccmLogTail.relevanceId?'查看':'添加'}</shiro:hasPermission>
             </a>
         </li>
-        <li class="active" style="width: 140px">
+        <li class="active">
             <a class="nav-head" href="">
                 数据回复信息<shiro:hasPermission
                     name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'查看':'添加'}</shiro:hasPermission>

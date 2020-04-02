@@ -34,11 +34,11 @@
 <body>
 <div class="back-list clearfix">
     <ul class="nav nav-tabs">
-        <li class="active" style="width: 140px"><a class="nav-head"
+        <li class="active"><a class="nav-head"
                                                    href="${ctx}/security/ccmPatrolSecurity/summaryGraph">数据统计</a></li>
-        <li><a style="width: 140px;text-align:center" href="${ctx}/security/ccmPatrolSecurity/list">警卫列表</a></li>
+        <li><a style="text-align:center" href="${ctx}/security/ccmPatrolSecurity/list">警卫列表</a></li>
         <shiro:hasPermission name="security:ccmPatrolSecurity:edit">
-            <li><a style="width: 140px;text-align:center" href="${ctx}/security/ccmPatrolSecurity/form">警卫添加</a></li>
+            <li><a style="text-align:center" href="${ctx}/security/ccmPatrolSecurity/form">警卫添加</a></li>
         </shiro:hasPermission>
     </ul>
 

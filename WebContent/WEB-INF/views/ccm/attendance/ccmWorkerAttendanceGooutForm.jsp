@@ -80,7 +80,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<%-- <li><a href="${ctx}/attendance/ccmWorkerAttendance/gooutlist">外出登记列表</a></li> --%>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/attendance/ccmWorkerAttendance/gooutform?id=${ccmWorkerAttendance.id}">外出登记<shiro:hasPermission name="attendance:ccmWorkerAttendance:edit">${not empty ccmWorkerAttendance.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="attendance:ccmWorkerAttendance:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/attendance/ccmWorkerAttendance/gooutform?id=${ccmWorkerAttendance.id}">外出登记<shiro:hasPermission name="attendance:ccmWorkerAttendance:edit">${not empty ccmWorkerAttendance.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="attendance:ccmWorkerAttendance:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmWorkerAttendance" action="${ctx}/attendance/ccmWorkerAttendance/${not empty ccmWorkerAttendance.id?'gooutupdate':'gooutsave'}" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

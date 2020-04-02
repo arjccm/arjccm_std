@@ -23,9 +23,9 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/service/ccmCommunityWork/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/service/ccmCommunityWork/">数据列表</a></li>
 		<shiro:hasPermission name="service:ccmCommunityWork:edit">
-			<li><a style="width: 140px;text-align:center" href="${ctx}/service/ccmCommunityWork/form">数据添加</a></li>
+			<li><a style="text-align:center" href="${ctx}/service/ccmCommunityWork/form">数据添加</a></li>
 		</shiro:hasPermission>
 	</ul>
 	<div class="ccmCommunityWorkType" style="display: none;"

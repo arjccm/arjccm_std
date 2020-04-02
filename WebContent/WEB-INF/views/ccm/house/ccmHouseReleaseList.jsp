@@ -76,8 +76,8 @@
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
-		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatRelease">数据统计</a></li></shiro:hasPermission>
-		<li class="active" style="width: 140px"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHouseRelease" onclick="HasSecret(this)">数据列表</a></li>
+		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatRelease">数据统计</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHouseRelease" onclick="HasSecret(this)">数据列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmHouseRelease" action="${ctx}/house/ccmHouseRelease/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}" />
@@ -151,9 +151,7 @@
 				<th>原罪名</th>
 				<th>关注程度</th>
 				<th>释放日期</th>
-				<shiro:hasPermission name="house:ccmHouseRelease:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

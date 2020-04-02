@@ -85,8 +85,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/storage/plmCheck/">盘点单列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" id="checkForm"
+		<li><a style="text-align:center" href="${ctx}/storage/plmCheck/">盘点单列表</a></li>
+		<li class="active"><a class="nav-head" id="checkForm"
 			href="${ctx}/storage/plmCheck/form?id=${plmCheck.id}">盘点单<shiro:hasPermission
 					name="storage:plmCheck:edit">
 			<c:if test="${empty plmCheck.id || plmCheck.status == '1'}">

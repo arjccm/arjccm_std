@@ -638,7 +638,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
 	    background-color:#0b486f!important;
 	    background-image:none!important;
 	    border: 1px solid #00cccc!important;
-	 	width: 162px;
+	 	/*width: 162px;*/
 	 	height: 28px;
 	 	border-radius:4px;
 	 	/*width: 163px;*/
@@ -1259,6 +1259,7 @@ cite[class*='t-click']{
     background: none;
     background: url(../img/orange-cz.png) no-repeat;
     background-size: 100% 100%;
+	border: #9d611d 1px solid;
 }
 .btn-danger:hover{
     background: none;

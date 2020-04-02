@@ -27,11 +27,11 @@
 <%--	<ul class="nav nav-tabs">--%>
 <%--		<!--  收件箱  /arjccm/a/sys/ccmWorkReport/self-->--%>
 <%--		<c:if test="${viewRep  eq 02 }">--%>
-<%--			<li><a style="width: 140px;text-align:center" href="${ctx}/sys/ccmWorkReport/self">数据列表</a></li>--%>
-<%--			<li class="active" style="width: 140px"><a class="nav-head"--%>
+<%--			<li><a style="text-align:center" href="${ctx}/sys/ccmWorkReport/self">数据列表</a></li>--%>
+<%--			<li class="active"><a class="nav-head"--%>
 <%--				href="${ctx}/sys/ccmWorkReport/view?id=${ccmWorkReport.id}">数据<shiro:hasPermission--%>
 <%--						name="sys:ccmWorkReport:edit">${not empty ccmWorkReport.id?'查看':'添加'}</shiro:hasPermission></a></li>--%>
-<%--			<li><a style="width: 140px;text-align:center"--%>
+<%--			<li><a style="text-align:center"--%>
 <%--				href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmWorkReport.id}&relevance_table=ccm_sys_workreport">数据回复信息<shiro:hasPermission--%>
 <%--						name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission>--%>
 <%--					<shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a>--%>
@@ -39,8 +39,8 @@
 <%--		</c:if>--%>
 <%--		<!-- 发件箱 -->--%>
 <%--		<c:if test="${viewRep eq 01 }">--%>
-<%--			<li><a style="width: 140px;text-align:center" href="${ctx}/sys/ccmWorkReport/">数据列表</a></li>--%>
-<%--			<li class="active" style="width: 140px"><a class="nav-head"--%>
+<%--			<li><a style="text-align:center" href="${ctx}/sys/ccmWorkReport/">数据列表</a></li>--%>
+<%--			<li class="active"><a class="nav-head"--%>
 <%--				href="${ctx}/sys/ccmWorkReport/form?id=${ccmWorkReport.id}">数据<shiro:hasPermission--%>
 <%--						name="sys:ccmWorkReport:edit">${not empty ccmWorkReport.id?'查看':'添加'}</shiro:hasPermission>--%>
 <%--					<shiro:lacksPermission name="sys:ccmWorkReport:edit">查看</shiro:lacksPermission></a></li>--%>

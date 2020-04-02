@@ -15,8 +15,8 @@
 <div class="back-list clearfix">
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatBehind">数据统计</a></li>
-		<shiro:hasPermission name="pop:ccmPopBehind:view"><li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPopBehind/">数据列表</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatBehind">数据统计</a></li>
+		<shiro:hasPermission name="pop:ccmPopBehind:view"><li><a style="text-align:center" href="${ctx}/pop/ccmPopBehind/">数据列表</a></li></shiro:hasPermission>
 	</ul>
 	<div class="row-fluid custom-row-fluid">
 		<div id="ech1" class="span9"></div>

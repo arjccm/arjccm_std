@@ -112,7 +112,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a style="width: 112px" href="${ctx}/storage/plmEquipment/">装备物资列表</a></li>
-		<li class="active" style="width: 112px"><a class="nav-head"
+		<li class="active"><a class="nav-head"
 			href="${ctx}/storage/plmEquipment/form?id=${plmEquipment.id}">装备物资<shiro:hasPermission
 					name="storage:plmEquipment:edit">${not empty plmEquipment.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="storage:plmEquipment:edit">查看</shiro:lacksPermission></a></li>

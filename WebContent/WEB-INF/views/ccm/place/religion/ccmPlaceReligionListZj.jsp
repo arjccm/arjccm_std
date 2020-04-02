@@ -63,8 +63,8 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">事件管理</span>--%>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/religion/ccmPlaceReligion/list1">数据列表</a></li>
-		<shiro:hasPermission name="religion:ccmPlaceReligion:edit"><li style="width: 112px"><a href="${ctx}/religion/ccmPlaceReligion/form1" style="text-align: center">数据添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/religion/ccmPlaceReligion/list1">数据列表</a></li>
+		<shiro:hasPermission name="religion:ccmPlaceReligion:edit"><li><a href="${ctx}/religion/ccmPlaceReligion/form1" style="text-align: center">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPlaceReligion"
 		action="${ctx}/religion/ccmPlaceReligion/list1" method="post"

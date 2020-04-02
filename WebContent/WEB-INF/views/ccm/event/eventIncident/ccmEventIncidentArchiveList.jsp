@@ -199,7 +199,7 @@
         <li class="second-line"><label>发案地：</label>
             <sys:treeselect id="area" name="area.id" value="${ccmEventIncident.area.id}" labelName="area.name"
                             labelValue="${ccmEventIncident.area.name}" title="区域" url="/sys/area/treeData" cssClass=""
-                            allowClear="true" notAllowSelectParent="true" cssStyle="width: 158px"/>
+                            allowClear="true" notAllowSelectParent="true" cssStyle="width: 163px"/>
         </li>
 
 <%--        <li class="clearfix"></li>--%>
@@ -228,7 +228,7 @@
         <th width="6%">发案地</th>
         <th>发生地详址</th>
         <th>事件模块分类</th>
-        <shiro:hasPermission name="event:ccmEventIncident:edit">
+        <shiro:hasPermission name="event:ccmEventIncident:view">
             <th>操作</th>
         </shiro:hasPermission>
     </tr>

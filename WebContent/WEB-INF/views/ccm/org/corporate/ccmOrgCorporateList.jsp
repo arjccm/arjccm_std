@@ -65,7 +65,7 @@
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
 <%-- 		<li><a href="${ctx}/report/ccmReportOthers/organization">非公有制经济组织分析</a></li> --%>
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/org/ccmOrgNpse/list?compType=01">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/org/ccmOrgNpse/list?compType=01">数据列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmOrgNpse" action="${ctx}/org/ccmOrgNpse/?compType=01" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

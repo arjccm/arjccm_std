@@ -156,31 +156,31 @@
     <input id="pageSize" name="pageSize" type="hidden"
            value="${page.pageSize}"/>
     <ul class="ul-form pull-left">
-        <li class="first-line"><label class="title-text">开始时间：</label>
+        <li class="first-line"><label>开始时间：</label>
             <input name="beginHappenDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
                    value="<fmt:formatDate value="${ccmEventIncident.beginHappenDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
                    onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
         </li>
-        <li class="first-line"><label class="title-text">结束时间：</label><input name="endHappenDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+        <li class="first-line"><label>结束时间：</label><input name="endHappenDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
                      value="<fmt:formatDate value="${ccmEventIncident.endHappenDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
                      onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
         </li>
-        <li class="first-line"><label class="title-text">事件名称：</label> <form:input path="caseName"
+        <li class="first-line"><label>事件名称：</label> <form:input path="caseName"
                                              htmlEscape="false" maxlength="100" class="input-medium"/></li>
-        <li class="first-line"><label class="title-text">事件分级：</label> <form:select path="eventScale"
+        <li class="first-line"><label>事件分级：</label> <form:select path="eventScale"
                                               class="input-medium">
             <form:option value="" label="全部"/>
             <form:options items="${fns:getDictList('ccm_case_grad')}"
                           itemLabel="label" itemValue="value" htmlEscape="false"/>
         </form:select></li>
-        <li class="first-line"><label class="title-text">事件性质：</label>
+        <li class="first-line"><label>事件性质：</label>
             <form:select path="property" class="input-medium">
                 <form:option value="" label="全部"/>
                 <form:options items="${fns:getDictList('bph_alarm_info_typecode')}"
                               itemLabel="label" itemValue="value" htmlEscape="false"/>
             </form:select>
         </li>
-        <li class="first-line"><label class="title-text">事件类型：</label> <form:select path="eventType"
+        <li class="first-line"><label>事件类型：</label> <form:select path="eventType"
                                               class="input-medium">
             <form:option value="" label="全部"/>
             <form:options items="${fns:getDictList('ccm_case_type')}" itemLabel="label" itemValue="value"
@@ -193,13 +193,13 @@
 <%--                              htmlEscape="false"/>--%>
 <%--            </form:select>--%>
 <%--        </li>--%>
-        <li class="second-line"><label class="title-text">事件模块分类：</label> <form:select path="eventKind"
+        <li class="second-line"><label>事件模块分类：</label> <form:select path="eventKind"
                                                 class="input-medium">
             <form:option value="" label="全部"/>
             <form:options items="${fns:getDictList('ccm_event_inci_kind')}" itemLabel="label" itemValue="value"
                           htmlEscape="false"/>
         </form:select></li>
-        <li  class="second-line" ><label class="title-text">发案地：</label>
+        <li  class="second-line" ><label>发案地：</label>
             <sys:treeselect id="area" name="area.id" value="${ccmEventIncident.area.id}" labelName="area.name"
                             labelValue="${ccmEventIncident.area.name}" title="区域" url="/sys/area/treeData" cssClass=""
                             allowClear="true" notAllowSelectParent="true" cssStyle="width: 158px"/>
@@ -246,9 +246,7 @@
         <th width="6%">发案地</th>
         <th>发生地详址</th>
         <th>事件模块分类</th>
-        <shiro:hasPermission name="event:ccmEventIncident:edit">
-            <th>操作</th>
-        </shiro:hasPermission>
+        <th>操作</th>
     </tr>
     </thead>
     <tbody>

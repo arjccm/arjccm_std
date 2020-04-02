@@ -22,13 +22,13 @@
             });
             //右上角选项卡选中状态
             if ($("#statusClass").val() == '') {
-                $("#qb").addClass('btn-xz');
+                $("#qb").parent().addClass('active');
             } else if ($("#statusClass").val() == '01') {
-                $("#wcl").addClass('btn-xz');
+                $("#wcl").parent().addClass('active');
             } else if ($("#statusClass").val() == '02') {
-                $("#ytg").addClass('btn-xz');
+                $("#ytg").parent().addClass('active');
             } else if ($("#statusClass").val() == '03') {
-                $("#yjj").addClass('btn-xz');
+                $("#yjj").parent().addClass('active');
             }
         });
 
@@ -86,14 +86,17 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">预处理系统</span>--%>
 <ul class="back-list clearfix">
     <ul class="nav nav-tabs">
-        <li style="float: right;"><a id="yjj" class="btn btn-danger"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=03">已拒绝</a></li>
-        <li style="float: right;"><a id="ytg" class="btn btn-success"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=02">已通过</a></li>
-        <li style="float: right;"><a id="wcl" class="btn btn-warning"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=01">未处理</a></li>
-        <li style="float: right;"><a id="qb" class="btn btn-qb"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/5">全部</a></li>
+        <li style="float: right;"><a id="yjj" class="nav-head"
+                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=03" style="color: #ff3a47">已拒绝</a>
+        </li>
+        <li style="float: right;"><a id="ytg" class="nav-head"
+                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=02" style="color: #5dbabd">已通过</a>
+        </li>
+        <li style="float: right;"><a id="wcl" class="nav-head"
+                                     href="${ctx}/preview/ccmEventIncidentPreview/5?status=01" style="color: #dc9166">未处理</a>
+        </li>
+        <li class="fstCli" style="float: right;"><a id="qb" class="nav-head"
+                                                    href="${ctx}/preview/ccmEventIncidentPreview/5">全部</a></li>
 
     </ul>
     <form:form id="searchForm" modelAttribute="ccmEventIncidentPreview"
@@ -143,10 +146,11 @@
 
         <sys:message content="${message}"/>
         <div class="clearfix pull-right btn-box">
-            <a
-                    onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/5', '添加', '1100px', '600px')"
-                    class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i></i><span
-                    style="font-size: 12px">添加</span> </a>
+            <shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
+                <a onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/5', '添加', '1100px', '600px')"
+                   class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i></i><span
+                        style="font-size: 12px">添加</span> </a>
+            </shiro:hasPermission>
             <!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary"
                 type="submit" value="查询" /></li> -->
 
@@ -176,7 +180,7 @@
         <c:forEach items="${page.list}" var="ccmEventIncidentPreview">
             <tr>
                 <td><a
-                        onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '编辑', '1100px', '600px')">${ccmEventIncidentPreview.caseName}</a>
+                        onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '详情', '1100px', '600px')">${ccmEventIncidentPreview.caseName}</a>
                 </td>
                 <td>${ccmEventIncidentPreview.reportPerson}</td>
                 <td>${ccmEventIncidentPreview.happenPlace}</td>

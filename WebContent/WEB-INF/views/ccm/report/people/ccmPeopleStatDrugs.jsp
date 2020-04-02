@@ -21,8 +21,8 @@
 <input type="hidden" id="hasPermission" value="${fns:getUser().hasPermission}"/>
 	<div class="context" content="${ctx}"></div>
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatDrugs">数据统计</a></li>
-		<shiro:hasPermission name="house:ccmHouseDrugs:view"><a style="width: 140px;text-align:center" href="javascript:;" data-href="${ctx}/house/ccmHouseDrugs" onclick="HasSecret(this)">数据列表</a></li></shiro:hasPermission><li>
+		<li class="active"><a class="nav-head" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatDrugs">数据统计</a></li>
+		<shiro:hasPermission name="house:ccmHouseDrugs:view"><li><a style="text-align:center" href="javascript:;" data-href="${ctx}/house/ccmHouseDrugs" onclick="HasSecret(this)">数据列表</a></li></shiro:hasPermission><li>
 	</ul>
 	<div class="row-fluid custom-row-fluid">
 		<div id="ech1" class="span9"></div>

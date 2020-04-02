@@ -43,7 +43,8 @@
 			});
 		}
 		$(function(){
-			$(".pimg").click(function(){
+			$(".pimg").click(
+					function(){
 				var _this = $(this);//将当前的pimg元素作为_this传入函数
 				imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
 			});
@@ -83,7 +84,6 @@
 			});
 		}
         function saveImport() {
-            debugger;
             var s = $("#importForm")[0][0].files.length;
             if(s == 0){
                 alert("请选择文件！");
@@ -135,14 +135,14 @@
 	</div>
 	
 	<ul class="nav nav-tabs">
-		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li></shiro:hasPermission>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmPeople/">数据列表</a></li>
-		<shiro:hasPermission name="pop:ccmPeople:edit"><li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmPeople/form?hide1=add&hide2=false">数据添加</a></li></shiro:hasPermission>
+		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmPeople/">数据列表</a></li>
+		<shiro:hasPermission name="pop:ccmPeople:edit"><li><a style="text-align:center" href="${ctx}/pop/ccmPeople/form?hide1=add&hide2=false">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		
+
 		<ul class="ul-form pull-left">
 			<li class="first-line"><label>人口类型：</label>
 				<form:select id="type" path="type" class="input-medium">
@@ -150,13 +150,13 @@
 					<form:options items="${fns:getDictList('sys_ccm_people')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</li>
-			<li class="first-line"><label style="width: 119px">姓名：</label>
+			<li class="first-line"><label>姓名：</label>
 				<form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"  cssStyle=""/>
 			</li>
-			<li class="first-line"><label style="width: 118px">公民身份号码：</label>
+			<li class="first-line"><label>公民身份号码：</label>
 				<form:input path="ident" htmlEscape="false" maxlength="18" class="input-medium"/>
 			</li>
-			<li class="first-line"><label style="width: 133px">是否常住：</label>
+			<li class="first-line"><label>是否常住：</label>
 				<form:select id="isPermanent" path="isPermanent" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
@@ -172,31 +172,31 @@
 		<ul class="ul-form pull-left">
 
 			<li class="selectHidden hide"><label >性别：</label>
-				<form:select path="sex" class="input-small ">
+				<form:select path="sex" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('sex')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-            <li class="selectHidden hide"><label style="width: 175px">是否社区矫正：</label>
-                <form:select path="isRectification" class="input-small ">
+            <li class="selectHidden hide"><label>是否社区矫正：</label>
+                <form:select path="isRectification" class="input-medium">
                     <form:option value="" label="全部"/>
                     <form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
                 </form:select>
             </li>
-			<li class="selectHidden hide"><label style="width: 175px">是否安置帮教：</label>
-				<form:select path="isRelease" class="input-small ">
+			<li class="selectHidden hide"><label>是否安置帮教：</label>
+				<form:select path="isRelease" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
 
-			<li class="selectHidden hide"><label style="width: 190px;">肇事肇祸等精神障碍：</label>
-				<form:select path="isPsychogeny" class="input-small ">
+			<li class="selectHidden hide"><label>肇事肇祸等精神障碍：</label>
+				<form:select path="isPsychogeny" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-			<li class="selectHidden hide"><label style="width: 130px">所属网格：</label>
+			<li class="selectHidden hide"><label>所属网格：</label>
 					<sys:treeselect id="areaGridId" name="areaGridId.id" value="${ccmPeople.areaGridId.id}"
 									labelName="areaGridId.name" labelValue="${ccmPeople.areaGridId.name}"
 									title="网格" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-medium" allowClear="true" notAllowSelectParent="true"/>
@@ -204,32 +204,32 @@
 
 
           <li class="selectHidden hide"><label>是否吸毒：</label>
-				<form:select path="isDrugs" class="input-small ">
+				<form:select path="isDrugs" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
 
-			<li class="selectHidden hide"><label style="width: 175px;" >是否艾滋病危险：</label>
-				<form:select path="isAids" class="input-small ">
+			<li class="selectHidden hide"><label>是否艾滋病危险：</label>
+				<form:select path="isAids" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-			
-			<li class="selectHidden hide"><label style="width: 175px">是否留守：</label>
-				<form:select path="isBehind" class="input-small ">
+
+			<li class="selectHidden hide"><label>是否留守：</label>
+				<form:select path="isBehind" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-			<li class="selectHidden hide"><label style="width: 190px">是否重点青少年：</label>
-				<form:select path="isKym" class="input-small ">
+			<li class="selectHidden hide"><label>是否重点青少年：</label>
+				<form:select path="isKym" class="input-medium">
 					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			    </form:select>
 			</li>
-			<li class="selectHidden hide"><label style="width: 130px" >所属社区：</label>
+			<li class="selectHidden hide"><label>所属社区：</label>
 					<sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}"
 									labelName="areaComId.name" 	labelValue="${ccmPeople.areaComId.name}"
 									title="社区" url="/tree/ccmTree/treeDataArea?type=6" cssClass="input-medium" allowClear="true" notAllowSelectParent="true"/>
@@ -247,7 +247,7 @@
 
 
 <%--                <li class="clearfix selectHidden hide"></li>--%>
-			<li class="selectHidden hide"><label style="width: 117px">现住门（楼）详址：</label>
+			<li class="selectHidden hide"><label>现住门（楼）详址：</label>
 				<form:input path="residencedetail" htmlEscape="false" maxlength="50" class="input-medium"  />
 			</li>
 
@@ -395,7 +395,7 @@
 				<th>所属社区</th>
 				<th>所属网格</th>
 				<th>现住门（楼）详址</th>
-				<shiro:hasPermission name="pop:ccmPeople:edit"><th>操作</th></shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -456,7 +456,7 @@
 							   &personReason=${ccmPeople.personReason}" >
 								<i class="iconfont   icon-caozuotubiao-hujijiating"></i></a>
 				       	</c:if>
-				    </shiro:hasPermission> 
+				    </shiro:hasPermission>
 				    <shiro:hasPermission name="log:ccmLogTail:edit">
 				    	<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPeople.id}&relevance_table=ccm_people', '记录信息', '800px', '660px')"
 								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
@@ -495,6 +495,7 @@
 			</div>
 		</div>
 	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+
 </div>
 </body>
 </html>

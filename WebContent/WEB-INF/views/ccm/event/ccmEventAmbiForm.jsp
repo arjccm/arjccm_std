@@ -95,9 +95,9 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventAmbi/map">矛盾纠纷统计</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventAmbi/">矛盾纠纷列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head"
+		<li><a style="text-align:center" href="${ctx}/event/ccmEventAmbi/map">矛盾纠纷统计</a></li>
+		<li><a style="text-align:center" href="${ctx}/event/ccmEventAmbi/">矛盾纠纷列表</a></li>
+		<li class="active"><a class="nav-head"
 			href="${ctx}/event/ccmEventAmbi/form?id=${ccmEventAmbi.id}">矛盾纠纷<shiro:hasPermission
 					name="event:ccmEventAmbi:edit">${not empty ccmEventAmbi.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="event:ccmEventAmbi:edit">查看</shiro:lacksPermission></a></li>

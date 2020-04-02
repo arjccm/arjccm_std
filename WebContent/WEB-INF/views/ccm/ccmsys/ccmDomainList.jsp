@@ -21,8 +21,8 @@
 <body>
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/ccmsys/ccmDomain/">数据列表</a></li>
-		<shiro:hasPermission name="ccmsys:ccmDomain:edit"><li><a style="width: 140px;text-align:center"  href="${ctx}/ccmsys/ccmDomain/form">数据添加</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="${ctx}/ccmsys/ccmDomain/">数据列表</a></li>
+		<shiro:hasPermission name="ccmsys:ccmDomain:edit"><li><a style="text-align:center"  href="${ctx}/ccmsys/ccmDomain/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmDomain" action="${ctx}/ccmsys/ccmDomain/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

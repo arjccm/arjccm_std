@@ -31,7 +31,7 @@
 <div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active" style="width: 160px"><a class="nav-head" href="${ctx}/event/ccmEventKacc/map">排查整治分析</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventKacc/">排查整治列表</a></li>
+		<li><a style="text-align:center" href="${ctx}/event/ccmEventKacc/">排查整治列表</a></li>
 	</ul>
 	<div class="context" content="${ctx}"></div>
 	<form:form id="searchForm" modelAttribute="ccmEventKacc" action="${ctx}/event/ccmEventKacc/map" method="post" class="breadcrumb form-search">

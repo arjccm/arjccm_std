@@ -76,8 +76,8 @@
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
-		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatVisit">数据统计</a></li></shiro:hasPermission>
-		<li class="active" style="width: 140px"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHousePetition" onclick="HasSecret(this)">数据列表</a></li>
+		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatVisit">数据统计</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHousePetition" onclick="HasSecret(this)">数据列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmHousePetition" action="${ctx}/house/ccmHousePetition/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -148,7 +148,7 @@
 				<th>关注程度</th>
 				<th>上访性质</th>
 				<th>个或群访</th>
-				<shiro:hasPermission name="house:ccmHousePetition:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

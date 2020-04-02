@@ -36,7 +36,7 @@
 		<div class="accordion-group">
 		     <div class="accordion-heading ">
 		       <li id="collapse-${menu.id}" class="accordion-body collapseflag  ${not empty firstMenu && firstMenu ? 'in' : ''}" style="height: auto!important;">
-		     		<a style="padding: 10px 15px;" class="accordion-toggle accordion-href ${not empty firstMenu && firstMenu ? 'active' : ''}"  data-href="#collapse-${menu.id}" href="${fn:indexOf(menu.href, '://') eq -1 ? ctx : ''}${not empty menu.href ? menu.href : '/404'}" target="${not empty menu.target ? menu.target : 'mainFrame'}">
+		     		<a style="padding: 16px 15px;" class="accordion-toggle accordion-href ${not empty firstMenu && firstMenu ? 'active' : ''}"  data-href="#collapse-${menu.id}" href="${fn:indexOf(menu.href, '://') eq -1 ? ctx : ''}${not empty menu.href ? menu.href : '/404'}" target="${not empty menu.target ? menu.target : 'mainFrame'}">
 						<span style="display: inline-block;width: 20px;text-align: center">
 							<i class="icon-${not empty menu.icon ? menu.icon : 'circle-arrow-right'}" style=" font-size: 14px;position: inherit"></i>
 						</span>
@@ -50,17 +50,17 @@
 	<c:if test="${menu.parent.id eq (not empty param.parentId ? param.parentId:1)&&menu.isShow eq '1'&&(menu.href eq '')}">
 		<div class="accordion-group">
 		    <div class="accordion-heading">
-		    	<a class="accordion-toggle ${not empty firstMenu && firstMenu ? 'active' : ''}" style="padding: 10px 15px;position: relative" class="accordion-toggle accordion-href ${not empty firstMenu && firstMenu ? 'active' : ''}" data-toggle="collapse" data-parent="#menu-${param.parentId}" data-href="#collapse-${menu.id}" href="#collapse-${menu.id}" title="${menu.remarks}">
+		    	<a class="accordion-toggle ${not empty firstMenu && firstMenu ? 'active' : ''}" style="padding: 16px 15px;position: relative" class="accordion-toggle accordion-href ${not empty firstMenu && firstMenu ? 'active' : ''}" data-toggle="collapse" data-parent="#menu-${param.parentId}" data-href="#collapse-${menu.id}" href="#collapse-${menu.id}" title="${menu.remarks}">
 					<span style="display: inline-block;width: 20px;text-align: center">
 						<i class="icon-${not empty menu.icon ? menu.icon : 'circle-arrow-right'}" style="font-size: 14px;position: inherit"></i>
 					</span>
 					<span style="padding-left: 10px;">${menu.name}</span>
-					<i class="icon-chevron-${not empty firstMenu && firstMenu ? 'down' : 'right'}" style="position: absolute;left: 170px;top: 13px;"></i>
+					<i class="icon-chevron-${not empty firstMenu && firstMenu ? 'down' : 'right'}" style="position: absolute;left: 170px;top: 20px;"></i>
 				</a>
 		    </div>
 		    <div id="collapse-${menu.id}" class="accordion-body collapse ${not empty firstMenu && firstMenu ? 'in' : ''}">
 				<div class="accordion-inner">
-					<ul class="nav nav-list">
+					<ul class="nav nav-list twoMenu">
 					<c:forEach items="${menuList}" var="menu2">
 					<c:if test="${menu2.parent.id eq menu.id&&menu2.isShow eq '1'}">
 						<li>

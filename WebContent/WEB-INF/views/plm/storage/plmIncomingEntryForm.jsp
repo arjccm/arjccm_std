@@ -254,8 +254,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/storage/plmIncomingEntry/">入库单列表</a></li>
-		<li class="active" style="width: 140px"><a id="incomingEntry" class="nav-head"
+		<li><a style="text-align:center" href="${ctx}/storage/plmIncomingEntry/">入库单列表</a></li>
+		<li class="active"><a id="incomingEntry" class="nav-head"
 			href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}">入库单<shiro:hasPermission
 					name="storage:plmIncomingEntry:edit">${not empty plmIncomingEntry.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="storage:plmIncomingEntry:edit">查看</shiro:lacksPermission></a></li>

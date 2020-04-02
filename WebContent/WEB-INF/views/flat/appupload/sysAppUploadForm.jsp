@@ -32,7 +32,7 @@
 
 <body>
 <ul class="nav nav-tabs">
-	<li><a style="width: 140px;text-align:center" href="${ctx}/appupload/sysAppUpload/">数据列表</a></li>
+	<li><a style="text-align:center" href="${ctx}/appupload/sysAppUpload/">数据列表</a></li>
 	<li class="active" style="width: 150px"><a class="nav-head" href="${ctx}/appupload/sysAppUpload/form?id=${sysAppUpload.id}">数据<shiro:hasPermission name="appupload:sysAppUpload:edit">${not empty sysAppUpload.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="appupload:sysAppUpload:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 <form:form id="inputForm" modelAttribute="sysAppUpload" action="${ctx}/appupload/sysAppUpload/save" method="post" class="form-horizontal">

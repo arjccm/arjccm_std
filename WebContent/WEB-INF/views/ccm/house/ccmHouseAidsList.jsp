@@ -77,8 +77,8 @@
 	</div>
 
 	<ul class="nav nav-tabs">
-		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="width: 140px;text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatAids">数据统计</a></li></shiro:hasPermission>
-		<li class="active" style="width: 140px"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHouseAids" onclick="HasSecret(this)">数据列表</a></li>
+		<shiro:hasPermission name="report:ccmPeopleStat:view"><li><a style="text-align:center" href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatAids">数据统计</a></li></shiro:hasPermission>
+		<li class="active"><a class="nav-head" href="javascript:;" data-href="${ctx}/house/ccmHouseAids" onclick="HasSecret(this)">数据列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmHouseAids" action="${ctx}/house/ccmHouseAids/" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}" />
@@ -143,9 +143,7 @@
 				<th>是否有违法犯罪史</th>
 				<th>关注程度</th>
 				<th>收治情况</th>
-				<shiro:hasPermission name="house:ccmHouseAids:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

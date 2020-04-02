@@ -63,7 +63,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">场所管理</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/education/ccmPlaceEducation/01">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/education/ccmPlaceEducation/01">数据列表</a></li>
 	</ul>
 
 	<form:form id="searchForm" modelAttribute="ccmPlaceEducation"

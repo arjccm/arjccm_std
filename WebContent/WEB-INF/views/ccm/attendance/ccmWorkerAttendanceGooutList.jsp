@@ -21,7 +21,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">网格员管理</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active" style="width: 112px"><a class="nav-head" href="${ctx}/attendance/ccmWorkerAttendance/gooutlist">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/attendance/ccmWorkerAttendance/gooutlist">数据列表</a></li>
 		<%-- <shiro:hasPermission name="attendance:ccmWorkerAttendance:edit"><li><a href="${ctx}/attendance/ccmWorkerAttendance/gooutform">外出登记添加</a></li></shiro:hasPermission> --%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmWorkerAttendance" action="${ctx}/attendance/ccmWorkerAttendance/gooutlist" method="post" class="breadcrumb form-search clearfix">

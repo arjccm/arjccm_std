@@ -1050,8 +1050,8 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		return ccmPeopleDao.queryByIdent(ident);
 	}
 
-	public List<CcmPeople> queryByPersonalIdent(String pident){
-		return ccmPeopleDao.queryByPersonalIdent(pident);
+	public List<CcmPeople> queryByPersonalIdent(String pident,String id){
+		return ccmPeopleDao.queryByPersonalIdent(pident,id);
 	}
 
 

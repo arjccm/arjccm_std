@@ -54,8 +54,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventKacc/map">排查整治分析</a></li>
-		<li><a style="width: 140px;text-align:center" href="${ctx}/event/ccmEventKacc/">排查整治列表</a></li>
+		<li><a style="text-align:center" href="${ctx}/event/ccmEventKacc/map">排查整治分析</a></li>
+		<li><a style="text-align:center" href="${ctx}/event/ccmEventKacc/">排查整治列表</a></li>
 		<li class="active" style="width: 160px"><a class="nav-head" href="${ctx}/event/ccmEventKacc/form?id=${ccmEventKacc.id}">排查整治<shiro:hasPermission name="event:ccmEventKacc:edit">${not empty ccmEventKacc.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="event:ccmEventKacc:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmEventKacc" action="${ctx}/event/ccmEventKacc/save" method="post" class="form-horizontal">

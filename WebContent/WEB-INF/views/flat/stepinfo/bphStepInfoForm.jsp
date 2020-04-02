@@ -62,8 +62,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/stepinfo/bphStepInfo/">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/stepinfo/bphStepInfo/form?id=${bphStepInfo.id}">数据<shiro:hasPermission name="stepinfo:bphStepInfo:edit">${not empty bphStepInfo.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="stepinfo:bphStepInfo:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/stepinfo/bphStepInfo/">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/stepinfo/bphStepInfo/form?id=${bphStepInfo.id}">数据<shiro:hasPermission name="stepinfo:bphStepInfo:edit">${not empty bphStepInfo.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="stepinfo:bphStepInfo:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="bphStepInfo" action="${ctx}/stepinfo/bphStepInfo/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

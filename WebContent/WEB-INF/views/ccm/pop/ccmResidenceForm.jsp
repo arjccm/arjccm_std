@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${ctxStatic}/ccm/event/css/fishBonePop.css" />
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/fishBonePop.js"></script>
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 	<style type="text/css">
 		.pad{padding: 5px; padding-left: 10px}
 		#person{display: none;}
@@ -96,6 +97,7 @@
                 data = JSON.parse(jsonString);  
 				$(".fishBone1").fishBone(data, '${ctx}','deal');
 				$(".fishBone2").fishBone(data, '${ctx}','read');
+                sels();
 			});
 	
 	
@@ -121,8 +123,8 @@
 </head>
 <body>
 	<%--<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/pop/ccmWork/list/10">数据列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/pop/ccmWork/form?id=${ccmPeople.id}">数据<shiro:hasPermission name="pop:ccmWork:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmWork:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/pop/ccmWork/list/10">数据列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/pop/ccmWork/form?id=${ccmPeople.id}">数据<shiro:hasPermission name="pop:ccmWork:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmWork:edit">查看</shiro:lacksPermission></a></li>
 		&lt;%&ndash; <c:if test="${not empty ccmPeople.id}">
 			<li><a href="${ctx}/log/ccmLogTail/formProPermanent?relevance_id=${ccmPeople.id}&relevance_table=ccm_people">跟踪信息<shiro:hasPermission name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a></li>
 		</c:if> &ndash;%&gt;
@@ -232,11 +234,11 @@
 
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>公民身份号码：</label>
+						<label class="control-label labName"><span id="ident0"></span><span class="help-inline"><font color="red">*</font></span>公民身份号码：</label>
 						<div class="controls">
-							<form:input path="ident" htmlEscape="false" maxlength="18"
-								class="input-xlarge ident0 card required" />
-							<span id="ident0"></span>
+							<form:input path="ident" id="p_id_card" onmouseout="isRepeat('${ccmPeople.id}')"
+										htmlEscape="false" maxlength="18"
+										class="input-xlarge ident0 card "/>
 						</div>
 					</div>
 				</td>

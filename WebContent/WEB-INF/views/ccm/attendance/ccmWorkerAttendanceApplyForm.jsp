@@ -30,8 +30,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 140px;text-align:center" href="${ctx}/attendanceapply/ccmWorkerAttendanceApply?type=${type}"><c:if test="${type==2}">请假</c:if><c:if test="${type==3}">加班</c:if>审核列表</a></li>
-		<li class="active" style="width: 140px"><a class="nav-head" href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/form?id=${ccmWorkerAttendanceApply.id}"><c:if test="${type==2}">请假</c:if><c:if test="${type==3}">加班</c:if>审核<shiro:hasPermission name="attendanceapply:ccmWorkerAttendanceApply:edit">${not empty ccmWorkerAttendanceApply.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="attendanceapply:ccmWorkerAttendanceApply:edit">查看</shiro:lacksPermission></a></li>
+		<li><a style="text-align:center" href="${ctx}/attendanceapply/ccmWorkerAttendanceApply?type=${type}"><c:if test="${type==2}">请假</c:if><c:if test="${type==3}">加班</c:if>审核列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/form?id=${ccmWorkerAttendanceApply.id}"><c:if test="${type==2}">请假</c:if><c:if test="${type==3}">加班</c:if>审核<shiro:hasPermission name="attendanceapply:ccmWorkerAttendanceApply:edit">${not empty ccmWorkerAttendanceApply.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="attendanceapply:ccmWorkerAttendanceApply:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmWorkerAttendanceApply" action="${ctx}/attendanceapply/ccmWorkerAttendanceApply/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
