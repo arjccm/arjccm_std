@@ -440,9 +440,9 @@
            href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatPerson">数据统计</a></li>
     <li><a style="text-align:center" href="${ctx}/pop/ccmPeople/">数据列表</a></li>
     <li class="active"><a class="nav-head"
-                                               href="${ctx}/pop/ccmPeople/form?id=${ccmPeople.id}">数据<shiro:hasPermission
-            name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
-        <shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></a></li>
+                          href="${ctx}/pop/ccmPeople/form?id=${ccmPeople.id}">数据<shiro:hasPermission
+            name="pop:ccmOlder:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission>
+        <shiro:lacksPermission name="pop:ccmOlder:edit">查看</shiro:lacksPermission></a></li>
     <%-- <c:if test="${not empty ccmPeople.id}">
         <li><a href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPeople.id}&relevance_table=ccm_people">跟踪信息<shiro:hasPermission name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a></li>
     </c:if> --%>
@@ -549,7 +549,8 @@
             </td>
             <td>
                 <div>
-                    <label class="control-label labName"><span id="ident0"></span><span class="help-inline"><font color="red">*</font></span>公民身份号码：</label>
+                    <label class="control-label labName"><span id="ident0"></span><span class="help-inline"><font
+                            color="red">*</font></span>公民身份号码：</label>
                     <div class="controls">
                         <form:input path="ident" id="p_id_card" onmouseout="isRepeat('${ccmPeople.id}')"
                                     htmlEscape="false" maxlength="18"
@@ -1746,7 +1747,7 @@
 <script>
     $("#checkBoxe :checked").each(function () {
         console.log($(this).val())
-    debugger
+        debugger
         if ($(this).val() != null) {
             parent.layui.$("#focuPers1").prop("checked", true);
         }

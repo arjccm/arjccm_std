@@ -555,7 +555,7 @@ font-size:18px;
 					</div>
 					-->
 					<div class="common-header">
-						<div class="title-fontsize">流动人员来源地TOP10</div>
+						<div class="title-fontsize">流动人员流入原因</div>
 					</div>
 					<div class="show height100 common-center">
 						<div class="row-fluid height100">

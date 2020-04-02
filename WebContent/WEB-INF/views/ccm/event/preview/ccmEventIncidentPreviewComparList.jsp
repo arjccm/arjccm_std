@@ -79,14 +79,16 @@
 		<tbody>
 			<c:forEach items="${simList}" var="CcmEventIncidentSimilarty">
 				<tr>
-					<td style="height: 50px"><a
-						onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${CcmEventIncidentSimilarty.eventA.id}', '编辑', '1200px', '600px')">${CcmEventIncidentSimilarty.eventA.caseName}</a></td>
+					<td style="height: 50px">
+
+                        <a
+						onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${CcmEventIncidentSimilarty.eventA.id}', '详情', '1200px', '600px')">${CcmEventIncidentSimilarty.eventA.caseName}</a></td>
 					<td style="height: 50px">${CcmEventIncidentSimilarty.eventA.reportPerson}</td>
 					<td style="height: 50px"><fmt:formatDate
 							value="${CcmEventIncidentSimilarty.eventA.happenDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<td style="height: 50px"><a
-						onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${CcmEventIncidentSimilarty.eventB.id}', '编辑', '1200px', '600px')">${CcmEventIncidentSimilarty.eventB.caseName}</a></td>
+						onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${CcmEventIncidentSimilarty.eventB.id}', '详情', '1200px', '600px')">${CcmEventIncidentSimilarty.eventB.caseName}</a></td>
 					<td style="height: 50px">${CcmEventIncidentSimilarty.eventB.reportPerson}</td>
 					<td style="height: 50px"><fmt:formatDate
 							value="${CcmEventIncidentSimilarty.eventB.happenDate}"

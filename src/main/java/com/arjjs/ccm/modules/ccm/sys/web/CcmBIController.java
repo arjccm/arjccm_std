@@ -452,19 +452,29 @@ public class CcmBIController {
     @ResponseBody
     @RequestMapping(value = "modular_02")
     //流动人员来源地
-    public Map<String, Object> modular_02(){
-        // 返回对象结果
-        Map<String, Object> map = Maps.newHashMap();
+    public HashMap<String,Object> modular_02(){
+        StringBuilder name=new StringBuilder();
+        StringBuilder num=new StringBuilder();
 
-        //TODO 单位名数据 name
-        String[] name = new String[]{"住宿", "餐饮", "学生", "司机", "教师", "医生", "物流", "房地产", "加工制造", "无固定职业"};
+        HashMap<String, Object> map = new HashMap<>();
+        List<EchartType> list = ccmBIService.listFlawService();
+
+        /*//TODO 单位名数据 name
+        String[] name = new String[]{};
 
         //TODO 重点单位问题数据 jlData
-        int[] jlData = new int[]{89, 90, 100, 200, 300, 400, 500, 600, 700, 800};
-
-        map.put("name", name);
-        map.put("jlData", jlData);
-
+        int[] jlData = new int[]{};*/
+        for (EchartType echartType : list) {
+            String name1 = echartType.getName();
+            Integer num1=echartType.getNum();
+            name=name.append(name1+",");
+            num=num.append(num1+",");
+        }
+        String[] names = name.toString().split(",");
+        String[] nums = num.toString().split(",");
+        // 返回对象结果
+        map.put("name", names);
+        map.put("num", nums);
         return map;
     }
 

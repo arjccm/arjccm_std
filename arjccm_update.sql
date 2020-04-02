@@ -1764,3 +1764,6 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'aaabc47a26504804bd590bde409c25a3', '72', '0,1,2,62,69,72,', '编辑', '', '', '', 60, '0', 'act:model:edit', '1', '2020-04-01 10:53:59.639', '1', '2020-04-01 10:53:59.639', '', '0' );
 UPDATE sys_menu SET parent_id = '69', parent_ids = '0,1,2,62,69,', name = '模型管理', href = '/act/model', target = '', icon = 'road', sort = 100, is_show = '1', permission = '', update_by = '1', update_date = '2020-04-01 10:52:51.847', remarks = ''
  WHERE id = '72';
+
+--添加信息采集社会治安 嫌疑人显示权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a42670932dad468989033c1455681abd', 'bda5b1b6bb5649a7a0b5f53ab91554b9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,72907f43bb8d43ac8973b253ef575f85,bda5b1b6bb5649a7a0b5f53ab91554b9,', '显示', '', '', '', 30, '0', 'event:ccmEventStakeholder:view', '1', '2020-04-02 16:21:03.545', '1', '2020-04-02 16:21:03.545', '', '0' );

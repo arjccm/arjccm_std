@@ -1,7 +1,8 @@
 var websocketurl="ws://"+window.location.hostname+":2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
 var reconnectflag = false;//避免重复连接
 var socket; 
-
+//var userRegisterwsurl = "wss://192.168.1.177:9090/call";
+//var userRegisterSocket;
 function createWebSocket(url,callbak) {
    try { 
       if (!window.WebSocket) {
@@ -42,7 +43,20 @@ function createWebSocket(url,callbak) {
        reconnect(url,callbak);
     }     
 }
- 
+/*function userRegisterws(currentsession){
+	userRegisterSocket= new WebSocket(userRegisterwsurl);
+	userRegisterSocket.onopen = function () {
+		console.log(">>>>>>>>>>>>>>>>>>  user Register kurento onopen …… ");
+		var response = {
+			id : 'register',
+            //userId: currentsession,
+			name : currentsession
+		};
+		var jsonMessage = JSON.stringify(response);
+		console.log('Sending message: ' + jsonMessage);
+		userRegisterSocket.send(jsonMessage);
+	}
+}*/
 
 function reconnect(url,callbak) {
     if(reconnectflag) return;

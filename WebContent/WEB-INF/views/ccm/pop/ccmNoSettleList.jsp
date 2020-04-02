@@ -221,7 +221,7 @@
 				<th>性别</th>
 				<th>出生日期</th>
 				<th>公民身份号码</th>
-				<shiro:hasPermission name="pop:ccmWork:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

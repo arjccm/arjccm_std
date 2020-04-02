@@ -143,9 +143,7 @@
 				<th>是否有违法犯罪史</th>
 				<th>关注程度</th>
 				<th>收治情况</th>
-				<shiro:hasPermission name="house:ccmHouseAids:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

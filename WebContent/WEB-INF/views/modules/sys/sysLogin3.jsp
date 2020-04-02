@@ -4,6 +4,7 @@
 <html>
 <head>
 	<title>${fns:getConfig('productName')} 登录</title>
+    <link rel="icon" type="image/x-icon" href="${ctxStatic}/images/logo.ico"/>
 	<meta name="decorator" content="blank"/>
 	<link type="text/css" rel="stylesheet" href="${ctxStatic}/layim/layui/css/layui.css" />
 	<script type="text/javascript" src="${ctxStatic}/layim/layui/layui.js"></script>

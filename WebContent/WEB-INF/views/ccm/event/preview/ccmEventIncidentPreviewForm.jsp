@@ -363,9 +363,9 @@
 				<shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
 					<input id="btnSubmit" class="btn btn-primary" onclick="saveForm('${ccmEventIncidentPreview.id}')" type="button"
 						value="保 存" />&nbsp;
-					<input id="btnCancel" class="btn btn-danger" type="button"
-						value="关闭" />
 				</shiro:hasPermission>
+                <input id="btnCancel" class="btn btn-danger" type="button"
+                       value="关闭" />
 			</div>
 		</div>
 	</form:form>
