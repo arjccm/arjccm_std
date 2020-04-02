@@ -73,7 +73,10 @@ function showEventArea(data){
 		xAxis : [
 			{
 				type : 'category',
-				data : data["eventAreaNameData"]
+				data : data["eventAreaNameData"],
+				axisLine:{
+					// color:
+				}
 			}
 		],
 		yAxis : [
