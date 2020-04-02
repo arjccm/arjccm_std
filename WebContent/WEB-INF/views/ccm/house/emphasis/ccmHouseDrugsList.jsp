@@ -114,9 +114,7 @@
 				<th>关注程度</th>
 				<th>有无犯罪史</th>
 				<th>吸毒原因</th>
-				<shiro:hasPermission name="house:ccmHouseDrugs:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

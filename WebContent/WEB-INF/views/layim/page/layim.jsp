@@ -32,8 +32,9 @@ $.ajax({
 	async : false,
 	data:{'account':loginName},
 	success : function(data){
-		//登录
+		//登录成功之后进行 点对点用户注册
 		imInit()
+        //userRegisterws(currentsession);
 	},
 	error:function(err){
 	}
@@ -231,9 +232,26 @@ $.ajax({
 		           content.setType(0)
 		           message.setContent(content.serializeBinary())
 		           socket.send(message.serializeBinary());
-		           setTimeout(function(){
-		        	   windowOpen('https://192.168.1.170:8553/cat?userId='+currentsession+'&sendId='+currentsession+'&type=video','视频聊天','600','500');
-		           }, 500);
+                  $("body").append(
+                      '<div class="modal chat_dialog"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" aria-labelledby="myModalLabel">'+
+                      '<div class="modal-dialog">'+
+                      '<div class="modal-content">'+
+                      '<div class="modal-header">'+
+                      '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+                      '<h4 class="modal-title">消息</h4>'+
+                      '</div>'+
+                      '<div class="modal-body"><span id="chat_ready_id"></span>正在连接中，请稍等……</div>'+
+                      '<div class="modal-footer">'+
+                      '</div>'+
+                      '</div>'+
+                      '</div>'+
+                      '</div>'
+                  );
+		           /*setTimeout(function(){
+		        	   //windowOpen('https://192.168.1.170:8553/cat?userId='+currentsession+'&sendId='+currentsession+'&type=video','视频聊天','600','500');
+		        	   windowOpen('https://192.168.1.177:9090?userId='+currentsession+'&sendId='+obj.data.id+'&type=video&callType=caller','视频聊天','650','650');
+		        	  // windowOpen('https://192.168.1.7:8443?userId='+currentsession+'~caller&sendId='+obj.data.id+'~callee&type=video','视频聊天','650','650');
+		           }, 500);*/
 
 			  }); 
 			  //监听自定义工具栏点击，以添加代码为例
@@ -252,7 +270,10 @@ $.ajax({
 		           message.setContent(content.serializeBinary())
 		           socket.send(message.serializeBinary());
 		           setTimeout(function(){
-		        	   windowOpen('https://192.168.1.170:8553/cat?userId='+currentsession+'&sendId='+currentsession+'&type=audio','视频聊天','600','500');
+		        	   //windowOpen('https://192.168.1.170:8553/cat?userId='+currentsession+'&sendId='+currentsession+'&type=audio','视频聊天','600','500');
+                       //windowOpen('https://192.168.1.177:8443?userId='+currentsession+'&sendId='+currentsession+'&type=audio','视频聊天','650','650');
+                       windowOpen('https://192.168.1.177:9090?userId='+currentsession+'&sendId='+obj.data.id+'&type=audio&callType=caller','音频聊天','650','650');
+                      // windowOpen('https://192.168.1.7:8443?userId='+currentsession+'~caller&sendId='+obj.data.id+'~callee&type=audio','音频聊天','650','650');
 		           }, 500);
 
 			  });  
@@ -324,10 +345,41 @@ $.ajax({
 		  	    			var cache = layui.layim.cache();
 		  	    			var local = layui.data('layim')[cache.mine.id];
 		  	    			var username = "",avatar="",friend=false;
+                          if(msg.getSign()==="agree"){
+                              console.log("msg.getSign()------------------------agree");
+                              var receiveUser = msg.getSender();
+                              closeDialog();
+                              // setTimeout(function(){
+                              windowOpen('https://192.168.1.177:9090?userId='+currentsession+'&sendId='+receiveUser+'&type=video&callType=caller','视频聊天','650','650');
+                              // }, 500);
+                              return false;
+                          }else if(msg.getSign()==='refuse'){
+                              $("body").append(
+                                  '<div class="modal chat_dialog"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" aria-labelledby="myModalLabel">'+
+                                  '<div class="modal-dialog">'+
+                                  '<div class="modal-content">'+
+                                  '<div class="modal-header">'+
+                                  '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+                                  '<h4 class="modal-title">消息</h4>'+
+                                  '</div>'+
+                                  '<div class="modal-body"><span id="chat_ready_id"></span>您的呼叫请求已经被拒绝!!</div>'+
+                                  '<div class="modal-footer">'+
+                                  '<button type="button" class="btn btn-default" onclick="closeDialog()" >关闭</button>'+
+                                  '</div>'+
+                                  '</div>'+
+                                  '</div>'+
+                                  '</div>'
+                              );
+                              return false;
+                          }
 		  			        layui.each(cache.friend, function(index1, item1){
 					            layui.each(item1.list, function(index, item){
 				            	if(msg.getGroupid()=='video'){
 				            		 if(item.id == msg.getSender()){ 
+				            		     console.log('msg.getSender():--->>', msg.getSender());
+				            		     console.log('username:--->>', item.username);
+				            		     console.log('currentsession:--->>', currentsession);
+				            		     console.log('loginName:--->>', loginName);
 							                username = item.username;
 							                avatar = item.avatar;
 							            	$("body").append(
@@ -340,7 +392,7 @@ $.ajax({
 							                	                '</div>'+
 							                	                '<div class="modal-body"><span id="chat_ready_id"></span>'+username+',与你发起视频通话申请,你是否同意</div>'+
 							                	                '<div class="modal-footer">'+
-							                	                    '<button type="button" class="btn btn-default" onclick="closeDialog()">关闭</button>'+
+							                	                    '<button type="button" class="btn btn-default" onclick="closeDialog(\''+msg.getSender()+'\')">关闭</button>'+
 							                	                    '<button type="button" class="btn btn-primary" onclick="chat_ready(\''+msg.getSender()+'\',\''+currentsession+'\',\'video\')">确定</button>'+
 							                	                '</div>'+
 							                	            '</div>'+
@@ -495,11 +547,48 @@ $.ajax({
 function showMessage(data) {
 	showmsg(data); 
 }
+    /**
+     *
+     * @param sendId  发起人
+     * @param id  接收人，也就是当前用户
+     * @param type
+     */
 function chat_ready(sendId,id,type){
 	 $(".chat_dialog").hide();
-	   windowOpen('https://192.168.1.170:8553/cat?userId='+id+'&sendId='+sendId+'&type='+type,'视频聊天','600','500');
+	  // windowOpen('https://192.168.1.170:8553/cat?userId='+id+'&sendId='+sendId+'&type='+type,'视频聊天','600','500'); ("~");
+     //windowOpen('https://192.168.1.177:8443?userId='+currentsession+'&sendId='+currentsession+'&type=audio','视频聊天','650','650');
+    //windowOpen('https://192.168.1.177:9090?userId='+id+'&sendId='+sendId+'&type='+type+'&callType=callee','视频聊天','650','650');
+    windowOpen('https://192.168.1.177:9090?userId='+sendId+'&sendId='+id+'&type='+type+'&callType=callee','视频聊天','650','650');
+    //windowOpen('https://192.168.1.7:8443?userId='+id+'~callee&sendId='+sendId+'~caller&type='+type,'视频聊天','650','650');
+    // 弹出页面之后，发送回调消息，告诉发起人，被呼叫人已经同意视频；
+    var message = new proto.Model();
+    var content = new proto.MessageBody();
+    message.setMsgtype(4);
+    message.setCmd(5);
+    message.setToken(currentsession);
+    message.setSender(currentsession);
+    message.setReceiver(sendId);//好友ID
+    content.setContent('video');// 同意呼叫
+    message.setSign("agree"),
+    content.setType(0)
+    message.setContent(content.serializeBinary())
+    socket.send(message.serializeBinary());
 }
-function closeDialog(){
+function closeDialog(sendId){
 	 $(".chat_dialog").hide();
+	 if(sendId){
+         var message = new proto.Model();
+         var content = new proto.MessageBody();
+         message.setMsgtype(4);
+         message.setCmd(5);
+         message.setToken(currentsession);
+         message.setSender(currentsession);
+         message.setReceiver(sendId);//好友ID
+         content.setContent('video');//拒绝呼叫
+         message.setSign('refuse'),
+             content.setType(0)
+         message.setContent(content.serializeBinary())
+         socket.send(message.serializeBinary());
+     }
 }
 </script>

@@ -212,6 +212,7 @@ public class CcmEventIncidentController extends BaseController {
     }
 
     //命案列表
+    @RequiresPermissions("event:ccmEventIncident:edit")
     @RequestMapping(value = "listMurder")
     public String listMurder(CcmEventIncident ccmEventIncident, HttpServletRequest request, HttpServletResponse response,
                              Model model) {

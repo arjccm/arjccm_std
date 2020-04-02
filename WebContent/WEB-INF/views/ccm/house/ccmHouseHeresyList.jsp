@@ -152,7 +152,7 @@
 				<th>痴迷程度</th>
 				<th>是否参加转化培训班</th>
 				<th>是否已转化</th>
-				<shiro:hasPermission name="house:ccmHouseHeresy:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

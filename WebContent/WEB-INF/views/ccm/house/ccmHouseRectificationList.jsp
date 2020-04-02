@@ -150,9 +150,7 @@
 				<th>矫正类別</th>
 				<th>关注程度</th>				
 				<th>案事件类別</th>
-				<shiro:hasPermission name="house:ccmHouseRectification:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

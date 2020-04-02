@@ -228,7 +228,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #333333;
+  /*color: #333333;*/
 }
 /*突出文字*/
 .txt-point {
@@ -236,7 +236,7 @@ h6 {
 }
 body {
  /*  background-color: #ABABAB; */
-  color: #333333;
+  /*color: #333333;*/
   font: 12px/150% 'Microsoft YaHei',Arial, Verdana, "宋体";
   font-weight: normal;
 }
