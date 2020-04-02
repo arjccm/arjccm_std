@@ -53,17 +53,19 @@ public class DmaEventTypeService {
         List<CountOfficeEventEntity> countOfficeEventResult = new ArrayList<>();
         for (CountOfficeEventEntity officeEvent:countOfficeEventList) {
             User user = UserUtils.get(officeEvent.getHandlePoliceId());
-            // 获取用户的父部门
-            String parentIds = user.getOffice().getParentIds();
+            if(user!=null){
+                // 获取用户的父部门
+                String parentIds = user.getOffice().getParentIds();
 
-            List<String> parentIdList = Arrays.asList(parentIds.split(","));
-           if (parentIdList.size()>2){
-               Office office = officeService.get(parentIdList.get(2));
-               officeEvent.setOfficeGrandParentName(office.getName());
-           }else{
-               officeEvent.setOfficeGrandParentName("1-1"); //TODO  如果有异常情况如何处理；
-           }
-            countOfficeEventResult.add(officeEvent);
+                List<String> parentIdList = Arrays.asList(parentIds.split(","));
+                if (parentIdList.size()>2){
+                    Office office = officeService.get(parentIdList.get(2));
+                    officeEvent.setOfficeGrandParentName(office.getName());
+                }else{
+                    officeEvent.setOfficeGrandParentName("1-1"); //TODO  如果有异常情况如何处理；
+                }
+                countOfficeEventResult.add(officeEvent);
+            }
         }
 
         // 数据为空的封装

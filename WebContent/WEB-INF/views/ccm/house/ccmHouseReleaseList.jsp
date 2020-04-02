@@ -151,9 +151,7 @@
 				<th>原罪名</th>
 				<th>关注程度</th>
 				<th>释放日期</th>
-				<shiro:hasPermission name="house:ccmHouseRelease:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

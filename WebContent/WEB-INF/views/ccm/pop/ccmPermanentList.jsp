@@ -256,9 +256,7 @@
             <th>所属社区</th>
             <th>所属网格</th>
             <th>现住门（楼）详址</th>
-            <shiro:hasPermission name="pop:ccmPermanent:edit">
-                <th>操作</th>
-            </shiro:hasPermission>
+             <th>操作</th>
         </tr>
         </thead>
         <tbody>

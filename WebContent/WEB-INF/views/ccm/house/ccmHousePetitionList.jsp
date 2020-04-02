@@ -148,7 +148,7 @@
 				<th>关注程度</th>
 				<th>上访性质</th>
 				<th>个或群访</th>
-				<shiro:hasPermission name="house:ccmHousePetition:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
