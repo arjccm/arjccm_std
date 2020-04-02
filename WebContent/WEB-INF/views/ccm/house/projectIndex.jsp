@@ -161,10 +161,9 @@
             //先循环添加背景图片
             for (var i = 0; i < Li.length; i++) {
                 var asp1 = Li.eq(i).find('a').attr("href");
-                console.log(asp1)
+                 console.log(asp1)
                 //  /arjccm/a/index?pid=70a1747ee8334e439b2b24ebe947ecdd
-                var len=asp1.length;
-                var sp1=asp1.substring(20,len);
+                var sp1=asp1.split("=")[1];
                 console.log(sp1)
                 var ljSrc = "${ctxStatic}/images/" + sp1 + ".png";
                 //console.log(ljSrc)
