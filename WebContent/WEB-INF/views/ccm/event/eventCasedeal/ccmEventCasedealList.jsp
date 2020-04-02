@@ -191,9 +191,7 @@
 				<th>处理截至时间</th>
 				<th>是否督办</th>
 				<th>任务处理状态</th>
-				<shiro:hasPermission name="event:ccmEventCasedeal:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -259,8 +257,9 @@
 							<%--							</span>--%>
 							<%--						</c:if>--%>
 					</td>
+                    <td style="height: 50px">
 					<shiro:hasPermission name="event:ccmEventCasedeal:edit">
-						<td style="height: 50px">
+
 						<c:if test="${ccmEventCasedeal.handleStatus ne '01'}">
 							<a  class="btnList"
 								onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/form?id=${ccmEventCasedeal.id}','事件', '1100px', '700px')" title="事件处理"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
@@ -287,6 +286,7 @@
 						<a  class="btnList" title="归档"><i class="iconfont icon-caozuotubiao-guidang" style="color: #000;"></i></a>
 						</c:if>
 					</shiro:hasPermission>
+                    </td>
 				</tr>
 			</c:forEach>
 		</tbody>
