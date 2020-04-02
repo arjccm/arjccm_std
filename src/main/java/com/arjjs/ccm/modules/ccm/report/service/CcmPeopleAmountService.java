@@ -163,4 +163,9 @@ public class CcmPeopleAmountService extends CrudService<CcmPeopleAmountDao, CcmP
 
         return dateList;
     }
+
+    public CcmPeopleAmount queryCollectionNum(CcmPeopleAmount ccmPeopleAmount) {
+		return ccmPeopleAmountDao.queryCollectionNum(ccmPeopleAmount);
+	}
+
 }
