@@ -157,11 +157,11 @@
 					</td>
 					<!--如果为房屋进行访问  -->
 					<c:if test="${PeoTypeBy eq 'ByHouse' }">
-						<td><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house">
+						<td><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=${ccmPeople.type}&ptype=house">
 								${ccmPeople.name}</a></td>
 					</c:if>
 					<c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
-						<td><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=hire">
+						<td><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=${ccmPeople.type}&ptype=hire">
 								${ccmPeople.name}</a></td>
 					</c:if>
 					<!--如果为楼栋进行访问  -->
