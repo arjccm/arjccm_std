@@ -143,10 +143,12 @@
 
         <sys:message content="${message}"/>
         <div class="clearfix pull-right btn-box">
+            <shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
             <a
                     onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/2', '添加', '1100px', '600px')"
                     class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i></i><span
                     style="font-size: 12px">添加</span> </a>
+            </shiro:hasPermission>
             <!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary"
                 type="submit" value="查询" /></li> -->
             <a href="javascript:;" id="btnSubmit"
@@ -174,7 +176,7 @@
         <c:forEach items="${page.list}" var="ccmEventIncidentPreview">
             <tr>
                 <td style="height: 50px"><a
-                        onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '编辑', '1100px', '600px')">${ccmEventIncidentPreview.caseName}</a>
+                        onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '详情', '1100px', '600px')">${ccmEventIncidentPreview.caseName}</a>
                 </td>
                 <td style="height: 50px">${ccmEventIncidentPreview.reportPerson}</td>
                 <td style="height: 50px">${ccmEventIncidentPreview.happenPlace}</td>

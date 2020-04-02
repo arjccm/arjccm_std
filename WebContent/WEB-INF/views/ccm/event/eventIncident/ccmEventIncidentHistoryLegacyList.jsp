@@ -137,9 +137,8 @@
 			    <th width="6%">发案地</th>
 			    <th>发生地详址</th>
 			    <th>事件模块分类</th>
-				<shiro:hasPermission name="event:ccmEventIncident:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
+
 			</tr>
 		</thead>
 		<tbody>

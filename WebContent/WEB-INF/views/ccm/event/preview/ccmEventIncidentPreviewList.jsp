@@ -103,16 +103,16 @@
 <ul class="back-list clearfix">
     <ul class="nav nav-tabs">
         <li style="float: right;"><a id="yjj" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=03" style="color: #ff3a47">已拒绝</a>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=03" style="color: #ffffff">已拒绝</a>
         </li>
         <li style="float: right;"><a id="ytg" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=02" style="color: #5dbabd">已通过</a>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=02" style="color: #ffffff">已通过</a>
         </li>
         <li style="float: right;"><a id="wcl" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=01" style="color: #dc9166">未处理</a>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/1?status=01" style="color: #ffffff">未处理</a>
         </li>
         <li class="fstCli" style="float: right;"><a id="qb" class="nav-head"
-                                     href="${ctx}/preview/ccmEventIncidentPreview/1">全部</a></li>
+                                     href="${ctx}/preview/ccmEventIncidentPreview/1" style="color: #ffffff">全部</a></li>
 
     </ul>
     <form:form id="searchForm" modelAttribute="ccmEventIncidentPreview"
@@ -190,10 +190,7 @@
         <c:forEach items="${page.list}" var="ccmEventIncidentPreview">
             <tr>
                 <td style="height: 50px"><a
-                        <%--<shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
-                        onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '编辑', '1100px', '600px')"
-                        </shiro:hasPermission>--%>
-                        onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '编辑', '1100px', '600px')">${ccmEventIncidentPreview.caseName}</a>
+                        onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '详情', '1100px', '600px')">${ccmEventIncidentPreview.caseName}</a>
                 </td>
                 <td style="height: 50px">${ccmEventIncidentPreview.reportPerson}</td>
                 <td style="height: 50px">${ccmEventIncidentPreview.happenPlace}</td>
