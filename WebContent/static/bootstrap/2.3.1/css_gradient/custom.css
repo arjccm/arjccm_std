@@ -5413,3 +5413,15 @@ input::-ms-clear{
 	padding-left: 3px;
 	padding-bottom: 5px;
 }
+
+.small_bg{
+	border: 1px solid rgba(223,237,254,1);
+	background: #FFFFFF;
+}
+.small_bg h4{
+	background: rgba(223,237,254,1);
+	font-size: 14px;
+	color: #333;
+	line-height: 40px;
+	padding-left: 20px;
+}
