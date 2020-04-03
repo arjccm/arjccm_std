@@ -9,7 +9,11 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				//$("#name").focus();
+                //关闭弹框事件
+                $('#btnCancel').click(function () {
+                    parent.layer.close(parent.layerIndex);
+                })
+
 				$("#inputForm")
 						.validate(
 								{
@@ -262,6 +266,9 @@
 			<shiro:hasPermission name="live:ccmPlaceLive:edit">
 				<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button"
 					value="保 存" />&nbsp;</shiro:hasPermission>
+            <input id="btnCancel" class="btn btn-danger" type="button"
+                   value="关闭"/>
+            &nbsp;
 		</div>
 	</form:form>
 </body>
