@@ -123,7 +123,7 @@ public class CcmPeopleStatController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "personStat")
 	public Map<String, Object> personStat(@RequestParam(value = "title", required = false) String title,
-			@RequestParam(value = "type", required = false) int type, Model model) {
+										  @RequestParam(value = "type", required = false) int type, Model model) {
 
 		// 返回对象结果
 		Map<String, Object> map = Maps.newHashMap();
@@ -134,8 +134,50 @@ public class CcmPeopleStatController extends BaseController {
 		// 1)本月新增人员数据 2)本月人员总数
 		List<EchartType> list1 = ccmPeopleStatService.findListByMon(columnListNew[type],areaId,areaType);
 		List<EchartType> list2 = ccmPeopleAmountService.findListByMon(columnListAmount[type],areaId,areaType);
+		List<EchartType> list9 = new ArrayList<>();
+		for (EchartType echart : list1) {
+			for (EchartType echart2 : list2) {
+				if(echart.getValue1().equals(echart2.getValue1())){
+					list9.add(echart2);
+				}
+			}
+		}
+		List<EchartType> list7 = ccmPeopleStatService.findLowLevelListByMon(columnListNew[type],areaId,areaType);
+		List<EchartType> list8 = ccmPeopleAmountService.findLowLevelListByMon(columnListAmount[type],areaId,areaType);
+		List<EchartType> list10 = new ArrayList<>();
+		for (EchartType echart : list7) {
+			for (EchartType echart2 : list8) {
+				if(echart.getValue1().equals(echart2.getValue1())){
+					list10.add(echart2);
+				}
+			}
+		}
+		if("户籍".equals(title)){
+			List<EchartType> list5 = ccmPeopleAmountService.findListNotGetByMon(columnListAmount[type],areaId,areaType);
+			List<EchartType> list11 = new ArrayList<>();
+			for (EchartType echart : list1) {
+				for (EchartType echart2 : list5) {
+					if(echart.getValue1().equals(echart2.getValue1())){
+						list11.add(echart2);
+					}
+				}
+			}
+			map.put(title+"未采集人数", list11);
+			List<EchartType> list12 = ccmPeopleAmountService.findLowLevelListNotGetByMon(columnListAmount[type],areaId,areaType);
+			List<EchartType> list13 = new ArrayList<>();
+			for (EchartType echart : list7) {
+				for (EchartType echart2 : list12) {
+					if(echart.getValue1().equals(echart2.getValue1())){
+						list13.add(echart2);
+					}
+				}
+			}
+			map.put("所有下级区域"+title+"未采集人数", list13);
+		}
 		map.put("本月"+title+"新增人数", list1);
-		map.put("本月"+title+"总数", list2);
+		map.put("本月"+title+"总数", list9);
+		map.put("所有下级区域本月"+title+"新增人数", list7);
+		map.put("所有下级区域本月"+title+"总数", list10);
 		// 2. 根据于月份为分界线
 		// 1) 所有新增日新增总和 2)所有人数地区总和
 		List<EchartType> list3 = ccmPeopleStatService.findListBySum(columnListNew[type],areaId,areaType);

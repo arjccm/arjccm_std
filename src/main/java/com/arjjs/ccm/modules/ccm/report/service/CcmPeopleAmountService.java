@@ -84,10 +84,26 @@ public class CcmPeopleAmountService extends CrudService<CcmPeopleAmountDao, CcmP
 		return ccmPeopleAmountDao.findListBySum(column,areaId,areaType);
 	}
 
+	public List<EchartType> findListNotGetBySum(String column, String areaId, String areaType) {
+		return ccmPeopleAmountDao.findListNotGetBySum(column,areaId,areaType);
+	}
+
 	public List<EchartType> findListByMon(String column, String areaId, String areaType) {
 		return ccmPeopleAmountDao.findListByMon(column,areaId,areaType);
 	}
-	
+
+	public List<EchartType> findListNotGetByMon(String column, String areaId, String areaType) {
+		return ccmPeopleAmountDao.findListNotGetByMon(column,areaId,areaType);
+	}
+
+	public List<EchartType> findLowLevelListNotGetByMon(String column, String areaId, String areaType) {
+		return ccmPeopleAmountDao.findLowLevelListNotGetByMon(column,areaId,areaType);
+	}
+
+	public List<EchartType> findLowLevelListByMon(String column, String areaId, String areaType) {
+		return ccmPeopleAmountDao.findLowLevelListByMon(column,areaId,areaType);
+	}
+
 	/**
 	 * @see 社区特殊人群类型统计
 	 * @return
