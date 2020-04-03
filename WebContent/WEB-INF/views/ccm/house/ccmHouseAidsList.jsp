@@ -116,8 +116,7 @@
 				type="submit" value="查询" onclick="return page();" /> -->
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: left;">
 				<i></i><span style="font-size: 12px">查询</span>  </a>
-			<shiro:hasPermission
-					name="sys:user:edit">
+			<shiro:hasPermission name="house:ccmHouseAids:import">
 				<!-- <input id="btnExport" class="btn btn-primary" type="button"
 				value="导出" />
 				<input id="btnImport" class="btn btn-primary" type="button"
@@ -125,6 +124,8 @@
 				<a href="javascript:;" id="btnImport"  style="width: 49px;display:inline-block;float: left;" class="btn  btn-export ">
 					<i ></i> <span style="font-size: 12px">导入</span>
 				</a>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="house:ccmHouseAids:export">
 				<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: left;">
 					<i></i> <span style="font-size: 12px">导出</span>
 				</a>

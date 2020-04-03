@@ -2330,7 +2330,148 @@ INSERT INTO `sys_dicts` (`id`, `parent_id`, `parent_ids`, `value`, `label`, `typ
 --添加信息采集社会治安 嫌疑人显示权限
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a42670932dad468989033c1455681abd', 'bda5b1b6bb5649a7a0b5f53ab91554b9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,72907f43bb8d43ac8973b253ef575f85,bda5b1b6bb5649a7a0b5f53ab91554b9,', '显示', '', '', '', 30, '0', 'event:ccmEventStakeholder:view', '1', '2020-04-02 16:21:03.545', '1', '2020-04-02 16:21:03.545', '', '0' );
 
+--添加实有人口导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '4635febdab404892b034525ce36e0584', 'e85d153e171e4dea97915a23bdb2dab7', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,e85d153e171e4dea97915a23bdb2dab7,', '导入', '', '', '', 150, '1', 'pop:ccmPeople:import', '1', '2020-04-03 15:12:19.693', '1', '2020-04-03 15:12:19.693', '', '0' );
 
+--实有人口导入权限  隐藏
+UPDATE sys_menu SET parent_id = 'e85d153e171e4dea97915a23bdb2dab7', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,e85d153e171e4dea97915a23bdb2dab7,', name = '导入', href = '', target = '', icon = '', sort = 150, is_show = '0', permission = 'pop:ccmPeople:import', update_by = '1', update_date = '2020-04-03 15:22:25.88', remarks = ''
+ WHERE id = '4635febdab404892b034525ce36e0584';
+
+--添加实有人口导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '68c12f584cd04ab795f0357df1a63339', 'e85d153e171e4dea97915a23bdb2dab7', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,e85d153e171e4dea97915a23bdb2dab7,', '导出', '', '', '', 180, '1', 'pop:ccmPeople:export', '1', '2020-04-03 15:15:46.848', '1', '2020-04-03 15:15:46.848', '', '0' );
+--实有人口导出权限  隐藏
+UPDATE sys_menu SET parent_id = 'e85d153e171e4dea97915a23bdb2dab7', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,e85d153e171e4dea97915a23bdb2dab7,', name = '导出', href = '', target = '', icon = '', sort = 180, is_show = '0', permission = 'pop:ccmPeople:export', update_by = '1', update_date = '2020-04-03 15:23:40.256', remarks = ''
+ WHERE id = '68c12f584cd04ab795f0357df1a63339';
+
+--添加常住人口导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'b2d3455635d74f1986901dcf26c23056', 'b8046a5eb8284c65be0e5574791e08f0', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,130200,b8046a5eb8284c65be0e5574791e08f0,', '导出', '', '', '', 90, '0', 'pop:ccmPermanent:export', '1', '2020-04-03 15:36:24.533', '1', '2020-04-03 15:36:24.533', '', '0' );
+
+--添加社区矫正人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '100cd149568f492784609456fee3c5d1', '130302', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130302,', '导入', '', '', '', 120, '0', 'house:ccmHouseRectification:import', '1', '2020-04-03 15:41:47.114', '1', '2020-04-03 15:41:47.114', '', '0' );
+
+--添加社区矫正人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '9f88ee1f686f4bb0a524babb37850354', '130302', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130302,', '导出', '', '', '', 150, '0', 'house:ccmHouseRectification:export', '1', '2020-04-03 15:59:37.705', '1', '2020-04-03 15:59:37.705', '', '0' );
+
+--添加安置帮教人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'bd45a2d9355e4e239b1cc00cbef4e70e', '130301', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130301,', '导入', '', '', '', 120, '1', 'house:ccmHouseRelease:import', '1', '2020-04-03 16:10:09.325', '1', '2020-04-03 16:10:09.325', '', '0' );
+
+--添加安置帮教人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'ecff203356e34e4c96d12cd7df04b14a', '130301', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130301,', '导出', '', '', '', 150, '0', 'house:ccmHouseRelease:export', '1', '2020-04-03 16:14:10.422', '1', '2020-04-03 16:14:10.422', '', '0' );
+
+--添加肇事肇祸等严重精神障碍患者导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'd84841539ede4ca49c1fd7da400811a1', '130303', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130303,', '导入', '', '', '', 120, '0', 'house:ccmHousePsychogeny:import', '1', '2020-04-03 16:21:48.03', '1', '2020-04-03 16:21:48.03', '', '0' );
+
+--添加肇事肇祸等严重精神障碍患者导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '4633f183e7b64507ac298e190d63a9f5', '130303', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130303,', '导出', '', '', '', 150, '0', 'house:ccmHousePsychogeny:export', '1', '2020-04-03 16:23:18.36', '1', '2020-04-03 16:23:18.36', '', '0' );
+
+--添加吸毒人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '67060aad0e044f6f8a215098ba516ded', '130304', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130304,', '导入', '', '', '', 120, '0', 'house:ccmHouseDrugs:import', '1', '2020-04-03 16:27:52.583', '1', '2020-04-03 16:27:52.583', '', '0' );
+
+--添加吸毒人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '19a5302fc30e44688a4574cd1f9e1ecf', '130304', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130304,', '导出', '', '', '', 150, '0', 'house:ccmHouseDrugs:export', '1', '2020-04-03 16:28:47.104', '1', '2020-04-03 16:28:47.104', '', '0' );
+
+--添加艾滋病危险人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '3cec5c88f4954c7cabe38754cfd80943', '130305', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130305,', '导入', '', '', '', 120, '0', 'house:ccmHouseAids:import', '1', '2020-04-03 16:32:13.706', '1', '2020-04-03 16:32:13.706', '', '0' );
+
+--添加艾滋病危险人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '15b14491d61d469ebe5fd80c390d592c', '130305', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,130305,', '导出', '', '', '', 150, '0', 'house:ccmHouseAids:export', '1', '2020-04-03 16:33:02.5', '1', '2020-04-03 16:33:02.5', '', '0' );
+
+--添加重点上访人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'e6b8d85f62634e379fc2880b66ab3c0a', 'f15dc5be11f14cf8976090c38f27aaa3', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,f15dc5be11f14cf8976090c38f27aaa3,', '导入', '', '', '', 120, '0', 'house:ccmHousePetition:import', '1', '2020-04-03 16:35:43.783', '1', '2020-04-03 16:35:43.783', '', '0' );
+
+--添加重点上访人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '6672e3aa39a141668e118a3c700126e1', 'f15dc5be11f14cf8976090c38f27aaa3', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,f15dc5be11f14cf8976090c38f27aaa3,', '导出', '', '', '', 150, '0', 'house:ccmHousePetition:export', '1', '2020-04-03 16:36:33.171', '1', '2020-04-03 16:36:33.171', '', '0' );
+
+--添加涉教人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '780e1f174d0647d48fc974bbed5ccbe5', 'c4d4f530c1a14671a89df623ed93adef', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,c4d4f530c1a14671a89df623ed93adef,', '导入', '', '', '', 120, '0', 'house:ccmHouseHeresy:import', '1', '2020-04-03 16:39:03.093', '1', '2020-04-03 16:39:03.093', '', '0' );
+
+--添加涉教人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '7b356496296049488668c28343cf0280', 'c4d4f530c1a14671a89df623ed93adef', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,c4d4f530c1a14671a89df623ed93adef,', '导出', '', '', '', 150, '0', 'house:ccmHouseHeresy:export', '1', '2020-04-03 16:40:37.936', '1', '2020-04-03 16:40:37.936', '', '0' );
+
+--添加危险品从业人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '2bd658aa091a41be91e9e1e0b9e1f3ab', 'b0bceb9eabc744ee83bd75c7fb63f828', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,b0bceb9eabc744ee83bd75c7fb63f828,', '导入', '', '', '', 120, '0', 'house:ccmHouseDangerous:import', '1', '2020-04-03 16:45:25.774', '1', '2020-04-03 16:45:25.774', '', '0' );
+
+--添加危险品从业人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '71218e325cfe4a4f80d526c42a7ad691', 'b0bceb9eabc744ee83bd75c7fb63f828', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,b0bceb9eabc744ee83bd75c7fb63f828,', '导出', '', '', '', 150, '0', 'house:ccmHouseDangerous:export', '1', '2020-04-03 16:46:43.281', '1', '2020-04-03 16:46:43.281', '', '0' );
+
+--添加危害国家安全活动嫌疑人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'bde14cf5e6a54b10a46635265adbb92b', 'b0c901671d894530b31e4f031763446d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,b0c901671d894530b31e4f031763446d,', '导入', '', '', '', 120, '0', 'house:ccmHarmNationalSecurity:import', '1', '2020-04-03 16:59:14.844', '1', '2020-04-03 16:59:14.844', '', '0' );
+
+--添加危害国家安全活动嫌疑人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'ba4591a9179541928a8caf7674e25f9f', 'b0c901671d894530b31e4f031763446d', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,b0c901671d894530b31e4f031763446d,', '导出', '', '', '', 150, '0', 'house:ccmHarmNationalSecurity:export', '1', '2020-04-03 17:00:56.236', '1', '2020-04-03 17:00:56.236', '', '0' );
+
+--添加严重刑事犯罪活动嫌疑人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'db54c8517f0d402a8ea8315f3a458ce2', '5698daba505f4dbaa6c84fa7f3812b28', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,5698daba505f4dbaa6c84fa7f3812b28,', '导入', '', '', '', 120, '0', 'house:ccmSeriousCriminalOffense:import', '1', '2020-04-03 17:05:15.316', '1', '2020-04-03 17:05:15.316', '', '0' );
+
+--添加严重刑事犯罪活动嫌疑人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a5bc956f20f141a39608a2ead47acb10', '5698daba505f4dbaa6c84fa7f3812b28', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,5698daba505f4dbaa6c84fa7f3812b28,', '导出', '', '', '', 150, '0', 'house:ccmSeriousCriminalOffense:export', '1', '2020-04-03 17:06:06.047', '1', '2020-04-03 17:06:06.047', '', '0' );
+
+--添加闹事行凶报复嫌疑人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'd18f09eebdce4d6a9dd9f812f94d96fb', '0a5043def4f64ebe8227585015bb532c', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,0a5043def4f64ebe8227585015bb532c,', '导入', '', '', '', 120, '0', 'house:ccmHouseDispute:import', '1', '2020-04-03 17:08:26.496', '1', '2020-04-03 17:08:26.496', '', '0' );
+
+--添加闹事行凶报复嫌疑人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'b246bbcb50c34ee8877744a8750ceb8b', '0a5043def4f64ebe8227585015bb532c', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,0a5043def4f64ebe8227585015bb532c,', '导出', '', '', '', 150, '0', 'house:ccmHouseDispute:export', '1', '2020-04-03 17:09:12.497', '1', '2020-04-03 17:09:12.497', '', '0' );
+
+--添加故意违法刑释不足5年人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '09ac65c1facf4c1db909b57ff83920cf', '37eaaa6f331b412b96a598b07431e3f6', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,37eaaa6f331b412b96a598b07431e3f6,', '导入', '', '', '', 90, '0', 'house:ccmHouseDeliberatelyIllegal:import', '1', '2020-04-03 17:14:35.865', '1', '2020-04-03 17:14:35.865', '', '0' );
+
+--添加故意违法刑释不足5年人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'cb4b7e87a8f84d8fb637bb79f55313cb', '37eaaa6f331b412b96a598b07431e3f6', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,37eaaa6f331b412b96a598b07431e3f6,', '导出', '', '', '', 120, '0', 'house:ccmHouseDeliberatelyIllegal:export', '1', '2020-04-03 17:15:34.581', '1', '2020-04-03 17:15:34.581', '', '0' );
+
+--添加留守人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '5d76dab775be406d9baa7c243dddb2ea', '7cc0fb0c1187437aa3f4bad132c67ce1', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,7cc0fb0c1187437aa3f4bad132c67ce1,', '导入', '', '', '', 120, '0', 'pop:ccmPopBehind:import', '1', '2020-04-03 17:18:32.312', '1', '2020-04-03 17:18:32.312', '', '0' );
+
+--添加留守人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '3918a9fb44b04283b43cff496b9933c5', '7cc0fb0c1187437aa3f4bad132c67ce1', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,7cc0fb0c1187437aa3f4bad132c67ce1,', '导出', '', '', '', 150, '0', 'pop:ccmPopBehind:export', '1', '2020-04-03 17:19:30.008', '1', '2020-04-03 17:19:30.008', '', '0' );
+
+--添加老年人人员导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '340a7d1ae28f4a439896c7bfbc3dfb2b', '81349c6f45614556a51ad2626ea4e594', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,81349c6f45614556a51ad2626ea4e594,', '导入', '', '', '', 120, '0', 'pop:ccmOlder:import', '1', '2020-04-03 17:21:55.217', '1', '2020-04-03 17:21:55.217', '', '0' );
+
+--添加老年人人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '1225226011024f099833b081bfebecc0', '81349c6f45614556a51ad2626ea4e594', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,81349c6f45614556a51ad2626ea4e594,', '导出', '', '', '', 150, '0', 'pop:ccmOlder:export', '1', '2020-04-03 17:23:17.675', '1', '2020-04-03 17:23:17.675', '', '0' );
+
+--删除老年人导入权限
+UPDATE sys_menu SET del_flag = '1'
+ WHERE id = '340a7d1ae28f4a439896c7bfbc3dfb2b' OR parent_ids LIKE CONCAT('%,', '340a7d1ae28f4a439896c7bfbc3dfb2b', ',%');
+
+--添加特殊关怀人员导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '672ef7248f3d497099e33357abcfb30a', '7549b37b7c454434aadc05340cf041e4', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,7549b37b7c454434aadc05340cf041e4,', '导出', '', '', '', 120, '0', 'pop:ccmCare:export', '1', '2020-04-03 17:28:15.013', '1', '2020-04-03 17:28:15.013', '', '0' );
+
+--添加老年人人员导入权限
+
+--添加老年人人员导出权限
+
+--添加老年人人员导入权限
+
+--添加老年人人员导出权限
+
+--添加老年人人员导入权限
+
+--添加老年人人员导出权限
+
+--添加老年人人员导入权限
+
+--添加老年人人员导出权限
+
+--添加老年人人员导入权限
+
+--添加老年人人员导出权限
+
+--添加老年人人员导入权限
+
+--添加老年人人员导出权限
+
+--添加老年人人员导入权限
+
+--添加老年人人员导出权限
+
+--添加老年人人员导入权限
+
+--添加老年人人员导出权限
+
+--添加老年人人员导入权限
+
+--添加老年人人员导出权限
 
 
 -- 添加字段 ccm_event_casedeal
