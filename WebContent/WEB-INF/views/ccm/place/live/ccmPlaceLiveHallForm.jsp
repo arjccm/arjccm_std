@@ -69,7 +69,6 @@
 <body>
 	<ul class="nav nav-tabs">
 	</ul>
-	<br />
 	<form:form id="inputForm" modelAttribute="ccmPlaceLive"
 		action="${ctx}/live/ccmPlaceLive/save/hall" method="post"
 		class="form-horizontal">
