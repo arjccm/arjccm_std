@@ -4279,7 +4279,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 
 .navbar .nav>li>a {
 	float: none;
-	padding: 4px 15px 2px !important;
+	padding: 7px 15px !important;
 	color: #fff;
 	text-decoration: none;
 }
@@ -4300,11 +4300,11 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	{
 	color: #fff;
 	text-decoration: none;
-	background:url(../img/nav-xz.png) no-repeat;
-	background-size: 100% 100%;
-	webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-	-moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-	box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125)
+	/*background:url(../img/nav-xz.png) no-repeat;*/
+	/*background-size: 100% 100%;*/
+	webkit-box-shadow: inset 0px 0px 26px 2px #1684c2;
+	-moz-box-shadow: inset 0px 0px 26px 2px #1684c2;
+	box-shadow: inset 0px 0px 26px 2px #1684c2;
 }
 
 .navbar .btn-navbar {
