@@ -1775,7 +1775,7 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 
 
 -- 添加字段 ccm_event_casedeal
-ALTER TABLE `arjccm_xinmi`.`ccm_event_casedeal`
+ALTER TABLE `ccm_event_casedeal`
 ADD COLUMN `manage_type` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '办理状态' AFTER `del_flag`,
 ADD COLUMN `file` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '附件' AFTER `manage_type`,
 ADD COLUMN `grade_num` int(1) NULL DEFAULT 0 COMMENT '等级评估' AFTER `file`,
