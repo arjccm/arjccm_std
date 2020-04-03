@@ -747,6 +747,8 @@ color:#fff!important;
 	margin: auto;
 	text-align: center;
 	font-size: 24px;
+	line-height: 25px;
+	height: 25px;
 }
 .menu .nav-name{
 	display: block;

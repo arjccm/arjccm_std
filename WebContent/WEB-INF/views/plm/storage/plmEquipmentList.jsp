@@ -61,13 +61,13 @@
 			<li class="first-line"><label>使用人：</label> <sys:treeselect id="user" name="user.id"
 					value="${plmEquipment.user.id}" labelName="user.name"
 					labelValue="${plmEquipment.user.name}" title="用户"
-					url="/sys/office/treeData?type=3" cssClass="input-select"
+					url="/sys/office/treeData?type=3" cssClass="input-medium"
 					allowClear="true" notAllowSelectParent="true" /></li>
 			<li class="first-line"><label>使用人部门：</label> <sys:treeselect id="userJob"
 					name="userJob.id" value="${plmEquipment.userJob.id}"
 					labelName="userJob.name" labelValue="${plmEquipment.userJob.name}"
 					title="部门" url="/sys/office/treeData?type=2"
-					cssClass="input-select" allowClear="true"
+					cssClass="input-medium" allowClear="true"
 					notAllowSelectParent="true" /></li>
 			<li class="second-line"><label>状态：</label> <form:select path="type"
 					class="input-medium">
