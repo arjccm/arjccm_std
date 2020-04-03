@@ -1640,12 +1640,12 @@ cite[class*='t-click']{
 .echartsAlarm-tab li{
     line-height: 30px;
 }
-a.layui-layer-ico.layui-layer-close.layui-layer-close2{
-    background: url(../img/guanbi1.png) no-repeat!important;
-    position: absolute;
-    right: -34px;
-    top: -2px;
-}
+/*a.layui-layer-ico.layui-layer-close.layui-layer-close2{*/
+/*    background: url(../img/guanbi1.png) no-repeat!important;*/
+/*    position: absolute;*/
+/*    right: -34px;*/
+/*    top: -2px;*/
+/*}*/
 .layui-layer-setwin{
     position: absolute;
     right: 24px!important;
