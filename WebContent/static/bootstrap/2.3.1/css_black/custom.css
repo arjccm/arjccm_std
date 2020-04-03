@@ -1248,7 +1248,7 @@ cite[class*='t-click']{
 }
 /*顶部导航条左边距*/
 #menu li:first-child{
-    padding-left: 120px!important;
+    padding-left: 135px!important;
 }
 .breadcrumb {
     background: none !important;
@@ -1640,12 +1640,12 @@ cite[class*='t-click']{
 .echartsAlarm-tab li{
     line-height: 30px;
 }
-a.layui-layer-ico.layui-layer-close.layui-layer-close2{
-    background: url(../img/guanbi1.png) no-repeat!important;
-    position: absolute;
-    right: -34px;
-    top: -2px;
-}
+/*a.layui-layer-ico.layui-layer-close.layui-layer-close2{*/
+/*    background: url(../img/guanbi1.png) no-repeat!important;*/
+/*    position: absolute;*/
+/*    right: -34px;*/
+/*    top: -2px;*/
+/*}*/
 .layui-layer-setwin{
     position: absolute;
     right: 24px!important;
@@ -1819,4 +1819,8 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
 	 color: #ffffff;
 	 line-height: 40px;
 	 padding-left: 20px;
+ }
+ /*经济运行页面新增样式*/
+ .control-group-top{
+	 margin-top: 13px;
  }

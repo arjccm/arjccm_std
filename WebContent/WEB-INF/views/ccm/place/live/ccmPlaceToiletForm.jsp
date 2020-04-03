@@ -9,7 +9,11 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				//$("#name").focus();
+                //关闭弹框事件
+                $('#btnCancel').click(function () {
+                    parent.layer.close(parent.layerIndex);
+                })
+
 				$("#inputForm")
 						.validate(
 								{
@@ -87,7 +91,6 @@
 					name="live:ccmPlaceLive:edit">${not empty ccmPlaceLive.id?'编辑':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="live:ccmPlaceLive:edit">查看</shiro:lacksPermission></a></li> --%>
 	</ul>
-	<br />
 	<form:form id="inputForm" modelAttribute="ccmPlaceLive"
 		action="${ctx}/live/ccmPlaceLive/save/toilet" method="post"
 		class="form-horizontal">
@@ -262,6 +265,9 @@
 			<shiro:hasPermission name="live:ccmPlaceLive:edit">
 				<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button"
 					value="保 存" />&nbsp;</shiro:hasPermission>
+            <input id="btnCancel" class="btn btn-danger" type="button"
+                   value="关闭"/>
+            &nbsp;
 		</div>
 	</form:form>
 </body>

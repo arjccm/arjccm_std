@@ -69,7 +69,6 @@
 <body>
 	<ul class="nav nav-tabs">
 	</ul>
-	<br />
 	<form:form id="inputForm" modelAttribute="ccmPlaceLive"
 		action="${ctx}/live/ccmPlaceLive/save/hall" method="post"
 		class="form-horizontal">
@@ -221,9 +220,10 @@
 			<shiro:hasPermission name="live:ccmPlaceLive:edit">
 				<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button"
 					value="保 存" />
+            </shiro:hasPermission>
 				<input id="btnCancel" class="btn btn-danger" type="button"
 					value="关闭" />				
-					&nbsp;</shiro:hasPermission>
+					&nbsp;
 
 		</div>
 	</form:form>

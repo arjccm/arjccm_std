@@ -86,8 +86,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a style="width: 160px;text-align:center" href="${ctx}/event/ccmEventIncident/listLine">线、路案（事）件列表</a></li>
-		<li class="active" style="width: 160px" ><a class="nav-head"
+		<li><a style="text-align:center" href="${ctx}/event/ccmEventIncident/listLine">线、路案（事）件列表</a></li>
+		<li class="active"><a class="nav-head"
 			href="${ctx}/event/ccmEventIncident/formLine?id=${ccmEventIncident.id}">线、路案（事）件<shiro:hasPermission
 					name="event:ccmEventIncident:edit">${not empty ccmEventIncident.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="event:ccmEventIncident:edit">查看</shiro:lacksPermission></a></li>

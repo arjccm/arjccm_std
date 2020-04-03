@@ -68,7 +68,7 @@
 				<th>隶属单位名称</th>
 				<th>隶属单位负责人</th>
 				<th>隶属单位负责人联系方式</th>
-				<shiro:hasPermission name="line:ccmLineProtect:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

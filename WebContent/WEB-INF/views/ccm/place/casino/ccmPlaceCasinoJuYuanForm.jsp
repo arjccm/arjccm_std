@@ -99,7 +99,6 @@
 					name="casino:ccmPlaceCasino:edit">${not empty ccmPlaceCasino.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="casino:ccmPlaceCasino:edit">查看</shiro:lacksPermission></a></li> --%>
 	</ul>
-	<br />
 
 
 	<form:form id="inputForm" modelAttribute="ccmPlaceCasino"
@@ -316,8 +315,9 @@
 			<shiro:hasPermission name="casino:ccmPlaceCasino:edit">
 				<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()"
 					type="button" value="保存" />
+            </shiro:hasPermission>
 				<input id="btnCancel" class="btn btn-danger" type="button"
-					value="关闭" />&nbsp;</shiro:hasPermission>
+					value="关闭" />&nbsp;
 		</div>
 
 	</form:form>
