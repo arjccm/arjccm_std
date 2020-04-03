@@ -1248,7 +1248,7 @@ cite[class*='t-click']{
 }
 /*顶部导航条左边距*/
 #menu li:first-child{
-    padding-left: 120px!important;
+    padding-left: 135px!important;
 }
 .breadcrumb {
     background: none !important;
