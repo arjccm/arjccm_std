@@ -29,11 +29,40 @@ public interface CcmPeopleAmountDao extends CrudDao<CcmPeopleAmount> {
 	List<EchartType> findListBySum(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
 
 	/**
+	 * @see 查询当的
+	 * @param column
+	 * @return
+	 */
+	List<EchartType> findListNotGetBySum(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
+
+	/**
 	 * @see 查询当日的新增人口数量
 	 * @param column
 	 * @return
 	 */
 	List<EchartType> findListByMon(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
+
+	/**
+	 * @see 查询当日的未采集人口数量
+	 * @param column
+	 * @return
+	 */
+	List<EchartType> findListNotGetByMon(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
+
+	/**
+	 * @see 查询当日的未采集人口数量
+	 * @param column
+	 * @return
+	 */
+	List<EchartType> findLowLevelListNotGetByMon(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
+
+	/**
+	 * @see 查询当日的新增人口数量
+	 * @param column
+	 * @return
+	 */
+	List<EchartType> findLowLevelListByMon(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
+
 	/**
 	 * @see 实有人口统计情况
 	 * @param column
