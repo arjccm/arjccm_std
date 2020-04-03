@@ -252,8 +252,8 @@
 
 	<select id="findList" resultType="CcmEventCasedeal">
 		SELECT * FROM 
-		(	
-		
+		(
+
 			SELECT
 			<include refid="ccmEventCasedealColumnsWithIncident" />
 			FROM ccm_event_casedeal a
@@ -775,5 +775,15 @@
 			AND DATE_ADD(NOW(),INTERVAL 30 MINUTE) > a.handle_deadline
 			AND NOW() &lt; a.handle_deadline
 		</where>
+	</select>
+	<select id="getHappenPlace" resultType="string">
+		SELECT
+		i.happen_place
+		FROM
+		ccm_event_incident i
+		LEFT JOIN ccm_event_casedeal c ON i.id = c.obj_id
+		WHERE
+		c.id = #{cid}
+		AND c.del_flag =0
 	</select>
 </mapper>
