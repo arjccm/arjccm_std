@@ -5425,3 +5425,7 @@ input::-ms-clear{
 	line-height: 40px;
 	padding-left: 20px;
 }
+/*经济运行页面新增样式*/
+.control-group-top{
+	margin-top: 13px;
+}

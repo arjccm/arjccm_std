@@ -1820,3 +1820,7 @@ a.layui-layer-ico.layui-layer-close.layui-layer-close2{
 	 line-height: 40px;
 	 padding-left: 20px;
  }
+ /*经济运行页面新增样式*/
+ .control-group-top{
+	 margin-top: 13px;
+ }
