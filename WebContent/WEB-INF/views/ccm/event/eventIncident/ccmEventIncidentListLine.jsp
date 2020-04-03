@@ -150,9 +150,7 @@
 				<th>案（事）件性质</th>
 			    <th width="10%">发案地</th>
 			    <th>发生地详址</th>
-				<shiro:hasPermission name="event:ccmEventIncident:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
