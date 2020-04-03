@@ -69,7 +69,7 @@
 }
 
 .navbar .nav>li>a {
-	padding: 14px 15px 14px;
+	padding: 12px 15px;
 }
 
 .navbar .brand {
