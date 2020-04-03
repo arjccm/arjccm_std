@@ -82,9 +82,10 @@
 
 <%--	<sys:message content="${message}" />--%>
 	<div class="clearfix pull-right btn-box">
-		<a
-				onclick="parent.LayerDialog('${ctx}/scenic/ccmPlaceScenic/form?type=01', '添加', '1100px', '700px')"
+        <shiro:hasPermission name="scenic:ccmPlaceScenic:edit">
+		<a onclick="parent.LayerDialog('${ctx}/scenic/ccmPlaceScenic/form?type=01', '添加', '1100px', '700px')"
 				class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i></i><span style="font-size: 12px">添加</span>  </a>
+        </shiro:hasPermission>
 		<a href="javascript:;" id="btnSubmit"
 							class="btn btn-primary" style="width: 49px;display:inline-block;float: right;"> <i></i> <span style="font-size: 12px">查询</span>
 		</a>
@@ -115,7 +116,7 @@
 						src="${ccmPlaceScenic.ccmBasePlace.placePicture}"
 						 class="pic-size pimg"/></td>
 					<td><a class="btnList"
-						onclick="parent.LayerDialog('${ctx}/scenic/ccmPlaceScenic/form?id=${ccmPlaceScenic.id}', '编辑', '1100px', '700px')">${ccmPlaceScenic.placeName}</a>
+						onclick="parent.LayerDialog('${ctx}/scenic/ccmPlaceScenic/form?id=${ccmPlaceScenic.id}', '详情', '1100px', '700px')">${ccmPlaceScenic.placeName}</a>
 					</td>
 					<td>${ccmPlaceScenic.leaderName}</td>
 					<td>${ccmPlaceScenic.leaderContact}</td>

@@ -747,6 +747,8 @@ color:#fff!important;
 	margin: auto;
 	text-align: center;
 	font-size: 24px;
+	line-height: 25px;
+	height: 25px;
 }
 .menu .nav-name{
 	display: block;
@@ -1248,7 +1250,7 @@ cite[class*='t-click']{
 }
 /*顶部导航条左边距*/
 #menu li:first-child{
-    padding-left: 120px!important;
+    padding-left: 135px!important;
 }
 .breadcrumb {
     background: none !important;
@@ -1640,12 +1642,12 @@ cite[class*='t-click']{
 .echartsAlarm-tab li{
     line-height: 30px;
 }
-a.layui-layer-ico.layui-layer-close.layui-layer-close2{
-    background: url(../img/guanbi1.png) no-repeat!important;
-    position: absolute;
-    right: -34px;
-    top: -2px;
-}
+/*a.layui-layer-ico.layui-layer-close.layui-layer-close2{*/
+/*    background: url(../img/guanbi1.png) no-repeat!important;*/
+/*    position: absolute;*/
+/*    right: -34px;*/
+/*    top: -2px;*/
+/*}*/
 .layui-layer-setwin{
     position: absolute;
     right: 24px!important;

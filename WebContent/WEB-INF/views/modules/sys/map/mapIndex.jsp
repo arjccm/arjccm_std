@@ -120,7 +120,7 @@
   display: inline;
 }
 .nav-tabsLeft li{
-   width: 33.333%;
+   width: 32.8%;
    text-align: center;
 }
  #addBtn{

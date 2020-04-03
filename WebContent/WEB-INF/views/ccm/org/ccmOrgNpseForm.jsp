@@ -11,6 +11,7 @@
             src="${ctxStatic}/ccm/event/js/fishBonePop.js"></script>
     <script type="text/javascript"
             src="${ctxStatic}/ccm/event/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
     <script type="text/javascript">
         $(document).ready(
             function () {
@@ -86,7 +87,58 @@
 
         }
     </script>
-	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
+
+    <script>
+
+        // 工商注册号唯一判断
+
+        function isRepeat(id) {
+
+
+            // 新增
+            let aid = id;
+            if (id.trim().length <= 0) {
+                let compId = $("#input_compId").val();
+                if (compId != null && compId.trim().length > 0) {
+                    $.ajax({
+                        url: ctx + "/org/ccmOrgNpse/findByCompId?compId=" + compId,
+                        type: "get",
+                        success: function (data) {
+                            if (data.length > 0) {
+                                layer.alert('该工商号已注册！！！', {
+                                    title: "提示",
+                                    skin: 'layui-layer-lan'
+                                    , closeBtn: 0,
+                                    btn: "好的"
+                                });
+                            }
+                        }
+                    })
+                }
+            } else {
+                // 编辑
+                var compId = $("#input_compId").val();
+                if (compId != null && compId.trim().length > 0) {
+                    $.ajax({
+                        url: ctx + "/org/ccmOrgNpse/findByCompId?compId=" + compId + "&id=" + aid,
+                        type: "get",
+                        success: function (data) {
+                            if (data.length > 0) {
+                                layer.alert('该工商号已注册！！！', {
+                                    title: "提示",
+                                    skin: 'layui-layer-lan'
+                                    , closeBtn: 0,
+                                    btn: "好的"
+                                });
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+
+    <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <%-- <ul class="nav nav-tabs">
@@ -134,10 +186,12 @@
         <tr>
             <td>
                 <div>
-                    <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>工商执照注册号：</label>
-						<div class="controls">
-							<form:input path="compId" htmlEscape="false" maxlength="64"
-								class="input-xlarge required" />
+                    <label class="control-label"><span class="help-inline"><font
+                            color="red">*</font> </span>工商执照注册号：</label>
+                    <div class="controls">
+                        <form:input path="compId" id="input_compId" onmouseout="isRepeat('${ccmOrgNpse.id}')"
+                                    htmlEscape="false" maxlength="64"
+                                    class="input-xlarge required"/>
                     </div>
                 </div>
             </td>

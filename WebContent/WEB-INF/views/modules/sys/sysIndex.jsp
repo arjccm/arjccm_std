@@ -69,7 +69,7 @@
 }
 
 .navbar .nav>li>a {
-	padding: 14px 15px 14px;
+	padding: 12px 15px;
 }
 
 .navbar .brand {
@@ -594,7 +594,7 @@ function addTab($this, refresh) {
 					</script>
 				</c:if> --%>
 				<div class="nav-collapse">
-					<ul id="menu" class="nav pgwMenuCustom" 
+					<ul id="menu" class="nav clearfix pgwMenuCustom"
 						style="*white-space: nowrap; float: none;">
 						<c:set var="pid" value="${pid}" />
 						<c:set var="firstMenu" value="false" />

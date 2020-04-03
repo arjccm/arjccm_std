@@ -98,6 +98,11 @@
 
     </script>
     <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        table {
+            table-layout: fixed;
+        }
+    </style>
 </head>
 <body>
     <ul class="nav nav-tabs hide1">
@@ -273,7 +278,7 @@
                     </div>
                 </td>
                 <td>
-                    <div>
+                    <div style="width: 110%;">
                         <label class="control-label">区域图：</label>
                         <div class="controls">
                             <form:input path="areaMap" readonly="true" htmlEscape="false" maxlength="2000"

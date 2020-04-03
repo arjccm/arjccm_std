@@ -22,7 +22,7 @@ import java.util.List;
 public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 	
 	private static final long serialVersionUID = 1L;
-	private String name;		// 小区（单位）名称
+	private String name;			// 小区（单位）名称
 	private String buildname;		// 楼栋名称
 	private Double floorArea;		// 建筑面积（平方米）
 	private Integer pilesNum;		// 层数
@@ -30,21 +30,21 @@ public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 	private Integer buildNum;		// 楼栋户数
 	private Integer buildPeo;		// 楼栋人数
 	private String buildPname;		// 楼栋长姓名
-	private String sex;		// 性别
-	private String nation;		// 民族
-	private String content;		// 政治面貌
-	private Date birthday;		// 出生日期
+	private String sex;				// 性别
+	private String nation;			// 民族
+	private String content;			// 政治面貌
+	private Date birthday;			// 出生日期
 	private String education;		// 学历
-	private String tel;		// 手机号码
-	private String phone;		// 固定电话
+	private String tel;				// 手机号码
+	private String phone;			// 固定电话
 	private String residence;		// 所在地
-	private String residencedetail;		// 所在地详址
-	private String areaMap;		// 区域图
+	private String residencedetail;	// 所在地详址
+	private String areaMap;			// 区域图
 	private String areaPoint;		// 中心点
-	private String image;		// 图标
-	private Area area;		// 所属区域网格
-	private String images;		// 楼栋图片
-	private String more1; //sql
+	private String image;			// 图标
+	private Area area;				// 所属区域网格
+	private String images;			// 楼栋图片
+	private String more1; 			//sql
 	private String count;
 	private String code;//建筑物编号
 
@@ -52,7 +52,15 @@ public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 
 	private Integer minnum;
 	private Integer maxnum;
+	private Integer nogather;	//楼栋未采集人数
 
+	public Integer getNogather() {
+		return nogather;
+	}
+
+	public void setNogather(Integer nogather) {
+		this.nogather = nogather;
+	}
 
 	public List<String> getListLimite() {
 		return listLimite;

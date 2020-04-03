@@ -16,6 +16,7 @@ import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.TransGPS;
 import io.swagger.annotations.Api;
@@ -126,6 +127,14 @@ public class CcmRestBuilding extends BaseController {
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
 		if(page.getList().size()>0){
 			for (int i = 0; i < page.getList().size(); i++) {
+				String aid = page.getList().get(i).getId();
+				//已采集人数
+				Integer gather = ccmHouseBuildmanageService.gather(aid);
+				//楼栋总人数
+				Integer buildPeo = page.getList().get(i).getBuildPeo();
+				//未采集人数
+				Integer nogather=buildPeo-gather;
+				page.getList().get(i).setNogather(nogather);
 				page.getList().get(i).setImages(fileUrl + page.getList().get(i).getImages());
 			}
 		}

@@ -98,7 +98,6 @@
                 name="casino:ccmPlaceCasino:edit">${not empty ccmPlaceCasino.id?'修改':'添加'}</shiro:hasPermission>
             <shiro:lacksPermission name="casino:ccmPlaceCasino:edit">查看</shiro:lacksPermission></a></li> --%>
 </ul>
-<br/>
 
 
 <form:form id="inputForm" modelAttribute="ccmPlaceCasino"

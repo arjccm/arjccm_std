@@ -1059,4 +1059,19 @@
 	<select id="unitsCount" resultType="Integer">
 		SELECT count(a.id) FROM ccm_org_npse a LEFT JOIN sys_area a34 ON a34.id = a.area_id WHERE a.del_flag = 0
 	</select>
+
+	<!--查询该工商号是否已添加-->
+	<select id="findByCompId" resultType="CcmOrgNpse">
+		SELECT
+		id
+		FROM
+		ccm_org_npse
+		WHERE
+		comp_id = #{compId}
+		<if test="id != null and id != ''">
+			AND id &lt;&gt; #{id}
+		</if>
+		AND del_flag = 0
+	</select>
+
 </mapper>
