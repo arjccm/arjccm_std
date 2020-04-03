@@ -789,4 +789,15 @@
 	a.del_flag = 0
 	</select>
 
+	<select id="gather" resultType="int">
+	SELECT
+	count(*) AS "num"
+	FROM
+	ccm_house_buildmanage build
+	LEFT JOIN ccm_people people ON build.id = people.build_id
+	where
+	build.id = #{bid}
+	AND people.del_flag = 0
+	GROUP BY build.id
+	</select>
 </mapper>

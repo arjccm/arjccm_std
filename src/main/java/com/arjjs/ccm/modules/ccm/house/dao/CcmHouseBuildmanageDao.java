@@ -85,4 +85,6 @@ public interface CcmHouseBuildmanageDao extends CrudDao<CcmHouseBuildmanage> {
 
 	// 导入 查询全部
 	List<CcmHouseBuildmanage> queryAllForImport();
+
+    Integer gather(@Param("bid") String bid);
 }

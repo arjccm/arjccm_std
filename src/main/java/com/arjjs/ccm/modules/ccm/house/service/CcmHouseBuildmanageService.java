@@ -234,4 +234,9 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 	public List<CcmHouseBuildmanage> queryAllForImport() {
 		return ccmHouseBuildmanageDao.queryAllForImport();
 	}
+
+	//查询楼栋内采集人数
+	public Integer gather(String aid) {
+		return ccmHouseBuildmanageDao.gather(aid);
+	}
 }
