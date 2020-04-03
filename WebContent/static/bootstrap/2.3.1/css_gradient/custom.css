@@ -819,7 +819,7 @@ ul[class*="nav nav-list"]>li>a:hover{
 	background-image: none!important;
 	border: 1px solid #d7e1ed!important;
 	height: 28px;
-	width: 162px;
+	/*width: 162px;*/
 }
 .input-append> .btn{
 	display: none;
@@ -962,12 +962,12 @@ ul[class*="nav nav-list"]>li>a:hover{
 }
 
 
-a.layui-layer-ico.layui-layer-close.layui-layer-close2{
-	background: url(../img/guanbi0.png) no-repeat!important;
-	position: absolute;
-	right: -34px;
-	top: -2px;
-}
+/*a.layui-layer-ico.layui-layer-close.layui-layer-close2{*/
+/*	background: url(../img/guanbi0.png) no-repeat!important;*/
+/*	position: absolute;*/
+/*	right: -34px;*/
+/*	top: -2px;*/
+/*}*/
 .layui-layer-setwin{
 	position: absolute;
 	right: 24px!important;
@@ -1103,4 +1103,7 @@ input::-ms-clear{
 /*经济运行页面新增样式*/
 .control-group-top{
 	margin-top: 13px;
+}
+.layer-common2{
+
 }
