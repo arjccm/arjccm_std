@@ -63,11 +63,11 @@ A:link{
 		<ul class="ul-form">
 			<li><label>归属部门：</label>
 				<sys:treeselect id="office" name="office" value="${ccmWorkBeonduty.office.id}" labelName="" labelValue="${ccmWorkBeonduty.office.name}"
-					title="部门"  url="/sys/office/treeData?type=2" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
+					title="部门"  url="/sys/office/treeData?type=2" cssClass="input-medium" allowClear="true" notAllowSelectParent="true"/>
 			</li>
 			<li><label>值班负责人：</label>
 				<sys:treeselect id="principal" name="principal" value="${ccmWorkBeonduty.principal.id}" labelName="" labelValue="${ccmWorkBeonduty.principal.name}"
-					title="用户" url="/sys/office/treeData?type=3" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
+					title="用户" url="/sys/office/treeData?type=3" cssClass="input-medium" allowClear="true" notAllowSelectParent="true"/>
 			</li>
 			<li><label>值班队伍：</label>
 				<form:input path="principalMans" htmlEscape="false" maxlength="1000" class="input-medium"/>
