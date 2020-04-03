@@ -139,7 +139,7 @@
             <tr>
                 <td width="100px"><img src="${ccmHousePsychogeny.images}" style="height:50px;" class="pimg"/></td>
                 <td>
-                    <a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}&hide1=true&hide2=false', '信息', '1200px', '800px')">${ccmHousePsychogeny.name}</a>
+                    <a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}', '信息', '1200px', '800px')">${ccmHousePsychogeny.name}</a>
                 </td>
                 <td>${ccmHousePsychogeny.ident}</td>
                 <td>${fns:getDictLabel(ccmHousePsychogeny.sex, 'sex', '')}</td>

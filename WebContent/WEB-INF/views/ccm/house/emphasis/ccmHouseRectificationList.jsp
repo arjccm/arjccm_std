@@ -137,7 +137,7 @@
             <tr>
                 <td width="100px"><img src="${ccmHouseRectification.images}" style="height:50px;" class="pimg"/></td>
                 <td>
-                    <a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseRectification/form?id=${ccmHouseRectification.id}&hide1=true&hide2=false', '信息', '1200px', '800px')">${ccmHouseRectification.name}</a>
+                    <a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseRectification/form?id=${ccmHouseRectification.id}', '信息', '1200px', '800px')">${ccmHouseRectification.name}</a>
                 </td>
                 <td>${ccmHouseRectification.ident}</td>
                 <td>${fns:getDictLabel(ccmHouseRectification.sex, 'sex', '')}</td>
