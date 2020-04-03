@@ -122,7 +122,7 @@
 					data: ['幺铺镇', '西航办事处', '宋旗镇'],
 					textStyle: {
 						fontWeight: 'normal', //标题颜色
-						color: '#000'
+						color: 'CDCDC1'//字体颜色
 					},
 				},
 				grid: {
