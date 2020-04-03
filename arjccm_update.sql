@@ -1751,9 +1751,12 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 --添加app版本管理权限
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '1e9dfc7229ae401b8356bdf57f7bd588', '8bff6204e023489b9f475283fd04a02e', '0,1,2,8bff6204e023489b9f475283fd04a02e,', '编辑', '', '', '', 60, '1', 'appupload:sysAppUpload:edit', '1', '2020-04-01 11:32:43.103', '1', '2020-04-01 11:32:43.103', '', '0' );
 
-
-
-
+--流程审批 信息查阅
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '260432f87fbd481fa73422bbf3cc9122', 'c271f7b943a4432e8370198f8c7faa93', '0,1,3b3a641046be4558b92178d07f93b280,6e4f90e142be4c4babbd9e708f437d8a,c271f7b943a4432e8370198f8c7faa93,', '显示', '', '', '', 30, '0', 'flow:jump:index:view', '1', '2020-04-03 09:40:32.683', '1', '2020-04-03 09:40:32.683', '', '0' );
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a940b7a5923342249b87e32f386fb0bd', 'c271f7b943a4432e8370198f8c7faa93', '0,1,3b3a641046be4558b92178d07f93b280,6e4f90e142be4c4babbd9e708f437d8a,c271f7b943a4432e8370198f8c7faa93,', '编辑', '', '', '', 60, '0', 'flow:jump:index:edit', '1', '2020-04-03 09:48:08.967', '1', '2020-04-03 09:48:08.967', '', '0' );
+--
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'e61135a69f074bb3a598379908acb671', 'cee99b69711b453cb1c012b592936264', '0,1,ef61dbc7960f4272b360de7ad7d59a07,e1ea142288174ff9be2ae602d07af1f9,cee99b69711b453cb1c012b592936264,', '显示', '', '', '', 30, '0', 'alarm:bphAlarmInfo:index:view', '1', '2020-04-02 10:22:14.368', '1', '2020-04-02 10:22:14.368', '', '0' );
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '3143715e332f4fb1963a4d9f06fbae4b', 'cee99b69711b453cb1c012b592936264', '0,1,ef61dbc7960f4272b360de7ad7d59a07,e1ea142288174ff9be2ae602d07af1f9,cee99b69711b453cb1c012b592936264,', '编辑', '', '', '', 60, '0', 'alarm:bphAlarmInfo:index:edit', '1', '2020-04-02 10:28:06.513', '1', '2020-04-02 10:28:06.513', '', '0' );
 -- 添加流程管理操作权限
 UPDATE sys_menu SET parent_id = '69', parent_ids = '0,1,2,62,69,', name = '流程管理', href = '/act/process', target = '', icon = 'road', sort = 50, is_show = '1', permission = '', update_by = '1', update_date = '2020-04-01 14:41:37.043', remarks = ''
  WHERE id = '70';

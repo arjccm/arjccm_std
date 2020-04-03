@@ -40,9 +40,9 @@
 				</form:select>
 					
 			</li>
-			<li class="btns"><a
+			<shiro:hasPermission name="fence:ccmElectronicFence:edit"><li class="btns"><a
 				onclick="parent.LayerDialog('${ctx}/fence/ccmElectronicFence/form', '添加', '1100px', '700px')"
-				class="btn btn-export" style="width: 49px;/*margin-top: 25px;*/display:inline-block;float: right;"><span style="font-size: 12px">添加</span></a></li>
+				class="btn btn-export" style="width: 49px;/*margin-top: 25px;*/display:inline-block;float: right;"><span style="font-size: 12px">添加</span></a></li></shiro:hasPermission>
 <%--			<li class="btns"><a href="javascript:;" id="btnSubmit"--%>
 <%--				class="btn btn-primary" style="width: 49px;margin-top: 5px;display:inline-block;float: right;"> <i > <span style="font-size: 12px">查询</span></i>--%>
 <%--			</a></li>--%>

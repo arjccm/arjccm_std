@@ -33,14 +33,14 @@
 		<li><a style="text-align:center" href="${ctx}/publicity/ccmLogPublicity/">数据列表</a></li>
 		<li class="active"><a class="nav-head"href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}">数据
 
-            <shiro:hasPermission name="publicity:ccmLogPublicity:edit">
+<%--            <shiro:hasPermission name="publicity:ccmLogPublicity:edit">--%>
 			<c:if test="${user.id eq ccmLogPublicity.createBy.id or user.id eq '1'}">
 				${not empty ccmLogPublicity.id?'修改':'添加'}
 			</c:if>
 			<c:if test="${user.id ne ccmLogPublicity.createBy.id and user.id ne '1'}">
                 ${not empty ccmLogPublicity.id?'查看':'添加'}
 			</c:if>
-            </shiro:hasPermission>
+<%--            </shiro:hasPermission>--%>
 			</a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmLogPublicity" action="${ctx}/publicity/ccmLogPublicity/save" method="post" class="form-horizontal">

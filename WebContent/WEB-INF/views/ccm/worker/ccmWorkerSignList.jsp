@@ -99,7 +99,7 @@
 				<th>签到类型</th>
 				<!-- <th>签到状态</th> -->
 				<th>签到时间</th>
-				<shiro:hasPermission name="worker:ccmWorkerSign:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

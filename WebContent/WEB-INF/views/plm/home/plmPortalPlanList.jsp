@@ -65,8 +65,8 @@
 		</ul>
 		<div class="clearfix pull-right btn-box">
 
-			<a id="searchForm" class="btn btn-export" style="width: 49px;display:inline-block;float: right;padding-top: 4px!important;" onclick="bj('')"
-			   href="javascript:;"><i ></i><span style="font-size: 12px">添加</span></a>
+			<shiro:hasPermission name="home:plmPortalPlan:edit"> <a id="searchForm" class="btn btn-export" style="width: 49px;display:inline-block;float: right;padding-top: 4px!important;" onclick="bj('')"
+			   href="javascript:;"><i ></i><span style="font-size: 12px">添加</span></a></shiro:hasPermission>
 			<a id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;"
 			   href="javascript:;"><i ></i><span style="font-size: 12px"> 查询 </span></a>
 		</div>
