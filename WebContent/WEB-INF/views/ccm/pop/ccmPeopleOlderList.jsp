@@ -162,7 +162,7 @@
            style="width: 49px;display:inline-block;float: left;">
             <i></i><span style="font-size: 12px">查询</span> </a>
         <shiro:hasPermission
-                name="sys:user:edit">
+                name="pop:ccmOlder:export">
             <!-- <input id="btnExport" class="btn btn-primary" type="button"
             value="导出" />
             <input id="btnImport" class="btn btn-primary" type="button"

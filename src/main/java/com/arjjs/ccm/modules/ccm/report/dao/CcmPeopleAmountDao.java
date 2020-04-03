@@ -125,4 +125,7 @@ public interface CcmPeopleAmountDao extends CrudDao<CcmPeopleAmount> {
 
 	//获取所有特殊信息上个月的总数
 	SearchTabMore getnumPopFollowPopQL();
+
+	// 查询实际采集人数
+	CcmPeopleAmount queryCollectionNum(CcmPeopleAmount ccmPeopleAmount);
 }
