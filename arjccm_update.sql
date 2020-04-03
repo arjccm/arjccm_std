@@ -1770,3 +1770,13 @@ UPDATE sys_menu SET parent_id = '69', parent_ids = '0,1,2,62,69,', name = '模�
 
 --添加信息采集社会治安 嫌疑人显示权限
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a42670932dad468989033c1455681abd', 'bda5b1b6bb5649a7a0b5f53ab91554b9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,72907f43bb8d43ac8973b253ef575f85,bda5b1b6bb5649a7a0b5f53ab91554b9,', '显示', '', '', '', 30, '0', 'event:ccmEventStakeholder:view', '1', '2020-04-02 16:21:03.545', '1', '2020-04-02 16:21:03.545', '', '0' );
+
+
+
+
+-- 添加字段 ccm_event_casedeal
+ALTER TABLE `arjccm_xinmi`.`ccm_event_casedeal`
+ADD COLUMN `manage_type` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '办理状态' AFTER `del_flag`,
+ADD COLUMN `file` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '附件' AFTER `manage_type`,
+ADD COLUMN `grade_num` int(1) NULL DEFAULT 0 COMMENT '等级评估' AFTER `file`,
+ADD COLUMN `effect_type` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '效果评估' AFTER `grade_num`;
