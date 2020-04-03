@@ -56,8 +56,16 @@ public class CcmEventCasedeal extends DataEntity<CcmEventCasedeal> {
 	private String more1;
 	private Date tailTime;
 	private String evaluate;
+	private String happenPlace;  //发生地详址
 
-	/*@Length(min = 1, max = 64, message = "案事件长度必须优先添加后才可以添加案事件处理信息")
+	public String getHappenPlace() {
+		return happenPlace;
+	}
+
+	public void setHappenPlace(String happenPlace) {
+		this.happenPlace = happenPlace;
+	}
+/*@Length(min = 1, max = 64, message = "案事件长度必须优先添加后才可以添加案事件处理信息")
 	public String getEventIncidentId() {
 		return eventIncidentId;
 	}
