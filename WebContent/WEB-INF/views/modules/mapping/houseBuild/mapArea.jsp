@@ -224,11 +224,11 @@ font-size:18px;
 									</tr>
 									<tr>
 										<td align="right">党员人数：</td>
-										<td align="left"><span  class="fontsize-common"><span>${ccmOrgArea.partyMembersNum}</span>&nbsp;</span>人</td>
+										<td align="left"><span  class="fontsize-common"><span>${ccmOrgArea.partyMembersNum}</span>0</span>人</td>
 									</tr>
 									<tr>
 										<td align="right">总户数：</td>
-										<td align="left"><span  class="fontsize-common"><span>${ccmOrgArea.netNum}</span>&nbsp;</span>人</td>
+										<td align="left"><span  class="fontsize-common"><span>${ccmOrgArea.netNum}</span>0</span>人</td>
 									</tr>
 								</table>
 							</div>

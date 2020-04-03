@@ -448,4 +448,11 @@ public class CcmOrgNpseController extends BaseController {
 		model.addAttribute("ccmOrgNpse", ccmOrgNpse);
 		return "ccm/org/ccmOrgNpseMapvForm";
 	}
+
+	@RequestMapping("findByCompId")
+	@ResponseBody
+	public List<CcmOrgNpse> findByCompId(String compId, String id) {
+		return ccmOrgNpseService.findByCompId(compId,id);
+	}
+
 }
