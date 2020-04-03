@@ -157,11 +157,11 @@
 					</td>
 					<!--如果为房屋进行访问  -->
 					<c:if test="${PeoTypeBy eq 'ByHouse' }">
-						<td><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house">
+						<td><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=${ccmPeople.type}&ptype=house">
 								${ccmPeople.name}</a></td>
 					</c:if>
 					<c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
-						<td><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=hire">
+						<td><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=${ccmPeople.type}&ptype=hire">
 								${ccmPeople.name}</a></td>
 					</c:if>
 					<!--如果为楼栋进行访问  -->
@@ -179,13 +179,13 @@
 						<c:if test="${PeoTypeBy eq 'ByHouse' }">
 							<%--<a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
 							<a class="btnList"
-							   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=house', '编辑', '1500px', '700px')"
+							   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=${ccmPeople.type}&ptype=house', '编辑', '1500px', '700px')"
 							   title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						</c:if>
                         <c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
                             <%--<a class="btnList" href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=hire"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>--%>
 							<a class="btnList"
-							   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=hire', '编辑', '1500px', '700px')"
+							   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=${ccmPeople.type}&ptype=hire', '编辑', '1500px', '700px')"
 							   title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						</c:if>
 						<%--<a class="btnList" href="${ctx}/pop/ccmPeople/deletePeople?id=${ccmPeople.id}&houseId=${houseId}&type=${PeoTypeBy}&buildId=${buildId}&netId=${netId}"

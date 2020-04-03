@@ -121,7 +121,7 @@
 			<c:forEach items="${page.list}" var="ccmHouseDrugs">
 				<tr>
 					<td width="100px"><img src="${ccmHouseDrugs.images}" style="height:50px;" class="pimg"/></td>
-					<td><a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseDrugs/form?id=${ccmHouseDrugs.id}&hide1=true&hide2=false', '信息', '1200px', '800px')">${ccmHouseDrugs.name}</a></td>
+					<td><a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseDrugs/form?id=${ccmHouseDrugs.id}', '信息', '1200px', '800px')">${ccmHouseDrugs.name}</a></td>
 					<td>${ccmHouseDrugs.ident}</td>
 					<td>${fns:getDictLabel(ccmHouseDrugs.sex, 'sex', '')}</td>
 					<td>${ccmHouseDrugs.telephone}</td>

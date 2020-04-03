@@ -66,12 +66,8 @@
 			if((num||"").indexOf(",")!=-1){
 				addPeopleNum(num.split(","));
 			}else{
-				addPeopleNum([num])
+				// addPeopleNum([num])
 			}
-
-
-
-
 
 		});
 
@@ -105,8 +101,8 @@
 
 			//添加人数
 			var temp="";
-			if(officeName.indexOf(",")!=-1){
-				var split=officeName.split(",");
+			var split=officeName.split(",");
+			if(split.length>0){
 				for (var i = 0; i < split.length; i++) {
 					 temp+="<div class=\"input-prepend input-append\">\n" +
 							"<span class=\"add-on\">"+split[i]+":</span>\n" +
