@@ -30,7 +30,9 @@
 				search();
 			},
 			loaded : function(h) { //隐藏滚动条
-				$(".jbox-content").css("overflow", "inherit");
+				$(".jbox-content").css({
+					"overflowY":"hidden"
+				});
 			}
 		});
 
