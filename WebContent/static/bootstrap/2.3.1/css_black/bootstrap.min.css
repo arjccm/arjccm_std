@@ -4270,7 +4270,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 
 .navbar .nav.pull-right {
 	float: right;
-	margin-right: -20px;
+	/*margin-right: -20px;*/
 }
 
 .navbar .nav>li {

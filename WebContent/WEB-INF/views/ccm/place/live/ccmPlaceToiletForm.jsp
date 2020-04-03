@@ -91,7 +91,6 @@
 					name="live:ccmPlaceLive:edit">${not empty ccmPlaceLive.id?'编辑':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="live:ccmPlaceLive:edit">查看</shiro:lacksPermission></a></li> --%>
 	</ul>
-	<br />
 	<form:form id="inputForm" modelAttribute="ccmPlaceLive"
 		action="${ctx}/live/ccmPlaceLive/save/toilet" method="post"
 		class="form-horizontal">

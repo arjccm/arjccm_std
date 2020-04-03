@@ -263,8 +263,9 @@
 			<shiro:hasPermission name="education:ccmPlaceEducation:edit">
 				<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button"
 					value="保 存" />
+            </shiro:hasPermission>
 				<input id="btnCancel" class="btn btn-danger" type="button"
-					value="关闭" />&nbsp;</shiro:hasPermission>
+					value="关闭" />&nbsp;
 		</div>
 	</form:form>
 </body>
