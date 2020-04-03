@@ -70,7 +70,7 @@ $(function() {
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<input type="hidden" id="ids" name="ids">
-		<ul class="ul-form" style="width: 110%">
+		<ul class="ul-form" >
 			<li class="first-line"><label>操作菜单：</label><input id="title" name="title" type="text" maxlength="50" class="input-medium" value="${log.title}"/></li>
 			<li class="first-line"><label>操作用户：</label><input id="createBy.name" name="createBy.name" type="text" maxlength="50" class="input-medium" value="${log.createBy.name}"/></li>
 			<li class="first-line"><label>URI：</label><input id="requestUri" name="requestUri" type="text" maxlength="50" class="input-medium" value="${log.requestUri}"/></li>
@@ -81,7 +81,9 @@ $(function() {
 			<li class="first-line"><label>结束日期：</label>
 				<input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					   value="<fmt:formatDate value="${log.endDate}" pattern="yyyy-MM-dd"/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/></li>
-			<li class="second-line"><label for="exception"><input id="exception" name="exception" type="checkbox"${log.exception eq '1'?' checked':''} value="1"/>只查询异常信息</label>
+			<li></li>
+
+			<li class="second-line"style="float: right"><label for="exception"><input id="exception" name="exception" type="checkbox"${log.exception eq '1'?' checked':''} value="1"/>只查询异常信息</label>
 			<!-- <input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/> -->
 
 			</li>
