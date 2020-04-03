@@ -4282,6 +4282,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	padding: 7px 15px !important;
 	color: #fff;
 	text-decoration: none;
+	transition: all 0.5s;
 }
 
 .navbar .nav .dropdown-toggle .caret {
@@ -4291,9 +4292,11 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 .navbar .nav>li>a:focus, .navbar .nav>li>a:hover {
 	color: #fff;
 	text-decoration: none;
+	background: none;
 	/*background-color: #1684c2;*/
-	background:url(../img/nav-xt.png) no-repeat;
-	background-size: 100% 100%;
+	/*background:url(../img/nav-xt.png) no-repeat;*/
+	/*background-size: 100% 100%;*/
+	box-shadow: inset 0px 0px 26px 2px #1684c2;
 }
 
 .navbar .nav>.active>a, .navbar .nav>.active>a:hover, .navbar .nav>.active>a:focus
@@ -4305,8 +4308,15 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	webkit-box-shadow: inset 0px 0px 26px 2px #1684c2;
 	-moz-box-shadow: inset 0px 0px 26px 2px #1684c2;
 	box-shadow: inset 0px 0px 26px 2px #1684c2;
+	animation: navSelectAmt 0.8s;
 }
-
+#userControl a:hover, #userControl a:focus{
+	box-shadow: inset 0px 0px 0px 0px #1684c2;
+}
+@keyframes navSelectAmt {
+	0% {box-shadow: inset 0px 0px 0px 0px #1684c2;}
+	100% {box-shadow: inset 0px 0px 26px 2px #1684c2;}
+}
 .navbar .btn-navbar {
 	display: none;
 	float: right;
@@ -5896,13 +5906,17 @@ to {
 .accordion-heading>a.active {
 	color: #fff;
 	background: none;
-	box-shadow: inset 0px 0px 26px 2px #1684c2;
+	/*box-shadow: inset 0px 0px 26px 2px #1684c2;*/
+	animation: navSelectAmt 0.8s;
+	animation-fill-mode:forwards;
 }
 /*左侧菜单选择添加颜色*/
 .accordion-heading>li>a.active {
     color: #fff;
     background: none;
-	box-shadow: inset 0px 0px 26px 2px #1684c2;
+	/*box-shadow: inset 0px 0px 26px 2px #1684c2;*/
+	animation: navSelectAmt 0.8s;
+	animation-fill-mode:forwards;
 }
 
 .accordion-heading>a.active i {
@@ -5978,6 +5992,7 @@ to {
 	/*background: url(../img/left-xz.png) no-repeat;*/
 	background-image: linear-gradient(to right,rgba(6,55,91,.1),rgba(6,55,91,1),rgba(6,55,91,.1));
 	position: relative;
+
 }
 .accordion-inner .twoMenu li{
 	border-bottom: 1px solid;
