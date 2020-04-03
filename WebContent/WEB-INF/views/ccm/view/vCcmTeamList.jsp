@@ -146,13 +146,16 @@
 
 
 	<div class="clearfix pull-right btn-box">
-
+        <shiro:hasPermission name="view:vCcmTeam:import">
 			<a href="javascript:void(0);" id="btnImport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;">
 				<i></i> <span style="font-size: 12px">导入</span>
 			</a>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="view:vCcmTeam:export">
 			<a href="javascript:void(0);" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;">
 				<i></i> <span style="font-size: 12px">导出</span>
 			</a>
+        </shiro:hasPermission>
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;">
 				<i></i> <span style="font-size: 12px">查询</span> </a>
 

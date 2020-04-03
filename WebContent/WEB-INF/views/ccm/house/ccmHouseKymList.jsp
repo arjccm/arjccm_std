@@ -134,13 +134,15 @@
 
     <div class="clearfix pull-right btn-box">
 
-        <shiro:hasPermission name="house:ccmHouseBuildmanage:edit">
+        <shiro:hasPermission name="house:ccmHouseKym:import">
             <!-- <input id="btnImport" class="btn btn-primary" type="button" value="导入" />
             <input id="btnExport" class="btn btn-primary" type="button" value="导出" /> -->
             <a href="javascript:;" id="btnImport" class="btn  btn-export "
                style="width: 49px;display:inline-block;float: right;">
                 <i></i><span style="font-size: 12px">导入</span>
             </a>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="house:ccmHouseKym:export">
             <a href="javascript:;" id="btnExport" class="btn btn-export"
                style="width: 49px;display:inline-block;float: right;">
                 <i></i><span style="font-size: 12px">导出</span>

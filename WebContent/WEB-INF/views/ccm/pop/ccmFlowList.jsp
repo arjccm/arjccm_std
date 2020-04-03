@@ -208,7 +208,7 @@
             type="submit" value="查询" onclick="return page();" /> -->
 
         <shiro:hasPermission
-                name="sys:user:edit">
+                name="pop:ccmWork:export">
             <!-- <input id="btnExport" class="btn btn-primary" type="button"
             value="导出" />
             <input id="btnImport" class="btn btn-primary" type="button"
