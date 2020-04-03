@@ -6,6 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript" 
 		src="${ctxStatic}/ccm/ccmsys/js/ccmDeviceInfo.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 	<!-- <script type="text/javascript">
 		$(document).ready(function() {
 			
