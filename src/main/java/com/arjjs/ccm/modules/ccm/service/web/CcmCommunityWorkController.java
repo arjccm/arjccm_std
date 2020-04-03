@@ -71,7 +71,7 @@ public class CcmCommunityWorkController extends BaseController {
 		return "ccm/service/ccmCommunityWorkList";
 	}
 
-	@RequiresPermissions("service:ccmCommunityWork:edit")
+//	@RequiresPermissions("service:ccmCommunityWork:edit")
 	@RequestMapping(value = "form")
 	public String form(CcmCommunityWork ccmCommunityWork, Model model) {
 		model.addAttribute("ccmCommunityWork", ccmCommunityWork);

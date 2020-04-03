@@ -123,7 +123,7 @@
 		<c:forEach items="${page.list}" var="ccmHousePetition">
 			<tr>
 				<td width="100px"><img src="${ccmHousePetition.images}" style="height:50px;" class="pimg"/></td>
-				<td><a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePetition/form?id=${ccmHousePetition.id}&hide1=true&hide2=false', '信息', '1200px', '800px')">${ccmHousePetition.name}</a></td>
+				<td><a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePetition/form?id=${ccmHousePetition.id}', '信息', '1200px', '800px')">${ccmHousePetition.name}</a></td>
 				<td>${ccmHousePetition.ident}</td>
 				<td>${fns:getDictLabel(ccmHousePetition.sex, 'sex', '')}</td>
 				<c:if test="${ccmHousePetition.atteType eq '01'}">

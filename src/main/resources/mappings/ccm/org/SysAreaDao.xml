@@ -611,6 +611,8 @@
 	WHERE
 		a.type = '20'
 	GROUP BY
-		(b.label)
+		b.label
+		ORDER BY
+	num
 	</select>
 </mapper>

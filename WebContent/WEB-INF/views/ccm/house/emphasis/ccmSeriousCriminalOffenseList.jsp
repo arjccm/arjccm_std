@@ -140,7 +140,7 @@
                 <td width="100px"><img src="${ccmSeriousCriminalOffense.images}" style="height:50px;" class="pimg"/>
                 </td>
                 <td>
-                    <a onclick="parent.parent.LayerDialog('${ctx}/house/ccmSeriousCriminalOffense/form?id=${ccmSeriousCriminalOffense.id}&hide1=true&hide2=false', '信息', '1200px', '900px')">${ccmSeriousCriminalOffense.name}</a>
+                    <a onclick="parent.parent.LayerDialog('${ctx}/house/ccmSeriousCriminalOffense/form?id=${ccmSeriousCriminalOffense.id}', '信息', '1200px', '900px')">${ccmSeriousCriminalOffense.name}</a>
                 </td>
                 <td>${ccmSeriousCriminalOffense.ident}</td>
                 <td>${fns:getDictLabel(ccmSeriousCriminalOffense.sex, 'sex', '')}</td>
