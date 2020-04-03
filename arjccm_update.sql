@@ -1780,3 +1780,40 @@ ADD COLUMN `manage_type` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci N
 ADD COLUMN `file` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '附件' AFTER `manage_type`,
 ADD COLUMN `grade_num` int(1) NULL DEFAULT 0 COMMENT '等级评估' AFTER `file`,
 ADD COLUMN `effect_type` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '效果评估' AFTER `grade_num`;
+
+
+
+DROP TABLE IF EXISTS `bph_user_extend`;
+CREATE TABLE `bph_user_extend`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `police_phone_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '警务通',
+  `action_recorder_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '执法记录仪',
+  `interphone_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '对讲机',
+  `defualt_device` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '默认使用  0:警务通 1:执法记录仪 2:对讲机',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建人',
+  `create_date` datetime(0) NOT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '修改人',
+  `update_date` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '是否删除  0 否 1 是',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+ALTER TABLE `ccm_mobile_device`
+ADD COLUMN `param` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '设备参数信息' AFTER `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子围栏id' AFTER `people_id`;
+
+
+ALTER TABLE `ccm_org_area`
+ADD COLUMN `key_personnel_num` int(10) NULL DEFAULT NULL COMMENT '重点人员' AFTER `mannum`,
+ADD COLUMN `party_members_num` int(10) UNSIGNED ZEROFILL NULL DEFAULT 0000000000 COMMENT '党员人数' AFTER `del_flag`,
+ADD COLUMN `director_poverty_alleviation` int(11) UNSIGNED ZEROFILL NULL DEFAULT 00000000000 COMMENT '扶贫主任' AFTER `party_members_num`,
+ADD COLUMN `first_secretary` int(11) UNSIGNED ZEROFILL NULL DEFAULT 00000000000 COMMENT '扶贫第一书记' AFTER `director_poverty_alleviation`,
+ADD COLUMN `police_assistant` int(11) UNSIGNED ZEROFILL NULL DEFAULT 00000000000 COMMENT '警务助理' AFTER `first_secretary`,
+ADD COLUMN `political_legal_deployment` int(11) UNSIGNED ZEROFILL NULL DEFAULT 00000000000 COMMENT '政法派驻员' AFTER `police_assistant`,
+ADD COLUMN `people_livelihood_supervisor` int(11) UNSIGNED ZEROFILL NULL DEFAULT 00000000000 COMMENT '民生监督员' AFTER `political_legal_deployment`;
+ADD COLUMN `area_color` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '区域颜色rgb' AFTER `more3`;
