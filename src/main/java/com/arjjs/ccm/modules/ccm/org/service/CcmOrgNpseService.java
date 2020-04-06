@@ -264,7 +264,18 @@ public class CcmOrgNpseService extends CrudService<CcmOrgNpseDao, CcmOrgNpse> {
 			if(area!=null){
 				Area resarea = getAreabyType(area);
 				if(map.containsKey(resarea.getName())){
-					String ss = getBigDecimalByString(map.get(resarea.getName()),reslist.get(i).getRegisteredFund());
+					String ss = "0";
+					if(StringUtils.isNotEmpty(map.get(resarea.getName()))
+						&& StringUtils.isNotEmpty(reslist.get(i).getRegisteredFund())){
+						ss = getBigDecimalByString(map.get(resarea.getName()),reslist.get(i).getRegisteredFund());
+					} else if(StringUtils.isEmpty(map.get(resarea.getName()))
+							&& StringUtils.isNotEmpty(reslist.get(i).getRegisteredFund())){
+						ss = reslist.get(i).getRegisteredFund();
+					} else if(StringUtils.isNotEmpty(map.get(resarea.getName()))
+							&& StringUtils.isEmpty(reslist.get(i).getRegisteredFund())){
+						ss = map.get(resarea.getName());
+					}
+
 					map.put(resarea.getName(), ss);
 				} else {
 					map.put(resarea.getName(), reslist.get(i).getRegisteredFund());
