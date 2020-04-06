@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -156,16 +157,32 @@ public class DmaThreeRealDataAnalysisService extends BaseService {
 		area.setType("5");
 		List<Area> areaList = areaService.findList(area);
 		List<ResidentStatisticsCount> dataHouseAreaList = dao.findHouseAreaData(null);
+		Map<String,Object> map = Maps.newHashMap();
+		for(ResidentStatisticsCount dataHouseArea : dataHouseAreaList){
+			if(map.containsKey(dataHouseArea.getAreaId())){
+				ResidentStatisticsCount count = (ResidentStatisticsCount)map.get(dataHouseArea.getAreaId());
+				count.setAreaParentIds(dataHouseArea.getAreaParentIds()!=null? dataHouseArea.getAreaParentIds():"");
+				count.setDataNum(count.getDataNum()+1);
+				map.put(dataHouseArea.getAreaId(),count);
+			} else {
+				ResidentStatisticsCount count = new ResidentStatisticsCount();
+				count.setAreaParentIds(dataHouseArea.getAreaParentIds()!=null? dataHouseArea.getAreaParentIds():"");
+				count.setDataNum(1);
+				map.put(dataHouseArea.getAreaId(),count);
+			}
+		}
 		List<EchartType> resultList = new ArrayList<EchartType>();
 		for (Area areaO : areaList) {
 			String id = areaO.getId();
 			int value = 0;
-			for (ResidentStatisticsCount dataHouseArea : dataHouseAreaList) {
-				String parentIds = dataHouseArea.getAreaParentIds();							
-				if(parentIds.indexOf(id) > -1) {
-					value += dataHouseArea.getDataNum().intValue();
+			for(Map.Entry<String, Object> entry:map.entrySet()){
+				ResidentStatisticsCount count = (ResidentStatisticsCount)entry.getValue();
+				String parentIds = count.getAreaParentIds();
+				if(StringUtils.isNotEmpty(parentIds) && parentIds.indexOf(id) > -1) {
+					value += count.getDataNum().intValue();
 				}
 			}
+
 			EchartType echartType = new EchartType();
 			echartType.setValue(String.valueOf(value));
 			echartType.setType(areaO.getName());
