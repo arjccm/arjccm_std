@@ -83,12 +83,17 @@ public class DmaThreeRealDataAnalysisService extends BaseService {
 	 * @return
 	 */
 	public Map<String, Object> findSexStatisticsData() {
+		//查询对应字典数据
 		List<Dict> dictList = DictUtils.getDictList("sex");
 		Area area = new Area();
 		area.setType("5");
+		//查询type=5的区域数据
 		List<Area> areaList = areaService.findList(area);
+		//查询社区村对应的数据
 		List<ResidentStatisticsCount> dataResidentList = dao.findSexData(null);
+		//定义返回结果集
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		//定义echarts图的label集合并将区域名称赋值
 		List<String> areaMap = new ArrayList<String>();
 		for (Area areaO : areaList) {
 			areaMap.add(areaO.getName());
@@ -105,7 +110,7 @@ public class DmaThreeRealDataAnalysisService extends BaseService {
 						int quarter = Integer.parseInt(dataResident.getDateQuarter());
 						if(quarter == i) {
 							String peopleType = dataResident.getPeopleType();
-							if(peopleType.equals(value)) {								
+							if(value.equals(peopleType)) {
 								String parentIds = dataResident.getAreaParentIds();							
 								if(StringUtils.isNotBlank(id) && StringUtils.isNotBlank(parentIds) && parentIds.indexOf(id) > -1) {
 									typeCount[j] += dataResident.getDataNum().intValue();
