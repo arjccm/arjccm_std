@@ -280,7 +280,7 @@ ul.ztree.zTreeDragUL{
 
 
 	<div class="clearfix pull-right btn-box">
-		<shiro:hasPermission name="house:ccmHouseBuildmanage:edit">
+		<shiro:hasPermission name="house:ccmHouseBuildmanage:export">
 			<!-- <input id="btnImport" class="btn btn-primary" type="button" value="导入" />
 			<input id="btnExport" class="btn btn-primary" type="button" value="导出" /> -->
 			<!-- 					<a href="javascript:;" id="btnImport" class="btn  btn-export ">

@@ -2437,33 +2437,44 @@ UPDATE sys_menu SET del_flag = '1'
 --添加特殊关怀人员导出权限
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '672ef7248f3d497099e33357abcfb30a', '7549b37b7c454434aadc05340cf041e4', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,7549b37b7c454434aadc05340cf041e4,', '导出', '', '', '', 120, '0', 'pop:ccmCare:export', '1', '2020-04-03 17:28:15.013', '1', '2020-04-03 17:28:15.013', '', '0' );
 
---添加老年人人员导入权限
+--添加户籍人口导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'b1e82f09fe194b43953ce3d9f6791c4b', 'e7ce98ca319c456389c27267390f6dc1', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,128262e395f24b22b2371f932100bc8b,e7ce98ca319c456389c27267390f6dc1,', '导出', '', '', '', 30, '0', 'pop:ccmWork:export', '1', '2020-04-03 17:32:09.017', '1', '2020-04-03 17:32:09.017', '', '0' );
 
---添加老年人人员导出权限
+--添加流动人口导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '189c6057b8be46e69d9b54d0aa52f908', 'b4bdb963bc8a4261b6ebd7738023b328', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,128262e395f24b22b2371f932100bc8b,b4bdb963bc8a4261b6ebd7738023b328,', '导出', '', '', '', 30, '0', 'pop:ccmWork:export', '1', '2020-04-03 17:39:13.556', '1', '2020-04-03 17:39:13.556', '', '0' );
 
---添加老年人人员导入权限
+--添加境外人口导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '7a11e0b8d8ff489283b9a25d5eaf8268', 'ea7b426e97794021b55bbc04cea71527', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,128262e395f24b22b2371f932100bc8b,ea7b426e97794021b55bbc04cea71527,', '导出', '', '', '', 30, '0', 'pop:ccmWork:export', '1', '2020-04-03 17:41:56.124', '1', '2020-04-03 17:41:56.124', '', '0' );
 
---添加老年人人员导出权限
+--添加未落户人口权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'bee1e10e042e40b2bce1dbd878244683', 'fbf53f7db220468eabe48c910a187081', '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,128262e395f24b22b2371f932100bc8b,fbf53f7db220468eabe48c910a187081,', '导出', '', '', '', 30, '0', 'pop:ccmWork:export', '1', '2020-04-03 17:43:43.249', '1', '2020-04-03 17:43:43.249', '', '0' );
 
---添加老年人人员导入权限
+--添加房屋导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '63ee2b0aff3142689acf4da1dc7dc5f2', '130102', '0,1,70a1747ee8334e439b2b24ebe947ecdd,8a4e93364951448d89195964e7fadb58,130102,', '导出', '', '', '', 90, '0', 'pop:ccmPopTenant:export', '1', '2020-04-03 17:46:30.298', '1', '2020-04-03 17:46:30.298', '', '0' );
 
---添加老年人人员导出权限
+--添加出租房导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '96a2093f12c94e0d96ecdbe5c94c75a2', '4ae31e51c8be4c34a757aebd99be3e14', '0,1,70a1747ee8334e439b2b24ebe947ecdd,8a4e93364951448d89195964e7fadb58,4ae31e51c8be4c34a757aebd99be3e14,', '导出', '', '', '', 90, '0', 'tenant:ccmTenantRecord:export', '1', '2020-04-03 17:48:55.312', '1', '2020-04-03 17:48:55.312', '', '0' );
 
---添加老年人人员导入权限
+--添加建筑物导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '6685a8c3e3fb440fad336f5edb0905b6', '1301012', '0,1,70a1747ee8334e439b2b24ebe947ecdd,c7a14a5931c245928691e00e634400b9,1301012,', '导出', '', '', '', 120, '0', 'house:ccmHouseBuildmanage:export', '1', '2020-04-03 18:03:28.377', '1', '2020-04-03 18:03:28.377', '', '0' );
 
---添加老年人人员导出权限
+--添加重点青少年导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'b26d266337634bc4b3f25fc87b625732', '82cdfca6d890445ab10dff9afc462256', '0,1,70a1747ee8334e439b2b24ebe947ecdd,f79f4645d621412dafb1e616454e080a,82cdfca6d890445ab10dff9afc462256,', '导入', '', '', '', 120, '0', 'house:ccmHouseKym:import', '1', '2020-04-03 18:07:05.199', '1', '2020-04-03 18:07:05.199', '', '0' );
 
---添加老年人人员导入权限
+--添加重点青少年导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '77adf3b999bf40e490861d4d46cb2168', '82cdfca6d890445ab10dff9afc462256', '0,1,70a1747ee8334e439b2b24ebe947ecdd,f79f4645d621412dafb1e616454e080a,82cdfca6d890445ab10dff9afc462256,', '导出', '', '', '', 150, '0', 'house:ccmHouseKym:export', '1', '2020-04-03 18:07:48.821', '1', '2020-04-03 18:07:48.821', '', '0' );
 
---添加老年人人员导出权限
+--添加社会组织机构导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'eb757e4c12d74427bba39ce50dbe4ded', '759b972450344b35973539f1f593fb68', '0,1,70a1747ee8334e439b2b24ebe947ecdd,72907f43bb8d43ac8973b253ef575f85,130700,759b972450344b35973539f1f593fb68,', '导入', '', '', '', 90, '0', 'org:ccmOrgSocialorg:import', '1', '2020-04-03 18:10:44.516', '1', '2020-04-03 18:10:44.516', '', '0' );
 
---添加老年人人员导入权限
+--添加社会组织机构导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '1c481997009648c4bd4c26f956ae1cb3', '759b972450344b35973539f1f593fb68', '0,1,70a1747ee8334e439b2b24ebe947ecdd,72907f43bb8d43ac8973b253ef575f85,130700,759b972450344b35973539f1f593fb68,', '导出', '', '', '', 120, '0', 'org:ccmOrgSocialorg:export', '1', '2020-04-03 18:11:28.775', '1', '2020-04-03 18:11:28.775', '', '0' );
 
---添加老年人人员导出权限
+--添加综治队伍导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'f81249bbc9354dd883cb8be2959d033b', '3362cdb2b3c447fbbd89697c43b80928', '0,1,70a1747ee8334e439b2b24ebe947ecdd,120100,3362cdb2b3c447fbbd89697c43b80928,', '导入', '', '', '', 150, '0', 'view:vCcmTeam:import', '1', '2020-04-03 18:14:58.013', '1', '2020-04-03 18:14:58.013', '', '0' );
 
---添加老年人人员导入权限
-
---添加老年人人员导出权限
+--添加综治队伍导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'ad2b317be75649468de4e59c91960851', '3362cdb2b3c447fbbd89697c43b80928', '0,1,70a1747ee8334e439b2b24ebe947ecdd,120100,3362cdb2b3c447fbbd89697c43b80928,', '导出', '', '', '', 180, '0', 'view:vCcmTeam:export', '1', '2020-04-03 18:16:17.18', '1', '2020-04-03 18:16:17.18', '', '0' );
 
 --添加老年人人员导入权限
 

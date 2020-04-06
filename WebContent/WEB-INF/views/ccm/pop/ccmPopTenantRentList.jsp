@@ -61,7 +61,7 @@
 
 	<div class="clearfix pull-right btn-box">
 		<shiro:hasPermission
-				name="pop:ccmPopTenant:edit">
+				name="tenant:ccmTenantRecord:export">
 			<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;"> <i
 					></i> 导出
 			</a>

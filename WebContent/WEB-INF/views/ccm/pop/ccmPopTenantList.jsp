@@ -70,7 +70,7 @@
 
     <div class="clearfix pull-right btn-box">
         <shiro:hasPermission
-                name="pop:ccmPopTenant:edit">
+                name="pop:ccmPopTenant:export">
             <!-- <input id="btnImport" class="btn btn-primary" type="button" value="导入" />
             <input id="btnExport" class="btn btn-primary" type="button" value="导出" /> -->
             <!-- <a href="javascript:;" id="btnImport" class="btn btn-export ">
