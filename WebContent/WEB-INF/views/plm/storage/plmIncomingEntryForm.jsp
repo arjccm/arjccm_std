@@ -464,10 +464,10 @@
 				</c:if>
 				<c:if test="${not empty plmIncomingEntry.id}">
 				<c:if test="${flag == '1'}">
-					<a id="incomingEquipmentAll" class="btn" href="javascript:;" ><i class="icon-home"></i>全部入库</a>&nbsp;</c:if>
+					<a id="incomingEquipmentAll" class="btn btn-primary" href="javascript:;" ><i class="icon-home"></i>全部入库</a>&nbsp;</c:if>
 					<c:if test="${flag == '0'}">
-					<a id="updateDetail" class="btn" href="javascript:;" style="width: 60px!important;"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i>添加物资</a>
-					&nbsp;<a id="addComplate" class="btn" href="javascript:;" style="width: 60px!important"><i class="icon-ok-sign"></i>完成添加</a>&nbsp;</c:if>
+					<a id="updateDetail" class="btn btn-primary" href="javascript:;" style="width: 60px!important;"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i>添加物资</a>
+					&nbsp;<a id="addComplate" class="btn btn-primary" href="javascript:;" style="width: 60px!important"><i class="icon-ok-sign"></i>完成添加</a>&nbsp;</c:if>
 				</c:if>
 			</shiro:hasPermission>
 			<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i ></i>返回</a>
