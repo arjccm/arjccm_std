@@ -70,16 +70,16 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowPunish">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/know/ccmKnowPunish/form?id=${ccmKnowPunish.id}">
+				<td><a href="${ctx}/know/ccmKnowPunish/form?id=${ccmKnowPunish.id}">
 					${ccmKnowPunish.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowPunish.inspectData}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmKnowPunish.type, 'ccm_know_punish_type', '')}
 				</td>
-				<shiro:hasPermission name="know:ccmKnowPunish:edit"><td style="height: 50px">
+				<shiro:hasPermission name="know:ccmKnowPunish:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowPunish/form?id=${ccmKnowPunish.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/know/ccmKnowPunish/delete?id=${ccmKnowPunish.id}" onclick="return confirmx('确认要删除该城管行政处罚吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

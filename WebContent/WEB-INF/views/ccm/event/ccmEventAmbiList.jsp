@@ -112,28 +112,28 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmEventAmbi">
             <tr>
-                <td style="height: 50px"><a href="${ctx}/event/ccmEventAmbi/form?id=${ccmEventAmbi.id}">
+                <td><a href="${ctx}/event/ccmEventAmbi/form?id=${ccmEventAmbi.id}">
                         ${ccmEventAmbi.name}
                 </a></td>
-                <td style="height: 50px">
+                <td>
                         ${ccmEventAmbi.area.name}
                 </td>
-                <td style="height: 50px">
+                <td>
                     <fmt:formatDate value="${ccmEventAmbi.sendDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmEventAmbi.eventScale, 'ccm_event_scale', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmEventAmbi.eventType, 'ccm_event_sort', '')}
                 </td>
-                <td style="height: 50px"><span class="eventScaleCss statusCss-${ccmEventAmbi.status}">
+                <td><span class="eventScaleCss statusCss-${ccmEventAmbi.status}">
                         ${fns:getDictLabel(ccmEventAmbi.status, 'ccm_event_status', '')}
                 </span>
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmEventAmbi.partName}
                 </td>
-                <td style="height: 50px"><shiro:hasPermission name="event:ccmEventAmbi:edit">
+                <td><shiro:hasPermission name="event:ccmEventAmbi:edit">
                     <a class="btnList" href="${ctx}/event/ccmEventAmbi/form?id=${ccmEventAmbi.id}" title="修改"><i
                             class="iconfont icon-caozuotubiao-xiugai"></i></a>
                     <a class="btnList" href="${ctx}/event/ccmEventAmbi/delete?id=${ccmEventAmbi.id}"

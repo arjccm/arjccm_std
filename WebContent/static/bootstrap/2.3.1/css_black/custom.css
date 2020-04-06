@@ -1188,7 +1188,7 @@ cite[class*='t-click']{
 }
 
 .table-gradient{
-    margin-left: 20px;
+    margin-left: 1.184132vw;
     margin-top:20px;
     width: 98%;
     /*height: 50%*/
@@ -1390,7 +1390,7 @@ cite[class*='t-click']{
     FontColor: #fff !important;
 }
 #blackech2{
-    background: rgb(14, 42, 76) ;
+    /*background: rgb(14, 42, 76) ;*/
     FontColor: #fff !important;
 }
 
@@ -1828,4 +1828,17 @@ cite[class*='t-click']{
  }
  .div_font_type2{
 	 background: url(../img/pop-bg5.png);background-size: 100% 100%;
+ }
+ .div_font_type3{
+	 background: url(../img/pop-bg9.png);background-size: 100% 100%;
+ }
+ .div_font_type4{
+	 background: url(../img/header-right10.png);background-size: 100% 100%;
+ }
+/**查询按钮高度间距*/
+ #searchFormbtn-box2 {
+	   margin-top: 4.5px!important;
+   }
+ .table-condensed2{
+	 border: 1px solid #00cccc!important;
  }

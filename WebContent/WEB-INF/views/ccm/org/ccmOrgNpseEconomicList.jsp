@@ -116,16 +116,13 @@
 
 
 <div class="clearfix pull-right btn-box">
-	<shiro:hasPermission
-			name="org:ccmOrgNpseEconomic:edit">
+	<shiro:hasPermission name="org:ccmOrgNpseEconomic:export">
 		<!-- 	<input id="btnImport" class="btn btn-primary" type="button" value="导入" />
 		<input id="btnExport" class="btn btn-primary" type="button" value="导出" />  -->
 		<!-- 					<a href="javascript:;" id="btnImport" class="btn  btn-export ">
 		<i class=" icon-share-alt "></i> 导入
 		</a> -->
-		<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;"> <i
-		></i><span style="font-size: 12px">导出</span>
-		</a>
+		<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;"> <i></i><span style="font-size: 12px">导出</span></a>
 	</shiro:hasPermission> <%--<a
 			onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseEconomic/form', '添加', '1100px', '720px')"
 			class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i class="icon-export"></i> <span style="font-size: 12px">添加</span></a>--%> <a
@@ -158,16 +155,16 @@
 					<%--<td><a href="${ctx}/org/ccmOrgNpseEconomic/form?id=${ccmOrgNpseEconomic.id}">--%>
 					<%--<fmt:formatDate value="${ccmOrgNpseEconomic.years}" pattern="yyyy"/>--%>
 					<%--</a></td>  取消点击事件--%>
-					<td style="height: 50px"><fmt:formatDate value="${ccmOrgNpseEconomic.years}" pattern="yyyy" /></td>
+					<td><fmt:formatDate value="${ccmOrgNpseEconomic.years}" pattern="yyyy" /></td>
 					<th >${ccmOrgNpseEconomic.compName}</th>
 					<th>${ccmOrgNpseEconomic.compId}</th>
-					<td style="height: 50px">${ccmOrgNpseEconomic.turnover}</td>
-					<td style="height: 50px">${ccmOrgNpseEconomic.netMargin}</td>
-					<td style="height: 50px">${ccmOrgNpseEconomic.taxes}</td>
-					<td style="height: 50px">${ccmOrgNpseEconomic.fixedAssets}</td>
-					<td style="height: 50px">${ccmOrgNpseEconomic.liabilities}</td>
+					<td>${ccmOrgNpseEconomic.turnover}</td>
+					<td>${ccmOrgNpseEconomic.netMargin}</td>
+					<td>${ccmOrgNpseEconomic.taxes}</td>
+					<td>${ccmOrgNpseEconomic.fixedAssets}</td>
+					<td>${ccmOrgNpseEconomic.liabilities}</td>
 					<shiro:hasPermission name="org:ccmOrgNpseEconomic:edit">
-						<td style="height: 50px"><a class="btnList"
+						<td><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseEconomic/form?id=${ccmOrgNpseEconomic.id}', '编辑', '1100px', '720px')"
 							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/org/ccmOrgNpseEconomic/delete?id=${ccmOrgNpseEconomic.id}"

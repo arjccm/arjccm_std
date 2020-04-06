@@ -109,14 +109,14 @@
 	
 	<select id="findHouseAreaData" resultType="com.arjjs.ccm.modules.dma.entity.ResidentStatisticsCount">
 		SELECT
-			count( people.id ) AS dataNum,
+-- 			count( people.id ) AS dataNum,
 			people.area_id,area.parent_ids AS areaParentIds
 		FROM
 			ccm_pop_tenant people
 		LEFT JOIN sys_area area ON people.area_id = area.id
 		WHERE people.del_flag = 0
-		GROUP BY
-			people.area_id
+-- 		GROUP BY
+-- 			people.area_id
 	</select>
 	
 	<select id="findHouseStructureData" resultType="com.arjjs.ccm.tool.EchartType">

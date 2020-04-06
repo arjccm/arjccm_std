@@ -71,19 +71,19 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowInspect">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/know/ccmKnowInspect/form?id=${ccmKnowInspect.id}">
+				<td><a href="${ctx}/know/ccmKnowInspect/form?id=${ccmKnowInspect.id}">
 					${ccmKnowInspect.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowInspect.inspectData}" pattern="yyyy-MM-dd"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmKnowInspect.type, 'ccm_know_inspect_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowInspect.num}
 				</td>
-				<shiro:hasPermission name="know:ccmKnowInspect:edit"><td style="height: 50px">
+				<shiro:hasPermission name="know:ccmKnowInspect:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowInspect/form?id=${ccmKnowInspect.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/know/ccmKnowInspect/delete?id=${ccmKnowInspect.id}" onclick="return confirmx('确认要删除该检查记录吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

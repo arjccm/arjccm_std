@@ -70,16 +70,16 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="oaNotify">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/oa/oaNotify/${requestScope.oaNotify.self?'viewRead':'form'}?id=${oaNotify.id}">
+				<td><a href="${ctx}/oa/oaNotify/${requestScope.oaNotify.self?'viewRead':'form'}?id=${oaNotify.id}">
 					${fns:abbr(oaNotify.title,50)}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(oaNotify.type, 'oa_notify_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(oaNotify.status, 'oa_notify_status', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<c:if test="${requestScope.oaNotify.self}">
 						${fns:getDictLabel(oaNotify.readFlag, 'oa_notify_read', '')}
 					</c:if>
@@ -87,10 +87,10 @@
 						${oaNotify.readNum} / ${oaNotify.readNum + oaNotify.unReadNum}
 					</c:if>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${oaNotify.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<c:if test="${!requestScope.oaNotify.self}"><shiro:hasPermission name="oa:oaNotify:edit"><td style="height: 50px">
+				<c:if test="${!requestScope.oaNotify.self}"><shiro:hasPermission name="oa:oaNotify:edit"><td>
     				<a class="btn btn-info" href="${ctx}/oa/oaNotify/form?id=${oaNotify.id}">修改</a>
 					<a class="btn btn-danger" href="${ctx}/oa/oaNotify/delete?id=${oaNotify.id}" onclick="return confirmx('确认要删除该通知吗？', this.href)">删除</a>
 				</td></shiro:hasPermission></c:if>

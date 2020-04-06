@@ -74,25 +74,25 @@
 			<tbody>
 				<c:forEach items="${page.list}" var="plmEquipment">
 					<tr>
-						<td style="height: 50px">${fns:getDictLabel(plmEquipment.typeChild, 'plm_equipment_type_child', '')}(${plmEquipment.spec})</td>
-						<td style="height: 50px">${fns:getDictLabel(plmEquipment.typeId, 'plm_equipment_type', '')}</td>
-						<td style="height: 50px">${fns:getDictLabel(plmEquipment.typeChild, 'plm_equipment_type_child', '')}</td>
+						<td>${fns:getDictLabel(plmEquipment.typeChild, 'plm_equipment_type_child', '')}(${plmEquipment.spec})</td>
+						<td>${fns:getDictLabel(plmEquipment.typeId, 'plm_equipment_type', '')}</td>
+						<td>${fns:getDictLabel(plmEquipment.typeChild, 'plm_equipment_type_child', '')}</td>
 						<c:choose>
 							<c:when test="${plmEquipment.typeId == '0'}">
-								<td style="height: 50px">${plmEquipment.erialNumber}</td>
+								<td>${plmEquipment.erialNumber}</td>
 								<td>无</td>
-								<td style="height: 50px">${plmEquipment.erialNumber - plmEquipment.useNumber}</td>
+								<td>${plmEquipment.erialNumber - plmEquipment.useNumber}</td>
 								<td>无</td>
-								<td style="height: 50px">${plmEquipment.useNumber}</td>
+								<td>${plmEquipment.useNumber}</td>
 								<td>无</td>
 							</c:when>
 							<c:otherwise>
-								<td style="height: 50px">${plmEquipment.counts}</td>
-								<td style="height: 50px">${plmEquipment.occupyCounts}</td>
-								<td style="height: 50px">${plmEquipment.unoccupiedCounts}</td>
-								<td style="height: 50px">${plmEquipment.repairCounts}</td>
-								<td style="height: 50px">${plmEquipment.usingCounts}</td>
-								<td style="height: 50px">${plmEquipment.scrapCounts}</td>
+								<td>${plmEquipment.counts}</td>
+								<td>${plmEquipment.occupyCounts}</td>
+								<td>${plmEquipment.unoccupiedCounts}</td>
+								<td>${plmEquipment.repairCounts}</td>
+								<td>${plmEquipment.usingCounts}</td>
+								<td>${plmEquipment.scrapCounts}</td>
 							</c:otherwise>
 						</c:choose>
 					</tr>

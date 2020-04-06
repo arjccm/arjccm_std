@@ -300,18 +300,18 @@
 			</c:if>
 		</table>
 		<div class="form-actions">
-				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="iconfont icon-caozuotubiao-jiluxinxi"></i>提交申请</a>&nbsp;
+				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i ></i>提交申请</a>&nbsp;
 				<c:if test="${not empty plmEquApply.procInsId}">
-					<a id="btnSubmit2" class="btn btn-primary" href="javascript:;"><i class="icon-minus-sign"></i>销毁申请</a>&nbsp;
+					<a id="btnSubmit2" class="btn btn-primary" href="javascript:;"><i ></i>销毁申请</a>&nbsp;
 					</c:if>
 					<c:if test="${ empty plmEquApply.procInsId}">
-				<a id="btnSubmit3" class="btn btn-primary" href="javascript:;"><i class="icon-ok"></i>保存</a>&nbsp;
+				<a id="btnSubmit3" class="btn btn-primary" href="javascript:;"><i ></i>保存</a>&nbsp;
 					</c:if>
 			<c:if test="${not empty plmEquApply.id}">
-			<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i class="icon-reply"></i>返回</a>
+			<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i ></i>返回</a>
 			</c:if>
 			<c:if test="${empty plmEquApply.id}">
-			<a id="btnCancelf" class="btn btn-primary" href="javascript:;" onclick="parent.layer.closeAll();" ><i class="icon-remove-circle"></i>关闭</a>
+			<a id="btnCancelf" class="btn btn-primary" href="javascript:;" onclick="parent.layer.closeAll();" ><i ></i>关闭</a>
 			</c:if>
 		</div>
 	</form:form>

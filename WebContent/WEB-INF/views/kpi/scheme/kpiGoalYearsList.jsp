@@ -79,22 +79,22 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="kpiGoalYears">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/scheme/kpiGoalYears/form?id=${kpiGoalYears.id}">
+				<td><a href="${ctx}/scheme/kpiGoalYears/form?id=${kpiGoalYears.id}">
 					${kpiGoalYears.office.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${kpiGoalYears.years}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(kpiGoalYears.quarter, 'quarter', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(kpiGoalYears.finished, 'yes_no', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${kpiGoalYears.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<shiro:hasPermission name="scheme:kpiGoalYears:edit"><td style="height: 50px">
+				<shiro:hasPermission name="scheme:kpiGoalYears:edit"><td>
     				<a class="btnList" href="${ctx}/scheme/kpiGoalYears/form?id=${kpiGoalYears.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/scheme/kpiGoalYears/delete?id=${kpiGoalYears.id}" onclick="return confirmx('确认要删除该部门年度目标吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

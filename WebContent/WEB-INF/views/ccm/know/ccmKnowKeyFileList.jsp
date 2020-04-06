@@ -73,17 +73,17 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmKnowKeyFile">
             <tr>
-                <td style="height: 50px"><a href="${ctx}/know/ccmKnowKeyFile/form?id=${ccmKnowKeyFile.id}">
+                <td><a href="${ctx}/know/ccmKnowKeyFile/form?id=${ccmKnowKeyFile.id}">
                         ${ccmKnowKeyFile.name}
                 </a></td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmKnowKeyFile.type, 'ccm_know_key_file_type', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmKnowKeyFile.abstracts}
                 </td>
                 <shiro:hasPermission name="know:ccmKnowKeyFile:edit">
-                    <td style="height: 50px">
+                    <td>
                         <a class="btnList" href="${ctx}/know/ccmKnowKeyFile/form?id=${ccmKnowKeyFile.id}" title="修改"><i
                                 class="iconfont icon-caozuotubiao-xiugai"></i></a>
                         <a class="btnList" href="${ctx}/know/ccmKnowKeyFile/delete?id=${ccmKnowKeyFile.id}"

@@ -49,12 +49,12 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="genScheme">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/gen/genScheme/form?id=${genScheme.id}">${genScheme.name}</a></td>
-				<td style="height: 50px">${genScheme.packageName}</td>
-				<td style="height: 50px">${genScheme.moduleName}${not empty genScheme.subModuleName?'.':''}${genScheme.subModuleName}</td>
-				<td style="height: 50px">${genScheme.functionName}</td>
-				<td style="height: 50px">${genScheme.functionAuthor}</td>
-				<shiro:hasPermission name="gen:genScheme:edit"><td style="height: 50px">
+				<td><a href="${ctx}/gen/genScheme/form?id=${genScheme.id}">${genScheme.name}</a></td>
+				<td>${genScheme.packageName}</td>
+				<td>${genScheme.moduleName}${not empty genScheme.subModuleName?'.':''}${genScheme.subModuleName}</td>
+				<td>${genScheme.functionName}</td>
+				<td>${genScheme.functionAuthor}</td>
+				<shiro:hasPermission name="gen:genScheme:edit"><td>
     				<a href="${ctx}/gen/genScheme/form?id=${genScheme.id}">修改</a>
 					<a href="${ctx}/gen/genScheme/delete?id=${genScheme.id}" onclick="return confirmx('确认要删除该生成方案吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>

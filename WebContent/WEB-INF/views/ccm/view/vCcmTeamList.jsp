@@ -195,28 +195,28 @@
 	</table>
 	<script type="text/template" id="treeTableTpl">
 		<tr id="{{row.id}}" pId="{{pid}}">
-			<td style="height: 50px"><a href="${ctx}/view/vCcmTeam/form?id={{row.id}}">
+			<td><a href="${ctx}/view/vCcmTeam/form?id={{row.id}}">
 				{{row.name}}
 			</a></td>
-			<td style="height: 50px">
+			<td>
 				{{row.companyId.name}}
 			</td>
-			<td style="height: 50px">
+			<td>
 				{{row.office.name}}
 			</td>
-			<td style="height: 50px">
+			<td>
 				{{row.teamType}}
 			</td>
-			<td style="height: 50px"><a href="${ctx}/view/vCcmTeam/form?id={{row.id}}">
+			<td><a href="${ctx}/view/vCcmTeam/form?id={{row.id}}">
 				{{row.loginName}}
 			</a></td>
-			<td style="height: 50px">
+			<td>
 				{{row.phone}}
 			</td>
-			<td style="height: 50px">
+			<td>
 				{{row.mobile}}
 			</td>
-			<shiro:hasPermission name="view:vCcmTeam:edit"><td style="height: 50px">
+			<shiro:hasPermission name="view:vCcmTeam:edit"><td>
    				<a class="btnList" href="${ctx}/view/vCcmTeam/form?id={{row.id}}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 			</td></shiro:hasPermission>
 		</tr>

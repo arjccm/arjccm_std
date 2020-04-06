@@ -79,25 +79,25 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowKeyActivity">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/know/ccmKnowKeyActivity/form?id=${ccmKnowKeyActivity.id}">
+				<td><a href="${ctx}/know/ccmKnowKeyActivity/form?id=${ccmKnowKeyActivity.id}">
 					${ccmKnowKeyActivity.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmKnowKeyActivity.type, 'ccm_know_key_activity_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowKeyActivity.timeStart}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowKeyActivity.timeLong}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowKeyActivity.address}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowKeyActivity.attendee}
 				</td>
-				<shiro:hasPermission name="know:ccmKnowKeyActivity:edit"><td style="height: 50px">
+				<shiro:hasPermission name="know:ccmKnowKeyActivity:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowKeyActivity/form?id=${ccmKnowKeyActivity.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/know/ccmKnowKeyActivity/delete?id=${ccmKnowKeyActivity.id}" onclick="return confirmx('确认要删除该重要活动吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

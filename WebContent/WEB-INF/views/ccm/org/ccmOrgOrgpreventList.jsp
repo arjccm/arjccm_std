@@ -91,27 +91,27 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmOrgOrgprevent">
             <tr>
-                <td style="height: 50px"><a
+                <td><a
                         onclick="parent.parent.LayerDialog('${ctx}/org/ccmOrgOrgprevent/form?id=${ccmOrgOrgprevent.id}', '查看', '1330px', '600px')">
                         ${ccmOrgOrgprevent.comName}
                 </a></td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmOrgOrgprevent.comType, 'ccm_org_type', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmOrgOrgprevent.comScale, 'ccm_ply_rat', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgOrgprevent.guidePart}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgOrgprevent.manNum}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgOrgprevent.mainFunc}
                 </td>
                 <shiro:hasPermission name="org:ccmOrgOrgprevent:edit">
-                    <td style="height: 50px">
+                    <td>
                         <a class="btnList"
                            onclick="parent.parent.LayerDialog('${ctx}/org/ccmOrgOrgprevent/form?id=${ccmOrgOrgprevent.id}', '修改', '1330px', '600px')"
                            title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

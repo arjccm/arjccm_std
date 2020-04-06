@@ -84,10 +84,12 @@
 <%--			<li class="clearfix"></li>--%>
 		</ul>
 		<div class="clearfix pull-right btn-box">
+            <shiro:hasPermission name="sys:ccmWorkReportCount:export">
 			<!-- 导出 -->
 			<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right">
 				<i></i><span style="font-size: 12px">导出</span>
 			</a>
+            </shiro:hasPermission>
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right">
 				<i></i><span style="font-size: 12px">查询</span>  </a>
 		</div>
@@ -111,17 +113,17 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="ccmWorkReport">
 				<tr>
-					<td style="height: 50px">${ccmWorkReport.name}</td>
+					<td>${ccmWorkReport.name}</td>
 					
-					<td style="height: 50px">${ccmWorkReport.createName}</td>
+					<td>${ccmWorkReport.createName}</td>
 					
-					<td style="height: 50px">${ccmWorkReport.jobnum}</td>
+					<td>${ccmWorkReport.jobnum}</td>
 					
-					<td style="height: 50px">${ccmWorkReport.visitnum}</td>
+					<td>${ccmWorkReport.visitnum}</td>
 
-					<td style="height: 50px">${ccmWorkReport.eventnum}</td>
+					<td>${ccmWorkReport.eventnum}</td>
 							
-					<td style="height: 50px">${ccmWorkReport.sum}</td>
+					<td>${ccmWorkReport.sum}</td>
                     
 				</tr>
 			</c:forEach>
