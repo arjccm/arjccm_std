@@ -8,14 +8,18 @@
     <script type="text/javascript"
             src="${ctxStatic}/ccm/org/js/ccmSocialorgInfo.js"></script>
     <script type="text/javascript">
+        var isEmpty = true;
         function saveImport() {
-            debugger;
-            var s = $("#importForm")[0][0].files.length;
-            if (s == 0) {
+            if(isEmpty){
                 alert("请选择文件！");
                 return;
-            } else {
+            }else{
                 $("#importForm").submit();
+            }
+        }
+        function changeFalse(_this) {
+            if(_this>0){
+                isEmpty = false;
             }
         }
     </script>
@@ -32,7 +36,7 @@
               style="padding-left: 20px; text-align: center;"
               onsubmit="loading('正在导入，请稍等...');">
             <br/> <input id="uploadFile" name="file" type="file"
-                         style="width: 330px"/><br/> <br/>
+                         style="width: 330px" onchange="changeFalse(this.value.length)"/><br/> <br/>
             <input id="btnImportTemplate"
                    class="btn btn-primary" type="button" value="模板下载 "
                    onclick="location.href='${ctxStatic}/template/excel/kymTemplate.xlsx'"/>
