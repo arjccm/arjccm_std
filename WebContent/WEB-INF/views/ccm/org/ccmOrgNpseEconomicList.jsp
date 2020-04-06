@@ -116,16 +116,13 @@
 
 
 <div class="clearfix pull-right btn-box">
-	<shiro:hasPermission
-			name="org:ccmOrgNpseEconomic:edit">
+	<shiro:hasPermission name="org:ccmOrgNpseEconomic:export">
 		<!-- 	<input id="btnImport" class="btn btn-primary" type="button" value="导入" />
 		<input id="btnExport" class="btn btn-primary" type="button" value="导出" />  -->
 		<!-- 					<a href="javascript:;" id="btnImport" class="btn  btn-export ">
 		<i class=" icon-share-alt "></i> 导入
 		</a> -->
-		<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;"> <i
-		></i><span style="font-size: 12px">导出</span>
-		</a>
+		<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;"> <i></i><span style="font-size: 12px">导出</span></a>
 	</shiro:hasPermission> <%--<a
 			onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseEconomic/form', '添加', '1100px', '720px')"
 			class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i class="icon-export"></i> <span style="font-size: 12px">添加</span></a>--%> <a

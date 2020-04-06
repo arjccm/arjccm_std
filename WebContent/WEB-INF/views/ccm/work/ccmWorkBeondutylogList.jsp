@@ -82,10 +82,12 @@
             <%--			<li class="clearfix"></li>--%>
     </ul>
     <div class="clearfix pull-right btn-box">
-        <a href="javascript:;" id="btnExport" style="width: 49px;
+        <shiro:hasPermission name="work:ccmWorkBeondutylog:export">
+            <a href="javascript:;" id="btnExport" style="width: 49px;
     /*margin-top: 25px;*/display:inline-block;float: right;" class="btn btn-export">
-            <span style="font-size: 12px">导出</span>
-        </a>
+                <span style="font-size: 12px">导出</span>
+            </a>
+        </shiro:hasPermission>
         <a href="javascript:;" id="btnSubmit" style="width: 49px;
     /*margin-top: 25px;*/display:inline-block;float: right;" class="btn btn-primary">
                 <%--<i class="icon-search"></i> --%><span style="font-size: 12px">查询</span> </a>

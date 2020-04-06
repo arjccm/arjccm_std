@@ -81,9 +81,11 @@
 		</ul>
 
 		<div class="clearfix pull-right btn-box">
+            <shiro:hasPermission name="sys:ccmMyWorkReport:export">
 			<a href="javascript:;" id="btnExport" onclick="exportExcel()" class="btn btn-export" style="width: 50px;display:inline-block;float: right;">
 				<i></i><span style="font-size: 12px">导出</span>
 			</a>
+            </shiro:hasPermission>
 			<button href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 75px;display:inline-block;float: right;margin-right: 14px">
 				<i></i><span style="font-size: 12px">查询</span>  </button>
 		</div>

@@ -84,10 +84,12 @@
 <%--			<li class="clearfix"></li>--%>
 		</ul>
 		<div class="clearfix pull-right btn-box">
+            <shiro:hasPermission name="sys:ccmWorkReportCount:export">
 			<!-- 导出 -->
 			<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right">
 				<i></i><span style="font-size: 12px">导出</span>
 			</a>
+            </shiro:hasPermission>
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right">
 				<i></i><span style="font-size: 12px">查询</span>  </a>
 		</div>
