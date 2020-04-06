@@ -122,10 +122,10 @@
 
 	<sys:message content="${message}"/>
 	<div class="clearfix pull-right btn-box">
-		<a
-				onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpsesafe/form', '添加', '1100px', '800px')"
+        <shiro:hasPermission name="org:ccmOrgNpsesafe:edit">
+		    <a onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpsesafe/form', '添加', '1100px', '800px')"
 				class="btn btn-export" style="width: 49px;display:inline-block;float: right;"><i></i><span style="font-size: 12px">添加</span> </a>
-
+        </shiro:hasPermission>
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;">
 				<i></i><span style="font-size: 12px">查询</span>  </a>
 
@@ -143,7 +143,7 @@
 				<th>关注程度</th>			
 				<th>风险级别</th>
 				<th>是否危化企业</th>
-				<shiro:hasPermission name="org:ccmOrgNpsesafe:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -152,7 +152,7 @@
 				<td width="200px">
 					<img src="${ccmOrgNpse.images}"  class="pic-size pimg"/>
 				</td>
-				<td><a onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpsesafe/form?id=${ccmOrgNpse.id}', '编辑', '1100px', '800px')">${ccmOrgNpse.compName}</a>
+				<td><a onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpsesafe/form?id=${ccmOrgNpse.id}', '详情', '1100px', '800px')">${ccmOrgNpse.compName}</a>
 <%--					<a href="${ctx}/org/ccmOrgNpsesafe/form?id=${ccmOrgNpse.id}">--%>
 <%--					${ccmOrgNpse.compName}</a>--%>
 				</td>
