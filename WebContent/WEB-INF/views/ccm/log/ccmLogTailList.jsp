@@ -70,7 +70,7 @@
     </form:form>
     <sys:message content="${message}"/>
     <table id="contentTable"
-           class="table table-striped table-bordered table-condensed table-gradient">
+           class="table table-striped table-bordered table-condensed ">
         <thead>
         <tr>
             <!-- <th>跟踪对象</th> -->
