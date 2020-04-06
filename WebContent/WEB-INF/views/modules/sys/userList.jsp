@@ -113,8 +113,7 @@
 			<!-- <input id="btnSubmit" class="btn btn-primary"
 				type="submit" value="查询" onclick="return page();" /> -->
 
-			<shiro:hasPermission
-					name="sys:user:edit">
+			<shiro:hasPermission name="sys:user:export">
 				<!-- <input id="btnExport" class="btn btn-primary" type="button"
 				value="导出" />
 				<input id="btnImport" class="btn btn-primary" type="button"
@@ -122,6 +121,7 @@
 <%--				<a href="javascript:;" id="btnImport"  style="width: 49px;display:inline-block;float: right;" class="btn  btn-export ">--%>
 <%--					<i ></i> <span style="font-size: 12px">导入</span>--%>
 <%--				</a>--%>
+
 				<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;">
 					<i></i> <span style="font-size: 12px">导出</span>
 				</a>

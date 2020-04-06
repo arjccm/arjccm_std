@@ -73,10 +73,12 @@
 <%--			<li class="clearfix"></li>--%>
 		</ul>
 		<div class="clearfix pull-right btn-box">
+            <shiro:hasPermission name="sys:ccmEventProcess:export">
 			<!-- 导出 -->
 			<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;">
 				<i></i><span style="font-size: 12px">导出</span>
 			</a>
+            </shiro:hasPermission>
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right">
 				<i></i><span style="font-size: 12px">查询</span>  </a>
 		</div>
@@ -92,7 +94,6 @@
 				<th>标题</th>
 				<th>日志时间范围</th>
 				<th>提交时间</th>
-
 				<shiro:hasPermission name="sys:ccmWorkReport:edit">
 					<th>操作</th>
 				</shiro:hasPermission>
