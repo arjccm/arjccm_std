@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/video-js.css">
 <%--    <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/bootstrap.min.css">--%>
     <link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/bootstrap-select.min.css">
-	<link rel="stylesheet" href="${ctxStatic}/bootstrap/2.3.1/css_black/bootstrap.min.css">
-	<link rel="stylesheet" href="${ctxStatic}/bootstrap/2.3.1/css_black/custom.css">
+	<%--<link rel="stylesheet" href="${ctxStatic}/bootstrap/2.3.1/css_black/bootstrap.min.css">--%>
+	<%--<link rel="stylesheet" href="${ctxStatic}/bootstrap/2.3.1/css_black/custom.css">--%>
 	<link rel="stylesheet" href="${ctxStatic}/jquery-select2/3.4/select2.min.css">
 
 	<script src="${ctxStatic}/ccm/liveVideo/js/jquery.min.js"></script>
