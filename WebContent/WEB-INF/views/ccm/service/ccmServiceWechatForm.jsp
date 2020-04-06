@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/service/ccmServiceWechat/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/service/ccmServiceWechat/form?id=${ccmServiceWechat.id}">数据<shiro:hasPermission name="service:ccmServiceWechat:edit">${not empty ccmServiceWechat.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="service:ccmServiceWechat:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmServiceWechat" action="${ctx}/service/ccmServiceWechat/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="delFlag"/>

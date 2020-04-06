@@ -47,7 +47,7 @@
 		<%-- <li><a href="${ctx}/work/ccmWorkTiming/">定时提醒列表</a></li> --%>
 		<%-- <li class="active"><a href="${ctx}/work/ccmWorkTiming/form?id=${ccmWorkTiming.id}">定时提醒<shiro:hasPermission name="work:ccmWorkTiming:edit">${not empty ccmWorkTiming.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="work:ccmWorkTiming:edit">查看</shiro:lacksPermission></a></li> --%>
 		<li class="active"><a href="${ctx}/work/ccmWorkTiming/form?id=${ccmWorkTiming.id}">定时提醒${not empty ccmWorkTiming.id?'修改':'添加'}</a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmWorkTiming" action="${ctx}/work/ccmWorkTiming/saveTiming" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

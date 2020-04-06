@@ -29,7 +29,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/count/ccmKpiCount/">绩效统计记录列表</a></li>
 		<li class="active"><a href="${ctx}/count/ccmKpiCount/form?id=${ccmKpiCount.id}">绩效统计记录<shiro:hasPermission name="count:ccmKpiCount:edit">${not empty ccmKpiCount.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="count:ccmKpiCount:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmKpiCount" action="${ctx}/count/ccmKpiCount/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

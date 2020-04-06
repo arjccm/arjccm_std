@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/emergencies/ccmEarlyWarning/">突发事件列表</a></li>
 		<li class="active"><a href="${ctx}/emergencies/ccmEarlyWarning/form?id=${ccmEarlyWarning.id}">突发事件<shiro:hasPermission name="emergencies:ccmEarlyWarning:edit">${not empty ccmEarlyWarning.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="emergencies:ccmEarlyWarning:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmEarlyWarning" action="${ctx}/emergencies/ccmEarlyWarning/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

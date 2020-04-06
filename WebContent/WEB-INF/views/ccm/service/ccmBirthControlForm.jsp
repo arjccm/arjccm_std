@@ -32,7 +32,7 @@
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/service/ccmBirthControl/">数据列表</a></li>
 		<li class="active"><a class="nav-head" href="${ctx}/service/ccmBirthControl/form?id=${ccmBirthControl.id}">数据<shiro:hasPermission name="service:ccmBirthControl:edit">${not empty ccmBirthControl.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="service:ccmBirthControl:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmBirthControl" action="${ctx}/service/ccmBirthControl/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

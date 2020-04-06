@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/org/ccmOrgComprehensive/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/org/ccmOrgComprehensive/form?id=${ccmOrgComprehensive.id}">数据<shiro:hasPermission name="org:ccmOrgComprehensive:edit">${not empty ccmOrgComprehensive.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="org:ccmOrgComprehensive:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOrgComprehensive" action="${ctx}/org/ccmOrgComprehensive/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

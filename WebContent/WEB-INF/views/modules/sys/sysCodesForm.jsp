@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/sys/sysCodes/">编码方案列表</a></li>
 		<li class="active"><a href="${ctx}/sys/sysCodes/form?id=${sysCodes.id}">编码方案<shiro:hasPermission name="sys:sysCodes:edit">${not empty sysCodes.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:sysCodes:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="sysCodes" action="${ctx}/sys/sysCodes/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

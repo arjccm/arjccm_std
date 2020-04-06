@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/event/ccmAlarmLog/">告警日志列表</a></li>
 		<li class="active"><a href="${ctx}/event/ccmAlarmLog/form?id=${ccmAlarmLog.id}">告警日志<shiro:hasPermission name="event:ccmAlarmLog:edit">${not empty ccmAlarmLog.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="event:ccmAlarmLog:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmAlarmLog" action="${ctx}/event/ccmAlarmLog/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/appversion/appVersion/">app版本列表</a></li>
 		<li class="active"><a href="${ctx}/appversion/appVersion/form?id=${appVersion.id}">app版本<shiro:hasPermission name="appversion:appVersion:edit">${not empty appVersion.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="appversion:appVersion:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="appVersion" action="${ctx}/appversion/appVersion/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

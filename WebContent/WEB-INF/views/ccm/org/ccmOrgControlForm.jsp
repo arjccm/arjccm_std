@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/org/ccmOrgControl/">自治组织列表</a></li>
 		<li class="active"><a href="${ctx}/org/ccmOrgControl/form?id=${ccmOrgControl.id}">自治组织<shiro:hasPermission name="org:ccmOrgControl:edit">${not empty ccmOrgControl.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="org:ccmOrgControl:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOrgControl" action="${ctx}/org/ccmOrgControl/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

@@ -35,7 +35,7 @@
 	<ul class="nav nav-tabs">
 		<%--<li><a href="${ctx}/partyreport/ccmPartyReport/">双报道情况管理列表</a></li>
 		<li class="active"><a href="${ctx}/partyreport/ccmPartyReport/form?id=${ccmPartyReport.id}">双报道情况管理<shiro:hasPermission name="partyreport:ccmPartyReport:edit">${not empty ccmPartyReport.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="partyreport:ccmPartyReport:edit">查看</shiro:lacksPermission></a></li>--%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPartyReport" action="${ctx}/partyreport/ccmPartyReport/save" method="post" class="form-horizontal">
 	<div>
 			<form:hidden path="id"/>

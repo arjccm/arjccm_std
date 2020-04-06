@@ -121,7 +121,7 @@
 		<li><a href="${ctx}/report/ccmPeopleStat/statisticsPage?title=ccmPeopleStatCommunist">数据统计</a></li>
 		<li><a href="${ctx}/pop/ccmPeople/listCommunist">数据列表</a></li>
 		<li class="active"><a href="${ctx}/pop/ccmPeople/formCommunist?id=${ccmPeople.id}">党员<shiro:hasPermission name="pop:ccmPeople:edit">${not empty ccmPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmPeople:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPeople" action="${ctx}/pop/ccmPeople/saveCommunist" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

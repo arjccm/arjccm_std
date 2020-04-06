@@ -71,7 +71,7 @@
 					<shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a>
 			</li>
 		</c:if> --%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOrgNpse" action="${ctx}/org/ccmOrgNpsesafe/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<%--<input type="hidden" name="compImpoType" value="02">--%>

@@ -32,7 +32,7 @@
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/religion/ccmReligionActivity/">数据列表</a></li>
 		<li class="active"><a class="nav-head" href="${ctx}/religion/ccmReligionActivity/form?id=${ccmReligionActivity.id}">数据<shiro:hasPermission name="religion:ccmReligionActivity:edit">${not empty ccmReligionActivity.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="religion:ccmReligionActivity:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmReligionActivity" action="${ctx}/religion/ccmReligionActivity/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

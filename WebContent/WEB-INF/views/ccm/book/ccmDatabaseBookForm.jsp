@@ -35,7 +35,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/book/ccmDatabaseBook/form?id=${ccmDatabaseBook.id}">书籍录入<shiro:hasPermission name="book:ccmDatabaseBook:edit">${not empty ccmDatabaseBook.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="book:ccmDatabaseBook:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmDatabaseBook" action="${ctx}/book/ccmDatabaseBook/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

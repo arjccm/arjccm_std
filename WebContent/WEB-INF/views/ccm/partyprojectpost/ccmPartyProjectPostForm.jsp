@@ -39,7 +39,7 @@
 	<ul class="nav nav-tabs">
 		<%--<li><a href="${ctx}/partyprojectpost/ccmPartyProjectPost/">认领功能列表</a></li>--%>
 		<%--<li class="active"><a href="${ctx}/partyprojectpost/ccmPartyProjectPost/form?id=${ccmPartyProjectPost.id}">认领功能<shiro:hasPermission name="partyprojectpost:ccmPartyProjectPost:edit">${not empty ccmPartyProjectPost.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="partyprojectpost:ccmPartyProjectPost:edit">查看</shiro:lacksPermission></a></li>--%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPartyProjectPost" action="${ctx}/partyprojectpost/ccmPartyProjectPost/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>

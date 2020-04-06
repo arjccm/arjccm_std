@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li ><a href="${ctx}/event/wechat/ccmWechatEventReply/list?event.id=${ccmWechatEventReply.event.id}&type=chatEvent">微信回复列表</a></li>
 		<shiro:hasPermission name="event:wechat:ccmWechatEventReply:edit"><li class="active"><a href="${ctx}/event/wechat/ccmWechatEventReply/form?id=${ccmWechatEventReply.id}">微信回复修改</a></li></shiro:hasPermission>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmWechatEventReply" action="${ctx}/event/wechat/ccmWechatEventReply/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="event.id"/>

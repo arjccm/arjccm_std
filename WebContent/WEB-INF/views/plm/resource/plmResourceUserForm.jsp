@@ -34,7 +34,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/resource/plmResourceUser/">资源权限列表</a></li>
 		<li class="active"><a href="${ctx}/resource/plmResourceUser/form?id=${plmResourceUser.id}&parent.id=${plmResourceUserparent.id}">资源权限<shiro:hasPermission name="resource:plmResourceUser:edit">${not empty plmResourceUser.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="resource:plmResourceUser:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="plmResourceUser" action="${ctx}/resource/plmResourceUser/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

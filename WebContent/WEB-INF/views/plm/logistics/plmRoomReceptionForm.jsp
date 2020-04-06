@@ -41,7 +41,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/logistics/plmRoom/?category=02">接待室列表</a></li>
 		<li class="active"><a href="${ctx}/logistics/plmRoom/form?id=${plmRoom.id}">接待室<shiro:hasPermission name="logistics:plmRoom:edit">${not empty plmRoom.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="logistics:plmRoom:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" style="margin: 30px 100px;" modelAttribute="plmRoom" action="${ctx}/logistics/plmRoom/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<input type="hidden" name="category" value="02"/>

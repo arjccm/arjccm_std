@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/question/pbsQuestionLevel/">考试难度级别列表</a></li>
 		<li class="active"><a href="${ctx}/question/pbsQuestionLevel/form?id=${pbsQuestionLevel.id}">考试难度级别<shiro:hasPermission name="question:pbsQuestionLevel:edit">${not empty pbsQuestionLevel.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="question:pbsQuestionLevel:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsQuestionLevel" action="${ctx}/question/pbsQuestionLevel/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

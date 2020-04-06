@@ -32,7 +32,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/org/ccmOrgLeadduty/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/org/ccmOrgLeadduty/form?id=${ccmOrgLeadduty.id}">数据<shiro:hasPermission name="org:ccmOrgLeadduty:edit">${not empty ccmOrgLeadduty.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="org:ccmOrgLeadduty:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOrgLeadduty" action="${ctx}/org/ccmOrgLeadduty/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>	

@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/oa/ccmOfficialDocument/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/oa/ccmOfficialDocument/form?id=${ccmOfficialDocument.id}">公文<shiro:hasPermission name="oa:ccmOfficialDocument:edit">${not empty ccmOfficialDocument.id?'修改':'申请'}</shiro:hasPermission><shiro:lacksPermission name="oa:ccmOfficialDocument:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOfficialDocument" action="${ctx}/oa/ccmOfficialDocument/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="act.taskId"/>

@@ -60,7 +60,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/report/riskReport/">事项评估报告列表</a></li>
 		<li class="active"><a href="${ctx}/report/riskReport/form?id=${riskReport.id}">事项评估报告<shiro:hasPermission name="report:riskReport:edit">${not empty riskReport.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="report:riskReport:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskReport" action="${ctx}/report/riskReport/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="fileName" htmlEscape="false" maxlength="256" class="input-xlarge" />

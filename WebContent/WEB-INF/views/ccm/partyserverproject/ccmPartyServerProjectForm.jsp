@@ -35,7 +35,7 @@
 	<ul class="nav nav-tabs">
 		<%--<li><a href="${ctx}/partyserverproject/ccmPartyServerProject/">服务项目管理列表</a></li>
 		<li class="active"><a href="${ctx}/partyserverproject/ccmPartyServerProject/form?id=${ccmPartyServerProject.id}">服务项目管理<shiro:hasPermission name="partyserverproject:ccmPartyServerProject:edit">${not empty ccmPartyServerProject.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="partyserverproject:ccmPartyServerProject:edit">查看</shiro:lacksPermission></a></li>--%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPartyServerProject" action="${ctx}/partyserverproject/ccmPartyServerProject/save" method="post" class="form-horizontal">
 	<div>
 			<form:hidden path="id"/>
