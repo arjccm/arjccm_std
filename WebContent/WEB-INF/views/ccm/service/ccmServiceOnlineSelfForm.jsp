@@ -34,7 +34,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/service/ccmServiceOnline/self">数据列表</a></li>
 		<li class="active"><a href="${ctx}/service/ccmServiceOnline/selfform?id=${ccmServiceOnline.id}">数据<shiro:hasPermission name="service:ccmServiceOnline:edit">${not empty ccmServiceOnline.id?'查看':'添加'}</shiro:hasPermission><shiro:lacksPermission name="service:ccmServiceOnline:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmServiceOnline" action="${ctx}/service/ccmServiceOnline/selfsave" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<c:if test="${empty ccmServiceOnline.id }">

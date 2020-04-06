@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/org/sysArea?type=6">数据列表</a></li>
 		<li class="active"><a href="${ctx}/org/sysArea/form?id=${sysArea.id}">数据<shiro:hasPermission name="org:sysArea:edit">${not empty sysArea.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="org:sysArea:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="sysArea" action="${ctx}/org/sysArea/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

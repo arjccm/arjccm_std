@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/manage/riskAssessFlow/">评估流程管理列表</a></li>
 		<li class="active"><a href="${ctx}/manage/riskAssessFlow/form?id=${riskAssessFlow.id}">评估流程管理<shiro:hasPermission name="manage:riskAssessFlow:edit">${not empty riskAssessFlow.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="manage:riskAssessFlow:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskAssessFlow" action="${ctx}/manage/riskAssessFlow/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

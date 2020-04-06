@@ -36,7 +36,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/report/riskEventGreat/">重大事项报备列表</a></li>
 		<li class="active"><a href="${ctx}/report/riskEventGreat/form?id=${riskEventGreat.id}">重大事项报备<shiro:hasPermission name="report:riskEventGreat:edit">${not empty riskEventGreat.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="report:riskEventGreat:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskEventGreat" action="${ctx}/report/riskEventGreat/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

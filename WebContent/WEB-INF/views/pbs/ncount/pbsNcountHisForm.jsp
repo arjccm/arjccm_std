@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/ncount/pbsNcountHis/">统计类别历史列表</a></li>
 		<li class="active"><a href="${ctx}/ncount/pbsNcountHis/form?id=${pbsNcountHis.id}">统计类别历史<shiro:hasPermission name="ncount:pbsNcountHis:edit">${not empty pbsNcountHis.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="ncount:pbsNcountHis:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsNcountHis" action="${ctx}/ncount/pbsNcountHis/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

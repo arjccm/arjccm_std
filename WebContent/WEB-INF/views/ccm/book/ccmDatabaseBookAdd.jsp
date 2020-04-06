@@ -38,7 +38,7 @@
         ${not empty menu.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:menu:edit">查看</shiro:lacksPermission></a></li>--%>
     <c:choose>
         <c:when test="${not empty menu.id}">
-            <li class="active"><a href="${ctx}/book/ccmDatabaseBook/add?id=${menu.id}&parent.id=${menu.parent.id}">文章编辑</a></li></ul><br/>
+            <li class="active"><a href="${ctx}/book/ccmDatabaseBook/add?id=${menu.id}&parent.id=${menu.parent.id}">文章编辑</a></li></ul>
             <form:form id="inputForm" modelAttribute="ccmDatabaseBook" action="${ctx}/book/ccmDatabaseBook/save" method="post" class="form-horizontal">
                 <form:hidden path="id"/>
                 <sys:message content="${message}"/>
@@ -72,7 +72,7 @@
             </form:form>
         </c:when>
         <c:otherwise>
-            <li class="active"><a href="${ctx}/book/ccmDatabaseBook/add?id=${menu.id}&parent.id=${menu.parent.id}">菜单添加</a></li></ul><br/>
+            <li class="active"><a href="${ctx}/book/ccmDatabaseBook/add?id=${menu.id}&parent.id=${menu.parent.id}">菜单添加</a></li></ul>
             <form:form id="inputForm" modelAttribute="ccmDatabaseBook" action="${ctx}/book/ccmDatabaseBook/saveAdd" method="post" class="form-horizontal">
                 <form:hidden path="id"/>
                 <sys:message content="${message}"/>
@@ -111,7 +111,7 @@
             </form:form>
         </c:otherwise>
     </c:choose>
-</ul><br/>
+</ul>
 
 </body>
 </html>

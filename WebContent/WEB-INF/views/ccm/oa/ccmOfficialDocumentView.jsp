@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/oa/ccmOfficialDocument/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/oa/ccmOfficialDocument/form?id=${ccmOfficialDocument.id}">数据详情</a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOfficialDocument"  class="form-horizontal">
 		
 		<sys:message content="${message}"/>		

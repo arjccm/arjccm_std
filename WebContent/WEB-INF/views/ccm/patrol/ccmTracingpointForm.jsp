@@ -29,7 +29,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/patrol/ccmTracingpoint/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/patrol/ccmTracingpoint/form?id=${ccmTracingpoint.id}">数据<shiro:hasPermission name="patrol:ccmTracingpoint:edit">${not empty ccmTracingpoint.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrol:ccmTracingpoint:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmTracingpoint" action="${ctx}/patrol/ccmTracingpoint/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

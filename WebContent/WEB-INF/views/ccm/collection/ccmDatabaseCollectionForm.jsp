@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/collection/ccmDatabaseCollection/">收藏夹管理列表</a></li>
 		<li class="active"><a href="${ctx}/collection/ccmDatabaseCollection/form?id=${ccmDatabaseCollection.id}">收藏夹管理<shiro:hasPermission name="collection:ccmDatabaseCollection:edit">${not empty ccmDatabaseCollection.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="collection:ccmDatabaseCollection:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmDatabaseCollection" action="${ctx}/collection/ccmDatabaseCollection/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

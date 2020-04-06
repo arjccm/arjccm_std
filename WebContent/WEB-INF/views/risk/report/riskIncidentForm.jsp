@@ -37,7 +37,7 @@
 				<shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a>
 			</li>	
 		</c:if>	
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskIncident" action="${ctx}/report/riskIncident/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

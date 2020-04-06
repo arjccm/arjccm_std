@@ -32,7 +32,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/report/riskEventGreat/listDatabase">重大事项报备列表</a></li>
 		<li class="active"><a href="${ctx}/report/riskEventGreat/formDatabase?id=${riskEventGreat.id}">重大事项库报备查看</a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskEventGreat" action="${ctx}/report/riskEventGreat/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

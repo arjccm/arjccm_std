@@ -36,7 +36,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/org/ccmOrgNetbuild/list">数据列表</a></li>
 		<li class="active"><a href="${ctx}/org/ccmOrgNetbuild/form?id=${ccmOrgNetbuild.id}&parent.id=${ccmOrgNetbuildparent.id}">数据<shiro:hasPermission name="org:ccmOrgNetbuild:edit">${not empty ccmOrgNetbuild.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="org:ccmOrgNetbuild:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOrgNetbuild" action="${ctx}/org/ccmOrgNetbuild/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>	

@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/tree/ccmTree/">树列表</a></li>
 		<li class="active"><a href="${ctx}/tree/ccmTree/form?id=${ccmTree.id}&parent.id=${ccmTreeparent.id}">树<shiro:hasPermission name="tree:ccmTree:edit">${not empty ccmTree.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="tree:ccmTree:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmTree" action="${ctx}/tree/ccmTree/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

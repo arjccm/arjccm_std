@@ -138,7 +138,7 @@
 	<%-- <ul class="nav nav-tabs">
 		<li><a href="${ctx}/calendar/plmCalendar/">工作日历列表</a></li>
 		<li class="active"><a href="${ctx}/calendar/plmCalendar/form?id=${plmCalendar.id}">工作日历<shiro:hasPermission name="calendar:plmCalendar:edit">${not empty plmCalendar.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="calendar:plmCalendar:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/> --%>
+	</ul> --%>
 	<br>
 	<br>
 	<form:form target="_parent" id="inputForm" modelAttribute="plmCalendar"

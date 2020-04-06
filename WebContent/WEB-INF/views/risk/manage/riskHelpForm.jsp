@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/manage/riskHelp/">帮助信息列表</a></li>
 		<li class="active"><a href="${ctx}/manage/riskHelp/form?id=${riskHelp.id}">帮助信息<shiro:hasPermission name="manage:riskHelp:edit">${not empty riskHelp.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="manage:riskHelp:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskHelp" action="${ctx}/manage/riskHelp/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

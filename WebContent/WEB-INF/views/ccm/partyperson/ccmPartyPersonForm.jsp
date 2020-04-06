@@ -34,7 +34,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<%--<li class="active"><a href="${ctx}/partyperson/ccmPartyPerson/form?id=${ccmPartyPerson.id}">党员信息管理<shiro:hasPermission name="partyperson:ccmPartyPerson:edit">${not empty ccmPartyPerson.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="partyperson:ccmPartyPerson:edit">查看</shiro:lacksPermission></a></li>--%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPartyPerson" action="${ctx}/partyperson/ccmPartyPerson/save" method="post" class="form-horizontal">
 	<div>
 		<form:hidden path="id"/>

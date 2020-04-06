@@ -35,7 +35,7 @@
 	<ul class="nav nav-tabs">
 		<%--<li><a href="${ctx}/partyactivity/ccmPartyActivity/">党员活动管理列表</a></li>--%>
 		<%--<li class="active"><a href="${ctx}/partyactivity/ccmPartyActivity/form?id=${ccmPartyActivity.id}">党员活动管理<shiro:hasPermission name="partyactivity:ccmPartyActivity:edit">${not empty ccmPartyActivity.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="partyactivity:ccmPartyActivity:edit">查看</shiro:lacksPermission></a></li>--%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPartyActivity" action="${ctx}/partyactivity/ccmPartyActivity/save" method="post" class="form-horizontal">
 	<div>
 		<form:hidden path="id"/>

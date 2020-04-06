@@ -64,7 +64,7 @@
 <%--	<ul class="nav nav-tabs">--%>
 <%--		<li><a href="${ctx}/device/ccmDeviceControl/">探针布控列表</a></li>--%>
 <%--		<li class="active"><a href="${ctx}/device/ccmDeviceControl/form?id=${ccmDeviceControl.id}">探针布控<shiro:hasPermission name="device:ccmDeviceControl:edit">${not empty ccmDeviceControl.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="device:ccmDeviceControl:edit">查看</shiro:lacksPermission></a></li>--%>
-<%--	</ul><br/>--%>
+<%--	</ul>--%>
 	<form:form id="inputForm" modelAttribute="ccmDeviceControl" action="${ctx}/device/ccmDeviceControl/save" method="post" class="form-horizontal hide1">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>

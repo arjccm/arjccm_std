@@ -56,7 +56,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/report/riskMassesOpinion/">社情民意调查列表</a></li>
 		<li class="active"><a href="${ctx}/report/riskMassesOpinion/form?id=${riskMassesOpinion.id}">社情民意调查<shiro:hasPermission name="report:riskMassesOpinion:edit">${not empty riskMassesOpinion.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="report:riskMassesOpinion:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskMassesOpinion" action="${ctx}/report/riskMassesOpinion/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="fileName" htmlEscape="false" maxlength="256" class="input-xlarge" />

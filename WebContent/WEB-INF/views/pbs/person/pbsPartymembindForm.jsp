@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/person/pbsPartymembind/">学员用户关系列表</a></li>
 		<li class="active"><a href="${ctx}/person/pbsPartymembind/form?id=${pbsPartymembind.id}">学员用户关系<shiro:hasPermission name="person:pbsPartymembind:edit">${not empty pbsPartymembind.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="person:pbsPartymembind:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsPartymembind" action="${ctx}/person/pbsPartymembind/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="sType" value="user"/>

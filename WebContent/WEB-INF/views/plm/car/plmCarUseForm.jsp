@@ -37,7 +37,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/car/plmCarUse/">领用记录列表</a></li>
 		<li class="active"><a href="${ctx}/car/plmCarUse/form?id=${plmCarUse.id}">领用记录<shiro:hasPermission name="car:plmCarUse:edit">${not empty plmCarUse.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="car:plmCarUse:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" style="margin: 30px 200px;" modelAttribute="plmCarUse" action="${ctx}/car/plmCarUse/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

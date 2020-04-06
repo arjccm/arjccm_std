@@ -34,7 +34,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/addressbook/plmEmployeeGroups/">个人通讯录分组列表</a></li>
 		<li class="active"><a href="${ctx}/addressbook/plmEmployeeGroups/form?id=${plmEmployeeGroups.id}&parent.id=${plmEmployeeGroupsparent.id}">个人通讯录分组<shiro:hasPermission name="addressbook:plmEmployeeGroups:edit">${not empty plmEmployeeGroups.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="addressbook:plmEmployeeGroups:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="plmEmployeeGroups" action="${ctx}/addressbook/plmEmployeeGroups/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

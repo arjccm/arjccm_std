@@ -29,7 +29,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/patrol/ccmPatrolUser/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/patrol/ccmPatrolUser/form?id=${ccmPatrolUser.id}">数据<shiro:hasPermission name="patrol:ccmPatrolUser:edit">${not empty ccmPatrolUser.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="patrol:ccmPatrolUser:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPatrolUser" action="${ctx}/patrol/ccmPatrolUser/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

@@ -78,7 +78,7 @@
 <body>
 <%-- 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/org/ccmOrgNpse/formData?id=${ccmOrgNpse.id}&compType=03">机关单位<shiro:hasPermission name="org:ccmOrgNpse:edit">${not empty ccmOrgNpse.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="org:ccmOrgNpse:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/> --%>
+	</ul> --%>
 <form:form id="inputForm" modelAttribute="ccmOrgNpse" action="${ctx}/org/ccmOrgNpse/save" method="post"
            class="form-horizontal">
     <form:hidden path="id"/>

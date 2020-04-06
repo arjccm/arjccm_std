@@ -40,7 +40,7 @@
 	<%-- <ul class="nav nav-tabs">
 		<li><a href="${ctx}/grabber/ccmGrabberManage/">抓拍机管理列表</a></li>
 		<li class="active"><a href="${ctx}/grabber/ccmGrabberManage/form?id=${ccmGrabberManage.id}">抓拍机管理<shiro:hasPermission name="grabber:ccmGrabberManage:edit">${not empty ccmGrabberManage.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="grabber:ccmGrabberManage:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/> --%>
+	</ul> --%>
 	<form:form id="inputForm" modelAttribute="ccmGrabberManage"
 		action="${ctx}/grabber/ccmGrabberManage/save" method="post"
 		class="form-horizontal" style="margin-top:10px;">
