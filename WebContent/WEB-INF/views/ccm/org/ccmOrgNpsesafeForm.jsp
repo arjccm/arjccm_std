@@ -631,8 +631,9 @@
 		
 		<div class="form-actions">
 			<shiro:hasPermission name="org:ccmOrgNpsesafe:edit">
-			<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存"/>&nbsp;<input id="btnCancel" class="btn btn-danger" type="button"
-						value="关闭" /></shiro:hasPermission>
+			<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存"/>&nbsp;
+            </shiro:hasPermission>
+                <input id="btnCancel" class="btn btn-danger" type="button" value="关闭" />
 			<!-- <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/> -->
 		</div>
 	</form:form><br>

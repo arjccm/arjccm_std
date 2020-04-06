@@ -51,9 +51,9 @@
 		</ul>
 
 
-	<div class="clearfix pull-right btn-box">
+	<div id="searchFormbtn-box2" class="clearfix pull-right ">
 
-			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;">
+			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: left">
 				<i></i><span style="font-size: 12px">查询</span> </a>
 
 	</div>

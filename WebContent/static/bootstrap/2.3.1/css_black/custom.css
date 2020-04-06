@@ -1829,3 +1829,7 @@ cite[class*='t-click']{
  .div_font_type2{
 	 background: url(../img/pop-bg5.png);background-size: 100% 100%;
  }
+/**查询按钮高度间距*/
+ #searchFormbtn-box2 {
+	   margin-top: 4.5px!important;
+   }
