@@ -130,6 +130,9 @@ public class CcmRestBuilding extends BaseController {
 				String aid = page.getList().get(i).getId();
 				//已采集人数
 				Integer gather = ccmHouseBuildmanageService.gather(aid);
+				if (gather==null){
+					gather=0;
+				}
 				//楼栋总人数
 				Integer buildPeo = page.getList().get(i).getBuildPeo();
 				//未采集人数
