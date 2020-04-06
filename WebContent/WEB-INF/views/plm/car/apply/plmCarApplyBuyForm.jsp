@@ -124,18 +124,18 @@
 			</c:if>
 		</table>	
 		<div class="form-actions">
-			<a id="btnApply" class="btn btn-primary" href="javascript:;"><i class="iconfont icon-caozuotubiao-jiluxinxi"></i>提交申请</a>&nbsp;
+			<a id="btnApply" class="btn btn-primary" href="javascript:;"><i ></i>提交申请</a>&nbsp;
 			<c:if test="${ empty plmCarApplyBuy.procInsId}">
-				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="icon-ok"></i>保存</a>&nbsp;
+				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i ></i>保存</a>&nbsp;
 			</c:if>
 			<c:if test="${not empty plmCarApplyBuy.procInsId}">
-				<a id="btnCancel" class="btn btn-primary" href="javascript:;"><i class="icon-minus-sign"></i>作废</a>&nbsp;
+				<a id="btnCancel" class="btn btn-primary" href="javascript:;"><i ></i>作废</a>&nbsp;
 			</c:if>
 			<c:if test="${not empty plmCarApplyBuy.id}">
-			<a id="btnCancelf" class="btn" href="javascript:;" onclick="history.go(-1)" ><i class="icon-reply"></i>返回</a>
+			<a id="btnCancelf" class="btn" href="javascript:;" onclick="history.go(-1)" ><i ></i>返回</a>
 			</c:if>
 			<c:if test="${empty plmCarApplyBuy.id}">
-			<a id="btnCancelf" class="btn btn-primary" href="javascript:;" onclick="parent.layer.closeAll();" ><i class="icon-remove-circle"></i>关闭</a>
+			<a id="btnCancelf" class="btn btn-primary" href="javascript:;" onclick="parent.layer.closeAll();" ><i ></i>关闭</a>
 			</c:if>
 		</div>
 	</form:form>		
