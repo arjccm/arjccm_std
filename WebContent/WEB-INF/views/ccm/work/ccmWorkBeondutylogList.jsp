@@ -112,23 +112,23 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmWorkBeondutylog">
             <tr>
-                <td style="height: 50px"><a href="${ctx}/work/ccmWorkBeondutylog/form?id=${ccmWorkBeondutylog.id}">
+                <td><a href="${ctx}/work/ccmWorkBeondutylog/form?id=${ccmWorkBeondutylog.id}">
                     <fmt:formatDate value="${ccmWorkBeondutylog.datas}" pattern="yyyy-MM-dd HH:mm:ss"/>
                 </a></td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkBeondutylog.updateBy.name}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkBeondutylog.office.name}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmWorkBeondutylog.type, 'ccm_work_beondutylog_type', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkBeondutylog.adds}
                 </td>
                 <shiro:hasPermission name="work:ccmWorkBeondutylog:edit">
-                    <td style="height: 50px">
+                    <td>
                         <a class="btnList" href="${ctx}/work/ccmWorkBeondutylog/form?id=${ccmWorkBeondutylog.id}"
                            title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
                         <a class="btnList" href="${ctx}/work/ccmWorkBeondutylog/delete?id=${ccmWorkBeondutylog.id}"

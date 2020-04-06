@@ -133,14 +133,14 @@
             <tr>
                 <input name="id" type="hidden" value="${log.id}"/>
                 <td><input name="check" type="checkbox" value="${log.id}"/></td>
-                <td style="height: 50px">${log.title}</td>
-                <td style="height: 50px">${log.createBy.name}</td>
-                <td style="height: 50px">${log.createBy.company.name}</td>
-                <td style="height: 50px">${log.createBy.office.name}</td>
-                <td style="height: 50px"><strong>${log.requestUri}</strong></td>
-                <td style="height: 50px">${log.method}</td>
-                <td style="height: 50px">${log.remoteAddr}</td>
-                <td style="height: 50px"><fmt:formatDate value="${log.createDate}" type="both"/></td>
+                <td>${log.title}</td>
+                <td>${log.createBy.name}</td>
+                <td>${log.createBy.company.name}</td>
+                <td>${log.createBy.office.name}</td>
+                <td><strong>${log.requestUri}</strong></td>
+                <td>${log.method}</td>
+                <td>${log.remoteAddr}</td>
+                <td><fmt:formatDate value="${log.createDate}" type="both"/></td>
             </tr>
             <c:if test="${not empty log.exception}">
                 <tr>

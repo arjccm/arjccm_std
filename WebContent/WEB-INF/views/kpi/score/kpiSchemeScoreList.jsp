@@ -72,16 +72,16 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="kpiScheme">
 			<tr>
-				<td style="height: 50px">
+				<td>
 					${kpiScheme.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${kpiScheme.startTime}" pattern="yyyy-MM-dd"/> —— <fmt:formatDate value="${kpiScheme.endTime}" pattern="yyyy-MM-dd"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${kpiScheme.office.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(kpiScheme.userType, 'sys_user_type', '')}
 				</td>
 				<c:if test="${kpiScheme.state eq '1'}">
@@ -91,10 +91,10 @@
 					<td style='color:red;height: 50px'>${fns:getDictLabel(kpiScheme.state, 'kpi_scheme_state', '')}</td>
 				</c:if>
 				<c:if test="${kpiScheme.state eq '' or empty kpiScheme.state or kpiScheme.state eq '0' }">
-					<td style="height: 50px">${fns:getDictLabel(kpiScheme.state, 'kpi_scheme_state', '')}</td>
+					<td>${fns:getDictLabel(kpiScheme.state, 'kpi_scheme_state', '')}</td>
 				</c:if>
 				
-				<shiro:hasPermission name="score:kpiSchemeScore:edit"><td style="height: 50px">
+				<shiro:hasPermission name="score:kpiSchemeScore:edit"><td>
 					<c:if test="${kpiScheme.state != '' and not empty kpiScheme.state and kpiScheme.state != '0' }">
 						<a class="btnList" href="${ctx}/score/kpiSchemeScore/form?id=${kpiScheme.id}" title="数据录入"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					</c:if>

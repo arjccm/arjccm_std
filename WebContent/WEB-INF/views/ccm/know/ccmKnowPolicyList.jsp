@@ -87,23 +87,23 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowPolicy">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/know/ccmKnowPolicy/form?id=${ccmKnowPolicy.id}">
+				<td><a href="${ctx}/know/ccmKnowPolicy/form?id=${ccmKnowPolicy.id}">
 					${ccmKnowPolicy.name}</a>
 				</td>
-				<td style="height: 50px">${fns:getDictLabel(ccmKnowPolicy.type, 'sys_laws_class', '')}</td>
-				<td style="height: 50px">
+				<td>${fns:getDictLabel(ccmKnowPolicy.type, 'sys_laws_class', '')}</td>
+				<td>
 					${ccmKnowPolicy.lssNo}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowPolicy.relDept}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowPolicy.relDate}" pattern="yyyy-MM-dd"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowPolicy.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<shiro:hasPermission name="know:ccmKnowPolicy:edit"><td style="height: 50px">
+				<shiro:hasPermission name="know:ccmKnowPolicy:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowPolicy/form?id=${ccmKnowPolicy.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/know/ccmKnowPolicy/delete?id=${ccmKnowPolicy.id}" onclick="return confirmx('确认要删除该政策法规吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

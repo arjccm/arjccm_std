@@ -150,16 +150,16 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="user">
 				<tr>
-					<td style="height: 50px">${user.company.name}</td>
-					<td style="height: 50px">${user.office.name}</td>
-					<td style="height: 50px"><a href="${ctx}/sys/user/form?id=${user.id}">${user.loginName}</a></td>
-					<td style="height: 50px">${user.name}</td>
-					<td style="height: 50px">${user.phone}</td>
-					<td style="height: 50px">${user.mobile}</td>
+					<td>${user.company.name}</td>
+					<td>${user.office.name}</td>
+					<td><a href="${ctx}/sys/user/form?id=${user.id}">${user.loginName}</a></td>
+					<td>${user.name}</td>
+					<td>${user.phone}</td>
+					<td>${user.mobile}</td>
 					<%--
 				<td>${user.roleNames}</td> --%>
 					<shiro:hasPermission name="sys:user:edit">
-						<td style="height: 50px"><a class="btnList"
+						<td><a class="btnList"
 							href="${ctx}/sys/user/form?id=${user.id}" title="修改"><i
 								class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/sys/user/delete?id=${user.id}"

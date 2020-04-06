@@ -60,19 +60,19 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmRoadAddress">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/pop/ccmRoadAddress/form?id=${ccmRoadAddress.id}">
+				<td><a href="${ctx}/pop/ccmRoadAddress/form?id=${ccmRoadAddress.id}">
 					${ccmRoadAddress.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmRoadAddress.address}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmRoadAddress.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td class=""style="height: 50px">
 					${ccmRoadAddress.remarks}
 				</td>
-				<shiro:hasPermission name="pop:ccmRoadAddress:edit"><td style="height: 50px">
+				<shiro:hasPermission name="pop:ccmRoadAddress:edit"><td>
     				<a class="btnList" href="${ctx}/pop/ccmRoadAddress/form?id=${ccmRoadAddress.id}"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/pop/ccmRoadAddress/delete?id=${ccmRoadAddress.id}" onclick="return confirmx('确认要删除该街路巷吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

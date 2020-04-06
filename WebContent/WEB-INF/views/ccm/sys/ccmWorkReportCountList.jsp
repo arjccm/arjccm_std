@@ -113,17 +113,17 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="ccmWorkReport">
 				<tr>
-					<td style="height: 50px">${ccmWorkReport.name}</td>
+					<td>${ccmWorkReport.name}</td>
 					
-					<td style="height: 50px">${ccmWorkReport.createName}</td>
+					<td>${ccmWorkReport.createName}</td>
 					
-					<td style="height: 50px">${ccmWorkReport.jobnum}</td>
+					<td>${ccmWorkReport.jobnum}</td>
 					
-					<td style="height: 50px">${ccmWorkReport.visitnum}</td>
+					<td>${ccmWorkReport.visitnum}</td>
 
-					<td style="height: 50px">${ccmWorkReport.eventnum}</td>
+					<td>${ccmWorkReport.eventnum}</td>
 							
-					<td style="height: 50px">${ccmWorkReport.sum}</td>
+					<td>${ccmWorkReport.sum}</td>
                     
 				</tr>
 			</c:forEach>

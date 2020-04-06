@@ -77,27 +77,27 @@
         <tbody>
         <c:forEach items="${page.list}" var="kpiFinalScore">
             <tr>
-                <td style="height: 50px">
+                <td>
                         ${kpiFinalScore.user.no}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${kpiFinalScore.user.name}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(kpiFinalScore.user.userType, 'sys_user_type', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${kpiFinalScore.office.name}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${kpiFinalScore.finalScore}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${kpiFinalScore.journalScore}
                 </td>
 
                 <c:forEach items="${kpiFinalScore.scoreList}" var="score">
-                    <td style="height: 50px">${score}</td>
+                    <td>${score}</td>
                 </c:forEach>
 
             </tr>

@@ -75,25 +75,25 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmLogPublicity">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}">
+				<td><a href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}">
 					${ccmLogPublicity.title}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmLogPublicity.type, 'ccm_log_publiciy_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmLogPublicity.status, 'ccm_log_publiciy_status', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmLogPublicity.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmLogPublicity.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmLogPublicity.createBy.name}
 				</td>
-				<shiro:hasPermission name="publicity:ccmLogPublicity:edit"><td style="height: 50px">
+				<shiro:hasPermission name="publicity:ccmLogPublicity:edit"><td>
 					<c:if test="${user.id eq ccmLogPublicity.createBy.id or user.id eq '1'}">
 						<a class="btnList" href="${ctx}/publicity/ccmLogPublicity/form?id=${ccmLogPublicity.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/publicity/ccmLogPublicity/delete?id=${ccmLogPublicity.id}" onclick="return confirmx('确认要删除该宣传信息吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i> </a>

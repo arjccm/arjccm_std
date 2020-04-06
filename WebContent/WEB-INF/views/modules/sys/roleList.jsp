@@ -18,11 +18,11 @@
 		<tr><th>角色名称</th><th>英文名称</th><th>归属机构</th><th>数据范围</th><shiro:hasPermission name="sys:role:edit"><th>操作</th></shiro:hasPermission></tr>
 		<c:forEach items="${list}" var="role">
 			<tr>
-				<td style="height: 50px"><a href="form?id=${role.id}">${role.name}</a></td>
-				<td style="height: 50px"><a href="form?id=${role.id}">${role.enname}</a></td>
-				<td style="height: 50px">${role.office.name}</td>
-				<td style="height: 50px">${fns:getDictLabel(role.dataScope, 'sys_data_scope', '无')}</td>
-				<shiro:hasPermission name="sys:role:edit"><td style="height: 50px">
+				<td><a href="form?id=${role.id}">${role.name}</a></td>
+				<td><a href="form?id=${role.id}">${role.enname}</a></td>
+				<td>${role.office.name}</td>
+				<td>${fns:getDictLabel(role.dataScope, 'sys_data_scope', '无')}</td>
+				<shiro:hasPermission name="sys:role:edit"><td>
 					<a class="btnList" href="${ctx}/sys/role/assign?id=${role.id}" title="分配"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 					<c:if test="${(role.sysData eq fns:getDictValue('是', 'yes_no', '1') && fns:getUser().admin)||!(role.sysData eq fns:getDictValue('是', 'yes_no', '1'))}">
 						<a class="btnList" href="${ctx}/sys/role/form?id=${role.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

@@ -113,17 +113,17 @@
 			<tbody>
 				<c:forEach items="${page.list}" var="plmOut">
 					<tr>
-						<td style="height: 50px"><a href="${ctx}/storage/plmOut/form?id=${plmOut.id}">
+						<td><a href="${ctx}/storage/plmOut/form?id=${plmOut.id}">
 								${plmOut.incomingCode} </a></td>
-						<td style="height: 50px"><fmt:formatDate value="${plmOut.incomingDate}"
+						<td><fmt:formatDate value="${plmOut.incomingDate}"
 								pattern="yyyy-MM-dd" /></td>
-						<td style="height: 50px">${fns:getDictLabel(plmOut.incomingType, 'plm_out_type', '未知')}
+						<td>${fns:getDictLabel(plmOut.incomingType, 'plm_out_type', '未知')}
 						</td>
-						<td style="height: 50px">${fns:getDictLabel(plmOut.type, 'plm_out_status', '未知')}
+						<td>${fns:getDictLabel(plmOut.type, 'plm_out_status', '未知')}
 						</td>
 						<td class="tp" style="height: 50px">${plmOut.remarks}</td>
 						<shiro:hasPermission name="storage:plmOut:edit">
-							<td style="height: 50px"><c:choose>
+							<td><c:choose>
 									<c:when test="${plmOut.type == '3'}">
 										<a href="${ctx}/storage/plmOut/form?id=${plmOut.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 									</c:when>

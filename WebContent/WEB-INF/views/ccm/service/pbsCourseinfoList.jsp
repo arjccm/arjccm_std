@@ -64,22 +64,22 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="pbsCourseinfo">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/service/pbsCourseinfo/form?id=${pbsCourseinfo.id}">
+				<td><a href="${ctx}/service/pbsCourseinfo/form?id=${pbsCourseinfo.id}">
 					${fns:getDictLabel(pbsCourseinfo.sType, 'pbs_courseinfo_stype', '')}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${pbsCourseinfo.sName}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${pbsCourseinfo.sFiletype}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${pbsCourseinfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${pbsCourseinfo.remarks}
 				</td>
-				<shiro:hasPermission name="service:pbsCourseinfo:edit"><td style="height: 50px">
+				<shiro:hasPermission name="service:pbsCourseinfo:edit"><td>
     				<a class="btnList" href="${ctx}/service/pbsCourseinfo/form?id=${pbsCourseinfo.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/service/pbsCourseinfo/delete?id=${pbsCourseinfo.id}" onclick="return confirmx('确认要删除该业务学习吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

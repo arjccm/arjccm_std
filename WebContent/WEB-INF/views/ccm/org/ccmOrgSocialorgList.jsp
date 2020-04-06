@@ -125,43 +125,43 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmOrgSocialorg">
             <tr>
-                <td style="height: 50px"><a href="${ctx}/org/ccmOrgSocialorg/form?id=${ccmOrgSocialorg.id}">
+                <td><a href="${ctx}/org/ccmOrgSocialorg/form?id=${ccmOrgSocialorg.id}">
                         ${ccmOrgSocialorg.orgName}
                 </a></td>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgSocialorg.legalReprName}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmOrgSocialorg.orgType, 'ccm_sosr_type', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                     <fmt:formatDate value="${ccmOrgSocialorg.apprDate}" pattern="yyyy-MM-dd"/>
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgSocialorg.workAdd}
                 </td>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '01'}">
-                    <td style="height: 50px">${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
+                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
                         &nbsp; <img src="${ctxStatic}/images/atteType_red.png"/></td>
                 </c:if>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '02'}">
-                    <td style="height: 50px">${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
+                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
                         &nbsp; <img src="${ctxStatic}/images/atteType_orange.png"/></td>
                 </c:if>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '03'}">
-                    <td style="height: 50px">${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
+                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
                         &nbsp; <img src="${ctxStatic}/images/atteType_green.png"/></td>
                 </c:if>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '' or empty ccmOrgSocialorg.concernExtent}">
-                    <td style="height: 50px">${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')} </td>
+                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')} </td>
                 </c:if>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgSocialorg.secuName}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgSocialorg.secuTel}
                 </td>
-                <td style="height: 50px"><shiro:hasPermission name="org:ccmOrgSocialorg:edit">
+                <td><shiro:hasPermission name="org:ccmOrgSocialorg:edit">
                     <a class="btnList" href="${ctx}/org/ccmOrgSocialorg/form?id=${ccmOrgSocialorg.id}" title="修改"><i
                             class="iconfont icon-caozuotubiao-xiugai"></i></a>
                     <a class="btnList" href="${ctx}/org/ccmOrgSocialorg/delete?id=${ccmOrgSocialorg.id}"

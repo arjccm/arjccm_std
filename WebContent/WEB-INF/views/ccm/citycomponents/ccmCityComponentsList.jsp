@@ -79,13 +79,13 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmCityComponents">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/citycomponents/ccmCityComponents/form?id=${ccmCityComponents.id}">
+				<td><a href="${ctx}/citycomponents/ccmCityComponents/form?id=${ccmCityComponents.id}">
 					${fns:getDictLabel(ccmCityComponents.type, 'ccm_city_components_type', '')}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmCityComponents.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmCityComponents.code}
 				</td>
 				<%--<td>
@@ -97,10 +97,10 @@
 				<td>
 					${ccmCityComponents.area.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmCityComponents.status, 'ccm_city_components_status', '')}
 				</td>
-				<shiro:hasPermission name="citycomponents:ccmCityComponents:edit"><td style="height: 50px">
+				<shiro:hasPermission name="citycomponents:ccmCityComponents:edit"><td>
     				<a class="btnList" href="${ctx}/citycomponents/ccmCityComponents/form?id=${ccmCityComponents.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/citycomponents/ccmCityComponents/delete?id=${ccmCityComponents.id}" onclick="return confirmx('确认要删除该城市部件吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

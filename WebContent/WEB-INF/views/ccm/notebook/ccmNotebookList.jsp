@@ -65,10 +65,10 @@
 				<td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 50px">
 					${ccmNotebook.content}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmNotebook.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<shiro:hasPermission name="notebook:ccmNotebook:edit"><td style="height: 50px">
+				<shiro:hasPermission name="notebook:ccmNotebook:edit"><td>
 					<a class="btnList" href="${ctx}/notebook/ccmNotebook/form?id=${ccmNotebook.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/notebook/ccmNotebook/delete?id=${ccmNotebook.id}" onclick="return confirmx('确认要删除该记事本吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i> </a>
     				<!-- <a href="${ctx}/notebook/ccmNotebook/form?id=${ccmNotebook.id}">修改</a>

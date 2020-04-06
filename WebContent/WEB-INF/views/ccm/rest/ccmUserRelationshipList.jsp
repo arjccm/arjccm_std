@@ -62,20 +62,20 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmUserRelationship">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/rest/ccmUserRelationship/form?id=${ccmUserRelationship.id}">
+				<td><a href="${ctx}/rest/ccmUserRelationship/form?id=${ccmUserRelationship.id}">
 					${ccmUserRelationship.user.name}
 				</a></td>
-				<td style="height: 50px">${ccmUserRelationship.user.mobile}</td>
-				<td style="height: 50px">
+				<td>${ccmUserRelationship.user.mobile}</td>
+				<td>
 					${ccmUserRelationship.userGroup.groupname}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmUserRelationship.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmUserRelationship.remarks}
 				</td>
-				<shiro:hasPermission name="rest:ccmUserRelationship:edit"><td style="height: 50px">
+				<shiro:hasPermission name="rest:ccmUserRelationship:edit"><td>
 					<a class="btnList" href="${ctx}/rest/ccmUserRelationship/form?id=${ccmUserRelationship.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/rest/ccmUserRelationship/delete?id=${ccmUserRelationship.id}" onclick="return confirmx('确认要删除该用户关系吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i> </a>
 				</td></shiro:hasPermission>

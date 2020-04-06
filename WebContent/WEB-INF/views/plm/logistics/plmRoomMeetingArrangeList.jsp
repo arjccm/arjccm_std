@@ -91,25 +91,25 @@
 			<tbody>
 			<c:forEach items="${page.list}" var="plmRoom">
 				<tr>
-					<td style="height: 50px">
+					<td>
 						<a href="${ctx}/logistics/plmRoomMeetingApplyResource/form?id=${plmRoom.id}&update=ok">${plmRoom.subject}</a>
 					</td>
-					<td style="height: 50px">
+					<td>
 						${fns:getDictLabel(plmRoom.type, 'plm_room_apply_type', '')}
 					</td>
-					<td style="height: 50px">
+					<td>
 						${plmRoom.room.subject}
 					</td>
-					<td style="height: 50px">
+					<td>
 						<fmt:formatDate value="${plmRoom.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 					</td>
-					<td style="height: 50px">
+					<td>
 						<fmt:formatDate value="${plmRoom.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 					</td>
-					<td style="height: 50px">
+					<td>
 						${plmRoom.createBy.name}
 					</td>
-					<td style="height: 50px">
+					<td>
 					<shiro:hasPermission name="logistics:plmRoom:edit">
 						<c:if test="${user.id eq plmRoom.createBy.id or user.id eq '1'}">
 							<a class="btnList" href="${ctx}/logistics/plmRoomMeetingApplyResource/form?id=${plmRoom.id}&update=ok" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

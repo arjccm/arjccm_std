@@ -112,25 +112,25 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmWorkBeonduty">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/work/ccmWorkBeonduty/form?id=${ccmWorkBeonduty.id}">
+				<td><a href="${ctx}/work/ccmWorkBeonduty/form?id=${ccmWorkBeonduty.id}">
 					<fmt:formatDate value="${ccmWorkBeonduty.months}" pattern="yyyy-MM"/>
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkBeonduty.datas}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkBeonduty.office.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkBeonduty.principal.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkBeonduty.principalMans}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkBeonduty.adds}
 				</td>
-				<shiro:hasPermission name="work:ccmWorkBeonduty:edit"><td style="height: 50px">
+				<shiro:hasPermission name="work:ccmWorkBeonduty:edit"><td>
     				<a class="btnList"  href="${ctx}/work/ccmWorkBeonduty/form?id=${ccmWorkBeonduty.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList"  href="${ctx}/work/ccmWorkBeonduty/delete?id=${ccmWorkBeonduty.id}" onclick="return confirmx('确认要删除该值班表吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

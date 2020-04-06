@@ -111,16 +111,16 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="ccmWorkReport">
 				<tr>
-					<td style="height: 50px"><a
+					<td><a
 						href="${ctx}/sys/ccmWorkReport/view?id=${ccmWorkReport.id}">${ccmWorkReport.title}</a></td>
-					<td style="height: 50px">${fns:getDictLabel(ccmWorkReport.type, 'ccm_work_report_type', '')}
+					<td>${fns:getDictLabel(ccmWorkReport.type, 'ccm_work_report_type', '')}
 					</td>
-					<td style="height: 50px">${ccmWorkReport.createBy.name}</td>
-					<td style="height: 50px"><fmt:formatDate value="${ccmWorkReport.createDate}"
+					<td>${ccmWorkReport.createBy.name}</td>
+					<td><fmt:formatDate value="${ccmWorkReport.createDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td style="height: 50px">${fns:getDictLabel(ccmWorkReport.readFlag, 'oa_notify_read', '')}</td>
+					<td>${fns:getDictLabel(ccmWorkReport.readFlag, 'oa_notify_read', '')}</td>
 					<shiro:hasPermission name="sys:ccmWorkReport:edit">
-						<td style="height: 50px">
+						<td>
 							<a class="btnList" href="${ctx}/sys/ccmWorkReport/view?id=${ccmWorkReport.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						</td>
 					</shiro:hasPermission>

@@ -70,16 +70,16 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowGovernmentAffairs">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/know/ccmKnowGovernmentAffairs/form?id=${ccmKnowGovernmentAffairs.id}">
+				<td><a href="${ctx}/know/ccmKnowGovernmentAffairs/form?id=${ccmKnowGovernmentAffairs.id}">
 					${ccmKnowGovernmentAffairs.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmKnowGovernmentAffairs.type, 'ccm_know_government_affairs_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowGovernmentAffairs.datas}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<shiro:hasPermission name="know:ccmKnowGovernmentAffairs:edit"><td style="height: 50px">
+				<shiro:hasPermission name="know:ccmKnowGovernmentAffairs:edit"><td>
     				<a class="btnList"  href="${ctx}/know/ccmKnowGovernmentAffairs/form?id=${ccmKnowGovernmentAffairs.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList"  href="${ctx}/know/ccmKnowGovernmentAffairs/delete?id=${ccmKnowGovernmentAffairs.id}" onclick="return confirmx('确认要删除该民政事务吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

@@ -115,40 +115,40 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmOrgComPop">
 			<tr>
-				<td style="height: 50px">
+				<td>
 					<img src="${ccmOrgComPop.images}" style="height:50px;" class="pimg"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmOrgComPop.code}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmOrgComPop.commonalityId.name}
 				</td>
-				<td style="height: 50px"><a href="${ctx}/org/ccmOrgComPop/form?id=${ccmOrgComPop.id}">
+				<td><a href="${ctx}/org/ccmOrgComPop/form?id=${ccmOrgComPop.id}">
 					${ccmOrgComPop.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmOrgComPop.sex, 'sex', '')}
 				</td>
-<%--				<td style="height: 50px">--%>
+<%--				<td>--%>
 <%--					${fns:getDictLabel(ccmOrgComPop.nation, 'sys_volk', '')}--%>
 <%--				</td>--%>
-<%--				<td style="height: 50px">--%>
+<%--				<td>--%>
 <%--					${fns:getDictLabel(ccmOrgComPop.politics, 'sys_ccm_poli_stat', '')}--%>
 <%--				</td>--%>
-				<td style="height: 50px">
+				<td>
 					${ccmOrgComPop.idenNum}
 				</td>
-<%--				<td style="height: 50px">--%>
+<%--				<td>--%>
 <%--					<fmt:formatDate value="${ccmOrgComPop.birthday}" pattern="yyyy-MM-dd"/>--%>
 <%--				</td>--%>
-				<td style="height: 50px">
+				<td>
 					${ccmOrgComPop.service}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmOrgComPop.telephone}
 				</td>
-				<shiro:hasPermission name="org:ccmOrgComPop:edit"><td style="height: 50px">
+				<shiro:hasPermission name="org:ccmOrgComPop:edit"><td>
     				<a class="btnList" href="${ctx}/org/ccmOrgComPop/form?id=${ccmOrgComPop.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/org/ccmOrgComPop/delete?id=${ccmOrgComPop.id}" onclick="return confirmx('确认要删除该公共机构人员吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

@@ -52,11 +52,11 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="genTable">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/gen/genTable/form?id=${genTable.id}">${genTable.name}</a></td>
-				<td style="height: 50px">${genTable.comments}</td>
-				<td style="height: 50px">${genTable.className}</td>
+				<td><a href="${ctx}/gen/genTable/form?id=${genTable.id}">${genTable.name}</a></td>
+				<td>${genTable.comments}</td>
+				<td>${genTable.className}</td>
 				<td  style="height: 50px" title="点击查询子表"><a href="javascript:" onclick="$('#parentTable').val('${genTable.parentTable}');$('#searchForm').submit();">${genTable.parentTable}</a></td>
-				<shiro:hasPermission name="gen:genTable:edit"><td style="height: 50px">
+				<shiro:hasPermission name="gen:genTable:edit"><td>
     				<a href="${ctx}/gen/genTable/form?id=${genTable.id}">修改</a>
 					<a href="${ctx}/gen/genTable/delete?id=${genTable.id}" onclick="return confirmx('确认要删除该业务表吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>

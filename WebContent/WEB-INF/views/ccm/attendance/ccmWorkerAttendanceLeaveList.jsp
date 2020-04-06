@@ -81,28 +81,28 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmWorkerAttendance">
 			<tr>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerAttendance.createByname}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerAttendance.createBy.office.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerAttendance.cause}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmWorkerAttendance.attendanceBegin}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmWorkerAttendance.attendanceEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerAttendance.days}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmWorkerAttendance.leaveType, 'ccm_worker_attendance_leave_type', '')}
 				</td>
-				<shiro:hasPermission name="attendance:ccmWorkerAttendance:edit"><td style="height: 50px">
+				<shiro:hasPermission name="attendance:ccmWorkerAttendance:edit"><td>
     				<a  class="btnList" href="${ctx}/attendance/ccmWorkerAttendance/leaveform?id=${ccmWorkerAttendance.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a  class="btnList" href="${ctx}/attendance/ccmWorkerAttendance/delete?id=${ccmWorkerAttendance.id}&deleteType=2" onclick="return confirmx('确认要删除该社工考勤登记吗？', this.href) title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

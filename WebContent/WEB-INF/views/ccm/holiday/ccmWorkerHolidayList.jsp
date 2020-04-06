@@ -77,22 +77,22 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmWorkerHoliday">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/holiday/ccmWorkerHoliday/form?id=${ccmWorkerHoliday.id}">
+				<td><a href="${ctx}/holiday/ccmWorkerHoliday/form?id=${ccmWorkerHoliday.id}">
 					${ccmWorkerHoliday.holidayName}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmWorkerHoliday.holidayBegin}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmWorkerHoliday.holidayEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerHoliday.name}
 				</td>
 				<td class="" style="height: 50px">
 					${ccmWorkerHoliday.remarks}
 				</td>
-				<shiro:hasPermission name="holiday:ccmWorkerHoliday:edit"><td style="height: 50px">
+				<shiro:hasPermission name="holiday:ccmWorkerHoliday:edit"><td>
     				<a class="btnList" href="${ctx}/holiday/ccmWorkerHoliday/form?id=${ccmWorkerHoliday.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/holiday/ccmWorkerHoliday/delete?id=${ccmWorkerHoliday.id}" onclick="return confirmx('确认要删除该假日信息吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

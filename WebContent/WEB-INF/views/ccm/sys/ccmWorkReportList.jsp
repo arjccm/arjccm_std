@@ -110,24 +110,24 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="ccmWorkReport">
 				<tr>
-					<td style="height: 50px"><a
+					<td><a
 						href="${ctx}/sys/ccmWorkReport/form?id=${ccmWorkReport.id}">${ccmWorkReport.title}
 					</a></td>
-					<td style="height: 50px">${fns:getDictLabel(ccmWorkReport.type, 'ccm_work_report_type', '')}
+					<td>${fns:getDictLabel(ccmWorkReport.type, 'ccm_work_report_type', '')}
 					</td>
-					<td style="height: 50px"><fmt:formatDate value="${ccmWorkReport.beginDate}"
+					<td><fmt:formatDate value="${ccmWorkReport.beginDate}"
 							pattern="yyyy-MM-dd" /> - <fmt:formatDate
 							value="${ccmWorkReport.endDate}" pattern="yyyy-MM-dd" /></td>
 
-					<td style="height: 50px"><fmt:formatDate value="${ccmWorkReport.createDate}"
+					<td><fmt:formatDate value="${ccmWorkReport.createDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td style="height: 50px"><c:if test="${requestScope.ccmWorkReport.self}">
+					<td><c:if test="${requestScope.ccmWorkReport.self}">
                         ${fns:getDictLabel(oaNotify.readFlag, 'oa_notify_read', '')}
                     </c:if> <c:if test="${!requestScope.ccmWorkReport.self}">
                         ${ccmWorkReport.readNum} / ${ccmWorkReport.readNum + ccmWorkReport.unReadNum}
                     </c:if></td>
 					<shiro:hasPermission name="sys:ccmWorkReport:edit">
-						<td style="height: 50px"><a class="btnList"
+						<td><a class="btnList"
 							href="${ctx}/sys/ccmWorkReport/form?id=${ccmWorkReport.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							<a class="btnList"
 							href="${ctx}/sys/ccmWorkReport/delete?id=${ccmWorkReport.id}"

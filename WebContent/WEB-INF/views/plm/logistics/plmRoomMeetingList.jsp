@@ -94,25 +94,25 @@
 			<tbody>
 			<c:forEach items="${page.list}" var="plmRoom">
 				<tr>
-					<td style="height: 50px"><a href="${ctx}/logistics/plmRoom/form?id=${plmRoom.id}">
+					<td><a href="${ctx}/logistics/plmRoom/form?id=${plmRoom.id}">
 						${plmRoom.subject}
 					</a></td>
-					<td style="height: 50px">
+					<td>
 						${plmRoom.address}
 					</td>
-					<%--<td style="height: 50px">
+					<%--<td>
 						&lt;%&ndash;${fns:getDictLabel(plmRoom.state, 'plm_room_state', '')}&ndash;%&gt;
 					</td>--%>
-					<td style="height: 50px">
+					<td>
 						${plmRoom.seat}
 					</td>
-					<td style="height: 50px">
+					<td>
 						<fmt:formatDate value="${plmRoom.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 					</td>
 					<td class="tp" style="display:none;height: 50px">
 						${plmRoom.remarks}
 					</td>
-					<td style="height: 50px">
+					<td>
 					<shiro:hasPermission name="logistics:plmRoom:edit">
 	    				<a class="btnList" href="${ctx}/logistics/plmRoom/form?id=${plmRoom.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/logistics/plmRoom/delete?id=${plmRoom.id}" onclick="return confirmx('确认要删除该会议室吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i> </a>

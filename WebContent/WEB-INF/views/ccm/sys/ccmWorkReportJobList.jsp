@@ -104,21 +104,21 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="ccmWorkReport">
 				<tr>
-					<td style="height: 50px">${ccmWorkReport.name}</td>
+					<td>${ccmWorkReport.name}</td>
 					
-					<td style="height: 50px">${ccmWorkReport.createName}</td>
+					<td>${ccmWorkReport.createName}</td>
 					
-					<td style="height: 50px">${ccmWorkReport.title}</td>
+					<td>${ccmWorkReport.title}</td>
 							
-					<td style="height: 50px"><fmt:formatDate value="${ccmWorkReport.beginDate}"
+					<td><fmt:formatDate value="${ccmWorkReport.beginDate}"
 							pattern="yyyy-MM-dd" /> - <fmt:formatDate
 							value="${ccmWorkReport.endDate}" pattern="yyyy-MM-dd" /></td>
 
-					<td style="height: 50px"><fmt:formatDate value="${ccmWorkReport.createDate}"
+					<td><fmt:formatDate value="${ccmWorkReport.createDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					
 					<shiro:hasPermission name="sys:ccmWorkReport:edit">
-						<td style="height: 50px">
+						<td>
 							<a class="btnList" 
 							onclick="parent.LayerDialog('${ctx}/sys/ccmWorkReport/Jobform?id=${ccmWorkReport.id}', '日常工作详情', '900px', '700px')"
 							title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>

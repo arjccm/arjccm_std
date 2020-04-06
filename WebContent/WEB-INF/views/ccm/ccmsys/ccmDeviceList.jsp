@@ -148,27 +148,27 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmDevice">
             <tr>
-                <td style="height: 50px"><a href="${ctx}/ccmsys/ccmDevice/form?id=${ccmDevice.id}">
+                <td><a href="${ctx}/ccmsys/ccmDevice/form?id=${ccmDevice.id}">
                         ${ccmDevice.name}</a>
                 </td>
-                <td style="height: 50px">${ccmDevice.code}</td>
-                <td style="height: 50px">
+                <td>${ccmDevice.code}</td>
+                <td>
                         ${ccmDevice.ip}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmDevice.typeId, 'ccm_device_type_id', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmDevice.area.name}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmDevice.status, 'ccm_device_status', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmDevice.companyId}
                 </td>
                 <shiro:hasPermission name="ccmsys:ccmDevice:edit">
-                    <td style="height: 50px">
+                    <td>
                         <a class="btnList" href="${ctx}/ccmsys/ccmDevice/form?id=${ccmDevice.id}" title="修改"><i
                                 class="iconfont icon-caozuotubiao-xiugai"></i></a>
                         <a class="btnList" href="${ctx}/ccmsys/ccmDevice/delete?id=${ccmDevice.id}"

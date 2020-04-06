@@ -74,19 +74,19 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowKeyRegion">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/know/ccmKnowKeyRegion/form?id=${ccmKnowKeyRegion.id}">
+				<td><a href="${ctx}/know/ccmKnowKeyRegion/form?id=${ccmKnowKeyRegion.id}">
 					${ccmKnowKeyRegion.title}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmKnowKeyRegion.type, 'ccm_know_key_region_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowKeyRegion.publishDate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td class="tp" style="height: 50px">
 					${ccmKnowKeyRegion.remarks}
 				</td>
-				<shiro:hasPermission name="know:ccmKnowKeyRegion:edit"><td style="height: 50px">
+				<shiro:hasPermission name="know:ccmKnowKeyRegion:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowKeyRegion/form?id=${ccmKnowKeyRegion.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/know/ccmKnowKeyRegion/delete?id=${ccmKnowKeyRegion.id}" onclick="return confirmx('确认要删除该重点地区标准吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

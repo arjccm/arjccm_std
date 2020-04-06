@@ -140,19 +140,19 @@
 			<tbody>
 				<c:forEach items="${page.list}" var="plmIncomingEntry">
 					<tr>
-						<td style="height: 50px"><a
+						<td><a
 							href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}">
 								${plmIncomingEntry.incomingCode} </a></td>
-						<td style="height: 50px"><fmt:formatDate value="${plmIncomingEntry.incomingDate}"
+						<td><fmt:formatDate value="${plmIncomingEntry.incomingDate}"
 								pattern="yyyy-MM-dd" /></td>
-						<td style="height: 50px">${plmIncomingEntry.provide.name}</td>
-						<td style="height: 50px">${fns:getDictLabel(plmIncomingEntry.incomingType, 'plm_incoming_type', '未知')}
+						<td>${plmIncomingEntry.provide.name}</td>
+						<td>${fns:getDictLabel(plmIncomingEntry.incomingType, 'plm_incoming_type', '未知')}
 						</td>
-						<td style="height: 50px">${fns:getDictLabel(plmIncomingEntry.type, 'plm_incoming_status', '未知')}
+						<td>${fns:getDictLabel(plmIncomingEntry.type, 'plm_incoming_status', '未知')}
 						</td>
 						<td class="tp" style="height: 50px">${plmIncomingEntry.remarks}</td>
 						<shiro:hasPermission name="storage:plmIncomingEntry:edit">
-							<td style="height: 50px">
+							<td>
 								<c:if test="${plmIncomingEntry.type == '0'}">
 									<a class="btnList"
 										href="${ctx}/storage/plmIncomingEntry/form?id=${plmIncomingEntry.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>

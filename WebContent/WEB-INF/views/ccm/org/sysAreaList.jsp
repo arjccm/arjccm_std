@@ -64,10 +64,10 @@
 		<c:forEach items="${page.list}" var="sysArea">
 			<tr>
 			<!-- 解决ie浏览器url解析问题 -->
-				<td style="height: 50px"><a href="${ctx}/org/ccmOrgArea/form?id=${sysArea.idEx}&area.id=${sysArea.id}&type=${sysArea.type}&area.name="+ encodeURI({sysArea.name})>
+				<td><a href="${ctx}/org/ccmOrgArea/form?id=${sysArea.idEx}&area.id=${sysArea.id}&type=${sysArea.type}&area.name="+ encodeURI({sysArea.name})>
 					${sysArea.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${sysArea.code}
 				</td>
 				<td style=" white-space:nowrap;overflow:hidden;text-overflow: ellipsis;height: 50px">
@@ -78,7 +78,7 @@ overflow: hidden;
 text-overflow: ellipsis;height: 50px">
 					${sysArea.remarks}
 				</td>
-				<shiro:hasPermission name="org:ccmOrgArea:edit"><td style="height: 50px">
+				<shiro:hasPermission name="org:ccmOrgArea:edit"><td>
     				<a class="btnList" href="${ctx}/org/ccmOrgArea/form?id=${sysArea.idEx}&area.id=${sysArea.id}&type=${sysArea.type}&area.name="+ encodeURI({sysArea.name}) title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 				</td></shiro:hasPermission>
 			</tr>

@@ -114,10 +114,10 @@
 						${plmWorkEmail.title}</a><c:if test="${plmWorkEmail.readFlag eq '0'}"></b></c:if>				
 					</td>
 					</td>
-					<td style="height: 50px">${plmWorkEmail.createBy.name}</td>
-					<td style="height: 50px"><fmt:formatDate value="${plmWorkEmail.createDate}"
+					<td>${plmWorkEmail.createBy.name}</td>
+					<td><fmt:formatDate value="${plmWorkEmail.createDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td style="height: 50px">
+					<td>
 						<a class="star" emailId="${plmWorkEmail.id}" readStatus="${plmWorkEmail.readStatus eq ''?'':'self'}">
 							<img id="list${plmWorkEmail.id}${plmWorkEmail.readStatus eq ''?'':'self'}" isStar="${plmWorkEmail.isStar eq '1'?0:1}" title="" style="margin-bottom: 3px" src="" ></a>
 						<script type="text/javascript">

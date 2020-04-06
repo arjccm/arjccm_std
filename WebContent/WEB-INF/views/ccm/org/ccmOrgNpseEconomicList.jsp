@@ -155,16 +155,16 @@
 					<%--<td><a href="${ctx}/org/ccmOrgNpseEconomic/form?id=${ccmOrgNpseEconomic.id}">--%>
 					<%--<fmt:formatDate value="${ccmOrgNpseEconomic.years}" pattern="yyyy"/>--%>
 					<%--</a></td>  取消点击事件--%>
-					<td style="height: 50px"><fmt:formatDate value="${ccmOrgNpseEconomic.years}" pattern="yyyy" /></td>
+					<td><fmt:formatDate value="${ccmOrgNpseEconomic.years}" pattern="yyyy" /></td>
 					<th >${ccmOrgNpseEconomic.compName}</th>
 					<th>${ccmOrgNpseEconomic.compId}</th>
-					<td style="height: 50px">${ccmOrgNpseEconomic.turnover}</td>
-					<td style="height: 50px">${ccmOrgNpseEconomic.netMargin}</td>
-					<td style="height: 50px">${ccmOrgNpseEconomic.taxes}</td>
-					<td style="height: 50px">${ccmOrgNpseEconomic.fixedAssets}</td>
-					<td style="height: 50px">${ccmOrgNpseEconomic.liabilities}</td>
+					<td>${ccmOrgNpseEconomic.turnover}</td>
+					<td>${ccmOrgNpseEconomic.netMargin}</td>
+					<td>${ccmOrgNpseEconomic.taxes}</td>
+					<td>${ccmOrgNpseEconomic.fixedAssets}</td>
+					<td>${ccmOrgNpseEconomic.liabilities}</td>
 					<shiro:hasPermission name="org:ccmOrgNpseEconomic:edit">
-						<td style="height: 50px"><a class="btnList"
+						<td><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/org/ccmOrgNpseEconomic/form?id=${ccmOrgNpseEconomic.id}', '编辑', '1100px', '720px')"
 							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/org/ccmOrgNpseEconomic/delete?id=${ccmOrgNpseEconomic.id}"
