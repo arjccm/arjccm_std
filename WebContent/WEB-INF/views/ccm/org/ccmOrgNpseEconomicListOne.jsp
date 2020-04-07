@@ -72,7 +72,7 @@
 	<label style="margin-left: 20px">工商执照注册号：${ccmOrgNpse.compId}</label>
 				
 	
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>年</th>
