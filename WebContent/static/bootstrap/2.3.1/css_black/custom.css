@@ -1185,6 +1185,8 @@ cite[class*='t-click']{
     margin-top: 0px;
     position: relative;
     box-shadow: inset 0px 0px 15px 0px #1684c2;
+    /*最小高度*/
+    /*min-height:597px;*/
 }
 
 .table-gradient{
@@ -1771,19 +1773,10 @@ cite[class*='t-click']{
     padding-left: 20px;
     padding-right: 20px;
 }
-
-/*数据添加页阴影*/
-#inputForm {
-    box-shadow: inset 0px 0px 15px 0px #1684c2;
-}
  .custom-row-fluid {
      width: calc(100vw - 40px);
      padding-left: 20px;
      padding-right: 20px;
- }
- /*数据添加页阴影*/
- #inputForm{
-	 box-shadow: inset 0px 0px 15px 0px #1684c2;
  }
  /**在大业务联动添加字体颜色*/
  .body_color{
@@ -1841,4 +1834,11 @@ cite[class*='t-click']{
    }
  .table-condensed2{
 	 border: 1px solid #00cccc!important;
+ }
+ /*弹出页背景边框统一*/
+ .layui-layer-content {
+     box-shadow: inset 0px 0px 15px 0px #1684c2;
+ }
+ #inputForm {
+     background: none;
  }
