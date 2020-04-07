@@ -62,7 +62,8 @@
 	</script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
-<body> 
+<body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">楼栋列表</a></li>
 		<li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/form">楼栋添加</a></li>
@@ -396,5 +397,6 @@
 			})
 		})
 	</script>
+</div>
 </body>
 </html>
