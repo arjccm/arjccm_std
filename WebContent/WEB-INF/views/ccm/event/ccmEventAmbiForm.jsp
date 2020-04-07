@@ -94,6 +94,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/event/ccmEventAmbi/map">矛盾纠纷统计</a></li>
 		<li><a style="text-align:center" href="${ctx}/event/ccmEventAmbi/">矛盾纠纷列表</a></li>
@@ -516,5 +517,6 @@
 			<div class="fishBone2 hide2"></div>
 		</shiro:lacksPermission>
 	</c:if>
+</div>
 </body>
 </html>

@@ -91,6 +91,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/house/ccmHouseSchoolrim/list">学校列表</a></li>
 		<li class="active"><a class="nav-head" href="${ctx}/house/ccmHouseSchoolrim/form?id=${ccmHouseSchoolrim.id}">学校<shiro:hasPermission name="house:ccmHouseSchoolrim:edit">${not empty ccmHouseSchoolrim.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="house:ccmHouseSchoolrim:edit">查看</shiro:lacksPermission></a></li>
@@ -345,5 +346,6 @@
 			<div class="fishBone2" ></div>
 		</shiro:lacksPermission> 
 	</c:if>
+        </div>
 </body>
 </html>
