@@ -60,16 +60,16 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="bphAlarmNotify">
 			<tr>
-				<td style="height: 50px"><%--<a href="${ctx}/alarmnotify/bphAlarmNotify/form?id=${bphAlarmNotify.id}">--%>
+				<td><%--<a href="${ctx}/alarmnotify/bphAlarmNotify/form?id=${bphAlarmNotify.id}">--%>
 					${bphAlarmNotify.receiveUserName}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(bphAlarmNotify.type, 'bph_alarm_info_typecode', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${bphAlarmNotify.content}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(bphAlarmNotify.status, 'read_flag', '')}
 				</td>
 				<%--<td>
@@ -81,7 +81,7 @@
 				<td>
 					${bphAlarmNotify.updateBy.id}
 				</td>--%>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${bphAlarmNotify.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 					<%--<td>

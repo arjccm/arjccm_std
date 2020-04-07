@@ -74,25 +74,25 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmLineProtect">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}">
+				<td><a href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}">
 					${ccmLineProtect.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmLineProtect.lineType, 'ccm_line_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmLineProtect.dangGrade, 'ccm_secu_grade', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmLineProtect.compName}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmLineProtect.compPrinName}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmLineProtect.compPrinTel}
 				</td>
-				<td style="height: 50px">
+				<td>
 				<shiro:hasPermission name="line:ccmLineProtect:edit">
     				<a class="btnList" href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/line/ccmLineProtect/delete?id=${ccmLineProtect.id}" onclick="return confirmx('确认要删除该护路护线吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>

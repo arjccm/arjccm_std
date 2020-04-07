@@ -35,7 +35,7 @@
 	<ul class="nav nav-tabs">
 		<%--<li><a href="${ctx}/partyvolutterpost/ccmPartyVolutterPost/">志愿者岗位管理列表</a></li>
 		<li class="active"><a href="${ctx}/partyvolutterpost/ccmPartyVolutterPost/form?id=${ccmPartyVolutterPost.id}">志愿者岗位管理<shiro:hasPermission name="partyvolutterpost:ccmPartyVolutterPost:edit">${not empty ccmPartyVolutterPost.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="partyvolutterpost:ccmPartyVolutterPost:edit">查看</shiro:lacksPermission></a></li>--%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPartyVolutterPost" action="${ctx}/partyvolutterpost/ccmPartyVolutterPost/save" method="post" class="form-horizontal">
 	<div>
 			<form:hidden path="id"/>

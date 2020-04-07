@@ -55,7 +55,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/report/riskReport/listDatabase">稳评案例库列表</a></li>
 		<li class="active"><a href="${ctx}/report/riskReport/formDatabase?id=${riskReport.id}">稳评案例库查看</a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskReport" action="${ctx}/report/riskReport/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

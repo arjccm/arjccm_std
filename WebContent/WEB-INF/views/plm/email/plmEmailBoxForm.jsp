@@ -34,7 +34,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/email/plmEmailBox/">邮箱表列表</a></li>
 		<li class="active"><a href="${ctx}/email/plmEmailBox/form?id=${plmEmailBox.id}">邮箱表<shiro:hasPermission name="email:plmEmailBox:edit">${not empty plmEmailBox.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="email:plmEmailBox:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="plmEmailBox" action="${ctx}/email/plmEmailBox/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

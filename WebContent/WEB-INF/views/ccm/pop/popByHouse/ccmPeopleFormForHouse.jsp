@@ -83,6 +83,7 @@ label.error {
 
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<!-- 房屋 -->
 		<%--<c:if test="${PeoTypeBy eq 'ByHouse'}">
@@ -861,5 +862,6 @@ label.error {
 			</div>
 		</c:if>
 	</form:form>
+</div>
 </body>
 </html>

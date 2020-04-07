@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/task/pbsTasktype/">工作安排类型定义列表</a></li>
 		<li class="active"><a href="${ctx}/task/pbsTasktype/form?id=${pbsTasktype.id}">工作安排类型定义<shiro:hasPermission name="task:pbsTasktype:edit">${not empty pbsTasktype.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="task:pbsTasktype:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsTasktype" action="${ctx}/task/pbsTasktype/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

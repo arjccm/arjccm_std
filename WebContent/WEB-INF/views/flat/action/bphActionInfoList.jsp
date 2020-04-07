@@ -73,14 +73,14 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="bphActionInfo" varStatus="status">
 			<tr>
-				<td style="height: 50px">${status.index+1}</td>
-				<td style="height: 50px">${bphActionInfo.name}</td>
-				<td style="height: 50px">${fns:getDictLabel(bphActionInfo.type, 'bph_action_type', '')}</td>
-				<td style="height: 50px">${bphActionInfo.title}</td>
+				<td>${status.index+1}</td>
+				<td>${bphActionInfo.name}</td>
+				<td>${fns:getDictLabel(bphActionInfo.type, 'bph_action_type', '')}</td>
+				<td>${bphActionInfo.title}</td>
 				<td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;height: 50px" title="${bphActionInfo.bphStepInfo.name}">${bphActionInfo.bphStepInfo.name}</td>
-				<td style="height: 50px">${bphActionInfo.num}</td>
+				<td>${bphActionInfo.num}</td>
 				<shiro:hasPermission name="action:bphActionInfo:edit">
-					<td style="height: 50px">
+					<td>
 	    				<a class="btnList" href="${ctx}/action/bphActionInfo/form?id=${bphActionInfo.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/action/bphActionInfo/delete?id=${bphActionInfo.id}" onclick="return confirmx('确认要删除该执行动作配置吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</td>

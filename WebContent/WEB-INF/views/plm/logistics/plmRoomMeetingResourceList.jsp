@@ -33,7 +33,7 @@
 	</ul>
 	<sys:message content="${message}"/>
 	<div id="prodInfo_List">
-		<table id="contentTable" class="table table-striped table-bordered table-condensed" >
+		<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient" >
 			<thead>
 				<tr>
 					<th>附件名称</th>
@@ -66,6 +66,6 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float:right">${page}</div>
 </body>
 </html>

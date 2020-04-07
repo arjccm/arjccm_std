@@ -63,6 +63,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<form:form id="inputForm" style="margin: 30px 100px;" modelAttribute="plmCarApplyBuy" action="${ctx}/car/apply/plmCarApplyBuy/save" method="post" class="form-horizontal">
 		<form:hidden path="procInsId"/>
 		<sys:message content="${message}"/>		
@@ -109,5 +110,6 @@
 			<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i class="icon-reply"></i>返回</a>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

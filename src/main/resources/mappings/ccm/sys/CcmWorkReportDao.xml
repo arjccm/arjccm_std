@@ -55,23 +55,23 @@
 	<!-- 报表:日常工作数据统计 -->
 	<select id="findLogBook" resultType="CcmWorkReportCount">
 		SELECT
-			selUser.id AS "user.id", 
-			selUser.username AS "user.name", 
-			selUser.usertype AS "user.userType", 
-			selUser.userid AS "user.id", 
-			selUser.officeid AS "office.id", 
-			selUser.officename AS "office.name", 
-		    report.reportCount, 
-  			eventIncident.eventIncidentCount, 
-  			eventAmbi.eventAmbiCount, 
-  			eventRequest.eventRequestCount, 
-  			eventDeal.eventDealCount,
-  			eventScore.eventDealScore,
-  			pop.popUpdateCount,
-  			popSpecialTail.popSpecialTailCount,
-  			houseTail.houseTailCount,
-  			orgTail.orgTailCount,
-  			buildTail.houseCount
+			selUser.id AS "user.id",
+			selUser.username AS "user.name",
+			selUser.usertype AS "user.userType",
+			selUser.userid AS "user.id",
+			selUser.officeid AS "office.id",
+			selUser.officename AS "office.name",
+			IFNULL( report.reportCount, 0 ) as reportCount,
+			IFNULL( eventIncident.eventIncidentCount, 0 ) as eventIncidentCount,
+			IFNULL( eventAmbi.eventAmbiCount, 0 ) as eventAmbiCount,
+			IFNULL( eventRequest.eventRequestCount, 0 ) as eventRequestCount,
+			IFNULL( eventDeal.eventDealCount, 0 ) as eventDealCount,
+			IFNULL( eventScore.eventDealScore, 0 ) as eventDealScore,
+			IFNULL( pop.popUpdateCount, 0 ) as popUpdateCount,
+			IFNULL( popSpecialTail.popSpecialTailCount, 0 ) as popSpecialTailCount,
+			IFNULL( houseTail.houseTailCount, 0 ) as houseTailCount,
+			IFNULL( orgTail.orgTailCount, 0 ) as orgTailCount,
+			IFNULL( buildTail.houseCount, 0 ) as houseCount
 		FROM
 			(
 				SELECT

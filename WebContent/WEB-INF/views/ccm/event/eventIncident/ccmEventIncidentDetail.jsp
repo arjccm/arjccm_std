@@ -6,6 +6,16 @@
 <link href="${ctxStatic}/form/css/form.css" rel="stylesheet" />
 <meta name="decorator" content="default" />
 	<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript">
+       $(document).ready(
+           function () {
+               //关闭弹框事件
+               $('#btnCancel').click(function () {
+                   parent.layer.close(parent.layerIndex);
+               })
+           }
+       )
+    </script>
 </head>
 <body>
 	<form:form id="inputForm" modelAttribute="ccmEventIncident"
@@ -262,7 +272,9 @@
 			</tr>
 			
 		</table>
-		
+        <div class="form-actions">
+            <input id="btnCancel" class="btn btn-danger" type="button" value="关闭"/>
+        </div>
 	</form:form>
 
 

@@ -556,6 +556,7 @@
                 </td>
                 <td style="padding: 8px;border: 0px dashed #CCCCCC">
                     <div>
+                    <div>
                         <label class="control-label">附件二：</label>
                         <div class="controls">
                             <form:hidden id="file3" path="file3" htmlEscape="false" maxlength="24"
@@ -590,7 +591,7 @@
         <p/>
         <form:form id="dealForm" modelAttribute="ccmEventCasedeal"
                    action="${ctx}/event/ccmEventCasedeal/saveCasedealCommon"
-                   method="post" class="form-horizontal">
+                   method="post" class="form-horizontal" cssStyle="background: none">
             <form:hidden path="id" />
             <form:hidden path="objId" value="${ccmEventIncident.id}" />
             <form:hidden path="objType" value="ccm_event_incident" />

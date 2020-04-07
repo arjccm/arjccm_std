@@ -17,9 +17,9 @@
 	<script type="text/javascript" src="${ctxStatic}/plm/storage/storageValidate.js"></script>
 	<style type="text/css">
 	
-	 #table .ntable td {
-    	border: 0;
-	}
+	/* #table .ntable td {*/
+    /*	border: 0;*/
+	/*}*/
 	.btn-select {
 		color: #fff;
 	    background-color: #3bb4f2 !important;
@@ -352,7 +352,7 @@
 			</tr>
 			<tr>
 				<td colspan="6">
-					<table class="table ntable table-condensed">
+					<table class="table ntable table-condensed table-condensed2 ">
 						<tr><td colspan="6"><h5>调出审核单位</h5></tr>
 						<tr>
 							<td colspan="1">资产调出部门<font color="red">*</font>：</td>
@@ -480,7 +480,7 @@
 			
 			<input id="btnApply" class="btn btn-primary" type="button" value="提交申请"/>&nbsp;
 			<c:if test="${ empty plmAllot.procInsId}">
-			<input id="btnSubmit" class="btn " type="button" value="保 存"/>&nbsp;
+			<input id="btnSubmit" class="btn btn-primary " type="button" value="保 存"/>&nbsp;
 			</c:if>
 			<c:if test="${not empty plmAllot.procInsId}">
 				<input id="btnCancel" class="btn" type="button" value="作废"/>&nbsp;

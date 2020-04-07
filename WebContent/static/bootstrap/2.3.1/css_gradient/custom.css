@@ -793,7 +793,7 @@ ul[class*="nav nav-list"]>li>a:hover{
 	width: 100%;
 	/*高度自适应*/
 	/*height: 970px;*/
-	padding-bottom: 80px;
+	padding-bottom: 20px;
 	margin-left: 5px;
 	margin-top: 0px;
 	position: relative;
@@ -804,7 +804,7 @@ ul[class*="nav nav-list"]>li>a:hover{
 	text-align: center
 }
 .table-gradient{
-	margin-left: 20px;
+    margin-left: 1.184132vw;
 	margin-top: 20px;
 	width: 98%;
 	/*	 height: 50%*/
@@ -1107,5 +1107,16 @@ input::-ms-clear{
 	margin-top: 13px;
 }
 .layer-common2{
+
+}
+.div_font_type4{
+	width: 49px;
+	height: 30px;
+	display: inline-block;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 4px;
+	background-color: #2b8bef;
+	font-family: Helvetica, Georgia, Arial, sans-serif, 宋体;
 
 }

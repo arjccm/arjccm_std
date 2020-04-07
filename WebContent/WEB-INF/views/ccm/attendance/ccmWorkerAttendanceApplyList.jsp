@@ -99,13 +99,13 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmWorkerAttendanceApply">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/form?id=${ccmWorkerAttendanceApply.id}">
+				<td><a href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/form?id=${ccmWorkerAttendanceApply.id}">
 					${ccmWorkerAttendanceApply.createByname}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerAttendanceApply.createBy.office.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<c:if test="${type == 2}">
 						${fns:getDictLabel(ccmWorkerAttendanceApply.leaveType, 'ccm_worker_attendance_leave_type', '')}
 					</c:if>
@@ -113,25 +113,25 @@
 						${fns:getDictLabel(ccmWorkerAttendanceApply.workingtimeType, 'ccm_worker_attendance_workingtime_type', '')}
 					</c:if>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmWorkerAttendanceApply.attendanceBegin}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmWorkerAttendanceApply.attendanceEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerAttendanceApply.days}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerAttendanceApply.address}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerAttendanceApply.cause}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmWorkerAttendanceApply.applyType, 'worker_type', '')}
 				</td>
-				<shiro:hasPermission name="attendanceapply:ccmWorkerAttendanceApply:edit"><td style="height: 50px">
+				<shiro:hasPermission name="attendanceapply:ccmWorkerAttendanceApply:edit"><td>
     				<a href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/form?id=${ccmWorkerAttendanceApply.id}&type=${type}" title="审核"><i class="iconfont icon-caozuotubiao-shenhe"></i></a>
 					<%--<a href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/delete?id=${ccmWorkerAttendanceApply.id}" onclick="return confirmx('确认要删除该加班请假申请吗？', this.href)">删除</a>--%>
 				</td></shiro:hasPermission>

@@ -80,14 +80,18 @@
 				}
 			}
 		}
+        var isEmpty = true;
         function saveImport() {
-            debugger;
-            var s = $("#importForm")[0][0].files.length;
-            if(s == 0){
+            if(isEmpty){
                 alert("请选择文件！");
                 return;
             }else{
                 $("#importForm").submit();
+            }
+        }
+        function changeFalse(_this) {
+            if(_this>0){
+                isEmpty = false;
             }
         }
 	</script>
@@ -105,7 +109,7 @@
 			  style="padding-left: 20px; text-align: center;"
 			  onsubmit="loading('正在导入，请稍等...');">
 			<br/><input id="uploadFile" name="file" type="file"
-						style="width: 330px" /><br /> <br />
+						style="width: 330px" onchange="changeFalse(this.value.length)" /><br /> <br />
 			<input id="btnImportTemplate"
 				   class="btn btn-primary"  type="button" value="模板下载 " onclick="location.href='${ctxStatic}/template/excel/socialTemplate.xlsx'"/>
 			<input id="btnImportSubmit"
@@ -195,28 +199,28 @@
 	</table>
 	<script type="text/template" id="treeTableTpl">
 		<tr id="{{row.id}}" pId="{{pid}}">
-			<td style="height: 50px"><a href="${ctx}/view/vCcmTeam/form?id={{row.id}}">
+			<td><a href="${ctx}/view/vCcmTeam/form?id={{row.id}}">
 				{{row.name}}
 			</a></td>
-			<td style="height: 50px">
+			<td>
 				{{row.companyId.name}}
 			</td>
-			<td style="height: 50px">
+			<td>
 				{{row.office.name}}
 			</td>
-			<td style="height: 50px">
+			<td>
 				{{row.teamType}}
 			</td>
-			<td style="height: 50px"><a href="${ctx}/view/vCcmTeam/form?id={{row.id}}">
+			<td><a href="${ctx}/view/vCcmTeam/form?id={{row.id}}">
 				{{row.loginName}}
 			</a></td>
-			<td style="height: 50px">
+			<td>
 				{{row.phone}}
 			</td>
-			<td style="height: 50px">
+			<td>
 				{{row.mobile}}
 			</td>
-			<shiro:hasPermission name="view:vCcmTeam:edit"><td style="height: 50px">
+			<shiro:hasPermission name="view:vCcmTeam:edit"><td>
    				<a class="btnList" href="${ctx}/view/vCcmTeam/form?id={{row.id}}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 			</td></shiro:hasPermission>
 		</tr>

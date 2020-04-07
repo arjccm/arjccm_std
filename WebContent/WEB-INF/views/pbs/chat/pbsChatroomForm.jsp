@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/chat/pbsChatroom/">聊天室列表</a></li>
 		<li class="active"><a href="${ctx}/chat/pbsChatroom/form?id=${pbsChatroom.id}">聊天室<shiro:hasPermission name="chat:pbsChatroom:edit">${not empty pbsChatroom.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="chat:pbsChatroom:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsChatroom" action="${ctx}/chat/pbsChatroom/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

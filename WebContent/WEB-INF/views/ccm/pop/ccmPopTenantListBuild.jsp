@@ -43,7 +43,7 @@
 		
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>楼门号</th>

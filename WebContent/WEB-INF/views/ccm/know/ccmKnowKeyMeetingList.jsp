@@ -77,22 +77,22 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowKeyMeeting">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/know/ccmKnowKeyMeeting/form?id=${ccmKnowKeyMeeting.id}">
+				<td><a href="${ctx}/know/ccmKnowKeyMeeting/form?id=${ccmKnowKeyMeeting.id}">
 					${ccmKnowKeyMeeting.title}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmKnowKeyMeeting.type, 'ccm_know_key_meeting_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowKeyMeeting.timeStart}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowKeyMeeting.address}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowKeyMeeting.attendee}
 				</td>
-				<shiro:hasPermission name="know:ccmKnowKeyMeeting:edit"><td style="height: 50px">
+				<shiro:hasPermission name="know:ccmKnowKeyMeeting:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowKeyMeeting/form?id=${ccmKnowKeyMeeting.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/know/ccmKnowKeyMeeting/delete?id=${ccmKnowKeyMeeting.id}" onclick="return confirmx('确认要删除该重要会议吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

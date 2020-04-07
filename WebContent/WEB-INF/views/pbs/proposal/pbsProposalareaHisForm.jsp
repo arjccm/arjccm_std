@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/proposal/pbsProposalareaHis/">建议分区历史信息列表</a></li>
 		<li class="active"><a href="${ctx}/proposal/pbsProposalareaHis/form?id=${pbsProposalareaHis.id}">建议分区历史信息<shiro:hasPermission name="proposal:pbsProposalareaHis:edit">${not empty pbsProposalareaHis.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="proposal:pbsProposalareaHis:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsProposalareaHis" action="${ctx}/proposal/pbsProposalareaHis/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

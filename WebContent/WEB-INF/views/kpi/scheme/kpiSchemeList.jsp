@@ -97,12 +97,12 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="kpiScheme">
 				<tr>
-					<td style="height: 50px">${kpiScheme.name}</td>
-					<td style="height: 50px"><fmt:formatDate value="${kpiScheme.startTime}"
+					<td>${kpiScheme.name}</td>
+					<td><fmt:formatDate value="${kpiScheme.startTime}"
 							pattern="yyyy-MM-dd" /> —— <fmt:formatDate
 							value="${kpiScheme.endTime}" pattern="yyyy-MM-dd" /></td>
-					<td style="height: 50px">${kpiScheme.office.name}</td>
-					<td style="height: 50px">${fns:getDictLabel(kpiScheme.userType, 'sys_user_type', '')}
+					<td>${kpiScheme.office.name}</td>
+					<td>${fns:getDictLabel(kpiScheme.userType, 'sys_user_type', '')}
 					</td>
 					<c:if test="${kpiScheme.state eq '1'}">
 						<td style='color: #D69601;height: 50px'>${fns:getDictLabel(kpiScheme.state, 'kpi_scheme_state', '')}</td>
@@ -112,11 +112,11 @@
 					</c:if>
 					<c:if
 						test="${kpiScheme.state eq '' or empty kpiScheme.state or kpiScheme.state eq '0' }">
-						<td style="height: 50px">${fns:getDictLabel(kpiScheme.state, 'kpi_scheme_state', '')}</td>
+						<td>${fns:getDictLabel(kpiScheme.state, 'kpi_scheme_state', '')}</td>
 					</c:if>
 
 					<shiro:hasPermission name="scheme:kpiScheme:edit">
-					<td style="height: 50px">
+					<td>
 						<c:if test="${kpiScheme.state eq '1'}">
 							<a class="btn btn-bgcoler"
 								href="${ctx}/scheme/kpiScheme/pauseList?id=${kpiScheme.id}"

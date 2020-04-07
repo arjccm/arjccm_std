@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/know/ccmEconomicsMonth/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/know/ccmEconomicsMonth/form?id=${ccmEconomicsMonth.id}">数据<shiro:hasPermission name="know:ccmEconomicsMonth:edit">${not empty ccmEconomicsMonth.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="know:ccmEconomicsMonth:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmEconomicsMonth" action="${ctx}/know/ccmEconomicsMonth/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

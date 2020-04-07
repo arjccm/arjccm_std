@@ -55,34 +55,15 @@
 			top.LayerDialog1('remarksAddId','${ctx}/scheme/kpiSchemeSubjectivity/remarksAdd?id='+id+'&remarks='+remarks, name+'的考评关系', '1000px', '650px')
 
 		}
-		function choseText(_this){
-			$(".remarks").each(function(){
-				$(this).removeClass();
-				$(this).attr('class','input-xlarge remarks noactive');
-			});
-			$(_this).children().removeClass();
-			$(_this).children().attr('class','input-xlarge remarks isactive');
+		var data;
+		var val;
+		function copyText(id){
+			data = $("#"+ id +"").attr('data');
+			val = $("#"+ id +"").val();
 		}
-		function chanceAllText(){
-			var val = "";
-			var data = "";
-			if($(".isactive").length==0){
-				alert("请选择同步项！");
-			}else{
-				$(".isactive").each(function(){
-					val = $(this).val();
-					data = $(this).attr('data');
-				});
-				if(val==""){
-					alert("请添加同步内容！");
-				}else{
-					$(".noactive").each(function(){
-						$(this).remove('data');
-						$(this).attr('data',data);
-						$(this).val(val);
-					});
-				}
-			}
+		function pasteText(id){
+            $("#"+ id +"").attr('data',data);
+            $("#"+ id +"").val(val);
 		}
 	</script>
 </head>
@@ -99,7 +80,7 @@
 	</span>
 	<c:if test="${not empty schemeUserLst}">
 <%--		<input id="" style="width:100px!important;margin: 5px 5px" class="btn btn-primary" onclick="saveForm()" type="button" value="保存全部"/>--%>
-		<input id="" style="width:50px!important;margin: 5px 5px" class="btn btn-primary" onclick="chanceAllText()" type="button" value="同步"/>
+		<%--<input id="" style="width:50px!important;margin: 5px 5px" class="btn btn-primary" onclick="chanceAllText()" type="button" value="同步"/>--%>
 	</c:if>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
@@ -125,8 +106,9 @@
 				</td>
 				<td width="20%">
     				<a class="btnList" onclick="remarksAdd('remarks${kpiFinalScore.user.id}','${kpiFinalScore.user.name}')"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+					<a class="btnList" onclick="copyText('remarks${kpiFinalScore.user.id}')" title="复制"><i class="iconfont  icon-daohangtubiao-maodunjiufenpaicha"></i></a>
+					<a class="btnList" onclick="pasteText('remarks${kpiFinalScore.user.id}')" title="粘贴"><i class="iconfont  icon-daohangtubiao-jixiaokaohe"></i></a>
 				</td>
-
 			</tr>
 		</c:forEach>
 		<c:if test="${not empty schemeUserLst}">

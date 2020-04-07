@@ -63,7 +63,7 @@
         </ul>
         <sys:message content="${message}"/>
         <div class="clearfix pull-right btn-box">
-            <shiro:hasPermission name="attendance:ccmWorkerAttendanceCount:edit"><a href="javascript:;" id="btnExport" class="btn btn-export"
+            <shiro:hasPermission name="attendance:ccmWorkerAttendanceCount:export"><a href="javascript:;" id="btnExport" class="btn btn-export"
                style="width: 49px;display:inline-block;float: right;">
                 <i></i> 导出 </a></shiro:hasPermission>
             <input id="btnSubmit" class="btn btn-primary"
@@ -89,34 +89,34 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmWorkerAttendance">
             <tr>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.createBy.name}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.createBy.office.name}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.chuchai}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.waichu}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.bingjia}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.shijia}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.nianxiu}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.tiaoxiu}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.jiaban}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmWorkerAttendance.jiabanCount}
                 </td>
             </tr>

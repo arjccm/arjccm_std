@@ -82,22 +82,22 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmEventStakeholder">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/event/ccmEventStakeholder/form?id=${ccmEventStakeholder.id}">
+				<td><a href="${ctx}/event/ccmEventStakeholder/form?id=${ccmEventStakeholder.id}">
 					${ccmEventStakeholder.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmEventStakeholder.incidentName}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmEventStakeholder.preventType, 'ccm_event_stakeholder_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmEventStakeholder.idenNum}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmEventStakeholder.sex, 'sex', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmEventStakeholder.birthday}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td class="tp" style="height: 50px">
@@ -112,7 +112,7 @@
 				<td>
 					${fns:getDictLabel(ccmEventStakeholder.isKym, 'yes_no', '')}
 				</td>--%>
-				<shiro:hasPermission name="event:ccmEventStakeholder:edit"><td style="height: 50px">
+				<shiro:hasPermission name="event:ccmEventStakeholder:edit"><td>
     				<a class="btnList" href="${ctx}/event/ccmEventStakeholder/form?id=${ccmEventStakeholder.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList"  href="${ctx}/event/ccmEventStakeholder/delete?id=${ccmEventStakeholder.id}" onclick="return confirmx('确认要删除该案（事）件干系人吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
@@ -122,5 +122,6 @@
 	</table>
 	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </div>
+
 </body>
 </html>

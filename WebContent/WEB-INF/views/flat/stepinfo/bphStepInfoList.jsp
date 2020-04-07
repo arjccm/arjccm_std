@@ -71,12 +71,12 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="bphStepInfo" varStatus="status">
 			<tr>
-				<td style="height: 50px">${status.index+1}</td>
+				<td>${status.index+1}</td>
 				<td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;height: 50px" title="${bphStepInfo.name}"><a href="${ctx}/stepinfo/bphStepInfo/form?id=${bphStepInfo.id}">${bphStepInfo.name}</a></td>
 				<td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;height: 50px" title="${bphStepInfo.bphPlanInfo.name}">${bphStepInfo.bphPlanInfo.name}</td>
 				<td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;height: 50px" title="${bphStepInfo.bphActionInfo.name}">${bphStepInfo.bphActionInfo.name}</td>
 				<shiro:hasPermission name="stepinfo:bphStepInfo:edit">
-					<td style="height: 50px">
+					<td>
 	    				<a class="btnList" href="${ctx}/stepinfo/bphStepInfo/form?id=${bphStepInfo.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/stepinfo/bphStepInfo/delete?id=${bphStepInfo.id}" onclick="return confirmx('确认要删除该预案过程吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</td>

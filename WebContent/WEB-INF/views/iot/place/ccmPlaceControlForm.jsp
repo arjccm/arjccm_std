@@ -45,7 +45,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/place/ccmPlaceControl/form?id=${ccmPlaceControl.id}">场所布控<shiro:hasPermission name="place:ccmPlaceControl:edit">${not empty ccmPlaceControl.id?'详情':'添加'}</shiro:hasPermission><shiro:lacksPermission name="place:ccmPlaceControl:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPlaceControl" action="${ctx}/place/ccmPlaceControl/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

@@ -65,25 +65,25 @@
 	</table>
 	<script type="text/template" id="treeTableTpl">
 		<tr id="{{row.id}}" pId="{{pid}}">
-			<td style="height: 50px"><a href="${ctx}/storage/plmStorage/form?id={{row.id}}">
+			<td><a href="${ctx}/storage/plmStorage/form?id={{row.id}}">
 				{{row.name}}
 			</a></td>
-			<td style="height: 50px">
+			<td>
 				{{row.code}}
 			</td>
-			<td style="height: 50px">
+			<td>
 				{{row.user.name}}
 			</td>
-			<td style="height: 50px">
+			<td>
 				{{dict.type}}
 			</td>
-			<td style="height: 50px">
+			<td>
 				{{row.stoAddress}}
 			</td>
 			<td class="tp" style="height: 50px">
 				{{row.remarks}}
 			</td>
-			<shiro:hasPermission name="storage:plmStorage:edit"><td style="height: 50px">
+			<shiro:hasPermission name="storage:plmStorage:edit"><td>
    				<a class="btnList" href="${ctx}/storage/plmStorage/form?id={{row.id}}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 				<a  class="btnList" href="${ctx}/storage/plmStorage/delete?id={{row.id}}" title="删除" onclick="return confirmx('确认要删除该仓库信息及所有子仓库信息吗？', this.href)"><i
 										class="iconfont icon-caozuotubiao-shanchu"></i></a>

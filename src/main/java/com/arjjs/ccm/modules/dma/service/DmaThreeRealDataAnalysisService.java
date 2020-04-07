@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -82,12 +83,17 @@ public class DmaThreeRealDataAnalysisService extends BaseService {
 	 * @return
 	 */
 	public Map<String, Object> findSexStatisticsData() {
+		//查询对应字典数据
 		List<Dict> dictList = DictUtils.getDictList("sex");
 		Area area = new Area();
 		area.setType("5");
+		//查询type=5的区域数据
 		List<Area> areaList = areaService.findList(area);
+		//查询社区村对应的数据
 		List<ResidentStatisticsCount> dataResidentList = dao.findSexData(null);
+		//定义返回结果集
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		//定义echarts图的label集合并将区域名称赋值
 		List<String> areaMap = new ArrayList<String>();
 		for (Area areaO : areaList) {
 			areaMap.add(areaO.getName());
@@ -104,7 +110,7 @@ public class DmaThreeRealDataAnalysisService extends BaseService {
 						int quarter = Integer.parseInt(dataResident.getDateQuarter());
 						if(quarter == i) {
 							String peopleType = dataResident.getPeopleType();
-							if(peopleType.equals(value)) {								
+							if(value.equals(peopleType)) {
 								String parentIds = dataResident.getAreaParentIds();							
 								if(StringUtils.isNotBlank(id) && StringUtils.isNotBlank(parentIds) && parentIds.indexOf(id) > -1) {
 									typeCount[j] += dataResident.getDataNum().intValue();
@@ -156,16 +162,32 @@ public class DmaThreeRealDataAnalysisService extends BaseService {
 		area.setType("5");
 		List<Area> areaList = areaService.findList(area);
 		List<ResidentStatisticsCount> dataHouseAreaList = dao.findHouseAreaData(null);
+		Map<String,Object> map = Maps.newHashMap();
+		for(ResidentStatisticsCount dataHouseArea : dataHouseAreaList){
+			if(map.containsKey(dataHouseArea.getAreaId())){
+				ResidentStatisticsCount count = (ResidentStatisticsCount)map.get(dataHouseArea.getAreaId());
+				count.setAreaParentIds(dataHouseArea.getAreaParentIds()!=null? dataHouseArea.getAreaParentIds():"");
+				count.setDataNum(count.getDataNum()+1);
+				map.put(dataHouseArea.getAreaId(),count);
+			} else {
+				ResidentStatisticsCount count = new ResidentStatisticsCount();
+				count.setAreaParentIds(dataHouseArea.getAreaParentIds()!=null? dataHouseArea.getAreaParentIds():"");
+				count.setDataNum(1);
+				map.put(dataHouseArea.getAreaId(),count);
+			}
+		}
 		List<EchartType> resultList = new ArrayList<EchartType>();
 		for (Area areaO : areaList) {
 			String id = areaO.getId();
 			int value = 0;
-			for (ResidentStatisticsCount dataHouseArea : dataHouseAreaList) {
-				String parentIds = dataHouseArea.getAreaParentIds();							
-				if(parentIds.indexOf(id) > -1) {
-					value += dataHouseArea.getDataNum().intValue();
+			for(Map.Entry<String, Object> entry:map.entrySet()){
+				ResidentStatisticsCount count = (ResidentStatisticsCount)entry.getValue();
+				String parentIds = count.getAreaParentIds();
+				if(StringUtils.isNotEmpty(parentIds) && parentIds.indexOf(id) > -1) {
+					value += count.getDataNum().intValue();
 				}
 			}
+
 			EchartType echartType = new EchartType();
 			echartType.setValue(String.valueOf(value));
 			echartType.setType(areaO.getName());

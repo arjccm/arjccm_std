@@ -76,21 +76,21 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="message">
 			<tr>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(message.type, 'message_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<a onclick="parent.LayerDialog('${ctx}/news/message/form?id=${message.id}', '详情', '800px', '300px')">
 						${message.content}
 					</a>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${message.createByName}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${message.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<shiro:hasPermission name="news:message:edit"><td style="height: 50px">
+				<shiro:hasPermission name="news:message:edit"><td>
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/news/message/form?id=${message.id}', '详情', '800px', '300px')" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 				</td></shiro:hasPermission>
 			</tr>

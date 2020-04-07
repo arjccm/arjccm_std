@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/question/pbsQuestionRuleitem/">评分规则定义列表</a></li>
 		<li class="active"><a href="${ctx}/question/pbsQuestionRuleitem/form?id=${pbsQuestionRuleitem.id}">评分规则定义<shiro:hasPermission name="question:pbsQuestionRuleitem:edit">${not empty pbsQuestionRuleitem.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="question:pbsQuestionRuleitem:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsQuestionRuleitem" action="${ctx}/question/pbsQuestionRuleitem/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

@@ -48,7 +48,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/house/ccmHouseAreainfor/">辖区信息列表</a></li>
 		<li class="active"><a href="${ctx}/house/ccmHouseAreainfor/form?id=${ccmHouseAreainfor.id}">辖区信息<shiro:hasPermission name="house:ccmHouseAreainfor:edit">${not empty ccmHouseAreainfor.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="house:ccmHouseAreainfor:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmHouseAreainfor" action="${ctx}/house/ccmHouseAreainfor/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>	

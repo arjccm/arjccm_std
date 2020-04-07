@@ -141,6 +141,7 @@
     <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 <ul class="nav nav-tabs">
     <shiro:hasPermission name="report:ccmPeopleStat:view">
         <li><a style="text-align:center"
@@ -905,6 +906,7 @@
                    value="保 存"/>&nbsp;</shiro:hasPermission>
         <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
     </div>
-</form:form><br>
+</form:form>
+
 </body>
 </html>

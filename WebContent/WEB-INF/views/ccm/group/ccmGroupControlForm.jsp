@@ -35,7 +35,7 @@
 	<ul class="nav nav-tabs">
 		<%-- <li><a href="${ctx}/group/ccmGroupControl/">自治群列表</a></li>
 		<li class="active"><a href="${ctx}/group/ccmGroupControl/form?id=${ccmGroupControl.id}">自治群<shiro:hasPermission name="group:ccmGroupControl:edit">${not empty ccmGroupControl.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="group:ccmGroupControl:edit">查看</shiro:lacksPermission></a></li> --%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmGroupControl" action="${ctx}/group/ccmGroupControl/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

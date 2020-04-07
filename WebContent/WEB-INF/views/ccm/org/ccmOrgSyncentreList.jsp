@@ -70,22 +70,22 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmOrgSyncentre">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/org/ccmOrgSyncentre/form?id=${ccmOrgSyncentre.id}">
+				<td><a href="${ctx}/org/ccmOrgSyncentre/form?id=${ccmOrgSyncentre.id}">
 					${ccmOrgSyncentre.centreName}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmOrgSyncentre.centreTel}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmOrgSyncentre.centreScale, 'ccm_ply_rat', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmOrgSyncentre.respName}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmOrgSyncentre.respTel}
 				</td>
-				<shiro:hasPermission name="org:ccmOrgSyncentre:edit"><td style="height: 50px">
+				<shiro:hasPermission name="org:ccmOrgSyncentre:edit"><td>
     				<a class="btnList" href="${ctx}/org/ccmOrgSyncentre/form?id=${ccmOrgSyncentre.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/org/ccmOrgSyncentre/delete?id=${ccmOrgSyncentre.id}" onclick="return confirmx('确认要删除该综治中心吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

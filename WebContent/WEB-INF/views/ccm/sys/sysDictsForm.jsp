@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/sys/sysDicts/">字典树列表</a></li>
 		<li class="active"><a href="${ctx}/sys/sysDicts/form?id=${sysDicts.id}&parent.id=${sysDictsparent.id}">字典树<shiro:hasPermission name="sys:sysDicts:edit">${not empty sysDicts.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:sysDicts:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="sysDicts" action="${ctx}/sys/sysDicts/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/cms/cmsBbsCommentMulti/">网上论坛多级评论列表</a></li>
 		<li class="active"><a href="${ctx}/cms/cmsBbsCommentMulti/form?id=${cmsBbsCommentMulti.id}">网上论坛多级评论<shiro:hasPermission name="cms:cmsBbsCommentMulti:edit">${not empty cmsBbsCommentMulti.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="cms:cmsBbsCommentMulti:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="cmsBbsCommentMulti" action="${ctx}/cms/cmsBbsCommentMulti/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

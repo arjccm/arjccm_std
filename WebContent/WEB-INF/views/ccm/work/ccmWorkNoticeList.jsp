@@ -67,13 +67,13 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmWorkNotice">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/work/ccmWorkNotice/form?id=${ccmWorkNotice.id}">
+				<td><a href="${ctx}/work/ccmWorkNotice/form?id=${ccmWorkNotice.id}">
 					${ccmWorkNotice.title}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmWorkNotice.datas}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkNotice.createBy.name}
 				</td>
 				<td class="" style="height: 50px; white-space:nowrap;overflow:hidden;text-overflow: ellipsis;">

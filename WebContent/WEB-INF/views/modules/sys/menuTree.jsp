@@ -38,7 +38,7 @@
 		       <li id="collapse-${menu.id}" class="accordion-body collapseflag  ${not empty firstMenu && firstMenu ? 'in' : ''}" style="height: auto!important;">
 		     		<a style="padding: 16px 15px;" class="accordion-toggle accordion-href ${not empty firstMenu && firstMenu ? 'active' : ''}"  data-href="#collapse-${menu.id}" href="${fn:indexOf(menu.href, '://') eq -1 ? ctx : ''}${not empty menu.href ? menu.href : '/404'}" target="${not empty menu.target ? menu.target : 'mainFrame'}">
 						<span style="display: inline-block;width: 20px;text-align: center">
-							<i class="icon-${not empty menu.icon ? menu.icon : 'circle-arrow-right'}" style=" font-size: 14px;position: inherit"></i>
+							<i class="iconfont-firstmenu icon-${not empty menu.icon ? menu.icon : 'circle-arrow-right'}" style=" font-size: 14px;position: inherit"></i>
 						</span>
 						<span style="padding-left: 10px;">${menu.name}</span>
 					</a>
@@ -52,7 +52,7 @@
 		    <div class="accordion-heading">
 		    	<a class="accordion-toggle ${not empty firstMenu && firstMenu ? 'active' : ''}" style="padding: 16px 15px;position: relative" class="accordion-toggle accordion-href ${not empty firstMenu && firstMenu ? 'active' : ''}" data-toggle="collapse" data-parent="#menu-${param.parentId}" data-href="#collapse-${menu.id}" href="#collapse-${menu.id}" title="${menu.remarks}">
 					<span style="display: inline-block;width: 20px;text-align: center">
-						<i class="icon-${not empty menu.icon ? menu.icon : 'circle-arrow-right'}" style="font-size: 14px;position: inherit"></i>
+						<i class="iconfont-firstmenu icon-${not empty menu.icon ? menu.icon : 'circle-arrow-right'}" style="font-size: 14px;position: inherit"></i>
 					</span>
 					<span style="padding-left: 10px;">${menu.name}</span>
 					<i class="icon-chevron-${not empty firstMenu && firstMenu ? 'down' : 'right'}" style="position: absolute;left: 170px;top: 20px;"></i>
@@ -65,7 +65,7 @@
 					<c:if test="${menu2.parent.id eq menu.id&&menu2.isShow eq '1'}">
 						<li>
 						<a data-href=".menu3-${menu2.id}" href="${fn:indexOf(menu2.href, '://') eq -1 ? ctx : ''}${not empty menu2.href ? menu2.href : '/404'}" target="${not empty menu2.target ? menu2.target : 'mainFrame'}" >
-						<i class="icon-${not empty menu2.icon ? menu2.icon : 'circle-arrow-right'}"></i>&nbsp;<span>${menu2.name}</span></a>
+						<i class="iconfont-firstmenu icon-${not empty menu2.icon ? menu2.icon : 'circle-arrow-right'}"></i>&nbsp;<span>${menu2.name}</span></a>
 							<ul class="nav nav-list hide" style="margin:0;padding-right:0;"><c:forEach items="${menuList}" var="menu3"><c:if test="${menu3.parent.id eq menu2.id&&menu3.isShow eq '1'}">
 								<li class="menu3-${menu2.id} hide"><a href="${fn:indexOf(menu3.href, '://') eq -1 ? ctx : ''}${not empty menu3.href ? menu3.href : '/404'}" target="${not empty menu3.target ? menu3.target : 'mainFrame'}" ><i class="icon-${not empty menu3.icon ? menu3.icon : 'circle-arrow-right'}"></i>&nbsp;<span>${menu3.name}</span></a></li></c:if>
 							</c:forEach>

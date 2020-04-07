@@ -61,6 +61,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/stepinfo/bphStepInfo/">数据列表</a></li>
 		<li class="active"><a class="nav-head" href="${ctx}/stepinfo/bphStepInfo/form?id=${bphStepInfo.id}">数据<shiro:hasPermission name="stepinfo:bphStepInfo:edit">${not empty bphStepInfo.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="stepinfo:bphStepInfo:edit">查看</shiro:lacksPermission></a></li>
@@ -96,5 +97,6 @@
 
 
 	</script>
+</div>
 </body>
 </html>

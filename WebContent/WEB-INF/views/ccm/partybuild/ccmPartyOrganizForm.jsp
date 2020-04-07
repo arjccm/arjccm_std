@@ -44,7 +44,7 @@
 <body>
 	<ul class="nav nav-tabs">
 
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPartyOrganiz" action="${ctx}/partybuild/ccmPartyOrganiz/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<c:if test="${type eq '1'}">

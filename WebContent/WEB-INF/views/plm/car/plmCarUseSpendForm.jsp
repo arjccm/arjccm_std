@@ -36,7 +36,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/car/plmCarUseSpend/">用车费用记录列表</a></li>
 		<li class="active"><a href="${ctx}/car/plmCarUseSpend/form?id=${plmCarUseSpend.id}">用车费用记录<shiro:hasPermission name="car:plmCarUseSpend:edit">${not empty plmCarUseSpend.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="car:plmCarUseSpend:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" style="margin: 30px 200px;" modelAttribute="plmCarUseSpend" action="${ctx}/car/plmCarUseSpend/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="carUseId"/>

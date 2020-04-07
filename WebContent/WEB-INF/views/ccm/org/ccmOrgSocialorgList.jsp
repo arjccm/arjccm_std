@@ -8,14 +8,18 @@
     <script type="text/javascript"
             src="${ctxStatic}/ccm/org/js/ccmSocialorgInfo.js"></script>
     <script type="text/javascript">
+        var isEmpty = true;
         function saveImport() {
-            debugger;
-            var s = $("#importForm")[0][0].files.length;
-            if (s == 0) {
+            if(isEmpty){
                 alert("请选择文件！");
                 return;
-            } else {
+            }else{
                 $("#importForm").submit();
+            }
+        }
+        function changeFalse(_this) {
+            if(_this>0){
+                isEmpty = false;
             }
         }
     </script>
@@ -32,7 +36,7 @@
               style="padding-left: 20px; text-align: center;"
               onsubmit="loading('正在导入，请稍等...');">
             <br/> <input id="uploadFile" name="file" type="file"
-                         style="width: 330px"/><br/> <br/>
+                         style="width: 330px" onchange="changeFalse(this.value.length)"/><br/> <br/>
             <input id="btnImportTemplate"
                    class="btn btn-primary" type="button" value="模板下载 "
                    onclick="location.href='${ctxStatic}/template/excel/kymTemplate.xlsx'"/>
@@ -125,43 +129,43 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmOrgSocialorg">
             <tr>
-                <td style="height: 50px"><a href="${ctx}/org/ccmOrgSocialorg/form?id=${ccmOrgSocialorg.id}">
+                <td><a href="${ctx}/org/ccmOrgSocialorg/form?id=${ccmOrgSocialorg.id}">
                         ${ccmOrgSocialorg.orgName}
                 </a></td>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgSocialorg.legalReprName}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${fns:getDictLabel(ccmOrgSocialorg.orgType, 'ccm_sosr_type', '')}
                 </td>
-                <td style="height: 50px">
+                <td>
                     <fmt:formatDate value="${ccmOrgSocialorg.apprDate}" pattern="yyyy-MM-dd"/>
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgSocialorg.workAdd}
                 </td>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '01'}">
-                    <td style="height: 50px">${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
+                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
                         &nbsp; <img src="${ctxStatic}/images/atteType_red.png"/></td>
                 </c:if>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '02'}">
-                    <td style="height: 50px">${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
+                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
                         &nbsp; <img src="${ctxStatic}/images/atteType_orange.png"/></td>
                 </c:if>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '03'}">
-                    <td style="height: 50px">${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
+                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
                         &nbsp; <img src="${ctxStatic}/images/atteType_green.png"/></td>
                 </c:if>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '' or empty ccmOrgSocialorg.concernExtent}">
-                    <td style="height: 50px">${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')} </td>
+                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')} </td>
                 </c:if>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgSocialorg.secuName}
                 </td>
-                <td style="height: 50px">
+                <td>
                         ${ccmOrgSocialorg.secuTel}
                 </td>
-                <td style="height: 50px"><shiro:hasPermission name="org:ccmOrgSocialorg:edit">
+                <td><shiro:hasPermission name="org:ccmOrgSocialorg:edit">
                     <a class="btnList" href="${ctx}/org/ccmOrgSocialorg/form?id=${ccmOrgSocialorg.id}" title="修改"><i
                             class="iconfont icon-caozuotubiao-xiugai"></i></a>
                     <a class="btnList" href="${ctx}/org/ccmOrgSocialorg/delete?id=${ccmOrgSocialorg.id}"

@@ -520,22 +520,51 @@
 	</select>
 
 	<!--出租房区域分布TOP5-->
-	<select id="rentalHouseOfArea" resultType="com.arjjs.ccm.tool.EchartType">
-		SELECT
-			a.id AS 'type',
-			a.NAME AS 'typeO',
-			count(tenant.id) AS 'value'
-		FROM
-			sys_area a
-		LEFT JOIN ccm_house_buildmanage house ON a.id = house.area_id and house.del_flag = 0
-		LEFT JOIN ccm_pop_tenant tenant ON house.id = tenant.building_id and tenant.del_flag = 0 and tenant.house_type = '02'
-		WHERE
-			a.type = 7
-		GROUP BY
-			a.id
-		ORDER BY
-			count(tenant.id) DESC
+	<!--
+	SELECT
+	area.id AS type,
+	area.`name` AS typeO,
+	tenant.count AS value
+	FROM
+	sys_area area,
+	(
+	SELECT
+		count( id ) AS count,
+		area_id
+	FROM
+		ccm_pop_tenant
+	WHERE
+		del_flag = 0
+		AND house_type = '02'
+	GROUP BY
+		area_id
+	ORDER BY
+		count DESC
 		LIMIT 5
+	) tenant
+	WHERE
+	area.id = tenant.area_id
+	AND area.type = '7'
+	-->
+	<select id="rentalHouseOfArea" resultType="com.arjjs.ccm.tool.EchartType">
+	SELECT
+	a.id AS 'type',
+	a.NAME AS 'typeO',
+	count( tenant.id ) AS 'value'
+	FROM
+	sys_area a
+	JOIN ccm_house_buildmanage house ON a.id = house.area_id
+	AND house.del_flag = 0
+	JOIN ccm_pop_tenant tenant ON house.id = tenant.building_id
+	AND tenant.del_flag = 0
+	AND tenant.house_type = '02'
+	WHERE
+	a.type = 7
+	GROUP BY
+	a.id
+	ORDER BY
+	count( tenant.id ) DESC
+	LIMIT 5
 	</select>
 
 	<!--警力人员分布-->

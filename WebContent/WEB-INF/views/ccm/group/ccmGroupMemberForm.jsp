@@ -33,7 +33,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmGroupMember" action="${ctx}/group/ccmGroupMember/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

@@ -2476,13 +2476,60 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 --添加综治队伍导出权限
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'ad2b317be75649468de4e59c91960851', '3362cdb2b3c447fbbd89697c43b80928', '0,1,70a1747ee8334e439b2b24ebe947ecdd,120100,3362cdb2b3c447fbbd89697c43b80928,', '导出', '', '', '', 180, '0', 'view:vCcmTeam:export', '1', '2020-04-03 18:16:17.18', '1', '2020-04-03 18:16:17.18', '', '0' );
 
---添加老年人人员导入权限
+--添加经济运行数据导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'd6bdf21398324e66b8ef2bbd71c7b433', 'bc87b5f6d88b4d73b9d9207e499ddab3', '0,1,70a1747ee8334e439b2b24ebe947ecdd,c3291baa80784d5c864966e42b3006d1,130600,bc87b5f6d88b4d73b9d9207e499ddab3,', '导出', '', '', '', 90, '0', 'org:ccmOrgNpseEconomic:export', '1', '2020-04-06 09:45:17.872', '1', '2020-04-06 09:45:17.872', '', '0' );
 
---添加老年人人员导出权限
+--添加日常工作导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '610abc24d5f94dae9ad9558a43dc5f4b', '06de0147592f4662823997e71df3e4c6', '0,1,3b3a641046be4558b92178d07f93b280,49e5e6530328478aa0a8182d98e93bae,26f4f530319642f6a983b2e0590d47e9,06de0147592f4662823997e71df3e4c6,', '导出', '', '', '', 30, '0', 'sys:ccmWorkReportJob:export', '1', '2020-04-06 09:57:17.069', '1', '2020-04-06 09:57:17.069', '', '0' );
 
---添加老年人人员导入权限
+--添加日常走访导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'fef8c1c57be148c58fcfeb94cc33c479', '1a186aa86f054ca8804e0d096e8e8752', '0,1,3b3a641046be4558b92178d07f93b280,49e5e6530328478aa0a8182d98e93bae,26f4f530319642f6a983b2e0590d47e9,1a186aa86f054ca8804e0d096e8e8752,', '导出', '', '', '', 30, '0', 'sys:ccmWorkReportVisit:export', '1', '2020-04-06 10:00:51.308', '1', '2020-04-06 10:00:51.308', '', '0' );
 
---添加老年人人员导出权限
+--添加事件处理导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'e61a67de3e0e4374ac84bc028e73ced0', 'c47ae082d2a043bbb24823cdca68569e', '0,1,3b3a641046be4558b92178d07f93b280,49e5e6530328478aa0a8182d98e93bae,26f4f530319642f6a983b2e0590d47e9,c47ae082d2a043bbb24823cdca68569e,', '导出', '', '', '', 30, '0', 'sys:ccmEventProcess:export', '1', '2020-04-06 10:04:49.768', '1', '2020-04-06 10:04:49.768', '', '0' );
+
+--添加日志统计导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '41afb894212c4eb5adf2497754a32c87', 'c1b860986a624230943185d8c5517428', '0,1,3b3a641046be4558b92178d07f93b280,49e5e6530328478aa0a8182d98e93bae,26f4f530319642f6a983b2e0590d47e9,c1b860986a624230943185d8c5517428,', '导出', '', '', '', 30, '0', 'sys:ccmWorkReportCount:export', '1', '2020-04-06 10:07:42.731', '1', '2020-04-06 10:07:42.731', '', '0' );
+
+--添加我的工作日志导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '742866993ea34f2ca9bf98161966c36c', '5d05d974899044b39c26145ace18aa34', '0,1,3b3a641046be4558b92178d07f93b280,49e5e6530328478aa0a8182d98e93bae,26f4f530319642f6a983b2e0590d47e9,5d05d974899044b39c26145ace18aa34,', '导出', '', '', '', 90, '0', 'sys:ccmMyWorkReport:export', '1', '2020-04-06 10:11:05.089', '1', '2020-04-06 10:11:05.089', '', '0' );
+
+--添加日志收件箱导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '91e293d4081942dabe71df7653a61754', '3003201be694484fb1ddb256487fef6d', '0,1,3b3a641046be4558b92178d07f93b280,49e5e6530328478aa0a8182d98e93bae,26f4f530319642f6a983b2e0590d47e9,3003201be694484fb1ddb256487fef6d,', '导出', '', '', '', 30, '0', 'sys:ccmWorkReportSelf:export', '1', '2020-04-06 10:14:12.962', '1', '2020-04-06 10:14:12.962', '', '0' );
+
+--添加值班日志导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'ecf04f456c0143e984ddb4d7b70d5d81', 'c2adb9a570c1497fbfe47fd64f448ff9', '0,1,3b3a641046be4558b92178d07f93b280,91c0273bb9a444f7ace12d6f75c36141,c2adb9a570c1497fbfe47fd64f448ff9,', '导出', '', '', '', 90, '0', 'work:ccmWorkBeondutylog:export', '1', '2020-04-06 10:31:56.346', '1', '2020-04-06 10:31:56.346', '', '0' );
+
+--添加网格员信息导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '667e30a155f5423d9077f732b70e0781', '17816839121849519359a32d44ba7327', '0,1,3b3a641046be4558b92178d07f93b280,30d0d8e0446b4c7982a93352b5eae35b,3db3d5d00207461e85e7a07f8d97d9fa,17816839121849519359a32d44ba7327,', '导入', '', '', '', 150, '0', 'org:vCcmTeam:import', '1', '2020-04-06 10:37:06.193', '1', '2020-04-06 10:37:06.193', '', '0' );
+--修改网格员信息导入权限
+UPDATE sys_menu SET parent_id = '17816839121849519359a32d44ba7327', parent_ids = '0,1,3b3a641046be4558b92178d07f93b280,30d0d8e0446b4c7982a93352b5eae35b,3db3d5d00207461e85e7a07f8d97d9fa,17816839121849519359a32d44ba7327,', name = '导入', href = '', target = '', icon = '', sort = 150, is_show = '0', permission = 'view:vCcmTeam:import', update_by = '1', update_date = '2020-04-06 10:45:51.484', remarks = ''
+ WHERE id = '667e30a155f5423d9077f732b70e0781';
+--添加网格员信息导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a75e66f9af1841dd9c5e98bd4051e176', '17816839121849519359a32d44ba7327', '0,1,3b3a641046be4558b92178d07f93b280,30d0d8e0446b4c7982a93352b5eae35b,3db3d5d00207461e85e7a07f8d97d9fa,17816839121849519359a32d44ba7327,', '导出', '', '', '', 180, '0', 'org:vCcmTeam:export', '1', '2020-04-06 10:44:05.3', '1', '2020-04-06 10:44:05.3', '', '0' );
+--修改网格员信息导出权限
+UPDATE sys_menu SET parent_id = '17816839121849519359a32d44ba7327', parent_ids = '0,1,3b3a641046be4558b92178d07f93b280,30d0d8e0446b4c7982a93352b5eae35b,3db3d5d00207461e85e7a07f8d97d9fa,17816839121849519359a32d44ba7327,', name = '导出', href = '', target = '', icon = '', sort = 180, is_show = '0', permission = 'view:vCcmTeam:export', update_by = '1', update_date = '2020-04-06 10:47:15.148', remarks = ''
+ WHERE id = 'a75e66f9af1841dd9c5e98bd4051e176';
+
+--添加考勤统计导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '5e0900634fbe45b38933cc4c0c23398c', '6533dbc83144476291dd1c85fa08ec45', '0,1,3b3a641046be4558b92178d07f93b280,30d0d8e0446b4c7982a93352b5eae35b,01f29a340a9c49ce9d287a14c2ea9a45,6533dbc83144476291dd1c85fa08ec45,', '导出', '', '', '', 90, '0', 'attendance:ccmWorkerAttendanceCount:export', '1', '2020-04-06 10:50:08.303', '1', '2020-04-06 10:50:08.303', '', '0' );
+
+--添加绩效成绩汇总导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a65683b51a1f4e47bd80c6c8b94c22db', 'b56e4b74b67a48f2842155a6fd962545', '0,1,6611617ad88549aabd105dc438b21f14,dee2aaeca9ed4e60a9cbffdc5d4d6229,b56e4b74b67a48f2842155a6fd962545,', '导出', '', '', '', 60, '0', 'score:kpiFinalScore:export', '1', '2020-04-06 11:11:54.333', '1', '2020-04-06 11:11:54.333', '', '0' );
+
+--添加用户管理导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'cf587f9b65424c8ba1587e79d7c7fb2c', '20', '0,1,2,13,20,', '导出', '', '', '', 70, '0', 'sys:user:export', '1', '2020-04-06 11:17:29.995', '1', '2020-04-06 11:17:29.995', '', '0' );
+
+--添加监控设备管理导入权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'ec47af39ae7b47e19bc705b3261a80c4', '8ea81c6ebb3a4e3a8074e51da0a4486a', '0,1,2,ba41342f6add4b8ab7684d07749229d5,8ea81c6ebb3a4e3a8074e51da0a4486a,', '导入', '', '', '', 90, '0', 'ccmsys:ccmDevice:import', '1', '2020-04-06 11:26:27.006', '1', '2020-04-06 11:26:27.006', '', '0' );
+
+--添加监控设备管理导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '5c550ee92869423d860b4c00a6407d40', '8ea81c6ebb3a4e3a8074e51da0a4486a', '0,1,2,ba41342f6add4b8ab7684d07749229d5,8ea81c6ebb3a4e3a8074e51da0a4486a,', '导出', '', '', '', 120, '0', 'ccmsys:ccmDevice:export', '1', '2020-04-06 11:28:33.029', '1', '2020-04-06 11:28:33.029', '', '0' );
+
+--添加日志查询导出权限
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'afc73949265342529af0019b1acecae6', '68', '0,1,2,67,68,', '导出', '', '', '', 30, '0', 'sys:log:export', '1', '2020-04-06 11:31:39.05', '1', '2020-04-06 11:31:39.05', '', '0' );
+
+
 
 
 -- 添加字段 ccm_event_casedeal

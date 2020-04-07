@@ -60,12 +60,12 @@
 			});
             //初始化值
             reliefDeptName = $('#reliefDeptName').val();
-            var num = $('#reliefNumber').val();
+           /* var num = $('#reliefNumber').val();
             if ((num || "").indexOf(",") != -1) {
                 addPeopleNum(num.split(","));
             } else {
                 addPeopleNum([num])
-            }
+            }*/
 
         });
 
@@ -84,7 +84,7 @@
 
         }
 
-        function addPeopleNum(str) {
+        /*function addPeopleNum(str) {
             // var tempStr="";
 
             //判断有没有传参
@@ -117,10 +117,10 @@
                     "<span class=\"add-on\">人数</span>\n" +
                     "</div><span class=\"help-inline\"><font color=\"red\">*</font> </span>"
             }
-            $("#peopleNum").html(temp);
+            /!*$("#peopleNum").html(temp);*!/
 
 
-        }
+        }*/
 
         function changeNumber() {
             //设置提交input的值
@@ -136,9 +136,9 @@
     </script>
 
     <style>
-        #peopleNum {
+       /* #peopleNum {
             margin-left: 5px;
-        }
+        }*/
     </style>
     <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 
@@ -222,13 +222,17 @@
     </div>
 
     <div style="line-height: 40px;" class="control-group">
-        <label class="control-label">每个单位人数：</label>
+        <label class="control-label"> <span class="help-inline"><font color="red">*</font></span> 每个单位人数：</label>
         <div class="controls">
+            <form:input path="reliefNumber" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+
+        </div>
+        <%--<div class="controls">
             <form:input cssStyle="display: none" value="${ccmReliefTask.reliefNumber}" path="reliefNumber" onclick=""
                         htmlEscape="false" maxlength="1024" class="input-xlarge "/>
             <div id="peopleNum">
             </div>
-        </div>
+        </div>--%>
     </div>
 
     <div class="control-group">

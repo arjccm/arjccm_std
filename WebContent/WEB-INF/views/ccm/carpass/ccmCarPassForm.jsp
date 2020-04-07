@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/carpass/ccmCarPass/">过车信息详情</a></li>
 		<%-- <li class="active"><a href="${ctx}/carpass/ccmCarPass/form?id=${ccmCarPass.id}">过车信息<shiro:hasPermission name="carpass:ccmCarPass:edit">${not empty ccmCarPass.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="carpass:ccmCarPass:edit">查看</shiro:lacksPermission></a></li> --%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmCarPass" action="${ctx}/carpass/ccmCarPass/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

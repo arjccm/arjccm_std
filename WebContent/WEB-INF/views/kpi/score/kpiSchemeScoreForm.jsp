@@ -133,7 +133,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/score/kpiSchemeScore/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/score/kpiSchemeScore/form?id=${kpiScheme.id}">数据录入</a></li>
-	</ul><br/>
+	</ul>
 	
 	<div id="pw_search_table">
 		    <table id="pw_table" class="table table-striped table-bordered table-condensed">

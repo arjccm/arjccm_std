@@ -37,7 +37,7 @@
 	<%-- <ul class="nav nav-tabs">
 		<li><a href="${ctx}/remote/ccmRemoteControl/">远程控制列表</a></li>
 		<li class="active"><a href="${ctx}/remote/ccmRemoteControl/form?id=${ccmRemoteControl.id}">远程控制<shiro:hasPermission name="remote:ccmRemoteControl:edit">${not empty ccmRemoteControl.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="remote:ccmRemoteControl:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/> --%>
+	</ul> --%>
 	<form:form id="inputForm" modelAttribute="ccmRemoteControl" action="${ctx}/remote/ccmRemoteControl/save" method="post" class="form-horizontal" style="margin-top:20px;">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>	

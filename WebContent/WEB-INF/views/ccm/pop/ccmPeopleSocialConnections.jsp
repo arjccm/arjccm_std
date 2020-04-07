@@ -331,7 +331,7 @@
 		</div>
 		<div style="width:100%;height:490px;margin-top:10px;">
 			<c:if test="${not empty listSocial}">
-				<table class="table table-striped table-bordered table-condensed">
+				<table class="table table-striped table-bordered table-condensed table-gradient">
 					<tr>
 						<td>姓名</td>
 						<td>公民身份号码</td>
@@ -353,7 +353,7 @@
 	</div>
 	<div class="tab-pane fade" id="roomPop">
 		<c:if test="${not empty listRoomPeople}">
-			<table class="table table-striped table-bordered table-condensed">
+			<table class="table table-striped table-bordered table-condensed table-gradient">
 				<tr>
 					<td>人员图片</td>
 					<td>姓名</td>
@@ -382,7 +382,7 @@
 	</div>
 	<div class="tab-pane fade" id="homePop">
 		<c:if test="${not empty listAccount}">
-			<table class="table table-striped table-bordered table-condensed">
+			<table class="table table-striped table-bordered table-condensed table-gradient">
 				<tr>
 					<td>人员图片</td>
 					<td>姓名</td>
@@ -484,7 +484,7 @@
         </table>--%>
 
 
-		<table class="table" style="width: 423px;height: 610px;position:absolute;background: none;top: 37px;right: 5px;" >
+		<table class="table " style="width: 423px;height: 610px;position:absolute;background: none;top: 37px;right: 5px;" >
 			<tr>
 				<td style="position:absolute;width: 422px;height: 610px;margin-top: 5px;background: #ffffff;">
 					<label class="lab1" style="margin-top:12px"><span > 姓名:</span ><span id="warpeoplename"></span></label>

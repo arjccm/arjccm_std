@@ -53,6 +53,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/event/ccmEventKacc/map">排查整治分析</a></li>
 		<li><a style="text-align:center" href="${ctx}/event/ccmEventKacc/">排查整治列表</a></li>
@@ -230,5 +231,6 @@
 			<input id="btnCancel" class="btn"  type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

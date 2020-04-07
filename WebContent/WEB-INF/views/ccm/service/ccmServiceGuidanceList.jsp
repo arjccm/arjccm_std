@@ -62,19 +62,19 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmServiceGuidance">
 			<tr>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmServiceGuidance.type, 'ccm_service_guidance_type', '')}
 				</td>
-				<td style="height: 50px"><a href="${ctx}/service/ccmServiceGuidance/form?id=${ccmServiceGuidance.id}">
+				<td><a href="${ctx}/service/ccmServiceGuidance/form?id=${ccmServiceGuidance.id}">
 					${ccmServiceGuidance.title}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmServiceGuidance.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td class="tp" style="height: 50px">
 					${ccmServiceGuidance.remarks}
 				</td>
-				<shiro:hasPermission name="service:ccmServiceGuidance:edit"><td style="height: 50px">
+				<shiro:hasPermission name="service:ccmServiceGuidance:edit"><td>
     				<a class="btnList" href="${ctx}/service/ccmServiceGuidance/form?id=${ccmServiceGuidance.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/service/ccmServiceGuidance/delete?id=${ccmServiceGuidance.id}" onclick="return confirmx('确认要删除该用户指南信息吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/pop/ccmPopHR/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/pop/ccmPopHR/form?id=${ccmPopHR.id}">数据<shiro:hasPermission name="pop:ccmPopHR:edit">${not empty ccmPopHR.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmPopHR:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPopHR" action="${ctx}/pop/ccmPopHR/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

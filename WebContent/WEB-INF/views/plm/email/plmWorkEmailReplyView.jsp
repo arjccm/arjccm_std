@@ -33,7 +33,7 @@
 		<li><a href="${ctx}/email/plmWorkEmail/view?id=${plmWorkEmail.id}">邮件<shiro:hasPermission
 						name="email:plmWorkEmail:edit">${not empty plmWorkEmail.id?'查看':'添加'}</shiro:hasPermission></a></li>
 		<li class="active"><a href="${ctx}/email/plmWorkEmailReply/form?id=${plmWorkEmailReply.id}">添加回复</a></li>
-	</ul><br/> --%>
+	</ul> --%>
 	<form:form id="inputForm" modelAttribute="plmWorkEmailReply" action="${ctx}/email/plmWorkEmailReply/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="workEmailId"/>

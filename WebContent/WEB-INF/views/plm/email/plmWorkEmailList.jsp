@@ -85,17 +85,17 @@
 						<a href="${ctx}/email/plmWorkEmail/${plmWorkEmail.status eq '0' ? 'receive' : 'form'}?id=${plmWorkEmail.id}">
 						${plmWorkEmail.title}</a>
 					</td>
-					<td style="height: 50px"><fmt:formatDate value="${plmWorkEmail.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<td><fmt:formatDate value="${plmWorkEmail.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 					</td>
 					<c:if test="${status eq '0'}">
-						<td style="height: 50px"><c:if test="${plmWorkEmail.self}">
+						<td><c:if test="${plmWorkEmail.self}">
 	                        ${fns:getDictLabel(oaNotify.readFlag, 'oa_notify_read', '')}
 	                    </c:if> <c:if test="${!plmWorkEmail.self}">
 	                    	<a onclick="parent.LayerDialog('${ctx}/email/plmWorkEmail/readStatusList?id=${plmWorkEmail.id}', '查阅状态', '800px', '500px')" ">
 	                        ${plmWorkEmail.readNum} / ${plmWorkEmail.readNum + plmWorkEmail.unReadNum}</a>
 	                    </c:if></td>
                     </c:if>
-					<td style="height: 50px">
+					<td>
 						<a class="star" emailId="${plmWorkEmail.id}" readStatus="">
 							<img id="list${plmWorkEmail.id}" isStar="${plmWorkEmail.isStar eq '1'?0:1}" title="" style="margin-bottom: 3px" src="" ></a>
 						<script type="text/javascript">

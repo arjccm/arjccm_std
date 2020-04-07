@@ -189,16 +189,16 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmEventIncidentPreview">
             <tr>
-                <td style="height: 50px"><a
+                <td><a
                         onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${ccmEventIncidentPreview.id}', '详情', '1100px', '600px')">${ccmEventIncidentPreview.caseName}</a>
                 </td>
-                <td style="height: 50px">${ccmEventIncidentPreview.reportPerson}</td>
-                <td style="height: 50px">${ccmEventIncidentPreview.happenPlace}</td>
-                <td style="height: 50px">${fns:getDictLabel(ccmEventIncidentPreview.caseScope,'ccm_event_scope','')}</td>
-                <td style="height: 50px"><fmt:formatDate
+                <td>${ccmEventIncidentPreview.reportPerson}</td>
+                <td>${ccmEventIncidentPreview.happenPlace}</td>
+                <td>${fns:getDictLabel(ccmEventIncidentPreview.caseScope,'ccm_event_scope','')}</td>
+                <td><fmt:formatDate
                         value="${ccmEventIncidentPreview.happenDate}"
                         pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                <td style="height: 50px"><span
+                <td><span
                         class="eventScaleCss previewStatusCss-${ccmEventIncidentPreview.status}">
                         ${fns:getDictLabel(ccmEventIncidentPreview.status, 'ccm_event_preview_status', '')}
                 </span></td>

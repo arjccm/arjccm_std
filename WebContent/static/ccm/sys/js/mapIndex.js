@@ -2153,9 +2153,7 @@ $(function () {
         if (len > 0) {
             for (var i = 0; i < len; i++) {
                 html += '<div class="span3" style="height:150px">'
-                html += '<div class="" style="width:100%;height:100%;background: url('
-                    + ctxStatic
-                    + '/common/index/images/pop-bg.png);background-size: 100% 100%;">'
+                html += '<div class="div_font_type3" style="width:100%;height:100%;background-size: 100% 100%;">'
                 html += '<table style="width: 100%;">'
                 html += '<tr>'
                 html += '<td style="height:60px;padding:5px;text-align: center;" colspan="2"><img src="'
@@ -2172,9 +2170,7 @@ $(function () {
                 html += '</tr>'
                 html += '<tr>'
                 html += '<td>'
-                html += '<span id="TodayLiveDialog" style="margin-left: 30px;cursor: pointer;background: url('
-                    + ctxStatic
-                    + '/common/index/images/header-right.png) no-repeat center; background-size: 100% 100%; float: left;display:block;  width: 83px; height: 28px; text-align: center;line-height: 28px;" onclick="TodayHandleDialog(\''
+                html += '<span id="TodayLiveDialog" class="div_font_type4" style="margin-left: 30px;cursor: pointer background-size: 100% 100%; float: left;display:block;  width: 83px; height: 28px; text-align: center;line-height: 28px;" onclick="TodayHandleDialog(\''
                     + nameArr[i].id + '\')">处置</span>'
                 html += '</td>'
                 html += '</tr>'
@@ -2569,15 +2565,9 @@ $(function () {
         html += '</table>'
         html += '</div>'
         html += '<div style="width:100%;">'
-        html += '<span id="TodayVideo"  style="margin-left: 90px;cursor: pointer;background: url('
-            + ctxStatic
-            + '/common/index/images/header-right.png) no-repeat center; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">视频</span>'
-        html += '<span id="TodayCommunity" style="margin-left: 50px;cursor: pointer;background: url('
-            + ctxStatic
-            + '/common/index/images/header-right.png) no-repeat center; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">网格</span>'
-        html += '<span id="TodayHandle"  style="margin-left: 50px;cursor: pointer;background: url('
-            + ctxStatic
-            + '/common/index/images/header-right.png) no-repeat center; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">处置</span>'
+        html += '<span id="TodayVideo" class="div_font_type4"  style="margin-left: 90px;cursor: pointer; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">视频</span>'
+        html += '<span id="TodayCommunity" class="div_font_type4" style="margin-left: 50px;cursor: pointer;background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">网格</span>'
+        html += '<span id="TodayHandle"  class="div_font_type4" style="margin-left: 50px;cursor: pointer; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">处置</span>'
         // html+='<span id="TodayLive" style="margin-left: 30px;cursor:
         // pointer;background:
         // url('+ctxStatic+'/common/index/images/header-right.png) no-repeat

@@ -64,19 +64,19 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmServiceDuty">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/service/ccmServiceDuty/form?id=${ccmServiceDuty.id}">
+				<td><a href="${ctx}/service/ccmServiceDuty/form?id=${ccmServiceDuty.id}">
 					${ccmServiceDuty.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmServiceDuty.code}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmServiceDuty.department}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmServiceDuty.chief}
 				</td>
-				<shiro:hasPermission name="service:ccmServiceDuty:edit"><td style="height: 50px">
+				<shiro:hasPermission name="service:ccmServiceDuty:edit"><td>
     				<a class="btnList" href="${ctx}/service/ccmServiceDuty/form?id=${ccmServiceDuty.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/service/ccmServiceDuty/delete?id=${ccmServiceDuty.id}" onclick="return confirmx('确认要删除该工作职责吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

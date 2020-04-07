@@ -77,10 +77,10 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmMobileDevice">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/ccmsys/ccmMobileDevice/form?id=${ccmMobileDevice.id}">
+				<td><a href="${ctx}/ccmsys/ccmMobileDevice/form?id=${ccmMobileDevice.id}">
 					${ccmMobileDevice.deviceId}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					<c:choose>
 						<c:when test="${ccmMobileDevice.isVariable eq '01'}">
 							<span style="color:#F00">
@@ -92,25 +92,25 @@
 						</c:otherwise>
 					</c:choose>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmMobileDevice.vCcmTeam.status, 'ccm_mobile_device_status', '')} 
 				</td> 
-				<td style="height: 50px">
+				<td>
 					${ccmMobileDevice.vCcmTeam.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmMobileDevice.officeName}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmMobileDevice.vCcmTeam.mobile}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmMobileDevice.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmMobileDevice.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<shiro:hasPermission name="ccmsys:ccmMobileDevice:edit"><td style="height: 50px">
+				<shiro:hasPermission name="ccmsys:ccmMobileDevice:edit"><td>
     				<a class="btnList" href="${ctx}/ccmsys/ccmMobileDevice/form?id=${ccmMobileDevice.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/ccmsys/ccmMobileDevice/delete?id=${ccmMobileDevice.id}" onclick="return confirmx('确认要删除该移动设备吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

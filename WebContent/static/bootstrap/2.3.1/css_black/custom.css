@@ -1185,10 +1185,12 @@ cite[class*='t-click']{
     margin-top: 0px;
     position: relative;
     box-shadow: inset 0px 0px 15px 0px #1684c2;
+    /*最小高度*/
+    /*min-height:597px;*/
 }
 
 .table-gradient{
-    margin-left: 20px;
+    margin-left: 1.184132vw;
     margin-top:20px;
     width: 98%;
     /*height: 50%*/
@@ -1390,7 +1392,7 @@ cite[class*='t-click']{
     FontColor: #fff !important;
 }
 #blackech2{
-    background: rgb(14, 42, 76) ;
+    /*background: rgb(14, 42, 76) ;*/
     FontColor: #fff !important;
 }
 
@@ -1771,19 +1773,10 @@ cite[class*='t-click']{
     padding-left: 20px;
     padding-right: 20px;
 }
-
-/*数据添加页阴影*/
-#inputForm {
-    box-shadow: inset 0px 0px 15px 0px #1684c2;
-}
  .custom-row-fluid {
      width: calc(100vw - 40px);
      padding-left: 20px;
      padding-right: 20px;
- }
- /*数据添加页阴影*/
- #inputForm{
-	 box-shadow: inset 0px 0px 15px 0px #1684c2;
  }
  /**在大业务联动添加字体颜色*/
  .body_color{
@@ -1829,7 +1822,23 @@ cite[class*='t-click']{
  .div_font_type2{
 	 background: url(../img/pop-bg5.png);background-size: 100% 100%;
  }
+ .div_font_type3{
+	 background: url(../img/pop-bg9.png);background-size: 100% 100%;
+ }
+ .div_font_type4{
+	 background: url(../img/header-right10.png);background-size: 100% 100%;
+ }
 /**查询按钮高度间距*/
  #searchFormbtn-box2 {
 	   margin-top: 4.5px!important;
    }
+ .table-condensed2{
+	 border: 1px solid #00cccc!important;
+ }
+ /*弹出页背景边框统一*/
+ .layui-layer-content {
+     box-shadow: inset 0px 0px 15px 0px #1684c2;
+ }
+ #inputForm {
+     background: none;
+ }

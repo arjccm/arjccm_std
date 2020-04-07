@@ -15,7 +15,7 @@
 					name="vote:pbsVoteSubject:edit">${not empty pbsVoteItem.sParentid.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="vote:pbsVoteSubject:edit">查看</shiro:lacksPermission></a></li>
 		<li class="active"><a >题目选项信息<shiro:hasPermission name="vote:pbsVoteItem:edit">${not empty pbsVoteItem.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="vote:pbsVoteItem:edit">查看</shiro:lacksPermission></a></li>		
-	</ul><br/>
+	</ul>
 	<div class="hide topid" topid="${pbsVoteItem.sParentid.id}"></div>
 	<form:form id="inputForm" modelAttribute="pbsVoteItem" action="${ctx}/vote/pbsVoteItem/addsavesubject" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

@@ -62,10 +62,10 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmWorkAdvise">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/work/ccmWorkAdvise/form?id=${ccmWorkAdvise.id}">
+				<td><a href="${ctx}/work/ccmWorkAdvise/form?id=${ccmWorkAdvise.id}">
 					${ccmWorkAdvise.createBy.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmWorkAdvise.datas}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td class="tp" style="height: 50px">
@@ -74,7 +74,7 @@
 				<td class="tp" style="height: 50px">
 					${ccmWorkAdvise.reply}
 				</td>
-				<shiro:hasPermission name="work:ccmWorkAdvise:edit"><td style="height: 50px">
+				<shiro:hasPermission name="work:ccmWorkAdvise:edit"><td>
     				<a class="btnList" href="${ctx}/work/ccmWorkAdvise/form?id=${ccmWorkAdvise.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/work/ccmWorkAdvise/delete?id=${ccmWorkAdvise.id}" onclick="return confirmx('确认要删除该意见建议吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

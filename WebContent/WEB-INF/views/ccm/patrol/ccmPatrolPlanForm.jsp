@@ -15,7 +15,6 @@
 					name="patrol:ccmPatrolPlan:edit">${not empty ccmPatrolPlan.id?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="patrol:ccmPatrolPlan:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
-	<br />
 	<div id="ccmPatrolPlanID" attrId= "${ccmPatrolPlan.id}" attrPoint="${ccmPatrolPlan.pointSort }" style="display:none;"></div>
 	<form:form id="inputForm " modelAttribute="ccmPatrolPlan" 
 		action="${ctx}/patrol/ccmPatrolPlan/save" method="post"
@@ -23,7 +22,7 @@
 		<form:hidden path="id" />
 		<sys:message content="${message}" />
 		<div class="control-group">
-			<label class="control-label">接受人：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>接受人：</label>
 			<div class="controls">
 				<sys:treeselect id="users" name="ccmPatrolUserIds"
 					value="${ccmPatrolPlan.ccmPatrolUserIds}" isAll="true"
@@ -31,15 +30,15 @@
 					labelValue="${ccmPatrolPlan.ccmPatrolUserNames}" title="用户"
 					url="/sys/office/treeData?type=3" cssClass="input-xlarge required"
 					notAllowSelectParent="true" checked="true" />
-				<span class="help-inline"><font color="red">*</font> </span>
+
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">名称：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>名称：</label>
 			<div class="controls">
 				<form:input path="name" htmlEscape="false" maxlength="64"
 					class="input-xlarge  required" />
-					<span class="help-inline"><font color="red">*</font> 
+
 			</div>
 		</div>
 		<div class="control-group">
