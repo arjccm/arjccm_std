@@ -105,6 +105,7 @@
     </style>
 </head>
 <body>
+<div class="back-list clearfix">
     <ul class="nav nav-tabs hide1">
         <li><a style="text-align:center" href="${ctx}/report/ccmReportOthers/houseAndBuild">数据统计</a></li>
         <li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">数据列表</a></li>
@@ -434,6 +435,6 @@
             <div class="fishBone2"></div>
         </shiro:lacksPermission>
     </c:if>
-
+</div>
 </body>
 </html>

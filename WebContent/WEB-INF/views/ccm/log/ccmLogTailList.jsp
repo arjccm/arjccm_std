@@ -21,7 +21,7 @@
 
 </head>
 <body>
-<div class="clearfix">
+<div class="back-list clearfix">
     <ul class="nav nav-tabs">
         <%-- 		<li class="active"><a href="${ctx}/log/ccmLogTail/">跟踪信息列表</a></li> --%>
         <!--
@@ -113,5 +113,15 @@
     </table>
     <div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </div>
+<script type="text/javascript">
+    $(document).ready(
+        $(function () {
+            var elementsByClassName = window.parent.document.getElementById("LayerDialog");
+            if(elementsByClassName!=null&&elementsByClassName!=undefined){
+
+                $(".back-list").css({"box-shadow":"none","background":"none"})
+            }
+        }))
+</script>
 </body>
 </html>
