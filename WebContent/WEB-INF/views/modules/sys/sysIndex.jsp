@@ -594,7 +594,7 @@ function addTab($this, refresh) {
 					</script>
 				</c:if> --%>
 				<div class="nav-collapse">
-					<ul id="menu" class="nav clearfix pgwMenuCustom"
+					<ul id="menu" class="nav pgwMenuCustom"
 						style="*white-space: nowrap; float: none;">
 						<c:set var="pid" value="${pid}" />
 						<c:set var="firstMenu" value="false" />
