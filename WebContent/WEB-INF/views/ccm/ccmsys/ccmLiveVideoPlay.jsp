@@ -67,6 +67,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<form:form id="inputForm" modelAttribute="ccmDevice" action="" method="post" class="form-horizontal form-search" cssStyle="padding:10px">
 		<div id="divPlugin" style="width:100%;height:640px;background:#4C4B4B">
 			<c:if test="${ccmDevice.typeVidicon == 2}">
@@ -170,6 +171,7 @@
 			</li>
 		</ul>
 	</form:form>
+</div>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {

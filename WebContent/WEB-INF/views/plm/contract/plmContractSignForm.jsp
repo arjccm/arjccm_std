@@ -124,7 +124,7 @@
 </script>
 </head>
 <body>
-	<br />
+<div class="back-list clearfix">
 	<form:form  target="_parent" id="inputForm" modelAttribute="plmContractSign"
 		action="${ctx}/contract/plmContractSign/save" method="post"
 		class="form-horizontal">
@@ -265,5 +265,6 @@
 			
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

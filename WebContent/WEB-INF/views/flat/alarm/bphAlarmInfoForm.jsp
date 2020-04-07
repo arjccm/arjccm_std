@@ -122,6 +122,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<form:form id="inputForm" cssStyle="padding-top: 20px" modelAttribute="bphAlarmInfo" action="${ctx}/alarm/bphAlarmInfo/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
@@ -374,5 +375,6 @@
 			<a id="btnCancel" class="btn btn-back" href="javascript:;"  onclick="history.go(-1)"><i class="icon-reply"></i>返回</a>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

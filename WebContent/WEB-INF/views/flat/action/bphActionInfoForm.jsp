@@ -134,6 +134,7 @@ textarea.input-xxlarge {
 
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" id="bphActionInfoList" href="${ctx}/action/bphActionInfo/"><span>执行动作配置列表</span></a></li>
 		<li class="active"><a class="nav-head"
@@ -285,5 +286,6 @@ textarea.input-xxlarge {
 			refreshTree();
 		})
 	</script>
+</div>
 </body>
 </html>

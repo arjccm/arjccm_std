@@ -41,6 +41,7 @@
 </script>	
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 			<%-- <li><a href="${ctx}/email/plmWorkEmail/self?readStatus=1">收件箱</a></li> --%>
 			<li class="active"><a
@@ -130,5 +131,6 @@
 			<a id="btnCancel" class="btn"  onclick="history.go(-1);location.replace(document.referrer);"><i class="icon-reply"></i>返回</a>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>
