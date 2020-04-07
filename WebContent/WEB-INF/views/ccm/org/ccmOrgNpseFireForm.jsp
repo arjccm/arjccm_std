@@ -664,7 +664,7 @@
         <input id="btnCancel" class="btn btn-danger" type="button" value="关闭"/>
         <!-- <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/> -->
     </div>
-</form:form><br>
+</form:form>
 <c:if test="${documentNumber > 0}">
     <shiro:hasPermission name="log:ccmLogTail:edit">
         <h4>&nbsp;跟踪信息：</h4>

@@ -32,6 +32,18 @@
 
 	<script src="${ctxStatic}/jquery-select2/3.4/select2.min.js"></script>
 	<link rel="stylesheet" href="${ctxStatic}/common/jeesite.css">
+    <script>
+        if($.cookie('theme')==undefined){
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
+        }else if($.cookie('theme')=='gradient'){
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_cerulean/custom.css" type="text/css" rel="stylesheet">');
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_cerulean/bootstrap.min.css" type="text/css" rel="stylesheet">');
+        }else if($.cookie('theme')=='black'){
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
+        }
+    </script>
 	<script>
 		ctx="${ctx}";
 		ctxStatic="${ctxStatic}";

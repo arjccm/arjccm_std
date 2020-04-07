@@ -21,7 +21,7 @@
 
 </head>
 <body>
-<div class="back-list clearfix">
+<div class="clearfix">
     <ul class="nav nav-tabs">
         <%-- 		<li class="active"><a href="${ctx}/log/ccmLogTail/">跟踪信息列表</a></li> --%>
         <!--
