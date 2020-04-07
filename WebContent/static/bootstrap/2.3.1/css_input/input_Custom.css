@@ -81,11 +81,6 @@ input.input-xxlarge{
         width: 206px;
     }
 }
-
-#inputForm{
-    padding: 15px;
-    /*height: calc(100vh - 74px);*/
-}
 .nav-tabs {
     margin-bottom: 0px;
 }

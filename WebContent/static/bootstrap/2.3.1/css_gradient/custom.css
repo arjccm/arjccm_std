@@ -793,7 +793,7 @@ ul[class*="nav nav-list"]>li>a:hover{
 	width: 100%;
 	/*高度自适应*/
 	/*height: 970px;*/
-	padding-bottom: 80px;
+	padding-bottom: 20px;
 	margin-left: 5px;
 	margin-top: 0px;
 	position: relative;

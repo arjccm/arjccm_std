@@ -1729,7 +1729,6 @@
 
         </div>
     </form:form>
-    <br>
 </div>
 <%--<c:if test="${documentNumber > 0}">
     <shiro:hasPermission name="log:ccmLogTail:edit">
