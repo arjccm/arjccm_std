@@ -29,6 +29,7 @@ $(document).ready(function() {
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/service/ccmCommunityWork/">数据列表</a></li>
 		<li class="active"  style="width: 140px"><a class="nav-head"
@@ -168,5 +169,6 @@ $(document).ready(function() {
 				onclick="history.go(-1)" />
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

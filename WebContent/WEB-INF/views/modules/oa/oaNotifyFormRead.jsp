@@ -33,6 +33,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/oa/oaNotify/self">通知列表</a></li>
 		<li class="active"style="width: 140px"><a class="nav-head" href="${ctx}/oa/oaNotify/viewRead?id=${oaNotify.id}">通知<shiro:hasPermission name="oa:oaNotify:edit">${oaNotify.status eq '1' ? '查看' : not empty oaNotify.id ? '修改' : '添加'}</shiro:hasPermission><shiro:lacksPermission name="oa:oaNotify:edit">查看</shiro:lacksPermission></a></li>
@@ -138,5 +139,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="window.location.href='${ctx}/oa/oaNotify/self'"/>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>
