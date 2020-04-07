@@ -242,7 +242,6 @@
 		a.telephone AS "telephone",
 		a.uniformlogo AS "uniformlogo",
 		a.account AS "account",
-		a.accountidentity AS "accountidentity",
 		a.accountname AS "accountname",
 		a.accounttelephone AS "accounttelephone",
 		a.person_type AS "personType",
