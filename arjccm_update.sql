@@ -2528,3 +2528,7 @@ ADD COLUMN `police_assistant` int(11) UNSIGNED ZEROFILL NULL DEFAULT 00000000000
 ADD COLUMN `political_legal_deployment` int(11) UNSIGNED ZEROFILL NULL DEFAULT 00000000000 COMMENT '政法派驻员' AFTER `police_assistant`,
 ADD COLUMN `people_livelihood_supervisor` int(11) UNSIGNED ZEROFILL NULL DEFAULT 00000000000 COMMENT '民生监督员' AFTER `political_legal_deployment`;
 ADD COLUMN `area_color` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '区域颜色rgb' AFTER `more3`;
+
+-- 楼栋增加已采集人数字段
+ALTER TABLE `ccm_house_buildmanage`
+ADD COLUMN `gather_num` int(6) NULL COMMENT '楼栋已采集人数' AFTER `build_peo`;
