@@ -129,10 +129,8 @@ public class CcmRestBuilding extends BaseController {
 		long startTime=System.nanoTime();   //获取开始时间
 		if(page.getList().size()>0){
 			for (int i = 0; i < page.getList().size(); i++) {
-				//楼栋ID
-				String aid = page.getList().get(i).getId();
-				//已采集人数
-				Integer gatherNum = ccmHouseBuildmanageService.gather(aid);
+				//楼栋已采集人数
+				Integer gatherNum = page.getList().get(i).getGatherNum();
 				if (gatherNum==null){
 					gatherNum=0;
 				}
