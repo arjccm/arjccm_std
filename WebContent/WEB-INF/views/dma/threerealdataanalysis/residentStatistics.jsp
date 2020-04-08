@@ -4,7 +4,7 @@
 <head>
     <title>实有居民组合统计</title>
     <meta name="decorator" content="default"/>
-    <script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>
+    <%--<script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>--%>
     <link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/bootstrap.min.css"
           type="text/css" rel="stylesheet"/>
     <link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/custom.css"

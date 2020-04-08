@@ -799,4 +799,37 @@
 	build.id = #{bid}
 	AND del_flag = 0
 	</select>
+
+
+	<select id="queryCommunityCount" resultType="com.arjjs.ccm.tool.SearchTabMore">
+	SELECT
+	ld.ldname as value5,
+	ld.ldnum as value6,
+	ld.ldarea as value7,
+	IFNULL(org.mannum,0) as value8,
+	(
+		IFNULL( amount.person_amount, 0 ) + IFNULL( amount.oversea_amount, 0 ) + IFNULL( amount.unsettle_amount, 0 ) + IFNULL( amount.float_amount, 0 )
+	) as value9
+	FROM
+	(
+	SELECT
+		count( t.id ) AS ldnum,
+		a6.`name` AS ldname,
+		a6.id AS sqid,
+		sum( t.floor_area ) AS ldarea
+	FROM
+		ccm_house_buildmanage t
+		RIGHT JOIN sys_area a ON a.id = t.area_id
+		AND a.del_flag = 0
+		AND a.type = 7
+		LEFT JOIN sys_area a6 ON a.parent_id = a6.id
+	WHERE
+		t.del_flag = 0
+	GROUP BY
+		a6.id
+	) ld
+	LEFT JOIN ccm_org_area org ON ld.sqid = org.area_id
+	LEFT JOIN ccm_people_amount amount ON amount.area_id = ld.sqid
+	</select>
+
 </mapper>
