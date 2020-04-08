@@ -1838,9 +1838,6 @@ cite[class*='t-click']{
  /*弹出页背景边框统一*/
  .layui-layer-content {
      box-shadow: inset 0px 0px 15px 0px #1684c2;
- }
- /*错误弹出提示背景颜色添加*/
- .layui-layer-msg>.layui-layer-content{
      background: #0e2a4c!important;
  }
  #inputForm {
