@@ -65,6 +65,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 <div class="container-fluid" style="height: 100%; overflow: hidden" id="main">
 	<div class="context" content="${ctx}"/>
 	<div class="row-fluid height100">
@@ -99,6 +100,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

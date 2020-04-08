@@ -56,6 +56,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<div id="mianEcharts">
 		<div class="context" content="${ctx}"></div>
 		<div class="widthHalf borderEcharts">
@@ -84,5 +85,6 @@
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

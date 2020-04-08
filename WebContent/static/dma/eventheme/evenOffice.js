@@ -17,18 +17,32 @@ function countEventAreaData() {
 		}
 	});
 }
+var FontColor = '#647484';
+if ($.cookie('theme') == undefined) {
+    FontColor = '#647484';
+} else if ($.cookie('theme') == 'gradient') {
+    FontColor = '#647484';
+} else if ($.cookie('theme') == 'black') {
+    FontColor = '#fff';
+}
 function showEventArea(data){
 	// 指定图表的配置项和数据
 	option = {
 		title : {
 			text: '各单位工作量统计',
-			subtext: '单位-处理类型'
+			subtext: '单位-处理类型',
+            textStyle : {
+                color :FontColor,
+            }
 		},
 		tooltip : {
 			trigger: 'axis'
 		},
 		legend: {
-			data:data["eventAreaTypeData"]
+			data:data["eventAreaTypeData"],
+            textStyle : {
+                color :FontColor,
+            }
 		},
 		toolbox: {
 			show : true,

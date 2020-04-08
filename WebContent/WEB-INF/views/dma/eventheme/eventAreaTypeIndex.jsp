@@ -4,7 +4,7 @@
 <head>
 	<title>事件分区域统计</title>
 	<meta name="decorator" content="default"/>
-	<script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>
+	<%--<script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>--%>
 	<%-- <link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'cerulean'}/bootstrap.min.css" type="text/css" rel="stylesheet" />
 	<link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'cerulean'}/custom.css" type="text/css" rel="stylesheet" /> --%>
 	<script src="${ctxStatic}/bootstrap/2.3.1/js/bootstrap.min.js"></script>
