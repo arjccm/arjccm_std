@@ -6,6 +6,10 @@ package com.arjjs.ccm.modules.ccm.tree.web;
 import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
+import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
+import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.tree.entity.CcmTree;
 import com.arjjs.ccm.modules.ccm.tree.service.CcmTreeService;
 import com.arjjs.ccm.modules.sys.entity.Area;
@@ -30,7 +34,7 @@ import java.util.Map;
 
 /**
  * 树Controller
- * 
+ *
  * @author liang
  * @version 2018-03-02
  */
@@ -40,6 +44,10 @@ public class CcmTreeController extends BaseController {
 
 	@Autowired
 	private CcmTreeService ccmTreeService;
+	@Autowired
+	private CcmHouseBuildmanageService ccmHouseBuildmanageService;
+	@Autowired
+	private CcmPopTenantService ccmPopTenantService;
 
 	@ModelAttribute
 	public CcmTree get(@RequestParam(required = false) String id) {
@@ -109,7 +117,7 @@ public class CcmTreeController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "treeData")
 	public List<Map<String, Object>> treeData(@RequestParam(required = false) String extId,
-			HttpServletResponse response) {
+											  HttpServletResponse response) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		List<CcmTree> list = ccmTreeService.findList(new CcmTree());
 		for (int i = 0; i < list.size(); i++) {
@@ -127,29 +135,37 @@ public class CcmTreeController extends BaseController {
 	}
 
 
-    @RequiresPermissions("user")
-    @ResponseBody
-    @RequestMapping(value = "treeDataAreaByareaGrid")
-    public List<Map<String, Object>> treeDataAreaByareaGrid(@RequestParam(required = false) String extId,
-            @RequestParam(required = false) String type, @RequestParam(required = false) String areaid, HttpServletResponse response) {
-        List<Map<String, Object>> mapList = Lists.newArrayList();
-        CcmTree ccmTree = new CcmTree();
-        ccmTree.setType(type);
-        ccmTree.setId(areaid);
-        List<Area> list = ccmTreeService.findTreeAll(ccmTree);
-        for (int i = 0; i < list.size(); i++) {
-            Area e = list.get(i);
-            if (StringUtils.isBlank(extId) || (extId != null && !extId.equals(e.getId())
-                    && e.getParentIds().indexOf("," + extId + ",") == -1)) {
-                Map<String, Object> map = Maps.newHashMap();
-                map.put("id", e.getId());
-                map.put("pId", e.getParentId());
-                map.put("name", e.getName());
-                mapList.add(map);
-            }
-        }
-        return mapList;
-    }
+	@RequiresPermissions("user")
+	@ResponseBody
+	@RequestMapping(value = "treeDataAreaByareaGrid")
+	public List<Map<String, Object>> treeDataAreaByareaGrid(@RequestParam(required = false) String extId,
+															@RequestParam(required = false) String type, @RequestParam(required = false) String areaid, HttpServletResponse response) {
+		Area area = new Area(areaid);
+		CcmHouseBuildmanage build = new CcmHouseBuildmanage();
+		CcmPopTenant tenant = new CcmPopTenant();
+		build.setArea(area);
+		tenant.setArea(area);
+		List<CcmHouseBuildmanage> buildList = ccmHouseBuildmanageService.findList(build);
+		List<CcmPopTenant> tenantList = ccmPopTenantService.findList(tenant);
+		List<Map<String, Object>> mapList = Lists.newArrayList();
+		for (int i = 0; i < buildList.size(); i++) {
+			Map<String, Object> map = Maps.newHashMap();
+			map.put("id", buildList.get(i).getId());
+			map.put("pId", buildList.get(i).getArea().getId());
+			map.put("name", buildList.get(i).getBuildname());
+			mapList.add(map);
+			for (int j = 0; j < tenantList.size(); j++) {
+				if(buildList.get(i).getId().equals(tenantList.get(j).getBuildingId().getId())){
+					Map<String, Object> maptenant = Maps.newHashMap();
+					maptenant.put("id", tenantList.get(j).getId());
+					maptenant.put("pId", tenantList.get(j).getBuildingId().getId());
+					maptenant.put("name", tenantList.get(j).getHouseBuild());
+					mapList.add(maptenant);
+				}
+			}
+		}
+		return mapList;
+	}
 
 
 
@@ -160,7 +176,7 @@ public class CcmTreeController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "treeDataArea")
 	public List<Map<String, Object>> treeDataArea(@RequestParam(required = false) String extId,
-			@RequestParam(required = false) String type, @RequestParam(required = false) String areaid, HttpServletResponse response) {
+												  @RequestParam(required = false) String type, @RequestParam(required = false) String areaid, HttpServletResponse response) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		List<CcmTree> list = ccmTreeService.findListArea(new CcmTree(), type);
 		int t = 0;
@@ -227,7 +243,7 @@ public class CcmTreeController extends BaseController {
 							map.put("name", e2.getName());
 							mapList.add(map);
 						}
-						
+
 					}
 				}
 			}
@@ -264,9 +280,9 @@ public class CcmTreeController extends BaseController {
 										}
 									}
 								}
-								
+
 							}
-							
+
 						}else{
 							Map<String, Object> map = Maps.newHashMap();
 							map.put("id", e3.getId());
@@ -287,7 +303,7 @@ public class CcmTreeController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "treeDataNew")
 	public List<Map<String, Object>> treeDataNew(@RequestParam(required = false) String extId,
-			@RequestParam(required = false) String type, HttpServletResponse response) {
+												 @RequestParam(required = false) String type, HttpServletResponse response) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		Area parent= UserUtils.getUser().getOffice().getArea();
 		long t1 = System.currentTimeMillis();
@@ -324,7 +340,7 @@ public class CcmTreeController extends BaseController {
 						if ("03".equals(e.getMore1())) {
 							map.put("pointType", "1");
 						}
-						
+
 					} else if("broadcast".equals(e.getType())){
 						map.put("pointType", "0");
 					}else {
@@ -359,7 +375,7 @@ public class CcmTreeController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "treeDataNewApp")
 	public List<Map<String, Object>> treeDataNewApp(@RequestParam(required = false) String extId,
-			HttpServletResponse response) {
+													HttpServletResponse response) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		List<CcmTree> list = ccmTreeService.findListTreeApp(new CcmTree());
 		Map<String, Object> map2 = Maps.newHashMap();
@@ -374,7 +390,7 @@ public class CcmTreeController extends BaseController {
 		map2.put("type", "appEfence");
 		map2.put("icon", "");
 		mapList.add(map2);
-		
+
 		for (int i = 0; i < list.size(); i++) {
 			CcmTree e = list.get(i);
 			// 当前的是否为被取消的内容
@@ -392,7 +408,7 @@ public class CcmTreeController extends BaseController {
 				map.put("icon", "");
 				mapList.add(map);
 			}
-			
+
 		}
 		return mapList;
 	}

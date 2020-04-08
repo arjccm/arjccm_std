@@ -58,7 +58,7 @@
 			if (urls[i]!=""){//<c:if test="${type eq 'thumb' || type eq 'images'}">
 				//1、<li>;3、×
 				li = "<img src=\""+urls[i]+"\" url=\""+urls[i]+"\" style=\"max-width:${empty maxWidth ? 200 : maxWidth}px;max-height:${empty maxHeight ? 200 : maxHeight}px;_height:${empty maxHeight ? 200 : maxHeight}px;border:0;padding:3px;\">";//</c:if><c:if test="${type ne 'thumb' && type ne 'images'}">
-				li = "<li><a href=\""+urls[i]+"\" url=\""+urls[i]+"\" target=\"_blank\">"+decodeURIComponent(urls[i].substring(urls[i].lastIndexOf("/")+1))+"</a>";//</c:if>
+				li = "<li><a href=\"javascript:\" onclick=\"getDownload(this)\" url=\""+urls[i]+"\" target=\"_blank\">"+decodeURIComponent(urls[i].substring(urls[i].lastIndexOf("/")+1))+"</a>";//</c:if>
 				li += "&nbsp;&nbsp;<c:if test="${!readonly}"><a href=\"javascript:\" onclick=\"${input}Del(this);\"></a></c:if></li>";
 				$("#${input}Preview").append(li);
 			}
@@ -68,4 +68,10 @@
 		}
 	}
 	${input}Preview();
+
+	function getDownload(_this){
+	    console.log($(_this));
+	    var url = $(_this).attr("url");
+        window.location.href="${ctx}/ccmfile/file/download?filepath="+url;
+    }
 </script>

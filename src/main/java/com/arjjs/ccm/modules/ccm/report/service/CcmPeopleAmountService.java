@@ -184,4 +184,9 @@ public class CcmPeopleAmountService extends CrudService<CcmPeopleAmountDao, CcmP
 		return ccmPeopleAmountDao.queryCollectionNum(ccmPeopleAmount);
 	}
 
+	//统计区域性别比例
+	public List<EchartType> getPeopleSexCount(String areaId, String areaType) {
+		return ccmPeopleAmountDao.getPeopleSexCount(areaId,areaType);
+	}
+
 }
