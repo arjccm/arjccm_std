@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/payment/pbsPayment/">缴费信息</a></li>
 		<li class="active"><a href="${ctx}/payment/pbsPayment/form?id=${pbsPayment.id}">缴费信息<shiro:hasPermission name="payment:pbsPayment:edit">${not empty pbsPayment.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="payment:pbsPayment:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsPayment" action="${ctx}/payment/pbsPayment/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

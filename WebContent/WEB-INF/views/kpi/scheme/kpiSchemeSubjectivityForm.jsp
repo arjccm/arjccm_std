@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/scheme/kpiSchemeSubjectivity/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/scheme/kpiSchemeSubjectivity/form?id=${kpiSchemeSubjectivity.id}">数据<shiro:hasPermission name="scheme:kpiSchemeSubjectivity:edit">${not empty kpiSchemeSubjectivity.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="scheme:kpiSchemeSubjectivity:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="kpiSchemeSubjectivity" action="${ctx}/scheme/kpiSchemeSubjectivity/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

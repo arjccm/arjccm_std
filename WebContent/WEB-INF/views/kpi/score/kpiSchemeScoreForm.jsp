@@ -130,13 +130,14 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/score/kpiSchemeScore/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/score/kpiSchemeScore/form?id=${kpiScheme.id}">数据录入</a></li>
-	</ul><br/>
+	</ul>
 	
 	<div id="pw_search_table">
-		    <table id="pw_table" class="table table-striped table-bordered table-condensed">
+		    <table id="pw_table" class="table table-striped table-bordered table-condensed table-gradient">
 		    	<thead>
 					<tr>
 						<th colspan="9" id="pw_result_title" class="pw_background">
@@ -215,7 +216,7 @@
          		<div class="pw_clear"></div>
 		</div>
 
-
+</div>
 
 </body>
 </html>

@@ -5,17 +5,13 @@
 	<title>重大事项数据分析</title>
 	<meta name="decorator" content="default"/>
 	<style>
-	.common-pading{
-	  width:100%;
-	  height:200px;
-	  padding:5px;
-	}
+
 	.echarts{
 	  width:100%;
-	  height:100%;
+	  height:420px;
 	}
-	
-	
+
+
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -41,10 +37,10 @@
 	    <br>
 	    <div class="row-fluid" id="blackech2">
 
-					<h4>巡逻单位任务完成情况</h4>
-					<div class="common-pading">
-						<div id="PopFlowTable" class="echarts" ></div>
-					</div>
+
+
+						<div id="PopFlowTable" class="echarts spEchar2" ></div>
+
 
 			</div>
 		      
@@ -110,6 +106,13 @@
 		PopFlowTableFun();
 		function PopFlowTableFun() {
 			var option = {
+                title: {
+                    text: '巡逻任务',
+                    subtext: '数据统计',
+                    textStyle: {
+                        color: FontColor
+                    }
+                },
 				tooltip: {
 					trigger: 'axis',
 					axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -122,7 +125,7 @@
 					data: ['幺铺镇', '西航办事处', '宋旗镇'],
 					textStyle: {
 						fontWeight: 'normal', //标题颜色
-						color: '#000'
+						color: 'CDCDC1'//字体颜色
 					},
 				},
 				grid: {

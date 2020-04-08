@@ -81,23 +81,23 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowSpace">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/know/ccmKnowSpace/form?id=${ccmKnowSpace.id}">
+				<td><a href="${ctx}/know/ccmKnowSpace/form?id=${ccmKnowSpace.id}">
 					${ccmKnowSpace.name}</a>
 				</td>
-				<td style="height: 50px">${fns:getDictLabel(ccmKnowSpace.type, 'sys_laws_class', '暂无')}</td>
-				<td style="height: 50px">
+				<td>${fns:getDictLabel(ccmKnowSpace.type, 'sys_laws_class', '暂无')}</td>
+				<td>
 					${ccmKnowSpace.lssNo}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowSpace.relDept}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowSpace.relDate}" pattern="yyyy-MM-dd"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowSpace.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<shiro:hasPermission name="know:ccmKnowSpace:edit"><td style="height: 50px">
+				<shiro:hasPermission name="know:ccmKnowSpace:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowSpace/form?id=${ccmKnowSpace.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/know/ccmKnowSpace/delete?id=${ccmKnowSpace.id}" onclick="return confirmx('确认要删除该地方政策吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

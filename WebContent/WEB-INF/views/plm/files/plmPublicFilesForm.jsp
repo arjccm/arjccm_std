@@ -34,7 +34,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/files/plmPublicFiles/">附件列表</a></li>
 		<li class="active"><a href="${ctx}/files/plmPublicFiles/form?id=${plmPublicFiles.id}">附件<shiro:hasPermission name="files:plmPublicFiles:edit">${not empty plmPublicFiles.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="files:plmPublicFiles:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="plmPublicFiles" action="${ctx}/files/plmPublicFiles/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

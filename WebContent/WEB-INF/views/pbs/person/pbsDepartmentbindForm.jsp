@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/person/pbsDepartmentbind/">学员部门关系列表</a></li>
 		<li class="active"><a href="${ctx}/person/pbsDepartmentbind/form?id=${pbsDepartmentbind.id}">学员部门关系<shiro:hasPermission name="person:pbsDepartmentbind:edit">${not empty pbsDepartmentbind.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="person:pbsDepartmentbind:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsDepartmentbind" action="${ctx}/person/pbsDepartmentbind/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

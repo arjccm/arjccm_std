@@ -727,7 +727,7 @@
         count(1) AS "value"
         FROM
         ccm_event_incident a
-        <include refid="ccmEventIncidentJoins"/>
+        LEFT JOIN sys_area a20 ON a20.id = a.case_place AND a20.type = 7
         <include refid="ccmEventIncidentJoinsCaseGrad"/>
         LEFT JOIN sys_area community ON community.id = a20.parent_id
         LEFT JOIN sys_area street ON street.id = community.parent_id
@@ -938,6 +938,75 @@
 			) DESC
 		LIMIT 10
 	</select>
+
+    <select id="queryTopTenJieDao" resultType="com.arjjs.ccm.tool.EchartType">
+        SELECT
+        FORMAT( sum( result.status = '02' ) * 100 / count( result.status ), 2 ) AS value,
+        result.jiedaoname as type
+        FROM
+        (
+        SELECT
+        t.`status` as status,
+        a6.parent_id AS jiedao,
+        a5.`name` AS jiedaoname
+        FROM
+        ccm_event_incident t
+        RIGHT JOIN sys_area a7 ON t.case_place = a7.id
+        AND a7.type = 7
+        AND a7.del_flag = 0
+        LEFT JOIN sys_area a6 ON a7.parent_id = a6.id
+        LEFT JOIN sys_area a5 ON a6.parent_id = a5.id
+        LEFT JOIN sys_area a4 ON a5.parent_id = a4.id
+        WHERE
+        t.del_flag = 0
+        AND (
+        t.happen_date &gt;= date_format( DATE_SUB( curdate( ), INTERVAL 0 MONTH ), '%Y-%m' )
+        AND t.happen_date &lt; date_format( DATE_SUB( curdate( ), INTERVAL - 1 MONTH ), '%Y-%m' )
+        )
+        GROUP BY
+        t.case_place
+        ) result
+        GROUP BY
+        result.jiedao
+        ORDER BY
+        value DESC
+        LIMIT 10
+    </select>
+
+    <select id="queryTopTenQuXian" resultType="com.arjjs.ccm.tool.EchartType">
+        SELECT
+        FORMAT( sum( result.STATUS = '02' ) * 100 / count( result.STATUS ), 2 ) AS value,
+        result.quxianname AS type
+        FROM
+        (
+        SELECT
+        t.`status` AS STATUS,
+        a5.parent_id AS quxian,
+        a4.`name` AS quxianname
+        FROM
+        ccm_event_incident t
+        RIGHT JOIN sys_area a7 ON t.case_place = a7.id
+        AND a7.type = 7
+        AND a7.del_flag = 0
+        LEFT JOIN sys_area a6 ON a7.parent_id = a6.id
+        LEFT JOIN sys_area a5 ON a6.parent_id = a5.id
+        LEFT JOIN sys_area a4 ON a5.parent_id = a4.id
+        WHERE
+        t.del_flag = 0
+        AND (
+        t.happen_date &gt;= date_format( DATE_SUB( curdate( ), INTERVAL 0 MONTH ), '%Y-%m' )
+        AND t.happen_date &lt; date_format( DATE_SUB( curdate( ), INTERVAL - 1 MONTH ), '%Y-%m' )
+        )
+        GROUP BY
+        t.case_place
+        ) result
+        GROUP BY
+        result.quxian
+        ORDER BY
+        value DESC
+        LIMIT 10
+    </select>
+
 
     <select id="findSolveByMon" resultType="com.arjjs.ccm.tool.EchartType">
         SELECT

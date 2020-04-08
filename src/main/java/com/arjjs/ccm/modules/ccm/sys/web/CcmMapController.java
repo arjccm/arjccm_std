@@ -39,6 +39,8 @@ import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.place.religion.entity.CcmPlaceReligion;
 import com.arjjs.ccm.modules.ccm.place.religion.service.CcmPlaceReligionService;
+import com.arjjs.ccm.modules.ccm.report.entity.CcmPeopleAmount;
+import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
@@ -73,12 +75,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * Controller
- * 
+ *
  * @author arj
  * @version 2018-01-20
  */
@@ -167,6 +170,10 @@ public class CcmMapController extends BaseController {
 	@Autowired
 	private CcmOrgComPopService ccmOrgComPopService;
 
+	// 实际采集人数
+	@Autowired
+	private CcmPeopleAmountService ccmPeopleAmountService;
+
 
 	private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -180,11 +187,11 @@ public class CcmMapController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "deviceiveMap")
 	public GeoJSON deviceiveMap(CcmDevice ccmDevice,@RequestParam(required = false) String ids, Model model) {
-		
+
 		if(StringUtils.isNotEmpty(ids)) {
 			ccmDevice.setMore1("a.id in("+ids+")");
 			}
-		
+
 		// 查询地图视频信息
 		List<CcmDevice> ccmdevicelist = ccmDeviceService.findList(ccmDevice);
 		// 返回对象
@@ -473,7 +480,7 @@ public class CcmMapController extends BaseController {
 		return geoJSON;
 	}
 
-	
+
 	/**
 	 * @see 生成区域地图信息-区域图
 	 * @param ccmHouseBuildmanage
@@ -484,7 +491,7 @@ public class CcmMapController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "orgAreaMap")
 	public GeoJSON orgAreaMap(@RequestParam(required = false) String type, Model model,@RequestParam(required = false) String ids) {
-		
+
 		// 创建相关查询对象
 		CcmOrgArea ccmorgareaDto1 = new CcmOrgArea();
 		CcmOrgArea ccmorgareaDto2 = new CcmOrgArea();
@@ -496,15 +503,15 @@ public class CcmMapController extends BaseController {
 			ccmorgareaDto1.setMore1("a.area_id in("+ids+")");
 			ccmorgareaDto2.setMore1("a.area_id in("+ids+")");
 			ccmorgareaDto5.setMore1("a.area_id in("+ids+")");
-			
-			
+
+
 			}
 
 			ccmorgareaDto1.setUserArea(userArea);
 			ccmorgareaDto2.setUserArea(userArea);
 			ccmorgareaDto5.setUserArea(userArea);
-		
-		
+
+
 		// 区域信息
 		List<CcmOrgArea> OrgArealist1 = new ArrayList<>();
 		// 网格信息
@@ -576,6 +583,8 @@ public class CcmMapController extends BaseController {
 		GeoJSON geoJSON = new GeoJSON();
 		List<Features> featureList = new ArrayList<Features>();
 
+		DecimalFormat df = new DecimalFormat("0.00");
+
 		// 社区数组
 		for (CcmOrgArea orgarea : OrgArealist1) {
 			// 特征,属性
@@ -595,7 +604,42 @@ public class CcmMapController extends BaseController {
 			map_P.put("性别", orgarea.getSex());
 			map_P.put("政治面貌", DictUtils.getDictLabel(orgarea.getPolitics(), "sys_ccm_poli_stat", ""));
 			map_P.put("手机号码", orgarea.getTelephone());
-			map_P.put("人口", orgarea.getMannum() + "");
+
+			// 实际采集人口
+			CcmPeopleAmount ccmPeopleAmount = new CcmPeopleAmount();
+			// area_id赋值
+			ccmPeopleAmount.setArea(orgarea.getArea());
+
+			CcmPeopleAmount collectionData = ccmPeopleAmountService.queryCollectionNum(ccmPeopleAmount);
+			Integer actual;
+
+			if (null == collectionData) {
+				actual = 0;
+			} else {
+				if (null == collectionData.getPersonAmount()) {
+					collectionData.setPersonAmount(0);
+				}
+				if (null == collectionData.getOverseaAmount()) {
+					collectionData.setOverseaAmount(0);
+				}
+				if (null == collectionData.getFloatAmount()) {
+					collectionData.setFloatAmount(0);
+				}
+				if (null == collectionData.getUnsettleAmount()) {
+					collectionData.setUnsettleAmount(0);
+				}
+
+				actual = collectionData.getPersonAmount() + collectionData.getOverseaAmount() + collectionData.getFloatAmount() + collectionData.getUnsettleAmount();
+			}
+
+
+			if (null == orgarea.getMannum() || 0 == orgarea.getMannum()) {
+				map_P.put("人口", "暂未录入数据!");
+			} else {
+				float percentage = (float) actual * 100 / orgarea.getMannum();
+				map_P.put("人口", actual + "/" + orgarea.getMannum() + " (" + df.format(percentage) + "%)");
+			}
+
 			map_P.put("重点人员", orgarea.getKeyPersonnelNum() != null ? orgarea.getKeyPersonnelNum().toString() :"");
 			map_P.put("工作人员数量", orgarea.getNetPeoNum() + "");
 			map_P.put("名称", orgarea.getArea().getName());
@@ -661,7 +705,42 @@ public class CcmMapController extends BaseController {
 			map_P.put("性别", orgarea.getSex());
 			map_P.put("政治面貌", DictUtils.getDictLabel(orgarea.getPolitics(), "sys_ccm_poli_stat", ""));
 			map_P.put("手机号码", orgarea.getTelephone());
-			map_P.put("人口", orgarea.getMannum() + "");
+
+			// 实际采集人口
+			CcmPeopleAmount ccmPeopleAmount = new CcmPeopleAmount();
+			// area_id赋值
+			ccmPeopleAmount.setArea(orgarea.getArea());
+
+			CcmPeopleAmount collectionData = ccmPeopleAmountService.queryCollectionNum(ccmPeopleAmount);
+			Integer actual;
+
+			if (null == collectionData) {
+				actual = 0;
+			} else {
+				if (null == collectionData.getPersonAmount()) {
+					collectionData.setPersonAmount(0);
+				}
+				if (null == collectionData.getOverseaAmount()) {
+					collectionData.setOverseaAmount(0);
+				}
+				if (null == collectionData.getFloatAmount()) {
+					collectionData.setFloatAmount(0);
+				}
+				if (null == collectionData.getUnsettleAmount()) {
+					collectionData.setUnsettleAmount(0);
+				}
+
+				actual = collectionData.getPersonAmount() + collectionData.getOverseaAmount() + collectionData.getFloatAmount() + collectionData.getUnsettleAmount();
+			}
+
+
+			if (null == orgarea.getMannum() || 0 == orgarea.getMannum()) {
+				map_P.put("人口", "暂未录入数据!");
+			} else {
+				float percentage = (float) actual * 100 / orgarea.getMannum();
+				map_P.put("人口", actual + "/" + orgarea.getMannum() + " (" + df.format(percentage) + "%)");
+			}
+
 			map_P.put("重点人员", orgarea.getKeyPersonnelNum() != null ? orgarea.getKeyPersonnelNum().toString() :"");
 			map_P.put("工作人员数量", orgarea.getNetPeoNum() + "");
 			map_P.put("名称", orgarea.getArea().getName());
@@ -707,7 +786,7 @@ public class CcmMapController extends BaseController {
 			geometry.setCoordinates(CoordinateslistR);
 
 		}
-		
+
 		// 街道数组
 		for (CcmOrgArea orgarea : OrgArealist5) {
 			// 特征,属性
@@ -727,8 +806,43 @@ public class CcmMapController extends BaseController {
 			map_P.put("性别", orgarea.getSex());
 			map_P.put("政治面貌", DictUtils.getDictLabel(orgarea.getPolitics(), "sys_ccm_poli_stat", ""));
 			map_P.put("手机号码", orgarea.getTelephone());
-			map_P.put("人口", orgarea.getMannum() + "");
 			map_P.put("所属层级", "4");
+
+			// 实际采集人口
+			CcmPeopleAmount ccmPeopleAmount = new CcmPeopleAmount();
+			// area_id赋值
+			ccmPeopleAmount.setArea(orgarea.getArea());
+
+			CcmPeopleAmount collectionData = ccmPeopleAmountService.queryCollectionNum(ccmPeopleAmount);
+			Integer actual;
+
+			if (null == collectionData) {
+				actual = 0;
+			} else {
+				if (null == collectionData.getPersonAmount()) {
+					collectionData.setPersonAmount(0);
+				}
+				if (null == collectionData.getOverseaAmount()) {
+					collectionData.setOverseaAmount(0);
+				}
+				if (null == collectionData.getFloatAmount()) {
+					collectionData.setFloatAmount(0);
+				}
+				if (null == collectionData.getUnsettleAmount()) {
+					collectionData.setUnsettleAmount(0);
+				}
+
+				actual = collectionData.getPersonAmount() + collectionData.getOverseaAmount() + collectionData.getFloatAmount() + collectionData.getUnsettleAmount();
+			}
+
+
+			if (null == orgarea.getMannum() || 0 == orgarea.getMannum()) {
+				map_P.put("人口", "暂未录入数据!");
+			} else {
+				float percentage = (float) actual * 100 / orgarea.getMannum();
+				map_P.put("人口", actual + "/" + orgarea.getMannum() + " (" + df.format(percentage) + "%)");
+			}
+
 			map_P.put("重点人员", orgarea.getKeyPersonnelNum() != null ? orgarea.getKeyPersonnelNum().toString() :"");
 			map_P.put("工作人员数量", orgarea.getNetPeoNum() + "");
 			map_P.put("名称", orgarea.getArea().getName());
@@ -796,7 +910,7 @@ public class CcmMapController extends BaseController {
 	public GeoJSON ccmOrgNpseMap(@RequestParam(required = false) String type,@RequestParam(required = false) String ids, Model model) {
 		// 返回学校类型
 		CcmHouseSchoolrim ccmHouseSchoolrimDto = new CcmHouseSchoolrim();
-		
+
 		// 1:安全生产重点场所,2:消防生产重点场所 ,3:治安重点场所
 		// 4:物流安全重点场所,5:其他重点场所 ,6:学校信息
 		List<CcmHouseSchoolrim> Schoolrimlist = new ArrayList<>();
@@ -824,7 +938,7 @@ public class CcmMapController extends BaseController {
 			if(StringUtils.isNotEmpty(ids)) {
 				ccmOrgNpseDto.setMore1("a.id in("+ids+")");
 				}
-			
+
 			ccmOrgNpseList = ccmOrgNpseService.findList(ccmOrgNpseDto);
 		}
 
@@ -1068,7 +1182,7 @@ public class CcmMapController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "eventIncidentMap")
 	public GeoJSON eventIncidentMap(Model model) {
-        
+
 		// 获取相关的事件查询对象
 		CcmEventIncident ccmEventIncidentDto = new CcmEventIncident();
 		Area userArea=UserUtils.getUser().getOffice().getArea();
@@ -1263,7 +1377,7 @@ public class CcmMapController extends BaseController {
 	public GeoJSON cityComponentsMap(@RequestParam(required = false) String type,@RequestParam(required = false) String ids,Model model) {
 		// 城市部件 查询对象
 		CcmCityComponents ccmCityComponents =CommUtil.ReturnCityComponentsType(type);
-		
+
 		if(StringUtils.isNotEmpty(ids)) {
 			ccmCityComponents.setMore1("a.id in("+ids+")");
 			}
@@ -1419,9 +1533,9 @@ public class CcmMapController extends BaseController {
 		}
 		// 土地结果list
 		List<CcmLand> ccmLandList = ccmLandService.findList(ccmLand);
-		
-		
-		
+
+
+
 		// 生成GeoJson 对象
 		GeoJSON geoJSON = new GeoJSON();
 		List<Features> featureList = new ArrayList<Features>();
@@ -1492,7 +1606,7 @@ public class CcmMapController extends BaseController {
 		geoJSON.setFeatures(featureList);
 		return geoJSON;
 	}
-	
+
 
 	/**
 	 * @see 移动设备信息-点位图
@@ -1504,7 +1618,7 @@ public class CcmMapController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "deviceMobileMap")
 	public GeoJSON deviceMobileMap(CcmMobileDevice ccmMobileDevice, Model model) {
-		
+
 		Area userArea=UserUtils.getUser().getOffice().getArea();
 		ccmMobileDevice.setUserArea(userArea);
 		// 查询地图视频信息
@@ -1605,7 +1719,7 @@ public class CcmMapController extends BaseController {
 			Date endDate = new Date();
 			ccmTracingpoint.setEndCurDate(endDate);
 		}
-		
+
 		List<CcmTracingpoint> tlist = ccmTracingpointService.findList(ccmTracingpoint);
 		if(tlist.size()>0){
 			result.setReturnFlag(true);
@@ -1617,7 +1731,7 @@ public class CcmMapController extends BaseController {
 		// 输出结果
 		return result;
 	}
-	
+
 	/**
 	 * @see 告警日志移动设备点位历史轨迹
 	 * @param CcmMobileDevice
@@ -1657,13 +1771,13 @@ public class CcmMapController extends BaseController {
 			endDate.setSeconds(59);
 			ccmTracingpoint.setEndCurDate(endDate);
 		}
-		
+
 		List<CcmTracingpoint> tlist = ccmTracingpointService.findList(ccmTracingpoint);//轨迹点位
 		if(tlist.size()>0){
 			for(int i=tlist.size()-1;i>=0;i--){
 				points += tlist.get(i).getAreaPoint()+";";//轨迹点位
 			}
-			
+
 		}
 		CcmMobileDevice ccmMobileDevice = new CcmMobileDevice();//电子围栏
 		ccmMobileDevice.setDeviceId(ccmTracingpoint.getDeviceId());
@@ -1675,12 +1789,12 @@ public class CcmMapController extends BaseController {
 		list.add(points);//轨迹点位
 		list.add(areas);//电子围栏
 		list.add(areasPoint);//电子围栏中心点
-		
+
 		// 输出结果
 		return list;
 	}
-	
-	
+
+
 	/**
 	 * @see 巡逻路线
 	 * @param CcmMobileDevice
@@ -1699,7 +1813,7 @@ public class CcmMapController extends BaseController {
 		for(EchartType l:list){
 			if(!type.equals(l.getType())){
 				if("暂无数据".equals(type)){
-					
+
 				}else{
 					EchartType echartType = new EchartType();
 					echartType.setType(type);
@@ -1723,17 +1837,17 @@ public class CcmMapController extends BaseController {
 			echartType.setValue(point);
 		}
 		map.add(echartType);
-		
+
 		// 输出结果
 		JsonConfig config = new JsonConfig();
 		config.setExcludes(new String[]{});
 		config.setIgnoreDefaultExcludes(false);  //设置默认忽略
 		config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		String listString = JSONArray.fromObject(map,config).toString(); //
-		
+
 		return listString;
 	}
-	
+
 	/**
 	 * @see 定时请求事件处理状态
 	 * @param CcmEventCasedeal
@@ -1753,7 +1867,7 @@ public class CcmMapController extends BaseController {
 		config.setIgnoreDefaultExcludes(false);  //设置默认忽略
 		config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		String string = JSONArray.fromObject(ccmEventCasedeal,config).toString(); //
-		
+
 		return string;
 	}
 	/**
@@ -2468,7 +2582,7 @@ public class CcmMapController extends BaseController {
 		if (pageSize != 0) {
 			pageIn.setPageSize(pageSize);
 		}
-		
+
 		// 查询地图事件信息
 		List<CcmEventIncident> ccmEventIncidentlist = new ArrayList<CcmEventIncident>();
 		//可以选择父节点查询
@@ -2508,7 +2622,7 @@ public class CcmMapController extends BaseController {
 			map_P.put("事发地址", eventIncident.getHappenPlace());
 			map_P.put("主犯姓名", eventIncident.getCulName());
 			map_P.put("事件ID", eventIncident.getId());
-			
+
 			properties.addInfo(map_P);
 			featureList.add(featureDto);
 			featureDto.setProperties(properties);
@@ -2550,7 +2664,7 @@ public class CcmMapController extends BaseController {
 		}
 		return geoJSON;
 	}
-    
+
 
 	/**
 	 * @see 生成人口地图信息-点位图（分页模式）
@@ -2651,13 +2765,13 @@ public class CcmMapController extends BaseController {
 //		}
 
 
-		
+
 		// 返回对象
 		GeoJSON geoJSON = new GeoJSON();
 		geoJSON.setCount(page.getCount());
 		geoJSON.setPageNo(page.getPageNo());
 		geoJSON.setPageSize(page.getPageSize());
-		
+
 		List<Features> featureList = new ArrayList<Features>();
 		// 数组
 		for (CcmPeople people : ccmPeopleNewList) {
@@ -2740,7 +2854,7 @@ public class CcmMapController extends BaseController {
                 + " 毫秒");
 		return geoJSON;
 	}
-	
+
 
 	/**
 	 * @see 生成场所地图信息-点位图（分页模式）
@@ -2760,7 +2874,7 @@ public class CcmMapController extends BaseController {
 		if (pageSize != 0) {
 			pageIn.setPageSize(pageSize);
 		}
-		
+
 		// 查询地图场所信息
 		List<CcmBasePlace> ccmBasePlacelist = new ArrayList<CcmBasePlace>();
 		//可以选择父节点查询
@@ -2774,14 +2888,14 @@ public class CcmMapController extends BaseController {
 		}
 		Page<CcmBasePlace> page = ccmBasePlaceService.findPage(pageIn, ccmBasePlace);
 		ccmBasePlacelist = page.getList();
-		
+
 		// 返回对象
 		GeoJSON geoJSON = new GeoJSON();
 
 		geoJSON.setCount(page.getCount());
 		geoJSON.setPageNo(page.getPageNo());
 		geoJSON.setPageSize(page.getPageSize());
-		
+
 		List<Features> featureList = new ArrayList<Features>();
 		// 数组
 		for (CcmBasePlace basePlace : ccmBasePlacelist) {
@@ -2837,7 +2951,7 @@ public class CcmMapController extends BaseController {
 			}
 			// 装配点位
 			geometry.setCoordinates(Coordinateslist);
-			
+
 		}
 		// 添加数据
 		geoJSON.setFeatures(featureList);
@@ -2887,13 +3001,13 @@ public class CcmMapController extends BaseController {
 		}
 		Page<CcmDevice> page = ccmDeviceService.findPage(pageIn, ccmDevice);
 		ccmdevicelist = page.getList();
-		
+
 		// 返回对象
 		GeoJSON geoJSON = new GeoJSON();
 		geoJSON.setCount(page.getCount());
 		geoJSON.setPageNo(page.getPageNo());
 		geoJSON.setPageSize(page.getPageSize());
-		
+
 		List<Features> featureList = new ArrayList<Features>();
 		// 数组
 		for (CcmDevice device : ccmdevicelist) {
@@ -3012,13 +3126,13 @@ public class CcmMapController extends BaseController {
                 + " 毫秒");
 
         ccmHouseBuildmanageList = page.getList();
-		
+
 		// 返回对象
 		GeoJSON geoJSON = new GeoJSON();
 		geoJSON.setCount(page.getCount());
 		geoJSON.setPageNo(page.getPageNo());
 		geoJSON.setPageSize(page.getPageSize());
-		
+
 		List<Features> featureList = new ArrayList<Features>();
 		// 数组
         Long t3 = System.currentTimeMillis();
@@ -3058,7 +3172,7 @@ public class CcmMapController extends BaseController {
 				// 图形中心点
 				properties.setCoordinateCentre(centpoint);
 			}
-			
+
 			List<String> Coordinateslist = new ArrayList<>();
 			// 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
 			String[] a = (StringUtils.isEmpty(Buildmanage.getAreaPoint()) ? (",") : Buildmanage.getAreaPoint()).split(",");
@@ -3072,7 +3186,7 @@ public class CcmMapController extends BaseController {
 			}
 			// 装配点位
 			geometry.setCoordinates(Coordinateslist);
-			
+
 		}
         long t4 = System.currentTimeMillis(); // 排序后取得当前时间
         Calendar c1 = Calendar.getInstance();
@@ -3094,7 +3208,7 @@ public class CcmMapController extends BaseController {
                 + " 毫秒");
 		return geoJSON;
 	}
-	
+
 
 	/**
 	 * @see 地图-数据采集对比统计
@@ -3109,7 +3223,7 @@ public class CcmMapController extends BaseController {
 			HttpServletRequest request, HttpServletResponse response) {
 
 		SysArea sysArea = new SysArea();
-		
+
 		//无指定区域id时，则查询系统级别下的各区域的数据：系统应用级别：1街道；2区县；3市
 		//存在指定区域时则查询该区域下级区域的数据（统计子区域）
 		List<SysArea> areaList = new ArrayList<SysArea>();
@@ -3144,10 +3258,10 @@ public class CcmMapController extends BaseController {
 			areaIds.append("'").append(sysArea2.getId()).append("',");
 		}
 		areaIds.append("'')");
-		
+
 		sysArea.setMore1(areaIds.toString());
 		List<SysArea> list =  new ArrayList<SysArea>();
-		
+
 		if ("1".equals(queryType)) {//1建筑物楼栋
 			list = sysAreaService.queryBuildCollectStat(sysArea);
 		} else if ("2".equals(queryType)) {//2房屋
@@ -3159,7 +3273,7 @@ public class CcmMapController extends BaseController {
 		} else if ("5".equals(queryType)) {//5场所
 			list = sysAreaService.queryPlaceCollectStat(sysArea);
 		}
-		
+
 		GeoJSON geoJSON = new GeoJSON();
 		List<Features> featureList = new ArrayList<Features>();
 		for (SysArea bean : list) {
@@ -3404,7 +3518,7 @@ public class CcmMapController extends BaseController {
 			model.addAttribute("deviceBroadcast", deviceBroad);
 			return "ccm/broadcast/deviceUpload";
 		}
-		
+
 	}
 
 	/**

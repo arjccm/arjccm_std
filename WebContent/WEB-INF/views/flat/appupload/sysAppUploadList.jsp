@@ -62,25 +62,25 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="sysAppUpload">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/appupload/sysAppUpload/form?id=${sysAppUpload.id}">
+				<td><a href="${ctx}/appupload/sysAppUpload/form?id=${sysAppUpload.id}">
 					${sysAppUpload.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(sysAppUpload.type, 'app_os_type', '')}
 				</td>
 				<td style="height: auto;white-space: normal;">
 					${sysAppUpload.url}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${sysAppUpload.version}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${sysAppUpload.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td style="height: auto;white-space: normal;">
 					${sysAppUpload.remarks}
 				</td>
-				<shiro:hasPermission name="appupload:sysAppUpload:edit"><td style="height: 50px">
+				<shiro:hasPermission name="appupload:sysAppUpload:edit"><td>
 					<shiro:hasPermission name="appupload:sysAppUpload:edit"><a class="btnList" href="${ctx}/appupload/sysAppUpload/form?id=${sysAppUpload.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a></shiro:hasPermission>
 					<shiro:hasPermission name="appupload:sysAppUpload:edit"><a class="btnList" href="${ctx}/appupload/sysAppUpload/delete?id=${sysAppUpload.id}" onclick="return confirmx('确认要删除该App 上传记录表吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a></shiro:hasPermission>
 				</td></shiro:hasPermission>

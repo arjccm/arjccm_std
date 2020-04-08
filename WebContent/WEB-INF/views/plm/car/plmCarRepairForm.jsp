@@ -44,7 +44,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/car/plmCarRepair/">维保单位列表</a></li>
 		<li class="active"><a href="${ctx}/car/plmCarRepair/form?id=${plmCarRepair.id}">维保单位<shiro:hasPermission name="car:plmCarRepair:edit">${not empty plmCarRepair.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="car:plmCarRepair:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" style="margin: 30px 200px;" modelAttribute="plmCarRepair" action="${ctx}/car/plmCarRepair/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

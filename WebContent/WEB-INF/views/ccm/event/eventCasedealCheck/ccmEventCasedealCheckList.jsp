@@ -106,7 +106,7 @@
 			<c:forEach items="${page.list}" var="ccmEventCasedeal">
 				<tr>
 				
-					<td style="height: 50px">
+					<td>
 						<c:if test="${ccmEventCasedeal.objType eq 'ccm_event_incident'}">
 							<a onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/detail?id=${ccmEventCasedeal.objId}', '案事件详情', '1100px', '700px')">
 								${ccmEventCasedeal.caseName} </a>
@@ -125,15 +125,15 @@
 						</c:if>
 					</td>
 					 
-					<td style="height: 50px">
+					<td>
 						${fns:getDictLabel(ccmEventCasedeal.objType, 'ccm_event_obj_table', '')}
 					</td>
-					<td style="height: 50px">
+					<td>
 					<span class="eventScaleCss statusCss-${ccmEventCasedeal.status}">
 						${fns:getDictLabel(ccmEventCasedeal.status, 'ccm_event_status', '')}
 						</span>
 					</td>
-					<td style="height: 50px">
+					<td>
 						${ccmEventCasedeal.handleUser.name}
 					</td>
 					
@@ -152,18 +152,18 @@
 <%--					</td>--%>
 
 					
-					<td style="height: 50px">
+					<td>
 						${fns:getDictLabel(ccmEventCasedeal.isSupervise, 'yes_no', '')}
 					</td>
-					<td style="height: 50px">
+					<td>
 					<span class="eventScaleCss statusCss-${ccmEventCasedeal.handleStatus}">
 						${fns:getDictLabel(ccmEventCasedeal.handleStatus, 'ccm_task_status', '')}
 						</span>
 					</td>
-					<td style="height: 50px">
+					<td>
 						<fmt:formatDate value="${ccmEventCasedeal.checkDate}" pattern="yyyy-MM-dd"/>
 					</td>
-					<td style="height: 50px">
+					<td>
 					<div class="layui-rate" id="layui-rate-${ccmEventCasedeal.id}"></div>
 					<script>
 					layui.use(['rate'], function(){
@@ -183,7 +183,7 @@
 					</script>
 					</td>
 					<shiro:hasPermission name="event:ccmEventCasedealCheck:edit">
-						<td style="height: 50px">
+						<td>
 					
 						<a  class="btnList" 
 							onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedealCheck/form?id=${ccmEventCasedeal.id}','处理', '1100px', '700px')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

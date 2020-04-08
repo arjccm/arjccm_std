@@ -49,6 +49,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<form:form id="inputForm" modelAttribute="plmBorrowMoney" action="${ctx}/travel/plmBorrowMoney/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="procInsId"/>
@@ -122,5 +123,6 @@
 			<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i class="icon-reply"></i>返回</a>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

@@ -42,7 +42,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmFontUser" action="${ctx}/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="loginName"/>

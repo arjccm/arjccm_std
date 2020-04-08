@@ -48,11 +48,11 @@ function countEventAreaData() {
 }
 function showEventArea(data){
 	// 指定图表的配置项和数据
-	option = {
-		title : {
-			text: '事件分区域统计',
-			subtext: '分区域-分类型'
-		},
+	var option = {
+		// title : {
+		// 	text: '事件分区域统计',
+		// 	subtext: '分区域-分类型'
+		// },
 		tooltip : {
 			trigger: 'axis'
 		},
@@ -73,7 +73,16 @@ function showEventArea(data){
 		xAxis : [
 			{
 				type : 'category',
-				data : data["eventAreaNameData"]
+				data : data["eventAreaNameData"],
+				axisLine:{
+					lineStyle:{
+						color:"#455865",
+						width:1
+					}
+				},
+				nameTextStyle:{
+					color:"#ffffff"
+				}
 			}
 		],
 		yAxis : [

@@ -12,6 +12,7 @@ import com.arjjs.ccm.modules.flat.analyst.entity.Count;
 import com.arjjs.ccm.tool.EchartType;
 import com.arjjs.ccm.tool.SearchTab;
 import com.arjjs.ccm.tool.SearchTabMore;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -115,5 +116,8 @@ public interface CcmOrgNpseDao extends CrudDao<CcmOrgNpse> {
 
 	//实有单位个数
 	public Integer unitsCount();
+
+	// 查询该工商号是否已添加
+	List<CcmOrgNpse> findByCompId(@Param("compId")String compId,@Param("id")String id);
 
 }

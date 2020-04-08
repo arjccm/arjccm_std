@@ -55,16 +55,16 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmUserGroup">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/rest/ccmUserGroup/form?id=${ccmUserGroup.id}">
+				<td><a href="${ctx}/rest/ccmUserGroup/form?id=${ccmUserGroup.id}">
 					${ccmUserGroup.groupname}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmUserGroup.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td class="tp" style="height: 50px">
 					${ccmUserGroup.remarks}
 				</td>
-				<shiro:hasPermission name="rest:ccmUserGroup:edit"><td style="height: 50px">
+				<shiro:hasPermission name="rest:ccmUserGroup:edit"><td>
 					<a class="btnList" href="${ctx}/rest/ccmUserGroup/form?id=${ccmUserGroup.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/rest/ccmUserGroup/delete?id=${ccmUserGroup.id}" onclick="return confirmx('确认要删除该用户好友分组吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i> </a>
 				

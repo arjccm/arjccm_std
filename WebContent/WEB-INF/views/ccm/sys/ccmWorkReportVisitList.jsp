@@ -77,10 +77,12 @@
 <%--			<li class="clearfix"></li>--%>
 		</ul>
 		<div class="clearfix pull-right btn-box">
+            <shiro:hasPermission name="sys:ccmWorkReportVisit:export">
 			<!-- 导出 -->
 			<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;">
 				<i></i><span style="font-size: 12px">导出</span>
 			</a>
+            </shiro:hasPermission>
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;">
 				<i></i><span style="font-size: 12px">查询</span>  </a>
 		</div>
@@ -106,24 +108,24 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="ccmWorkReport">
 				<tr>
-					<td style="height: 50px">${ccmWorkReport.name}</td>
+					<td>${ccmWorkReport.name}</td>
 					
-					<td style="height: 50px">${ccmWorkReport.createName}
+					<td>${ccmWorkReport.createName}
 					</td>
 					
-					<td style="height: 50px">${ccmWorkReport.title}</td>
+					<td>${ccmWorkReport.title}</td>
 							
-					<td style="height: 50px"><fmt:formatDate value="${ccmWorkReport.beginDate}"
+					<td><fmt:formatDate value="${ccmWorkReport.beginDate}"
 							pattern="yyyy-MM-dd" /> - <fmt:formatDate
 							value="${ccmWorkReport.endDate}" pattern="yyyy-MM-dd" /></td>
 
-					<td style="height: 50px"><fmt:formatDate value="${ccmWorkReport.createDate}"
+					<td><fmt:formatDate value="${ccmWorkReport.createDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 
-					<td style="height: 50px">${ccmWorkReport.place}</td>
+					<td>${ccmWorkReport.place}</td>
                     
 					<shiro:hasPermission name="sys:ccmWorkReport:edit">
-						<td style="height: 50px"><a class="btnList"
+						<td><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/sys/ccmWorkReport/Jobform?id=${ccmWorkReport.id}', '日常工作详情', '900px', '700px')"
 							title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							<a class="btnList"

@@ -51,9 +51,9 @@
 		</ul>
 
 
-	<div class="clearfix pull-right btn-box">
+	<div id="searchFormbtn-box2" class="clearfix pull-right ">
 
-			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;">
+			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: left">
 				<i></i><span style="font-size: 12px">查询</span> </a>
 
 	</div>
@@ -68,31 +68,31 @@
 				<th>隶属单位名称</th>
 				<th>隶属单位负责人</th>
 				<th>隶属单位负责人联系方式</th>
-				<shiro:hasPermission name="line:ccmLineProtect:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmLineProtect">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}">
+				<td><a href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}">
 					${ccmLineProtect.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmLineProtect.lineType, 'ccm_line_type', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmLineProtect.dangGrade, 'ccm_secu_grade', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmLineProtect.compName}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmLineProtect.compPrinName}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmLineProtect.compPrinTel}
 				</td>
-				<td style="height: 50px">
+				<td>
 				<shiro:hasPermission name="line:ccmLineProtect:edit">
     				<a class="btnList" href="${ctx}/line/ccmLineProtect/form?id=${ccmLineProtect.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/line/ccmLineProtect/delete?id=${ccmLineProtect.id}" onclick="return confirmx('确认要删除该护路护线吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>

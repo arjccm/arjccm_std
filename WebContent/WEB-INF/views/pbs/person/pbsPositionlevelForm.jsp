@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/person/pbsPositionlevel/">职位信息列表</a></li>
 		<li class="active"><a href="${ctx}/person/pbsPositionlevel/form?id=${pbsPositionlevel.id}">职位信息<shiro:hasPermission name="person:pbsPositionlevel:edit">${not empty pbsPositionlevel.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="person:pbsPositionlevel:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsPositionlevel" action="${ctx}/person/pbsPositionlevel/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

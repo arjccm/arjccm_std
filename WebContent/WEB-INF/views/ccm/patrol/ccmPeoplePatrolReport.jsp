@@ -146,7 +146,11 @@
             trigger: 'axis'
         },
         legend: {
-            data: ['...', '...']
+            data: ['...', '...'],
+            textStyle:{
+                color: 'CDCDC1'//字体颜色
+            },
+
         },
         toolbox: {
             show: true,

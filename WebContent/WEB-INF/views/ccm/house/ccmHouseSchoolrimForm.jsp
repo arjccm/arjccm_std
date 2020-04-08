@@ -91,6 +91,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/house/ccmHouseSchoolrim/list">学校列表</a></li>
 		<li class="active"><a class="nav-head" href="${ctx}/house/ccmHouseSchoolrim/form?id=${ccmHouseSchoolrim.id}">学校<shiro:hasPermission name="house:ccmHouseSchoolrim:edit">${not empty ccmHouseSchoolrim.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="house:ccmHouseSchoolrim:edit">查看</shiro:lacksPermission></a></li>
@@ -332,7 +333,7 @@
 			<shiro:hasPermission name="house:ccmHouseSchoolrim:edit"><input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
-	</form:form><br>
+	</form:form>
 	<c:if test="${documentNumber > 0}">
 		<shiro:hasPermission name="log:ccmLogTail:edit">
 			<h4>&nbsp;跟踪信息：</h4>
@@ -345,5 +346,6 @@
 			<div class="fishBone2" ></div>
 		</shiro:lacksPermission> 
 	</c:if>
+        </div>
 </body>
 </html>

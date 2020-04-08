@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/special/kpiSpecialScore/">专项考核列表</a></li>
 		<li class="active"><a href="${ctx}/special/kpiSpecialScore/form?id=${kpiSpecialScore.id}">专项考核<shiro:hasPermission name="special:kpiSpecialScore:edit">${not empty kpiSpecialScore.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="special:kpiSpecialScore:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="kpiSpecialScore" action="${ctx}/special/kpiSpecialScore/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

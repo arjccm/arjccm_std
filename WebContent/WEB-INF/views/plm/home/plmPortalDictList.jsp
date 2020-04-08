@@ -75,18 +75,18 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="plmPortalDict">
 				<tr>
-					<td style="height: 50px"><a
+					<td><a
 						href="${ctx}/home/plmPortalDict/form?id=${plmPortalDict.id}">
 							${plmPortalDict.title} </a></td>
-					<td style="height: 50px">${plmPortalDict.connect}</td>
-					<td style="height: 50px">${plmPortalDict.content}</td>
-					<td style="height: 50px">${plmPortalDict.line}</td>
-					<td style="height: 50px">${fns:getDictLabel(plmPortalDict.extend1, 'index_sys_type', '无')}
+					<td>${plmPortalDict.connect}</td>
+					<td>${plmPortalDict.content}</td>
+					<td>${plmPortalDict.line}</td>
+					<td>${fns:getDictLabel(plmPortalDict.extend1, 'index_sys_type', '无')}
 					</td>
-					<td style="height: 50px"><fmt:formatDate value="${plmPortalDict.updateDate}"
+					<td><fmt:formatDate value="${plmPortalDict.updateDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="home:plmPortalDict:edit">
-						<td style="height: 50px"><a class="btnList"
+						<td><a class="btnList"
 							href="${ctx}/home/plmPortalDict/form?id=${plmPortalDict.id}"
 							title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/home/plmPortalDict/delete?id=${plmPortalDict.id}"

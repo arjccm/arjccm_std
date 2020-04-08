@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../../../modules/map/css/publicinstitutions.css" />
 <link rel="stylesheet" href="../../../flat/commandDispatch/css/jquery.eeyellow.Timeline.css" />
 <link rel="stylesheet" href="../../../ol/ol.css" />
-<link rel="stylesheet" href="../../../bootstrap/2.3.1/css_black/bootstrap.min.css" />
+<!--<link rel="stylesheet" href="../../../bootstrap/2.3.1/css_black/bootstrap.min.css" />-->
 <link rel="stylesheet" href="../../../modules/map/js/draw/css/p-ol3.min.css" />
 <link rel="stylesheet" href="../../../modules/map/css/mapFlat.css" />
 <link rel="stylesheet" href="../../../jquery-ztree/3.5.12/css/zTreeStyle/zTreeStyle.min.css" />
@@ -47,15 +47,15 @@
 <script>
 if($.cookie('theme')==undefined){
 	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
-	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
+	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
 }else if($.cookie('theme')=='gradient'){
 	$('head').append('<link href="../../../bootstrap/2.3.1/css_cerulean/custom.css" type="text/css" rel="stylesheet">');
-	$('head').append('<link href="../../../bootstrap/2.3.1/css_cerulean/custom.css" type="text/css" rel="stylesheet">');
+	$('head').append('<link href="../../../bootstrap/2.3.1/css_cerulean/bootstrap.min.css" type="text/css" rel="stylesheet">');
 }else if($.cookie('theme')=='black'){
 	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
-	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
+	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
 }
-	$(document).ready(function() {
+	$(document).ready(function() { 
 		var type = "bph_alarm_info_state";
 		$.post(ctx+'/sys/sysDicts/findAlarmInfoByTypeName',{'type':type},function(data){
 			var sysDict = JSON.parse(data);

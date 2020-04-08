@@ -47,7 +47,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/test/testDataMain/">业务数据主表列表</a></li>
 		<li class="active"><a href="${ctx}/test/testDataMain/form?id=${testDataMain.id}">业务数据主表<shiro:hasPermission name="test:testDataMain:edit">${not empty testDataMain.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="test:testDataMain:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="testDataMain" action="${ctx}/test/testDataMain/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

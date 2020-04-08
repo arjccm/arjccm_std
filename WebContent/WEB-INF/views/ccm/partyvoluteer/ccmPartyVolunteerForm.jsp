@@ -33,7 +33,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmPartyVolunteer" action="${ctx}/partyvoluteer/ccmPartyVolunteer/save" method="post" class="form-horizontal">
 	<div>
 			<form:hidden path="id"/>

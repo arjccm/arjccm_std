@@ -147,7 +147,7 @@
         }
     </script>
     <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
-</head><br/>
+</head>
 <body>
 
 <ul class="nav nav-tabs" >
@@ -193,11 +193,11 @@
         </table>
     </div>
 </div>
-<div id="right" style="width: 85%;height: 876px;">
+<div id="right"  style="width: 85%;height: 876px;">
 <div>
 <form:form id="inputForm" modelAttribute="ccmEventIncident"
            action="${ctx}/event/ccmEventIncident/save" method="post"
-           class="form-horizontal">
+           class="form-horizontal" cssStyle="background: #0e2a4c!important;">
     <form:hidden path="id"/>
     <form:hidden path="otherId"/>
     <sys:message content="${message}"/>
@@ -640,8 +640,7 @@
         </div>
         <br/>
     </div>
-</div>
-<br/>
+
 </div>
 <script>
     var cardType = $.attr("test1");

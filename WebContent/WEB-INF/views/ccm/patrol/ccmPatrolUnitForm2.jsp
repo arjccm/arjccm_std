@@ -28,7 +28,7 @@
 	</script>
 </head>
 <body>
-	<br/>
+<div class="back-list clearfix">
 	<form:form id="inputForm" modelAttribute="ccmPatrolUnit" action="${ctx}/patrol/ccmPatrolUnit/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
@@ -97,5 +97,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

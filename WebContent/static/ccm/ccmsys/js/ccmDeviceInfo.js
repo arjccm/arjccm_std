@@ -33,6 +33,7 @@ $(function() {
 		// 借用导出action
 		$("#searchForm").attr("action", ctx + "/ccmsys/ccmDevice/updateDeviceArea");
 		$("#searchForm").submit();
+		layer.msg("监控设备区域已调整！",{time:1500});
 		// 还原查询action 
 		$("#searchForm").attr("action", ctx + "/ccmsys/ccmDevice/");
 	});

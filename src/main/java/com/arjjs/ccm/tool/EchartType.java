@@ -14,6 +14,25 @@ public class EchartType {
 
 	private String value3;
 
+	private Integer num;
+	private String name;
+
+	public Integer getNum() {
+		return num;
+	}
+
+	public void setNum(Integer num) {
+		this.num = num;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getValue2() {
 		return value2;
 	}

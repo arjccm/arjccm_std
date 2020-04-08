@@ -354,9 +354,9 @@
                         },0)
                     }
                 });
-                $("#TodayEvent .layui-tab-title li").css({
-                    "color":"#fff"
-                })
+                // $("#TodayEvent .layui-tab-title li").css({
+                //     "color":"#fff"
+                // })
 
                 setTimeout(function(){
                     $(".xiaoxikuang").css({

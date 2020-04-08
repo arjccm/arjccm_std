@@ -197,7 +197,7 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="ccmEventCasedeal">
 				<tr>
-					<td style="height: 50px">
+					<td>
 						<c:if test="${ccmEventCasedeal.objType eq 'ccm_event_incident'}">
 							<a onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/detail?id=${ccmEventCasedeal.objId}', '案事件详情', '1100px', '700px')">
 								${ccmEventCasedeal.caseName} </a>
@@ -216,7 +216,7 @@
 						</c:if>
 					</td>
 					 
-					<td style="height: 50px">
+					<td>
 						${fns:getDictLabel(ccmEventCasedeal.objType, 'ccm_event_obj_table', '')}
 					</td>
 <%--					<td>--%>
@@ -224,12 +224,12 @@
 <%--						${fns:getDictLabel(ccmEventCasedeal.status, 'ccm_event_status', '')}--%>
 <%--						</span>--%>
 <%--					</td>--%>
-					<td style="height: 50px">
+					<td>
 						${ccmEventCasedeal.handleUser.name}
 					</td>
 					
 					
-					<td style="height: 50px">
+					<td>
 						<c:choose>
 							<c:when test="${ccmEventCasedeal.isExtension eq '1'}">
 								<span style="color:#F00">
@@ -243,10 +243,10 @@
 					</td>
 					
 					
-					<td style="height: 50px">
+					<td>
 						${fns:getDictLabel(ccmEventCasedeal.isSupervise, 'yes_no', '')}
 					</td>
-					<td style="height: 50px">
+					<td>
 						<span class="eventScaleCss statusCss-${ccmEventCasedeal.handleStatus}">
 							${fns:getDictLabel(ccmEventCasedeal.handleStatus, 'ccm_task_status', '')}
 						</span>
@@ -257,7 +257,7 @@
 							<%--							</span>--%>
 							<%--						</c:if>--%>
 					</td>
-                    <td style="height: 50px">
+                    <td>
 					<shiro:hasPermission name="event:ccmEventCasedeal:edit">
 
 						<c:if test="${ccmEventCasedeal.handleStatus ne '01'}">
@@ -293,10 +293,10 @@
 	</table>
 	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </ul>
-<style>
+<%--<style>
 	a.btn{
 		width: auto !important;
 	}
-</style>
+</style>--%>
 </body>
 </html>

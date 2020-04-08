@@ -79,58 +79,58 @@
 		<tbody>
 			<c:forEach items="${simList}" var="CcmEventIncidentSimilarty">
 				<tr>
-					<td style="height: 50px">
+					<td>
 
                         <a
 						onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${CcmEventIncidentSimilarty.eventA.id}', '详情', '1200px', '600px')">${CcmEventIncidentSimilarty.eventA.caseName}</a></td>
-					<td style="height: 50px">${CcmEventIncidentSimilarty.eventA.reportPerson}</td>
-					<td style="height: 50px"><fmt:formatDate
+					<td>${CcmEventIncidentSimilarty.eventA.reportPerson}</td>
+					<td><fmt:formatDate
 							value="${CcmEventIncidentSimilarty.eventA.happenDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td style="height: 50px"><a
+					<td><a
 						onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/form/1?id=${CcmEventIncidentSimilarty.eventB.id}', '详情', '1200px', '600px')">${CcmEventIncidentSimilarty.eventB.caseName}</a></td>
-					<td style="height: 50px">${CcmEventIncidentSimilarty.eventB.reportPerson}</td>
-					<td style="height: 50px"><fmt:formatDate
+					<td>${CcmEventIncidentSimilarty.eventB.reportPerson}</td>
+					<td><fmt:formatDate
 							value="${CcmEventIncidentSimilarty.eventB.happenDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<c:choose>
 						<c:when
 							test="${CcmEventIncidentSimilarty.titleSim >= 90.0 && CcmEventIncidentSimilarty.titleSim <= 100.0}">
-							<td style="height: 50px"><font size="3" color="#d41e24">${CcmEventIncidentSimilarty.titleSim}%</font></td>
+							<td><font size="3" color="#d41e24">${CcmEventIncidentSimilarty.titleSim}%</font></td>
 						</c:when>
 						<c:when
 							test="${CcmEventIncidentSimilarty.titleSim >= 80.0 && CcmEventIncidentSimilarty.titleSim < 90.0}">
-							<td style="height: 50px"><font size="3" color="orange">${CcmEventIncidentSimilarty.titleSim}%</font></td>
+							<td><font size="3" color="orange">${CcmEventIncidentSimilarty.titleSim}%</font></td>
 						</c:when>
 						<c:when
 							test="${CcmEventIncidentSimilarty.titleSim >= 70.0 && CcmEventIncidentSimilarty.titleSim < 80.0}">
-							<td style="height: 50px"><font size="3" color="#3bb4f2">${CcmEventIncidentSimilarty.titleSim}%</font></td>
+							<td><font size="3" color="#3bb4f2">${CcmEventIncidentSimilarty.titleSim}%</font></td>
 						</c:when>
 						<c:otherwise>
-							<td style="height: 50px"><font size="3" color="#5CACEE">${CcmEventIncidentSimilarty.titleSim}%</font></td>
+							<td><font size="3" color="#5CACEE">${CcmEventIncidentSimilarty.titleSim}%</font></td>
 						</c:otherwise>
 					</c:choose>
 
 					<c:choose>
 						<c:when
 							test="${CcmEventIncidentSimilarty.contentSim >= 90.0 && CcmEventIncidentSimilarty.contentSim <= 100.0}">
-							<td style="height: 50px"><font size="3" color="#d41e24">${CcmEventIncidentSimilarty.contentSim}%</font></td>
+							<td><font size="3" color="#d41e24">${CcmEventIncidentSimilarty.contentSim}%</font></td>
 						</c:when>
 						<c:when
 							test="${CcmEventIncidentSimilarty.contentSim >= 80.0 && CcmEventIncidentSimilarty.contentSim < 90.0}">
-							<td style="height: 50px"><font size="3" color="orange">${CcmEventIncidentSimilarty.contentSim}%</font></td>
+							<td><font size="3" color="orange">${CcmEventIncidentSimilarty.contentSim}%</font></td>
 						</c:when>
 						<c:when
 							test="${CcmEventIncidentSimilarty.contentSim >= 70.0 && CcmEventIncidentSimilarty.contentSim < 80.0}">
-							<td style="height: 50px"><font size="3" color="#3bb4f2">${CcmEventIncidentSimilarty.contentSim}%</font></td>
+							<td><font size="3" color="#3bb4f2">${CcmEventIncidentSimilarty.contentSim}%</font></td>
 						</c:when>
 						<c:otherwise>
-							<td style="height: 50px"><font size="3" color="#5CACEE">${CcmEventIncidentSimilarty.contentSim}%</font></td>
+							<td><font size="3" color="#5CACEE">${CcmEventIncidentSimilarty.contentSim}%</font></td>
 						</c:otherwise>
 					</c:choose>
 
 					<shiro:hasPermission name="preview:ccmEventIncidentPreview:edit">
-						<td style="height: 50px"><a class="btnList"
+						<td><a class="btnList"
 							onclick="parent.LayerDialog('${ctx}/preview/ccmEventIncidentPreview/check/form?idA=${CcmEventIncidentSimilarty.eventA.id}&idB=${CcmEventIncidentSimilarty.eventB.id}', '对比', '1200px', '600px')"
 							title="对比"><i class="icon-eye-close"></i></a>
 					</shiro:hasPermission>

@@ -37,7 +37,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/car/plmCarViolation/addFromUseList?carUseId=${plmCarViolation.carUseId}">违章记录列表</a></li>
 		<li class="active"><a href="${ctx}/car/plmCarViolation/addform?id=${plmCarViolation.id}&carUseId=${plmCarViolation.carUseId}">违章记录<shiro:hasPermission name="car:plmCarViolation:edit">${not empty plmCarViolation.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="car:plmCarViolation:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="plmCarViolation" action="${ctx}/car/plmCarViolation/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="carUseId"/>

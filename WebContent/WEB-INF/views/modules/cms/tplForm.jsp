@@ -30,7 +30,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a>模板管理</a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="template" action="${ctx}/cms/template/save" method="post" class="form-horizontal">
         <form:hidden path="name" />
 		<sys:message content="${message}"/>

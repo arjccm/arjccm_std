@@ -39,7 +39,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/logistics/plmRoom/?category=01">会议室列表</a></li>
 		<li class="active"><a class="nav-head" href="${ctx}/logistics/plmRoom/form?id=${plmRoom.id}&category=01">会议室<shiro:hasPermission name="logistics:plmRoom:edit">${not empty plmRoom.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="logistics:plmRoom:edit">查看</shiro:lacksPermission></a></li>
@@ -113,5 +113,6 @@
 			<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i ></i>返 回</a>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/audit/riskAudit/">重大事项审核列表</a></li>
 		<li class="active"><a href="${ctx}/audit/riskAudit/form?id=${riskAudit.id}">重大事项审核<shiro:hasPermission name="audit:riskAudit:edit">${not empty riskAudit.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="audit:riskAudit:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskAudit" action="" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

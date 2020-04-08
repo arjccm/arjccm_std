@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/proposal/ccmDatabaseProposal/">公告建议管理列表</a></li>
 		<li class="active"><a href="${ctx}/proposal/ccmDatabaseProposal/form?id=${ccmDatabaseProposal.id}">公告建议管理<shiro:hasPermission name="proposal:ccmDatabaseProposal:edit">${not empty ccmDatabaseProposal.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="proposal:ccmDatabaseProposal:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmDatabaseProposal" action="${ctx}/proposal/ccmDatabaseProposal/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

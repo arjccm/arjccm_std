@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/storage/plmCheckDetial/">盘点详细列表</a></li>
 		<li class="active"><a href="${ctx}/storage/plmCheckDetial/form?id=${plmCheckDetial.id}">盘点详细<shiro:hasPermission name="storage:plmCheckDetial:edit">${not empty plmCheckDetial.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="storage:plmCheckDetial:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="plmCheckDetial" action="${ctx}/storage/plmCheckDetial/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

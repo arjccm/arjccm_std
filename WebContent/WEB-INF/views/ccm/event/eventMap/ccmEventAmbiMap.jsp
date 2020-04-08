@@ -53,13 +53,13 @@
 			<c:if test="${level eq '1'}">
 			<li><label>所属区域：</label>
 				<sys:treeselect id="area" name="area.id" value="${ccmEventAmbi.area.id}" labelName="area.name" labelValue="${ccmEventAmbi.area.name}"
-					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-small" allowClear="true" notAllowSelectParent="false"/>
+					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-medium" allowClear="true" notAllowSelectParent="false"/>
 			</li>
 			</c:if>
 			<c:if test="${level eq '2'}">
 			<li><label>所属区域：</label>
 				<sys:treeselect id="area" name="area.id" value="${ccmEventAmbi.area.id}" labelName="area.name" labelValue="${ccmEventAmbi.area.name}"
-					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-small" allowClear="true" notAllowSelectParent="false"/>
+					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-medium" allowClear="true" notAllowSelectParent="false"/>
 			</li>
 			</c:if>
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li> -->

@@ -30,7 +30,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/car/plmCar/">车辆列表</a></li>
 		<li class="active"><a href="${ctx}/car/plmCar/form?id=${plmCar.id}">车辆<shiro:hasPermission name="car:plmCar:edit">${not empty plmCar.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="car:plmCar:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="plmCar" action="${ctx}/car/plmCar/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

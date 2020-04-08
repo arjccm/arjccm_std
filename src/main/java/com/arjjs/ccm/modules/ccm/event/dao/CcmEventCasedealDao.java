@@ -49,4 +49,5 @@ public interface CcmEventCasedealDao extends CrudDao<CcmEventCasedeal> {
 
     int deletegrade(String id);
 
+    String getHappenPlace(@Param("cid") String cid);
 }

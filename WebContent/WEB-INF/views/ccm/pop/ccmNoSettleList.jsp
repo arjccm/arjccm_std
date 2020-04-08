@@ -197,7 +197,7 @@
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: left;">
 				<i></i><span style="font-size: 12px">查询</span>  </a>
 			<shiro:hasPermission
-					name="sys:user:edit">
+					name="pop:ccmWork:export">
 				<!-- <input id="btnExport" class="btn btn-primary" type="button"
 				value="导出" />
 				<input id="btnImport" class="btn btn-primary" type="button"
@@ -221,7 +221,7 @@
 				<th>性别</th>
 				<th>出生日期</th>
 				<th>公民身份号码</th>
-				<shiro:hasPermission name="pop:ccmWork:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

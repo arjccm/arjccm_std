@@ -38,7 +38,7 @@
 	<%-- <ul class="nav nav-tabs">
 		<li><a href="${ctx}/house/ccmHouseDispute/">闹事行凶报复嫌疑列表</a></li>
 		<li class="active"><a href="${ctx}/house/ccmHouseDispute/form?id=${ccmHouseDispute.id}">闹事行凶报复嫌疑<shiro:hasPermission name="house:ccmHouseDispute:edit">${not empty ccmHouseDispute.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="house:ccmHouseDispute:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/> --%> 
+	</ul> --%>
 	<form:form id="inputForm" modelAttribute="ccmHouseDispute" action="${ctx}/house/ccmHouseDispute/save" method="post" class="form-horizontal">
 		<form:hidden path="peopleId" value="${ccmPeople.id}" />
 		<sys:message content="${message}"/>		

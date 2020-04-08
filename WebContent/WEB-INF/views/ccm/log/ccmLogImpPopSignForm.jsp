@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/log/ccmLogImpPopSign/">重点人员签到记录列表</a></li>
 		<li class="active"><a href="${ctx}/log/ccmLogImpPopSign/form?id=${ccmLogImpPopSign.id}">重点人员签到记录<shiro:hasPermission name="log:ccmLogImpPopSign:edit">${not empty ccmLogImpPopSign.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="log:ccmLogImpPopSign:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmLogImpPopSign" action="${ctx}/log/ccmLogImpPopSign/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

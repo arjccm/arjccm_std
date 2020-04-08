@@ -78,25 +78,25 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmLand">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/citycomponents/ccmLand/form?id=${ccmLand.id}">
+				<td><a href="${ctx}/citycomponents/ccmLand/form?id=${ccmLand.id}">
 					${ccmLand.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmLand.code}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmLand.area.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmLand.landArea}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmLand.landUsage, 'ccm_land_usage', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmLand.type, 'ccm_land_type', '')}
 				</td>
-				<shiro:hasPermission name="citycomponents:ccmLand:edit"><td style="height: 50px">
+				<shiro:hasPermission name="citycomponents:ccmLand:edit"><td>
     				<a class="btnList" href="${ctx}/citycomponents/ccmLand/form?id=${ccmLand.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/citycomponents/ccmLand/delete?id=${ccmLand.id}" onclick="return confirmx('确认要删除该土地吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

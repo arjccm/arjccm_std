@@ -71,6 +71,7 @@
     <sys:message content="${message}"/>
     <table id="contentTable"
            class="table table-striped table-bordered table-condensed table-gradient">
+
         <thead>
         <tr>
             <!-- <th>跟踪对象</th> -->
@@ -90,13 +91,13 @@
                     <%-- <td><a href="${ctx}/log/ccmLogTail/formPro?id=${ccmLogTail.id}">
                             ${fns:getDictLabel(ccmLogTail.relevanceTable, 'ccm_log_tail_table', '')}
                     </a></td> --%>
-                <td style="height: 50px">${fns:getDictLabel(ccmLogTail.type, 'ccm_log_tail_type', '')}
+                <td>${fns:getDictLabel(ccmLogTail.type, 'ccm_log_tail_type', '')}
                 </td>
-                <td style="height: 50px">${ccmLogTail.tailCase}</td>
-                <td style="height: 50px">${ccmLogTail.tailPerson}</td>
-                <td style="height: 50px"><fmt:formatDate value="${ccmLogTail.tailTime}"
+                <td>${ccmLogTail.tailCase}</td>
+                <td>${ccmLogTail.tailPerson}</td>
+                <td><fmt:formatDate value="${ccmLogTail.tailTime}"
                                                          pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                <td style="height: 50px">${ccmLogTail.more1}</td>
+                <td>${ccmLogTail.more1}</td>
                 <shiro:hasPermission name="log:ccmLogTail:edit">
                     <td><a class="btnList"
                            href="${ctx}/log/ccmLogTail/formPro?id=${ccmLogTail.id}&relevance_id=${ccmPeople.id}&relevance_table=ccm_people"
@@ -112,5 +113,15 @@
     </table>
     <div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </div>
+<script type="text/javascript">
+    $(document).ready(
+        $(function () {
+            var elementsByClassName = window.parent.document.getElementById("LayerDialog");
+            if(elementsByClassName!=null&&elementsByClassName!=undefined){
+
+                $(".back-list").css({"box-shadow":"none","background":"none"})
+            }
+        }))
+</script>
 </body>
 </html>

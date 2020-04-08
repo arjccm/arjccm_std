@@ -8,16 +8,23 @@
 <script type="text/javascript">
 	var bjckid = "";//选中窗口id
 </script>
+    <style>
+        #bodydiv{
+            margin-left: 15px;
+            width: calc(100vw - 15px);
+        }
+    </style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<form class="breadcrumb form-search" style="margin-top: 8px;">
 		<ul class="ul-form ">
 			<li class="clearfix">
 				<label>
-					<input id="" class="btn btn-primary addck" type="button" value="新增窗口" onclick="bjnr()" />
+					<input  class="btn btn-primary addck" type="button" value="新增窗口" onclick="bjnr()" />
 				</label>
 				<label>
-					<input id="" class="btn btn-primary" type="button" value="删除窗口" onclick="del()" />
+					<input  class="btn btn-primary" type="button" value="删除窗口" onclick="del()" />
 				</label>
 			</li>
 		</ul>
@@ -149,5 +156,6 @@
 			$("#bodydiv").height($(window).height() - 60);
 		})
 	</script>
+</div>
 </body>
 </html>

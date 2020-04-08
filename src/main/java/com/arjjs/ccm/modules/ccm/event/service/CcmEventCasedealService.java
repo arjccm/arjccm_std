@@ -135,4 +135,9 @@ public class CcmEventCasedealService extends CrudService<CcmEventCasedealDao, Cc
 	public List<CcmEventCasedeal> detectDeadline() {
 		return ccmEventCasedealDao.detectDeadline();
 	}
+
+	//事件发生地详址
+    public String getHappenPlace(String cid) {
+		return ccmEventCasedealDao.getHappenPlace(cid);
+    }
 }

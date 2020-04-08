@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>${fns:getConfig('productName')}</title>
+    <link rel="icon" type="image/x-icon" href="${ctxStatic}/images/logo.ico"/>
 <meta name="decorator" content="blank" />
 
 <style type="text/css">
@@ -68,7 +69,7 @@
 }
 
 .navbar .nav>li>a {
-	padding: 14px 15px 14px;
+	padding: 12px 15px;
 }
 
 .navbar .brand {
@@ -593,7 +594,7 @@ function addTab($this, refresh) {
 					</script>
 				</c:if> --%>
 				<div class="nav-collapse">
-					<ul id="menu" class="nav pgwMenuCustom" 
+					<ul id="menu" class="nav pgwMenuCustom"
 						style="*white-space: nowrap; float: none;">
 						<c:set var="pid" value="${pid}" />
 						<c:set var="firstMenu" value="false" />

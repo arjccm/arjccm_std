@@ -54,7 +54,7 @@
         </ul>
     </form:form>
     <sys:message content="${message}"/>
-    <table id="contentTable" class="table table-striped table-bordered table-condensed">
+    <table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
         <thead>
         <tr>
             <th>被实施地区</th>
@@ -98,7 +98,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <div class="pagination">${page}</div>
+    <div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </div>
 </body>
 </html>

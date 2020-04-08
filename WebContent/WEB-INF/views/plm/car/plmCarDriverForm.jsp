@@ -28,7 +28,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/car/plmCarDriver/">司机列表</a></li>
 		<li class="active"><a href="${ctx}/car/plmCarDriver/form?id=${plmCarDriver.id}">司机<shiro:hasPermission name="car:plmCarDriver:edit">${not empty plmCarDriver.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="car:plmCarDriver:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" style="margin: 30px 200px;" modelAttribute="plmCarDriver" action="${ctx}/car/plmCarDriver/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>	

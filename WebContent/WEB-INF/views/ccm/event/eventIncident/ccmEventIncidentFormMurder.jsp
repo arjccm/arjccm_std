@@ -85,6 +85,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/event/ccmEventIncident/listMurder">数据列表</a></li>
 		<li class="active"><a class="nav-head"
@@ -466,7 +467,7 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回"
 				onclick="history.go(-1)" />
 		</div>
-	</form:form><br>
+	</form:form>
 	<c:if test="${documentNumber > 0}">
 		<shiro:hasPermission name="log:ccmLogTail:edit">
 			<h4 class="hide2">&nbsp;跟踪信息：</h4>
@@ -479,5 +480,6 @@
 			<div class="fishBone2 hide2" ></div>
 		</shiro:lacksPermission> 
 	</c:if>
+</div>
 </body>
 </html>

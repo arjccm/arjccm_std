@@ -2005,12 +2005,11 @@ $(function () {
         html += '<div class="layer-common-header" style="top: 1px; left: 36px;display: inline-block; padding: 5px 30px; border: 1px solid #0343a3; transform: skew(-20deg); background: #0343a3;color: #fff; font-weight: bold; position: absolute; z-index: 9999;">'
         html += '<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">网格信息</div>'
         html += '</div>'
-        html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; width: 100%;height: 100%;  border: 1px solid #10559a;background: url('
+        html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; width: 100%;height: 100%;  border: 0px solid #10559a;background: url('
             + ctxStatic
             + '/common/index/images/showbg.png);background-size: 100% 100%;">'
-        html += '<div style="width:80%;height:332px; padding: 10px;margin:auto;background: url('
-            + ctxStatic
-            + '/common/index/images/pop-bg1.png);background-size: 100% 100%;">'
+
+        html += '<div class="div_font_type2" style="width:80%;height:332px; padding: 10px;margin:auto;">'
         html += '<table style="width:100%;    margin-left: 35px; margin-top: 9px;">'
         html += '<tr>'
         html += '<td colspan="2" style=" text-align: left;"><img src="'
@@ -2144,7 +2143,7 @@ $(function () {
         html += '<div class="layer-common-header" style="top: 1px; left: 36px;display: inline-block; padding: 5px 30px; border: 1px solid #0343a3; transform: skew(-20deg); background: #0343a3;color: #fff; font-weight: bold; position: absolute; z-index: 9999;">'
         html += '<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">处置信息</div>'
         html += '</div>'
-        html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; width: 100%;height: 100%;overflow-y: auto;  border: 1px solid #10559a;background: url('
+        html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; width: 100%;height: 100%;overflow-y: auto;  border: 0px solid #10559a;background: url('
             + ctxStatic
             + '/common/index/images/showbg.png);background-size: 100% 100%;">'
         html += '<div style="width:100%;height:302px;padding-top:10px">'
@@ -2154,9 +2153,7 @@ $(function () {
         if (len > 0) {
             for (var i = 0; i < len; i++) {
                 html += '<div class="span3" style="height:150px">'
-                html += '<div class="" style="width:100%;height:100%;background: url('
-                    + ctxStatic
-                    + '/common/index/images/pop-bg.png);background-size: 100% 100%;">'
+                html += '<div class="div_font_type3" style="width:100%;height:100%;background-size: 100% 100%;">'
                 html += '<table style="width: 100%;">'
                 html += '<tr>'
                 html += '<td style="height:60px;padding:5px;text-align: center;" colspan="2"><img src="'
@@ -2173,9 +2170,7 @@ $(function () {
                 html += '</tr>'
                 html += '<tr>'
                 html += '<td>'
-                html += '<span id="TodayLiveDialog" style="margin-left: 30px;cursor: pointer;background: url('
-                    + ctxStatic
-                    + '/common/index/images/header-right.png) no-repeat center; background-size: 100% 100%; float: left;display:block;  width: 83px; height: 28px; text-align: center;line-height: 28px;" onclick="TodayHandleDialog(\''
+                html += '<span id="TodayLiveDialog" class="div_font_type4" style="margin-left: 30px;cursor: pointer background-size: 100% 100%; float: left;display:block;  width: 83px; height: 28px; text-align: center;line-height: 28px;" onclick="TodayHandleDialog(\''
                     + nameArr[i].id + '\')">处置</span>'
                 html += '</td>'
                 html += '</tr>'
@@ -2264,11 +2259,11 @@ $(function () {
 
         var eventIncidentId = $('#eventIncidentId').val()
         var html = "";
-        html += '<div class="layer-common" style="width: 96.3%;height: 92.3%; position: relative;padding: 14px 0 0 0;">'
+        html += '<div class="layer-common layer-common2 " style="width: 96.3%;height: 92.3%; position: relative;padding: 14px 0 0 0;">'
         html += '<div class="layer-common-header" style="top: 1px; left: 36px;display: inline-block; padding: 5px 30px; border: 1px solid #0343a3; transform: skew(-20deg); background: #0343a3;color: #fff; font-weight: bold; position: absolute; z-index: 9999;">'
         html += '<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">处置信息</div>'
         html += '</div>'
-        html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; width: 100%;height: 100%;  overflow-y: auto;  border: 1px solid #10559a;background: url('
+        html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; width: 100%;height: 100%;  overflow-y: auto;  border: 0px solid #10559a;background: url('
             + ctxStatic
             + '/common/index/images/showbg.png);background-size: 100% 100%;">'
         html += '	<iframe  name="mainFrame" src="'
@@ -2277,14 +2272,14 @@ $(function () {
             + eventIncidentId
             + '&handleUser.id='
             + userId
-            + '" style="overflow: visible;" scrolling="yes" frameborder="no" width="770" height="450" allowfullscreen="true" allowtransparency="true"></iframe>'
+            + '" style="overflow: visible;  scrolling="yes" frameborder="no" width="770" height="451" allowfullscreen="true" allowtransparency="true"></iframe>'
         html += '</div>'
         html += '</div>'
         TodayHandleDialogLayer = layer.open({
             type: 1,
             shade: false,
             title: false, // 不显示标题
-            area: ["800px", "480px"],
+            area: ["820px", "500px"],
             move: '.layer-common-header',
             resize: false,
             fixed: false,
@@ -2366,7 +2361,7 @@ $(function () {
         html += '<div class="layer-common-header" style="top: 1px; left: 36px;display: inline-block; padding: 5px 30px; border: 1px solid #0343a3; transform: skew(-20deg); background: #0343a3;color: #fff; font-weight: bold; position: absolute; z-index: 9999;">';
         html += '<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">处置结果</div>';
         html += '</div>';
-        html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; width: 98%;height: 97%;  border: 1px solid #10559a;background: url('
+        html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; width: 98%;height: 97%;  border: 0px solid #10559a;background: url('
             + ctxStatic
             + '/common/index/images/showbg.png);background-size: 100% 100%;">';
         html += '<div style="width:90%;height:250px; padding: 10px;">';
@@ -2463,7 +2458,7 @@ $(function () {
         html += '<div class="layer-common-header" style="top: 1px; left: 36px;display: inline-block; padding: 5px 30px; border: 1px solid #0343a3; transform: skew(-20deg); background: #0343a3;color: #fff; font-weight: bold; position: absolute; z-index: 9999;">'
         html += '<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">事件信息</div>'
         html += '</div>'
-        html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px;    overflow-y: auto; width: 100%;height: 100%;  border: 1px solid #10559a;background: url('
+        html += '<div class="layer-show  layer-common-center " style="padding: 10px 10px 5px 10px;    overflow-y: auto; width: 100%;height: 100%;  border: 0px solid #10559a;background: url('
             + ctxStatic
             + '/common/index/images/showbg.png);background-size: 100% 100%;">'
         html += '<div style="width:49%;height:302px; padding: 10px;float:left">'
@@ -2570,15 +2565,9 @@ $(function () {
         html += '</table>'
         html += '</div>'
         html += '<div style="width:100%;">'
-        html += '<span id="TodayVideo"  style="margin-left: 90px;cursor: pointer;background: url('
-            + ctxStatic
-            + '/common/index/images/header-right.png) no-repeat center; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">视频</span>'
-        html += '<span id="TodayCommunity" style="margin-left: 50px;cursor: pointer;background: url('
-            + ctxStatic
-            + '/common/index/images/header-right.png) no-repeat center; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">网格</span>'
-        html += '<span id="TodayHandle"  style="margin-left: 50px;cursor: pointer;background: url('
-            + ctxStatic
-            + '/common/index/images/header-right.png) no-repeat center; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">处置</span>'
+        html += '<span id="TodayVideo" class="div_font_type4"  style="margin-left: 90px;cursor: pointer; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">视频</span>'
+        html += '<span id="TodayCommunity" class="div_font_type4" style="margin-left: 50px;cursor: pointer;background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">网格</span>'
+        html += '<span id="TodayHandle"  class="div_font_type4" style="margin-left: 50px;cursor: pointer; background-size: 100% 100%; float: left;display:block;  width: 77px; height: 28px; text-align: center;line-height: 28px;">处置</span>'
         // html+='<span id="TodayLive" style="margin-left: 30px;cursor:
         // pointer;background:
         // url('+ctxStatic+'/common/index/images/header-right.png) no-repeat

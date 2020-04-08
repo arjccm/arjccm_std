@@ -50,7 +50,7 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="kpiSchemeKpi">
 			<tr>
-				<td style="height: 50px">
+				<td>
 					${kpiSchemeKpi.schemeName}
 				</td>
 				<c:if test="${kpiSchemeKpi.schemeState eq '1'}">
@@ -60,16 +60,16 @@
 					<td style='color:red;height: 50px'>${fns:getDictLabel(kpiSchemeKpi.schemeState, 'kpi_scheme_state', '')}</td>
 				</c:if>
 				<c:if test="${kpiSchemeKpi.schemeState eq '' or empty kpiSchemeKpi.schemeState or kpiSchemeKpi.schemeState eq '0' }">
-					<td style="height: 50px">${fns:getDictLabel(kpiSchemeKpi.schemeState, 'kpi_scheme_state', '')}</td>
+					<td>${fns:getDictLabel(kpiSchemeKpi.schemeState, 'kpi_scheme_state', '')}</td>
 				</c:if>
-				<td style="height: 50px">
+				<td>
 					${kpiSchemeKpi.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${kpiSchemeKpi.score}
 				</td>
 				
-				<shiro:hasPermission name="score:kpiSchemeScoreSubjective:edit"><td style="height: 50px">
+				<shiro:hasPermission name="score:kpiSchemeScoreSubjective:edit"><td>
 					<c:if test="${kpiSchemeKpi.schemeState != '' and not empty kpiSchemeKpi.schemeState and kpiSchemeKpi.schemeState != '0' }">
 						<a class="btnList" href="${ctx}/score/kpiSchemeScoreSubjective/form?id=${kpiSchemeKpi.id}" title="数据录入"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					</c:if>

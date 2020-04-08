@@ -28,10 +28,11 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/cms/cmsBbsArticle/">网上论坛帖子列表</a></li>
 		<li class="active"><a href="${ctx}/cms/cmsBbsArticle/form?id=${cmsBbsArticle.id}">网上论坛帖子<shiro:hasPermission name="cms:cmsBbsArticle:edit">${not empty cmsBbsArticle.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="cms:cmsBbsArticle:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="cmsBbsArticle" action="${ctx}/cms/cmsBbsArticle/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
@@ -61,5 +62,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

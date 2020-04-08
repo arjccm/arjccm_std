@@ -56,7 +56,7 @@
 	<ul class="nav nav-tabs">
 		
 		
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" target="_parent" modelAttribute="plmStatisticsDetail" action="${ctx}/statistics/plmStatistics/saveFan" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="parent"/>

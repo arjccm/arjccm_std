@@ -1855,7 +1855,7 @@ public class CcmPeopleController extends BaseController {
 
 	// 从房屋查看人员表单
 	@RequestMapping(value = "getPeoFromByHouse")
-	public String getPeoFromByHouse(@RequestParam(required = false) String type,
+	public String getPeoFromByHouse(@RequestParam(required = false) String ptype,
 			@RequestParam(required = false) String houseId, @RequestParam(required = false) String buildId,
 			CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response, Model model) {
 		// 人员查询Dto
@@ -1914,9 +1914,9 @@ public class CcmPeopleController extends BaseController {
 		model.addAttribute("houseId", houseId);
 		model.addAttribute("buildId", buildId);
 		// 通过 房屋进行查询
-		if (("house").equals(type)) {
+		if (("house").equals(ptype)) {
 			model.addAttribute("PeoTypeBy", "ByHouse");
-		}else if(("hire").equals(type)) {
+		}else if(("hire").equals(ptype)) {
 			model.addAttribute("PeoTypeBy", "ByHouse_hire");
 		} else {
 			model.addAttribute("PeoTypeBy", "ByHouse_Build");

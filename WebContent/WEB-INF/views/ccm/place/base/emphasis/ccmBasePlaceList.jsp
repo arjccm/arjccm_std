@@ -119,24 +119,26 @@
 				<tr>
 					<td width="200px"><img src="${ccmBasePlace.placePicture}"
 										   class="pic-size pimg"/></td>
-					<td style="height: 50px"><a onclick="parent.LayerDialog('${ctx}/place/ccmBasePlace/emphasisForm?id=${ccmBasePlace.id}', '编辑', '1200px', '900px')" >
+					<td><a onclick="parent.LayerDialog('${ctx}/place/ccmBasePlace/emphasisForm?id=${ccmBasePlace.id}', '编辑', '1200px', '900px')" >
 							${ccmBasePlace.placeName} </a></td>
-					<td style="height: 50px">${fns:getDictLabel(ccmBasePlace.placeType, 'place_types', '')}</td>
-					<td style="height: 50px">${ccmBasePlace.leaderName}</td>
-					<td style="height: 50px">${ccmBasePlace.leaderContact}</td>
-					<td style="height: 50px">${fns:getDictLabel(ccmBasePlace.relevanceOrg, 'ccm_buss_cate', '')}</td>
-					<td style="height: 50px">${ccmBasePlace.address}</td>
-
+					<td>${fns:getDictLabel(ccmBasePlace.placeType, 'place_types', '')}</td>
+					<td>${ccmBasePlace.leaderName}</td>
+					<td>${ccmBasePlace.leaderContact}</td>
+					<td>${fns:getDictLabel(ccmBasePlace.relevanceOrg, 'ccm_buss_cate', '')}</td>
+					<td>${ccmBasePlace.address}</td>
+                    <td>
 					<shiro:hasPermission name="place:ccmBasePlace:edit">
-						<td style="height: 50px">
+
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/place/ccmBasePlace/emphasisForm?id=${ccmBasePlace.id}', '编辑', '1200px', '650px')" ><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/place/ccmBasePlace/emphasisDelete?id=${ccmBasePlace.id}" onclick="return confirmx('确认要删除该场所信息吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
-						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmBasePlace.id}&relevance_table=ccm_base_place', '记录信息', '800px', '660px')"
+                            </shiro:hasPermission>
+                    <shiro:hasPermission name="log:ccmLogTail:edit">
+                            <a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmBasePlace.id}&relevance_table=ccm_base_place', '记录信息', '800px', '660px')"
 						   title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmBasePlace.id}&relevance_table=ccm_base_place', '添加记录', '800px', '660px')"
 						   title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
-					</td>
 					</shiro:hasPermission>
+                    </td>
 				</tr>
 			</c:forEach>
 		</tbody>

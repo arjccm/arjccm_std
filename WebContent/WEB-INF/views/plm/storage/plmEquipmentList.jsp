@@ -61,13 +61,13 @@
 			<li class="first-line"><label>使用人：</label> <sys:treeselect id="user" name="user.id"
 					value="${plmEquipment.user.id}" labelName="user.name"
 					labelValue="${plmEquipment.user.name}" title="用户"
-					url="/sys/office/treeData?type=3" cssClass="input-select"
+					url="/sys/office/treeData?type=3" cssClass="input-medium"
 					allowClear="true" notAllowSelectParent="true" /></li>
 			<li class="first-line"><label>使用人部门：</label> <sys:treeselect id="userJob"
 					name="userJob.id" value="${plmEquipment.userJob.id}"
 					labelName="userJob.name" labelValue="${plmEquipment.userJob.name}"
 					title="部门" url="/sys/office/treeData?type=2"
-					cssClass="input-select" allowClear="true"
+					cssClass="input-medium" allowClear="true"
 					notAllowSelectParent="true" /></li>
 			<li class="second-line"><label>状态：</label> <form:select path="type"
 					class="input-medium">
@@ -127,22 +127,22 @@
 			<tbody>
 				<c:forEach items="${page.list}" var="plmEquipment">
 					<tr>
-						<td style="height: 50px"><a
+						<td><a
 							href="${ctx}/storage/plmEquipment/form?id=${plmEquipment.id}">
 								${plmEquipment.storage.name} </a></td>
-						<td style="height: 50px">${plmEquipment.name}</td>
-						<td style="height: 50px">${plmEquipment.code}</td>
-						<td style="height: 50px">${plmEquipment.spec}</td>
-						<td style="height: 50px">${fns:getDictLabel(plmEquipment.typeId, 'plm_equipment_type', '')}
+						<td>${plmEquipment.name}</td>
+						<td>${plmEquipment.code}</td>
+						<td>${plmEquipment.spec}</td>
+						<td>${fns:getDictLabel(plmEquipment.typeId, 'plm_equipment_type', '')}
 						</td>
-						<td style="height: 50px">${fns:getDictLabel(plmEquipment.typeChild, 'plm_equipment_type_child', '')}
+						<td>${fns:getDictLabel(plmEquipment.typeChild, 'plm_equipment_type_child', '')}
 						</td>
-						<td style="height: 50px">${plmEquipment.user.name}</td>
-						<td style="height: 50px">${plmEquipment.userJob.name}</td>
-						<td style="height: 50px">${fns:getDictLabel(plmEquipment.type, 'plm_equipment_status', '')}
+						<td>${plmEquipment.user.name}</td>
+						<td>${plmEquipment.userJob.name}</td>
+						<td>${fns:getDictLabel(plmEquipment.type, 'plm_equipment_status', '')}
 						</td>
 						<shiro:hasPermission name="storage:plmEquipment:edit">
-							<td style="height: 50px"><a
+							<td><a
 								href="${ctx}/storage/plmEquipment/form?id=${plmEquipment.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a
 								href="${ctx}/storage/plmEquipment/delete?id=${plmEquipment.id}"

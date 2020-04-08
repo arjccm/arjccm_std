@@ -14,10 +14,11 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/cms/site/select">站点切换</a></li>
 	</ul>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead><tr><th>名称</th><shiro:hasPermission name="cms:view"><th>操作</th></shiro:hasPermission></tr></thead>
 		<tbody>
 		<c:forEach items="${fnc:getSiteList()}" var="site">
@@ -30,6 +31,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

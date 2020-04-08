@@ -30,6 +30,7 @@
 
 </head>
 <body>
+<div class="back-list clearfix">
 <ul class="nav nav-tabs">
     <c:if test="${ccmLogTail.relevanceTable eq 'ccm_sys_workreport'}">
         <li>
@@ -168,5 +169,6 @@
                 onclick="history.go(-1)" /> -->
         </div>
     </form:form></c:if>
+</div>
 </body>
 </html>

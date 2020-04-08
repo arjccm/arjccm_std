@@ -43,16 +43,20 @@
 		$("#searchForm").submit();
 		return false;
 	}
-	function saveImport() {
-		debugger;
-		var s = document.importForm[1][0].files.length;
-		if(s == 0){
-			alert("请选择文件！");
-			return;
-		}else{
-			$("#importForm").submit();
-		}
-	}
+    var isEmpty = true;
+    function saveImport() {
+        if(isEmpty){
+            alert("请选择文件！");
+            return;
+        }else{
+            $("#importForm").submit();
+        }
+    }
+    function changeFalse(_this) {
+        if(_this>0){
+            isEmpty = false;
+        }
+    }
 </script>
 </head>
 <body>
@@ -65,7 +69,7 @@
 			style="padding-left: 20px; text-align: center;"
 			onsubmit="loading('正在导入，请稍等...');">
 			<br /> <input id="uploadFile" name="file" type="file"
-				style="width: 330px" /><br /> <br />
+				style="width: 330px" onchange="changeFalse(this.value.length)" /><br /> <br />
 			<input id="btnImportTemplate"
 				   class="btn btn-primary"  type="button" value="模板下载 " onclick="location.href='${ctxStatic}/template/excel/userTemplate.xlsx'"/>
 			<input id="btnImportSubmit"
@@ -113,8 +117,7 @@
 			<!-- <input id="btnSubmit" class="btn btn-primary"
 				type="submit" value="查询" onclick="return page();" /> -->
 
-			<shiro:hasPermission
-					name="sys:user:edit">
+			<shiro:hasPermission name="sys:user:export">
 				<!-- <input id="btnExport" class="btn btn-primary" type="button"
 				value="导出" />
 				<input id="btnImport" class="btn btn-primary" type="button"
@@ -122,6 +125,7 @@
 <%--				<a href="javascript:;" id="btnImport"  style="width: 49px;display:inline-block;float: right;" class="btn  btn-export ">--%>
 <%--					<i ></i> <span style="font-size: 12px">导入</span>--%>
 <%--				</a>--%>
+
 				<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;">
 					<i></i> <span style="font-size: 12px">导出</span>
 				</a>
@@ -150,16 +154,16 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="user">
 				<tr>
-					<td style="height: 50px">${user.company.name}</td>
-					<td style="height: 50px">${user.office.name}</td>
-					<td style="height: 50px"><a href="${ctx}/sys/user/form?id=${user.id}">${user.loginName}</a></td>
-					<td style="height: 50px">${user.name}</td>
-					<td style="height: 50px">${user.phone}</td>
-					<td style="height: 50px">${user.mobile}</td>
+					<td>${user.company.name}</td>
+					<td>${user.office.name}</td>
+					<td><a href="${ctx}/sys/user/form?id=${user.id}">${user.loginName}</a></td>
+					<td>${user.name}</td>
+					<td>${user.phone}</td>
+					<td>${user.mobile}</td>
 					<%--
 				<td>${user.roleNames}</td> --%>
 					<shiro:hasPermission name="sys:user:edit">
-						<td style="height: 50px"><a class="btnList"
+						<td><a class="btnList"
 							href="${ctx}/sys/user/form?id=${user.id}" title="修改"><i
 								class="iconfont icon-caozuotubiao-xiugai"></i></a> <a class="btnList"
 							href="${ctx}/sys/user/delete?id=${user.id}"

@@ -70,15 +70,15 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="bphPlanInfo" varStatus="status">
 			<tr>
-				<td style="height: 50px">${status.index+1}</td>
+				<td>${status.index+1}</td>
 				<td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;height: 50px;" title="${bphPlanInfo.name}"><a href="${ctx}/planinfo/bphPlanInfo/form?id=${bphPlanInfo.id}">${bphPlanInfo.name}</a></td>
-				<td style="height: 50px">${fns:getDictLabel(bphPlanInfo.isImportant, 'bph_plan_alarm_level', '')}</td>
-				<td style="height: 50px">${fns:getDictLabel(bphPlanInfo.typeCode, 'bph_alarm_info_typecode', '')}</td>
+				<td>${fns:getDictLabel(bphPlanInfo.isImportant, 'bph_plan_alarm_level', '')}</td>
+				<td>${fns:getDictLabel(bphPlanInfo.typeCode, 'bph_alarm_info_typecode', '')}</td>
 				<%-- <td title="${bphPlanInfo.bphStepInfo.name}"><p style="width: 300px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">${bphPlanInfo.bphStepInfo.name}</p></td> --%>
 				<td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;height: 50px" title="${bphPlanInfo.bphStepInfo.name}">${bphPlanInfo.bphStepInfo.name}</td>
 				<%-- <td>${bphPlanInfo.num}</td> --%>
 				<shiro:hasPermission name="planinfo:bphPlanInfo:edit">
-					<td style="height: 50px">
+					<td>
 	    				<a class="btnList" href="${ctx}/planinfo/bphPlanInfo/form?id=${bphPlanInfo.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/planinfo/bphPlanInfo/delete?id=${bphPlanInfo.id}" onclick="return confirmx('确认要删除该数字化预案吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					</td>

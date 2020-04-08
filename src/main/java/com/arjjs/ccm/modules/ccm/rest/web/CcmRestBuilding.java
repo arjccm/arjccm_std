@@ -16,12 +16,14 @@ import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.TransGPS;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.h2.util.New;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -124,11 +126,29 @@ public class CcmRestBuilding extends BaseController {
 		Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService
 				.findPage(new Page<CcmHouseBuildmanage>(req, resp), build);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+		long startTime=System.nanoTime();   //获取开始时间
 		if(page.getList().size()>0){
 			for (int i = 0; i < page.getList().size(); i++) {
+				//楼栋ID
+				String aid = page.getList().get(i).getId();
+				//已采集人数
+				Integer gatherNum = ccmHouseBuildmanageService.gather(aid);
+				if (gatherNum==null){
+					gatherNum=0;
+				}
+				//楼栋总人数
+				Integer buildPeo = page.getList().get(i).getBuildPeo();
+				if (buildPeo==null){
+					buildPeo=0;
+				}
+				//未采集人数
+				Integer nogather=buildPeo-gatherNum;
+				page.getList().get(i).setNogather(nogather);
 				page.getList().get(i).setImages(fileUrl + page.getList().get(i).getImages());
 			}
 		}
+		long endTime=System.nanoTime(); //获取结束时间
+		System.out.println("程序运行时间WWWWWWWWWWWWWWWWWWWWWWWWWWWW"+(endTime-startTime)+"ns");
 		page.setPageNo(pageNo);
 		result.setCode(CcmRestType.OK);
 		result.setResult(page.getList());

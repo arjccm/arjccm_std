@@ -35,7 +35,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/org/ccmOrgDevice/">机构设置绑定列表</a></li>
+		<li><a>机构视频设备绑定</a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOrgDevice" action="${ctx}/org/ccmOrgDevice/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

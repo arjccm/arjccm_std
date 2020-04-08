@@ -30,7 +30,9 @@
 				search();
 			},
 			loaded : function(h) { //隐藏滚动条
-				$(".jbox-content").css("overflow", "inherit");
+				$(".jbox-content").css({
+					"overflowY":"hidden"
+				});
 			}
 		});
 
@@ -65,8 +67,8 @@
 		</ul>
 		<div class="clearfix pull-right btn-box">
 
-			<a id="searchForm" class="btn btn-export" style="width: 49px;display:inline-block;float: right;padding-top: 4px!important;" onclick="bj('')"
-			   href="javascript:;"><i ></i><span style="font-size: 12px">添加</span></a>
+			<shiro:hasPermission name="home:plmPortalPlan:edit"> <a id="searchForm" class="btn btn-export" style="width: 49px;display:inline-block;float: right;padding-top: 4px!important;" onclick="bj('')"
+			   href="javascript:;"><i ></i><span style="font-size: 12px">添加</span></a></shiro:hasPermission>
 			<a id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;"
 			   href="javascript:;"><i ></i><span style="font-size: 12px"> 查询 </span></a>
 		</div>
@@ -91,16 +93,16 @@
 		<tbody>
 			<c:forEach items="${page.list}" var="plmPortalPlan">
 				<tr>
-					<td style="height: 50px"><a onclick="bj('${plmPortalPlan.id}')">
+					<td><a onclick="bj('${plmPortalPlan.id}')">
 							${plmPortalPlan.name} </a></td>
-					<td style="height: 50px">${plmPortalPlan.introduce}</td>
-					<td style="height: 50px">${plmPortalPlan.type}</td>
-					<td style="height: 50px">${fns:getDictLabel(plmPortalPlan.extend1, 'index_sys_type', '无')}
+					<td>${plmPortalPlan.introduce}</td>
+					<td>${plmPortalPlan.type}</td>
+					<td>${fns:getDictLabel(plmPortalPlan.extend1, 'index_sys_type', '无')}
 					</td>
-					<td style="height: 50px"><fmt:formatDate value="${plmPortalPlan.updateDate}"
+					<td><fmt:formatDate value="${plmPortalPlan.updateDate}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<shiro:hasPermission name="home:plmPortalPlan:edit">
-						<td style="height: 50px"><a
+						<td><a
 							href="${ctx}/home/plmPortalDetail/list?pid=${plmPortalPlan.id}"
 							title="方案明细"><i class="iconfont icon-caozuotubiao-fanganmingxi"></i></a> <a
 							onclick="bj('${plmPortalPlan.id}')" title="修改"><i

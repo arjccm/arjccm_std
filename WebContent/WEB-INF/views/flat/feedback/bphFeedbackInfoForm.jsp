@@ -36,7 +36,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/feedback/bphFeedbackInfo/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/feedback/bphFeedbackInfo/form?id=${bphFeedbackInfo.id}">数据<shiro:hasPermission name="feedback:bphFeedbackInfo:edit">${not empty bphFeedbackInfo.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="feedback:bphFeedbackInfo:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="bphFeedbackInfo" action="${ctx}/feedback/bphFeedbackInfo/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

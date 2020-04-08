@@ -61,7 +61,7 @@
 
 	<div class="clearfix pull-right btn-box">
 		<shiro:hasPermission
-				name="pop:ccmPopTenant:edit">
+				name="tenant:ccmTenantRecord:export">
 			<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;"> <i
 					></i> 导出
 			</a>
@@ -85,26 +85,24 @@
 				<th>房主姓名</th>
 				<th>房屋地址</th>
 				<th>建筑面积(平方米）</th>
-				<shiro:hasPermission name="pop:ccmPopTenant:edit">
-					<th>操作</th>
-				</shiro:hasPermission>
+                <th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${page.list}" var="ccmPopTenant">
 				<tr>
-					<td style="height: 50px">${ccmPopTenant.buildDoorNum}</td>
-					<td style="height: 50px"><a
+					<td>${ccmPopTenant.buildDoorNum}</td>
+					<td><a
 						href="${ctx}/pop/ccmPopTenant/form/?id=${ccmPopTenant.id}">
 							${ccmPopTenant.doorNum} </a></td>
-					<td style="height: 50px">${ccmPopTenant.houseBuild}</td>
-					<td style="height: 50px">${fns:getDictLabel(ccmPopTenant.houseType, 'ccm_pop_tenant_type', '')}</td>
-					<td style="height: 50px">${ccmPopTenant.area.name}</td>
-					<td style="height: 50px">${ccmPopTenant.buildingId.buildname}</td>
-					<td style="height: 50px">${ccmPopTenant.houseName}</td>
+					<td>${ccmPopTenant.houseBuild}</td>
+					<td>${fns:getDictLabel(ccmPopTenant.houseType, 'ccm_pop_tenant_type', '')}</td>
+					<td>${ccmPopTenant.area.name}</td>
+					<td>${ccmPopTenant.buildingId.buildname}</td>
+					<td>${ccmPopTenant.houseName}</td>
 					<td class="" style="height: 50px">${ccmPopTenant.housePlace}</td>
-					<td style="height: 50px">${ccmPopTenant.houseArea}</td>
-					<td style="height: 50px"><shiro:hasPermission name="pop:ccmPopTenant:edit">
+					<td>${ccmPopTenant.houseArea}</td>
+					<td><shiro:hasPermission name="pop:ccmPopTenant:edit">
 							<a class="btnList"
 								href="${ctx}/pop/ccmPopTenant/form/?id=${ccmPopTenant.id}"
 								title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

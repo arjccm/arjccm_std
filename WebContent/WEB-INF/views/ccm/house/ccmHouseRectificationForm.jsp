@@ -8,40 +8,11 @@
 <link rel="stylesheet" href="${ctxStatic}/ccm/event/css/fishBonePop.css" />
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/fishBonePop.js"></script>
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/jquery.SuperSlide.2.1.1.js"></script>
-<style>
-.hide1,.hide2{
-display: none
-}
-</style>
+
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				//获取url中的参数
-				function getUrlParam(name) {
-				    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-				    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-				    if (r != null) return unescape(r[2]); return null; //返回参数值
-				}
-				var hide1=getUrlParam('hide1');
-				var hide2=getUrlParam('hide2');
-				if(hide1!=null&&hide2!=null){
-					if(hide1=="true"){
-						$('.hide1').show();
-						$('.form-actions').hide();
-						$('.help-inline').hide();
-						$('.input-xlarge').attr("readonly","readonly");
-						$('.input-medium').attr("disabled","disabled");
-						$('.displayedbuttons').attr("disabled","disabled");
-					}
-					if(hide2=="true"){
-						$('.form-actions').hide();
-						$('.hide2').show();
-						
-					}
-				}else{
-					$('.hide1').show();
-					$('.hide2').show();
-				}
+
 				//$("#name").focus();
 				$("#inputForm")
 						.validate(
@@ -73,6 +44,11 @@ display: none
                 data = JSON.parse(jsonString);  
 				$(".fishBone1").fishBone(data, '${ctx}','deal');
 				$(".fishBone2").fishBone(data, '${ctx}','read');
+
+				//关闭弹框事件
+                $('#btnCancel').click(function() {
+                    parent.layer.close(parent.layerIndex);
+                })
 			});
 </script>
     <%--引入文本框外部样式--%>
@@ -508,10 +484,9 @@ display: none
 			<shiro:hasPermission name="house:ccmHouseRectification:edit">
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存" />&nbsp;
 			</shiro:hasPermission>
-			<!-- <input id="btnCancel" class="btn" type="button" value="返 回"
-				onclick="history.go(-1)" /> -->
+            <input id="btnCancel" class="btn btn-danger" type="button" value="关闭" />
 		</div>
-	</form:form><br>
+	</form:form>
 	<c:if test="${documentNumber > 0}">
 		<shiro:hasPermission name="log:ccmLogTail:edit">
 			<h4 class="hide2">&nbsp;跟踪信息：</h4>

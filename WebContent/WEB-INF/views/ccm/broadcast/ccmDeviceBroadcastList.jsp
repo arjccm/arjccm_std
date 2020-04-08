@@ -59,29 +59,29 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmDeviceBroadcast">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/broadcast/ccmDeviceBroadcast/form?id=${ccmDeviceBroadcast.id}">
+				<td><a href="${ctx}/broadcast/ccmDeviceBroadcast/form?id=${ccmDeviceBroadcast.id}">
 					${ccmDeviceBroadcast.code}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmDeviceBroadcast.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmDeviceBroadcast.ip}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmDeviceBroadcast.comPort}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmDeviceBroadcast.area.name}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmDeviceBroadcast.status, 'ccm_broadcast_status', '')}
 				</td>
 
-				<td style="height: 50px">
+				<td>
 					${ccmDeviceBroadcast.remarks}
 				</td>
-				<shiro:hasPermission name="broadcast:ccmDeviceBroadcast:edit"><td style="height: 50px">
+				<shiro:hasPermission name="broadcast:ccmDeviceBroadcast:edit"><td>
     				<a href="${ctx}/broadcast/ccmDeviceBroadcast/form?id=${ccmDeviceBroadcast.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a href="${ctx}/broadcast/ccmDeviceBroadcast/delete?id=${ccmDeviceBroadcast.id}" onclick="return confirmx('确认要删除该广播站吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

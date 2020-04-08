@@ -109,7 +109,7 @@
 				<th>学校地址</th>
 				<th>校长</th>
 				<th>校长联系方式</th>
-				<shiro:hasPermission name="house:ccmHouseSchoolrim:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

@@ -136,14 +136,19 @@
 			</div>
 		</c:if>
 		<c:if test="${not empty ccmOrgNpseEconomic.id}">
-			<div class="control-group">
-				<label class="control-label"><span class="help-inline"><font color="red">*</font></span>工商执照注册号：</label>
-				<div class="controls">${ccmOrgNpseEconomic.compId}</div>
-			</div>
+	<div class="control-group" >
+		<label class="control-label"><span class="help-inline"><font color="red">*</font></span>工商执照注册号：</label>
+		<div class="controls">
+			<form:input path="compId" htmlEscape="false" maxlength="64" disabled="true"
+						class="input-xlarge " />
+		</div>
 
-			<div class="control-group">
+			<div class="control-group control-group-top" >
 				<label class="control-label">名称：</label>
-				<div class="controls">${ccmOrgNpseEconomic.compName}</div>
+				<div class="controls">
+					<form:input path="compName" htmlEscape="false" maxlength="64" disabled="true"
+								class="input-xlarge " />
+				</div>
 			</div>
 		</c:if>
 

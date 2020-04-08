@@ -31,7 +31,7 @@
 	<form:form id="searchForm" modelAttribute="ccmServiceOnline" action="${ctx}/service/ccmServiceOnline/jumplist?etype=${etype}" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form pull-left">
+
 		<ul class="ul-form pull-left">
 			<li class="first-line"><label>事项分类：</label>
 				<form:select path="type" class="input-medium">
@@ -91,31 +91,31 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmServiceOnline">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/service/ccmServiceOnline/form?id=${ccmServiceOnline.id}&etype=${etype}">
+				<td><a href="${ctx}/service/ccmServiceOnline/form?id=${ccmServiceOnline.id}&etype=${etype}">
 					${fns:getDictLabel(ccmServiceOnline.type, 'ccm_service_online_type', '')}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmServiceOnline.applicant}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmServiceOnline.ident}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmServiceOnline.telephone}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmServiceOnline.status, 'ccm_service_online_handle', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmServiceOnline.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmServiceOnline.reviewDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 						${ccmServiceOnline.reviewer}
 				</td>
-				<shiro:hasPermission name="service:ccmServiceOnline:edit"><td style="height: 50px">
+				<shiro:hasPermission name="service:ccmServiceOnline:edit"><td>
 					<c:if test="${etype eq '1'}">
 						<a class="btnList" href="${ctx}/service/ccmServiceOnline/form?id=${ccmServiceOnline.id}&etype=${etype}" title="修改"><i class="icon-pencil"></i></a>
 						<a class="btnList" href="${ctx}/service/ccmServiceOnline/delete?id=${ccmServiceOnline.id}" onclick="return confirmx('确认要删除该在线办事吗？', this.href)" title="删除"><i class="iconfont icon-icondaohangtubiao-shujucaijifenxi"></i></a>

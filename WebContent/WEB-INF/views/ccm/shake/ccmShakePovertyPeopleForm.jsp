@@ -48,7 +48,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/shake/ccmShakePovertyPeople/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/shake/ccmShakePovertyPeople/form?id=${ccmShakePovertyPeople.id}">数据<shiro:hasPermission name="shake:ccmShakePovertyPeople:edit">${not empty ccmShakePovertyPeople.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="shake:ccmShakePovertyPeople:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmShakePovertyPeople" action="${ctx}/shake/ccmShakePovertyPeople/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

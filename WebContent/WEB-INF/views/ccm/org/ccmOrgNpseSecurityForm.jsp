@@ -71,7 +71,7 @@
 					<shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a>
 			</li>
 		</c:if> --%>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOrgNpse" action="${ctx}/org/ccmOrgNpseSecurity/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<%--<input type="hidden" name="compImpoType" value="04">--%>
@@ -630,10 +630,12 @@
 		
 		<div class="form-actions">
 			<shiro:hasPermission name="org:ccmOrgNpseSecurity:edit">
-			<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存"/>&nbsp;</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存"/>&nbsp;
+            </shiro:hasPermission>
+            <input id="btnCancel" class="btn btn-danger" type="button" value="关闭"/>
+			<%--<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>--%>
 		</div>
-	</form:form><br>
+	</form:form>
 	<c:if test="${documentNumber > 0}">
 		<shiro:hasPermission name="log:ccmLogTail:edit">
 			<h4>&nbsp;跟踪信息：</h4>

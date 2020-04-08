@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/gen/genTemplate/">代码模板列表</a></li>
 		<li class="active"><a href="${ctx}/gen/genTemplate/form?id=${genTemplate.id}">代码模板<shiro:hasPermission name="gen:genTemplate:edit">${not empty genTemplate.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="gen:genTemplate:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="genTemplate" action="${ctx}/gen/genTemplate/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>

@@ -93,7 +93,9 @@
 				<form:input path="beginSum" htmlEscape="false" class="input-medium"/> - 
 				<form:input path="endSum" htmlEscape="false" class="input-medium"/>
 			</li>
-			<li class="btns"><a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="icon-search"></i> 查询</a></li>
+			<li class="btns"><a id="btnSubmit" class="btn btn-primary" href="javascript:;"><span style="font-size: 12px">查询</span></a></li>
+<%--			<a href="javascript:; " id="btnSubmit" class="btn btn-primary btns" style="width: 49px;display:inline-block;float: left;" onclick="return page();">--%>
+<%--				<i></i><span style="font-size: 12px">查询</span>  </a>--%>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -152,6 +154,7 @@
 								title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 				
 					</c:if>
+					<shiro:hasPermission name="flow:jump:index:edit">
 					<c:if test="${!e}">
 						
 							<a href="${ctx}/travel/plmBorrowMoney/form?id=${plmBorrowMoney.id}"
@@ -162,6 +165,7 @@
 								class="iconfont icon-caozuotubiao-shanchu"></i></a>
 						
 					</c:if>
+					</shiro:hasPermission>
 				</td>
 			</tr>
 		</c:forEach>

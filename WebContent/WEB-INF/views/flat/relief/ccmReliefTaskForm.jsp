@@ -33,39 +33,39 @@
                 }
             });
             $("#startTime").click(function () {
-			    WdatePicker({
-			        el: "startTime", //点击对象id，一般可省略el
-			        lang: 'auto', //语言选择，一般用auto
-			        dateFmt: 'yyyy-MM-dd HH:mm:ss', //时间显示格式，年月日 时分秒，年月日就是yyyy-MM-dd
-			        minDate: '%y-%M-%d', //最小日期
-			        readOnly: true, //是否只读
-			        isShowClear: true, //是否显示“清空”按钮
-			        isShowOK: true, //是否显示“确定”按钮
-			        isShowToday: true, //是否显示“今天”按钮
-			        autoPickDate: true //为false时 点日期的时候不自动输入,而是要通过确定才能输入，为true时 即点击日期即可返回日期值，为null时(推荐使用) 如果有时间置为false 否则置为true
-			    })
-			});
-			$("#endTime").click(function () {
-			    WdatePicker({
-			        el: "endTime", //点击对象id，一般可省略el
-			        lang: 'auto', //语言选择，一般用auto
-			        dateFmt: 'yyyy-MM-dd HH:mm:ss', //时间显示格式，年月日 时分秒，年月日就是yyyy-MM-dd
-			        minDate: '#F{$dp.$D(\'startTime\')}',
-			        readOnly: true, //是否只读
-			        isShowClear: true, //是否显示“清空”按钮
-			        isShowOK: true, //是否显示“确定”按钮
-			        isShowToday: true, //是否显示“今天”按钮
-			        autoPickDate: true //为false时 点日期的时候不自动输入,而是要通过确定才能输入，为true时 即点击日期即可返回日期值，为null时(推荐使用) 如果有时间置为false 否则置为true
-			    })
-			});
+                WdatePicker({
+                    el: "startTime", //点击对象id，一般可省略el
+                    lang: 'auto', //语言选择，一般用auto
+                    dateFmt: 'yyyy-MM-dd HH:mm:ss', //时间显示格式，年月日 时分秒，年月日就是yyyy-MM-dd
+                    minDate: '%y-%M-%d', //最小日期
+                    readOnly: true, //是否只读
+                    isShowClear: true, //是否显示“清空”按钮
+                    isShowOK: true, //是否显示“确定”按钮
+                    isShowToday: true, //是否显示“今天”按钮
+                    autoPickDate: true //为false时 点日期的时候不自动输入,而是要通过确定才能输入，为true时 即点击日期即可返回日期值，为null时(推荐使用) 如果有时间置为false 否则置为true
+                })
+            });
+            $("#endTime").click(function () {
+                WdatePicker({
+                    el: "endTime", //点击对象id，一般可省略el
+                    lang: 'auto', //语言选择，一般用auto
+                    dateFmt: 'yyyy-MM-dd HH:mm:ss', //时间显示格式，年月日 时分秒，年月日就是yyyy-MM-dd
+                    minDate: '#F{$dp.$D(\'startTime\')}',
+                    readOnly: true, //是否只读
+                    isShowClear: true, //是否显示“清空”按钮
+                    isShowOK: true, //是否显示“确定”按钮
+                    isShowToday: true, //是否显示“今天”按钮
+                    autoPickDate: true //为false时 点日期的时候不自动输入,而是要通过确定才能输入，为true时 即点击日期即可返回日期值，为null时(推荐使用) 如果有时间置为false 否则置为true
+                })
+            });
             //初始化值
             reliefDeptName = $('#reliefDeptName').val();
-            var num = $('#reliefNumber').val();
-            if ((num || "").indexOf(",") != -1) {
-                addPeopleNum(num.split(","));
-            } else {
-                addPeopleNum([num])
-            }
+            /* var num = $('#reliefNumber').val();
+             if ((num || "").indexOf(",") != -1) {
+                 addPeopleNum(num.split(","));
+             } else {
+                 addPeopleNum([num])
+             }*/
 
         });
 
@@ -84,7 +84,7 @@
 
         }
 
-        function addPeopleNum(str) {
+        /*function addPeopleNum(str) {
             // var tempStr="";
 
             //判断有没有传参
@@ -117,10 +117,10 @@
                     "<span class=\"add-on\">人数</span>\n" +
                     "</div><span class=\"help-inline\"><font color=\"red\">*</font> </span>"
             }
-            $("#peopleNum").html(temp);
+            /!*$("#peopleNum").html(temp);*!/
 
 
-        }
+        }*/
 
         function changeNumber() {
             //设置提交input的值
@@ -136,152 +136,161 @@
     </script>
 
     <style>
-        #peopleNum {
-            margin-left: 5px;
-        }
+        /* #peopleNum {
+             margin-left: 5px;
+         }*/
     </style>
     <link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 
 </head>
 <body>
-<ul class="nav nav-tabs">
-    <li><a style="width: 140px" href="${ctx}/relief/ccmReliefTask/summaryGraph">统计数据</a></li>
-    <li><a style="width: 140px" href="${ctx}/relief/ccmReliefTask/list">备勤任务列表</a></li>
-    <li class="active" style="width: 140px;text-align:center"><a class="nav-head" href="${ctx}/relief/ccmReliefTask/form?id=${ccmReliefTask.id}">备勤任务<shiro:hasPermission
-            name="relief:ccmReliefTask:edit">${not empty ccmReliefTask.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission
-            name="relief:ccmReliefTask:edit">查看</shiro:lacksPermission></a></li>
-</ul>
+<div class="back-list clearfix">
+    <ul class="nav nav-tabs">
+        <li><a style="width: 140px" href="${ctx}/relief/ccmReliefTask/summaryGraph">统计数据</a></li>
+        <li><a style="width: 140px" href="${ctx}/relief/ccmReliefTask/list">备勤任务列表</a></li>
+        <li class="active" style="width: 140px;text-align:center"><a class="nav-head"
+                                                                     href="${ctx}/relief/ccmReliefTask/form?id=${ccmReliefTask.id}">备勤任务<shiro:hasPermission
+                name="relief:ccmReliefTask:edit">${not empty ccmReliefTask.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission
+                name="relief:ccmReliefTask:edit">查看</shiro:lacksPermission></a></li>
+    </ul>
 
-<form:form id="inputForm" onmouseover="changeName()" modelAttribute="ccmReliefTask"
-           action="${ctx}/relief/ccmReliefTask/save" method="post"
-           class="form-horizontal">
-    <form:hidden path="id"/>
-    <sys:message content="${message}"/>
-    <div class="control-group" style="padding-top: 8px">
-        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>任务名称：</label>
-        <div class="controls">
-            <form:input path="taskName" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+    <form:form id="inputForm" onmouseover="changeName()" modelAttribute="ccmReliefTask"
+               action="${ctx}/relief/ccmReliefTask/save" method="post"
+               class="form-horizontal">
+        <form:hidden path="id"/>
+        <sys:message content="${message}"/>
+        <div class="control-group" style="padding-top: 8px">
+            <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>任务名称：</label>
+            <div class="controls">
+                <form:input path="taskName" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
 
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>备勤等级：</label>
-        <div class="controls">
-            <form:select path="reliefLevel" class="input-xlarge required">
-                <form:option value="" label=""/>
-                <form:options items="${fns:getDictList('ccm_relief_level')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
-            </form:select>
-
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>备勤类别：</label>
-        <div class="controls">
-            <form:select path="reliefType" class="input-xlarge required">
-                <form:option value="" label=""/>
-                <form:options items="${fns:getDictList('ccm_relief_type')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
-            </form:select>
-
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>开始时间：</label>
-        <div class="controls">
-            <input name="startTime" id="startTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-                   value="<fmt:formatDate value="${ccmReliefTask.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
-
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>结束时间：</label>
-        <div class="controls">
-            <input name="endTime" id="endTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-                   value="<fmt:formatDate value="${ccmReliefTask.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
-
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>集结地点：</label>
-        <div class="controls">
-            <form:input path="massAddress" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
-
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>备勤参与单位：</label>
-        <div class="controls">
-            <sys:treeselect id="reliefDept" name="reliefDept" value="${ccmReliefTask.reliefDept}"
-                            labelName="reliefDeptName"
-                            labelValue="${ccmReliefTask.reliefDeptName}"
-                            title="部门" url="/sys/office/treeData?type=2" checked="true"
-                            cssClass="input-xlarge required" allowClear="true" notAllowSelectParent="true"/>
-
-        </div>
-    </div>
-
-    <div style="line-height: 40px;" class="control-group">
-        <label class="control-label">每个单位人数：</label>
-        <div class="controls">
-            <form:input cssStyle="display: none" value="${ccmReliefTask.reliefNumber}" path="reliefNumber" onclick=""
-                        htmlEscape="false" maxlength="1024" class="input-xlarge "/>
-            <div id="peopleNum">
             </div>
         </div>
-    </div>
+        <div class="control-group">
+            <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>备勤等级：</label>
+            <div class="controls">
+                <form:select path="reliefLevel" class="input-xlarge required">
+                    <form:option value="" label=""/>
+                    <form:options items="${fns:getDictList('ccm_relief_level')}" itemLabel="label"
+                                  itemValue="value" htmlEscape="false"/>
+                </form:select>
 
-    <div class="control-group">
-        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>任务状态：</label>
-        <div class="controls">
-            <form:select path="reviewStatus" class="input-xlarge required">
-                <form:option value="" label=""/>
-                <form:options items="${fns:getDictList('ccm_patrol_missions_status')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
-            </form:select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>备勤类别：</label>
+            <div class="controls">
+                <form:select path="reliefType" class="input-xlarge required">
+                    <form:option value="" label=""/>
+                    <form:options items="${fns:getDictList('ccm_relief_type')}" itemLabel="label"
+                                  itemValue="value" htmlEscape="false"/>
+                </form:select>
 
+            </div>
         </div>
-    </div>
+        <div class="control-group">
+            <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>开始时间：</label>
+            <div class="controls">
+                <input name="startTime" id="startTime" type="text" readonly="readonly" maxlength="20"
+                       class="input-medium Wdate required"
+                       value="<fmt:formatDate value="${ccmReliefTask.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
 
-    <div class="control-group">
-        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>审核状态：</label>
-        <div class="controls">
-            <form:select path="auditingStatus" class="input-xlarge required">
-                <form:option value="" label=""/>
-                <form:options items="${fns:getDictList('auditing_status')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
-            </form:select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>结束时间：</label>
+            <div class="controls">
+                <input name="endTime" id="endTime" type="text" readonly="readonly" maxlength="20"
+                       class="input-medium Wdate required"
+                       value="<fmt:formatDate value="${ccmReliefTask.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
 
+            </div>
         </div>
-    </div>
+        <div class="control-group">
+            <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>集结地点：</label>
+            <div class="controls">
+                <form:input path="massAddress" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
 
-    <div class="control-group">
-        <label class="control-label">备勤路线：</label>
-        <div class="controls">
-            <form:input path="roadLine" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">备勤辖区：</label>
-        <div class="controls">
-            <sys:treeselect id="area" name="area.id" value="${ccmReliefTask.area.id}" labelName="area.name"
-                            labelValue="${ccmReliefTask.area.name}"
-                            title="区域" url="/sys/area/treeData" cssClass="" allowClear="true"
-                            notAllowSelectParent="true"/>
+        <div class="control-group">
+            <label class="control-label"> <span class="help-inline"><font color="red">*</font> </span>备勤参与单位：</label>
+            <div class="controls">
+                <sys:treeselect id="reliefDept" name="reliefDept" value="${ccmReliefTask.reliefDept}"
+                                labelName="reliefDeptName"
+                                labelValue="${ccmReliefTask.reliefDeptName}"
+                                title="部门" url="/sys/office/treeData?type=2" checked="true"
+                                cssClass="input-xlarge required" allowClear="true" notAllowSelectParent="true"/>
+
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">备注信息：</label>
-        <div class="controls">
-            <form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+
+        <div style="line-height: 40px;" class="control-group">
+            <label class="control-label"> <span class="help-inline"><font color="red">*</font></span> 每个单位人数：</label>
+            <div class="controls">
+                <form:input path="reliefNumber" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+
+            </div>
+                <%--<div class="controls">
+                    <form:input cssStyle="display: none" value="${ccmReliefTask.reliefNumber}" path="reliefNumber" onclick=""
+                                htmlEscape="false" maxlength="1024" class="input-xlarge "/>
+                    <div id="peopleNum">
+                    </div>
+                </div>--%>
         </div>
-    </div>
-    <div class="form-actions">
-        <shiro:hasPermission name="relief:ccmReliefTask:edit"><input id="btnSubmit" class="btn btn-primary"
-                                                                     type="submit"
-                                                                     value="保 存"/>&nbsp;</shiro:hasPermission>
-        <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
-    </div>
-</form:form>
+
+        <div class="control-group">
+            <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>任务状态：</label>
+            <div class="controls">
+                <form:select path="reviewStatus" class="input-xlarge required">
+                    <form:option value="" label=""/>
+                    <form:options items="${fns:getDictList('ccm_patrol_missions_status')}" itemLabel="label"
+                                  itemValue="value" htmlEscape="false"/>
+                </form:select>
+
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>审核状态：</label>
+            <div class="controls">
+                <form:select path="auditingStatus" class="input-xlarge required">
+                    <form:option value="" label=""/>
+                    <form:options items="${fns:getDictList('auditing_status')}" itemLabel="label"
+                                  itemValue="value" htmlEscape="false"/>
+                </form:select>
+
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">备勤路线：</label>
+            <div class="controls">
+                <form:input path="roadLine" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">备勤辖区：</label>
+            <div class="controls">
+                <sys:treeselect id="area" name="area.id" value="${ccmReliefTask.area.id}" labelName="area.name"
+                                labelValue="${ccmReliefTask.area.name}"
+                                title="区域" url="/sys/area/treeData" cssClass="" allowClear="true"
+                                notAllowSelectParent="true"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">备注信息：</label>
+            <div class="controls">
+                <form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+            </div>
+        </div>
+        <div class="form-actions">
+            <shiro:hasPermission name="relief:ccmReliefTask:edit"><input id="btnSubmit" class="btn btn-primary"
+                                                                         type="submit"
+                                                                         value="保 存"/>&nbsp;</shiro:hasPermission>
+            <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+        </div>
+    </form:form>
+</div>
 </body>
 </html>

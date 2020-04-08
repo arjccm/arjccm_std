@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/vote/pbsVoteUser/">投票主题用户信息列表</a></li>
 		<li class="active"><a href="${ctx}/vote/pbsVoteUser/form?id=${pbsVoteUser.id}">投票主题用户信息<shiro:hasPermission name="vote:pbsVoteUser:edit">${not empty pbsVoteUser.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="vote:pbsVoteUser:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="pbsVoteUser" action="${ctx}/vote/pbsVoteUser/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

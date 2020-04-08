@@ -111,14 +111,14 @@
 				<th>危险程度</th>
 				<th>有无犯罪史</th>
 				<th>嫌疑类型</th>
-				<shiro:hasPermission name="house:ccmHarmNationalSecurity:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmHarmNationalSecurity">
 			<tr>
 				<td width="100px"><img src="${ccmHarmNationalSecurity.images}" style="height:50px;" class="pimg"/></td>
-				<td><a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHarmNationalSecurity/form?id=${ccmHarmNationalSecurity.id}&hide1=true&hide2=false', '信息', '1200px', '900px')">${ccmHarmNationalSecurity.name}</a></td>
+				<td><a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHarmNationalSecurity/form?id=${ccmHarmNationalSecurity.id}', '信息', '1200px', '900px')">${ccmHarmNationalSecurity.name}</a></td>
 				<td>${ccmHarmNationalSecurity.ident}</td>
 				<td>${fns:getDictLabel(ccmHarmNationalSecurity.sex, 'sex', '')}</td>
 				<td>${ccmHarmNationalSecurity.telephone}</td>

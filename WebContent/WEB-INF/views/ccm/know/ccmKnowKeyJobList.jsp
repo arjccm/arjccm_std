@@ -72,22 +72,22 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowKeyJob">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/know/ccmKnowKeyJob/form?id=${ccmKnowKeyJob.id}">
+				<td><a href="${ctx}/know/ccmKnowKeyJob/form?id=${ccmKnowKeyJob.id}">
 					${ccmKnowKeyJob.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowKeyJob.timeStart}" pattern="yyyy-MM-dd"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmKnowKeyJob.timeEnd}" pattern="yyyy-MM-dd"/>
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowKeyJob.address}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmKnowKeyJob.abstracts}
 				</td>
-				<shiro:hasPermission name="know:ccmKnowKeyJob:edit"><td style="height: 50px">
+				<shiro:hasPermission name="know:ccmKnowKeyJob:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowKeyJob/form?id=${ccmKnowKeyJob.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/know/ccmKnowKeyJob/delete?id=${ccmKnowKeyJob.id}" onclick="return confirmx('确认要删除该专项工作吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

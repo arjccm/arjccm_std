@@ -12,10 +12,6 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				//关闭弹框事件
-				$('#btnCancel').click(function() {
-					parent.layer.close(parent.layerIndex);
-				})
 				//$("#name").focus();
 				$("#inputForm")
 						.validate(
@@ -48,6 +44,11 @@
                 data = JSON.parse(jsonString);  
 				$(".fishBone1").fishBone(data, '${ctx}','deal');
 				$(".fishBone2").fishBone(data, '${ctx}','read');
+
+                //关闭弹框事件
+                $('#btnCancel').click(function() {
+                    parent.layer.close(parent.layerIndex);
+                })
 			});
 </script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
@@ -327,7 +328,7 @@
 			<input id="btnCancel" class="btn btn-danger" type="button" value="关闭"
 				 />
 		</div>
-	</form:form><br>
+	</form:form>
 	<c:if test="${documentNumber > 0}">
 		<shiro:hasPermission name="log:ccmLogTail:edit">
 			<h4>&nbsp;跟踪信息：</h4>

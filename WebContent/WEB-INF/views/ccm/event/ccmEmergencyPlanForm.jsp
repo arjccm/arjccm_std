@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/event/ccmEmergencyPlan/">应急预案列表</a></li>
 		<li class="active"><a href="${ctx}/event/ccmEmergencyPlan/form?id=${ccmEmergencyPlan.id}">应急预案<shiro:hasPermission name="event:ccmEmergencyPlan:edit">${not empty ccmEmergencyPlan.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="event:ccmEmergencyPlan:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmEmergencyPlan" action="${ctx}/event/ccmEmergencyPlan/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

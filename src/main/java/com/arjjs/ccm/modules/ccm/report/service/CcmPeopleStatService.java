@@ -76,6 +76,10 @@ public class CcmPeopleStatService extends CrudService<CcmPeopleStatDao, CcmPeopl
 	public List<EchartType> findListByMon(String column, String areaId, String areaType) {
 		return ccmPeopleStatDao.findListByMon(column,areaId,areaType);
 	}
+
+	public List<EchartType> findLowLevelListByMon(String column, String areaId, String areaType) {
+		return ccmPeopleStatDao.findLowLevelListByMon(column,areaId,areaType);
+	}
 	
 	//首页社区弹框：本月新增人口
 	public CcmPeopleStat findMonthAreaStat(CcmPeopleStat ccmPeopleStat) {

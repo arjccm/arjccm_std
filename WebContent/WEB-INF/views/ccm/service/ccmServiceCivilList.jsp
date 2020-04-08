@@ -73,19 +73,19 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmServiceCivil">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/service/ccmServiceCivil/form?id=${ccmServiceCivil.id}">
+				<td><a href="${ctx}/service/ccmServiceCivil/form?id=${ccmServiceCivil.id}">
 					${fns:getDictLabel(ccmServiceCivil.type, 'ccm_service_civil_type', '')}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmServiceCivil.receiver}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmServiceCivil.gods}
 				</td>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmServiceCivil.times}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<shiro:hasPermission name="service:ccmServiceCivil:edit"><td style="height: 50px">
+				<shiro:hasPermission name="service:ccmServiceCivil:edit"><td>
     				<a class="btnList" href="${ctx}/service/ccmServiceCivil/form?id=${ccmServiceCivil.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/service/ccmServiceCivil/delete?id=${ccmServiceCivil.id}" onclick="return confirmx('确认要删除该民政工作管理吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>

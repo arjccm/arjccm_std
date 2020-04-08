@@ -459,7 +459,7 @@
 <!-- 			<input id="btnCancel" class="btn" type="button" value="返 回" -->
 <!-- 				onclick="history.go(-1)" /> -->
 		</div>
-	</form:form><br>
+	</form:form>
 	<c:if test="${CasedealListNumber > 0}">
 		<shiro:hasPermission name="event:ccmEventCasedeal:edit">
 			<h4>&nbsp;修改处理信息：</h4>

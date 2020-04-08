@@ -50,7 +50,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/audit/riskAudit/listReport">重大事项上报列表</a></li>
 		<li class="active"><a href="${ctx}/audit/riskAudit/formReport?id=${riskReport.id}&readNum=${riskReport.readNum}">重大事项上报查看</a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="riskReport" action="" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="fileName" htmlEscape="false" maxlength="256" class="input-xlarge" />

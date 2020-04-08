@@ -9,41 +9,11 @@
 <link rel="stylesheet" href="${ctxStatic}/ccm/event/css/fishBonePop.css" />
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/fishBonePop.js"></script>
 <script type="text/javascript" src="${ctxStatic}/ccm/event/js/jquery.SuperSlide.2.1.1.js"></script>
-<style>
-.hide1,.hide2{
-display: none
-}
-</style>
+
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				//$("#name").focus();
-				//获取url中的参数
-				function getUrlParam(name) {
-				    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-				    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-				    if (r != null) return unescape(r[2]); return null; //返回参数值
-				}
-				var hide1=getUrlParam('hide1');
-				var hide2=getUrlParam('hide2');
-				if(hide1!=null&&hide2!=null){
-					if(hide1=="true"){
-						$('.hide1').show();
-						$('.form-actions').hide();
-						$('.help-inline').hide();
-						$('.input-xlarge').attr("readonly","readonly");
-						$('.input-medium').attr("disabled","disabled");
-						$('.radiobuttons').attr("disabled","disabled");
-					}
-					if(hide2=="true"){
-						$('.form-actions').hide();
-						$('.hide2').show();
-						
-					}
-				}else{
-					$('.hide1').show();
-					$('.hide2').show();
-				}
+
 				$("#inputForm")
 						.validate(
 								{
@@ -92,6 +62,11 @@ display: none
 						$("#crimeHistory").val("")
 					}
 				});
+
+                //关闭弹框事件
+                $('#btnCancel').click(function() {
+                    parent.layer.close(parent.layerIndex);
+                })
 			});
 </script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
@@ -345,6 +320,7 @@ display: none
 			<shiro:hasPermission name="house:ccmHarmNationalSecurity:edit">
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存" />&nbsp;</shiro:hasPermission>
 			<!-- <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)" /> -->
+            <input id="btnCancel" class="btn btn-danger" type="button" value="关闭" />
 		</div>
 	</form:form>
 	<br>

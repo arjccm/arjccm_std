@@ -211,29 +211,29 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmPeopleAntiepidemic">
 			<tr>
-				<td style="height: 50px"><a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">
+				<td><a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">
 					${ccmPeopleAntiepidemic.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmPeopleAntiepidemic.sex, 'sex', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmPeopleAntiepidemic.idNumber}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${ccmPeopleAntiepidemic.domicile}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmPeopleAntiepidemic.isIn14days, 'is_key_place', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmPeopleAntiepidemic.takeSteps, 'sys_ccm_people_takeSteps', '')}
 				</td>
-				<td style="height: 50px">
+				<td>
 						${fns:getDictLabel(ccmPeopleAntiepidemic.health, 'sys_ccm_people_health', '')}
 				</td>
 		
-				<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><td style="height: 50px">
+				<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit"><td>
 					<a class="btnList"  href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList" href="${ctx}/pop/ccmPeopleAntiepidemic/delete?id=${ccmPeopleAntiepidemic.id}" onclick="return confirmx('确认要删除该人员疫情吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					<a class="btnList" href="${ctx}/pop/ccmPeopleAntiepidemic/details?id=${ccmPeopleAntiepidemic.id}" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>

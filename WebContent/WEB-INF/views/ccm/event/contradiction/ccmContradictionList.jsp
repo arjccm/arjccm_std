@@ -23,6 +23,7 @@
 </script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li style="float: right;"><a class="btn btn-danger"
 			href="${ctx}/contradiction/ccmContradiction/4?status=04">已拒绝</a></li>
@@ -80,7 +81,7 @@
 	</form:form>
 	<sys:message content="${message}" />
 	<table id="contentTable"
-		class="table table-striped table-bordered table-condensed">
+		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>案（事)件名称</th>
@@ -121,7 +122,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
 					

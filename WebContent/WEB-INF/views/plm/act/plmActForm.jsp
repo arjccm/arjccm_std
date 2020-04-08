@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/act/plmAct/">业务申请单主表列表</a></li>
 		<li class="active"><a href="${ctx}/act/plmAct/form?id=${plmAct.id}">业务申请单主表<shiro:hasPermission name="act:plmAct:edit">${not empty plmAct.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="act:plmAct:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="plmAct" action="${ctx}/act/plmAct/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

@@ -116,14 +116,14 @@
 				<th>关注程度</th>
 				<th>上访性质</th>
 				<th>个或群访</th>
-				<shiro:hasPermission name="house:ccmHousePetition:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmHousePetition">
 			<tr>
 				<td width="100px"><img src="${ccmHousePetition.images}" style="height:50px;" class="pimg"/></td>
-				<td><a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePetition/form?id=${ccmHousePetition.id}&hide1=true&hide2=false', '信息', '1200px', '800px')">${ccmHousePetition.name}</a></td>
+				<td><a onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePetition/form?id=${ccmHousePetition.id}', '信息', '1200px', '800px')">${ccmHousePetition.name}</a></td>
 				<td>${ccmHousePetition.ident}</td>
 				<td>${fns:getDictLabel(ccmHousePetition.sex, 'sex', '')}</td>
 				<c:if test="${ccmHousePetition.atteType eq '01'}">

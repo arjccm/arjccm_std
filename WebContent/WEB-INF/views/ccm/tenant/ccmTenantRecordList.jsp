@@ -17,6 +17,7 @@
 </script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<%-- <li><a href="${ctx}/pop/ccmPopTenant/list/rent">房屋列表</a></li>
 		<li><a
@@ -49,7 +50,7 @@
 	</form:form>
 	<sys:message content="${message}" />
 	<table id="contentTable"
-		class="table table-striped table-bordered table-condensed">
+		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>姓名</th>
@@ -81,5 +82,16 @@
 		</tbody>
 	</table>
 	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(
+        $(function () {
+            var elementsByClassName = window.parent.document.getElementById("LayerDialog");
+            if(elementsByClassName!=null&&elementsByClassName!=undefined){
+
+                $(".back-list").css({"box-shadow":"none","background":"none"})
+            }
+        }))
+</script>
 </body>
 </html>

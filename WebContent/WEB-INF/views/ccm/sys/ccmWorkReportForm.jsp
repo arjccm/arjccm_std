@@ -63,31 +63,32 @@
     <script type="text/javascript" src="${ctxStatic}/ccm/sys/js/ccmWorkReportinfo.js"></script>
 </head>
 <body>
-<ul class="nav nav-tabs">
-    <!--  收件箱  /arjccm/a/sys/ccmWorkReport/self-->
-    <c:if test="${viewRep  eq 02 }">
-        <li><a style="text-align:center" href="${ctx}/sys/ccmWorkReport/self">数据列表</a></li>
-        <li class="active"><a class="nav-head"
-                                                   href="${ctx}/sys/ccmWorkReport/view?id=${ccmWorkReport.id}">数据<shiro:hasPermission
-                name="sys:ccmWorkReport:edit">${not empty ccmWorkReport.id?'查看':'添加'}</shiro:hasPermission></a></li>
-        <li><a style="text-align:center"
-               href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmWorkReport.id}&relevance_table=ccm_sys_workreport">数据回复信息<shiro:hasPermission
-                name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission>
-            <shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a>
-        </li>
-    </c:if>
-    <!-- 发件箱 -->
-    <c:if test="${viewRep eq 01 }">
-        <li><a style="text-align:center" href="${ctx}/sys/ccmWorkReport/">数据列表</a></li>
-        <li class="active"><a class="nav-head"
-                                                   href="${ctx}/sys/ccmWorkReport/form?id=${ccmWorkReport.id}">数据<shiro:hasPermission
-                name="sys:ccmWorkReport:edit">${not empty ccmWorkReport.id?'查看':'添加'}</shiro:hasPermission>
-            <shiro:lacksPermission name="sys:ccmWorkReport:edit">查看</shiro:lacksPermission></a></li>
-    </c:if>
-</ul>
-<form:form id="inputForm" modelAttribute="ccmWorkReport"
-           action="${ctx}/sys/ccmWorkReport/save" method="post"
-           class="form-horizontal">
+<div class="back-list clearfix">
+    <ul class="nav nav-tabs">
+        <!--  收件箱  /arjccm/a/sys/ccmWorkReport/self-->
+        <c:if test="${viewRep  eq 02 }">
+            <li><a style="text-align:center" href="${ctx}/sys/ccmWorkReport/self">数据列表</a></li>
+            <li class="active"><a class="nav-head"
+                                  href="${ctx}/sys/ccmWorkReport/view?id=${ccmWorkReport.id}">数据<shiro:hasPermission
+                    name="sys:ccmWorkReport:edit">${not empty ccmWorkReport.id?'查看':'添加'}</shiro:hasPermission></a></li>
+            <li><a style="text-align:center"
+                   href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmWorkReport.id}&relevance_table=ccm_sys_workreport">数据回复信息<shiro:hasPermission
+                    name="log:ccmLogTail:edit">${not empty ccmLogTail.id?'修改':'添加'}</shiro:hasPermission>
+                <shiro:lacksPermission name="log:ccmLogTail:edit">查看</shiro:lacksPermission></a>
+            </li>
+        </c:if>
+        <!-- 发件箱 -->
+        <c:if test="${viewRep eq 01 }">
+            <li><a style="text-align:center" href="${ctx}/sys/ccmWorkReport/">数据列表</a></li>
+            <li class="active"><a class="nav-head"
+                                  href="${ctx}/sys/ccmWorkReport/form?id=${ccmWorkReport.id}">数据<shiro:hasPermission
+                    name="sys:ccmWorkReport:edit">${not empty ccmWorkReport.id?'查看':'添加'}</shiro:hasPermission>
+                <shiro:lacksPermission name="sys:ccmWorkReport:edit">查看</shiro:lacksPermission></a></li>
+        </c:if>
+    </ul>
+    <form:form id="inputForm" modelAttribute="ccmWorkReport"
+               action="${ctx}/sys/ccmWorkReport/save" method="post"
+               class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
     <c:if test="${ empty ccmWorkReport.id}">
@@ -201,33 +202,34 @@
             </c:if>
         </div>
     </div>
-    </div>
 
-    <div class="control-group logWorkRep">
-        <label class="control-label">回复记录信息：</label>
-        <div class="controls">
-            <c:forEach items="${ccmLogTailList}" var="logList">
-                <li style="list-style-type: none;">
-                    <a href="${ctx}/log/ccmLogTail/formPro?id=${logList.id}">
-                            ${logList.createBy.name}&nbsp; 于&nbsp; <fmt:formatDate
-                            value="${logList.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>&nbsp;
-                        回复记录信息</a>
-                    <br/>
-                    <p>${logList.remarks}</p>
-                    <hr/>
-                </li>
-            </c:forEach>
-        </div>
-    </div>
 
-    <div class="form-actions">
-        <c:if test="${ empty ccmWorkReport.id}">
-            <shiro:hasPermission name="sys:ccmWorkReport:edit">
-				<input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存"/>&nbsp;
-			</shiro:hasPermission>
-        </c:if>
-		<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+<div class="control-group logWorkRep">
+    <label class="control-label">回复记录信息：</label>
+    <div class="controls">
+        <c:forEach items="${ccmLogTailList}" var="logList">
+            <li style="list-style-type: none;">
+                <a href="${ctx}/log/ccmLogTail/formPro?id=${logList.id}">
+                        ${logList.createBy.name}&nbsp; 于&nbsp; <fmt:formatDate
+                        value="${logList.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>&nbsp;
+                    回复记录信息</a>
+                <br/>
+                <p>${logList.remarks}</p>
+                <hr/>
+            </li>
+        </c:forEach>
     </div>
+</div>
+
+<div class="form-actions">
+    <c:if test="${ empty ccmWorkReport.id}">
+        <shiro:hasPermission name="sys:ccmWorkReport:edit">
+            <input id="btnSubmit" class="btn btn-primary" onclick="saveForm()" type="button" value="保 存"/>&nbsp;
+        </shiro:hasPermission>
+    </c:if>
+    <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+</div>
 </form:form>
+</div>
 </body>
 </html>

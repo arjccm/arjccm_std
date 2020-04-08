@@ -107,21 +107,21 @@
 			<tbody>
 				<c:forEach items="${page.list}" var="plmProvideInfo">
 					<tr>
-						<td style="height: 50px"><a
+						<td><a
 							href="${ctx}/storage/plmProvideInfo/form?id=${plmProvideInfo.id}">
 								${plmProvideInfo.name} </a></td>
-						<td style="height: 50px">${fns:getDictLabel(plmProvideInfo.proId, 'plm_provide_type', '')}
+						<td>${fns:getDictLabel(plmProvideInfo.proId, 'plm_provide_type', '')}
 						</td>
-						<td style="height: 50px">${plmProvideInfo.area}</td>
-						<td style="height: 50px">${plmProvideInfo.principal}</td>
-						<td style="height: 50px">${plmProvideInfo.phoneOne}</td>
-						<td style="height: 50px">${plmProvideInfo.mobilePhone}</td>
-						<td style="height: 50px">${fns:getDictLabel(plmProvideInfo.calling, 'plm_calling_type', '')}
+						<td>${plmProvideInfo.area}</td>
+						<td>${plmProvideInfo.principal}</td>
+						<td>${plmProvideInfo.phoneOne}</td>
+						<td>${plmProvideInfo.mobilePhone}</td>
+						<td>${fns:getDictLabel(plmProvideInfo.calling, 'plm_calling_type', '')}
 						</td>
-						<td style="height: 50px">${fns:getDictLabel(plmProvideInfo.creditClass, 'plm_credit_level', '')}
+						<td>${fns:getDictLabel(plmProvideInfo.creditClass, 'plm_credit_level', '')}
 						</td>
 						<shiro:hasPermission name="storage:plmProvideInfo:edit">
-							<td style="height: 50px"><a
+							<td><a
 								href="${ctx}/storage/plmProvideInfo/form?id=${plmProvideInfo.id}" class="btnList"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
 								<a
 								href="${ctx}/storage/plmProvideInfo/delete?id=${plmProvideInfo.id}"

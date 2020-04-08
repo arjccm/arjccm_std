@@ -31,7 +31,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/org/ccmOrgPerson/">人员列表</a></li>
 		<li class="active"><a href="${ctx}/org/ccmOrgPerson/form?id=${ccmOrgPerson.id}">人员<shiro:hasPermission name="org:ccmOrgPerson:edit">${not empty ccmOrgPerson.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="org:ccmOrgPerson:edit">查看</shiro:lacksPermission></a></li>
-	</ul><br/>
+	</ul>
 	<form:form id="inputForm" modelAttribute="ccmOrgPerson" action="${ctx}/org/ccmOrgPerson/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

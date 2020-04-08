@@ -50,14 +50,18 @@
 			$(this).fadeOut("fast");
 		});
 	}
+    var isEmpty = true;
     function saveImport() {
-        debugger;
-        var s = $("#importForm")[0][0].files.length;
-        if(s == 0){
+        if(isEmpty){
             alert("请选择文件！");
             return;
         }else{
             $("#importForm").submit();
+        }
+    }
+    function changeFalse(_this) {
+        if(_this>0){
+            isEmpty = false;
         }
     }
 </script>
@@ -71,7 +75,7 @@
 	<!-- 导入、导出模块 -->
 	<div id="importBox" class="hide">
 		<form id="importForm" action="${ctx}/house/ccmSeriousCriminalOffense/import" method="post" enctype="multipart/form-data" class="form-search" style="padding-left: 20px; text-align: center;" onsubmit="loading('正在导入，请稍等...');"><br/>
-			<input id="uploadFile" name="file" type="file" style="width: 330px"/><br/><br/>
+			<input id="uploadFile" name="file" type="file" style="width: 330px" onchange="changeFalse(this.value.length)"/><br/><br/>
 			<input id="btnImportSubmit"	class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 "/>
 		</form>
 	</div>
@@ -125,8 +129,7 @@
 				type="submit" value="查询" onclick="return page();" /> -->
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: left;">
 				<i></i><span style="font-size: 12px">查询</span>  </a>
-			<shiro:hasPermission
-					name="sys:user:edit">
+			<shiro:hasPermission name="house:ccmSeriousCriminalOffense:import">
 				<!-- <input id="btnExport" class="btn btn-primary" type="button"
 				value="导出" />
 				<input id="btnImport" class="btn btn-primary" type="button"
@@ -134,6 +137,8 @@
 				<a href="javascript:;" id="btnImport"  style="width: 49px;display:inline-block;float: left;" class="btn  btn-export ">
 					<i ></i> <span style="font-size: 12px">导入</span>
 				</a>
+            </shiro:hasPermission>
+        <shiro:hasPermission name="house:ccmSeriousCriminalOffense:export">
 				<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: left;">
 					<i></i> <span style="font-size: 12px">导出</span>
 				</a>
@@ -152,7 +157,7 @@
 				<th>危险程度</th>
 				<th>有无犯罪史</th>
 				<th>刑事类型</th>
-				<shiro:hasPermission name="house:ccmSeriousCriminalOffense:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>

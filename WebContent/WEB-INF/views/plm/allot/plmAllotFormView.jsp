@@ -81,6 +81,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<form:form id="inputForm" modelAttribute="plmAllot" action="${ctx}/allot/plmAllot/saveAudit" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="plmAct.id"/>
@@ -221,5 +222,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

@@ -99,32 +99,32 @@
 				<th>签到类型</th>
 				<!-- <th>签到状态</th> -->
 				<th>签到时间</th>
-				<shiro:hasPermission name="worker:ccmWorkerSign:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmWorkerSign">
 			<tr>
-				<td style="height: 50px"><a onclick="parent.parent.LayerDialog('${ctx}/worker/ccmWorkerSign/form?id=${ccmWorkerSign.id}&hide1=true&hide2=false', '详情', '500px', '275px')">
+				<td><a onclick="parent.parent.LayerDialog('${ctx}/worker/ccmWorkerSign/form?id=${ccmWorkerSign.id}&hide1=true&hide2=false', '详情', '500px', '275px')">
 					${ccmWorkerSign.user.name}
 				</a></td>
-				<td style="height: 50px">
+				<td>
 					${ccmWorkerSign.content}
 				</td>
-				<td style="height: 50px">
+				<td>
 					${fns:getDictLabel(ccmWorkerSign.type, 'ccm_worker_sign_type', '')}
 				</td>
 				<%-- <td>
 					${fns:getDictLabel(ccmWorkerSign.status, 'ccm_worker_sign_status', '')}
 				</td> --%>
-				<td style="height: 50px">
+				<td>
 					<fmt:formatDate value="${ccmWorkerSign.signDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 			<%-- 	<shiro:hasPermission name="worker:ccmWorkerSign:edit"><td>
     				<a href="${ctx}/worker/ccmWorkerSign/form?id=${ccmWorkerSign.id}">修改</a>
 					<a href="${ctx}/worker/ccmWorkerSign/delete?id=${ccmWorkerSign.id}" onclick="return confirmx('确认要删除该社工签到吗？', this.href)">删除</a>
 				</td></shiro:hasPermission> --%>
-				<td style="height: 50px">
+				<td>
 				<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/worker/ccmWorkerSign/form?id=${ccmWorkerSign.id}&hide1=true&hide2=false', '详情', '500px', '275px')" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 				<a class="btnList" href="javascript:;" onclick="getAreaPointMap('${ccmWorkerSign.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
 				</td>
