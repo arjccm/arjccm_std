@@ -86,7 +86,7 @@
 					<a class="btnList" 
 					href="${ctx}/pop/ccmPopTenant/deleteHouse?id=${ccmPopTenant.id}&buildingId=${buildingId}&buildingAreaId=${buildingAreaId}" onclick="return confirmx('确认要解除该房屋的绑定吗？', this.href)" title="解除绑定"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 					<a class="btnList"  
-                     href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${ccmPopTenant.id}&buildId=${buildingId}&type=houseBuild&netId=${buildingAreaId}" title="住户管理"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
+                     href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${ccmPopTenant.id}&buildId=${buildingId}&type=houseBuild&netId=${buildingAreaId}" title="住户管理"><i class="iconfont icon-zhuhuguanli"></i></a>
 				 </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 				  			<%-- <a	class="btn btn-success"
 								href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPopTenant.id}&relevance_table=ccm_pop_tenant">添加记录</a> --%>
