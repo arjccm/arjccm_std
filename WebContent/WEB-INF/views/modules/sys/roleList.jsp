@@ -23,7 +23,7 @@
 				<td>${role.office.name}</td>
 				<td>${fns:getDictLabel(role.dataScope, 'sys_data_scope', '无')}</td>
 				<shiro:hasPermission name="sys:role:edit"><td>
-					<a class="btnList" href="${ctx}/sys/role/assign?id=${role.id}" title="分配"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+					<a class="btnList" href="${ctx}/sys/role/assign?id=${role.id}" title="分配"><i class="iconfont icon-fenpei"></i></a>
 					<c:if test="${(role.sysData eq fns:getDictValue('是', 'yes_no', '1') && fns:getUser().admin)||!(role.sysData eq fns:getDictValue('是', 'yes_no', '1'))}">
 						<a class="btnList" href="${ctx}/sys/role/form?id=${role.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					</c:if>
