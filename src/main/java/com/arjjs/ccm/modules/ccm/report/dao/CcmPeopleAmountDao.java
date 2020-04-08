@@ -128,4 +128,7 @@ public interface CcmPeopleAmountDao extends CrudDao<CcmPeopleAmount> {
 
 	// 查询实际采集人数
 	CcmPeopleAmount queryCollectionNum(CcmPeopleAmount ccmPeopleAmount);
+
+	//统计区域性别比例
+	List<EchartType> getPeopleSexCount(@Param("areaId")String areaId, @Param("areaType")String areaType);
 }

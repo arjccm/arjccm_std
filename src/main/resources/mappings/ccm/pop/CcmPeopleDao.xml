@@ -2210,14 +2210,13 @@
 	<select id="peopleRegionCount" resultType="com.arjjs.ccm.tool.EchartType">
 		SELECT 
 			a.name AS "type",
-			count(*) AS "value"
-		FROM 
-			ccm_people p 
-			LEFT JOIN sys_area a ON p.area_com_id = a.id
-		WHERE 
-			p.del_flag = '0' 
-		GROUP BY 
-			a.id
+			ifnull( p.person_amount , 0) + ifnull( p.oversea_amount , 0) + ifnull( p.float_amount , 0) + ifnull( p.unsettle_amount , 0) AS "value"
+		FROM
+			ccm_people_amount p
+			LEFT JOIN sys_area a ON p.area_id = a.id
+		WHERE
+			p.del_flag = '0'
+			AND a.type = '6'
 	</select>
 
 
