@@ -19,6 +19,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/cms/site/">站点列表</a></li>
 		<shiro:hasPermission name="cms:site:edit"><li><a href="${ctx}/cms/site/form">站点添加</a></li></shiro:hasPermission>
@@ -34,7 +35,7 @@
 		<label>状态：</label><form:radiobuttons onclick="$('#searchForm').submit();" path="delFlag" items="${fns:getDictList('del_flag')}" itemLabel="label" itemValue="value" htmlEscape="false" />
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead><tr><th>名称</th><th>标题</th><th>描述</th><th>关键字</th><th>主题</th><shiro:hasPermission name="cms:site:edit"><th>操作</th></shiro:hasPermission></tr></thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="site">
@@ -52,6 +53,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>
