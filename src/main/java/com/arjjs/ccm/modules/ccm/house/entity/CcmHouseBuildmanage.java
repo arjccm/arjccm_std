@@ -47,12 +47,20 @@ public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 	private String more1; 			//sql
 	private String count;
 	private String code;//建筑物编号
-
+	private Integer gatherNum;     //楼栋已采集人数
 	private List<String> listLimite;
 
 	private Integer minnum;
 	private Integer maxnum;
 	private Integer nogather;	//楼栋未采集人数
+
+	public Integer getGatherNum() {
+		return gatherNum;
+	}
+
+	public void setGatherNum(Integer gatherNum) {
+		this.gatherNum = gatherNum;
+	}
 
 	public Integer getNogather() {
 		return nogather;
