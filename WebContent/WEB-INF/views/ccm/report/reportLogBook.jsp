@@ -41,6 +41,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/report/ccmReportOthers/logBook">日常工作数据报表</a></li>
 	</ul>
@@ -81,7 +82,7 @@
 	<sys:message content="${message}"/>
 	     <div class="row-fluid">
 		      <div class="span12" >
-				<table id="contentTable" class="table table-striped table-bordered table-condensed">
+				<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 					<thead>
 						<tr>
 							<th>姓名</th>
@@ -121,6 +122,6 @@
 				</table>
 			</div>
 	    </div>
-
+</div>
 </body>
 </html>
