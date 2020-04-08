@@ -7,7 +7,14 @@ $(document).ready(function () {
      initOrgNpseBysysArea();
      initOrgNpseregisteredBysysArea();
 });
-
+var FontColor = '#647484';
+if ($.cookie('theme') == undefined) {
+    FontColor = '#647484';
+} else if ($.cookie('theme') == 'gradient') {
+    FontColor = '#647484';
+} else if ($.cookie('theme') == 'black') {
+    FontColor = '#fff';
+}
 
 /**
  *行业类型统计
@@ -28,7 +35,10 @@ function initOrgNpseBysysdicts() {
 function showOrgNps(data){
     var option = {
         title : {
-            text: '行业类型统计'
+            text: '行业类型统计',
+            textStyle : {
+                color :FontColor,
+            }
         },
         tooltip : {
             trigger: 'axis'
@@ -43,6 +53,7 @@ function showOrgNps(data){
                     textStyle: {    //文字样式
                         fontSize: 10,
                         // fontFamily: 'Microsoft YaHei'
+                        color :FontColor,
                     }
                 }
             }
@@ -115,7 +126,10 @@ function showInfo(data){
         legend: {
             orient : 'vertical',
             x : 'left',
-            data: data["name"]
+            data: data["name"],
+            textStyle : {
+                color :FontColor,
+            }
         },
         toolbox: {
             show : true,
@@ -180,7 +194,10 @@ function initOrgNpseBysysArea() {
 function showOrgNpsArea(data){
     var option = {
         title : {
-            text: '各区域企业分布统计'
+            text: '各区域企业分布统计',
+            textStyle : {
+                color :FontColor,
+            }
         },
         tooltip : {
             trigger: 'axis'
@@ -191,13 +208,21 @@ function showOrgNpsArea(data){
                 data :  data["name"],
                 axisLabel: {
                     interval: 0,
-                    rotate: 30
+                    rotate: 30,
+                    textStyle : {
+                        color :FontColor,
+                    }
                 }
             }
         ],
         yAxis : [
             {
-                type : 'value'
+                type : 'value',
+                axisLabel:{
+                    textStyle : {
+                        color :FontColor,
+                    }
+                },
             }
         ],
         series : [
@@ -252,7 +277,10 @@ function initOrgNpseregisteredBysysArea() {
 function showOrgNpseregisteredBysysArea(data){
     var option = {
         title : {
-            text: '企业注册资本情况统计'
+            text: '企业注册资本情况统计',
+            textStyle : {
+                color :FontColor,
+            }
         },
         tooltip : {
             trigger: 'axis'
@@ -263,13 +291,21 @@ function showOrgNpseregisteredBysysArea(data){
                 data :  data["name"],
                 axisLabel: {
                     interval: 0,
-                    rotate: 30
+                    rotate: 30,
+                    textStyle : {
+                        color :FontColor,
+                    }
                 }
             }
         ],
         yAxis : [
             {
-                type : 'value'
+                type : 'value',
+                axisLabel: {
+                    textStyle : {
+                        color :FontColor,
+                    }
+                }
             }
         ],
         series : [
