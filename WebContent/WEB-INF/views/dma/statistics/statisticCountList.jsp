@@ -44,6 +44,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<div class="container-fluid" style="height: 100%; overflow: hidden"   id="main">
 		<div class="context" content="${ctx}"></div>
 
@@ -73,5 +74,6 @@
 				</div>
 			</div>
 	</div>
+</div>
 </body>
 </html>
