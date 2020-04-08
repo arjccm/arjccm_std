@@ -12,6 +12,7 @@
 		"elemNum",
 		a.build_num AS "buildNum",
 		a.build_peo AS "buildPeo",
+		a.gather_num AS "gatherNum",
 		a.build_pname AS "buildPname",
 		a.sex AS "sex",
 		a.nation AS "nation",
@@ -791,13 +792,11 @@
 
 	<select id="gather" resultType="int">
 	SELECT
-	count(*) AS "num"
+	gather_num
 	FROM
-	ccm_house_buildmanage build
-	LEFT JOIN ccm_people people ON build.id = people.build_id
+	ccm_house_buildmanage
 	where
 	build.id = #{bid}
-	AND people.del_flag = 0
-	GROUP BY build.id
+	AND del_flag = 0
 	</select>
 </mapper>
