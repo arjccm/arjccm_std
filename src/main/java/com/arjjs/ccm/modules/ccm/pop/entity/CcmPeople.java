@@ -49,25 +49,25 @@ public class CcmPeople extends DataEntity<CcmPeople> {
 	private Area areaGridId;		// 所属网格ID
 	private CcmHouseBuildmanage buildId;		// 所属楼栋ID
 	private CcmPopTenant roomId;   //所属房屋ID
-	private Integer isBehind;		// 是否留守
-	private Integer isRelease;		// 是否安置帮教
+	private Integer isBehind;		        // 是否留守
+	private Integer isRelease;		        // 是否安置帮教
 	private Integer isRectification;		// 是否社区矫正
-	private Integer isAids;		// 是否艾滋病患者
-	private Integer isPsychogeny;		// 是否肇事肇祸等严重精神障碍患者
-	private Integer isKym;		// 是否重点青少年
-	private Integer isDrugs;		// 是否吸毒
-	private Integer  isHarmNational;//是否危害国家安全
-	private Integer  isDeliberatelyIllegal;//是否故意犯法释放
-	private Integer  isCriminalOffense;//是否严重犯罪嫌疑        
-	private Integer isEscape;       //是否在逃
-	private Integer isVisit;		// 是否重点上访
-	private Integer isHeresy;		// 是否涉教
-	private Integer isDangerous;		// 是否危险品从业人员
-	private Integer isMore1;		// 是否特殊1
-	private Integer isMore2;		// 是否特殊2
-	private Integer isDispute;		//是否存在矛盾纠纷
-	private Integer typeSpec;		// 特殊人群分类
-	private String specialCareType;		// 特殊关怀类型
+	private Integer isAids;		            // 是否艾滋病患者
+	private Integer isPsychogeny;		    // 是否肇事肇祸等严重精神障碍患者
+	private Integer isKym;		            // 是否重点青少年
+	private Integer isDrugs;		        // 是否吸毒
+	private Integer isHarmNational;         //是否危害国家安全
+	private Integer isDeliberatelyIllegal;  //是否故意犯法释放
+	private Integer isCriminalOffense;      //是否严重犯罪嫌疑
+	private Integer isEscape;               //是否在逃
+	private Integer isVisit;		        // 是否重点上访
+	private Integer isHeresy;		        // 是否涉教
+	private Integer isDangerous;		     // 是否危险品从业人员
+	private Integer isMore1;		        // 是否特殊1
+	private Integer isMore2;		        // 是否特殊2
+	private Integer isDispute;		        //是否存在矛盾纠纷
+	private Integer typeSpec;		        // 特殊人群分类
+	private String  specialCareType;		// 特殊关怀类型
 	private String images;		// 图片
 	private String ident;		// 公民身份号码
 	private String telephone;		// 联系方式

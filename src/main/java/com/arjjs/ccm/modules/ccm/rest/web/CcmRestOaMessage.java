@@ -96,6 +96,7 @@ public class CcmRestOaMessage extends BaseController {
 		if (userId == null || "".equals(userId)) {//参数id不对
 			result.setCode(CcmRestType.ERROR_PARAM);
 			return result;
+
 		}
 
 //		oaMessage.setSelf(true);

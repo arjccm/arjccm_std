@@ -25,7 +25,9 @@ button.btn{*padding:3px 10px 2px;*background-color:transparent;}
 input.btn {filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#cccccc', GradientType=0);*color:#555555}
 input.btn:hover {*color:#333333}
 */
-.nav, .breadcrumb {margin-bottom:8px;}
+.nav, .breadcrumb {
+	margin-bottom:8px;
+}
 .nav-list li a {
 	/* margin-top:5px;margin-bottom:5px;_padding-top:6px; */
 	} .nav-list li a i{_margin-top:-1px;}

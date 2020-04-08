@@ -124,7 +124,7 @@ public class PlmRoomController extends BaseController {
 //		plmRoomApply.setPlmAct(plmAct);
 //		plmRoomApply.setCreateBy(null);
 		List<PlmRoomApply> applylist = plmRoomApplyService.getroombyuserIdlist(plmRoomApply);
-		List<Object>  list=new ArrayList<Object>(); 
+		List<Object>  list=new ArrayList<Object>();
 		for (PlmRoomApply plmRoomApply2 : applylist) {
 			Date start = plmRoomApply2.getStartTime();
 			Date end = plmRoomApply2.getEndTime();

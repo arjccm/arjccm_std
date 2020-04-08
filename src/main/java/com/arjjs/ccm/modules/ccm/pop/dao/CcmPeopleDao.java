@@ -221,4 +221,5 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 	// 导入优化 查询id，ident
 	@MapKey("ident")
 	Map<String, Object> queryAllToMap();
+
 }
