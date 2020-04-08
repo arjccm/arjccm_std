@@ -253,6 +253,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/storage/plmIncomingEntry/">入库单列表</a></li>
 		<li class="active"><a id="incomingEntry" class="nav-head"
@@ -487,5 +488,6 @@
 		<iframe id="updateDetailInfoDetail" onreadystatechange="stateChange() " onload="stateChangeLoad()" class="ui-dialog-content ui-widget-content" src="">
 		
 		</iframe>
+</div>
 </body>
 </html>

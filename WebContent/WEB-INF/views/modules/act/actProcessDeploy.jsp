@@ -27,6 +27,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/act/process/">流程管理</a></li>
 		<li class="active"><a class="nav-head" href="${ctx}/act/process/deploy/">部署流程</a></li>
@@ -56,5 +57,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form>
+</div>
 </body>
 </html>

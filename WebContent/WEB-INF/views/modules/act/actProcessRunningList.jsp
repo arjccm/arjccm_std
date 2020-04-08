@@ -53,7 +53,7 @@
         &nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" style="float:right" value="查询"/>
     </form>
     <sys:message content="${message}"/>
-    <table class="table table-striped table-bordered table-condensed">
+    <table class="table table-striped table-bordered table-condensed table-gradient">
         <thead>
         <tr>
             <th>执行ID</th>

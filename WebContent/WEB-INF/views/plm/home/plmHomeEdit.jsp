@@ -5,10 +5,16 @@
 <title>个人门户编辑</title>
 <meta name="decorator" content="default" />
 <link rel="stylesheet" href="${ctxStatic}/common/home/css/homeedit.css">
+    <style>
+        #bodydiv{
+            margin-left: 15px;
+            width: calc(100vw - 15px)!important;
+        }
+    </style>
 </head>
 <body>
 
-
+<div class="back-list clearfix">
 	<div id="topdiv">
 		<form:form id="searchForm1" modelAttribute="plmPortalPlan" action="${ctx}/home/plmHome/edit" method="post" class="breadcrumb form-search">
 			<ul class="ul-form">
@@ -22,10 +28,10 @@
 				<li class="clearfix">
 					<c:if test="${isfangan==1}">
 						<label>
-							<input id="" class="btn btn-primary  fan" type="button" value="使用方案" onclick="qdfa()" />
+							<input  class="btn btn-primary  fan" type="button" value="使用方案" onclick="qdfa()" />
 						</label>
 						<label>
-							<input id="" class="btn btn-primary  fan" type="button" value="返   回" onclick="qxfa()" />
+							<input class="btn btn-primary  fan" type="button" value="返   回" onclick="qxfa()" />
 						</label>
 <!-- 						<label> -->
 <!-- 							<input id="" class="btn btn-primary  bjnr" type="button" value="编辑内容" onclick="bjfanr()" /> -->
@@ -33,7 +39,7 @@
 					</c:if>
 					<c:if test="${isfangan==0}">
 						<label>
-							<input id="" class="btn btn-primary  bjnr" type="button" value="编辑内容" onclick="bjnr()" />
+							<input  class="btn btn-primary  bjnr" type="button" value="编辑内容" onclick="bjnr()" />
 						</label>
 					</c:if>
 				</li>
@@ -61,7 +67,7 @@
 									<i class="icon-caret-right tubiao"></i>
 									${portlet.title}
 								</span>
-								<a id="" class="titlemore  " href="${ctx}${portlet.connect}">
+								<a  class="titlemore  " href="${ctx}${portlet.connect}">
 									<c:if
 										test="${portlet.connect!='null'&&not empty  portlet.connect}">更多<i
 											class="icon-double-angle-right tubiao"></i>
@@ -212,5 +218,6 @@
 			$("#bodydiv").height($(window).height() - 60);
 		})
 	</script>
+</div>
 </body>
 </html>
