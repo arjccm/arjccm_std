@@ -48,6 +48,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a>双报道情况管理列表</a></li>
 		<%--<shiro:hasPermission name="partyreport:ccmPartyReport:edit"><li><a href="${ctx}/partyreport/ccmPartyReport/form">双报道情况管理添加</a></li></shiro:hasPermission>--%>
@@ -90,9 +91,9 @@
 
 	</form:form>
 
-	</div>
+
 	<sys:message content="${message}"/>
-	<table id="contentTableOrg" class="table table-striped table-bordered table-condensed">
+	<table id="contentTableOrg" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 		<tr>
 			<th>组织名称</th>
@@ -138,7 +139,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<table id="contentTablePer" class="table table-striped table-bordered table-condensed" >
+	<table id="contentTablePer" class="table table-striped table-bordered table-condensed table-gradient" >
 		<thead>
 		<tr>
 			<th>姓名</th>
@@ -180,6 +181,9 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
+
+</body>
 </body>
 </html>
