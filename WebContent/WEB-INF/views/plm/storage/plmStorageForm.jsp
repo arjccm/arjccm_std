@@ -91,6 +91,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/storage/plmStorage/">仓库信息列表</a></li>
 		<li class="active"><a class="nav-head"
@@ -181,5 +182,6 @@
 				<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i ></i>返回</a>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

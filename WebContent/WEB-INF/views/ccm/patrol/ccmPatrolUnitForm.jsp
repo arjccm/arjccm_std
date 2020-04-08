@@ -37,7 +37,7 @@
 	</script>
 </head>
 <body>
-	<br/>
+<div class="back-list clearfix">
 	<iframe id="iframeDetails" style="width: 1200px;height: 480px;border: 0px;" src="" ></iframe>
 
 	<form:form id="inputForm" modelAttribute="ccmPatrolUnit" action="${ctx}/patrol/ccmPatrolUnit/save" method="post" class="form-horizontal">
@@ -112,5 +112,6 @@
 			<input id="btnCancel1" class="btn" type="button" value="返 回" onclick="parent.layer.close(parent.layer.index)"/>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

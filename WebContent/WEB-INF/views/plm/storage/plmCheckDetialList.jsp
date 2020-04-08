@@ -153,6 +153,7 @@
 	</script>
 </head>
 <body>
+
 	<ul class="nav nav-tabs" style="position: fixed;">
 		<li class="active"><a>盘点详细列表</a></li>
 		<c:if test="${plmCheck.status != '3'}">

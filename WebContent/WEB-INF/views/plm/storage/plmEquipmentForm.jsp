@@ -110,6 +110,7 @@
 <%--	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">--%>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="width: 112px" href="${ctx}/storage/plmEquipment/">装备物资列表</a></li>
 		<li class="active"><a class="nav-head"
@@ -279,5 +280,6 @@
 		</div>
 	</form:form>
 	<iframe id="printCode" src=""></iframe>
+</div>
 </body>
 </html>
