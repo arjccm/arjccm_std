@@ -79,6 +79,19 @@ public interface CcmEventIncidentDao extends CrudDao<CcmEventIncident> {
 	List<EchartType> findSolveByArea();
 
 	/**
+	 * 本月案事件处理率TOP10 街道
+	 * @return
+	 */
+	List<EchartType> queryTopTenJieDao();
+
+	/**
+	 * 月案事件处理率TOP10 社区
+	 * @return
+	 */
+	List<EchartType> queryTopTenQuXian();
+
+
+	/**
 	 * @see 按月统计的案事件数  
 	 * @return
 	 */
