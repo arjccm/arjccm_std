@@ -375,6 +375,22 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 	}
 
 	/**
+	 * 本月案事件处理率TOP10 街道
+	 * @return
+	 */
+	public  List<EchartType> queryTopTenJieDao() {
+		return ccmEventIncidentDao.queryTopTenJieDao();
+	}
+
+	/**
+	 * 本月案事件处理率TOP10 区县
+	 * @return
+	 */
+	public  List<EchartType> queryTopTenQuXian() {
+		return ccmEventIncidentDao.queryTopTenQuXian();
+	}
+
+	/**
 	 * @return
 	 * @see /按月统计的案事件数
 	 */
