@@ -102,7 +102,7 @@
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgDevice/form?id=${ccmOrgCommonality.id}', '视频绑定', '1120px', '350px')"
 					   title="视频绑定"				class="btn btn-success"><i class="icon-align-left"></i></a>
 					<a class="btnList" onclick="parent.LayerDialog('${ctx}/org/ccmOrgDevice/list?id=${ccmOrgCommonality.id}', '视频列表', '1120px', '350px')"
-					   title="视频列表"				class="btn btn-success"><i class="icon-align-justify"></i></a>
+					   title="视频列表"				class="btn btn-success"><i class="iconfont icon-shipinliebiao"></i></a>
 				<%--</c:if>--%>
 				</td>
 				</shiro:hasPermission>

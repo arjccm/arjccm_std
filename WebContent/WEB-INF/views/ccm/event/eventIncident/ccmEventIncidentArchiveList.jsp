@@ -288,7 +288,7 @@ text-overflow: ellipsis; text-align: left;">
                 <!-- 事件登记编辑权限  --> <shiro:hasPermission
                     name="event:ccmEventIncident:view">
 
-                <a class="btnList" href="${ctx}/event/ccmEventIncident/archiveForm?id=${ccmEventIncident.id}" title="事件详情及处置"><i class="icon-list-alt"></i></a>
+                <a class="btnList" href="${ctx}/event/ccmEventIncident/archiveForm?id=${ccmEventIncident.id}" title="事件详情及处置"><i class="iconfont icon-shijianxiangqingjichuzhi"></i></a>
             </shiro:hasPermission>
 
             </td>

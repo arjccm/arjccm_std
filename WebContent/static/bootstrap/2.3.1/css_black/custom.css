@@ -512,9 +512,57 @@ a>i.icon-caozuotubiao-shanchu{
  a>i.icon-caozuotubiao-fanganmingxi{
 	 color: #3CC7AB;
  }
+ /*  住房管理  */
+ a>i.icon-zhufangguanli{
+	 color: #792BEF;
+ }
+ /*  房间  */
+ a>i.icon-fangjian{
+	 color: #3CC7AB;
+ }
+ /*  住户管理  */
+ a>i.icon-zhuhuguanli{
+	 color: #9850fa;
+ }
+ /*  视频列表  */
+ a>i.icon-shipinliebiao{
+	 color: #3CC7AB;
+ }
+ /*  从业人员添加  */
+ a>i.icon-congyerenyuantianjia{
+	 color: #9850fa;
+ }
+ /*  从业人员信息  */
+ a>i.icon-congyerenyuanxinxi{
+	 color: #3CC7AB;
+ }
+ /*  对比  */
+ a>i.icon-duibi{
+	 color: #2B8BEF;
+ }
+ /*  事件详情及处置  */
+ a>i.icon-shijianxiangqingjichuzhi{
+	 color: #2B8BEF;
+ }
+ /*  任务快速派遣  */
+ a>i.icon-renwukuaisupaiqian{
+	 color: #3CC753;
+ }
+ /*  分配  */
+ a>i.icon-fenpei{
+	 color: #3CC753;
+ }
+ /*  复制  */
+ a>i.icon-fuzhi{
+	 color: #2B8BEF;
+ }
+ /*  粘贴  */
+ a>i.icon-niantie{
+	 color: #2B8BEF;
+ }
 
 
-/* 濡楀牅绨ㄦ禒璺哄絺閸忓鐡ф担锟� */
+ /* 濡楀牅绨ㄦ禒璺哄絺閸忓鐡ф担锟� */
 @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) { 
     .masked.active{
       

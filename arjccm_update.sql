@@ -2280,53 +2280,6 @@ INSERT INTO `sys_dicts` (`id`, `parent_id`, `parent_ids`, `value`, `label`, `typ
 INSERT INTO `sys_dicts` (`id`, `parent_id`, `parent_ids`, `value`, `label`, `type`, `description`, `sort`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('80000', '0', '0,', '80000', '不便分类的其他从业人员', 'ccm_occupation', '职业', '1', '1', '2020-03-31 15:07:53', '1', '2020-03-31 15:08:10', NULL, '0');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 --添加信息采集社会治安 嫌疑人显示权限
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a42670932dad468989033c1455681abd', 'bda5b1b6bb5649a7a0b5f53ab91554b9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,72907f43bb8d43ac8973b253ef575f85,bda5b1b6bb5649a7a0b5f53ab91554b9,', '显示', '', '', '', 30, '0', 'event:ccmEventStakeholder:view', '1', '2020-04-02 16:21:03.545', '1', '2020-04-02 16:21:03.545', '', '0' );
 
@@ -2579,3 +2532,13 @@ ADD COLUMN `area_color` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci 
 -- 楼栋增加已采集人数字段
 ALTER TABLE `ccm_house_buildmanage`
 ADD COLUMN `gather_num` int(6) NULL COMMENT '楼栋已采集人数' AFTER `build_peo`;
+
+
+
+UPDATE `sys_menu` SET `parent_id` = '170000', `parent_ids` = '0,1,170000,', `name` = '治安乱点整治报表', `sort` = 700, `href` = '', `target` = '', `icon` = 'zhian', `is_show` = '0', `permission` = '', `create_by` = '1', `create_date` = '2018-03-23 14:19:41', `update_by` = '1', `update_date` = '2020-04-07 11:21:47', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('c9cc1fd43d834da692c3fbab6cffd8c5' AS Binary(32));
+UPDATE `sys_menu` SET `parent_id` = '170300', `parent_ids` = '0,1,170000,170300,', `name` = '矛盾纠纷排查统计', `sort` = 330, `href` = '/event/ccmEventAmbi/map', `target` = '', `icon` = 'unlock', `is_show` = '0', `permission` = '', `create_by` = '1', `create_date` = '2018-03-23 14:17:59', `update_by` = '1', `update_date` = '2020-04-07 11:21:02', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('cb5733ff670b4c7f809b6b6dbf07a521' AS Binary(32));
+UPDATE `sys_menu` SET `parent_id` = 'b5b8c33b437b417b852703a58ec22a04', `parent_ids` = '0,1,170000,b5b8c33b437b417b852703a58ec22a04,', `name` = '楼栋房屋数据分析', `sort` = 30, `href` = '/report/ccmReportOthers/houseAndBuild', `target` = '', `icon` = 'cloud-download', `is_show` = '0', `permission` = '', `create_by` = '1', `create_date` = '2018-03-27 11:12:02', `update_by` = '1', `update_date` = '2020-04-07 11:20:19', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('19fbbdff39a94ce7bd716d00beafbe4a' AS Binary(32));
+UPDATE `sys_menu` SET `parent_id` = 'b5b8c33b437b417b852703a58ec22a04', `parent_ids` = '0,1,170000,b5b8c33b437b417b852703a58ec22a04,', `name` = '非公有制经济组织分析', `sort` = 60, `href` = '/report/ccmReportOthers/organization', `target` = '', `icon` = 'filter', `is_show` = '0', `permission` = '', `create_by` = '1', `create_date` = '2018-03-27 11:12:43', `update_by` = '1', `update_date` = '2020-04-07 11:19:53', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('3b87dfc20fe745bebccd1c2445530a19' AS Binary(32));
+
+
+alter table ccm_people_amount add sex_unknow int(12) NULL DEFAULT NULL COMMENT '未说明性别总数';

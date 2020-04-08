@@ -68,6 +68,18 @@
 			<li><i class="iconfont icon-caozuotubiao-weizhixinxi"></i> icon-caozuotubiao-weizhixinxi</li>
 			<li><i class="iconfont icon-caozuotubiao-chekong"></i> icon-caozuotubiao-chekong</li>
 			<li><i class="iconfont icon-caozuotubiao-xiangqing"></i> icon-caozuotubiao-xiangqing</li>
+			<li><i class="iconfont icon-fuzhi"></i> icon-fuzhi</li>
+			<li><i class="iconfont icon-niantie"></i> icon-niantie</li>
+			<li><i class="iconfont icon-congyerenyuanxinxi"></i> icon-congyerenyuanxinxi</li>
+			<li><i class="iconfont icon-fangjian"></i> icon-fangjian</li>
+			<li><i class="iconfont icon-shijianxiangqingjichuzhi"></i> icon-shijianxiangqingjichuzhi</li>
+			<li><i class="iconfont icon-zhufangguanli"></i> icon-zhufangguanli</li>
+			<li><i class="iconfont icon-fenpei"></i> icon-fenpei</li>
+			<li><i class="iconfont icon-zhuhuguanli"></i> icon-zhuhuguanli</li>
+			<li><i class="iconfont icon-congyerenyuantianjia"></i> icon-congyerenyuantianjia</li>
+			<li><i class="iconfont icon-renwukuaisupaiqian"></i> icon-renwukuaisupaiqian</li>
+			<li><i class="iconfont icon-shipinliebiao"></i> icon-shipinliebiao</li>
+			<li><i class="iconfont icon-duibi"></i> icon-duibi</li>
 
 		</ul>
 		<h2 class="page-header">Header导航图标</h2>
@@ -117,6 +129,21 @@
             <li><i class="iconfont icon-daohangtubiao-zhongdianrenyuan"></i> icon-daohangtubiao-zhongdianrenyuan</li>
             <li><i class="iconfont icon-daohangtubiao-yuchulixitong"></i> icon-daohangtubiao-yuchulixitong</li>
             <li><i class="iconfont icon-daohangtubiao-zongzhizuzhi"></i> icon-daohangtubiao-zongzhizuzhi</li>
+
+			<li><i class="hdrIcon2 icon-jingweirenwuguanli"></i> icon-jingweirenwuguanli</li>
+			<li><i class="hdrIcon2 icon-liuchengshenpi"></i> icon-liuchengshenpi</li>
+			<li><i class="hdrIcon2 icon-anshijianbaobiao"></i> icon-anshijianbaobiao</li>
+			<li><i class="hdrIcon2 icon-shijianzhutitongji"></i> icon-shijianzhutitongji</li>
+			<li><i class="hdrIcon2 icon-liuchengguanli"></i> icon-liuchengguanli</li>
+			<li><i class="hdrIcon2 icon-jingqingxinxichaxun"></i> icon-jingqingxinxichaxun</li>
+			<li><i class="hdrIcon2 icon-xunluoguanli"></i> icon-xunluoguanli</li>
+			<li><i class="hdrIcon2 icon-beiqinrenwuguanli"></i> icon-beiqinrenwuguanli</li>
+			<li><i class="hdrIcon2 icon-richanggongzuoshujubaobiao"></i> icon-richanggongzuoshujubaobiao</li>
+			<li><i class="hdrIcon2 icon-sanshitizhutitongji"></i> icon-sanshitizhutitongji</li>
+			<li><i class="hdrIcon2 icon-zhianluandianzhengzhibaobiao"></i> icon-zhianluandianzhengzhibaobiao</li>
+			<li><i class="hdrIcon2 icon-qushiyanpanfenxi"></i> icon-qushiyanpanfenxi</li>
+			<li><i class="hdrIcon2 icon-wanggeshujufenxi"></i> icon-wanggeshujufenxi</li>
+			<li><i class="hdrIcon2 icon-zongjiaoguanli"></i> icon-zongjiaoguanli</li>
 		</ul>
 
 		<h2 class="page-header">一级菜单图标</h2>

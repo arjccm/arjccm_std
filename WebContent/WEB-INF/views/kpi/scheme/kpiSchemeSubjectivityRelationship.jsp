@@ -106,8 +106,8 @@
 				</td>
 				<td width="20%">
     				<a class="btnList" onclick="remarksAdd('remarks${kpiFinalScore.user.id}','${kpiFinalScore.user.name}')"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
-					<a class="btnList" onclick="copyText('remarks${kpiFinalScore.user.id}')" title="复制"><i class="iconfont  icon-daohangtubiao-maodunjiufenpaicha"></i></a>
-					<a class="btnList" onclick="pasteText('remarks${kpiFinalScore.user.id}')" title="粘贴"><i class="iconfont  icon-daohangtubiao-jixiaokaohe"></i></a>
+					<a class="btnList" onclick="copyText('remarks${kpiFinalScore.user.id}')" title="复制"><i class="iconfont  icon-fuzhi"></i></a>
+					<a class="btnList" onclick="pasteText('remarks${kpiFinalScore.user.id}')" title="粘贴"><i class="iconfont  icon-niantie"></i></a>
 				</td>
 			</tr>
 		</c:forEach>
