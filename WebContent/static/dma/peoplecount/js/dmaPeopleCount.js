@@ -153,7 +153,13 @@ function showPeopleBirthdayCount(data){
 		        type: 'category',
 		        data: data["yAxis"]
 		    },
-		    series: data["value"]
+		    series: [
+                {
+                    name: '人数',
+                    type: 'bar',
+					data: data["value"]
+                }
+            ]
 		};
 	var Barchart = echarts.init(document.getElementById('peopleBirthdayCount'),'theme');
 	Barchart.setOption(option);

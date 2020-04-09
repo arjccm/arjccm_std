@@ -131,4 +131,6 @@ public interface CcmPeopleAmountDao extends CrudDao<CcmPeopleAmount> {
 
 	//统计区域性别比例
 	List<EchartType> getPeopleSexCount(@Param("areaId")String areaId, @Param("areaType")String areaType);
+	//统计区域性别比例
+	List<EchartType> getPeopleAgeCount(@Param("areaId")String areaId, @Param("areaType")String areaType);
 }
