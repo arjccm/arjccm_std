@@ -138,6 +138,7 @@ public class CcmWorkReportController extends BaseController {
 			resmap.put("type","03");
 			resmap.put("name","您有一条日志消息，请注意查收！");
 			resmap.put("id",ccmWorkReportRead.getUser().getId());
+			resmap.put("title",ccmWorkReport.getTitle());
 			RabbitMQTools.sendMessage(ccmWorkReportRead.getUser().getId(), JSONObject.fromObject(resmap).toString());
 			
 			CcmMessage ccmMessage = new CcmMessage();
@@ -150,6 +151,7 @@ public class CcmWorkReportController extends BaseController {
 			ccmMessage.setUserId(ccmWorkReportRead.getUser().getId());
 			ccmMessage.setCreateBy(user);
 			ccmMessage.setUpdateBy(user);
+			ccmMessage.setTitle(ccmWorkReport.getTitle());
 			messagelist.add(ccmMessage);
 		}
 		if(messagelist.size()!=0) {
