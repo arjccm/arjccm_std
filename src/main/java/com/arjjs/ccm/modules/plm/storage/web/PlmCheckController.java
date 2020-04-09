@@ -97,7 +97,7 @@ public class PlmCheckController extends BaseController {
 		plmCheckDetialService.saveCheckEquipment(plmCheck);
 		plmCheckService.save(plmCheck);
 		addMessage(redirectAttributes, "保存盘点单成功");
-		return form(plmCheck, model);
+		return "redirect:"+Global.getAdminPath()+"/storage/plmCheck/?repage";
 	}
 	
 	@RequiresPermissions("storage:plmCheck:edit")
