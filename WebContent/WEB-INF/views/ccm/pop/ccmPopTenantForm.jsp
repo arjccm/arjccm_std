@@ -55,6 +55,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<c:if test="${type eq 'hire' }">
 			<li><a style="text-align:center" href="${ctx}/pop/ccmPopTenant/list/rent">数据列表</a></li>
@@ -688,5 +689,6 @@
 			})
 		})
 	</script>
+</div>
 </body>
 </html>

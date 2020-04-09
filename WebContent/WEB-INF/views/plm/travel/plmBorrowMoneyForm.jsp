@@ -92,6 +92,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<form:form id="inputForm" modelAttribute="plmBorrowMoney" action="${ctx}/travel/plmBorrowMoney/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="plmAct.id"/>
@@ -214,5 +215,6 @@
 			</c:if>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

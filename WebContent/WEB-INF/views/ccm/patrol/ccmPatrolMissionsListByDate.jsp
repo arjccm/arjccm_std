@@ -17,7 +17,7 @@
 	</script>
 </head>
 <body>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>巡逻任务</th>

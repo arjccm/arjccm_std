@@ -239,4 +239,10 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 	public Integer gather(String aid) {
 		return ccmHouseBuildmanageDao.gather(aid);
 	}
+
+	// 查询社区情况统计
+	public List<SearchTabMore> queryCommunityCount() {
+		return ccmHouseBuildmanageDao.queryCommunityCount();
+	 }
+
 }

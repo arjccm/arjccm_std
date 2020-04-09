@@ -33,6 +33,7 @@ import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.tenant.entity.CcmTenantRecord;
 import com.arjjs.ccm.modules.ccm.tenant.service.CcmTenantRecordService;
 import com.arjjs.ccm.tool.CommUtil;
+import sun.misc.BASE64Decoder;
 
 /**
  * 历史租客记录表Controller
@@ -108,7 +109,6 @@ public class CcmTenantRecordController extends BaseController {
 			ccmTenantRecord2.setRemarks(ccmTenantRecord.getRemarks());
 			ccmTenantRecordService.save(ccmTenantRecord2);
 		}else {
-			//ccmTenantRecord.setIsNewRecord(true);
 			ccmTenantRecord.setCreateBy(UserUtils.getUser());
 			ccmTenantRecord.setUpdateBy(UserUtils.getUser());
 			ccmTenantRecord.setDelFlag("0");

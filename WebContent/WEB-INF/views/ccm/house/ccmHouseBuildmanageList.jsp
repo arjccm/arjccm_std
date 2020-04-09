@@ -322,13 +322,13 @@ ul.ztree.zTreeDragUL{
 					<td><shiro:hasPermission name="house:ccmHouseBuildmanage:edit">
 						<a class="btnList" href="${ctx}/house/ccmHouseBuildmanage/form?id=${ccmHouseBuildmanage.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/house/ccmHouseBuildmanage/delete?id=${ccmHouseBuildmanage.id}" onclick="return confirmx('确认要删除该建筑物吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
-						<a class="btnList" href="${ctx}/pop/ccmPopTenant/listBuild?buildingId.id=${ccmHouseBuildmanage.id}&area.id=${ccmHouseBuildmanage.area.id}" title="住房管理"><i class="iconfont icon-caozuotubiao-hujijiating"></i></a>
+						<a class="btnList" href="${ctx}/pop/ccmPopTenant/listBuild?buildingId.id=${ccmHouseBuildmanage.id}&area.id=${ccmHouseBuildmanage.area.id}" title="住房管理"><i class="iconfont icon-zhufangguanli"></i></a>
 						</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseBuildmanage.id}&relevance_table=ccm_house_buildmanage', '记录信息', '800px', '660px')" 
 								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseBuildmanage.id}&relevance_table=ccm_house_buildmanage', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 						</shiro:hasPermission>
-						<a class="btnlist" href="javascript:;" title="房间" onclick="house('${ccmHouseBuildmanage.id}','${ccmHouseBuildmanage.area.id}')"><i class="icon-reorder"></i></a></td>
+						<a class="btnlist" href="javascript:;" title="房间" onclick="house('${ccmHouseBuildmanage.id}','${ccmHouseBuildmanage.area.id}')"><i class="iconfont icon-fangjian"></i></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

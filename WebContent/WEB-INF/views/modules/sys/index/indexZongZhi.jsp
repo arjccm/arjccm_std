@@ -218,9 +218,9 @@
 						<div class="echartsLabel">人口统计情况</div>
 						<ul class="nav nav-tabs" id="PeopleStatistics">
 							<li class="active" title="户籍" type="0"><a href="javascript:;">户籍人口</a></li>
-							<li title="流动" type="2"><a 	href="javascript:;">流动人口</a></li>
-							<li title="境外" type="1"><a href="javascript:;">境外人口</a></li>
-							<li title="未落户" type="10"><a href="javascript:;">未落户人口</a></li>
+							<li  title="流动" type="2"><a href="javascript:;">流动人口</a></li>
+							<li  title="境外" type="1"><a href="javascript:;">境外人口</a></li>
+							<li  title="未落户" type="10"><a href="javascript:;">未落户人口</a></li>
 						</ul>
 					</div>
 					<div class="center-main">

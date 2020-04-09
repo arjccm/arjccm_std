@@ -35,6 +35,7 @@ margin: 0 auto;
 </style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="">信息公开</a></li>
 	</ul>
@@ -63,5 +64,6 @@ margin: 0 auto;
 		</c:forEach>
 		
 	</div>
+</div>
 </body>
 </html>

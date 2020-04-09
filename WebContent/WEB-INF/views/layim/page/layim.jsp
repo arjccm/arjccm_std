@@ -148,10 +148,11 @@ $.ajax({
 				*/
 	   	  
 	     }
-		  
-		  
-	  
-		 layui.use('layim', function(layim){
+
+
+
+
+            layui.use('layim', function(layim){
 			  //基础配置
 			  layim.config({
 			 
@@ -219,19 +220,12 @@ $.ajax({
 			   });
 			  //监听自定义工具栏点击，以添加代码为例
 			  layim.on('tool(codeVideo)', function(insert, send, obj){ //事件中的tool为固定字符，而code则为过滤器，对应的是工具别名（alias）
-			    var message = new proto.Model(); 
-		      	  var content = new proto.MessageBody();
-		           message.setMsgtype(4);
-		           message.setCmd(5);
-		           message.setGroupid('video');//系统用户组
-		           message.setToken(currentsession);  
-		           message.setSender(currentsession);
-		           message.setReceiver(obj.data.id);//好友ID
-		           content.setContent('video');
-		           //message.setAudioOrVideo(2);
-		           content.setType(0)
-		           message.setContent(content.serializeBinary())
-		           socket.send(message.serializeBinary());
+                   var reqType =  obj.data.type;
+			       if(reqType === 'group'){
+
+                   }else{
+                       sendVideoOrAuidoMsg(currentsession,obj.data.id,"video");
+                   }
                   $("body").append(
                       '<div class="modal chat_dialog"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" aria-labelledby="myModalLabel">'+
                       '<div class="modal-dialog">'+
@@ -553,7 +547,7 @@ function showMessage(data) {
      * @param id  接收人，也就是当前用户
      * @param type
      */
-function chat_ready(sendId,id,type){
+function chat_ready(sendId,id,type,sign){
 	 $(".chat_dialog").hide();
 	  // windowOpen('https://192.168.1.170:8553/cat?userId='+id+'&sendId='+sendId+'&type='+type,'视频聊天','600','500'); ("~");
      //windowOpen('https://192.168.1.177:8443?userId='+currentsession+'&sendId='+currentsession+'&type=audio','视频聊天','650','650');
@@ -561,10 +555,12 @@ function chat_ready(sendId,id,type){
     windowOpen('https://192.168.1.177:9090?userId='+sendId+'&sendId='+id+'&type='+type+'&callType=callee','视频聊天','650','650');
     //windowOpen('https://192.168.1.7:8443?userId='+id+'~callee&sendId='+sendId+'~caller&type='+type,'视频聊天','650','650');
     // 弹出页面之后，发送回调消息，告诉发起人，被呼叫人已经同意视频；
-    var message = new proto.Model();
+    sendVideoOrAuidoMsg(id, sendId,type,'agree')
+    /*var message = new proto.Model();
     var content = new proto.MessageBody();
     message.setMsgtype(4);
     message.setCmd(5);
+    message.setGroupid('video');//系统用户组
     message.setToken(currentsession);
     message.setSender(currentsession);
     message.setReceiver(sendId);//好友ID
@@ -572,23 +568,40 @@ function chat_ready(sendId,id,type){
     message.setSign("agree"),
     content.setType(0)
     message.setContent(content.serializeBinary())
-    socket.send(message.serializeBinary());
+    socket.send(message.serializeBinary());*/
 }
 function closeDialog(sendId){
 	 $(".chat_dialog").hide();
 	 if(sendId){
-         var message = new proto.Model();
+         sendVideoOrAuidoMsg(currentsession, sendId,"",'refuse')
+/*         var message = new proto.Model();
          var content = new proto.MessageBody();
          message.setMsgtype(4);
          message.setCmd(5);
+         message.setGroupid('video');//系统用户组
          message.setToken(currentsession);
          message.setSender(currentsession);
          message.setReceiver(sendId);//好友ID
          content.setContent('video');//拒绝呼叫
          message.setSign('refuse'),
-             content.setType(0)
+          content.setType(0)
          message.setContent(content.serializeBinary())
-         socket.send(message.serializeBinary());
+         socket.send(message.serializeBinary());*/
      }
+}
+function sendVideoOrAuidoMsg(currentUserId, firedId,type,sign) {
+    var message = new proto.Model();
+    var content = new proto.MessageBody();
+    message.setMsgtype(4);
+    message.setCmd(5);
+    message.setGroupid(type);//系统用户组
+    message.setToken(currentUserId);
+    message.setSender(currentUserId);
+    message.setReceiver(firedId);//好友ID
+    content.setContent(type);
+    message.setSign(sign),
+    content.setType(0)
+    message.setContent(content.serializeBinary())
+    socket.send(message.serializeBinary());
 }
 </script>

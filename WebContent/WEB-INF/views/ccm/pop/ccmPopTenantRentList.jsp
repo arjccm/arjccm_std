@@ -112,7 +112,7 @@
 								class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							<a class="btnList"
 								href="${ctx}/pop/ccmPeople/getPeoListByHouse?houseId=${ccmPopTenant.id}&type=hire"
-								title="住户管理"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
+								title="住户管理"><i class="iconfont icon-zhuhuguanli"></i></a>
 							<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPopTenant.id}&relevance_table=ccm_pop_tenant', '记录信息', '800px', '660px')" 
 								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
 							<a class="btnList"

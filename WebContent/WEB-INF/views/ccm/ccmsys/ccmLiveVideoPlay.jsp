@@ -32,6 +32,18 @@
 
 	<script src="${ctxStatic}/jquery-select2/3.4/select2.min.js"></script>
 	<link rel="stylesheet" href="${ctxStatic}/common/jeesite.css">
+    <script>
+        if($.cookie('theme')==undefined){
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
+        }else if($.cookie('theme')=='gradient'){
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_cerulean/custom.css" type="text/css" rel="stylesheet">');
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_cerulean/bootstrap.min.css" type="text/css" rel="stylesheet">');
+        }else if($.cookie('theme')=='black'){
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
+            $('head').append('<link href="${ctxStatic}/bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
+        }
+    </script>
 	<script>
 		ctx="${ctx}";
 		ctxStatic="${ctxStatic}";
@@ -55,6 +67,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<form:form id="inputForm" modelAttribute="ccmDevice" action="" method="post" class="form-horizontal form-search" cssStyle="padding:10px">
 		<div id="divPlugin" style="width:100%;height:640px;background:#4C4B4B">
 			<c:if test="${ccmDevice.typeVidicon == 2}">
@@ -158,6 +171,7 @@
 			</li>
 		</ul>
 	</form:form>
+</div>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {

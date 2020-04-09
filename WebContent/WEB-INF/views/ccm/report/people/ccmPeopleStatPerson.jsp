@@ -73,7 +73,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 	<script type="text/javascript"
 		src="${ctxStatic}/ccm/pop/js/ccmPersonInfo.js"></script>
 </body>

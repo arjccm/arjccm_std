@@ -14,5 +14,5 @@ import com.arjjs.ccm.modules.ccm.tenant.entity.CcmTenantRecord;
  */
 @MyBatisDao
 public interface CcmTenantRecordDao extends CrudDao<CcmTenantRecord> {
-	
+
 }

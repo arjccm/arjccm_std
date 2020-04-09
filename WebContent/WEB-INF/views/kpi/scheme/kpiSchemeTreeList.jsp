@@ -7,9 +7,9 @@
     <link href="${ctxStatic}/jquery-ztree/3.5.12/css/zTreeStyle/zTreeStyle.min.css" rel="stylesheet" type="text/css"/>
     <link href="${ctxStatic}/kpi/css/kpiSchemeTreeList.css" rel="stylesheet" type="text/css"/>
     <style>
-        .kpi-bg {
-            background: #f5f5f5
-        }
+       .row-fluid{
+           margin-left: 20px;
+       }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {

@@ -334,7 +334,7 @@
         <input id="btnCancel" class="btn btn-danger" type="button"
                value="关闭"/>
     </div>
-</form:form><br>
+</form:form>
 <c:if test="${documentNumber > 0}">
     <shiro:hasPermission name="log:ccmLogTail:edit">
         <h4 class="hide2">&nbsp;跟踪信息：</h4>

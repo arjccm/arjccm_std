@@ -36,6 +36,11 @@
 		return false;
 	}
 </script>
+    <style>
+        td{
+            height: 50px!important;
+        }
+    </style>
 </head>
 <body>
 

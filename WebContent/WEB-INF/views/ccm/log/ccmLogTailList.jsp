@@ -113,5 +113,15 @@
     </table>
     <div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </div>
+<script type="text/javascript">
+    $(document).ready(
+        $(function () {
+            var elementsByClassName = window.parent.document.getElementById("LayerDialog");
+            if(elementsByClassName!=null&&elementsByClassName!=undefined){
+
+                $(".back-list").css({"box-shadow":"none","background":"none"})
+            }
+        }))
+</script>
 </body>
 </html>

@@ -36,9 +36,11 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		$('#btnSubmit').click(function(){
+
+/*		$('#btnSubmit').click(function(){
 			$('#inputForm').submit();
-		});
+		});*/
+
 		$("#inputForm")
 		.validate(
 				{
@@ -163,6 +165,7 @@
 			$("#updateDetailInfo").css({"width":"98%"});
 			return false;
 		});
+
 		$("#btnSubmit").on("click", function() {
 			if($("#type").val() == 0) {
 				$("#inputForm").submit();
@@ -174,6 +177,7 @@
 				}
 			}
 		});
+
 		$("#addComplate").on("click", function() {
 			$("#type").val("1");
 			if($("a[title='updateDetail2']").length > 0){
@@ -253,6 +257,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/storage/plmIncomingEntry/">入库单列表</a></li>
 		<li class="active"><a id="incomingEntry" class="nav-head"
@@ -487,5 +492,6 @@
 		<iframe id="updateDetailInfoDetail" onreadystatechange="stateChange() " onload="stateChangeLoad()" class="ui-dialog-content ui-widget-content" src="">
 		
 		</iframe>
+</div>
 </body>
 </html>

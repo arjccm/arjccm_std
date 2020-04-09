@@ -168,7 +168,6 @@ $.fn.fishBone = function(data, uri, permission) {
 //            }
             //封装其他属性
             $.each(this, function(name, value) {
-            	debugger;
                 if (name == 'tailCase') {
                     var li = $("<li>跟踪事项：" + value + "</li>").css("border-left","1px solid "+color);
                     li.appendTo(ul);

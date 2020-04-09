@@ -88,6 +88,7 @@
 	<link href="${ctxStatic}/form/css/form.css" rel="stylesheet" />
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/view/vCcmOrg/list">数据列表</a></li>
 		<li class="active"><a class="nav-head"
@@ -462,5 +463,6 @@
 			</div>
 		
 	</form:form>
+</div>
 </body>
 </html>

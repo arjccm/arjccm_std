@@ -19,6 +19,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/partyserverproject/ccmPartyServerProject/">服务项目管理列表</a></li>
 		<%--<shiro:hasPermission name="partyserverproject:ccmPartyServerProject:edit"><li><a href="${ctx}/partyserverproject/ccmPartyServerProject/form">服务项目管理添加</a></li></shiro:hasPermission>--%>
@@ -51,7 +52,7 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>项目名称</th>
@@ -106,6 +107,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

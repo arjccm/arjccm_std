@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.arjjs.ccm.modules.ccm.sys.dao.SysConfigDao;
+import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
+import com.arjjs.ccm.modules.pbs.common.config.Global;
+import com.google.common.collect.Lists;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,6 +74,8 @@ public class CcmReportIncidentController extends BaseController {
 	private CcmOrgNpseService ccmOrgNpseService;
 	@Autowired
 	private CcmCityComponentsService ccmCityComponentsService;
+	@Autowired
+	private SysConfigDao sysConfigDao;
 	
 	
 	/**
@@ -340,20 +346,33 @@ public class CcmReportIncidentController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "findSolveByArea")
 	public Map<String, Object> findSolveByArea(Model model) {
-		// 返回对象结果
-		List<EchartType> list = ccmEventIncidentService.findSolveByArea();
-		List<String> list1 = new ArrayList<>();
-		List<String> list2 = new ArrayList<>();
 
-		for (int i = 0; i < list.size(); i++) {
-			EchartType et = list.get(i);
-			list1.add(et.getType());
-			list2.add(et.getValue());
+		List<EchartType> result = Lists.newArrayList();
+		ArrayList<String> typeList  = Lists.newArrayList();
+		ArrayList<String> valueList = Lists.newArrayList();
+
+		// 1.判断当前系统默认层级  街道/区县
+		SysConfig system_level = sysConfigDao.get("system_level");
+		String level = system_level.getParamStr();
+
+		// 街道
+		if ("1".equals(level)) {
+			result = ccmEventIncidentService.queryTopTenJieDao();
+		} else if ("2".equals(level)){
+			result = ccmEventIncidentService.queryTopTenQuXian();
+		} else {
+			return Maps.newHashMap();
 		}
+
+		for (EchartType echartType : result) {
+			typeList.add(echartType.getType());
+			valueList.add(echartType.getValue());
+		}
+
 		// 返回对象结果
 		Map<String, Object> map = Maps.newHashMap();
-		map.put("1", list1);
-		map.put("2", list2);
+		map.put("1", typeList);
+		map.put("2", valueList);
 
 		return map;
 	}

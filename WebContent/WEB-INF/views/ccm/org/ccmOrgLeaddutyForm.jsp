@@ -29,6 +29,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/org/ccmOrgLeadduty/">数据列表</a></li>
 		<li class="active"><a href="${ctx}/org/ccmOrgLeadduty/form?id=${ccmOrgLeadduty.id}">数据<shiro:hasPermission name="org:ccmOrgLeadduty:edit">${not empty ccmOrgLeadduty.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="org:ccmOrgLeadduty:edit">查看</shiro:lacksPermission></a></li>
@@ -94,5 +95,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

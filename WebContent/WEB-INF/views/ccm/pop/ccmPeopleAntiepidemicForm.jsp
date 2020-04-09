@@ -97,6 +97,7 @@
 
 </head>
 <body>
+<div class="back-list clearfix">
 <ul class="nav nav-tabs">
     <li><a href="${ctx}/pop/ccmPeopleAntiepidemic/">人员疫情列表</a></li>
     <li class="active"><a href="${ctx}/pop/ccmPeopleAntiepidemic/form?id=${ccmPeopleAntiepidemic.id}">人员疫情<shiro:hasPermission name="pop:ccmPeopleAntiepidemic:edit">${not empty ccmPeopleAntiepidemic.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="pop:ccmPeopleAntiepidemic:edit">查看</shiro:lacksPermission></a></li>
@@ -503,6 +504,6 @@
         <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
     </div>
 </form:form>
-
+</div>
 </body>
 </html>

@@ -33,6 +33,8 @@ $(document).ready(function () {
     });
 
 });
+
+
 function countEventAreaData() {
 
 	$.ajax({
@@ -46,7 +48,16 @@ function countEventAreaData() {
 		}
 	});
 }
+var FontColor = '#647484';
+if ($.cookie('theme') == undefined) {
+    FontColor = '#647484';
+} else if ($.cookie('theme') == 'gradient') {
+    FontColor = '#647484';
+} else if ($.cookie('theme') == 'black') {
+    FontColor = '#fff';
+}
 function showEventArea(data){
+
 	// 指定图表的配置项和数据
 	var option = {
 		// title : {
@@ -57,7 +68,10 @@ function showEventArea(data){
 			trigger: 'axis'
 		},
 		legend: {
-			data:data["eventAreaTypeData"]
+			data:data["eventAreaTypeData"],
+            textStyle : {
+                color :FontColor,
+            }
 		},
 		toolbox: {
 			show : true,

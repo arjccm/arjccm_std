@@ -21,6 +21,7 @@
 </style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<c:if test="${plmWorkEmail.status eq '0'}" var="condition">
 			<li><a href="${ctx}/email/plmWorkEmail/?status=0">已发送</a></li>
@@ -130,5 +131,6 @@
 			<a id="btnCancel" class="btn" href="javascript:;" onclick="history.go(-1)" ><i class="icon-reply"></i>返回</a>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

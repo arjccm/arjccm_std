@@ -53,6 +53,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<%-- <li><a href="${ctx}/attendance/ccmWorkerAttendance/workingtimelist">加班登记列表</a></li> --%>
 		<li class="active"><a href="${ctx}/attendance/ccmWorkerAttendance/workingtimeform?id=${ccmWorkerAttendance.id}">加班登记<shiro:hasPermission name="attendance:ccmWorkerAttendance:edit">${not empty ccmWorkerAttendance.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="attendance:ccmWorkerAttendance:edit">查看</shiro:lacksPermission></a></li>
@@ -103,5 +104,16 @@
 			${not empty ccmWorkerAttendance.id?'<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/> ':''}
 		</div>
 	</form:form>
+</div>
+<script type="text/javascript">
+    $(document).ready(
+        $(function () {
+            var elementsByClassName = window.parent.document.getElementById("LayerDialog");
+            if(elementsByClassName!=null&&elementsByClassName!=undefined){
+
+                $(".back-list").css({"box-shadow":"none","background":"none"})
+            }
+        }))
+</script>
 </body>
 </html>

@@ -310,7 +310,7 @@ text-overflow: ellipsis; text-align: left;">
 
                 <a class="btnList"
                    onclick="parent.LayerDialog('${ctx}/event/ccmEventIncident/form?id=${ccmEventIncident.id}&isDispatch=1', '事件详情及处置', '1100px', '700px')"><i
-                        title="事件详情及处置" class="icon-list-alt"></i></a>
+                        title="事件详情及处置" class="iconfont icon-shijianxiangqingjichuzhi"></i></a>
 <%--                <a class="btnList"--%>
 <%--                   href="${ctx}/event/ccmEventIncident/delete?id=${ccmEventIncident.id}"--%>
 <%--                   onclick="return confirmx('确认要删除该事件登记吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>--%>
@@ -324,7 +324,7 @@ text-overflow: ellipsis; text-align: left;">
                 -->
                 <a class="btnList"
                    onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_incident&objId=${ccmEventIncident.id}', '任务快速派遣', '700px', '500px')"
-                   title="任务快速派遣"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+                   title="任务快速派遣"><i class="iconfont icon-renwukuaisupaiqian"></i></a>
             </shiro:hasPermission>
 <%--                <shiro:hasPermission name="event:ccmEventStakeholder:view">--%>
 <%--                    &lt;%&ndash; <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a> &ndash;%&gt;--%>

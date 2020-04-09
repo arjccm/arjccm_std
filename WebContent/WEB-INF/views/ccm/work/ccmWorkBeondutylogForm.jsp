@@ -29,6 +29,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/work/ccmWorkBeondutylog/">数据列表</a></li>
 		<li class="active"><a class="nav-head" href="${ctx}/work/ccmWorkBeondutylog/form?id=${ccmWorkBeondutylog.id}">数据<shiro:hasPermission name="work:ccmWorkBeondutylog:edit">${not empty ccmWorkBeondutylog.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="work:ccmWorkBeondutylog:edit">查看</shiro:lacksPermission></a></li>
@@ -98,5 +99,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

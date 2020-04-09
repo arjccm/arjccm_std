@@ -19,7 +19,10 @@
 									submitHandler : function(form) {
 										$("#btnSubmit").attr("disabled", true);
 					loading('正在提交，请稍等...');
+										//$("#focuPers1" , parent.document).prop("checked",true);
+										//debugger;
 										form.submit();
+										/*parent.layui.$("#focuPers1").prop("checked",true);*/
 									},
 									errorContainer : "#messageBox",
 									errorPlacement : function(error, element) {

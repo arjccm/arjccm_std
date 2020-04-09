@@ -161,6 +161,9 @@ $(function() {
 		                    show: true,
 		                    interval: 'auto',
 		                    formatter: '{value}月',
+                            textStyle : {
+                                color :FontColor,
+                            }
 		                },
 		            },
 		            data: areaLineData,
@@ -382,6 +385,9 @@ $(function() {
 		                    show: true,
 		                    interval: 'auto',
 		                    formatter: '第{value}季度',
+                            textStyle : {
+                                color :FontColor,
+                            }
 		                },
 		            },
 		            data: sexLineData,
@@ -421,7 +427,10 @@ $(function() {
 		        xAxis: [{
 	                type:'category',
 	                axisLabel:{
-	                	interval:0
+	                	interval:0,
+                        textStyle : {
+                            color :FontColor,
+                        }
 	                },
 	                data : dataSex,
 	                splitLine: {
@@ -430,6 +439,12 @@ $(function() {
 	            }],
 		        yAxis: [{
 	                type: 'value',
+                    axisLabel:{
+                        interval:0,
+                        textStyle : {
+                            color :FontColor,
+                        }
+                    },
 	                minInterval: 1,
 			    	min: function(value) {
 			    		if(value.max == 0){

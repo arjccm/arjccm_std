@@ -55,6 +55,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/sys/user/list">用户列表</a></li>
 		<%-- <li class="active"><a href="${ctx}/sys/userAuthstr/list?loginFlag=0">待审核用户列表</a></li> --%>
@@ -299,5 +300,6 @@
 				onclick="history.go(-1)" />
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

@@ -395,7 +395,7 @@ text-overflow: ellipsis; text-align: left;">
                     -->
                     <a class="btnList"
                        onclick="LayerDialogWithReload('${ctx}/event/ccmEventCasedeal/dealformCommon?objType=ccm_event_incident&objId=${ccmEventIncident.id}', '任务快速派遣', '700px', '500px')"
-                       title="任务快速派遣"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+                       title="任务快速派遣"><i class="iconfont icon-renwukuaisupaiqian"></i></a>
                 </shiro:hasPermission>
                     <shiro:hasPermission name="event:ccmEventStakeholder:view">
                         <%-- <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a> --%>

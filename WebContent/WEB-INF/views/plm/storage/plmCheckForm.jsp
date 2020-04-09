@@ -22,9 +22,11 @@
 			.ready(
 					function() {
 						//$("#name").focus();
+
 						$('#btnSubmit').click(function(){
 							$('#inputForm').submit();
 						});
+
 						$("#inputForm").validate(
 								{
 									submitHandler : function(form) {
@@ -71,10 +73,14 @@
 												"width" : "98%"
 											});
 										});
-						$("#btnSubmit").on("click", function(){
+
+
+/*						$("#btnSubmit").on("click", function(){
 							$("#status").val("2");
 							$("#inputForm").submit();
-						});
+						});*/
+
+
 					});
 		    function  closeDialog () {
 		    	$("#checkDetail").dialog("close");
@@ -84,6 +90,7 @@
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/storage/plmCheck/">盘点单列表</a></li>
 		<li class="active"><a class="nav-head" id="checkForm"
@@ -236,5 +243,6 @@
 		</div>
 	</form:form>
 	<iframe id="checkDetail" src=""></iframe>
+</div>
 </body>
 </html>

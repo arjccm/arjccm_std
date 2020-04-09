@@ -105,6 +105,7 @@
     </style>
 </head>
 <body>
+<div class="back-list clearfix">
     <ul class="nav nav-tabs hide1">
         <li><a style="text-align:center" href="${ctx}/report/ccmReportOthers/houseAndBuild">数据统计</a></li>
         <li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">数据列表</a></li>
@@ -421,7 +422,7 @@
                                                                               value="保 存"/>&nbsp;</shiro:hasPermission>
             <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
         </div>
-    </form:form><br>
+    </form:form>
     <c:if test="${documentNumber > 0}">
         <shiro:hasPermission name="log:ccmLogTail:edit">
             <h4>&nbsp;跟踪信息：</h4>
@@ -434,6 +435,6 @@
             <div class="fishBone2"></div>
         </shiro:lacksPermission>
     </c:if>
-
+</div>
 </body>
 </html>

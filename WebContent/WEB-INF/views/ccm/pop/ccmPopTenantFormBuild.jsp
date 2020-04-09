@@ -62,7 +62,8 @@
 	</script>
 	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
-<body> 
+<body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/">楼栋列表</a></li>
 		<li><a style="text-align:center" href="${ctx}/house/ccmHouseBuildmanage/form">楼栋添加</a></li>
@@ -362,7 +363,7 @@
 			<shiro:hasPermission name="pop:ccmPopTenant:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
-	</form:form><br>
+	</form:form>
 	<c:if test="${documentNumber > 0}">
 		<shiro:hasPermission name="log:ccmLogTail:edit">
 			<h4>&nbsp;跟踪信息：</h4>
@@ -396,5 +397,6 @@
 			})
 		})
 	</script>
+</div>
 </body>
 </html>

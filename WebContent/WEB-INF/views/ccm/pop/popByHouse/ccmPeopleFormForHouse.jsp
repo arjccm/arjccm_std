@@ -83,6 +83,7 @@ label.error {
 
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<!-- 房屋 -->
 		<%--<c:if test="${PeoTypeBy eq 'ByHouse'}">
@@ -149,7 +150,7 @@ label.error {
 				</td>
 				<td >
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>性别：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>性别：</label>
 						<div class="controls">
 							<form:radiobuttons path="sex" items="${fns:getDictList('sex')}"
 											   itemLabel="label" itemValue="value" htmlEscape="false" class="required" />
@@ -161,7 +162,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>姓名：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>姓名：</label>
 						<div class="controls">
 							<form:input path="name" htmlEscape="false" maxlength="50"
 										class="input-xlarge required" />
@@ -172,7 +173,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>出生日期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>出生日期：</label>
 						<div class="controls">
 							<input name="birthday" type="text" readonly="readonly"
 								   maxlength="20" class="input-medium Wdate required"
@@ -208,7 +209,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>民族：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>民族：</label>
 						<div class="controls">
 							<form:select path="nation" class="input-xlarge required">
 								<form:option value="" label="" />
@@ -220,7 +221,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font> </span>联系方式：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font> </span>联系方式：</label>
 						<div class="controls">
 							<form:input path="telephone" htmlEscape="false" maxlength="18"
 										class="input-xlarge telephone0 phone required" />
@@ -243,7 +244,7 @@ label.error {
 
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>籍贯：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>籍贯：</label>
 						<div class="controls">
 							<form:input path="censu" htmlEscape="false" maxlength="6"
 										class="input-xlarge required " />
@@ -252,7 +253,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>婚姻状况：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>婚姻状况：</label>
 						<div class="controls">
 							<form:select path="marriage" class="input-xlarge required ">
 								<form:option value="" label="" />
@@ -264,7 +265,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>政治面貌：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>政治面貌：</label>
 						<div class="controls">
 							<form:select path="politics" class="input-xlarge required ">
 								<form:option value="" label="" />
@@ -280,7 +281,7 @@ label.error {
 
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>学历：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>学历：</label>
 						<div class="controls">
 							<form:select path="education" class="input-xlarge required">
 								<form:option value="" label="" />
@@ -304,7 +305,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>职业类别：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>职业类别：</label>
 						<div class="controls">
 							<form:input path="profType" htmlEscape="false" maxlength="5"
 										class="input-xlarge required" />
@@ -316,7 +317,7 @@ label.error {
 
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>职业：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>职业：</label>
 						<div class="controls">
 							<form:input path="profession" htmlEscape="false" maxlength="30"
 										class="input-xlarge required" />
@@ -325,7 +326,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>是否公职人员：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>是否公职人员：</label>
 						<div class="controls">
 							<form:select path="isPublicServants" class="input-xlarge required">
 								<form:option value="" label="" />
@@ -350,7 +351,7 @@ label.error {
 
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>是否常住：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>是否常住：</label>
 						<div class="controls">
 							<form:radiobuttons path="isPermanent"
 											   items="${fns:getDictList('yes_no')}" itemLabel="label"
@@ -360,7 +361,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>是否重点关注人员：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>是否重点关注人员：</label>
 						<div class="controls">
 							<form:radiobuttons path="focuPers"
 											   items="${fns:getDictList('yes_no')}" itemLabel="label"
@@ -370,7 +371,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户籍地：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>户籍地：</label>
 						<div class="controls">
 							<form:input path="domicile" htmlEscape="false" maxlength="6"
 										class="input-xlarge required" />
@@ -438,7 +439,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户籍门（楼）详址：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>户籍门（楼）详址：</label>
 						<div class="controls">
 							<form:input path="domiciledetail" htmlEscape="false"
 										maxlength="80" class="input-xlarge required" />
@@ -448,7 +449,7 @@ label.error {
 
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>现住地：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>现住地：</label>
 						<div class="controls">
 							<form:input path="residence" htmlEscape="false" maxlength="6"
 										class="input-xlarge required" />
@@ -469,7 +470,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>现住门（楼）详址：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>现住门（楼）详址：</label>
 						<div class="controls">
 							<form:input path="residencedetail" htmlEscape="false"
 										maxlength="80" class="input-xlarge required" />
@@ -510,7 +511,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>人户一致标识：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>人户一致标识：</label>
 						<div class="controls">
 							<form:select path="uniformlogo" class="input-xlarge required">
 								<form:option value="" label=""/>
@@ -521,7 +522,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户号：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>户号：</label>
 						<div class="controls">
 							<form:input path="account" htmlEscape="false" maxlength="9" class="input-xlarge required"/>
 						</div>
@@ -529,7 +530,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户主公民身份号码：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>户主公民身份号码：</label>
 						<div class="controls">
 							<form:input path="accountidentity" htmlEscape="false" maxlength="18" class="input-xlarge ident1 card required"/>
 							<span id="ident1"></span>
@@ -540,7 +541,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户主姓名：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>户主姓名：</label>
 						<div class="controls">
 							<form:input path="accountname" htmlEscape="false" maxlength="10" class="input-xlarge required"/>
 						</div>
@@ -548,7 +549,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>与户主关系：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>与户主关系：</label>
 						<div class="controls">
 							<form:select path="accountrelation" class="input-xlarge required">
 								<form:option value="" label=""/>
@@ -570,7 +571,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>户籍状态：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>户籍状态：</label>
 						<div class="controls">
 							<form:select path="personType" class="input-xlarge required">
 								<form:option value="" label=""/>
@@ -612,7 +613,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>流入原因：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>流入原因：</label>
 						<div class="controls">
 							<form:select path="flowRea" class="input-xlarge required">
 								<form:option value="" label=""/>
@@ -664,7 +665,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>住所类型：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>住所类型：</label>
 						<div class="controls">
 							<form:select path="domiType" class="input-xlarge ">
 								<form:option value="" label=""/>
@@ -715,7 +716,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>外文姓：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>外文姓：</label>
 						<div class="controls">
 							<form:input path="esurname" htmlEscape="false" maxlength="40" class="input-xlarge "/>
 						</div>
@@ -723,7 +724,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>外文名：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>外文名：</label>
 						<div class="controls">
 							<form:input path="ename" htmlEscape="false" maxlength="40" class="input-xlarge "/>
 						</div>
@@ -731,7 +732,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>国籍（地区）：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>国籍（地区）：</label>
 						<div class="controls">
 							<form:input path="nationality" htmlEscape="false" maxlength="3" class="input-xlarge "/>
 						</div>
@@ -741,7 +742,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>证件类型：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>证件类型：</label>
 						<div class="controls">
 							<form:select path="idenCode" class="input-xlarge " items="${fns:getDictList('sys_ccm_org_papers')}" itemLabel="label" itemValue="value" htmlEscape="false">
 							</form:select>
@@ -750,7 +751,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>证件号码（境外）：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>证件号码（境外）：</label>
 						<div class="controls">
 							<form:input path="idenNum" htmlEscape="false" maxlength="30" class="input-xlarge "/>
 						</div>
@@ -758,7 +759,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>证件有效期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>证件有效期：</label>
 						<div class="controls">
 							<input name="idenDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 								   value="<fmt:formatDate value="${ccmPeople.idenDate}" pattern="yyyy-MM-dd"/>"
@@ -770,7 +771,7 @@ label.error {
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>来华目的：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>来华目的：</label>
 						<div class="controls">
 							<form:select path="purpose" class="input-xlarge ">
 								<form:option value="" label=""/>
@@ -781,7 +782,7 @@ label.error {
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font></span>抵达日期：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" >*</font></span>抵达日期：</label>
 						<div class="controls">
 							<input name="arriDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 								   value="<fmt:formatDate value="${ccmPeople.arriDate}" pattern="yyyy-MM-dd"/>"
@@ -861,5 +862,6 @@ label.error {
 			</div>
 		</c:if>
 	</form:form>
+</div>
 </body>
 </html>

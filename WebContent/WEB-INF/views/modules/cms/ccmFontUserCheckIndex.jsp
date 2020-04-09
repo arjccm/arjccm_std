@@ -16,6 +16,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<sys:message content="${message}"/>
 	<div id="content" class="row-fluid">
 		<div id="left" class="accordion-group treeArea">
@@ -70,5 +71,6 @@
 	</script>
 	<!-- 左侧导航栏双击隐藏显示 -->
 <script src="${ctxStatic}/common/wsizeDb.js" type="text/javascript"></script>
+</div>
 </body>
 </html>

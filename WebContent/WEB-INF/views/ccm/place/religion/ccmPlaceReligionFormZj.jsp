@@ -85,6 +85,7 @@
 	<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="width: 112px;text-align:center" href="${ctx}/religion/ccmPlaceReligion/list1">数据列表</a></li>
 				<li class="active"><a style="width: 112px;text-align:center"
@@ -325,5 +326,6 @@
 			<input id="btnCancel" class="btn btn-danger" type="button" value="关闭" />
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

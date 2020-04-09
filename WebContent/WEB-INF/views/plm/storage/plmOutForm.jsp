@@ -356,6 +356,7 @@
 	</style>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/storage/plmOut/">出库单列表</a></li>
 		<li class="active"><a class="nav-head" id="incomingEntry"
@@ -594,5 +595,6 @@
 			placeholder="请输入耗材数量..." />
 	</div>
 	<iframe id="detailInfo" src=""></iframe>
+</div>
 </body>
 </html>

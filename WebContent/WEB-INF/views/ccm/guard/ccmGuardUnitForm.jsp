@@ -26,9 +26,11 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a style="text-align:center" href="${ctx}/guard/ccmGuardUnit/securityList">警卫任务</a></li>
-		<li class="active"><a class="nav-head" href="${ctx}/guard/ccmGuardUnit/">警卫单位列表</a></li>
+		<li ><a class="nav-head" href="${ctx}/guard/ccmGuardUnit/">警卫单位列表</a></li>
+        <li class="active"><a class="nav-head" href="${ctx}/guard/ccmGuardUnit/form?id=${ccmGuardUnit.id}">警卫<shiro:hasPermission name="guard:ccmGuardUnit:edit">${not empty ccmPatrolSecurity.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="guard:ccmGuardUnit:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmGuardUnit" action="${ctx}/guard/ccmGuardUnit/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -95,5 +97,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

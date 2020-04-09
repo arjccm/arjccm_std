@@ -119,7 +119,10 @@ $(function() {
 		var option = {
 		    title : {
 		        text: '房屋产权类别分布统计',
-		        x:'left'
+		        x:'left',
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    tooltip : {
 		        trigger: 'item',
@@ -128,7 +131,10 @@ $(function() {
 		    legend: {
 		        orient: 'vertical',
 		        left: 'right',
-		        data: data
+		        data: data,
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    series : [
 		        {
@@ -153,7 +159,10 @@ $(function() {
 		var option = {
 		    title : {
 		        text: '房屋建筑用途分布统计',
-		        x:'left'
+		        x:'left',
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    tooltip : {
 		        trigger: 'item',
@@ -162,7 +171,10 @@ $(function() {
 		    legend: {
 		        orient: 'vertical',
 		        left: 'right',
-		        data: data
+		        data: data,
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    series : [
 		        {
@@ -186,7 +198,10 @@ $(function() {
 		var option = {
 		    title : {
 		        text: '房屋建成年限统计',
-		        x:'left'
+		        x:'left',
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    tooltip : {
 		        trigger: 'axis',
@@ -202,11 +217,16 @@ $(function() {
 		    			return 5;
 		    		}
 		    	    return value.min;
-		    	}
+		    	},
 		    },
 		    yAxis: {
 		        type: 'category',
-		        data: yData
+		        data: yData,
+                axisLabel:{
+                    textStyle : {
+                        color :FontColor,
+                    }
+                },
 		    },
 		    series : [
 		        {
@@ -232,7 +252,10 @@ $(function() {
 		var option = {
 		    title : {
 		        text: '房屋区域分布统计',
-		        x:'left'
+		        x:'left',
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    tooltip : {
 		        trigger: 'item',
@@ -244,7 +267,10 @@ $(function() {
 		        right: 10,
 		        top: 20,
 		        bottom: 20,
-		        data: data
+		        data: data,
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    series : [
 		        {
@@ -269,7 +295,10 @@ $(function() {
 		var option = {
 		    title : {
 		        text: '房屋结构类型统计',
-		        x:'left'
+		        x:'left',
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    tooltip : {
 		        trigger: 'axis',
@@ -279,7 +308,12 @@ $(function() {
 		    },
 		    xAxis:  {
 		    	type: 'category',
-		        data: yData
+		        data: yData,
+                axisLabel:{
+                    textStyle : {
+                        color :FontColor,
+                    }
+                },
 		    },
 		    yAxis: {
 		    	minInterval: 1,

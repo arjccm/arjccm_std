@@ -50,13 +50,14 @@ public class PlanFlowManageController {
 	private BphStepActionService bphStepActionService;
 	
 	@RequestMapping(value = "list")
-	public String planFlowManage(){
+	public String planFlowManage(HttpServletResponse response){
 		return "flat/flow/planFlowManageList";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "planStepActionList")
 	public List<Map<String, Object>> planStepActionList(PlanFlowManage planFlowManage,HttpServletRequest request, HttpServletResponse response) throws IOException{
+
 //		JsonConfig jsonConfig = new JsonConfig();
 //		jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
 //			@Override
