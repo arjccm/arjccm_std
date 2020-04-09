@@ -8,12 +8,14 @@ $(document).ready(function () {
      initOrgNpseregisteredBysysArea();
 });
 var FontColor = '#647484';
+var backgroundColor;
 if ($.cookie('theme') == undefined) {
     FontColor = '#647484';
 } else if ($.cookie('theme') == 'gradient') {
     FontColor = '#647484';
 } else if ($.cookie('theme') == 'black') {
     FontColor = '#fff';
+    backgroundColor = "transparent"
 }
 
 /**
@@ -34,12 +36,13 @@ function initOrgNpseBysysdicts() {
 
 function showOrgNps(data){
     var option = {
-        title : {
-            text: '行业类型统计',
-            textStyle : {
-                color :FontColor,
-            }
-        },
+        backgroundColor:backgroundColor,
+        // title : {
+        //     text: '行业类型统计',
+        //     textStyle : {
+        //         color :FontColor,
+        //     }
+        // },
         tooltip : {
             trigger: 'axis'
         },
@@ -193,12 +196,13 @@ function initOrgNpseBysysArea() {
 
 function showOrgNpsArea(data){
     var option = {
-        title : {
-            text: '各区域企业分布统计',
-            textStyle : {
-                color :FontColor,
-            }
-        },
+        backgroundColor:backgroundColor,
+        // title : {
+        //     text: '各区域企业分布统计',
+        //     textStyle : {
+        //         color :FontColor,
+        //     }
+        // },
         tooltip : {
             trigger: 'axis'
         },
@@ -276,12 +280,13 @@ function initOrgNpseregisteredBysysArea() {
 
 function showOrgNpseregisteredBysysArea(data){
     var option = {
-        title : {
-            text: '企业注册资本情况统计',
-            textStyle : {
-                color :FontColor,
-            }
-        },
+        backgroundColor:backgroundColor,
+        // title : {
+        //     text: '企业注册资本情况统计',
+        //     textStyle : {
+        //         color :FontColor,
+        //     }
+        // },
         tooltip : {
             trigger: 'axis'
         },

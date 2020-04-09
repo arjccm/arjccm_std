@@ -56,9 +56,9 @@
 				textStyle = {color: '#FFF'};
 			}
 			var option = {
-				title:{
-					text: '趋势研判分析'
-				},
+				// title:{
+				// 	text: '趋势研判分析'
+				// },
 				tooltip : {
 					trigger: 'axis'
 				},
@@ -127,19 +127,24 @@
 	</script>
 </head>
 <body>
-<div class="container-fluid" style="height: 100%; overflow: hidden"
-	 id="main">
-	<div class="context" content="${ctx}"></div>
+<div class="back-list clearfix">
+	<ul class="nav nav-tabs">
+		<li class="active"><a class="nav-head" href="">趋势研判分析</a></li>
+	</ul>
+	<div class="container-fluid" style="height: 100%; overflow: hidden"
+		 id="main">
 
-		<div class="row-fluid height100">
-			<div class="height33 shadow" >
-<%--				<div class="top-header">趋势研判分析</div>--%>
-				<div class="common-pading">
-					<div id="trendEcharts" class="echarts" style="width: 100%;height: 100%;"></div>
+		<div class="context" content="${ctx}"></div>
+
+			<div class="row-fluid height100">
+				<div class="height33 shadow" >
+	<%--				<div class="top-header">趋势研判分析</div>--%>
+					<div class="common-pading">
+						<div id="trendEcharts" class="echarts" style="width: 100%;height: 100%;"></div>
+					</div>
 				</div>
 			</div>
-		</div>
-
+</div>
 </div>
 </body>
 </html>
