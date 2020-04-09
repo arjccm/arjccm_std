@@ -5,7 +5,7 @@ $(function() {
 	var theme = getCookie('theme');
 	if(theme == "black"){
 		FontColor = "#fff";
-		backgroundColor = "#0e2a4c";
+		backgroundColor = "transparent";
 	}
 	if(theme=='gradient'){
 		color = [ '#1F8BFA', '#E84442', '#FAB736', '#2CC189', '#F9A388', '#77E7F1', '#9E56E9', '#FF7453', '#16DDD3', '#FDB733'];
