@@ -27,6 +27,20 @@ public class CcmMessage extends DataEntity<CcmMessage> {
 	private String readFlag;
 	//超期时限
 	private Date deadline;
+	//标题
+	private String title;
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public String getType() {
 		return type;
