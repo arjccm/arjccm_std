@@ -28,13 +28,13 @@ if ($.cookie('theme') == undefined) {
 function showEventArea(data){
 	// 指定图表的配置项和数据
 	option = {
-		title : {
-			text: '各单位工作量统计',
-			subtext: '单位-处理类型',
-            textStyle : {
-                color :FontColor,
-            }
-		},
+		// title : {
+		// 	text: '各单位工作量统计',
+		// 	subtext: '单位-处理类型',
+        //     textStyle : {
+        //         color :FontColor,
+        //     }
+		// },
 		tooltip : {
 			trigger: 'axis'
 		},
@@ -52,7 +52,9 @@ function showEventArea(data){
 				magicType : {show: true, type: ['line', 'bar']},
 				restore : {show: true},
 				saveAsImage : {show: true}
-			}
+			},
+			top:'5%',
+			right:'5%'
 		},
 		calculable : true,
 		xAxis : [

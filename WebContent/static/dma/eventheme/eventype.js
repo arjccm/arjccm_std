@@ -64,6 +64,14 @@ if(theme=='gradient'){
 else{
  color = ['#4573a7', '#aa4644', '#89a54e', '#db843d','#4298af', '#93a9d0', '#b9ce96', '#d09392','#a99bbc', '#92c3d4', '#ffdf5f', '#71588f'];
 } */
+var innerCircleColor ="";
+var theme = getCookie('theme');
+if(theme == "black"){
+	innerCircleColor = "#0e2a4c"
+}
+if(theme=='gradient'){
+	innerCircleColor = "#ffffff"
+}
 function countEventPreviewData() {
 
 	$.ajax({
@@ -145,7 +153,7 @@ function showEventPreview(data){
 				radius : ['0%', '25%'],
 				center:['50%', "50%"],
 				itemStyle:{
-					color: "#0e2a4c",
+					color: innerCircleColor,
 					shadowColor:"rgba(1,124,167,1)",
 					shadowBlur: 20
 
@@ -247,7 +255,7 @@ function showEvent(data){
 				radius : ['0%', '25%'],
 				center:['50%', "50%"],
 				itemStyle:{
-					color: "#0e2a4c",
+					color: innerCircleColor,
 					shadowColor:"rgba(1,124,167,1)",
 					shadowBlur: 20
 
