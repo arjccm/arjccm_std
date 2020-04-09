@@ -113,9 +113,16 @@
 		<h2>借款申请单</h2>
 		<table id="tabletop" class="table">
 			<tr>
-				<td class="tabletop" colspan="2" width="33.33%">申请人<span class="help-inline"><font color="red">*</font> </span>:&nbsp;&nbsp; &nbsp;&nbsp;<span>${plmBorrowMoney.applyer.name}</span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td class="tabletop" colspan="2" width="33.33%">所属部门<span class="help-inline"><font color="red">*</font> </span>: &nbsp;&nbsp; &nbsp;&nbsp;<span>${plmBorrowMoney.department.name}</span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td class="tabletop" colspan="2" width="33.33%">申请编号(系统生成):&nbsp;&nbsp; &nbsp;&nbsp;<span>${plmBorrowMoney.code}</span>&nbsp;&nbsp; &nbsp;&nbsp;</td>
+				<td class="tabletop" colspan="2" style="width: 25%">申请人：
+					<sys:treeselect id="createBy"
+									name="createBy.id" value="${plmContractSign.createBy.id}"
+									labelName="createBy.name"
+									labelValue="${plmBorrowMoney.applyer.name}" title="用户"
+									url="/sys/office/treeData?type=3" cssClass=""
+									allowClear="true" notAllowSelectParent="true"  disabled="disabled"/>
+				</td>
+				<td class="tabletop" colspan="2" width="33.33%">所属部门<span class="help-inline"><font color="red">*</font> </span>: &nbsp;&nbsp; &nbsp;&nbsp;<span> <input type="text" class="input-xlarge " value="${plmBorrowMoney.department.name}">  </span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td class="tabletop" colspan="2" width="33.33%">申请编号(系统生成):&nbsp;&nbsp; &nbsp;&nbsp;<input type="text" class="input-xlarge " placeholder="保存后自动生成" value="${plmBorrowMoney.code}">&nbsp; &nbsp;&nbsp;</td>
 			</tr>
 		</table>
 		<table id="table" class="table table-condensed ">
