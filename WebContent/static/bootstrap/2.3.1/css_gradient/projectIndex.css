@@ -164,7 +164,9 @@ a,a:hover{
 .system-nav .menu .nav-icon{
     font-size: 70px;
    /*  color:#33aaff; */
-   color:#fff;
+   	color:#fff;
+	line-height: 1.3;
+	height: auto;
 }
 .system-nav>li>a:hover {
 	background: none;

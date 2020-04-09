@@ -337,12 +337,21 @@
 		<h2>资产内部调拨单</h2>
 		<table id="tabletop" class="table">
 			<tr>
-				<td class="tabletop" colspan="2" width="33.33%">申请人<span class="help-inline"><font color="red">*</font> </span>:
-				&nbsp;&nbsp; &nbsp;&nbsp;<span>${plmAllot.applyer.name}</span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<%--				<td class="tabletop" colspan="2" width="33.33%">申请人<span class="help-inline"><font color="red">*</font> </span>:--%>
+<%--				&nbsp;&nbsp; &nbsp;&nbsp;<span> ${plmAllot.applyer.name}</span>&nbsp;&nbsp;&nbsp;&nbsp;</td>--%>
+				<td class="tabletop" colspan="2" style="width: 25%">申请人：
+					<sys:treeselect id="createBy"
+									name="createBy.id" value="${plmContractSign.createBy.id}"
+									labelName="createBy.name"
+									labelValue=" ${plmAllot.applyer.name}" title="用户"
+									url="/sys/office/treeData?type=3" cssClass=""
+									allowClear="true" notAllowSelectParent="true"  disabled="disabled"/>
+				</td>
 				<td class="tabletop" colspan="2" width="33.33%">填写日期<span class="help-inline"><font color="red">*</font> </span>: 
-				&nbsp;&nbsp; &nbsp;&nbsp;<span><fmt:formatDate value="${plmAllot.addDate}" pattern="yyyy-MM-dd"/></span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<input name="outDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate " value="<fmt:formatDate value="${plmAllot.addDate}" pattern="yyyy-MM-dd"/>"</td>
 				<td class="tabletop" colspan="2" width="33.33%">申请编号(系统生成):&nbsp;&nbsp; &nbsp;&nbsp;
-				<span>${plmAllot.code}</span>&nbsp;&nbsp; &nbsp;&nbsp;</td>
+				<span> <input type="text" class="input-xlarge " placeholder="保存后自动生成" value="${plmAllot.code}"></span>&nbsp;&nbsp; &nbsp;&nbsp;</td>
+
 			</tr>
 		</table>
 		<table id="table" class="table table-condensed">
@@ -491,7 +500,7 @@
 				onclick="history.go(-1)" />
 			</c:if>
 			<c:if test="${empty plmAllot.id}">
-			<input id="btnCancel" class="btn " type="button" value="关闭"
+			<input id="btnCancel" class="btn btn-primary " type="button" value="关闭"
 				onclick="parent.layer.closeAll();" />
 			</c:if>
 		</div>
