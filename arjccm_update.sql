@@ -2533,6 +2533,38 @@ ADD COLUMN `area_color` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci 
 ALTER TABLE `ccm_house_buildmanage`
 ADD COLUMN `gather_num` int(6) NULL COMMENT '楼栋已采集人数' AFTER `build_peo`;
 
+-- ccm_people表 插入时触发器
+add_gather	AFTER	-1	0	0	UPDATE ccm_house_buildmanage SET gather_num=ifnull(gather_num,0)+1 WHERE id=new.build_id
+-- ccm_people表 更新时触发器
+update_gather	AFTER	0	-1	0	BEGIN
+if new.build_id != old.build_id then
+UPDATE ccm_house_buildmanage SET gather_num=ifnull(gather_num,0)-1 WHERE id=old.build_id;
+UPDATE ccm_house_buildmanage SET gather_num=ifnull(gather_num,0)+1 WHERE id=new.build_id;
+end if;
+END
+-- ccm_people表 删除时触发器
+delete_gather	AFTER	0	0	-1	UPDATE ccm_house_buildmanage SET gather_num=ifnull(gather_num,0)-1 WHERE id=old.build_id
+
+-- 添加函数：根据ccm_people中人员关联的build_id向ccm_house_buildmanage字段gather_num（已采集人数）赋值
+CREATE DEFINER=`root`@`localhost` PROCEDURE `COUNT_BUILD_GATHER`()
+BEGIN
+UPDATE ccm_house_buildmanage b
+INNER JOIN (
+SELECT
+ build_id AS "build_id",
+ count( * ) AS "num"
+FROM
+ ccm_house_buildmanage build
+ LEFT JOIN ccm_people people ON build.id = people.build_id
+WHERE
+ people.del_flag = 0
+GROUP BY
+ build.id
+ ) p ON p.build_id = b.id
+ SET b.gather_num = p.num
+WHERE
+ b.id = p.build_id;
+END
 
 
 UPDATE `sys_menu` SET `parent_id` = '170000', `parent_ids` = '0,1,170000,', `name` = '治安乱点整治报表', `sort` = 700, `href` = '', `target` = '', `icon` = 'zhian', `is_show` = '0', `permission` = '', `create_by` = '1', `create_date` = '2018-03-23 14:19:41', `update_by` = '1', `update_date` = '2020-04-07 11:21:47', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('c9cc1fd43d834da692c3fbab6cffd8c5' AS Binary(32));
