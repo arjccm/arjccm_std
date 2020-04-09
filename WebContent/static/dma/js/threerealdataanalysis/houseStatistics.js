@@ -5,7 +5,7 @@ $(function() {
 	var theme = getCookie('theme');
 	if(theme == "black"){
 		FontColor = "#fff";
-		backgroundColor = "#0e2a4c";
+		backgroundColor = "transparent";
 	}
 	if(theme=='gradient'){
 		color = [ '#1F8BFA', '#E84442', '#FAB736', '#2CC189', '#F9A388', '#77E7F1', '#9E56E9', '#FF7453', '#16DDD3', '#FDB733'];
@@ -117,10 +117,14 @@ $(function() {
 	}
 	function showHousePropertyStatistics(data){
 		var option = {
-		    title : {
-		        text: '房屋产权类别分布统计',
-		        x:'left'
-		    },
+		    // title : {
+		    //     text: '房屋产权类别分布统计',
+		    //     x:'left',
+            //     textStyle : {
+            //         color :FontColor,
+            //     }
+		    // },
+			backgroundColor:backgroundColor,
 		    tooltip : {
 		        trigger: 'item',
 		        formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -128,7 +132,10 @@ $(function() {
 		    legend: {
 		        orient: 'vertical',
 		        left: 'right',
-		        data: data
+		        data: data,
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    series : [
 		        {
@@ -151,10 +158,14 @@ $(function() {
 	}
 	function showHousePrupStatistics(data){
 		var option = {
-		    title : {
-		        text: '房屋建筑用途分布统计',
-		        x:'left'
-		    },
+		    // title : {
+		    //     text: '房屋建筑用途分布统计',
+		    //     x:'left',
+            //     textStyle : {
+            //         color :FontColor,
+            //     }
+		    // },
+			backgroundColor:backgroundColor,
 		    tooltip : {
 		        trigger: 'item',
 		        formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -162,7 +173,10 @@ $(function() {
 		    legend: {
 		        orient: 'vertical',
 		        left: 'right',
-		        data: data
+		        data: data,
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    series : [
 		        {
@@ -184,10 +198,14 @@ $(function() {
 	}
 	function showHouseYearStatistics(xData,yData){
 		var option = {
-		    title : {
-		        text: '房屋建成年限统计',
-		        x:'left'
-		    },
+		    // title : {
+		    //     text: '房屋建成年限统计',
+		    //     x:'left',
+            //     textStyle : {
+            //         color :FontColor,
+            //     }
+		    // },
+			backgroundColor:backgroundColor,
 		    tooltip : {
 		        trigger: 'axis',
 		        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -202,11 +220,16 @@ $(function() {
 		    			return 5;
 		    		}
 		    	    return value.min;
-		    	}
+		    	},
 		    },
 		    yAxis: {
 		        type: 'category',
-		        data: yData
+		        data: yData,
+                axisLabel:{
+                    textStyle : {
+                        color :FontColor,
+                    }
+                },
 		    },
 		    series : [
 		        {
@@ -230,10 +253,14 @@ $(function() {
 	}
 	function showHouseAreaStatistics(data){
 		var option = {
-		    title : {
-		        text: '房屋区域分布统计',
-		        x:'left'
-		    },
+		    // title : {
+		    //     text: '房屋区域分布统计',
+		    //     x:'left',
+            //     textStyle : {
+            //         color :FontColor,
+            //     }
+		    // },
+			backgroundColor:backgroundColor,
 		    tooltip : {
 		        trigger: 'item',
 		        formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -244,7 +271,10 @@ $(function() {
 		        right: 10,
 		        top: 20,
 		        bottom: 20,
-		        data: data
+		        data: data,
+                textStyle : {
+                    color :FontColor,
+                }
 		    },
 		    series : [
 		        {
@@ -267,10 +297,14 @@ $(function() {
 	}
 	function showHouseStructureStatistics(xData,yData){
 		var option = {
-		    title : {
-		        text: '房屋结构类型统计',
-		        x:'left'
-		    },
+		    // title : {
+		    //     text: '房屋结构类型统计',
+		    //     x:'left',
+            //     textStyle : {
+            //         color :FontColor,
+            //     }
+		    // },
+			backgroundColor:backgroundColor,
 		    tooltip : {
 		        trigger: 'axis',
 		        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -279,7 +313,12 @@ $(function() {
 		    },
 		    xAxis:  {
 		    	type: 'category',
-		        data: yData
+		        data: yData,
+                axisLabel:{
+                    textStyle : {
+                        color :FontColor,
+                    }
+                },
 		    },
 		    yAxis: {
 		    	minInterval: 1,

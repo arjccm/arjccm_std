@@ -25,37 +25,15 @@
 	<style>
 		.common-pading{
 			width:100%;
-			height:750px;
-			padding:5px;
+			height:550px;
+			/*padding:5px;*/
 		}
 		.echarts{
 			width:100%;
 			height:100%;
 		}
-		.width33{
-			width: 33%;
-			height: 50%;
-			float: left;
-		}
-		.width66{
-			width: 66%;
-			height: 50%;
-			float: left;
-		}
-		.width49{
-			width: 49%;
-			height: 50%;
-			float: left;
-		}
-		.width50{
-			width: 50%;
-			height: 50%;
-			float: left;
-		}
-		.width99{
-			width: 99%;
-			height: 50%;
-			float: left;
+		.mb20{
+			margin-bottom: 20px;
 		}
 	</style>
 	<script type="text/javascript">
@@ -65,40 +43,50 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
+	<ul class="nav nav-tabs">
+		<li class="active"><a class="nav-head" href="">实有人口分析统计</a></li>
+	</ul>
 <div class="container-fluid" style="height: 100%; overflow: hidden" id="main">
 	<div class="context" content="${ctx}"/>
 	<div class="row-fluid height100">
-		<div class="width33 shadow" >
+		<div class="span4 small_bg mb20" >
+			<h4>人员性别分析统计</h4>
 			<%--<div class="top-header">人员性别分析统计</div>--%>
 			<div class="common-pading">
 				<div id="peopleSexCount" class="echarts" style="width: 100%;height: 100%;"></div>
 			</div>
 		</div>
-		<div class="width66 shadow" >
+		<div class="span8 small_bg mb20" >
+			<h4>人员出生时间统计</h4>
 			<%--<div class="top-header">人员出生时间统计</div>--%>
 			<div class="common-pading">
 				<div id="peopleBirthdayCount" class="echarts" style="width: 100%;height: 100%;"></div>
 			</div>
 		</div>
-		<div class="width49 shadow" >
+		<div class="span6 small_bg mb20" style="margin: 0;">
+			<h4>各民族人员统计</h4>
 			<%--<div class="top-header">各民族人员统计</div>--%>
 			<div class="common-pading">
 				<div id="peopleNationCount" class="echarts" style="width: 100%;height: 100%;"></div>
 			</div>
 		</div>
-		<div class="width50 shadow" >
+		<div class="span6 small_bg mb20" >
+			<h4>人员年龄段统计</h4>
 			<%--<div class="top-header">人员年龄段统计</div>--%>
 			<div class="common-pading">
 				<div id="peopleAgeCount" class="echarts" style="width: 100%;height: 100%;"></div>
 			</div>
 		</div>
-		<div class="width99 shadow" >
+		<div class="span12 small_bg mb20" style="margin: 0;">
+			<h4>人员区域社区（街道）分布分析统计</h4>
 			<%--<div class="top-header">人员区域社区（街道）分布分析统计</div>--%>
 			<div class="common-pading">
 				<div id="peopleRegionCount" class="echarts" style="width: 100%;height: 100%;"></div>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

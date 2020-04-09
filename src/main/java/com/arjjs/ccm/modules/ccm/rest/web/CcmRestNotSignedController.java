@@ -67,11 +67,18 @@ public class CcmRestNotSignedController extends BaseController {
         //我的消息未查询信息
         int messageNum = handleService.queryNewsCount(userId);
 
+        //我的通知未读消息
+        int querynotifyCount = handleService.queryNewsCount(userId);
+        //通告未查询消息
+        int workNoticeTodoCount = alarmNotifyService.selectAlarmNotifyTotal(userId);
+
         Map<String, Object> resultInfo = new HashMap<>();
         resultInfo.put("messageNum", messageNum);
         resultInfo.put("eventNum", eventNum);
         resultInfo.put("alarmNum", alarmNum);
         resultInfo.put("alarmNotifyNum", alarmNotifyNum);
+        resultInfo.put("querynotifyCount", querynotifyCount);
+        resultInfo.put("workNoticeTodoCount",workNoticeTodoCount);
 
         result.setCode(CcmRestType.OK);
         result.setResult(resultInfo);

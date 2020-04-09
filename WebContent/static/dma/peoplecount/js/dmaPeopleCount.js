@@ -57,19 +57,20 @@ function getPeopleSexCount() {
 
 function showPeopleSexCount(data){
 	var option = {
-		title: {
-			text: '人员性别分析统计',
-			padding: [
-				30,  // 上
-				10, // 右
-				5,  // 下
-				20, // 左
-			],
-			textStyle: {
-				fontSize: 15,
-				
-			}
-		},
+		backgroundColor:'transparent',
+		// title: {
+		// 	text: '人员性别分析统计',
+		// 	padding: [
+		// 		30,  // 上
+		// 		10, // 右
+		// 		5,  // 下
+		// 		20, // 左
+		// 	],
+		// 	textStyle: {
+		// 		fontSize: 15,
+		//
+		// 	}
+		// },
 		    tooltip : {
 		        trigger: 'item',
 		        formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -113,20 +114,20 @@ function getPeopleBirthdayCount() {
 
 function showPeopleBirthdayCount(data){
 	var option = {
-			
-		title: {
-			text: '人员出生时间统计',
-			padding: [
-				30,  // 上
-				10, // 右
-				5,  // 下
-				100, // 左
-			],
-			textStyle: {
-				fontSize: 15,
-				
-			}
-		},
+		backgroundColor:'transparent',
+		// title: {
+		// 	text: '人员出生时间统计',
+		// 	padding: [
+		// 		30,  // 上
+		// 		10, // 右
+		// 		5,  // 下
+		// 		100, // 左
+		// 	],
+		// 	textStyle: {
+		// 		fontSize: 15,
+		//
+		// 	}
+		// },
 		    tooltip: {
 		        trigger: 'axis',
 		        axisPointer: {
@@ -153,7 +154,13 @@ function showPeopleBirthdayCount(data){
 		        type: 'category',
 		        data: data["yAxis"]
 		    },
-		    series: data["value"]
+		    series: [
+                {
+                    name: '人数',
+                    type: 'bar',
+					data: data["value"]
+                }
+            ]
 		};
 	var Barchart = echarts.init(document.getElementById('peopleBirthdayCount'),'theme');
 	Barchart.setOption(option);
@@ -175,20 +182,20 @@ function getPeopleNationCount() {
 
 function showPeopleNationCount(data){
 	var option = {
-			
-		title: {
-			text: '各民族人员统计',
-			padding: [
-				100,  // 上
-				10, // 右
-				5,  // 下
-				20, // 左
-			],
-			textStyle: {
-				fontSize: 15,
-			
-			}
-		},
+		backgroundColor:'transparent',
+		// title: {
+		// 	text: '各民族人员统计',
+		// 	padding: [
+		// 		100,  // 上
+		// 		10, // 右
+		// 		5,  // 下
+		// 		20, // 左
+		// 	],
+		// 	textStyle: {
+		// 		fontSize: 15,
+		//
+		// 	}
+		// },
 		    tooltip : {
 		        trigger: 'item',
 		        formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -233,7 +240,7 @@ function getPeopleAgeCount() {
 function showPeopleAgeCount(data){
 	var all = 100;// 总量
 	var option = {
-			
+		backgroundColor:'transparent',
 		title: {
 			text: '人员年龄段统计',
 			padding: [
@@ -288,14 +295,14 @@ $.peopleRegionCountFun = function (model, jsondata) {
 
 
 	option = {
-		
-		title: {
-			text: '人员区域社区(街道)分布分析统计',
-			textStyle: {
-				fontSize: 15,
-			
-			}
-		},
+		backgroundColor:'transparent',
+		// title: {
+		// 	text: '人员区域社区(街道)分布分析统计',
+		// 	textStyle: {
+		// 		fontSize: 15,
+		//
+		// 	}
+		// },
 		/*color: ['#71588f'],*/
 		tooltip: {
 			trigger: 'axis',

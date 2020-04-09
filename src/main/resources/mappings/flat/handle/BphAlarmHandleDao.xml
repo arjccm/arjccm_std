@@ -692,4 +692,13 @@
 	<select id="selectAlarmHandleByHandleIdAndPoiceId" resultType="integer" parameterType="com.arjjs.ccm.modules.ccm.rest.entity.CcmBphUpdateAlarmVo">
 		SELECT count(*) FROM 	bph_alarm_handle t where t.id = #{id} and t.handle_police_id = #{userId} and t.`status` = #{status}
 	</select>
+	<!-- 通知未读消息 -->
+	<select id="selectnotifyCount" resultType="int">
+		select
+		count(*)
+		FROM oa_notify_record a
+		where  a.user_id=#{userId}
+		AND a.read_flag='0'
+	</select>
+
 </mapper>

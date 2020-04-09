@@ -5,11 +5,12 @@
 <title>境外人口统计</title>
 <meta name="decorator" content="default" />
 <link href="${ctxStatic}/ccm/pop/css/ccmPepInfo.css" rel="stylesheet" />
-<script type="text/javascript"
-	src="${ctxStatic}/echarts/echarts.common.min.js"></script>
+
+<script type="text/javascript" src="${ctxStatic}/echarts/echarts.common.min.js"></script>
+
 <script type="text/javascript" src="${ctxStatic}/echarts/walden.js"></script>
-<script type="text/javascript"
-	src="${ctxStatic}/echarts/echarsCommon.js"></script>
+
+<script type="text/javascript" src="${ctxStatic}/echarts/echarsCommon.js"></script>
 </head>
 <body>
 <div class="back-list clearfix">

@@ -8,6 +8,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.ccm.report.entity.CcmPeopleAmount;
+import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.EchartType;
 import net.sf.json.JSONArray;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -36,6 +40,8 @@ import com.arjjs.ccm.modules.ccm.sys.service.SysDictsService;
 public class DmaPeopleCountController extends BaseController {
 	@Autowired
 	private CcmPeopleService ccmPeopleService;
+	@Autowired
+	private CcmPeopleAmountService ccmPeopleAmountService;
 	//数据字典
 	@Autowired
 	private SysDictsService sysDictsService;
@@ -53,17 +59,24 @@ public class DmaPeopleCountController extends BaseController {
 	@RequestMapping(value = "peopleSexCount")
 	public Map<String, Object> peopleSexCount(CcmPeople ccmPeople, Model model,RedirectAttributes redirectAttributes) {
 		List<SysDicts> list = sysDictsService.findAllListByType("sex");
+		User user = UserUtils.getUser();
 		String[] dict = new String[list.size()];
 		List<Map<String, Object>> listData = new ArrayList<Map<String,Object>>();
 		int i = 0;
-		CcmPeople people = new CcmPeople();
+		List<EchartType> list1 = ccmPeopleAmountService.getPeopleSexCount(user.getOffice().getArea().getId(),user.getOffice().getArea().getType());
 		for (SysDicts dicts : list) {
 			dict[i] = dicts.getLabel();
-			people.setSex(dicts.getValue());
-			int num = ccmPeopleService.peopleSexCount(people).getResultNum();
 			Map<String, Object> temp = new HashMap<>();
-			temp.put("name", dicts.getLabel());
-			temp.put("value", num);
+			if("男".equals(dicts.getLabel())){
+				temp.put("name", dicts.getLabel());
+				temp.put("value", list1.get(0).getValue());
+			}else if("女".equals(dicts.getLabel())){
+				temp.put("name", dicts.getLabel());
+				temp.put("value", list1.get(0).getValue1());
+			}else{
+				temp.put("name", dicts.getLabel());
+				temp.put("value", list1.get(0).getValue2());
+			}
 			listData.add(temp);
 			i++;
 		}
@@ -79,7 +92,7 @@ public class DmaPeopleCountController extends BaseController {
 	@RequestMapping(value = "peopleBirthdayCount")
 	public Map<String, Object> peopleBirthdayCount(CcmPeople ccmPeople, Model model,RedirectAttributes redirectAttributes) {
 		List<SysDicts> list = sysDictsService.findAllListByType("sex");
-		Map<String, Object> result = ccmPeopleService.peopleBirthdayCount(list);
+		Map<String, Object> result = ccmPeopleService.peopleBirthdayCount();
 		return result;
 	}
 	

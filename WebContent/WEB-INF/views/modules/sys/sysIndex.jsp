@@ -727,7 +727,7 @@ function addTab($this, refresh) {
 			   //btn: [ '确定',  '关闭'], //可以无限个按钮
 			  content: src,
 			  zIndex:'1992',
-				 shade:0
+			  shade:0
 			});
 		}
 		//弹框--不刷新父页面  

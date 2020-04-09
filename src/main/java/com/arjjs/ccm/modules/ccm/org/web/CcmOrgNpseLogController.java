@@ -103,7 +103,7 @@ public class CcmOrgNpseLogController extends BaseController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		CommUtil.openWinExpDiv(out, "保存消防安全重点成功");
+		CommUtil.openWinExpDiv(out, "保存物流安全重点成功");
 	}
 	
 	@RequiresPermissions("org:ccmOrgNpseLog:edit")

@@ -3,8 +3,10 @@
  */
 package com.arjjs.ccm.modules.plm.storage.service;
 
+import java.util.Date;
 import java.util.List;
 
+import com.arjjs.ccm.modules.sys.dao.SysCodesDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,10 @@ public class PlmIncomingEntryService extends CrudService<PlmIncomingEntryDao, Pl
 	@Autowired
 	private SysCodesService sysCodesService;
 
+
+	@Autowired
+	private PlmIncomingEntryDao plmIncomingEntryDao;
+
 	public PlmIncomingEntry get(String id) {
 		return super.get(id);
 	}
@@ -46,7 +52,7 @@ public class PlmIncomingEntryService extends CrudService<PlmIncomingEntryDao, Pl
 			String code = sysCodesService.getCode(PlmIncomingEntry.class.getName(), 1).get(0);
 			plmIncomingEntry.setIncomingCode(code);
 		}
-		super.save(plmIncomingEntry);
+			super.save(plmIncomingEntry);
 	}
 	
 	@Transactional(readOnly = false)

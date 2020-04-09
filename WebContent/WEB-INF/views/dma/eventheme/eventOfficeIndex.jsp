@@ -4,7 +4,7 @@
 <head>
     <title>各单位工作量统计</title>
     <meta name="decorator" content="default"/>
-    <script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>
+    <%--<script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>--%>
     <link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/bootstrap.min.css"
           type="text/css" rel="stylesheet"/>
     <link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/custom.css"
@@ -83,11 +83,10 @@
 </head>
 <body>
 <div class="back-list clearfix">
-    <div class="title">
-        <div class="title-div">
-            <label class="title_font">各单位工作量统计 </label>
-            <hr style="  width: 99%;">
-        </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a class="nav-head" href="">各单位工作量统计</a></li>
+    </ul>
+
         <%--<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->--%>
         <%--<li class="condition" > 统计时间 ：--%>
         <%--<input  class="condition_input"  type="text" class="demo-input" placeholder="统计开始时间" id="beginHappenDate" readonly="">--%>
@@ -99,7 +98,8 @@
              id="main">
             <div class="context" content="${ctx}"></div>
             <div class="row-fluid height100">
-                <div class="shadow">
+                <div class="span12 small_bg">
+                    <h4>各单位工作量统计 / 单位-处理类型</h4>
                     <div class="common-pading">
                         <div id="eventAreaEcharts" class="echarts" style="width: 100%;height: 100%;"></div>
                     </div>
@@ -110,6 +110,6 @@
         </div>
 
     </div>
-</div>
+
 </body>
 </html>

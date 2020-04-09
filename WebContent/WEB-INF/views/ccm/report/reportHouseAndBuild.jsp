@@ -51,18 +51,17 @@
 	    </div>
 	    <br>
 	     <div class="row-fluid">
-			<div class="span12" ><h4 style="margin-bottom: 20px">社区房屋报表统计</h4>
+			<div class="span12" ><h4 style="margin-bottom: 20px">社区采集报表统计</h4>
 			<div style="height:571px;overflow: auto">
 				<table id="contentTable" class="table table-striped table-bordered table-condensed">
 					<thead>
 						<tr>
-							<th>社区</th>
+							<th>社区名称</th>
 							<th>建筑物数量（栋）</th>
 							<th>建筑面积（平方米）</th>
-							<th>房屋总数（套）</th>
-							<th>房屋（自住）数（套）</th>
-							<th>房屋（出租）数（套）</th>
-							<th>房屋（空置）数（套）</th>
+							<th>总人数(人)</th>
+							<th>已采集人数(人)</th>
+							<th>未采集人数(人)</th>
 						</tr>
 					</thead>
 					<tbody id="tbody">
@@ -162,13 +161,12 @@
         for (var i in tbodyList) {
             // 获取每一个值
             tableContent += "<tr>";
-            	tableContent += "<td>"+tbodyList[i]["value1"]+"</td>";
-            	tableContent += "<td>"+tbodyList[i]["value2"]+"</td>";
-            	tableContent += "<td>"+tbodyList[i]["value3"]+"</td>";
-            	tableContent += "<td>"+tbodyList[i]["value4"]+"</td>";
             	tableContent += "<td>"+tbodyList[i]["value5"]+"</td>";
             	tableContent += "<td>"+tbodyList[i]["value6"]+"</td>";
             	tableContent += "<td>"+tbodyList[i]["value7"]+"</td>";
+            	tableContent += "<td>"+tbodyList[i]["value8"]+"</td>";
+            	tableContent += "<td>"+tbodyList[i]["value9"]+"</td>";
+            	tableContent += "<td>"+tbodyList[i]["value10"]+"</td>";
            tableContent += "</tr>";
         }
         // 添加内容 到页面

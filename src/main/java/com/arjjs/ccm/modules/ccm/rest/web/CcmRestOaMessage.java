@@ -1,11 +1,14 @@
 package com.arjjs.ccm.modules.ccm.rest.web;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.arjjs.ccm.modules.ccm.message.entity.CcmMessage;
 import com.arjjs.ccm.modules.ccm.message.service.CcmMessageService;
+import com.arjjs.ccm.modules.flat.handle.service.BphAlarmHandleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +31,8 @@ import com.arjjs.ccm.modules.sys.entity.User;
 @RequestMapping(value = "${appPath}/rest/oa/oaMessage")
 public class CcmRestOaMessage extends BaseController {
 
+	@Autowired
+	private BphAlarmHandleService handleService;
 	@Autowired
 	private OaMessageService oaMessageService;
 
@@ -96,15 +101,22 @@ public class CcmRestOaMessage extends BaseController {
 		if (userId == null || "".equals(userId)) {//参数id不对
 			result.setCode(CcmRestType.ERROR_PARAM);
 			return result;
+
 		}
+		//我的消息未查询信息数量
+		int messageNum = handleService.queryNewsCount(userId);
 
 //		oaMessage.setSelf(true);
 //		oaMessage.setId(userId);//userId借用id
 //		Page<OaMessage> page = oaMessageService.findApp(new Page<OaMessage>(req, resp), oaMessage);
+		Map<String, Object> resultInfo = new HashMap<>();
 
 		List<CcmMessage> listTodayAndUnread = ccmMessageService.getListTodayAndUnreadBymessage(ccmMessage);
+		resultInfo.put("listTodayAndUnread",listTodayAndUnread);
+		resultInfo.put("messageNum",messageNum);
+
 		result.setCode(CcmRestType.OK);
-		result.setResult(listTodayAndUnread);
+		result.setResult(resultInfo);
 		
 		return result;
 	}

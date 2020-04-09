@@ -198,8 +198,12 @@
                 <td width="100px">
                     <img src="${ccmPeople.images}" style="height:50px;" class="pimg"/>
                 </td>
-                <td class="tc"><a href="${ctx}/pop/ccmPeople/formOlder?id=${ccmPeople.id}">
-                        ${ccmPeople.name}</a>
+                <td class="tc"><%--<a href="${ctx}/pop/ccmPeople/formOlder?id=${ccmPeople.id}">
+                        ${ccmPeople.name}</a>--%>
+
+                    <a class="btnList"
+                       onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/formOlder?id=${ccmPeople.id}', '详情', '1500px', '700px')"
+                       >${ccmPeople.name}</a>
                 </td>
                 <td class="tc">
                         ${fns:getDictLabel(ccmPeople.sex, 'sex', '')}

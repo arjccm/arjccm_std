@@ -22,9 +22,11 @@
 			.ready(
 					function() {
 						//$("#name").focus();
+
 						$('#btnSubmit').click(function(){
 							$('#inputForm').submit();
 						});
+
 						$("#inputForm").validate(
 								{
 									submitHandler : function(form) {
@@ -71,10 +73,14 @@
 												"width" : "98%"
 											});
 										});
-						$("#btnSubmit").on("click", function(){
+
+
+/*						$("#btnSubmit").on("click", function(){
 							$("#status").val("2");
 							$("#inputForm").submit();
-						});
+						});*/
+
+
 					});
 		    function  closeDialog () {
 		    	$("#checkDetail").dialog("close");

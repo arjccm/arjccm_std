@@ -15,7 +15,8 @@
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
 		a.del_flag AS "delFlag",
-		a.deadline AS "deadline"
+		a.deadline AS "deadline",
+		a.title AS "title"
 	</sql>
 
 	<select id="get" resultType="CcmMessage">
@@ -55,7 +56,8 @@
 		update_date,
 		remarks,
 		del_flag,
-		deadline
+		deadline,
+		title
 		)
 			VALUES
 			<foreach collection="list" item="e" open="" separator=","
@@ -73,7 +75,8 @@
 				#{e.updateDate},
 				#{e.remarks},
 				#{e.delFlag},
-				#{e.deadline}
+				#{e.deadline},
+				#{e.title}
 				)
 			</foreach>
 	</insert>

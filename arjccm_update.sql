@@ -755,6 +755,25 @@ BEGIN
 
 		commit;
 
+-- 未说明性别
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND (sex = '9' or sex = NULL)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.sex_unknow = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
 -- 未婚男性
 		UPDATE ccm_people_amount a
 		INNER JOIN (
@@ -1002,6 +1021,24 @@ BEGIN
 	  CALL COUNT_RECORD_peopleAttentType_low('03', '');
 		commit;
 
+-- 人口类型：常住
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND is_permanent = 1
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.permanent_amount = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
 
 
 -- 按街道汇总数据表本身的数据，网格 -> 社区
@@ -1036,6 +1073,7 @@ BEGIN
 				sum(p.age_newborn) AS 'age_newborn',
 				sum(p.sex_male) AS 'sex_male',
 				sum(p.sex_female) AS 'sex_female',
+				sum(p.sex_unknow) AS 'sex_unknow',
 				sum(p.sex_male_single) AS 'sex_male_single',
 				sum(p.sex_female_single) AS 'sex_female_single',
 				sum(p.edu_doctor) AS 'edu_doctor',
@@ -1085,6 +1123,7 @@ BEGIN
 			a.age_newborn = b.age_newborn,
 			a.sex_male = b.sex_male,
 			a.sex_female = b.sex_female,
+			a.sex_unknow = b.sex_unknow,
 			a.sex_male_single = b.sex_male_single,
 			a.sex_female_single = b.sex_female_single,
 			a.edu_doctor = b.edu_doctor,
@@ -1133,6 +1172,7 @@ BEGIN
 				sum(p.age_newborn) AS 'age_newborn',
 				sum(p.sex_male) AS 'sex_male',
 				sum(p.sex_female) AS 'sex_female',
+				sum(p.sex_unknow) AS 'sex_unknow',
 				sum(p.sex_male_single) AS 'sex_male_single',
 				sum(p.sex_female_single) AS 'sex_female_single',
 				sum(p.edu_doctor) AS 'edu_doctor',
@@ -1182,6 +1222,7 @@ BEGIN
 			a.age_newborn = b.age_newborn,
 			a.sex_male = b.sex_male,
 			a.sex_female = b.sex_female,
+			a.sex_unknow = b.sex_unknow,
 			a.sex_male_single = b.sex_male_single,
 			a.sex_female_single = b.sex_female_single,
 			a.edu_doctor = b.edu_doctor,
@@ -1195,29 +1236,6 @@ BEGIN
 		WHERE a.area_id = b.area_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
 
 		commit;
-
-
-
-
--- 人口类型：常住
-		UPDATE ccm_people_amount a
-		INNER JOIN (
-			SELECT
-				area_grid_id,
-				count(id) AS I_STAT_COUNT_1
-			FROM
-				ccm_people
-			WHERE
-				del_flag = 0
-				AND is_permanent = 1
-			GROUP BY
-				area_grid_id
-		) AS b ON b.area_grid_id = a.area_id
-		SET a.permanent_amount = b.I_STAT_COUNT_1
-		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
-
-		commit;
-
 
 END
 
@@ -2280,53 +2298,6 @@ INSERT INTO `sys_dicts` (`id`, `parent_id`, `parent_ids`, `value`, `label`, `typ
 INSERT INTO `sys_dicts` (`id`, `parent_id`, `parent_ids`, `value`, `label`, `type`, `description`, `sort`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('80000', '0', '0,', '80000', '不便分类的其他从业人员', 'ccm_occupation', '职业', '1', '1', '2020-03-31 15:07:53', '1', '2020-03-31 15:08:10', NULL, '0');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 --添加信息采集社会治安 嫌疑人显示权限
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'a42670932dad468989033c1455681abd', 'bda5b1b6bb5649a7a0b5f53ab91554b9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,72907f43bb8d43ac8973b253ef575f85,bda5b1b6bb5649a7a0b5f53ab91554b9,', '显示', '', '', '', 30, '0', 'event:ccmEventStakeholder:view', '1', '2020-04-02 16:21:03.545', '1', '2020-04-02 16:21:03.545', '', '0' );
 
@@ -2579,3 +2550,45 @@ ADD COLUMN `area_color` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci 
 -- 楼栋增加已采集人数字段
 ALTER TABLE `ccm_house_buildmanage`
 ADD COLUMN `gather_num` int(6) NULL COMMENT '楼栋已采集人数' AFTER `build_peo`;
+
+-- ccm_people表 插入时触发器
+add_gather	AFTER	-1	0	0	UPDATE ccm_house_buildmanage SET gather_num=ifnull(gather_num,0)+1 WHERE id=new.build_id
+-- ccm_people表 更新时触发器
+update_gather	AFTER	0	-1	0	BEGIN
+if new.build_id != old.build_id then
+UPDATE ccm_house_buildmanage SET gather_num=ifnull(gather_num,0)-1 WHERE id=old.build_id;
+UPDATE ccm_house_buildmanage SET gather_num=ifnull(gather_num,0)+1 WHERE id=new.build_id;
+end if;
+END
+-- ccm_people表 删除时触发器
+delete_gather	AFTER	0	0	-1	UPDATE ccm_house_buildmanage SET gather_num=ifnull(gather_num,0)-1 WHERE id=old.build_id
+
+-- 添加函数：根据ccm_people中人员关联的build_id向ccm_house_buildmanage字段gather_num（已采集人数）赋值
+CREATE DEFINER=`root`@`localhost` PROCEDURE `COUNT_BUILD_GATHER`()
+BEGIN
+UPDATE ccm_house_buildmanage b
+INNER JOIN (
+SELECT
+ build_id AS "build_id",
+ count( * ) AS "num"
+FROM
+ ccm_house_buildmanage build
+ LEFT JOIN ccm_people people ON build.id = people.build_id
+WHERE
+ people.del_flag = 0
+GROUP BY
+ build.id
+ ) p ON p.build_id = b.id
+ SET b.gather_num = p.num
+WHERE
+ b.id = p.build_id;
+END
+
+
+UPDATE `sys_menu` SET `parent_id` = '170000', `parent_ids` = '0,1,170000,', `name` = '治安乱点整治报表', `sort` = 700, `href` = '', `target` = '', `icon` = 'zhian', `is_show` = '0', `permission` = '', `create_by` = '1', `create_date` = '2018-03-23 14:19:41', `update_by` = '1', `update_date` = '2020-04-07 11:21:47', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('c9cc1fd43d834da692c3fbab6cffd8c5' AS Binary(32));
+UPDATE `sys_menu` SET `parent_id` = '170300', `parent_ids` = '0,1,170000,170300,', `name` = '矛盾纠纷排查统计', `sort` = 330, `href` = '/event/ccmEventAmbi/map', `target` = '', `icon` = 'unlock', `is_show` = '0', `permission` = '', `create_by` = '1', `create_date` = '2018-03-23 14:17:59', `update_by` = '1', `update_date` = '2020-04-07 11:21:02', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('cb5733ff670b4c7f809b6b6dbf07a521' AS Binary(32));
+UPDATE `sys_menu` SET `parent_id` = 'b5b8c33b437b417b852703a58ec22a04', `parent_ids` = '0,1,170000,b5b8c33b437b417b852703a58ec22a04,', `name` = '楼栋房屋数据分析', `sort` = 30, `href` = '/report/ccmReportOthers/houseAndBuild', `target` = '', `icon` = 'cloud-download', `is_show` = '0', `permission` = '', `create_by` = '1', `create_date` = '2018-03-27 11:12:02', `update_by` = '1', `update_date` = '2020-04-07 11:20:19', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('19fbbdff39a94ce7bd716d00beafbe4a' AS Binary(32));
+UPDATE `sys_menu` SET `parent_id` = 'b5b8c33b437b417b852703a58ec22a04', `parent_ids` = '0,1,170000,b5b8c33b437b417b852703a58ec22a04,', `name` = '非公有制经济组织分析', `sort` = 60, `href` = '/report/ccmReportOthers/organization', `target` = '', `icon` = 'filter', `is_show` = '0', `permission` = '', `create_by` = '1', `create_date` = '2018-03-27 11:12:43', `update_by` = '1', `update_date` = '2020-04-07 11:19:53', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('3b87dfc20fe745bebccd1c2445530a19' AS Binary(32));
+
+
+alter table ccm_people_amount add sex_unknow int(12) NULL DEFAULT NULL COMMENT '未说明性别总数';

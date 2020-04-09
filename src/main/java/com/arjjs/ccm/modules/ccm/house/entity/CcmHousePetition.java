@@ -33,16 +33,13 @@ public class CcmHousePetition extends DataEntity<CcmHousePetition> {
 	private String troubleBehavior;		// 滋事行为
 	private String petitionResult;		// 上访结果
 	private String atteTypeLable;	//app接口使用
-	
 	// 实有人口
 	private String type; // 人口类型
 	private String name; // 姓名
 	private String censu; // 籍贯
-	
 	private String sex; // 性别
 	private String ident; // 公民身份号码
 	private String telephone; // 联系方式
-
 	private String domiciledetail; // 户籍门（楼）详址
 	private String residencedetail; // 现住门（楼）详址
 	private String images; // 图片

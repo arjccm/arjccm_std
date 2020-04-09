@@ -11,8 +11,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.codehaus.groovy.syntax.Numbers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -115,40 +118,19 @@ public class CcmReportOthersController extends BaseController {
 	@RequestMapping(value = "getHouseAndBuild")
 	@RequiresPermissions("report:ccmHouseBuildStat:view")
 	public List<SearchTabMore> getHouseAndBuild(Model model) {
-		SearchTabMore searchTabMore = new SearchTabMore();
-		searchTabMore.setValue5("all");
-		searchTabMore.setValue8("all");
-		List<SearchTabMore> list = ccmPopTenantService.findHouseAndBuild(searchTabMore); //报表:楼栋房屋
-		searchTabMore.setValue5("01");
-		searchTabMore.setValue8("all");
-		List<SearchTabMore> list5 = ccmPopTenantService.findHouseAndBuild(searchTabMore); //报表:楼栋房屋状态01自住
-		searchTabMore.setValue5("02");
-		searchTabMore.setValue8("all");
-		List<SearchTabMore> list6 = ccmPopTenantService.findHouseAndBuild(searchTabMore); //报表:楼栋房屋状态02出租
-		searchTabMore.setValue5("03");
-		searchTabMore.setValue8("all");
-		List<SearchTabMore> list7 = ccmPopTenantService.findHouseAndBuild(searchTabMore); //报表:楼栋房屋状态03空置
-		
-		for(SearchTabMore se:list){
-			se.setValue5("0");se.setValue6("0");se.setValue7("0");
-			for(SearchTabMore se5:list5){
-				if(se.getType().equals(se5.getType())){
-					se.setValue5(se5.getValue4());//添加自住数据
-				}
-			}
-			for(SearchTabMore se6:list6){
-				if(se.getType().equals(se6.getType())){
-					se.setValue6(se6.getValue4());//添加出租数据
-				}
-			}
-			for(SearchTabMore se7:list7){
-				if(se.getType().equals(se7.getType())){
-					se.setValue7(se7.getValue4());//添加空置数据
-				}
+
+		List<SearchTabMore> communityCount = ccmHouseBuildmanageService.queryCommunityCount();
+
+		for (SearchTabMore tabMore : communityCount) {
+
+			if(Integer.valueOf(tabMore.getValue8()) < Integer.valueOf(tabMore.getValue9())){
+				tabMore.setValue10("-");
+			} else {
+				tabMore.setValue10(String.valueOf(Integer.valueOf(tabMore.getValue8()) - Integer.valueOf(tabMore.getValue9())));
 			}
 		}
 		
-		return list;
+		return communityCount;
 	}
 	//报表:房屋安全隐患统计
 	@ResponseBody
