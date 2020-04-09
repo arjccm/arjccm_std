@@ -168,8 +168,13 @@
 
 					</c:if>
 					<c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
-						<td><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=${ccmPeople.type}&ptype=hire">
-								${ccmPeople.name}</a></td>
+						<td><%--<a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=${ccmPeople.type}&ptype=hire">
+								${ccmPeople.name}</a>--%>
+							<a class="btnList"
+							   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?id=${ccmPeople.id}&houseId=${ccmPeople.roomId.id}&buildId=${buildId}&type=${ccmPeople.type}&ptype=hire', '详情', '1500px', '700px')"
+							   >${ccmPeople.name}</a>
+
+						</td>
 					</c:if>
 					<!--如果为楼栋进行访问  -->
 					<c:if test="${PeoTypeBy eq 'ByHouse_Build' }">
