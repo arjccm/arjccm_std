@@ -15,6 +15,8 @@ import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.ccm.pop.dao.CcmPeopleDao;
 import com.arjjs.ccm.modules.ccm.pop.dao.CcmPopBehindDao;
 import com.arjjs.ccm.modules.ccm.pop.entity.*;
+import com.arjjs.ccm.modules.ccm.report.dao.CcmPeopleAmountDao;
+import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
 import com.arjjs.ccm.modules.ccm.sys.entity.CcmAreaPointVo;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysDicts;
 import com.arjjs.ccm.modules.ccm.tenant.entity.CcmTenantRecord;
@@ -33,7 +35,7 @@ import java.util.*;
 
 /**
  * 实有人口Service
- * 
+ *
  * @author liang
  * @version 2018-01-04
  */
@@ -91,8 +93,8 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	private SysAreaService sysAreaService;
 	@Autowired
 	private CcmPopTenantService ccmPopTenantService;
-	
-		@Autowired
+
+	@Autowired
 	private CcmHarmNationalSecurityService ccmHarmNationalSecurityService;
 	@Autowired
 	private CcmSeriousCriminalOffenseService ccmSeriousCriminalOffenseService;
@@ -100,11 +102,13 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	private CcmHouseDeliberatelyIllegalService ccmHouseDeliberatelyIllegalService;
 	@Autowired
 	private CcmTenantRecordService ccmTenantRecordService;
-	
+	@Autowired
+	private CcmPeopleAmountDao ccmPeopleAmountDao;
+
 	//上传上级平台记录
 	@Autowired
 	private CcmUploadLogService ccmUploadLogService;
-	
+
 	// 人员信息弹框
 	public CcmPeople getHousePopForm(CcmPeople ccmPeople) {
 		ccmPeople = ccmPeopleDao.getHousePopForm(ccmPeople);
@@ -167,12 +171,12 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		page.setList(ccmPeopleDao.findCommunistList(ccmPeople));
 		return page;
 	}
-	
+
 	public List<EchartType> selectPopNumAllByPolitics() {
 		return ccmPeopleDao.selectPopNumAllByPolitics();
 	}
-	
-	
+
+
 	public List<EchartType> selectPopNumAllByRectification() {
 		return ccmPeopleDao.selectPopNumAllByRectification();
 	}
@@ -203,14 +207,14 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		if (ccmPeople.getIsNewRecord()) {//指定了是新增记录，则算新记录
 			isNew = true;
 		}
-		
+
 		//人口数据为新增的时候，给户籍状态一个默认值
 		if(StringUtils.isEmpty(ccmPeople.getPersonType()) && isNew) {
 			ccmPeople.setPersonType("01");
 		}
 
 		super.save(ccmPeople);
-		
+
 		//上传上级平台记录
 		if (!SysConfigInit.UPPER_URL.equals("")) {//有上级平台地址时，才存入上传上级平台记录的日志
 			CcmUploadLog uploadLog = new CcmUploadLog();
@@ -327,7 +331,7 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 				ccmHouseReleaseDao.delete(l10);
 			}
 		}
-		
+
 		//上传上级平台记录
 		if (!SysConfigInit.UPPER_URL.equals("")) {//有上级平台地址时，才存入上传上级平台记录的日志
 			CcmUploadLog uploadLog = new CcmUploadLog();
@@ -417,11 +421,11 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		page.setList(ccmPeopleDao.housePopListAdd(ccmPeople));
 		return page;
 	}
-	
+
 	public List<CcmPeople> findCareList(CcmPeople ccmPeople) {
 		return ccmPeopleDao.findCareList(ccmPeople);
 	}
-	
+
 	//导出特殊关怀查询
 	public List<CcmPeopleExport> findAllCareList(CcmPeople ccmPeople2) {
 		return ccmPeopleDao.findAllCareList(ccmPeople2);
@@ -468,7 +472,7 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	public List<CcmPeople> locatingSuspects(List<String> coordianteList) {
 		return ccmPeopleDao.locatingSuspects(coordianteList);
 	}
-	
+
 	//数组查询id  V2 版本
 	public List<CcmPeople> findListLimite_V2(CcmPeople ccmPeople2) {
 		return ccmPeopleDao.findListLimite_V2(ccmPeople2);
@@ -479,7 +483,7 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		return ccmPeopleDao.getByIdent(string);
 
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void updatePeople(CcmPeople ccmPeople) {
 		ccmPeopleDao.updatePeople(ccmPeople);
@@ -531,92 +535,33 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		return ccmPeopleDao.findListBuildBox(ccmPeople);
 	}
 
-	
+
 	public CcmPeople peopleSexCount(CcmPeople ccmPeople) {
 		return ccmPeopleDao.peopleSexCount(ccmPeople);
 	}
 
-	public Map<String, Object> peopleBirthdayCount(List<SysDicts> list) {
-		Calendar c = Calendar.getInstance();
-		c.set(Calendar.YEAR,(c.get(Calendar.YEAR)-c.get(Calendar.YEAR)%10));
-		c.set(Calendar.MONTH, 11);
-		c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
-		c.set(Calendar.HOUR_OF_DAY, c.getActualMaximum(Calendar.HOUR_OF_DAY));
-		c.set(Calendar.MINUTE, 59);
-		c.set(Calendar.SECOND, 59);
-		Date date1 = c.getTime();
-		c.set(Calendar.YEAR,(c.get(Calendar.YEAR)-10));
-		Date date2 = c.getTime();
-		c.set(Calendar.YEAR,(c.get(Calendar.YEAR)-10));
-		Date date3 = c.getTime();
-		c.set(Calendar.YEAR,(c.get(Calendar.YEAR)-10));
-		Date date4 = c.getTime();
-		CcmPeople people = new CcmPeople();
+	public Map<String, Object> peopleBirthdayCount() {
+		User user = UserUtils.getUser();
+		List<EchartType> list = ccmPeopleAmountDao.getPeopleAgeCount(user.getOffice().getArea().getId(),user.getOffice().getArea().getType());
 		String[] year = new String[5];
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
-		people.setBeginBirthday(date1);
-		year[4] = formatter.format(date1)+"-now";
-		List<CcmPeople> list1 = ccmPeopleDao.peopleBirthdayCount(people);
-		people.setBeginBirthday(date2);
-		people.setEndBirthday(date1);
-		year[3] = formatter.format(date2)+"-"+formatter.format(date1);
-		List<CcmPeople> list2 = ccmPeopleDao.peopleBirthdayCount(people);
-		people.setBeginBirthday(date3);
-		people.setEndBirthday(date2);
-		year[2] = formatter.format(date3)+"-"+formatter.format(date2);
-		List<CcmPeople> list3 = ccmPeopleDao.peopleBirthdayCount(people);
-		people.setBeginBirthday(date4);
-		people.setEndBirthday(date3);
-		year[1] = formatter.format(date4)+"-"+formatter.format(date3);
-		List<CcmPeople> list4 = ccmPeopleDao.peopleBirthdayCount(people);
-		people.setEndBirthday(date4);
-		year[0] = "before-"+formatter.format(date4);
-		List<CcmPeople> list5 = ccmPeopleDao.peopleBirthdayCount(people);
-		List<Map<String, Object>> listData = new ArrayList<Map<String,Object>>();
-		String[] dicts = new String[list.size()];
-		int[] num;
-		String value = null;
-		int i = 0;
-		for (SysDicts dict : list) {
-			value = dict.getValue();
-			dicts[i] = dict.getLabel();
-			num = new int[5];
-			for (CcmPeople p : list1) {
-				if(value.equals(p.getSex())) {
-					num[4] = p.getResultNum();
-				}
-			}
-			for (CcmPeople p : list2) {
-				if(value.equals(p.getSex())) {
-					num[3] = p.getResultNum();
-				}
-			}
-			for (CcmPeople p : list3) {
-				if(value.equals(p.getSex())) {
-					num[2] = p.getResultNum();
-				}
-			}
-			for (CcmPeople p : list4) {
-				if(value.equals(p.getSex())) {
-					num[1] = p.getResultNum();
-				}
-			}
-			for (CcmPeople p : list5) {
-				if(value.equals(p.getSex())) {
-					num[0] = p.getResultNum();
-				}
-			}
-			Map<String, Object> temp = new HashMap<>();
-			temp.put("name", dict.getLabel());
-			temp.put("type", "bar");
-			temp.put("data", num);
-			listData.add(temp);
-			i++;
-		}
+		EchartType echart = list.get(0);
+		String[] value = new String[5];
+		year[0] = "一岁以下新生儿";
+		year[1] = "65及以上年龄段";
+		year[2] = "41-64年龄段";
+		year[3] = "16-40年龄段";
+		year[4] = "0-15年龄段";
+		value[0] = echart.getType();
+		value[1] = echart.getValue();
+		value[2] = echart.getValue1();
+		value[3] = echart.getValue2();
+		value[4] = echart.getValue3();
+		String[] legend = new String[1];
+		legend[0] = "人数";
 		Map<String, Object> result = new HashMap<>();
 		result.put("yAxis", year);
-		result.put("legend", dicts);
-		result.put("value", listData);
+		result.put("legend", legend);
+		result.put("value", value);
 		return result;
 	}
 
@@ -678,19 +623,19 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	}
 
 	public List<EchartType> peopleRegionCount() {
-		 return ccmPeopleDao.peopleRegionCount();
+		return ccmPeopleDao.peopleRegionCount();
 	}
 
-    public User judgeUserAreaPermission(String userId,String areaId,List parentIds) {
+	public User judgeUserAreaPermission(String userId,String areaId,List parentIds) {
 		return dao.judgeUserAreaPermission(userId,areaId,parentIds);
-    }
-    
-    // 校园周边重点人员列表
- 	public Page<CcmPeople> findAllPopByArea(Page<CcmPeople> page, CcmPeople ccmPeople) {
- 		ccmPeople.setPage(page);
- 		page.setList(ccmPeopleDao.findAllPopByArea(ccmPeople));
- 		return page;
- 	}
+	}
+
+	// 校园周边重点人员列表
+	public Page<CcmPeople> findAllPopByArea(Page<CcmPeople> page, CcmPeople ccmPeople) {
+		ccmPeople.setPage(page);
+		page.setList(ccmPeopleDao.findAllPopByArea(ccmPeople));
+		return page;
+	}
 	public List<CcmPeopleVo> selectByAreaGIdAndName(CcmAreaPointVo areaPointVo){
 		return dao.selectByAreaGIdAndName(areaPointVo);
 	}
@@ -706,7 +651,7 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	public List<CcmPeople> findSuspect(CcmPeople ccmPeople) {
 		return ccmPeopleDao.findSuspect(ccmPeople);
 	}
-	
+
 	public CcmPeople getSuspect(CcmPeople ccmPeople) {
 		return ccmPeopleDao.getSuspect(ccmPeople);
 	}

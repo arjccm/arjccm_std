@@ -195,12 +195,13 @@
 					</c:if> <c:if test="${not empty plmEquApply.user.id}">
 					${plmEquApply.user.name }
 				</c:if></td>
-				<td class="tabletop" colspan="3">申请人所在部门：<c:if
+				<td class="tabletop" colspan="3">申请人所在部门：<input type="text" style="text-indent:-120px;" value=" <c:if
 						test="${empty plmEquApply.user.id}">
 				${fns:getUser().office.name}
 				</c:if> <c:if test="${not empty plmEquApply.user.id}">
-				${plmEquApply.user.office.name}
-				</c:if></td>
+				 ${plmEquApply.user.office.name}
+				</c:if>"> </td>
+
 				<td class="tabletop" colspan="3">申请日期：<input type="text"
 					name="applyDate" id="today" readonly="readonly"  /> <script
 						type="text/javascript">

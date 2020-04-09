@@ -1168,3 +1168,6 @@ input::-ms-clear{
 	font-family: Helvetica, Georgia, Arial, sans-serif, 宋体;
 
 }
+#menu li:first-child{
+	margin-left: 50px;
+}

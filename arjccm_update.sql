@@ -755,6 +755,25 @@ BEGIN
 
 		commit;
 
+-- 未说明性别
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND (sex = '9' or sex = NULL)
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.sex_unknow = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
 -- 未婚男性
 		UPDATE ccm_people_amount a
 		INNER JOIN (
@@ -1002,6 +1021,24 @@ BEGIN
 	  CALL COUNT_RECORD_peopleAttentType_low('03', '');
 		commit;
 
+-- 人口类型：常住
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_grid_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_people
+			WHERE
+				del_flag = 0
+				AND is_permanent = 1
+			GROUP BY
+				area_grid_id
+		) AS b ON b.area_grid_id = a.area_id
+		SET a.permanent_amount = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
 
 
 -- 按街道汇总数据表本身的数据，网格 -> 社区
@@ -1036,6 +1073,7 @@ BEGIN
 				sum(p.age_newborn) AS 'age_newborn',
 				sum(p.sex_male) AS 'sex_male',
 				sum(p.sex_female) AS 'sex_female',
+				sum(p.sex_unknow) AS 'sex_unknow',
 				sum(p.sex_male_single) AS 'sex_male_single',
 				sum(p.sex_female_single) AS 'sex_female_single',
 				sum(p.edu_doctor) AS 'edu_doctor',
@@ -1085,6 +1123,7 @@ BEGIN
 			a.age_newborn = b.age_newborn,
 			a.sex_male = b.sex_male,
 			a.sex_female = b.sex_female,
+			a.sex_unknow = b.sex_unknow,
 			a.sex_male_single = b.sex_male_single,
 			a.sex_female_single = b.sex_female_single,
 			a.edu_doctor = b.edu_doctor,
@@ -1133,6 +1172,7 @@ BEGIN
 				sum(p.age_newborn) AS 'age_newborn',
 				sum(p.sex_male) AS 'sex_male',
 				sum(p.sex_female) AS 'sex_female',
+				sum(p.sex_unknow) AS 'sex_unknow',
 				sum(p.sex_male_single) AS 'sex_male_single',
 				sum(p.sex_female_single) AS 'sex_female_single',
 				sum(p.edu_doctor) AS 'edu_doctor',
@@ -1182,6 +1222,7 @@ BEGIN
 			a.age_newborn = b.age_newborn,
 			a.sex_male = b.sex_male,
 			a.sex_female = b.sex_female,
+			a.sex_unknow = b.sex_unknow,
 			a.sex_male_single = b.sex_male_single,
 			a.sex_female_single = b.sex_female_single,
 			a.edu_doctor = b.edu_doctor,
@@ -1195,29 +1236,6 @@ BEGIN
 		WHERE a.area_id = b.area_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
 
 		commit;
-
-
-
-
--- 人口类型：常住
-		UPDATE ccm_people_amount a
-		INNER JOIN (
-			SELECT
-				area_grid_id,
-				count(id) AS I_STAT_COUNT_1
-			FROM
-				ccm_people
-			WHERE
-				del_flag = 0
-				AND is_permanent = 1
-			GROUP BY
-				area_grid_id
-		) AS b ON b.area_grid_id = a.area_id
-		SET a.permanent_amount = b.I_STAT_COUNT_1
-		WHERE a.area_id = b.area_grid_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
-
-		commit;
-
 
 END
 

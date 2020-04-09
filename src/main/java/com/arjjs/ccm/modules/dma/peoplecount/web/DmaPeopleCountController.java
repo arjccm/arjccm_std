@@ -92,7 +92,7 @@ public class DmaPeopleCountController extends BaseController {
 	@RequestMapping(value = "peopleBirthdayCount")
 	public Map<String, Object> peopleBirthdayCount(CcmPeople ccmPeople, Model model,RedirectAttributes redirectAttributes) {
 		List<SysDicts> list = sysDictsService.findAllListByType("sex");
-		Map<String, Object> result = ccmPeopleService.peopleBirthdayCount(list);
+		Map<String, Object> result = ccmPeopleService.peopleBirthdayCount();
 		return result;
 	}
 	
