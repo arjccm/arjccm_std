@@ -20,6 +20,7 @@ import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.Dict;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.service.DictService;
+import com.arjjs.ccm.tool.Pagecount;
 import com.arjjs.ccm.tool.PlmTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -1714,7 +1715,18 @@ public class CcmRestPeople extends BaseController {
 			}
 			ccmPeople.setSpecialCareTypes(specialCareTypeStr.split(","));
 		}
-		if ("".equals(specialCareTypeStr)) {// 传过来值中没有有效的内容，则查询全部
+
+		Pagecount page2 = new Pagecount<CcmPeople>(req, resp);
+		int countnum = page2.getPageSize()*8;
+		if(page2.getPageNo()>= 6){
+			countnum+=page2.getPageNo()/6*page2.getPageSize()*8;
+		}
+		page2.setCount(countnum);
+		page2.initialize();
+		ccmPeople.setMinnum((page2.getPageNo()-1)*page2.getPageSize());
+		ccmPeople.setMaxnum(page2.getPageSize());
+
+		/*if ("".equals(specialCareTypeStr)) {// 传过来值中没有有效的内容，则查询全部
 			Dict dict = new Dict();
 			dict.setType("pop_special_care_type");
 			List<Dict> dictList = dictService.findList(dict);
@@ -1722,37 +1734,26 @@ public class CcmRestPeople extends BaseController {
 			for (int i = 0; i < specialCareTypes.length; i++) {
 				specialCareTypes[i] = dictList.get(i).getValue();
 			}
-			ccmPeople.setSpecialCareTypes(specialCareTypes);
-		}
+			//ccmPeople.setSpecialCareTypes(specialCareTypes);
+		}*/
 		ccmPeople.setCheckUser(sessionUser);
-		Page<CcmPeople> page = ccmPeopleService.findPage(new Page<CcmPeople>(req, resp), ccmPeople);
-		
-		
-		//
-		
-		List<CcmPeople> list = page.getList();
+		List<CcmPeople> list = ccmPeopleService.findCareFirstBylimit(ccmPeople);
+		/*Page<CcmPeople> page = ccmPeopleService.findPage(new Page<CcmPeople>(req, resp), ccmPeople);
+		List<CcmPeople> list = page.getList();*/
 		//
 		CcmPeople ccmPeople2 = new CcmPeople();
 		String[] listLimite = new String[list.size()];
-		if(list.size()>0){
-			for(int i=0;i<list.size();i++){
-				listLimite[i]=list.get(i).getId();
+		if (list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				listLimite[i] = list.get(i).getId();
 			}
 			ccmPeople2.setListLimite(listLimite);
-			List<CcmPeople> list2 = ccmPeopleService.findListLimite(ccmPeople2);//数组查询id
-            String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-            for(int f=0;f<list2.size();f++){
-                if (StringUtils.isNotEmpty(list2.get(f).getImages())) {
-                    list2.get(f).setImages(fileUrl + list2.get(f).getImages());
-                }
-            }
-			page.setList(list2);
+			List<CcmPeople> list2 = ccmPeopleService.findListLimite_V2(ccmPeople2);// 数组查询id
+			page2.setList(list2);
 		}
-		
-		
-		
+
 		result.setCode(CcmRestType.OK);
-		result.setResult(page.getList());
+		result.setResult(page2.getList());
 		
 		return result;
 	}
