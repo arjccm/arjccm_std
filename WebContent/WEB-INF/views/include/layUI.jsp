@@ -79,7 +79,9 @@
     // function ClearData(data){
     //
     // }
-    layer.ready(function() {
+    function xiaoxikuang(e) {
+        /*var y=window.event.pageY;
+        var x=window.event.clientX;*/
         var layerIndex1;
         var table = '';
         var contentAll = '';
@@ -92,7 +94,8 @@
         // $.getJSON(ctx+"/event/ccmEventIncident/getListToday",{ "noCache": noCache },
         $.getJSON(ctx+"/message/ccmMessage/getListTodayAndUnread",{ "noCache": noCache },
             function(data) {
-                console.info("data",data);
+            // debugger
+                // console.info("data",data);
                 contentAll += '<table class="table layer"><tbody id="allTbody" class="tBody">';
                 content1 += '<table class="table layer"><tbody id="eventTbody" class="tBody"><tr class="def"> <td>暂无新的消息</td></tr>';
                 content2 += '<table class="table layer"><tbody id="caseDealTbody" class="tBody"><tr class="def"> <td>暂无新的消息</td></tr>';
@@ -173,7 +176,7 @@
                             content2 += html;
                             contentAll += html;
                         }else if(data[i]["type"]=="04"){
-                            debugger
+
                             if(content2 == '<table class="table layer"><tbody id="caseDealTbody" class="tBody"><tr class="def"> <td>暂无新的消息</td></tr>'){
                                 content2 = '<table class="table layer"><tbody id="caseDealTbody" class="tBody">';
                             }
@@ -265,7 +268,24 @@
                         }
                     }
                     countAll = count1 + count2 + count3;
+                    /*console.log("============")
+                    console.log(countAll)*/
+
+                    /*向主页传递*/
+                    if(countAll>0&&countAll!=null){
+
+                        // document.getElementsByClassName("xiaoxi-num")
+                        $("#messa-Num").html(countAll);
+                        $("#message-Dh").addClass("xiaoxi-dh");
+                        $("#messa-Num").removeClass("xiaoxi-yc");
+                        $("#messa-Num").addClass("xiaoxi-numdh");
+                    }else {
+                        $("#message-Dh").removeClass("xiaoxi-dh");
+                        $("#messa-Num").addClass("xiaoxi-yc");
+                    }
                 } else{
+                    $("#message-Dh").removeClass("xiaoxi-dh");
+                    $("#messa-Num").addClass("xiaoxi-yc");
                     contentAll += '<tr class="def"> <td>暂无新的消息</td></tr>';
                     // content1 += '<tr class="def"> <td>暂无新的消息</td></tr>';
                     // content2 += '<tr class="def"> <td>暂无新的消息</td></tr>';
@@ -318,57 +338,59 @@
                 table += '<div class="layui-tab-item">'+content4+'</div>';
                 table += '</div>';
                 table += '</div>';
-                var min_lt = $(window).outerWidth() - 180;
-                var restore_lt = $(window).outerWidth() - 300;
-                var restore_tp = $(window).outerHeight() - 500;
+                var min_lt = $(window).outerWidth() - 300;
+                var restore_lt = 100;
+                var restore_tp = 200;
                 var min_tp = $(window).outerHeight() - 43;
                 // alert(min_lt);
+                // debugger
                 layerIndex1 = layer.open({
                     type : 1,
                     id:'TodayEvent',
                     skin: 'xiaoxikuang',
                     title : '今日消息',
-                    maxmin : true,
+                    maxmin : false,
                     shade : 0,
-                    closeBtn : 0,
+                    closeBtn : 1,
                     // offset : 'lb',
-                    offset : 'rb',
+                    offset : [70,min_lt],
                     area : [ '300px', '500px' ],
                     content : table,
                     // 最小化按钮的回调
-                    min : function(layero) {
-                        setTimeout(function(){
-                            layero.css({
-                                left : min_lt,
-                                top : min_tp
-                            })
-                        },0)
-
-                    },
-                    restore : function(layero) {
-                        setTimeout(function(){
-                            layero.css({
-                                left : restore_lt,
-                                top : restore_tp
-                            })
-                        },0)
-                    }
+                    // min : function(layero) {
+                    //     setTimeout(function(){
+                    //         layero.css({
+                    //             left : min_lt,
+                    //             top : min_tp
+                    //         })
+                    //     },0)
+                    //
+                    // },
+                    // restore : function(layero) {
+                    //     setTimeout(function(){
+                    //         layero.css({
+                    //             left : restore_lt,
+                    //             top : restore_tp
+                    //         })
+                    //     },0)
+                    // }
                 });
+                // layer.full(index);
                 // $("#TodayEvent .layui-tab-title li").css({
                 //     "color":"#fff"
                 // })
 
-                setTimeout(function(){
-                    $(".xiaoxikuang").css({
-                        left : min_lt,
-                        top : min_tp
-                    })
-                },0)
-                if(noRead){
-                    layer.restore(layerIndex1);
-                }else{
-                    layer.min(layerIndex1);
-                }
+                // setTimeout(function(){
+                //     $(".xiaoxikuang").css({
+                //         left : min_lt,
+                //         top : min_tp
+                //     })
+                // },0)
+                // if(noRead){
+                //     layer.restore(layerIndex1);
+                // }else{
+                //     layer.min(layerIndex1);
+                // }
                 $.getJSON(ctx+"/work/ccmWorkNotice/messageList",{ "noCache": noCache,"pageSize":10 },
                     function(data) {
                         if(data.length>0){
@@ -391,7 +413,7 @@
             }
         );
 
-    });
+    };
 
     function re(id) {
         // 左侧栏隐藏
@@ -450,12 +472,15 @@
                     $("#countAll").text(parseInt(countAll)-1);
                     var count1 = $("#count1").text();
                     $("#count1").text(parseInt(count1)-1);
+                    $("#messa-Num").html(parseInt(countAll) - 1);
                 }
                 // alert($("#count1").text())
                 if($("#countAll").text() == 0){
                     $("#countAll").css({
                         "display":"none"
                     })
+                    $("#message-Dh").removeClass("xiaoxi-dh");
+                    $("#messa-Num").addClass("xiaoxi-yc");
                 }
                 if($("#count1").text() == 0){
                     $("#count1").css({
@@ -493,6 +518,7 @@
             a1.removeClass('masked')//去掉闪光字体
             var countAll = $("#countAll").text();
             $("#countAll").text(parseInt(countAll) - 1);
+            $("#messa-Num").html(parseInt(countAll) - 1);
             var count2 = $("#count2").text();
             $("#count2").text(parseInt(count2) - 1);
         }
@@ -500,6 +526,8 @@
             $("#countAll").css({
                 "display":"none"
             })
+            $("#message-Dh").removeClass("xiaoxi-dh");
+            $("#messa-Num").addClass("xiaoxi-yc");
         }
         if($("#count2").text() == 0){
             $("#count2").css({
@@ -538,6 +566,7 @@
             a1.removeClass('masked')//去掉闪光字体
             var countAll = $("#countAll").text();
             $("#countAll").text(parseInt(countAll) - 1);
+            $("#messa-Num").html(parseInt(countAll) - 1);
             var count2 = $("#count2").text();
             $("#count2").text(parseInt(count2) - 1);
         }
@@ -567,6 +596,7 @@
             a1.removeClass('masked')//去掉闪光字体
             var countAll = $("#countAll").text();
             $("#countAll").text(parseInt(countAll) - 1);
+            $("#messa-Num").html(parseInt(countAll) - 1);
             var count3 = $("#count3").text();
             $("#count3").text(parseInt(count3) - 1);
         }
@@ -574,6 +604,8 @@
             $("#countAll").css({
                 "display":"none"
             })
+            $("#message-Dh").removeClass("xiaoxi-dh");
+            $("#messa-Num").addClass("xiaoxi-yc");
         }
         if($("#count3").text() == 0){
             $("#count3").css({
@@ -606,6 +638,7 @@
             a1.removeClass('masked')//去掉闪光字体
             var countAll = $("#countAll").text();
             $("#countAll").text(parseInt(countAll) - 1);
+            $("#messa-Num").html(parseInt(countAll) - 1);
             var count3 = $("#count3").text();
             $("#count3").text(parseInt(count3) - 1);
         }
@@ -635,6 +668,7 @@
             a1.removeClass('masked')//去掉闪光字体
             var countAll = $("#countAll").text();
             $("#countAll").text(parseInt(countAll) - 1);
+            $("#messa-Num").html(parseInt(countAll) - 1);
             var count3 = $("#count3").text();
             $("#count3").text(parseInt(count3) - 1);
         }
@@ -700,6 +734,7 @@
             a1.removeClass('masked')//去掉闪光字体
             var countAll = $("#countAll").text();
             $("#countAll").text(parseInt(countAll) - 1);
+            $("#messa-Num").html(parseInt(countAll) - 1);
             var count3 = $("#count3").text();
             $("#count3").text(parseInt(count3) - 1);
         }
@@ -713,4 +748,6 @@
             content: '${ctx}/news/message/form?id='+id  //弹出层的url
         });
     }
+
+
 </script>

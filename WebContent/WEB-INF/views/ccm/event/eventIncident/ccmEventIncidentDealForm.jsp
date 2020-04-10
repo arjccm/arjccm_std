@@ -66,17 +66,17 @@ td {
 	<form:form id="inputForm" modelAttribute="ccmEventCasedeal"
 		action="${ctx}/event/ccmEventCasedeal/saveCasedealCommon"
 		method="post" class="form-horizontal">
-		<form:hidden path="id" />
-		<form:hidden path="objId" />
-		<form:hidden path="objType" />
+		<form:input path="id" />
+		<form:input path="objId" />
+		<form:input path="objType" />
 		<form:hidden path="handleDate" />
-		<form:hidden path="handleStep" />
+		<form:input path="handleStep" />
 		<input id="handleStatus" name="handleStatus" type="hidden" value="01" />
-		<form:hidden path="handleFeedback" />
-		<form:hidden path="checkDate" />
-		<form:hidden path="checkUser" />
-		<form:hidden path="checkOpinion" />
-		<form:hidden path="checkScore" />
+		<form:input path="handleFeedback" />
+		<form:input path="checkDate" />
+		<form:input path="checkUser" />
+		<form:input path="checkOpinion" />
+		<form:input path="checkScore" />
 		<sys:message content="${message}" />
 		<table border="0px"
 			style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;">

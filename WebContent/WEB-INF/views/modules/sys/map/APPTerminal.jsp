@@ -375,11 +375,11 @@ width: 113px;
 		     <input name="beginCreateDate" type="text" placeholder="请选择开始时间" 
 									  id="beginCreateDate" maxlength="20"
 									class="input-medium Wdate" value=""
-									onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endCreateDate\')||\'%y-%M\'}'});" style="height: 30px; margin-top: 10px;"/>
+									onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'endCreateDate\')||\'%y-%M\'}'});" style="height: 30px; margin-top: 10px;"/>
 			 <input name="endCreateDate" type="text"  placeholder="请选择结束时间" 
 									  id="endCreateDate" maxlength="20" 
 									class="input-medium Wdate" value=""
-									onclick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'beginCreateDate\')}',maxDate:'%y-%M'});" style="height: 30px; margin-top: 10px;"/>						
+									onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'beginCreateDate\')}',maxDate:'%y-%M'});" style="height: 30px; margin-top: 10px;"/>
 		    </li>
 		    <li>
 		    <sys:treeselect id="primaryPerson" name="primaryPerson.id" 

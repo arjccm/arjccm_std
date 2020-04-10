@@ -3,7 +3,7 @@ var timer;
 var mqFlag = true;
 function initRabbitMQ(){
 	alarmVerify();
-	// RaMq();
+	RaMq();
 }
 function initActiveMQ() {
 	var amq = new org.activemq.AmqClass();
@@ -111,6 +111,7 @@ function alarmVerify() {
 function RaMq(){
 	// 初始化 ws 对象
 	var ws = new WebSocket('ws://'+window.location.hostname +':15674/ws');
+    // var ws = new WebSocket('ws://192.168.1.213:15674/ws');
 	// 获得Stomp client对象
 	var client = Stomp.over(ws);
 	client.heartbeat.outgoing = 10000;//mq心跳
@@ -126,9 +127,13 @@ function RaMq(){
 	    	// layer.restore(layerIndex1);
 	    	// top.$.jBox.tip('有新事件上报，请您查收！');
 			top.$.jBox.tip('有新消息上报，请您查收！');
-	    	if($('#layui-layer1 .layui-layer-ico').hasClass("layui-layer-maxmin")){
+			//调用消息框提示
+            xiaoxikuang();
+            // debugger
+	    	/*if($('#layui-layer1 .layui-layer-ico').hasClass("layui-layer-maxmin")){
 	    		$('#layui-layer1 .layui-layer-ico').click()
 	    	}
+
 	    	$(".def").hide();
 	    	if (obj["type"]=="01"){
 				var name=decodeURIComponent(obj["caseName"]);
@@ -183,8 +188,8 @@ function RaMq(){
 				$("#count3").text(parseInt(count3)+1);
 				// 插入
 				$("#notifyTbody tr:first-child").before(htmlM);
-			}
-			$.ajax({
+			}*/
+			/*$.ajax({
 				type: "get",
 				url: ctx + "/message/ccmMessage/read",
 				data: {
@@ -193,7 +198,7 @@ function RaMq(){
 				success: function (data) {
 
 				}
-			})
+			})*/
 	    	// var clock="";
 	    	// var clock1="";
 	    	// var year,month,day,hh,mm,ss;
@@ -229,11 +234,12 @@ function RaMq(){
 	    	// 		+ obj["id"] + '" attpoint="' + obj["areaPoint"] + '" attname="'
 	    	// 		+ obj["caseName"] + '" > ' + clock+ '：' + name + '</a></td></tr>';
 	    	// 插入
-	    	$("#allTbody tr:first-child").before(htmlM);
+	    	/*$("#allTbody tr:first-child").before(htmlM);*/
 	    	//
 	    	// var  textNAme=clock1+name
 	    	// speak(textNAme)
-			speak(content);
+
+			/*speak(content);*/
 	    });
 	};
 	// 定义错误时回调函数

@@ -54,7 +54,7 @@ public class CcmEventCasedealService extends CrudService<CcmEventCasedealDao, Cc
 	
 	@Transactional(readOnly = false)
 	public void save(CcmEventCasedeal ccmEventCasedeal) {
-		BphAlarmInfo bphAlarmInfo = new BphAlarmInfo();
+		/*BphAlarmInfo bphAlarmInfo = new BphAlarmInfo();
 		bphAlarmInfo.setId(ccmEventCasedeal.getObjId());
 		BphAlarmInfo bphAlarmInforesult = bphAlarmInfoService.get(bphAlarmInfo);
 		if(ccmEventCasedeal.getId() == null || "".equals(ccmEventCasedeal.getId())) {
@@ -71,7 +71,7 @@ public class CcmEventCasedealService extends CrudService<CcmEventCasedealDao, Cc
 				bphAlarmHandle.setDelFlag("0");
 				bphAlarmHandleService.save(bphAlarmHandle);
 			}
-		}
+		}*/
 		super.save(ccmEventCasedeal);
 	}
 	
