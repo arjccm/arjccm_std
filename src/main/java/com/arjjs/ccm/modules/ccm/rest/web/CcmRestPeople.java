@@ -1749,12 +1749,14 @@ public class CcmRestPeople extends BaseController {
 			}
 			ccmPeople2.setListLimite(listLimite);
 			List<CcmPeople> list2 = ccmPeopleService.findListLimite_V2(ccmPeople2);// 数组查询id
-			page2.setList(list2);
+			if (list2.size()>0){
+				page2.setList(list2);
+				result.setResult(page2.getList());
+			}
+		}else {
+			result.setResult("");
 		}
-
 		result.setCode(CcmRestType.OK);
-		result.setResult(page2.getList());
-		
 		return result;
 	}
 	/**
