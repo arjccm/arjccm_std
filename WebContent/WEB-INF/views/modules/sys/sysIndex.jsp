@@ -145,8 +145,121 @@
   margin-top: 5px;
 }
 
+#message-dj{
+    position: relative;
+}
+.xiaoxi-dh{
+    -webkit-animation: xiaoxi-dh 0.1s ease-in 0.1s infinite alternate;
+    -moz-animation: xiaoxi-dh 0.1s ease-in 0.1s infinite alternate;
+    -ms-animation: xiaoxi-dh 0.1s ease-in 0.1s infinite alternate;
+    -o-animation: xiaoxi-dh 0.1s ease-in 0.1s infinite alternate;
+    animation: xiaoxi-dh 0.1s ease-in 0.1s infinite alternate;
+    animation-fill-mode: initial;
+}
+@-webkit-keyframes xiaoxi-dh {
+    from {
+        -webkit-transform: rotate(13deg);
+        -moz-transform: rotate(13deg);
+        -ms-transform: rotate(13deg);
+        -o-transform: rotate(13deg);
+        transform: rotate(13deg); }
+    to {
+        -webkit-transform-origin: center center;
+        -webkit-transform: rotate(-13deg);
+        -moz-transform: rotate(-13deg);
+        -ms-transform: rotate(-13deg);
+        -o-transform: rotate(-13deg);
+        transform: rotate(-13deg); } }
 
+@-moz-keyframes xiaoxi-dh {
+    from {
+        -webkit-transform: rotate(13deg);
+        -moz-transform: rotate(13deg);
+        -ms-transform: rotate(13deg);
+        -o-transform: rotate(13deg);
+        transform: rotate(13deg); }
+    to {
+        -webkit-transform-origin: center center;
+        -webkit-transform: rotate(-13deg);
+        -moz-transform: rotate(-13deg);
+        -ms-transform: rotate(-13deg);
+        -o-transform: rotate(-13deg);
+        transform: rotate(-13deg); } }
 
+@-o-keyframes xiaoxi-dh {
+    from {
+        -webkit-transform: rotate(13deg);
+        -moz-transform: rotate(13deg);
+        -ms-transform: rotate(13deg);
+        -o-transform: rotate(13deg);
+        transform: rotate(13deg); }
+    to {
+        -webkit-transform-origin: center center;
+        -webkit-transform: rotate(-13deg);
+        -moz-transform: rotate(-13deg);
+        -ms-transform: rotate(-13deg);
+        -o-transform: rotate(-13deg);
+        transform: rotate(-13deg); } }
+
+@keyframes xiaoxi-dh {
+    from {
+        -webkit-transform: rotate(13deg);
+        -moz-transform: rotate(13deg);
+        -ms-transform: rotate(13deg);
+        -o-transform: rotate(13deg);
+        transform: rotate(13deg); }
+    to {
+        -webkit-transform-origin: center center;
+        -webkit-transform: rotate(-13deg);
+        -moz-transform: rotate(-13deg);
+        -ms-transform: rotate(-13deg);
+        -o-transform: rotate(-13deg);
+        transform: rotate(-13deg); } }
+
+    .xiaoxi-num{
+        background: #eaeaea;
+        color: #444;
+        font-size: 0.8rem;
+        line-height: 20px;
+        min-height: 20px;
+        min-width: 20px;
+        vertical-align: middle;
+        text-align: center;
+        display: inline-block;
+        border-radius: 10px;
+        position: absolute;
+        left: 30px;
+    }
+    .xiaoxi-yc{
+        display: none;
+    }
+    .xiaoxi-numdh{
+        animation: xiaoxi-numdh 1s step-start 0s infinite;
+        animation-duration: 1s;
+        animation-timing-function: step-start;
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+        animation-fill-mode: initial;
+        animation-play-state: running;
+        animation-name: xiaoxi-numdh;
+        animation-fill-mode: initial;
+    }
+@-webkit-keyframes xiaoxi-numdh {
+    50% {
+        opacity: 0.0; } }
+
+@-moz-keyframes xiaoxi-numdh {
+    50% {
+        opacity: 0.0; } }
+
+@-o-keyframes xiaoxi-numdh {
+    50% {
+        opacity: 0.0; } }
+
+@keyframes xiaoxi-numdh {
+    50% {
+        opacity: 0.0; } }
 </style>
 <c:set var="tabmode"
 	value="${empty cookie.tabmode.value ? '0' : cookie.tabmode.value}" />
@@ -507,22 +620,24 @@ function addTab($this, refresh) {
 							<li><i id="qrcode" style="padding-left: 5px;display: block;"></i></li>
 						</ul>
 					</li>
-					|
+
 					<%-- <li><a href="${ctx}/" title="返回主面板">主面板</a></li> --%>
 					<!-- <li><a href="#" target="_blank" onclick="pbsSubmit();"title="访问智慧党建系统">智慧党建</a></li>
 					<li><a href="#" target="_blank" onclick="videoSubmit();" title="访问视频融合系统">视频融合</a></li> -->
 					<%--<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}" title="访问网页" target="_blank"><i class="icon-globe"></i></a></li>--%>
 					<%-- <li><a href="${ctx}/sys/map/statIndexCom" title="访问大数据主页"><i class="iconfont  icon-caozuotubiao-hujijiating"></i></a></li> --%>
 					<li><a href="${ctx}/sys/map/projectIndex" title="主面板"><i class="iconfont  icon-ai-shouye"></i></a></li>
+
+                    <li id="message-dj" class="">
+                        <span id="messa-Num" class="xiaoxi-num xiaoxi-yc"></span>
+                        <a id="message-Dh" class="" href="#" onclick="xiaoxikuang()" title="今日消息">
+                            <span ><i class="icon-bell" style="font-size: 18px;"></i></span>
+                        </a>
+                    </li>
+
+
 					<%-- <li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="icon-home"></i></a></li>
-					--%><li id="themeSwitch" class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="icon-th-large"></i></a>
-						<ul class="dropdown-menu">
-							<c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
-			<%-- 				<li><a href="javascript:cookie('tabmode','${tabmode eq '1' ? '0' : '1'}');location=location.href">${tabmode eq '1' ? '关闭' : '开启'}页签模式</a></li> --%>
-						</ul>
-						<!--[if lte IE 6]><script type="text/javascript">$('#themeSwitch').hide();</script><![endif]-->
-					</li> 
+					--%>
 					<li id="sysSwitch" class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="系统切换"><i class="icon-th-list"></i></a>
 						<ul id="daohang" class="dropdown-menu system-nav ">
@@ -579,7 +694,13 @@ function addTab($this, refresh) {
 							<li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i
 									class="icon-bell"></i>&nbsp; 我的通知 <span id="notifyNum2"
 									class="label label-info hide"></span></a></li>
-							<li><a href="${ctx}/logout" title="退出登录"><i class="icon-signout"></i>&nbsp;退出登录</a></li>
+
+                            <li><a href="#" onclick="location='/arjccm/theme/black?url='+location.href"><i class="icon-bell"></i>&nbsp; 暗色主题</a></li>
+                            <li><a href="#" onclick="location='/arjccm/theme/gradient?url='+location.href"><i class="icon-bell"></i>&nbsp; 极简主题</a></li>
+
+                            <!--[if lte IE 6]><script type="text/javascript">$('#themeSwitch').hide();</script><![endif]-->
+
+                            <li><a href="${ctx}/logout" title="退出登录"><i class="icon-signout"></i>&nbsp;退出登录</a></li>
 						</ul></li>
 					
 					<li>&nbsp;</li>
@@ -860,8 +981,7 @@ function addTab($this, refresh) {
 	<%@include file="/WEB-INF/views/include/layUI.jsp" %>
 	<%@include file="/WEB-INF/views/layim/page/layim.jsp" %>
 	
-	
-	
+
 	
 <%-- <script src="${ctxStatic}/dist/layui.js"></script> --%>
 <!-- <script>
