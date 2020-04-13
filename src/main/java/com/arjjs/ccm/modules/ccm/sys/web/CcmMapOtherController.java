@@ -2051,4 +2051,10 @@ public class CcmMapOtherController extends BaseController {
     public String policeOfficeBI(Model model) {
         return "policeOfficeBI/indexBI";
     }
+
+    // 公安局数据可视化展现
+    @RequestMapping(value = "messaageBI", method = RequestMethod.GET)
+    public String messaageBI(Model model) {
+        return "include/layUI";
+    }
 }

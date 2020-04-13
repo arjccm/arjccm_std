@@ -28,47 +28,40 @@
     <style>
         .common-pading {
             width: 100%;
-            height: 500px;
-            padding: 0.25%;
+            height: 550px;
+            padding: 0.25% 0;
         }
-
-        .borderEcharts {
-            border-radius: 5px;
-            box-shadow: 1px 2px 5px #ccc;
-            margin: 0.25% 0.5%;
-            background-color: none;
-        }
-
         .echarts {
             width: 99.5%;
             height: 100%;
         }
-
-        .widthAll {
-            width: 99.5%;
-            float: left;
+        .mb20{
+            margin-bottom: 20px;
         }
 
-        #mianEcharts {
-            overflow: scroll;
-            padding-left: 5px;
-            padding-right: 5px;
-            overflow-x: hidden;
-        }
     </style>
 </head>
 <body>
 <div class="back-list clearfix">
-    <div id="mianEcharts">
-        <div class="context" content="${ctx}"></div>
-        <div class="widthAll borderEcharts">
-            <div class="common-pading">
-                <div id="echArea" class="echarts"></div>
-            </div>
-        </div>
-        <div class="widthAll borderEcharts">
-            <div class="common-pading">
-                <div id="echSex" class="echarts"></div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a class="nav-head" href="">实有居民组合统计</a></li>
+    </ul>
+    <div class="container-fluid" style="height: 100%; overflow: hidden" id="main">
+
+        <div class="context" content="${ctx}">
+            <div class="row-fluid height100">
+                <div class="span12 small_bg mb20">
+                    <h4>各区域人口类型数量变化统计</h4>
+                    <div class="common-pading">
+                        <div id="echArea" class="echarts"></div>
+                    </div>
+                </div>
+                <div class="span12 small_bg mb20" style="margin: 0;">
+                    <h4>各区域人口性别数量变化统计</h4>
+                    <div class="common-pading">
+                        <div id="echSex" class="echarts"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

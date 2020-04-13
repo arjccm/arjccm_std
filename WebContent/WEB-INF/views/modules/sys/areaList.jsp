@@ -11,7 +11,7 @@
 			var tpl = $("#treeTableTpl").html().replace(/(\/\/\<!\-\-)|(\/\/\-\->)/g,"");
 			var data = ${fns:toJson(list)}, rootId = "0";
 			addRow("#treeTableList", tpl, data, rootId, true);
-			$("#treeTable").treeTable({expandLevel : 5});
+			$("#treeTable").treeTable({expandLevel : 4});
 		});
 		function addRow(list, tpl, data, pid, root){
 			for (var i=0; i<data.length; i++){
