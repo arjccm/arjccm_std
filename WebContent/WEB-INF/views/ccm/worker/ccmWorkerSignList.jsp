@@ -46,15 +46,15 @@
 				<sys:treeselect id="user" name="user.id" value="${ccmWorkerSign.user.id}" labelName="user.name" labelValue="${ccmWorkerSign.user.name}"
 					title="用户" url="/sys/office/treeData?type=3" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
 			</li>
-			<li class="first-line"><label>签到内容：</label>
-				<form:input path="content" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
-			<li class="first-line"><label>签到类型：</label>
-				<form:select path="type" class="input-medium">
-					<form:option value="" label="全部"/>
-					<form:options items="${fns:getDictList('ccm_worker_sign_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</li>
+<%--			<li class="first-line"><label>签到内容：</label>--%>
+<%--				<form:input path="content" htmlEscape="false" maxlength="64" class="input-medium"/>--%>
+<%--			</li>--%>
+<%--			<li class="first-line"><label>签到类型：</label>--%>
+<%--				<form:select path="type" class="input-medium">--%>
+<%--					<form:option value="" label="全部"/>--%>
+<%--					<form:options items="${fns:getDictList('ccm_worker_sign_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>--%>
+<%--				</form:select>--%>
+<%--			</li>--%>
 		<%--	<li><label>签到状态：</label>
 				<form:select path="status" class="input-medium">
 					<form:option value="" label="全部"/>
@@ -95,10 +95,11 @@
 		<thead>
 			<tr>
 				<th>人员</th>
-				<th>签到内容</th>
-				<th>签到类型</th>
-				<!-- <th>签到状态</th> -->
+<%--				<th>签到内容</th>--%>
+<%--				<th>签到类型</th>--%>
+<%--				<!-- <th>签到状态</th> -->--%>
 				<th>签到时间</th>
+				<th>签退时间</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -108,17 +109,20 @@
 				<td><a onclick="parent.parent.LayerDialog('${ctx}/worker/ccmWorkerSign/form?id=${ccmWorkerSign.id}&hide1=true&hide2=false', '详情', '500px', '275px')">
 					${ccmWorkerSign.user.name}
 				</a></td>
+<%--				<td>--%>
+<%--					${ccmWorkerSign.content}--%>
+<%--				</td>--%>
+<%--				<td>--%>
+<%--					${fns:getDictLabel(ccmWorkerSign.type, 'ccm_worker_sign_type', '')}--%>
+<%--				</td>--%>
+<%--				&lt;%&ndash; <td>--%>
+<%--					${fns:getDictLabel(ccmWorkerSign.status, 'ccm_worker_sign_status', '')}--%>
+<%--				</td> &ndash;%&gt;--%>
 				<td>
-					${ccmWorkerSign.content}
+					<fmt:formatDate value="${ccmWorkerSign.clockinTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
-					${fns:getDictLabel(ccmWorkerSign.type, 'ccm_worker_sign_type', '')}
-				</td>
-				<%-- <td>
-					${fns:getDictLabel(ccmWorkerSign.status, 'ccm_worker_sign_status', '')}
-				</td> --%>
-				<td>
-					<fmt:formatDate value="${ccmWorkerSign.signDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${ccmWorkerSign.clockoutTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 			<%-- 	<shiro:hasPermission name="worker:ccmWorkerSign:edit"><td>
     				<a href="${ctx}/worker/ccmWorkerSign/form?id=${ccmWorkerSign.id}">修改</a>
