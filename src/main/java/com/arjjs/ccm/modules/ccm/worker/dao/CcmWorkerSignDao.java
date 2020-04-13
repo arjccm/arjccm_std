@@ -14,5 +14,10 @@ import com.arjjs.ccm.modules.ccm.worker.entity.CcmWorkerSign;
  */
 @MyBatisDao
 public interface CcmWorkerSignDao extends CrudDao<CcmWorkerSign> {
-	
+
+     void insertIdaa(CcmWorkerSign ccmWorkerSign) ;
+
+    void signBack(CcmWorkerSign ccmWorkerSign);
+
+    int findClockoutTime(CcmWorkerSign ccmWorkerSign);
 }
