@@ -81,12 +81,19 @@ public class CcmWorkerSignController extends BaseController {
 
 		//平台签到 设置签到类型
 		ccmWorkerSign.setCreateBy(user);
+        ccmWorkerSign.setClockinTime(new Date() );
+        //查询是否有之前签到
+        int sum =ccmWorkerSignService.findByClockinInfo(ccmWorkerSign);
+        if (sum !=0){
+			addMessage(redirectAttributes, "签退失败，请重新尝试");
+			return "redirect:"+Global.getAdminPath()+"/worker/ccmWorkerSign/?repage";
+		}
 
 		ccmWorkerSign.setId(UUID.randomUUID().toString());
 		ccmWorkerSign.setClockinType("0");
 		ccmWorkerSign.setDelFlag("0");
 		ccmWorkerSign.setClockinAreaName("1121");
-		ccmWorkerSign.setClockinTime(new Date() );
+
 		ccmWorkerSign.setCreateDate(new Date());
 
 		ccmWorkerSignService.insertIdaa(ccmWorkerSign);

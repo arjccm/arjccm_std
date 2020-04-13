@@ -3,6 +3,8 @@
  */
 package com.arjjs.ccm.modules.ccm.worker.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
@@ -63,13 +65,23 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 
 
 	//签退信息
+    @Transactional(readOnly = false)
 	public void signBack(CcmWorkerSign ccmWorkerSign) {
 		ccmWorkerSignDao.signBack(ccmWorkerSign);
 	}
-
+	@Transactional(readOnly = false)
 	public int findClockoutTime(CcmWorkerSign ccmWorkerSign) {
 		return  ccmWorkerSignDao.findClockoutTime(ccmWorkerSign);
 
 
+	}
+	@Transactional(readOnly = false)
+	//签到时查询之前是否存在签到信息
+	public int findByClockinInfo(CcmWorkerSign ccmWorkerSign) {
+		return ccmWorkerSignDao.findByClockinInfo(ccmWorkerSign);
+	}
+	@Transactional(readOnly = false)
+	public ArrayList<Object> findByCountMonth( Date date, CcmWorkerSign ccmWorkerSign) {
+		return ccmWorkerSignDao.findByCountMonth(date,ccmWorkerSign);
 	}
 }
