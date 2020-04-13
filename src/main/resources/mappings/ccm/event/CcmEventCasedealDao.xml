@@ -772,10 +772,42 @@
 			a.del_flag = 0
 			AND a.handle_status !='04'
 			AND a.handle_status !='05'
-			AND DATE_ADD(NOW(),INTERVAL 30 MINUTE) > a.handle_deadline
+			AND a.handle_status !='01'
+			AND DATE_ADD(NOW(),INTERVAL 29 MINUTE) > a.handle_deadline
 			AND NOW() &lt; a.handle_deadline
 		</where>
 	</select>
+    <!-- 任务未签收定时提醒 -->
+    <select id="detectCreationTime" resultType="CcmEventCasedeal">
+        SELECT
+        <include refid="ccmEventCasedealColumnsWithIncident" />
+        FROM ccm_event_casedeal a
+        <include refid="ccmEventCasedealJoins" />
+        <include refid="ccmEventIncidentJoinsUser" />
+        <include refid="ccmEventCasedealJoinsWithIncident" />
+        <where>
+            a.del_flag = 0
+            AND a.handle_status ='01'
+            AND NOW() &gt;= DATE_ADD(a.create_date,INTERVAL 240 MINUTE)
+            AND NOW() &lt;= DATE_ADD(a.create_date,INTERVAL 255 MINUTE)
+            AND NOW() &lt; a.handle_deadline
+        </where>
+    </select>
+    <!-- 任务超时未完成定时提醒 -->
+    <select id="exceedDeadline" resultType="CcmEventCasedeal">
+        SELECT
+        <include refid="ccmEventCasedealColumnsWithIncident" />
+        FROM ccm_event_casedeal a
+        <include refid="ccmEventCasedealJoins" />
+        <include refid="ccmEventIncidentJoinsUser" />
+        <include refid="ccmEventCasedealJoinsWithIncident" />
+        <where>
+            a.del_flag = 0
+            AND a.handle_status ='02'
+            AND NOW() &gt;= a.handle_deadline
+            AND NOW() &lt;= DATE_ADD(a.handle_deadline,INTERVAL 15 MINUTE)
+        </where>
+    </select>
 	<select id="getHappenPlace" resultType="string">
 		SELECT
 		i.happen_place
