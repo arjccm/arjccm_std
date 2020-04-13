@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.arjjs.ccm.common.persistence.DataEntity;
 
+
+
 /**
  * 社工签到Entity
  * @author yiqingxuan
@@ -18,22 +20,83 @@ import com.arjjs.ccm.common.persistence.DataEntity;
 public class CcmWorkerSign extends DataEntity<CcmWorkerSign> {
 	
 	private static final long serialVersionUID = 1L;
+	private String id;
 	private User user;		// 人员ID
-	private String content;		// 签到内容
-	private String type;		// 签到类型
-	private String status;		// 签到状态
-	private Date signDate;		// 签到时间
+	private Date clockinTime;    //签到时间
+	private Date clockoutTime;    //签退时间
 	private Date beginSignDate;		// 开始 签到时间
 	private Date endSignDate;		// 结束 签到时间
+	private String clockinType;      //签到平台标识  app  pc
+	private String clockoutType;      //签退平台标识  app  pc
+	private String clockinAreaPoint;  //签到坐标点  app  pc
+	private String clockoutAreaPoint;  //签退坐标点  app  pc
+	private String clockinAreaName;    //签到时地点（app计算地点名称，pc时计算客户端ip）
+	private String clockoutAreaName;    //签退时地点（app计算地点名称，pc时计算客户端ip）
 	private String areaPoint;  //中心点
+	private String delFlag;		//删除标记
+	private User createBy;	//创建者id
+	private Date  createDate;   //创建时间
+	private User updateBy;     //更新者
+	private Date updateDate;   //更新时间
 
-
-	public CcmWorkerSign() {
-		super();
+	@Override
+	public User getUpdateBy() {
+		return updateBy;
 	}
 
-	public CcmWorkerSign(String id){
-		super(id);
+	@Override
+	public void setUpdateBy(User updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	@Override
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	@Override
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	@Override
+	public String getDelFlag() {
+		return delFlag;
+	}
+
+	@Override
+	public void setDelFlag(String delFlag) {
+		this.delFlag = delFlag;
+	}
+
+	@Override
+	public User getCreateBy() {
+		return createBy;
+	}
+
+	@Override
+	public void setCreateBy(User createBy) {
+		this.createBy = createBy;
+	}
+
+	@Override
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	@Override
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public User getUser() {
@@ -43,43 +106,23 @@ public class CcmWorkerSign extends DataEntity<CcmWorkerSign> {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	@Length(min=0, max=64, message="签到内容长度必须介于 0 和 64 之间")
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-	
-	@Length(min=0, max=2, message="签到类型长度必须介于 0 和 2 之间")
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	@Length(min=0, max=2, message="签到状态长度必须介于 0 和 2 之间")
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	public Date getSignDate() {
-		return signDate;
+	public Date getClockinTime() {
+		return clockinTime;
 	}
 
-	public void setSignDate(Date signDate) {
-		this.signDate = signDate;
+	public void setClockinTime(Date clockinTime) {
+		this.clockinTime = clockinTime;
 	}
-	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getClockoutTime() {
+		return clockoutTime;
+	}
+
+	public void setClockoutTime(Date clockoutTime) {
+		this.clockoutTime = clockoutTime;
+	}
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getBeginSignDate() {
 		return beginSignDate;
 	}
@@ -87,13 +130,61 @@ public class CcmWorkerSign extends DataEntity<CcmWorkerSign> {
 	public void setBeginSignDate(Date beginSignDate) {
 		this.beginSignDate = beginSignDate;
 	}
-	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getEndSignDate() {
 		return endSignDate;
 	}
 
 	public void setEndSignDate(Date endSignDate) {
 		this.endSignDate = endSignDate;
+	}
+
+	public String getClockinType() {
+		return clockinType;
+	}
+
+	public void setClockinType(String clockinType) {
+		this.clockinType = clockinType;
+	}
+
+	public String getClockoutType() {
+		return clockoutType;
+	}
+
+	public void setClockoutType(String clockoutType) {
+		this.clockoutType = clockoutType;
+	}
+
+	public String getClockinAreaPoint() {
+		return clockinAreaPoint;
+	}
+
+	public void setClockinAreaPoint(String clockinAreaPoint) {
+		this.clockinAreaPoint = clockinAreaPoint;
+	}
+
+	public String getClockoutAreaPoint() {
+		return clockoutAreaPoint;
+	}
+
+	public void setClockoutAreaPoint(String clockoutAreaPoint) {
+		this.clockoutAreaPoint = clockoutAreaPoint;
+	}
+
+	public String getClockinAreaName() {
+		return clockinAreaName;
+	}
+
+	public void setClockinAreaName(String clockinAreaName) {
+		this.clockinAreaName = clockinAreaName;
+	}
+
+	public String getClockoutAreaName() {
+		return clockoutAreaName;
+	}
+
+	public void setClockoutAreaName(String clockoutAreaName) {
+		this.clockoutAreaName = clockoutAreaName;
 	}
 
 	public String getAreaPoint() {
@@ -103,4 +194,6 @@ public class CcmWorkerSign extends DataEntity<CcmWorkerSign> {
 	public void setAreaPoint(String areaPoint) {
 		this.areaPoint = areaPoint;
 	}
+
+
 }
