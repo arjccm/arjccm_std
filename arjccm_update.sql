@@ -2592,3 +2592,6 @@ UPDATE `sys_menu` SET `parent_id` = 'b5b8c33b437b417b852703a58ec22a04', `parent_
 
 
 alter table ccm_people_amount add sex_unknow int(12) NULL DEFAULT NULL COMMENT '未说明性别总数';
+
+-- 添加菜单：网格员管理->网格员登记->添加外出申请审核
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( 'ce6f21045a794293bebe9c663e5ae095', '01f29a340a9c49ce9d287a14c2ea9a45', '0,1,3b3a641046be4558b92178d07f93b280,30d0d8e0446b4c7982a93352b5eae35b,01f29a340a9c49ce9d287a14c2ea9a45,', '外出申请审核', '/attendanceapply/ccmWorkerAttendanceApply?type=1', '', '', 160, '1', '', '1', '2020-04-13 11:41:10.661', '1', '2020-04-13 11:41:10.661', '', '0' );
