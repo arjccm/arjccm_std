@@ -6,6 +6,7 @@ package com.arjjs.ccm.modules.ccm.worker.service;
 import java.util.List;
 
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,9 @@ import com.arjjs.ccm.modules.ccm.worker.dao.CcmWorkerSignDao;
 @Service
 @Transactional(readOnly = true)
 public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorkerSign> {
+
+	@Autowired
+	private CcmWorkerSignDao ccmWorkerSignDao;
 
 	public CcmWorkerSign get(String id) {
 		return super.get(id);
@@ -51,5 +55,21 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 	public void delete(CcmWorkerSign ccmWorkerSign) {
 		super.delete(ccmWorkerSign);
 	}
-	
+
+	@Transactional(readOnly = false)
+	public  void insertIdaa(CcmWorkerSign ccmWorkerSign) {
+		ccmWorkerSignDao.insertIdaa(ccmWorkerSign);
+	}
+
+
+	//签退信息
+	public void signBack(CcmWorkerSign ccmWorkerSign) {
+		ccmWorkerSignDao.signBack(ccmWorkerSign);
+	}
+
+	public int findClockoutTime(CcmWorkerSign ccmWorkerSign) {
+		return  ccmWorkerSignDao.findClockoutTime(ccmWorkerSign);
+
+
+	}
 }

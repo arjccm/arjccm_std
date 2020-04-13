@@ -70,10 +70,10 @@ public class CcmRestWorkerSign {
         CcmRestResult result = new CcmRestResult();
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
-        ccmWorkerSign.setContent("日常签到");
-        ccmWorkerSign.setType("10");
-        ccmWorkerSign.setStatus("10");
-        ccmWorkerSign.setSignDate(new Date());
+//        ccmWorkerSign.setContent("日常签到");
+//        ccmWorkerSign.setType("10");
+//        ccmWorkerSign.setStatus("10");
+//        ccmWorkerSign.setSignDate(new Date());
         ccmWorkerSign.setCreateBy(user);
         ccmWorkerSign.setUpdateBy(user);
         if(StringUtils.isNotEmpty(ccmWorkerSign.getAreaPoint()) && ccmWorkerSign.getAreaPoint().contains(",")){
@@ -96,10 +96,10 @@ public class CcmRestWorkerSign {
         CcmRestResult result = new CcmRestResult();
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
-        ccmWorkerSign.setContent("日常签退");
-        ccmWorkerSign.setType("20");
-        ccmWorkerSign.setStatus("10");
-        ccmWorkerSign.setSignDate(new Date());
+//        ccmWorkerSign.setContent("日常签退");
+//        ccmWorkerSign.setType("20");
+//        ccmWorkerSign.setStatus("10");
+//        ccmWorkerSign.setSignDate(new Date());
         ccmWorkerSign.setCreateBy(user);
         ccmWorkerSign.setUpdateBy(user);
         if(StringUtils.isNotEmpty(ccmWorkerSign.getAreaPoint()) && ccmWorkerSign.getAreaPoint().contains(",")){

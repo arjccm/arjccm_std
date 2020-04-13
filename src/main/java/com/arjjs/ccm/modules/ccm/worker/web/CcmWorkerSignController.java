@@ -3,10 +3,14 @@
  */
 package com.arjjs.ccm.modules.ccm.worker.web;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
 
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -66,17 +70,26 @@ public class CcmWorkerSignController extends BaseController {
 	//签到
 	@RequiresPermissions("worker:ccmWorkerSign:edit")
 	@RequestMapping(value = "getform")
-	public String getform(CcmWorkerSign ccmWorkerSign, Model model, RedirectAttributes redirectAttributes) {
+	public String getform(CcmWorkerSign ccmWorkerSign,HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, ccmWorkerSign)){
 			return form(ccmWorkerSign, model);
 		}
+			//获取ip地址
+		String ip = request.getHeader("X-Forwarded-For");
 		User user = UserUtils.getUser();
 		ccmWorkerSign.setUser(user);
-		ccmWorkerSign.setContent("日常签到");
-		ccmWorkerSign.setType("10");
-		ccmWorkerSign.setStatus("10");
-		ccmWorkerSign.setSignDate(new Date());
-		ccmWorkerSignService.save(ccmWorkerSign);
+
+		//平台签到 设置签到类型
+		ccmWorkerSign.setCreateBy(user);
+
+		ccmWorkerSign.setId(UUID.randomUUID().toString());
+		ccmWorkerSign.setClockinType("0");
+		ccmWorkerSign.setDelFlag("0");
+		ccmWorkerSign.setClockinAreaName("1121");
+		ccmWorkerSign.setClockinTime(new Date() );
+		ccmWorkerSign.setCreateDate(new Date());
+
+		ccmWorkerSignService.insertIdaa(ccmWorkerSign);
 		addMessage(redirectAttributes, "保存社工签到成功");
 		return "redirect:"+Global.getAdminPath()+"/worker/ccmWorkerSign/?repage";
 	}
@@ -84,17 +97,33 @@ public class CcmWorkerSignController extends BaseController {
 	//签退
 	@RequiresPermissions("worker:ccmWorkerSign:edit")
 	@RequestMapping(value = "resform")
-	public String resform(CcmWorkerSign ccmWorkerSign, Model model, RedirectAttributes redirectAttributes) {
+	public String resform(CcmWorkerSign ccmWorkerSign,HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, ccmWorkerSign)){
 			return form(ccmWorkerSign, model);
 		}
 		User user = UserUtils.getUser();
 		ccmWorkerSign.setUser(user);
-		ccmWorkerSign.setContent("日常签退");
-		ccmWorkerSign.setType("20");
-		ccmWorkerSign.setStatus("10");
-		ccmWorkerSign.setSignDate(new Date());
-		ccmWorkerSignService.save(ccmWorkerSign);
+
+		//获取ip地址
+		String ip = request.getHeader("X-Forwarded-For");
+
+		//赋值平台签退时间
+		ccmWorkerSign.setClockoutTime(new Date());
+		 int sum = ccmWorkerSignService.findClockoutTime(ccmWorkerSign);
+		 if (sum !=1){
+			 addMessage(redirectAttributes, "签退失败，请重新尝试");
+			 return "redirect:"+Global.getAdminPath()+"/worker/ccmWorkerSign/?repage";
+		 }
+
+	    //赋值平台签退设备标识
+	    ccmWorkerSign.setClockoutType("0");
+		//赋值签退pc的ip
+		ccmWorkerSign.setClockoutType(ip);
+		//赋值更新者
+		ccmWorkerSign.setUpdateBy(user);
+		//赋值更新时间
+		ccmWorkerSign.setUpdateDate(new Date());
+		ccmWorkerSignService.signBack(ccmWorkerSign);
 		addMessage(redirectAttributes, "保存社工签退成功");
 		return "redirect:"+Global.getAdminPath()+"/worker/ccmWorkerSign/?repage";
 	}
