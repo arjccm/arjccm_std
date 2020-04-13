@@ -537,9 +537,9 @@ public class CcmEventCasedealController extends BaseController {
 			CcmRestEvent.sendOneMessageToMq(ccmMessage);
 
 			//处理人超期信息提醒
-			ccmMessageService.deadlineMessage(ccmEventIncident,ccmEventCasedeal,ccmEventCasedeal.getHandleUser());
+// 		    ccmMessageService.deadlineMessage(ccmEventIncident,ccmEventCasedeal,ccmEventCasedeal.getHandleUser());
 			//指派人超期信息提醒
-			ccmMessageService.deadlineMessage(ccmEventIncident,ccmEventCasedeal,ccmEventCasedeal.getCreateBy());
+//			ccmMessageService.deadlineMessage(ccmEventIncident,ccmEventCasedeal,ccmEventCasedeal.getCreateBy());
 
 		} else if ("ccm_event_ambi".equals(ccmEventCasedeal.getObjType())) {
 			CcmEventAmbi ccmEventAmbi = ccmEventAmbiService.get(ccmEventCasedeal.getObjId());
@@ -775,42 +775,80 @@ public class CcmEventCasedealController extends BaseController {
     * 任务处理超期定时提醒
     * */
 	public void detectDeadline(){
-		//1.调用数据库查询即将超时的数据，任务截止时间-现在时间小于等于30分钟且大于当前时间，任务不是已反馈的
+		//1.1调用数据库查询即将超时的数据，任务截止时间-现在时间小于等于30分钟且大于当前时间，任务不是已反馈的
 		List<CcmEventCasedeal> casedealList = ccmEventCasedealService.detectDeadline();
-		//2.将数据推送至mq
-		if(casedealList.size()>0){
-			List<CcmMessage> list = new ArrayList<CcmMessage>();
-			for (CcmEventCasedeal ccmEventCasedeal : casedealList) {
-				String str = "MM-dd HH:mm:ss";
-				SimpleDateFormat sdf = new SimpleDateFormat(str);
-				Date date = new Date();
-				// 处理人到期提醒
-				CcmMessage ccmMessage = new CcmMessage();
-				ccmMessage.preInsert();
-				ccmMessage.setType("02");//任务消息
-				ccmMessage.setContent(sdf.format(date)+"：任务："+ccmEventCasedeal.getCaseName()+" 即将超期，截止时间："+sdf.format(ccmEventCasedeal.getHandleDeadline()));
-				ccmMessage.setReadFlag("0");//未读
-				ccmMessage.setObjId(ccmEventCasedeal.getId());
-				ccmMessage.setCreateBy(ccmEventCasedeal.getHandleUser());
-				ccmMessage.setUpdateBy(ccmEventCasedeal.getHandleUser());
-				ccmMessage.setUserId(ccmEventCasedeal.getHandleUser().getId());
-				list.add(ccmMessage);
-				// 发送人到期提醒
+		//1.2将数据推送至mq
+        messagePush(casedealList,"未完成反馈即将超期，截止时间：");
+        //2.1调用数据库查询即指派后4个小时未签收数据，现在时间-任务指派时间 大于等于240分钟 且当前时间小于任务截止时间，任务不是已反馈的
+        List<CcmEventCasedeal> casedealList2 = ccmEventCasedealService.detectCreationTime();
+        //2.2将数据推送至mq
+        messagePush(casedealList2,"请尽快确认 ，派发时间：","处理人未签收，派发时间：");
+        //3.1调用数据库查询已经超时的数据，现在时间大于任务截止时间且现在时间-任务截止时间小于等于15分钟，任务不是已反馈的
+        List<CcmEventCasedeal> casedealList3 = ccmEventCasedealService.exceedDeadline();
+        //3.2将数据推送至mq
+        messagePush(casedealList3,"超时未完成，截止时间：");
+    }
+
+    private void messagePush(List<CcmEventCasedeal> casedealList,String HandlerWords) {
+        if(casedealList.size()>0){
+            List<CcmMessage> list = new ArrayList<CcmMessage>();
+            for (CcmEventCasedeal ccmEventCasedeal : casedealList) {
+                String str = "MM-dd HH:mm:ss";
+                SimpleDateFormat sdf = new SimpleDateFormat(str);
+                Date date = new Date();
+                // 处理人到期提醒
+                CcmMessage ccmMessage = new CcmMessage();
+                ccmMessage.preInsert();
+                ccmMessage.setType("02");//任务消息
+                ccmMessage.setContent(sdf.format(date)+"：任务："+ccmEventCasedeal.getCaseName()+HandlerWords+sdf.format(ccmEventCasedeal.getHandleDeadline()));
+                ccmMessage.setReadFlag("0");//未读
+                ccmMessage.setObjId(ccmEventCasedeal.getId());
+                ccmMessage.setCreateBy(ccmEventCasedeal.getHandleUser());
+                ccmMessage.setUpdateBy(ccmEventCasedeal.getHandleUser());
+                ccmMessage.setUserId(ccmEventCasedeal.getHandleUser().getId());
+                list.add(ccmMessage);
+            }
+            //批量添加
+            ccmMessageService.insertEventAll(list);
+            CcmRestEvent.sendMessageToMq(list);
+        }
+    }
+
+    private void messagePush(List<CcmEventCasedeal> casedealList,String HandlerWords,String pushPeopleWords ) {
+        if(casedealList.size()>0){
+            List<CcmMessage> list = new ArrayList<CcmMessage>();
+            for (CcmEventCasedeal ccmEventCasedeal : casedealList) {
+                String str = "MM-dd HH:mm:ss";
+                SimpleDateFormat sdf = new SimpleDateFormat(str);
+                Date date = new Date();
+                // 处理人到期提醒
+                CcmMessage ccmMessage = new CcmMessage();
+                ccmMessage.preInsert();
+                ccmMessage.setType("02");//任务消息
+                ccmMessage.setContent(sdf.format(date)+"：任务："+ccmEventCasedeal.getCaseName()+HandlerWords+sdf.format(ccmEventCasedeal.getCreateDate()));
+                ccmMessage.setReadFlag("0");//未读
+                ccmMessage.setObjId(ccmEventCasedeal.getId());
+                ccmMessage.setCreateBy(ccmEventCasedeal.getHandleUser());
+                ccmMessage.setUpdateBy(ccmEventCasedeal.getHandleUser());
+                ccmMessage.setUserId(ccmEventCasedeal.getHandleUser().getId());
+                list.add(ccmMessage);
+                // 发送人到期提醒
 				CcmMessage ccmMessage2 = new CcmMessage();
 				ccmMessage2.preInsert();
 				ccmMessage2.setType("02");//任务消息
-				ccmMessage2.setContent(sdf.format(date)+"：任务："+ccmEventCasedeal.getCaseName()+" 即将超期，截止时间："+sdf.format(ccmEventCasedeal.getHandleDeadline()));
+				ccmMessage2.setContent(sdf.format(date)+"：任务："+ccmEventCasedeal.getCaseName()+pushPeopleWords+sdf.format(ccmEventCasedeal.getCreateDate()));
 				ccmMessage2.setReadFlag("0");//未读
 				ccmMessage2.setObjId(ccmEventCasedeal.getId());
 				ccmMessage2.setCreateBy(ccmEventCasedeal.getHandleUser());
 				ccmMessage2.setUpdateBy(ccmEventCasedeal.getHandleUser());
 				ccmMessage2.setUserId(ccmEventCasedeal.getCreateBy().getId());
 				list.add(ccmMessage2);
-			}
-			//批量添加
-			ccmMessageService.insertEventAll(list);
-			CcmRestEvent.sendMessageToMq(list);
-		}
+            }
+            //批量添加
+            ccmMessageService.insertEventAll(list);
+            CcmRestEvent.sendMessageToMq(list);
+        }
+    }
 
-	}
+
 }
