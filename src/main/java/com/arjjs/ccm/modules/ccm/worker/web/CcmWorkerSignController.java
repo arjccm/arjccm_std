@@ -75,7 +75,7 @@ public class CcmWorkerSignController extends BaseController {
 			return form(ccmWorkerSign, model);
 		}
 			//获取ip地址
-		String ip = request.getHeader("X-Forwarded-For");
+		String ip = request.getRemoteAddr();
 		User user = UserUtils.getUser();
 		ccmWorkerSign.setUser(user);
 
@@ -85,17 +85,15 @@ public class CcmWorkerSignController extends BaseController {
         //查询是否有之前签到
         int sum =ccmWorkerSignService.findByClockinInfo(ccmWorkerSign);
         if (sum !=0){
-			addMessage(redirectAttributes, "签退失败，请重新尝试");
+			addMessage(redirectAttributes, "签到失败，请勿多次签到");
 			return "redirect:"+Global.getAdminPath()+"/worker/ccmWorkerSign/?repage";
 		}
 
 		ccmWorkerSign.setId(UUID.randomUUID().toString());
 		ccmWorkerSign.setClockinType("0");
 		ccmWorkerSign.setDelFlag("0");
-		ccmWorkerSign.setClockinAreaName("1121");
-
+		ccmWorkerSign.setClockinAreaName(ip);
 		ccmWorkerSign.setCreateDate(new Date());
-
 		ccmWorkerSignService.insertIdaa(ccmWorkerSign);
 		addMessage(redirectAttributes, "保存社工签到成功");
 		return "redirect:"+Global.getAdminPath()+"/worker/ccmWorkerSign/?repage";
@@ -118,7 +116,7 @@ public class CcmWorkerSignController extends BaseController {
 		ccmWorkerSign.setClockoutTime(new Date());
 		 int sum = ccmWorkerSignService.findClockoutTime(ccmWorkerSign);
 		 if (sum !=1){
-			 addMessage(redirectAttributes, "签退失败，请重新尝试");
+			 addMessage(redirectAttributes, "签退失败，请勿多次签退");
 			 return "redirect:"+Global.getAdminPath()+"/worker/ccmWorkerSign/?repage";
 		 }
 

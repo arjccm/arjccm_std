@@ -201,7 +201,7 @@
 
 	</select>
 	<select id="findByClockinInfo" resultType="int">
-		SELECT count(*) FROM ccm_worker_sign WHERE user_id=#{user.id} AND date_format(#{clockinTime}, '%Y%m%d')=date_format(now(), '%Y%m%d')
+		SELECT count(*) FROM ccm_worker_sign WHERE user_id=#{user.id} AND date_format(#{clockinTime}, '%Y%m%d')=date_format(clockin_time, '%Y%m%d')
 	</select>
 
 	<select id="findClockoutTime" resultType="int">
