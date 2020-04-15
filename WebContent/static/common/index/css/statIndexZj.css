@@ -9,15 +9,13 @@ ul li {
     height: 70px;
 }
 .header_area{
-    height: 60px;
-    background: #04243b;
-    box-shadow: 0px 0px 35px 15px #063d5a inset;
+    height: 70px;
+    background: url(../images/statIndexZj/xmzj_bg_header.png) no-repeat center;
     position: relative;
 }
 .header_logo{
     width: 460px;
     height: 70px;
-    background: url("../images/statIndexZj/xmzj_bg_header.png") no-repeat center;
     position: absolute;
     left: 0;
     top: 0;
