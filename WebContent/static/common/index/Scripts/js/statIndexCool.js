@@ -2338,6 +2338,7 @@ function SpecialPopByType(model, data) {
 //基础数据
 function getPeopleData(noCache) {
     $.getJSON(ctx + "/report/ccmPeopleAmount/getAnalyzePopNewData", {"noCache": noCache}, function (data) {
+        var count = (parseInt)(data[0]) + (parseInt)(data[1]) + (parseInt)(data[2]) + (parseInt)(data[3])
         for (var i = 0; i < data.length; i++) {
             if (data[i] > 99999) {
                 data[i] = (parseInt(data[i] / 10000) + '万');
@@ -2373,11 +2374,16 @@ function getPeopleData(noCache) {
         $(".rksj3 .rktitle").html(dataList[2].name)
         $(".rksj4 .rknum").html(dataList[3].value)
         $(".rksj4 .rktitle").html(dataList[3].name)
-        var count = (parseInt)(data[0]) + (parseInt)(data[1]) + (parseInt)(data[2]) + (parseInt)(data[3])
+
+        debugger
         if(count>99999){
-            count = (parseInt(count / 10000) + '万');
+            count = parseInt(count / 10000) ;
+            $("#rkt1 .rkzs").html(count+ '万');
+
+        }else {
+            $("#rkt1 .rkzs").html(count);
         }
-        $("#rkt1 .rkzs").html(count);
+
     });
 
 }
