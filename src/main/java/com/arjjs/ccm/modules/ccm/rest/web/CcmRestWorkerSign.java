@@ -8,15 +8,15 @@ import com.arjjs.ccm.modules.ccm.worker.entity.CcmWorkerSign;
 import com.arjjs.ccm.modules.ccm.worker.service.CcmWorkerSignService;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
+import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author
@@ -73,6 +73,7 @@ public class CcmRestWorkerSign {
         CcmRestResult result = new CcmRestResult();
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
+
         //app签到，设置签到类型
         ccmWorkerSign.setClockinType("1");
         //设置创建者id
@@ -138,22 +139,19 @@ public class CcmRestWorkerSign {
     }
 
 
-    //考勤签到统计信息
+    //打卡日历信息
     @ResponseBody
     @RequestMapping(value = "/rescount", method = RequestMethod.GET)
-    public CcmRestResult rescount (String userId,Date date, CcmWorkerSign ccmWorkerSign){
+    public CcmRestResult rescount (String userId,Date date){
+        CcmWorkerSign ccmWorkerSign = new CcmWorkerSign();
         CcmRestResult result = new CcmRestResult();
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
-        ArrayList<Object> list = ccmWorkerSignService.findByCountMonth(date, ccmWorkerSign);
+        Map<String, Object> map = ccmWorkerSignService.findByCountMonth(date, ccmWorkerSign);
         result.setCode(CcmRestType.OK);
-        result.setMsg("OK");
-        result.setResult(list);
+        result.setResult(map);
         return result;
     }
-
-
-
 }
 
     
