@@ -209,7 +209,7 @@ function getMembers(groupId) {
 				voice:false,
 				copyright:true
 				//  ,msgbox: 'message' 消息盒子页面地址，若不开启，剔除该项即可
-			    //,find: layui.cache.dir + 'css/modules/layim/html/find.html' //发现页面地址，若不开启，剔除该项即可
+			    ,find: layui.cache.dir + 'css/modules/layim/html/find.jsp' //发现页面地址，若不开启，剔除该项即可
 			    ,chatLog: '${ctx}/im/historymessage' //聊天记录页面地址，若不开启，剔除该项即可
 			  });
 			  
