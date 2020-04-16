@@ -6,9 +6,11 @@ package com.arjjs.ccm.modules.ccm.worker.dao;
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.worker.entity.CcmWorkerSign;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 社工签到DAO接口
@@ -26,5 +28,5 @@ public interface CcmWorkerSignDao extends CrudDao<CcmWorkerSign> {
 
     int findByClockinInfo(CcmWorkerSign ccmWorkerSign);
 
-    ArrayList<Object> findByCountMonth(Date date, CcmWorkerSign ccmWorkerSign);
+    List<CcmWorkerSign> findByCountMonth(@Param("date") String date, @Param("ccmWorkerSign") CcmWorkerSign ccmWorkerSign);
 }
