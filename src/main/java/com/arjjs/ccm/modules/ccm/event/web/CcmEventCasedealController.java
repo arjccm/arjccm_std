@@ -412,6 +412,18 @@ public class CcmEventCasedealController extends BaseController {
 			//批量添加
 			ccmMessageService.save(ccmMessage);
 			CcmRestEvent.sendOneMessageToMq(ccmMessage);
+
+			CcmEventIncident ccmEventIncident = ccmEventIncidentService.get(ccmEventCasedeal.getObjId());
+			CcmMessage ccmMessage2 = new CcmMessage();
+			ccmMessage2.setType("02");//事件上报消息
+			ccmMessage2.setContent(sdf.format(createDate)+"："+ccmEventCasedeal.getCaseName()+"事件已被"+ccmEventCasedeal.getHandleUser().getName()+"处理");
+			ccmMessage2.setReadFlag("0");//未读
+			ccmMessage2.setObjId(ccmEventCasedeal.getId());
+			ccmMessage2.setUserId(ccmEventIncident.getCreateBy().getId());
+			CcmRestEvent.sendOneMessageToMq(ccmMessage2);
+			ccmMessageService.save(ccmMessage2);
+
+
 		}
 
 		/**修改对应的事件状态为进行中**/

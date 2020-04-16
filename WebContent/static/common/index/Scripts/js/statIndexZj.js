@@ -2876,51 +2876,25 @@ function getHouseData() {
         url: ctx + "/religion/ccmReligionActivity/typeAndScale",
         async: false,
         success: function (data) {
-            var dataList = [{
-                value: data["leftData"][0].value,
-                name: data["leftData"][0].type
-            },
-                {
-                    value: data["leftData"][1].value,
-                    name: data["leftData"][1].type
-                },
-                {
-                    value: data["leftData"][2].value,
-                    name: data["leftData"][2].type
-                },
-                {
-                    value: data["leftData"][3].value,
-                    name: data["leftData"][3].type
-                },
-                {
-                    value: data["leftData"][4].value,
-                    name: data["leftData"][4].type
-                },
-                {
-                    value: data["leftData"][5].value,
-                    name: data["leftData"][5].type
-                }
-            ];
 
-            var dataList1 = [{
-                value: data["rightData"][0].value,
-                name: data["rightData"][0].type
-            },
-                {
-                    value: data["rightData"][1].value,
-                    name: data["rightData"][1].type
-                },
-                {
-                    value: data["rightData"][2].value,
-                    name: data["rightData"][2].type
-                },
-                {
-                    value: data["rightData"][3].value,
-                    name: data["rightData"][3].type
-                }
-            ];
+            let left = new Array();
+            let right = new Array();
 
-            showHouseData(dataList, dataList1);
+            for (let i = 0; i < data["leftData"].length; i++) {
+                left.push({
+                    value: data["leftData"][i].value,
+                    name:data["leftData"][i].type
+                });
+            }
+
+            for (let i = 0; i < data["rightData"].length; i++) {
+                right.push({
+                    value: data["rightData"][i].value,
+                    name:data["rightData"][i].type
+                });
+            }
+
+            showHouseData(left, right);
 
         }
 

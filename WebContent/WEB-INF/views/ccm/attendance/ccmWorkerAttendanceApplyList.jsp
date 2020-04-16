@@ -21,7 +21,7 @@
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">事件管理</span>--%>
 <ul class="back-list clearfix">
 	<ul class="nav nav-tabs">
-		<li class="active"><a class="nav-head" href="${ctx}/attendanceapply/ccmWorkerAttendanceApply?type=${type}"><c:if test="${type == 3}">加班</c:if><c:if test="${type == 2}">请假</c:if>申请列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/attendanceapply/ccmWorkerAttendanceApply?type=${type}"><c:if test="${type == 1}">外出</c:if><c:if test="${type == 3}">加班</c:if><c:if test="${type == 2}">请假</c:if>申请列表</a></li>
 		<%--<shiro:hasPermission name="attendanceapply:ccmWorkerAttendanceApply:edit"><li><a href="${ctx}/attendanceapply/ccmWorkerAttendanceApply/form">加班请假申请添加</a></li></shiro:hasPermission>--%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmWorkerAttendanceApply" action="${ctx}/attendanceapply/ccmWorkerAttendanceApply?type=${type}" method="post" class="breadcrumb form-search clearfix">
@@ -31,6 +31,14 @@
 			<%--<li><label>外出类型：</label>
 				<form:input path="gooutType" htmlEscape="false" maxlength="2" class="input-medium"/>
 			</li>--%>
+				<c:if test="${type == 1}">
+					<li class="first-line"><label>外出类型：</label>
+						<form:select path="gooutType" class="input-medium">
+							<form:option value="" label="全部"/>
+							<form:options items="${fns:getDictList('ccm_worker_attendance_goout_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+						</form:select>
+					</li>
+				</c:if>
 			<c:if test="${type == 2}">
 				<li class="first-line"><label>请假类型：</label>
 					<form:select path="leaveType" class="input-medium">
@@ -80,6 +88,9 @@
 			<tr>
 				<th>申请人</th>
 				<th>部门</th>
+				<c:if test="${type == 1}">
+					<th>外出类型</th>
+				</c:if>
 				<c:if test="${type == 2}">
 					<th>请假类型</th>
 				</c:if>
@@ -106,6 +117,9 @@
 					${ccmWorkerAttendanceApply.createBy.office.name}
 				</td>
 				<td>
+					<c:if test="${type == 1}">
+						${fns:getDictLabel(ccmWorkerAttendanceApply.gooutType, 'ccm_worker_attendance_goout_type', '')}
+					</c:if>
 					<c:if test="${type == 2}">
 						${fns:getDictLabel(ccmWorkerAttendanceApply.leaveType, 'ccm_worker_attendance_leave_type', '')}
 					</c:if>
