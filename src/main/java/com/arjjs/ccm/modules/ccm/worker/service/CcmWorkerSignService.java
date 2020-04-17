@@ -3,9 +3,8 @@
  */
 package com.arjjs.ccm.modules.ccm.worker.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.service.CrudService;
 import com.arjjs.ccm.modules.ccm.worker.entity.CcmWorkerSign;
 import com.arjjs.ccm.modules.ccm.worker.dao.CcmWorkerSignDao;
+import org.apache.commons.lang3.time.DateUtils;
 
 /**
  * 社工签到Service
@@ -81,7 +81,54 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 		return ccmWorkerSignDao.findByClockinInfo(ccmWorkerSign);
 	}
 	@Transactional(readOnly = false)
-	public ArrayList<Object> findByCountMonth( Date date, CcmWorkerSign ccmWorkerSign) {
-		return ccmWorkerSignDao.findByCountMonth(date,ccmWorkerSign);
+	public Map<String,Object> findByCountMonth(Date date, CcmWorkerSign ccmWorkerSign) {
+
+		Map<String,Object> map= new HashMap<String,Object>();
+		//打卡统计（签到签退都有数据）
+		List<Integer> wholelist=new ArrayList<>();
+		//打卡统计（只有签到）
+		List<Integer> lacklist=new ArrayList<>();
+		//打卡次数
+		int timenum=0;
+		//工时
+		String manHour="";
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat formatter1 = new SimpleDateFormat("dd");
+		String dateformatter = formatter.format(date);
+		//查询和date同月数据
+		List<CcmWorkerSign> ccmWorkerSignlist = ccmWorkerSignDao.findByCountMonth(dateformatter, ccmWorkerSign);
+		for (int i = 0; i < ccmWorkerSignlist.size(); i++) {
+			CcmWorkerSign ccmWorkerSign1 = ccmWorkerSignlist.get(i);
+			if (DateUtils.isSameDay(date,ccmWorkerSign1.getClockinTime())){
+				if (ccmWorkerSign1.getClockoutTime()!=null){
+					long l = ccmWorkerSign1.getClockoutTime().getTime() - ccmWorkerSign1.getClockinTime().getTime();
+					long day=l/(24*60*60*1000);
+					long hour=(l/(60*60*1000)-day*24);
+					long min=((l/(60*1000))-day*24*60-hour*60);
+					manHour= String.format("%.1f", (double) hour+(double) min/60);
+					timenum=2;
+				}else {
+					manHour="0";
+					timenum=1;
+				}
+				ccmWorkerSign.setClockinTime(ccmWorkerSign1.getClockinTime());
+				ccmWorkerSign.setClockoutTime(ccmWorkerSign1.getClockoutTime());
+				ccmWorkerSign.setClockinAreaName(ccmWorkerSign1.getClockinAreaName());
+				ccmWorkerSign.setClockoutAreaName(ccmWorkerSign1.getClockoutAreaName());
+			}
+			if (ccmWorkerSign1.getClockoutTime()!=null){
+				wholelist.add(Integer.parseInt(formatter1.format(ccmWorkerSign1.getClockinTime())));
+			}else {
+				lacklist.add(Integer.parseInt(formatter1.format(ccmWorkerSign1.getClockinTime())));
+			}
+		}
+		map.put("timenum",timenum);  //打卡次数
+		map.put("manHour",manHour);  //工时
+		map.put("ccmWorkerSign",ccmWorkerSign);
+		map.put("wholelist",wholelist); //打卡统计（签到签退都有数据）
+		map.put("lacklist",lacklist);  //打卡统计（只有签到）
+
+		return map;
 	}
 }

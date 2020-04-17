@@ -209,7 +209,7 @@ function getMembers(groupId) {
 				voice:false,
 				copyright:true
 				//  ,msgbox: 'message' 消息盒子页面地址，若不开启，剔除该项即可
-			    //,find: layui.cache.dir + 'css/modules/layim/html/find.html' //发现页面地址，若不开启，剔除该项即可
+			    ,find: layui.cache.dir + 'css/modules/layim/html/find.jsp' //发现页面地址，若不开启，剔除该项即可
 			    ,chatLog: '${ctx}/im/historymessage' //聊天记录页面地址，若不开启，剔除该项即可
 			  });
 			  
@@ -235,15 +235,17 @@ function getMembers(groupId) {
                    var reqType =  obj.data.type;
                    var groupId = obj.data.id;//如果群聊，则为群ID，如果单聊，则为用户ID；
 			       if(reqType === 'group'){
+			           var groupName = obj.data.groupname;
                        getMembers(groupId);
                        for(var i=0;i<groupMember.length;i++){
                           //注意：此处需要排除当前用户；
                            if(groupMember[i].id != currentsession)
-                                sendVideoOrAuidoMsg(currentsession,"","",groupMember[i].id,"","video","group","",groupId);
+                                sendVideoOrAuidoMsg(currentsession,"","",groupMember[i].id,"","video","group","",groupId,groupName);
                        }
                        /*直接弹出页面，进入房间*/
                        console.log("群聊发起视频，直接进入房间……->>");
-                       windowOpen(arjWebRtc + '/room?userId='+currentsession+'&userName='+loginName+'&groupId='+groupId+'&type=video','视频聊天','800','800');
+                       var webRtcUrl = encodeURI(arjWebRtc + '/room?userId='+currentsession+'&userName='+loginName+'&groupId='+groupId+'&groupName='+groupName+'&type=video')
+                       windowOpen(webRtcUrl,'视频聊天','800','800');
                    }else{
                        var userStatus = cache.mine.status;//在线状态
 			           if(userStatus === "online"){
@@ -359,8 +361,9 @@ function getMembers(groupId) {
 			          	 	var msgCon =  proto.MessageBody.deserializeBinary(msg.getContent());  
 		  	    			var cache = layui.layim.cache();
 		  	    			var local = layui.data('layim')[cache.mine.id];
-		  	    			var username = "",avatar="",friend=false;
+		  	    			var username = "",avatar="",friend=false, vaGroupName = "";
 		  	    			var vaGroupId = msg.getVagroupid();
+		  	    			var vaGroupName =msg.getVagroupname();
                           if(msg.getRessign()==="agree"){ //如果被呼叫者接收 ，同时还是来自被呼叫者发给呼叫者的消息时
                               if(msg.getReqtype() === "ptop"){//单聊 ,
                                   console.log("msg.getSign()----------------------单聊--agree准备弹出页面");
@@ -370,9 +373,11 @@ function getMembers(groupId) {
                                   closeDialog();
                                   console.log("msg.getSign()----------------------单聊--agree弹出页面结束");
                               }else if(msg.getReqtype() === "group"){//群聊
+
                                   console.log("onmessage 监测到……开始进入群聊房间模式……")
                                   setTimeout(function(){
-                                      windowOpen(arjWebRtc +'/room?userId='+currentsession+'&userName='+loginName+'&groupId='+vaGroupId+'&type=video','视频聊天','800','800');
+                                      var webRtcUrl = encodeURI(arjWebRtc +'/room?userId='+currentsession+'&userName='+loginName+'&groupId='+vaGroupId+'&groupName='+vaGroupName+'&type=video')
+                                      windowOpen(webRtcUrl,'视频聊天','800','800');
                                   }, 500)
                               }
                              return false;
@@ -423,7 +428,7 @@ function getMembers(groupId) {
 							                	                '<div class="modal-footer">'+
 							                	                    /*'<button type="button" class="btn btn-default" onclick="closeDialog(\''+msg.getSender()+'\')">关闭</button>'+*/
 							                	                    '<button type="button" class="btn btn-default" onclick="closeDialog(\''+msg.getSender()+'\',\''+currentsession+'\',\''+loginUserName+'\',\''+photo+'\',\'caller\',\'video\',\''+msg.getReqtype()+'\')">关闭</button>'+
-							                	                    '<button type="button" class="btn btn-primary" onclick="chat_ready(\''+msg.getSender()+'\',\''+currentsession+'\',\'caller\',\'video\',\''+msg.getReqtype()+'\',\''+vaGroupId+'\')">确定</button>'+
+							                	                    '<button type="button" class="btn btn-primary" onclick="chat_ready(\''+msg.getSender()+'\',\''+currentsession+'\',\'caller\',\'video\',\''+msg.getReqtype()+'\',\''+vaGroupId+'\',\''+vaGroupName+'\')">确定</button>'+
 							                	                '</div>'+
 							                	            '</div>'+
 							                	        '</div>'+
@@ -552,14 +557,15 @@ function getMembers(groupId) {
 		          };
 		        //连接关闭
 		        socket.onclose = function(event) {
-		        	layim.setFriendStatus(currentsession, 'offline');
+                    reconnect(websocketurl,initEventHandle);
+		        	/*layim.setFriendStatus(currentsession, 'offline');
 		        	layer.confirm('您已下线，重新上线?', function(index){
 		        		if(index){
 		        			window.location.href=window.location.href;
 		        		}
 // 		        		reconnect(websocketurl,initEventHandle);
 		        		layer.close(index);
-		        	});
+		        	});*/
 			    };
 			    socket.onerror = function () {
 			    	reconnect(websocketurl,initEventHandle);
@@ -587,7 +593,7 @@ function showMessage(data) {
      * @param reqType 请求方式：点对点/群聊 ptop/group
      * @param vaGroupId 发起视频组ID(房间号)：缺少房间号，增加房间号
      */
-function chat_ready(sendId,id,callType,type,reqType,vaGroupId){
+function chat_ready(sendId,id,callType,type,reqType,vaGroupId,vaGroupName){
 	 $(".chat_dialog").hide();
         if(reqType === "ptop"){
             setTimeout(function(){
@@ -598,7 +604,8 @@ function chat_ready(sendId,id,callType,type,reqType,vaGroupId){
         }else if(reqType === "group"){
             console.log("chat_ready 被动方接收群聊消息，进入房间准备……");
             setTimeout(function(){
-                windowOpen(arjWebRtc +'/room?userId='+currentsession+'&userName='+loginName+'&groupId='+vaGroupId+'&type=video','视频聊天','800','800');
+                var webRtcUrl = encodeURI(arjWebRtc +'/room?userId='+currentsession+'&userName='+loginName+'&groupId='+vaGroupId+'&groupName='+vaGroupName+'&type=video')
+                windowOpen(webRtcUrl,'视频聊天','800','800');
             }, 500)
         }
 }
@@ -624,8 +631,9 @@ function closeDialog(sendId,currentUserId,currentUserName,currentUserPhoto,callT
  * @param resSign 请求响应状态: 接受/拒绝   agree/refuse
  * @param reqType 请求方式：点对点/群聊 ptop/group
  * @param vaGroupId 发起视频组ID(房间号)：缺少房间号，增加房间号
+ * @param vaGroupId 发起视频组名称(房间名称)：缺少房间名称，增加房间名称
  */
-function sendVideoOrAuidoMsg(currentUserId,currentUserName ,currentUserPhoto,firedId,callType,type,reqType,resSign,vaGroupId) {
+function sendVideoOrAuidoMsg(currentUserId,currentUserName ,currentUserPhoto,firedId,callType,type,reqType,resSign,vaGroupId,vaGroupName) {
     var message = new proto.Model();
     var content = new proto.MessageBody();
     message.setMsgtype(4);
@@ -640,6 +648,9 @@ function sendVideoOrAuidoMsg(currentUserId,currentUserName ,currentUserPhoto,fir
     message.setRessign(resSign); //接受/拒绝 状态
     message.setReqtype(reqType);//点对点/群聊 ptop/group
     message.setVagroupid(vaGroupId);
+    if(vaGroupName != "" ){
+        message.setVagroupname(vaGroupName);
+    }
     message.setSendername(currentUserName);
     message.setSenderphoto(currentUserPhoto)
     content.setType(0);
