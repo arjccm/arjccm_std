@@ -150,25 +150,35 @@
 
 
             });
-
+            var imgSrcData;
             //图片上传
             var uploadInst = upload.render({
                 elem: '#uploadBtn'
                 ,url: arjimRest+'imgupload?userId='+currentsession
+                ,accept:'images'
+                //,auto:false            //是否选完文件后自动上传
+                //,bindAction:""
+                ,size:500
                 ,before: function(obj){
+                    layer.load();
                     //预读本地文件示例，不支持ie8
                     obj.preview(function(index, file, result){
                         $('#uploadImage').attr('src', result); //图片链接（base64）
                     });
                 }
-                ,done: function(res){
-                    //如果上传失败
-                    if(res.code > 0){
-                        return layer.msg('上传失败');
+                ,done: function(res, index, upload ){
+                    layer.closeAll('loading')
+                    if(res.code == 0){
+                        imgSrcData = res.data.src
+                        return imgSrcData
                     }
-                    //上传成功
+                    //如果上传失败
+                    // if(res.code > 0){
+                    //     return layer.msg('上传失败');
+                    // }
                 }
-                ,error: function(){
+                ,error: function(index, upload){
+                    layer.closeAll('loading')
                     //演示失败状态，并实现重传
                     var demoText = $('#demoText');
                     demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
@@ -182,30 +192,32 @@
             // $('.site-demo-layim').on('click', function(){
             //
             // });
-            var $ = layui.jquery, active = {
-                addGroup: function(){
-                    layer.msg('创建成功', {
-                        icon: 1
-                    });
-                    //增加一个群组
-                    parent.layui.layim.addList({
-                        type: 'group'
-                        ,avatar: "//tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg"
-                        ,groupname: 'Angular开发'
-                        ,id: "12333333"
-                        ,members: 0
-                    });
-                }
-            }
 
 
             form.on('submit(groupSubmit)', function(data){
 
                 var json  = {
                     groupname:data.field.groupname,    //群名称
-                    avatar:"",                         //群头像
+                    avatar:imgSrcData,                         //群头像
                     userList:[],                        //群成员列表
                     groupOwnerId:data.field.groupOwnerId  //群主id
+                }
+
+
+                $ = layui.jquery, active = {
+                    addGroup: function(){
+                        layer.msg('创建成功', {
+                            icon: 1
+                        });
+                        //增加一个群组渲染到页面
+                        parent.layui.layim.addList({
+                            type: 'group'
+                            ,avatar: imgSrcData
+                            ,groupname: data.field.groupname
+                            ,id: "12333333"
+                            ,members: 0
+                        });
+                    }
                 }
 
                 var selectList =  $("#slt-lt-bx li")
@@ -215,11 +227,9 @@
                     json.userList.push(listVal)
 
                 }
-                layer.alert(JSON.stringify(json), {
-                    title: '提交的信息'
-                })
-
-
+                // layer.alert(JSON.stringify(json), {
+                //     title: '提交的信息'
+                // })
 
                 var $url = "/arjccm/app"
                 $.ajax({
@@ -230,8 +240,6 @@
                     data:JSON.stringify(json),
                     contentType: 'application/json; charset=UTF-8',
                     success:function(){
-                        alert("成功")
-
 
                         var type = $('.site-demo-layim').data('type');
                         active[type] ? active[type].call($('.site-demo-layim')) : '';
