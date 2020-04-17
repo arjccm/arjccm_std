@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>创建群组s</title>
+    <title>创建群组ss</title>
 
     <%--<link rel="stylesheet" href="http://local.res.layui.com/layui/src/css/layui.css">--%>
     <link rel="stylesheet" href="${ctxStatic}/layim/layui/css/layui.css">
