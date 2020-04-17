@@ -109,7 +109,7 @@ public class CcmOrgCommonalityController extends BaseController {
 		if(list.size()>0){
 			for (int i = 0; i < list.size(); i++) {
 				CcmOrgCommonality c = list.get(i);
-				if ((StringUtils.isBlank(extId) || (extId != null && !extId.equals(c.getId()) ) )) {
+				if ((StringUtils.isBlank(extId))) {
 					Map<String, Object> map = Maps.newHashMap();
 					map.put("id", c.getId());
 					map.put("pId", "0");
