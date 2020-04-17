@@ -203,7 +203,7 @@
                        onclick="parent.LayerDialog('${ctx}/house/ccmHouseDangerous/form?id=${ccmHouseDangerous.id}', '修改', '1200px', '900px')"
                        title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
                     <a class="btnList"
-                       href="${ctx}/house/ccmHouseDangerous/delete?id=${ccmHouseDangerous.id}permissionKey=${permissionKey}"
+                       href="${ctx}/house/ccmHouseDangerous/delete?id=${ccmHouseDangerous.id}&permissionKey=${permissionKey}"
                        onclick="return confirmx('确认要删除该危险品从业人员吗？', this.href)" title="删除"><i
                             class="iconfont icon-caozuotubiao-shanchu"></i></a>
                     <a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmHouseDangerous.peopleId}')"

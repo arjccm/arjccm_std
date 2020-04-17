@@ -43,21 +43,7 @@
 					title="用户" url="/sys/office/treeData?type=3" cssClass=""  notAllowSelectParent="true" /> 
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">签到内容：</label>
-			<div class="controls">
-				<form:input path="content" htmlEscape="false" maxlength="64" class="input-xlarge required" readonly="true"/>
-			</div>
-		</div>
-		<div class="control-group" >
-			<label class="control-label">签到类型：</label>
-			<div class="controls" style="width: 290px">
-				<form:select path="type" class="input-xlarge required" disabled="true">
-					<form:option value="" label="全部"/>
-					<form:options items="${fns:getDictList('ccm_worker_sign_type')}" itemLabel="label" itemValue="value" htmlEscape="false" />
-				</form:select>
-			</div>
-		</div>
+
 		<%-- <div class="control-group">
 			<label class="control-label">签到状态：</label>
 			<div class="controls">
@@ -69,9 +55,17 @@
 		<div class="control-group">
 			<label class="control-label">签到时间：</label>
 			<div class="controls">
-				<input name="signDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-					value="<fmt:formatDate value="${ccmWorkerSign.signDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+				<input name="clockinTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+					value="<fmt:formatDate value="${ccmWorkerSign.clockinTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" disabled="true"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">签退时间：</label>
+			<div class="controls">
+				<input name="clockoutTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+					   value="<fmt:formatDate value="${ccmWorkerSign.clockoutTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" disabled="true"/>
 			</div>
 		</div>
 	</form:form>

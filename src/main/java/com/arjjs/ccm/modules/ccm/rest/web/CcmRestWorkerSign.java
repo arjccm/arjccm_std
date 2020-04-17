@@ -8,12 +8,15 @@ import com.arjjs.ccm.modules.ccm.worker.entity.CcmWorkerSign;
 import com.arjjs.ccm.modules.ccm.worker.service.CcmWorkerSignService;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
+import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author
@@ -70,16 +73,28 @@ public class CcmRestWorkerSign {
         CcmRestResult result = new CcmRestResult();
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
-        ccmWorkerSign.setContent("日常签到");
-        ccmWorkerSign.setType("10");
-        ccmWorkerSign.setStatus("10");
-        ccmWorkerSign.setSignDate(new Date());
+
+        //app签到，设置签到类型
+        ccmWorkerSign.setClockinType("1");
+        //设置创建者id
         ccmWorkerSign.setCreateBy(user);
-        ccmWorkerSign.setUpdateBy(user);
+        //设置删除标记
+        ccmWorkerSign.setDelFlag("0");
+        //赋值签到时间
+        ccmWorkerSign.setClockinTime(new Date());
+        ccmWorkerSign.setId(UUID.randomUUID().toString());
+        //查询是否有之前签到
+        int sum =ccmWorkerSignService.findByClockinInfo(ccmWorkerSign);
+        if(sum!=0){
+        result.setCode(-11);
+        result.setMsg("签到失败");
+        return result;
+        }
         if(StringUtils.isNotEmpty(ccmWorkerSign.getAreaPoint()) && ccmWorkerSign.getAreaPoint().contains(",")){
             String x = ccmWorkerSign.getAreaPoint().split(",")[0];
             String y = ccmWorkerSign.getAreaPoint().split(",")[1];
-            ccmWorkerSign.setAreaPoint(y+","+x);
+            //获取app的经纬度信息
+            ccmWorkerSign.setClockinAreaName(y+","+x);
         }
         ccmWorkerSignService.save(ccmWorkerSign);
         result.setCode(CcmRestType.OK);
@@ -96,16 +111,25 @@ public class CcmRestWorkerSign {
         CcmRestResult result = new CcmRestResult();
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
-        ccmWorkerSign.setContent("日常签退");
-        ccmWorkerSign.setType("20");
-        ccmWorkerSign.setStatus("10");
-        ccmWorkerSign.setSignDate(new Date());
-        ccmWorkerSign.setCreateBy(user);
+        //赋值平台签退时间
+        ccmWorkerSign.setClockoutTime(new Date());
+        int sum = ccmWorkerSignService.findClockoutTime(ccmWorkerSign);
+        if (sum !=1){
+            result.setCode(-11);
+            result.setMsg("签退失败");
+            return result;
+        }
+        //赋值平台签退设备标识
+        ccmWorkerSign.setClockoutType("1");
+        //赋值更新者id
         ccmWorkerSign.setUpdateBy(user);
+        //赋值更新时间
+        ccmWorkerSign.setUpdateDate(new Date());
         if(StringUtils.isNotEmpty(ccmWorkerSign.getAreaPoint()) && ccmWorkerSign.getAreaPoint().contains(",")){
             String x = ccmWorkerSign.getAreaPoint().split(",")[0];
             String y = ccmWorkerSign.getAreaPoint().split(",")[1];
-            ccmWorkerSign.setAreaPoint(y+","+x);
+            //赋值签退时app经纬度
+            ccmWorkerSign.setClockoutAreaName(y+","+x);
         }
         ccmWorkerSignService.save(ccmWorkerSign);
         result.setCode(CcmRestType.OK);
@@ -115,7 +139,19 @@ public class CcmRestWorkerSign {
     }
 
 
-
+    //打卡日历信息
+    @ResponseBody
+    @RequestMapping(value = "/rescount", method = RequestMethod.GET)
+    public CcmRestResult rescount (String userId,Date date){
+        CcmWorkerSign ccmWorkerSign = new CcmWorkerSign();
+        CcmRestResult result = new CcmRestResult();
+        User user = UserUtils.get(userId);
+        ccmWorkerSign.setUser(user);
+        Map<String, Object> map = ccmWorkerSignService.findByCountMonth(date, ccmWorkerSign);
+        result.setCode(CcmRestType.OK);
+        result.setResult(map);
+        return result;
+    }
 }
 
     
