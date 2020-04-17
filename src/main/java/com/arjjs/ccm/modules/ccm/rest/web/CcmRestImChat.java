@@ -42,7 +42,7 @@ public class CcmRestImChat extends BaseController {
 	private CcmUserRelationshipService ccmUserRelationshipService;
 
 	/**
-	 * @see  创建和修改用户群信息
+	 *   创建和修改用户群信息
 	 * @param
 	 * @return
 	 * @author fuxinshuang
@@ -55,23 +55,23 @@ public class CcmRestImChat extends BaseController {
 		//1、校验，当用登陆用户，当前人是不是群主，组中有没有人员列表，如果没有直接返回；
 		//2、添加组
 		//3、添加关系
-		User sessionUser = (User) req.getSession().getAttribute("user");
-		if (sessionUser== null) {
-			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
-			return result;
-		}
-		String sessionUserId = sessionUser.getId();
-		if (ccmUserGroup.getUserId()== null || "".equals(ccmUserGroup.getUserId()) ||!ccmUserGroup.getUserId().equals(sessionUserId)) {
-			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
-			return result;
-		}
+//		User sessionUser = (User) req.getSession().getAttribute("user");
+//		if (sessionUser== null) {
+//			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+//			return result;
+//		}
+//		String ccmUserGroup.getUserId() = sessionUser.getId();
+//		if (ccmUserGroup.getUserId()== null || "".equals(ccmUserGroup.getUserId()) ||!ccmUserGroup.getUserId().equals(ccmUserGroup.getUserId())) {
+//			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+//			return result;
+//		}
 		if (ccmUserGroup.getId()!= null && !"".equals(ccmUserGroup.getId())) {
 			CcmUserGroup ccmUserGroupDB = ccmUserGroupService.get(ccmUserGroup.getId());
 			if (ccmUserGroupDB == null ) {//从数据库中没有取到对应数据
 				result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);
 				return result;
 			}
-			if(!sessionUserId.equals(ccmUserGroupDB.getGroupOwnerId())){	//如果操作者不是群创建者，提示无权限
+			if(!ccmUserGroup.getUserId().equals(ccmUserGroupDB.getGroupOwnerId())){	//如果操作者不是群创建者，提示无权限
 				result.setCode(CcmRestType.ERROR_NO_PERSSION);
 				return result;
 			}
@@ -81,8 +81,8 @@ public class CcmRestImChat extends BaseController {
 			result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);//数据不存在，没有用户列表，保存不了；群组必须有人；
 			return result;
 		}
-		ccmUserGroup.setCreateBy(new User(sessionUserId));
-		ccmUserGroup.setUpdateBy(new User(sessionUserId));
+		ccmUserGroup.setCreateBy(new User(ccmUserGroup.getUserId()));
+		ccmUserGroup.setUpdateBy(new User(ccmUserGroup.getUserId()));
 		if (StringUtils.isBlank(ccmUserGroup.getGroupOwnerId())){//如果没有设置群主，则为当前用户
 			ccmUserGroup.setGroupOwnerId(ccmUserGroup.getUserId());
 		}
@@ -91,8 +91,8 @@ public class CcmRestImChat extends BaseController {
 			CcmUserRelationship ccmUserRelationship = new CcmUserRelationship();
 			ccmUserRelationship.setGroupId(ccmUserGroup.getId());
 			ccmUserRelationship.setUser(new User(userId));
-			ccmUserRelationship.setCreateBy(new User(sessionUserId));
-			ccmUserRelationship.setUpdateBy(new User(sessionUserId));
+			ccmUserRelationship.setCreateBy(new User(ccmUserGroup.getUserId()));
+			ccmUserRelationship.setUpdateBy(new User(ccmUserGroup.getUserId()));
 			ccmUserRelationshipService.save(ccmUserRelationship);
 		});
 		result.setCode(CcmRestType.OK);

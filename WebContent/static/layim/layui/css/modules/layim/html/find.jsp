@@ -207,7 +207,22 @@
                     json.userList.push(listVal)
 
                 }
-                $.post("${ctx}/rest/ccmUserGroup/", json)
+                <%--$.post("${ctx}/rest/ccmUserGroup/", json)--%>
+                var $url = "/arjccm/app"
+                $.ajax({
+                    type:"post",
+                    url:$url+'/rest/ImChat/saveGroups',
+                    dataType:"json",
+                    // async:false,
+                    data:JSON.stringify(json),
+                    contentType: 'application/json; charset=UTF-8',
+                    success:function(){
+                        alert("成功")
+                        parent.layer.close(ptindex);
+                    }
+
+                })
+
                 // layer.alert(JSON.stringify(json), {
                 //     title: '提交的信息'
                 // })
