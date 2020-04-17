@@ -147,7 +147,7 @@ public class CcmRestWorkerSign {
         CcmRestResult result = new CcmRestResult();
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
-        Map<String, Object> map = ccmWorkerSignService.findByCountMonth(date, ccmWorkerSign);
+        Map<String, Object> map = ccmWorkerSignService.findByCountMonth(userId,date, ccmWorkerSign);
         result.setCode(CcmRestType.OK);
         result.setResult(map);
         return result;
