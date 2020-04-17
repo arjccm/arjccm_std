@@ -1172,10 +1172,10 @@ public class CcmMapOtherController extends BaseController {
         map.put("z5",z5);
 
         //宗教事件
-        Integer j1 = ccmEventIncidentService.statIndexForZj(06);
-        Integer j2 = ccmEventIncidentService.statIndexForZj(07);
-        Integer j3 = ccmEventIncidentService.statIndexForZj(Integer.parseInt("08"));
-        Integer j4 = ccmEventIncidentService.statIndexForZj(Integer.parseInt("09"));
+        Integer j1 = ccmEventIncidentService.statIndexForZj(01);
+        Integer j2 = ccmEventIncidentService.statIndexForZj(02);
+        Integer j3 = ccmEventIncidentService.statIndexForZj(03);
+        Integer j4 = ccmEventIncidentService.statIndexForZj(04);
         Integer j5 = ccmEventIncidentService.statIndexForZj(05);
         map.put("j1",j1);
         map.put("j2",j2);
@@ -1198,17 +1198,17 @@ public class CcmMapOtherController extends BaseController {
         Map<String,Object> map = new HashMap<>();
         List list = new ArrayList();
         //基督教 信徒
-        Integer i1 = ccmPeopleService.statIndexForZj(6);
+        Integer i1 = ccmPeopleService.statIndexForZj(01);
         //天主教 信徒
-        Integer i2 = ccmPeopleService.statIndexForZj(5);
+        Integer i2 = ccmPeopleService.statIndexForZj(05);
         //伊斯兰教 信徒
-        Integer i3 = ccmPeopleService.statIndexForZj(8);
+        Integer i3 = ccmPeopleService.statIndexForZj(02);
         //佛教 信徒
-        Integer i4 = ccmPeopleService.statIndexForZj(2);
+        Integer i4 = ccmPeopleService.statIndexForZj(03);
         //道教 信徒
-        Integer i5 = ccmPeopleService.statIndexForZj(4);
+        Integer i5 = ccmPeopleService.statIndexForZj(04);
         //无宗教信仰
-        Integer i6 = ccmPeopleService.statIndexForZj(1);
+        Integer i6 = ccmPeopleService.statIndexForZj(99);
         list.add(i1);
         list.add(i2);
         list.add(i3);

@@ -9,12 +9,13 @@
             src="${ctxStatic}/ccm/org/js/ccmSocialorgInfo.js"></script>
     <script type="text/javascript">
         var isEmpty = true;
+        var isEmpty = true;
         function saveImport() {
             if(isEmpty){
                 alert("请选择文件！");
-                return;
+                return false;
             }else{
-                $("#importForm").submit();
+                loading('正在导入，请稍等...');
             }
         }
         function changeFalse(_this) {
@@ -34,14 +35,14 @@
         <form id="importForm" action="${ctx}/org/ccmOrgSocialorg/import"
               method="post" enctype="multipart/form-data" class="form-search"
               style="padding-left: 20px; text-align: center;"
-              onsubmit="loading('正在导入，请稍等...');">
+              onsubmit="return saveImport()">
             <br/> <input id="uploadFile" name="file" type="file"
                          style="width: 330px" onchange="changeFalse(this.value.length)"/><br/> <br/>
             <input id="btnImportTemplate"
                    class="btn btn-primary" type="button" value="模板下载 "
                    onclick="location.href='${ctxStatic}/template/excel/kymTemplate.xlsx'"/>
             <input id="btnImportSubmit"
-                   class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 "/>
+                   class="btn btn-primary" type="submit" value="导  入 "/>
         </form>
     </div>
 

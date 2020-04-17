@@ -75,7 +75,7 @@
             </div>
 
             <div class="layui-col-md12 clearfix">
-                <div class="submitBtn"><button type="button" class="layui-btn " lay-submit lay-filter="groupSubmit">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
+                <div class="submitBtn"><button type="button" class="layui-btn site-demo-layim" lay-submit lay-filter="groupSubmit" data-type="addGroup">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
             </div>
         </div>
     </div>
@@ -94,19 +94,6 @@
     var arjimRest="http://"+window.location.host+"/arjim-server/";
     var currentsession="${fns:getUser().id}";
 
-    // $.ajax({
-    //     type:"get",
-    //     url:arjimRest+'getusers?userId='+currentsession,
-    //     dataType:"json",
-    //     async:false,
-    //     data:{},
-    //     success:function(data){
-    //         console.log(data.data.friend)
-    //     },
-    //     error:function(){
-    //         alert(2)
-    //     }
-    // })
     $.getJSON(arjimRest+'getusers?userId='+currentsession,function(data){
 
         imFriend(data)
@@ -163,25 +150,35 @@
 
 
             });
-
+            var imgSrcData;
             //图片上传
             var uploadInst = upload.render({
                 elem: '#uploadBtn'
                 ,url: arjimRest+'imgupload?userId='+currentsession
+                ,accept:'images'
+                //,auto:false            //是否选完文件后自动上传
+                //,bindAction:""
+                ,size:500
                 ,before: function(obj){
+                    layer.load();
                     //预读本地文件示例，不支持ie8
                     obj.preview(function(index, file, result){
                         $('#uploadImage').attr('src', result); //图片链接（base64）
                     });
                 }
-                ,done: function(res){
-                    //如果上传失败
-                    if(res.code > 0){
-                        return layer.msg('上传失败');
+                ,done: function(res, index, upload ){
+                    layer.closeAll('loading')
+                    if(res.code == 0){
+                        imgSrcData = res.data.src
+                        return imgSrcData
                     }
-                    //上传成功
+                    //如果上传失败
+                    // if(res.code > 0){
+                    //     return layer.msg('上传失败');
+                    // }
                 }
-                ,error: function(){
+                ,error: function(index, upload){
+                    layer.closeAll('loading')
                     //演示失败状态，并实现重传
                     var demoText = $('#demoText');
                     demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
@@ -192,25 +189,69 @@
             });
 
 
+            // $('.site-demo-layim').on('click', function(){
+            //
+            // });
+
+
             form.on('submit(groupSubmit)', function(data){
 
                 var json  = {
                     groupname:data.field.groupname,    //群名称
-                    avatar:"",                         //群头像
+                    avatar:imgSrcData,                         //群头像
                     userList:[],                        //群成员列表
                     groupOwnerId:data.field.groupOwnerId  //群主id
                 }
 
+
+                $ = layui.jquery, active = {
+                    addGroup: function(){
+                        layer.msg('创建成功', {
+                            icon: 1
+                        });
+                        //增加一个群组渲染到页面
+                        parent.layui.layim.addList({
+                            type: 'group'
+                            ,avatar: imgSrcData
+                            ,groupname: data.field.groupname
+                            ,id: "12333333"
+                            ,members: 0
+                        });
+                    }
+                }
+
                 var selectList =  $("#slt-lt-bx li")
                 for(var i=0;i<selectList.length;i++){
-                    var listVal = $("#slt-lt-bx li").attr("value")
+                    var listVal = $("#slt-lt-bx li").eq(i).attr("value")
+                    // console.log(listVal)
                     json.userList.push(listVal)
 
                 }
-                $.post("${ctx}/rest/ccmUserGroup/", json)
                 // layer.alert(JSON.stringify(json), {
                 //     title: '提交的信息'
                 // })
+
+                var $url = "/arjccm/app"
+                $.ajax({
+                    type:"post",
+                    url:$url+'/rest/ImChat/saveGroups',
+                    dataType:"json",
+                    // async:false,
+                    data:JSON.stringify(json),
+                    contentType: 'application/json; charset=UTF-8',
+                    success:function(){
+
+                        var type = $('.site-demo-layim').data('type');
+                        active[type] ? active[type].call($('.site-demo-layim')) : '';
+
+                        parent.layer.close(ptindex);
+
+
+                    }
+
+                })
+
+
 
                 //console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
                 //console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回

@@ -235,7 +235,7 @@
                     <div class="header_logo clearfix">
                         <div class="liuG"></div>
                         <img class="logo" src="/arjccm/static/common/index/images/statIndexZj/xmzj_logo.png">
-                        <span id="productName" class="logo_text">宗教全时空立体化防控</span>
+                        <span id="productName" class="logo_text">${fns:getConfig('productName_part2')}</span>
                     </div>
                     <div class="header_nav">
                         <ul class="nav pm-links clearfix">
