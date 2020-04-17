@@ -47,13 +47,13 @@
 <script>
 if($.cookie('theme')==undefined){
 	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
-	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
+	// $('head').append('<link href="../../../bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
 }else if($.cookie('theme')=='gradient'){
 	$('head').append('<link href="../../../bootstrap/2.3.1/css_cerulean/custom.css" type="text/css" rel="stylesheet">');
-	$('head').append('<link href="../../../bootstrap/2.3.1/css_cerulean/bootstrap.min.css" type="text/css" rel="stylesheet">');
+	// $('head').append('<link href="../../../bootstrap/2.3.1/css_cerulean/bootstrap.min.css" type="text/css" rel="stylesheet">');
 }else if($.cookie('theme')=='black'){
 	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/custom.css" type="text/css" rel="stylesheet">');
-	$('head').append('<link href="../../../bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
+	// $('head').append('<link href="../../../bootstrap/2.3.1/css_black/bootstrap.min.css" type="text/css" rel="stylesheet">');
 }
 	$(document).ready(function() { 
 		var type = "bph_alarm_info_state";
@@ -350,7 +350,7 @@ if($.cookie('theme')==undefined){
 							<div id="btn-delete" style="display: none;">查询</div>
 						</div>
 						<!-- 开关 -->
-						<a href="#" id="alarmDMS" class="toggle toggle--on toggle_primary"
+						<a href="#" id="alarmDMS" class="toggle toggle--on "
 							style="position: absolute; left: 330px; bottom: 865px; top: 50px; z-index: 99">
 						</a>
 <!-- 						<a href="#" id="videoDMS" class="toggle toggle--off" -->
@@ -442,8 +442,7 @@ if($.cookie('theme')==undefined){
 						name="active_rcvalarm_ordernum" value="" />
 					<div class="left-lists clearfix">
 						<h5 style="display: inline">
-							警情列表
-						</h5>
+							警情列表</h5>
 						<a class="btn btn-primary firstbtn" style="width: auto !important; float: right; margin-right: 10px" type="button" onclick="seaDialog()">
 							<i class="icon-search"></i>查询
 						</a>
