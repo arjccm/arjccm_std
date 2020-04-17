@@ -75,7 +75,7 @@
             </div>
 
             <div class="layui-col-md12 clearfix">
-                <div class="submitBtn"><button type="button" class="layui-btn " lay-submit lay-filter="groupSubmit">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
+                <div class="submitBtn"><button type="button" class="layui-btn site-demo-layim" lay-submit lay-filter="groupSubmit" data-type="addGroup">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
             </div>
         </div>
     </div>
@@ -94,19 +94,6 @@
     var arjimRest="http://"+window.location.host+"/arjim-server/";
     var currentsession="${fns:getUser().id}";
 
-    // $.ajax({
-    //     type:"get",
-    //     url:arjimRest+'getusers?userId='+currentsession,
-    //     dataType:"json",
-    //     async:false,
-    //     data:{},
-    //     success:function(data){
-    //         console.log(data.data.friend)
-    //     },
-    //     error:function(){
-    //         alert(2)
-    //     }
-    // })
     $.getJSON(arjimRest+'getusers?userId='+currentsession,function(data){
 
         imFriend(data)
@@ -192,6 +179,26 @@
             });
 
 
+            // $('.site-demo-layim').on('click', function(){
+            //
+            // });
+            var $ = layui.jquery, active = {
+                addGroup: function(){
+                    layer.msg('创建成功', {
+                        icon: 1
+                    });
+                    //增加一个群组
+                    parent.layui.layim.addList({
+                        type: 'group'
+                        ,avatar: "//tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg"
+                        ,groupname: 'Angular开发'
+                        ,id: "12333333"
+                        ,members: 0
+                    });
+                }
+            }
+
+
             form.on('submit(groupSubmit)', function(data){
 
                 var json  = {
@@ -203,11 +210,17 @@
 
                 var selectList =  $("#slt-lt-bx li")
                 for(var i=0;i<selectList.length;i++){
-                    var listVal = $("#slt-lt-bx li").attr("value")
+                    var listVal = $("#slt-lt-bx li").eq(i).attr("value")
+                    // console.log(listVal)
                     json.userList.push(listVal)
 
                 }
-                <%--$.post("${ctx}/rest/ccmUserGroup/", json)--%>
+                layer.alert(JSON.stringify(json), {
+                    title: '提交的信息'
+                })
+
+
+
                 var $url = "/arjccm/app"
                 $.ajax({
                     type:"post",
@@ -218,14 +231,19 @@
                     contentType: 'application/json; charset=UTF-8',
                     success:function(){
                         alert("成功")
+
+
+                        var type = $('.site-demo-layim').data('type');
+                        active[type] ? active[type].call($('.site-demo-layim')) : '';
+
                         parent.layer.close(ptindex);
+
+
                     }
 
                 })
 
-                // layer.alert(JSON.stringify(json), {
-                //     title: '提交的信息'
-                // })
+
 
                 //console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
                 //console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
