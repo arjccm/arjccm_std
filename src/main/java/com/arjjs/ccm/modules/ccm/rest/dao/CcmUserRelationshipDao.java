@@ -3,13 +3,14 @@
  */
 package com.arjjs.ccm.modules.ccm.rest.dao;
 
-import java.util.List;
-
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserGroup;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserRelationship;
 import com.arjjs.ccm.modules.ccm.view.entity.VCcmTeam;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 用户关系DAO接口
@@ -23,5 +24,8 @@ public interface CcmUserRelationshipDao extends CrudDao<CcmUserRelationship> {
 
 	void deleteByGroupAndUser(CcmUserRelationship ccmUserRelationship);
 	int insertUserRelationship(List<CcmUserRelationship> ccmUserRelationship);
-	
+
+	List<String> findUserListByGroupId(@Param("id")  String id);
+
+	void deleteRelByGroupId(@Param("id") String id);
 }

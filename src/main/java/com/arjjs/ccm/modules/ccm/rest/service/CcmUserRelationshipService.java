@@ -3,18 +3,17 @@
  */
 package com.arjjs.ccm.modules.ccm.rest.service;
 
-import java.util.List;
-
+import com.arjjs.ccm.common.persistence.Page;
+import com.arjjs.ccm.common.service.CrudService;
+import com.arjjs.ccm.modules.ccm.rest.dao.CcmUserRelationshipDao;
+import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserGroup;
+import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserRelationship;
+import com.arjjs.ccm.modules.ccm.view.entity.VCcmTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.arjjs.ccm.common.persistence.Page;
-import com.arjjs.ccm.common.service.CrudService;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserGroup;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserRelationship;
-import com.arjjs.ccm.modules.ccm.view.entity.VCcmTeam;
-import com.arjjs.ccm.modules.ccm.rest.dao.CcmUserRelationshipDao;
+import java.util.List;
 
 /**
  * 用户关系Service
@@ -63,5 +62,13 @@ public class CcmUserRelationshipService extends CrudService<CcmUserRelationshipD
 		ccmUserRelationshipDao.deleteByGroupAndUser(ccmUserRelationship);
 		
 	}
-	
+
+	public List<String> findUserListByGroupId(String id) {
+		return  ccmUserRelationshipDao.findUserListByGroupId(id);
+	}
+
+	@Transactional(readOnly = false)
+	public void  deleteRelByGroupId(String id) {
+		ccmUserRelationshipDao.deleteRelByGroupId(id);
+	}
 }
