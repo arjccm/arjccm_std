@@ -355,5 +355,17 @@
 			</otherwise>
 		</choose>
 	</select>
-
+<select id="leaveNumByUserId" resultType="CcmWorkerAttendance">
+SELECT
+	<include refid="ccmWorkerAttendanceColumns"/>
+FROM
+	ccm_worker_attendance a
+	LEFT JOIN sys_user b ON a.create_by = b.id
+	LEFT JOIN sys_office c ON b.office_id = c.id
+WHERE
+	a.del_flag = '0'
+	AND a.type = '2'
+	AND b.id = #{userId}
+	AND (date_format(#{date}, '%Y%m')=date_format(a.attendance_end , '%Y%m') OR date_format(#{date}, '%Y%m')=date_format(a.attendance_begin , '%Y%m'))
+</select>
 </mapper>
