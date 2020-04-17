@@ -212,8 +212,9 @@ function getMembers(groupId) {
 			    ,find: layui.cache.dir + 'css/modules/layim/html/find.jsp' //发现页面地址，若不开启，剔除该项即可
 			    ,chatLog: '${ctx}/im/historymessage' //聊天记录页面地址，若不开启，剔除该项即可
 			  });
-			  
+
 			   layim.on('ready', function(res){
+                   console.log(res)
 				  lm = layui.layim; 
 				  //添加客服
 				/* layim.addList({
@@ -351,8 +352,8 @@ function getMembers(groupId) {
 				 $.get(arjimRest+'/sign?userId='+currentsession+'&sign='+data,function(){
 					 
 				 })
-				  
 			  });
+
 		       var initEventHandle = function () {
 		          //收到消息后
 		          socket.onmessage = function(event) {
@@ -572,9 +573,12 @@ function getMembers(groupId) {
 				};
 		    }
 			   createWebSocket(websocketurl,initEventHandle);
+
+
 		});
 	});
 }
+
 //dwr推送消息方法
 function showMessage(data) {
 	showmsg(data); 
