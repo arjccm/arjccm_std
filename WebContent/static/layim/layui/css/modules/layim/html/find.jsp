@@ -95,8 +95,12 @@
     var currentsession="${fns:getUser().id}";
 
     var setGrp = parent.layui.$(".layui-layer-border")
+    var group_id = parent.layui.$(".changeGrp").attr("id")
 
     if(setGrp.hasClass("changeGrp")){
+        $.getJSON(arjimRest+'getGroupUser?id='+group_id,function (data) {
+                console.log(data)
+        })
 
     }else{
         $.getJSON(arjimRest+'getusers?userId='+currentsession,function(data){
@@ -104,6 +108,7 @@
             treeFriend(data)
         });
     }
+
 
 
     function imFriend(data){

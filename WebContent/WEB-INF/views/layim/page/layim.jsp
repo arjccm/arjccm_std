@@ -351,7 +351,8 @@ function getMembers(groupId) {
 			    //     ,content: '贤心加入群聊'
 			    //   });
 			    // }
-                //     console.log(res)
+                    console.log(res)
+                   var group_Id =  res.data.id
                 //     console.log(meid)
                     //判断如果是群主将修改按钮显示出来
                     if(res.data.groupowner == meid ){
@@ -365,6 +366,7 @@ function getMembers(groupId) {
                     }
                     $("#compileGrp").click(function(){
                         compileGrp_fn()
+                        $(".changeGrp").attr("id",group_Id)
                     })
                     function compileGrp_fn(){
                         var layer = layui.layer;
