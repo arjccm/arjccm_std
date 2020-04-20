@@ -94,14 +94,20 @@
     var arjimRest="http://"+window.location.host+"/arjim-server/";
     var currentsession="${fns:getUser().id}";
 
-    $.getJSON(arjimRest+'getusers?userId='+currentsession,function(data){
+    var setGrp = parent.layui.$(".layui-layer-border")
 
-        imFriend(data)
-        treeFriend(data)
-    });
+    if(setGrp.hasClass("changeGrp")){
+
+    }else{
+        $.getJSON(arjimRest+'getusers?userId='+currentsession,function(data){
+            imFriend(data)
+            treeFriend(data)
+        });
+    }
+
+
     function imFriend(data){
         layui.use(['form', 'layim', 'tree', 'element', 'upload'], function(){
-
             var friendData = data.data.friend;
             var element = layui.element;
             var form = layui.form;
@@ -114,6 +120,10 @@
                 ,upload = layui.upload;
 
             var ptindex = parent.layer.getFrameIndex(window.name);
+
+
+
+            // console.log(parent.$(".compileGrp").attr("title"))
 
             $(".groupCloseBtn").on("click",function(){
                 parent.layer.close(ptindex);       //关闭当前窗口
@@ -193,9 +203,8 @@
             //
             // });
 
-
+            console.log(data)
             form.on('submit(groupSubmit)', function(data){
-
                 var json  = {
                     groupname:data.field.groupname,    //群名称
                     avatar:imgSrcData,                         //群头像

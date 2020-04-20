@@ -163,7 +163,8 @@ function getMembers(groupId) {
 				*/
 	   	  
 	     }
-           layui.use('layim', function(layim){
+           layui.use(['layim','layer'], function(layim){
+               var $ = layui.jquery, layer = layui.layer;
 		       //基础配置
 		       layim.config({
 			 
@@ -212,9 +213,10 @@ function getMembers(groupId) {
 			    ,find: layui.cache.dir + 'css/modules/layim/html/find.jsp' //发现页面地址，若不开启，剔除该项即可
 			    ,chatLog: '${ctx}/im/historymessage' //聊天记录页面地址，若不开启，剔除该项即可
 			  });
-
+                var meid;
 			   layim.on('ready', function(res){
-                   console.log(res)
+
+
 				  lm = layui.layim; 
 				  //添加客服
 				/* layim.addList({
@@ -229,7 +231,11 @@ function getMembers(groupId) {
 				  //取得离线消息
 				  showOfflineMsg(layim)
 				  layim.setFriendStatus(currentsession, 'online');
+				  meid = res.mine.id
+                   return meid
 			   });
+
+
 			   //监听自定义工具栏点击，以添加代码为例
 			   layim.on('tool(codeVideo)', function(insert, send, obj){ //事件中的tool为固定字符，而code则为过滤器，对应的是工具别名（alias）
                    var cache = layui.layim.cache();
@@ -328,21 +334,50 @@ function getMembers(groupId) {
 			     }
 			     
 			  });
+
+
+
 			  //每次窗口打开或切换，即更新对方的状态
-			   /*  layim.on('chatChange', function(res){
+			    layim.on('chatChange', function(res){
 			    var type = res.data.type;
-			    if(type === 'friend'){
-			      layim.setChatStatus('<span style="color:#FF5722;">在线</span>'); //模拟标注好友在线状态
-			    } else if(type === 'group'){
-			      //模拟系统消息
-			      layim.getMessage({
-			        system: true //系统消息
-			        ,id: 111111111
-			        ,type: "group"
-			        ,content: '贤心加入群聊'
-			      });
-			    }
-			  });  */
+			    // if(type === 'friend'){
+			    //   layim.setChatStatus('<span style="color:#FF5722;">在线</span>'); //模拟标注好友在线状态
+			    // } else if(type === 'group'){
+			    //   //模拟系统消息
+			    //   layim.getMessage({
+			    //     system: true //系统消息
+			    //     ,id: 111111111
+			    //     ,type: "group"
+			    //     ,content: '贤心加入群聊'
+			    //   });
+			    // }
+                //     console.log(res)
+                //     console.log(meid)
+                    //判断如果是群主将修改按钮显示出来
+                    if(res.data.groupowner == meid ){
+                        $(".layim-chat-group .setUpGroup").css({
+                            "display":"block"
+                        })
+                     }else{
+                        $(".layim-chat-group .setUpGroup").css({
+                            "display":"none"
+                        })
+                    }
+                    $("#compileGrp").click(function(){
+                        compileGrp_fn()
+                    })
+                    function compileGrp_fn(){
+                        var layer = layui.layer;
+                        layer.open({
+                            type:2
+                            ,title:"编辑群聊"
+                            ,maxmin:true
+                            ,area:["1000px","680px"]
+                            ,skin:"layui-box layui-layer-border changeGrp"
+                            ,content:"${ctxStatic}/layim/layui/css/modules/layim/html/find.jsp"
+                        });
+                    }
+			  });
 			   layim.on('online', function(status){
 				  console.log(status); //获得online或者hide
 				  //websocket发送在线或离线消息给好友
