@@ -139,7 +139,7 @@ public class CcmRestWorkerSign {
     }
 
 
-    //打卡日历信息
+    //考勤日历信息
     @ResponseBody
     @RequestMapping(value = "/rescount", method = RequestMethod.GET)
     public CcmRestResult rescount (String userId,Date date){
@@ -148,6 +148,20 @@ public class CcmRestWorkerSign {
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
         Map<String, Object> map = ccmWorkerSignService.findByCountMonth(userId,date, ccmWorkerSign);
+        result.setCode(CcmRestType.OK);
+        result.setResult(map);
+        return result;
+    }
+
+    //考勤统计
+    @ResponseBody
+    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    public CcmRestResult statistics (String userId,Date date){
+        CcmWorkerSign ccmWorkerSign = new CcmWorkerSign();
+        CcmRestResult result = new CcmRestResult();
+        User user = UserUtils.get(userId);
+        ccmWorkerSign.setUser(user);
+        Map<String, Object> map = ccmWorkerSignService.findBystatistics(userId,date, ccmWorkerSign);
         result.setCode(CcmRestType.OK);
         result.setResult(map);
         return result;
