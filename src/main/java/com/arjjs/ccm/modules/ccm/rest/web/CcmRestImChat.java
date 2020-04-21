@@ -63,7 +63,9 @@ public class CcmRestImChat extends BaseController {
 				result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);
 				return result;
 			}
-			if(!ccmUserGroup.getUserId().equals(ccmUserGroupDB.getGroupOwnerId())){	//如果操作者不是群创建者，提示无权限
+			String userId = ccmUserGroup.getUserId();
+			String groupOwnerId = ccmUserGroupDB.getGroupOwnerId();
+			if(!userId.equals(groupOwnerId)){	//如果操作者不是群创建者，提示无权限
 				result.setCode(CcmRestType.ERROR_NO_PERSSION);
 				return result;
 			}

@@ -75,7 +75,7 @@
             </div>
 
             <div class="layui-col-md12 clearfix">
-                <div class="submitBtn"><button type="button" class="layui-btn site-demo-layim" lay-submit lay-filter="groupSubmit" data-type="addGroup">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
+                <div class="submitBtn"><button type="button" class="layui-btn site-demo-layim" lay-submit lay-filter="groupSubmit" data-type="addGroup removeGroup">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
             </div>
         </div>
     </div>
@@ -95,20 +95,13 @@
     var currentsession="${fns:getUser().id}";
 
     var setGrp = parent.layui.$(".layui-layer-border")
-    var group_id = parent.layui.$(".changeGrp").attr("id")
+    var group_id = parent.layui.$(".changeGrp").attr("data-id")
 
-    if(setGrp.hasClass("changeGrp")){
-        $.getJSON(arjimRest+'getGroupUser?id='+group_id,function (data) {
-                console.log(data)
-        })
 
-    }else{
-        $.getJSON(arjimRest+'getusers?userId='+currentsession,function(data){
-            imFriend(data)
-            treeFriend(data)
-        });
-    }
-
+    $.getJSON(arjimRest+'getusers?userId='+currentsession,function(data){
+        imFriend(data)
+        treeFriend(data)
+    });
 
 
     function imFriend(data){
@@ -136,6 +129,46 @@
             element.on('nav(demo)', function(elem){
                 //console.log(elem)
             });
+
+            var grpId;
+            //判断是否编辑页，给表单赋值
+            if(setGrp.hasClass("changeGrp")){
+                $.getJSON(arjimRest+'getGroupUser?id='+group_id,function (data) {
+                    console.log(data)
+                    var imgdata = data.data.avatar
+                    var frdlistData = data.data.list
+                    var groupid = data.data.id
+                    var listfdObj = {}
+                    var thisData = {
+                        "groupname":data.data.groupname,
+                        "groupOwnerId":data.data.groupowner
+                    }
+
+
+                    $('#uploadImage').attr('src', imgdata)
+
+                    for(var i=0;i<frdlistData.length;i++){
+                        var selectFd = "<li class='clearfix "+frdlistData[i].id+"' value='"+frdlistData[i].id+"'><div class='friend-icon'><img src='"+frdlistData[i].avatar+"'></div><div class='friend-name'>"+frdlistData[i].username+"</div></li>"
+                        var setGroupManager = "<option value='"+ frdlistData[i].id +"' class='"+ frdlistData[i].id +"'>"+ frdlistData[i].username +"</option>"
+                        $(".select-list-box").append(selectFd)
+                        $("#setGroupManager").append(setGroupManager)
+                    }
+
+                    frdlistData.forEach(item=> {                                //将数组转换成对象并给它赋值
+                        listfdObj[item.id] = true
+                    })
+                    var finalData = Object.assign(thisData, listfdObj)          //将两个对象合并
+                    console.log(finalData)
+
+                    form.val('example', finalData);
+                    form.render();
+
+                    grpId = groupid
+                    return grpId
+                })
+            }
+
+
 
             form.on('checkbox(friendCheckbox)', function(obj){
                 var objelem = obj.elem
@@ -208,32 +241,20 @@
             //
             // });
 
-            console.log(data)
             form.on('submit(groupSubmit)', function(data){
                 var json  = {
                     groupname:data.field.groupname,    //群名称
                     avatar:imgSrcData,                         //群头像
                     userList:[],                        //群成员列表
-                    groupOwnerId:data.field.groupOwnerId  //群主id
+                    groupOwnerId:data.field.groupOwnerId,  //群主id
+                    id:grpId,
+                    userId:currentsession
                 }
+                var resgrpid;
 
+               // result: {id: "6b941665de994cadba2243e2b06b723e
 
-                $ = layui.jquery, active = {
-                    addGroup: function(){
-                        layer.msg('创建成功', {
-                            icon: 1
-                        });
-                        //增加一个群组渲染到页面
-                        parent.layui.layim.addList({
-                            type: 'group'
-                            ,avatar: imgSrcData
-                            ,groupname: data.field.groupname
-                            ,id: "12333333"
-                            ,members: 0
-                        });
-                    }
-                }
-
+                console.log(resgrpid)
                 var selectList =  $("#slt-lt-bx li")
                 for(var i=0;i<selectList.length;i++){
                     var listVal = $("#slt-lt-bx li").eq(i).attr("value")
@@ -253,17 +274,68 @@
                     // async:false,
                     data:JSON.stringify(json),
                     contentType: 'application/json; charset=UTF-8',
-                    success:function(){
+                    success:function(res){
+                        var rid = res.result.id
+                        if(setGrp.hasClass("changeGrp")){
+                            $ = layui.jquery, active = {
+                                removeGroup: function(){
+                                    layer.msg('已成功删除'+ rid, {
+                                        icon: 1
+                                    });
+                                    //删除一个群组
+                                    parent.layui.layim.removeList({
+                                        id: rid
+                                        ,type: 'group'
+                                    });
+                                }
+                                // ,addGroup: function(){
+                                //     layer.msg('创建成功', {
+                                //         icon: 1
+                                //     });
+                                //     //增加一个群组渲染到页面
+                                //     parent.layui.layim.addList({
+                                //         type: 'group'
+                                //         ,avatar: imgSrcData
+                                //         ,groupname: data.field.groupname
+                                //         ,id: rid
+                                //         ,members: 0
+                                //     });
+                                // }
+                            }
+                            var type = $('.site-demo-layim').data('type');
+                            active[type] ? active[type].call($('.site-demo-layim')) : '';
+                        }else {
+                            $ = layui.jquery, active = {
+                                addGroup: function(){
+                                    layer.msg('创建成功', {
+                                        icon: 1
+                                    });
+                                    //增加一个群组渲染到页面
+                                    parent.layui.layim.addList({
+                                        type: 'group'
+                                        ,avatar: imgSrcData
+                                        ,groupname: data.field.groupname
+                                        ,id: rid
+                                        ,members: 0
+                                    });
+                                }
+                            }
+                            var type = $('.site-demo-layim').data('type');
+                            active[type] ? active[type].call($('.site-demo-layim')) : '';
+                        }
 
-                        var type = $('.site-demo-layim').data('type');
-                        active[type] ? active[type].call($('.site-demo-layim')) : '';
+
+
+
+                        // resgrpid = rid
+                        // console.log(res.result.id)
 
                         parent.layer.close(ptindex);
-
-
+                        // return resgrpid
                     }
 
                 })
+
 
 
 

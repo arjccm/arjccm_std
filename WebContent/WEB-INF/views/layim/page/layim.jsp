@@ -351,7 +351,7 @@ function getMembers(groupId) {
 			    //     ,content: '贤心加入群聊'
 			    //   });
 			    // }
-                    console.log(res)
+                //     console.log(res)
                    var group_Id =  res.data.id
                 //     console.log(meid)
                     //判断如果是群主将修改按钮显示出来
@@ -366,11 +366,11 @@ function getMembers(groupId) {
                     }
                     $("#compileGrp").click(function(){
                         compileGrp_fn()
-                        $(".changeGrp").attr("id",group_Id)
+                        $(".changeGrp").attr("data-id",group_Id)
                     })
                     function compileGrp_fn(){
-                        var layer = layui.layer;
-                        layer.open({
+                        var compileGrp = layui.layer;
+                        compileGrp.open({
                             type:2
                             ,title:"编辑群聊"
                             ,maxmin:true
@@ -378,6 +378,7 @@ function getMembers(groupId) {
                             ,skin:"layui-box layui-layer-border changeGrp"
                             ,content:"${ctxStatic}/layim/layui/css/modules/layim/html/find.jsp"
                         });
+                        // layer.close(compileGrp)
                     }
 			  });
 			   layim.on('online', function(status){
