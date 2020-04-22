@@ -7,6 +7,7 @@ import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.worker.entity.CcmWorkerSign;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.method.P;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +20,8 @@ import java.util.List;
  */
 @MyBatisDao
 public interface CcmWorkerSignDao extends CrudDao<CcmWorkerSign> {
+
+    CcmWorkerSign getInfo(@Param("id") String id,@Param("date") Date date);
 
      void insertIdaa(CcmWorkerSign ccmWorkerSign) ;
 
