@@ -38,6 +38,9 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 	public CcmWorkerSign get(String id) {
 		return super.get(id);
 	}
+	public CcmWorkerSign getInfo(String id,Date date) {
+		return ccmWorkerSignDao.getInfo(id,date);
+	}
 	
 	public List<CcmWorkerSign> findList(CcmWorkerSign ccmWorkerSign) {
 		return super.findList(ccmWorkerSign);
@@ -144,7 +147,7 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 
 	//考勤统计
 	@Transactional(readOnly = false)
-	public Map<String,Object> findBystatistics(String userId,Date date, CcmWorkerSign ccmWorkerSign) {
+	public Map<String,Object> findByStatistics(String userId,Date date, CcmWorkerSign ccmWorkerSign) {
 
 		Map<String,Object> map= new HashMap<String,Object>();
 
