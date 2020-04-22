@@ -830,6 +830,7 @@
 	) ld
 	LEFT JOIN ccm_org_area org ON ld.sqid = org.area_id
 	LEFT JOIN ccm_people_amount amount ON amount.area_id = ld.sqid
+	GROUP BY ld.sqid
 	</select>
 
 </mapper>

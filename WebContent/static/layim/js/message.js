@@ -77,7 +77,11 @@ proto.Model.toObject = function(includeInstance, msg) {
     content: msg.getContent_asB64(),
     ressign: jspb.Message.getFieldWithDefault(msg, 16, ""),
     reqtype: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    vagroupid: jspb.Message.getFieldWithDefault(msg, 18, "")
+    vagroupid: jspb.Message.getFieldWithDefault(msg, 18, ""),
+    calltype: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    sendername: jspb.Message.getFieldWithDefault(msg, 20, ""),
+    senderphoto: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    vagroupname: jspb.Message.getFieldWithDefault(msg, 22, "")
   };
 
   if (includeInstance) {
@@ -185,6 +189,22 @@ proto.Model.deserializeBinaryFromReader = function(msg, reader) {
     case 18:
       var value = /** @type {string} */ (reader.readString());
       msg.setVagroupid(value);
+      break;
+    case 19:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCalltype(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSendername(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSenderphoto(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVagroupname(value);
       break;
     default:
       reader.skipField();
@@ -338,6 +358,34 @@ proto.Model.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       18,
+      f
+    );
+  }
+  f = message.getCalltype();
+  if (f.length > 0) {
+    writer.writeString(
+      19,
+      f
+    );
+  }
+  f = message.getSendername();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
+      f
+    );
+  }
+  f = message.getSenderphoto();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getVagroupname();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
       f
     );
   }
@@ -635,6 +683,66 @@ proto.Model.prototype.getVagroupid = function() {
 /** @param {string} value */
 proto.Model.prototype.setVagroupid = function(value) {
   jspb.Message.setField(this, 18, value);
+};
+
+
+/**
+ * optional string callType = 19;
+ * @return {string}
+ */
+proto.Model.prototype.getCalltype = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
+};
+
+
+/** @param {string} value */
+proto.Model.prototype.setCalltype = function(value) {
+  jspb.Message.setField(this, 19, value);
+};
+
+
+/**
+ * optional string senderName = 20;
+ * @return {string}
+ */
+proto.Model.prototype.getSendername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/** @param {string} value */
+proto.Model.prototype.setSendername = function(value) {
+  jspb.Message.setField(this, 20, value);
+};
+
+
+/**
+ * optional string senderPhoto = 21;
+ * @return {string}
+ */
+proto.Model.prototype.getSenderphoto = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/** @param {string} value */
+proto.Model.prototype.setSenderphoto = function(value) {
+  jspb.Message.setField(this, 21, value);
+};
+
+
+/**
+ * optional string vagroupName = 22;
+ * @return {string}
+ */
+proto.Model.prototype.getVagroupname = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/** @param {string} value */
+proto.Model.prototype.setVagroupname = function(value) {
+  jspb.Message.setField(this, 22, value);
 };
 
 

@@ -3,11 +3,13 @@
  */
 package com.arjjs.ccm.modules.ccm.attendance.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.attendance.entity.CcmWorkerAttendance;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 社工考勤登记DAO接口
@@ -24,4 +26,6 @@ public interface CcmWorkerAttendanceDao extends CrudDao<CcmWorkerAttendance> {
 	CcmWorkerAttendance getByapplyId(String id);
 
 	List<CcmWorkerAttendance> findPageByCreateBy(CcmWorkerAttendance ccmWorkerAttendance);
+
+	List<CcmWorkerAttendance> leaveNumByUserId(@Param("userId") String userId, @Param("date") Date date);
 }

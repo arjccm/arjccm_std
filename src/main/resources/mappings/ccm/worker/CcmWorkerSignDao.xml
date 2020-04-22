@@ -117,7 +117,6 @@
 			#{user.id},
 			#{clockinTime},
 			#{clockoutTime},
--- 			#{createBy.id},
 			#{createDate},
 			#{clockinType},
 			#{clockoutType},
@@ -201,11 +200,18 @@
 
 
 	</select>
+	<select id="findByClockinInfo" resultType="int">
+		SELECT count(*) FROM ccm_worker_sign WHERE user_id=#{user.id} AND date_format(#{clockinTime}, '%Y%m%d')=date_format(clockin_time, '%Y%m%d')
+	</select>
+
 	<select id="findClockoutTime" resultType="int">
-		SELECT count(*) FROM ccm_worker_sign WHERE user_id=#{user.id} AND date_format(#{clockoutTime}, '%Y%m%d')=date_format(clockin_time, '%Y%m%d')
+		SELECT count(*) FROM ccm_worker_sign WHERE user_id=#{user.id} AND date_format(#{clockoutTime}, '%Y%m%d')=date_format(clockin_time, '%Y%m%d') AND clockout_time IS NULL
 	</select>
 	<update id="signBack">
 		UPDATE ccm_worker_sign
 		SET clockout_time = #{clockoutTime},clockout_type=#{clockoutType},update_by =#{updateBy.id} ,update_date=#{updateDate},clockout_area_name=#{clockoutAreaName} where user_id=#{user.id}
 	</update>
+	<select id="findByCountMonth" resultType="CcmWorkerSign">
+	SELECT * FROM ccm_worker_sign WHERE user_id=#{ccmWorkerSign.user.id} AND date_format(#{date}, '%Y%m')=date_format(clockin_time , '%Y%m') AND clockin_time IS NOT NULL
+	</select>
 </mapper>

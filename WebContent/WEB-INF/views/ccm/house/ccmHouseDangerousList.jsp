@@ -57,9 +57,9 @@
         function saveImport() {
             if(isEmpty){
                 alert("请选择文件！");
-                return;
+                return false;
             }else{
-                $("#importForm").submit();
+                loading('正在导入，请稍等...');
             }
         }
         function changeFalse(_this) {
@@ -78,10 +78,10 @@
     <!-- 导入、导出模块 -->
     <div id="importBox" class="hide">
         <form id="importForm" action="${ctx}/house/ccmHouseDangerous/import" method="post" enctype="multipart/form-data"
-              class="form-search" style="padding-left: 20px; text-align: center;" onsubmit="loading('正在导入，请稍等...');">
+              class="form-search" style="padding-left: 20px; text-align: center;" onsubmit="return saveImport()">
             <br/>
             <input id="uploadFile" name="file" type="file" style="width: 330px" onchange="changeFalse(this.value.length)"/><br/> <br/>
-            <input id="btnImportSubmit" class="btn btn-primary" type="button" onclick="saveImport()" value="导  入 "/>
+            <input id="btnImportSubmit" class="btn btn-primary" type="submit" value="导  入 "/>
         </form>
     </div>
     <ul class="nav nav-tabs">
@@ -203,7 +203,7 @@
                        onclick="parent.LayerDialog('${ctx}/house/ccmHouseDangerous/form?id=${ccmHouseDangerous.id}', '修改', '1200px', '900px')"
                        title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
                     <a class="btnList"
-                       href="${ctx}/house/ccmHouseDangerous/delete?id=${ccmHouseDangerous.id}permissionKey=${permissionKey}"
+                       href="${ctx}/house/ccmHouseDangerous/delete?id=${ccmHouseDangerous.id}&permissionKey=${permissionKey}"
                        onclick="return confirmx('确认要删除该危险品从业人员吗？', this.href)" title="删除"><i
                             class="iconfont icon-caozuotubiao-shanchu"></i></a>
                     <a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmHouseDangerous.peopleId}')"
