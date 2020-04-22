@@ -10,6 +10,7 @@ import java.util.*;
 import com.arjjs.ccm.modules.ccm.attendance.dao.CcmWorkerAttendanceDao;
 import com.arjjs.ccm.modules.ccm.attendance.entity.CcmWorkerAttendance;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,7 +87,7 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 		return ccmWorkerSignDao.findByClockinInfo(ccmWorkerSign);
 	}
 
-	//打卡日历
+	//考勤日历
 	@Transactional(readOnly = false)
 	public Map<String,Object> findByCountMonth(String userId,Date date, CcmWorkerSign ccmWorkerSign) {
 
@@ -97,30 +98,17 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 		List<Integer> lacklist=new ArrayList<>();
 		//打卡次数
 		Integer timenum=0;
-		//缺卡次数
-		Integer Lacknum=0;
 		//每日工时
 		String manHour="";
-		//总工时
-		long num=0;
-		//平均工时
-		long average1;
-		//出勤天数
-		Integer number=0;
-		//请假天数
-		double leaveNum=0;
-		double	leaveNum1=0;
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM");
 		SimpleDateFormat formatter2 = new SimpleDateFormat("dd");
 		SimpleDateFormat formatter3 = new SimpleDateFormat("MM");
 		String dateformatter = formatter.format(date);
-		//查询和date同月数据
+		//查询和date同月且有签到时间的数据
 		List<CcmWorkerSign> ccmWorkerSignlist = ccmWorkerSignDao.findByCountMonth(dateformatter, ccmWorkerSign);
-		//请假天数
-		List<CcmWorkerAttendance> CcmWorkerAttendances = ccmWorkerAttendanceDao.leaveNumByUserId(userId,date);
-		//出勤天数
-		number=ccmWorkerSignlist.size();
+
 		for (int i = 0; i < ccmWorkerSignlist.size(); i++) {
 			CcmWorkerSign ccmWorkerSign1 = ccmWorkerSignlist.get(i);
 			if (DateUtils.isSameDay(date,ccmWorkerSign1.getClockinTime())){
@@ -140,13 +128,66 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 			if (ccmWorkerSign1.getClockoutTime()!=null){
 				wholelist.add(Integer.parseInt(formatter2.format(ccmWorkerSign1.getClockinTime())));
 				long l = ccmWorkerSign1.getClockoutTime().getTime() - ccmWorkerSign1.getClockinTime().getTime();
-				num=num+l;
+				/*num=num+l;*/
 			}else {
-				Lacknum++;
+				/*Lacknum++;*/
 				lacklist.add(Integer.parseInt(formatter2.format(ccmWorkerSign1.getClockinTime())));
 			}
 		}
+		map.put("timenum",timenum);  //打卡次数
+		map.put("manHour",manHour);  //每日工时
+		map.put("ccmWorkerSign",ccmWorkerSign);
+		map.put("wholelist",wholelist); //打卡统计（签到签退都有数据）
+		map.put("lacklist",lacklist);  //打卡统计（只有签到）
+		return map;
+	}
 
+	//考勤统计
+	@Transactional(readOnly = false)
+	public Map<String,Object> findBystatistics(String userId,Date date, CcmWorkerSign ccmWorkerSign) {
+
+		Map<String,Object> map= new HashMap<String,Object>();
+
+		ArrayList<String> workList = new ArrayList<>();  //出勤天数
+		ArrayList<CcmWorkerSign> averageList = new ArrayList<>();  //平均工时
+		ArrayList<String> lackList = new ArrayList<>();  //缺卡天数
+		ArrayList<String> leaveList = Lists.newArrayList();  //请假天数
+		long num=0;  //总工时
+		long average1;  //平均工时
+		Integer number=0;  //出勤天数
+		String manHour="";  //每日工时
+	/*	double leaveNum=0;  //请假天数
+		double	leaveNum1=0;*/
+		String holiday = "";
+
+		SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat formatter4  = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM");
+		SimpleDateFormat formatter2 = new SimpleDateFormat("dd");
+		SimpleDateFormat formatter3 = new SimpleDateFormat("MM");
+		String dateformatter = formatter.format(date);
+
+		//查询和date同月且有签到时间的数据
+		List<CcmWorkerSign> ccmWorkerSignlist = ccmWorkerSignDao.findByCountMonth(dateformatter, ccmWorkerSign);
+		//请假天数
+		List<CcmWorkerAttendance> CcmWorkerAttendances = ccmWorkerAttendanceDao.leaveNumByUserId(userId,date);
+		//出勤天数
+		number=ccmWorkerSignlist.size();
+		for (CcmWorkerSign workerSign : ccmWorkerSignlist) {
+			if (workerSign.getClockoutTime()!=null){
+				long l = workerSign.getClockoutTime().getTime() - workerSign.getClockinTime().getTime();
+				manHour= findmanHour(l);
+				workerSign.setManHour(manHour);
+				num=num+l;
+			}
+			else {
+				workerSign.setManHour("0");
+				lackList.add(formatter4.format(workerSign.getClockinTime()));
+			}
+			//出勤天数list
+			workList.add(formatter4.format(workerSign.getClockinTime()));
+			averageList.add(workerSign);
+		}
 		try {
 		for (CcmWorkerAttendance ccmWorkerAttendance : CcmWorkerAttendances) {
 			String beginFormat1 = formatter1.format(ccmWorkerAttendance.getAttendanceBegin());
@@ -154,33 +195,63 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 			String dateFormat1 = formatter1.format(date);
 			String dateFormat = formatter.format(date);
 			if (beginFormat1.equals(endFormat1)){
-					leaveNum1 = Double.parseDouble(ccmWorkerAttendance.getDays());
+					/*leaveNum1 = Double.parseDouble(ccmWorkerAttendance.getDays());*/
+
+				String start = formatter2.format(ccmWorkerAttendance.getAttendanceBegin());
+				String end = formatter2.format(ccmWorkerAttendance.getAttendanceEnd());
+				for (int i = Integer.valueOf(start); i <= Integer.valueOf(end); i++) {
+					if (i/10<1){
+						holiday = dateFormat1+"-"+"0"+i;
+					}else {
+						holiday = dateFormat1+"-"+i;
+					}
+					leaveList.add(holiday);
+				}
 			}else if (beginFormat1.equals(dateFormat1)){
-					leaveNum1 = (int)(getMaxMonthDate(dateFormat, formatter) - ccmWorkerAttendance.getAttendanceBegin().getTime())/ (24 * 60 * 60 * 1000);
+				/*leaveNum1 = (int)(getMaxMonthDate(dateFormat, formatter) - ccmWorkerAttendance.getAttendanceBegin().getTime())/ (24 * 60 * 60 * 1000);*/
+
+				String start = formatter2.format(ccmWorkerAttendance.getAttendanceBegin());
+				String end = formatter2.format(getMaxMonthDate(dateFormat, formatter));
+				for (int i = Integer.valueOf(start); i <= Integer.valueOf(end); i++) {
+					if (i/10<1){
+						holiday = dateFormat1+"-"+"0"+i;
+					}else {
+						holiday = dateFormat1+"-"+i;
+					}
+					leaveList.add(holiday);
+				}
 			}else {
-					leaveNum1 = (int)(ccmWorkerAttendance.getAttendanceEnd().getTime()-getminMonthDate(dateFormat, formatter) )/ (24 * 60 * 60 * 1000);
+					/*leaveNum1 = (int)(ccmWorkerAttendance.getAttendanceEnd().getTime()-getminMonthDate(dateFormat, formatter) )/ (24 * 60 * 60 * 1000);*/
+					String start = formatter2.format(getminMonthDate(dateFormat, formatter));
+					String end = formatter2.format(ccmWorkerAttendance.getAttendanceEnd());
+				for (int i = Integer.valueOf(start); i <= Integer.valueOf(end); i++) {
+					if (i/10<1){
+						holiday = dateFormat1+"-"+"0"+i;
+					}else {
+						holiday = dateFormat1+"-"+i;
+					}
+					leaveList.add(holiday);
+					}
+				}
 			}
-			leaveNum=leaveNum+leaveNum1;
-		}
 		}catch (Exception e){
 		e.printStackTrace();
 	}
+
 		if (num>0&&number>0){
 			average1=num/number;
 			String average= findmanHour(average1);
 			map.put("average",average);  //月平均工时
+		}else {
+			map.put("average","0");
 		}
-		map.put("timenum",timenum);  //打卡次数
-		map.put("leaveNum",leaveNum);  //请假次数
-		map.put("Lacknum",Lacknum);  //月缺卡次数
-		map.put("manHour",manHour);  //每日工时
-		map.put("number",number);  //出勤天数
-		map.put("ccmWorkerSign",ccmWorkerSign);
-		map.put("wholelist",wholelist); //打卡统计（签到签退都有数据）
-		map.put("lacklist",lacklist);  //打卡统计（只有签到）
+		map.put("workList",workList);//出勤天数
+		map.put("averageList",averageList);//平均工时
+		map.put("lackList",lackList);//缺卡天数
+		map.put("leaveList",leaveList);//请假天数
 		return map;
 	}
-	//根据毫秒值返回几号
+	//根据毫秒值返回小时
 	public static String findmanHour(long l){
 		long day=l/(24*60*60*1000);
 		long hour=(l/(60*60*1000)-day*24);
@@ -203,4 +274,5 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 		calendar.set(Calendar.DAY_OF_MONTH,calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
 		return calendar.getTimeInMillis();
 	}
+
 }

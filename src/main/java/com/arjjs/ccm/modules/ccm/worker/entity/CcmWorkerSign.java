@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.arjjs.ccm.common.persistence.DataEntity;
 
-
-
 /**
  * 社工签到Entity
  * @author yiqingxuan
@@ -38,6 +36,15 @@ public class CcmWorkerSign extends DataEntity<CcmWorkerSign> {
 	private Date  createDate;   //创建时间
 	private User updateBy;     //更新者
 	private Date updateDate;   //更新时间
+	private String manHour;  //每日工时
+
+	public String getManHour() {
+		return manHour;
+	}
+
+	public void setManHour(String manHour) {
+		this.manHour = manHour;
+	}
 
 	@Override
 	public User getUpdateBy() {
