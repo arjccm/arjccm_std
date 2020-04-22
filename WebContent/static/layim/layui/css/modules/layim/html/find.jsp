@@ -26,11 +26,12 @@
             <div class="layui-col-md6">
 
                     <div class="layui-form-item search-box">
-                        <input type="text" placeholder="搜素" class="layui-input">
+                        <input type="text" placeholder="搜素" class="layui-input" id="search_grpfrd">
                         <a class="searchIcon"><i class="layui-icon layui-icon-search"></i></a>
                     </div>
                     <div class="layui-form-item friend-box"  pane="">
                         <ul class="layui-nav layui-nav-tree layui-inline friend-list-box" lay-filter="demo" style="margin-right: 0;"></ul>
+                        <div id="seachfriendList"></div>
                     </div>
 
             </div>
@@ -198,6 +199,58 @@
 
 
             });
+
+            //检索
+            $('#search_grpfrd').keyup(function () {
+                var keyWord = $('#search_grpfrd').val();
+                if (keyWord != ''){
+                    // var index=layer.msg('正在查询请稍后',{
+                    //     icon:2,
+                    //     title:'提示',
+                    //     time:false
+                    // })
+
+                    var checkboxlen = $(".friend-list-box input").length
+                    console.log(keyWord)
+                    $(".friend-list-box li").removeClass("jiedian_a")
+                    $(".friend-list-box dl").removeClass("jiedian_b")
+                    for (var j=0;j<checkboxlen;j++){
+
+                        var titContent = $(".friend-list-box input").eq(j).attr("title")
+                        var sear = titContent.indexOf(keyWord)
+                        if(sear!=-1){
+
+                            $(".friend-list-box input").eq(j).parents(".groupList").addClass("jiedian_a")
+                            $(".friend-list-box input").eq(j).parents("dl").addClass("jiedian_b")
+                            $(".friend-list-box li").css({
+                                "display":"none"
+                            })
+                            $(".friend-list-box li.jiedian_a").css({
+                                "display":"block"
+                            })
+                            $(".friend-list-box dl").css({
+                                "display":"none"
+                            })
+                            $(".friend-list-box dl.jiedian_b").css({
+                                "display":"block"
+                            })
+                        }else{
+                            // console.log("未找到")
+                        }
+                    }
+
+                }else{
+                    $(".friend-list-box li").css({
+                        "display":""
+                    })
+                    $(".friend-list-box dl").css({
+                        "display":""
+                    })
+                }
+            });
+
+
+
             var imgSrcData;
             //图片上传
             var uploadInst = upload.render({
