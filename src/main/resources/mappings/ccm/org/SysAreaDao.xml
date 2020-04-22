@@ -631,8 +631,8 @@
 	<select id="listFlawService" resultType="com.arjjs.ccm.tool.EchartType">
 	SELECT
 		a.id,
-		b.label AS 'name',
-		count(b.label) AS 'num'
+		IFNULL(b.label,'未知') AS 'name',
+		count(a.id) AS 'num'
 	FROM
 		ccm_people a
 	LEFT JOIN sys_dict b ON a.flow_rea = b.`value`

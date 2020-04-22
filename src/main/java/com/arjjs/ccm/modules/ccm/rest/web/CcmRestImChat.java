@@ -9,11 +9,12 @@ import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserRelationship;
 import com.arjjs.ccm.modules.ccm.rest.service.CcmUserGroupService;
 import com.arjjs.ccm.modules.ccm.rest.service.CcmUserRelationshipService;
 import com.arjjs.ccm.modules.sys.entity.User;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import groovy.util.logging.Slf4j;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,11 +63,14 @@ public class CcmRestImChat extends BaseController {
 				result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);
 				return result;
 			}
-			if(!ccmUserGroup.getUserId().equals(ccmUserGroupDB.getGroupOwnerId())){	//如果操作者不是群创建者，提示无权限
+			String userId = ccmUserGroup.getUserId();
+			String groupOwnerId = ccmUserGroupDB.getGroupOwnerId();
+			if(!userId.equals(groupOwnerId)){	//如果操作者不是群创建者，提示无权限
 				result.setCode(CcmRestType.ERROR_NO_PERSSION);
 				return result;
 			}
 		}
+        User userInfo = UserUtils.get(ccmUserGroup.getUserId());
 		List<String> userListVo = ccmUserGroup.getUserList();
 		if(null == userListVo && userListVo.isEmpty()){
 			result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);//数据不存在，没有用户列表，保存不了；群组必须有人；
@@ -74,8 +78,11 @@ public class CcmRestImChat extends BaseController {
 		}
 		ccmUserGroup.setCreateBy(new User(ccmUserGroup.getUserId()));
 		ccmUserGroup.setUpdateBy(new User(ccmUserGroup.getUserId()));
-		if (StringUtils.isBlank(ccmUserGroup.getGroupOwnerId())){//如果没有设置群主，则为当前用户
+		if (StringUtils.isEmpty(ccmUserGroup.getGroupOwnerId())){//如果没有设置群主，则为当前用户
 			ccmUserGroup.setGroupOwnerId(ccmUserGroup.getUserId());
+		}
+		if (StringUtils.isEmpty(ccmUserGroup.getGroupname())){//如果没有设置群名称，则为用户名称 + 的临时群组
+			ccmUserGroup.setGroupname(userInfo.getName() + "的临时群组");
 		}
 		ccmUserGroupService.save(ccmUserGroup);
 		//根据ID，删除群组用户

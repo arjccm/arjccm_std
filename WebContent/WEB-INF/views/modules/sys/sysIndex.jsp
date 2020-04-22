@@ -304,7 +304,7 @@
 	//判断pid是否存在	跳转新密宗教可视化界面
 	if(location.search.indexOf("pid=")!=-1){
 		//如果是并且是大数据可视化 系统
-		if(location.search.split("=")[1]=="8bb3257be8ae448a9d3e80d4075291ef"){
+		if(location.search.split("=")[1]=="1910fe622fb94435b36d30f7dc686be6"){
 			//去掉页头重新刷新页面(去除iframe)
 			/* location.href="${ctx}/sys/map/statIndex"; */
 			/* location.href="${ctx}/sys/map/statLivelihood"; */
@@ -606,7 +606,7 @@ function addTab($this, refresh) {
 				<%-- <div class="brand"><span id="productName">${fns:getConfig('productName')}</span></div> --%>
 				<div class="brand">
 <%--					<a href="${ctx}/sys/map/statIndexCool" disabled="disabled" target="" style="text-align: center;position: relative;" >--%>
-					<img class="logo" src="${ctxStatic}/images/logo.png" style="width:45px;height:45px;margin-right:7px;margin-left:30px;margin-top:-1px ;"/></i>
+					<img class="logo" src="${ctxStatic}/common/index/images/statIndexZj/xmzj_logo.png" style="width:45px;height:45px;margin-right:7px;margin-left:30px;margin-top:-1px ;"/></i>
 					   <span id="productName" style="width:162px;height:49px;font-size:26px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);line-height:27px;text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;top: -13px; left: -5px">${fns:getConfig('productName_part1')}</span>
 						<span style="display: block; top: -20px;left: 113px;width:220px;color:rgba(204, 204, 204, 1); font-size: 17px;font-weight: bold;position: relative;margin-left: -22px;margin-right: -28px;margin-bottom: -15px;">${fns:getConfig('productName_part2')}</span>
 					</a>
