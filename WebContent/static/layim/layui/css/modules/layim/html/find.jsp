@@ -75,7 +75,7 @@
             </div>
 
             <div class="layui-col-md12 clearfix">
-                <div class="submitBtn"><button type="button" class="layui-btn site-demo-layim" lay-submit lay-filter="groupSubmit" data-type="addGroup removeGroup">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
+                <div class="submitBtn"><button type="button" class="layui-btn site-demo-layim" lay-submit lay-filter="groupSubmit" data-type="addGroup">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
             </div>
         </div>
     </div>
@@ -250,12 +250,8 @@
                     id:grpId,
                     userId:currentsession
                 }
-                var resgrpid;
-
-               // result: {id: "6b941665de994cadba2243e2b06b723e
-
-                console.log(resgrpid)
                 var selectList =  $("#slt-lt-bx li")
+
                 for(var i=0;i<selectList.length;i++){
                     var listVal = $("#slt-lt-bx li").eq(i).attr("value")
                     // console.log(listVal)
@@ -271,37 +267,46 @@
                     type:"post",
                     url:$url+'/rest/ImChat/saveGroups',
                     dataType:"json",
-                    // async:false,
                     data:JSON.stringify(json),
                     contentType: 'application/json; charset=UTF-8',
                     success:function(res){
                         var rid = res.result.id
                         if(setGrp.hasClass("changeGrp")){
+                            parent.layui.layim.removeList({
+                                id: rid
+                                ,type: 'group'
+                            });
                             $ = layui.jquery, active = {
-                                removeGroup: function(){
-                                    layer.msg('已成功删除'+ rid, {
+                                addGroup: function(){
+                                    layer.msg('修改成功', {
                                         icon: 1
                                     });
-                                    //删除一个群组
-                                    parent.layui.layim.removeList({
-                                        id: rid
-                                        ,type: 'group'
+                                    //增加一个群组渲染到页面
+                                    parent.layui.layim.addList({
+                                        type: 'group'
+                                        ,avatar: imgSrcData
+                                        ,groupname: data.field.groupname
+                                        ,id: rid
+                                        ,members: 0
+                                        ,groupowner:data.field.groupOwnerId
                                     });
                                 }
-                                // ,addGroup: function(){
-                                //     layer.msg('创建成功', {
-                                //         icon: 1
-                                //     });
-                                //     //增加一个群组渲染到页面
-                                //     parent.layui.layim.addList({
-                                //         type: 'group'
-                                //         ,avatar: imgSrcData
-                                //         ,groupname: data.field.groupname
-                                //         ,id: rid
-                                //         ,members: 0
-                                //     });
-                                // }
                             }
+                            //更新渲染当前聊天窗口一些信息
+                            var chatChangeHtml = json.groupname+"<em class='layim-chat-members'>"+json.userList.length+"人</em><i class='layui-icon'>&#xe61a;</i>"
+                            parent.$(".layim-chat-username").html(chatChangeHtml)
+                            //更新渲染聊天窗口判断当前是不是群主
+                            if(json.groupOwnerId == currentsession ){
+                                parent.$(".layim-chat-group .setUpGroup").css({
+                                    "display":"block"
+                                })
+                            }else {
+                                parent.$(".layim-chat-group .setUpGroup").css({
+                                    "display":"none"
+                                })
+                            }
+
+
                             var type = $('.site-demo-layim').data('type');
                             active[type] ? active[type].call($('.site-demo-layim')) : '';
                         }else {
@@ -317,6 +322,7 @@
                                         ,groupname: data.field.groupname
                                         ,id: rid
                                         ,members: 0
+                                        ,groupowner:data.field.groupOwnerId
                                     });
                                 }
                             }
@@ -324,14 +330,7 @@
                             active[type] ? active[type].call($('.site-demo-layim')) : '';
                         }
 
-
-
-
-                        // resgrpid = rid
-                        // console.log(res.result.id)
-
                         parent.layer.close(ptindex);
-                        // return resgrpid
                     }
 
                 })
