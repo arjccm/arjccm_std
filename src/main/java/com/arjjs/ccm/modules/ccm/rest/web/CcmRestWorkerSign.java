@@ -8,8 +8,8 @@ import com.arjjs.ccm.modules.ccm.worker.entity.CcmWorkerSign;
 import com.arjjs.ccm.modules.ccm.worker.service.CcmWorkerSignService;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
-import org.apache.commons.lang.ObjectUtils;
-import org.apache.commons.lang3.time.DateUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +26,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping(value = "${appPath}/rest/service/ccmWorkerSign")
+@Api(description = "app考勤接口类")
 public class CcmRestWorkerSign {
 
     @Autowired
@@ -34,12 +35,13 @@ public class CcmRestWorkerSign {
 
     //获取详情
     @ResponseBody
+    @ApiOperation(value ="获取详情" )
     @RequestMapping(value = "/getinfo", method = RequestMethod.GET)
-    public CcmRestResult getinfo(String id) {
+    public CcmRestResult getinfo(String userId,Date date) {
         CcmRestResult result = new CcmRestResult();
         CcmWorkerSign entity = null;
-        if (StringUtils.isNotBlank(id)){
-            entity = ccmWorkerSignService.get(id);
+        if (StringUtils.isNotBlank(userId)){
+             entity = ccmWorkerSignService.getInfo(userId, date);
         }
         if (entity == null){
             entity = new CcmWorkerSign();
@@ -67,6 +69,7 @@ public class CcmRestWorkerSign {
 
 
     //签到
+    @ApiOperation(value = "签到")
     @ResponseBody
     @RequestMapping(value = "/getform", method = RequestMethod.GET)
     public CcmRestResult getform(String userId,CcmWorkerSign ccmWorkerSign) {
@@ -106,6 +109,7 @@ public class CcmRestWorkerSign {
 
     //签退
     @ResponseBody
+    @ApiOperation(value = "签退")
     @RequestMapping(value = "/resform", method = RequestMethod.GET)
     public CcmRestResult resform(String userId,CcmWorkerSign ccmWorkerSign) {
         CcmRestResult result = new CcmRestResult();
@@ -141,6 +145,7 @@ public class CcmRestWorkerSign {
 
     //考勤日历信息
     @ResponseBody
+    @ApiOperation(value = "考勤日历信息")
     @RequestMapping(value = "/rescount", method = RequestMethod.GET)
     public CcmRestResult rescount (String userId,Date date){
         CcmWorkerSign ccmWorkerSign = new CcmWorkerSign();
@@ -155,13 +160,14 @@ public class CcmRestWorkerSign {
 
     //考勤统计
     @ResponseBody
+    @ApiOperation(value = "考勤统计")
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
     public CcmRestResult statistics (String userId,Date date){
         CcmWorkerSign ccmWorkerSign = new CcmWorkerSign();
         CcmRestResult result = new CcmRestResult();
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
-        Map<String, Object> map = ccmWorkerSignService.findBystatistics(userId,date, ccmWorkerSign);
+        Map<String, Object> map = ccmWorkerSignService.findByStatistics(userId,date, ccmWorkerSign);
         result.setCode(CcmRestType.OK);
         result.setResult(map);
         return result;
