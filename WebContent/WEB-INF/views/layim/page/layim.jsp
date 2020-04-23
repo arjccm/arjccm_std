@@ -351,7 +351,7 @@ function getMembers(groupId) {
 			    //     ,content: '贤心加入群聊'
 			    //   });
 			    // }
-                //     console.log(res)
+                    console.log(res)
                    var group_Id =  res.data.id
                 //     console.log(meid)
                     //判断如果是群主将修改按钮显示出来
