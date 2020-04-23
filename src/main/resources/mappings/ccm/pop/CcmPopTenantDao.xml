@@ -292,6 +292,9 @@
             <if test="houseType != null and houseType != ''">
                 AND a.house_type = #{houseType}
             </if>
+            <if test="idenNum != null and idenNum != ''">
+                AND a.iden_num = #{idenNum}
+            </if>
         </where>
         <choose>
             <when test="page !=null and page.orderBy != null and page.orderBy != ''">
