@@ -1,13 +1,8 @@
 package com.arjjs.ccm.modules.ccm.rest.web;
 
-import java.io.BufferedInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import java.io.*;
+import java.net.URLDecoder;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,17 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
+import com.arjjs.ccm.modules.ccm.rest.entity.*;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysDicts;
 import com.arjjs.ccm.modules.ccm.sys.service.SysDictsService;
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import com.arjjs.ccm.modules.sys.dao.UserDao;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.tool.LjpTools;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -39,16 +38,12 @@ import com.arjjs.ccm.modules.ccm.event.entity.wechat.CcmWechatEvent;
 import com.arjjs.ccm.modules.ccm.event.entity.wechat.CcmWechatEventAttachment;
 import com.arjjs.ccm.modules.ccm.event.service.wechat.CcmWechatEventAttachmentService;
 import com.arjjs.ccm.modules.ccm.event.service.wechat.CcmWechatEventService;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmEntityFileUpload;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmEntityProgress;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.CommUtilRest;
 
 /**
  * 楼栋接口类
- * 
+ *
  * @author pengjianqiang
  * @version 2018-02-02
  */
@@ -68,9 +63,11 @@ public class CcmRestWechat extends BaseController {
 	@Autowired
 	private CcmHouseBuildmanageService ccmHouseBuildmanageService;
 	@Autowired
-    private UserDao userDao;
+	private UserDao userDao;
 	@Autowired
-    private SysDictsService sysDictsService;
+	private SysDictsService sysDictsService;
+	@Autowired
+	private CcmPeopleService ccmPeopleService;
 
 
 	/**
@@ -113,7 +110,7 @@ public class CcmRestWechat extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/queryWechatEvent", method = RequestMethod.GET)
 	public CcmRestResult queryRequest(String userId, HttpServletRequest req, HttpServletResponse resp,
-			CcmWechatEvent ccmWechatEvent) throws IOException {
+									  CcmWechatEvent ccmWechatEvent) throws IOException {
 		// 获取结果
 		CcmRestResult result = CommUtilRest.queryResult(userId, req, resp);
 		// 如果当前的 flag 为返回
@@ -143,11 +140,11 @@ public class CcmRestWechat extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/saveWechatEvent", method = RequestMethod.POST)
 	public CcmRestResult saveRequest(CcmWechatEvent ccmWechatEvent, HttpServletRequest req,
-			HttpServletResponse resp) throws IOException {
+									 HttpServletResponse resp) throws IOException {
 		// 获取结果
 		CcmRestResult result = new CcmRestResult();
 		// 如果当前的 flag 为返回
-		
+
 		ccmWechatEvent.setCreateBy(new User("0"));
 		ccmWechatEvent.setCreateDate(new Date());
 		ccmWechatEvent.setReportTime(new Date());
@@ -169,7 +166,7 @@ public class CcmRestWechat extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/saveWechatEventAtta", method = RequestMethod.POST)
 	public CcmRestResult saveWechatEventAtta(CcmWechatEventAttachment ccmWechatEventAttachment, HttpServletRequest req,
-			HttpServletResponse resp) throws IOException {
+											 HttpServletResponse resp) throws IOException {
 		// 获取结果
 		CcmRestResult result = new CcmRestResult();
 		// 如果创建者为空
@@ -184,29 +181,29 @@ public class CcmRestWechat extends BaseController {
 
 
 	@RequestMapping(value = "login")
-    @ResponseBody
-    public CcmRestResult login(User user,HttpServletRequest request){
-        CcmRestResult result = new CcmRestResult();
-        if(LjpTools.isExistBlank(user.getLoginName(),user.getPassword())){
-	        result.setCode(CcmRestType.ERROR_PARAM);
-	        return result;
-        }
-        User userDB = userDao.getByLoginName(user);
-        if(userDB==null) {
-            result.setCode(CcmRestType.ERROR_NO_USER);
-            return result;
-        }else if (!user.getPassword().equals(userDB.getPassword())) {
-            result.setCode(CcmRestType.ERROR_NO_USER);
-            return result;
-        }
-        if (request.getSession().getAttribute("user")==null) {
-            request.getSession().setAttribute("user",userDB);
-        }
-        result.setCode(CcmRestType.OK);
+	@ResponseBody
+	public CcmRestResult login(User user,HttpServletRequest request){
+		CcmRestResult result = new CcmRestResult();
+		if(LjpTools.isExistBlank(user.getLoginName(),user.getPassword())){
+			result.setCode(CcmRestType.ERROR_PARAM);
+			return result;
+		}
+		User userDB = userDao.getByLoginName(user);
+		if(userDB==null) {
+			result.setCode(CcmRestType.ERROR_NO_USER);
+			return result;
+		}else if (!user.getPassword().equals(userDB.getPassword())) {
+			result.setCode(CcmRestType.ERROR_NO_USER);
+			return result;
+		}
+		if (request.getSession().getAttribute("user")==null) {
+			request.getSession().setAttribute("user",userDB);
+		}
+		result.setCode(CcmRestType.OK);
 
-        return result;
+		return result;
 
-    }
+	}
 
 
 	/**
@@ -222,9 +219,9 @@ public class CcmRestWechat extends BaseController {
 		CcmRestResult result = new CcmRestResult();
 
 		if(request.getSession().getAttribute("user")==null){
-            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
-            return result;
-        }
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
 
 		if(LjpTools.isExistNullOrZero(pageNo,pageSize)){
 			result.setCode(CcmRestType.ERROR_PARAM);
@@ -242,10 +239,10 @@ public class CcmRestWechat extends BaseController {
 	@RequestMapping(value = "/queryTenant")
 	public CcmRestResult queryTenant(String buildingId,String doorNum,Integer pageNo,Integer pageSize,HttpServletRequest request) {
 		CcmRestResult result = new CcmRestResult();
-        if(request.getSession().getAttribute("user")==null){
-            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
-            return result;
-        }
+		if(request.getSession().getAttribute("user")==null){
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
 		if (LjpTools.isExistNullOrZero(pageNo, pageSize)|| StringUtils.isBlank(buildingId)) {
 			result.setCode(CcmRestType.ERROR_PARAM);
 			return result;
@@ -260,62 +257,198 @@ public class CcmRestWechat extends BaseController {
 		return result;
 	}
 
-    @ResponseBody
-    @RequestMapping(value = "/saveTenant")
-    public CcmRestResult saveTenant(CcmPopTenant ccmPopTenant,HttpServletRequest request) {
-        CcmRestResult result = new CcmRestResult();
-        User user = (User) request.getSession().getAttribute("user");
-        if(user ==null){
-            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
-            return result;
-        }
+	@ResponseBody
+	@RequestMapping(value = "/saveTenant")
+	public CcmRestResult saveTenant(CcmPopTenant ccmPopTenant,String areaId,HttpServletRequest request) {
+		CcmRestResult result = new CcmRestResult();
+		User user = (User) request.getSession().getAttribute("user");
+		if(user ==null){
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
 
-        ccmPopTenant.setCreateBy(user);
-        ccmPopTenant.setUpdateBy(user);
-        ccmPopTenantService.save(ccmPopTenant);
-        result.setResult(ccmPopTenant);
-        result.setCode(CcmRestType.OK);
-        return result;
-    }
-    @ResponseBody
-    @RequestMapping(value = "/delTenant")
-    public CcmRestResult delTenant(CcmPopTenant ccmPopTenant,HttpServletRequest request) {
-        CcmRestResult result = new CcmRestResult();
-        if(request.getSession().getAttribute("user")==null){
-            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
-            return result;
-        }
-        if(StringUtils.isBlank(ccmPopTenant.getId())){
-            result.setCode(CcmRestType.ERROR_PARAM);
-            return result;
-        }
+		if(StringUtils.isNotEmpty(areaId)){
+			Area area = new Area();
+			area.setId(areaId);
+			ccmPopTenant.setArea(area);
+		}
 
-        ccmPopTenantService.delete(ccmPopTenant);
-        result.setResult(ccmPopTenant);
-        result.setCode(CcmRestType.OK);
-        return result;
-    }
-    @ResponseBody
-    @RequestMapping(value = "/getDict")
-    public CcmRestResult getDict(String type,HttpServletRequest request) {
-        CcmRestResult result = new CcmRestResult();
-        if(request.getSession().getAttribute("user")==null){
-            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
-            return result;
-        }
-        if(StringUtils.isBlank(type)){
-            result.setCode(CcmRestType.ERROR_PARAM);
-            return result;
-        }
+		if(StringUtils.isNotEmpty(ccmPopTenant.getBuildingId().getId())){
+			CcmHouseBuildmanage ccmHouseBuildmanage = ccmHouseBuildmanageService.get(ccmPopTenant.getBuildingId().getId());
+			ccmPopTenant.setHousePlace(ccmHouseBuildmanage.getResidencedetail());
+		}
 
-        List<SysDicts> allListByType = sysDictsService.findAllListByType(type);
-        result.setResult(allListByType);
-        result.setCode(CcmRestType.OK);
-        return result;
-    }
+		ccmPopTenant.setCreateBy(user);
+		ccmPopTenant.setUpdateBy(user);
+		ccmPopTenantService.save(ccmPopTenant);
+		result.setResult(ccmPopTenant);
+		result.setCode(CcmRestType.OK);
+		return result;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/delTenant")
+	public CcmRestResult delTenant(CcmPopTenant ccmPopTenant,HttpServletRequest request) {
+		CcmRestResult result = new CcmRestResult();
+		if(request.getSession().getAttribute("user")==null){
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		if(StringUtils.isBlank(ccmPopTenant.getId())){
+			result.setCode(CcmRestType.ERROR_PARAM);
+			return result;
+		}
 
+		ccmPopTenantService.delete(ccmPopTenant);
+		result.setResult(ccmPopTenant);
+		result.setCode(CcmRestType.OK);
+		return result;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/getDict")
+	public CcmRestResult getDict(String type,HttpServletRequest request) {
+		CcmRestResult result = new CcmRestResult();
+		if(request.getSession().getAttribute("user")==null){
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		if(StringUtils.isBlank(type)){
+			result.setCode(CcmRestType.ERROR_PARAM);
+			return result;
+		}
 
+		List<SysDicts> allListByType = sysDictsService.findAllListByType(type);
+		result.setResult(allListByType);
+		result.setCode(CcmRestType.OK);
+		return result;
+	}
 
+	@ResponseBody
+	@RequestMapping(value = "/queryTenantByIdCard")
+	public Map<String, Object> queryTenantByIdCard(String ident,Integer pageNo,Integer pageSize,HttpServletRequest request) {
+		if(request.getSession().getAttribute("user")==null){
+			return null;
+		}
+		if (LjpTools.isExistNullOrZero(pageNo, pageSize)|| StringUtils.isBlank(ident)) {
+			return null;
+		}
+		CcmPopTenant ccmPopTenant = new CcmPopTenant();
+		ccmPopTenant.setIdenNum(ident);
+		Page<CcmPopTenant> page = ccmPopTenantService.findPage(new Page<>(pageNo, pageSize),ccmPopTenant);
+		List<RentalHousingVO> res = new ArrayList<>();
+		List<CcmPopTenant> list = page.getList();
+		for (CcmPopTenant ccmPopTenant1 : list) {
+			RentalHousingVO rentalHousingVO = new RentalHousingVO();
+			rentalHousingVO.setId(ccmPopTenant1.getId());
+			rentalHousingVO.setAddressDetail(ccmPopTenant1.getHousePlace());
+			UserVO userVO = new UserVO();
+			userVO.setRealName(ccmPopTenant1.getHouseName());
+			userVO.setCardId(ccmPopTenant1.getIdenNum());
+			userVO.setTelephone(ccmPopTenant1.getHouseTl());
+			rentalHousingVO.setUserVO(userVO);
+			res.add(rentalHousingVO);
+		}
+		Map<String, Object> map = Maps.newHashMapWithExpectedSize(4);
+		map.put("count", page.getCount());
+		map.put("rentalHousings", res);
+		return map;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/queryTenantById")
+	public RentalHousingVO queryTenantById(String id,HttpServletRequest request) {
+		if(request.getSession().getAttribute("user")==null){
+			return null;
+		}
+		if (StringUtils.isBlank(id)) {
+			return null;
+		}
+		CcmPopTenant ccmPopTenant = ccmPopTenantService.get(id);
+		CcmPeople ccmPeople = new CcmPeople();
+		ccmPeople.setRoomId(ccmPopTenant);
+		List<CcmPeople> list = ccmPeopleService.getHousePopList(ccmPeople);
+		RentalHousingVO rentalHousingVO = new RentalHousingVO();
+		rentalHousingVO.setId(ccmPopTenant.getId());
+		rentalHousingVO.setAddressDetail(ccmPopTenant.getHousePlace());
+		UserVO userVO = new UserVO();
+		userVO.setRealName(ccmPopTenant.getHouseName());
+		userVO.setCardId(ccmPopTenant.getIdenNum());
+		userVO.setTelephone(ccmPopTenant.getHouseTl());
+		rentalHousingVO.setUserVO(userVO);
+		List<TenantVO> res = new ArrayList<>();
+		for (CcmPeople people:list) {
+			TenantVO tenantVO = new TenantVO();
+			tenantVO.setId(people.getId());
+			tenantVO.setRentalHouseId(ccmPopTenant.getId());
+			tenantVO.setTenantIdCard(people.getIdent());
+			tenantVO.setTenantName(people.getName());
+			tenantVO.setTenantPhone(people.getTelephone());
+			res.add(tenantVO);
+		}
+		rentalHousingVO.setTenants(res);
+		return rentalHousingVO;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/saveMyTenantPop")
+	public CcmRestResult saveMyTenantPop(@RequestBody RentalHousingDTO rentalHousingDTO, HttpServletRequest request) throws UnsupportedEncodingException {
+		CcmRestResult result = new CcmRestResult();
+//		if(request.getSession().getAttribute("user")==null){
+//			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+//			return result;
+//		}
+		String address = URLDecoder.decode(rentalHousingDTO.getAddressDetail(),"UTF-8");
+		rentalHousingDTO.setAddressDetail(address);
+		CcmPopTenant ccmPopTenant = null;
+		if(StringUtils.isNotEmpty(rentalHousingDTO.getId())){
+			ccmPopTenant = ccmPopTenantService.get(rentalHousingDTO.getId());
+			ccmPopTenant.setHousePlace(rentalHousingDTO.getAddressDetail());
+			ccmPopTenantService.save(ccmPopTenant);
+		}else{
+			ccmPopTenant = new CcmPopTenant();
+			ccmPopTenant.setHousePlace(rentalHousingDTO.getAddressDetail());
+			ccmPopTenant.setHouseType("02");
+			ccmPopTenant.setHouseName(rentalHousingDTO.getUserVO().getRealName());
+			ccmPopTenant.setIdenNum(rentalHousingDTO.getUserVO().getCardId());
+			ccmPopTenant.setHouseTl(rentalHousingDTO.getUserVO().getTelephone());
+			ccmPopTenantService.save(ccmPopTenant);
+		}
+		for (TenantDTO tenant : rentalHousingDTO.getTenantDTOList()) {
+			if(StringUtils.isNotEmpty(tenant.getId())){
+				CcmPeople people = ccmPeopleService.get(tenant.getId());
+				people.setRoomId(ccmPopTenant);
+				people.setName(tenant.getTenantName());
+				people.setTelephone(tenant.getTenantPhone());
+				people.setIdent(tenant.getTenantIdCard());
+				ccmPeopleService.save(people);
+			}else{
+				CcmPeople people = new CcmPeople();
+				people.setIdent(tenant.getTenantIdCard());
+				List<CcmPeople> list = ccmPeopleService.findList(people);
+				if(list.size()==0){
+					people.setRoomId(ccmPopTenant);
+					people.setName(tenant.getTenantName());
+					people.setTelephone(tenant.getTenantPhone());
+					people.setAreaGridId(ccmPopTenant.getArea());
+					User user = UserUtils.get("1");
+					people.setCreateBy(user);
+					people.setCreateDate(new Date());
+					people.setUpdateBy(user);
+					people.setUpdateDate(new Date());
+					people.setDelFlag("0");
+					ccmPeopleService.save(people);
+				}else{
+					CcmPeople ccmPeople = ccmPeopleService.get(list.get(0).getId());
+					ccmPeople.setRoomId(ccmPopTenant);
+					ccmPeople.setName(tenant.getTenantName());
+					ccmPeople.setTelephone(tenant.getTenantPhone());
+					ccmPeopleService.save(ccmPeople);
+				}
+			}
+		}
+		result.setResult("保存成功");
+		result.setCode(CcmRestType.OK);
+		return result;
+	}
 
 	/**
 	 * @see 填加微信上报附件添加
@@ -329,7 +462,7 @@ public class CcmRestWechat extends BaseController {
 			HttpServletResponse response) throws IOException {
 		CcmRestResult result = new CcmRestResult();
 	//===================获取附件===========
-		
+
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request
 				.getSession().getServletContext());
 //		String realPath = request.getSession().getServletContext().getRealPath("/upload") + "/";
@@ -360,7 +493,7 @@ public class CcmRestWechat extends BaseController {
 						// 重命名上传后的文件名
 						String fileName = UUID.randomUUID().toString().replace("-", "_") + "." + ext;
 						// 定义上传路径
-		
+
 						CcmEntityProgress progress = new CcmEntityProgress();
 				        if (request.getParameter("progressId") != null && !"".equals(request.getParameter("progressId"))) {
 				        	progress.setUuid(request.getParameter("progressId"));
@@ -374,10 +507,10 @@ public class CcmRestWechat extends BaseController {
 				            result.setCode(6);
 				            return result;
 				        }
-				        String fileUrl = Global.getConfig("FILE_UPLOAD_URL");//文件上传存储路径    
+				        String fileUrl = Global.getConfig("FILE_UPLOAD_URL");//文件上传存储路径
 				        String pathr = path.substring(path.indexOf(":")+2);
 						retVo = new CcmEntityFileUpload();
-				        retVo.setData(UUID.randomUUID().toString());	
+				        retVo.setData(UUID.randomUUID().toString());
 				        retVo.setName(pathr.replace("\\", "/") + fileName.replace("\\", "/"));	//数据库存储路径
 				        retVo.setSrc(fileUrl+pathr.replace("\\", "/") + fileName.replace("\\", "/"));	//全路径
 				        retVo.setType(ext);	//文件类型
@@ -404,18 +537,18 @@ public class CcmRestWechat extends BaseController {
 		result.setResult("成功");
 		return result;
 	}*/
-	
-	
+
+
 	/**
-	  * 上传文件
-	  * @param inputStream  文件流数据
-	  * @param path         保存路径
-	  * @param fileName     文件名称
-	  * @param progress     上传进度
-	  * @return
-	  * @author pengjianqiang
-	  * @version 2018-02-27
-	  */
+	 * 上传文件
+	 * @param inputStream  文件流数据
+	 * @param path         保存路径
+	 * @param fileName     文件名称
+	 * @param progress     上传进度
+	 * @return
+	 * @author pengjianqiang
+	 * @version 2018-02-27
+	 */
 	/*public int uploadFile(InputStream inputStream, String path, String fileName, CcmEntityProgress progress) {
 		int flag = -1;
 		FileOutputStream fileOut = null;
@@ -427,20 +560,20 @@ public class CcmRestWechat extends BaseController {
 			byte[] bt = new byte[8192];
 			int n = bf.read(bt);
 			long readUpload = 0;
-			
+
 			while (n != -1) {
 				if (!"".equals(progress.getUuid())) { //有progressid，则进行进度处理
 					readUpload+=8192;
 					progress.setUploadedBytes(readUpload);
-					CcmRestFile.map.put(progress.getUuid(),progress);	
+					CcmRestFile.map.put(progress.getUuid(),progress);
 //					System.out.println("MAP:"+this.map.get(progress.getUuid()).toString());
 				}
-				
+
 				fileOut.write(bt, 0, n);
 				fileOut.flush();
 				n = bf.read(bt);
 			}
-			
+
 			flag = 0;
 //			log.debug("文件传输结束...");
 		} catch (Exception e) {

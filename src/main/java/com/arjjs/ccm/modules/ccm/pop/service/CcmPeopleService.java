@@ -198,6 +198,7 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	public List<CcmPeople> findOlderList(CcmPeople ccmPeople) {
 		return ccmPeopleDao.findOlderPage(ccmPeople);
 	}
+
 	@Transactional(readOnly = false)
 	public void save(CcmPeople ccmPeople) {
 		boolean isNew = false;
