@@ -11,7 +11,6 @@ import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +23,7 @@ import java.util.*;
  * @description: TODO
  * @date 2019/10/28 17:50
  */
-@Controller
+@RestController
 @RequestMapping(value = "${appPath}/rest/service/ccmWorkerSign")
 @Api(description = "app考勤接口类")
 public class CcmRestWorkerSign {
@@ -34,10 +33,9 @@ public class CcmRestWorkerSign {
 
 
     //获取详情
-    @ResponseBody
     @ApiOperation(value ="获取详情" )
     @RequestMapping(value = "/getinfo", method = RequestMethod.GET)
-    public CcmRestResult getinfo(String userId,Date date) {
+    public CcmRestResult getinfo(@RequestParam String userId,@RequestParam String date) {
         CcmRestResult result = new CcmRestResult();
         CcmWorkerSign entity = null;
         if (StringUtils.isNotBlank(userId)){
@@ -45,6 +43,10 @@ public class CcmRestWorkerSign {
         }
         if (entity == null){
             entity = new CcmWorkerSign();
+            entity.setClockinTime(null);
+            entity.setClockoutTime(null);
+            entity.setClockoutAreaName("");
+            entity.setClockinAreaName("");
         }
         result.setCode(CcmRestType.OK);
         result.setResult(entity);
@@ -53,7 +55,6 @@ public class CcmRestWorkerSign {
 
 
     //获取列表
-    @ResponseBody
     @RequestMapping(value = "/getList", method = RequestMethod.GET)
     public CcmRestResult getList(String userId,CcmWorkerSign ccmWorkerSign, HttpServletRequest request, HttpServletResponse response) {
         CcmRestResult result = new CcmRestResult();
@@ -70,13 +71,14 @@ public class CcmRestWorkerSign {
 
     //签到
     @ApiOperation(value = "签到")
-    @ResponseBody
     @RequestMapping(value = "/getform", method = RequestMethod.GET)
-    public CcmRestResult getform(String userId,CcmWorkerSign ccmWorkerSign) {
+    public CcmRestResult getform(String userId,CcmWorkerSign ccmWorkerSign,String clockinAreaName,String clockinTime) {
         CcmRestResult result = new CcmRestResult();
+        SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
 
+        ccmWorkerSign.setClockinAreaName(clockinAreaName);
         //app签到，设置签到类型
         ccmWorkerSign.setClockinType("1");
         //设置创建者id
@@ -84,7 +86,13 @@ public class CcmRestWorkerSign {
         //设置删除标记
         ccmWorkerSign.setDelFlag("0");
         //赋值签到时间
-        ccmWorkerSign.setClockinTime(new Date());
+        try {
+            Date parse = formatter.parse(clockinTime);
+            ccmWorkerSign.setClockinTime(parse);
+        }catch (Exception e){
+            System.out.println("赋值签到时间异常");
+        }
+        ccmWorkerSign.setCreateDate(new Date());
         ccmWorkerSign.setId(UUID.randomUUID().toString());
         //查询是否有之前签到
         int sum =ccmWorkerSignService.findByClockinInfo(ccmWorkerSign);
@@ -93,13 +101,8 @@ public class CcmRestWorkerSign {
         result.setMsg("签到失败");
         return result;
         }
-        if(StringUtils.isNotEmpty(ccmWorkerSign.getAreaPoint()) && ccmWorkerSign.getAreaPoint().contains(",")){
-            String x = ccmWorkerSign.getAreaPoint().split(",")[0];
-            String y = ccmWorkerSign.getAreaPoint().split(",")[1];
-            //获取app的经纬度信息
-            ccmWorkerSign.setClockinAreaName(y+","+x);
-        }
-        ccmWorkerSignService.save(ccmWorkerSign);
+        
+        ccmWorkerSignService.insertIdaa(ccmWorkerSign);
         result.setCode(CcmRestType.OK);
         result.setMsg("OK");
         result.setResult("OK");
@@ -108,15 +111,21 @@ public class CcmRestWorkerSign {
 
 
     //签退
-    @ResponseBody
+    
     @ApiOperation(value = "签退")
     @RequestMapping(value = "/resform", method = RequestMethod.GET)
-    public CcmRestResult resform(String userId,CcmWorkerSign ccmWorkerSign) {
+    public CcmRestResult resform(String userId,CcmWorkerSign ccmWorkerSign,String clockoutAreaName,String clockoutTime) {
         CcmRestResult result = new CcmRestResult();
+        SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
         //赋值平台签退时间
-        ccmWorkerSign.setClockoutTime(new Date());
+        try {
+            ccmWorkerSign.setClockoutTime(formatter.parse(clockoutTime));
+        }catch (Exception e){
+            System.out.println("赋值签退时间异常");
+        }
+        ccmWorkerSign.setClockoutAreaName(clockoutAreaName);
         int sum = ccmWorkerSignService.findClockoutTime(ccmWorkerSign);
         if (sum !=1){
             result.setCode(-11);
@@ -129,13 +138,7 @@ public class CcmRestWorkerSign {
         ccmWorkerSign.setUpdateBy(user);
         //赋值更新时间
         ccmWorkerSign.setUpdateDate(new Date());
-        if(StringUtils.isNotEmpty(ccmWorkerSign.getAreaPoint()) && ccmWorkerSign.getAreaPoint().contains(",")){
-            String x = ccmWorkerSign.getAreaPoint().split(",")[0];
-            String y = ccmWorkerSign.getAreaPoint().split(",")[1];
-            //赋值签退时app经纬度
-            ccmWorkerSign.setClockoutAreaName(y+","+x);
-        }
-        ccmWorkerSignService.save(ccmWorkerSign);
+        ccmWorkerSignService.signBack(ccmWorkerSign);
         result.setCode(CcmRestType.OK);
         result.setMsg("OK");
         result.setResult("OK");
