@@ -2217,6 +2217,7 @@
 		WHERE
 			p.del_flag = '0'
 			AND a.type = '6'
+			group by a.id
 	</select>
 
 

@@ -53,7 +53,7 @@
         <h1 class="form-signin-heading">
             <div id="header" class="navbar navbar-fixed-top">
                 <div class="navbar-inner">
-                    <div class="navbarname"><img src="${ctxStatic}/images/logo.png" style="width: 50px;height: 50px;margin-right: 10px;margin-top: -5px">${fns:getConfig('productName')}</div>
+                    <div class="navbarname"><img src="${logoLink}" style="width: 50px;height: 50px;margin-right: 10px;margin-top: -5px">${fns:getConfig('productName')}</div>
                     <div class="brand">
                         <a href="${ctx}/sys/map/statIndexCool" target=""><img class="logo"
                                                                               src="${ctxStatic}/images/logo.png"
