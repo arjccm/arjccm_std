@@ -132,10 +132,11 @@
             });
 
             var grpId;
+            var imageSrc;
             //判断是否编辑页，给表单赋值
             if(setGrp.hasClass("changeGrp")){
                 $.getJSON(arjimRest+'getGroupUser?id='+group_id,function (data) {
-                    console.log(data)
+                    // console.log(data)
                     var imgdata = data.data.avatar
                     var frdlistData = data.data.list
                     var groupid = data.data.id
@@ -165,6 +166,8 @@
                     form.render();
 
                     grpId = groupid
+                    imageSrc = imgdata
+
                     return grpId
                 })
             }
@@ -191,7 +194,7 @@
                     $(fd_id).remove()                               //删除群成员
                 }
                 form.render();
-                console.log(obj)
+                // console.log(obj)
                 // console.log(obj.elem); //得到checkbox原始DOM对象
                 // console.log(obj.elem.checked); //是否被选中，true或者false
                 // console.log(obj.value); //复选框value值，也可以通过data.elem.value得到
@@ -211,7 +214,7 @@
                     // })
 
                     var checkboxlen = $(".friend-list-box input").length
-                    console.log(keyWord)
+                    // console.log(keyWord)
                     $(".friend-list-box li").removeClass("jiedian_a")
                     $(".friend-list-box dl").removeClass("jiedian_b")
                     for (var j=0;j<checkboxlen;j++){
@@ -248,7 +251,6 @@
                     })
                 }
             });
-
 
 
             var imgSrcData;
@@ -289,15 +291,19 @@
                 }
             });
 
-
-            // $('.site-demo-layim').on('click', function(){
-            //
-            // });
-
             form.on('submit(groupSubmit)', function(data){
+                var imgsrc_data
+                // 判断图片接口
+                if($('#uploadImage').attr('src')==imageSrc){
+                    imgsrc_data = imageSrc
+                }else{
+                    imgsrc_data = imgSrcData
+                }
+                // console.log("图片src"+imageSrc)
+
                 var json  = {
                     groupname:data.field.groupname,    //群名称
-                    avatar:imgSrcData,                         //群头像
+                    avatar:imgsrc_data,                         //群头像
                     userList:[],                        //群成员列表
                     groupOwnerId:data.field.groupOwnerId,  //群主id
                     id:grpId,
@@ -314,6 +320,7 @@
                 // layer.alert(JSON.stringify(json), {
                 //     title: '提交的信息'
                 // })
+
 
                 var $url = "/arjccm/app"
                 $.ajax({
@@ -337,7 +344,7 @@
                                     //增加一个群组渲染到页面
                                     parent.layui.layim.addList({
                                         type: 'group'
-                                        ,avatar: imgSrcData
+                                        ,avatar: imgsrc_data
                                         ,groupname: data.field.groupname
                                         ,id: rid
                                         ,members: 0
@@ -348,6 +355,7 @@
                             //更新渲染当前聊天窗口一些信息
                             var chatChangeHtml = json.groupname+"<em class='layim-chat-members'>"+json.userList.length+"人</em><i class='layui-icon'>&#xe61a;</i>"
                             parent.$(".layim-chat-username").html(chatChangeHtml)
+                            parent.$(".headImg").attr("src",imgsrc_data)
                             //更新渲染聊天窗口判断当前是不是群主
                             if(json.groupOwnerId == currentsession ){
                                 parent.$(".layim-chat-group .setUpGroup").css({
@@ -371,7 +379,7 @@
                                     //增加一个群组渲染到页面
                                     parent.layui.layim.addList({
                                         type: 'group'
-                                        ,avatar: imgSrcData
+                                        ,avatar: imgsrc_data
                                         ,groupname: data.field.groupname
                                         ,id: rid
                                         ,members: 0
