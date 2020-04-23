@@ -460,7 +460,7 @@
 							</div>
 							<div style="float: left;width: 26%;text-align: left;margin-left: 20px;padding-top: 1%">
 								<div class="liuG"></div>
-								<img class="logo" src="/arjccm/static/images/logo.png" style="width:46px;height:46px;vertical-align:baseline;">
+								<img class="logo" src="${logoLink}" style="width:46px;height:46px;vertical-align:baseline;">
 								<%--<img class="head" src="/arjccm/static/images/head.png" style="margin-top: -106px; margin-left: 45px">--%>
 								<%--<h1 class="form-signin-heading">${fns:getConfig('showName')}</h1>--%>
 								<span id="productName" style="width:190px;font-size:26px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);line-height:27px;text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;top: -80px; left: 55px;white-space: nowrap;background: none;">${fns:getConfig('productName_part1')}</span>
