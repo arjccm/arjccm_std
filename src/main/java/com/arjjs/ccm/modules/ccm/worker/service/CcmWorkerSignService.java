@@ -38,7 +38,7 @@ public class CcmWorkerSignService extends CrudService<CcmWorkerSignDao, CcmWorke
 	public CcmWorkerSign get(String id) {
 		return super.get(id);
 	}
-	public CcmWorkerSign getInfo(String id,Date date) {
+	public CcmWorkerSign getInfo(String id,String date) {
 		return ccmWorkerSignDao.getInfo(id,date);
 	}
 	
