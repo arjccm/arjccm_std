@@ -136,7 +136,7 @@
             //判断是否编辑页，给表单赋值
             if(setGrp.hasClass("changeGrp")){
                 $.getJSON(arjimRest+'getGroupUser?id='+group_id,function (data) {
-                    console.log(data)
+                    // console.log(data)
                     var imgdata = data.data.avatar
                     var frdlistData = data.data.list
                     var groupid = data.data.id
@@ -194,7 +194,7 @@
                     $(fd_id).remove()                               //删除群成员
                 }
                 form.render();
-                console.log(obj)
+                // console.log(obj)
                 // console.log(obj.elem); //得到checkbox原始DOM对象
                 // console.log(obj.elem.checked); //是否被选中，true或者false
                 // console.log(obj.value); //复选框value值，也可以通过data.elem.value得到
@@ -214,7 +214,7 @@
                     // })
 
                     var checkboxlen = $(".friend-list-box input").length
-                    console.log(keyWord)
+                    // console.log(keyWord)
                     $(".friend-list-box li").removeClass("jiedian_a")
                     $(".friend-list-box dl").removeClass("jiedian_b")
                     for (var j=0;j<checkboxlen;j++){
