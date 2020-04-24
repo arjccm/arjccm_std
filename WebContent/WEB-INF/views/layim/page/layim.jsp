@@ -21,6 +21,10 @@
 z-index: 19920214;
 top:7%;
 }
+.exitGrp .layui-layer-content{
+    line-height: 50px;
+    text-align: center;
+}
 </style>
 <script>
 //layim接口地址
@@ -68,7 +72,6 @@ function getGroupUserStatus(json) {
         data: json,
         async : false,
         success : function(res){
-            debugger
             userRoomStatus = res.result;
             return userRoomStatus
         },
@@ -384,9 +387,9 @@ function getGroupUserStatus(json) {
 			    //     ,content: '贤心加入群聊'
 			    //   });
 			    // }
-                    console.log(res)
                    var group_Id =  res.data.id
-                //     console.log(meid)
+
+                    console.log(res)
                     //判断如果是群主将修改按钮显示出来
                     if(res.data.groupowner == meid ){
                         $(".layim-chat-group .setUpGroup").css({
@@ -428,11 +431,39 @@ function getGroupUserStatus(json) {
                             ,content:"是否退出群聊"
                             ,btn: ['确定', '取消']
                             ,yes: function(index, layero){
-                                alert(1)
+                                var exitGrpTson = {
+                                    userId:currentsession,
+                                    groupId:res.data.id
+                                }
+                                var $url = "/arjccm/app"
+                                $.ajax({
+                                    type:"post",
+                                    url:$url+'/rest/ImChat/leaveGroup',
+                                    data:exitGrpTson,
+                                    async : false,
+                                    success:function(){
+                                        layim.removeList({
+                                            id: res.data.id
+                                            ,type: 'group'
+                                        })
+                                        $(".ayui-layim-chat").hide()
+                                        layer.close(index);
+                                        layer.msg('您已经退出'+ res.data.groupname,{
+                                            time:3000
+                                        })
+
+
+                                    }
+                                })
+
+
+
+
+
                             }
                         });
-                        // layer.close(compileGrp)
                     }
+
 
 			  });
 			   layim.on('online', function(status){
