@@ -29,25 +29,25 @@ public class CcmUserRelationshipService extends CrudService<CcmUserRelationshipD
 	public CcmUserRelationship get(String id) {
 		return super.get(id);
 	}
-	
+
 	public List<CcmUserRelationship> findList(CcmUserRelationship ccmUserRelationship) {
 		return super.findList(ccmUserRelationship);
 	}
-	
+
 	public Page<CcmUserRelationship> findPage(Page<CcmUserRelationship> page, CcmUserRelationship ccmUserRelationship) {
 		return super.findPage(page, ccmUserRelationship);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void save(CcmUserRelationship ccmUserRelationship) {
 		super.save(ccmUserRelationship);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void insertUserRelationship(List<CcmUserRelationship> ccmUserRelationship) {
 		dao.insertUserRelationship(ccmUserRelationship);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void delete(CcmUserRelationship ccmUserRelationship) {
 		super.delete(ccmUserRelationship);
@@ -56,11 +56,16 @@ public class CcmUserRelationshipService extends CrudService<CcmUserRelationshipD
 	public List<VCcmTeam> findTeamListByGroup(CcmUserGroup ccmUserGroup) {
 		return ccmUserRelationshipDao.findTeamListByGroup(ccmUserGroup);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void deleteByGroupAndUser(CcmUserRelationship ccmUserRelationship) {
 		ccmUserRelationshipDao.deleteByGroupAndUser(ccmUserRelationship);
-		
+
+	}
+	@Transactional(readOnly = false)
+	public int deleteByGroupIdAndUserId( String userId ,String groupId ) {
+		return ccmUserRelationshipDao.deleteByGroupIdAndUserId(userId,groupId);
+
 	}
 
 	public List<String> findUserListByGroupId(String id) {
