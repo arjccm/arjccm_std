@@ -1,20 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
-<link rel="stylesheet" href="/arjccm/static/ol/ol.css" type="text/css">
-<link href="/arjccm/static/jquery-ztree/3.5.12/css/zTreeStyle/zTreeStyle.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="/arjccm/static/ccm/liveVideo/css/livedemo.css">
-<link rel="stylesheet" href="/arjccm/static/ccm/liveVideo/css/video-js.css">
-<link rel="stylesheet" href="/arjccm/static/modules/map/js/draw/css/p-ol3.min.css" type="text/css">
-<link rel="stylesheet" href="/arjccm/static/modules/map/js/draw/css/defaults.css" type="text/css">
-<link rel="stylesheet" href="/arjccm/static/modules/map/css/map.css" type="text/css">
-<link rel="stylesheet" href="/arjccm/static/modules/map/css/house.css" type="text/css">
-<link href="/arjccm/static/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet">
-<link href="/arjccm/static/modules/map/css/pop-info-animate.css" rel="stylesheet">
-<link href="/arjccm/static/layer-v3.1.1/layer/theme/default/layer.css" rel="stylesheet">
-<link href="/arjccm/static/bootstrap/2.3.1/awesome/font-awesome.min.css" type="text/css" rel="stylesheet">
-<link rel="stylesheet" href="/arjccm/static/modules/map/css/publicinstitutions.css">
-<link href="/arjccm/static/layim/layui/css/layui.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="${ctxStatic}/ol/ol.css" type="text/css">
+<link href="${ctxStatic}/jquery-ztree/3.5.12/css/zTreeStyle/zTreeStyle.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/livedemo.css">
+<link rel="stylesheet" href="${ctxStatic}/ccm/liveVideo/css/video-js.css">
+<link rel="stylesheet" href="${ctxStatic}/modules/map/js/draw/css/p-ol3.min.css" type="text/css">
+<link rel="stylesheet" href="${ctxStatic}/modules/map/js/draw/css/defaults.css" type="text/css">
+<link rel="stylesheet" href="${ctxStatic}/modules/map/css/map.css" type="text/css">
+<link rel="stylesheet" href="${ctxStatic}/modules/map/css/house.css" type="text/css">
+<link href="${ctxStatic}/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet">
+<link href="${ctxStatic}/modules/map/css/pop-info-animate.css" rel="stylesheet">
+<link href="${ctxStatic}/layer-v3.1.1/layer/theme/default/layer.css" rel="stylesheet">
+<link href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="${ctxStatic}/modules/map/css/publicinstitutions.css">
+<link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css" rel="stylesheet">
 
 <style>
 .radio-div {

@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="${ctxStatic}/common/index/css/win10/reset.css">
 <link rel="stylesheet" href="${ctxStatic}/common/index/css/win10/menu-1.css">
   <!--[if lt IE 9]>
-     <script src="/arjccm/static/jquery/html5shiv.js" type="text/javascript"></script>
+     <script src="${ctxStatic}/jquery/html5shiv.js" type="text/javascript"></script>
   <![endif]-->
 </head>
 <body>

@@ -309,9 +309,9 @@
 						<p>三亚新型冠状病毒肺炎疫情管控平台</p>
 					</div>
 					<div style="float: right;"  class="Logout">
-						<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/sys/map/projectIndex"><img src="/arjccm/static/common/index/images/statIndexCool/home.png"></a>
-						<img style="display: inline;" src="/arjccm/static/common/index/images/statIndexCool/vertical.png">
-						<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/logout"><img src="/arjccm/static/common/index/images/statIndexCool/exit.png"></a>
+						<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/sys/map/projectIndex"><img src="${ctxStatic}/common/index/images/statIndexCool/home.png"></a>
+						<img style="display: inline;" src="${ctxStatic}/common/index/images/statIndexCool/vertical.png">
+						<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/logout"><img src="${ctxStatic}/common/index/images/statIndexCool/exit.png"></a>
 						<%--							<span> <a href="${ctx}/logout"> <i--%>
 						<%--									class="icon-off align-top bigger-125"></i> 退出--%>
 						<%--							</a>--%>
