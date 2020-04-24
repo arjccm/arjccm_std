@@ -130,7 +130,7 @@
 		<sys:message content="${message}"/>		
 		<table border="0px"
 			style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%" class="tbl_ct_key">
-			<h4>基本信息：</h4>
+			<h4 id="basicid" class="color-bg6">基本信息</h4>
 			<tr>
 				<td>
 					<div>
@@ -498,94 +498,231 @@
 			</tr>
 		</table>
 		<br />
-		<shiro:hasPermission name="pop:ccmPeople:edit">
-			<ul class="nav nav-pills ulz">
-				<li><h4 id="zd1">
+		<c:if test="${not empty ccmPeople.id}">
+			<shiro:hasPermission name="pop:ccmPeople:edit">
+				<ul class="nav nav-pills ulz">
+					<li><h4 id="zd1">
 						<i class="icon-tags"></i>特殊人群标记：
 					</h4>
-				<li>
-				<c:if test="${ccmPeople.isRelease==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '900px')">安置帮教人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isRectification==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseRectification/specialform?id=${ccmPeople.id}', '社区矫正人员标记', '1200px', '900px')">社区矫正人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isPsychogeny==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/specialform?id=${ccmPeople.id}', '肇事肇祸等严重精神障碍患者', '1200px', '900px')">肇事肇祸等严重精神障碍患者</a></li>
-					</c:if> <c:if test="${ccmPeople.isAids==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseAids/specialform?id=${ccmPeople.id}', '艾滋病危险人员标记', '1200px', '900px')">艾滋病危险人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isDangerous==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseDangerous/specialform?id=${ccmPeople.id}', '危险品从业人员标记', '1200px', '900px')" style="color: white">危险品从业人员标记</a></li>
-					</c:if> 
-				<c:if test="${ccmPeople.isDrugs==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/specialform?id=${ccmPeople.id}', '吸毒人员标记', '1200px', '900px')">吸毒人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isVisit==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHousePetition/specialform?id=${ccmPeople.id}', '重点上访人员标记', '1200px', '900px')">重点上访人员标记</a></li>
-					</c:if> <c:if test="${ccmPeople.isHeresy==1}">
-						<li><a class="znul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseHeresy/specialform?id=${ccmPeople.id}', '涉教人员标记', '1200px', '900px')">涉教人员标记</a></li>
+					<li>
+						<c:forEach items="${fns:getMenuList()}" var="menu" varStatus="idxStatus">
+						<c:if test="${menu.name eq '安置帮教人员管理'&&menu.isShow eq '1'}">
+						<c:if
+								test="${ccmPeople.isRelease==0||ccmPeople.isRelease==null||ccmPeople.isRelease==''}">
+					<li><a
+							onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '700px')">安置帮教人员标记</a>
+					</li>
 					</c:if>
-					<c:if
-						test="${ccmPeople.isRelease==0||ccmPeople.isRelease==null||ccmPeople.isRelease==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '900px')">安置帮教人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isRectification==0||ccmPeople.isRectification==null||ccmPeople.isRectification==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseRectification/specialform?id=${ccmPeople.id}', '社区矫正人员标记', '1200px', '900px')">社区矫正人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isPsychogeny==0||ccmPeople.isPsychogeny==null||ccmPeople.isPsychogeny==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/specialform?id=${ccmPeople.id}', '肇事肇祸等严重精神障碍患', '1200px', '900px')">肇事肇祸等严重精神障碍患者</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isAids==0||ccmPeople.isAids==null||ccmPeople.isAids==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseAids/specialform?id=${ccmPeople.id}', '艾滋病危险人员标记', '1200px', '900px')">艾滋病危险人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isDangerous==0||ccmPeople.isDangerous==null||ccmPeople.isDangerous==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseDangerous/specialform?id=${ccmPeople.id}', '危险品从业人员标记', '1200px', '900px')">危险品从业人员标记</a></li>
+					<c:if test="${ccmPeople.isRelease==1}">
+						<li><a class="znul"
+							   onclick="parent.LayerDialog('${ctx}/house/ccmHouseRelease/specialform?id=${ccmPeople.id}', '安置帮教人员标记', '1200px', '700px')">安置帮教人员标记</a>
+						</li>
 					</c:if>
-					<c:if
-						test="${ccmPeople.isDrugs==0||ccmPeople.isDrugs==null||ccmPeople.isDrugs==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/specialform?id=${ccmPeople.id}', '吸毒人员标记', '1200px', '900px')">吸毒人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isVisit==0||ccmPeople.isVisit==null||ccmPeople.isVisit==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHousePetition/specialform?id=${ccmPeople.id}', '重点上访人员标记', '1200px', '900px')">重点上访人员标记</a></li>
-					</c:if> <c:if
-						test="${ccmPeople.isHeresy==0||ccmPeople.isHeresy==null||ccmPeople.isHeresy==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseHeresy/specialform?id=${ccmPeople.id}', '涉教人员标记', '1200px', '900px')">涉教人员标记</a></li>
-					</c:if> 
-			</ul>
+					</c:if>
 
-			
-
-			<ul class="nav nav-pills ulz">
-				<li><h4 id="zd3">
-						<i class="icon-tags"></i>重点人群标记：
-					</h4>
-				<li> <c:if test="${ccmPeople.isKym==1}">
-						<li><a class="gzul"
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseKym/specialform?id=${ccmPeople.id}', '重点青少年标记', '1200px', '900px')">重点青少年标记</a></li>
-					</c:if><c:if
-						test="${ccmPeople.isKym==0||ccmPeople.isKym==null||ccmPeople.isKym==''}">
-						<li><a
-							onclick="parent.LayerDialog('${ctx}/house/ccmHouseKym/specialform?id=${ccmPeople.id}', '重点青少年标记', '1200px', '900px')">重点青少年标记</a></li>
+					<c:if test="${menu.name eq '社区矫正人员管理'&&menu.isShow eq '1'}">
+						<c:if test="${ccmPeople.isRectification==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmHouseRectification/specialform?id=${ccmPeople.id}', '社区矫正人员标记', '1200px', '900px')">社区矫正人员标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isRectification==0||ccmPeople.isRectification==null||ccmPeople.isRectification==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmHouseRectification/specialform?id=${ccmPeople.id}', '社区矫正人员标记', '1200px', '900px')">社区矫正人员标记</a>
+							</li>
+						</c:if>
 					</c:if>
-			</ul>
-		</shiro:hasPermission>
+
+					<c:if test="${menu.name eq '肇事肇祸等严重精神障碍患者管理'&&menu.isShow eq '1'}">
+						<c:if test="${ccmPeople.isPsychogeny==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/specialform?id=${ccmPeople.id}', '肇事肇祸等严重精神障碍患者', '1200px', '900px')">肇事肇祸等严重精神障碍患者</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isPsychogeny==0||ccmPeople.isPsychogeny==null||ccmPeople.isPsychogeny==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/specialform?id=${ccmPeople.id}', '肇事肇祸等严重精神障碍患', '1200px', '900px')">肇事肇祸等严重精神障碍患者</a>
+							</li>
+						</c:if>
+					</c:if>
+
+					<c:if test="${menu.name eq '艾滋病危险人员管理'&&menu.isShow eq '1'}">
+						<c:if test="${ccmPeople.isAids==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmHouseAids/specialform?id=${ccmPeople.id}', '艾滋病危险人员标记', '1200px', '900px')">艾滋病危险人员标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isAids==0||ccmPeople.isAids==null||ccmPeople.isAids==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmHouseAids/specialform?id=${ccmPeople.id}', '艾滋病危险人员标记', '1200px', '900px')">艾滋病危险人员标记</a>
+							</li>
+						</c:if>
+					</c:if>
+
+					<c:if test="${menu.name eq '危险品从业人员管理'&&menu.isShow eq '1'}">
+						<c:if test="${ccmPeople.isDangerous==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmHouseDangerous/specialform?id=${ccmPeople.id}', '危险品从业人员标记', '1200px', '900px')">危险品从业人员标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isDangerous==0||ccmPeople.isDangerous==null||ccmPeople.isDangerous==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmHouseDangerous/specialform?id=${ccmPeople.id}', '危险品从业人员标记', '1200px', '900px')">危险品从业人员标记</a>
+							</li>
+						</c:if>
+					</c:if>
+
+					<c:if test="${menu.name eq '吸毒人员管理'&&menu.isShow eq '1'}">
+						<c:if test="${ccmPeople.isDrugs==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/specialform?id=${ccmPeople.id}', '吸毒人员标记', '1200px', '900px')">吸毒人员标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isDrugs==0||ccmPeople.isDrugs==null||ccmPeople.isDrugs==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/specialform?id=${ccmPeople.id}', '吸毒人员标记', '1200px', '900px')">吸毒人员标记</a>
+							</li>
+						</c:if>
+					</c:if>
+
+					<c:if test="${menu.name eq '重点上访人员管理'&&menu.isShow eq '1'}">
+						<c:if test="${ccmPeople.isVisit==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmHousePetition/specialform?id=${ccmPeople.id}', '重点上访人员标记', '1200px', '900px')">重点上访人员标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isVisit==0||ccmPeople.isVisit==null||ccmPeople.isVisit==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmHousePetition/specialform?id=${ccmPeople.id}', '重点上访人员标记', '1200px', '900px')">重点上访人员标记</a>
+							</li>
+						</c:if>
+					</c:if>
+
+					<c:if test="${menu.name eq '涉教人员管理'&&menu.isShow eq '1'}">
+						<c:if test="${ccmPeople.isHeresy==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmHouseHeresy/specialform?id=${ccmPeople.id}', '涉教人员标记', '1200px', '900px')">涉教人员标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isHeresy==0||ccmPeople.isHeresy==null||ccmPeople.isHeresy==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmHouseHeresy/specialform?id=${ccmPeople.id}', '涉教人员标记', '1200px', '900px')">涉教人员标记</a>
+							</li>
+						</c:if>
+					</c:if>
+
+					<c:if test="${menu.name eq '危害国家安全活动嫌疑'&&menu.isShow eq '1'}">
+						<c:if
+								test="${ccmPeople.isHarmNational==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmHarmNationalSecurity/specialform?id=${ccmPeople.id}', '危害国家安全活动嫌疑人员信息标记', '1200px', '900px')">危害国家安全活动嫌疑人员信息标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isHarmNational==0||ccmPeople.isHarmNational==null||ccmPeople.isHarmNational==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmHarmNationalSecurity/specialform?id=${ccmPeople.id}', '危害国家安全活动嫌疑人员信息标记', '1200px', '900px')">危害国家安全活动嫌疑人员信息标记</a>
+							</li>
+						</c:if>
+					</c:if>
+
+					<c:if test="${menu.name eq '严重刑事犯罪活动嫌疑'&&menu.isShow eq '1'}">
+						<c:if
+								test="${ccmPeople.isCriminalOffense==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmSeriousCriminalOffense/specialform?id=${ccmPeople.id}', '严重刑事犯罪活动嫌疑人员标记', '1200px', '900px')">严重刑事犯罪活动嫌疑人员标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isCriminalOffense==0||ccmPeople.isCriminalOffense==null||ccmPeople.isCriminalOffense==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmSeriousCriminalOffense/specialform?id=${ccmPeople.id}', '严重刑事犯罪活动嫌疑人员标记', '1200px', '900px')">严重刑事犯罪活动嫌疑人员标记</a>
+							</li>
+						</c:if>
+					</c:if>
+
+					<c:if test="${menu.name eq '闹事行凶报复嫌疑'&&menu.isShow eq '1'}">
+						<c:if
+								test="${ccmPeople.isDispute==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmHouseDispute/specialform?id=${ccmPeople.id}', '闹事行凶报复嫌疑人员标记', '1200px', '900px')">闹事行凶报复嫌疑人员标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isDispute==0||ccmPeople.isDispute==null||ccmPeople.isDispute==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmHouseDispute/specialform?id=${ccmPeople.id}', '闹事行凶报复嫌疑人员标记', '1200px', '900px')">闹事行凶报复嫌疑人员标记</a>
+							</li>
+						</c:if>
+					</c:if>
+
+					<c:if test="${menu.name eq '故意违法刑释不足5年'&&menu.isShow eq '1'}">
+						<c:if
+								test="${ccmPeople.isDeliberatelyIllegal==1}">
+							<li><a class="znul"
+								   onclick="parent.LayerDialog('${ctx}/house/ccmHouseDeliberatelyIllegal/specialform?id=${ccmPeople.id}', '故意违法人员标记', '1200px', '900px')">故意违法人员标记</a>
+							</li>
+						</c:if>
+						<c:if
+								test="${ccmPeople.isDeliberatelyIllegal==0||ccmPeople.isDeliberatelyIllegal==null||ccmPeople.isDeliberatelyIllegal==''}">
+							<li><a
+									onclick="parent.LayerDialog('${ctx}/house/ccmHouseDeliberatelyIllegal/specialform?id=${ccmPeople.id}', '故意违法人员标记', '1200px', '900px')">故意违法人员标记</a>
+							</li>
+						</c:if>
+					</c:if>
+					</c:forEach>
+
+
+				</ul>
+
+				<ul class="nav nav-pills ulz">
+					<li>
+						<h4 id="zd3">
+							<i class="icon-tags"></i>重点人群标记：
+						</h4>
+					<li>
+
+						<c:if test="${ccmPeople.isKym==1}">
+					<li>
+						<a class="gzul"
+						   onclick="parent.LayerDialog('${ctx}/house/ccmHouseKym/specialform?id=${ccmPeople.id}', '重点青少年标记', '1200px', '700px')">重点青少年标记</a>
+					</li>
+					</c:if>
+					<c:if test="${ccmPeople.isKym==0||ccmPeople.isKym==null||ccmPeople.isKym==''}">
+						<li>
+							<a onclick="parent.LayerDialog('${ctx}/house/ccmHouseKym/specialform?id=${ccmPeople.id}', '重点青少年标记', '1200px', '700px')">重点青少年标记</a>
+						</li>
+					</c:if>
+					<c:if test="${ccmPeople.isKym==2}">
+						<li>
+							<a href="javascript:void(0);" onclick="isNotKym()">重点青少年标记</a>
+						</li>
+					</c:if>
+					<c:if test="${ccmPeople.isBehind==1}">
+						<li>
+							<a class="gzul"
+							   onclick="parent.LayerDialog('${ctx}/pop/ccmPopBehind/specialform?id=${ccmPeople.id}', '留守人员标记', '1200px', '900px')">留守人员标记</a>
+						</li>
+					</c:if>
+					<c:if test="${ccmPeople.isBehind==0||ccmPeople.isBehind==null||ccmPeople.isBehind==''}">
+						<li>
+							<a onclick="parent.LayerDialog('${ctx}/pop/ccmPopBehind/specialform?id=${ccmPeople.id}', '留守人员标记', '1200px', '900px')">留守人员标记</a>
+						</li>
+					</c:if>
+				</ul>
+			</shiro:hasPermission>
+		</c:if>
 		
 		<br/>
 		
-		<h4>其他信息：</h4>
+		<%--<h4>其他信息：</h4>--%>
 		<table id="person" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%" class="tbl_ct_key">
 			<tr><td colspan="6">户籍信息：</td></tr>
 			<tr>

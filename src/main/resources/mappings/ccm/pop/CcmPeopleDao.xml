@@ -2241,18 +2241,7 @@
 		<include refid="ccmPeopleJoinsNet"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			AND (a.is_release = 1
-			OR a.is_rectification = 1
-			OR a.is_aids = 1
-			OR a.is_psychogeny = 1
-			OR a.is_drugs = 1
-			OR a.is_harm_national = 1
-			OR a.is_deliberately_illegal=1
-			OR a.is_criminal_offense=1
-			OR a.is_visit = 1
-			OR a.is_dangerous = 1
-			OR a.is_heresy = 1
-			OR a.is_dispute =1)
+			AND a.focu_pers = 1
 			<if test="listLimite != null and listLimite.length > 0">
 				AND (
 				<foreach collection="listLimite" item="aid"  separator=" OR " >

@@ -346,7 +346,18 @@ a.btnList .icon-group{
 		background-size: 200% 100%;
     }
 }
-.eventScaleCss{
+
+ .keyPeopleCss{
+	 display: inline-block;
+	 height:30px;
+	 margin: auto;
+	 color:#fff;
+	 text-align: center;
+	 line-height:30px;
+	 border-radius: 3px
+ }
+
+ .eventScaleCss{
 	display: block;
 	width:60px;
 	height:24px;
