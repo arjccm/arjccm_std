@@ -23,6 +23,7 @@ public interface CcmUserRelationshipDao extends CrudDao<CcmUserRelationship> {
 	List<VCcmTeam> findTeamListByGroup(CcmUserGroup ccmUserGroup);
 
 	void deleteByGroupAndUser(CcmUserRelationship ccmUserRelationship);
+	int deleteByGroupIdAndUserId(@Param("userId")  String userId ,@Param("groupId")  String groupId );
 	int insertUserRelationship(List<CcmUserRelationship> ccmUserRelationship);
 
 	List<String> findUserListByGroupId(@Param("id")  String id);

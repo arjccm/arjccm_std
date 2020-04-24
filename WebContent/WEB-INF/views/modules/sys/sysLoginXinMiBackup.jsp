@@ -13,7 +13,7 @@ html, body, table {
 	height: 100%;
 	text-align: center;
 	overflow: hidden !important;
-	background: url('/arjccm/static/images/login-bg31.png') no-repeat;
+	background: url('${ctxStatic}/images/login-bg31.png') no-repeat;
 	background-size: 100% 100%
 }
 

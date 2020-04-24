@@ -135,7 +135,7 @@
         var flag = $(".zhuti").attr("href");
         var Ul=$(".system-nav");
 
-        if (flag=="/arjccm/static/bootstrap/2.3.1/css_black/projectIndex.css") {
+        if (flag=="${ctxStatic}/bootstrap/2.3.1/css_black/projectIndex.css") {
             var liLength=Li.length;
             // alert(liLength)
             // alert(Li)
@@ -173,7 +173,7 @@
             //添加悬浮动图
             Li.mouseover(function () {
                 var bjSrc=decodeURIComponent($(this) .css("backgroundImage"));
-                //url("http://localhost:8080/arjccm/static/images/社会信息采集平台.png")
+                //url("http://localhost:8080${ctxStatic}/images/社会信息采集平台.png")
                 var str=bjSrc.split("/");
                 var ljSrc=str[str.length-1].split(".")[0];
                 $(this).css({
@@ -182,7 +182,7 @@
             })
             Li.mouseout(function () {
                 var bjSrc=decodeURIComponent($(this) .css("backgroundImage"));
-                //url("http://localhost:8080/arjccm/static/images/社会信息采集平台.png")
+                //url("http://localhost:8080${ctxStatic}/images/社会信息采集平台.png")
                 var str=bjSrc.split("/");
                 var ljSrc=str[str.length-1].split(".")[0];
                 $(this).css({

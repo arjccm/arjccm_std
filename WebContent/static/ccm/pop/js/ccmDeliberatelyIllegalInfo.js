@@ -76,16 +76,15 @@ $(function() {
 
     //点击事件
     myChart1.on('click', function(params) {
-        debugger;
         var parentid;
         for (var i = 0; i < lowLevelAll.length ; i++) {
             if(typeof(id) == "undefined"){
-                if(params.value == lowLevelAll[i]["value"] && params.name == lowLevelAll[i]["type"]){
+                if((params.value == lowLevelAll[i]["value"]  || params.value == lowLevelNew[i]["value"]) && params.name == lowLevelAll[i]["type"]){
                     parentid = lowLevelAll[i]["value1"];
                     id = lowLevelAll[i]["value1"];
                 }
             }else{
-                if(params.value == lowLevelAll[i]["value"] && params.name == lowLevelAll[i]["type"] && lowLevelAll[i]["value2"] == id ){
+                if((params.value == lowLevelAll[i]["value"]  || params.value == lowLevelNew[i]["value"]) && params.name == lowLevelAll[i]["type"] && lowLevelAll[i]["value2"] == id ){
                     parentid = lowLevelAll[i]["value1"];
                     id = lowLevelAll[i]["value1"];
                 }

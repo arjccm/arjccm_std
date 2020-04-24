@@ -135,10 +135,17 @@
 		WHERE user_id = #{user.id} AND group_id = #{groupId}
 		
 	</update>
+	<!-- 用户退群-->
+	<delete id="deleteByGroupIdAndUserId">
+		DELETE  FROM  ccm_user_relationship
+		WHERE user_id = #{userId} AND group_id = #{groupId}
+	</delete>
+	<!-- 编辑群组-->
 	<delete id="deleteRelByGroupId">
  		DELETE FROM ccm_user_relationship WHERE group_id = #{id}
 	</delete>
-	<select id="findUserListByGroupId" parameterType="string">
+
+	<select id="findUserListByGroupId" parameterType="string" resultType="string">
 		select
 			t1.user_id
 		FROM ccm_user_relationship t1

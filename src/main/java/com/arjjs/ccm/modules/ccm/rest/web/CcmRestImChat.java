@@ -2,10 +2,8 @@ package com.arjjs.ccm.modules.ccm.rest.web;
 
 import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.web.BaseController;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserGroup;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserRelationship;
+import com.arjjs.ccm.modules.ccm.rest.entity.*;
+import com.arjjs.ccm.modules.ccm.rest.service.CcmUserGroupRelationshipService;
 import com.arjjs.ccm.modules.ccm.rest.service.CcmUserGroupService;
 import com.arjjs.ccm.modules.ccm.rest.service.CcmUserRelationshipService;
 import com.arjjs.ccm.modules.sys.entity.User;
@@ -15,10 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,10 +23,10 @@ import java.util.List;
 /**
  * IM 即时通讯接口类
  * 
- * @author fuxinshuang
+ * @author mao
  * @version 2018-03-08
  */
-@Api(description = "IM 即时通讯接口类-app接口类")
+@Api(description = "IM 即时通讯-相关接口类")
 @Slf4j
 @RestController
 @RequestMapping(value = "${appPath}/rest/ImChat")
@@ -42,11 +37,14 @@ public class CcmRestImChat extends BaseController {
 	@Autowired
 	private CcmUserRelationshipService ccmUserRelationshipService;
 
+	@Autowired
+	private CcmUserGroupRelationshipService ccmUserGroupRelationshipService;
+
 	/**
 	 *   创建和修改用户群信息
 	 * @param
 	 * @return
-	 * @author fuxinshuang
+	 * @author mao
 	 * @version 2018-03-08
 	 */
 	@RequestMapping(value="/saveGroups", method = RequestMethod.POST)
@@ -103,5 +101,93 @@ public class CcmRestImChat extends BaseController {
 		result.setResult(ccmUserGroup);
 		return result;
 
+	}/**
+	 *   退出群组(IM中退群)
+	 * @param userId  当前用户ID
+	 * @param groupId  所前所属群组ID
+	 * @return
+	 * @author mao
+	 * @version 2018-03-08
+	 */
+	@RequestMapping(value="/leaveGroup", method = RequestMethod.POST)
+	@ApiOperation(value = " 退出群组")
+	public CcmRestResult leaveGroup(@RequestParam  String userId, @RequestParam String groupId, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = new CcmRestResult();
+		if (StringUtils.isEmpty(userId)) {
+			result.setCode(CcmRestType.ERROR_NO_PERSSION);
+			return result;
+		}
+		if (StringUtils.isEmpty(groupId)) {
+			result.setCode(CcmRestType.ERROR_PARAM);
+			return result;
+		}
+		int i = ccmUserRelationshipService.deleteByGroupIdAndUserId(userId, groupId);
+		result.setCode(CcmRestType.OK);
+		result.setResult(i);
+		return result;
+
 	}
+	/**
+	 *   查询视频房间中用户记录
+	 * @param
+	 * @return
+	 * @author mao
+	 * @version 2020-04-23
+	 */
+	@RequestMapping(value="/findUserGroupRel", method = RequestMethod.GET)
+	@ApiOperation(value = "查询视频房间中用户记录")
+	public CcmRestResult findUserGroupRelationByGroupId(@RequestParam String userId,@RequestParam String groupId, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        CcmRestResult result = new CcmRestResult();
+        if (StringUtils.isEmpty(userId)) {
+            result.setCode(CcmRestType.ERROR_NO_PERSSION);
+            return result;
+        }
+        List<CcmUserGroupRelationship> userGroupRel = ccmUserGroupRelationshipService.findUserGroupRelationByGroupId(new CcmUserGroupRelationship(groupId));
+        result.setCode(CcmRestType.OK);
+		result.setResult(userGroupRel.isEmpty() ? 0 : 1);
+		return result;
+	}
+	/**
+	 *   视频进入房间记录
+	 * @param
+	 * @return
+	 * @author mao
+	 * @version 2020-04-23
+	 */
+	@RequestMapping(value="/saveUserGroupRel", method = RequestMethod.POST)
+	@ApiOperation(value = "视频进入房间记录")
+	public CcmRestResult saveGroupUserRel(@RequestBody CcmUserGroupRelationship groupRelationship, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = new CcmRestResult();
+		if (StringUtils.isEmpty(groupRelationship.getUserId())) {
+				result.setCode(CcmRestType.ERROR_NO_PERSSION);
+				return result;
+		}
+		int i = ccmUserGroupRelationshipService.saveGroupUserRel(groupRelationship);
+		result.setCode(CcmRestType.OK);
+		result.setResult(i);
+		return result;
+	}
+	/**
+	 *   视频用户退出房间记录
+	 * @param
+	 * @return
+	 * @author mao
+	 * @version 2020-04-23
+	 */
+	@RequestMapping(value="/deleteUserGroupRel", method = RequestMethod.POST)
+	@ApiOperation(value = "视频用户退出房间记录")
+	//public CcmRestResult deleteByGroupIdAndUserId(@RequestParam String groupId,@RequestParam String userId, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public CcmRestResult deleteByGroupIdAndUserId(@RequestBody CcmUserGroupRelationship groupRelationship, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = new CcmRestResult();
+		if (StringUtils.isEmpty(groupRelationship.getUserId())) {
+			result.setCode(CcmRestType.ERROR_NO_PERSSION);
+			return result;
+		}
+		//CcmUserGroupRelationship groupRelationship = new CcmUserGroupRelationship(groupId,userId);
+		int i = ccmUserGroupRelationshipService.deleteByGroupIdAndUserId(groupRelationship);
+		result.setCode(CcmRestType.OK);
+		result.setResult(i);
+		return result;
+	}
+
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.rest.dao.CcmUserGroupRelationshipDao">
+    
+	<sql id="ccmUserGroupRelationshipColumns">
+		a.id AS "id",
+		a.group_id AS "groupId",
+		a.user_id AS "userId",
+		a.connected AS "connected"
+	</sql>
+
+	<select id="findUserGroupRelationByGroupId" resultType="com.arjjs.ccm.modules.ccm.rest.entity.CcmUserGroupRelationship"
+			parameterType="com.arjjs.ccm.modules.ccm.rest.entity.CcmUserGroupRelationship">
+		SELECT 
+			<include refid="ccmUserGroupRelationshipColumns"/>
+		FROM ccm_user_group_relationship a
+		WHERE
+		 1 = 1
+		<if	test="groupId != null and groupId != ''">
+			AND  a.group_id = #{groupId}
+		</if>
+		<if	test="userId != null and userId != ''">
+			AND  a.user_id = #{userId}
+		</if>
+
+	</select>
+	
+	<insert id="saveGroupUserRel">
+		INSERT INTO ccm_user_group_relationship(
+			id,
+			group_id,
+			user_id
+		) VALUES (
+			#{id},
+			#{groupId},
+			#{userId}
+		)
+	</insert>
+	
+	<update id="deleteByGroupIdAndUserId">
+		DELETE  FROM ccm_user_group_relationship WHERE group_id = #{groupId} AND  user_id = #{userId}
+	</update>
+	
+</mapper>

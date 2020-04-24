@@ -3,6 +3,7 @@
  */
 package com.arjjs.ccm.modules.ccm.house.web;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -83,9 +84,13 @@ public class CcmHouseSchoolrimController extends BaseController {
 		if(ccmHouseSchoolrim.getArea()==null || StringUtils.isEmpty(ccmHouseSchoolrim.getArea().getId())) {
 			List<CcmHouseSchoolrim> school = ccmHouseSchoolrimService.getAreaBySchool();
 			String[] schoolArea = new String[school.size()];
+			int num = 0;
 			for (int i=0;i<school.size();i++) {
 				if(school.get(i).getArea()!=null && school.get(i).getArea().getId()!=null){
-					schoolArea[i]=school.get(i).getArea().getId();
+					if(!Arrays.asList(schoolArea).contains(school.get(i).getArea().getId())){
+						schoolArea[num]=school.get(i).getArea().getId();
+						num++;
+					}
 				}
 			}
 			CcmPeople parampop = new CcmPeople();

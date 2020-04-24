@@ -195,18 +195,18 @@
 							<div id="zoombar" class="zoombar"
 								style="position: absolute; bottom: -88px; right: 122px; height: 300px; z-index: 9">
 								<!-- 	<div style="position: absolute; width: 63px; height: 62px;">
-			<img style="position: relative; width: 63px; height: 62px" src="/arjccm/static/modules/map/images/zoom/zoompanbar_bg.png">
+			<img style="position: relative; width: 63px; height: 62px" src="${ctxStatic}/modules/map/images/zoom/zoompanbar_bg.png">
 	 	<div id="Control.PanZoomBar.panup" style="position: absolute; left: 24px; top: 5px; width: 16px; height: 16px; cursor: pointer;" class="olButton olpanup" onclick="Map.panDirection('north')">
-				<img id="Control.PanZoomBar.panup_innerImage" style="position: relative; width: 16px; height: 16px;" class="olAlphaImg" src="/arjccm/static/modules/map/images/zoom/north-mini.png">
+				<img id="Control.PanZoomBar.panup_innerImage" style="position: relative; width: 16px; height: 16px;" class="olAlphaImg" src="${ctxStatic}/modules/map/images/zoom/north-mini.png">
 			</div>
 			<div id="Control.PanZoomBar.panleft" style="position: absolute; left: 6px; top: 23px; width: 16px; height: 16px; cursor: pointer;" class="olButton olpanleft" onclick="Map.panDirection('west')">
-				<img id="Control.PanZoomBar.panleft_innerImage" style="position: relative; width: 16px; height: 16px;" class="olAlphaImg" src="/arjccm/static/modules/map/images/zoom/west-mini.png">
+				<img id="Control.PanZoomBar.panleft_innerImage" style="position: relative; width: 16px; height: 16px;" class="olAlphaImg" src="${ctxStatic}/modules/map/images/zoom/west-mini.png">
 			</div>
 			<div id="Control.PanZoomBar.panright" style="position: absolute; left: 42px; top: 23px; width: 16px; height: 16px; cursor: pointer;" class="olButton olpanright" onclick="Map.panDirection('east')">
-				<img id="Control.PanZoomBar.panright_innerImage" style="position: relative; width: 16px; height: 16px;" class="olAlphaImg" src="/arjccm/static/modules/map/images/zoom/east-mini.png">
+				<img id="Control.PanZoomBar.panright_innerImage" style="position: relative; width: 16px; height: 16px;" class="olAlphaImg" src="${ctxStatic}/modules/map/images/zoom/east-mini.png">
 			</div>
 			<div id="Control.PanZoomBar.pandown" style="position: absolute; left: 24px; top: 39px; width: 16px; height: 16px; cursor: pointer;" class="olButton olpandown" onclick="Map.panDirection('south')">
-				<img id="Control.PanZoomBar.pandown_innerImage" style="position: relative; width: 16px; height: 16px;" class="olAlphaImg" src="/arjccm/static/modules/map/images/zoom/south-mini.png">
+				<img id="Control.PanZoomBar.pandown_innerImage" style="position: relative; width: 16px; height: 16px;" class="olAlphaImg" src="${ctxStatic}/modules/map/images/zoom/south-mini.png">
 			</div>
 		</div>  -->
 								<div id="Control.PanZoomBar.zoomin"
@@ -215,10 +215,10 @@
 									<img id="Control.PanZoomBar.zoomin_innerImage"
 										style="position: relative; width: 16px; height: 16px;"
 										class="olAlphaImg"
-										src="/arjccm/static/modules/map/images/zoom/zoom-plus-mini.png">
+										src="${ctxStatic}/modules/map/images/zoom/zoom-plus-mini.png">
 								</div>
 								<div
-									style="background-image: url('/arjccm/static/modules/map/images/zoom/zoombar.png'); background-size: 50% 100%; background-repeat-y: no-repeat; left: 24px; top: 39px; width: 16px; height: 135px; position: absolute; cursor: pointer;"
+									style="background-image: url('${ctxStatic}/modules/map/images/zoom/zoombar.png'); background-size: 50% 100%; background-repeat-y: no-repeat; left: 24px; top: 39px; width: 16px; height: 135px; position: absolute; cursor: pointer;"
 									id="ControlPanZoomBar" class="olButton olPanZoomBar">
 									<div id="PanZoomBar"
 										class="PanZoomBar ui-draggable ui-draggable-handle"
@@ -226,23 +226,23 @@
 										<img id="Control.PanZoomBar.OpenLayers.Map_7_innerImage"
 											style="position: relative; width: 16px; height: 16px;"
 											class="olAlphaImg"
-											src="/arjccm/static/modules/map/images/zoom/slider.png">
+											src="${ctxStatic}/modules/map/images/zoom/slider.png">
 									</div>
 									<div id="ControlPanZoomIndex"
 										style="position: absolute; width: 66px; height: 161px; left: 17px; top: 0px; overflow: hidden">
 										<img id=""
 											style="position: absolute; left: 0px; top: 120px; width: 65px; height: 16px;"
-											src="/arjccm/static/modules/map/images/zoom/city-index.png">
+											src="${ctxStatic}/modules/map/images/zoom/city-index.png">
 										<img id=""
 											style="position: absolute; left: 0px; top: 82px; width: 65px; height: 16px;"
-											src="/arjccm/static/modules/map/images/zoom/district-index.png">
+											src="${ctxStatic}/modules/map/images/zoom/district-index.png">
 										<img id=""
 											style="position: absolute; left: 0px; top: 44px; width: 65px; height: 16px;"
-											src="/arjccm/static/modules/map/images/zoom/street-index.png">
+											src="${ctxStatic}/modules/map/images/zoom/street-index.png">
 										<img id=""
 											style="position: absolute; left: 0px; top: 5px; width: 65px; height: 16px;"
-											src="/arjccm/static/modules/map/images/zoom/community-index.png">
-										<!-- 				<img id="" style="position: absolute; left: 0px; top: 29px; width: 65px; height: 16px;" src="/arjccm/static/modules/map/images/zoom/grid-index.png">
+											src="${ctxStatic}/modules/map/images/zoom/community-index.png">
+										<!-- 				<img id="" style="position: absolute; left: 0px; top: 29px; width: 65px; height: 16px;" src="${ctxStatic}/modules/map/images/zoom/grid-index.png">
  -->
 									</div>
 								</div>
@@ -252,7 +252,7 @@
 									<img id="Control.PanZoomBar.zoomout_innerImage"
 										style="position: relative; width: 16px; height: 16px;"
 										class="olAlphaImg"
-										src="/arjccm/static/modules/map/images/zoom/zoom-minus-mini.png">
+										src="${ctxStatic}/modules/map/images/zoom/zoom-minus-mini.png">
 								</div>
 							</div>
 							<!-- 缩放控件-->
@@ -742,7 +742,7 @@
                     <div id="dialog4" class="dialog4">
                     <div class="dialog4-header">
                         
-                      <span class=""><img src="/arjccm/static/common/index/images/pop/paichusuo.png" alt=""></span>
+                      <span class=""><img src="${ctxStatic}/common/index/images/pop/paichusuo.png" alt=""></span>
                       <b class="dialog4-header-name"></b>
                     </div>
                     <div class="dialog4-center" >
@@ -757,7 +757,7 @@
                             <div class="rhomb flipper" >
                                 <div class="front">
                                     <div class="front-content">
-                                        <img src="/arjccm/static/common/index/images/pop/zhian.png" alt="">
+                                        <img src="${ctxStatic}/common/index/images/pop/zhian.png" alt="">
                                     </div>
                                 </div>
                                 <div class="back">
@@ -773,7 +773,7 @@
                             <div class="rhomb flipper">
                                 <div class="front">
                                     <div class="front-content">
-                                        <img src="/arjccm/static/common/index/images/pop/zhian.png" alt="">
+                                        <img src="${ctxStatic}/common/index/images/pop/zhian.png" alt="">
                                     </div>
                                 </div>
                                 <div class="back">
@@ -789,7 +789,7 @@
                             <div class="rhomb flipper">
                                 <div class="front">
                                     <div class="front-content">
-                                        <img src="/arjccm/static/common/index/images/pop/zhian.png" alt="">
+                                        <img src="${ctxStatic}/common/index/images/pop/zhian.png" alt="">
                                     </div>
                                 </div>
                                 <div class="back">
