@@ -234,22 +234,16 @@
 	<form:form id="searchForm" modelAttribute="ccmHouseSchoolrim" action="${ctx}/house/ccmHouseSchoolrim/popList?id=${ccmHouseSchoolrim.id}" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<h4><c:if test="${not empty ccmHouseSchoolrim.id}">${ccmHouseSchoolrim.schoolName }</c:if><c:if test="${empty ccmHouseSchoolrim.id}">所有校园</c:if>周边重点人员列表：</h4>
+		<%--<h4><c:if test="${not empty ccmHouseSchoolrim.id}">${ccmHouseSchoolrim.schoolName }</c:if><c:if test="${empty ccmHouseSchoolrim.id}">所有校园</c:if>周边重点人员列表：</h4>--%>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table border="1px" style="border-color: #CCCCCC; border: 1px solid #CCCCCC; padding: 10px;">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>人员图片</th>
 				<th>姓名</th>
 				<th>现住地</th>
-				<th>是否安置帮教</th>
-				<th>是否社区矫正</th>
-				<th>是否肇事肇祸等严重精神障碍患者</th>
-				<th>是否吸毒</th>
-				<th>是否艾滋病危险人员</th>
-				<th>是否重点上访</th>
-				<th>是否涉教</th>
+				<th>重点人员类型</th>
 				<shiro:hasPermission name="pop:ccmPeople:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -259,13 +253,29 @@
 				<td width="100px"><img src="${ccmPeople.images}" style="height:50px;" class="pimg"/></td>
 				<td><a href="${ctx}/pop/ccmPeople/formPop?id=${ccmPeople.id}">${ccmPeople.name}</a></td>
 				<td>${ccmPeople.residence}</td>
-				<td>${fns:getDictLabel(ccmPeople.isRelease, 'yes_no', '')}</td>
-				<td>${fns:getDictLabel(ccmPeople.isRectification, 'yes_no', '')}</td>
-				<td>${fns:getDictLabel(ccmPeople.isPsychogeny, 'yes_no', '')}</td>
-				<td>${fns:getDictLabel(ccmPeople.isDrugs, 'yes_no', '')}</td>
-				<td>${fns:getDictLabel(ccmPeople.isAids, 'yes_no', '')}</td>
-				<td>${fns:getDictLabel(ccmPeople.isVisit, 'yes_no', '')}</td>
-				<td>${fns:getDictLabel(ccmPeople.isHeresy, 'yes_no', '')}</td>
+				<td style="text-align: left">
+					<c:if test="${ccmPeople.isRelease==1}">
+						<span class="keyPeopleCss eventScaleCss-01" style="padding-left: 2px;padding-right: 5px">安置帮教人员</span>
+					</c:if>
+					<c:if test="${ccmPeople.isRectification==1}">
+						<span class="keyPeopleCss eventScaleCss-01" style="padding-left: 2px;padding-right: 5px">社区矫正人员</span>
+					</c:if>
+					<c:if test="${ccmPeople.isPsychogeny==1}">
+						<span class="keyPeopleCss eventScaleCss-01" style="padding-left: 2px;padding-right: 5px">肇事肇祸等严重精神障碍患者</span>
+					</c:if>
+					<c:if test="${ccmPeople.isDrugs==1}">
+						<span class="keyPeopleCss eventScaleCss-01" style="padding-left: 2px;padding-right: 5px">吸毒人员</span>
+					</c:if>
+					<c:if test="${ccmPeople.isAids==1}">
+						<span class="keyPeopleCss eventScaleCss-01" style="padding-left: 2px;padding-right: 5px">艾滋病危险人员</span>
+					</c:if>
+					<c:if test="${ccmPeople.isVisit==1}">
+						<span class="keyPeopleCss eventScaleCss-01" style="padding-left: 2px;padding-right: 5px">重点上访人员</span>
+					</c:if>
+					<c:if test="${ccmPeople.isHeresy==1}">
+						<span class="keyPeopleCss eventScaleCss-01" style="padding-left: 2px;padding-right: 5px">涉教人员</span>
+					</c:if>
+				</td>
 				<td><shiro:hasPermission name="pop:ccmPeople:edit">
 				<a class="btnList" href="${ctx}/pop/ccmPeople/formPop?id=${ccmPeople.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 				</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">

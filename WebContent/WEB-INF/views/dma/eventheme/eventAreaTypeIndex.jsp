@@ -22,7 +22,7 @@
 	<script src="${ctxStatic}/dma/eventheme/evenArea.js"></script>
     <link rel="stylesheet" href="${ctxStatic}/laydate/theme/default/laydate.css" media="all">
     <script src="${ctxStatic}/laydate/laydate.js"></script>
-    <script src="${ctxStatic}/echarts/theme/${not empty cookie.theme.value ? cookie.theme.value : 'black'}.js"></script>
+    <%--<script src="${ctxStatic}/echarts/theme/${not empty cookie.theme.value ? cookie.theme.value : 'black'}.js"></script>--%>
     <script type="text/javascript"
             src="${ctxStatic}/plm/storage/ajaxMessageAlert.js"></script>
 	<style>
