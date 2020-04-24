@@ -7,6 +7,7 @@ import com.arjjs.ccm.modules.ccm.event.service.CcmEventIncidentService;
 import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
+import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
@@ -75,6 +76,8 @@ public class CcmRestIncidentPolice {
             ccmEventIncident.setReportType("0");
             ccmEventIncidentService.save(ccmEventIncident,user);
         }
+        result.setCode(CcmRestType.OK);
+        result.setResult(CcmRestType.OK);
         result.setMsg("OK");
         return result;
     }
