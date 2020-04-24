@@ -35,7 +35,7 @@ public class CcmRestWorkerSign {
     //获取详情
     @ApiOperation(value ="获取详情" )
     @RequestMapping(value = "/getinfo", method = RequestMethod.GET)
-    public CcmRestResult getinfo(@RequestParam String userId,@RequestParam String date) {
+    public CcmRestResult getinfo(@RequestParam String userId,@RequestParam Date date) {
         CcmRestResult result = new CcmRestResult();
         CcmWorkerSign entity = null;
         if (StringUtils.isNotBlank(userId)){
@@ -72,12 +72,10 @@ public class CcmRestWorkerSign {
     //签到
     @ApiOperation(value = "签到")
     @RequestMapping(value = "/getform", method = RequestMethod.GET)
-    public CcmRestResult getform(String userId,CcmWorkerSign ccmWorkerSign,String clockinAreaName,String clockinTime) {
+    public CcmRestResult getform(String userId,CcmWorkerSign ccmWorkerSign,String clockinAreaName,Date clockinTime) {
         CcmRestResult result = new CcmRestResult();
-        SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
-
         ccmWorkerSign.setClockinAreaName(clockinAreaName);
         //app签到，设置签到类型
         ccmWorkerSign.setClockinType("1");
@@ -86,13 +84,9 @@ public class CcmRestWorkerSign {
         //设置删除标记
         ccmWorkerSign.setDelFlag("0");
         //赋值签到时间
-        try {
-            Date parse = formatter.parse(clockinTime);
-            ccmWorkerSign.setClockinTime(parse);
-        }catch (Exception e){
-            System.out.println("赋值签到时间异常");
-        }
-        ccmWorkerSign.setCreateDate(new Date());
+        ccmWorkerSign.setClockinTime(clockinTime);
+        Date date = new Date();
+        ccmWorkerSign.setCreateDate(date);
         ccmWorkerSign.setId(UUID.randomUUID().toString());
         //查询是否有之前签到
         int sum =ccmWorkerSignService.findByClockinInfo(ccmWorkerSign);
@@ -101,7 +95,6 @@ public class CcmRestWorkerSign {
         result.setMsg("签到失败");
         return result;
         }
-        
         ccmWorkerSignService.insertIdaa(ccmWorkerSign);
         result.setCode(CcmRestType.OK);
         result.setMsg("OK");
@@ -114,17 +107,13 @@ public class CcmRestWorkerSign {
     
     @ApiOperation(value = "签退")
     @RequestMapping(value = "/resform", method = RequestMethod.GET)
-    public CcmRestResult resform(String userId,CcmWorkerSign ccmWorkerSign,String clockoutAreaName,String clockoutTime) {
+    public CcmRestResult resform(String userId,CcmWorkerSign ccmWorkerSign,String clockoutAreaName,Date clockoutTime) {
         CcmRestResult result = new CcmRestResult();
         SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
         //赋值平台签退时间
-        try {
-            ccmWorkerSign.setClockoutTime(formatter.parse(clockoutTime));
-        }catch (Exception e){
-            System.out.println("赋值签退时间异常");
-        }
+        ccmWorkerSign.setClockoutTime(clockoutTime);
         ccmWorkerSign.setClockoutAreaName(clockoutAreaName);
         int sum = ccmWorkerSignService.findClockoutTime(ccmWorkerSign);
         if (sum !=1){
