@@ -90,7 +90,7 @@
     </form:form>
     <sys:message content="${message}"/>
     <table id="contentTable"
-           class="center-table table table-striped table-bordered table-condensed table-gradient">
+           class="table table-striped table-bordered table-condensed table-gradient">
         <thead>
         <tr>
             <th>楼门号</th>
@@ -108,19 +108,18 @@
         <tbody>
         <c:forEach items="${page.list}" var="ccmPopTenant">
             <tr>
-                <td class="tc" style="height: 50px">${ccmPopTenant.buildDoorNum}</td>
-                <td class="tc" style="height: 50px"><a
+                <td>${ccmPopTenant.buildDoorNum}</td>
+                <td><a
                         href="${ctx}/pop/ccmPopTenant/formByHouse?id=${ccmPopTenant.id}">
                         ${ccmPopTenant.doorNum} </a></td>
-                <td class="tc" style="height: 50px">${ccmPopTenant.houseBuild}</td>
-                <td class="tc"
-                    style="height: 50px">${fns:getDictLabel(ccmPopTenant.houseType, 'ccm_pop_tenant_type', '')}</td>
-                <td class="tc" style="height: 50px">${ccmPopTenant.area.name}</td>
-                <td class="tc" style="height: 50px">${ccmPopTenant.buildingId.buildname}</td>
-                <td class="tc" style="height: 50px">${ccmPopTenant.houseName}</td>
-                <td class="" style="height: 50px">${ccmPopTenant.housePlace}</td>
-                <td class="tc" style="height: 50px">${ccmPopTenant.houseArea}</td>
-                <td class="tc" style=" width:230px;height: 50px  "><shiro:hasPermission name="pop:ccmPopTenant:edit">
+                <td>${ccmPopTenant.houseBuild}</td>
+                <td>${fns:getDictLabel(ccmPopTenant.houseType, 'ccm_pop_tenant_type', '')}</td>
+                <td>${ccmPopTenant.area.name}</td>
+                <td>${ccmPopTenant.buildingId.buildname}</td>
+                <td>${ccmPopTenant.houseName}</td>
+                <td>${ccmPopTenant.housePlace}</td>
+                <td>${ccmPopTenant.houseArea}</td>
+                <td><shiro:hasPermission name="pop:ccmPopTenant:edit">
                     <a class="btnList"
                        href="${ctx}/pop/ccmPopTenant/formByHouse?id=${ccmPopTenant.id}"
                        title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

@@ -252,7 +252,6 @@
 		}
 		#surplus {
 			position: absolute;
-			display: none;
 			top: -27px;
 			left: 0px;
 			color: #FF3434;
@@ -317,7 +316,9 @@
 
 		<li class="clearfix"></li>
 		<div class="login-box">
-			<span id="surplus">平台使用的剩余天数:<span id="surplus_num">15</span>天</span>
+			<c:if test="${surplus < 31}">
+				<span id="surplus">平台使用的剩余天数:<span id="surplus_num">${surplus}</span>天</span>
+			</c:if>
 			<input class="loginBtn" type="submit" value="登  录"/>&nbsp;&nbsp;
 		</div>
 

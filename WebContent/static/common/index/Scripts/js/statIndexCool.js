@@ -3785,7 +3785,7 @@ function showSafetyAccident() {
     };
     var option = {
         title: [{
-            text: '事故性质',
+            text: '事件性质',
             textStyle: {
                 fontSize: 14,
                 color: "#9DCCFF"
@@ -3897,11 +3897,8 @@ function showSafetyAccident() {
                     }
                 },
                 tooltip: {
-                    formatter: function () {
-                        var none =""
-                        return none
-                    }
-                    // position: ['65%', '65%'],
+                    trigger: 'item',
+                    formatter: "{b} : {c}<br/> ({d}%)",
                 },
                 data: arr1
             },
@@ -3910,11 +3907,8 @@ function showSafetyAccident() {
                 radius: ['0', '51'],
                 center: ['20%', '22%'],
                 tooltip: {
-                    formatter: function () {
-                        var none =""
-                        return none
-                    }
-                    // position: ['65%', '65%'],
+                    trigger: 'item',
+                    formatter: "{b} : {c}<br/> ({d}%)",
                 },
                 itemStyle: {
                     normal: {
@@ -3967,10 +3961,8 @@ function showSafetyAccident() {
 
                 // },
                 tooltip: {
-                    formatter: function () {
-                        var none =""
-                        return none
-                    }
+                    trigger: 'item',
+                    formatter: "{b} : {c}<br/> ({d}%)",
                 },
                 data: arr2
             },
@@ -4022,11 +4014,8 @@ function showSafetyAccident() {
                 //     // position: ['65%', '65%']
                 // },
                 tooltip: {
-                    formatter: function () {
-                        var none =""
-                        return none
-                    }
-                    // position: ['65%', '65%'],
+                    trigger: 'item',
+                    formatter: "{b} : {c}<br/> ({d}%)",
                 },
                 itemStyle: {
                     normal: {
@@ -4045,11 +4034,8 @@ function showSafetyAccident() {
                 radius: ['0', '51'],
                 center: ['80%', '22%'],
                 tooltip: {
-                    formatter: function () {
-                        var none =""
-                        return none
-                    }
-                    // position: ['65%', '65%'],
+                    trigger: 'item',
+                    formatter: "{b} : {c}<br/> ({d}%)",
                 },
                 itemStyle: {
                     normal: {
