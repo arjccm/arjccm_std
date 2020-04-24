@@ -2599,3 +2599,15 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 -- 设置群组名称，群组头像都可以为空；
 alter table ccm_user_group modify avatar varchar(256) null;
 alter table ccm_user_group modify groupname varchar(64) null;
+
+-- 添加视频房间用户关联表
+DROP TABLE IF EXISTS `ccm_user_group_relationship`;
+CREATE TABLE `ccm_user_group_relationship`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `group_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '房间号',
+  `user_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户ID',
+  `connected` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '是否存在0存在，1不存在；',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '房间用户信息表' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
