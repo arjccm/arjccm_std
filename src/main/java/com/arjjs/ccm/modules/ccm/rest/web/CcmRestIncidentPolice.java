@@ -28,7 +28,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "${appPath}/rest/service/ccmIncidentPolice")
 @Api(description = "一键报警接口")
-public class CcmIncidentPolice {
+public class CcmRestIncidentPolice {
 
     @Autowired
     private CcmOrgAreaService ccmOrgAreaService;
