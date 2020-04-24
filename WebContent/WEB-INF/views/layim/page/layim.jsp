@@ -380,6 +380,27 @@ function getMembers(groupId) {
                         });
                         // layer.close(compileGrp)
                     }
+
+                    $(".exit-group").click(function(){
+                        exit_group_fn()
+                    })
+                    function exit_group_fn(){
+                        var exitGrp = layui.layer;
+                        exitGrp.open({
+                            type:1
+                            ,title:"提示"
+                            ,maxmin:true
+                            ,area:["300px","150px"]
+                            ,skin:"exitGrp"
+                            ,content:"是否退出群聊"
+                            ,btn: ['确定', '取消']
+                            ,yes: function(index, layero){
+                                alert(1)
+                            }
+                        });
+                        // layer.close(compileGrp)
+                    }
+
 			  });
 			   layim.on('online', function(status){
 				  console.log(status); //获得online或者hide
