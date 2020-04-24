@@ -121,9 +121,16 @@ public class CcmRestImChat extends BaseController {
 			result.setCode(CcmRestType.ERROR_PARAM);
 			return result;
 		}
-		int i = ccmUserRelationshipService.deleteByGroupIdAndUserId(userId, groupId);
+		//先判断当前用户是不是群主,如果是群主需要把群主移交给其它人
+        User user = ccmUserGroupService.updateGroupOwenId(userId, groupId);
+        //如果不是群主，直接删除，
+        int i = ccmUserRelationshipService.deleteByGroupIdAndUserId(userId, groupId);
 		result.setCode(CcmRestType.OK);
-		result.setResult(i);
+        if (user!= null){
+            result.setResult(user.getName()); //群主退群把新的群主返回去
+        }else{
+            result.setResult(i);//其它人退群返回1，表示退群成功,0表示用户不存在；
+        }
 		return result;
 
 	}
