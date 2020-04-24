@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -21,14 +22,14 @@ public  class CcmUserGroupRelationshipService  {
     private CcmUserGroupRelationshipDao userGroupRelationshipDao;
 
     //1、根据组ID(房间ID)用户ID，查询组内(房间)用户当前信息；
-    public CcmUserGroupRelationship findUserGroupRelationByGroupId(CcmUserGroupRelationship groupRelationship) {
+    public List<CcmUserGroupRelationship> findUserGroupRelationByGroupId(CcmUserGroupRelationship groupRelationship) {
         return userGroupRelationshipDao.findUserGroupRelationByGroupId(groupRelationship);
     }
     //2、用户进入房间，添加到当前房间；
     @Transactional(readOnly = false)
     public int saveGroupUserRel(CcmUserGroupRelationship ccmUserGroupRelationship) {
-        CcmUserGroupRelationship userGroupRelationByGroupId = findUserGroupRelationByGroupId(ccmUserGroupRelationship);
-        if (userGroupRelationByGroupId != null){
+        List<CcmUserGroupRelationship> userGroupRelList = findUserGroupRelationByGroupId(ccmUserGroupRelationship);
+        if (!userGroupRelList.isEmpty()){
             return 1;
         }
         String id = UUID.randomUUID().toString();
@@ -38,8 +39,8 @@ public  class CcmUserGroupRelationshipService  {
     //3、用户离开房间，删除当前房间用户信息；；
     @Transactional(readOnly = false)
     public int deleteByGroupIdAndUserId( CcmUserGroupRelationship groupRelationship) {
-        CcmUserGroupRelationship userGroupRelationByGroupId = findUserGroupRelationByGroupId(groupRelationship);
-        if (userGroupRelationByGroupId == null){
+        List<CcmUserGroupRelationship> userGroupRelList = findUserGroupRelationByGroupId(groupRelationship);
+        if (userGroupRelList.isEmpty()){
             return 1;
         }
         return userGroupRelationshipDao.deleteByGroupIdAndUserId(groupRelationship);

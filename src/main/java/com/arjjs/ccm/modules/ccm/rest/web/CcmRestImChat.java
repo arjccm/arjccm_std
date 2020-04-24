@@ -136,15 +136,15 @@ public class CcmRestImChat extends BaseController {
 	 */
 	@RequestMapping(value="/findUserGroupRel", method = RequestMethod.GET)
 	@ApiOperation(value = "查询视频房间中用户记录")
-	public CcmRestResult findUserGroupRelationByGroupId(@RequestParam String groupId,@RequestParam String userId, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		CcmRestResult result = new CcmRestResult();
-		if (StringUtils.isEmpty(userId)) {
-			result.setCode(CcmRestType.ERROR_NO_PERSSION);
-			return result;
-		}
-		CcmUserGroupRelationship groupRelationship = new CcmUserGroupRelationship(groupId,userId);
-		result.setCode(CcmRestType.OK);
-		result.setResult(ccmUserGroupRelationshipService.findUserGroupRelationByGroupId(groupRelationship));
+	public CcmRestResult findUserGroupRelationByGroupId(@RequestParam String userId,@RequestParam String groupId, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        CcmRestResult result = new CcmRestResult();
+        if (StringUtils.isEmpty(userId)) {
+            result.setCode(CcmRestType.ERROR_NO_PERSSION);
+            return result;
+        }
+        List<CcmUserGroupRelationship> userGroupRel = ccmUserGroupRelationshipService.findUserGroupRelationByGroupId(new CcmUserGroupRelationship(groupId));
+        result.setCode(CcmRestType.OK);
+		result.setResult(userGroupRel.isEmpty() ? 0 : 1);
 		return result;
 	}
 	/**
