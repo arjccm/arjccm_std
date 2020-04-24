@@ -26,11 +26,12 @@
             <div class="layui-col-md6">
 
                     <div class="layui-form-item search-box">
-                        <input type="text" placeholder="搜素" class="layui-input">
+                        <input type="text" placeholder="搜素" class="layui-input" id="search_grpfrd">
                         <a class="searchIcon"><i class="layui-icon layui-icon-search"></i></a>
                     </div>
                     <div class="layui-form-item friend-box"  pane="">
                         <ul class="layui-nav layui-nav-tree layui-inline friend-list-box" lay-filter="demo" style="margin-right: 0;"></ul>
+                        <div id="seachfriendList"></div>
                     </div>
 
             </div>
@@ -75,7 +76,7 @@
             </div>
 
             <div class="layui-col-md12 clearfix">
-                <div class="submitBtn"><button type="button" class="layui-btn site-demo-layim" lay-submit lay-filter="groupSubmit" data-type="addGroup removeGroup">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
+                <div class="submitBtn"><button type="button" class="layui-btn site-demo-layim" lay-submit lay-filter="groupSubmit" data-type="addGroup">确定</button><button type="button" class="layui-btn layui-btn-primary groupCloseBtn">取消</button></div>
             </div>
         </div>
     </div>
@@ -131,10 +132,11 @@
             });
 
             var grpId;
+            var imageSrc;
             //判断是否编辑页，给表单赋值
             if(setGrp.hasClass("changeGrp")){
                 $.getJSON(arjimRest+'getGroupUser?id='+group_id,function (data) {
-                    console.log(data)
+                    // console.log(data)
                     var imgdata = data.data.avatar
                     var frdlistData = data.data.list
                     var groupid = data.data.id
@@ -164,6 +166,8 @@
                     form.render();
 
                     grpId = groupid
+                    imageSrc = imgdata
+
                     return grpId
                 })
             }
@@ -190,7 +194,7 @@
                     $(fd_id).remove()                               //删除群成员
                 }
                 form.render();
-                console.log(obj)
+                // console.log(obj)
                 // console.log(obj.elem); //得到checkbox原始DOM对象
                 // console.log(obj.elem.checked); //是否被选中，true或者false
                 // console.log(obj.value); //复选框value值，也可以通过data.elem.value得到
@@ -198,6 +202,57 @@
 
 
             });
+
+            //检索
+            $('#search_grpfrd').keyup(function () {
+                var keyWord = $('#search_grpfrd').val();
+                if (keyWord != ''){
+                    // var index=layer.msg('正在查询请稍后',{
+                    //     icon:2,
+                    //     title:'提示',
+                    //     time:false
+                    // })
+
+                    var checkboxlen = $(".friend-list-box input").length
+                    // console.log(keyWord)
+                    $(".friend-list-box li").removeClass("jiedian_a")
+                    $(".friend-list-box dl").removeClass("jiedian_b")
+                    for (var j=0;j<checkboxlen;j++){
+
+                        var titContent = $(".friend-list-box input").eq(j).attr("title")
+                        var sear = titContent.indexOf(keyWord)
+                        if(sear!=-1){
+
+                            $(".friend-list-box input").eq(j).parents(".groupList").addClass("jiedian_a")
+                            $(".friend-list-box input").eq(j).parents("dl").addClass("jiedian_b")
+                            $(".friend-list-box li").css({
+                                "display":"none"
+                            })
+                            $(".friend-list-box li.jiedian_a").css({
+                                "display":"block"
+                            })
+                            $(".friend-list-box dl").css({
+                                "display":"none"
+                            })
+                            $(".friend-list-box dl.jiedian_b").css({
+                                "display":"block"
+                            })
+                        }else{
+                            // console.log("未找到")
+                        }
+                    }
+
+                }else{
+                    $(".friend-list-box li").css({
+                        "display":""
+                    })
+                    $(".friend-list-box dl").css({
+                        "display":""
+                    })
+                }
+            });
+
+
             var imgSrcData;
             //图片上传
             var uploadInst = upload.render({
@@ -236,26 +291,26 @@
                 }
             });
 
-
-            // $('.site-demo-layim').on('click', function(){
-            //
-            // });
-
             form.on('submit(groupSubmit)', function(data){
+                var imgsrc_data
+                // 判断图片接口
+                if($('#uploadImage').attr('src')==imageSrc){
+                    imgsrc_data = imageSrc
+                }else{
+                    imgsrc_data = imgSrcData
+                }
+                // console.log("图片src"+imageSrc)
+
                 var json  = {
                     groupname:data.field.groupname,    //群名称
-                    avatar:imgSrcData,                         //群头像
+                    avatar:imgsrc_data,                         //群头像
                     userList:[],                        //群成员列表
                     groupOwnerId:data.field.groupOwnerId,  //群主id
                     id:grpId,
                     userId:currentsession
                 }
-                var resgrpid;
-
-               // result: {id: "6b941665de994cadba2243e2b06b723e
-
-                console.log(resgrpid)
                 var selectList =  $("#slt-lt-bx li")
+
                 for(var i=0;i<selectList.length;i++){
                     var listVal = $("#slt-lt-bx li").eq(i).attr("value")
                     // console.log(listVal)
@@ -266,42 +321,53 @@
                 //     title: '提交的信息'
                 // })
 
+
                 var $url = "/arjccm/app"
                 $.ajax({
                     type:"post",
                     url:$url+'/rest/ImChat/saveGroups',
                     dataType:"json",
-                    // async:false,
                     data:JSON.stringify(json),
                     contentType: 'application/json; charset=UTF-8',
                     success:function(res){
                         var rid = res.result.id
                         if(setGrp.hasClass("changeGrp")){
+                            parent.layui.layim.removeList({
+                                id: rid
+                                ,type: 'group'
+                            });
                             $ = layui.jquery, active = {
-                                removeGroup: function(){
-                                    layer.msg('已成功删除'+ rid, {
+                                addGroup: function(){
+                                    layer.msg('修改成功', {
                                         icon: 1
                                     });
-                                    //删除一个群组
-                                    parent.layui.layim.removeList({
-                                        id: rid
-                                        ,type: 'group'
+                                    //增加一个群组渲染到页面
+                                    parent.layui.layim.addList({
+                                        type: 'group'
+                                        ,avatar: imgsrc_data
+                                        ,groupname: data.field.groupname
+                                        ,id: rid
+                                        ,members: 0
+                                        ,groupowner:data.field.groupOwnerId
                                     });
                                 }
-                                // ,addGroup: function(){
-                                //     layer.msg('创建成功', {
-                                //         icon: 1
-                                //     });
-                                //     //增加一个群组渲染到页面
-                                //     parent.layui.layim.addList({
-                                //         type: 'group'
-                                //         ,avatar: imgSrcData
-                                //         ,groupname: data.field.groupname
-                                //         ,id: rid
-                                //         ,members: 0
-                                //     });
-                                // }
                             }
+                            //更新渲染当前聊天窗口一些信息
+                            var chatChangeHtml = json.groupname+"<em class='layim-chat-members'>"+json.userList.length+"人</em><i class='layui-icon'>&#xe61a;</i>"
+                            parent.$(".layim-chat-username").html(chatChangeHtml)
+                            parent.$(".headImg").attr("src",imgsrc_data)
+                            //更新渲染聊天窗口判断当前是不是群主
+                            if(json.groupOwnerId == currentsession ){
+                                parent.$(".layim-chat-group .setUpGroup").css({
+                                    "display":"block"
+                                })
+                            }else {
+                                parent.$(".layim-chat-group .setUpGroup").css({
+                                    "display":"none"
+                                })
+                            }
+
+
                             var type = $('.site-demo-layim').data('type');
                             active[type] ? active[type].call($('.site-demo-layim')) : '';
                         }else {
@@ -313,10 +379,11 @@
                                     //增加一个群组渲染到页面
                                     parent.layui.layim.addList({
                                         type: 'group'
-                                        ,avatar: imgSrcData
+                                        ,avatar: imgsrc_data
                                         ,groupname: data.field.groupname
                                         ,id: rid
                                         ,members: 0
+                                        ,groupowner:data.field.groupOwnerId
                                     });
                                 }
                             }
@@ -324,14 +391,7 @@
                             active[type] ? active[type].call($('.site-demo-layim')) : '';
                         }
 
-
-
-
-                        // resgrpid = rid
-                        // console.log(res.result.id)
-
                         parent.layer.close(ptindex);
-                        // return resgrpid
                     }
 
                 })

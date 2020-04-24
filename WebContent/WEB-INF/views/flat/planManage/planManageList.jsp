@@ -245,7 +245,7 @@ h5 i {
     position: absolute;
     width: 0.14rem;
     height: 0.08rem;
-    background:url(/arjccm/static/flat/planManage/images/arrow1.png) center no-repeat;
+    background:url(${ctxStatic}/flat/planManage/images/arrow1.png) center no-repeat;
     background-size: 100% 100%;
     right:0.1rem;
     top:0.12rem;
@@ -257,7 +257,7 @@ h5 i.active {
 	-moz-transform: rotate(90deg); /* Firefox */
 	-webkit-transform: rotate(90deg); /* Safari and Chrome */
 	-o-transform: rotate(90deg); /* Opera */
-    background:url(/arjccm/static/flat/planManage/images/arrow.png) center no-repeat;
+    background:url(${ctxStatic}/flat/planManage/images/arrow.png) center no-repeat;
     background-size: 100% 100%;
 }
 	</style>

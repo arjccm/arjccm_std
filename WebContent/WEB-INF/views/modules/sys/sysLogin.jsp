@@ -15,7 +15,7 @@
 			height: 100%;
 			text-align: center;
 			overflow: hidden !important;
-			background: url('/arjccm/static/images/loginImages/login_bj.jpg') no-repeat;
+			background: url('${ctxStatic}/images/loginImages/login_bj.jpg') no-repeat;
 			background-size: 100% 100%
 		}
 
@@ -28,7 +28,7 @@
 		}
 
 		.form-signin {
-			background: url('/arjccm/static/images/loginImages/login_kuang.png') no-repeat;
+			background: url('${ctxStatic}/images/loginImages/login_kuang.png') no-repeat;
 			position: relative;
 			text-align: left;
 			width: 540px;
@@ -71,7 +71,7 @@
 		.input-block-level {
 			width: 350px;
 			height: 48px !important;
-			/*background: url('/arjccm/static/images/loginImages/input_user.png') no-repeat;*/
+			/*background: url('${ctxStatic}/images/loginImages/input_user.png') no-repeat;*/
 			background: #131e40!important;
 			position: relative;
 			top: 80px;
@@ -84,7 +84,7 @@
 			width: 287px !important;
 			height: 39px !important;
 			padding-left: 55px;
-			/*background: url('/arjccm/static/images/loginImages/input_pwd.png') no-repeat;*/
+			/*background: url('${ctxStatic}/images/loginImages/input_pwd.png') no-repeat;*/
 			background: #131e40!important;
 			position: relative;
 			top: 90px;
@@ -139,14 +139,19 @@
 		li {
 			list-style: none
 		}
-
-		.loginBtn {
-			background: url('/arjccm/static/images/loginImages/btn_bj.png') no-repeat;
-			width: 350px !important;
-			height: 48px !important;
+		.login-box{
 			position: relative;
 			top: 125px;
 			left: 100px;
+			width: 350px !important;
+			height: 48px !important;
+		}
+
+		.loginBtn {
+			background: url('${ctxStatic}/images/loginImages/btn_bj.png') no-repeat;
+			width: 350px !important;
+			height: 48px !important;
+
 			color: #fff;
 			font-size: 20px;
 			border: 0px;
@@ -243,7 +248,14 @@
 			float: right;
 			font-size: 20px;
 			font-weight: bold;
-			text-shadow: 0 1px 0 #fff!;
+			text-shadow: 0 1px 0 #fff;
+		}
+		#surplus {
+			position: absolute;
+			display: none;
+			top: -27px;
+			left: 0px;
+			color: #FF3434;
 		}
     </style>
 	<script type="text/javascript">
@@ -259,7 +271,7 @@
 				errorLabelContainer: "#messageBox",
 				errorPlacement: function(error, element) {
 					error.appendTo($("#loginError").parent());
-				} 
+				}
 			});
 			$(".gbClose").click(function () {
 			   $("#messageBox").hide();
@@ -281,30 +293,34 @@
 			<label id="loginError" class="error">${message}</label>
 		</div>
 	</div>
-<%--	<img class="loginLiuGuang" src='/arjccm/static/images/loginImages/guang.png'>--%>
-	<img class="loginBig" src='/arjccm/static/images/loginImages/login_big_sany.png'>
+<%--	<img class="loginLiuGuang" src='${ctxStatic}/images/loginImages/guang.png'>--%>
+	<img class="loginBig" src='${ctxStatic}/images/loginImages/login_big_sany.png'>
 	<%-- <h1 class="form-signin-heading">${fns:getConfig('showName')}系统</h1> --%>
 	<div class="loginTitle">
-		<img style="margin-left: 35px; width: 43px; height: 45px;" src='/arjccm/static/images/logo.png'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<img style="margin-left: 35px; width: 43px; height: 45px;" src='${logoLink}'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<span style="font-size:28px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;white-space: nowrap;background: none;">${fns:getConfig('productName_part1')}${fns:getConfig('productName_part2')}</span>
 	</div>
 	<form id="loginForm" class="form-signin" action="${ctx}/login" method="post">
 		<h2 class="loginTip">账号登录</h2>
-		<img class="userIcon" src='/arjccm/static/images/loginImages/input_user_Icon.png'>
+		<img class="userIcon" src='${ctxStatic}/images/loginImages/input_user_Icon.png'>
 		<input type="text" id="username" name="username" placeholder="请输入用户名" class="input-block-level required" style="padding-left: 55px" value="${username}">
-		<img class="pwdIcon" src='/arjccm/static/images/loginImages/input_pwd_Icon.png'>
+		<img class="pwdIcon" src='${ctxStatic}/images/loginImages/input_pwd_Icon.png'>
 		<input type="password" id="password" name="password" placeholder="请输入密码" class="input-block-level1 required" style="padding-left: 55px" value="${password}">
 
 
 		<c:if test="${isValidateCodeLogin}">
 			<div class="validateCode clearfix">
-				<img class="checkIcon" src='/arjccm/static/images/loginImages/input_check.png'>
+				<img class="checkIcon" src='${ctxStatic}/images/loginImages/input_check.png'>
 				<sys:validateCode name="validateCode" inputCssStyle="padding-left: 55px;margin-bottom:0;color: #fff;position: relative;top: -20px;width:156px;height:38px"/>
 			</div>
 		</c:if>
-		<li class="clearfix"></li>
 
-		<input class="loginBtn" type="submit" value="登  录"/>&nbsp;&nbsp;
+		<li class="clearfix"></li>
+		<div class="login-box">
+			<span id="surplus">平台使用的剩余天数:<span id="surplus_num">15</span>天</span>
+			<input class="loginBtn" type="submit" value="登  录"/>&nbsp;&nbsp;
+		</div>
+
 
 	</form>
 

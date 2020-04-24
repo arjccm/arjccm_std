@@ -22,7 +22,7 @@ ul { list-style: none; }
 html, body { width: 100%; height: 100%; }
 /* html { background: #111 url(data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAGklEQVR42mMQhAEJCQkGOAtIMsBZIA6cBQQAW5wDhYzvi1MAAAAASUVORK5CYII%3D); color: #fff; }
  */
- html { background: #111 url(/arjccm/static/common/index/areaIndex/images/bg.png); color: #fff;background-size: 100% 100% }
+ html { background: #111 url(${ctxStatic}/common/index/areaIndex/images/bg.png); color: #fff;background-size: 100% 100% }
  body { font-size: 100%; font-family: 'OpenSansLight', sans-serif; line-height: 1em; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; }
 @media (min-width: 1601px) and (max-width:1680px)  {
   body { font-size: 90%;}
@@ -102,7 +102,7 @@ img, object, embed { max-width: 100%; height: auto; }
 </style>
 
   <!--[if lt IE 9]>
-     <script src="/arjccm/static/jquery/html5shiv.js" type="text/javascript"></script>
+     <script src="${ctxStatic}/jquery/html5shiv.js" type="text/javascript"></script>
   <![endif]-->
 
 <script src="${ctxStatic}/common/index/areaIndex/js/jquery.min.js"></script>

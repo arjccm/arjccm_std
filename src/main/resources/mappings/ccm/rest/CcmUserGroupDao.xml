@@ -113,7 +113,8 @@
 			avatar = #{avatar},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
-			remarks = #{remarks}
+			remarks = #{remarks},
+			group_owner = #{groupOwnerId}
 		WHERE id = #{id}
 	</update>
 	

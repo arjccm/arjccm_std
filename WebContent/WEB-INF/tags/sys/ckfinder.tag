@@ -72,10 +72,10 @@
 	function getDownload(_this){
 	    console.log($(_this));
 	    let url = $(_this).attr("url");
-	    $.post("${ctx}/ccmfile/file/download",{filepath:url})
+        self.location.href="${ctx}/ccmfile/file/download?filepath="+url;
+        window.event.returnValue=false;
 
-/*        self.location.href="${ctx}/ccmfile/file/download?filepath="+url;
-        window.event.returnValue=false;*/
+      /*  $.post("${ctx}/ccmfile/file/download",{filepath:url})*/
     }
 
 

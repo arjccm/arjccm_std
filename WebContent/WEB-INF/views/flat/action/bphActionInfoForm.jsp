@@ -13,7 +13,7 @@
 	src="${ctxStatic}/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.js"
 	type="text/javascript"></script>
 <%--引入文本框外部样式--%>
-<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
+<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 <script type="text/javascript">
 	$(document)
 			.ready(

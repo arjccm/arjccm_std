@@ -111,7 +111,7 @@
         	position: absolute;
         	left: 155px;
             top: 67px;
-        	background: url("/arjccm/static/common/index/images/statIndexCool/renkou.png") center no-repeat;
+        	background: url("${ctxStatic}/common/index/images/statIndexCool/renkou.png") center no-repeat;
         }
         #rightContent1Body i {
         	display: block;
@@ -120,7 +120,7 @@
         	position: absolute;
         	left: 162px;
             top: 67px;
-        	background: url("/arjccm/static/common/index/images/statIndexCool/fangwu.png") center no-repeat;
+        	background: url("${ctxStatic}/common/index/images/statIndexCool/fangwu.png") center no-repeat;
         }*/
 
 			.nav li a:focus {
@@ -184,35 +184,35 @@
         	    position: absolute;
         	    right: 370px;
                 top: 147px;
-        	    background: url("/arjccm/static/common/index/images/statIndexCool/fangwu.png") center no-repeat;
+        	    background: url("${ctxStatic}/common/index/images/statIndexCool/fangwu.png") center no-repeat;
 			}*/
 /*			.renkou {
 				width: 18px;
         	    height: 18px;
         	    left: 167px;
                 top: 148px;
-        	    background: url("/arjccm/static/common/index/images/statIndexCool/renkou.png") center no-repeat;
+        	    background: url("${ctxStatic}/common/index/images/statIndexCool/renkou.png") center no-repeat;
 			}*/
 /*			.jinggai {
 				width: 15px;
 				height: 18px;
 				left: 62px;
                 top: 696px;
-				background: url("/arjccm/static/common/index/images/statIndexCool/jinggai.png") center no-repeat;
+				background: url("${ctxStatic}/common/index/images/statIndexCool/jinggai.png") center no-repeat;
 			}
 			.ludeng {
 				width: 17px;
 				height: 14px;
 				left: 60px;
                 top: 754px;
-				background: url("/arjccm/static/common/index/images/statIndexCool/ludeng.png") center no-repeat;
+				background: url("${ctxStatic}/common/index/images/statIndexCool/ludeng.png") center no-repeat;
 			}
 			.lajitong {
 				width: 19px;
 				height: 19px;
 				left: 57px;
                 top: 803px;
-				background: url("/arjccm/static/common/index/images/statIndexCool/lajitong.png") center no-repeat;
+				background: url("${ctxStatic}/common/index/images/statIndexCool/lajitong.png") center no-repeat;
 			}*/
 			.input-medium.Wdate {
 				width: 200px;
@@ -450,9 +450,9 @@
 						<!-- 菜单 -->
 						<div style="z-index: 9999;position: absolute;width:100%; top: 0px;left: 26px;">
 							<div style="float: right; padding-top: 13px;"  class="Logout">
-								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/sys/map/projectIndex"><img src="/arjccm/static/common/index/images/statIndexCool/home.png"></a>
-								<img style="display: inline;" src="/arjccm/static/common/index/images/statIndexCool/vertical.png">
-								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/logout"><img src="/arjccm/static/common/index/images/statIndexCool/exit.png"></a>
+								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/sys/map/projectIndex"><img src="${ctxStatic}/common/index/images/statIndexCool/home.png"></a>
+								<img style="display: inline;" src="${ctxStatic}/common/index/images/statIndexCool/vertical.png">
+								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/logout"><img src="${ctxStatic}/common/index/images/statIndexCool/exit.png"></a>
 								<%--							<span> <a href="${ctx}/logout"> <i--%>
 								<%--									class="icon-off align-top bigger-125"></i> 退出--%>
 								<%--							</a>--%>
@@ -460,8 +460,8 @@
 							</div>
 							<div style="float: left;width: 26%;text-align: left;margin-left: 20px;padding-top: 1%">
 								<div class="liuG"></div>
-								<img class="logo" src="/arjccm/static/images/logo.png" style="width:46px;height:46px;vertical-align:baseline;">
-								<%--<img class="head" src="/arjccm/static/images/head.png" style="margin-top: -106px; margin-left: 45px">--%>
+								<img class="logo" src="${logoLink}" style="width:46px;height:46px;vertical-align:baseline;">
+								<%--<img class="head" src="${ctxStatic}/images/head.png" style="margin-top: -106px; margin-left: 45px">--%>
 								<%--<h1 class="form-signin-heading">${fns:getConfig('showName')}</h1>--%>
 								<span id="productName" style="width:190px;font-size:26px;font-family:MicrosoftYaHei;font-weight:400;color:rgba(255,255,255,1);line-height:27px;text-shadow:0px 3px 7px rgba(0, 0, 0, 0.3);position: relative;top: -80px; left: 55px;white-space: nowrap;background: none;">${fns:getConfig('productName_part1')}</span>
 								<span style="display: block; top: -90px;left: 25px;width:220px;color:rgba(204, 204, 204, 1); font-size: 17px;font-weight: bold;position: relative;background: none;">${fns:getConfig('productName_part2')}</span>
@@ -825,7 +825,7 @@
 											</div>
 											<div class="scaleTitle">累计受理纠纷</div>
 											<div class="scaleImage">
-												<img src="/arjccm/static/images/eventScale2.png" />
+												<img src="${ctxStatic}/images/eventScale2.png" />
 											</div>
 										</div>
 									</div>
@@ -835,7 +835,7 @@
 											</div>
 											<div class="scaleTitle">个体性事件</div>
 											<div class="scaleImage">
-												<img src="/arjccm/static/images/eventScale2.png" />
+												<img src="${ctxStatic}/images/eventScale2.png" />
 											</div>
 										</div>
 									</div>
@@ -847,7 +847,7 @@
 											</div>
 											<div class="scaleTitle">一般个体性事件</div>
 											<div class="scaleImage">
-												<img src="/arjccm/static/images/eventScale2.png" />
+												<img src="${ctxStatic}/images/eventScale2.png" />
 											</div>
 										</div>
 									</div>
@@ -857,7 +857,7 @@
 											</div>
 											<div class="scaleTitle">重大个体性事件</div>
 											<div class="scaleImage">
-												<img src="/arjccm/static/images/eventScale2.png" />
+												<img src="${ctxStatic}/images/eventScale2.png" />
 											</div>
 										</div>
 									</div>
@@ -997,11 +997,11 @@
 					</div>
 					<div id="toolCol" class="toolCol">
 						<div style="height: 40%;text-align: center;margin-top: 30%;" onclick="Map.selectQuery('Polygon')">
-							<img src="/arjccm/static/common/index/images/statIndexCool/draw.png">
+							<img src="${ctxStatic}/common/index/images/statIndexCool/draw.png">
 							<p>标绘</p>
 						</div>
 						<div style="height: 40%;text-align: center;" onclick="Map.fullScreen()">
-							<img src="/arjccm/static/common/index/images/statIndexCool/allScreen.png">
+							<img src="${ctxStatic}/common/index/images/statIndexCool/allScreen.png">
 							<p>全屏</p>
 						</div>
 					</div>

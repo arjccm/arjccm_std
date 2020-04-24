@@ -35,6 +35,14 @@
 		<include refid="ccmWorkerSignJoins"/>
 		WHERE a.id = #{id}
 	</select>
+
+	<select id="getInfo" resultType="CcmWorkerSign">
+		SELECT
+		<include refid="ccmWorkerSignColumns"/>
+		FROM ccm_worker_sign a
+		<include refid="ccmWorkerSignJoins"/>
+		WHERE a.user_id = #{id} AND date_format(#{date}, '%Y%m%d')=date_format(a.clockin_time, '%Y%m%d')
+	</select>
 	
 	<select id="findList" resultType="CcmWorkerSign">
 		SELECT
@@ -200,6 +208,7 @@
 
 
 	</select>
+	<!--查询是否有签到记录-->
 	<select id="findByClockinInfo" resultType="int">
 		SELECT count(*) FROM ccm_worker_sign WHERE user_id=#{user.id} AND date_format(#{clockinTime}, '%Y%m%d')=date_format(clockin_time, '%Y%m%d')
 	</select>

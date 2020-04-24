@@ -5,5 +5,5 @@
 <%@ attribute name="imageCssStyle" type="java.lang.String" required="false" description="验证码图片样式"%>
 <%@ attribute name="buttonCssStyle" type="java.lang.String" required="false" description="看不清按钮样式"%>
 <input type="text" id="${name}" name="${name}" maxlength="5" class="txt required" style="font-weight:bold;width:45px;${inputCssStyle}"/>
-<img src="${pageContext.request.contextPath}/servlet/validateCodeServlet" onclick="$('.${name}Refresh').click();" class="mid ${name}" style="${imageCssStyle};position: absolute;top: -15px;left: 230px"/>
-<a href="javascript:" onclick="$('.${name}').attr('src','${pageContext.request.contextPath}/servlet/validateCodeServlet?'+new Date().getTime());" class="mid ${name}Refresh" style="${buttonCssStyle};position: absolute;left: 230px;top: 17px">看不清</a>
+<img src="${pageContext.request.contextPath}/servlet/validateCodeServlet" onclick="$('.${name}Refresh').click();" class="mid ${name}" style="${imageCssStyle};position: absolute;top: -10px;left: 230px"/>
+<a href="javascript:" onclick="$('.${name}').attr('src','${pageContext.request.contextPath}/servlet/validateCodeServlet?'+new Date().getTime());" class="mid ${name}Refresh" style="${buttonCssStyle};position: absolute;left: 305px;top: -5px">看不清</a>

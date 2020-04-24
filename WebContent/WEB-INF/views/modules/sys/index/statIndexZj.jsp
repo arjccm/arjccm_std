@@ -227,7 +227,7 @@
 
 					<div class="header_logo clearfix">
 						<div class="liuG"></div>
-						<img class="logo" src="/arjccm/static/common/index/images/statIndexZj/xmzj_logo.png">
+						<img class="logo" src="${ctxStatic}/common/index/images/statIndexZj/xmzj_logo.png">
 						<span id="productName" class="logo_text">${fns:getConfig('productName_part2')}</span>
 					</div>
 					<div class="header_nav">
@@ -250,9 +250,9 @@
 						</ul>
 					</div>
 					<div class="Logout hearder_operation clearfix">
-						<a  href="${ctx}/sys/map/projectIndex"><img src="/arjccm/static/common/index/images/statIndexCool/home.png"></a>
-						<img src="/arjccm/static/common/index/images/statIndexCool/vertical.png">
-						<a  href="${ctx}/logout"><img src="/arjccm/static/common/index/images/statIndexCool/exit.png"></a>
+						<a  href="${ctx}/sys/map/projectIndex"><img src="${ctxStatic}/common/index/images/statIndexCool/home.png"></a>
+						<img src="${ctxStatic}/common/index/images/statIndexCool/vertical.png">
+						<a  href="${ctx}/logout"><img src="${ctxStatic}/common/index/images/statIndexCool/exit.png"></a>
 					</div>
 				</div>
 
@@ -637,7 +637,7 @@
 									</div>
 									<div class="scaleTitle">累计受理纠纷</div>
 									<div class="scaleImage">
-										<img src="/arjccm/static/images/eventScale2.png" />
+										<img src="${ctxStatic}/images/eventScale2.png" />
 									</div>
 								</div>
 							</div>
@@ -647,7 +647,7 @@
 									</div>
 									<div class="scaleTitle">个体性事件</div>
 									<div class="scaleImage">
-										<img src="/arjccm/static/images/eventScale2.png" />
+										<img src="${ctxStatic}/images/eventScale2.png" />
 									</div>
 								</div>
 							</div>
@@ -659,7 +659,7 @@
 									</div>
 									<div class="scaleTitle">一般个体性事件</div>
 									<div class="scaleImage">
-										<img src="/arjccm/static/images/eventScale2.png" />
+										<img src="${ctxStatic}/images/eventScale2.png" />
 									</div>
 								</div>
 							</div>
@@ -669,7 +669,7 @@
 									</div>
 									<div class="scaleTitle">重大个体性事件</div>
 									<div class="scaleImage">
-										<img src="/arjccm/static/images/eventScale2.png" />
+										<img src="${ctxStatic}/images/eventScale2.png" />
 									</div>
 								</div>
 							</div>

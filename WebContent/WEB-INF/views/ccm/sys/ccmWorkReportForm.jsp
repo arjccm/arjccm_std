@@ -59,7 +59,7 @@
         }
 
     </script>
-	<link href="/arjccm/static/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
+	<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="${ctxStatic}/ccm/sys/js/ccmWorkReportinfo.js"></script>
 </head>
 <body>
