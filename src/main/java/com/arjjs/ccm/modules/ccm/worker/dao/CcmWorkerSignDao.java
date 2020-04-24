@@ -21,7 +21,7 @@ import java.util.List;
 @MyBatisDao
 public interface CcmWorkerSignDao extends CrudDao<CcmWorkerSign> {
 
-    CcmWorkerSign getInfo(@Param("id") String id,@Param("date") String date);
+    CcmWorkerSign getInfo(@Param("id") String id,@Param("date") Date date);
 
      void insertIdaa(CcmWorkerSign ccmWorkerSign) ;
 
