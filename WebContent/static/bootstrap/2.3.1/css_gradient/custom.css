@@ -527,6 +527,17 @@ a>i.icon-niantie{
 		background-size: 200% 100%;
 	}
 }
+
+.keyPeopleCss{
+	display: inline-block;
+	height:30px;
+	margin: auto;
+	color:#555;
+	text-align: center;
+	line-height:30px;
+	border-radius: 3px
+}
+
 .eventScaleCss{
 	display: inline-block;
 	width:75px;

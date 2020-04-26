@@ -26,6 +26,7 @@ if ($.cookie('theme') == undefined) {
     FontColor = '#fff';
 }
 function showEventArea(data){
+    console.info(data["eventAreaNameData"])
 	// 指定图表的配置项和数据
 	option = {
 		// title : {
@@ -41,7 +42,7 @@ function showEventArea(data){
 		legend: {
 			data:data["eventAreaTypeData"],
             textStyle : {
-                color :FontColor,
+                color : FontColor,
             }
 		},
 		toolbox: {
@@ -60,12 +61,23 @@ function showEventArea(data){
 		xAxis : [
 			{
 				type : 'category',
-				data : data["eventAreaNameData"]
+				data : data["eventAreaNameData"],
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: FontColor,
+                    }
+                }
 			}
 		],
 		yAxis : [
 			{
-				type : 'value'
+				type : 'value',
+                axisLabel : {
+                    textStyle: {
+                        color: FontColor,
+                    }
+                }
 			}
 		],
 		series : data["eventAreaData"]

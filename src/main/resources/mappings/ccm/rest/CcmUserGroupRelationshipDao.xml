@@ -14,7 +14,15 @@
 		SELECT 
 			<include refid="ccmUserGroupRelationshipColumns"/>
 		FROM ccm_user_group_relationship a
-		WHERE a.group_id = #{groupId}  AND  a.user_id = #{userId}
+		WHERE
+		 1 = 1
+		<if	test="groupId != null and groupId != ''">
+			AND  a.group_id = #{groupId}
+		</if>
+		<if	test="userId != null and userId != ''">
+			AND  a.user_id = #{userId}
+		</if>
+
 	</select>
 	
 	<insert id="saveGroupUserRel">

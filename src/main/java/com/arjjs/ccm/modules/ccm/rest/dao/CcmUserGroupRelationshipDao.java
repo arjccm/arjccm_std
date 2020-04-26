@@ -6,6 +6,8 @@ package com.arjjs.ccm.modules.ccm.rest.dao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserGroupRelationship;
 
+import java.util.List;
+
 /**
  * 房间用户信息DAO接口
  * @author m
@@ -14,7 +16,7 @@ import com.arjjs.ccm.modules.ccm.rest.entity.CcmUserGroupRelationship;
 @MyBatisDao
 public interface CcmUserGroupRelationshipDao{
 
-    CcmUserGroupRelationship findUserGroupRelationByGroupId(CcmUserGroupRelationship groupRelationship);
+    List<CcmUserGroupRelationship> findUserGroupRelationByGroupId(CcmUserGroupRelationship groupRelationship);
 
     int saveGroupUserRel(CcmUserGroupRelationship ccmUserGroupRelationship);
 

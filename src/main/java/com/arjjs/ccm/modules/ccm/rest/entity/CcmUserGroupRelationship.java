@@ -26,6 +26,10 @@ public class CcmUserGroupRelationship implements Serializable {
 	public CcmUserGroupRelationship() {
 	}
 
+	public CcmUserGroupRelationship(String groupId) {
+		this.groupId = groupId;
+	}
+
 	public CcmUserGroupRelationship(String groupId, String userId) {
 		this.groupId = groupId;
 		this.userId = userId;

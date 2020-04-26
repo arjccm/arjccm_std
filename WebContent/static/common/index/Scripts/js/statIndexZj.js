@@ -3667,7 +3667,7 @@ function showSafetyAccident() {
 
     var option = {
         title: [{
-            text: '事故性质',
+            text: '事件性质',
             textStyle: {
                 fontSize: 14,
                 color: "#9DCCFF"
@@ -3780,7 +3780,7 @@ function showSafetyAccident() {
                 tooltip: {
                     trigger: 'item',
                     formatter: "{b} : {c}<br/> ({d}%)",
-                    position: ['65%', '65%']
+                    position: ['65%', '65%'],
                 },
                 data: arr1
             },

@@ -57,7 +57,7 @@ if ($.cookie('theme') == undefined) {
     FontColor = '#fff';
 }
 function showEventArea(data){
-
+	console.info(data["eventAreaNameData"])
 	// 指定图表的配置项和数据
 	var option = {
 		// title : {
@@ -94,14 +94,22 @@ function showEventArea(data){
 						width:1
 					}
 				},
-				nameTextStyle:{
-					color:"#ffffff"
-				}
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: FontColor,
+                    }
+                }
 			}
 		],
 		yAxis : [
 			{
-				type : 'value'
+				type : 'value',
+                axisLabel : {
+                    textStyle: {
+                        color: FontColor,
+                    }
+                }
 			}
 		],
 		series : data["eventAreaData"]

@@ -121,9 +121,16 @@ public class CcmRestImChat extends BaseController {
 			result.setCode(CcmRestType.ERROR_PARAM);
 			return result;
 		}
-		int i = ccmUserRelationshipService.deleteByGroupIdAndUserId(userId, groupId);
+		//先判断当前用户是不是群主,如果是群主需要把群主移交给其它人
+        User user = ccmUserGroupService.updateGroupOwenId(userId, groupId);
+        //如果不是群主，直接删除，
+        int i = ccmUserRelationshipService.deleteByGroupIdAndUserId(userId, groupId);
 		result.setCode(CcmRestType.OK);
-		result.setResult(i);
+        if (user!= null){
+            result.setResult(user.getName()); //群主退群把新的群主返回去
+        }else{
+            result.setResult(i);//其它人退群返回1，表示退群成功,0表示用户不存在；
+        }
 		return result;
 
 	}
@@ -136,15 +143,15 @@ public class CcmRestImChat extends BaseController {
 	 */
 	@RequestMapping(value="/findUserGroupRel", method = RequestMethod.GET)
 	@ApiOperation(value = "查询视频房间中用户记录")
-	public CcmRestResult findUserGroupRelationByGroupId(@RequestParam String groupId,@RequestParam String userId, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		CcmRestResult result = new CcmRestResult();
-		if (StringUtils.isEmpty(userId)) {
-			result.setCode(CcmRestType.ERROR_NO_PERSSION);
-			return result;
-		}
-		CcmUserGroupRelationship groupRelationship = new CcmUserGroupRelationship(groupId,userId);
-		result.setCode(CcmRestType.OK);
-		result.setResult(ccmUserGroupRelationshipService.findUserGroupRelationByGroupId(groupRelationship));
+	public CcmRestResult findUserGroupRelationByGroupId(@RequestParam String userId,@RequestParam String groupId, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        CcmRestResult result = new CcmRestResult();
+        if (StringUtils.isEmpty(userId)) {
+            result.setCode(CcmRestType.ERROR_NO_PERSSION);
+            return result;
+        }
+        List<CcmUserGroupRelationship> userGroupRel = ccmUserGroupRelationshipService.findUserGroupRelationByGroupId(new CcmUserGroupRelationship(groupId));
+        result.setCode(CcmRestType.OK);
+		result.setResult(userGroupRel.isEmpty() ? 0 : 1);
 		return result;
 	}
 	/**
