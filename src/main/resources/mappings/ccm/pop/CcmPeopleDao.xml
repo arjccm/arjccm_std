@@ -237,6 +237,7 @@
 		a.is_dangerous AS "isDangerous",
 		a.is_dispute AS "isDispute",
 		a.is_permanent AS "isPermanent",
+		a.special_care_type AS "specialCareType",
 		a.type_spec AS "typeSpec",
 		a.ident AS "ident",
 		a.telephone AS "telephone",
