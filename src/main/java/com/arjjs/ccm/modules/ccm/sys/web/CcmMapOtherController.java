@@ -417,8 +417,8 @@ public class CcmMapOtherController extends BaseController {
             // 2 id 添加
             featureDto.setId(Buildmanage.getId());
             // 3 properties 展示属性信息
-            properties.setName(Buildmanage.getName());
-            properties.setIcon(Buildmanage.getImage());
+            properties.setName(Buildmanage.getBuildname());
+            properties.setIcon("");
             Map<String, Object> map = new HashMap<String, Object>();
             // 创建附属信息
             map.put("id", Buildmanage.getId());
@@ -427,46 +427,37 @@ public class CcmMapOtherController extends BaseController {
             map.put("层数", Buildmanage.getPilesNum() + "");
             map.put("单元数", Buildmanage.getElemNum() + "");
             properties.addInfo(map);
-            featureList.add(featureDto);
-            featureDto.setProperties(properties);
             // 4 geometry 配置参数
             Geometry geometry = new Geometry();
-            featureDto.setGeometry(geometry);
-            // 点位信息 测试为面
-            geometry.setType("Polygon");
-            // 获取中心点的值
-            if (StringUtils.isNotEmpty(Buildmanage.getAreaPoint())) {
+            // 点位信息
+            geometry.setType("Point");
+            if (!StringUtils.isEmpty(Buildmanage.getAreaPoint())) {
+                // 获取中心点的值
                 String[] centpoint = Buildmanage.getAreaPoint().split(",");
-                // 图层中心点
                 geoJSON.setCentpoint(centpoint);
-                // 图形中心点
+                // 添加图形中心点位信息
                 properties.setCoordinateCentre(centpoint);
             }
             // 添加具体数据
-            // 封装的list 以有孔与无孔进行添加
-            List<Object> CoordinateslistR = new ArrayList<>();
-            // 以下是无孔面积数组
-            String[] coordinates = (StringUtils.isEmpty(Buildmanage.getAreaMap()) ? ";" : Buildmanage.getAreaMap())
-                    .split(";");
-            // 返回无孔结果 2层数据一个数据源
-            List<String[]> Coordinateslist = new ArrayList<>();
-            for (int i = 0; i < coordinates.length; i++) {
-                if (coordinates.length > 1) {
-                    String corrdinate = coordinates[i];
-                    // 以“，”为分割数据
-                    String[] a = corrdinate.split(",");
-                    Coordinateslist.add(a);
-                } else {
-                    // 补充一个空的数据源
-                    String[] a = {"", ""};
-                    Coordinateslist.add(a);
-                }
+            // 封装的list
+            List<String> Coordinateslist = new ArrayList<>();
+            // 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
+            String[] a = (StringUtils.isEmpty(Buildmanage.getAreaPoint()) ? (",") : Buildmanage.getAreaPoint()).split(",");
+            // 填充数据
+            if (a.length < 2) {
+                Coordinateslist.add("");
+                Coordinateslist.add("");
+            } else {
+                Coordinateslist.add(a[0]);
+                Coordinateslist.add(a[1]);
             }
-            // 根据格式要求 两层list
-            CoordinateslistR.add(Coordinateslist);
-            // 获取最后的结果
-            geometry.setCoordinates(CoordinateslistR);
+            // 装配点位
+            geometry.setCoordinates(Coordinateslist);
+            featureDto.setGeometry(geometry);
+            featureDto.setProperties(properties);
+            featureList.add(featureDto);
         }
+
         geoJSON.setFeatures(featureList);
         // 如果无数据
         if (featureList.size() == 0) {

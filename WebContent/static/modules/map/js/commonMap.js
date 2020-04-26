@@ -394,23 +394,25 @@ ArjMap.Map.prototype = {
             }),
             //重点人员楼栋样式
             'keyPerson': new ol.style.Style({
-                image: new ol.style.Icon({
-                    src: ctxStatic + '/modules/map/images/' + variable + '',
-                    scale: map.getView().getZoom() / 15
+                image: new ol.style.Circle({
+                    radius: 5,
+                    fill: new ol.style.Fill({
+                        color: '#0099ff'
+                    })
                 }),
                 fill: new ol.style.Fill({
-                    color: 'rgba(248, 61, 61, 1)'
+                    color: 'rgba(255, 255, 255, 0.6)'
                 }),
                 stroke: new ol.style.Stroke({
-                    color: 'rgba(248, 61, 61, 1)',
-                    width: 3
+                    color: '#ffcc33',
+                    width: 2
                 }),
                 text: new ol.style.Text({
                     textAlign: 'center', // 位置
                     textBaseline: 'middle', // 基准线
                     exceedLength: 'true',
                     font: 'normal 10px 微软雅黑',  // 文字样式
-                    text: feature.get('name'),  // 文本内容
+                    text: feature.get('features')!="" && feature.get('features')!= undefined ?feature.get('features')[0].get('name'):"",  // 文本内容
                     fill: new ol.style.Fill({color: '#aa3300'}), // 文本填充样式（即文字颜色）
                     stroke: new ol.style.Stroke({color: '#ffcc33', width: 2})
                 })
