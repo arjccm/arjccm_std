@@ -429,6 +429,7 @@ public class CcmRestWechat extends BaseController {
 					people.setName(tenant.getTenantName());
 					people.setTelephone(tenant.getTenantPhone());
 					people.setAreaGridId(ccmPopTenant.getArea());
+					people.setAreaComId(ccmPopTenant.getArea());
 					User user = UserUtils.get("1");
 					people.setCreateBy(user);
 					people.setCreateDate(new Date());
