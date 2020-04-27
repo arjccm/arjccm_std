@@ -750,11 +750,12 @@ function chat_ready(sendId,id,callType,type,reqType,vaGroupId,vaGroupName){
 	 $(".chat_dialog").hide();
      sendWebRtcParm.resSign = "agree";
      if(reqType === "ptop"){//单聊,
-             setTimeout(function(){
-                 windowOpen(arjWebRtc +'?userId='+sendId+'&sendId='+id+'&type='+type+'&callType=callee','视频聊天','670','580');
+           // 必须保存弹出页面加载完之后在发消息，重要！重要！重要！
+            windowOpen(arjWebRtc +'?userId='+sendId+'&sendId='+id+'&type='+type+'&callType=callee','视频聊天','670','580');
+            setTimeout(function(){
                  // 弹出页面之后，发送回调消息，告诉发起人，被呼叫人已经同意视频；
                  sendVideoOrAuidoMsg(id,"","", sendId,callType,type,reqType,sendWebRtcParm.resSign)
-             }, 500)
+             }, 5000)
      }else if(reqType === "group"){//群聊
              setTimeout(function(){
                  var webRtcUrl = encodeURI(arjWebRtc +'/room?userId='+id+'&userName='+loginName+'&groupId='+vaGroupId+'&groupName='+vaGroupName+'&type='+type)
