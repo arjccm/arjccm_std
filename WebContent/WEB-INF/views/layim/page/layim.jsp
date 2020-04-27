@@ -441,16 +441,23 @@ function getGroupUserStatus(json) {
                                     url:$url+'/rest/ImChat/leaveGroup',
                                     data:exitGrpTson,
                                     async : false,
-                                    success:function(){
+                                    success:function(d){
                                         layim.removeList({
                                             id: res.data.id
                                             ,type: 'group'
                                         })
-                                        $(".ayui-layim-chat").hide()
+                                        // $(".ayui-layim-chat").hide()
+                                        console.log(d.result)
                                         layer.close(index);
-                                        layer.msg('您已经退出'+ res.data.groupname,{
-                                            time:3000
-                                        })
+                                        if(res.data.groupowner == currentsession){
+                                            layer.msg('您已经退出'+ res.data.groupname+",群主已经转让给"+ d.result,{
+                                                time:4000
+                                            })
+                                        }else{
+                                            layer.msg('您已经退出'+ res.data.groupname,{
+                                                time:4000
+                                            })
+                                        }
 
 
                                     }

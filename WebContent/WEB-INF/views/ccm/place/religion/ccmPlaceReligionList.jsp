@@ -70,11 +70,11 @@
     </ul>
     <form:form id="searchForm" modelAttribute="ccmPlaceReligion"
                action="${ctx}/religion/ccmPlaceReligion/" method="post"
-               class="breadcrumb form-search">
+               class="breadcrumb form-search clearfix">
         <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
         <input id="pageSize" name="pageSize" type="hidden"
                value="${page.pageSize}"/>
-        <ul class="ul-form">
+        <ul class="ul-form pull-left">
             <li class="first-line"><label>场所名称：</label> <form:input path="placeName"
                                                                     htmlEscape="false" maxlength="255"
                                                                     class="input-medium"/></li>
@@ -82,18 +82,18 @@
                                                                      htmlEscape="false" maxlength="255"
                                                                      class="input-medium"/></li>
 
-            <li class="clearfix"></li>
+            <%--<li class="clearfix"></li>--%>
         </ul>
         <div class="clearfix pull-right btn-box">
             <shiro:hasPermission name="religion:ccmPlaceReligion:edit">
                 <a onclick="parent.LayerDialog('${ctx}/religion/ccmPlaceReligion/form', '添加', '1100px', '700px')"
                    class="btn btn-export"
-                   style="width: 49px;display:inline-block;float: right;margin-left: 20px;margin-right: 14px;margin-bottom: 20px"><i></i>
+                   style="width: 49px;display:inline-block;float: right;"><i></i>
                     <span style="font-size: 12px">添加</span> </a>
             </shiro:hasPermission>
             <a href="javascript:;" id="btnSubmit"
                class="btn btn-primary"
-               style="width: 49px;display:inline-block;float: right;margin-left: 20px;margin-bottom: 20px"> <i></i><span
+               style="width: 49px;display:inline-block;float: right;"> <i></i><span
                     style="font-size: 12px">查询</span>
             </a>
         </div>

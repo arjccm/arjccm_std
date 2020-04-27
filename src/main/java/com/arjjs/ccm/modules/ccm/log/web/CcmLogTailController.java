@@ -295,8 +295,8 @@ public class CcmLogTailController extends BaseController {
 	public String delete(CcmLogTail ccmLogTail, RedirectAttributes redirectAttributes) {
 		ccmLogTailService.delete(ccmLogTail);
 		addMessage(redirectAttributes, "删除跟踪信息成功");
-//		return "redirect:" + Global.getAdminPath() + "/log/ccmLogTail/list?relevance_id="+ccmLogTail.getRelevanceId()+"&relevance_table="+ccmLogTail.getRelevanceTable()+"&repage";
-		return "redirect:" + Global.getAdminPath() + "/log/ccmLogTail/list";
+		return "redirect:" + Global.getAdminPath() + "/log/ccmLogTail/list?relevance_id="+ccmLogTail.getRelevanceId()+"&relevance_table="+ccmLogTail.getRelevanceTable()+"&repage";
+		// return "redirect:" + Global.getAdminPath() + "/log/ccmLogTail/list";
 	}
 
 	@ResponseBody
