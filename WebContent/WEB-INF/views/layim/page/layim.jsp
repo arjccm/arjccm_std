@@ -281,6 +281,7 @@ var showmsg,lm;
                        sendWebRtcParm.callType = "callee";
                        sendWebRtcParm.type = "video";
                        sendWebRtcParm.reqType = "group";
+                       sendWebRtcParm.resSign = "agree";
                        var json  = {
                            groupId:groupId,
                            userId:currentsession
@@ -293,7 +294,7 @@ var showmsg,lm;
                           //注意：此处需要排除当前用户；
                            if(groupMember[i].id != currentsession){
                                if(userRoomStatus == 0){
-                                   sendVideoOrAuidoMsg(sendMsgParam.currentUserId,"","",groupMember[i].id,sendWebRtcParm.callType,sendWebRtcParm.type,sendWebRtcParm.reqType,"",groupId,groupName);
+                                   sendVideoOrAuidoMsg(sendMsgParam.currentUserId,"","",groupMember[i].id,sendWebRtcParm.callType,sendWebRtcParm.type,sendWebRtcParm.reqType,sendWebRtcParm.resSign,groupId,groupName);
                                }
                            }
                        }
@@ -308,7 +309,8 @@ var showmsg,lm;
                            sendMsgParam.friendId = obj.data.id;
                            sendWebRtcParm.type = "video";
                            sendWebRtcParm.reqType = "ptop";
-                           sendVideoOrAuidoMsg(sendMsgParam.currentUserId,"","",sendMsgParam.friendId,sendWebRtcParm.callType,sendWebRtcParm.type,sendWebRtcParm.reqType);
+                           sendWebRtcParm.resSign = "agree";
+                           sendVideoOrAuidoMsg(sendMsgParam.currentUserId,"","",sendMsgParam.friendId,sendWebRtcParm.callType,sendWebRtcParm.type,sendWebRtcParm.reqType,sendWebRtcParm.resSign);
                            $("body").append(
                                '<div class="modal chat_dialog"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" aria-labelledby="myModalLabel">'+
                                '<div class="modal-dialog">'+
@@ -502,12 +504,20 @@ var showmsg,lm;
                               windowOpen(arjWebRtc +'?userId='+currentsession+'&sendId='+receiveUser+'&type=video&callType=caller','视频聊天','670','580');
                               closeDialog();
                               return false;
-                          }else if(msg.getRessign()==='refuse'&&  msg.getCalltype() =="caller") {
+                          }else if(msg.getRessign()==='refuse') {
                               var receiveMsg;
-                              if (msg.getReqtype() === "ptop") {//单聊
-                                  receiveMsg = "您的呼叫请求已经被拒绝!!";
-                              } else if (msg.getReqtype() === "group") {//群聊
-                                  receiveMsg = msg.getSendername() + " 已经退出房间";
+                              if( msg.getCalltype() =="caller"){
+                                  if (msg.getReqtype() === "ptop") {//单聊
+                                      receiveMsg = "您的呼叫请求已经被拒绝!!";
+                                  } else if (msg.getReqtype() === "group") {//群聊
+                                      receiveMsg = msg.getSendername() + " 已经退出房间";
+                                  }
+                              }else {
+                                  if (msg.getReqtype() === "ptop") {//单聊
+                                      receiveMsg = msg.getSendername() + "用户已经取消视频!!";
+                                  } else if (msg.getReqtype() === "group") {//群聊
+                                      receiveMsg = msg.getSendername() + " 已经退出房间";
+                                  }
                               }
                               $("body").append(
                                   '<div class="modal chat_dialog"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" aria-labelledby="myModalLabel">' +
