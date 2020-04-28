@@ -874,8 +874,9 @@
 			<if test="area != null">
 				AND a17.parent_ids LIKE concat('%',#{area.id},'%')
 			</if>
+			AND a.area_point IS NOT NULL
 		</where>
-		LIMIT 500
+		LIMIT 5000
 	</select>
 	<select id="areaParentId" resultType="string">
 		SELECT parent_id FROM sys_area WHERE id = #{id}
