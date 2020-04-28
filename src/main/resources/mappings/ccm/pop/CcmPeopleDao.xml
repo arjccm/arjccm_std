@@ -3098,27 +3098,6 @@
 			</if>
 			AND b.area_point IS NOT NULL
 		</where>
-		LIMIT 2000
-	</select>
-<!--数组查询Id，关联楼栋-->
-	<select id="findListLimite_V2_Build" resultType="CcmPeople">
-		SELECT
-		b.area_point AS areaPoint,
-		<include refid="ccmPeopleColumns_simple_V2" />
-		FROM ccm_people a
-		<include refid="ccmPeopleJoinsArea" />
-		<include refid="ccmPeopleJoinsNet" />
-		LEFT JOIN ccm_house_buildmanage b ON b.id = a.build_id
-		where
-		a.del_flag = #{DEL_FLAG_NORMAL}
-		<if test="listLimite != null and listLimite.length > 0">
-			AND (
-			<foreach collection="listLimite" item="n"  separator=" OR " >
-				<if test="n != null and n != ''">
-					a.id = #{n}
-				</if>
-			</foreach>
-			)
-		</if>
+		LIMIT 1000
 	</select>
 </mapper>
