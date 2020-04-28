@@ -89,4 +89,8 @@ public interface CcmHouseBuildmanageDao extends CrudDao<CcmHouseBuildmanage> {
     Integer gather(@Param("bid") String bid);
 
     List<SearchTabMore> queryCommunityCount();
+
+    List<CcmHouseBuildmanage> buildList(CcmHouseBuildmanage ccmHouseBuildmanage);
+
+	String areaParentId(@Param("id") String areaId);
 }

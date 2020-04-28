@@ -181,50 +181,6 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 			ccmEventIncident.setDelFlag("0");
 			ccmEventIncident.setStick("0");
 			ccmEventIncidentDao.insert(ccmEventIncident);
-//			BphAlarmInfo bphAlarmInfo = new BphAlarmInfo();
-//			//接警单编号生成规则 年月日时分秒
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-//			bphAlarmInfo.setOtherNum(sdf.format(new Date()));
-//			if("1".equalsIgnoreCase(ccmEventIncident.getWhatType())) {
-//				if(StringUtils.isNotEmpty(ccmEventIncident.getAlarmPeopleName())) {
-//					bphAlarmInfo.setManName(ccmEventIncident.getAlarmPeopleName());
-//				}else {
-//					bphAlarmInfo.setManName("匿名");
-//				}
-//				if(StringUtils.isNotEmpty(ccmEventIncident.getAlarmPeopleTel())) {
-//					bphAlarmInfo.setManTel(ccmEventIncident.getAlarmPeopleTel());
-//				}else {
-//					bphAlarmInfo.setManTel("");
-//				}
-//			}else {
-//				if(StringUtils.isNotEmpty(ccmEventIncident.getReportPerson())) {
-//					bphAlarmInfo.setManName(ccmEventIncident.getReportPerson());
-//				}else {
-//					bphAlarmInfo.setManName("匿名");
-//				}
-//				if(StringUtils.isNotEmpty(ccmEventIncident.getReportPersonPhone())) {
-//					bphAlarmInfo.setManTel(ccmEventIncident.getReportPersonPhone());
-//				}else {
-//					bphAlarmInfo.setManTel("");
-//				}
-//			}
-//			bphAlarmInfo.setId(id);
-//			bphAlarmInfo.setPlace(ccmEventIncident.getHappenPlace());
-//			bphAlarmInfo.setContent(ccmEventIncident.getCaseName());
-//			bphAlarmInfo.setTypeCode(ccmEventIncident.getProperty());
-//			bphAlarmInfo.setState("0");
-//			bphAlarmInfo.setAlarmTime(new Date());
-//			bphAlarmInfo.setIsImportant("0");
-//			bphAlarmInfo.setCreateBy(new User("1"));
-//			bphAlarmInfo.setCreateDate(new Date());
-//			bphAlarmInfo.setUpdateBy(new User("1"));
-//			bphAlarmInfo.setUpdateDate(new Date());
-//			bphAlarmInfo.setDelFlag("0");
-//			if(ccmEventIncident.getAreaPoint()!=null && !ccmEventIncident.getAreaPoint().equals("")){
-//				bphAlarmInfo.setX(Double.parseDouble(ccmEventIncident.getAreaPoint().split(",")[0]));
-//				bphAlarmInfo.setY(Double.parseDouble(ccmEventIncident.getAreaPoint().split(",")[1]));
-//			}
-//			bphAlarmInfoDao.insert(bphAlarmInfo);
 		} else {
 			super.save(ccmEventIncident);
 		}

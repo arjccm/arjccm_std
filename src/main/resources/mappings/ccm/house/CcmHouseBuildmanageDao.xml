@@ -833,4 +833,51 @@
 	GROUP BY ld.sqid
 	</select>
 
+	<!--地图查询楼栋-->
+	<select id="buildList" resultType="CcmHouseBuildmanage">
+		SELECT
+		<include refid="ccmHouseBuildmanageColumns" />
+		FROM ccm_house_buildmanage a
+		<include refid="ccmHouseBuildmanageJoins" />
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="buildname != null and buildname != ''">
+				AND a.buildname LIKE
+				<if test="dbName == 'oracle'">'%'||#{buildname}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{buildname}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{buildname},'%')</if>
+			</if>
+			<if test="buildPname != null and buildPname != ''">
+				AND a.build_pname LIKE
+				<if test="dbName == 'oracle'">'%'||#{buildPname}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{buildPname}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{buildPname},'%')</if>
+			</if>
+			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+				AND   (a17.parent_ids LIKE  CONCAT('%',#{userArea.id},'%')  or a.area_id = #{userArea.id})
+			</if>
+			<if test="more1 != null and more1 != ''">
+				AND  (${more1})
+			</if>
+			<if test="residencedetail != null and residencedetail != ''">
+				AND a.residencedetail LIKE
+				<if test="dbName == 'oracle'">'%'||#{residencedetail}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{residencedetail}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{residencedetail},'%')</if>
+			</if>
+			<if test="area != null">
+				AND a17.parent_ids LIKE concat('%',#{area.id},'%')
+			</if>
+		</where>
+		LIMIT 500
+	</select>
+	<select id="areaParentId" resultType="string">
+		SELECT parent_id FROM sys_area WHERE id = #{id}
+	</select>
 </mapper>

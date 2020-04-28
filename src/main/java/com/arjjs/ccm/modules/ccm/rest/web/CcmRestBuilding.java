@@ -5,10 +5,13 @@ import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
+import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDeviceArea;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildentrance;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildentranceVo;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
+import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
+import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenantVo;
@@ -17,8 +20,10 @@ import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.TransGPS;
+import com.google.common.collect.Lists;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -46,6 +51,10 @@ import java.util.List;
 @Api(description = "楼栋接口相关")
 public class CcmRestBuilding extends BaseController {
 
+	@Autowired
+	private CcmRestIncidentPolice ccmRestIncidentPolice;
+	@Autowired
+	private CcmOrgAreaService ccmOrgAreaService;
 	@Autowired
 	private CcmHouseBuildmanageService ccmHouseBuildmanageService;
 	@Autowired
@@ -101,13 +110,15 @@ public class CcmRestBuilding extends BaseController {
 	 * @param buildname  楼栋名称
 	 * @param pageNo 页码
 	 * @param pageSize 分页大小
+	 * @param sign 标识查询列表还是地图（0列表  1地图）
+	 * @param areaPoint 地图中心点
 	 * @return
 	 * @author fuxinshuang
 	 * @version 2018-02-03
 	 */
 	@ResponseBody
 	@RequestMapping(value="/query", method = RequestMethod.GET)
-	public CcmRestResult query(String userId,CcmHouseBuildmanage build,HttpServletRequest req, HttpServletResponse resp,Integer pageNo) throws IOException {
+	public CcmRestResult query(String areaPoint,String sign,String userId,CcmHouseBuildmanage build,HttpServletRequest req, HttpServletResponse resp,Integer pageNo) throws IOException {
 		logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
 		logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
 		logger.info("当前方法运行参数为》》》CcmHouseBuildmanage : " + String.valueOf(build) + "  userId : " + userId);
@@ -122,35 +133,71 @@ public class CcmRestBuilding extends BaseController {
 			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
 			return result;
 		}
+		String areaId="";
+		Area area = new Area();
 		build.setCheckUser(sessionUser);
-		Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService
-				.findPage(new Page<CcmHouseBuildmanage>(req, resp), build);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-		long startTime=System.nanoTime();   //获取开始时间
-		if(page.getList().size()>0){
-			for (int i = 0; i < page.getList().size(); i++) {
-				//楼栋已采集人数
-				Integer gatherNum = page.getList().get(i).getGatherNum();
-				if (gatherNum==null){
-					gatherNum=0;
+		if ("0".equals(sign)){
+			Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService
+					.findPage(new Page<CcmHouseBuildmanage>(req, resp), build);
+			if(page.getList().size()>0){
+				for (int i = 0; i < page.getList().size(); i++) {
+					//楼栋已采集人数
+					Integer gatherNum = page.getList().get(i).getGatherNum();
+					if (gatherNum==null){
+						gatherNum=0;
+					}
+					//楼栋总人数
+					Integer buildPeo = page.getList().get(i).getBuildPeo();
+					if (buildPeo==null){
+						buildPeo=0;
+					}
+					//未采集人数
+					Integer nogather=buildPeo-gatherNum;
+					page.getList().get(i).setNogather(nogather);
+					page.getList().get(i).setImages(fileUrl + page.getList().get(i).getImages());
 				}
-				//楼栋总人数
-				Integer buildPeo = page.getList().get(i).getBuildPeo();
-				if (buildPeo==null){
-					buildPeo=0;
-				}
-				//未采集人数
-				Integer nogather=buildPeo-gatherNum;
-				page.getList().get(i).setNogather(nogather);
-				page.getList().get(i).setImages(fileUrl + page.getList().get(i).getImages());
 			}
+			page.setPageNo(pageNo);
+			result.setCode(CcmRestType.OK);
+			result.setResult(page.getList());
+		}else {
+
+			if (StringUtils.isNotBlank(areaPoint)) {
+
+			List<CcmOrgArea> orgAreaList = ccmOrgAreaService.getAreaMap(new CcmOrgArea());
+			List<CcmDeviceArea> resultList = Lists.newArrayList();
+			ccmRestIncidentPolice.sortList(resultList, orgAreaList, "0", true);
+			List<String> pointList = Lists.newArrayList();
+				String[] pointInfo = areaPoint.split(",");
+				double lat = Double.valueOf(pointInfo[0]);
+				double lon = Double.valueOf(pointInfo[1]);
+				 areaId = ccmRestIncidentPolice.getDeviceAreaId(resultList, pointList, lat, lon);
+				if(StringUtils.isNotBlank(areaId)) {
+					area.setId(areaId);
+					build.setArea(area);
+				}
+			}
+
+			List<CcmHouseBuildmanage> buildList = ccmHouseBuildmanageService.buildList(build);
+			if(buildList.size()>0){
+				for (int i = 0; i < buildList.size(); i++) {
+					buildList.get(i).setImages(fileUrl + buildList.get(i).getImages());
+				}
+			}else {
+				while (0==buildList.size()&&StringUtils.isNotBlank(areaPoint)){
+					String pid = ccmHouseBuildmanageService.areaParentId(areaId);
+					if(StringUtils.isNotBlank(pid)) {
+						area.setId(pid);
+						build.setArea(area);
+					}
+					buildList = ccmHouseBuildmanageService.buildList(build);
+					areaId=pid;
+				}
+			}
+			result.setCode(CcmRestType.OK);
+			result.setResult(buildList);
 		}
-		long endTime=System.nanoTime(); //获取结束时间
-		System.out.println("程序运行时间WWWWWWWWWWWWWWWWWWWWWWWWWWWW"+(endTime-startTime)+"ns");
-		page.setPageNo(pageNo);
-		result.setCode(CcmRestType.OK);
-		result.setResult(page.getList());
-		
 		return result;
 	}
 	

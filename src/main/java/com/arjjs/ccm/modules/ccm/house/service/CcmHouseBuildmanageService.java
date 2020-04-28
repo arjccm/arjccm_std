@@ -245,4 +245,11 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 		return ccmHouseBuildmanageDao.queryCommunityCount();
 	 }
 
+    public List<CcmHouseBuildmanage> buildList(CcmHouseBuildmanage build) {
+		return ccmHouseBuildmanageDao.buildList(build);
+    }
+
+	public String areaParentId(String areaId) {
+		return ccmHouseBuildmanageDao.areaParentId(areaId);
+	}
 }
