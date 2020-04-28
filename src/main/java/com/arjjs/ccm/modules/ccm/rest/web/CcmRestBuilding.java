@@ -154,6 +154,9 @@ public class CcmRestBuilding extends BaseController {
 					}
 					//未采集人数
 					Integer nogather=buildPeo-gatherNum;
+					if (nogather<0){
+						nogather=0;
+					}
 					page.getList().get(i).setNogather(nogather);
 					page.getList().get(i).setImages(fileUrl + page.getList().get(i).getImages());
 				}
