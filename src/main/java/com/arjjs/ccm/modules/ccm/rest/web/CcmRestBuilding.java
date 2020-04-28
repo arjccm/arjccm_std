@@ -24,6 +24,7 @@ import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.TransGPS;
 import com.google.common.collect.Lists;
+import com.sun.mail.imap.protocol.ID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -196,6 +197,9 @@ public class CcmRestBuilding extends BaseController {
 					}
 					buildList = ccmHouseBuildmanageService.buildList(build);
 					areaId=pid;
+					if ("0".equals(pid)){
+						break;
+					}
 				}
 			}
 			if (buildList.size()==0){
