@@ -135,9 +135,9 @@ public class CcmRestBuilding extends BaseController {
 		}
 		String areaId="";
 		Area area = new Area();
-		build.setCheckUser(sessionUser);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
 		if ("0".equals(sign)){
+			build.setCheckUser(sessionUser);
 			Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService
 					.findPage(new Page<CcmHouseBuildmanage>(req, resp), build);
 			if(page.getList().size()>0){
