@@ -2939,17 +2939,32 @@
 	<!--app地图查询人员-->
 	<select id="peopleList" resultType="CcmPeople">
 		SELECT
-			a.id AS "id",
-			a.is_rectification AS isRectification,
-			a.is_release AS isRelease,
-			a.is_psychogeny AS isPsychogeny,
-			a.is_drugs AS isDrugs,
-			a.is_aids AS isAids,
-			a.is_heresy AS isHeresy,
-			a.is_visit AS isVisit,
-			a.is_control AS "isControl",
-			a.is_dangerous AS isDangerous,
-			b.area_point AS areaPoint
+			a.id  AS "id",
+			a.type  AS "type",
+			a.name  AS "name",
+			a.usedname  AS "usedname",
+			a.sex  AS "sex",
+			a.birthday  AS "birthday",
+			a.nation  AS "nation",
+			a.censu  AS "censu",
+			a.marriage  AS "marriage",
+			a.politics  AS "politics",
+			a.education  AS "education",
+			a.belief  AS "belief",
+			a.prof_type  AS "profType",
+			a.profession  AS "profession",
+			a.is_public_servants  AS "isPublicServants",
+			a.office_name  AS "officeName",
+			a.serv_place  AS "servPlace",
+			a.domicile  AS "domicile",
+			a.domiciledetail  AS "domiciledetail",
+			a.residence  AS "residence",
+			a.residencedetail  AS "residencedetail",
+			a.area_com_id  AS "areaComId",
+			a.area_grid_id  AS "areaGridId",
+			a.build_id  AS "buildId",
+			a.room_id  AS "roomId",
+			b.area_point AS "areaPoint"
 		FROM ccm_people a
 			LEFT JOIN ccm_house_buildmanage b ON b.id = a.build_id
 			LEFT JOIN sys_area s ON s.id= a.area_com_id
@@ -3068,15 +3083,7 @@
 			<if test="ident != null and ident != ''">
 				AND a.ident LIKE '%${ident}%'
 			</if>
-			<if test="specialCareTypes != null and specialCareTypes.length > 0">
-				AND (
-				<foreach collection="specialCareTypes" item="m" separator=" OR ">
-					<if test="m != null and m != ''">
-						a.special_care_type LIKE concat('%',#{m},'%')
-					</if>
-				</foreach>
-				)
-			</if>
+
 			<if test="isPermanent != null and isPermanent != ''">
 				AND a.is_permanent = #{isPermanent}
 			</if>
@@ -3089,8 +3096,9 @@
 			<if test="areaComId != null">
 				AND s.parent_ids LIKE concat('%',#{areaComId.id},'%')
 			</if>
+			AND b.area_point IS NOT NULL
 		</where>
-		LIMIT 1000
+		LIMIT 2000
 	</select>
 <!--数组查询Id，关联楼栋-->
 	<select id="findListLimite_V2_Build" resultType="CcmPeople">
