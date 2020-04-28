@@ -167,10 +167,10 @@ public class CcmRestPeople extends BaseController {
 			ccmPeople.setRoomId(new CcmPopTenant(roomid));
 		}
 		CcmPeople ccmPeople2 = new CcmPeople();
+		ccmPeople.setCheckUser(sessionUser);
+		ccmPeople2.setCheckUser(sessionUser);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
 			if ("0".equals(sign)) {
-				ccmPeople.setCheckUser(sessionUser);
-				ccmPeople2.setCheckUser(sessionUser);
 				Page<CcmPeople> page = ccmPeopleService.findPage(new Page<CcmPeople>(req, resp), ccmPeople);
 
 				List<CcmPeople> list = page.getList();
@@ -214,19 +214,9 @@ public class CcmRestPeople extends BaseController {
 					}
 				}
 				List<CcmPeople> peopleList = ccmPeopleService.peopleList(ccmPeople);
-				/*String[] listLimite = new String[peopleList.size()];
-				if (peopleList.size() > 0) {
-					for (int i = 0; i < peopleList.size(); i++) {
-						listLimite[i] = peopleList.get(i).getId();
-					}
-					ccmPeople2.setListLimite(listLimite);
-					List<CcmPeople> list2 = ccmPeopleService.findListLimiteBuild(ccmPeople2);//数组查询id*/
 					for (int f = 0; f < peopleList.size(); f++) {
 						if (StringUtils.isNotEmpty(peopleList.get(f).getImages())) {
 							peopleList.get(f).setImages(fileUrl + peopleList.get(f).getImages());
-						}
-						if (StringUtils.isEmpty(peopleList.get(f).getAreaPoint())) {
-							peopleList.get(f).setAreaPoint("");
 						}
 					}
 					if (peopleList == null || peopleList.size() <= 0) {
@@ -234,7 +224,6 @@ public class CcmRestPeople extends BaseController {
 					} else {
 						result.setResult(peopleList);
 					}
-					logger.info("" + peopleList);
 				}
 				result.setCode(CcmRestType.OK);
 			//}
