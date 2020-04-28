@@ -4,8 +4,11 @@ import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
+import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDeviceArea;
 import com.arjjs.ccm.modules.ccm.house.entity.*;
 import com.arjjs.ccm.modules.ccm.house.service.*;
+import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
+import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeopleAntiepidemic;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopBehind;
@@ -22,6 +25,7 @@ import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.service.DictService;
 import com.arjjs.ccm.tool.Pagecount;
 import com.arjjs.ccm.tool.PlmTypes;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +53,10 @@ import java.util.List;
 @RequestMapping(value = "${appPath}/rest/people")
 public class CcmRestPeople extends BaseController {
 
+	@Autowired
+	private CcmRestIncidentPolice ccmRestIncidentPolice;
+	@Autowired
+	private CcmOrgAreaService ccmOrgAreaService;
 	@Autowired
 	private CcmPeopleService ccmPeopleService;
 	@Autowired
@@ -132,64 +140,109 @@ public class CcmRestPeople extends BaseController {
 	 * @param buildname  楼栋名称 
 	 * @param pageNo 页码
 	 * @param pageSize 分页大小
-	 * @return 
+	 * @param  sign  标识app查看列表还是地图显示（0列表   1地图）
+	 * @param  areaPoint  地图中心点
+	 * @return
 	 * @author pengjianqiang
 	 * @version 2018-02-22
 	 */
 	@ResponseBody
 	@RequestMapping(value="/query", method = RequestMethod.GET)
-	public CcmRestResult query(String roomid,String userId,CcmPeople ccmPeople, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
-		logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
-		logger.info("当前方法运行参数为》》》roomid : " + roomid + "  userId : " + userId +"  ccmPeople : " + String.valueOf(ccmPeople));
+	public CcmRestResult query(String areaPoint,String sign, String roomid,String userId,CcmPeople ccmPeople, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		logger.info("当前正在执行的类名为》》》" + Thread.currentThread().getStackTrace()[1].getClassName());
+		logger.info("当前正在执行的方法名为》》》" + Thread.currentThread().getStackTrace()[1].getMethodName());
+		logger.info("当前方法运行参数为》》》roomid : " + roomid + "  userId : " + userId + "  ccmPeople : " + String.valueOf(ccmPeople));
 		CcmRestResult result = new CcmRestResult();
-
 		User sessionUser = (User) req.getSession().getAttribute("user");
-		if (sessionUser== null) {
+		if (sessionUser == null) {
 			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
 			return result;
 		}
 		String sessionUserId = sessionUser.getId();
-		if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+		if (userId == null || "".equals(userId) || !userId.equals(sessionUserId)) {
 			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
 			return result;
 		}
-		if(StringUtils.isNotEmpty(roomid)) {
+		if (StringUtils.isNotEmpty(roomid)) {
 			ccmPeople.setRoomId(new CcmPopTenant(roomid));
 		}
+
 		ccmPeople.setCheckUser(sessionUser);
-		Page<CcmPeople> page = ccmPeopleService.findPage(new Page<CcmPeople>(req, resp), ccmPeople);
-	
-		//
-		List<CcmPeople> list = page.getList();
-		//
 		CcmPeople ccmPeople2 = new CcmPeople();
 		ccmPeople2.setCheckUser(sessionUser);
-		String[] listLimite = new String[list.size()];
-        String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-		if(list.size()>0){
-			for(int i=0;i<list.size();i++){
-				listLimite[i]=list.get(i).getId();
+		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+			if ("0".equals(sign)) {
+				Page<CcmPeople> page = ccmPeopleService.findPage(new Page<CcmPeople>(req, resp), ccmPeople);
+
+				List<CcmPeople> list = page.getList();
+				String[] listLimite = new String[list.size()];
+				if (list.size() > 0) {
+					for (int i = 0; i < list.size(); i++) {
+						listLimite[i] = list.get(i).getId();
+					}
+					ccmPeople2.setListLimite(listLimite);
+					List<CcmPeople> list2 = ccmPeopleService.findListLimite(ccmPeople2);//数组查询id
+					for (int f = 0; f < list2.size(); f++) {
+						if (StringUtils.isNotEmpty(list2.get(f).getImages())) {
+							list2.get(f).setImages(fileUrl + list2.get(f).getImages());
+						}
+					}
+					page.setList(list2);
+					logger.info("" + list2);
+				}
+				result.setCode(CcmRestType.OK);
+				if (page.getList() == null || page.getList().size() <= 0) {
+					result.setResult("");
+				} else {
+					result.setResult(page.getList());
+				}
+			} else {
+				if (StringUtils.isNotBlank(areaPoint)) {
+					List<CcmOrgArea> orgAreaList = ccmOrgAreaService.getAreaMap(new CcmOrgArea());
+					List<CcmDeviceArea> resultList = Lists.newArrayList();
+					ccmRestIncidentPolice.sortList(resultList, orgAreaList, "0", true);
+					List<String> pointList = Lists.newArrayList();
+					if (StringUtils.isNotBlank(areaPoint)) {
+						String[] pointInfo = areaPoint.split(",");
+						double lat = Double.valueOf(pointInfo[0]);
+						double lon = Double.valueOf(pointInfo[1]);
+						String areaId = ccmRestIncidentPolice.getDeviceAreaId(resultList, pointList, lat, lon);
+						Area area = new Area();
+						if (StringUtils.isNotBlank(areaId)) {
+							area.setId(areaId);
+							ccmPeople.setAreaComId(area);
+						}
+					}
+				}
+				List<CcmPeople> peopleList = ccmPeopleService.peopleList(ccmPeople);
+				String[] listLimite = new String[peopleList.size()];
+				if (peopleList.size() > 0) {
+					for (int i = 0; i < peopleList.size(); i++) {
+						listLimite[i] = peopleList.get(i).getId();
+					}
+					ccmPeople2.setListLimite(listLimite);
+					List<CcmPeople> list2 = ccmPeopleService.findListLimiteBuild(ccmPeople2);//数组查询id
+					for (int f = 0; f < list2.size(); f++) {
+						if (StringUtils.isNotEmpty(list2.get(f).getImages())) {
+							list2.get(f).setImages(fileUrl + list2.get(f).getImages());
+						}
+						if (StringUtils.isEmpty(list2.get(f).getAreaPoint())) {
+							list2.get(f).setAreaPoint("");
+						}
+					}
+					if (list2 == null || list2.size() <= 0) {
+						result.setResult("");
+					} else {
+						result.setResult(list2);
+					}
+					logger.info("" + list2);
+				}
+				result.setCode(CcmRestType.OK);
 			}
-			ccmPeople2.setListLimite(listLimite);
-			List<CcmPeople> list2 = ccmPeopleService.findListLimite(ccmPeople2);//数组查询id
-            for(int f=0;f<list2.size();f++){
-                if (StringUtils.isNotEmpty(list2.get(f).getImages())) {
-                    list2.get(f).setImages(fileUrl + list2.get(f).getImages());
-                }
-            }
-			page.setList(list2);
-			logger.info(""+list2);
+
+			return result;
 		}
-		result.setCode(CcmRestType.OK);
-		if(page.getList()==null||page.getList().size()<=0) {
-			result.setResult("");
-		}else {
-			result.setResult(page.getList());	
-		}
-		return result;
-	}
-	
+
 	/**
 	 * @see  查询户籍家庭人员信息
 	 * @param account  户号

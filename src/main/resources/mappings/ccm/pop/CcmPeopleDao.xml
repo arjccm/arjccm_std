@@ -2936,4 +2936,181 @@
 	where del_flag = 0
 	</select>
 
+	<!--app地图查询人员-->
+	<select id="peopleList" resultType="CcmPeople">
+		SELECT
+			a.id AS "id",
+			a.is_rectification AS isRectification,
+			a.is_release AS isRelease,
+			a.is_psychogeny AS isPsychogeny,
+			a.is_drugs AS isDrugs,
+			a.is_aids AS isAids,
+			a.is_heresy AS isHeresy,
+			a.is_visit AS isVisit,
+			a.is_control AS "isControl",
+			a.is_dangerous AS isDangerous,
+			b.area_point AS areaPoint
+		FROM ccm_people a
+			LEFT JOIN ccm_house_buildmanage b ON b.id = a.build_id
+			LEFT JOIN sys_area s ON s.id= a.area_com_id
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<!-- AND a.del_flag = #{DEL_FLAG_NORMAL} -->
+			<if test="unitCategory != null and unitCategory != ''">
+				AND a.unit_category = #{unitCategory}
+			</if>
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+				AND (a21.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
+				a.area_grid_id
+				= #{userArea.id})
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat(#{name},'%')</if>
+			</if>
+			<if test="sex != null and sex != ''">
+				AND a.sex = #{sex}
+			</if>
+			<if  test="beginBirthday != null and beginBirthday != ''">
+				AND a.birthday &gt;= #{beginBirthday}
+			</if>
+			<if  test="endBirthday != null and endBirthday != ''">
+				AND a.birthday &lt;= #{endBirthday}
+			</if>
+
+			<if
+					test="areaGridId != null and areaGridId.id != null and areaGridId.id != ''">
+				AND a.area_grid_id = #{areaGridId.id}
+			</if>
+			<if test="roomId != null and roomId.id != null and roomId.id != ''">
+				AND a.room_id = #{roomId.id}
+			</if>
+			<if test="isBehind != null and isBehind != ''">
+				AND a.is_behind = #{isBehind}
+			</if>
+			<if test="isBehind != null and isBehind == ''">
+				AND (a.is_behind is null OR a.is_behind = 0)
+			</if>
+			<if test="isRelease != null and isRelease != ''">
+				AND a.is_release = #{isRelease}
+			</if>
+			<if test="isRelease != null and isRelease == ''">
+				AND (a.is_release is null OR a.is_release = 0)
+			</if>
+			<if test="isRectification != null and isRectification != ''">
+				AND a.is_rectification = #{isRectification}
+			</if>
+			<if test="isRectification != null and isRectification == ''">
+				AND (a.is_rectification is null OR a.is_rectification = 0)
+			</if>
+			<if test="isAids != null and isAids != ''">
+				AND a.is_aids = #{isAids}
+			</if>
+			<if test="isAids != null and isAids == ''">
+				AND (a.is_aids is null OR a.is_aids = 0)
+			</if>
+			<if test="isPsychogeny != null and isPsychogeny != ''">
+				AND a.is_psychogeny = #{isPsychogeny}
+			</if>
+			<if test="isPsychogeny != null and isPsychogeny == ''">
+				AND (a.is_psychogeny is null OR a.is_psychogeny = 0)
+			</if>
+			<if test="isKym != null and isKym != ''">
+				AND a.is_kym = #{isKym}
+			</if>
+			<if test="isKym != null and isKym == ''">
+				AND (a.is_kym is null OR a.is_kym = 0)
+			</if>
+			<if test="isDrugs != null and isDrugs != ''">
+				AND a.is_drugs = #{isDrugs}
+			</if>
+			<if test="isDrugs != null and isDrugs == ''">
+				AND (a.is_drugs is null OR a.is_drugs = 0)
+			</if>
+			<if test="isEscape != null and isEscape != ''">
+				AND a.is_escape = #{isEscape}
+			</if>
+			<if test="isEscape != null and isEscape == ''">
+				AND (a.is_escape is null OR a.is_escape = 0)
+			</if>
+			<if test="isHarmNational != null and isHarmNational != ''">
+				AND a.is_harm_national = #{isHarmNational}
+			</if>
+			<if test="isHarmNational != null and isHarmNational == ''">
+				AND (a.is_harm_national is null OR a.is_harm_national = 0)
+			</if>
+			<if test="isDeliberatelyIllegal != null and isDeliberatelyIllegal != ''">
+				AND a.is_deliberately_illegal = #{isDeliberatelyIllegal}
+			</if>
+			<if test="isDeliberatelyIllegal != null and isDeliberatelyIllegal == ''">
+				AND (a.is_deliberately_illegal is null OR a.is_deliberately_illegal = 0)
+			</if>
+			<if test="isCriminalOffense != null and isCriminalOffense != ''">
+				AND a.is_criminal_offense = #{isCriminalOffense}
+			</if>
+			<if test="isCriminalOffense != null and isCriminalOffense == ''">
+				AND (a.is_criminal_offense is null OR a.is_criminal_offense = 0)
+			</if>
+			<if test="isDispute != null and isDispute != ''">
+				AND a.is_dispute = #{isDispute}
+			</if>
+			<if test="isDispute != null and isDispute == ''">
+				AND(a.is_dispute is null OR a.is_dispute = 0)
+			</if>
+			<if test="politics != null and politics != ''">
+				AND a.politics = #{politics}
+			</if>
+			<if test="ident != null and ident != ''">
+				AND a.ident LIKE '%${ident}%'
+			</if>
+			<if test="specialCareTypes != null and specialCareTypes.length > 0">
+				AND (
+				<foreach collection="specialCareTypes" item="m" separator=" OR ">
+					<if test="m != null and m != ''">
+						a.special_care_type LIKE concat('%',#{m},'%')
+					</if>
+				</foreach>
+				)
+			</if>
+			<if test="isPermanent != null and isPermanent != ''">
+				AND a.is_permanent = #{isPermanent}
+			</if>
+			<if test="residencedetail != null and residencedetail != ''">
+				AND a.residencedetail LIKE
+				<if test="dbName == 'oracle'">'%'||#{residencedetail}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{residencedetail}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{residencedetail},'%')</if>
+			</if>
+			<if test="areaComId != null">
+				AND s.parent_ids LIKE concat('%',#{areaComId.id},'%')
+			</if>
+		</where>
+		LIMIT 1000
+	</select>
+<!--数组查询Id，关联楼栋-->
+	<select id="findListLimite_V2_Build" resultType="CcmPeople">
+		SELECT
+		b.area_point AS areaPoint,
+		<include refid="ccmPeopleColumns_simple_V2" />
+		FROM ccm_people a
+		<include refid="ccmPeopleJoinsArea" />
+		<include refid="ccmPeopleJoinsNet" />
+		LEFT JOIN ccm_house_buildmanage b ON b.id = a.build_id
+		where
+		a.del_flag = #{DEL_FLAG_NORMAL}
+		<if test="listLimite != null and listLimite.length > 0">
+			AND (
+			<foreach collection="listLimite" item="n"  separator=" OR " >
+				<if test="n != null and n != ''">
+					a.id = #{n}
+				</if>
+			</foreach>
+			)
+		</if>
+	</select>
 </mapper>
