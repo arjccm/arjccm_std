@@ -72,7 +72,7 @@ public class CcmRestWorkerSign {
     //签到
     @ApiOperation(value = "签到")
     @RequestMapping(value = "/getform", method = RequestMethod.GET)
-    public CcmRestResult getform(String userId,CcmWorkerSign ccmWorkerSign,String clockinAreaName,Date clockinTime) {
+    public CcmRestResult getform(String userId,CcmWorkerSign ccmWorkerSign,String clockinAreaName) {
         CcmRestResult result = new CcmRestResult();
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
@@ -84,9 +84,8 @@ public class CcmRestWorkerSign {
         //设置删除标记
         ccmWorkerSign.setDelFlag("0");
         //赋值签到时间
-        ccmWorkerSign.setClockinTime(clockinTime);
-        Date date = new Date();
-        ccmWorkerSign.setCreateDate(date);
+        ccmWorkerSign.setClockinTime(new Date());
+        ccmWorkerSign.setCreateDate(new Date());
         ccmWorkerSign.setId(UUID.randomUUID().toString());
         //查询是否有之前签到
         int sum =ccmWorkerSignService.findByClockinInfo(ccmWorkerSign);
@@ -107,13 +106,13 @@ public class CcmRestWorkerSign {
     
     @ApiOperation(value = "签退")
     @RequestMapping(value = "/resform", method = RequestMethod.GET)
-    public CcmRestResult resform(String userId,CcmWorkerSign ccmWorkerSign,String clockoutAreaName,Date clockoutTime) {
+    public CcmRestResult resform(String userId,CcmWorkerSign ccmWorkerSign,String clockoutAreaName) {
         CcmRestResult result = new CcmRestResult();
         SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User user = UserUtils.get(userId);
         ccmWorkerSign.setUser(user);
         //赋值平台签退时间
-        ccmWorkerSign.setClockoutTime(clockoutTime);
+        ccmWorkerSign.setClockoutTime(new Date());
         ccmWorkerSign.setClockoutAreaName(clockoutAreaName);
         int sum = ccmWorkerSignService.findClockoutTime(ccmWorkerSign);
         if (sum !=1){
