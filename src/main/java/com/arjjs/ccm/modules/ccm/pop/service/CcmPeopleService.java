@@ -1011,11 +1011,9 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		return ccmPeopleDao.queryAllToMap();
 	}
 
+	//app地图查询人口
 	public List<CcmPeople> peopleList(CcmPeople ccmPeople) {
 		return ccmPeopleDao.peopleList(ccmPeople);
 	}
 
-	public List<CcmPeople> findListLimiteBuild(CcmPeople ccmPeople2) {
-		return ccmPeopleDao.findListLimite_V2_Build(ccmPeople2);
-	}
 }
