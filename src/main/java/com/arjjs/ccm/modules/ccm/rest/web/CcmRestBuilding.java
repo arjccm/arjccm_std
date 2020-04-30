@@ -11,7 +11,9 @@ import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildentranceVo;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
 import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
+import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
+import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenantVo;
@@ -23,6 +25,10 @@ import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.TransGPS;
+import com.arjjs.ccm.tool.geoJson.Features;
+import com.arjjs.ccm.tool.geoJson.GeoJSON;
+import com.arjjs.ccm.tool.geoJson.Geometry;
+import com.arjjs.ccm.tool.geoJson.Properties;
 import com.google.common.collect.Lists;
 import com.sun.mail.imap.protocol.ID;
 import io.swagger.annotations.Api;
@@ -34,12 +40,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 /**
  * 楼栋接口类
@@ -52,6 +59,8 @@ import java.util.List;
 @Api(description = "楼栋接口相关")
 public class CcmRestBuilding extends BaseController {
 
+	@Autowired
+	private SysAreaService sysAreaService;
 	@Autowired
 	private CcmRestIncidentPolice ccmRestIncidentPolice;
 	@Autowired
@@ -111,15 +120,13 @@ public class CcmRestBuilding extends BaseController {
 	 * @param buildname  楼栋名称
 	 * @param pageNo 页码
 	 * @param pageSize 分页大小
-	 * @param sign 标识查询列表还是地图（0列表  1地图）
-	 * @param areaPoint 地图中心点
 	 * @return
 	 * @author fuxinshuang
 	 * @version 2018-02-03
 	 */
 	@ResponseBody
 	@RequestMapping(value="/query", method = RequestMethod.GET)
-	public CcmRestResult query(String areaPoint,String sign,String userId,CcmHouseBuildmanage build,HttpServletRequest req, HttpServletResponse resp,Integer pageNo) throws IOException {
+	public CcmRestResult query(String userId,CcmHouseBuildmanage build,HttpServletRequest req, HttpServletResponse resp,Integer pageNo) throws IOException {
 		logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
 		logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
 		logger.info("当前方法运行参数为》》》CcmHouseBuildmanage : " + String.valueOf(build) + "  userId : " + userId);
@@ -134,11 +141,9 @@ public class CcmRestBuilding extends BaseController {
 			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
 			return result;
 		}
-		String areaId="";
-		Area area = new Area();
 		build.setCheckUser(sessionUser);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-		if ("0".equals(sign)){
+		/*if ("0".equals(sign)){*/
 			Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService
 					.findPage(new Page<CcmHouseBuildmanage>(req, resp), build);
 			if(page.getList().size()>0){
@@ -165,7 +170,7 @@ public class CcmRestBuilding extends BaseController {
 			page.setPageNo(pageNo);
 			result.setCode(CcmRestType.OK);
 			result.setResult(page.getList());
-		}else {
+		/*}else {
 
 			if (StringUtils.isNotBlank(areaPoint)) {
 
@@ -208,7 +213,129 @@ public class CcmRestBuilding extends BaseController {
 				result.setResult(buildList);
 			}
 			result.setCode(CcmRestType.OK);
+		}*/
+		return result;
+	}
+
+
+	/**
+	 * @see 生成楼栋地图信息-点位图（分页模式）
+	 * @param ccmHouseBuildmanage
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "queryBuildMap")
+	public CcmRestResult queryBuildMap(String userId,CcmHouseBuildmanage ccmHouseBuildmanage,HttpServletRequest request, HttpServletResponse response,
+						@RequestParam(required = false) Integer pageNo, @RequestParam(required = false) Integer pageSize) {
+
+		logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
+		logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
+		logger.info("当前方法运行参数为》》》CcmHouseBuildmanage : " + String.valueOf(ccmHouseBuildmanage) + "  userId : " + userId);
+		CcmRestResult result = new CcmRestResult();
+		User sessionUser = (User) request.getSession().getAttribute("user");
+		if (sessionUser== null) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
 		}
+		String sessionUserId = sessionUser.getId();
+		if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+
+		ccmHouseBuildmanage.setCheckUser(sessionUser);
+		//分页参数处理
+		Page pageIn = new Page<CcmHouseBuildmanage>(request, response);
+		if (pageNo != 0) {
+			pageIn.setPageNo(pageNo);
+		}
+		if (pageSize != 0) {
+			pageIn.setPageSize(pageSize);
+		}
+		// 查询地图楼栋信息
+		List<CcmHouseBuildmanage> ccmHouseBuildmanageList = new ArrayList<CcmHouseBuildmanage>();
+		//可以选择父节点查询
+		if(ccmHouseBuildmanage.getArea()!=null&&ccmHouseBuildmanage.getArea().getId()!=null&&!ccmHouseBuildmanage.getArea().getId().equals("")){
+			SysArea sysArea = sysAreaService.get(ccmHouseBuildmanage.getArea().getId());
+			Area area = new Area();
+			area.setId(sysArea.getId());
+			area.setParentIds(sysArea.getParentIds());
+			ccmHouseBuildmanage.setUserArea(area);
+			ccmHouseBuildmanage.setArea(null);
+		}
+		Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService.findPageNew(pageIn, ccmHouseBuildmanage);
+		ccmHouseBuildmanageList = page.getList();
+
+		// 返回对象
+		GeoJSON geoJSON = new GeoJSON();
+		geoJSON.setCount(page.getCount());
+		geoJSON.setPageNo(page.getPageNo());
+		geoJSON.setPageSize(page.getPageSize());
+
+		List<Features> featureList = new ArrayList<Features>();
+		// 数组
+		for (CcmHouseBuildmanage Buildmanage : ccmHouseBuildmanageList) {
+			// 特征属性
+			Features featureDto = new Features();
+			Properties properties = new Properties();
+			// 1 type 默认不填
+			// 2 id 添加
+			featureDto.setId(Buildmanage.getId());
+			// 3 properties 展示属性信息
+			properties.setName(Buildmanage.getName());
+			properties.setIcon(Buildmanage.getImages());
+			Map<String, Object> map = new HashMap<String, Object>();
+			// 创建附属信息
+			// map.put("id", Buildmanage.getId());
+			map.put("楼栋名称", Buildmanage.getBuildname());
+			map.put("所属小区", Buildmanage.getName());
+			map.put("楼栋长", Buildmanage.getBuildPname());
+			map.put("楼栋长电话", Buildmanage.getTel());
+			map.put("层数", Buildmanage.getPilesNum() + "");
+			map.put("单元数", Buildmanage.getElemNum() + "");
+			properties.addInfo(map);
+			featureList.add(featureDto);
+			featureDto.setProperties(properties);
+			// 4 geometry 配置参数
+			Geometry geometry = new Geometry();
+			featureDto.setGeometry(geometry);
+			// 点位信息 测试为面
+			geometry.setType("Point");
+			// 为中心点赋值
+			if (!StringUtils.isEmpty(Buildmanage.getAreaPoint())) {
+				// 获取中心点的值
+				String[] centpoint = Buildmanage.getAreaPoint().split(",");
+				// 图层中心的
+				geoJSON.setCentpoint(centpoint);
+				// 图形中心点
+				properties.setCoordinateCentre(centpoint);
+			}
+
+			List<String> Coordinateslist = new ArrayList<>();
+			// 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
+			String[] a = (StringUtils.isEmpty(Buildmanage.getAreaPoint()) ? (",") : Buildmanage.getAreaPoint()).split(",");
+			// 填充数据
+			if (a.length < 2) {
+				Coordinateslist.add("");
+				Coordinateslist.add("");
+			} else {
+				Coordinateslist.add(a[0]);
+				Coordinateslist.add(a[1]);
+			}
+			// 装配点位
+			geometry.setCoordinates(Coordinateslist);
+
+		}
+
+		// 如果无数据
+		if (featureList.size() == 0) {
+			return null;
+		}
+		geoJSON.setFeatures(featureList);
+		result.setCode(CcmRestType.OK);
+		result.setResult(geoJSON);
+
 		return result;
 	}
 	
