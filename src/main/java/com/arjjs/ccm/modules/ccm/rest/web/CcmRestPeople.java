@@ -8,7 +8,9 @@ import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDeviceArea;
 import com.arjjs.ccm.modules.ccm.house.entity.*;
 import com.arjjs.ccm.modules.ccm.house.service.*;
 import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
+import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
+import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeopleAntiepidemic;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopBehind;
@@ -25,6 +27,10 @@ import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.service.DictService;
 import com.arjjs.ccm.tool.Pagecount;
 import com.arjjs.ccm.tool.PlmTypes;
+import com.arjjs.ccm.tool.geoJson.Features;
+import com.arjjs.ccm.tool.geoJson.GeoJSON;
+import com.arjjs.ccm.tool.geoJson.Geometry;
+import com.arjjs.ccm.tool.geoJson.Properties;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,9 +45,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 人口接口类
@@ -53,6 +58,8 @@ import java.util.List;
 @RequestMapping(value = "${appPath}/rest/people")
 public class CcmRestPeople extends BaseController {
 
+	@Autowired
+	private SysAreaService sysAreaService;
 	@Autowired
 	private CcmRestIncidentPolice ccmRestIncidentPolice;
 	@Autowired
@@ -140,15 +147,13 @@ public class CcmRestPeople extends BaseController {
 	 * @param buildname  楼栋名称 
 	 * @param pageNo 页码
 	 * @param pageSize 分页大小
-	 * @param  sign  标识app查看列表还是地图显示（0列表   1地图）
-	 * @param  areaPoint  地图中心点
 	 * @return
 	 * @author pengjianqiang
 	 * @version 2018-02-22
 	 */
 	@ResponseBody
 	@RequestMapping(value="/query", method = RequestMethod.GET)
-	public CcmRestResult query(String areaPoint,String sign, String roomid,String userId,CcmPeople ccmPeople, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public CcmRestResult query(String roomid,String userId,CcmPeople ccmPeople, HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		logger.info("当前正在执行的类名为》》》" + Thread.currentThread().getStackTrace()[1].getClassName());
 		logger.info("当前正在执行的方法名为》》》" + Thread.currentThread().getStackTrace()[1].getMethodName());
 		logger.info("当前方法运行参数为》》》roomid : " + roomid + "  userId : " + userId + "  ccmPeople : " + String.valueOf(ccmPeople));
@@ -166,14 +171,17 @@ public class CcmRestPeople extends BaseController {
 		if (StringUtils.isNotEmpty(roomid)) {
 			ccmPeople.setRoomId(new CcmPopTenant(roomid));
 		}
-		CcmPeople ccmPeople2 = new CcmPeople();
+
 		ccmPeople.setCheckUser(sessionUser);
-		ccmPeople2.setCheckUser(sessionUser);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-			if ("0".equals(sign)) {
+		/*sign="0";
+			if ("0".equals(sign)) {*/
+
 				Page<CcmPeople> page = ccmPeopleService.findPage(new Page<CcmPeople>(req, resp), ccmPeople);
 
 				List<CcmPeople> list = page.getList();
+				CcmPeople ccmPeople2 = new CcmPeople();
+				ccmPeople2.setCheckUser(sessionUser);
 				String[] listLimite = new String[list.size()];
 				if (list.size() > 0) {
 					for (int i = 0; i < list.size(); i++) {
@@ -195,7 +203,7 @@ public class CcmRestPeople extends BaseController {
 				} else {
 					result.setResult(page.getList());
 				}
-			} else {
+			/*} else {
 				if (StringUtils.isNotBlank(areaPoint)) {
 					List<CcmOrgArea> orgAreaList = ccmOrgAreaService.getAreaMap(new CcmOrgArea());
 					List<CcmDeviceArea> resultList = Lists.newArrayList();
@@ -213,22 +221,179 @@ public class CcmRestPeople extends BaseController {
 						}
 					}
 				}
-				List<CcmPeople> peopleList = ccmPeopleService.peopleList(ccmPeople);
-					for (int f = 0; f < peopleList.size(); f++) {
-						if (StringUtils.isNotEmpty(peopleList.get(f).getImages())) {
-							peopleList.get(f).setImages(fileUrl + peopleList.get(f).getImages());
+				Page<CcmPeople> page = new Page<>(req,resp);
+				page.setPageNo(1);
+				page.setPageSize(20);
+				page = ccmPeopleService.findpeoplePage(page, ccmPeople);
+
+				List<CcmPeople> list = page.getList();
+				CcmPeople ccmPeople2 = new CcmPeople();
+				ccmPeople2.setCheckUser(sessionUser);
+				String[] listLimite = new String[list.size()];
+				if (list.size() > 0) {
+					for (int i = 0; i < list.size(); i++) {
+						listLimite[i] = list.get(i).getId();
+					}
+					ccmPeople2.setListLimite(listLimite);
+					List<CcmPeople> list2 = ccmPeopleService.findListLimite(ccmPeople2);//数组查询id
+					for (int f = 0; f < list2.size(); f++) {
+						if (StringUtils.isNotEmpty(list2.get(f).getImages())) {
+							list2.get(f).setImages(fileUrl + list2.get(f).getImages());
 						}
 					}
-					if (peopleList == null || peopleList.size() <= 0) {
-						result.setResult("");
-					} else {
-						result.setResult(peopleList);
-					}
+					page.setList(list2);
+					logger.info("" + list2);
 				}
 				result.setCode(CcmRestType.OK);
-			//}
+				if (page.getList() == null || page.getList().size() <= 0) {
+					result.setResult("");
+				} else {
+					result.setResult(page.getList());
+				}
+			}*/
 			return result;
 		}
+
+
+	/**
+	 * @see 生成人口地图信息-点位图（分页模式）
+	 * @param CcmPeople
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "queryPeopleMap")
+	public CcmRestResult queryPeopleMap(String userId,String roomid,CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(required = false) int pageNo, @RequestParam(required = false) int pageSize) {
+
+		logger.info("当前正在执行的类名为》》》" + Thread.currentThread().getStackTrace()[1].getClassName());
+		logger.info("当前正在执行的方法名为》》》" + Thread.currentThread().getStackTrace()[1].getMethodName());
+		logger.info("当前方法运行参数为》》》roomid : " + roomid + "  userId : " + userId + "  ccmPeople : " + String.valueOf(ccmPeople));
+		CcmRestResult result = new CcmRestResult();
+		User sessionUser = (User) request.getSession().getAttribute("user");
+		if (sessionUser == null) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		String sessionUserId = sessionUser.getId();
+		if (userId == null || "".equals(userId) || !userId.equals(sessionUserId)) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		if (StringUtils.isNotEmpty(roomid)) {
+			ccmPeople.setRoomId(new CcmPopTenant(roomid));
+		}
+		ccmPeople.setCheckUser(sessionUser);
+		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		//分页参数处理
+		Page pageIn = new Page<CcmPeople>(request, response);
+		if (pageNo != 0) {
+			pageIn.setPageNo(pageNo);
+		}
+		if (pageSize != 0) {
+			pageIn.setPageSize(pageSize);
+		}
+
+		// 查询地图人口信息
+		List<CcmPeople> ccmPeoplelist = new ArrayList<CcmPeople>();
+
+		long t1 = System.currentTimeMillis();
+		//可以选择父节点查询
+		if(ccmPeople.getAreaGridId()!=null&&ccmPeople.getAreaGridId().getId()!=null&&!ccmPeople.getAreaGridId().getId().equals("")){
+			SysArea sysArea = sysAreaService.get(ccmPeople.getAreaGridId().getId());
+			Area area = new Area();
+			area.setId(sysArea.getId());
+			area.setParentIds(sysArea.getParentIds());
+			ccmPeople.setUserArea(area);
+			ccmPeople.setAreaGridId(null);
+		}
+		Page<CcmPeople> page = ccmPeopleService.findPage(pageIn, ccmPeople);
+
+		List<CcmPeople> ccmPeopleNewList = ccmPeopleService.queryPeopleInfo(page);
+
+		// 返回对象
+		GeoJSON geoJSON = new GeoJSON();
+		geoJSON.setCount(page.getCount());
+		geoJSON.setPageNo(page.getPageNo());
+		geoJSON.setPageSize(page.getPageSize());
+
+		List<Features> featureList = new ArrayList<Features>();
+		// 数组
+		for (CcmPeople people : ccmPeopleNewList) {
+			// 特征,属性
+			Features featureDto = new Features();
+			Properties properties = new Properties();
+			// 1 type 默认不填
+			// 2 id 添加
+			featureDto.setId(people.getId());
+			// 3 properties 展示属性信息
+			properties.setName(people.getName());
+			properties.setIcon(people.getImages());
+			// 点击后展示详细属性值
+			Map<String, Object> map_P = new LinkedHashMap<String, Object>();
+			// 创建附属信息
+			map_P.put("姓名", people.getName());
+			map_P.put("身份号码", people.getIdent());
+			map_P.put("出生日期", (people.getBirthday() == null) ? "" : time.format(people.getBirthday()) + "  ");
+			map_P.put("户籍详址", people.getDomiciledetail());
+			map_P.put("现住详址", people.getResidencedetail());
+			map_P.put("联系方式", people.getTelephone());
+			map_P.put("所在单位", people.getOfficeName());
+			map_P.put("人口类型", people.getType());
+			if(people.getBuildId()!=null){
+				map_P.put("住所楼栋名称", people.getBuildId().getBuildname());
+				map_P.put("住所楼栋id", people.getBuildId().getId());
+				map_P.put("住所楼栋区域", people.getBuildId().getAreaMap());
+				map_P.put("单元数", people.getBuildId().getElemNum());
+				map_P.put("层数", people.getBuildId().getPilesNum());
+			}
+			properties.addInfo(map_P);
+			featureList.add(featureDto);
+			featureDto.setProperties(properties);
+			// 4 geometry 配置参数
+			Geometry geometry = new Geometry();
+			featureDto.setGeometry(geometry);
+			// 点位信息 测试为点
+			geometry.setType("Point");
+			// 为中心点赋值
+			if (people.getBuildId()!=null&&!StringUtils.isEmpty(people.getBuildId().getAreaPoint())) {
+				// 获取中心点的值
+				String[] centpoint = people.getBuildId().getAreaPoint().split(",");
+				// 图层中心的
+				geoJSON.setCentpoint(centpoint);
+				// 图形中心点
+				properties.setCoordinateCentre(centpoint);
+			}
+			// 添加具体数据
+			// 封装的list
+			if (people.getBuildId()!=null){
+				List<String> Coordinateslist = new ArrayList<>();
+				// 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
+				String[] a = (StringUtils.isEmpty(people.getBuildId().getAreaPoint()) ? (",") : people.getBuildId().getAreaPoint()).split(",");
+				// 填充数据
+				if (a.length < 2) {
+					Coordinateslist.add("");
+					Coordinateslist.add("");
+				} else {
+					Coordinateslist.add(a[0]);
+					Coordinateslist.add(a[1]);
+				}
+				// 装配点位
+				geometry.setCoordinates(Coordinateslist);
+			}
+
+		}
+		// 添加数据
+		geoJSON.setFeatures(featureList);
+		// 如果无数据
+		if (featureList.size() == 0) {
+			return null;
+		}
+
+		result.setCode(CcmRestType.OK);
+		result.setResult(geoJSON);
+		return result;
+	}
 
 	/**
 	 * @see  查询户籍家庭人员信息
