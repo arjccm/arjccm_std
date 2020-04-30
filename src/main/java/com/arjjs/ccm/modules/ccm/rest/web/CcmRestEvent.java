@@ -35,6 +35,10 @@ import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.*;
 import com.arjjs.ccm.tool.gcj02_wgs84.Gps;
 import com.arjjs.ccm.tool.gcj02_wgs84.PositionUtil;
+import com.arjjs.ccm.tool.geoJson.Features;
+import com.arjjs.ccm.tool.geoJson.GeoJSON;
+import com.arjjs.ccm.tool.geoJson.Geometry;
+import com.arjjs.ccm.tool.geoJson.Properties;
 import com.google.common.collect.Lists;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -46,6 +50,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -184,43 +189,164 @@ public class CcmRestEvent extends BaseController {
         }
         String sessionUserId = sessionUser.getId();
         if (userId == null || "".equals(userId) || !userId.equals(sessionUserId)) {
-            result.setCode(-10);
+            result.setCode(CcmRestType.ERROR_ERR_LOCKED);
             return result;
         }
-
         ccmEventIncident.setCheckUser(sessionUser);
         ccmEventIncident.setCreateBy(sessionUser);
         Page<CcmEventIncident> page = null;
-        if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("02")){  //涉及师生
-            page = ccmEventIncidentService.findPageStudent(new Page<CcmEventIncident>(req, resp),
-                    ccmEventIncident);
-        } else if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("03")){ //涉及线路
-            page = ccmEventIncidentService.findPageLine(new Page<CcmEventIncident>(req, resp),
-                    ccmEventIncident);
-        } else if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("04")){  //涉及命案
-            page = ccmEventIncidentService.findPageMurder(new Page<CcmEventIncident>(req, resp),
-                    ccmEventIncident);
-        } else {
-            page = ccmEventIncidentService.findPage(new Page<CcmEventIncident>(req, resp),
-                    ccmEventIncident);
-        }
-
-        List<CcmEventIncident> list = page.getList();
-        List<CcmEventIncident> resultList = Lists.newArrayList();
-        list.forEach(eventIncident -> {
-            String file1 = eventIncident.getFile1();
-            if (StringUtils.isNotEmpty(file1)) {
-                String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-                eventIncident.setFile1(fileUrl + file1);
+            if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("02")){  //涉及师生
+                page = ccmEventIncidentService.findPageStudent(new Page<CcmEventIncident>(req, resp),
+                        ccmEventIncident);
+            } else if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("03")){ //涉及线路
+                page = ccmEventIncidentService.findPageLine(new Page<CcmEventIncident>(req, resp),
+                        ccmEventIncident);
+            } else if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("04")){  //涉及命案
+                page = ccmEventIncidentService.findPageMurder(new Page<CcmEventIncident>(req, resp),
+                        ccmEventIncident);
+            } else {
+                page = ccmEventIncidentService.findPage(new Page<CcmEventIncident>(req, resp),
+                        ccmEventIncident);
             }
-            resultList.add(eventIncident);
-        });
 
-        result.setCode(CcmRestType.OK);
-        result.setResult(page.getList());
+            List<CcmEventIncident> list = page.getList();
+            List<CcmEventIncident> resultList = Lists.newArrayList();
+            list.forEach(eventIncident -> {
+                String file1 = eventIncident.getFile1();
+                if (StringUtils.isNotEmpty(file1)) {
+                    String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+                    eventIncident.setFile1(fileUrl + file1);
+                }
+                resultList.add(eventIncident);
+            });
 
+            result.setCode(CcmRestType.OK);
+            result.setResult(page.getList());
         return result;
     }
+
+    /**
+     * @see 生成事件地图信息-点位图（分页模式）
+     * @param ccmEventIncident
+     * @param model
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "queryEventIncidentMap")
+    public CcmRestResult queryEventIncidentMap(String userId,CcmEventIncident ccmEventIncident,HttpServletRequest request, HttpServletResponse response,
+                                         @RequestParam(required = false) Integer pageNo, @RequestParam(required = false) Integer pageSize) {
+
+        logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
+        logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.info("当前方法运行参数为》》》CcmHouseBuildmanage : " + String.valueOf(ccmEventIncident) + "  userId : " + userId);
+
+        CcmRestResult result = new CcmRestResult();
+        User sessionUser = (User) request.getSession().getAttribute("user");
+        if (sessionUser == null) {
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+        String sessionUserId = sessionUser.getId();
+        if (userId == null || "".equals(userId) || !userId.equals(sessionUserId)) {
+            result.setCode(CcmRestType.ERROR_ERR_LOCKED);
+            return result;
+        }
+        ccmEventIncident.setCheckUser(sessionUser);
+        ccmEventIncident.setCreateBy(sessionUser);
+
+        //分页参数处理
+        Page pageIn = new Page<CcmEventIncident>(request, response);
+        if (pageNo != 0) {
+            pageIn.setPageNo(pageNo);
+        }
+        if (pageSize != 0) {
+            pageIn.setPageSize(pageSize);
+        }
+        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        // 查询地图事件信息
+        List<CcmEventIncident> ccmEventIncidentlist = new ArrayList<CcmEventIncident>();
+        //可以选择父节点查询
+        if(ccmEventIncident.getArea()!=null&&ccmEventIncident.getArea().getId()!=null&&!ccmEventIncident.getArea().getId().equals("")){
+            SysArea sysArea = sysAreaService.get(ccmEventIncident.getArea().getId());
+            Area area = new Area();
+            area.setId(sysArea.getId());
+            area.setParentIds(sysArea.getParentIds());
+            ccmEventIncident.setUserArea(area);
+            ccmEventIncident.setArea(null);
+        }
+        Page<CcmEventIncident> page = ccmEventIncidentService.findPage(pageIn, ccmEventIncident);
+        ccmEventIncidentlist = page.getList();
+        // 返回对象
+        GeoJSON geoJSON = new GeoJSON();
+        geoJSON.setCount(page.getCount());
+        geoJSON.setPageNo(page.getPageNo());
+        geoJSON.setPageSize(page.getPageSize());
+        List<Features> featureList = new ArrayList<Features>();
+        // 数组
+        for (CcmEventIncident eventIncident : ccmEventIncidentlist) {
+            // 特征,属性
+            Features featureDto = new Features();
+            com.arjjs.ccm.tool.geoJson.Properties properties = new Properties();
+            // 1 type 默认不填
+            // 2 id 添加
+            featureDto.setId(eventIncident.getId());
+            // 3 properties 展示属性信息
+            properties.setName(eventIncident.getCaseName());
+           /* properties.setIcon(eventIncident.getFile1());*/
+            // 点击后展示详细属性值
+            Map<String, Object> map_P = new LinkedHashMap<String, Object>();
+            // 创建附属信息
+            map_P.put("事件名称", eventIncident.getCaseName());
+            map_P.put("事件情况", eventIncident.getCaseCondition());
+            map_P.put("事发时间", (eventIncident.getHappenDate() == null) ? "" : time.format(eventIncident.getHappenDate()) + "  ");
+            map_P.put("事发地址", eventIncident.getHappenPlace());
+            map_P.put("主犯姓名", eventIncident.getCulName());
+            map_P.put("事件ID", eventIncident.getId());
+
+            properties.addInfo(map_P);
+            featureList.add(featureDto);
+            featureDto.setProperties(properties);
+            // 4 geometry 配置参数
+            Geometry geometry = new Geometry();
+            featureDto.setGeometry(geometry);
+            // 点位信息 测试为点
+            geometry.setType("Point");
+            // 为中心点赋值
+            if (!StringUtils.isEmpty(eventIncident.getAreaPoint())) {
+                // 获取中心点的值
+                String[] centpoint = eventIncident.getAreaPoint().split(",");
+                // 图层中心的
+                geoJSON.setCentpoint(centpoint);
+                // 图形中心点
+                properties.setCoordinateCentre(centpoint);
+            }
+            // 添加具体数据
+            // 封装的list
+            List<String> Coordinateslist = new ArrayList<>();
+            // 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
+            String[] a = (StringUtils.isEmpty(eventIncident.getAreaPoint()) ? (",") : eventIncident.getAreaPoint()).split(",");
+            // 填充数据
+            if (a.length < 2) {
+                Coordinateslist.add("");
+                Coordinateslist.add("");
+            } else {
+                Coordinateslist.add(a[0]);
+                Coordinateslist.add(a[1]);
+            }
+            // 装配点位
+            geometry.setCoordinates(Coordinateslist);
+        }
+        // 添加数据
+        geoJSON.setFeatures(featureList);
+        // 如果无数据
+        if (featureList.size() == 0) {
+            return null;
+        }
+        result.setCode(CcmRestType.OK);
+        result.setResult(geoJSON);
+        return result;
+    }
+
 
     /**
      * 保存对接的预警信息
