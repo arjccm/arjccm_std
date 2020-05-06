@@ -876,7 +876,7 @@
 			</if>
 			AND a.area_point IS NOT NULL
 		</where>
-		LIMIT 5000
+		LIMIT 10
 	</select>
 	<select id="areaParentId" resultType="string">
 		SELECT parent_id FROM sys_area WHERE id = #{id}
