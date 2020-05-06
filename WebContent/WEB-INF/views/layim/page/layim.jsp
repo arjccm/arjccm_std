@@ -30,6 +30,7 @@ top:7%;
 //layim接口地址
 var arjimRest="http://"+window.location.host+"/arjim-server/";
 var arjWebRtc="https://192.168.1.226:9090";
+var onlineUser = [];
 var sendMsgParam ={};
 var sendWebRtcParm = {};
 var loginName="${fns:getUser().loginName}";
@@ -304,6 +305,9 @@ var showmsg,lm;
                        windowOpen(webRtcUrl,'视频聊天','990','650');
                    }else{
                        var userStatus = obj.data.status;//cache.mine.status;//在线状态
+                       if(userStatus === 'offline'){
+                           userStatus =  onlineUser.indexOf(obj.data.id) != -1 ? "online" :"offline";
+                       }
 			           if(userStatus === "online"){
                            sendWebRtcParm.callType = "callee";
                            sendMsgParam.friendId = obj.data.id;
@@ -327,6 +331,7 @@ var showmsg,lm;
                                '</div>'
                            );
                        }else{
+
                            layer.msg("用户不在线，无法连接视频!");
                        }
 
@@ -634,13 +639,20 @@ var showmsg,lm;
 		          	    	   //上线
 		          	    	   if(msg.getSender()!=currentsession){
 		          	    	      layer.msg(username+"上线了！");
-		  	          	    	  layim.setFriendStatus(msg.getSender(), 'online');  
+		  	          	    	  layim.setFriendStatus(msg.getSender(), 'online');
+                                  onlineUser.push(msg.getSender())
 		          	    	   } 
 		          	       }else if(msg.getCmd()==4){
 		          	    	   //下线
 		          	    	   if(msg.getSender()!=currentsession){
 		          	    		   layer.msg(username+"已下线！");
 			          	    	   layim.setFriendStatus(msg.getSender(), 'offline');
+			          	    	  /* console.log("删除当前用户之后的上线记录："+msg.getSender())
+			          	    	   console.log("下线用户是否存在于上线记录列表中："+ onlineUser.indexOf(msg.getSender()))
+			          	    	   console.log("上线记录列表中："+ onlineUser)*/
+                                   if(onlineUser.indexOf(msg.getSender()) != -1){
+                                       onlineUser.splice(onlineUser.indexOf(msg.getSender()),1);
+                                   }
 		          	    	   } 
 		          	       }else if(msg.getCmd()=='99'){
 		          	    	   //视频了
