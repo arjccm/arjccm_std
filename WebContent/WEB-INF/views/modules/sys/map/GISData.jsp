@@ -384,7 +384,7 @@
 										<li><sys:treeselect id="areaEvent" name="areaEvent"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
 												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
-												cssClass="" allowClear="true" notAllowSelectParent="false"
+												cssClass="" allowClear="true" notAllowSelectParent="true"
 												cssStyle="width: 111px;height:30px;" /> &nbsp; <input
 											id="caseName" placeholder="请输入事件名称 ..." name="caseName"
 											class="input-medium" type="text" value="" maxlength="100"
@@ -428,7 +428,7 @@
 											&nbsp; <sys:treeselect id="areaBuild" name="areaBuild"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
 												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
-												cssClass="" allowClear="true" notAllowSelectParent="false"
+												cssClass="" allowClear="true" notAllowSelectParent="true"
 												cssStyle="width: 110px;height:30px;" /></li>
 										<li>
 											<a href="javascript:;" style="margin-left: 10px;"
@@ -469,7 +469,7 @@
 											&nbsp; <sys:treeselect id="areaPlace" name="areaPlace"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
 												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
-												cssClass="" allowClear="true" notAllowSelectParent="false"
+												cssClass="" allowClear="true" notAllowSelectParent="true"
 												cssStyle="width: 110px;height:30px;" /></li>
 										<li>
 											<a href="javascript:;" style="margin-left: 10px;"
@@ -518,7 +518,7 @@
 											&nbsp; <sys:treeselect id="areaPeople" name="areaPeople"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
 												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
-												cssClass="" allowClear="true" notAllowSelectParent="false"
+												cssClass="" allowClear="true" notAllowSelectParent="true"
 												cssStyle="width: 111px;height:30px;" /></li>
 										<li><select id="importantType" name="importantType"
 											placeholder="请选择重点人员类型 " class="input-medium"
@@ -559,10 +559,11 @@
 											name="videoName" class="input-medium" type="text" value=""
 											maxlength="100" style="height: 30px; margin-top: 10px;">
 										</li>
+										</li>
 										<li><sys:treeselect id="areaVideo" name="areaVideo"
 												value="" labelName="area.name" placeholder="请选择辖区范围 ..."
 												labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
-												cssClass="" allowClear="true" notAllowSelectParent="false"
+												cssClass="" allowClear="true" notAllowSelectParent="true"
 												cssStyle="width: 110px;height:30px;" /> &nbsp;</li>
 										<li>
 											<a href="javascript:;" style="margin-left: 10px;"
