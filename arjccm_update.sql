@@ -2611,3 +2611,43 @@ CREATE TABLE `ccm_user_group_relationship`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '房间用户信息表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+--  新增函数 COUNT_RECORD_peopleAmount 中添加
+-- 房屋数量
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_pop_tenant
+			WHERE
+				del_flag = 0
+			GROUP BY
+				area_id
+		) AS b ON b.area_id = a.area_id
+		SET a.houseNumber = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+
+		-- 出租房数量
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_pop_tenant
+			WHERE
+				del_flag = 0
+				AND house_type='02'
+			GROUP BY
+				area_id
+		) AS b ON b.area_id = a.area_id
+		SET a.rentalHousingNumber = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
