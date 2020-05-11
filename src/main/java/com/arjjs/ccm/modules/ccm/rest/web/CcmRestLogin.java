@@ -25,7 +25,6 @@ import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
 import com.arjjs.ccm.modules.ccm.view.entity.VCcmTeam;
 import com.arjjs.ccm.modules.flat.deviceonline.service.CcmDeviceOnlineService;
 import com.arjjs.ccm.modules.flat.deviceuse.service.CcmDeviceUseService;
-import com.arjjs.ccm.modules.flat.userBindingDevice.entity.UserBindingDevice;
 import com.arjjs.ccm.modules.flat.userBindingDevice.service.UserBindingDeviceService;
 import com.arjjs.ccm.modules.sys.dao.UserDao;
 import com.arjjs.ccm.modules.sys.entity.Dict;
@@ -254,6 +253,13 @@ public class CcmRestLogin extends BaseController {
 			json.put("photo", userDB.getPhoto());
 		}
         json.put("admin",userDB.isAdmin());
+
+        json.put("arj_netty_url",Global.getConfig("ARJIM_NETTY_URL"));
+        //json.put("arj_netty_websocket_url",Global.getConfig("ARJIM_NETTY_WEBSOCKET_URL"));
+        json.put("arj_rest_url",Global.getConfig("ARJIM_RETS_URL"));
+        json.put("arj_webrtc_host_room_url",Global.getConfig("ARJIM_WEBRTC_HOST_ROOM_URL"));
+        json.put("arj_webrtc_host_url",Global.getConfig("ARJIM_WEBRTC_HOST_URL"));
+
         result.setResult(json);
         return result;
     }
