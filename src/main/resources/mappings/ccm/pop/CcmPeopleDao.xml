@@ -1142,7 +1142,7 @@
 				AND a.name LIKE
 				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
 				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
-				<if test="dbName == 'mysql'">concat(#{name},'%')</if>
+				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
 			</if>
 			<if test="sex != null and sex != ''">
 				AND a.sex = #{sex}
@@ -2939,44 +2939,12 @@
 	<!--app地图查询人员-->
 	<select id="peopleList" resultType="CcmPeople">
 		SELECT
-			a.id  AS "id",
-			a.type  AS "type",
-			a.name  AS "name",
-			a.usedname  AS "usedname",
-			a.sex  AS "sex",
-			a.birthday  AS "birthday",
-			a.nation  AS "nation",
-			a.censu  AS "censu",
-			a.marriage  AS "marriage",
-			a.politics  AS "politics",
-			a.education  AS "education",
-			a.belief  AS "belief",
-			a.prof_type  AS "profType",
-			a.profession  AS "profession",
-			a.is_public_servants  AS "isPublicServants",
-			a.office_name  AS "officeName",
-			a.serv_place  AS "servPlace",
-			a.domicile  AS "domicile",
-			a.domiciledetail  AS "domiciledetail",
-			a.residence  AS "residence",
-			a.residencedetail  AS "residencedetail",
-			a.area_com_id  AS "areaComId",
-			a.area_grid_id  AS "areaGridId",
-			a.build_id  AS "buildId",
-			a.room_id  AS "roomId",
-			b.area_point AS "areaPoint"
+		a.id AS "id"
 		FROM ccm_people a
+		<include refid="ccmPeopleJoinsNet"/>
 			LEFT JOIN ccm_house_buildmanage b ON b.id = a.build_id
-			LEFT JOIN sys_area s ON s.id= a.area_com_id
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<!-- AND a.del_flag = #{DEL_FLAG_NORMAL} -->
-			<if test="unitCategory != null and unitCategory != ''">
-				AND a.unit_category = #{unitCategory}
-			</if>
-			<if test="type != null and type != ''">
-				AND a.type = #{type}
-			</if>
 			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
 				AND (a21.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
 				a.area_grid_id
@@ -2988,116 +2956,48 @@
 				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
 				<if test="dbName == 'mysql'">concat(#{name},'%')</if>
 			</if>
-			<if test="sex != null and sex != ''">
-				AND a.sex = #{sex}
-			</if>
-			<if  test="beginBirthday != null and beginBirthday != ''">
-				AND a.birthday &gt;= #{beginBirthday}
-			</if>
-			<if  test="endBirthday != null and endBirthday != ''">
-				AND a.birthday &lt;= #{endBirthday}
-			</if>
-
-			<if
-					test="areaGridId != null and areaGridId.id != null and areaGridId.id != ''">
-				AND a.area_grid_id = #{areaGridId.id}
-			</if>
-			<if test="roomId != null and roomId.id != null and roomId.id != ''">
-				AND a.room_id = #{roomId.id}
-			</if>
-			<if test="isBehind != null and isBehind != ''">
-				AND a.is_behind = #{isBehind}
-			</if>
-			<if test="isBehind != null and isBehind == ''">
-				AND (a.is_behind is null OR a.is_behind = 0)
-			</if>
-			<if test="isRelease != null and isRelease != ''">
-				AND a.is_release = #{isRelease}
-			</if>
-			<if test="isRelease != null and isRelease == ''">
-				AND (a.is_release is null OR a.is_release = 0)
-			</if>
-			<if test="isRectification != null and isRectification != ''">
-				AND a.is_rectification = #{isRectification}
-			</if>
-			<if test="isRectification != null and isRectification == ''">
-				AND (a.is_rectification is null OR a.is_rectification = 0)
-			</if>
-			<if test="isAids != null and isAids != ''">
-				AND a.is_aids = #{isAids}
-			</if>
-			<if test="isAids != null and isAids == ''">
-				AND (a.is_aids is null OR a.is_aids = 0)
-			</if>
-			<if test="isPsychogeny != null and isPsychogeny != ''">
-				AND a.is_psychogeny = #{isPsychogeny}
-			</if>
-			<if test="isPsychogeny != null and isPsychogeny == ''">
-				AND (a.is_psychogeny is null OR a.is_psychogeny = 0)
-			</if>
-			<if test="isKym != null and isKym != ''">
-				AND a.is_kym = #{isKym}
-			</if>
-			<if test="isKym != null and isKym == ''">
-				AND (a.is_kym is null OR a.is_kym = 0)
-			</if>
-			<if test="isDrugs != null and isDrugs != ''">
-				AND a.is_drugs = #{isDrugs}
-			</if>
-			<if test="isDrugs != null and isDrugs == ''">
-				AND (a.is_drugs is null OR a.is_drugs = 0)
-			</if>
-			<if test="isEscape != null and isEscape != ''">
-				AND a.is_escape = #{isEscape}
-			</if>
-			<if test="isEscape != null and isEscape == ''">
-				AND (a.is_escape is null OR a.is_escape = 0)
-			</if>
-			<if test="isHarmNational != null and isHarmNational != ''">
-				AND a.is_harm_national = #{isHarmNational}
-			</if>
-			<if test="isHarmNational != null and isHarmNational == ''">
-				AND (a.is_harm_national is null OR a.is_harm_national = 0)
-			</if>
-			<if test="isDeliberatelyIllegal != null and isDeliberatelyIllegal != ''">
-				AND a.is_deliberately_illegal = #{isDeliberatelyIllegal}
-			</if>
-			<if test="isDeliberatelyIllegal != null and isDeliberatelyIllegal == ''">
-				AND (a.is_deliberately_illegal is null OR a.is_deliberately_illegal = 0)
-			</if>
-			<if test="isCriminalOffense != null and isCriminalOffense != ''">
-				AND a.is_criminal_offense = #{isCriminalOffense}
-			</if>
-			<if test="isCriminalOffense != null and isCriminalOffense == ''">
-				AND (a.is_criminal_offense is null OR a.is_criminal_offense = 0)
-			</if>
-			<if test="isDispute != null and isDispute != ''">
-				AND a.is_dispute = #{isDispute}
-			</if>
-			<if test="isDispute != null and isDispute == ''">
-				AND(a.is_dispute is null OR a.is_dispute = 0)
-			</if>
-			<if test="politics != null and politics != ''">
-				AND a.politics = #{politics}
-			</if>
-			<if test="ident != null and ident != ''">
-				AND a.ident LIKE '%${ident}%'
-			</if>
-
-			<if test="isPermanent != null and isPermanent != ''">
-				AND a.is_permanent = #{isPermanent}
-			</if>
-			<if test="residencedetail != null and residencedetail != ''">
-				AND a.residencedetail LIKE
-				<if test="dbName == 'oracle'">'%'||#{residencedetail}||'%'</if>
-				<if test="dbName == 'mssql'">'%'+#{residencedetail}+'%'</if>
-				<if test="dbName == 'mysql'">concat('%',#{residencedetail},'%')</if>
-			</if>
-			<if test="areaComId != null">
-				AND s.parent_ids LIKE concat('%',#{areaComId.id},'%')
-			</if>
-			AND b.area_point IS NOT NULL
+			${sqlMap.dsf}
 		</where>
-		LIMIT 1000
+	</select>
+
+	<select id="getData" resultType="com.arjjs.ccm.tool.SearchTab">
+		SELECT
+		ifnull( SUM( a.person_amount ), 0 ) AS 'value1',
+		ifnull( SUM( a.oversea_amount ), 0 ) AS 'value2',
+		ifnull( SUM( a.float_amount ), 0 ) AS 'value3',
+		ifnull( SUM( a.unsettle_amount ), 0 ) AS 'value4'
+		FROM
+		ccm_people_amount a
+		LEFT JOIN sys_area a2 ON a2.id = a.area_id
+		WHERE
+		a.del_flag = '0'
+		<if test="areaId !=null and areaId !=''" >
+			AND a2.parent_ids LIKE concat( '%',#{areaId},'%' )
+		</if>
+		AND a2.type = '6'
+		AND ( a.amount_date &gt; date_format( DATE_SUB( curdate( ), INTERVAL 1 MONTH ), '%Y-%m' ) AND a.amount_date &lt; date_format( DATE_SUB( curdate( ), INTERVAL 0 MONTH ), '%Y-%m' ) );
+	</select>
+
+	<select id="getSpecialNum" resultType="com.arjjs.ccm.tool.SearchTab">
+		SELECT
+		ifnull( SUM( a.aids_amount ), 0 ) AS 'value1',
+		ifnull( SUM( a.psychogeny_amount ), 0 ) AS 'value2',
+		ifnull( SUM( a.rectification_amount ), 0 ) AS 'value3',
+		ifnull( SUM( a.release_amount ), 0 ) AS 'value4',
+		ifnull( SUM( a.drugs_amount ), 0 ) AS 'value5',
+		ifnull( SUM( a.behind_amount ), 0 ) AS 'value6',
+		ifnull( SUM( a.visit_amount ), 0 ) AS 'value7',
+		ifnull( SUM( a.heresy_amount ), 0 ) AS 'value8',
+		ifnull( SUM( a.dangerous_amount ), 0 ) AS 'value9'
+		FROM
+		ccm_people_amount a
+		LEFT JOIN sys_area a2 ON a2.id = a.area_id
+		WHERE
+		a.del_flag = '0'
+
+		AND a2.parent_ids LIKE concat( '%',#{areaId},'%' )
+
+		AND a2.type = '6'
+		AND ( a.amount_date &gt; date_format( DATE_SUB( curdate( ), INTERVAL 1 MONTH ), '%Y-%m' ) AND a.amount_date &lt; date_format( DATE_SUB( curdate( ), INTERVAL 0 MONTH ), '%Y-%m' ) );
 	</select>
 </mapper>

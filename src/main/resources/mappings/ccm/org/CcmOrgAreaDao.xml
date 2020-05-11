@@ -544,8 +544,28 @@
 
 	</select>
 	
-	
-	
+	<select id="getPeoNum" resultType="int">
+	SELECT
+	a.mannum AS "mannum"
+FROM
+	ccm_org_area a
+	LEFT JOIN sys_area a2 ON a2.id = a.area_id
+	LEFT JOIN sys_office o ON o.area_id = a2.id
+	LEFT JOIN sys_user u ON u.office_id = o.id
+WHERE
+	u.id = #{userId};
+	</select>
+
+	<select id="getAreaId" resultType="string">
+		SELECT
+	a.id AS "id"
+FROM
+	sys_area a
+	LEFT JOIN sys_office o ON o.area_id = a.id
+	LEFT JOIN sys_user u ON u.office_id = o.id
+WHERE
+	u.id = #{userId};
+	</select>
 	
 	
 </mapper>

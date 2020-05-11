@@ -1012,8 +1012,23 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 	}
 
 	//app地图查询人口
-	public List<CcmPeople> peopleList(CcmPeople ccmPeople) {
+
+	public Page<CcmPeople> findpeoplePage(Page<CcmPeople> page, CcmPeople ccmPeople) {
+		ccmPeople.setPage(page);
+		List<CcmPeople> ccmPeople1 = ccmPeopleDao.peopleList(ccmPeople);
+		page.setList(ccmPeople1);
+		return page;
+	}
+/*	public List<CcmPeople> peopleList(CcmPeople ccmPeople) {
 		return ccmPeopleDao.peopleList(ccmPeople);
+	}*/
+	//户籍、流动、外籍、未落户、人口个数
+	public SearchTab getData(String areaId){
+		SearchTab countPeople = ccmPeopleDao.getData(areaId);
+		return countPeople;
 	}
 
+	public SearchTab getSpecialNum(String areaId) {
+		return ccmPeopleDao.getSpecialNum(areaId);
+	}
 }

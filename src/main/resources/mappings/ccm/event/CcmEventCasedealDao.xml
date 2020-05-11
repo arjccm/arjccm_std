@@ -272,18 +272,18 @@
 					<if test="dbName == 'mssql'">'%'+#{objId}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{objId},'%')</if>
 				</if>
-				
+
 				<if test="objType != null and objType != ''">
 					AND a.obj_type = #{objType}
 				</if>
-				
+
 				<if test="caseName != null and caseName != ''">
 					AND c.case_name LIKE
 					<if test="dbName == 'oracle'">'%'||#{caseName}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{caseName}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{caseName},'%')</if>
 				</if>
-				
+
 				<if test="handleStep != null and handleStep != ''">
 					AND a.handle_step LIKE
 					<if test="dbName == 'oracle'">'%'||#{handleStep}||'%'</if>
@@ -294,7 +294,7 @@
 				<if test="status != null and status != ''">
 					AND c.status = #{status}
 				</if>
-				
+
 				<if test="handleUser != null and handleUser.id != null and handleUser.id != ''">
 					AND a.handle_user = #{handleUser.id}
 				</if>
@@ -317,7 +317,7 @@
 					AND a.grade_num = 0
 				</if>
 			</where>
-			
+
 			UNION
 			SELECT
 			<include refid="ccmEventCasedealColumnsWithAmbi" />
@@ -337,29 +337,29 @@
 					<if test="dbName == 'mssql'">'%'+#{objId}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{objId},'%')</if>
 				</if>
-				
+
 				<if test="objType != null and objType != ''">
 					AND a.obj_type = #{objType}
 				</if>
-				
+
 				<if test="caseName != null and caseName != ''">
 					AND c.name LIKE
 					<if test="dbName == 'oracle'">'%'||#{caseName}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{caseName}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{caseName},'%')</if>
 				</if>
-				
+
 				<if test="handleStep != null and handleStep != ''">
 					AND a.handle_step LIKE
 					<if test="dbName == 'oracle'">'%'||#{handleStep}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{handleStep}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{handleStep},'%')</if>
 				</if>
-				
+
 				<if test="status != null and status != ''">
 					AND c.status = #{status}
 				</if>
-				
+
 				<if test="handleUser != null and handleUser.id != null and handleUser.id != ''">
 					AND a.handle_user = #{handleUser.id}
 				</if>
@@ -376,14 +376,14 @@
 					AND a.check_user IS NOT NULL
 				</if>
 			</where>
-			
+
 			UNION
 			SELECT
 			<include refid="ccmEventCasedealColumnsWithRequest" />
 			FROM ccm_event_casedeal a
 			<include refid="ccmEventCasedealJoins" />
 			<include refid="ccmEventIncidentJoinsUser" />
-			<include refid="ccmEventCasedealJoinsWithRequest" />	
+			<include refid="ccmEventCasedealJoinsWithRequest" />
 			<where>
 				a.obj_type = 'ccm_event_request'
 				AND a.del_flag = #{DEL_FLAG_NORMAL}
@@ -396,29 +396,29 @@
 					<if test="dbName == 'mssql'">'%'+#{objId}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{objId},'%')</if>
 				</if>
-				
+
 				<if test="objType != null and objType != ''">
 					AND a.obj_type = #{objType}
 				</if>
-				
+
 				<if test="caseName != null and caseName != ''">
 					AND c.case_name LIKE
 					<if test="dbName == 'oracle'">'%'||#{caseName}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{caseName}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{caseName},'%')</if>
 				</if>
-				
+
 				<if test="handleStep != null and handleStep != ''">
 					AND a.handle_step LIKE
 					<if test="dbName == 'oracle'">'%'||#{handleStep}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{handleStep}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{handleStep},'%')</if>
 				</if>
-				
+
 				<if test="status != null and status != ''">
 					AND c.type = #{status}
 				</if>
-				
+
 				<if test="handleUser != null and handleUser.id != null and handleUser.id != ''">
 					AND a.handle_user = #{handleUser.id}
 				</if>
@@ -441,7 +441,7 @@
 			FROM ccm_event_casedeal a
 			<include refid="ccmEventCasedealJoins" />
 			<include refid="ccmEventIncidentJoinsUser" />
-			<include refid="ccmEventCasedealJoinsWithWechatEvent" />	
+			<include refid="ccmEventCasedealJoinsWithWechatEvent" />
 			<where>
 				a.obj_type = 'ccm_wechat_event'
 				AND a.del_flag = #{DEL_FLAG_NORMAL}
@@ -454,29 +454,29 @@
 					<if test="dbName == 'mssql'">'%'+#{objId}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{objId},'%')</if>
 				</if>
-				
+
 				<if test="objType != null and objType != ''">
 					AND a.obj_type = #{objType}
 				</if>
-				
+
 				<if test="caseName != null and caseName != ''">
 					AND c.report_info LIKE
 					<if test="dbName == 'oracle'">'%'||#{caseName}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{caseName}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{caseName},'%')</if>
 				</if>
-				
+
 				<if test="handleStep != null and handleStep != ''">
 					AND a.handle_step LIKE
 					<if test="dbName == 'oracle'">'%'||#{handleStep}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{handleStep}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{handleStep},'%')</if>
 				</if>
-				
+
 				<if test="status != null and status != ''">
 					AND c.status = #{status}
 				</if>
-				
+
 				<if test="handleUser != null and handleUser.id != null and handleUser.id != ''">
 					AND a.handle_user = #{handleUser.id}
 				</if>

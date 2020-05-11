@@ -391,6 +391,41 @@
 			</foreach>
 		</if>
 	</select>
+<!--app地图获取场所-->
+<select id="basePlaceList" resultType="CcmBasePlace">
+	SELECT
+		a.id AS "id",
+		a.place_name AS "placeName",
+		a.relevance_org AS "relevanceOrg",
+		a.key_point AS "keyPoint",
+		a.place_area AS "placeArea",
+		a.place_use AS "place_use",
+		a.worker_number AS "workerNumber",
+		a.leader_name AS "leaderName",
+		a.leader_id_card AS "leaderIdCard",
+		a.leader_contact AS "leaderContact",
+		a.create_time AS "createTime",
+		a.governing_body_name AS "governingBodyName",
+		a.address AS "address",
+		a.place_type AS "placeType",
+		a.place_picture AS "placePicture",
+		a.administrative_division AS "administrativeDivision",
+		a.child_type AS "childType",
+		a.junior_id AS "juniorId",
+		a.area_map AS "areaMap",
+		a.area_point AS "areaPoint",
+		a.case_place AS "casePlace"
+	FROM ccm_base_place a
+	LEFT JOIN sys_area s ON s.id = a.administrative_division
+	<where>
+			a.del_flag=0
+		<if test="placeName !=null and placeName !='' ">
+			AND a.place_name LIKE
+			<if test="dbName == 'oracle'">'%'||#{placeName}||'%'</if>
+			<if test="dbName == 'mssql'">'%'+#{placeName}+'%'</if>
+			<if test="dbName == 'mysql'">concat('%',#{placeName},'%')</if>
+		</if>
 
-
+	</where>
+</select>
 </mapper>
