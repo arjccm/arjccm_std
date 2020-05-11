@@ -48,6 +48,7 @@ public class AppUploadController extends BaseController{
 		}
 
 		SysAppUpload sysAppUpload = sysAppUploadService.getAppInfo();
+
 		if(sysAppUpload != null){
 			int i = Integer.parseInt(null!=sysAppUpload.getVersion()? sysAppUpload.getVersion() : "0");
 			if(StringUtils.isNotBlank(sysAppUpload.getFiles())) {
@@ -57,6 +58,9 @@ public class AppUploadController extends BaseController{
 				} else {
 					sysAppUpload.setDownload(Global.getConfig("FILE_UPLOAD_URL") + file);
 				}
+			}
+			if (sysAppUpload.getDownload()==null){
+				sysAppUpload.setDownload("");
 			}
 			if(VersionCode<i){
 				result.setResult(sysAppUpload);
