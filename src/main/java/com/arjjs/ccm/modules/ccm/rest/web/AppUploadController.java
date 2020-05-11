@@ -63,13 +63,16 @@ public class AppUploadController extends BaseController{
 				sysAppUpload.setDownload("");
 			}
 			if(VersionCode<i){
+				sysAppUpload.setUploadType("0");
 				result.setResult(sysAppUpload);
-				result.setCode(CcmRestType.OK);
+
 			}else{
+				sysAppUpload.setUploadType("0");
 				result.setResult(sysAppUpload);
-				result.setCode(1);
 			}
+			result.setCode(CcmRestType.OK);
 		}
+
 		return result;
 
 
