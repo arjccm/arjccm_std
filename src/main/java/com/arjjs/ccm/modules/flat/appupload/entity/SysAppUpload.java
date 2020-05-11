@@ -24,6 +24,15 @@ public class SysAppUpload extends DataEntity<SysAppUpload> {
 	private String status;		// 最新标志(0:不是最新 或 1:是最新)
 	private String files;		// 附件
 	private String download;
+	private String uploadType;
+
+	public String getUploadType() {
+		return uploadType;
+	}
+
+	public void setUploadType(String uploadType) {
+		this.uploadType = uploadType;
+	}
 
 	public SysAppUpload() {
 		super();
