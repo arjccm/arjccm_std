@@ -13,6 +13,7 @@ import com.arjjs.ccm.tool.EchartType;
 import com.arjjs.ccm.tool.SearchTab;
 import com.arjjs.ccm.tool.SearchTabMM;
 import com.arjjs.ccm.tool.SearchTabMore;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -95,4 +96,5 @@ public interface CcmPopTenantDao extends CrudDao<CcmPopTenant> {
 	// 导入 查询全部
 	List<CcmPopTenant> queryAllForImport();
 
+    SearchTab getPopTenantNum(@Param("areaId") String areaId);
 }

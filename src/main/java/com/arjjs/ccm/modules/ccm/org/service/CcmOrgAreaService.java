@@ -107,4 +107,12 @@ public class CcmOrgAreaService extends CrudService<CcmOrgAreaDao, CcmOrgArea> {
 			// TODO Auto-generated method stub
 			return ccmOrgAreaDao.getCcmOrgArea(ccmOrgArea2);
 		}
+
+	public Integer getPeoNum(String userId) {
+		return ccmOrgAreaDao.getPeoNum(userId);
+	}
+
+	public String getAreaId(String userId) {
+		return ccmOrgAreaDao.getAreaId(userId);
+	}
 }

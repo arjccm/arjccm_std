@@ -174,9 +174,6 @@ public class CcmRestPeople extends BaseController {
 
 		ccmPeople.setCheckUser(sessionUser);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-		/*sign="0";
-			if ("0".equals(sign)) {*/
-
 				Page<CcmPeople> page = ccmPeopleService.findPage(new Page<CcmPeople>(req, resp), ccmPeople);
 
 				List<CcmPeople> list = page.getList();
@@ -203,54 +200,6 @@ public class CcmRestPeople extends BaseController {
 				} else {
 					result.setResult(page.getList());
 				}
-			/*} else {
-				if (StringUtils.isNotBlank(areaPoint)) {
-					List<CcmOrgArea> orgAreaList = ccmOrgAreaService.getAreaMap(new CcmOrgArea());
-					List<CcmDeviceArea> resultList = Lists.newArrayList();
-					ccmRestIncidentPolice.sortList(resultList, orgAreaList, "0", true);
-					List<String> pointList = Lists.newArrayList();
-					if (StringUtils.isNotBlank(areaPoint)) {
-						String[] pointInfo = areaPoint.split(",");
-						double lat = Double.valueOf(pointInfo[0]);
-						double lon = Double.valueOf(pointInfo[1]);
-						String areaId = ccmRestIncidentPolice.getDeviceAreaId(resultList, pointList, lat, lon);
-						Area area = new Area();
-						if (StringUtils.isNotBlank(areaId)) {
-							area.setId(areaId);
-							ccmPeople.setAreaComId(area);
-						}
-					}
-				}
-				Page<CcmPeople> page = new Page<>(req,resp);
-				page.setPageNo(1);
-				page.setPageSize(20);
-				page = ccmPeopleService.findpeoplePage(page, ccmPeople);
-
-				List<CcmPeople> list = page.getList();
-				CcmPeople ccmPeople2 = new CcmPeople();
-				ccmPeople2.setCheckUser(sessionUser);
-				String[] listLimite = new String[list.size()];
-				if (list.size() > 0) {
-					for (int i = 0; i < list.size(); i++) {
-						listLimite[i] = list.get(i).getId();
-					}
-					ccmPeople2.setListLimite(listLimite);
-					List<CcmPeople> list2 = ccmPeopleService.findListLimite(ccmPeople2);//数组查询id
-					for (int f = 0; f < list2.size(); f++) {
-						if (StringUtils.isNotEmpty(list2.get(f).getImages())) {
-							list2.get(f).setImages(fileUrl + list2.get(f).getImages());
-						}
-					}
-					page.setList(list2);
-					logger.info("" + list2);
-				}
-				result.setCode(CcmRestType.OK);
-				if (page.getList() == null || page.getList().size() <= 0) {
-					result.setResult("");
-				} else {
-					result.setResult(page.getList());
-				}
-			}*/
 			return result;
 		}
 
@@ -262,9 +211,8 @@ public class CcmRestPeople extends BaseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "queryPeopleMap")
-	public CcmRestResult queryPeopleMap(String userId,String roomid,CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(required = false) int pageNo, @RequestParam(required = false) int pageSize) {
+	@RequestMapping(value = "/queryPeopleMap")
+	public CcmRestResult queryPeopleMap(String userId,String roomid,CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response) {
 
 		logger.info("当前正在执行的类名为》》》" + Thread.currentThread().getStackTrace()[1].getClassName());
 		logger.info("当前正在执行的方法名为》》》" + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -287,17 +235,9 @@ public class CcmRestPeople extends BaseController {
 		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		//分页参数处理
 		Page pageIn = new Page<CcmPeople>(request, response);
-		if (pageNo != 0) {
-			pageIn.setPageNo(pageNo);
-		}
-		if (pageSize != 0) {
-			pageIn.setPageSize(pageSize);
-		}
-
 		// 查询地图人口信息
 		List<CcmPeople> ccmPeoplelist = new ArrayList<CcmPeople>();
 
-		long t1 = System.currentTimeMillis();
 		//可以选择父节点查询
 		if(ccmPeople.getAreaGridId()!=null&&ccmPeople.getAreaGridId().getId()!=null&&!ccmPeople.getAreaGridId().getId().equals("")){
 			SysArea sysArea = sysAreaService.get(ccmPeople.getAreaGridId().getId());
@@ -327,8 +267,8 @@ public class CcmRestPeople extends BaseController {
 			// 2 id 添加
 			featureDto.setId(people.getId());
 			// 3 properties 展示属性信息
-			properties.setName(people.getName());
-			properties.setIcon(people.getImages());
+			/*properties.setName(people.getName());
+			properties.setIcon(people.getImages());*/
 			// 点击后展示详细属性值
 			Map<String, Object> map_P = new LinkedHashMap<String, Object>();
 			// 创建附属信息
@@ -387,11 +327,11 @@ public class CcmRestPeople extends BaseController {
 		geoJSON.setFeatures(featureList);
 		// 如果无数据
 		if (featureList.size() == 0) {
-			return null;
+			result.setResult("");
+		}else {
+			result.setResult(geoJSON);
 		}
-
 		result.setCode(CcmRestType.OK);
-		result.setResult(geoJSON);
 		return result;
 	}
 

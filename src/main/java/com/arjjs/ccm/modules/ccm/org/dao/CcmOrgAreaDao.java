@@ -8,6 +8,8 @@ import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.tool.SearchTab;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.method.P;
 
 import java.util.List;
 
@@ -44,4 +46,8 @@ public interface CcmOrgAreaDao extends CrudDao<CcmOrgArea> {
 
 	//查询重点人员点位
 	public List<CcmOrgArea> findAreaList(CcmOrgArea ccmOrgArea);
+
+	Integer getPeoNum(@Param("userId") String userId);
+
+    String getAreaId(@Param("userId") String userId);
 }

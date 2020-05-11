@@ -224,4 +224,8 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 
 	//地图查询人口，关联楼栋
 	List<CcmPeople> peopleList(CcmPeople ccmPeople);
+
+    SearchTab getData(@Param("areaId") String areaId);
+
+	SearchTab getSpecialNum(@Param("areaId") String areaId);
 }

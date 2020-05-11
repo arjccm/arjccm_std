@@ -35,5 +35,5 @@ public interface CcmBasePlaceDao extends CrudDao<CcmBasePlace> {
 	public List<CcmBasePlaceEntity> queryPlaceBase(CcmBasePlaceVO basePlaceVO);
 
 
-
+    List<CcmBasePlace> basePlaceList(CcmBasePlace ccmBasePlace);
 }

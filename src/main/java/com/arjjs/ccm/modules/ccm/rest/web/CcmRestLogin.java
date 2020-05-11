@@ -150,7 +150,7 @@ public class CcmRestLogin extends BaseController {
             ccmOrgTeam.setUser(userDB);
             ccmOrgTeam.setCreateBy(userDB);
             ccmOrgTeam.setUpdateBy(userDB);
-        }else{
+        }/*else{
             String status = ccmOrgTeam.getStatus();
             if(!"".equals(status) && "online".equals(status)){//判断重复登录，1分钟内是否更新的记录
             	Date dateUpdate = ccmOrgTeam.getUpdateDate();
@@ -162,7 +162,7 @@ public class CcmRestLogin extends BaseController {
                     return result;
             	}
             }
-        }
+        }*/
 
         if (ccmMobileDevice != null && ccmMobileDevice.getDeviceId() != null
                 && !"".equals(ccmMobileDevice.getDeviceId())) {// 手机App的处理

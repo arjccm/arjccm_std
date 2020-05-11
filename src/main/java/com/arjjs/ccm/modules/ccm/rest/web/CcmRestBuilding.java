@@ -143,7 +143,6 @@ public class CcmRestBuilding extends BaseController {
 		}
 		build.setCheckUser(sessionUser);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-		/*if ("0".equals(sign)){*/
 			Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService
 					.findPage(new Page<CcmHouseBuildmanage>(req, resp), build);
 			if(page.getList().size()>0){
@@ -170,50 +169,6 @@ public class CcmRestBuilding extends BaseController {
 			page.setPageNo(pageNo);
 			result.setCode(CcmRestType.OK);
 			result.setResult(page.getList());
-		/*}else {
-
-			if (StringUtils.isNotBlank(areaPoint)) {
-
-			List<CcmOrgArea> orgAreaList = ccmOrgAreaService.getAreaMap(new CcmOrgArea());
-			List<CcmDeviceArea> resultList = Lists.newArrayList();
-			ccmRestIncidentPolice.sortList(resultList, orgAreaList, "0", true);
-			List<String> pointList = Lists.newArrayList();
-				String[] pointInfo = areaPoint.split(",");
-				double lat = Double.valueOf(pointInfo[0]);
-				double lon = Double.valueOf(pointInfo[1]);
-				 areaId = ccmRestIncidentPolice.getDeviceAreaId(resultList, pointList, lat, lon);
-				if(StringUtils.isNotBlank(areaId)) {
-					area.setId(areaId);
-					build.setArea(area);
-				}
-			}
-
-			List<CcmHouseBuildmanage> buildList = ccmHouseBuildmanageService.buildList(build);
-			if(buildList.size()>0){
-				for (int i = 0; i < buildList.size(); i++) {
-					buildList.get(i).setImages(fileUrl + buildList.get(i).getImages());
-				}
-			}else {
-				while (0==buildList.size()&&StringUtils.isNotBlank(areaPoint)){
-					String pid = ccmHouseBuildmanageService.areaParentId(areaId);
-					if(StringUtils.isNotBlank(pid)) {
-						area.setId(pid);
-						build.setArea(area);
-					}
-					buildList = ccmHouseBuildmanageService.buildList(build);
-					areaId=pid;
-					if ("0".equals(pid)){
-						break;
-					}
-				}
-			}
-			if (buildList.size()==0){
-				result.setResult("");
-			}else {
-				result.setResult(buildList);
-			}
-			result.setCode(CcmRestType.OK);
-		}*/
 		return result;
 	}
 
@@ -225,13 +180,15 @@ public class CcmRestBuilding extends BaseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "queryBuildMap")
-	public CcmRestResult queryBuildMap(String userId,CcmHouseBuildmanage ccmHouseBuildmanage,HttpServletRequest request, HttpServletResponse response,
-						@RequestParam(required = false) Integer pageNo, @RequestParam(required = false) Integer pageSize) {
+	@RequestMapping(value = "/queryBuildMap",method = RequestMethod.GET)
+	@ApiOperation(value = "生成楼栋地图信息-点位图")
+	@ApiImplicitParam(name = "userId",value = "用户ID")
+	public CcmRestResult queryBuildMap(String userId,CcmHouseBuildmanage ccmHouseBuildmanage,HttpServletRequest request,HttpServletResponse response) {
 
 		logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
 		logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
 		logger.info("当前方法运行参数为》》》CcmHouseBuildmanage : " + String.valueOf(ccmHouseBuildmanage) + "  userId : " + userId);
+
 		CcmRestResult result = new CcmRestResult();
 		User sessionUser = (User) request.getSession().getAttribute("user");
 		if (sessionUser== null) {
@@ -245,14 +202,7 @@ public class CcmRestBuilding extends BaseController {
 		}
 
 		ccmHouseBuildmanage.setCheckUser(sessionUser);
-		//分页参数处理
-		Page pageIn = new Page<CcmHouseBuildmanage>(request, response);
-		if (pageNo != 0) {
-			pageIn.setPageNo(pageNo);
-		}
-		if (pageSize != 0) {
-			pageIn.setPageSize(pageSize);
-		}
+
 		// 查询地图楼栋信息
 		List<CcmHouseBuildmanage> ccmHouseBuildmanageList = new ArrayList<CcmHouseBuildmanage>();
 		//可以选择父节点查询
@@ -264,7 +214,7 @@ public class CcmRestBuilding extends BaseController {
 			ccmHouseBuildmanage.setUserArea(area);
 			ccmHouseBuildmanage.setArea(null);
 		}
-		Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService.findPageNew(pageIn, ccmHouseBuildmanage);
+		Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService.findPageNew(new Page<CcmHouseBuildmanage>(request, response), ccmHouseBuildmanage);
 		ccmHouseBuildmanageList = page.getList();
 
 		// 返回对象
@@ -327,15 +277,14 @@ public class CcmRestBuilding extends BaseController {
 			geometry.setCoordinates(Coordinateslist);
 
 		}
-
+		geoJSON.setFeatures(featureList);
 		// 如果无数据
 		if (featureList.size() == 0) {
-			return null;
+			result.setResult("");
+		}else {
+			result.setResult(geoJSON);
 		}
-		geoJSON.setFeatures(featureList);
 		result.setCode(CcmRestType.OK);
-		result.setResult(geoJSON);
-
 		return result;
 	}
 	

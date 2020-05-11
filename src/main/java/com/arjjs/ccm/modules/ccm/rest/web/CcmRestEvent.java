@@ -40,6 +40,7 @@ import com.arjjs.ccm.tool.geoJson.GeoJSON;
 import com.arjjs.ccm.tool.geoJson.Geometry;
 import com.arjjs.ccm.tool.geoJson.Properties;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.PropertyFilter;
@@ -232,9 +233,8 @@ public class CcmRestEvent extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "queryEventIncidentMap")
-    public CcmRestResult queryEventIncidentMap(String userId,CcmEventIncident ccmEventIncident,HttpServletRequest request, HttpServletResponse response,
-                                         @RequestParam(required = false) Integer pageNo, @RequestParam(required = false) Integer pageSize) {
+    @RequestMapping(value = "/queryEventIncidentMap" ,method = RequestMethod.GET)
+    public CcmRestResult queryEventIncidentMap(String userId,CcmEventIncident ccmEventIncident,HttpServletRequest request, HttpServletResponse response) {
 
         logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
         logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -254,14 +254,6 @@ public class CcmRestEvent extends BaseController {
         ccmEventIncident.setCheckUser(sessionUser);
         ccmEventIncident.setCreateBy(sessionUser);
 
-        //分页参数处理
-        Page pageIn = new Page<CcmEventIncident>(request, response);
-        if (pageNo != 0) {
-            pageIn.setPageNo(pageNo);
-        }
-        if (pageSize != 0) {
-            pageIn.setPageSize(pageSize);
-        }
         SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         // 查询地图事件信息
         List<CcmEventIncident> ccmEventIncidentlist = new ArrayList<CcmEventIncident>();
@@ -274,7 +266,7 @@ public class CcmRestEvent extends BaseController {
             ccmEventIncident.setUserArea(area);
             ccmEventIncident.setArea(null);
         }
-        Page<CcmEventIncident> page = ccmEventIncidentService.findPage(pageIn, ccmEventIncident);
+        Page<CcmEventIncident> page = ccmEventIncidentService.findPage(new Page<CcmEventIncident>(request, response), ccmEventIncident);
         ccmEventIncidentlist = page.getList();
         // 返回对象
         GeoJSON geoJSON = new GeoJSON();
@@ -340,10 +332,11 @@ public class CcmRestEvent extends BaseController {
         geoJSON.setFeatures(featureList);
         // 如果无数据
         if (featureList.size() == 0) {
-            return null;
+            result.setResult("");
+        }else {
+            result.setResult(geoJSON);
         }
         result.setCode(CcmRestType.OK);
-        result.setResult(geoJSON);
         return result;
     }
 
@@ -1258,9 +1251,13 @@ public class CcmRestEvent extends BaseController {
                 page.getList().get(i).setHappenPlace(happenPlacea);
             }
         }
-
+        if (page.getList().size()>0){
+            result.setResult(page.getList());
+        }else {
+            result.setResult("");
+        }
         result.setCode(CcmRestType.OK);
-        result.setResult(page.getList());
+
 
         return result;
     }

@@ -272,4 +272,7 @@ public class CcmPopTenantService extends CrudService<CcmPopTenantDao, CcmPopTena
 		return ccmPopTenantDao.queryAllForImport();
 	}
 
+	public SearchTab getPopTenantNum(String areaId) {
+		return ccmPopTenantDao.getPopTenantNum(areaId);
+	}
 }

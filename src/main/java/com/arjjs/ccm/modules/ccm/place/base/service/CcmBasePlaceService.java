@@ -61,4 +61,7 @@ public class CcmBasePlaceService extends CrudService<CcmBasePlaceDao, CcmBasePla
 	}
 
 
+	public List<CcmBasePlace> basePlaceList(CcmBasePlace ccmBasePlace) {
+		return ccmBasePlaceDao.basePlaceList(ccmBasePlace);
+	}
 }

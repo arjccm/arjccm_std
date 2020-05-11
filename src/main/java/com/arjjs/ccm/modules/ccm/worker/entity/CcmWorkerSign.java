@@ -4,6 +4,7 @@
 package com.arjjs.ccm.modules.ccm.worker.entity;
 
 import com.arjjs.ccm.modules.sys.entity.User;
+import io.swagger.annotations.ApiModel;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;

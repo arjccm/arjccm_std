@@ -129,9 +129,8 @@ public class CcmRestKeyPlace extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "queryPlaceMap")
-    public CcmRestResult queryPlaceMap(String userId,CcmBasePlace ccmBasePlace, HttpServletRequest request, HttpServletResponse response,
-                                 @RequestParam(required = false) int pageNo, @RequestParam(required = false) int pageSize) {
+    @RequestMapping(value = "/queryPlaceMap",method = RequestMethod.GET)
+    public CcmRestResult queryPlaceMap(String userId,CcmBasePlace ccmBasePlace, HttpServletRequest request, HttpServletResponse response) {
 
         CcmRestResult result = new CcmRestResult();
         User sessionUser = (User) request.getSession().getAttribute("user");
@@ -148,13 +147,6 @@ public class CcmRestKeyPlace extends BaseController {
 
         //分页参数处理
         Page pageIn = new Page<CcmBasePlace>(request, response);
-        if (pageNo != 0) {
-            pageIn.setPageNo(pageNo);
-        }
-        if (pageSize != 0) {
-            pageIn.setPageSize(pageSize);
-        }
-
         // 查询地图场所信息
         List<CcmBasePlace> ccmBasePlacelist = new ArrayList<CcmBasePlace>();
         //可以选择父节点查询
@@ -237,10 +229,11 @@ public class CcmRestKeyPlace extends BaseController {
         geoJSON.setFeatures(featureList);
         // 如果无数据
         if (featureList.size() == 0) {
-            return null;
+            result.setResult("");
+        }else {
+            result.setResult(geoJSON);
         }
         result.setCode(CcmRestType.OK);
-        result.setResult(geoJSON);
         return result;
     }
 
