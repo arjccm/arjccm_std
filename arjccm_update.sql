@@ -347,11 +347,11 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
 -- 城市部件表 by maoxb 2020-02-13
  alter table ccm_city_components add components_num varchar(10) COMMENT '消防设施的数量';
  alter table ccm_city_components add is_danger varchar(2)  COMMENT '是否是危险品（是 1  否  0）';
- alter table ccm_city_components add collect_people varchar(255)  COMMENT '信息采集人员';  
+ alter table ccm_city_components add collect_people varchar(255)  COMMENT '信息采集人员';
  -- 房屋表 by maoxb 2020-02-13
  alter table ccm_pop_tenant add collect_people varchar(255)  COMMENT '信息采集人员';
- 
- 
+
+
 -- 移动设备管理表 by maoxb 2020-02-13
  alter table ccm_mobile_device add use_type varchar(255)  COMMENT 'app应用类型';
  alter table ccm_mobile_device add people_id varchar(255)  COMMENT '关联人员';
@@ -362,7 +362,7 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
  alter table oa_notify add relief_id varchar(255)  COMMENT '备勤任务id';
  alter table oa_notify add relief_type varchar(255)  COMMENT '备勤任务通知类型';
  alter table oa_notify add relief_status varchar(255)  COMMENT '备勤任务执行状态';
- 
+
  -- 防疫人员表 by yiqingxuan 2020-02-14
 DROP TABLE IF EXISTS `ccm_people_antiepidemic`;
 CREATE TABLE `ccm_people_antiepidemic`  (
@@ -2611,3 +2611,8 @@ CREATE TABLE `ccm_user_group_relationship`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '房间用户信息表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- 人员总数表新增字段总数
+ALTER TABLE `arjccm_qiannan_20190926`.`ccm_people_amount`
+ADD COLUMN `houseNumber` int(12) NULL COMMENT '房屋总数量' AFTER `seriousCriminalOffense_amount`,
+ADD COLUMN `rentalHousingNumber` int(12) NULL COMMENT '出租房屋总数量' AFTER `houseNumber`;
