@@ -84,8 +84,18 @@ public class CcmRestData extends BaseController {
             noGatherNum=peoNum-gatherNum;
         }
         //特殊人群
-        ccmPeopleService.getSpecialNum(areaId);
-        Integer specialPeople=33;
+        SearchTab specialNum = ccmPeopleService.getSpecialNum(areaId);
+        Integer s1 = Integer.valueOf(specialNum.getValue1());
+        Integer s2 = Integer.valueOf(specialNum.getValue2());
+        Integer s3 = Integer.valueOf(specialNum.getValue3());
+        Integer s4 = Integer.valueOf(specialNum.getValue4());
+        Integer s5 = Integer.valueOf(specialNum.getValue5());
+        Integer s6 = Integer.valueOf(specialNum.getValue6());
+        Integer s7 = Integer.valueOf(specialNum.getValue7());
+        Integer s8 = Integer.valueOf(specialNum.getValue8());
+        Integer s9 = Integer.valueOf(specialNum.getValue9());
+        Integer s10 = Integer.valueOf(specialNum.getValue10());
+        Integer specialPeople=s1+s2+s3+s4+s5+s6+s7+s8+s9+s10;
         //走访记录
         Integer interview=10;
         //已走访

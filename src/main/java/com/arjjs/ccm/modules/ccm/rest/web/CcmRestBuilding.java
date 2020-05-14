@@ -226,6 +226,10 @@ public class CcmRestBuilding extends BaseController {
 		List<Features> featureList = new ArrayList<Features>();
 		// 数组
 		for (CcmHouseBuildmanage Buildmanage : ccmHouseBuildmanageList) {
+			String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+			if(StringUtils.isNotEmpty(Buildmanage.getImages())){
+				Buildmanage.setImages(fileUrl + Buildmanage.getImages());
+			}
 			// 特征属性
 			Features featureDto = new Features();
 			Properties properties = new Properties();
@@ -244,6 +248,7 @@ public class CcmRestBuilding extends BaseController {
 			map.put("楼栋长电话", Buildmanage.getTel());
 			map.put("层数", Buildmanage.getPilesNum() + "");
 			map.put("单元数", Buildmanage.getElemNum() + "");
+			map.put("Images", Buildmanage.getImages() + "");
 			properties.addInfo(map);
 			featureList.add(featureDto);
 			featureDto.setProperties(properties);

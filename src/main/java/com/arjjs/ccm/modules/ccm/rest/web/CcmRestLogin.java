@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.gis.MapUtil;
 import com.arjjs.ccm.common.gis.Point;
+import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.security.Digests;
 import com.arjjs.ccm.common.utils.CacheUtils;
 import com.arjjs.ccm.common.utils.Encodes;
@@ -131,9 +132,9 @@ public class CcmRestLogin extends BaseController {
             result.setCode(CcmRestType.ERROR_NO_USER);
             return result;
         }
-       /* CcmTracingpoint ccmTracingpoint = new CcmTracingpoint();
+        CcmTracingpoint ccmTracingpoint = new CcmTracingpoint();
         ccmTracingpoint.setUser(userDB);
-        Page<CcmTracingpoint> page = ccmTracingpointService.findPage(new Page<>(1, 10), ccmTracingpoint);
+        /*Page<CcmTracingpoint> page = ccmTracingpointService.findPage(new Page<>(1, 10), ccmTracingpoint);
         if(page!=null&& page.getList()!=null && page.getList().size()>0){
             boolean  me=false;
             CcmTracingpoint ccmTracingpoint1 = page.getList().get(0);
@@ -149,19 +150,20 @@ public class CcmRestLogin extends BaseController {
             ccmOrgTeam.setUser(userDB);
             ccmOrgTeam.setCreateBy(userDB);
             ccmOrgTeam.setUpdateBy(userDB);
-        }/*else{
+        }else{
             String status = ccmOrgTeam.getStatus();
             if(!"".equals(status) && "online".equals(status)){//判断重复登录，1分钟内是否更新的记录
-            	Date dateUpdate = ccmOrgTeam.getUpdateDate();
+                result.setCode(CcmRestType.ERROR_SAME_USER_LOGON);
+                return result;
+            	/*Date dateUpdate = ccmOrgTeam.getUpdateDate();
             	Date now = new Date();
             	long diff = now.getTime() - dateUpdate.getTime();
             	long mins = diff / 1000;
             	if (mins < 60) {//60秒内存在更新的话，则说明在线，不允许重复登录
-            		result.setCode(CcmRestType.ERROR_SAME_USER_LOGON);
-                    return result;
-            	}
+
+            	}*/
             }
-        }*/
+        }
 
         if (ccmMobileDevice != null && ccmMobileDevice.getDeviceId() != null
                 && !"".equals(ccmMobileDevice.getDeviceId())) {// 手机App的处理

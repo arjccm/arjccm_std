@@ -171,6 +171,10 @@ public class CcmRestKeyPlace extends BaseController {
         List<Features> featureList = new ArrayList<Features>();
         // 数组
         for (CcmBasePlace basePlace : ccmBasePlacelist) {
+            String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+            if(StringUtils.isNotEmpty(basePlace.getPlacePicture())){
+                basePlace.setPlacePicture(fileUrl + basePlace.getPlacePicture());
+            }
             // 特征,属性
             Features featureDto = new Features();
             Properties properties = new Properties();
