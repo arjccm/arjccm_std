@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RestController
@@ -74,8 +76,14 @@ public class CcmRestUser {
             result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
             return result;
         }
+        String Officename = sessionUser.getOffice().getName();
+        String Companyname = sessionUser.getCompany().getName();
+        Map<String, Object> map = new HashMap<>();
+        map.put("user",sessionUser);
+        map.put("Companyname",Companyname);
+        map.put("Officename",Officename);
         result.setCode(CcmRestType.OK);
-        result.setResult(sessionUser);
+        result.setResult(map);
         return result;
         }
     }
