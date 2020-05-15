@@ -250,7 +250,7 @@ var showmsg,lm;
 			   layim.on('ready', function(res){
 
 
-				  lm = layui.layim; 
+				  lm = layui.layim;
 				  //添加客服
 				/* layim.addList({
 					  type: 'friend' //列表类型，只支持friend和group两种*/
@@ -260,7 +260,7 @@ var showmsg,lm;
 						  ,id: "0" //好友id
 						  ,sign: "有什么问题尽管问我把" //好友签名
 				  });  */
-				  layim.msgbox(2); //模拟消息盒子有新消息，实际使用时，一般是动态获得 
+				  layim.msgbox(2); //模拟消息盒子有新消息，实际使用时，一般是动态获得
 				  //取得离线消息
 				  showOfflineMsg(layim)
 				  layim.setFriendStatus(currentsession, 'online');
@@ -506,7 +506,7 @@ var showmsg,lm;
                           if(msg.getCalltype() =="caller" && msg.getRessign()==='agree' && msg.getReqtype() == 'ptop'){
                               var receiveUser = msg.getSender();
                               //注意此处如果被动方接收到消息后，过20S以上点击接收视频，弹层可能会弹不出来，浏览器会拦截，需要浏览器上设置一下拦截允许；
-                              windowOpen(arjWebRtc +'?userId='+currentsession+'&sendId='+receiveUser+'&type=video&callType=caller','视频聊天','670','580');
+                              windowOpen(arjWebRtc +'?userId='+currentsession+'&sendId='+receiveUser+'&type=video&callType=caller','视频聊天','861','668');
                               closeDialog();
                               return false;
                           }else if(msg.getRessign()==='refuse') {
@@ -594,7 +594,7 @@ var showmsg,lm;
 							              return false;
 				            		 }
 				            	}else  if(msg.getGroupid()=='audio'){
-				            		 if(item.id == msg.getSender()){ 
+				            		 if(item.id == msg.getSender()){
 							                username = item.username;
 							                avatar = item.avatar;
 							            	$("body").append(
@@ -617,17 +617,17 @@ var showmsg,lm;
 							              return false;
 				            		 }
 				            	}else{
-				            		if(item.id == msg.getSender()){ 
+				            		if(item.id == msg.getSender()){
 						                username = item.username;
 						                avatar = item.avatar;
 						                return friend = true;
 						              }
 				            	}
-					              
+
 					            });
 					            if(friend) return true;
-				            }); 
-		          	       
+				            });
+
 		          	       //心跳消息
 		          	       if(msg.getCmd()==2){
 		          	    	   //发送心跳回应
@@ -641,7 +641,7 @@ var showmsg,lm;
 		          	    	      layer.msg(username+"上线了！");
 		  	          	    	  layim.setFriendStatus(msg.getSender(), 'online');
                                   onlineUser.push(msg.getSender())
-		          	    	   } 
+		          	    	   }
 		          	       }else if(msg.getCmd()==4){
 		          	    	   //下线
 		          	    	   if(msg.getSender()!=currentsession){
@@ -653,18 +653,18 @@ var showmsg,lm;
                                    if(onlineUser.indexOf(msg.getSender()) != -1){
                                        onlineUser.splice(onlineUser.indexOf(msg.getSender()),1);
                                    }
-		          	    	   } 
+		          	    	   }
 		          	       }else if(msg.getCmd()=='99'){
 		          	    	   //视频了
 		          	    	 if(msg.getSender()!=currentsession){
 		          	    	      layer.msg(username+"视频了！");
-		  	          	    	  layim.setFriendStatus(msg.getSender(), 'online');  
-		          	    	   } 
-		          	       } else{ 
-		          	    	   //显示非自身消息    
+		  	          	    	  layim.setFriendStatus(msg.getSender(), 'online');
+		          	    	   }
+		          	       } else{
+		          	    	   //显示非自身消息
 		          	    	   if(msg.getSender()!=currentsession){
 		          	    		   //不显示用户组消息
-		          	    		   var time = (new Date(msg.getTimestamp())).getTime(); 
+		          	    		   var time = (new Date(msg.getTimestamp())).getTime();
 		          	    		   if(msg.getGroupid()==null||msg.getGroupid().length<1){
 	          	    				    lm.getMessage({
 								 	        username: username
@@ -673,7 +673,7 @@ var showmsg,lm;
 								 	        ,type: "friend"
 								 	        ,content: msgCon.getContent()
 								 	        ,timestamp: time
-							 	     	});   
+							 	     	});
 		          	    		   }else{
 		          	    			 //判断是否拥有改群组，有弹出消息，否则不弹出
 		          	    			 var groupCache=layim.cache().group;
@@ -689,18 +689,17 @@ var showmsg,lm;
 										 	        ,type: "group"
 										 	        ,content: msgCon.getContent()
 										 	        ,timestamp: time
-									 	     	});  
+									 	     	});
 		          	    					 }
-		          	    					 break;
 		          	    				 }
 		          	    			 }
-		          	    			    
-		          	    		   } 
-		          	    	   }  
+
+		          	    		   }
+		          	    	   }
 		          	       }
 		          	  }else {
 		                    var data = event.data;                //后端返回的是文本帧时触发
-		              } 
+		              }
 		          };
 		        //连接后
 		        socket.onopen = function(event) {
@@ -710,14 +709,14 @@ var showmsg,lm;
 			   	       message.setDeviceid("")
 			   	       message.setCmd(1);
 			   	       message.setSender(currentsession);
-			   	       message.setMsgtype(1); 
+			   	       message.setMsgtype(1);
 			   	       message.setFlag(1);
 			   	       message.setPlatform(browser.name);
 			   	       message.setPlatformversion(browser.version);
 			   	       message.setToken(currentsession);
-			   	       var bytes = message.serializeBinary();  
-		               socket.send(bytes);  
-		             
+			   	       var bytes = message.serializeBinary();
+		               socket.send(bytes);
+
 		          };
 		        //连接关闭
 		        socket.onclose = function(event) {
@@ -742,7 +741,7 @@ var showmsg,lm;
 
 //dwr推送消息方法
 function showMessage(data) {
-	showmsg(data); 
+	showmsg(data);
 }
     /**
      * 被动方接受之后，
@@ -763,7 +762,7 @@ function chat_ready(sendId,id,callType,type,reqType,vaGroupId,vaGroupName){
      sendWebRtcParm.resSign = "agree";
      if(reqType === "ptop"){//单聊,
            // 必须保存弹出页面加载完之后在发消息，重要！重要！重要！
-            windowOpen(arjWebRtc +'?userId='+sendId+'&sendId='+id+'&type='+type+'&callType=callee','视频聊天','670','580');
+            windowOpen(arjWebRtc +'?userId='+sendId+'&sendId='+id+'&type='+type+'&callType=callee','视频聊天','861','668');
             setTimeout(function(){
                  // 弹出页面之后，发送回调消息，告诉发起人，被呼叫人已经同意视频；
                  sendVideoOrAuidoMsg(id,"","", sendId,callType,type,reqType,sendWebRtcParm.resSign)
