@@ -129,8 +129,6 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 	/**
 	 * 查询分页数据
 	 *
-	 * @param page   分页对象
-	 * @param entity
 	 * @return
 	 */
 	public List<BphAlarmInfo> findDistributeList(BphAlarmInfo bphAlarmInfo) {
@@ -176,18 +174,10 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 		String officeId = "";
 		Office office = new Office();
 		Area areaOffice = ccmEventIncident.getArea();
-        Area areaPo = new Area();
 		if (areaOffice != null){
-            areaPo = areaService.get(areaOffice.getId());
-            List<OfficeAreaEntity> list = officeList(areaPo.getId());
-            if (list.size() >0 && list != null){
-                officeId = list.get(0).getOfficeId();
-                office = officeService.get(officeId);
-            }else{
-                list = officeList(areaPo.getParentId());
-                officeId = list.get(0).getOfficeId();
-                office = officeService.get(officeId);
-            }
+			Map<String, Object> map = recursiveList(areaOffice.getId());
+			officeId = (String) map.get("officeId");
+			office = (Office)map.get("office");
 		}
 
 		BphAlarmInfo bphAlarmInfo1 = dao.get(eventIncidentId);
@@ -248,12 +238,38 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 		return true;
 	}
 
+	/**
+	 * @param officeAreId
+	 * @return
+	 */
+	public Map<String, Object> recursiveList(String officeAreId) {
+		Area areaPo = areaService.get(officeAreId);
+		List<OfficeAreaEntity> list = officeList(areaPo.getId());
+		Map<String, Object> map = new HashMap<>();
+		if (list.isEmpty() ){
+			Map<String, Object> stringObjectMap = recursiveList(areaPo.getParentId());
+			if(!stringObjectMap.isEmpty()){
+				return stringObjectMap;
+			}
+		}else{
+			String officeId = list.get(0).getOfficeId() ;
+			map.put("officeId",officeId);
+			Office office = officeService.get(officeId);
+			map.put("office",office);
+		}
+		return map;
+	}
+
 	@Transactional(readOnly = false)
 	public int deleteBphAlarmInfo(BphAlarmInfo bphAlarmInfo) {
 		return dao.delete(bphAlarmInfo);
 	}
 
-
+	/**
+	 * 查询当前区域所属部门
+	 * @param areaId
+	 * @return
+	 */
 	public List<OfficeAreaEntity> officeList(String areaId){
 		return dao.officeList(areaId);
 	}
@@ -1068,7 +1084,6 @@ public class BphAlarmInfoService extends CrudService<BphAlarmInfoDao, BphAlarmIn
 
 	/**
 	 * 方法描述：获取user的id
-	 * @param office
 	 * @return
 	 */
 	public String getUserIds(String[] officeIds) {

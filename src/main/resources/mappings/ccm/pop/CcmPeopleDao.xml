@@ -2981,14 +2981,15 @@
 	<select id="getSpecialNum" resultType="com.arjjs.ccm.tool.SearchTab">
 		SELECT
 		ifnull( SUM( a.aids_amount ), 0 ) AS 'value1',
-		ifnull( SUM( a.psychogeny_amount ), 0 ) AS 'value2',
+		ifnull( SUM( a.psychogeny_amount), 0 ) AS 'value2',
 		ifnull( SUM( a.rectification_amount ), 0 ) AS 'value3',
 		ifnull( SUM( a.release_amount ), 0 ) AS 'value4',
 		ifnull( SUM( a.drugs_amount ), 0 ) AS 'value5',
 		ifnull( SUM( a.behind_amount ), 0 ) AS 'value6',
 		ifnull( SUM( a.visit_amount ), 0 ) AS 'value7',
-		ifnull( SUM( a.heresy_amount ), 0 ) AS 'value8',
-		ifnull( SUM( a.dangerous_amount ), 0 ) AS 'value9'
+		ifnull( SUM( a.heresy_amount ) , 0 ) AS 'value8',
+		ifnull( SUM( a.dangerous_amount), 0 ) AS 'value9',
+		ifnull( SUM( a.seriousCriminalOffense_amount), 0 ) AS 'value10'
 		FROM
 		ccm_people_amount a
 		LEFT JOIN sys_area a2 ON a2.id = a.area_id

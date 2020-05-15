@@ -347,11 +347,11 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
 -- 城市部件表 by maoxb 2020-02-13
  alter table ccm_city_components add components_num varchar(10) COMMENT '消防设施的数量';
  alter table ccm_city_components add is_danger varchar(2)  COMMENT '是否是危险品（是 1  否  0）';
- alter table ccm_city_components add collect_people varchar(255)  COMMENT '信息采集人员';
+ alter table ccm_city_components add collect_people varchar(255)  COMMENT '信息采集人员';  
  -- 房屋表 by maoxb 2020-02-13
  alter table ccm_pop_tenant add collect_people varchar(255)  COMMENT '信息采集人员';
-
-
+ 
+ 
 -- 移动设备管理表 by maoxb 2020-02-13
  alter table ccm_mobile_device add use_type varchar(255)  COMMENT 'app应用类型';
  alter table ccm_mobile_device add people_id varchar(255)  COMMENT '关联人员';
@@ -362,7 +362,7 @@ INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `p
  alter table oa_notify add relief_id varchar(255)  COMMENT '备勤任务id';
  alter table oa_notify add relief_type varchar(255)  COMMENT '备勤任务通知类型';
  alter table oa_notify add relief_status varchar(255)  COMMENT '备勤任务执行状态';
-
+ 
  -- 防疫人员表 by yiqingxuan 2020-02-14
 DROP TABLE IF EXISTS `ccm_people_antiepidemic`;
 CREATE TABLE `ccm_people_antiepidemic`  (
@@ -2616,3 +2616,42 @@ SET FOREIGN_KEY_CHECKS = 1;
 ALTER TABLE `arjccm_qiannan_20190926`.`ccm_people_amount`
 ADD COLUMN `houseNumber` int(12) NULL COMMENT '房屋总数量' AFTER `seriousCriminalOffense_amount`,
 ADD COLUMN `rentalHousingNumber` int(12) NULL COMMENT '出租房屋总数量' AFTER `houseNumber`;
+
+--  新增函数 COUNT_RECORD_peopleAmount 中添加
+-- 房屋数量
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_pop_tenant
+			WHERE
+				del_flag = 0
+			GROUP BY
+				area_id
+		) AS b ON b.area_id = a.area_id
+		SET a.houseNumber = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
+
+
+		-- 出租房数量
+		UPDATE ccm_people_amount a
+		INNER JOIN (
+			SELECT
+				area_id,
+				count(id) AS I_STAT_COUNT_1
+			FROM
+				ccm_pop_tenant
+			WHERE
+				del_flag = 0
+				AND house_type='02'
+			GROUP BY
+				area_id
+		) AS b ON b.area_id = a.area_id
+		SET a.rentalHousingNumber = b.I_STAT_COUNT_1
+		WHERE a.area_id = b.area_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
+
+		commit;
