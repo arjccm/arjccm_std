@@ -151,17 +151,14 @@ public class CcmRestLogin extends BaseController {
             ccmOrgTeam.setCreateBy(userDB);
             ccmOrgTeam.setUpdateBy(userDB);
         }else{
-            String status = ccmOrgTeam.getStatus();
-            if(!"".equals(status) && "online".equals(status)){//判断重复登录，1分钟内是否更新的记录
-                result.setCode(CcmRestType.ERROR_SAME_USER_LOGON);
-                return result;
-            	/*Date dateUpdate = ccmOrgTeam.getUpdateDate();
-            	Date now = new Date();
-            	long diff = now.getTime() - dateUpdate.getTime();
-            	long mins = diff / 1000;
-            	if (mins < 60) {//60秒内存在更新的话，则说明在线，不允许重复登录
-
-            	}*/
+            String deviceId = ccmMobileDeviceService.findByUserId(userDB.getId());
+            if (ccmMobileDevice.getDeviceId().equals(deviceId)){
+                }else {
+                String status = ccmOrgTeam.getStatus();
+                if(!"".equals(status) && "online".equals(status)){//判断重复登录，1分钟内是否更新的记录
+                    result.setCode(CcmRestType.ERROR_SAME_USER_LOGON);
+                    return result;
+                }
             }
         }
 
@@ -277,7 +274,7 @@ public class CcmRestLogin extends BaseController {
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public CcmRestResult logout(String userId,HttpServletRequest req, HttpServletResponse resp) throws IOException {
         CcmRestResult result = new CcmRestResult();
-        User sessionUser = (User) req.getSession().getAttribute("user");
+        /*User sessionUser = (User) req.getSession().getAttribute("user");
         if (sessionUser== null) {
             result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
             return result;
@@ -286,7 +283,7 @@ public class CcmRestLogin extends BaseController {
         if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
             result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
             return result;
-        }
+        }*/
 
         CcmOrgTeam ccmOrgTeam = ccmOrgTeamService.findUserId(userId);
         ccmOrgTeam.setStatus("hide");
