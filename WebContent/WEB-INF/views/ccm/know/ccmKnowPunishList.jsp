@@ -70,8 +70,9 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowPunish">
 			<tr>
-				<td><a href="${ctx}/know/ccmKnowPunish/form?id=${ccmKnowPunish.id}">
-					${ccmKnowPunish.name}
+				<td title="${ccmKnowPunish.name}"><a href="${ctx}/know/ccmKnowPunish/form?id=${ccmKnowPunish.id}">
+					<%-- ${ccmKnowPunish.name} --%>
+					${fns:abbr(ccmKnowPunish.name,25)}
 				</a></td>
 				<td>
 					<fmt:formatDate value="${ccmKnowPunish.inspectData}" pattern="yyyy-MM-dd HH:mm:ss"/>

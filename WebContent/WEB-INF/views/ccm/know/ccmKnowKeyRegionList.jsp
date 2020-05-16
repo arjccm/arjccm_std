@@ -83,8 +83,9 @@
 				<td>
 					<fmt:formatDate value="${ccmKnowKeyRegion.publishDate}" pattern="yyyy-MM-dd"/>
 				</td>
-				<td class="tp" style="height: 50px">
-					${ccmKnowKeyRegion.remarks}
+				<td class="tp" style="height: 50px" title="${ccmKnowKeyRegion.remarks}">
+					<%-- ${ccmKnowKeyRegion.remarks} --%>
+					${fns:abbr(ccmKnowKeyRegion.remarks,40)}
 				</td>
 				<shiro:hasPermission name="know:ccmKnowKeyRegion:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowKeyRegion/form?id=${ccmKnowKeyRegion.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

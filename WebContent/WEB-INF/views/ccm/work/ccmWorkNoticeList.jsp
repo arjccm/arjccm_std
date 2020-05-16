@@ -76,8 +76,9 @@
 				<td>
 					${ccmWorkNotice.createBy.name}
 				</td>
-				<td class="" style="height: 50px; white-space:nowrap;overflow:hidden;text-overflow: ellipsis;">
-					${ccmWorkNotice.remarks}
+				<td title="${ccmWorkNotice.remarks}" class="" style="height: 50px; white-space:nowrap;overflow:hidden;text-overflow: ellipsis;">
+					<%-- ${ccmWorkNotice.remarks} --%>
+					${fns:abbr(ccmWorkNotice.remarks,30)}
 				</td>
 				<shiro:hasPermission name="work:ccmWorkNotice:edit"><td style="width:5%;height: 50px">
     				<a class="btnList" href="${ctx}/work/ccmWorkNotice/form?id=${ccmWorkNotice.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
