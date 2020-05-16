@@ -100,6 +100,17 @@ public class SysConfigController extends BaseController {
 
 				model.addAttribute("upperSystemConfig", upperSystemConfig);
 			}
+			// 上级域系统设置
+			if ("face_docking_config".equals(s.getId())) {
+				SysConfig faceDockingConfig = new SysConfig();
+				faceDockingConfig = s;
+				// 解JSON
+				JSONObject jsonObject = JSONObject.fromObject(faceDockingConfig.getParamStr());
+				String url = (String) jsonObject.get("url");
+				faceDockingConfig.setUrl(url);
+
+				model.addAttribute("faceDockingConfig", faceDockingConfig);
+			}
 			// 事件预处理系统
 			if ("preview_system_config".equals(s.getId())) {
 				SysConfig previewSystemConfig = new SysConfig();

@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>过车信息管理</title>
+	<title>抓拍库检索</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -18,87 +18,82 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/carpass/ccmCarPass/">以图搜图</a></li>
+		<li class="active"><a href="${ctx}/searchsnap/iotSearchSnap">以图搜图</a></li>
 		<%-- <shiro:hasPermission name="carpass:ccmCarPass:edit"><li><a href="${ctx}/carpass/ccmCarPass/form">过车信息添加</a></li></shiro:hasPermission> --%>
 	</ul>
-	<form id="searchForm" modelAttribute="ccmCarPass" action="" method="post" class="breadcrumb form-search" style="height:60px;">
+    <form:form id="searchForm" modelAttribute="searchEntity" action="${ctx}/searchsnap/iotSearchSnap" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form">
-		<li> <div class="layui-inline">
-      <label class="layui-form-label" style="margin-left: 0px;left: 0px;width: 40px;">抓拍机</label>
-      <div class="layui-input-inline">
-        <select name="modules" lay-verify="required" lay-search="" class="input-medium">
-          <option value=""></option>
-          <option value="1">全部</option>
-          <option value="2">form</option>
-          <option value="3">layim</option>
-          <option value="4">element</option>
-          <option value="5">laytpl</option>
-          <option value="6">upload</option>
-          <option value="7">laydate</option>
-          <option value="8">laypage</option>
-          <option value="9">flow</option>
-          <option value="10">util</option>
-          <option value="11">code</option>
-          <option value="12">tree</option>
-          <option value="13">layedit</option>
-          <option value="14">nav</option>
-          <option value="15">tab</option>
-          <option value="16">table</option>
-          <option value="17">select</option>
-          <option value="18">checkbox</option>
-          <option value="19">switch</option>
-          <option value="20">radio</option>
-        </select>
-      </div>
-    </div></li>
- 
-   <li><div class="layui-form-item">
-    <div class="layui-inline">
-      <label class="layui-form-label">模型对比阈值段</label>
-      <div class="layui-input-inline">
-        <input type="text" name="price_min" placeholder="" autocomplete="off" class="input-medium">
-      </div>
-      <div class="layui-form-mid">-</div>
-      <div class="layui-input-inline" style="margin-left: 10px;">
-        <input type="text" name="price_max" placeholder="" autocomplete="off" class="input-medium">
-      </div>
-    </div></div></li>
-    <li>
-    <div class="layui-form-item">
-    <div class="layui-inline">
-      <label class="layui-form-label" style="width: 78px;">抓拍起始日期</label>
-      <div class="layui-input-block">
-        <input type="text" name="date" id="dateStart" placeholder="请选择开始时间" autocomplete="off" class="input-medium Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});">
-      </div>
-    </div></div></li>
-    <li>
-    <div class="layui-form-item">
-    <div class="layui-inline">
-      <label class="layui-form-label" style="width: 78px;">抓拍终止日期</label>
-      <div class="layui-input-block">
-        <input type="text" name="date" id="dateEnd" autocomplete="off" placeholder="请选择结束时间" class="input-medium Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});">
-      </div>
-    </div>
-  </div></li>
-<%--  <div class="layui-upload">--%>
+        <ul class="ul-form">
+            <li>
+                <label>名单库:</label>
+                <form:select path="listId" class="input-medium required">
+                    <form:option value="" label="全部" />
+                    <form:options items="${grabber}"
+                                  itemLabel="grabberName" itemValue="grabberNum" htmlEscape="false"
+                                  class="required" />
+                </form:select>
+            </li>
 
-  <li><button type="button" class="layui-btn" id="test1">上传图片</button></li>
-  <li><div class="layui-upload-list">
-    <img class="layui-upload-img" id="demo1">
-    <p id="demoText"></p>
-  </div></li>
+            <li>
+                <label>模型对比阈值段:</label>
+                <form:input path="minThreshold" htmlEscape="false" maxlength="64" class="input-medium"/>
+                -
+                <form:input path="maxThreshold" htmlEscape="false" maxlength="64" class="input-medium"/>
+            </li>
+            <li>
+                <label>抓拍起始时间:</label>
+                <input name="startTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+                       value="<fmt:formatDate value="${ccmPeople.beginBirthday}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+                       onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> </li>
+            </li>
+            <li>
+                <label>抓拍结束时间:</label>
+                <input name="endTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+                       value="<fmt:formatDate value="${ccmPeople.endBirthday}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+                       onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+            </li>
+            <li>
+                <label>图片:</label>
+                <form:hidden id="images" path="imagesUrl" htmlEscape="false"
+                             maxlength="255" class="input-xlarge"/>
+                <sys:ckfinder input="images" type="images"
+                              uploadPath="/photo/grabberToSearch" selectMultiple="false"
+                              maxWidth="240" maxHeight="360"/>
+            </li>
 
-</div>
-
-
-
-			<li class="clearfix"></li>
-		</ul>
-        <ul><li class="btns"><input id="btnSubmit" style="float: right;margin-top: 15px"  class="btn btn-primary" type="submit" value="检索"/></li></ul>
-	</form>
-
+            <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="检索"/></li>
+        </ul>
+    </form:form>
+    <sys:message content="${message}"/>
+    <table id="contentTable" class="table table-striped table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th style="text-align:center;vertical-align:middle;">抓拍时间</th>
+            <th style="text-align:center;vertical-align:middle;">人脸图</th>
+            <th style="text-align:center;vertical-align:middle;">相似度</th>
+            <th style="text-align:center;vertical-align:middle;">抓拍机编号</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${page.list}" var="SearchGrabberVO">
+            <tr>
+                <td style="text-align:center;vertical-align:middle;">
+                        ${SearchGrabberVO.faceTime}
+                </td>
+                <td style="text-align:center;vertical-align:middle;">
+                    <<img src="${SearchGrabberVO.faceUrl}" alt="">
+                </td>
+                <td style="text-align:center;vertical-align:middle;">
+                        ${SearchGrabberVO.similarity}
+                </td>
+                <td style="text-align:center;vertical-align:middle;">
+                        ${SearchGrabberVO.deviceId}
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 	<div class="pagination">${page}</div>
 </body>
 </html>

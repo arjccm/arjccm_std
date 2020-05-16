@@ -316,8 +316,11 @@
 
 		<li class="clearfix"></li>
 		<div class="login-box">
-			<c:if test="${surplus < 31}">
+			<c:if test="${surplus < 31 && surplus > 0}">
 				<span id="surplus">平台使用的剩余天数:<span id="surplus_num">${surplus}</span>天</span>
+			</c:if>
+			<c:if test="${surplus < 0}">
+				<span id="surplus">平台授权已过期,请联系管理员</span>
 			</c:if>
 			<input class="loginBtn" type="submit" value="登  录"/>&nbsp;&nbsp;
 		</div>

@@ -170,6 +170,10 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 	@Transactional(readOnly = false)
 	public void save(CcmEventIncident ccmEventIncident,User user) {
 		boolean isNew = false;
+		if(StringUtils.isEmpty(ccmEventIncident.getArea().getId())
+				&& StringUtils.isNotEmpty(ccmEventIncident.getCasePlace())){
+			ccmEventIncident.getArea().setId(ccmEventIncident.getCasePlace());
+		}
 		if (ccmEventIncident.getId() == null || "".equals(ccmEventIncident.getId())) {//无主键ID，则是新记录
 			isNew = true;
 			String id = UUID.randomUUID().toString();
