@@ -1,6 +1,7 @@
 //预案管理
 var Map,map;
 var CacleLocationAlarmId=[];
+var whoSelected;
 $(document).ready(function () {
 	//初始化地图
 	initMap();
@@ -24,8 +25,8 @@ $(document).ready(function () {
 	plotDrawInit();//标绘初始化
 	liveStreamingData();
 });
-setInterval(queryStatus,3000);
-setInterval(planProcessData,3000);
+//setInterval(queryStatus,3000);
+setInterval(planActionData,30000);
 setTimeout(liSelected,500)
 
 function loadingPerResource(){
@@ -334,13 +335,20 @@ function liSelected(){
 
 //步驟动作
 function planActionData(_this){
-	$('#planInfoLi li').removeClass('selected');
-	$(_this).addClass('selected');
 	// var aaa = $(_this).index()
 	// 	return aaa
 
 	// debugger
-	stepId=$(_this).attr('id');
+	if(typeof(_this) == "undefined"){
+        $('#planInfoLi li').removeClass('selected');
+        whoSelected.addClass('selected');
+        stepId = whoSelected.attr('id');
+	}else{
+        whoSelected = $(_this);
+        $('#planInfoLi li').removeClass('selected');
+        $(_this).addClass('selected');
+        stepId = $(_this).attr('id');
+	}
 	$.getJSON(ctx+'/flat/planManage/planActionData',{'stepId':stepId},function(data){
 		var html = '';
 		html+='<div>操作步骤</div>';

@@ -34,6 +34,8 @@ public class CcmGrabberManage extends DataEntity<CcmGrabberManage> {
 	private String valMin;		// 值范围最小值
 	private String reportState;		// 超过范围报警状态
 	private String accessType;
+
+	private String isupload;
 	public CcmGrabberManage() {
 		super();
 	}
@@ -212,5 +214,12 @@ public class CcmGrabberManage extends DataEntity<CcmGrabberManage> {
 	public void setAccessType(String accessType) {
 		this.accessType = accessType;
 	}
-	
+
+	public String getIsupload() {
+		return isupload;
+	}
+
+	public void setIsupload(String isupload) {
+		this.isupload = isupload;
+	}
 }

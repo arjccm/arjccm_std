@@ -5,17 +5,20 @@ package com.arjjs.ccm.modules.ccm.list.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.ccm.list.entity.CcmList;
+import com.arjjs.ccm.modules.ccm.list.service.CcmListService;
+import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
+import com.google.common.base.Joiner;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.arjjs.ccm.common.config.Global;
@@ -37,6 +40,10 @@ public class CcmListPeopleController extends BaseController {
 
 	@Autowired
 	private CcmListPeopleService ccmListPeopleService;
+
+	//名单库
+	@Autowired
+	private CcmListService ccmListService;
 	
 	@ModelAttribute
 	public CcmListPeople get(@RequestParam(required=false) String id) {
@@ -71,7 +78,21 @@ public class CcmListPeopleController extends BaseController {
 		if(StringUtils.isNotBlank(ccmListPeople.getListId()) && ccmListPeople.getListId().equals("0")) {
 			ccmListPeople.setListId(null);
 		}
-		Page<CcmListPeople> page = ccmListPeopleService.findPage(new Page<CcmListPeople>(request, response), ccmListPeople); 
+		Page<CcmListPeople> page = ccmListPeopleService.findPage(new Page<CcmListPeople>(request, response), ccmListPeople);
+		List<CcmListPeople> list = page.getList();
+		String listName = "";
+		for (CcmListPeople people:list) {
+			String[] listId = people.getListId().split(",");
+			if(listId.length>0){
+				for(int i=0 ; i<listId.length ; i++){
+					if(StringUtils.isNotEmpty(listId[i])){
+						listName = listName + ccmListService.get(listId[i]).getName() + ",";
+					}
+				}
+			}
+			people.setListName(listName);
+		}
+		page.setList(list);
 		model.addAttribute("page", page);
 		if(StringUtils.isBlank(ccmListPeople.getType())) {
 			ccmListPeople.setType("01");
@@ -89,6 +110,12 @@ public class CcmListPeopleController extends BaseController {
 	@RequiresPermissions("list:ccmListPeople:view")
 	@RequestMapping(value = "form")
 	public String form(CcmListPeople ccmListPeople, Model model) {
+		CcmList ccmList = new CcmList();
+		ccmList.setType(ccmListPeople.getType());
+		//名单库列表
+		List<CcmList> list = ccmListService.getList(ccmList);
+
+		model.addAttribute("libraryList", list);
 		model.addAttribute("type", ccmListPeople.getType());
 		model.addAttribute("ccmListPeople", ccmListPeople);
 		return "ccm/list/ccmListPeopleForm";
@@ -103,12 +130,17 @@ public class CcmListPeopleController extends BaseController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (!beanValidator(model, ccmListPeople)){
-			CommUtil.openWinExpDiv(out, "保存人员失败");
-		}else {
-			ccmListPeopleService.save(ccmListPeople);
-			CommUtil.openWinExpDiv(out, "保存人员成功");
+//		if (!beanValidator(model, ccmListPeople)){
+//			CommUtil.openWinExpDiv(out, "保存人员失败");
+//		}else {
+		if(ccmListPeople.getLibrarySelectList()!=null&&ccmListPeople.getLibrarySelectList().size()>0){
+			String librarySelect = Joiner.on(",").join(ccmListPeople.getLibrarySelectList());
+			ccmListPeople.setListId(librarySelect);
 		}
+
+		ccmListPeopleService.save(ccmListPeople);
+		CommUtil.openWinExpDiv(out, "保存人员成功");
+//		}
 	}
 	
 	@RequiresPermissions("list:ccmListPeople:edit")
@@ -119,4 +151,10 @@ public class CcmListPeopleController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/list/ccmListPeople/?type="+ccmListPeople.getType()+"&repage";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/getCcmListPeople", method = RequestMethod.GET)
+	public CcmRestResult getCcmListPeople(CcmListPeople ccmListPeople, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = ccmListPeopleService.getCcmListPeople(ccmListPeople);
+		return result;
+	}
 }

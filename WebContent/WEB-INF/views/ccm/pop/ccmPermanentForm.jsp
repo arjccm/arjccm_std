@@ -39,9 +39,9 @@
             width: 200px;
         }
 
-        .select2-container.input-xlarge {
-            width: 215px;
-        }
+        /*.select2-container.input-xlarge {*/
+        /*    width: 215px;*/
+        /*}*/
 
         .input-medium.Wdate {
             width: 200px;
