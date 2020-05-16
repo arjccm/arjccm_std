@@ -25,6 +25,9 @@
 							$('#btnSubmit3').click(function() {
 								$('#inputFormUpperSystemConfig').submit();
 							});
+                            $('#btnSubmit12').click(function() {
+                                $('#inputFormFaceDockingConfig').submit();
+                            });
 							$('#btnSubmit4').click(function() {
 								$('#inputFormPreviewSystemConfig').submit();
 							});
@@ -292,6 +295,28 @@
 						<a id="btnSubmit3" class="btn btn-primary" href="javascript:;"><i
 								class="icon-ok"></i>保存</a>
 		</shiro:hasPermission>
+				</span>
+		</div>
+	</div>
+</form:form>
+
+<!-- 人脸对接系统设置 -->
+<form:form id="inputFormFaceDockingConfig"
+		   modelAttribute="faceDockingConfig" action="${ctx}/sys/sysConfig/save"
+		   method="post" class="form-horizontal">
+	<form:hidden path="id" />
+	<form:hidden path="remarks" />
+	<div class="control-group">
+		<label class="control-label">${faceDockingConfig.remarks}：</label>
+		<div class="controls">
+			<br> <label class="high"><label class="lableStyle">URL：</label>
+			<form:input path="url" htmlEscape="false" maxlength="128"
+						class="input-xlarge " /></label><span class="help-inline">上级接口rest地址，如：http://192.168.1.243:8080/arjccm</span>
+			<span style="float: right; margin-right: 200px">
+				<shiro:hasPermission name="sys:sysConfig:edit">
+						<a id="btnSubmit12" class="btn btn-primary" href="javascript:;"><i
+								class="icon-ok"></i>保存</a>
+				</shiro:hasPermission>
 				</span>
 		</div>
 	</div>

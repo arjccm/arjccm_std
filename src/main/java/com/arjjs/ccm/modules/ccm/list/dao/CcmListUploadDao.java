@@ -5,14 +5,14 @@ package com.arjjs.ccm.modules.ccm.list.dao;
 
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
-import com.arjjs.ccm.modules.ccm.list.entity.CcmListPeople;
+import com.arjjs.ccm.modules.ccm.list.entity.CcmListUpload;
 
 /**
- * 静态库和黑名单人员实体类DAO接口
- * @author jpy
- * @version 2019-06-05
+ * 人脸对接上传记录DAO接口
+ * @author cby
+ * @version 2020-05-08
  */
 @MyBatisDao
-public interface CcmListPeopleDao extends CrudDao<CcmListPeople> {
-    public CcmListPeople getByFid(CcmListPeople ccmListPeople);
+public interface CcmListUploadDao extends CrudDao<CcmListUpload> {
+	
 }

@@ -20,5 +20,6 @@ public interface CcmListDao extends CrudDao<CcmList> {
 	public List<CcmList> getList(CcmList ccmList);
 	
 	public Integer getPeopleCount(CcmList ccmList);
-	
+
+	public CcmList getByFid(CcmList ccmList);
 }

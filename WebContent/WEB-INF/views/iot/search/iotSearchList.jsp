@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>过车信息管理</title>
+	<title>静态库检索</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -18,67 +18,72 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/carpass/ccmCarPass/">以图搜图</a></li>
-		<%-- <shiro:hasPermission name="carpass:ccmCarPass:edit"><li><a href="${ctx}/carpass/ccmCarPass/form">过车信息添加</a></li></shiro:hasPermission> --%>
+		<li class="active"><a href="${ctx}/searchlist/iotSearchList">以图搜图</a></li>
 	</ul>
-	<form:form id="searchForm" modelAttribute="ccmCarPass" action="" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="searchEntity" action="${ctx}/searchlist/iotSearchList" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-		<li> <div class="layui-inline">
-      <label class="layui-form-label">名单库</label>
-      <div class="layui-input-inline">
-        <select name="modules" lay-verify="required" lay-search="" class="input-medium">
-          <option value=""></option>
-          <option value="1">全部</option>
-          <option value="2">form</option>
-          <option value="3">layim</option>
-          <option value="4">element</option>
-          <option value="5">laytpl</option>
-          <option value="6">upload</option>
-          <option value="7">laydate</option>
-          <option value="8">laypage</option>
-          <option value="9">flow</option>
-          <option value="10">util</option>
-          <option value="11">code</option>
-          <option value="12">tree</option>
-          <option value="13">layedit</option>
-          <option value="14">nav</option>
-          <option value="15">tab</option>
-          <option value="16">table</option>
-          <option value="17">select</option>
-          <option value="18">checkbox</option>
-          <option value="19">switch</option>
-          <option value="20">radio</option>
-        </select>
-      </div>
-    </div></li>
- 
-			  <li><div class="layui-form-item">
-    <div class="layui-inline">
-      <label class="layui-form-label">模型对比阈值段</label>
-      <div class="layui-input-inline">
-        <input type="text" name="price_min" placeholder="" autocomplete="off" class="input-medium">
-      </div>
-      <div class="layui-form-mid">-</div>
-      <div class="layui-input-inline" style="margin-left: 10px;">
-        <input type="text" name="price_max" placeholder="" autocomplete="off" class="input-medium">
-      </div>
-    </div>
-  </div></li>
-  <div class="layui-upload">
-  <li><button type="button" class="layui-btn" id="test1">上传图片</button></li>
-  <li><div class="layui-upload-list">
-    <img class="layui-upload-img" id="demo1">
-    <p id="demoText"></p>
-  </div></li>
-</div>
+            <li>
+                <label>名单库:</label>
+                <form:select path="listId" class="input-medium required">
+                    <form:option value="" label="全部" />
+                    <form:options items="${ccmlist}"
+                                  itemLabel="name" itemValue="fid" htmlEscape="false"
+                                  class="required" />
+                </form:select>
+            </li>
+
+			<li>
+                <label>模型对比阈值段:</label>
+                <form:input path="minThreshold" htmlEscape="false" maxlength="64" class="input-medium"/>
+                -
+                <form:input path="maxThreshold" htmlEscape="false" maxlength="64" class="input-medium"/>
+            </li>
+            <li>
+                <label>图片:</label>
+                <form:hidden id="images" path="imagesUrl" htmlEscape="false"
+                             maxlength="255" class="input-xlarge"/>
+                <sys:ckfinder input="images" type="images"
+                              uploadPath="/photo/faceToSearch" selectMultiple="false"
+                              maxWidth="240" maxHeight="360"/>
+            </li>
 
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="检索"/></li>
-			<li class="clearfix"></li>
 		</ul>
 	</form:form>
-
+    <sys:message content="${message}"/>
+    <table id="contentTable" class="table table-striped table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th style="text-align:center;vertical-align:middle;">图片</th>
+            <th style="text-align:center;vertical-align:middle;">名称</th>
+            <th style="text-align:center;vertical-align:middle;">证件号</th>
+            <th style="text-align:center;vertical-align:middle;">出生日期</th>
+            <th style="text-align:center;vertical-align:middle;">相似度</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${page.list}" var="SearchVO">
+            <tr>
+                <td style="text-align:center;vertical-align:middle;">
+                        <<img src="${SearchVO.facePicUrl}" alt="">
+                <td style="text-align:center;vertical-align:middle;">
+                        ${SearchVO.humanName}
+                </td>
+                <td style="text-align:center;vertical-align:middle;">
+                        ${SearchVO.credentialsNum}
+                </td>
+                <td style="text-align:center;vertical-align:middle;">
+                        ${SearchVO.birthday}
+                </td>
+                <td style="text-align:center;vertical-align:middle;">
+                        ${SearchVO.similarity}
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 	<div class="pagination">${page}</div>
 </body>
 </html>

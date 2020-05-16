@@ -6,6 +6,8 @@ package com.arjjs.ccm.modules.ccm.list.entity;
 import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.arjjs.ccm.common.persistence.DataEntity;
@@ -28,7 +30,11 @@ public class CcmListPeople extends DataEntity<CcmListPeople> {
 	
 	private String type;		// 名单库类型
 	private String listName;		// 所属库名称
-	
+
+	private String fid;         // 对接数据id
+	private String isupload;
+
+	private List<String> librarySelectList;	//名单库集合
 	public CcmListPeople() {
 		super();
 	}
@@ -118,5 +124,28 @@ public class CcmListPeople extends DataEntity<CcmListPeople> {
 	public void setListName(String listName) {
 		this.listName = listName;
 	}
-	
+
+	public String getFid() {
+		return fid;
+	}
+
+	public void setFid(String fid) {
+		this.fid = fid;
+	}
+
+	public String getIsupload() {
+		return isupload;
+	}
+
+	public void setIsupload(String isupload) {
+		this.isupload = isupload;
+	}
+
+	public List<String> getLibrarySelectList() {
+		return librarySelectList;
+	}
+
+	public void setLibrarySelectList(List<String> librarySelectList) {
+		this.librarySelectList = librarySelectList;
+	}
 }

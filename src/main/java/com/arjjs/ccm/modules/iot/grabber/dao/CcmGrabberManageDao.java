@@ -18,4 +18,6 @@ public interface CcmGrabberManageDao extends CrudDao<CcmGrabberManage> {
 	public void updateState(CcmGrabberManage ccmGrabberManage);
 
 	public int getCount(CcmGrabberManage ccmGrabberManage);
+
+	public CcmGrabberManage getByCode(CcmGrabberManage ccmGrabberManage);
 }

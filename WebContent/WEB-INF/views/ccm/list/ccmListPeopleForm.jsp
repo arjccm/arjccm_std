@@ -8,6 +8,10 @@
 	<link href="${ctxStatic}/form/css/formTable.css" rel="stylesheet" />
 	<script type="text/javascript">
 		$(document).ready(function() {
+            if("${ccmListPeople.listId}"!=null&&"${ccmListPeople.listId}"!=""){
+                var libraryList = "${ccmListPeople.listId}".split(",");
+                $("#librarySelectList").val(libraryList).select2();
+            }
 			//关闭弹框事件
 			$('#btnCancel').click(function() {
 				parent.layer.close(parent.layerIndex);
@@ -64,8 +68,14 @@
 				<td>
 					<label class="control-label">所属库：</label>
 					<div class="controls">
-						<form:input path="listId" htmlEscape="false" maxlength="64" class="input-xlarge" style="display:none"/>
-						<select id="listIdSelect" class="input-xlarge required" name="listIdSelect"></select>
+						<select data-placeholder="选择一个或多个名单库" style="width: 90%;" id="librarySelectList" name="librarySelectList" class="required" multiple tabindex="4">
+							<option value=""></option>
+							<c:forEach items="${libraryList}" var="people">
+								<option value="${people.id}">${people.name}</option>
+							</c:forEach>
+						</select>
+						<%--<form:input path="listId" htmlEscape="false" maxlength="64" class="input-xlarge" style="display:none"/>--%>
+						<%--<select id="listIdSelect" class="input-xlarge required" name="listIdSelect"></select>--%>
 						<span class="help-inline"><font color="red">*</font> </span>
 					</div>
 				</td>

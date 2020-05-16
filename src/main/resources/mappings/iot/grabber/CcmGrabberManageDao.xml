@@ -41,6 +41,14 @@
 		<include refid="ccmGrabberManageJoins"/>
 		WHERE a.id = #{id}
 	</select>
+
+	<select id="getByCode" resultType="CcmGrabberManage">
+		SELECT
+		<include refid="ccmGrabberManageColumns"/>
+		FROM ccm_grabber_manage a
+		<include refid="ccmGrabberManageJoins"/>
+		WHERE a.grabber_num = #{grabberNum}
+	</select>
 	
 	<select id="findList" resultType="CcmGrabberManage">
 		SELECT 
