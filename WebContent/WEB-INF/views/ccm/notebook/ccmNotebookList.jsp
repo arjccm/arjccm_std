@@ -62,8 +62,9 @@
 				<td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 50px"><a href="${ctx}/notebook/ccmNotebook/form?id=${ccmNotebook.id}">
 					${ccmNotebook.title}
 				</a></td>
-				<td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 50px">
-					${ccmNotebook.content}
+				<td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 50px" title="${ccmNotebook.content}">
+					<%-- ${ccmNotebook.content} --%>
+					${fns:abbr(ccmNotebook.content,25)}
 				</td>
 				<td>
 					<fmt:formatDate value="${ccmNotebook.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>

@@ -93,7 +93,9 @@
                     </a></td> --%>
                 <td>${fns:getDictLabel(ccmLogTail.type, 'ccm_log_tail_type', '')}
                 </td>
-                <td>${ccmLogTail.tailCase}</td>
+                <td title="${ccmLogTail.tailCase}">
+                ${fns:abbr(ccmLogTail.tailCase,20)}
+                </td>
                 <td>${ccmLogTail.tailPerson}</td>
                 <td><fmt:formatDate value="${ccmLogTail.tailTime}"
                                                          pattern="yyyy-MM-dd HH:mm:ss"/></td>

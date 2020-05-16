@@ -58,6 +58,7 @@
 			<div class="controls">
 				<form:hidden id="avatarImage" path="avatar" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
 				<sys:ckfinder input="avatarImage" type="images" uploadPath="/photo" selectMultiple="false" maxWidth="100" maxHeight="100"/>
+				<label id="showImage" ></label>
 			</div>
 		</div>
 		

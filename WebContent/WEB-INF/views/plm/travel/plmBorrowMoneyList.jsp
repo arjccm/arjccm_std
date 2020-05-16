@@ -101,8 +101,8 @@
 	</form:form>
 	<sys:message content="${message}"/>
 	<div id="switchbtn">
-		<a class="thumbnailbtn"><i class="icon-th "></i></a>&nbsp; <a
-			class="listbtn"> <i class="icon-th-list "></i></a>
+		<a class="thumbnailbtn"><i class="icon-th "></i></a>&nbsp; 
+		<a class="listbtn"> <i class="icon-th-list2 "></i></a>
 	</div>
 <%--	<!-- 列表缩略图切换按钮 -->--%>
 <%--	<div id="switchbtn" style="margin-top: 35px;margin-right: 100px">--%>
@@ -156,7 +156,6 @@
 					</c:if>
 					<shiro:hasPermission name="flow:jump:index:edit">
 					<c:if test="${!e}">
-						
 							<a href="${ctx}/travel/plmBorrowMoney/form?id=${plmBorrowMoney.id}"
 								title="提交申请"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 							<a class="btnList"
@@ -197,6 +196,7 @@
 										title="显示详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 							
 							</c:if>
+							<shiro:hasPermission name="flow:jump:index:edit">
 							<c:if test="${!e}">
 								
 									<a href="${ctx}/travel/plmBorrowMoney/form?id=${plmBorrowMoney.id}"
@@ -206,6 +206,7 @@
 										onclick="return confirmx('确认要删除该申请吗？', this.href)" title="删除"><i
 										class="iconfont icon-caozuotubiao-shanchu"></i></a>
 							</c:if>
+							</shiro:hasPermission>
 						</div>
 					</div>
 				</div>
