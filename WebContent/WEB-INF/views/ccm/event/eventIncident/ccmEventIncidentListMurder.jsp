@@ -82,8 +82,8 @@
 				<sys:treeselect id="area" name="area.id"
 					value="${ccmEventIncident.area.id}" labelName="area.name"
 					labelValue="${ccmEventIncident.area.name}" title="区域"
-					url="/sys/area/treeData" cssClass="" allowClear="true"
-					notAllowSelectParent="false" cssStyle="width: 150px" />
+					url="/sys/area/treeData" cssClass="input-medium" allowClear="true"
+					notAllowSelectParent="false" cssStyle="" />
 			</li>		
 			<li class="first-line"><label >发生日期：</label> <input
 				name="beginHappenDate" type="text" readonly="readonly"
