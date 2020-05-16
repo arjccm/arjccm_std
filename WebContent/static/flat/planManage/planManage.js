@@ -278,7 +278,7 @@ function findHanleLogFlow(){
 function planProcessData(){
 
 	$.post(ctx+'/flat/planManage/planProcessData',{'planId':planId},function(data){
-		debugger
+
 		var data = JSON.parse(data);
 		console.log(data)
 		//动作关联
