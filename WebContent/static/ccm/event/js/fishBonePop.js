@@ -169,11 +169,13 @@ $.fn.fishBone = function(data, uri, permission) {
             //封装其他属性
             $.each(this, function(name, value) {
                 if (name == 'tailCase') {
-                    var li = $("<li>跟踪事项：" + value + "</li>").css("border-left","1px solid "+color);
+                	var value1 = substr(value);
+                    var li = $("<li title='"+value+"'>跟踪事项：" + value1 + "</li>").css("border-left","1px solid "+color);
                     li.appendTo(ul);
                 }
             	   if (name == 'tailContent') {
-                       var li = $("<li>跟踪内容：" + value + "</li>").css("border-left","1px solid "+color);
+            		   var value2 = substr(value);
+                       var li = $("<li title='"+value+"'>跟踪内容：" + value2 + "</li>").css("border-left","1px solid "+color);
                        li.appendTo(ul);
                    }
             	  if (name == 'tailPerson') {
@@ -303,5 +305,12 @@ $.fn.fishBone = function(data, uri, permission) {
             //奇数显示到上方
             return "top";
         }
+    }
+    function substr(v){
+    	if(v.length>10){
+    		return v.substring(0,10)+"...";
+    	}else{
+    		return v
+    	}
     }
 }
