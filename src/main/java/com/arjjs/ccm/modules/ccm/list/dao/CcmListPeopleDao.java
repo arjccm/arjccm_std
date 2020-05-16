@@ -14,5 +14,5 @@ import com.arjjs.ccm.modules.ccm.list.entity.CcmListPeople;
  */
 @MyBatisDao
 public interface CcmListPeopleDao extends CrudDao<CcmListPeople> {
-	
+    public CcmListPeople getByFid(CcmListPeople ccmListPeople);
 }

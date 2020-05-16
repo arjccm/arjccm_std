@@ -16,12 +16,14 @@
 		a.papers_number AS "papersNumber",
 		a.sex AS "sex",
 		a.birthday AS "birthday",
-		a.img AS "img"
-		,list.name AS "listName"
+		a.img AS "img",
+		list.name AS "listName",
+		list.type AS "type",
+		a.fid AS "fid"
 	</sql>
 	
 	<sql id="ccmListPeopleJoins">
-		LEFT JOIN ccm_list list ON list.id = a.list_id
+		LEFT JOIN ccm_list list ON list.id = substring_index(a.list_id ,',', 1)
 	</sql>
     
 	<select id="get" resultType="CcmListPeople">
@@ -31,7 +33,15 @@
 		<include refid="ccmListPeopleJoins"/>
 		WHERE a.id = #{id}
 	</select>
-	
+
+	<select id="getByFid" resultType="CcmListPeople">
+		SELECT
+		<include refid="ccmListPeopleColumns"/>
+		FROM ccm_list_people a
+		<include refid="ccmListPeopleJoins"/>
+		WHERE a.fid = #{fid}
+	</select>
+
 	<select id="findList" resultType="CcmListPeople">
 		SELECT 
 			<include refid="ccmListPeopleColumns"/>
@@ -41,7 +51,10 @@
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			AND list.type = #{type}
 			<if test="listId != null and listId != ''">
-				AND a.list_id = #{listId}
+				AND a.list_id LIKE
+					<if test="dbName == 'oracle'">'%'||#{listId}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{listId}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{listId},'%')</if>
 			</if>
 			<if test="name != null and name != ''">
 				AND a.name LIKE 
@@ -100,6 +113,7 @@
 			papers_number,
 			sex,
 			birthday,
+			fid,
 			img
 		) VALUES (
 			#{id},
@@ -115,6 +129,7 @@
 			#{papersNumber},
 			#{sex},
 			#{birthday},
+			#{fid},
 			#{img}
 		)
 	</insert>
@@ -130,6 +145,7 @@
 			papers_number = #{papersNumber},
 			sex = #{sex},
 			birthday = #{birthday},
+			fid = #{fid},
 			img = #{img}
 		WHERE id = #{id}
 	</update>

@@ -12,7 +12,8 @@
 		a.del_flag AS "delFlag",
 		a.name AS "name",
 		a.type AS "type",
-		a.description AS "description"
+		a.description AS "description",
+		a.fid AS "fid"
 	</sql>
 	
 	<sql id="ccmListJoins">
@@ -25,13 +26,24 @@
 		<include refid="ccmListJoins"/>
 		WHERE a.id = #{id}
 	</select>
+
+	<select id="getByFid" resultType="CcmList">
+		SELECT
+		<include refid="ccmListColumns"/>
+		FROM ccm_list a
+		<include refid="ccmListJoins"/>
+		WHERE a.fid = #{fid}
+	</select>
 	
 	<select id="getList" resultType="CcmList">
 		SELECT 
 			<include refid="ccmListColumns"/>
 			, COUNT( p.id ) AS "peopleCount"
 		FROM ccm_list a
-		LEFT JOIN ccm_list_people p ON p.list_id = a.id AND p.del_flag = #{DEL_FLAG_NORMAL}
+		LEFT JOIN ccm_list_people p ON p.list_id LIKE
+		<if test="dbName == 'oracle'">'%'||a.id||'%'</if>
+		<if test="dbName == 'mssql'">'%'+a.id+'%'</if>
+		<if test="dbName == 'mysql'">concat('%',a.id,'%')</if> AND p.del_flag = #{DEL_FLAG_NORMAL}
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="type != null and type != ''">
@@ -53,7 +65,10 @@
 		SELECT 
 			COUNT( a.id ) AS "allCount"
 		FROM ccm_list a
-		RIGHT JOIN ccm_list_people p ON p.list_id = a.id 
+		RIGHT JOIN ccm_list_people p ON p.list_id LIKE
+		<if test="dbName == 'oracle'">'%'||a.id||'%'</if>
+		<if test="dbName == 'mssql'">'%'+a.id+'%'</if>
+		<if test="dbName == 'mysql'">concat('%',a.id,'%')</if>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			AND p.del_flag = #{DEL_FLAG_NORMAL}
@@ -119,6 +134,7 @@
 			del_flag,
 			name,
 			type,
+			fid,
 			description
 		) VALUES (
 			#{id},
@@ -130,6 +146,7 @@
 			#{delFlag},
 			#{name},
 			#{type},
+			#{fid},
 			#{description}
 		)
 	</insert>
@@ -141,6 +158,7 @@
 			remarks = #{remarks},
 			name = #{name},
 			type = #{type},
+			fid = #{fid},
 			description = #{description}
 		WHERE id = #{id}
 	</update>

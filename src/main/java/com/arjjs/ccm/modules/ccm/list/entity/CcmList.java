@@ -18,9 +18,9 @@ public class CcmList extends DataEntity<CcmList> {
 	private String name;		// 名称
 	private String type;		// 类型
 	private String description;		// 描述
-	
+	private String fid;		// 对接ID
 	private int peopleCount;  //库下属人员总数
-	
+	private String isupload;
 	public CcmList() {
 		super();
 	}
@@ -63,5 +63,20 @@ public class CcmList extends DataEntity<CcmList> {
 	public void setPeopleCount(int peopleCount) {
 		this.peopleCount = peopleCount;
 	}
-		
+
+	public String getFid() {
+		return fid;
+	}
+
+	public void setFid(String fid) {
+		this.fid = fid;
+	}
+
+	public String getIsupload() {
+		return isupload;
+	}
+
+	public void setIsupload(String isupload) {
+		this.isupload = isupload;
+	}
 }
