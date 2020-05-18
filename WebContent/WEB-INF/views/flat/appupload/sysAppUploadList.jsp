@@ -68,7 +68,7 @@
 				<td>
 					${fns:getDictLabel(sysAppUpload.type, 'app_os_type', '')}
 				</td>
-				<td style="height: auto;white-space: normal;">
+				<td style="height: auto;white-space: normal;word-break:break-all;" title="${sysAppUpload.url}" >
 					${sysAppUpload.url}
 				</td>
 				<td>
