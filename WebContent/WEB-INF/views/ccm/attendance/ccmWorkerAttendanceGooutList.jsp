@@ -88,8 +88,9 @@
 				<td>
 					${ccmWorkerAttendance.createBy.office.name}
 				</td>
-				<td>
-					${ccmWorkerAttendance.cause}
+				<td title="${ccmWorkerAttendance.cause}">
+					<%-- ${ccmWorkerAttendance.cause} --%>
+					${fns:abbr(ccmWorkerAttendance.cause,25)}
 				</td>
 				<td>
 					<fmt:formatDate value="${ccmWorkerAttendance.attendanceBegin}" pattern="yyyy-MM-dd HH:mm:ss"/>
@@ -103,12 +104,13 @@
 				<td>
 					${fns:getDictLabel(ccmWorkerAttendance.gooutType, 'ccm_worker_attendance_goout_type', '')}
 			   </td>
-				<td class="" style="height: 50px">
-					${ccmWorkerAttendance.remarks}
+				<td class="" style="height: 50px" title="${ccmWorkerAttendance.remarks}">
+					<%-- ${ccmWorkerAttendance.remarks} --%>
+					${fns:abbr(ccmWorkerAttendance.remarks,25)}
 				</td>
 				<shiro:hasPermission name="attendance:ccmWorkerAttendance:edit"><td>
     				<a class="btnList" href="${ctx}/attendance/ccmWorkerAttendance/gooutform?id=${ccmWorkerAttendance.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
-					<a class="btnList" href="${ctx}/attendance/ccmWorkerAttendance/delete?id=${ccmWorkerAttendance.id}&deleteType=1" onclick="return confirmx('确认要删除该社工考勤登记吗？', this.href) title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+					<a class="btnList" href="${ctx}/attendance/ccmWorkerAttendance/delete?id=${ccmWorkerAttendance.id}&deleteType=1" onclick="return confirmx('确认要删除该社工考勤登记吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -392,7 +392,7 @@
 				<div>
 					<label class="control-label">最大签收时间：</label>
 					<div class="controls">
-						<form:input path="maxDispatchTime" htmlEscape="false" maxlength="2000"
+						<form:input path="maxDispatchTime" htmlEscape="false" maxlength="4"
 									class="input-xlarge number" />
 					</div>
 				</div>
@@ -403,7 +403,7 @@
 						<div>
 							<label class="control-label">最大到达时间：</label>
 							<div class="controls">
-								<form:input path="maxArriveTime" htmlEscape="false" maxlength="2000"
+								<form:input path="maxArriveTime" htmlEscape="false" maxlength="4"
 											class="input-xlarge number" />
 							</div>
 						</div>

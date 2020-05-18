@@ -76,8 +76,9 @@
 				<td>
 					<fmt:formatDate value="${pbsCourseinfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td>
-					${pbsCourseinfo.remarks}
+				<td title="${pbsCourseinfo.remarks}">
+					<%-- ${pbsCourseinfo.remarks} --%>
+					${fns:abbr(pbsCourseinfo.remarks,30)}
 				</td>
 				<shiro:hasPermission name="service:pbsCourseinfo:edit"><td>
     				<a class="btnList" href="${ctx}/service/pbsCourseinfo/form?id=${pbsCourseinfo.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

@@ -84,8 +84,9 @@
 				<td>
 					${ccmKnowKeyJob.address}
 				</td>
-				<td>
-					${ccmKnowKeyJob.abstracts}
+				<td title="${ccmKnowKeyJob.abstracts}">
+					<%-- ${ccmKnowKeyJob.abstracts} --%>
+					${fns:abbr(ccmKnowKeyJob.abstracts,25)}
 				</td>
 				<shiro:hasPermission name="know:ccmKnowKeyJob:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowKeyJob/form?id=${ccmKnowKeyJob.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
