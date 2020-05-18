@@ -31,6 +31,9 @@ body .layui-layim-min{
 .layui-layim-min .layui-layer-content{
     margin: 0;
 }
+.layui-layer-dialog .layui-layer-content{
+    width: auto;
+}
 </style>
 <script>
 //layim接口地址
