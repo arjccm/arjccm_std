@@ -260,6 +260,10 @@ public class CcmRestPeople extends BaseController {
 		List<Features> featureList = new ArrayList<Features>();
 		// 数组
 		for (CcmPeople people : ccmPeopleNewList) {
+			String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+			if(StringUtils.isNotEmpty(ccmPeople.getImages())){
+				ccmPeople.setImages(fileUrl + ccmPeople.getImages());
+			}
 			// 特征,属性
 			Features featureDto = new Features();
 			Properties properties = new Properties();
@@ -280,6 +284,9 @@ public class CcmRestPeople extends BaseController {
 			map_P.put("联系方式", people.getTelephone());
 			map_P.put("所在单位", people.getOfficeName());
 			map_P.put("人口类型", people.getType());
+			map_P.put("images", people.getImages());
+			map_P.put("areaComId", people.getAreaComId().getName());
+			map_P.put("areaGridId", people.getAreaGridId().getName());
 			if(people.getBuildId()!=null){
 				map_P.put("住所楼栋名称", people.getBuildId().getBuildname());
 				map_P.put("住所楼栋id", people.getBuildId().getId());

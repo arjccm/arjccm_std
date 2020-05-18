@@ -7,6 +7,7 @@ import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.sys.entity.*;
 import com.arjjs.ccm.modules.flat.analyst.entity.Count;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -52,4 +53,6 @@ public interface CcmWorkReportDao extends CrudDao<CcmWorkReport> {
 	public List<CcmWorkReportTO> exportJobList(CcmWorkReport ccmWorkReport);
 
 	public List<CcmWorkReportYO> findCountExportList(CcmWorkReport ccmWorkReport);
+
+	String findByPid(@Param("id") String id);
 }

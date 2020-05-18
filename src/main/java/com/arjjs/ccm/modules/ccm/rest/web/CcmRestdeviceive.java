@@ -1,5 +1,6 @@
 package com.arjjs.ccm.modules.ccm.rest.web;
 
+import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDevice;
@@ -97,6 +98,10 @@ public class CcmRestdeviceive {
             List<Features> featureList = new ArrayList<Features>();
             // 数组
             for (CcmDevice device : ccmdevicelist) {
+                String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+                if(StringUtils.isNotEmpty(device.getImagePath())){
+                    device.setImagePath(fileUrl + device.getImagePath());
+                }
                 // 特征,属性
                 Features featureDto = new Features();
                 Properties properties = new Properties();
