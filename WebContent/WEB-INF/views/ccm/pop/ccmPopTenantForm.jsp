@@ -495,8 +495,7 @@
 					<div>
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>证件号码：</label>
 						<div class="controls">
-							<form:input path="idenNum" htmlEscape="false" maxlength="30" class="input-xlarge required" />
-
+							<form:input path="idenNum" htmlEscape="false" maxlength="30" class="input-xlarge required ident0 card" />
 						</div>
 					</div>
 				</td>

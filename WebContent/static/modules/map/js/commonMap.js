@@ -3351,6 +3351,9 @@ ArjMap.Map.prototype = {
                 return;
             }
         }
+        if(_this.markInfoName===undefined){
+        	_this.markInfoName = "";
+        }
         top.$.jBox.confirm("是否删除"+_this.markInfoName+"标注信息？", "系统提示", function (v, h, f) {
             if (v == "ok"){
                 _this.geoStrDraw = '';

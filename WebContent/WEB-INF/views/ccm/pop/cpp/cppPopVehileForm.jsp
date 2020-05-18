@@ -39,32 +39,52 @@
 									    //校验
                                         if(${cppPopVehile.type}==01){//车辆
                                             var carId = $("#textName").val();
-                                            var html1 = '<label for="" class="error">车牌号码不符合规范 *<label>';
                                             if (isVehicleNumber(carId)) {
-                                                $("#showCar").html("*");
+                                                $("#showCarError").css('display','none');
+                                                $("#showCarEmpty").css('display','none');
                                             } else {
-                                                $("#showCar").html(html1);
+                                                if(carId == '' || carId.length == 0){
+                                                    $("#showCarError").css('display','none');
+                                                    $("#showCarEmpty").css('display','block');
+                                                }else{
+                                                    $("#showCarError").css('display','block');
+                                                    $("#showCarEmpty").css('display','none');
+                                                }
                                                 return false;
                                             }
                                         }else if(${cppPopVehile.type}==03){//网络账号
                                             if(currentSubType=="04"){//类型选择邮箱的时候
+                                                $("#emailMaxle").css('display','block');
                                                 var email = $("#textName").val();
-                                                var html1 = '<label for="" class="error">邮箱不符合规范 *<label>';
                                                 if (isEmail(email)) {
-                                                    $("#netAccount").html("*");
+                                                    $("#emailError").css('display','none');
+                                                    $("#emailEmpty").css('display','none');
                                                 } else {
-                                                    $("#netAccount").html(html1);
+                                                    if(email == '' || email.length == 0){
+                                                        $("#emailError").css('display','none');
+                                                        $("#emailEmpty").css('display','block');
+                                                    }else{
+                                                        $("#emailError").css('display','block');
+                                                        $("#emailEmpty").css('display','none');
+                                                    }
                                                     return false;
                                                 }
                                             }else{
+                                                $("#emailError").css('display','none');
                                                 var account = $("#textName").val();
-                                                var html1 = '<label for="" class="error">账号长度超过限制 *<label>';
                                                 var express = /^.{1,20}$/;
                                                 var result = express.test(account);
                                                 if (result) {
-                                                    $("#netAccount").html("*");
+                                                    $("#emailMaxle").css('display','none');
+                                                    $("#emailEmpty").css('display','none');
                                                 } else {
-                                                    $("#netAccount").html(html1);
+                                                    if(account == '' || account.length == 0){
+                                                        $("#emailMaxle").css('display','none');
+                                                        $("#emailEmpty").css('display','block');
+                                                    }else{
+                                                        $("#emailMaxle").css('display','block');
+                                                        $("#emailEmpty").css('display','none');
+                                                    }
                                                     return false;
                                                 }
                                             }
@@ -207,7 +227,6 @@ width: 80px;
 			<div class="controls">
 				<form:input path="textName" htmlEscape="false" maxlength="64"
 					class="input-xlarge required phone" />
-
 			</div>
 		</div>
 		</c:if>
@@ -228,11 +247,12 @@ width: 80px;
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label"><span class="help-inline"><font color="red" id="showCar">*</font></span>车牌号：</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font></span>车牌号：</label>
 			<div class="controls">
 				<form:input path="textName" htmlEscape="false" maxlength="64"
 					class="input-xlarge" />
-
+				<label id="showCarError" class="error" style="display: none">车牌号码不符合规范</label>
+				<label id="showCarEmpty" class="error" style="display: none">必选字段</label>
 			</div>
 		</div>
 		</c:if>
@@ -254,8 +274,10 @@ width: 80px;
 			<label class="control-label"><span class="help-inline"><font color="red" id="netAccount">*</font></span>网络账号：</label>
 			<div class="controls">
 				<form:input path="textName" htmlEscape="false" maxlength="64"
-					class="input-xlarge required" />
-
+					class="input-xlarge" />
+				<label id="emailError" class="error" style="display: none">邮箱不符合规范</label>
+				<label id="emailEmpty" class="error" style="display: none">必选字段</label>
+				<label id="emailMaxle" class="error" style="display: none">账号长度超过限制</label>
 			</div>
 		</div>
 		</c:if>

@@ -300,7 +300,7 @@
 					<div>
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>扶贫第一书记：</label>
 						<div class="controls">
-							<form:input path="policeAssistant" htmlEscape="false" maxlength="6" class="input-xlarge  digits required" type="number"/>
+							<form:input path="firstSecretary" htmlEscape="false" maxlength="6" class="input-xlarge  digits required" type="number"/>
 						</div>
 					</div>
 				</td>
