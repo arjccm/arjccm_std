@@ -287,8 +287,8 @@ public class VCcmTeamController extends BaseController {
 
 				//电话验证
 				if( NumberTools.isPhone(importUserVCcmTeam.getMobile())==false) {
-					failureMsg.append("<br/>社工姓名" + importUserVCcmTeam.getName() + " 导入失败：" + "必填项数据不合法。");
-					importUserVCcmTeam.setName(importUserVCcmTeam.getName() + "，失败原因：必填项数据不合法。");
+					failureMsg.append("<br/>社工姓名" + importUserVCcmTeam.getName() + " 导入失败：" + "联系方式数据不合法。");
+					importUserVCcmTeam.setName(importUserVCcmTeam.getName() + "，失败原因：联系方式数据不合法。");
 					listFailure.add(importUserVCcmTeam);
 					failureNum++;
 					continue;

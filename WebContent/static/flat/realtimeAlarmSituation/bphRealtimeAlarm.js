@@ -635,7 +635,6 @@ function getAlarmDetails(_this) {
                 title: '反馈信息',
                 content: alarmFeedbackHtml
             }],
-            btn: ["保存", "取消"],
             id:'layerTab',
             cancel: function() {},
             end: function() {
@@ -664,7 +663,7 @@ function getAlarmDetails(_this) {
 
         audioInit();// 初始化audio
         // 警情状态下拉框
-        var alarmStateSelectNode = $("<select id='alarmState'></select>");
+        var alarmStateSelectNode = $("<select id='alarmState' disabled></select>");
         $.getJSON(ctx + '/sys/dict/listData?type=bph_alarm_info_state', function(datas) {
             for (var i = 0; i < datas.length; i++) {
                 if (data.state == datas[i].value) {
@@ -707,7 +706,7 @@ function alarmBasicInfoHtml(datas) {
     alarmDetail += '</tr>';
     alarmDetail += '<tr>';
     var manTel = data.manTel === undefined ? '' : data.manTel;
-    alarmDetail += '<td style="text-align: right;">报警电话：</td><td><input id="manTel" type="text" style="width:220px;" value="' + manTel + '" maxlength="11" /></td>';
+    alarmDetail += '<td style="text-align: right;">报警电话：</td><td>' + manTel + '</td>';
     alarmDetail += '</tr>';
 /*    alarmDetail += '<tr>';
     alarmDetail += '<td style="text-align: right;">接警录音：</td><td><audio src="' + data.alarmRecord + '" preload="auto" controls></audio></td>';
@@ -778,7 +777,9 @@ function alarmFeedbackInfoHtml (filesInfo,alarmHandleList) {
     console.log(filesInfo)
     console.log(alarmHandleList)
     var alarmFeedbackHtml = '';
+    var flag = true;
     if(filesInfo !== undefined && filesInfo != null && filesInfo != ''){
+        flag = false;
         for (var i = 0; i < filesInfo.length; i++) {
             var fileInfo = filesInfo[i];
             var imgList = fileInfo.imgFileList;
@@ -812,22 +813,9 @@ function alarmFeedbackInfoHtml (filesInfo,alarmHandleList) {
             alarmFeedbackHtml += '</table>';
         }
     }
-    alarmFeedbackHtml += '<tr>';
-    if (alarmHandleList !== undefined && alarmHandleList.length > 0) {
-        var flag = true;
-        for (var i = 0; i < alarmHandleList.length; i++) {
-            if (alarmHandleList[i].handleResult !== undefined && alarmHandleList[i].handleResult != null && alarmHandleList[i].handleResult != "") {
-                alarmFeedbackHtml += '<td style="width:105px;">' + alarmHandleList[i].handleResult + '</td>';
-                flag = false;
-            } else {
-                alarmFeedbackHtml += '<td style="width:105px;"></td>';
-            }
-        }
-        if(flag){
-            alarmFeedbackHtml += '<td style="width:105px;"> 暂无数据 </td>';
-        }
+    if(flag){
+        alarmFeedbackHtml += '<table><tr><td style="width:105px;"> 暂无数据 </td></tr></table>';
     }
-
 
     return alarmFeedbackHtml;
 }
