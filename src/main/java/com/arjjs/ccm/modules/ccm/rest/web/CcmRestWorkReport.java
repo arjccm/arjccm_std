@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.sys.dao.OfficeDao;
 import com.arjjs.ccm.modules.sys.service.SystemService;
 import com.arjjs.ccm.modules.sys.web.OfficeController;
 import com.google.common.collect.Lists;
@@ -54,7 +55,6 @@ public class CcmRestWorkReport extends BaseController {
 	private OfficeService officeService;
 	@Autowired
 	private CcmRestOfficeService restOfficeService;
-
 	@Autowired
 	private SystemService systemService;
 
@@ -241,7 +241,7 @@ public class CcmRestWorkReport extends BaseController {
 	public Object officeTreeData() {
 		CcmRestResult ccmRestResult=new CcmRestResult();
 		List<Map<String, Object>> mapList = Lists.newArrayList();
-		List<Office> list = this.officeService.findList(true);
+		List<Office> list = this.officeService.findList(false);
 
 		for(int i = 0; i < list.size(); ++i) {
 			Office e = list.get(i);
@@ -260,11 +260,37 @@ public class CcmRestWorkReport extends BaseController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "allTreeData")
-	public Object allTreeData() {
+	public Object allTreeData(HttpServletRequest request,HttpServletResponse response) {
 		CcmRestResult ccmRestResult=new CcmRestResult();
+		User user = (User) request.getSession().getAttribute("user");
 		List<Office> list = this.officeService.findList(true);
 		List<IFayTreeNode> listTree = new ArrayList<IFayTreeNode>();
+		for(int i = 0; i < list.size(); ++i) {
+			Office e = list.get(i);
+			Tree tree = new Tree(e.getId(), e.getParentId(), e.getName(), "","", false);
+			listTree.add(tree);
+			List<User> userByOfficeId = systemService.findUserByOfficeId(e.getId());
+			userByOfficeId.forEach(item->{
+				Tree temp = new Tree(item.getId(), e.getId(), item.getName(), "","people", false);
+				listTree.add(temp);
+			});
+		}
+		ccmRestResult.setCode(CcmRestType.OK);
+		ccmRestResult.setResult(FayTreeUtil.getTreeInJsonObject(listTree));
+		return ccmRestResult;
+	}
 
+	@ResponseBody
+	@RequestMapping(value = "byUserTreeData")
+	public Object byUserTreeData(HttpServletRequest request,HttpServletResponse response) {
+		CcmRestResult ccmRestResult=new CcmRestResult();
+		User user = (User) request.getSession().getAttribute("user");
+		String byPid = ccmWorkReportService.findByPid(user.getId());
+		Office office = new Office();
+		office.setName(byPid);
+		/*List<Office> list = this.officeService.findList(true);*/
+		List<Office> list = this.officeService.findList(office);
+		List<IFayTreeNode> listTree = new ArrayList<IFayTreeNode>();
 		for(int i = 0; i < list.size(); ++i) {
 			Office e = list.get(i);
 			Tree tree = new Tree(e.getId(), e.getParentId(), e.getName(), "","", false);
