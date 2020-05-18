@@ -216,7 +216,6 @@ public class SystemServiceEx extends BaseService implements InitializingBean {
 		user.setOldLoginIp(user.getLoginIp());
 		user.setOldLoginDate(user.getLoginDate());
 		// 更新本次登录信息
-		user.setLoginIp(user.getLoginIp());
 		user.setLoginDate(new Date());
 		userDao.updateLoginInfo(user);
 	}

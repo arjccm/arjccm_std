@@ -207,9 +207,9 @@ public class CcmWorkReportService extends CrudService<CcmWorkReportDao, CcmWorkR
 		ccmWorkReport.setCcmWorkReportReadNames(names);
 		return ccmWorkReport;
 	}
-	
 
-	
-	
-	
+
+	public String findByPid(String id) {
+		return ccmWorkReportDao.findByPid(id);
+	}
 }

@@ -153,4 +153,12 @@ public class CcmHouseEmphasisService {
 		ccmPeople.setTableName(tableName);
 		ccmHouseEmphasisDao.updateIntervalDate(ccmPeople);
 	}
+
+	public Integer findExpirePeopleByUser(Integer interval ,String tableName, String areaId) {
+		return ccmHouseEmphasisDao.findExpirePeopleByUser(interval,tableName,areaId);
+	}
+
+	public Integer findalreadyInterview(String tableName, String areaId) {
+		return ccmHouseEmphasisDao.findalreadyInterview(tableName,areaId);
+	}
 }
