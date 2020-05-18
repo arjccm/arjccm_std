@@ -60,7 +60,6 @@
                 <%--			<li class="clearfix"></li>--%>
         </ul>
 
-        <sys:message content="${message}"/>
         <div class="clearfix pull-right btn-box">
             <shiro:hasPermission name="org:ccmOrgOrgprevent:edit">
                 <a onclick="parent.parent.LayerDialog('${ctx}/org/ccmOrgOrgprevent/form', '添加', '1330px', '600px')"
@@ -74,6 +73,7 @@
 
         </div>
     </form:form>
+    <sys:message content="${message}"/>
     <table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
         <thead>
         <tr>

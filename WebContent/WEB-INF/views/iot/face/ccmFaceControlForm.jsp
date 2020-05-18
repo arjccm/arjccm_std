@@ -110,10 +110,10 @@
 					</div></td>
 				<td><label class="control-label">布控抓拍机：</label>
 					<div class="controls">
-						<select data-placeholder="选择一个或多个名单库" style="width: 90%;" id="captureMachineList" name="captureMachineList" class="required" multiple tabindex="4">
+						<select data-placeholder="选择一个或多个抓拍机" style="width: 90%;" id="captureMachineList" name="captureMachineList" class="required" multiple tabindex="4">
 							<option value=""></option>
 							<c:forEach items="${grabberList}" var="grabber">
-								<option value="${grabber.id}">${grabber.grabberName}</option>
+								<option value="${grabber.grabberNum}">${grabber.grabberName}</option>
 							</c:forEach>
 						</select>
 <%--						<form:input path="machine" htmlEscape="false" maxlength="255"--%>

@@ -71,8 +71,9 @@
 				<td>
 					<fmt:formatDate value="${ccmServiceGuidance.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td class="tp" style="height: 50px">
-					${ccmServiceGuidance.remarks}
+				<td class="tp" style="height: 50px" title="${ccmServiceGuidance.remarks}">
+					<%-- ${ccmServiceGuidance.remarks} --%>
+					${fns:abbr(ccmServiceGuidance.remarks,40)}
 				</td>
 				<shiro:hasPermission name="service:ccmServiceGuidance:edit"><td>
     				<a class="btnList" href="${ctx}/service/ccmServiceGuidance/form?id=${ccmServiceGuidance.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

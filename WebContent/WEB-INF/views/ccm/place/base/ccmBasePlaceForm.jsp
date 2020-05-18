@@ -230,8 +230,9 @@
             <td><label class="control-label"><span class="help-inline"><font
                     color="red">*</font></span>负责人身份证号码：</label>
                 <div class="controls">
-                    <form:input path="leaderIdCard" htmlEscape="false" maxlength="255"
-                                class="input-xlarge required"/>
+                    <form:input path="leaderIdCard" htmlEscape="false" maxlength="30"
+                                class="input-xlarge ident1 card required"/>
+                                
                 </div>
             </td>
         </tr>

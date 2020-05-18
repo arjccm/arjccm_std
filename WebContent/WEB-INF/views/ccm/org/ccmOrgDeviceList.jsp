@@ -48,7 +48,11 @@
 				<c:forEach items="${ccmDevice.deviceList}" var="video">
 					<option value="${video.id}">${video.name}</option>
 				</c:forEach>
-
+				
+				<c:if test="${empty ccmDevice.deviceList}">
+					<option></option>
+				</c:if>
+					
 
 		</div>
 	</div>

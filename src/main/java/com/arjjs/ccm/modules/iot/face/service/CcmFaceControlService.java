@@ -5,6 +5,10 @@ package com.arjjs.ccm.modules.iot.face.service;
 
 import java.util.List;
 
+import com.arjjs.ccm.common.utils.StringUtils;
+import com.arjjs.ccm.modules.ccm.list.entity.CcmListUpload;
+import com.arjjs.ccm.modules.ccm.list.service.CcmListUploadService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +29,8 @@ public class CcmFaceControlService extends CrudService<CcmFaceControlDao, CcmFac
 
 	@Autowired
 	private CcmFaceControlDao ccmFaceControlDao;
+	@Autowired
+	private CcmListUploadService ccmListUploadService;
 
 	public CcmFaceControl get(String id) {
 		return super.get(id);
@@ -40,11 +46,32 @@ public class CcmFaceControlService extends CrudService<CcmFaceControlDao, CcmFac
 	
 	@Transactional(readOnly = false)
 	public void save(CcmFaceControl ccmFaceControl) {
+		if(StringUtils.isNotEmpty(ccmFaceControl.getId())){
+			//布控没有修改，所以先撤控，再新增布控
+			CcmFaceControl ccmFaceControldelete = new CcmFaceControl();
+			BeanUtils.copyProperties(ccmFaceControl,ccmFaceControldelete);
+			delete(ccmFaceControldelete);
+			ccmFaceControl.setId(null);
+		}
 		super.save(ccmFaceControl);
+		CcmListUpload upload = new CcmListUpload();
+		upload.setTableName("ccm_face_control");
+		upload.setUploadStatus("1");
+		upload.setDataId(ccmFaceControl.getId());
+		upload.setOperateType("1");
+		upload.setRemarks("新增人脸布控数据数据：" + ccmFaceControl.getName());
+		ccmListUploadService.save(upload);
 	}
 	
 	@Transactional(readOnly = false)
 	public void delete(CcmFaceControl ccmFaceControl) {
+		CcmListUpload upload = new CcmListUpload();
+		upload.setTableName("ccm_face_control");
+		upload.setUploadStatus("1");
+		upload.setDataId(ccmFaceControl.getId());
+		upload.setOperateType("3");
+		upload.setRemarks("撤除人脸布控数据数据：" + ccmFaceControl.getName());
+		ccmListUploadService.save(upload);
 		super.delete(ccmFaceControl);
 	}
 

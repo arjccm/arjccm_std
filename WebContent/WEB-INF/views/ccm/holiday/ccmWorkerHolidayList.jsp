@@ -89,8 +89,9 @@
 				<td>
 					${ccmWorkerHoliday.name}
 				</td>
-				<td class="" style="height: 50px">
-					${ccmWorkerHoliday.remarks}
+				<td class="" style="height: 50px" title="${ccmWorkerHoliday.remarks}">
+					<%-- ${ccmWorkerHoliday.remarks} --%>
+					${fns:abbr(ccmWorkerHoliday.remarks,25)}
 				</td>
 				<shiro:hasPermission name="holiday:ccmWorkerHoliday:edit"><td>
     				<a class="btnList" href="${ctx}/holiday/ccmWorkerHoliday/form?id=${ccmWorkerHoliday.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

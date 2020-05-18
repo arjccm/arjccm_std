@@ -73,7 +73,7 @@ public class CcmFaceControlController extends BaseController {
 	@RequiresPermissions("face:ccmFaceControl:view")
 	@RequestMapping(value = "form")
 	public String form(CcmFaceControl ccmFaceControl,CcmList ccmList, Model model) {
-		// 名单库列表
+		//名单库列表
 		List<CcmList> list = ccmListService.getList(ccmList);
 
 		CcmGrabberManage ccmGrabberManage = new CcmGrabberManage();

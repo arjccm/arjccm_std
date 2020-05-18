@@ -122,18 +122,6 @@
 		<tr>
 			<td>
 				<div class="control-group">
-					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>事件类型：</label>
-					<div class="controls">
-						<form:select path="eventtypeid" class="input-xlarge ">
-							<form:options items="${fns:getDictList('ccm_event_sort')}"
-										  itemLabel="label" itemValue="value" htmlEscape="false" />
-						</form:select>
-
-					</div>
-				</div>
-			</td>
-			<td>
-				<div class="control-group">
 					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>开始日期：</label>
 					<div class="controls">
 						<input name="beginDate" id="beginDate" type="text" readonly="readonly"
@@ -144,8 +132,6 @@
 					</div>
 				</div>
 			</td>
-		</tr>
-		<tr>
 			<td>
 				<div class="control-group">
 					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>结束日期：</label>
@@ -158,16 +144,27 @@
 					</div>
 				</div>
 			</td>
+		</tr>
+		<tr>
 			<td>
 				<div class="control-group">
 					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>标题：</label>
 					<div class="controls">
 						<form:input path="title" htmlEscape="false" maxlength="100"
 									class="input-xlarge required" />
-
 					</div>
 				</div>
-
+			</td>
+			<td>
+				<c:if test="${ccmWorkReport.type eq 02 || ccmWorkReport.type eq 03}">
+					<div class="control-group">
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>地点：</label>
+						<div class="controls">
+							<form:input path="place" htmlEscape="false" maxlength="100"
+										class="input-xlarge required" />
+						</div>
+					</div>
+				</c:if>
 			</td>
 		</tr>
 		<tr>
@@ -180,18 +177,6 @@
 					</div>
 				</div>
 
-			</td>
-			<td>
-				<c:if test="${ccmWorkReport.type eq 02 || ccmWorkReport.type eq 03}">
-					<div class="control-group">
-						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>地点：</label>
-						<div class="controls">
-							<form:input path="place" htmlEscape="false" maxlength="100"
-										class="input-xlarge required" />
-
-						</div>
-					</div>
-				</c:if>
 			</td>
 		</tr>
 		<tr>

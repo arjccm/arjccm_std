@@ -114,9 +114,9 @@
 			</table>
 		</c:if>
 		<c:if test="${etype eq '2'}">
-			<br>
-			<h4 >审核：</h4>
-			<br>
+			<br/>
+			<p style="padding-left:7%;font-size:25px">审核</p>
+			<br/>
 			<table border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;">
 			<c:if test="${!empty ccmServiceOnline.id }">
 				<shiro:hasPermission name="service:ccmServiceOnline:handle">
