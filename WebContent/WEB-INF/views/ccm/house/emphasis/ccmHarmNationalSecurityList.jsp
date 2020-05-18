@@ -93,7 +93,7 @@
 	<div class="clearfix pull-right btn-box">
 
 
-			<a href="javascript:;" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseEmphasis/listSet?type=ccmHouseKym', '通知信息设置', '550px', '250px')" id="btnSetting" style="width: 70px!important;display:inline-block;float: right;" class="btn btn-export">
+			<a href="javascript:;" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseEmphasis/listSet?type=ccmHarmNationalSecurity', '通知信息设置', '550px', '250px')" id="btnSetting" style="width: 70px!important;display:inline-block;float: right;" class="btn btn-export">
 				<i></i><span style="font-size: 12px">通知信息设置</span></a>
 			<a href="javascript:;" id="btnSubmit" class="btn btn-primary" style="width: 49px;display:inline-block;float: right;">
 				<i></i><span style="font-size: 12px">查询</span>  </a>
@@ -137,11 +137,12 @@
 				<td>${fns:getDictLabel(ccmHarmNationalSecurity.isCrimeHistory, 'have_no', '')}</td>
 				<td>${fns:getDictLabel(ccmHarmNationalSecurity.suspicionType, 'suspicion_type_dict', '')}</td>
 				<td><shiro:hasPermission name="house:ccmHarmNationalSecurity:edit">
-					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHarmNationalSecurity/form?id=${ccmHarmNationalSecurity.id}&hide1=true&hide2=false', '详情', '1200px', '800px')" title="详情"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
-					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHarmNationalSecurity/form?id=${ccmHarmNationalSecurity.id}&hide1=false&hide2=true', '走访记录', '1200px', '500px')" title="走访记录"><i class="iconfont icon-caozuotubiao-zoufangjilu"></i></a>
-					</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
-					<%-- <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHarmNationalSecurity.id}&relevance_table=ccm_harm_national_security', '记录信息', '800px', '660px')" title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a> --%>
-					<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHarmNationalSecurity.id}&relevance_table=ccm_harm_national_security', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHarmNationalSecurity/form?id=${ccmHarmNationalSecurity.id}&hide1=true&hide2=false', '详情', '1200px', '800px')" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="log:ccmLogTail:edit">
+						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHarmNationalSecurity.id}&relevance_table=ccm_harm_national_security', '走访记录', '1200px', '500px')" title="走访记录"><i class="iconfont icon-caozuotubiao-zoufangjilu"></i></a>
+						<%-- <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHarmNationalSecurity.id}&relevance_table=ccm_harm_national_security', '记录信息', '800px', '660px')" title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a> --%>
+						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHarmNationalSecurity.id}&relevance_table=ccm_harm_national_security', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
 					</shiro:hasPermission></td>
 			</tr>
 		</c:forEach>
