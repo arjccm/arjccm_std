@@ -359,7 +359,7 @@
 						<label class="control-label"><span class="help-inline"><font color="red">*</font></span> 案（事）件情况：</label>
 						<div class="controls">
 							<form:textarea path="caseCondition"
-								htmlEscape="false" rows="4" maxlength="4000" class="input-xxlarge " />
+								htmlEscape="false" rows="4" maxlength="4000" class="input-xxlarge required" />
 
 						</div>
 					</div>
