@@ -2651,3 +2651,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 		WHERE a.area_id = b.area_id AND a.amount_date = last_day(curdate()) AND a.del_flag = '0';
 
 		commit;
+--字典表新增人员类型
+INSERT INTO `sys_dict` ( `id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag` )
+VALUES ( '38906', '06', '民警', 'ccm_org_team_type', '人员类型', 6, '0', '1', '2020-05-18 17:49:01', '1', '2020-05-18 17:49:01', '', '0' );
