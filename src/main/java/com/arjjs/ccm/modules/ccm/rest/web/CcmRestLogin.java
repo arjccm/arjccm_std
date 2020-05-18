@@ -27,6 +27,7 @@ import com.arjjs.ccm.modules.ccm.view.entity.VCcmTeam;
 import com.arjjs.ccm.modules.flat.deviceonline.service.CcmDeviceOnlineService;
 import com.arjjs.ccm.modules.flat.deviceuse.service.CcmDeviceUseService;
 import com.arjjs.ccm.modules.flat.userBindingDevice.service.UserBindingDeviceService;
+import com.arjjs.ccm.modules.pbs.sys.service.SystemServiceEx;
 import com.arjjs.ccm.modules.sys.dao.UserDao;
 import com.arjjs.ccm.modules.sys.entity.Dict;
 import com.arjjs.ccm.modules.sys.entity.User;
@@ -60,6 +61,8 @@ import java.util.*;
 public class CcmRestLogin extends BaseController {
     public static final int HASH_INTERATIONS = 1024;
 
+    @Autowired
+    private SystemServiceEx systemServiceEx;
     @Autowired
     private UserDao userDao;
     @Autowired
@@ -226,6 +229,9 @@ public class CcmRestLogin extends BaseController {
         //登录成功则修改状态为在线   pengjianqiang
         ccmOrgTeam.setStatus("online");
         ccmOrgTeamService.save(ccmOrgTeam);
+        //添加上次登录ip以及时间
+        userDB.setLoginIp(user.getLoginIp());
+        systemServiceEx.appupdateUserLoginInfo(userDB);
 
         req.getSession().setAttribute("user", userDB);
         result.setCode(CcmRestType.OK);
