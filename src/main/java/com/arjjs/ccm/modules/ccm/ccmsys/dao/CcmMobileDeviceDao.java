@@ -18,6 +18,7 @@ import java.util.List;
 @MyBatisDao
 public interface CcmMobileDeviceDao extends CrudDao<CcmMobileDevice> {
 
+
 	CcmMobileDevice findByDeviceId(String deviceId);
 
 	CcmMobileDevice findByDeviceIdAndUserId(@Param("deviceId") String deviceId, @Param("userId")String userId);
@@ -53,5 +54,6 @@ public interface CcmMobileDeviceDao extends CrudDao<CcmMobileDevice> {
 	 */
 	CcmMobileDevice findAppElecInfoById(CcmMobileDevice ccmMobileDevice);
 
-	
+
+	String findByUserId(@Param("userId") String userId);
 }

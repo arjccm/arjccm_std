@@ -193,4 +193,8 @@ public class CcmMobileDeviceService extends CrudService<CcmMobileDeviceDao, CcmM
 		
 		return dao.findAppElecInfoById(ccmMobileDevice);
 	}
+
+	public String findByUserId(String userId) {
+		return dao.findByUserId(userId);
+	}
 }

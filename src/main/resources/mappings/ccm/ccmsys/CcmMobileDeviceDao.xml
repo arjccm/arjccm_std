@@ -338,5 +338,16 @@
 		#{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
+	<select id="findByUserId" resultType="string">
+		SELECT
+		device_id
+		FROM
+		ccm_mobile_device
+		WHERE
+		user_id = #{userId}
+		ORDER BY
+		update_date DESC
+	LIMIT 1
+	</select>
 </mapper>

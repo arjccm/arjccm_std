@@ -276,6 +276,10 @@ public class CcmRestEvent extends BaseController {
         List<Features> featureList = new ArrayList<Features>();
         // 数组
         for (CcmEventIncident eventIncident : ccmEventIncidentlist) {
+            String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+            if(StringUtils.isNotEmpty(eventIncident.getFile1())){
+                eventIncident.setFile1(fileUrl + eventIncident.getFile1());
+            }
             // 特征,属性
             Features featureDto = new Features();
             com.arjjs.ccm.tool.geoJson.Properties properties = new Properties();
@@ -294,6 +298,11 @@ public class CcmRestEvent extends BaseController {
             map_P.put("事发地址", eventIncident.getHappenPlace());
             map_P.put("主犯姓名", eventIncident.getCulName());
             map_P.put("事件ID", eventIncident.getId());
+            map_P.put("status", eventIncident.getStatus());
+            map_P.put("eventScale", eventIncident.getEventScale());
+            map_P.put("file1", eventIncident.getFile1());
+            map_P.put("file2", eventIncident.getFile2());
+            map_P.put("file3", eventIncident.getFile3());
 
             properties.addInfo(map_P);
             featureList.add(featureDto);

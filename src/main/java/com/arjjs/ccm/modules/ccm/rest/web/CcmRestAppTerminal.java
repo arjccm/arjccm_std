@@ -9,6 +9,7 @@ import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.sys.entity.User;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.geoJson.GeoJSON;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,14 +39,14 @@ public class CcmRestAppTerminal extends BaseController {
      */
     @ResponseBody
     @RequestMapping(value = "/queryTerminalMap", method = RequestMethod.GET)
-    public CcmRestResult deviceMobileTrace(String userId,CcmTracingpoint ccmTracingpoint,HttpServletRequest req, HttpServletResponse resp ) throws IOException {
+    public CcmRestResult deviceMobileTrace(String userId,String PeopleId,CcmTracingpoint ccmTracingpoint,HttpServletRequest req, HttpServletResponse resp ) throws IOException {
 
         logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
         logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
         logger.info("当前方法运行参数为》》》CcmHouseBuildmanage : " + String.valueOf(ccmTracingpoint) + "  userId : " + userId);
 
         User sessionUser = (User) req.getSession().getAttribute("user");
-        ccmTracingpoint.setUser(sessionUser);
+        ccmTracingpoint.setUser(UserUtils.get(PeopleId));
         CcmRestResult result = new CcmRestResult();
         if (sessionUser== null) {
             result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);

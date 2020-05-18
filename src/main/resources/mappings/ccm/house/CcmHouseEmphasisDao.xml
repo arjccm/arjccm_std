@@ -138,6 +138,47 @@
 				) 
 			) >= ${timeInterval}
 	</select>
+	<select id="findExpirePeopleByUser" resultType="int">
+		SELECT
+		count( 1 )
+		FROM
+		${tableName} a
+		LEFT JOIN ccm_people p ON a.people_id = p.id
+		LEFT JOIN sys_area s ON s.id = p.area_grid_id
+		WHERE
+		a.del_flag = 0
+		AND p.del_flag = 0
+		AND YEARWEEK(
+		DATE_ADD(
+		date_format(
+		IF
+		(
+		a.interval_date IS NULL,
+		IF
+		( a.update_date IS NULL, a.create_date, a.update_date ),
+		a.interval_date
+		),'%Y-%m-%d'),
+		INTERVAL #{interval} DAY
+		)
+		) &lt;= YEARWEEK( now( ) )
+		AND s.parent_ids LIKE concat('%',#{areaId},'%')
+		OR s.id = #{areaId};
+	</select>
+
+	<select id="findalreadyInterview" resultType="int">
+		SELECT
+		count( 1 )
+		FROM
+		${tableName} a
+		LEFT JOIN ccm_people p ON a.people_id = p.id
+		LEFT JOIN sys_area s ON s.id = p.area_grid_id
+		WHERE
+		a.del_flag = 0
+		AND p.del_flag = 0
+		AND YEARWEEK(a.interval_date) = YEARWEEK( now( ) )
+		AND s.parent_ids LIKE concat('%',#{areaId},'%')
+		OR s.id = #{areaId};
+	</select>
 	<resultMap id="BaseResultMap" type="com.arjjs.ccm.modules.ccm.house.entity.CcmExpireArea" >
 		<result column="areaId" property="areaId" jdbcType="VARCHAR" />
 		<result column="areaType" property="areaType" jdbcType="VARCHAR" />
