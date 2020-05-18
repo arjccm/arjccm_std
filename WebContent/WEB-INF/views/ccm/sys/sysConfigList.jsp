@@ -20,6 +20,15 @@
 								$('#inputFormSystemLevel').submit();
 							});
 							$('#btnSubmit2').click(function() {
+								var day = $('#saveDays').val();
+								var html1 = '<label for="" class="error">只能输入整数 <label>';
+								if (day < 0) {
+									$("#show1").html(html1);
+									return;
+								} else {
+									$("#show1").html("");
+								}
+								
 								$('#inputFormLogSaveConfig').submit();
 							});
 							$('#btnSubmit3').click(function() {
@@ -262,7 +271,7 @@
 	<div class="control-group">
 		<label class="control-label">${logSaveConfig.remarks}：</label>
 		<div class="controls">
-			<form:input path="paramInt" htmlEscape="false" maxlength="8"
+			<form:input path="paramInt" htmlEscape="false" maxlength="8" id="saveDays"
 						class="input-xlarge digits" type="number" />
 			<span style="float: right; margin-right: 200px"> <shiro:hasPermission
 					name="sys:sysConfig:edit">
@@ -270,6 +279,7 @@
 								class="icon-ok"></i>保存</a>
 			</shiro:hasPermission>
 				</span>
+			<span class="help-inline"><font color="red" id="show1"></font> </span>
 		</div>
 	</div>
 </form:form>
