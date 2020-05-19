@@ -2612,6 +2612,10 @@ CREATE TABLE `ccm_user_group_relationship`  (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+-- 人员总数表新增字段总数
+ALTER TABLE `arjccm_qiannan_20190926`.`ccm_people_amount`
+ADD COLUMN `houseNumber` int(12) NULL COMMENT '房屋总数量' AFTER `seriousCriminalOffense_amount`,
+ADD COLUMN `rentalHousingNumber` int(12) NULL COMMENT '出租房屋总数量' AFTER `houseNumber`;
 
 --  新增函数 COUNT_RECORD_peopleAmount 中添加
 -- 房屋数量

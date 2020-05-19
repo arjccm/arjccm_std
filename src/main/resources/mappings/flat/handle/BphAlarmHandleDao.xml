@@ -693,12 +693,30 @@
 		SELECT count(*) FROM 	bph_alarm_handle t where t.id = #{id} and t.handle_police_id = #{userId} and t.`status` = #{status}
 	</select>
 	<!-- 通知未读消息 -->
-	<select id="selectnotifyCount" resultType="int">
-		select
-		count(*)
-		FROM oa_notify_record a
-		where  a.user_id=#{userId}
-		AND a.read_flag='0'
+	<select id="queryNewsSum" resultType="int">
+		SELECT
+	 	count(*)
+		FROM
+ 		oa_notify_record  a
+ 		LEFT JOIN  oa_notify b ON a.oa_notify_id = b.id
+		WHERE
+		 a.user_id = #{userId}
+ 		AND b.STATUS = '1'
+		AND a.read_flag = "0"
+ 		AND b.del_flag = "0"
+	</select>
+
+	<!-- 通告未读消息 -->
+	<select id="selectAlarmNotifyTotal" resultType="int">
+		SELECT
+ 		count(*)
+		FROM
+ 		oa_notify_record  a
+ 		LEFT JOIN  oa_notify b ON a.oa_notify_id = b.id
+		WHERE
+ 		a.user_id = #{userId}
+	 	and a.read_flag = "0"
+ 		AND b.del_flag = "0"
 	</select>
 
 </mapper>
