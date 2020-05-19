@@ -70,6 +70,8 @@
 					row.teamType="运维人员"
 				}else if(row.teamType=="05"){
 					row.teamType="其他工作人员"
+				}else if(row.teamType=="06"){
+					row.teamType="民警"
 				}
 				if ((${fns:jsGetVal('row.parentId')}) == pid){
 					$(list).append(Mustache.render(tpl, {
