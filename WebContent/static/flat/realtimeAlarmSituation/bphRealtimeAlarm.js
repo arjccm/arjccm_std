@@ -382,12 +382,7 @@ function alertOfficeDistribution(id,officeIds,index){
 }
 //预案关联
 function planAssociated(_this) {
-    var isImportant = $(_this).prev().attr('alarm-type');
-    if( isImportant == 1){
-    	isImportant = 0;
-    }else{
-    	isImportant = 1;
-    }
+    var isImportant = $(_this).attr('data-isimportant');
     var typeCode = $(_this).attr('alarm-type');
     var alarmId = $(_this).attr('data-id'); // 警情id
     $.post(ctx + '/planinfo/bphPlanInfo/planAssociated', {'isImportant': isImportant, 'typeCode': typeCode}, function(data) {
@@ -1186,11 +1181,13 @@ function alarmTypeChange(_this) {
             if (alarmType == '1') {
                 $(_this).text('普通警情');
                 $(_this).attr('alarm-type', '0');
+                $(_this).next().attr('data-isimportant', '1');
                 _li.find('.major').show();
                 layer.msg('已标记为重大警情');
             } else {
                 $(_this).text('重大警情');
                 $(_this).attr('alarm-type', '1');
+                $(_this).next().attr('data-isimportant', '0');
                 _li.find('.major').hide();
                 layer.msg('已标记为普通警情');
             }

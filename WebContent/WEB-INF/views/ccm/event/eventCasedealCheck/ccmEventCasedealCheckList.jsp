@@ -184,13 +184,17 @@
 					</td>
 					<shiro:hasPermission name="event:ccmEventCasedealCheck:edit">
 						<td>
-					
-						<a  class="btnList" 
-							onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedealCheck/form?id=${ccmEventCasedeal.id}','处理', '1100px', '700px')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
-						<a  class="btnList"
-							href="${ctx}/event/ccmEventCasedealCheck/deletegrade?id=${ccmEventCasedeal.id}"
-							onclick="return confirmx('确认要删除该事件评分吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
-				        <a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventCasedeal.id}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
+							<a  class="btnList"
+								onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedealCheck/form?id=${ccmEventCasedeal.id}','处理', '1100px', '700px')" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+							<a  class="btnList"
+								href="${ctx}/event/ccmEventCasedealCheck/deletegrade?id=${ccmEventCasedeal.id}"
+								onclick="return confirmx('确认要删除该事件评分吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+							<c:if test="${ccmEventCasedeal.objType eq 'ccm_wechat_event'}">
+								<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventCasedeal.objId}')"  title="位置信息" disabled="true"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
+							</c:if>
+							<c:if test="${ccmEventCasedeal.objType ne 'ccm_wechat_event'}">
+								<a class="btnList" href="javascript:;" onclick="LocationOpen('${ccmEventCasedeal.objId}')"  title="位置信息"><i class="iconfont icon-caozuotubiao-weizhixinxi "></i></a>
+							</c:if>
 						</td>
 					</shiro:hasPermission>
 

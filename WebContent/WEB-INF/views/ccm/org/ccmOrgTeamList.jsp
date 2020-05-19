@@ -20,7 +20,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/org/ccmOrgTeam/">数据列表111</a></li>
+		<li class="active"><a href="${ctx}/org/ccmOrgTeam/">数据列表</a></li>
 		<shiro:hasPermission name="org:ccmOrgTeam:edit"><li><a href="${ctx}/org/ccmOrgTeam/form">数据添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="ccmOrgTeam" action="${ctx}/org/ccmOrgTeam/" method="post" class="breadcrumb form-search">
