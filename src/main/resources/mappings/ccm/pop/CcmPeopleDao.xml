@@ -648,6 +648,27 @@
 			AND a.special_care_type IS not NULL
 			AND a.special_care_type !=',null,'
 			)
+			<if test="specialCareTypes != null and specialCareTypes.length > 0">
+				AND (
+				<foreach collection="specialCareTypes" item="m" separator=" OR ">
+					<if test="m != null and m != ''">
+						a.special_care_type LIKE concat('%',#{m},'%')
+					</if>
+				</foreach>
+				)
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="sex != null and sex != ''">
+				AND a.sex = #{sex}
+			</if>
+			<if test="areaComId != null and areaComId.id != null and areaComId.id != ''">
+				AND a.area_com_id = #{areaComId.id}
+			</if>
 			<!-- AND a.del_flag = #{DEL_FLAG_NORMAL} -->
 		</where>
 		<choose>
@@ -751,7 +772,7 @@
 		count(a.id)
 		FROM ccm_people a
 		<where>
-			1=1
+			a.del_flag = #{DEL_FLAG_NORMAL}
 			<!--AND a.del_flag = #{DEL_FLAG_NORMAL} -->
 			<if test="specialCareTypes != null and specialCareTypes.length > 0">
 				AND (
