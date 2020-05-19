@@ -14,13 +14,13 @@
 	type="text/javascript"></script>
 
 <style>
-.selects-tr.active{
-cursor: pointer;
-}
-.selects-tr.active td{
- background:#1684c2!important;
- color: #fff!important;
- }
+/*.selects-tr.active{*/
+	/*cursor: pointer;*/
+/*}*/
+/*.selects-tr.active td{*/
+ /*background:#1684c2!important;*/
+ /*color: #fff!important;*/
+ /*}*/
 
 	  select {
 	   width:auto;
@@ -265,15 +265,37 @@ cursor: pointer;
 	}
 	//定义setTimeout执行方法
 	var time = null;
+	var backColor = "";
 	function CheckActive(_this) {
 		 // 取消上次延时未执行的方法
 	    clearTimeout(time);
 	    time = setTimeout(function(){
-	    	if ($(_this).hasClass('active')) {
-				$(_this).removeClass('active')
-			} else {
-				$(_this).addClass('active')
-			}
+            var trList = $(_this).parent().children("tr")
+            for (var i=0;i<trList.length;i++) {
+                var tdArr = trList.eq(i)
+				if(tdArr.hasClass("active")){
+                    tdArr.removeClass('active')
+                    if((i+1)%2===0){
+                        if(backColor==""){
+                            backColor = tdArr.find("td").css('background');
+                        }else{
+                            tdArr.find("td").css("cssText",
+                                'background: '+ backColor +' !important'
+                            );
+                        }
+                    }else{
+                        tdArr.find("td").css("cssText",
+                            'background: none !important'
+                        );
+                    }
+                    tdArr.css('color','');
+				}
+            }
+			$(_this).addClass('active')
+			$(_this).find("td").css("cssText",
+				'background: #1684c2 !important'
+			);
+			$(_this).css('color','#fff');
 	    },200);
 
 	}
