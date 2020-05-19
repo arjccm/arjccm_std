@@ -847,7 +847,7 @@ function addTab($this, refresh) {
 			  id:'LayerDialog',
 			   //btn: [ '确定',  '关闭'], //可以无限个按钮
 			  content: src,
-			  zIndex:'1992',
+			  zIndex:'10',
 			  shade:0
 			});
 		}
@@ -861,7 +861,7 @@ function addTab($this, refresh) {
 			  maxmin: false,
 			/*   btn: ['关闭'], //可以无限个按钮 */
 			  content: src,
-			  zIndex:'1992'
+			  zIndex:'10'
 			});
 		}
 		//详情弹框--不刷新父页面
@@ -875,7 +875,7 @@ function addTab($this, refresh) {
 			  id:'LayerDialog3',
 			   //btn: [ '确定',  '关闭'], //可以无限个按钮
 			  content: src,
-			  zIndex:'1992',
+			  zIndex:'10',
 			  success: function(layero, index){
 				  var body = layer.getChildFrame('body', index);
                   //var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
@@ -918,7 +918,7 @@ function addTab($this, refresh) {
 			  maxmin: true,
 			  btn: ['关闭'], //可以无限个按钮
 			  content: src,
-			  zIndex:'1992'
+			  zIndex:'10'
 			});
 		}
 		function LayerDialog5(id,src, title, height, width){
@@ -931,7 +931,7 @@ function addTab($this, refresh) {
 			  maxmin: true,
 			  // btn: ['关闭'], //可以无限个按钮
 			  content: src,
-			  zIndex:'1992'
+			  zIndex:'10'
 			});
 		}
 		function alertInfo(strInfo) {
