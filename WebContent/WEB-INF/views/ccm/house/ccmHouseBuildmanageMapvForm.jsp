@@ -60,7 +60,7 @@
 			fixed: true, //固定
 			maxmin: true,
 			content: ctx + '/house/ccmHouseBuildmanage/Maplist?type=1&id='+ id +'&buildName='+ buildname,
-			zIndex: '1992',
+			zIndex:'10',
 			skin:"mySkin"
 		})
 	}
