@@ -35,6 +35,11 @@
 			});
 		});
 	</script>
+	<style>
+		.notclick{
+			pointer-events: none;
+		}
+	</style>
 	<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -62,14 +67,14 @@
 					<label class="control-label">处理人员：</label>
 					<div class="controls">
 
-					<input type="text" value="${ccmEventCasedeal.handleUser.name}">
+					<input type="text" disabled="disabled" value="${ccmEventCasedeal.handleUser.name}">
 
 					</div>
 				</td>
 				<td>
 					<label class="control-label">处理人联系方式：</label>
 					<div class="controls">
-						<input type="text" value="${ccmEventCasedeal.handleUser.phone}">
+						<input type="text" disabled="disabled" value="${ccmEventCasedeal.handleUser.phone}">
 
 					</div>
 				</td>
@@ -78,7 +83,7 @@
 				<td>
 					<label class="control-label">处理截至时间：</label>
 					<div class="controls">
-						<input id="handleDeadline" name="handleDeadline" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+						<input id="handleDeadline" name="handleDeadline" type="text" readonly="readonly" disabled="disabled" maxlength="20" class="input-medium Wdate"
 							   value="<fmt:formatDate value="${ccmEventCasedeal.handleDeadline}" pattern="yyyy-MM-dd"/>"
 							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 
@@ -95,7 +100,7 @@
 			</tr>
 			<tr>
 				<td>
-					<div>
+					<div class="notclick">
 						<label class="control-label">附件上传：</label>
 						<div class="controls">
 							<form:hidden id="file" path="file" htmlEscape="false"
@@ -122,7 +127,7 @@
 				<td colspan="2">
 					<label class="control-label">事件说明及任务安排：</label>
 					<div class="controls">
-						<form:textarea path="remarks"  htmlEscape="false" rows="8" maxlength="1000" class="input-xxlarge "/>
+						<form:textarea path="remarks"  htmlEscape="false" rows="8" maxlength="1000" disabled="true" class="input-xxlarge "/>
 					</div>
 				</td>
 			</tr>
@@ -136,7 +141,7 @@
 				<td>
 						<label class="control-label">处理时间：</label>
 						<div class="controls">
-							<input id="handleDate" name="handleDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+							<input id="handleDate" name="handleDate" type="text" readonly="readonly" disabled="disabled" maxlength="20" class="input-medium Wdate"
 								   value="<fmt:formatDate value="${ccmEventCasedeal.handleDate}" pattern="yyyy-MM-dd"/>"
 								   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 
@@ -153,13 +158,13 @@
 				<td>
 						<label class="control-label">处理措施：</label>
 						<div class="controls">
-							<form:textarea path="handleStep" htmlEscape="false" rows="4" maxlength="256" class="input-xlarge "/>
+							<form:textarea path="handleStep" htmlEscape="false" rows="4" maxlength="256" disabled="true" class="input-xlarge "/>
 						</div>
 				</td>
 				<td>
 						<label class="control-label">案事件反馈：</label>
 						<div class="controls">
-							<form:textarea path="handleFeedback" htmlEscape="false" rows="4" maxlength="256" class="input-xlarge "/>
+							<form:textarea path="handleFeedback" htmlEscape="false" rows="4" maxlength="256" disabled="true" class="input-xlarge "/>
 						</div>
 				</td>
 			</tr>
