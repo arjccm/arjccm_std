@@ -32,11 +32,11 @@ td{border: 0px solid #dddddd !important;}
 input[type="text"],input[type="password"],  .uneditable-input {width: 270px !important;}
 /*文本域样式修改*/
 textarea.input-xlarge{
-    width: 282px !important;
+    width: 270px !important;
 }
 /*文本域样式修改*/
 textarea.input-xxlarge{
-    width: 282px !important;
+    width: 270px !important;
 }
 /*链接或标示标记等长文本框修改*/
 input.input-xxlarge{
@@ -62,12 +62,17 @@ input.input-xxlarge{
     input[type="text"],input[type="password"], .uneditable-input {width: 206px !important;}
     /*文本域样式修改*/
     textarea.input-xlarge{
-        width: 218px !important;
+        width: 206px !important;
+    }
+    /*数字input 样式*/
+    input[type="number"].input-xlarge{
+        width: 206px !important;
     }
     /*文本域样式修改*/
     textarea.input-xxlarge{
-        width: 218px !important;
+        width: 206px !important;
     }
+
     /*链接或标示标记等长文本框修改*/
     input.input-xxlarge{
         width: 206px ;
@@ -83,4 +88,9 @@ input.input-xxlarge{
 }
 .nav-tabs {
     margin-bottom: 0px;
+}
+
+/*统一padding*/
+textarea{
+    padding: 4px 6px;
 }
