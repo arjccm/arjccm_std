@@ -36,7 +36,7 @@ function createWebSocket(url,callbak) {
   	       //alert("服务器出现错误");
   	       //dwr.engine._debug("Error: " + ex.name + ", " + ex.message, true);
   	    };
-  	    Imwebserver.serverconnect();
+  	    Imwebserver.serverconnect(callbak)
   		  
       }  
     } catch (e) { 

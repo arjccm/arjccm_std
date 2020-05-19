@@ -23,7 +23,6 @@ import com.arjjs.ccm.modules.ccm.rest.web.CcmRestEvent;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysDicts;
 import com.arjjs.ccm.modules.ccm.sys.service.SysDictsService;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
-import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.Office;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.service.OfficeService;
@@ -48,7 +47,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -486,22 +484,26 @@ public class CcmEventIncidentController extends BaseController {
         int num = 4;
         Map map = Maps.newHashMap();
         List<EchartType> listSafeDis = ccmEventIncidentService.getSafeDisData(ccmEventIncident); //安全事故分布
+
         List<String> listdata = Lists.newArrayList();
         List<String> listtype = Lists.newArrayList();
         List<Integer> listMaxnum = Lists.newArrayList();
 //		Collections.sort(listSafeDis, Comparator.comparing(EchartType::getValue));
 //		List<EchartType> reslist = listSafeDis.stream().sorted((s1, s2) -> s1.getValue().compareTo(s2.getValue())).collect(Collectors.toList());
-        listSafeDis.sort(Comparator.comparing(EchartType::getValue));
+        if(!listSafeDis.isEmpty()){
+            listSafeDis.sort(Comparator.comparing(EchartType::getValue));
 //		int Maxnum = Integer.parseInt(listSafeDis.get(0).getValue())+10;
-        int Maxnum = getMaxNumber(listSafeDis.get(0).getValue());
-        for (int i = 0; i < listSafeDis.size(); i++) {
-            if (i > num) {
-                break;
+            int Maxnum = getMaxNumber(listSafeDis.get(0).getValue());
+            for (int i = 0; i < listSafeDis.size(); i++) {
+                if (i > num) {
+                    break;
+                }
+                listdata.add(listSafeDis.get(i).getValue());
+                listtype.add(listSafeDis.get(i).getType());
+                listMaxnum.add(Maxnum);
             }
-            listdata.add(listSafeDis.get(i).getValue());
-            listtype.add(listSafeDis.get(i).getType());
-            listMaxnum.add(Maxnum);
         }
+
         map.put("type", listtype);
         map.put("data", listdata);
         map.put("Maxnum", listMaxnum);

@@ -38,7 +38,16 @@
 	</insert>
 	
 	<update id="deleteByGroupIdAndUserId">
-		DELETE  FROM ccm_user_group_relationship WHERE group_id = #{groupId} AND  user_id = #{userId}
+		DELETE
+			FROM
+		ccm_user_group_relationship
+		WHERE
+		<if	test="groupId != null and groupId != ''">
+			  group_id = #{groupId}
+		</if>
+		<if	test="userId != null and userId != ''">
+			AND  user_id = #{userId}
+		</if>
 	</update>
 	
 </mapper>
