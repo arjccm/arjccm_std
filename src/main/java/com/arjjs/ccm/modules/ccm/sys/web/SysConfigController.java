@@ -100,7 +100,7 @@ public class SysConfigController extends BaseController {
 
 				model.addAttribute("upperSystemConfig", upperSystemConfig);
 			}
-			// 上级域系统设置
+			// 人脸对接系统设置
 			if ("face_docking_config".equals(s.getId())) {
 				SysConfig faceDockingConfig = new SysConfig();
 				faceDockingConfig = s;

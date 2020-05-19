@@ -55,7 +55,10 @@ public interface BphAlarmHandleDao extends CrudDao<BphAlarmHandle> {
 	int selectEventCount(@Param("userId")String userId);
 	//我的消息未读信息
 	int selectNewsCount(@Param("userId")String userId);
+//	//通知未读消息
+//	int selectnotifyCount(@Param("userId")String userId);
+	//通告管理
+	int selectAlarmNotifyTotal(@Param("userId")String userId);
 	//通知未读消息
-	int selectnotifyCount(@Param("userId")String userId);
-
+	int queryNewsSum(@Param("userId")String userId);
 }

@@ -9,7 +9,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.sys.dao.OfficeDao;
 import com.arjjs.ccm.modules.sys.service.SystemService;
+import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.modules.sys.web.OfficeController;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -54,7 +56,6 @@ public class CcmRestWorkReport extends BaseController {
 	private OfficeService officeService;
 	@Autowired
 	private CcmRestOfficeService restOfficeService;
-
 	@Autowired
 	private SystemService systemService;
 
@@ -241,7 +242,7 @@ public class CcmRestWorkReport extends BaseController {
 	public Object officeTreeData() {
 		CcmRestResult ccmRestResult=new CcmRestResult();
 		List<Map<String, Object>> mapList = Lists.newArrayList();
-		List<Office> list = this.officeService.findList(true);
+		List<Office> list = this.officeService.findList(false);
 
 		for(int i = 0; i < list.size(); ++i) {
 			Office e = list.get(i);
@@ -260,11 +261,18 @@ public class CcmRestWorkReport extends BaseController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "allTreeData")
-	public Object allTreeData() {
+	public Object allTreeData(@RequestParam(value = "userId",required = false) String userId,HttpServletRequest request,HttpServletResponse response) {
 		CcmRestResult ccmRestResult=new CcmRestResult();
-		List<Office> list = this.officeService.findList(true);
+		String byPid = ccmWorkReportService.findByPid(userId);
+		Office office = new Office();
+		office.setName(byPid);
+		List<Office> list = new ArrayList<>();
+		if (userId==null){
+			 list = this.officeService.findList(true);
+		}else {
+			 list = this.officeService.findList(office);
+		}
 		List<IFayTreeNode> listTree = new ArrayList<IFayTreeNode>();
-
 		for(int i = 0; i < list.size(); ++i) {
 			Office e = list.get(i);
 			Tree tree = new Tree(e.getId(), e.getParentId(), e.getName(), "","", false);

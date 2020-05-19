@@ -25,6 +25,15 @@ top:7%;
     line-height: 50px;
     text-align: center;
 }
+body .layui-layim-min{
+    border: none;
+}
+.layui-layim-min .layui-layer-content{
+    margin: 0;
+}
+.layui-layer-dialog .layui-layer-content{
+    width: auto;
+}
 </style>
 <script>
 //layim接口地址
@@ -196,7 +205,7 @@ var showmsg,lm;
 				*/
 	   	  
 	     }
-           layui.use(['layim','layer'], function(layim){
+            parent.layui.use(['layim','layer'], function(layim){
                var $ = layui.jquery, layer = layui.layer;
 		       //基础配置
 		       layim.config({
@@ -248,8 +257,6 @@ var showmsg,lm;
 			  });
                 var meid;
 			   layim.on('ready', function(res){
-
-
 				  lm = layui.layim;
 				  //添加客服
 				/* layim.addList({

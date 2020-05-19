@@ -668,13 +668,17 @@ public class BphAlarmHandleService extends CrudService<BphAlarmHandleDao, BphAla
 	public int queryEventCount(String userId) {
 		return dao.selectEventCount(userId);
 	}
-	//我的消息未读信息查询
+	//消息未读数量
 	public int queryNewsCount(String userId) {
 		return dao.selectNewsCount(userId);
 	}
-	//通知未读信息查询
-	public int querynotifyCount(String userId) {
-		return  dao.selectnotifyCount(userId);
-	}
 
+	//通告未读消息
+	public int selectAlarmNotifyTotal(String userId) {
+		return dao.selectAlarmNotifyTotal(userId);
+	}
+	//通知未读消息
+	public int queryNewsSum(String userId) {
+		return dao.queryNewsSum(userId);
+	}
 }

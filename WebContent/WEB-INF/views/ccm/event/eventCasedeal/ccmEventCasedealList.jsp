@@ -24,7 +24,7 @@
 				+ "&quot;"
 				+ id
 				+ "&quot;"
-				+ ')" class="btn btn-primary " type="button" value="签收" style="background: #73a839">';
+				+ ')" class="btn btn-primary " type="button" value="签收" style="background: #73a839; margin-right: 10px">';
 		html += '<input id="btnPass"  onclick="NoPass('
 				+ "&quot;"
 				+ id
@@ -33,7 +33,7 @@
 		html += '</div>';
 		html += '</div>';
 		tip_index = layer.tips(html, _this, {
-			tips : [ 1, '#20c694' ],
+			tips : [ 1, '#0e2a4c' ],
 			time : 3000,
 		});
 	}

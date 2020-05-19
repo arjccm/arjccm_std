@@ -312,7 +312,6 @@ public class CcmRestbasePlace extends BaseController {
 			return result;
 		}
 		ccmBasePlace.setCheckUser(sessionUser);
-
 		if(placeType ==null|| "".equals(placeType)) {
 			Page<CcmBasePlace> page99 = ccmBasePlaceService.findPage(new Page<CcmBasePlace>(req, resp), ccmBasePlace);
 			page99.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
@@ -328,6 +327,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceLive.setPlaceType(placeType);
 			Page<CcmPlaceLive> page1 = ccmPlaceLiveService.findPage(new Page<CcmPlaceLive>(req, resp), ccmPlaceLive);
 			page1.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page1.getList().size(); i++) {
+				ccmBasePlace.setId(page1.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page1.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page1.setPageNo(pageNo);
 			result.setResult(page1.getList());
@@ -340,6 +344,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceCasino.setPlaceType(placeType);
 			Page<CcmPlaceCasino> page2 = ccmPlaceCasinoService.findPage(new Page<CcmPlaceCasino>(req, resp), ccmPlaceCasino);
 			page2.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page2.getList().size(); i++) {
+				ccmBasePlace.setId(page2.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page2.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page2.setPageNo(pageNo);
 			result.setResult(page2.getList());
@@ -352,6 +361,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceEducation.setPlaceType(placeType);
 			Page<CcmPlaceEducation> page3 = ccmPlaceEducationService.findPage(new Page<CcmPlaceEducation>(req, resp), ccmPlaceEducation);
 			page3.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page3.getList().size(); i++) {
+				ccmBasePlace.setId(page3.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page3.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page3.setPageNo(pageNo);
 			result.setResult(page3.getList());
@@ -364,6 +378,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceHospital.setPlaceType(placeType);
 			Page<CcmPlaceHospital> page4 = ccmPlaceHospitalService.findPage(new Page<CcmPlaceHospital>(req, resp), ccmPlaceHospital);
 			page4.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page4.getList().size(); i++) {
+				ccmBasePlace.setId(page4.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page4.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page4.setPageNo(pageNo);
 			result.setResult(page4.getList());
@@ -376,6 +395,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceCatering.setPlaceType(placeType);
 			Page<CcmPlaceCatering> page = ccmPlaceCateringService.findPage(new Page<CcmPlaceCatering>(req, resp), ccmPlaceCatering);
 			page.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page.getList().size(); i++) {
+				ccmBasePlace.setId(page.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page.setPageNo(pageNo);
 			result.setResult(page.getList());
@@ -388,6 +412,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceTraffic.setPlaceType(placeType);
 			Page<CcmPlaceTraffic> page = ccmPlaceTrafficService.findPage(new Page<CcmPlaceTraffic>(req, resp), ccmPlaceTraffic);
 			page.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page.getList().size(); i++) {
+				ccmBasePlace.setId(page.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page.setPageNo(pageNo);
 			result.setResult(page.getList());
@@ -400,6 +429,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceHotel.setPlaceType(placeType);
 			Page<CcmPlaceHotel> page7 = ccmPlaceHotelService.findPage(new Page<CcmPlaceHotel>(req, resp), ccmPlaceHotel);
 			page7.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page7.getList().size(); i++) {
+				ccmBasePlace.setId(page7.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page7.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page7.setPageNo(pageNo);
 			result.setResult(page7.getList());
@@ -412,6 +446,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceScenic.setPlaceType(placeType);
 			Page<CcmPlaceScenic> page8 = ccmPlaceScenicService.findPage(new Page<CcmPlaceScenic>(req, resp), ccmPlaceScenic);
 			page8.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page8.getList().size(); i++) {
+				ccmBasePlace.setId(page8.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page8.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page8.setPageNo(pageNo);
 			result.setResult(page8.getList());
@@ -424,6 +463,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceReligion.setPlaceType(placeType);
 			Page<CcmPlaceReligion> page10 = ccmPlaceReligionService.findPage(new Page<CcmPlaceReligion>(req, resp), ccmPlaceReligion);
 			page10.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page10.getList().size(); i++) {
+				ccmBasePlace.setId(page10.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page10.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page10.setPageNo(pageNo);
 			result.setResult(page10.getList());
@@ -436,6 +480,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceChemical.setPlaceType(placeType);
 			Page<CcmPlaceChemical> page11 = ccmPlaceChemicalService.findPage(new Page<CcmPlaceChemical>(req, resp), ccmPlaceChemical);
 			page11.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page11.getList().size(); i++) {
+				ccmBasePlace.setId(page11.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page11.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page11.setPageNo(pageNo);
 			result.setResult(page11.getList());
@@ -448,6 +497,11 @@ public class CcmRestbasePlace extends BaseController {
 			ccmPlaceFinancial.setPlaceType(placeType);
 			Page<CcmPlaceFinancial> page12 = ccmPlaceFinancialService.findPage(new Page<CcmPlaceFinancial>(req, resp), ccmPlaceFinancial);
 			page12.getList().forEach(item->item.setPlacePicture(getFile(item.getPlacePicture())));
+			for (int i = 0; i < page12.getList().size(); i++) {
+				ccmBasePlace.setId(page12.getList().get(i).getBasePlaceId());
+				CcmBasePlace ccmBasePlace2 = ccmBasePlaceService.get(ccmBasePlace);
+				page12.getList().get(i).setCcmBasePlace(ccmBasePlace2);
+			}
 			result.setCode(CcmRestType.OK);
 			page12.setPageNo(pageNo);
 			result.setResult(page12.getList());

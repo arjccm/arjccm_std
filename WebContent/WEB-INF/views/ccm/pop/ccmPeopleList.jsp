@@ -157,10 +157,10 @@
 				</form:select>
 			</li>
 			<li class="first-line"><label>姓名：</label>
-				<form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"  cssStyle=""/>
+				<form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"  cssStyle="" placeholder="请输入姓氏开头查询"/>
 			</li>
 			<li class="first-line"><label>公民身份号码：</label>
-				<form:input path="ident" htmlEscape="false" maxlength="18" class="input-medium"/>
+				<form:input path="ident" htmlEscape="false" maxlength="18" class="input-medium" placeholder="请输入完整身份证号码"/>
 			</li>
 			<li class="first-line"><label>是否常住：</label>
 				<form:select id="isPermanent" path="isPermanent" class="input-medium">

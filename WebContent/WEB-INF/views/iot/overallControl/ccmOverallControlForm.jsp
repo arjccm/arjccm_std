@@ -52,6 +52,16 @@
             padding-left: 20px;
             white-space:nowrap;
         }
+		.select2-choices{
+			width: 218px !important;
+
+		}
+		textarea.input-xlarge {
+			padding: 0 !important;
+		}
+		.select2-no-results{
+			background: #3875d7!important;
+		}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -283,14 +293,14 @@
 				<tr>
 					<td colspan="2"><div class="control-group">
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>布控名单库：</label>
-							<div class="controls">
-								<select data-placeholder="选择一个或多个名单库" style="width: 90%;" name="librarySelect" class="chosen-select required" multiple tabindex="4">
+
+						<div class="controls">
+								<select data-placeholder="选择一个或多个名单库"  name="librarySelect" class="chosen-select required" multiple tabindex="4">
 									<option value=""></option>
 									<c:forEach items="${libraryList}" var="people">
 										<option value="${people.id}">${people.name}</option>
 									</c:forEach>
 								</select>
-
 							</div>
 						</div>
 					</td>
@@ -299,7 +309,7 @@
 					<td><div class="control-group">
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>布控抓拍机：</label>
 							<div class="controls">
-								<select data-placeholder="选择一个或多个名单库" style="width: 90%;" name="captureMachine" class="chosen-select required" multiple tabindex="4">
+								<select data-placeholder="选择一个或多个名单库"  name="captureMachine" class="chosen-select required" multiple tabindex="4">
 									<option value=""></option>
 									<c:forEach items="${grabberList}" var="grabber">
 										<option value="${grabber.id}">${grabber.grabberName}</option>
