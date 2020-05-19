@@ -38,35 +38,44 @@
                value="${page.pageSize}"/>
         <form:hidden path="relevanceId"/>
         <form:hidden path="relevanceTable"/>
-        <%-- <ul class="ul-form">
+         <ul class="ul-form">
+             <li class="first-line"><label>开始时间：</label>
+                 <input name="beginSendDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+                        value="<fmt:formatDate value="${ccmLogTail.beginSendDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+                        onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+             </li>
+             <li class="first-line"><label>结束时间：</label><input name="endSendDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+                        value="<fmt:formatDate value="${ccmLogTail.endSendDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+                        onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+             </li>
             <li><label>跟踪事项：</label> <form:input path="tailCase"
                     htmlEscape="false" maxlength="100" class="input-medium" /></li>
-            <li><label>跟踪对象：</label> <form:select path="relevanceTable"
-                    class="input-medium">
-                    <form:option value="" label="全部" />
-                    <form:options items="${fns:getDictList('ccm_log_tail_table')}"
-                        itemLabel="label" itemValue="value" htmlEscape="false" />
-                </form:select></li>
+<%--            <li><label>跟踪对象：</label> <form:select path="relevanceTable"--%>
+<%--                    class="input-medium">--%>
+<%--                    <form:option value="" label="全部" />--%>
+<%--                    <form:options items="${fns:getDictList('ccm_log_tail_table')}"--%>
+<%--                        itemLabel="label" itemValue="value" htmlEscape="false" />--%>
+<%--                </form:select></li>--%>
             <li><label>处理人员：</label> <form:input path="tailPerson"
                     htmlEscape="false" maxlength="100" class="input-medium" /></li>
             <li class="clearfix"></li>
 
-            <li><label>类型：</label> <form:select path="type"
-                    class="input-medium">
-                    <form:option value="" label="全部" />
-                    <form:options items="${fns:getDictList('ccm_log_tail_type')}"
-                        itemLabel="label" itemValue="value" htmlEscape="false" />
-                </form:select></li>
-            <li><label>处理人联系方式：</label> <form:input path="more1"
-                    htmlEscape="false" maxlength="100" class="input-medium" /></li>
-            <!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary"
-                type="submit" value="查询" /></li> -->
-                <li class="btns">
-            <a href="javascript:;" id="btnSubmit" class="btn btn-primary">
-                <i class="icon-search"></i> 查询 </a>
-            </li>
+<%--            <li><label>类型：</label> <form:select path="type"--%>
+<%--                    class="input-medium">--%>
+<%--                    <form:option value="" label="全部" />--%>
+<%--                    <form:options items="${fns:getDictList('ccm_log_tail_type')}"--%>
+<%--                        itemLabel="label" itemValue="value" htmlEscape="false" />--%>
+<%--                </form:select></li>--%>
+<%--            <li><label>处理人联系方式：</label> <form:input path="more1"--%>
+<%--                    htmlEscape="false" maxlength="100" class="input-medium" /></li>--%>
+             <li class="btns"><input id="btnSubmit" class="btn btn-primary"
+                type="submit" value="查询" /></li>
+<%--                <li class="btns">--%>
+<%--            <a href="javascript:;" id="btnSubmit" class="btn btn-primary">--%>
+<%--               查询 </a>--%>
+<%--            </li>--%>
             <li class="clearfix"></li>
-        </ul>  --%>
+        </ul>
     </form:form>
     <sys:message content="${message}"/>
     <table id="contentTable"

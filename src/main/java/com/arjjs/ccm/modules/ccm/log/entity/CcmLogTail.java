@@ -25,7 +25,16 @@ public class CcmLogTail extends DataEntity<CcmLogTail> {
 	private String tailCase;		// 跟踪事项
 	private String tailContent;		// 跟踪内容
 	private String tailPerson;		// 处理人员
+	private Date beginSendDate;		// 开始 发生日期
+	private Date endSendDate;		// 结束 发生日期
 	private Date tailTime;		// 时间
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+
+
 	private String more1;		// 处理人联系方式
 	private String more2;		// 冗余字段2
 	private String more3;		// 冗余字段3
@@ -137,5 +146,20 @@ public class CcmLogTail extends DataEntity<CcmLogTail> {
 	public void setMore3(String more3) {
 		this.more3 = more3;
 	}
-	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getBeginSendDate() {
+		return beginSendDate;
+	}
+
+	public void setBeginSendDate(Date beginSendDate) {
+		this.beginSendDate = beginSendDate;
+	}
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getEndSendDate() {
+		return endSendDate;
+	}
+
+	public void setEndSendDate(Date endSendDate) {
+		this.endSendDate = endSendDate;
+	}
 }
