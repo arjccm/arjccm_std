@@ -264,7 +264,9 @@ public class CcmLogTailController extends BaseController {
 		addMessage(redirectAttributes, "保存跟踪信息成功");
 		PrintWriter out = response.getWriter();
 		CommUtil.openWinExpDiv(out, "保存跟踪信息成功");
-		return "redirect:" + Global.getAdminPath() + "/log/ccmLogTail/list";
+//		return "redirect:" + Global.getAdminPath() + "/log/ccmLogTail/list";
+		return "redirect:" + Global.getAdminPath() + "/log/ccmLogTail/list?relevance_id="+ccmLogTail.getRelevanceId()+"&relevance_table="+ccmLogTail.getRelevanceTable()+"&repage";
+
 	}
 
 
