@@ -61,10 +61,6 @@
 
         }
 
-        textarea.input-xlarge {
-            padding: 0 !important;
-        }
-
         .select2-no-results {
             background: #3875d7 !important;
         }
