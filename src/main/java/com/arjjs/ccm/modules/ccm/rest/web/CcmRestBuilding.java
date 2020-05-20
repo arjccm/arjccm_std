@@ -24,6 +24,7 @@ import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
+import com.arjjs.ccm.tool.Pagecount;
 import com.arjjs.ccm.tool.TransGPS;
 import com.arjjs.ccm.tool.geoJson.Features;
 import com.arjjs.ccm.tool.geoJson.GeoJSON;
@@ -50,7 +51,7 @@ import java.util.*;
 
 /**
  * 楼栋接口类
- * 
+ *
  * @author pengjianqiang
  * @version 2018-02-02
  */
@@ -68,9 +69,9 @@ public class CcmRestBuilding extends BaseController {
 	@Autowired
 	private CcmHouseBuildmanageService ccmHouseBuildmanageService;
 	@Autowired
-    private CcmPopTenantService ccmPopTenantService;
+	private CcmPopTenantService ccmPopTenantService;
 	@Autowired
-    private CcmPeopleService ccmPeopleService;
+	private CcmPeopleService ccmPeopleService;
 
 
 
@@ -78,7 +79,7 @@ public class CcmRestBuilding extends BaseController {
 	/**
 	 * @see  获取单个楼栋信息
 	 * @param id  楼栋ID
-	 * @return 
+	 * @return
 	 * @author pengjianqiang
 	 * @version 2018-02-02
 	 */
@@ -110,7 +111,7 @@ public class CcmRestBuilding extends BaseController {
 		}
 		result.setCode(CcmRestType.OK);
 		result.setResult(ccmHouseBuild);
-		
+
 		return result;
 	}
 
@@ -143,17 +144,33 @@ public class CcmRestBuilding extends BaseController {
 		}
 		build.setCheckUser(sessionUser);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-			Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService
-					.findPage(new Page<CcmHouseBuildmanage>(req, resp), build);
-			if(page.getList().size()>0){
-				for (int i = 0; i < page.getList().size(); i++) {
+		Page page = new Page<CcmHouseBuildmanage>(req, resp);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		build.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		build.setMaxnum(page.getPageSize());
+		List<CcmHouseBuildmanage> list = ccmHouseBuildmanageService.findListIdBylimit(build);
+
+		List<String> idlist = Lists.newArrayList();
+		list.forEach(item->{
+			idlist.add(item.getId());
+		});
+		if(idlist.size()>0){
+			build.setListLimite(idlist);
+			Page<CcmHouseBuildmanage> pagelist = ccmHouseBuildmanageService.findList_V2(page, build);
+			if(pagelist.getList().size()>0){
+				for (int i = 0; i < pagelist.getList().size(); i++) {
 					//楼栋已采集人数
-					Integer gatherNum = page.getList().get(i).getGatherNum();
+					Integer gatherNum = pagelist.getList().get(i).getGatherNum();
 					if (gatherNum==null){
 						gatherNum=0;
 					}
 					//楼栋总人数
-					Integer buildPeo = page.getList().get(i).getBuildPeo();
+					Integer buildPeo = pagelist.getList().get(i).getBuildPeo();
 					if (buildPeo==null){
 						buildPeo=0;
 					}
@@ -162,13 +179,15 @@ public class CcmRestBuilding extends BaseController {
 					if (nogather<0){
 						nogather=0;
 					}
-					page.getList().get(i).setNogather(nogather);
-					page.getList().get(i).setImages(fileUrl + page.getList().get(i).getImages());
+					pagelist.getList().get(i).setNogather(nogather);
+					pagelist.getList().get(i).setImages(fileUrl + pagelist.getList().get(i).getImages());
 				}
 			}
-			page.setPageNo(pageNo);
-			result.setCode(CcmRestType.OK);
-			result.setResult(page.getList());
+			page.setList(pagelist.getList());
+		}
+		page.setPageNo(pageNo);
+		result.setCode(CcmRestType.OK);
+		result.setResult(page.getList());
 		return result;
 	}
 
@@ -292,12 +311,12 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		return result;
 	}
-	
-	
+
+
 	/**
 	 * @see  保存楼栋信息
-	 * @param 
-	 * @return 
+	 * @param
+	 * @return
 	 * @author fuxinshuang
 	 * @version 2018-02-03
 	 */
@@ -339,45 +358,45 @@ public class CcmRestBuilding extends BaseController {
 
 
 		// 判断是否为新增
-        if (StringUtils.isEmpty(build.getId())) {   //  新增
-            // 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
-            if (StringUtils.isNotEmpty(build.getAreaPoint())) {
-                String piont = build.getAreaPoint();
-                String areaPiont = "";
-                String[] pionts = piont.split(",");
+		if (StringUtils.isEmpty(build.getId())) {   //  新增
+			// 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
+			if (StringUtils.isNotEmpty(build.getAreaPoint())) {
+				String piont = build.getAreaPoint();
+				String areaPiont = "";
+				String[] pionts = piont.split(",");
 
-                TransGPS ins = new TransGPS();
-                TransGPS.Location wcj = ins.new Location();
-                wcj.setLat(Double.parseDouble(pionts[1]));
-                wcj.setLng(Double.parseDouble(pionts[0]));
+				TransGPS ins = new TransGPS();
+				TransGPS.Location wcj = ins.new Location();
+				wcj.setLat(Double.parseDouble(pionts[1]));
+				wcj.setLng(Double.parseDouble(pionts[0]));
 
-                TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
-                areaPiont = wgs.getLng() + ","  + wgs.getLat();
-                build.setAreaPoint(areaPiont);
-                build.setAreaMap(areaPiont);
-            }
-        }else {
-        	CcmHouseBuildmanage ccmHouseBuild = ccmHouseBuildmanageService.get(build.getId());
-        	if(StringUtils.isNotEmpty(build.getAreaPoint())) {
-        		if(build.getAreaPoint().equals(ccmHouseBuild.getAreaPoint())) {
-        			build.setAreaMap(build.getAreaPoint());
-        		}else {
-        			String piont = build.getAreaPoint();
-                    String areaPiont = "";
-                    String[] pionts = piont.split(",");
+				TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
+				areaPiont = wgs.getLng() + ","  + wgs.getLat();
+				build.setAreaPoint(areaPiont);
+				build.setAreaMap(areaPiont);
+			}
+		}else {
+			CcmHouseBuildmanage ccmHouseBuild = ccmHouseBuildmanageService.get(build.getId());
+			if(StringUtils.isNotEmpty(build.getAreaPoint())) {
+				if(build.getAreaPoint().equals(ccmHouseBuild.getAreaPoint())) {
+					build.setAreaMap(build.getAreaPoint());
+				}else {
+					String piont = build.getAreaPoint();
+					String areaPiont = "";
+					String[] pionts = piont.split(",");
 
-                    TransGPS ins = new TransGPS();
-                    TransGPS.Location wcj = ins.new Location();
-                    wcj.setLat(Double.parseDouble(pionts[1]));
-                    wcj.setLng(Double.parseDouble(pionts[0]));
+					TransGPS ins = new TransGPS();
+					TransGPS.Location wcj = ins.new Location();
+					wcj.setLat(Double.parseDouble(pionts[1]));
+					wcj.setLng(Double.parseDouble(pionts[0]));
 
-                    TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
-                    areaPiont = wgs.getLng() + ","  + wgs.getLat();
-                    build.setAreaPoint(areaPiont);
-                    build.setAreaMap(areaPiont);
-        		}
-        	}
-        }
+					TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
+					areaPiont = wgs.getLng() + ","  + wgs.getLat();
+					build.setAreaPoint(areaPiont);
+					build.setAreaMap(areaPiont);
+				}
+			}
+		}
 
 		String file = build.getImages();
 		if(StringUtils.isNotEmpty(file)) {
@@ -391,14 +410,14 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		result.setResult("成功");
 		return result;
-		
+
 	}
 
 
 	/**
 	 * @see  保存楼栋信息（支持新增和编辑,数据同步用）
-	 * @param 
-	 * @return 
+	 * @param
+	 * @return
 	 * @author pengjianqiang
 	 * @version 2018-05-12
 	 */
@@ -420,7 +439,7 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		result.setResult("成功");
 		return result;
-		
+
 	}
 
 	// 根据楼栋ID获取单元列表
@@ -435,20 +454,20 @@ public class CcmRestBuilding extends BaseController {
 		logger.info("当前方法运行参数为》》》楼栋 id : " + buildId + "  单元ID : " + tranceId);
 		CcmRestResult result = new CcmRestResult();
 		List<CcmHouseBuildentranceVo> buildentranceList = ccmHouseBuildmanageService.selectBuildentranceById(buildId,tranceId);
-        for(CcmHouseBuildentranceVo res : buildentranceList){
-            // 赋值单元下房屋数量
-            List<CcmPopTenant> popTenants = ccmPopTenantService.findByTranceId(res.getId());
-            if (null != popTenants && 0 != popTenants.size()) {
-                res.setHouseNum(popTenants.size());
-                // 赋值单元下人员数量
-                int total = 0;
-                for (CcmPopTenant popTenant : popTenants) {
-                    List<CcmPeople> peopleList = ccmPeopleService.findByRoomId(popTenant.getId());
-                    total = total + peopleList.size();
-                }
-                res.setResidentNum(total);
-            }
-        }
+		for(CcmHouseBuildentranceVo res : buildentranceList){
+			// 赋值单元下房屋数量
+			List<CcmPopTenant> popTenants = ccmPopTenantService.findByTranceId(res.getId());
+			if (null != popTenants && 0 != popTenants.size()) {
+				res.setHouseNum(popTenants.size());
+				// 赋值单元下人员数量
+				int total = 0;
+				for (CcmPopTenant popTenant : popTenants) {
+					List<CcmPeople> peopleList = ccmPeopleService.findByRoomId(popTenant.getId());
+					total = total + peopleList.size();
+				}
+				res.setResidentNum(total);
+			}
+		}
 		result.setCode(CcmRestType.OK);
 		result.setResult(buildentranceList);
 		return result;
@@ -484,8 +503,8 @@ public class CcmRestBuilding extends BaseController {
 	}
 	/**
 	 * @see  删除楼栋信息（数据同步用）
-	 * @param 
-	 * @return 
+	 * @param
+	 * @return
 	 * @author pengjianqiang
 	 * @version 2018-05-17
 	 */
@@ -500,13 +519,13 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		result.setResult("成功");
 		return result;
-		
+
 	}
-	
+
 	/**
 	 * @see  删除楼栋信息
-	 * @param 
-	 * @return 
+	 * @param
+	 * @return
 	 * @author pengjianqiang
 	 * @version 2018-05-12
 	 */
@@ -538,7 +557,7 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		result.setResult("成功");
 		return result;
-		
+
 	}
 
 }
