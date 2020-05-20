@@ -259,6 +259,72 @@
 		a.practitioners_type AS "practitioners",
 		a.unit_category AS "unitCategory"
 	</sql>
+
+
+	<sql id="ccmPeopleColumns_simple_V3">
+		a.id AS "id",
+		a.type AS "type",
+		a.name AS "name",
+		a.usedname AS "usedname",
+		a.sex AS "sex",
+		a.birthday AS "birthday",
+		a.nation AS "nation",
+		a.censu AS "censu",
+		a.marriage AS "marriage",
+		a.politics AS "politics",
+		a.education AS "education",
+		a.belief AS "belief",
+		a.prof_type AS "profType",
+		a.profession AS "profession",
+		a.is_public_servants AS "isPublicServants",
+		a.office_name AS "officeName",
+		a.serv_place AS "servPlace",
+		a.domicile AS "domicile",
+		a.accountidentity AS "accountidentity",
+		a.domiciledetail AS "domiciledetail",
+		a.residence AS "residence",
+		a.residencedetail AS "residencedetail",
+		a.area_com_id AS "areaComId.id",
+		a.area_grid_id AS "areaGridId.id",
+		a.is_behind AS "isBehind",
+		a.is_release AS "isRelease",
+		a.is_rectification AS "isRectification",
+		a.is_aids AS "isAids",
+		a.is_psychogeny AS "isPsychogeny",
+		a.is_control AS "isControl",
+		a.is_kym AS "isKym",
+		a.is_drugs AS "isDrugs",
+		a.is_harm_national AS "isHarmNational",
+		a.is_deliberately_illegal AS "isDeliberatelyIllegal",
+		 a.is_criminal_offense AS "isCriminalOffense",
+		a.is_escape AS "isEscape",
+		a.is_visit AS "isVisit",
+		a.is_heresy AS "isHeresy",
+		a.is_dangerous AS "isDangerous",
+		a.is_dispute AS "isDispute",
+		a.is_permanent AS "isPermanent",
+		a.special_care_type AS "specialCareType",
+		a.type_spec AS "typeSpec",
+		a.ident AS "ident",
+		a.telephone AS "telephone",
+		a.uniformlogo AS "uniformlogo",
+		a.account AS "account",
+		a.accountname AS "accountname",
+		a.accounttelephone AS "accounttelephone",
+		a.person_type AS "personType",
+		a.person_time AS "personTime",
+		a.person_reason AS "personReason",
+		a.images AS "images",
+		a.more1 AS "more1",
+		TIMESTAMPDIFF(YEAR, a.birthday, CURDATE()) AS "age",
+		a20.name AS "areaComId.name",
+		noselarea.name AS "areaGridId.name",
+		a.room_id AS "roomIdString",
+		(case a.sex when 0 then '男' when 1 then '女' else '' end) "sexLable",
+		a.build_id AS "buildId.id",
+		a.practitioners_type AS "practitioners",
+		a.unit_category AS "unitCategory"
+	</sql>
 	<sql id="ccmPeopleJoinsArea">
 		LEFT JOIN sys_area a20 ON a20.id = a.area_com_id
 	</sql>
@@ -796,10 +862,10 @@
 	<!-- 数组查询id V2版-->
 	<select id="findListLimite_V2" resultType="CcmPeople">
 		SELECT
-		<include refid="ccmPeopleColumns_simple_V2" />
+		<include refid="ccmPeopleColumns_simple_V3" />
 		FROM ccm_people a
 		<include refid="ccmPeopleJoinsArea" />
-		<include refid="ccmPeopleJoinsNet" />
+		LEFT JOIN sys_area noselarea ON noselarea.id = a.area_grid_id
 		where
 		a.del_flag = #{DEL_FLAG_NORMAL}
 		<if test="listLimite != null and listLimite.length > 0">
