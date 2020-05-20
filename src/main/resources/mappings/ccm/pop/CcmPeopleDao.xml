@@ -1163,7 +1163,7 @@
 				AND a.name LIKE
 				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
 				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
-				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+				<if test="dbName == 'mysql'">concat(#{name},'%')</if>
 			</if>
 			<if test="sex != null and sex != ''">
 				AND a.sex = #{sex}
@@ -1261,7 +1261,7 @@
 				AND a.politics = #{politics}
 			</if>
 			<if test="ident != null and ident != ''">
-				AND a.ident LIKE '%${ident}%'
+				AND a.ident LIKE '${ident}%'
 			</if>
 			<if test="specialCareTypes != null and specialCareTypes.length > 0">
 				AND (

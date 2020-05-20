@@ -2663,3 +2663,9 @@ VALUES ( '38906', '06', '民警', 'ccm_org_team_type', '人员类型', 6, '0', '
     -- 系统设置 菜单管理 机构管理路径修改 添加显示权限
     UPDATE sys_menu SET parent_id = 'c61b2a84c1fd47f8a505be319ef48ebd', parent_ids = '0,1,2,c61b2a84c1fd47f8a505be319ef48ebd,', name = '机构管理', href = '/sys/office/index1', target = '', icon = 'jigouguanli', sort = 40, is_show = '1', permission = '', update_by = '1', update_date = '2020-05-20 09:22:58.215', remarks = ''
      WHERE id = '17';
+
+
+     -- 人口表 添加索引 姓名 身份证号
+    ALTER TABLE `ccm_people`
+    ADD INDEX `ccm_people_name`(`name`) USING BTREE,
+    ADD INDEX `ccm_people_ident`(`ident`) USING BTREE;
