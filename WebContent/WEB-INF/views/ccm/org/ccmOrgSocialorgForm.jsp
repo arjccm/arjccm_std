@@ -46,7 +46,7 @@
 				maxmin: false,
 				/*   btn: ['关闭'], //可以无限个按钮 */
 				content: src,
-				zIndex:'1992',
+				zIndex:'10',
 				cancel:function(){
 					//防止取消和删除效果一样
 					window.isCancel = true;

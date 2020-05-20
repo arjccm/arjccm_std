@@ -42,7 +42,7 @@
 			<label class="control-label">上级区域:</label>
 			<div class="controls">
 				<sys:treeselect id="area" name="parent.id" value="${area.parent.id}" labelName="parent.name" labelValue="${area.parent.name}"
-					title="区域" url="/sys/area/treeData" extId="${area.id}" cssClass="" allowClear="true"/>
+					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="" allowClear="true"/>
 			</div>
 		</div>
 		<div class="control-group">

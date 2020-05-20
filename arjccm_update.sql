@@ -2658,3 +2658,8 @@ ADD COLUMN `rentalHousingNumber` int(12) NULL COMMENT '出租房屋总数量' AF
 --字典表新增人员类型
 INSERT INTO `sys_dict` ( `id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag` )
 VALUES ( '38906', '06', '民警', 'ccm_org_team_type', '人员类型', 6, '0', '1', '2020-05-18 17:49:01', '1', '2020-05-18 17:49:01', '', '0' );
+
+
+    -- 系统设置 菜单管理 机构管理路径修改 添加显示权限
+    UPDATE sys_menu SET parent_id = 'c61b2a84c1fd47f8a505be319ef48ebd', parent_ids = '0,1,2,c61b2a84c1fd47f8a505be319ef48ebd,', name = '机构管理', href = '/sys/office/index1', target = '', icon = 'jigouguanli', sort = 40, is_show = '1', permission = '', update_by = '1', update_date = '2020-05-20 09:22:58.215', remarks = ''
+     WHERE id = '17';

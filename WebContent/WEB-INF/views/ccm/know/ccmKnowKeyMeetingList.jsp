@@ -77,7 +77,7 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="ccmKnowKeyMeeting">
 			<tr>
-				<td><a href="${ctx}/know/ccmKnowKeyMeeting/form?id=${ccmKnowKeyMeeting.id}">
+				<td style="white-space:normal;width:20%"><a href="${ctx}/know/ccmKnowKeyMeeting/form?id=${ccmKnowKeyMeeting.id}">
 					${ccmKnowKeyMeeting.title}
 				</a></td>
 				<td>
@@ -89,7 +89,7 @@
 				<td>
 					${ccmKnowKeyMeeting.address}
 				</td>
-				<td>
+				<td style="white-space:normal;width:20%">
 					${ccmKnowKeyMeeting.attendee}
 				</td>
 				<shiro:hasPermission name="know:ccmKnowKeyMeeting:edit"><td>

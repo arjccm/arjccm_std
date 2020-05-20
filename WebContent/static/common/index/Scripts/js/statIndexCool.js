@@ -3441,12 +3441,20 @@ function getPreventive(data) {
 
 //安全事故分布
 function getDistribution(data) {
+    debugger
     distributionChart = echarts.init(document.getElementById('echLeftContent3'));
     distributionChart.resize();
     distributionChart.clear();
-    var dataX = data['type'];
-    var dataY = data['data'];
-    var bgNum = data['Maxnum'];
+    var dataX = ["暂无数据"];
+    var dataY = ["0"];
+    var bgNum = ["0"];
+
+    if (!data['type'].length == 0 && !data['data'].length == 0 && !data['Maxnum'].length == 0){
+        dataX = data['type'];
+        dataY = data['data'];
+        bgNum = data['Maxnum'];
+    }
+
     // var dataX = ['庙祝警务室', '上庄警务室', '集聚区警务室', '窦沟警务室'];
     // var dataY = [100, 152, 200, 334];
     // var bgNum = [390, 390, 390, 390];
@@ -4250,6 +4258,7 @@ function getAreaEch() {
     distributionChart = echarts.init(document.getElementById('echRightContent3'));
     distributionChart.resize();
     distributionChart.clear();
+    debugger
     var dataX = arr1;
     var dataY = arr2;
     var bgNum = [arr2[0], arr2[0], arr2[0], arr2[0], arr2[0]];
@@ -4265,9 +4274,16 @@ function compareNumbers(a, b) {
 //视频区域分布
 function getAreaDistribution(noCache) {
     $.getJSON(ctx + "/ccmsys/ccmDevice/selectDeviceByArea", {"noCache": noCache}, function (data) {
-        var dataX = data['type'];
-        var dataY = data['data'];
-        var bgNum = data['Maxnum'];
+
+        var dataX = ["暂无数据"];
+        var dataY = ["0"];
+        var bgNum = ["0"];
+
+        if (!data['type'].length == 0 && !data['data'].length == 0 && !data['Maxnum'].length == 0){
+            dataX = data['type'];
+            dataY = data['data'];
+            bgNum = data['Maxnum'];
+        }
         var option = showDistribution(dataX, bgNum, dataY);
         rightContent3Charts.setOption(option);
     });
@@ -5042,7 +5058,7 @@ function LayerDialog(src, title, height, width) {
         id: 'LayerDialog',
         //btn: [ '确定',  '关闭'], //可以无限个按钮
         content: src,
-        zIndex: '1992',
+        zIndex:'10',
         skin: "mySkin"
     });
 

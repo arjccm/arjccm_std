@@ -309,19 +309,22 @@ public class CcmDeviceController extends BaseController {
 		List<String> listdata = Lists.newArrayList();
 		List<String> listtype = Lists.newArrayList();
 		List<Integer> listMaxnum = Lists.newArrayList();
-		Collections.sort(list, Comparator.comparing(EchartType::getValue).reversed());
+		if (!list.isEmpty()){
+			Collections.sort(list, Comparator.comparing(EchartType::getValue).reversed());
 //		List<EchartType> reslist = list.stream().sorted((s1, s2) -> s1.getValue().compareTo(s2.getValue())).collect(Collectors.toList());
-		list.sort(Comparator.comparing(EchartType::getValue).reversed());
+			list.sort(Comparator.comparing(EchartType::getValue).reversed());
 //		String Maxnum = list.get(0).getValue();
-		int Maxnum = getMaxNumber(list.get(0).getValue());
-		for (int i = 0; i < list.size(); i++) {
-			if(i > num){
-				break;
+			int Maxnum = getMaxNumber(list.get(0).getValue());
+			for (int i = 0; i < list.size(); i++) {
+				if(i > num){
+					break;
+				}
+				listdata.add(list.get(i).getValue());
+				listtype.add(list.get(i).getType());
+				listMaxnum.add(Maxnum);
 			}
-			listdata.add(list.get(i).getValue());
-			listtype.add(list.get(i).getType());
-			listMaxnum.add(Maxnum);
 		}
+
 		map.put("type",listtype);
 		map.put("data",listdata);
 		map.put("Maxnum",listMaxnum);

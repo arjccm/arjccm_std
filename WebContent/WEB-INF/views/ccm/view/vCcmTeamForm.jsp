@@ -280,7 +280,7 @@
                         <label class="control-label"><span class="help-inline"><font
                                 color="red">*</font> </span>民族：</label>
                         <div class="controls">
-                            <form:select path="nation" class="input-xlarge ">
+                            <form:select path="nation" class="input-xlarge required">
                                 <form:option value="" label=""/>
                                 <form:options items="${fns:getDictList('sys_volk')}" itemLabel="label" itemValue="value"
                                               htmlEscape="false"/>
@@ -327,8 +327,8 @@
                             <input name="birthday" type="text" readonly="readonly" maxlength="20"
                                    class="input-medium Wdate required"
                                    value="<fmt:formatDate value="${vCcmTeam.birthday}" pattern="yyyy-MM-dd"/>"
-                                   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
-
+                                   onclick="WdatePicker({startDate:'%y',dateFmt:'yyyy-MM-dd',isShowClear:false,maxDate:'%y-%M-{%d}'})"
+                                   />
                         </div>
                     </div>
                 </td>

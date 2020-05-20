@@ -87,7 +87,7 @@
 				<td>
 					${ccmWorkerAttendance.createBy.office.name}
 				</td>
-				<td>
+				<td title="${ccmWorkerAttendance.cause}" style="white-space: normal;width:30%">
 					${ccmWorkerAttendance.cause}
 				</td>
 				<td>

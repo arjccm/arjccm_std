@@ -57,7 +57,7 @@ input.input-xxlarge{
     .select2-container .select2-choice{
         width: 210px ;
     }
-    .input-xlarge {width: 206px ;}
+    div.input-xlarge {width: 206px !important;}
     /*所属区域和使用者等弹出选择文本框修改*/
     input[type="text"],input[type="password"], .uneditable-input {width: 206px !important;}
     /*文本域样式修改*/

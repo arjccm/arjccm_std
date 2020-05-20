@@ -484,9 +484,9 @@
         </table>--%>
 
 
-		<table class="table " style="width: 423px;height: 610px;position:absolute;background: none;top: 37px;right: 5px;" >
+		<table class="table " style="width: 423px;height: 610px;position:absolute;background: none;top: 40px;right: 0px;" >
 			<tr>
-				<td style="position:absolute;width: 422px;height: 610px;margin-top: 5px;background: #ffffff;">
+				<td style="overflow-y:auto; position:absolute;width: 422px;height: 610px;margin-top: 5px;background: #ffffff;">
 					<label class="lab1" style="margin-top:12px"><span > 姓名:</span ><span id="warpeoplename"></span></label>
 					<label  class="lab2"><span >车牌号:</span> <span id="warcarid"></span></label>
 					<br>

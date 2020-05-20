@@ -53,7 +53,7 @@
 		<c:if test="${office.parentIds != '%'}">
 			<li class="active"><a href="${ctx}/sys/office/list?id=${office.id}&parentIds=${office.parentIds}&name=">机构列表</a></li>
 		</c:if> --%>
-		<li class="active"><a class="nav-head" href="${ctx}/sys/office/list?id=&parentIds=&name=">机构列表</a></li>
+		<li class="active"><a class="nav-head" href="${ctx}/sys/office/list?id=${office.id}&parentIds=&name=${office.id}">机构列表</a></li>
 		<shiro:hasPermission name="sys:office:edit"><li><a style="text-align:center" href="${ctx}/sys/office/form?parent.id=${office.id}">机构添加</a></li></shiro:hasPermission>
 	</ul>
 	<sys:message content="${message}"/>
