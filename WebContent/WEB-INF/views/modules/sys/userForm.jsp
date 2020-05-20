@@ -100,7 +100,8 @@
 							<sys:treeselect id="office" name="office.id"
 											value="${user.office.id}" labelName="office.name"
 											labelValue="${user.office.name}" title="部门"
-											url="/sys/office/treeData?type=2" cssClass="required"
+											extId="${user.office.parentIds}"
+											url="/sys/office/treeDataByOffice" cssClass="required"
 											notAllowSelectParent="false" />
 						</div>
 					</div>
