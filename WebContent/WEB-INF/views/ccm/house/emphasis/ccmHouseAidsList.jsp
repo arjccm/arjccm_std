@@ -118,6 +118,10 @@
             <th>是否有违法犯罪史</th>
             <th>关注程度</th>
             <th>收治情况</th>
+            <c:if test="${isShow eq 'YES'}">
+                <th>最近走访日期</th>
+                <th>下次走访日期</th>
+            </c:if>
             <th>操作</th>
         </tr>
         </thead>
@@ -149,6 +153,10 @@
                 </c:if>
                 <td>${fns:getDictLabel(ccmHouseAids.treaCase, 'ccm_tred_case', '')}
                 </td>
+                <c:if test="${isShow eq 'YES'}">
+                    <td><fmt:formatDate value="${ccmHouseAids.intervalDate}" pattern="yyyy-MM-dd"/></td>
+                    <td><fmt:formatDate value="${ccmHouseAids.nextvalDate}" pattern="yyyy-MM-dd"/></td>
+                </c:if>
                 <td><shiro:hasPermission name="house:ccmHouseAids:edit">
                         <a class="btnList"
                            onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseAids/form?id=${ccmHouseAids.id}&hide1=true&hide2=false', '详情', '1200px', '800px')"

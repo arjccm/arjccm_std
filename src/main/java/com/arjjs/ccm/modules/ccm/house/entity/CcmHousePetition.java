@@ -49,6 +49,25 @@ public class CcmHousePetition extends DataEntity<CcmHousePetition> {
 	
 
 	private User checkUser;		// 拦截器中使用该用户进行权限拦截，App的rest接口使用
+
+	private Date intervalDate;  // 走访时间
+	private Date nextvalDate;   // 下次走访时间
+
+	public Date getNextvalDate() {
+		return nextvalDate;
+	}
+
+	public void setNextvalDate(Date nextvalDate) {
+		this.nextvalDate = nextvalDate;
+	}
+
+	public Date getIntervalDate() {
+		return intervalDate;
+	}
+
+	public void setIntervalDate(Date intervalDate) {
+		this.intervalDate = intervalDate;
+	}
 	public User getCheckUser() {
 		return checkUser;
 	}

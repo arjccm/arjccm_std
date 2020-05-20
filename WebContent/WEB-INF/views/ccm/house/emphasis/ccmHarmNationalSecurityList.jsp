@@ -111,6 +111,10 @@
 				<th>危险程度</th>
 				<th>有无犯罪史</th>
 				<th>嫌疑类型</th>
+				<c:if test="${isShow eq 'YES'}">
+					<th>最近走访日期</th>
+					<th>下次走访日期</th>
+				</c:if>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -136,6 +140,10 @@
 				</c:if>
 				<td>${fns:getDictLabel(ccmHarmNationalSecurity.isCrimeHistory, 'have_no', '')}</td>
 				<td>${fns:getDictLabel(ccmHarmNationalSecurity.suspicionType, 'suspicion_type_dict', '')}</td>
+				<c:if test="${isShow eq 'YES'}">
+					<td><fmt:formatDate value="${ccmHarmNationalSecurity.intervalDate}" pattern="yyyy-MM-dd"/></td>
+					<td><fmt:formatDate value="${ccmHarmNationalSecurity.nextvalDate}" pattern="yyyy-MM-dd"/></td>
+				</c:if>
 				<td><shiro:hasPermission name="house:ccmHarmNationalSecurity:edit">
 						<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHarmNationalSecurity/form?id=${ccmHarmNationalSecurity.id}&hide1=true&hide2=false', '详情', '1200px', '800px')" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 					</shiro:hasPermission>

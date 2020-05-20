@@ -122,7 +122,10 @@
             <th>关注程度</th>
             <th>是否累犯</th>
             <th>所判罪行</th>
-
+            <c:if test="${isShow eq 'YES'}">
+                <th>最近走访日期</th>
+                <th>下次走访日期</th>
+            </c:if>
             <th>操作</th>
         </tr>
         </thead>
@@ -155,6 +158,10 @@
                 <td>${fns:getDictLabel(ccmHouseDeliberatelyIllegal.isRecidivism, 'have_no', '')}</td>
                 <td>${ccmHouseDeliberatelyIllegal.convictCrimes}
                 </td>
+                <c:if test="${isShow eq 'YES'}">
+                    <td><fmt:formatDate value="${ccmHouseDeliberatelyIllegal.intervalDate}" pattern="yyyy-MM-dd"/></td>
+                    <td><fmt:formatDate value="${ccmHouseDeliberatelyIllegal.nextvalDate}" pattern="yyyy-MM-dd"/></td>
+                </c:if>
                 <td><shiro:hasPermission name="house:ccmHouseDeliberatelyIllegal:edit">
                     <a class="btnList"
                        onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseDeliberatelyIllegal/form?id=${ccmHouseDeliberatelyIllegal.id}&hide1=true&hide2=false', '详情', '1200px', '800px')"
@@ -162,11 +169,11 @@
                     </shiro:hasPermission>
                     <shiro:hasPermission name="log:ccmLogTail:edit">
                         <a class="btnList"
-                           onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseDeliberatelyIllegal.id}&relevance_table=ccm_house_deliberatelyIllegal', '走访记录', '1200px', '500px')"
+                           onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseDeliberatelyIllegal.id}&relevance_table=ccm_house_deliberately_illegal', '走访记录', '1200px', '500px')"
                            title="走访记录"><i class="iconfont icon-caozuotubiao-zoufangjilu"></i></a>
                         <%-- <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseDeliberatelyIllegal.id}&relevance_table=ccm_house_deliberatelyIllegal', '记录信息', '800px', '660px')" title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a> --%>
                         <a class="btnList"
-                           onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseDeliberatelyIllegal.id}&relevance_table=ccm_house_deliberatelyIllegal', '添加记录', '800px', '660px')"
+                           onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseDeliberatelyIllegal.id}&relevance_table=ccm_house_deliberately_illegal', '添加记录', '800px', '660px')"
                            title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
                     </shiro:hasPermission></td>
             </tr>

@@ -5,88 +5,73 @@
 	<sql id="ccmHousePsychogenyColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
-		a.economic AS
-		"economic",
+		a.interval_date AS "intervalDate",
+		a.economic AS "economic",
 		a.allowance AS "allowance",
 		a.guar_iden AS "guarIden",
 		a.guar_name AS "guarName",
 		a.guar_tel AS "guarTel",
-		a.dateonset AS
-		"dateonset",
+		a.dateonset AS "dateonset",
 		a.diag_type AS "diagType",
 		a.atte_type AS "atteType",
 		a.acci_hist AS "acciHist",
 		a.acci_count AS "acciCount",
 		a.acci_last AS "acciLast",
-		a.dang_asse AS
-		"dangAsse",
+		a.dang_asse AS "dangAsse",
 		a.trea_cond AS "treaCond",
 		a.hospital AS "hospital",
 		a.hosp_reason AS "hospReason",
 		a.trai_inst AS "traiInst",
-		a.management
-		AS "management",
+		a.management AS "management",
 		a.helpcase AS "helpcase",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS
-		"delFlag"
+		a.del_flag AS "delFlag"
 	</sql>
 
 	<sql id="ccmHousePsychogenyAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
-		a.economic AS
-		"economic",
+		a.interval_date AS "intervalDate",
+		a.economic AS "economic",
 		a.allowance AS "allowance",
 		a.guar_iden AS "guarIden",
 		a.guar_name AS "guarName",
 		a.guar_tel AS "guarTel",
-		a.dateonset AS
-		"dateonset",
+		a.dateonset AS "dateonset",
 		a.diag_type AS "diagType",
 		a.atte_type AS "atteType",
 		a.acci_hist AS "acciHist",
 		a.acci_count AS "acciCount",
 		a.acci_last AS "acciLast",
-		a.dang_asse AS
-		"dangAsse",
+		a.dang_asse AS "dangAsse",
 		a.trea_cond AS "treaCond",
 		a.hospital AS "hospital",
 		a.hosp_reason AS "hospReason",
 		a.trai_inst AS "traiInst",
-		a.management
-		AS "management",
+		a.management AS "management",
 		a.helpcase AS "helpcase",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS
-		"delFlag",
-
+		a.del_flag AS "delFlag",
 		b.ident AS "ident",
 		b. NAME AS "name",
 		b.sex AS "sex",
-		b.telephone AS
-		"telephone",
+		b.telephone AS "telephone",
 		b.type AS "type",
 		b.censu AS "censu",
-		b.domiciledetail AS
-		"domiciledetail",
-		b.residencedetail AS
-		"residencedetail",
-		b.images AS
-		"images",
+		b.domiciledetail AS "domiciledetail",
+		b.residencedetail AS "residencedetail",
+		b.images AS "images",
 		b.birthday AS "birthday",
 		a20.name AS "comName",
         (case a.atte_type when 01 then '高' when 02 then '中' when 03 then '低' else '' end) "atteTypeLable"
-
-
 	</sql>
 
 	<sql id="ccmHousePsychogenyJoins">
@@ -241,7 +226,8 @@
 		update_by,
 		update_date,
 		remarks,
-		del_flag
+		del_flag,
+		interval_date
 		) VALUES (
 		#{id},
 		#{peopleId},
@@ -268,35 +254,32 @@
 		#{updateBy.id},
 		#{updateDate},
 		#{remarks},
-		#{delFlag}
+		#{delFlag},
+		#{intervalDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE ccm_house_psychogeny SET
-		people_id =
-		#{peopleId},
+		people_id = #{peopleId},
+		interval_date = #{intervalDate},
 		economic = #{economic},
 		allowance = #{allowance},
-		guar_iden
-		= #{guarIden},
+		guar_iden = #{guarIden},
 		guar_name = #{guarName},
 		guar_tel = #{guarTel},
-		dateonset
-		= #{dateonset},
+		dateonset = #{dateonset},
 		diag_type = #{diagType},
 		atte_type = #{atteType},
 		acci_hist = #{acciHist},
 		acci_count = #{acciCount},
 		acci_last = #{acciLast},
-		dang_asse =
-		#{dangAsse},
+		dang_asse = #{dangAsse},
 		trea_cond = #{treaCond},
 		hospital = #{hospital},
 		hosp_reason = #{hospReason},
 		trai_inst = #{traiInst},
-		management =
-		#{management},
+		management = #{management},
 		helpcase = #{helpcase},
 		update_by = #{updateBy.id},
 		update_date = #{updateDate},

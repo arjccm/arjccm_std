@@ -5,6 +5,7 @@
 	<sql id="ccmSeriousCriminalOffenseColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.suspicion_type AS "suspicionType",
 		a.discoverer AS "discoverer",
 		a.discover_id_cards AS "discoverIdCards",
@@ -183,7 +184,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			interval_date
 		) VALUES (
 			#{id},
 			#{peopleId},
@@ -207,13 +209,15 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{intervalDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE ccm_serious_criminal_offense SET 	
 			people_id = #{peopleId},
+			interval_date = #{intervalDate},
 			suspicion_type = #{suspicionType},
 			discovery_way = #{discoveryWay},
 	       supervise_status = #{superviseStatus},

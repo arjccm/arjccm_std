@@ -5,6 +5,7 @@
 	<sql id="ccmHousePetitionColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.work_unit AS "workUnit",
 		a.work_phone AS "workPhone",
 		a.atte_type AS "atteType",
@@ -28,6 +29,7 @@
 	<sql id="ccmHousePetitionAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.work_unit AS "workUnit",
 		a.work_phone AS "workPhone",
 		a.atte_type AS "atteType",
@@ -215,7 +217,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			interval_date
 		) VALUES (
 			#{id},
 			#{peopleId},
@@ -236,13 +239,15 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{intervalDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE ccm_house_petition SET 	
 			people_id = #{peopleId},
+			interval_date = #{intervalDate},
 			work_unit = #{workUnit},
 			work_phone = #{workPhone},
 			atte_type = #{atteType},

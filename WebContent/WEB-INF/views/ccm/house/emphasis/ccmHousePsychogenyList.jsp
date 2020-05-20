@@ -131,6 +131,10 @@
             <th>关注程度</th>
             <th>有无肇事肇祸史</th>
             <th>危险性评估等级</th>
+            <c:if test="${isShow eq 'YES'}">
+                <th>最近走访日期</th>
+                <th>下次走访日期</th>
+            </c:if>
             <th>操作</th>
         </tr>
         </thead>
@@ -162,6 +166,10 @@
                 </c:if>
                 <td>${fns:getDictLabel(ccmHousePsychogeny.acciHist, 'have_no', '')}</td>
                 <td>${fns:getDictLabel(ccmHousePsychogeny.dangAsse, 'ccm_nors_asle', '')}</td>
+                <c:if test="${isShow eq 'YES'}">
+                    <td><fmt:formatDate value="${ccmHousePsychogeny.intervalDate}" pattern="yyyy-MM-dd"/></td>
+                    <td><fmt:formatDate value="${ccmHousePsychogeny.nextvalDate}" pattern="yyyy-MM-dd"/></td>
+                </c:if>
                 <td><shiro:hasPermission name="house:ccmHousePsychogeny:edit">
                         <a class="btnList"
                            onclick="parent.parent.LayerDialog('${ctx}/house/ccmHousePsychogeny/form?id=${ccmHousePsychogeny.id}&hide1=true&hide2=false', '详情', '1200px', '800px')"

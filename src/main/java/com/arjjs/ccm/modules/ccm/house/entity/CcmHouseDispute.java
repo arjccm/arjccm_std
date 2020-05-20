@@ -58,7 +58,24 @@ public class CcmHouseDispute extends DataEntity<CcmHouseDispute> {
 	private Date birthday;	//出生日期
 	private String comName; 	//app接口使用，所属社区
 	private User checkUser;		// 拦截器中使用该用户进行权限拦截，App的rest接口使用
-	
+	private Date intervalDate;  // 走访时间
+	private Date nextvalDate;   // 下次走访时间
+
+	public Date getNextvalDate() {
+		return nextvalDate;
+	}
+
+	public void setNextvalDate(Date nextvalDate) {
+		this.nextvalDate = nextvalDate;
+	}
+
+	public Date getIntervalDate() {
+		return intervalDate;
+	}
+
+	public void setIntervalDate(Date intervalDate) {
+		this.intervalDate = intervalDate;
+	}
 	public CcmHouseDispute() {
 		super();
 	}

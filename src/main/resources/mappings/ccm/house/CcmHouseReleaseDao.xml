@@ -5,21 +5,19 @@
 	<sql id="ccmHouseReleaseColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
-		a.recidivism AS
-		"recidivism",
+		a.interval_date AS "intervalDate",
+		a.recidivism AS "recidivism",
 		a.orig_cha AS "origCha",
 		a.atte_type AS "atteType",
 		a.sentence AS "sentence",
 		a.servin_gplace AS "servinGplace",
 		a.rele_date AS "releDate",
-		a.risk AS
-		"risk",
+		a.risk AS "risk",
 		a.join_date AS "joinDate",
 		a.join_cond AS "joinCond",
 		a.place_date AS "placeDate",
 		a.placement AS "placement",
-		a.not_place AS
-		"notPlace",
+		a.not_place AS "notPlace",
 		a.help_case AS "helpCase",
 		a.reoffend AS "reoffend",
 		a.reof_charge AS "reofCharge",
@@ -28,28 +26,25 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS
-		"delFlag"
+		a.del_flag AS "delFlag"
 	</sql>
 
 	<sql id="ccmHouseReleaseAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
-		a.recidivism AS
-		"recidivism",
+		a.interval_date AS "intervalDate",
+		a.recidivism AS "recidivism",
 		a.orig_cha AS "origCha",
 		a.atte_type AS "atteType",
 		a.sentence AS "sentence",
 		a.servin_gplace AS "servinGplace",
 		a.rele_date AS "releDate",
-		a.risk AS
-		"risk",
+		a.risk AS "risk",
 		a.join_date AS "joinDate",
 		a.join_cond AS "joinCond",
 		a.place_date AS "placeDate",
 		a.placement AS "placement",
-		a.not_place AS
-		"notPlace",
+		a.not_place AS "notPlace",
 		a.help_case AS "helpCase",
 		a.reoffend AS "reoffend",
 		a.reof_charge AS "reofCharge",
@@ -59,19 +54,15 @@
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
 		a.del_flag AS "delFlag",
-
 		b.ident AS "ident",
 		b. NAME AS "name",
 		b.sex AS "sex",
-		b.telephone AS
-		"telephone",
+		b.telephone AS "telephone",
 		b.type AS "type",
 		b.censu AS "censu",
-		b.domiciledetail AS
-		"domiciledetail",
+		b.domiciledetail AS "domiciledetail",
 		b.residencedetail AS "residencedetail",
-		b.images AS
-		"images",
+		b.images AS "images",
 		b.birthday AS "birthday",
 		a20.name AS "comName",
         (case a.atte_type when 01 then '高' when 02 then '中' when 03 then '低' else '' end) "atteTypeLable"
@@ -230,7 +221,8 @@
 		update_by,
 		update_date,
 		remarks,
-		del_flag
+		del_flag,
+		interval_date
 		) VALUES (
 		#{id},
 		#{peopleId},
@@ -254,7 +246,8 @@
 		#{updateBy.id},
 		#{updateDate},
 		#{remarks},
-		#{delFlag}
+		#{delFlag},
+		#{intervalDate}
 		)
 	</insert>
 
@@ -264,8 +257,7 @@
 		recidivism = #{recidivism},
 		orig_cha = #{origCha},
 		atte_type = #{atteType},
-		sentence =
-		#{sentence},
+		sentence = #{sentence},
 		servin_gplace = #{servinGplace},
 		rele_date = #{releDate},
 		risk = #{risk},
@@ -273,14 +265,13 @@
 		join_cond = #{joinCond},
 		place_date = #{placeDate},
 		placement = #{placement},
-		not_place =
-		#{notPlace},
+		interval_date = #{intervalDate},
+		not_place = #{notPlace},
 		help_case = #{helpCase},
 		reoffend = #{reoffend},
 		reof_charge = #{reofCharge},
 		update_by = #{updateBy.id},
-		update_date =
-		#{updateDate},
+		update_date = #{updateDate},
 		remarks = #{remarks}
 		WHERE id = #{id}
 	</update>

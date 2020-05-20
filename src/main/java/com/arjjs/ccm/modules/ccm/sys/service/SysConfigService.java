@@ -7,9 +7,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.service.CrudService;
+import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseSetting;
 import com.arjjs.ccm.modules.ccm.rest.entity.SysMapConfig;
 import com.arjjs.ccm.modules.ccm.sys.dao.SysConfigDao;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
+import com.arjjs.ccm.tool.CommUtil;
 import com.arjjs.ccm.tool.Constants;
 import com.arjjs.ccm.tool.HtmlUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -71,5 +73,44 @@ public class SysConfigService extends CrudService<SysConfigDao, SysConfig> {
 			}
 		}
 		return  imgeUrl;
+	}
+
+	public CcmHouseSetting getTimeInterval(String type){
+		SysConfig sysConfig = this.get("key_personnel_notice_info_setting");
+		CcmHouseSetting ccmHouseSetting = new CcmHouseSetting();
+		ccmHouseSetting.setType(type);
+		String sendInfo = null;
+		if(sysConfig != null) {
+			String paramStr = sysConfig.getParamStr();
+			if(com.arjjs.ccm.common.utils.StringUtils.isBlank(paramStr)) {
+				paramStr = "{}";
+			}
+			if(!CommUtil.isJsonObject(paramStr)) {
+				paramStr = "{}";
+			}
+			JSONObject paramObject = JSONObject.parseObject(paramStr);
+			if(paramObject != null && paramObject.containsKey(type)) {
+				JSONObject jsonObject = paramObject.getJSONObject(type);
+				if(jsonObject.containsKey("sendInfo")) {
+					sendInfo = jsonObject.getString("sendInfo");
+				}
+				if(jsonObject.containsKey("timeInterval")) {
+					String timeInterval = jsonObject.getString("timeInterval");
+					ccmHouseSetting.setTimeInterval(timeInterval);
+				}
+			}
+			ccmHouseSetting.setParamStr(paramStr);
+			ccmHouseSetting.setId(sysConfig.getId());
+			ccmHouseSetting.setRemarks(sysConfig.getRemarks());
+		}else {
+			ccmHouseSetting.setParamStr("{}");
+			ccmHouseSetting.setId("key_personnel_notice_info_setting");
+			ccmHouseSetting.setRemarks("");
+		}
+		if(com.arjjs.ccm.common.utils.StringUtils.isBlank(sendInfo)) {
+			sendInfo = "2";
+		}
+		ccmHouseSetting.setSendInfo(sendInfo);
+		return ccmHouseSetting;
 	}
 }
