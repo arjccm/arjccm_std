@@ -5,6 +5,7 @@
 	<sql id="ccmHouseHeresyColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.atte_type AS "atteType",
 		a.heresy_name AS "heresyName",
 		a.first_time AS "firstTime",
@@ -28,6 +29,7 @@
 	<sql id="ccmHouseHeresyAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.atte_type AS "atteType",
 		a.heresy_name AS "heresyName",
 		a.first_time AS "firstTime",
@@ -216,7 +218,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			interval_date
 		) VALUES (
 			#{id},
 			#{peopleId},
@@ -237,13 +240,15 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{intervalDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE ccm_house_heresy SET 	
 			people_id = #{peopleId},
+			interval_date = #{intervalDate},
 			atte_type = #{atteType},
 			heresy_name = #{heresyName},
 			first_time = #{firstTime},

@@ -6,6 +6,7 @@
     <sql id="ccmHarmNationalSecurityAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.suspicion_type AS "suspicionType",
 		a.report_office AS "reportOffice.id",
 		a.report_date AS "reportDate",
@@ -35,6 +36,7 @@
 	<sql id="ccmHarmNationalSecurityColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.suspicion_type AS "suspicionType",
 		a.report_office AS "reportOffice.id",
 		a.report_date AS "reportDate",
@@ -220,7 +222,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			interval_date
 		) VALUES (
 			#{id},
 			#{peopleId},
@@ -246,18 +249,20 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{intervalDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE ccm_harm_national_security SET 	
 			people_id = #{peopleId},
+			interval_date = #{intervalDate},
 			suspicion_type = #{suspicionType},
 			report_office = #{reportOffice.id},
 			report_date = #{reportDate},
 			discovery_way = #{discoveryWay},
-	    supervise_status = #{superviseStatus},
+	    	supervise_status = #{superviseStatus},
 			discoverer = #{discoverer},
 			discover_id_cards = #{discoverIdCards},
 			discover_phone = #{discoverPhone},

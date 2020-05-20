@@ -5,14 +5,13 @@
 	<sql id="ccmHouseAidsColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
-		a.infe_route AS
-		"infeRoute",
+		a.interval_date AS "intervalDate",
+		a.infe_route AS "infeRoute",
 		a.crim_past AS "crimPast",
 		a.crim_stat AS "crimStat",
 		a.cate_case AS "cateCase",
 		a.atte_type AS "atteType",
-		a.help_case AS
-		"helpCase",
+		a.help_case AS "helpCase",
 		a.help_name AS "helpName",
 		a.help_tel AS "helpTel",
 		a.trea_case AS "treaCase",
@@ -22,21 +21,20 @@
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
-		a.remarks
-		AS "remarks",
+		a.remarks AS "remarks",
 		a.del_flag AS "delFlag"
 	</sql>
 
 	<sql id="ccmHouseAidsAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.infe_route AS "infeRoute",
 		a.crim_past AS "crimPast",
 		a.crim_stat AS "crimStat",
 		a.cate_case AS "cateCase",
 		a.atte_type AS "atteType",
-		a.help_case AS
-		"helpCase",
+		a.help_case AS "helpCase",
 		a.help_name AS "helpName",
 		a.help_tel AS "helpTel",
 		a.trea_case AS "treaCase",
@@ -46,23 +44,17 @@
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
-		a.remarks
-		AS "remarks",
+		a.remarks AS "remarks",
 		a.del_flag AS "delFlag",
-
-
 		b.ident AS "ident",
-		b. NAME AS
-		"name",
+		b. NAME AS "name",
 		b.sex AS "sex",
 		b.censu AS "censu",
 		b.telephone AS "telephone",
 		b.type AS "type",
-		b.domiciledetail AS
-		"domiciledetail",
+		b.domiciledetail AS "domiciledetail",
 		b.residencedetail AS "residencedetail",
-		b.images AS
-		"images",
+		b.images AS "images",
 		b.birthday AS "birthday",
 		a20.name AS "comName",
         (case a.atte_type when 01 then '高' when 02 then '中' when 03 then '低' else '' end) "atteTypeLable"
@@ -213,7 +205,8 @@
 		update_by,
 		update_date,
 		remarks,
-		del_flag
+		del_flag,
+		interval_date
 		) VALUES (
 		#{id},
 		#{peopleId},
@@ -233,13 +226,15 @@
 		#{updateBy.id},
 		#{updateDate},
 		#{remarks},
-		#{delFlag}
+		#{delFlag},
+		#{intervalDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE ccm_house_aids SET
 		people_id = #{peopleId},
+		interval_date = #{intervalDate},
 		infe_route = #{infeRoute},
 		crim_past = #{crimPast},
 		crim_stat =

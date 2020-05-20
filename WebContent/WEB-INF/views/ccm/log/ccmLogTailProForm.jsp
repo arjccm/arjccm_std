@@ -91,7 +91,7 @@
         <form:hidden path="relevanceId"/>
         <form:hidden path="relevanceTable"/>
         <sys:message content="${message}"/>
-        <div style="display: none" class="control-group">
+        <div style="padding-top: 3px" class="control-group">
             <label class="control-label">跟踪对象：</label>
             <div class="controls">
                 <input class="input-xlarge " readonly="readonly" type="text"

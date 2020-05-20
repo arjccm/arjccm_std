@@ -7,6 +7,8 @@ import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
+import com.arjjs.ccm.modules.ccm.house.entity.*;
+import com.arjjs.ccm.modules.ccm.house.service.*;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
 import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
@@ -41,6 +43,30 @@ public class CcmLogTailController extends BaseController {
 
 	@Autowired
 	private CcmLogTailService ccmLogTailService;
+	@Autowired
+	private CcmHouseReleaseService ccmHouseReleaseService;
+	@Autowired
+	private CcmHouseRectificationService ccmHouseRectificationService;
+	@Autowired
+	private CcmHouseAidsService ccmHouseAidsService;
+	@Autowired
+	private CcmHouseDangerousService ccmHouseDangerousService;
+	@Autowired
+	private CcmHouseDrugsService ccmHouseDrugsService;
+	@Autowired
+	private CcmHouseHeresyService ccmHouseHeresyService;
+	@Autowired
+	private CcmHousePetitionService ccmHousePetitionService;
+	@Autowired
+	private CcmHousePsychogenyService ccmHousePsychogenyService;
+	@Autowired
+	private CcmHarmNationalSecurityService ccmHarmNationalSecurityService;
+	@Autowired
+	private CcmSeriousCriminalOffenseService ccmSeriousCriminalOffenseService;
+	@Autowired
+	private CcmHouseDisputeService ccmHouseDisputeService;
+	@Autowired
+	private CcmHouseDeliberatelyIllegalService ccmHouseDeliberatelyIllegalService;
 
 	@ModelAttribute
 	public CcmLogTail get(@RequestParam(value = "id", required = false) String id,
@@ -259,6 +285,55 @@ public class CcmLogTailController extends BaseController {
 	public String saveProdiv(HttpServletRequest request, HttpServletResponse response, CcmLogTail ccmLogTail, Model model, RedirectAttributes redirectAttributes) throws IOException {
 		if (!beanValidator(model, ccmLogTail)) {
 //			return formPro(ccmLogTail, model);
+		}
+		if("ccm_house_release".equals(ccmLogTail.getRelevanceTable())){
+			CcmHouseRelease release = ccmHouseReleaseService.get(ccmLogTail.getRelevanceId());
+			release.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHouseReleaseService.save(release);
+		}else if("ccm_house_rectification".equals(ccmLogTail.getRelevanceTable())){
+			CcmHouseRectification rectification = ccmHouseRectificationService.get(ccmLogTail.getRelevanceId());
+			rectification.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHouseRectificationService.save(rectification);
+		}else if("ccm_house_aids".equals(ccmLogTail.getRelevanceTable())){
+			CcmHouseAids aids = ccmHouseAidsService.get(ccmLogTail.getRelevanceId());
+			aids.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHouseAidsService.save(aids);
+		}else if("ccm_house_dangerous".equals(ccmLogTail.getRelevanceTable())){
+			CcmHouseDangerous dangerous = ccmHouseDangerousService.get(ccmLogTail.getRelevanceId());
+			dangerous.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHouseDangerousService.save(dangerous);
+		}else if("ccm_house_drugs".equals(ccmLogTail.getRelevanceTable())){
+			CcmHouseDrugs drugs = ccmHouseDrugsService.get(ccmLogTail.getRelevanceId());
+			drugs.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHouseDrugsService.save(drugs);
+		}else if("ccm_house_heresy".equals(ccmLogTail.getRelevanceTable())){
+			CcmHouseHeresy heresy = ccmHouseHeresyService.get(ccmLogTail.getRelevanceId());
+			heresy.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHouseHeresyService.save(heresy);
+		}else if("ccm_house_petition".equals(ccmLogTail.getRelevanceTable())){
+			CcmHousePetition petition = ccmHousePetitionService.get(ccmLogTail.getRelevanceId());
+			petition.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHousePetitionService.save(petition);
+		}else if("ccm_house_psychogeny".equals(ccmLogTail.getRelevanceTable())){
+			CcmHousePsychogeny psychogeny = ccmHousePsychogenyService.get(ccmLogTail.getRelevanceId());
+			psychogeny.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHousePsychogenyService.save(psychogeny);
+		}else if("ccm_harm_national_security".equals(ccmLogTail.getRelevanceTable())){
+			CcmHarmNationalSecurity security = ccmHarmNationalSecurityService.get(ccmLogTail.getRelevanceId());
+			security.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHarmNationalSecurityService.save(security);
+		}else if("ccm_serious_criminal_offense".equals(ccmLogTail.getRelevanceTable())){
+			CcmSeriousCriminalOffense offense = ccmSeriousCriminalOffenseService.get(ccmLogTail.getRelevanceId());
+			offense.setIntervalDate(ccmLogTail.getTailTime());
+			ccmSeriousCriminalOffenseService.save(offense);
+		}else if("ccm_house_dispute".equals(ccmLogTail.getRelevanceTable())){
+			CcmHouseDispute dispute = ccmHouseDisputeService.get(ccmLogTail.getRelevanceId());
+			dispute.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHouseDisputeService.save(dispute);
+		}else if("ccm_house_deliberately_llegal".equals(ccmLogTail.getRelevanceTable())){
+			CcmHouseDeliberatelyIllegal illegal = ccmHouseDeliberatelyIllegalService.get(ccmLogTail.getRelevanceId());
+			illegal.setIntervalDate(ccmLogTail.getTailTime());
+			ccmHouseDeliberatelyIllegalService.save(illegal);
 		}
 		ccmLogTailService.save(ccmLogTail);
 		addMessage(redirectAttributes, "保存跟踪信息成功");

@@ -5,6 +5,7 @@
 	<sql id="ccmHouseDangerousColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.work_unit AS "workUnit",
 		a.work_phone AS "workPhone",
 		a.work_place AS "workPlace",
@@ -22,6 +23,7 @@
 	<sql id="ccmHouseDangerousAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.work_unit AS "workUnit",
 		a.work_phone AS "workPhone",
 		a.work_place AS "workPlace",
@@ -37,16 +39,12 @@
 		b.ident AS "ident",
 		b. NAME AS "name",
 		b.sex AS "sex",
-		b.telephone AS
-		"telephone",
+		b.telephone AS "telephone",
 		b.type AS "type",
 		b.censu AS "censu",
-		b.domiciledetail AS
-		"domiciledetail",
-		b.residencedetail AS
-		"residencedetail",
-		b.images AS
-		"images",
+		b.domiciledetail AS "domiciledetail",
+		b.residencedetail AS "residencedetail",
+		b.images AS "images",
 		b.birthday AS "birthday",
 		a20.name AS "comName",
         (case a.atte_type when 01 then '高' when 02 then '中' when 03 then '低' else '' end) "atteTypeLable"
@@ -193,7 +191,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			interval_date
 		) VALUES (
 			#{id},
 			#{peopleId},
@@ -208,13 +207,15 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{intervalDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE ccm_house_dangerous SET 	
 			people_id = #{peopleId},
+			interval_date = #{intervalDate},
 			work_unit = #{workUnit},
 			work_phone = #{workPhone},
 			work_place = #{workPlace},

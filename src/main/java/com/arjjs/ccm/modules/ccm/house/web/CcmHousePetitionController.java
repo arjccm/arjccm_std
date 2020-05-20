@@ -15,12 +15,15 @@ import com.arjjs.ccm.modules.ccm.event.entity.CcmEventIncident;
 import com.arjjs.ccm.modules.ccm.event.service.CcmEventCasedealService;
 import com.arjjs.ccm.modules.ccm.event.service.CcmEventIncidentService;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHousePetition;
+import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseRectification;
+import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseSetting;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHousePetitionService;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
 import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
+import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
@@ -70,6 +73,8 @@ public class CcmHousePetitionController extends BaseController {
 	private CcmEventIncidentService ccmEventIncidentService;
 	@Autowired
 	private CcmEventCasedealService ccmEventCasedealService;
+	@Autowired
+	private SysConfigService sysConfigService;
 	
 	@ModelAttribute
 	public CcmHousePetition get(@RequestParam(required=false) String id,@RequestParam(value = "peopleId", required = false) String peopleId) {
@@ -150,11 +155,30 @@ public class CcmHousePetitionController extends BaseController {
 				model.addAttribute("message", "涉密权限不正确！");
 			}
 		}
-		model.addAttribute("page", page);
 		model.addAttribute("permissionKey", permissionKey);
 		if(StringUtils.isBlank(tableType)) {
+			model.addAttribute("page", page);
 			return "ccm/house/ccmHousePetitionList";
 		}else {
+			String isShow = "NO";
+			CcmHouseSetting setting = sysConfigService.getTimeInterval("ccmHousePetition");
+			if(StringUtils.isNotEmpty(setting.getTimeInterval()) && "1".equals(setting.getSendInfo())){
+				isShow = "YES";
+				Integer num = Integer.parseInt(setting.getTimeInterval());
+				if(page.getList() != null && page.getList().size()>0){
+					for(int i=0 ; i<page.getList().size() ; i++){
+						CcmHousePetition temp = page.getList().get(i);
+						if(temp.getIntervalDate()!=null){
+							page.getList().get(i).setNextvalDate(DateUtils.addDays(temp.getIntervalDate(),num));
+						}else{
+							page.getList().get(i).setIntervalDate(temp.getUpdateDate());
+							page.getList().get(i).setNextvalDate(DateUtils.addDays(temp.getUpdateDate(),num));
+						}
+					}
+				}
+			}
+			model.addAttribute("isShow", isShow);
+			model.addAttribute("page", page);
 			return "ccm/house/emphasis/ccmHousePetitionList";
 		}
 	}

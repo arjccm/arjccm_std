@@ -132,6 +132,10 @@
             <th>痴迷程度</th>
             <th>是否参加转化培训班</th>
             <th>是否已转化</th>
+            <c:if test="${isShow eq 'YES'}">
+                <th>最近走访日期</th>
+                <th>下次走访日期</th>
+            </c:if>
             <th>操作</th>
         </tr>
         </thead>
@@ -165,6 +169,10 @@
                 <td>${fns:getDictLabel(ccmHouseHeresy.level, 'ccm_house_heresy_level', '')}</td>
                 <td>${fns:getDictLabel(ccmHouseHeresy.isStudy, 'yes_no', '')}</td>
                 <td>${fns:getDictLabel(ccmHouseHeresy.isChange, 'yes_no', '')}</td>
+                <c:if test="${isShow eq 'YES'}">
+                    <td><fmt:formatDate value="${ccmHouseHeresy.intervalDate}" pattern="yyyy-MM-dd"/></td>
+                    <td><fmt:formatDate value="${ccmHouseHeresy.nextvalDate}" pattern="yyyy-MM-dd"/></td>
+                </c:if>
                 <td><shiro:hasPermission name="house:ccmHouseHeresy:edit">
                     <a class="btnList"
                        onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseHeresy/form?id=${ccmHouseHeresy.id}&hide1=true&hide2=false', '详情', '1200px', '800px')"

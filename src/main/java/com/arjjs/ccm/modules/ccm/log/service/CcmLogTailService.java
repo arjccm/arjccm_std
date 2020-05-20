@@ -8,11 +8,14 @@ import com.arjjs.ccm.common.service.CrudService;
 import com.arjjs.ccm.common.utils.IdGen;
 import com.arjjs.ccm.modules.ccm.event.entity.CcmEventCasedeal;
 import com.arjjs.ccm.modules.ccm.event.entity.CcmEventIncident;
+import com.arjjs.ccm.modules.ccm.house.entity.*;
+import com.arjjs.ccm.modules.ccm.house.service.*;
 import com.arjjs.ccm.modules.ccm.log.dao.CcmLogTailDao;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.google.common.collect.Lists;
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +36,6 @@ public class CcmLogTailService extends CrudService<CcmLogTailDao, CcmLogTail> {
 
     @Autowired
     private CcmLogTailDao ccmLogTailDao;
-
 
     public CcmLogTail get(String id) {
         return super.get(id);

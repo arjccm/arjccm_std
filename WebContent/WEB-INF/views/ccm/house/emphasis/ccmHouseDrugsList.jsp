@@ -114,6 +114,10 @@
 				<th>关注程度</th>
 				<th>有无犯罪史</th>
 				<th>吸毒原因</th>
+				<c:if test="${isShow eq 'YES'}">
+					<th>最近走访日期</th>
+					<th>下次走访日期</th>
+				</c:if>
                 <th>操作</th>
 			</tr>
 		</thead>
@@ -139,6 +143,10 @@
 					</c:if>
 					<td>${fns:getDictLabel(ccmHouseDrugs.crimPast, 'have_no', '')}</td>
 					<td>${fns:getDictLabel(ccmHouseDrugs.drugCaus, 'sys_ccm_drugs_caus', '')}</td>
+					<c:if test="${isShow eq 'YES'}">
+						<td><fmt:formatDate value="${ccmHouseDrugs.intervalDate}" pattern="yyyy-MM-dd"/></td>
+						<td><fmt:formatDate value="${ccmHouseDrugs.nextvalDate}" pattern="yyyy-MM-dd"/></td>
+					</c:if>
 					<td><shiro:hasPermission name="house:ccmHouseDrugs:edit">
 							<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseDrugs/form?id=${ccmHouseDrugs.id}&hide1=true&hide2=false', '详情', '1200px', '800px')" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						</shiro:hasPermission>

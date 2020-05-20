@@ -138,6 +138,10 @@
             <th>原罪名</th>
             <th>关注程度</th>
             <th>释放日期</th>
+            <c:if test="${isShow eq 'YES'}">
+                <th>最近走访日期</th>
+                <th>下次走访日期</th>
+            </c:if>
             <th>操作</th>
         </tr>
         </thead>
@@ -169,6 +173,10 @@
                     <td>${fns:getDictLabel(ccmHouseRelease.atteType, 'ccm_conc_exte', '')}</td>
                 </c:if>
                 <td><fmt:formatDate value="${ccmHouseRelease.releDate}" pattern="yyyy-MM-dd"/></td>
+                <c:if test="${isShow eq 'YES'}">
+                    <td><fmt:formatDate value="${ccmHouseRelease.intervalDate}" pattern="yyyy-MM-dd"/></td>
+                    <td><fmt:formatDate value="${ccmHouseRelease.nextvalDate}" pattern="yyyy-MM-dd"/></td>
+                </c:if>
                 <td><shiro:hasPermission name="house:ccmHouseRelease:edit">
                         <a class="btnList"
                            onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseRelease/form?id=${ccmHouseRelease.id}&hide1=true&hide2=false', '详情', '1200px', '800px')"

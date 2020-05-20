@@ -124,6 +124,10 @@
             <th>关注程度</th>
             <th>危险品类别</th>
             <th>工作类别</th>
+            <c:if test="${isShow eq 'YES'}">
+                <th>最近走访日期</th>
+                <th>下次走访日期</th>
+            </c:if>
             <th>操作</th>
         </tr>
         </thead>
@@ -153,6 +157,10 @@
                 </c:if>
                 <td>${fns:getDictLabel(ccmHouseDangerous.goodsType, 'ccm_house_dangerous_goods', '')}</td>
                 <td>${fns:getDictLabel(ccmHouseDangerous.workType, 'ccm_house_dangerous_work', '')}</td>
+                <c:if test="${isShow eq 'YES'}">
+                    <td><fmt:formatDate value="${ccmHouseDangerous.intervalDate}" pattern="yyyy-MM-dd"/></td>
+                    <td><fmt:formatDate value="${ccmHouseDangerous.nextvalDate}" pattern="yyyy-MM-dd"/></td>
+                </c:if>
                 <td><shiro:hasPermission name="house:ccmHouseDangerous:edit">
                     <a class="btnList"
                        onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseDangerous/form?id=${ccmHouseDangerous.id}&hide1=true&hide2=false', '详情', '1200px', '800px')"

@@ -6,6 +6,7 @@
     <sql id="ccmHouseDeliberatelyIllegalAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.convict_crimes AS "convictCrimes",
 		a.convict_result AS "convictResult",
 		a.supervise_status AS "superviseStatus",
@@ -37,6 +38,7 @@
 	<sql id="ccmHouseDeliberatelyIllegalColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.convict_crimes AS "convictCrimes",
 		a.convict_result AS "convictResult",
 		a.supervise_status AS "superviseStatus",
@@ -60,8 +62,6 @@
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
 		a.del_flag AS "delFlag",
-		
-		
 		b.ident AS "ident",
 		b.NAME AS "name",
 		b.sex AS "sex",
@@ -224,7 +224,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			interval_date
 		) VALUES (
 			#{id},
 			#{peopleId},
@@ -250,13 +251,15 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{intervalDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE ccm_house_deliberately_illegal SET 	
 			people_id = #{peopleId},
+			interval_date = #{intervalDate},
 			convict_crimes = #{convictCrimes},
 			convict_result = #{convictResult},
 			supervise_status = #{superviseStatus},

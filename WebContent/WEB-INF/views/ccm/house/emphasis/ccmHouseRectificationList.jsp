@@ -129,6 +129,10 @@
             <th>矫正类別</th>
             <th>关注程度</th>
             <th>案事件类別</th>
+            <c:if test="${isShow eq 'YES'}">
+                <th>最近走访日期</th>
+                <th>下次走访日期</th>
+            </c:if>
             <th>操作</th>
         </tr>
         </thead>
@@ -160,6 +164,10 @@
                     <td>${fns:getDictLabel(ccmHouseRectification.atteType, 'ccm_conc_exte', '')} </td>
                 </c:if>
                 <td>${fns:getDictLabel(ccmHouseRectification.caseType, 'ccm_house_aids_cate', '')}</td>
+                <c:if test="${isShow eq 'YES'}">
+                    <td><fmt:formatDate value="${ccmHouseRectification.intervalDate}" pattern="yyyy-MM-dd"/></td>
+                    <td><fmt:formatDate value="${ccmHouseRectification.nextvalDate}" pattern="yyyy-MM-dd"/></td>
+                </c:if>
                 <td><shiro:hasPermission name="house:ccmHouseRectification:edit">
                         <a class="btnList"
                            onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseRectification/form?id=${ccmHouseRectification.id}&hide1=true&hide2=false', '详情', '1200px', '800px')"

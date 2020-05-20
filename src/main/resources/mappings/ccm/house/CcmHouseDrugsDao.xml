@@ -5,29 +5,24 @@
 	<sql id="ccmHouseDrugsColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
-		a.first_found AS
-		"firstFound",
+		a.interval_date AS "intervalDate",
+		a.first_found AS "firstFound",
 		a.cont_sit AS "contSit",
 		a.cont_name AS "contName",
-		a.cont_tl AS
-		"contTl",
+		a.cont_tl AS "contTl",
 		a.help_case AS "helpCase",
-		a.help_name AS
-		"helpName",
+		a.help_name AS "helpName",
 		a.help_tl AS "helpTl",
 		a.atte_type AS "atteType",
 		a.crim_past AS "crimPast",
-		a.crim_stat AS
-		"crimStat",
+		a.crim_stat AS "crimStat",
 		a.drug_caus AS "drugCaus",
-		a.cons_drug AS
-		"consDrug",
+		a.cons_drug AS "consDrug",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
-		a.remarks
-		AS "remarks",
+		a.remarks AS "remarks",
 		a.del_flag AS "delFlag"
 
 	</sql>
@@ -35,31 +30,25 @@
 	<sql id="ccmHouseDrugsAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
-		a.first_found AS
-		"firstFound",
+		a.interval_date AS "intervalDate",
+		a.first_found AS "firstFound",
 		a.cont_sit AS "contSit",
 		a.cont_name AS "contName",
-		a.cont_tl AS
-		"contTl",
+		a.cont_tl AS "contTl",
 		a.help_case AS "helpCase",
-		a.help_name AS
-		"helpName",
+		a.help_name AS "helpName",
 		a.help_tl AS "helpTl",
 		a.atte_type AS "atteType",
 		a.crim_past AS "crimPast",
-		a.crim_stat AS
-		"crimStat",
+		a.crim_stat AS "crimStat",
 		a.drug_caus AS "drugCaus",
-		a.cons_drug AS
-		"consDrug",
+		a.cons_drug AS "consDrug",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
-		a.remarks
-		AS "remarks",
+		a.remarks AS "remarks",
 		a.del_flag AS "delFlag",
-		
 		b.ident AS "ident",
 		b. NAME AS "name",
 		b.sex AS "sex",
@@ -215,7 +204,8 @@
 		update_by,
 		update_date,
 		remarks,
-		del_flag
+		del_flag,
+		interval_date
 		) VALUES (
 		#{id},
 		#{peopleId},
@@ -236,30 +226,28 @@
 		#{updateBy.id},
 		#{updateDate},
 		#{remarks},
-		#{delFlag}
+		#{delFlag},
+		#{intervalDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE ccm_house_drugs SET
 		people_id = #{peopleId},
+		interval_date = #{intervalDate},
 		first_found = #{firstFound},
 		cont_sit = #{contSit},
-		cont_name =
-		#{contName},
+		cont_name = #{contName},
 		cont_tl = #{contTl},
 		help_case = #{helpCase},
-		help_name =
-		#{helpName},
+		help_name = #{helpName},
 		help_tl = #{helpTl},
 		atte_type = #{atteType},
 		crim_past = #{crimPast},
-		crim_stat =
-		#{crimStat},
+		crim_stat = #{crimStat},
 		drug_caus = #{drugCaus},
 		cons_drug = #{consDrug},
-		update_by
-		= #{updateBy.id},
+		update_by = #{updateBy.id},
 		update_date = #{updateDate},
 		remarks = #{remarks}
 		WHERE id = #{id}

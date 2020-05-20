@@ -5,40 +5,34 @@
 	<sql id="ccmHouseRectificationColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
-		a.rect_num AS
-		"rectNum",
+		a.interval_date AS "intervalDate",
+		a.rect_num AS "rectNum",
 		a.rect_place AS "rectPlace",
 		a.atte_type AS "atteType",
 		a.rect_type AS "rectType",
 		a.case_type AS "caseType",
 		a.charge AS "charge",
-		a.orig_charge AS
-		"origCharge",
+		a.orig_charge AS "origCharge",
 		a.orig_begin AS "origBegin",
 		a.orig_end AS "origEnd",
 		a.rect_begin AS "rectBegin",
 		a.rect_end AS "rectEnd",
-		a.receive_mode AS
-		"receiveMode",
+		a.receive_mode AS "receiveMode",
 		a.four_his AS "fourHis",
 		a.recidivist AS "recidivist",
 		a.thr_hold AS "thrHold",
 		a.correcthas AS "correcthas",
-		a.corrected AS
-		"corrected",
+		a.corrected AS "corrected",
 		a.correctlift AS "correctlift",
 		a.detached AS "detached",
 		a.deta_reason AS "detaReason",
 		a.deta_supe AS "detaSupe",
-		a.deta_corr AS
-		"detaCorr",
+		a.deta_corr AS "detaCorr",
 		a.lack_contr AS "lackContr",
-		a.lack_contr_re AS
-		"lackContrRe",
+		a.lack_contr_re AS "lackContrRe",
 		a.lack_contr_case AS "lackContrCase",
 		a.lack_contr_case_corr AS "lackContrCaseCorr",
-		a.rewandpun AS
-		"rewandpun",
+		a.rewandpun AS "rewandpun",
 		a.pena_chan AS "penaChan",
 		a.reoffend AS "reoffend",
 		a.reof_charge AS "reofCharge",
@@ -47,47 +41,40 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS
-		"delFlag"
+		a.del_flag AS"delFlag"
 	</sql>
 
 	<sql id="ccmHouseRectificationAllColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
-		a.rect_num AS
-		"rectNum",
+		a.interval_date AS "intervalDate",
+		a.rect_num AS "rectNum",
 		a.rect_place AS "rectPlace",
 		a.atte_type AS "atteType",
 		a.rect_type AS "rectType",
 		a.case_type AS "caseType",
 		a.charge AS "charge",
-		a.orig_charge AS
-		"origCharge",
+		a.orig_charge AS "origCharge",
 		a.orig_begin AS "origBegin",
 		a.orig_end AS "origEnd",
 		a.rect_begin AS "rectBegin",
 		a.rect_end AS "rectEnd",
-		a.receive_mode AS
-		"receiveMode",
+		a.receive_mode AS "receiveMode",
 		a.four_his AS "fourHis",
 		a.recidivist AS "recidivist",
 		a.thr_hold AS "thrHold",
 		a.correcthas AS "correcthas",
-		a.corrected AS
-		"corrected",
+		a.corrected AS "corrected",
 		a.correctlift AS "correctlift",
 		a.detached AS "detached",
 		a.deta_reason AS "detaReason",
 		a.deta_supe AS "detaSupe",
-		a.deta_corr AS
-		"detaCorr",
+		a.deta_corr AS "detaCorr",
 		a.lack_contr AS "lackContr",
-		a.lack_contr_re AS
-		"lackContrRe",
+		a.lack_contr_re AS "lackContrRe",
 		a.lack_contr_case AS "lackContrCase",
 		a.lack_contr_case_corr AS "lackContrCaseCorr",
-		a.rewandpun AS
-		"rewandpun",
+		a.rewandpun AS "rewandpun",
 		a.pena_chan AS "penaChan",
 		a.reoffend AS "reoffend",
 		a.reof_charge AS "reofCharge",
@@ -96,21 +83,16 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS
-		"delFlag",
+		a.del_flag AS "delFlag",
 		b.ident AS "ident",
 		b. NAME AS "name",
 		b.sex AS "sex",
-		b.telephone AS
-		"telephone",
+		b.telephone AS "telephone",
 		b.type AS "type",
 		b.censu AS "censu",
-		b.domiciledetail AS
-		"domiciledetail",
-		b.residencedetail AS
-		"residencedetail",
-		b.images AS
-		"images",
+		b.domiciledetail AS "domiciledetail",
+		b.residencedetail AS "residencedetail",
+		b.images AS "images",
 		b.birthday AS "birthday",
 		a20.name AS "comName",
         (case a.atte_type when 01 then '高' when 02 then '中' when 03 then '低' else '' end) "atteTypeLable"
@@ -283,7 +265,8 @@
 		update_by,
 		update_date,
 		remarks,
-		del_flag
+		del_flag,
+		interval_date
 		) VALUES (
 		#{id},
 		#{peopleId},
@@ -322,52 +305,46 @@
 		#{updateBy.id},
 		#{updateDate},
 		#{remarks},
-		#{delFlag}
+		#{delFlag},
+		#{intervalDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE ccm_house_rectification SET
-		people_id =
-		#{peopleId},
+		people_id = #{peopleId},
+		interval_date = #{intervalDate},
 		rect_num = #{rectNum},
 		atte_type = #{atteType},
 		rect_place = #{rectPlace},
-		rect_type
-		= #{rectType},
+		rect_type = #{rectType},
 		case_type = #{caseType},
 		charge = #{charge},
-		orig_charge =
-		#{origCharge},
+		orig_charge = #{origCharge},
 		orig_begin = #{origBegin},
 		orig_end = #{origEnd},
 		rect_begin = #{rectBegin},
 		rect_end = #{rectEnd},
-		receive_mode =
-		#{receiveMode},
+		receive_mode = #{receiveMode},
 		four_his = #{fourHis},
 		recidivist = #{recidivist},
 		thr_hold = #{thrHold},
 		correcthas = #{correcthas},
-		corrected =
-		#{corrected},
+		corrected = #{corrected},
 		correctlift = #{correctlift},
 		detached = #{detached},
 		deta_reason = #{detaReason},
 		deta_supe = #{detaSupe},
-		deta_corr =
-		#{detaCorr},
+		deta_corr = #{detaCorr},
 		lack_contr = #{lackContr},
 		lack_contr_re = #{lackContrRe},
 		lack_contr_case = #{lackContrCase},
-		lack_contr_case_corr =
-		#{lackContrCaseCorr},
+		lack_contr_case_corr = #{lackContrCaseCorr},
 		rewandpun = #{rewandpun},
 		pena_chan = #{penaChan},
 		reoffend = #{reoffend},
 		reof_charge = #{reofCharge},
-		update_by =
-		#{updateBy.id},
+		update_by = #{updateBy.id},
 		update_date = #{updateDate},
 		remarks = #{remarks}
 		WHERE

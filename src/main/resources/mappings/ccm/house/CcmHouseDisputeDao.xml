@@ -5,6 +5,7 @@
 	<sql id="ccmHouseDisputeColumns">
 		a.id AS "id",
 		a.people_id AS "peopleId",
+		a.interval_date AS "intervalDate",
 		a.disputer AS "disputer",
 		a.disputer_addr AS "disputerAddr",
 		a.disputer_phone AS "disputerPhone",
@@ -184,7 +185,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			interval_date
 		) VALUES (
 			#{id},
 			#{peopleId},
@@ -214,13 +216,15 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{intervalDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE ccm_house_dispute SET 	
 			people_id = #{peopleId},
+			interval_date = #{intervalDate},
 			disputer = #{disputer},
 			disputer_addr = #{disputerAddr},
 			disputer_phone = #{disputerPhone},
