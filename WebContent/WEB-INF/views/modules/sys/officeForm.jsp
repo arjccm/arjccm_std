@@ -75,7 +75,7 @@
 						<label class="control-label"><span class="help-inline"><font color="red">*</font></span>归属区域:</label>
 						<div class="controls">
 							<sys:treeselect id="area" name="area.id" value="${office.area.id}" labelName="area.name" labelValue="${office.area.name}"
-											title="区域" url="/sys/area/treeData" cssClass=""/>
+											title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="  cssClass="" allowClear="true"/>
 							<span class="help-inline"><font color="red" id="show1"></font></span>
 						</div>
 					</div>

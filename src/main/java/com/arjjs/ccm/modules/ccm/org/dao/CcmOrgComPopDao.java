@@ -3,13 +3,14 @@
  */
 package com.arjjs.ccm.modules.ccm.org.dao;
 
-import java.util.List;
-
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgComPop;
 import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.tool.SearchTab;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 公共机构人员DAO接口
@@ -26,5 +27,8 @@ public interface CcmOrgComPopDao extends CrudDao<CcmOrgComPop> {
 	List<SearchTab> getnumOfWorkPowerForOne();
 	
 	SearchTab getnumOfWorkPowerForTwo(SysArea area);
-	
+
+	List<SearchTab> getnumOfWorkPower7(@Param("enname") String enname);
+
+	List<SearchTab> getnumOfWorkPower6();
 }
