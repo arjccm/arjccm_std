@@ -264,6 +264,7 @@ public class CcmRestPeople extends BaseController {
 			if(StringUtils.isNotEmpty(ccmPeople.getImages())){
 				ccmPeople.setImages(fileUrl + ccmPeople.getImages());
 			}
+			Area gridArea =people.getAreaGridId();
 			// 特征,属性
 			Features featureDto = new Features();
 			Properties properties = new Properties();
@@ -287,6 +288,7 @@ public class CcmRestPeople extends BaseController {
 			map_P.put("images", people.getImages());
 			map_P.put("areaComId", people.getAreaComId().getName());
 			map_P.put("areaGridId", people.getAreaGridId().getName());
+			map_P.put("gridComAddress", people.getAreaGridId().getName());
 			if(people.getBuildId()!=null){
 				map_P.put("住所楼栋名称", people.getBuildId().getBuildname());
 				map_P.put("住所楼栋id", people.getBuildId().getId());

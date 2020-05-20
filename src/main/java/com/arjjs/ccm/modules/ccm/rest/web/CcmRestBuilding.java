@@ -1,16 +1,13 @@
 package com.arjjs.ccm.modules.ccm.rest.web;
 
-import com.alibaba.fastjson.JSONObject;
 import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
-import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDeviceArea;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildentrance;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildentranceVo;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
-import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
 import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
 import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
@@ -21,7 +18,7 @@ import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
-import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.arjjs.ccm.modules.ccm.rest.service.CcmRestAreaService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.TransGPS;
@@ -30,27 +27,27 @@ import com.arjjs.ccm.tool.geoJson.GeoJSON;
 import com.arjjs.ccm.tool.geoJson.Geometry;
 import com.arjjs.ccm.tool.geoJson.Properties;
 import com.google.common.collect.Lists;
-import com.sun.mail.imap.protocol.ID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.h2.util.New;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 楼栋接口类
- * 
+ *
  * @author pengjianqiang
  * @version 2018-02-02
  */
@@ -68,9 +65,11 @@ public class CcmRestBuilding extends BaseController {
 	@Autowired
 	private CcmHouseBuildmanageService ccmHouseBuildmanageService;
 	@Autowired
-    private CcmPopTenantService ccmPopTenantService;
+	private CcmPopTenantService ccmPopTenantService;
 	@Autowired
-    private CcmPeopleService ccmPeopleService;
+	private CcmPeopleService ccmPeopleService;
+	@Autowired
+	private CcmRestAreaService ccmRestAreaService;
 
 
 
@@ -110,7 +109,7 @@ public class CcmRestBuilding extends BaseController {
 		}
 		result.setCode(CcmRestType.OK);
 		result.setResult(ccmHouseBuild);
-		
+
 		return result;
 	}
 
@@ -143,17 +142,33 @@ public class CcmRestBuilding extends BaseController {
 		}
 		build.setCheckUser(sessionUser);
 		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-			Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService
-					.findPage(new Page<CcmHouseBuildmanage>(req, resp), build);
-			if(page.getList().size()>0){
-				for (int i = 0; i < page.getList().size(); i++) {
+		Page page = new Page<CcmHouseBuildmanage>(req, resp);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		build.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		build.setMaxnum(page.getPageSize());
+		List<CcmHouseBuildmanage> list = ccmHouseBuildmanageService.findListIdBylimit(build);
+
+		List<String> idlist = Lists.newArrayList();
+		list.forEach(item->{
+			idlist.add(item.getId());
+		});
+		if(idlist.size()>0){
+			build.setListLimite(idlist);
+			Page<CcmHouseBuildmanage> pagelist = ccmHouseBuildmanageService.findList_V2(page, build);
+			if(pagelist.getList().size()>0){
+				for (int i = 0; i < pagelist.getList().size(); i++) {
 					//楼栋已采集人数
-					Integer gatherNum = page.getList().get(i).getGatherNum();
+					Integer gatherNum = pagelist.getList().get(i).getGatherNum();
 					if (gatherNum==null){
 						gatherNum=0;
 					}
 					//楼栋总人数
-					Integer buildPeo = page.getList().get(i).getBuildPeo();
+					Integer buildPeo = pagelist.getList().get(i).getBuildPeo();
 					if (buildPeo==null){
 						buildPeo=0;
 					}
@@ -162,13 +177,15 @@ public class CcmRestBuilding extends BaseController {
 					if (nogather<0){
 						nogather=0;
 					}
-					page.getList().get(i).setNogather(nogather);
-					page.getList().get(i).setImages(fileUrl + page.getList().get(i).getImages());
+					pagelist.getList().get(i).setNogather(nogather);
+					pagelist.getList().get(i).setImages(fileUrl + pagelist.getList().get(i).getImages());
 				}
 			}
-			page.setPageNo(pageNo);
-			result.setCode(CcmRestType.OK);
-			result.setResult(page.getList());
+			page.setList(pagelist.getList());
+		}
+		page.setPageNo(pageNo);
+		result.setCode(CcmRestType.OK);
+		result.setResult(page.getList());
 		return result;
 	}
 
@@ -200,7 +217,6 @@ public class CcmRestBuilding extends BaseController {
 			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
 			return result;
 		}
-
 		ccmHouseBuildmanage.setCheckUser(sessionUser);
 
 		// 查询地图楼栋信息
@@ -230,6 +246,11 @@ public class CcmRestBuilding extends BaseController {
 			if(StringUtils.isNotEmpty(Buildmanage.getImages())){
 				Buildmanage.setImages(fileUrl + Buildmanage.getImages());
 			}
+			Area area = Buildmanage.getArea();
+			Area area1=new Area();
+			if (area.getId()!=null){
+				area1 = ccmRestAreaService.get(area.getId());
+			}
 			// 特征属性
 			Features featureDto = new Features();
 			Properties properties = new Properties();
@@ -249,6 +270,11 @@ public class CcmRestBuilding extends BaseController {
 			map.put("层数", Buildmanage.getPilesNum() + "");
 			map.put("单元数", Buildmanage.getElemNum() + "");
 			map.put("Images", Buildmanage.getImages() + "");
+			if (area1!=null&&area1.getName()!=null){
+				map.put("gridComAddress", area1.getName() + "");
+			}else {
+				map.put("gridComAddress", "" + "");
+			}
 			properties.addInfo(map);
 			featureList.add(featureDto);
 			featureDto.setProperties(properties);

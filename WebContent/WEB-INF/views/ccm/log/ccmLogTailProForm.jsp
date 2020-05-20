@@ -85,7 +85,7 @@
 </c:if>
 <c:if test="${ccmLogTail.relevanceTable ne 'ccm_sys_workreport'}">
     <form:form id="inputForm" modelAttribute="ccmLogTail"
-               action="${ctx}/log/ccmLogTail/saveProdiv" method="post"
+               action="${ctx}/log/ccmLogTail/saveProdiv2" method="post"
                class="form-horizontal">
         <form:hidden path="id"/>
         <form:hidden path="relevanceId"/>
@@ -165,8 +165,8 @@
                 <input id="btnSubmit" style="position: relative;top: 0px" class="btn btn-primary" type="submit"
                        value="保 存"/>&nbsp;
             </shiro:hasPermission>
-            <!-- <input id="btnCancel" class="btn" type="button" value="返 回"
-                onclick="history.go(-1)" /> -->
+             <input id="btnCancel" class="btn" type="button" value="返 回"
+                onclick="history.go(-1)" />
         </div>
     </form:form></c:if>
 </div>

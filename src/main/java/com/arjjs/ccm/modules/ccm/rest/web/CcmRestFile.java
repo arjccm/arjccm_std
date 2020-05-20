@@ -174,6 +174,7 @@ public class CcmRestFile extends BaseController {
 				        retVo.setSrc(fileUrl+pathr.replace("\\", "/") + fileName.replace("\\", "/"));	//全路径
 				        retVo.setType(ext);	//文件类型
 				        retVo.setFileName(myFileName);	//上传文件名
+						retVo.setFileSize(fileSize);  //文件大小
 					}
 				}
 			}

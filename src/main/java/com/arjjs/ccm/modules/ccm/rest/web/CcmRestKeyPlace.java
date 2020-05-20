@@ -15,6 +15,7 @@ import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.ccm.place.base.entity.CcmBasePlace;
 import com.arjjs.ccm.modules.ccm.place.base.service.CcmBasePlaceService;
+import com.arjjs.ccm.modules.ccm.rest.service.CcmRestAreaService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.tool.CommUtilRest;
 import com.arjjs.ccm.tool.geoJson.Features;
@@ -53,7 +54,8 @@ public class CcmRestKeyPlace extends BaseController {
     private CcmOrgNpseService ccmOrgNpseService;
     @Autowired
     private CcmBasePlaceService ccmBasePlaceService;
-
+    @Autowired
+    private CcmRestAreaService ccmRestAreaService;
 
     /**
      * 查询重点场所详情
@@ -175,6 +177,7 @@ public class CcmRestKeyPlace extends BaseController {
             if(StringUtils.isNotEmpty(basePlace.getPlacePicture())){
                 basePlace.setPlacePicture(fileUrl + basePlace.getPlacePicture());
             }
+            Area area = basePlace.getArea();
             // 特征,属性
             Features featureDto = new Features();
             Properties properties = new Properties();
@@ -197,6 +200,11 @@ public class CcmRestKeyPlace extends BaseController {
             map_P.put("地址", basePlace.getAddress());
             map_P.put("场所类型", basePlace.getPlaceType());
             map_P.put("场所图片", basePlace.getPlacePicture());
+            if (area!=null&&area.getName()!=null){
+                map_P.put("gridComAddress", area.getName() + "");
+            }else {
+                map_P.put("gridComAddress", "" + "");
+            }
             properties.addInfo(map_P);
             featureList.add(featureDto);
             featureDto.setProperties(properties);
@@ -257,31 +265,31 @@ public class CcmRestKeyPlace extends BaseController {
 
         CcmRestResult result = CommUtilRest.getResult(userId, req, resp, ccmBasePlace.getId());
         CcmBasePlace ccmBasePlaceDB = ccmBasePlaceService.get(ccmBasePlace.getId());
-        if (StringUtils.isNotEmpty(ccmBasePlace.getPlaceName())) {
+        if (null !=ccmBasePlace.getPlaceName()) {
             ccmBasePlaceDB.setPlaceName(ccmBasePlace.getPlaceName());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getRelevanceOrg())) {
+        if (null !=ccmBasePlace.getRelevanceOrg()) {
             ccmBasePlaceDB.setRelevanceOrg(ccmBasePlace.getRelevanceOrg());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getKeyPoint())) {
+        if (null !=ccmBasePlace.getKeyPoint()) {
             ccmBasePlaceDB.setKeyPoint(ccmBasePlace.getKeyPoint());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getWorkerNumber())) {
+        if (null !=ccmBasePlace.getWorkerNumber()) {
             ccmBasePlaceDB.setWorkerNumber(ccmBasePlace.getWorkerNumber());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getPlaceUse())) {
+        if (null !=ccmBasePlace.getPlaceUse()) {
             ccmBasePlaceDB.setPlaceUse(ccmBasePlace.getPlaceUse());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getPlaceArea())) {
+        if (null !=ccmBasePlace.getPlaceArea()) {
             ccmBasePlaceDB.setPlaceArea(ccmBasePlace.getPlaceArea());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getLeaderName())) {
+        if (null !=ccmBasePlace.getLeaderName()) {
             ccmBasePlaceDB.setLeaderName(ccmBasePlace.getLeaderName());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getLeaderIdCard())) {
+        if (null !=ccmBasePlace.getLeaderIdCard()) {
             ccmBasePlaceDB.setLeaderIdCard(ccmBasePlace.getLeaderIdCard());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getLeaderContact())) {
+        if (null !=ccmBasePlace.getLeaderContact()) {
             ccmBasePlaceDB.setLeaderContact(ccmBasePlace.getLeaderContact());
         }
         if (null != ccmBasePlace.getCreateTime()) {
@@ -290,19 +298,19 @@ public class CcmRestKeyPlace extends BaseController {
         if (null != ccmBasePlace.getArea()) {
             ccmBasePlaceDB.setAdministrativeDivision(ccmBasePlace.getArea().getId());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getAddress())) {
+        if (null !=ccmBasePlace.getAddress()){
             ccmBasePlaceDB.setAddress(ccmBasePlace.getAddress());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getGoverningBodyName())) {
+        if (null !=ccmBasePlace.getGoverningBodyName()) {
             ccmBasePlaceDB.setGoverningBodyName(ccmBasePlace.getGoverningBodyName());
         }
-        if (StringUtils.isNotEmpty(ccmBasePlace.getRemarks())) {
+        if (null !=ccmBasePlace.getRemarks()) {
             ccmBasePlaceDB.setRemarks(ccmBasePlace.getRemarks());
         }
 
         // 添加图片处理代码
         String images = ccmBasePlace.getPlacePicture();
-        if (StringUtils.isNotEmpty(images)) {
+        if (null !=images) {
             if(images.contains(Global.getConfig("FILE_UPLOAD_URL"))) {
                 ccmBasePlaceDB.setPlacePicture(images.split(Global.getConfig("FILE_UPLOAD_URL"))[1]);
             }else {

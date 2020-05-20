@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.log.service;
 
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.service.CrudService;
+import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.log.dao.CcmLogImpPopSignDao;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogImpPopSign;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,21 @@ public class CcmLogImpPopSignService extends CrudService<CcmLogImpPopSignDao, Cc
 
 	@Transactional(readOnly = false)
 	public void save(CcmLogImpPopSign ccmLogImpPopSign) {
+		if(StringUtils.isNotEmpty(ccmLogImpPopSign.getPic())){
+			if(ccmLogImpPopSign.getPic().contains("http")){
+				String urlAndPort = ccmLogImpPopSign.getPic().split(":")[2];
+				String[] str = urlAndPort.split("/");
+				String url = "";
+				for(int i=0 ; i<str.length ; i++){
+					if(i>0){
+						if(StringUtils.isNotEmpty(str[i])){
+							url = "/" + str[i];
+						}
+					}
+				}
+				ccmLogImpPopSign.setPic(url);
+			}
+		}
 		super.save(ccmLogImpPopSign);
 	}
 

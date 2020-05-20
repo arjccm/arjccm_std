@@ -263,8 +263,8 @@ text-align: center;}
 
 	<!-- 添加 -->
 	<c:if test="${!e}">
-		<div class="row-fluid">
-			<div class="span8" style="width: 70%">
+		<div class="row-fluid" style="padding: 15px;width: auto;">
+			<div class="span8" style="width: 60%;margin-top: 20px">
 				<form:form id="inputFormAdd" modelAttribute="cppPopPop"
 					action="" method="post"
 					class="form-horizontal">
@@ -307,8 +307,8 @@ text-align: center;}
 
 				</form:form>
 			</div>
-			<div class="span3" style="position: relative; top:-18px ;padding:3 20px ;height: 275px;width: 25%;overflow-y: auto;">
-				<span style="margin: 10px 0 0 8px; font-weight: 900;font-size: 15px;">新添加列表</span>
+			<div class="span3" style="position: relative; top:-7px ;padding:3 20px ;height: 250px;width: 30%;overflow-y: auto;">
+				<span style="font-weight: 900;font-size: 15px;">新添加列表</span>
 				<table id="contentTable" 
 					class="table table-striped table-bordered table-condensed" >
 					

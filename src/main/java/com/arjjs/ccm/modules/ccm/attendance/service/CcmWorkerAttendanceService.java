@@ -74,4 +74,5 @@ public class CcmWorkerAttendanceService extends CrudService<CcmWorkerAttendanceD
 		page.setList(ccmWorkerAttendanceDao.findPageByCreateBy(ccmWorkerAttendance));
 		return page;
 	}
+
 }
