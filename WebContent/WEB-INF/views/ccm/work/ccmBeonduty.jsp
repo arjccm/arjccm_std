@@ -309,7 +309,12 @@ $("#showreflashbtn").click(function(e){
 	$("#gridcontainer").BCalReload();
 });
 
-
+	$("#mvEventContainer").find("td").click(function(){
+		// alert("click")
+		$(".drag-lasso").css({
+			"height": 0
+		})
+	})
 //点击回到今天
 $("#showtodaybtn").click(function(e) {
 	var p = $("#gridcontainer").BCalGoToday().BcalGetOp();
@@ -345,5 +350,6 @@ $("#changetoenglish").click(function(e){
 });
 
 }
+
 </script>
 </html>

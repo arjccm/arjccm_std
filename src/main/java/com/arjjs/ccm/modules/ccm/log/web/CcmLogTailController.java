@@ -269,6 +269,21 @@ public class CcmLogTailController extends BaseController {
 
 	}
 
+	@RequiresPermissions("log:ccmLogTail:edit")
+	@RequestMapping(value = "saveProdiv2")
+	public String saveProdiv2(HttpServletRequest request, HttpServletResponse response, CcmLogTail ccmLogTail, Model model, RedirectAttributes redirectAttributes) throws IOException {
+		if (!beanValidator(model, ccmLogTail)) {
+//			return formPro(ccmLogTail, model);
+		}
+		ccmLogTailService.save(ccmLogTail);
+		addMessage(redirectAttributes, "保存跟踪信息成功");
+		PrintWriter out = response.getWriter();
+		CommUtil.openWinExpDiv(out, "保存跟踪信息成功");
+		return "redirect:" + Global.getAdminPath() + "/log/ccmLogTail/list";
+//		return "redirect:" + Global.getAdminPath() + "/log/ccmLogTail/list?relevance_id="+ccmLogTail.getRelevanceId()+"&relevance_table="+ccmLogTail.getRelevanceTable()+"&repage";
+
+	}
+
 
 	@RequiresPermissions("log:ccmLogTail:edit")
 	@RequestMapping(value = "saveProWorkReport")

@@ -260,12 +260,12 @@
                     <td>
 					<shiro:hasPermission name="event:ccmEventCasedeal:edit">
 
-						<c:if test="${ccmEventCasedeal.handleStatus ne '01'}">
+						<c:if test="${ccmEventCasedeal.handleStatus ne '01' && ccmEventCasedeal.handleStatus ne '05'}">
 							<a  class="btnList"
-								onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/form?id=${ccmEventCasedeal.id}','事件', '1100px', '700px')" title="事件处理"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+								onclick="parent.LayerDialog('${ctx}/event/ccmEventCasedeal/form?id=${ccmEventCasedeal.id}','事件', '1100px', '700px')" title="事件处理"><i class="iconfont icon-caozuotubiao-xiugai"></i></ a>
 						</c:if>
-						<c:if test="${ccmEventCasedeal.handleStatus eq '01'}">
-						<a  class="btnList" title="事件处理"><i class="iconfont icon-caozuotubiao-xiugai" style="color: #656565;"></i></a>
+						<c:if test="${ccmEventCasedeal.handleStatus eq '01' || ccmEventCasedeal.handleStatus eq '05'}">
+							<a  class="btnList" title="事件处理"><i class="iconfont icon-caozuotubiao-xiugai" style="color: #656565;"></i></ a>
 						</c:if>
 						<a  class="btnList"
 							href="${ctx}/event/ccmEventCasedeal/delete?id=${ccmEventCasedeal.id}"

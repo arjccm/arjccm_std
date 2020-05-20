@@ -1,41 +1,36 @@
 package com.arjjs.ccm.modules.ccm.rest.web;
 
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.arjjs.ccm.common.config.Global;
+import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
+import com.arjjs.ccm.common.web.BaseController;
+import com.arjjs.ccm.modules.ccm.log.dao.CcmLogTailDao;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogImpPopSign;
+import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
 import com.arjjs.ccm.modules.ccm.log.service.CcmLogImpPopSignService;
+import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
+import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
+import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.ccm.sys.entity.CcmWorkReport;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.CcmWorkReportService;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.CommUtilRest;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.apache.ibatis.annotations.ResultType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.arjjs.ccm.common.persistence.Page;
-import com.arjjs.ccm.common.web.BaseController;
-import com.arjjs.ccm.modules.ccm.event.entity.CcmEventCasedeal;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
-import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
-import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
-import com.arjjs.ccm.modules.ccm.log.dao.CcmLogTailDao;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
-import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
-import com.arjjs.ccm.modules.sys.entity.User;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 跟踪日志接口类
@@ -87,8 +82,12 @@ public class CcmRestLogTail extends BaseController {
             result.setCode(CcmRestType.ERROR_PARAM);
             return result;
         }
-
         CcmLogTail ccmLogTail = ccmLogTailService.get(id);
+        String file1 = ccmLogTail.getFile();
+        if (StringUtils.isNotEmpty(file1)) {
+            String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+            ccmLogTail.setFile(fileUrl + file1);
+        }
 
         result.setCode(CcmRestType.OK);
         result.setResult(ccmLogTail);
@@ -117,7 +116,16 @@ public class CcmRestLogTail extends BaseController {
         ccmLogTailDto.setRelevanceTable("ccm_sys_workreport");
         List<CcmLogTail> ccmLogTailList = ccmLogTailService.findListByObject(ccmLogTailDto);
         if (null != ccmLogTailList || 0 != ccmLogTailList.size()) {
-            map.put("ccmLogTailList", ccmLogTailList);
+            List<CcmLogTail> resultList = Lists.newArrayList();
+            ccmLogTailList.forEach(logTail -> {
+                String file1 = logTail.getFile();
+                if (StringUtils.isNotEmpty(file1)) {
+                    String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+                    logTail.setFile(fileUrl + file1);
+                }
+                resultList.add(logTail);
+            });
+            map.put("ccmLogTailList", resultList);
         } else {
             map.put("ccmLogTailList", "");
         }
