@@ -8,10 +8,12 @@
 		$(document).ready(function() {
 		});
 	</script>
+	<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
+
 <body>
 	<br>
-	<form:form id="inputForm" modelAttribute="ccmWorkBeonduty" action="${ctx}/work/ccmWorkBeonduty/save" method="post" class="form-horizontal">
+	<form:form id="inputForm1" modelAttribute="ccmWorkBeonduty" action="${ctx}/work/ccmWorkBeonduty/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group" style="padding-top: 8px">
@@ -67,7 +69,7 @@
 		<div class="control-group">
 			<label class="control-label">工作重点：</label>
 			<div class="controls">
-				<form:textarea path="details" htmlEscape="false" rows="12" maxlength="1000" class="input-xxlarge "/>
+				<form:textarea path="details" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
