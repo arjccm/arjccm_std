@@ -127,6 +127,10 @@ public class CcmHouseBuildmanageController extends BaseController {
 			Page<CcmHouseBuildmanage> pagelist = ccmHouseBuildmanageService.findList_V2(new Page<CcmHouseBuildmanage>(request, response), ccmHouseBuildmanage);
 			page.setList(pagelist.getList());
 		}
+		if(idlist.size()< 10){
+			page.setCount(10);
+			page.initialize();
+		}
 		model.addAttribute("page", page);
 		return "ccm/house/ccmHouseBuildmanageList";
 	}
