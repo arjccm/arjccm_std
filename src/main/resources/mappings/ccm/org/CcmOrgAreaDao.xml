@@ -558,14 +558,22 @@ WHERE
 
 	<select id="getAreaId" resultType="string">
 		SELECT
-	a.id AS "id"
-FROM
-	sys_area a
-	LEFT JOIN sys_office o ON o.area_id = a.id
-	LEFT JOIN sys_user u ON u.office_id = o.id
-WHERE
-	u.id = #{userId};
+		a.id AS "id"
+		FROM
+		sys_area a
+		LEFT JOIN sys_office o ON o.area_id = a.id
+		LEFT JOIN sys_user u ON u.office_id = o.id
+		WHERE
+		u.id = #{userId};
 	</select>
-	
+
+	<select id="getParrenAreaId" resultType="string">
+		SELECT
+		a.parent_id AS "pid"
+		FROM
+		sys_area a
+		WHERE
+		a.id = #{areaId};
+	</select>
 	
 </mapper>

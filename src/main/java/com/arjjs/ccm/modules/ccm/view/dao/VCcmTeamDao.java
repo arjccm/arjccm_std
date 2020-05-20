@@ -9,6 +9,7 @@ import com.arjjs.ccm.modules.ccm.view.entity.VCcmTeam;
 import com.arjjs.ccm.modules.sys.entity.Office;
 import com.arjjs.ccm.tool.EchartType;
 import com.arjjs.ccm.tool.SearchTab;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -46,4 +47,5 @@ public interface VCcmTeamDao extends TreeDao<VCcmTeam> {
 	public List<EchartType> getBySex();
 
 	public List<EchartType> getByNation();
+
 }

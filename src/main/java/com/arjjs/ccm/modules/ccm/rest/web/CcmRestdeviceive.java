@@ -11,6 +11,7 @@ import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
+import com.arjjs.ccm.modules.ccm.rest.service.CcmRestAreaService;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysDicts;
 import com.arjjs.ccm.modules.ccm.sys.service.SysDictsService;
 import com.arjjs.ccm.modules.flat.realtimeSituation.entity.DataList;
@@ -42,7 +43,8 @@ public class CcmRestdeviceive {
     private CcmDeviceService ccmDeviceService;
     @Autowired
     private SysAreaService sysAreaService;
-
+    @Autowired
+    private CcmRestAreaService ccmRestAreaService;
 
  /**
   * * @see 生成视频地图信息-点位图（分页模式）
@@ -102,6 +104,8 @@ public class CcmRestdeviceive {
                 if(StringUtils.isNotEmpty(device.getImagePath())){
                     device.setImagePath(fileUrl + device.getImagePath());
                 }
+                Area area = device.getArea();
+                Area area1 = ccmRestAreaService.get(area.getId());
                 // 特征,属性
                 Features featureDto = new Features();
                 Properties properties = new Properties();
@@ -122,6 +126,11 @@ public class CcmRestdeviceive {
                     map_P.put("设备状态", "未知");
                 }else {
                     map_P.put("设备状态", sysDictsMap.get(device.getStatus()));
+                }
+                if (area1!=null&&area1.getName()!=null){
+                    map_P.put("gridComAddress", area1.getName() + "");
+                }else {
+                    map_P.put("gridComAddress", "" + "");
                 }
                 properties.addInfo(map_P);
                 featureList.add(featureDto);

@@ -24,6 +24,7 @@ import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
+import com.arjjs.ccm.modules.ccm.rest.service.CcmRestAreaService;
 import com.arjjs.ccm.modules.ccm.rest.service.CcmRestEventService;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
@@ -109,6 +110,8 @@ public class CcmRestEvent extends BaseController {
     private CcmLineProtectService ccmLineProtectService;
     @Autowired
     private SysConfigService sysConfigService;
+    @Autowired
+    private CcmRestAreaService ccmRestAreaService;
 
     /**
      * @param id ID
@@ -281,6 +284,8 @@ public class CcmRestEvent extends BaseController {
                 eventIncident.setFile1(fileUrl + eventIncident.getFile1());
             }
             // 特征,属性
+            Area area = eventIncident.getArea();
+            /*Area area1 = ccmRestAreaService.get(area.getId());*/
             Features featureDto = new Features();
             com.arjjs.ccm.tool.geoJson.Properties properties = new Properties();
             // 1 type 默认不填
@@ -303,6 +308,11 @@ public class CcmRestEvent extends BaseController {
             map_P.put("file1", eventIncident.getFile1());
             map_P.put("file2", eventIncident.getFile2());
             map_P.put("file3", eventIncident.getFile3());
+            if (area!=null&&area.getName()!=null){
+                map_P.put("gridComAddress", area.getName() + "");
+            }else {
+                map_P.put("gridComAddress", "" + "");
+            }
 
             properties.addInfo(map_P);
             featureList.add(featureDto);

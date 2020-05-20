@@ -18,6 +18,7 @@ import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
+import com.arjjs.ccm.modules.ccm.rest.service.CcmRestAreaService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.tool.TransGPS;
@@ -67,6 +68,8 @@ public class CcmRestBuilding extends BaseController {
 	private CcmPopTenantService ccmPopTenantService;
 	@Autowired
 	private CcmPeopleService ccmPeopleService;
+	@Autowired
+	private CcmRestAreaService ccmRestAreaService;
 
 
 
@@ -74,7 +77,7 @@ public class CcmRestBuilding extends BaseController {
 	/**
 	 * @see  获取单个楼栋信息
 	 * @param id  楼栋ID
-	 * @return
+	 * @return 
 	 * @author pengjianqiang
 	 * @version 2018-02-02
 	 */
@@ -214,7 +217,6 @@ public class CcmRestBuilding extends BaseController {
 			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
 			return result;
 		}
-
 		ccmHouseBuildmanage.setCheckUser(sessionUser);
 
 		// 查询地图楼栋信息
@@ -244,6 +246,11 @@ public class CcmRestBuilding extends BaseController {
 			if(StringUtils.isNotEmpty(Buildmanage.getImages())){
 				Buildmanage.setImages(fileUrl + Buildmanage.getImages());
 			}
+			Area area = Buildmanage.getArea();
+			Area area1=new Area();
+			if (area.getId()!=null){
+				area1 = ccmRestAreaService.get(area.getId());
+			}
 			// 特征属性
 			Features featureDto = new Features();
 			Properties properties = new Properties();
@@ -263,6 +270,11 @@ public class CcmRestBuilding extends BaseController {
 			map.put("层数", Buildmanage.getPilesNum() + "");
 			map.put("单元数", Buildmanage.getElemNum() + "");
 			map.put("Images", Buildmanage.getImages() + "");
+			if (area1!=null&&area1.getName()!=null){
+				map.put("gridComAddress", area1.getName() + "");
+			}else {
+				map.put("gridComAddress", "" + "");
+			}
 			properties.addInfo(map);
 			featureList.add(featureDto);
 			featureDto.setProperties(properties);
@@ -306,12 +318,12 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		return result;
 	}
-
-
+	
+	
 	/**
 	 * @see  保存楼栋信息
-	 * @param
-	 * @return
+	 * @param 
+	 * @return 
 	 * @author fuxinshuang
 	 * @version 2018-02-03
 	 */
@@ -353,45 +365,45 @@ public class CcmRestBuilding extends BaseController {
 
 
 		// 判断是否为新增
-		if (StringUtils.isEmpty(build.getId())) {   //  新增
-			// 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
-			if (StringUtils.isNotEmpty(build.getAreaPoint())) {
-				String piont = build.getAreaPoint();
-				String areaPiont = "";
-				String[] pionts = piont.split(",");
+        if (StringUtils.isEmpty(build.getId())) {   //  新增
+            // 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
+            if (StringUtils.isNotEmpty(build.getAreaPoint())) {
+                String piont = build.getAreaPoint();
+                String areaPiont = "";
+                String[] pionts = piont.split(",");
 
-				TransGPS ins = new TransGPS();
-				TransGPS.Location wcj = ins.new Location();
-				wcj.setLat(Double.parseDouble(pionts[1]));
-				wcj.setLng(Double.parseDouble(pionts[0]));
+                TransGPS ins = new TransGPS();
+                TransGPS.Location wcj = ins.new Location();
+                wcj.setLat(Double.parseDouble(pionts[1]));
+                wcj.setLng(Double.parseDouble(pionts[0]));
 
-				TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
-				areaPiont = wgs.getLng() + ","  + wgs.getLat();
-				build.setAreaPoint(areaPiont);
-				build.setAreaMap(areaPiont);
-			}
-		}else {
-			CcmHouseBuildmanage ccmHouseBuild = ccmHouseBuildmanageService.get(build.getId());
-			if(StringUtils.isNotEmpty(build.getAreaPoint())) {
-				if(build.getAreaPoint().equals(ccmHouseBuild.getAreaPoint())) {
-					build.setAreaMap(build.getAreaPoint());
-				}else {
-					String piont = build.getAreaPoint();
-					String areaPiont = "";
-					String[] pionts = piont.split(",");
+                TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
+                areaPiont = wgs.getLng() + ","  + wgs.getLat();
+                build.setAreaPoint(areaPiont);
+                build.setAreaMap(areaPiont);
+            }
+        }else {
+        	CcmHouseBuildmanage ccmHouseBuild = ccmHouseBuildmanageService.get(build.getId());
+        	if(StringUtils.isNotEmpty(build.getAreaPoint())) {
+        		if(build.getAreaPoint().equals(ccmHouseBuild.getAreaPoint())) {
+        			build.setAreaMap(build.getAreaPoint());
+        		}else {
+        			String piont = build.getAreaPoint();
+                    String areaPiont = "";
+                    String[] pionts = piont.split(",");
 
-					TransGPS ins = new TransGPS();
-					TransGPS.Location wcj = ins.new Location();
-					wcj.setLat(Double.parseDouble(pionts[1]));
-					wcj.setLng(Double.parseDouble(pionts[0]));
+                    TransGPS ins = new TransGPS();
+                    TransGPS.Location wcj = ins.new Location();
+                    wcj.setLat(Double.parseDouble(pionts[1]));
+                    wcj.setLng(Double.parseDouble(pionts[0]));
 
-					TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
-					areaPiont = wgs.getLng() + ","  + wgs.getLat();
-					build.setAreaPoint(areaPiont);
-					build.setAreaMap(areaPiont);
-				}
-			}
-		}
+                    TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
+                    areaPiont = wgs.getLng() + ","  + wgs.getLat();
+                    build.setAreaPoint(areaPiont);
+                    build.setAreaMap(areaPiont);
+        		}
+        	}
+        }
 
 		String file = build.getImages();
 		if(StringUtils.isNotEmpty(file)) {
@@ -405,14 +417,14 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		result.setResult("成功");
 		return result;
-
+		
 	}
 
 
 	/**
 	 * @see  保存楼栋信息（支持新增和编辑,数据同步用）
-	 * @param
-	 * @return
+	 * @param 
+	 * @return 
 	 * @author pengjianqiang
 	 * @version 2018-05-12
 	 */
@@ -434,7 +446,7 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		result.setResult("成功");
 		return result;
-
+		
 	}
 
 	// 根据楼栋ID获取单元列表
@@ -449,23 +461,20 @@ public class CcmRestBuilding extends BaseController {
 		logger.info("当前方法运行参数为》》》楼栋 id : " + buildId + "  单元ID : " + tranceId);
 		CcmRestResult result = new CcmRestResult();
 		List<CcmHouseBuildentranceVo> buildentranceList = ccmHouseBuildmanageService.selectBuildentranceById(buildId,tranceId);
-		for(CcmHouseBuildentranceVo res : buildentranceList){
-			// 赋值单元下房屋数量
-			List<CcmPopTenant> popTenants = ccmPopTenantService.findByTranceId(res.getId());
-			if (null != popTenants && 0 != popTenants.size()) {
-				res.setHouseNum(popTenants.size());
-				// 赋值单元下人员数量
-				int total = 0;
-				for (CcmPopTenant popTenant : popTenants) {
-					List<CcmPeople> peopleList = ccmPeopleService.findByRoomId(popTenant.getId());
-					total = total + peopleList.size();
-				}
-				res.setResidentNum(total);
-			}else{
-				res.setHouseNum(0);
-				res.setResidentNum(0);
-			}
-		}
+        for(CcmHouseBuildentranceVo res : buildentranceList){
+            // 赋值单元下房屋数量
+            List<CcmPopTenant> popTenants = ccmPopTenantService.findByTranceId(res.getId());
+            if (null != popTenants && 0 != popTenants.size()) {
+                res.setHouseNum(popTenants.size());
+                // 赋值单元下人员数量
+                int total = 0;
+                for (CcmPopTenant popTenant : popTenants) {
+                    List<CcmPeople> peopleList = ccmPeopleService.findByRoomId(popTenant.getId());
+                    total = total + peopleList.size();
+                }
+                res.setResidentNum(total);
+            }
+        }
 		result.setCode(CcmRestType.OK);
 		result.setResult(buildentranceList);
 		return result;
@@ -501,8 +510,8 @@ public class CcmRestBuilding extends BaseController {
 	}
 	/**
 	 * @see  删除楼栋信息（数据同步用）
-	 * @param
-	 * @return
+	 * @param 
+	 * @return 
 	 * @author pengjianqiang
 	 * @version 2018-05-17
 	 */
@@ -517,13 +526,13 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		result.setResult("成功");
 		return result;
-
+		
 	}
-
+	
 	/**
 	 * @see  删除楼栋信息
-	 * @param
-	 * @return
+	 * @param 
+	 * @return 
 	 * @author pengjianqiang
 	 * @version 2018-05-12
 	 */
@@ -555,7 +564,7 @@ public class CcmRestBuilding extends BaseController {
 		result.setCode(CcmRestType.OK);
 		result.setResult("成功");
 		return result;
-
+		
 	}
 
 }

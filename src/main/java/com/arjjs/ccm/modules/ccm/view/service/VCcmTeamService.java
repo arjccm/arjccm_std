@@ -115,4 +115,5 @@ public class VCcmTeamService extends TreeService<VCcmTeamDao, VCcmTeam> {
 	public VCcmTeam getOneByUserId(String userId) {
 		return dao.getOneByUserId(userId);
 	}
+
 }

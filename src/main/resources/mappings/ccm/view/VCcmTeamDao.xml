@@ -535,8 +535,5 @@
 		And b.del_flag = '0'
 		And a2.del_flag = '0'
 	</select>
-	
-	
-	
-	
+
 </mapper>

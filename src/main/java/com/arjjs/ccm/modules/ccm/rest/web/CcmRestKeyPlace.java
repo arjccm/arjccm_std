@@ -15,6 +15,7 @@ import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.ccm.place.base.entity.CcmBasePlace;
 import com.arjjs.ccm.modules.ccm.place.base.service.CcmBasePlaceService;
+import com.arjjs.ccm.modules.ccm.rest.service.CcmRestAreaService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.tool.CommUtilRest;
 import com.arjjs.ccm.tool.geoJson.Features;
@@ -53,7 +54,8 @@ public class CcmRestKeyPlace extends BaseController {
     private CcmOrgNpseService ccmOrgNpseService;
     @Autowired
     private CcmBasePlaceService ccmBasePlaceService;
-
+    @Autowired
+    private CcmRestAreaService ccmRestAreaService;
 
     /**
      * 查询重点场所详情
@@ -175,6 +177,7 @@ public class CcmRestKeyPlace extends BaseController {
             if(StringUtils.isNotEmpty(basePlace.getPlacePicture())){
                 basePlace.setPlacePicture(fileUrl + basePlace.getPlacePicture());
             }
+            Area area = basePlace.getArea();
             // 特征,属性
             Features featureDto = new Features();
             Properties properties = new Properties();
@@ -197,6 +200,11 @@ public class CcmRestKeyPlace extends BaseController {
             map_P.put("地址", basePlace.getAddress());
             map_P.put("场所类型", basePlace.getPlaceType());
             map_P.put("场所图片", basePlace.getPlacePicture());
+            if (area!=null&&area.getName()!=null){
+                map_P.put("gridComAddress", area.getName() + "");
+            }else {
+                map_P.put("gridComAddress", "" + "");
+            }
             properties.addInfo(map_P);
             featureList.add(featureDto);
             featureDto.setProperties(properties);
