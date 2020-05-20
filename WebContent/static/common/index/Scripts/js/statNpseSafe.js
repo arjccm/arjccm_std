@@ -1601,8 +1601,8 @@ $(function() {
 
  //安全事故分布
 	function SafeDisEchartsFun(data){
-    	var name = [];
-    	var value = [];
+    	var name = ["暂无数据"];
+    	var value = ["0"];
     	for (var one in data) {
     		name.push(data[one]["type"]);
     		value.push(data[one]["value"]);

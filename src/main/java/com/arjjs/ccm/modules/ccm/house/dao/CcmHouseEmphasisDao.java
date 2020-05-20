@@ -9,6 +9,8 @@ import com.arjjs.ccm.modules.ccm.house.entity.CcmIntervalPeople;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.sys.entity.Dict;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.method.P;
 
 @MyBatisDao
 public interface CcmHouseEmphasisDao {
@@ -20,4 +22,8 @@ public interface CcmHouseEmphasisDao {
 	List<CcmExpireArea> findExpireUser();
 	List<CcmExpireUser> findUserByPeople(CcmPeople ccmPeople);
 	void updateIntervalDate(CcmPeople ccmPeople);
+
+    Integer findExpirePeopleByUser(@Param("interval") Integer interval,@Param("tableName") String tableName,@Param("areaId") String areaId);
+
+	Integer findalreadyInterview(@Param("tableName") String tableName, @Param("areaId") String areaId);
 }

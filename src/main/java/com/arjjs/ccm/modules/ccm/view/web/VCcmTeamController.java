@@ -42,6 +42,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -208,7 +209,10 @@ public class VCcmTeamController extends BaseController {
 				workNolist.add(user.getNo());
 				loginNamelist.add(user.getLoginName());
 			}
-			
+
+			//解决手机号读取后会加上小数点及E10问题
+			DecimalFormat df = new DecimalFormat("#");
+
 			for (ImportUserVCcmTeam importUserVCcmTeam : list) {
 				
 				if(importUserVCcmTeam.getCompany() == null) {
@@ -220,6 +224,12 @@ public class VCcmTeamController extends BaseController {
 				if(EntityTools.isEmpty(importUserVCcmTeam)){
 					continue;
 				}
+
+				//解决手机号读取后会加上小数点及E10问题
+				double no = Double.valueOf(importUserVCcmTeam.getNo());
+				double mobile = Double.valueOf(importUserVCcmTeam.getMobile());
+				importUserVCcmTeam.setNo(df.format(no));
+				importUserVCcmTeam.setMobile(df.format(mobile));
 				
 				//根据工号去重
 				if(workNolist.contains(importUserVCcmTeam.getNo())) {
@@ -285,10 +295,12 @@ public class VCcmTeamController extends BaseController {
 					continue;
 				}
 
+
+
 				//电话验证
 				if( NumberTools.isPhone(importUserVCcmTeam.getMobile())==false) {
-					failureMsg.append("<br/>社工姓名" + importUserVCcmTeam.getName() + " 导入失败：" + "必填项数据不合法。");
-					importUserVCcmTeam.setName(importUserVCcmTeam.getName() + "，失败原因：必填项数据不合法。");
+					failureMsg.append("<br/>社工姓名" + importUserVCcmTeam.getName() + " 导入失败：" + "联系方式数据不合法。");
+					importUserVCcmTeam.setName(importUserVCcmTeam.getName() + "，失败原因：联系方式数据不合法。");
 					listFailure.add(importUserVCcmTeam);
 					failureNum++;
 					continue;

@@ -11,7 +11,7 @@
 <script src="${ctxStatic}/layim/dwr/engine.js"></script>
 <script src="${ctxStatic}/layim/dwr/interface/Imwebserver.js"></script>
 <script src="${ctxStatic}/layim/layui/layui.js"></script>
-<script src="${ctxStatic}/layim/js/websocketconfig.js"></script>
+<script src="${ctxStatic}/layim/js/websocketconfig.js?adv='+Math.random()+'"></script>
 <%-- <script src="${ctxStatic}/webRtc/js/websocket.js"></script>
 <script src="${ctxStatic}/webRtc/js/webrtc.js"></script> 
 <script src="${ctxStatic}/webRtc/js/publicControl.js"></script> 
@@ -24,6 +24,15 @@ top:7%;
 .exitGrp .layui-layer-content{
     line-height: 50px;
     text-align: center;
+}
+body .layui-layim-min{
+    border: none;
+}
+.layui-layim-min .layui-layer-content{
+    margin: 0;
+}
+.layui-layer-dialog .layui-layer-content{
+    width: auto;
 }
 </style>
 <script>
@@ -196,7 +205,7 @@ var showmsg,lm;
 				*/
 	   	  
 	     }
-           layui.use(['layim','layer'], function(layim){
+            parent.layui.use(['layim','layer'], function(layim){
                var $ = layui.jquery, layer = layui.layer;
 		       //基础配置
 		       layim.config({
@@ -226,16 +235,16 @@ var showmsg,lm;
 			      type: 'post' //默认post
 			    },  
 			    //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
-			    tool: [{
+			    tool: [/*{
 				           alias: 'codeAudio' //工具别名
 					      ,title: '语音' //工具名称
 					      ,icon: '&#xe6fc;' //工具图标，参考图标文档
-					    },{
+					    },*/{
 			      alias: 'codeVideo' //工具别名
 			      ,title: '视频' //工具名称
 			      ,icon: '&#xe6ed;' //工具图标，参考图标文档
 			    }],
-			    isAudio: false, //开启聊天工具栏音频
+			   // isAudio: false, //开启聊天工具栏音频
 			    isVideo: false, //开启聊天工具栏视频
 			    brief:false,
 				min:false,
@@ -248,8 +257,6 @@ var showmsg,lm;
 			  });
                 var meid;
 			   layim.on('ready', function(res){
-
-
 				  lm = layui.layim;
 				  //添加客服
 				/* layim.addList({

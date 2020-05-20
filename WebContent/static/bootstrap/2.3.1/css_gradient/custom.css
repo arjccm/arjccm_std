@@ -1182,3 +1182,9 @@ input::-ms-clear{
 #menu li:first-child{
 	margin-left: 50px;
 }
+
+
+/*500.jsp  错误页面button 宽度*/
+.errorBtn{
+	width: 69px!important;
+}

@@ -53,9 +53,9 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">内容：</label>
+                <label class="control-label"><span class="help-inline"><font color="red">*</font> </span> 内容：</label>
                 <div class="controls">
-                    <form:textarea path="details" htmlEscape="false" rows="6" maxlength="1000" class="input-xxlarge "
+                    <form:textarea path="details" htmlEscape="false" rows="6" maxlength="1000" class="input-xxlarge required"
                                    readonly="true"/>
                 </div>
             </div>
@@ -79,9 +79,9 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">内容：</label>
+                <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>内容：</label>
                 <div class="controls">
-                    <form:textarea path="details" htmlEscape="false" rows="6" maxlength="1000" class="input-xxlarge "/>
+                    <form:textarea path="details" htmlEscape="false" rows="6" maxlength="1000" class="input-xxlarge required"/>
                 </div>
             </div>
             <div class="control-group">

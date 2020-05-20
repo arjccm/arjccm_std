@@ -1903,3 +1903,8 @@ cite[class*='t-click']{
  #inputForm {
      background: none;
  }
+
+ /*500.jsp  错误页面button 宽度*/
+ a.errorBtn{
+	 width: 80px!important;
+ }

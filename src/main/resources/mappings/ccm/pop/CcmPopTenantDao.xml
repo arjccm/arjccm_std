@@ -899,6 +899,9 @@
             <if test="houseType != null and houseType != ''">
                 AND a.house_type = #{houseType}
             </if>
+            <if test="rentPur != null and rentPur != ''">
+                AND a.rent_pur = #{rentPur}
+            </if>
         </where>
         <choose>
             <when test="page !=null and page.orderBy != null and page.orderBy != ''">

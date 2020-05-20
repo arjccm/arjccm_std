@@ -43,7 +43,7 @@
 					title="网格" url="/tree/ccmTree/treeDataArea?type=7&areaid="
 					cssClass="input-medium" allowClear="true"
 					notAllowSelectParent="true" /></li>
-			<li class="first-line"><label class="title-text">出租用途：：</label>
+			<li class="first-line"><label class="title-text">出租用途：</label>
 				<form:select path="rentPur" class="input-medium">
 					<form:option value="" label="全部" />
 					<form:options items="${fns:getDictList('ccm_let_use')}" itemLabel="label" itemValue="value" htmlEscape="false" />

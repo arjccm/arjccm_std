@@ -3,24 +3,23 @@
  */
 package com.arjjs.ccm.modules.ccm.org.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.arjjs.ccm.common.persistence.Page;
+import com.arjjs.ccm.common.service.CrudService;
+import com.arjjs.ccm.modules.ccm.org.dao.CcmOrgComPopDao;
+import com.arjjs.ccm.modules.ccm.org.dao.SysAreaDao;
+import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgComPop;
+import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
+import com.arjjs.ccm.modules.ccm.sys.dao.SysConfigDao;
+import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
+import com.arjjs.ccm.tool.SearchTab;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.arjjs.ccm.common.persistence.Page;
-import com.arjjs.ccm.common.service.CrudService;
-import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgComPop;
-import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
-import com.arjjs.ccm.modules.ccm.report.dao.CcmPeopleAmountDao;
-import com.arjjs.ccm.modules.ccm.sys.dao.SysConfigDao;
-import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
-import com.arjjs.ccm.tool.SearchTab;
-import com.arjjs.ccm.modules.ccm.org.dao.CcmOrgComPopDao;
-import com.arjjs.ccm.modules.ccm.org.dao.SysAreaDao;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 公共机构人员Service
@@ -74,7 +73,8 @@ public class CcmOrgComPopService extends CrudService<CcmOrgComPopDao, CcmOrgComP
 		//系统应用级别：1街道；2区县；3市
 		String paramStr = system_level.getParamStr();
 		if("1".equals(paramStr)) {
-			List<SearchTab> list = ccmOrgComPopDao.getnumOfWorkPower();
+			//权限拦截问题
+			List<SearchTab> list = getnumOfWorkPowerInfo();
 			List<SearchTab> list2 = ccmOrgComPopDao.getnumOfWorkPowerForOne();
 			int num=0;
 			int temp;
@@ -135,5 +135,28 @@ public class CcmOrgComPopService extends CrudService<CcmOrgComPopDao, CcmOrgComP
 		}
 		
 	}
-	
+
+	private List<SearchTab> getnumOfWorkPowerInfo() {
+		//查询普通工作者的信息
+		String roleEnname = "";
+		//String roleEnname = "normalWork";
+		List<SearchTab> searchTabs7 = ccmOrgComPopDao.getnumOfWorkPower7(roleEnname);
+		List<SearchTab> resultTab = new ArrayList<>();
+		if (!searchTabs7.isEmpty()){
+			List<SearchTab> searchTabs6 = ccmOrgComPopDao.getnumOfWorkPower6();
+			searchTabs6.forEach(temp6->{
+				searchTabs7.forEach(temp7->{
+					if(temp6.getType().equals(temp7.getType())){
+						SearchTab tab = new SearchTab();
+						tab.setType(temp6.getType());
+						tab.setValue(temp6.getValue());
+						tab.setValue1(temp7.getValue());
+						resultTab.add(tab);
+					}
+				});
+			});
+		}
+		return  resultTab;
+	}
+
 }

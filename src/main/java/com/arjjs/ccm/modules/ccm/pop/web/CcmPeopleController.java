@@ -38,7 +38,6 @@ import com.arjjs.ccm.modules.ccm.tenant.entity.CcmTenantRecord;
 import com.arjjs.ccm.modules.ccm.tenant.service.CcmTenantRecordService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.Dict;
-import com.arjjs.ccm.modules.sys.entity.Log;
 import com.arjjs.ccm.modules.sys.service.AreaService;
 import com.arjjs.ccm.modules.sys.service.DictService;
 import com.arjjs.ccm.tool.*;
@@ -60,7 +59,6 @@ import javax.validation.ConstraintViolationException;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -860,27 +858,21 @@ public class CcmPeopleController extends BaseController {
 			//系统中所有人口数据
 			Map<String, Object> peopleMap = ccmPeopleService.queryAllToMap();
 
-			//系统中所有网格数据
-			SysArea sysArea = new SysArea();
-			sysArea.setType("7");
-			List<SysArea> listGrid = sysAreaService.findList(sysArea);
 			//系统中所有楼栋数据
-/*			CcmHouseBuildmanage ccmHouseBuildmanage = new CcmHouseBuildmanage();
-			List<CcmHouseBuildmanage> listBuild = ccmHouseBuildmanageService.findList(ccmHouseBuildmanage);*/
-
 			List<CcmHouseBuildmanage> listBuild = ccmHouseBuildmanageService.queryAllForImport();
 
 			//系统中所有房屋数据
-/*			CcmPopTenant room = new CcmPopTenant();
-			List<CcmPopTenant> listRoom = ccmPopTenantService.findList(room);*/
-
 			List<CcmPopTenant> listRoom = ccmPopTenantService.queryAllForImport();
 
 			//声明3个临时变量，用于优化网格、楼栋、房屋处理前的判断
-			SysArea tmpGrid = new SysArea();
 			CcmHouseBuildmanage tmpBuild = new CcmHouseBuildmanage();
+			boolean buildNotHas;
 			CcmPopTenant tmpRoom = new CcmPopTenant();
+			boolean roomNotHas;
+			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			
 			//导入过程中失败的数据，进行汇总并导出
 			List<CcmPeople> listFailure = new ArrayList<CcmPeople>();
@@ -890,6 +882,10 @@ public class CcmPeopleController extends BaseController {
 				if(EntityTools.isEmpty(People)){
 					continue;
 				}
+
+				//用于标记房屋楼栋数据是否新增
+				buildNotHas = false;
+				roomNotHas = false;
 				
 				// 如果当前用户的身份未填写或者为空或者身份证号码位数不够18位则应该进行 剔除
 				if (StringUtils.isBlank(People.getIdent()) || People.getIdent().length() != 18) {
@@ -909,7 +905,7 @@ public class CcmPeopleController extends BaseController {
 				//在身份证号中获取性别
 				if(StringUtils.isEmpty(People.getSex())) {
 					if (Integer.parseInt(People.getIdent().substring(16).substring(0, 1)) % 2 == 0) {// 判断性别
-						People.setSex("1");;
+						People.setSex("1");
 			        } else {
 			        	People.setSex("0");
 			        }
@@ -941,21 +937,10 @@ public class CcmPeopleController extends BaseController {
 				
 				//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
 				if(People.getTelephone().contains(".") || People.getTelephone().contains("E10")) {
-					DecimalFormat df = new DecimalFormat("#");
-					BigDecimal bd = new BigDecimal(People.getTelephone());
+					double bd = Double.valueOf(People.getTelephone());
 					String tel = df.format(bd);
 					People.setTelephone(tel);
 				}
-				
-//				//将导入时户号获取包含“.”或“E10”，的转成正确的电话格式
-//				if(StringUtils.isNotEmpty(People.getAccount())) {
-//					if(People.getAccount().contains(".") || People.getAccount().contains("E10")) {
-//						DecimalFormat def = new DecimalFormat("#");
-//						BigDecimal big = new BigDecimal(People.getAccount());
-//						String account = def.format(big);
-//						People.setAccount(account);
-//					}
-//				}
 				
 				//电话验证
 				if( NumberTools.isPhone(People.getTelephone())==false) {
@@ -965,6 +950,7 @@ public class CcmPeopleController extends BaseController {
 					failureNum++;
 					continue;
 				}
+
 				//出生年月日是否合法
 				if ( DateTools.getIntYearByDate(People.getBirthday())  <  DateTools.getIntYear() -150 || DateTools.getIntYearByDate(People.getBirthday()) >  DateTools.getIntYear()) {
 					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "出生年月数据不合法");
@@ -975,15 +961,6 @@ public class CcmPeopleController extends BaseController {
 				}
 
 				// 进行身份证验证 ,如果已经存在则进行 失败条目的添加。 并跳过当前的内容
-/*				if (ccmPeopleService.checkPeopleIden(People)) {
-					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "当前的用户的身份证材料已经存在于当前的数据库中。");
-					People.setName(People.getName() + "，失败原因：身份证信息已存在");
-					listFailure.add(People);
-					failureNum++;
-					continue;
-				}*/
-
-				// 进行身份证验证 ,如果已经存在则进行 失败条目的添加。 并跳过当前的内容
 				if (peopleMap.containsKey(People.getIdent())) {
 					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "当前的用户的身份证材料已经存在于当前的数据库中。");
 					People.setName(People.getName() + "，失败原因：身份证信息已存在");
@@ -991,8 +968,6 @@ public class CcmPeopleController extends BaseController {
 					failureNum++;
 					continue;
 				}
-
-
 
 				// 户主身份证号验证
 				if("10".equals(People.getType())){
@@ -1020,17 +995,10 @@ public class CcmPeopleController extends BaseController {
 						listFailure.add(People);
 						failureNum++;
 						continue;
-					} else {
-						for (SysArea grid : listGrid) {
-							if (grid.getName().equals(People.getAreaGridId().getName())) {
-								tmpGrid = grid;//赋值临时变量
-								break;
-							}
-						}
 					}
 
 					/**楼栋数据非空判断**/
-					if (StringUtils.isBlank(People.getBuildName())) {//网格为空，则数据不导入
+					if (StringUtils.isBlank(People.getBuildName())) {//楼栋为空，则数据不导入
 						failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "所属楼栋为空。");
 						People.setName(People.getName() + "，失败原因：所属楼栋为空");
 						listFailure.add(People);
@@ -1057,12 +1025,11 @@ public class CcmPeopleController extends BaseController {
 							}
 						}
 						if (!isBuildExist) {//楼栋不存在，增加楼栋
+							buildNotHas = true;
 							CcmHouseBuildmanage build = new CcmHouseBuildmanage();
 							build.setId(UUID.randomUUID().toString());
 							build.setBuildname(People.getBuildName());
 							if (People.getAreaGridId() != null) {
-//								Area area = new Area();
-//								area.setId(People.getAreaGridId().getId());
 								build.setArea(People.getAreaGridId());
 							}
 							build.setPilesNum(People.getPilesNum());
@@ -1112,12 +1079,11 @@ public class CcmPeopleController extends BaseController {
 							}
 						}
 						if (!isRoomExist) {//房屋不存在，增加房屋
+							roomNotHas = true;
 							CcmPopTenant room2 = new CcmPopTenant();
 							room2.setId(UUID.randomUUID().toString());
 							room2.setHouseBuild(People.getRoomName());  //房屋编号
 							if (People.getAreaGridId() != null) {
-//								Area area = new Area();
-//								area.setId(People.getAreaGridId().getId());
 								room2.setArea(People.getAreaGridId());  //所在区域
 							}
 							room2.setFloorNum(People.getFloorNum()+"");
@@ -1237,6 +1203,13 @@ public class CcmPeopleController extends BaseController {
 
 
 					ccmPeopleService.save(People);
+					peopleMap.put(People.getIdent(),People.getId());
+					if(buildNotHas){
+						listBuild.add(People.getBuildId());
+					}
+					if(roomNotHas){
+						listRoom.add(People.getRoomId());
+					}
 					successNum++;
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>实有人口名 " + People.getName() + " 导入失败：");
@@ -1252,9 +1225,6 @@ public class CcmPeopleController extends BaseController {
 			if (failureNum > 0) {
 				failureMsg.insert(0, "，失败 " + failureNum + " 条实有人口，导入信息如下：");
 				reslist.addAll(listFailure);
-//				String fileName = "PeopleImportFailure-" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
-//				new ExportExcel("实有人口导入失败数据", CcmPeople.class).setDataList(listFailure).write(response, fileName).dispose();
-//				return null;
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条实有人口" + failureMsg);
 		} catch (Exception e) {
@@ -1274,58 +1244,6 @@ public class CcmPeopleController extends BaseController {
 			addMessage(redirectAttributes, "导出实有人口失败！失败信息：" + e.getMessage());
 		}
 	}
-	
-	/*
-	public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
-		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/pop/ccmPeople/?repage";
-		}
-		try {
-			int successNum = 0;
-			int failureNum = 0;
-			StringBuilder failureMsg = new StringBuilder();
-			ImportExcel ei = new ImportExcel(file, 1, 0);
-			List<CcmPeople> list = ei.getDataList(CcmPeople.class);
-			for (CcmPeople People : list) {
-				// 如果当前用户的身份未填写或者为空则应该进行 剔除
-				if (StringUtils.isBlank(People.getIdent()) || StringUtils.isBlank(People.getIdenNum())) {
-					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "当前的用户的身份证材料尚未存在。");
-					continue;
-				}
-				// 进行身份证验证 ,如果已经存在则进行 失败条目的添加。 并跳过当前的内容
-				if (ccmPeopleService.checkPeopleIden(People)) {
-					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "当前的用户的身份证材料已经存在于当前的数据库中。");
-					continue;
-				}
-
-				try {
-					BeanValidators.validateWithException(validator, People);
-					CcmPopTenant ccmPopTenant = new CcmPopTenant();// 构造房屋ID
-					ccmPopTenant.setId(People.getRoomIdString());
-					People.setRoomId(ccmPopTenant);
-					ccmPeopleService.save(People);
-					successNum++;
-				} catch (ConstraintViolationException ex) {
-					failureMsg.append("<br/>实有人口名 " + People.getName() + " 导入失败：");
-					List<String> messageList = BeanValidators.extractPropertyAndMessageAsList(ex, ": ");
-					for (String message : messageList) {
-						failureMsg.append(message + "; ");
-						failureNum++;
-					}
-				} catch (Exception ex) {
-					failureMsg.append("<br/>实有人口名 " + People.getName() + " 导入失败：" + ex.getMessage());
-				}
-			}
-			if (failureNum > 0) {
-				failureMsg.insert(0, "，失败 " + failureNum + " 条实有人口，导入信息如下：");
-			}
-			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条实有人口" + failureMsg);
-		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入实有人口失败！失败信息：" + e.getMessage());
-		}
-		return "redirect:" + adminPath + "/pop/ccmPeople/?repage";
-	}*/
 
 	/**
 	 * 导出实有人口数据---特殊关怀人员

@@ -65,6 +65,7 @@ background:inherit;
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<div class="accordion-group">
 	    <div class="accordion-heading">
 	    	<a class="accordion-toggle">栏目列表</a>
@@ -75,5 +76,6 @@ background:inherit;
 			</div>
 	    </div>
 	</div>
+</div>
 </body>
 </html>

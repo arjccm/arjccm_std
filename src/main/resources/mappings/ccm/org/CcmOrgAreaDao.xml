@@ -546,7 +546,7 @@
 	
 	<select id="getPeoNum" resultType="int">
 	SELECT
-	a.mannum AS "mannum"
+	ifnull( a.mannum, 0 ) AS "mannum"
 FROM
 	ccm_org_area a
 	LEFT JOIN sys_area a2 ON a2.id = a.area_id

@@ -107,7 +107,7 @@ input.btn:hover {*color:#333333}
 
 /*#openClose,#openCloseDrag,#openClose.close,#openCloseDrag.close {background:#efefef url("../images/openclose.png") no-repeat -29px center;}*/
 #openClose.close ,#openCloseDrag.close{background-position:1px center;opacity:0.5;filter:alpha(opacity=50)}
-.select2-container.input-xlarge{width:283px;}
+.select2-container.input-xlarge{width:284px;}
 .select2-container.input-medium{width:177px;}
 .input-medium.Wdate{width:270px;}
 #searchForm .input-medium.Wdate{width:163px;}

@@ -210,6 +210,16 @@ public class SystemServiceEx extends BaseService implements InitializingBean {
 		userDao.updateLoginInfo(user);
 	}
 
+	@Transactional(readOnly = false)
+	public void appupdateUserLoginInfo(User user) {
+		// 保存上次登录信息
+		user.setOldLoginIp(user.getLoginIp());
+		user.setOldLoginDate(user.getLoginDate());
+		// 更新本次登录信息
+		user.setLoginDate(new Date());
+		userDao.updateLoginInfo(user);
+	}
+
 	/**
 	 * 生成安全的密码，生成随机的16位salt并经过1024次 sha-1 hash
 	 */

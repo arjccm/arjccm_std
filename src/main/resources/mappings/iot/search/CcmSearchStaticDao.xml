@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.iot.search.dao.CcmSearchStaticDao">
+    
+	<sql id="ccmSearchStaticColumns">
+		a.id AS "id",
+		a.rolllist AS "rolllist",
+		a.valuecontrast AS "valuecontrast",
+		a.photo AS "photo",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="ccmSearchStaticJoins">
+	</sql>
+    
+	<select id="get" resultType="CcmSearchStatic">
+		SELECT 
+			<include refid="ccmSearchStaticColumns"/>
+		FROM ccm_search_static a
+		<include refid="ccmSearchStaticJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CcmSearchStatic">
+		SELECT 
+			<include refid="ccmSearchStaticColumns"/>
+		FROM ccm_search_static a
+		<include refid="ccmSearchStaticJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="id != null and id != ''">
+				AND a.id = #{id}
+			</if>
+			<if test="rolllist != null and rolllist != ''">
+				AND a.rolllist = #{rolllist}
+			</if>
+			<if test="valuecontrast != null and valuecontrast != ''">
+				AND a.valuecontrast = #{valuecontrast}
+			</if>
+			<if test="photo != null and photo != ''">
+				AND a.photo = #{photo}
+			</if>
+			<if test="createBy != null and createBy.id != null and createBy.id != ''">
+				AND a.create_by = #{createBy.id}
+			</if>
+			<if test="createDate != null and createDate != ''">
+				AND a.create_date = #{createDate}
+			</if>
+			<if test="updateBy != null and updateBy.id != null and updateBy.id != ''">
+				AND a.update_by = #{updateBy.id}
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				AND a.update_date = #{updateDate}
+			</if>
+			<if test="remarks != null and remarks != ''">
+				AND a.remarks = #{remarks}
+			</if>
+			<if test="delFlag != null and delFlag != ''">
+				AND a.del_flag = #{delFlag}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CcmSearchStatic">
+		SELECT 
+			<include refid="ccmSearchStaticColumns"/>
+		FROM ccm_search_static a
+		<include refid="ccmSearchStaticJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_search_static(
+			id,
+			rolllist,
+			valuecontrast,
+			photo,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{rolllist},
+			#{valuecontrast},
+			#{photo},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ccm_search_static SET 	
+			id = #{id},
+			rolllist = #{rolllist},
+			valuecontrast = #{valuecontrast},
+			photo = #{photo},
+			create_by = #{createBy.id},
+			create_date = #{createDate},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			del_flag = #{delFlag}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE ccm_search_static SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

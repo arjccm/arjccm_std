@@ -157,7 +157,7 @@
             <label class="control-label">备注信息：</label>
             <div class="controls">
                 <form:textarea path="remarks" htmlEscape="false" rows="4"
-                               maxlength="500" class="input-xxlarge " style="width:300px !important;"/>
+                               maxlength="500" class="input-xxlarge " />
             </div>
         </div>
         <div class="form-actions" style="height: 15px;margin-top: 4px">

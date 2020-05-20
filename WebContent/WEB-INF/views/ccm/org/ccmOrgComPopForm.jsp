@@ -109,7 +109,7 @@
 				<div class="control-group">
 					<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>出生日期：</label>
 					<div class="controls">
-						<input name="birthday" type="text" readonly="readonly" onchange="initAge(this.value)" maxlength="20" class="input-medium Wdate "
+						<input name="birthday" type="text" readonly="readonly" onchange="initAge(this.value)" maxlength="20" class="input-medium Wdate required"
 							   value="<fmt:formatDate value="${ccmOrgComPop.birthday}" pattern="yyyy-MM-dd"/>"
 							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 

@@ -823,8 +823,7 @@
 		
 		
 		
-		<table id="float" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%" >
-			
+		<table id="float" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; width: 100%" class="tbl_ct_key">
 			<tr><td colspan="6">流动信息：</td></tr>
 			
 			<tr>
@@ -927,7 +926,7 @@
 		
 		
 		
-		<table id="oversea" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC;  width: 100%" >
+		<table id="oversea" border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC;  width: 100%" class="tbl_ct_key">
 			
 			<tr><td colspan="6">境外信息：</td></tr>
 			<tr>

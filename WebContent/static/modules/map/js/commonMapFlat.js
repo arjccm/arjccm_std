@@ -3276,7 +3276,7 @@ ArjMap.Map.prototype={
 								var url = location.search; //获取url中"?"符后的字串
 								var isShow = url.indexOf("?");
 								if(isShow != '0'){
-									html+='<a href="javascript:;" data-id="'+id+'" data-isImportant="' + isImportant + '" alarm-type="' + typeCode + '" onclick="planAssociated(this)" style="float: right;margin-right: 16px;">预案关联</a>';
+									html+='<a href="javascript:;" data-id="'+id+'" data-isImportant="" alarm-type="' + typeCode + '" onclick="planAssociated(this)" style="float: right;margin-right: 16px;">预案关联</a>';
 								}
 								html+='<a href="javascript:;" data-id="'+id+'" onclick="nearPTSearch(this)" style="float: right;margin-right: 16px;">周边查询</a>';
 								html+='<a href="javascript:;" data-id="'+id+'" onclick="locationP_er(this)" style="float: right;margin-right: 16px;">二次定位</a>';

@@ -231,7 +231,7 @@
             // })
             $("#areaComIdName").change(function () {
 
-                alert("1");
+                //alert("1");
             });
 
             //跟踪记录
@@ -269,6 +269,7 @@
         function saveForm() {
             var areaComIdId = $("#areaComIdId").val();
             var areaGridIdId = $("#areaGridIdId").val();
+            var profType  = $("#profTypeId").val();
             var html1 = '<label for="" class="error1">必选字段<label>';
             if (areaComIdId.length != 0) {
                 $("#showCom").html("*");
@@ -279,6 +280,11 @@
                 $("#showGrid").html("*");
             } else {
                 $("#showGrid").html(html1);
+            }
+            if (profType.length != 0) {
+                $("#showProfType").html("*");
+            } else {
+                $("#showProfType").html(html1);
             }
         }
 
@@ -643,8 +649,10 @@
                                             value="${ccmPeople.profType}" labelName="dicts.label"
                                             labelValue="${ccmPeople.profType}" title="职业类别"
                                             url="/sys/sysDicts/treeData?type=ccm_occupation"
-                                            extId="${sysDicts.id}" cssClass="" allowClear="true"
-                                            dicts="true"/>
+                                            extId="${sysDicts.id}" cssClass="required" allowClear="true"
+                                            dicts="true" cssStyle="width: 270px"/>
+                            <span class="help-inline" id="showProfType"></span>
+                            
                         </div>
                     </div>
                 </td>

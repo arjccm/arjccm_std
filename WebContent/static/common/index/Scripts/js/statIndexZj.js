@@ -4842,7 +4842,7 @@ function LayerDialog(src, title, height, width) {
         id: 'LayerDialog',
         //btn: [ '确定',  '关闭'], //可以无限个按钮
         content: src,
-        zIndex: '1992',
+        zIndex:'10',
         skin: "mySkin"
     });
 

@@ -236,7 +236,7 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 										}else if("2".equals(ccmListPeopleJson.getString("sex"))){
 											ccmListPeople.setSex("1");
 										}else{
-											ccmListPeople.setSex("99");
+											ccmListPeople.setSex("9");
 										}
 									}
 									if(ccmListPeopleJson.containsKey("listLibId")) {
@@ -327,7 +327,7 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 										}else if("2".equals(ccmListBlackJson.getString("sex"))){
 											ccmListPeople.setSex("1");
 										}else{
-											ccmListPeople.setSex("99");
+											ccmListPeople.setSex("9");
 										}
 									}
 									if(ccmListBlackJson.containsKey("credentialsType")) {

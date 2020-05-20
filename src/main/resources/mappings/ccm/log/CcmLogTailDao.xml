@@ -72,6 +72,12 @@
 			<if test="more1 != null and more1 != ''">
 				AND a.more1 = #{more1}
 			</if>
+			<if  test="beginSendDate != null and beginSendDate != ''">
+				AND a.tail_time &gt;= #{beginSendDate}
+			</if>
+			<if  test="endSendDate != null and endSendDate != ''">
+				AND a.tail_time &lt;= #{endSendDate}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
