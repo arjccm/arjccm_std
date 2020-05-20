@@ -120,7 +120,7 @@ public class AuthorityInterceptor extends BaseInterceptor {
 			// TODO 当前为用户所属区域及以下区域数据权限，若需要系统设置中的权限控制，则需添加代码
 			sql = sql.toLowerCase();
 			String areaAlias = getAlias("sys_area", sql);
-			if (areaAlias != null) {
+			if (areaAlias != null && !areaAlias.equals("noselarea")) {
 				StringBuilder idString = new StringBuilder();
 				//查詢子 id 及以下sys_log
 				String parentIds = user.getOffice().getArea().getParentIds();
@@ -223,7 +223,7 @@ public class AuthorityInterceptor extends BaseInterceptor {
 		int tabEnd = t.indexOf(" ");
 		
 		String key = t.substring(0, tabEnd);
-		if (!key.toLowerCase().trim().equals("as")) {
+			if (!key.toLowerCase().trim().equals("as")) {
 			result = key;
 		} else {
 			t = t.substring("as".length()).trim();
