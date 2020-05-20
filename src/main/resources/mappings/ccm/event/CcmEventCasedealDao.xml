@@ -78,7 +78,8 @@
 			when 'ccm_event_ambi' then '矛盾纠纷' 
 			when 'ccm_event_request' then '请求'
 			when 'ccm_wechat_event' then '微信上报'
-			else '' end) "objTypeLable"
+			else '' end) "objTypeLable",
+		c.happen_place happenPlace
 	</sql>
 	<sql id="ccmEventCasedealColumnsWithAmbi">
 		a.id AS "id",
@@ -251,9 +252,6 @@
 	</select>
 
 	<select id="findList" resultType="CcmEventCasedeal">
-		SELECT * FROM 
-		(
-
 			SELECT
 			<include refid="ccmEventCasedealColumnsWithIncident" />
 			FROM ccm_event_casedeal a
@@ -317,189 +315,12 @@
 					AND a.grade_num = 0
 				</if>
 			</where>
-
-			UNION
-			SELECT
-			<include refid="ccmEventCasedealColumnsWithAmbi" />
-			FROM ccm_event_casedeal a
-			<include refid="ccmEventCasedealJoins" />
-			<include refid="ccmEventIncidentJoinsUser" />
-			<include refid="ccmEventCasedealJoinsWithAmbi" />
-			<where>
-				a.obj_type = 'ccm_event_ambi'
-				AND a.del_flag = #{DEL_FLAG_NORMAL}
-				<if test="currentUser.id !='1'.toString() and isCheck != 'check'">
-					AND a.handle_user = #{currentUser.id}
-				</if>
-				<if test="objId != null and objId != ''">
-					AND a.obj_id LIKE
-					<if test="dbName == 'oracle'">'%'||#{objId}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{objId}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{objId},'%')</if>
-				</if>
-
-				<if test="objType != null and objType != ''">
-					AND a.obj_type = #{objType}
-				</if>
-
-				<if test="caseName != null and caseName != ''">
-					AND c.name LIKE
-					<if test="dbName == 'oracle'">'%'||#{caseName}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{caseName}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{caseName},'%')</if>
-				</if>
-
-				<if test="handleStep != null and handleStep != ''">
-					AND a.handle_step LIKE
-					<if test="dbName == 'oracle'">'%'||#{handleStep}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{handleStep}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{handleStep},'%')</if>
-				</if>
-
-				<if test="status != null and status != ''">
-					AND c.status = #{status}
-				</if>
-
-				<if test="handleUser != null and handleUser.id != null and handleUser.id != ''">
-					AND a.handle_user = #{handleUser.id}
-				</if>
-				<if test="beginHandleDeadline != null and endHandleDeadline != null and beginHandleDeadline != '' and endHandleDeadline != ''">
-					AND a.handle_deadline BETWEEN #{beginHandleDeadline} AND #{endHandleDeadline}
-				</if>
-				<if test="isSupervise != null and isSupervise != ''">
-					AND a.is_supervise = #{isSupervise}
-				</if>
-				<if test="handleStatus != null and handleStatus != ''">
-					AND a.handle_status = #{handleStatus}
-				</if>
-				<if test="evaluate == '1'.toString()">
-					AND a.check_user IS NOT NULL
-				</if>
-			</where>
-
-			UNION
-			SELECT
-			<include refid="ccmEventCasedealColumnsWithRequest" />
-			FROM ccm_event_casedeal a
-			<include refid="ccmEventCasedealJoins" />
-			<include refid="ccmEventIncidentJoinsUser" />
-			<include refid="ccmEventCasedealJoinsWithRequest" />
-			<where>
-				a.obj_type = 'ccm_event_request'
-				AND a.del_flag = #{DEL_FLAG_NORMAL}
-				<if test="currentUser.id !='1'.toString() and isCheck != 'check'">
-					AND a.handle_user = #{currentUser.id}
-				</if>
-				<if test="objId != null and objId != ''">
-					AND a.obj_id LIKE
-					<if test="dbName == 'oracle'">'%'||#{objId}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{objId}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{objId},'%')</if>
-				</if>
-
-				<if test="objType != null and objType != ''">
-					AND a.obj_type = #{objType}
-				</if>
-
-				<if test="caseName != null and caseName != ''">
-					AND c.case_name LIKE
-					<if test="dbName == 'oracle'">'%'||#{caseName}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{caseName}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{caseName},'%')</if>
-				</if>
-
-				<if test="handleStep != null and handleStep != ''">
-					AND a.handle_step LIKE
-					<if test="dbName == 'oracle'">'%'||#{handleStep}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{handleStep}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{handleStep},'%')</if>
-				</if>
-
-				<if test="status != null and status != ''">
-					AND c.type = #{status}
-				</if>
-
-				<if test="handleUser != null and handleUser.id != null and handleUser.id != ''">
-					AND a.handle_user = #{handleUser.id}
-				</if>
-				<if test="beginHandleDeadline != null and endHandleDeadline != null and beginHandleDeadline != '' and endHandleDeadline != ''">
-					AND a.handle_deadline BETWEEN #{beginHandleDeadline} AND #{endHandleDeadline}
-				</if>
-				<if test="isSupervise != null and isSupervise != ''">
-					AND a.is_supervise = #{isSupervise}
-				</if>
-				<if test="handleStatus != null and handleStatus != ''">
-					AND a.handle_status = #{handleStatus}
-				</if>
-				<if test="evaluate == '1'.toString()">
-					AND a.check_user IS NOT NULL
-				</if>
-			</where>
-			UNION
-			SELECT
-			<include refid="ccmEventCasedealColumnsWithWechatEvent" />
-			FROM ccm_event_casedeal a
-			<include refid="ccmEventCasedealJoins" />
-			<include refid="ccmEventIncidentJoinsUser" />
-			<include refid="ccmEventCasedealJoinsWithWechatEvent" />
-			<where>
-				a.obj_type = 'ccm_wechat_event'
-				AND a.del_flag = #{DEL_FLAG_NORMAL}
-				<if test="currentUser.id !='1'.toString()  and isCheck != 'check'">
-					AND a.handle_user = #{currentUser.id}
-				</if>
-				<if test="objId != null and objId != ''">
-					AND a.obj_id LIKE
-					<if test="dbName == 'oracle'">'%'||#{objId}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{objId}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{objId},'%')</if>
-				</if>
-
-				<if test="objType != null and objType != ''">
-					AND a.obj_type = #{objType}
-				</if>
-
-				<if test="caseName != null and caseName != ''">
-					AND c.report_info LIKE
-					<if test="dbName == 'oracle'">'%'||#{caseName}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{caseName}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{caseName},'%')</if>
-				</if>
-
-				<if test="handleStep != null and handleStep != ''">
-					AND a.handle_step LIKE
-					<if test="dbName == 'oracle'">'%'||#{handleStep}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{handleStep}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{handleStep},'%')</if>
-				</if>
-
-				<if test="status != null and status != ''">
-					AND c.status = #{status}
-				</if>
-
-				<if test="handleUser != null and handleUser.id != null and handleUser.id != ''">
-					AND a.handle_user = #{handleUser.id}
-				</if>
-				<if test="beginHandleDeadline != null and endHandleDeadline != null and beginHandleDeadline != '' and endHandleDeadline != ''">
-					AND a.handle_deadline BETWEEN #{beginHandleDeadline} AND #{endHandleDeadline}
-				</if>
-				<if test="isSupervise != null and isSupervise != ''">
-					AND a.is_supervise = #{isSupervise}
-				</if>
-				<if test="handleStatus != null and handleStatus != ''">
-					AND a.handle_status = #{handleStatus}
-				</if>
-				<if test="evaluate == '1'.toString()">
-					AND a.check_user IS NOT NULL
-				</if>
-			</where>
-		) rr
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY rr.handleDeadline DESC
+				ORDER BY handleDeadline DESC
 			</otherwise>
 		</choose>
 	</select>

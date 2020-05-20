@@ -1253,13 +1253,13 @@ public class CcmRestEvent extends BaseController {
         ccmEventCasedeal.setCurrentUser(sessionUser);
         Page<CcmEventCasedeal> page = ccmEventCasedealService.findPage(new Page<CcmEventCasedeal>(req, resp),
                 ccmEventCasedeal);
-        if(page.getList().size()>0){
-            for (int i = 0; i < page.getList().size(); i++) {
-                String cid = page.getList().get(i).getId();
-                String happenPlacea = ccmEventCasedealService.getHappenPlace(cid);
-                page.getList().get(i).setHappenPlace(happenPlacea);
-            }
-        }
+//        if(page.getList().size()>0){
+//            for (int i = 0; i < page.getList().size(); i++) {
+//                String cid = page.getList().get(i).getId();
+//                String happenPlacea = ccmEventCasedealService.getHappenPlace(cid);
+//                page.getList().get(i).setHappenPlace(happenPlacea);
+//            }
+//        }
         if (page.getList().size()>0){
             result.setResult(page.getList());
         }else {
