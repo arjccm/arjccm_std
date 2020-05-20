@@ -114,7 +114,7 @@ A:link{
 <script src="${ctxStatic}/calendar/js/blackbird.js" type="text/javascript"></script> 
 <script src="${ctxStatic}/calendar/js/datepicker_lang_zh_CN.js" type="text/javascript"></script>     
 <script src="${ctxStatic}/calendar/js/jquery.datepicker.js" type="text/javascript"></script>
-<script src="${ctxStatic}/calendar/js/jquery.alert.js" type="text/javascript"></script>    
+<script src="${ctxStatic}/calendar/js/jquery.alert.js" type="text/javascript"></script>
 <script src="${ctxStatic}/calendar/js/jquery.ifrmdailog.js" defer="defer" type="text/javascript"></script>
 <script src="${ctxStatic}/calendar/js/xgcalendar_lang_zh_CN.js" type="text/javascript"></script>  
 <script src="${ctxStatic}/calendar/js/xgcalendar.js?v=1.2.0.4" type="text/javascript"></script> 
