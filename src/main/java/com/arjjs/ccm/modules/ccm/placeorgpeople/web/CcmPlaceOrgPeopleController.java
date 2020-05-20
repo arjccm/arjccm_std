@@ -161,6 +161,10 @@ public class CcmPlaceOrgPeopleController extends BaseController {
 		ccmPeople.setMaxnum(page.getPageSize());
         List<CcmPeople> list = ccmPeopleService.findPlaceOfPopAdd(ccmPeople);
 		page.setList(list);
+		if(list.size()< 10){
+			page.setCount(10);
+			page.initialize();
+		}
         model.addAttribute("page", page);
         model.addAttribute("ccmPeople", ccmPeople);
 		model.addAttribute("type", placeType);
