@@ -94,7 +94,7 @@
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable"
-		class="table table-striped table-bordered table-condensed">
+		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>人口类型</th>
@@ -133,5 +133,15 @@
 	</table>
 	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(
+			$(function () {
+				var elementsByClassName = window.parent.document.getElementById("LayerDialog");
+				if(elementsByClassName!=null&&elementsByClassName!=undefined){
+
+					$(".back-list").css({"box-shadow":"none","background":"none"})
+				}
+			}))
+</script>
 </body>
 </html>

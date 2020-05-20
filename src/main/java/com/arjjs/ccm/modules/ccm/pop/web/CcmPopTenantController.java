@@ -120,6 +120,10 @@ public class CcmPopTenantController extends BaseController {
 			Page<CcmPopTenant> pagelist = ccmPopTenantService.findList_V2(new Page<CcmPopTenant>(request, response), ccmPopTenant);
 			page.setList(pagelist.getList());
 		}
+		if(list.size()< 10){
+			page.setCount(10);
+			page.initialize();
+		}
 //		Page<CcmPopTenant> page = ccmPopTenantService.findPage(new Page<CcmPopTenant>(request, response), ccmPopTenant);
 		model.addAttribute("page", page);
 		model.addAttribute("ccmPopTenant", ccmPopTenant);
@@ -144,6 +148,10 @@ public class CcmPopTenantController extends BaseController {
 		ccmPopTenant.setMaxnum(page.getPageSize());
 		List<CcmPopTenant> list = ccmPopTenantService.findListBylimit(ccmPopTenant);
 		page.setList(list);
+		if(list.size()< 10){
+			page.setCount(10);
+			page.initialize();
+		}
 		model.addAttribute("page", page);
 		model.addAttribute("ccmPopTenant", ccmPopTenant);
 		return "ccm/pop/ccmPopTenantRentList";

@@ -231,7 +231,7 @@
             // })
             $("#areaComIdName").change(function () {
 
-                alert("1");
+                //alert("1");
             });
 
             //跟踪记录
@@ -270,7 +270,6 @@
             var areaComIdId = $("#areaComIdId").val();
             var areaGridIdId = $("#areaGridIdId").val();
             var profType  = $("#profTypeId").val();
-            alert(profType)
             var html1 = '<label for="" class="error1">必选字段<label>';
             if (areaComIdId.length != 0) {
                 $("#showCom").html("*");

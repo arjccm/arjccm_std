@@ -94,9 +94,8 @@
 				<td>
 					${ccmKnowKeyActivity.address}
 				</td>
-				<td title="${ccmKnowKeyActivity.attendee}">
-					<%-- ${ccmKnowKeyActivity.attendee} --%>
-					${fns:abbr(ccmKnowKeyActivity.attendee,30)}
+				<td style="white-space:normal;width:20%">
+					${ccmKnowKeyActivity.attendee}
 				</td>
 				<shiro:hasPermission name="know:ccmKnowKeyActivity:edit"><td>
     				<a class="btnList" href="${ctx}/know/ccmKnowKeyActivity/form?id=${ccmKnowKeyActivity.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>

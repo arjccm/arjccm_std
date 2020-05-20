@@ -57,9 +57,9 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">标题:</label>
+		    <label class="control-label"><span class="help-inline"><font color="red">*</font> </span> 标题：</label>
 			<div class="controls">
-				<form:input path="title" htmlEscape="false" maxlength="200" class="input-xxlarge measure-input required"/>
+				<form:input path="title" htmlEscape="false" maxlength="200" class="input-xxlarge required"/>
 				&nbsp;<label>颜色:</label>
 				<form:select path="color" class="input-mini">
 					<form:option value="" label="默认"/>
@@ -109,7 +109,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">正文:</label>
+			<label class="control-label"><span class="help-inline"><font color="red">*</font> </span> 正文：</label>
 			<div class="controls">
 				<form:textarea id="content" htmlEscape="true" path="articleData.content" rows="4" maxlength="200" class="input-xxlarge"/>
 				<sys:ckeditor replace="content" uploadPath="/cms/article" />

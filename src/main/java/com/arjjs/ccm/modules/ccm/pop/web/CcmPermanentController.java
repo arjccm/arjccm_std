@@ -96,7 +96,10 @@ public class CcmPermanentController extends BaseController {
 			List<CcmPeople> list2 = ccmPeopleService.findListLimite_V2(ccmPeople2);//数组查询id
 			page.setList(list2);
 		}
-		
+		if(list.size()< 10){
+			page.setCount(10);
+			page.initialize();
+		}
 		model.addAttribute("page", page);
 		return "ccm/pop/ccmPermanentList";
 	}

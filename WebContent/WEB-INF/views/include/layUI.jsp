@@ -570,6 +570,18 @@
             var count2 = $("#count2").text();
             $("#count2").text(parseInt(count2) - 1);
         }
+        if($("#countAll").text() == 0){
+            $("#countAll").css({
+                "display":"none"
+            })
+            $("#message-Dh").removeClass("xiaoxi-dh");
+            $("#messa-Num").addClass("xiaoxi-yc");
+        }
+        if($("#count2").text() == 0){
+            $("#count2").css({
+                "display":"none"
+            })
+        }
         layer.open({
 			type: 2, //类型，解析url
 			closeBtn: 1, //关闭按钮是否显示 1显示0不显示
@@ -642,6 +654,18 @@
             var count3 = $("#count3").text();
             $("#count3").text(parseInt(count3) - 1);
         }
+        if($("#countAll").text() == 0){
+            $("#countAll").css({
+                "display":"none"
+            })
+            $("#message-Dh").removeClass("xiaoxi-dh");
+            $("#messa-Num").addClass("xiaoxi-yc");
+        }
+        if($("#count3").text() == 0){
+            $("#count3").css({
+                "display":"none"
+            })
+        }
         layer.open({
             type: 2, //类型，解析url
             closeBtn: 1, //关闭按钮是否显示 1显示0不显示
@@ -672,6 +696,18 @@
             var count3 = $("#count3").text();
             $("#count3").text(parseInt(count3) - 1);
         }
+        if($("#countAll").text() == 0){
+            $("#countAll").css({
+                "display":"none"
+            })
+            $("#message-Dh").removeClass("xiaoxi-dh");
+            $("#messa-Num").addClass("xiaoxi-yc");
+        }
+        if($("#count3").text() == 0){
+            $("#count3").css({
+                "display":"none"
+            })
+        }
         layer.open({
             type: 2, //类型，解析url
             closeBtn: 1, //关闭按钮是否显示 1显示0不显示
@@ -692,6 +728,18 @@
             $("#countAll").text(parseInt(countAll) - 1);
             var count3 = $("#count3").text();
             $("#count3").text(parseInt(count3) - 1);
+        }
+        if($("#countAll").text() == 0){
+            $("#countAll").css({
+                "display":"none"
+            })
+            $("#message-Dh").removeClass("xiaoxi-dh");
+            $("#messa-Num").addClass("xiaoxi-yc");
+        }
+        if($("#count3").text() == 0){
+            $("#count3").css({
+                "display":"none"
+            })
         }
     }
 
@@ -737,6 +785,18 @@
             $("#messa-Num").html(parseInt(countAll) - 1);
             var count3 = $("#count3").text();
             $("#count3").text(parseInt(count3) - 1);
+        }
+        if($("#countAll").text() == 0){
+            $("#countAll").css({
+                "display":"none"
+            })
+            $("#message-Dh").removeClass("xiaoxi-dh");
+            $("#messa-Num").addClass("xiaoxi-yc");
+        }
+        if($("#count3").text() == 0){
+            $("#count3").css({
+                "display":"none"
+            })
         }
         layer.open({
             type: 2, //类型，解析url

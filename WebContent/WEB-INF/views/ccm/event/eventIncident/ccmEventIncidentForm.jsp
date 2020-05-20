@@ -157,6 +157,12 @@
         }
     </script>
     <link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
+    <style>
+        #untreated  .select2-arrow b {
+
+            background: none!important;
+        }
+    </style>
 </head>
 <body>
 <ul class="nav nav-tabs">
@@ -530,12 +536,14 @@
                 <td style="padding: 8px;border: 0px dashed #CCCCCC">
                     <div>
                         <label class="control-label">处理状态：</label>
-                        <div class="controls">
-                            <form:select path="status" class="input-xlarge disabled1" style="width:284px">
+                        <div class="controls" id="untreated">
+                          <%--  <form:input path="numArrest" htmlEscape="false"
+                                        maxlength="6" class="input-xlarge disabled1 digits" type="number"/>--%>
+                            <form:select path="status" class="input-xlarge disabled1" style="width:284px"   disabled="true">
                                 <c:if test="${empty ccmEventIncident.id}"><form:option value="01" label="未处理"/></c:if>
                                 <c:if test="${not empty ccmEventIncident.id}">
                                     <form:options items="${fns:getDictList('ccm_event_status')}" itemLabel="label"
-                                                  itemValue="value" htmlEscape="false"/>
+                                                  itemValue="value" htmlEscape="false" />
                                 </c:if>
                             </form:select>
                         </div>
