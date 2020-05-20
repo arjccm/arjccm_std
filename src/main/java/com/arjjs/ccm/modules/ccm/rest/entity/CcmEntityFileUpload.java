@@ -6,6 +6,16 @@ public class CcmEntityFileUpload {
 	String src;	//图片返回路径
 	String type; //文件类型
 	String fileName; //文件名
+	long fileSize;  //文件大小
+
+	public long getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
+	}
+
 	public String getFileName() {
 		return fileName;
 	}
@@ -36,11 +46,11 @@ public class CcmEntityFileUpload {
 	public void setSrc(String src) {
 		this.src = src;
 	}
-	
+
 //	@Override
 //	public String toString() {
 //		return "CLS_VO_Progress [uploadedBytes=" + uploadedBytes + ", totalBytes=" + totalBytes + ", uuid="
 //				+ uuid + "]";
 //	};
-	
+
 }
