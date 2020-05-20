@@ -178,7 +178,10 @@ public class CcmPeopleController extends BaseController {
 /*			page.setOrderBy(ccmPeople.getUpdateDate());*/
 			page.setList(list2);
 		}
-
+		if(list.size()< 10){
+			page.setCount(10);
+			page.initialize();
+		}
 		// List<CcmPeople> list2 = new ArrayList<>();
 		// if(list.size()>0){
 		// for(CcmPeople p:list){
@@ -301,7 +304,10 @@ public class CcmPeopleController extends BaseController {
 			List<CcmPeople> list2 = ccmPeopleService.findListLimite_V2(ccmPeople2);// 数组查询id
 			page.setList(list2);
 		}
-
+		if(list.size()< 10){
+			page.setCount(10);
+			page.initialize();
+		}
 		model.addAttribute("page", page);
 		return "ccm/pop/ccmPeopleOlderList";
 	}
@@ -395,7 +401,10 @@ public class CcmPeopleController extends BaseController {
 			List<CcmPeople> list2 = ccmPeopleService.findListLimite_V2(ccmPeople2);// 数组查询id
 			page.setList(list2);
 		}
-
+		if(list.size()< 10){
+			page.setCount(10);
+			page.initialize();
+		}
 		model.addAttribute("page", page);
 		return "ccm/pop/ccmPeopleCareList";
 	}
@@ -449,7 +458,10 @@ public class CcmPeopleController extends BaseController {
 			List<CcmPeople> list2 = ccmPeopleService.findListLimite_V2(ccmPeople2);// 数组查询id
 			page.setList(list2);
 		}
-
+		if(list.size()< 10){
+			page.setCount(10);
+			page.initialize();
+		}
 		model.addAttribute("page", page);
 		return "ccm/pop/ccmPeopleCareList";
 	}
