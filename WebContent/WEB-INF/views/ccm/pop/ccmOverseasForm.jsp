@@ -86,6 +86,32 @@
 .ulz {
 	margin-left: 50px;
 }
+.tip_box_style .layui-layer-content {
+	background: none;
+	color: red;
+	font-size: 16px;
+	box-shadow: 0px 0px 0px 0px #0b0b0b;
+	padding: 4px 15px;
+}
+.tip_box_style .layui-layer-content .layui-layer-TipsR {
+
+}
+.tip_box_style i.layui-layer-TipsL, .tip_box_style i.layui-layer-TipsR {
+	/*border-right-style: solid;*/
+	/*border-right-color: red;*/
+	top: 6px;
+	border-style: solid;
+	border-color: transparent #FF0000 transparent transparent;
+}
+.error1{
+    background-position: 0 2px;
+    background: url('${ctxStatic}/jquery-validation/1.11.1/images/unchecked.gif') no-repeat 0 0;
+    padding-left: 18px;
+    padding-bottom: 2px;
+    font-weight: bold;
+    color: #ea5200;
+    margin-left: 10px;
+}
 	</style>
 <script type="text/javascript">
 	$(document).ready(
@@ -103,7 +129,7 @@
 	function saveForm(){
 		var areaComIdId = $("#areaComIdId").val();
 		var areaGridIdId = $("#areaGridIdId").val();
-		var html1 = '<label for="" class="error">必选字段 *<label>';
+		var html1 = '<label for="" class="error1">必选字段 *<label>';
 		if (areaComIdId.length != 0) {
 			$("#showCom").html("*");
 		} else {
@@ -385,53 +411,63 @@
 
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="showCom">*</font></span>所属社区：</label>
-						<div class="controls" onmouseout="onclickNet()">
-							<!--  
-							<sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}" labelName="areaComId.name" labelValue="${ccmPeople.areaComId.name}"
-							title="区域" url="/sys/area/treeData" cssClass="" allowClear="true" notAllowSelectParent="false" cssStyle="width: 150px"/>
-							-->
+						<input type="hidden" id="isreact" value="true">
+						<label class="control-label"><span class="help-inline"><font
+								color="red">*</font></span>所属社区：</label>
+							<%--<div class="controls" onmouseout="onclickNet()">--%>
+						<div class="controls">
+								<%--  <!--
+                                      <sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}" labelName="areaComId.name" labelValue="${ccmPeople.areaComId.name}"
+                                      title="区域" url="/sys/area/treeData" cssClass="" allowClear="true" notAllowSelectParent="false" cssStyle="width: 150px"/>
+                                      -->--%>
 							<sys:treeselect id="areaComId" name="areaComId.id"
-								value="${ccmPeople.areaComId.id}" labelName="areaComId.name"
-								labelValue="${ccmPeople.areaComId.name}" title="区域"
-								url="/tree/ccmTree/treeDataArea?type=6" cssClass=""
-								allowClear="true" notAllowSelectParent="true"
-								cssStyle="width: 150px" />
-
+											value="${ccmPeople.areaComId.id}" labelName="areaComId.name"
+											labelValue="${ccmPeople.areaComId.name}" title="区域"
+											url="/tree/ccmTree/treeDataArea?type=6" cssClass="required"
+											allowClear="true" notAllowSelectParent="true"
+											cssStyle="width: 270px"/>
+							<span class="help-inline" id="showCom"></span>
 						</div>
 					</div>
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="showGrid">*</font></span>所属网格：</label>
+						<label class="control-label"><span class="help-inline"><font
+								color="red">*</font></span>所属网格：</label>
 						<div class="controls">
-						<div class="help-inline" id="newNet" onmouseout="onclickHouse()"
-							onmousemove="onclickNet()">
-							<sys:treeselect id="areaGridId" name="areaGridId.id"
-								value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
-								labelValue="${ccmPeople.areaGridId.name}" title="区域"
-								url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass=""
-								allowClear="true" notAllowSelectParent="true"
-								cssStyle="width: 150px" />
-						</div>
+								<%--<div class="help-inline" id="newNet" onmouseout=""
+                                     onmousemove="onclickNet()" onclick="onclickNet1()">--%>
+							<div class="help-inline">
+								<sys:treeselect id="areaGridId" name="areaGridId.id" disabled="disabled"
+												value="${ccmPeople.areaGridId.id}" labelName="areaGridId.name"
+												labelValue="${ccmPeople.areaGridId.name}" title="区域"
+												url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="required"
+												allowClear="true" notAllowSelectParent="true"
+												cssStyle="width:270px "/>
+								<span class="help-inline" id="showGrid"></span>
+							</div>
 
 						</div>
+
 					</div>
+
 				</td>
+
 				<td>
 					<div>
 						<label class="control-label">所属房屋：</label>
-						<div class="controls" id="newHouse" onmousemove="onclickHouse()">
-							<!--  
-							<sys:treeselect id="roomId" name="roomId.id" value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild" labelValue="${ccmPeople.roomId.houseBuild}"
-							title="房屋" url="/pop/ccmPopTenant/treeData?type=7" cssClass="" allowClear="true" notAllowSelectParent="true" cssStyle="width: 150px"/>
-							-->
+							<%--                    <div class="controls" id="newHouse" onmousemove="onclickHouse()">--%>
+						<div class="controls">
+								<%--  <!--
+                                      <sys:treeselect id="roomId" name="roomId.id" value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild" labelValue="${ccmPeople.roomId.houseBuild}"
+                                      title="房屋" url="/pop/ccmPopTenant/treeData?type=7" cssClass="" allowClear="true" notAllowSelectParent="true" cssStyle="width: 150px"/>
+                                      -->--%>
 							<sys:treeselect id="roomId" name="roomId.id"
-								value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild"
-								labelValue="${ccmPeople.roomId.houseBuild}" title="房屋"
-								url="/tree/ccmTree/treeDataArea?type=9&areaid=" cssClass=""
-								allowClear="true" notAllowSelectParent="true"
-								cssStyle="width: 150px" />
+											value="${ccmPeople.roomId.id}" labelName="roomId.houseBuild"
+											labelValue="${ccmPeople.roomId.houseBuild}" title="房屋"
+											url="/tree/ccmTree/treeDataAreaByareaGrid?type=9&areaid=" cssClass=""
+											allowClear="true" notAllowSelectParent="true"
+											cssStyle="width: 270px"/>
 
 						</div>
 					</div>

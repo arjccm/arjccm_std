@@ -34,6 +34,10 @@
 <script type="text/javascript">
 	$("#${id}Button, #${id}Name").click(function(){
 		// 是否限制选择，如果限制，设置为disabled
+		if($("#areaGridIdId").val()!=""){
+			$("#areaGridIdButton").removeClass("disabled");
+		}
+
 		if($("#isreact").val() && $("#${id}Button").hasClass("disabled")){
 			layer.tips('请选择社区', '#areaComIdName', {
 				tips: 2,
@@ -41,10 +45,6 @@
 				skin: 'tip_box_style'
 			});
 			return true;
-		}
-
-		if($("#areaGridIdId").val()!=""){
-			$("#areaGridIdButton").removeClass("disabled");
 		}
 
 		// 是否限制选择，如果限制，设置为disabled
