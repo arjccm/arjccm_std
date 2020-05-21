@@ -114,7 +114,7 @@
 						<%--<li><a
                             href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house">成员新增</a></li>--%>
 
-						<a class="btn btn-primary" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=house', '成员新增', '1500px', '700px')"
+						<a class="btn btn-primary" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&ptype=house', '成员新增', '1500px', '700px')"
 						   title="成员新增">成员新增</a>
 					</shiro:hasPermission>
 				</c:if>
@@ -122,7 +122,7 @@
                 <c:if test="${PeoTypeBy eq 'ByHouse_hire' }">
                 <shiro:hasPermission name="pop:ccmPeople:edit">
            <%--<li><a href="${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=hire">成员新增</a></li>--%>
-            <a class="btn btn-primary" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&type=hire', '成员新增', '1500px', '700px')"
+            <a class="btn btn-primary" onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getPeoFromByHouse?houseId=${houseId}&ptype=hire', '成员新增', '1500px', '700px')"
        title="成员新增" >成员新增</a>
             </shiro:hasPermission>
             </c:if>
