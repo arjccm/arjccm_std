@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
+import com.arjjs.ccm.modules.ccm.event.entity.CcmEventCasedeal;
+import com.arjjs.ccm.modules.ccm.event.service.CcmEventCasedealService;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmExpireUser;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmIntervalPeople;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseEmphasisService;
@@ -69,6 +71,8 @@ public class CcmRestData extends BaseController {
     private VCcmTeamService vCcmTeamService;
     @Autowired
     private CcmRestAreaService ccmRestAreaService;
+    @Autowired
+    private CcmEventCasedealService ccmEventCasedealService;
 
     @ResponseBody
     @RequestMapping(value="/getData", method = RequestMethod.GET)
@@ -92,9 +96,21 @@ public class CcmRestData extends BaseController {
         CcmOrgNpse ccmOrgNpse = new CcmOrgNpse();
         ccmOrgNpse.setCheckUser(sessionUser);
         Map<String, Object> map = new HashMap<>();
+        CcmEventCasedeal ccmEventCasedeal = new CcmEventCasedeal();
         String areaId = ccmOrgAreaService.getAreaId(userId);
         String parentAreaId = ccmOrgAreaService.getParrenAreaId(areaId);
         SearchTab peopleData = ccmPeopleService.getData(areaId);
+        ccmEventCasedeal.setObjType("ccm_event_incident");
+        ccmEventCasedeal.setCurrentUser(sessionUser);
+        //待签收
+        ccmEventCasedeal.setHandleStatus("01");
+        List<CcmEventCasedeal> awaitList = ccmEventCasedealService.findList(ccmEventCasedeal);
+        //已签收
+        ccmEventCasedeal.setHandleStatus("02");
+        List<CcmEventCasedeal> signForList = ccmEventCasedealService.findList(ccmEventCasedeal);
+        //已反馈
+        ccmEventCasedeal.setHandleStatus("05");
+        List<CcmEventCasedeal> feedbackList = ccmEventCasedealService.findList(ccmEventCasedeal);
         //户籍，流动，外籍，未落户人口数量
         Integer peoNum = ccmOrgAreaService.getPeoNum(userId);
         Integer value1 = Integer.valueOf(peopleData.getValue1());
@@ -167,6 +183,9 @@ public class CcmRestData extends BaseController {
         map.put("rentalHousing",rentalHousing);
         map.put("organization",organization);
         map.put("issueNum",issueNum);
+        map.put("awaitNum",awaitList.size());
+        map.put("signNum",signForList.size());
+        map.put("feedbackNum",feedbackList.size());
 
         result.setCode(CcmRestType.OK);
         result.setResult(map);
