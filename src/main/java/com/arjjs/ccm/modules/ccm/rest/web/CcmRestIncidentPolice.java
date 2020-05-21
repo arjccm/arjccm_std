@@ -1,6 +1,7 @@
 package com.arjjs.ccm.modules.ccm.rest.web;
 
 import com.arjjs.ccm.common.utils.StringUtils;
+import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDeviceArea;
 import com.arjjs.ccm.modules.ccm.event.entity.CcmEventIncident;
 import com.arjjs.ccm.modules.ccm.event.service.CcmEventIncidentService;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +32,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "${appPath}/rest/service/ccmIncidentPolice")
 @Api(description = "一键报警接口")
-public class CcmRestIncidentPolice {
+public class CcmRestIncidentPolice extends BaseController {
 
     @Autowired
     private CcmOrgAreaService ccmOrgAreaService;
@@ -39,10 +42,23 @@ public class CcmRestIncidentPolice {
     //获取详情
     @ApiOperation(value ="一键报警" )
     @RequestMapping(value = "/insertIncident", method = RequestMethod.GET)
-    public CcmRestResult insertIncident(@RequestParam String userId, @RequestParam String areaPoint,@RequestParam String happenPlace) {
+    public CcmRestResult insertIncident(@RequestParam String userId, @RequestParam String areaPoint, @RequestParam String happenPlace, HttpServletRequest request, HttpServletResponse response) {
+        logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
+        logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.info("当前方法运行参数为》》》id : " + userId + "  userId : " + userId);
         CcmRestResult result = new CcmRestResult();
-        CcmEventIncident ccmEventIncident = new CcmEventIncident();
         User user = UserUtils.get(userId);
+
+        if (user== null) {
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+        String sessionUserId = user.getId();
+        if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+            result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+            return result;
+        }
+        CcmEventIncident ccmEventIncident = new CcmEventIncident();
 
         List<CcmOrgArea> orgAreaList = ccmOrgAreaService.getAreaMap(new CcmOrgArea());
         List<CcmDeviceArea> resultList = Lists.newArrayList();
