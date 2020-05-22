@@ -322,8 +322,8 @@
 	<li ><a href="#SocialRelations" data-toggle="tab" onclick="showmap(2)">社会关系图谱</a></li>
 	<li ><a href="#roomPop" data-toggle="tab" onclick="showmap(2)">同住人员信息</a></li>
 	<li ><a href="#homePop" data-toggle="tab" onclick="showmap(2)">家庭成员信息</a></li>
-	<li ><a href="#trafficAccommodation" data-toggle="tab" onclick="showmap(2)">交通住宿信息</a></li>
-	<li ><a href="#mapMask" data-toggle="tab" onclick="showmap(1)">布控结果信息</a></li>
+<%--	<li ><a href="#trafficAccommodation" data-toggle="tab" onclick="showmap(2)">交通住宿信息</a></li>--%>
+<%--	<li ><a href="#mapMask" data-toggle="tab" onclick="showmap(1)">布控结果信息</a></li>--%>
 </ul>
 <div id="myTabContent" class="tab-content">
 	<div class="tab-pane fade in active" id="SocialRelations" style="align-content:center;width:100%;height:800px;">
