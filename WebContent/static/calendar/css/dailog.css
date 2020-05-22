@@ -140,34 +140,37 @@ BODY.bbit-body-masked.ext-ie6 .bbit-window SELECT {
 	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-TOP: medium none; BORDER-RIGHT: medium none
 }
 .bbit-window-plain .bbit-window-body {
-	BORDER-BOTTOM: #a3bae9 1px solid; BORDER-LEFT: #a3bae9 1px solid; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-TOP: #a3bae9 1px solid; BORDER-RIGHT: #a3bae9 1px solid
+	/*BORDER-BOTTOM: #a3bae9 1px solid; BORDER-LEFT: #a3bae9 1px solid; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-TOP: #a3bae9 1px solid; BORDER-RIGHT: #a3bae9 1px solid*/
 }
 .bbit-window-tc {
-	BACKGROUND-IMAGE: url(../images/top-bottom.png)
+	background: #0e2d50;
 }
 .bbit-window-tl {
-	BACKGROUND-IMAGE: url(../images/left-corners.png)
+	background: #0e2d50;
 }
 .bbit-window-tr {
-	BACKGROUND-IMAGE: url(../images/right-corners.png)
+	background: #0e2d50;
 }
 .bbit-window-bc {
-	BACKGROUND-IMAGE: url(../images/top-bottom.png)
+	background: #0e2a4c;
 }
 .bbit-window-bl {
-	BACKGROUND-IMAGE: url(../images/left-corners.png)
+	background: #0e2a4c;
 }
 .bbit-window-br {
-	BACKGROUND-IMAGE: url(../images/right-corners.png)
+	background: #0e2a4c;
 }
 .bbit-window-mc {
-	BORDER-BOTTOM-COLOR: #99bbe8; BACKGROUND-COLOR: #c6d4e4; BORDER-TOP-COLOR: #99bbe8; FONT: 11px tahoma, arial, helvetica, sans-serif; BORDER-RIGHT-COLOR: #99bbe8; BORDER-LEFT-COLOR: #99bbe8
+	background: #0e2a4c;
+	FONT: 11px tahoma, arial, helvetica, sans-serif;
 }
 .bbit-window-ml {
-	BACKGROUND-IMAGE: url(../images/left-right.png)
+	/*BACKGROUND-IMAGE: url(../images/left-right.png)*/
+	background: #0e2a4c;
 }
 .bbit-window-mr {
-	BACKGROUND-IMAGE: url(../images/left-right.png)
+	/*BACKGROUND-IMAGE: url(../images/left-right.png)*/
+	background: #0e2a4c;
 }
 DIV.bbit-tool {
 	BACKGROUND: url(../images/tool-sprites.gif) no-repeat; FONT-SIZE: 1px
