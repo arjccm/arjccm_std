@@ -473,7 +473,10 @@ public class CcmRestBuilding extends BaseController {
                     total = total + peopleList.size();
                 }
                 res.setResidentNum(total);
-            }
+            }else{
+				res.setHouseNum(0);
+				res.setResidentNum(0);
+			}
         }
 		result.setCode(CcmRestType.OK);
 		result.setResult(buildentranceList);
