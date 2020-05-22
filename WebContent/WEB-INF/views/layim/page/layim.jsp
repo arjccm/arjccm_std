@@ -425,7 +425,8 @@ var showmsg,lm;
                             "display":"none"
                         })
                     }
-                    $("#compileGrp").click(function(){
+                    $(".setUpGroup").click(function(){
+                        // debugger
                         compileGrp_fn()
                         $(".changeGrp").attr("data-id",group_Id)
                     })
@@ -434,6 +435,7 @@ var showmsg,lm;
                         compileGrp.open({
                             type:2
                             ,title:"编辑群聊"
+                            ,id:"bjGroup_id"
                             ,maxmin:true
                             ,area:["1000px","680px"]
                             ,skin:"layui-box layui-layer-border changeGrp"
@@ -451,6 +453,7 @@ var showmsg,lm;
                             ,title:"提示"
                             ,maxmin:true
                             ,area:["300px","150px"]
+                            ,id:"exitGroup_id"
                             ,skin:"exitGrp"
                             ,content:"是否退出群聊"
                             ,btn: ['确定', '取消']
