@@ -278,10 +278,11 @@
 				</td>
 				<td><shiro:hasPermission name="pop:ccmPeople:edit">
 				<a class="btnList" href="${ctx}/pop/ccmPeople/formPop?id=${ccmPeople.id}" title="查看"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
-				</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
+				</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:view">
 					<a class="btnList" onclick="top.LayerDialog1('','${ctx}/log/ccmLogTail/list?relevance_id=${ccmPeople.id}&relevance_table=ccm_house_schoolrim', '记录信息', '800px', '660px')"
 								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
-					<a class="btnList" onclick="top.LayerDialog1('','${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPeople.id}&relevance_table=ccm_house_schoolrim', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+				</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
+					<a class="btnList" onclick="top.LayerDialog1('','${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPeople.id}&relevance_table=ccm_house_schoolrim', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
 				</shiro:hasPermission></td>
 			</tr>
 		</c:forEach>

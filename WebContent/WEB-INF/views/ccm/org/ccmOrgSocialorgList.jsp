@@ -172,13 +172,14 @@
                     <a class="btnList" href="${ctx}/org/ccmOrgSocialorg/delete?id=${ccmOrgSocialorg.id}"
                        onclick="return confirmx('确认要删除该社会组织吗？', this.href)" title="删除"><i
                             class="iconfont icon-caozuotubiao-shanchu"></i></a>
-                </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
+                </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:view">
                     <a class="btnList"
                        onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmOrgSocialorg.id}&relevance_table=ccm_org_socialorg', '记录信息', '800px', '660px')"
                        title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
+                </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
                     <a class="btnList"
                        onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmOrgSocialorg.id}&relevance_table=ccm_org_socialorg', '添加记录', '800px', '660px')"
-                       title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+                       title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
                 </shiro:hasPermission></td>
             </tr>
         </c:forEach>

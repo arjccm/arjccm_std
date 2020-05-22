@@ -140,10 +140,12 @@
 					<td><shiro:hasPermission name="house:ccmHouseKym:edit">
 						    <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseKym/form?id=${ccmHouseKym.id}&hide1=true&hide2=false', '详情', '1200px', '800px')" title="详情"><i class="iconfont icon-caozuotubiao-xiangqing"></i></a>
 						</shiro:hasPermission>
-                        <shiro:hasPermission name="log:ccmLogTail:edit">
+                        <shiro:hasPermission name="log:ccmLogTail:view">
                             <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseKym.id}&relevance_table=ccm_house_kym', '走访记录', '1200px', '500px')" title="走访记录"><i class="iconfont icon-caozuotubiao-zoufangjilu"></i></a>
                             <%-- <a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseKym.id}&relevance_table=ccm_house_kym', '记录信息', '800px', '660px')" title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a> --%>
-							<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseKym.id}&relevance_table=ccm_house_kym', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+						</shiro:hasPermission>
+						<shiro:hasPermission name="log:ccmLogTail:edit">
+							<a class="btnList" onclick="parent.parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseKym.id}&relevance_table=ccm_house_kym', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
 						</shiro:hasPermission></td>
 				</tr>
 			</c:forEach>

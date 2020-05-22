@@ -146,7 +146,7 @@
                     <!--
 				<shiro:hasPermission name="log:ccmLogTail:edit">
 							<a	class="btnList"
-								href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmEventAmbi.id}&relevance_table=ccm_event_ambi" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+								href="${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmEventAmbi.id}&relevance_table=ccm_event_ambi" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
 				</shiro:hasPermission>-->
                     <!-- 事件处理 编辑权限  -->
                         <%-- <shiro:hasPermission name="event:ccmEventCasedeal:edit">

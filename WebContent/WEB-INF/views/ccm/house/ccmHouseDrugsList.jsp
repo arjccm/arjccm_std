@@ -215,13 +215,14 @@
                        onclick="parent.LayerDialog('${ctx}/pop/ccmPeople/getSocialConnections?id=${ccmHouseDrugs.peopleId}', '社交关系', '1000px', '700px')"
                        title="社交关系"><i class="iconfont icon-caozuotubiao-shejiaoguanxi"></i></a>
                     <%-- <a class="btnList" onclick="parent.LayerDialog1('','${ctx}/work/ccmWorkTiming/form', '定时提醒', '700px', '500px')" title="定时提醒"><i class="iconfont icon-caozuotubiao-fasongjingqing"></i></a> --%>
-                </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
+                </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:view">
                     <a class="btnList"
                        onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseDrugs.id}&relevance_table=ccm_house_drugs', '记录信息', '800px', '660px')"
                        title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
+                </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
                     <a class="btnList"
                        onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseDrugs.id}&relevance_table=ccm_house_drugs', '添加记录', '800px', '660px')"
-                       title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+                       title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
                 </shiro:hasPermission></td>
             </tr>
         </c:forEach>
