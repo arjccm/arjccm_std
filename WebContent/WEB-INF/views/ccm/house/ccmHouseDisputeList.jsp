@@ -53,16 +53,18 @@
         }
 
         var isEmpty = true;
+
         function saveImport() {
-            if(isEmpty){
+            if (isEmpty) {
                 alert("请选择文件！");
                 return false;
-            }else{
+            } else {
                 loading('正在导入，请稍等...');
             }
         }
+
         function changeFalse(_this) {
-            if(_this>0){
+            if (_this > 0) {
                 isEmpty = false;
             }
         }
@@ -79,7 +81,8 @@
         <form id="importForm" action="${ctx}/house/ccmHouseDispute/import" method="post" enctype="multipart/form-data"
               class="form-search" style="padding-left: 20px; text-align: center;" onsubmit="return saveImport()">
             <br/>
-            <input id="uploadFile" name="file" type="file" style="width: 330px" onchange="changeFalse(this.value.length)"/><br/> <br/>
+            <input id="uploadFile" name="file" type="file" style="width: 330px"
+                   onchange="changeFalse(this.value.length)"/><br/> <br/>
             <input id="btnImportSubmit" class="btn btn-primary" type="submit" value="导  入 "/>
         </form>
     </div>
@@ -207,9 +210,11 @@
                            onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseDispute.id}&relevance_table=ccm_house_dispute', '记录信息', '800px', '660px')"
                            title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi"
                                            style="color: cornflowerblue;"></i></a>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="log:ccmLogTail:view">
                         <a class="btnList"
                            onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseDispute.id}&relevance_table=ccm_house_dispute', '添加记录', '800px', '660px')"
-                           title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+                           title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
                     </shiro:hasPermission>
                 </td>
             </tr>

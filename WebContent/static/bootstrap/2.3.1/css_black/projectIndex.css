@@ -175,8 +175,8 @@ a,a:hover{
  */
   text-align: center;
  box-sizing: border-box;
-   	background: url('../../../images/index-border1.png') center   no-repeat ;
-	background-size: 100% 100%;
+   	/*background: url('../../../images/index-border1.png') center   no-repeat ;*/
+	/*background-size: 100% 100%;*/
 
 }
 .system-nav li span{

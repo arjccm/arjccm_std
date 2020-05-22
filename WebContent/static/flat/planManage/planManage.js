@@ -25,8 +25,8 @@ $(document).ready(function () {
 	plotDrawInit();//标绘初始化
 	liveStreamingData();
 });
-//setInterval(queryStatus,3000);
-setInterval(planActionData,30000);
+setInterval(queryStatus,3000);
+setInterval(planActionData,3000);
 setTimeout(liSelected,500)
 
 function loadingPerResource(){

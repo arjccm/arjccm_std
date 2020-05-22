@@ -465,11 +465,13 @@
 								<i class="iconfont   icon-caozuotubiao-hujijiating"></i></a>
 				       	</c:if>
 				    </shiro:hasPermission>
+				    <shiro:hasPermission name="log:ccmLogTail:view">
+					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPeople.id}&relevance_table=ccm_people', '记录信息', '800px', '660px')"
+					   title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
+					</shiro:hasPermission>
 				    <shiro:hasPermission name="log:ccmLogTail:edit">
-				    	<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmPeople.id}&relevance_table=ccm_people', '记录信息', '800px', '660px')"
-								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
 				 		<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPeople.id}&relevance_table=ccm_people', '添加记录', '800px', '660px')"
-								 title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+								 title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
 				  	</shiro:hasPermission>
 					<shiro:hasPermission name="overallControl:ccmOverallControl:edit">
 						<c:if test="${ccmPeople.isControl eq 1}">

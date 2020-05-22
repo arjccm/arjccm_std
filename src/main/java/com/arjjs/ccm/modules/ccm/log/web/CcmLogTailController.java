@@ -100,7 +100,7 @@ public class CcmLogTailController extends BaseController {
 		return "ccm/log/ccmLogTailForm";
 	}
 
-	@RequiresPermissions("log:ccmLogTail:view")
+	@RequiresPermissions("log:ccmLogTail:edit")
 	@RequestMapping(value = "formPro")
 	public String formPro(CcmLogTail ccmLogTail, Model model) {
 		// 具体业务日志的页面

@@ -2695,13 +2695,14 @@
 			${sqlMap.dsf}
 		</where>
 		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
+			<when test="isOrderBy !=null and isOrderBy != ''">
+
 			</when>
 			<otherwise>
 				ORDER BY a.update_date DESC
 			</otherwise>
 		</choose>
+		Limit #{minnum},#{maxnum};
 	</select>
 	
 	

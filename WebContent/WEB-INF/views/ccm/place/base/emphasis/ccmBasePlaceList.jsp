@@ -132,11 +132,13 @@
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/place/ccmBasePlace/emphasisForm?id=${ccmBasePlace.id}', '编辑', '1200px', '650px')" ><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 						<a class="btnList" href="${ctx}/place/ccmBasePlace/emphasisDelete?id=${ccmBasePlace.id}" onclick="return confirmx('确认要删除该场所信息吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
                             </shiro:hasPermission>
-                    <shiro:hasPermission name="log:ccmLogTail:edit">
+                    <shiro:hasPermission name="log:ccmLogTail:view">
                             <a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmBasePlace.id}&relevance_table=ccm_base_place', '记录信息', '800px', '660px')"
 						   title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
+					</shiro:hasPermission>
+						<shiro:hasPermission name="log:ccmLogTail:edit">
 						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmBasePlace.id}&relevance_table=ccm_base_place', '添加记录', '800px', '660px')"
-						   title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i></a>
+						   title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
 					</shiro:hasPermission>
                     </td>
 				</tr>
