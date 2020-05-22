@@ -381,6 +381,9 @@
             <if test="property != null and property != ''">
                 AND a.property = #{property}
             </if>
+            <if test="createBy != null and createBy.id != null and createBy.id != ''">
+                AND a.create_by = #{createBy.id}
+            </if>
         </where>
         <choose>
             <when test="page !=null and page.orderBy != null and page.orderBy != ''">
