@@ -657,10 +657,8 @@ public class CcmPeopleService extends CrudService<CcmPeopleDao, CcmPeople> {
 		return ccmPeopleDao.getSuspect(ccmPeople);
 	}
 
-	public Page<CcmPeople> findListexists(Page<CcmPeople> page, CcmPeople ccmPeople) {
-		ccmPeople.setPage(page);
-		page.setList(ccmPeopleDao.findListexists(ccmPeople));
-		return page;
+	public List<CcmPeople> findListexists(Page<CcmPeople> page, CcmPeople ccmPeople) {
+		return ccmPeopleDao.findListexists(ccmPeople);
 	}
 	//人口导出数据查询
 	public List<CcmPeople> getExportList(CcmPeople ccmPeople) {
