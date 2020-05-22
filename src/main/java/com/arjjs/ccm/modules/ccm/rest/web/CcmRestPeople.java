@@ -4,10 +4,8 @@ import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
-import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDeviceArea;
 import com.arjjs.ccm.modules.ccm.house.entity.*;
 import com.arjjs.ccm.modules.ccm.house.service.*;
-import com.arjjs.ccm.modules.ccm.org.entity.CcmOrgArea;
 import com.arjjs.ccm.modules.ccm.org.entity.SysArea;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
 import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
@@ -22,7 +20,6 @@ import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.sys.entity.Area;
-import com.arjjs.ccm.modules.sys.entity.Dict;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.service.DictService;
 import com.arjjs.ccm.tool.Pagecount;
@@ -1904,8 +1901,17 @@ public class CcmRestPeople extends BaseController {
 			ccmPeople2.setListLimite(listLimite);
 			List<CcmPeople> list2 = ccmPeopleService.findListLimite_V2(ccmPeople2);// 数组查询id
 			if (list2.size()>0){
-				page2.setList(list2);
-				result.setResult(page2.getList());
+				/*page2.setList(list2);*/
+				List<CcmPeople> resultList = Lists.newArrayList();
+				list2.forEach(people->{
+					String file1 = people.getImages();
+					if (StringUtils.isNotEmpty(file1)) {
+						String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+						people.setImages(fileUrl + file1);
+					}
+					resultList.add(people);
+				});
+				result.setResult(resultList);
 			}
 		}else {
 			result.setResult("");

@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.gis.MapUtil;
 import com.arjjs.ccm.common.gis.Point;
-import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.security.Digests;
 import com.arjjs.ccm.common.utils.CacheUtils;
 import com.arjjs.ccm.common.utils.Encodes;
@@ -264,7 +263,10 @@ public class CcmRestLogin extends BaseController {
         json.put("arj_rest_url",Global.getConfig("ARJIM_RETS_URL"));
         json.put("arj_webrtc_host_room_url",Global.getConfig("ARJIM_WEBRTC_HOST_ROOM_URL"));
         json.put("arj_webrtc_host_url",Global.getConfig("ARJIM_WEBRTC_HOST_URL"));
-
+        json.put("arj_coturn_turn_url",Global.getConfig("ARJ_COTURN_TURN_URL"));
+        json.put("arj_coturn_stun_url",Global.getConfig("ARJ_COTURN_STUN_URL"));
+        json.put("arj_turn_username",Global.getConfig("ARJ_TURN_USERNAME"));
+        json.put("arj_turn_password",Global.getConfig("ARJ_TURN_PASSWORD"));
         result.setResult(json);
         return result;
     }

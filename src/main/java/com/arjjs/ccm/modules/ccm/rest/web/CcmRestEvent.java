@@ -41,7 +41,6 @@ import com.arjjs.ccm.tool.geoJson.GeoJSON;
 import com.arjjs.ccm.tool.geoJson.Geometry;
 import com.arjjs.ccm.tool.geoJson.Properties;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.PropertyFilter;
@@ -52,7 +51,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -60,7 +58,6 @@ import javax.jms.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -1271,7 +1268,16 @@ public class CcmRestEvent extends BaseController {
 //            }
 //        }
         if (page.getList().size()>0){
-            result.setResult(page.getList());
+            List<CcmEventCasedeal> resultList = Lists.newArrayList();
+            page.getList().forEach(eventCasedeal->{
+                String file1 = eventCasedeal.getFile();
+                if (StringUtils.isNotEmpty(file1)) {
+                    String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+                    eventCasedeal.setFile(fileUrl + file1);
+                }
+                resultList.add(eventCasedeal);
+            });
+            result.setResult(resultList);
         }else {
             result.setResult("");
         }
