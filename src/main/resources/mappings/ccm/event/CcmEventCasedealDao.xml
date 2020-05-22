@@ -66,6 +66,7 @@
 		u3.name AS "handleUser.name",
 		b.name AS "create_by.name",
 		c.case_name AS "caseName",
+		c.event_scale AS "eventScale",
 		c.status AS "status",
 		(case a.handle_status 
 			when 01 then '待签收'
