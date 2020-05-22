@@ -4866,23 +4866,36 @@ ArjMap.Map.prototype = {
                     html += '<td><strong>' + i + '：</strong></td>';
                 }
                 if(i == '住所楼栋名称'){
-                    html += '<td ><a class="bulidclick btn btn-success"onclick="$(\'#popup-closer\').click();" href="###" featureId="'
+                    var sliceData;
+                    if(infoData[i].length>10){
+                       sliceData =  infoData[i].slice(0, 10)+"...";
+                    }else {
+                        sliceData = infoData[i];
+                    }
+
+                    html += '<td ><a class="bulidclick btn btn-success fontNum" style="width: auto !important;" onclick="$(\'#popup-closer\').click();" href="###" featureId="'
                                 + info.info['住所楼栋id']
                                 + '"  elemNum="'
                                 + info.info['单元数']
                                 + '" pilesNum="'
                                 + info.info['层数']
                                 + '" buildName="'
-                                + info.info['住所楼栋名称'] + '">' + infoData[i] + '</a></td>';
+                                // + info.info['住所楼栋名称'] + '">' + infoData[i] + '</a></td>';
+                                + info.info['住所楼栋名称'] + '">' + sliceData + '</a></td>';
+
                 } else {
                     if(i != '单元数' && i != '层数'){
                         html += '<td  style="color:#eea807">' + infoData[i] + '</td>';
                     }
                 }
                 html += '</tr>';
+
+
             }
 
         }
+
+
         if (video) {
             html += '<tr>';
             html += '<td><strong>视频监控：</strong></td>';
