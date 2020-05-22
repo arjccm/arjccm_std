@@ -1859,13 +1859,26 @@ public class CcmPeopleController extends BaseController {
 	public String listPopAdd(@RequestParam(required = false) String houseId, CcmPeople ccmPeople,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
 		// 获取房屋ID
+		Page<CcmPeople> page = new Page<CcmPeople>(request, response);
+		int countnum = page.getPageSize()*8;
+		if(page.getPageNo()>= 6){
+			countnum+=page.getPageNo()/6*page.getPageSize()*8;
+		}
+		page.setCount(countnum);
+		page.initialize();
+		ccmPeople.setMinnum((page.getPageNo()-1)*page.getPageSize());
+		ccmPeople.setMaxnum(page.getPageSize());
+		if(StringUtils.isNotEmpty(ccmPeople.getName())){
+			ccmPeople.setIsOrderBy("true");
+		}
+		if(StringUtils.isNotEmpty(ccmPeople.getIdent())){
+			ccmPeople.setIsOrderBy("true");
+		}
 		CcmPopTenant ccmPopTenant = new CcmPopTenant();
 		ccmPopTenant.setId(houseId);
 		ccmPeople.setRoomId(ccmPopTenant);
 		// 查询 人员列表
-		Page<CcmPeople> page = ccmPeopleService.findListexists(new Page<CcmPeople>(request, response), ccmPeople);
-
-		List<CcmPeople> list = page.getList();
+		List<CcmPeople> list = ccmPeopleService.findListexists(new Page<CcmPeople>(request, response), ccmPeople);
 		//
 		CcmPeople ccmPeople2 = new CcmPeople();
 		String[] listLimite = new String[list.size()];
