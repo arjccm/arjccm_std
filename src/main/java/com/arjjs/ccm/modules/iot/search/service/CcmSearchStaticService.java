@@ -19,6 +19,7 @@ import com.arjjs.ccm.modules.iot.search.entity.SearchGrabberVO;
 import com.arjjs.ccm.modules.iot.search.entity.SearchVO;
 import com.arjjs.ccm.tool.Tool;
 import org.activiti.engine.impl.bpmn.data.SimpleDataInputAssociation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,6 +64,12 @@ public class CcmSearchStaticService extends CrudService<CcmSearchStaticDao, CcmS
 	}
 
 	public Page<SearchVO> findSearchVOPage(Page<SearchVO> page, SearchEntity searchEntity) {
+		if(searchEntity == null){
+			List<SearchVO> faillist = new ArrayList<>();
+			page.setList(faillist);
+			page.setCount(0);
+			return page;
+		}
 		SysConfig sysConfig = sysConfigService.get("face_docking_config");
 		//解JSON
 		JSONObject jsonObject = JSONObject.parseObject(sysConfig.getParamStr());
@@ -84,6 +91,13 @@ public class CcmSearchStaticService extends CrudService<CcmSearchStaticDao, CcmS
 			String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
 			param = param + "&picUrl=" + fileUrl + searchEntity.getImagesUrl();
 		}
+		if(StringUtils.isEmpty(url)){
+			List<SearchVO> faillist = new ArrayList<>();
+			page.setList(faillist);
+			page.setCount(0);
+			page.setMessage("配置请求路径为空");
+			return page;
+		}
 		String result = Tool.sendPost(url,param);
 		JSONObject data = JSONObject.parseObject(result);
 		if(data.containsKey("code") && "0".equals(data.getString("code"))){
@@ -102,6 +116,12 @@ public class CcmSearchStaticService extends CrudService<CcmSearchStaticDao, CcmS
 	}
 
 	public Page<SearchGrabberVO> findSearchGrabberVOPage(Page<SearchGrabberVO> page, SearchEntity searchEntity) {
+		if(searchEntity == null){
+			List<SearchGrabberVO> faillist = new ArrayList<>();
+			page.setList(faillist);
+			page.setCount(0);
+			return page;
+		}
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SysConfig sysConfig = sysConfigService.get("face_docking_config");
 		//解JSON
@@ -109,6 +129,13 @@ public class CcmSearchStaticService extends CrudService<CcmSearchStaticDao, CcmS
 		String url = null;
 		if(jsonObject.containsKey("url")) {
 			url = jsonObject.getString("url") + "/api/fms/v2/human/findSnapHuman";
+		}
+		if(StringUtils.isEmpty(url)){
+			List<SearchGrabberVO> faillist = new ArrayList<>();
+			page.setList(faillist);
+			page.setCount(0);
+			page.setMessage("配置请求路径为空");
+			return page;
 		}
 		String param = "pageNo=" + page.getPageNo() + "&pageSize" + page.getPageSize();
 		if(StringUtils.isNotEmpty(searchEntity.getListId())){

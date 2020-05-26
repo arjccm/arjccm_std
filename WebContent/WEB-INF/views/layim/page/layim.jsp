@@ -37,8 +37,18 @@ body .layui-layim-min{
 </style>
 <script>
 //layim接口地址
-var arjimRest="http://"+window.location.host+"/arjim-server/";
-var arjWebRtc="https://192.168.1.226:9090";
+var arjimRest="http://153.0.171.153:8090/arjim-server/";
+// var arjimRest="http://"+window.location.host+"/arjim-server/";
+var arjWebRtc="https://47.94.247.75:9090";
+if(window.location.hostname.startsWith("10")
+    || window.location.hostname.startsWith("local")
+    || window.location.hostname.startsWith("127")){
+    arjimRest="http://10.224.13.146:8080/arjim-server/"
+    arjWebRtc="https://10.224.13.145:9090";
+}else if(window.location.hostname.startsWith("153")){
+    arjimRest="http://153.0.171.153:8090/arjim-server/"
+    arjWebRtc="https://153.0.171.158:9091";
+}
 var onlineUser = [];
 var sendMsgParam ={};
 var sendWebRtcParm = {};
