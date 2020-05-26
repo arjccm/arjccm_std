@@ -3137,6 +3137,31 @@ public class CcmRestPeople extends BaseController {
 		return result;
 	}
 
+	//房屋删除人员
+	@ResponseBody
+	@RequestMapping(value="/deletePeopleById", method = RequestMethod.GET)
+	public CcmRestResult deletePeopleById(String userId,CcmPeople ccmPeople, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
+		logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
+		CcmRestResult result = new CcmRestResult();
+		User sessionUser = (User) req.getSession().getAttribute("user");
+		if (sessionUser== null) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		String sessionUserId = sessionUser.getId();
+		if (userId== null || "".equals(userId) ||!userId.equals(sessionUserId)) {
+			result.setCode(CcmRestType.ERROR_USER_NOT_EXIST);
+			return result;
+		}
+		CcmPeople ccmPeople1 = ccmPeopleService.get(ccmPeople.getId());
+		CcmPopTenant ccmPopTenant = new CcmPopTenant();
+		ccmPeople1.setRoomId(ccmPopTenant);
+		ccmPeopleService.save(ccmPeople1);
+		result.setCode(CcmRestType.OK);
+		result.setResult("");
+		return result;
+	}
 
 	//疫情人员信息
 	@ResponseBody
@@ -3212,6 +3237,5 @@ public class CcmRestPeople extends BaseController {
         return age;
 
     }
-
 
 }
