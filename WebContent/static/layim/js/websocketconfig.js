@@ -1,4 +1,15 @@
-var websocketurl="ws://"+window.location.hostname+":2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
+// var websocketurl="ws://"+window.location.hostname+":2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
+
+var websocketurl="ws://153.0.171.158:2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
+
+if(window.location.hostname.startsWith("10")
+    || window.location.hostname.startsWith("local")
+    || window.location.hostname.startsWith("127")
+){
+    websocketurl="ws://10.224.13.146:2048/ws";
+}else if(window.location.hostname.startsWith("153")){
+    websocketurl="ws://153.0.171.158:2048/ws";
+}
 var reconnectflag = false;//避免重复连接
 var socket; 
 //var userRegisterwsurl = "wss://192.168.1.177:9090/call";
