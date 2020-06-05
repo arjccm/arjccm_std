@@ -81,7 +81,8 @@ proto.Model.toObject = function(includeInstance, msg) {
     calltype: jspb.Message.getFieldWithDefault(msg, 19, ""),
     sendername: jspb.Message.getFieldWithDefault(msg, 20, ""),
     senderphoto: jspb.Message.getFieldWithDefault(msg, 21, ""),
-    vagroupname: jspb.Message.getFieldWithDefault(msg, 22, "")
+    vagroupname: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    vatype: jspb.Message.getFieldWithDefault(msg, 23, "")
   };
 
   if (includeInstance) {
@@ -205,6 +206,10 @@ proto.Model.deserializeBinaryFromReader = function(msg, reader) {
     case 22:
       var value = /** @type {string} */ (reader.readString());
       msg.setVagroupname(value);
+      break;
+    case 23:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVatype(value);
       break;
     default:
       reader.skipField();
@@ -386,6 +391,13 @@ proto.Model.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       22,
+      f
+    );
+  }
+  f = message.getVatype();
+  if (f.length > 0) {
+    writer.writeString(
+      23,
       f
     );
   }
@@ -743,6 +755,21 @@ proto.Model.prototype.getVagroupname = function() {
 /** @param {string} value */
 proto.Model.prototype.setVagroupname = function(value) {
   jspb.Message.setField(this, 22, value);
+};
+
+
+/**
+ * optional string vaType = 23;
+ * @return {string}
+ */
+proto.Model.prototype.getVatype = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
+};
+
+
+/** @param {string} value */
+proto.Model.prototype.setVatype = function(value) {
+  jspb.Message.setField(this, 23, value);
 };
 
 
