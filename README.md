@@ -48,64 +48,115 @@ arjwebrtc 信令服务配置
 index.js
 //var ws =  new WebSocket('wss://' + location.host + '/call');
 var ws ;//=  new WebSocket('wss://' + location.host + '/call');
+//var initWebSocket = function(){
+var iceservers;	
  if(location.host.startsWith("local")
- 	|| location.host.startsWith("127")
-  	|| location.host.startsWith("10")){
- 	ws = new WebSocket('wss://' + location.host + '/call')
+	|| location.host.startsWith("127")
+	|| location.host.startsWith("10")){
+	ws = new WebSocket('wss://' + location.host + '/call');
+	iceservers={
+		"iceServers":[
+			{
+				//urls:"stun:47.94.247.75:3478"
+				urls:"stun:10.224.13.145:3478"
+			},
+			{
+				//urls:["turn:47.94.247.75:3478"],
+				urls:["turn:10.224.13.145:3478"],
+				username:"mytest",
+				credential: "123456"
+			}
+		]
+	};
  }else if(location.host.startsWith("153")){
- 	ws = new WebSocket('wss://153.0.171.158:9091/call')
+	ws = new WebSocket('wss://153.0.171.158:9091/call');
+	iceservers={
+		"iceServers":[
+			{
+				//urls:"stun:47.94.247.75:3478"
+				urls:"stun:153.0.171.158:3478"
+			},
+			{
+				//urls:["turn:47.94.247.75:3478"],
+				urls:["turn:153.0.171.158:3478"],
+				username:"mytest",
+				credential: "123456"
+			}
+		]
+	};
  }
-var iceservers={
-	"iceServers":[
-		{
-			//urls:"stun:47.94.247.75:3478"
-			urls:"stun:153.0.171.158:3478"
-		},
-		{
-			//urls:["turn:47.94.247.75:3478"],
-			urls:["turn:153.0.171.158:3478"],
-			username:"mytest",
-			credential: "123456"
-		}
-	]
-}
 群聊配置
 
 //var ws = new WebSocket('wss://' + location.host + '/groupcall');
  var ws ;//=  new WebSocket('wss://' + location.host + '/call');
+ var iceservers;
  if(location.host.startsWith("local")
  	|| location.host.startsWith("127")
  	|| location.host.startsWith("10")){
- 	ws = new WebSocket('wss://' + location.host + '/groupcall')
+ 	ws = new WebSocket('wss://' + location.host + '/groupcall');
+	iceservers={
+		"iceServers":[
+			{
+				urls:"stun:10.224.13.145:3478"
+				//urls:"stun:47.94.247.75:3478"
+			},
+			{
+				urls:["turn:10.224.13.145:3478"],
+				//urls:["turn:47.94.247.75:3478"],
+				username:"mytest",
+				credential: "123456"
+			}
+		]
+	}
  }else if(location.host.startsWith("153")){
- 	ws = new WebSocket('wss://153.0.171.158:9091/groupcall')
+ 	ws = new WebSocket('wss://153.0.171.158:9091/groupcall');
+	iceservers={
+		"iceServers":[
+			{
+				urls:"stun:153.0.171.158:3478"
+				//urls:"stun:47.94.247.75:3478"
+			},
+			{
+				urls:["turn:153.0.171.158:3478"],
+				//urls:["turn:47.94.247.75:3478"],
+				username:"mytest",
+				credential: "123456"
+			}
+		]
+	}
  }
-var participants = {};
-var iceservers={c
-	"iceServers":[
-		{
-			urls:"stun:153.0.171.158:3478"
-			//urls:"stun:47.94.247.75:3478"
-		},
-		{
-			urls:["turn:153.0.171.158:3478"],
-			//urls:["turn:47.94.247.75:3478"],
-			username:"mytest",
-			credential: "123456"
-		}
-	]
-}
+console.log("iceservers: " ,iceservers);
 
 KMS 配置turn/stun 服务地址
-配置文件位置： /etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
-
-turnURL=mytest:123456@153.0.171.158:3478?transport=udp
-
+   配置文件位置： /etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
+   turnURL=mytest:123456@10.224.13.145:3478?transport=udp
+ 注意此处配置的是服务器内网地址，此地址已经被映射了外网地址，所以直接配置内网地址即可；
 Coturn 配置
 配置文件位置：/my/turnserver.conf
 
+#监听的网卡
+#relay-device=eth0
+#云主机内网IP
+#listening-ip=172.17.219.47
+#监听端口
 listening-port=3478
+
+#tls-listening-port=5349
+#relay-ip=172.17.219.47
+#外网ip #公网ip
 external-ip=153.0.171.158
+#relay-threads=50
+
+#lt-cred-mech
+#openssl证书路径
+#cert=/etc/turn_server_cert.pem 
+#openssl公钥路径
+#pkey=/etc/turn_server_pkey.pem 
+
+#pidfile=”/var/run/turnserver.pid”
+
+#一般与turnadmin创建用户时指定的realm一致
+#realm=mycompany.org
 realm=mytest
 
 min-port=49152
@@ -113,5 +164,9 @@ max-port=65535
 #用户名:密码
 user=mytest:123456
 cli-password=123456
+log-file=stdout
+#syslog
+no-stun
+
 
 注意：配置完coturn 之后，需要在服务端打开 出入的TCP/UDP 3478 端口，如果不打开，视频是通讯不了的
