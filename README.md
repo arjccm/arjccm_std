@@ -1,6 +1,15 @@
 # arjcm_std
 平台配置
 
+即时通讯端口映射：
+
+ KMS服务端口：      IP:8888   
+信令服务端口：      IP:9090    
+即时通讯服务IM端口  IP:2048
+stun/turn 服务端口	IP:3478   TCP/UDP  进出都需要开放
+
+
+
 layim.jsp 配置  文件位置：arjccm_std\WebContent\WEB-INF\views\layim\page\layim.jsp
 
 //layim接口地址   153为外网映射地址  10为内网地址 47为阿里云测试地址
@@ -167,6 +176,5 @@ cli-password=123456
 log-file=stdout
 #syslog
 no-stun
-
 
 注意：配置完coturn 之后，需要在服务端打开 出入的TCP/UDP 3478 端口，如果不打开，视频是通讯不了的
