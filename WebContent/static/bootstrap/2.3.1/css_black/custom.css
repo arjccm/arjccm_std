@@ -1912,3 +1912,5 @@ cite[class*='t-click']{
  .personnel_box ul li{
 	 background: #173563 !important;
  }
+ /*icon选择 展示页*/
+ .the-icons li:hover {background-color:#2F8EEE;}

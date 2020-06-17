@@ -8,9 +8,9 @@
     	.page-header {clear:both;margin:0 20px;padding-top:20px;}
 		.the-icons {padding:25px 10px 15px;list-style:none;}
 		.the-icons li {float:left;width:22%;line-height:25px;margin:2px 5px;cursor:pointer;}
-		.the-icons i {margin:1px 5px;font-size:16px;} .the-icons li:hover {background-color:#122e59;}
+		.the-icons i {margin:1px 5px;font-size:16px;}
         .the-icons li.active {background-color:#0088CC;color:#ffffff;}
-        .the-icons li:hover i{font-size:20px;}
+        .the-icons li:hover i{font-size:18px;}
     </style>
     <script type="text/javascript">
 	    $(document).ready(function(){

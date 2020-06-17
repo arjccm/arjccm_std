@@ -10,7 +10,7 @@
 		.the-icons li {float:left;width:22%;line-height:25px;margin:2px 5px;cursor:pointer;}
 		.the-icons i {margin:1px 5px;font-size:16px;} .the-icons li:hover {background-color:#efefef;}
         .the-icons li.active {background-color:#0088CC;color:#ffffff;}
-        .the-icons li:hover i{font-size:20px;}
+        .the-icons li:hover i{font-size:18px;}
     </style>
     <script type="text/javascript">
 	    $(document).ready(function(){
