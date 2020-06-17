@@ -38,7 +38,7 @@ public class CcmLogImpPopSignService extends CrudService<CcmLogImpPopSignDao, Cc
 	public void save(CcmLogImpPopSign ccmLogImpPopSign) {
 		if(StringUtils.isNotEmpty(ccmLogImpPopSign.getPic())){
 			if(ccmLogImpPopSign.getPic().contains("http")){
-				String urlAndPort = ccmLogImpPopSign.getPic().split(":")[2];
+				String urlAndPort = ccmLogImpPopSign.getPic().split(":")[1];
 				String[] str = urlAndPort.split("/");
 				String url = "";
 				for(int i=0 ; i<str.length ; i++){
