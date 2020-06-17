@@ -537,22 +537,44 @@ public class CcmRestEvent extends BaseController {
             if (ccmEventIncidentDB == null) {// 从数据库中没有取到对应数据
                 result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);
             } else {
-                if (!ccmEventIncidentDB.getAreaPoint().equals(ccmEventIncident.getAreaPoint())) {
-                    // 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
-                    String piont = ccmEventIncident.getAreaPoint();
-                    String areaPiont = "";
-                    String[] pionts = piont.split(",");
+                if (StringUtils.isNotEmpty(ccmEventIncident.getAreaPoint())) {
+                    if (StringUtils.isNotEmpty(ccmEventIncidentDB.getAreaPoint())) {
+                        if (!ccmEventIncidentDB.getAreaPoint().equals(ccmEventIncident.getAreaPoint())) {
+                            // 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
+                            String piont = ccmEventIncident.getAreaPoint();
+                            String areaPiont = "";
+                            String[] pionts = piont.split(",");
 
-                    Gps gps = PositionUtil.gcj_To_Gps84(Double.parseDouble(pionts[1]), Double.parseDouble(pionts[0]));
-                   /* TransGPS ins = new TransGPS();
-                    TransGPS.Location wcj = ins.new Location();
-                    wcj.setLat(Double.parseDouble(pionts[1]));
-                    wcj.setLng(Double.parseDouble(pionts[0]));
+                            Gps gps = PositionUtil.gcj_To_Gps84(Double.parseDouble(pionts[1]), Double.parseDouble(pionts[0]));
+                           /* TransGPS ins = new TransGPS();
+                            TransGPS.Location wcj = ins.new Location();
+                            wcj.setLat(Double.parseDouble(pionts[1]));
+                            wcj.setLng(Double.parseDouble(pionts[0]));
 
-                    TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
-                    areaPiont = wgs.getLng() + ","  + wgs.getLat();*/
-                    areaPiont = gps.getWgLon() + ","  + gps.getWgLat();
-                    ccmEventIncident.setAreaPoint(areaPiont);
+                            TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
+                            areaPiont = wgs.getLng() + ","  + wgs.getLat();*/
+                            areaPiont = gps.getWgLon() + "," + gps.getWgLat();
+                            ccmEventIncident.setAreaPoint(areaPiont);
+                        }
+                    } else {
+                        if (StringUtils.isNotEmpty(ccmEventIncident.getAreaPoint())) {
+                            // 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
+                            String piont = ccmEventIncident.getAreaPoint();
+                            String areaPiont = "";
+                            String[] pionts = piont.split(",");
+
+                            Gps gps = PositionUtil.gcj_To_Gps84(Double.parseDouble(pionts[1]), Double.parseDouble(pionts[0]));
+                           /* TransGPS ins = new TransGPS();
+                            TransGPS.Location wcj = ins.new Location();
+                            wcj.setLat(Double.parseDouble(pionts[1]));
+                            wcj.setLng(Double.parseDouble(pionts[0]));
+
+                            TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
+                            areaPiont = wgs.getLng() + ","  + wgs.getLat();*/
+                            areaPiont = gps.getWgLon() + "," + gps.getWgLat();
+                            ccmEventIncident.setAreaPoint(areaPiont);
+                        }
+                    }
                 }
             }
 
