@@ -88,7 +88,7 @@ public class CcmRestLogin extends BaseController {
     private static final String SYMBOLS = "0123456789";
     private static final Random RANDOM = new SecureRandom();
 
-    @Value("${RABBIT_MQ_HOST}")
+    @Value("${RABBIT_MQ_HOST_TWO}")
     private  String  RABBIT_MQ_HOST;
 
     @Value("${RABBIT_MQ_PORT}")

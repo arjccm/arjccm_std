@@ -170,7 +170,7 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 	@Transactional(readOnly = false)
 	public void save(CcmEventIncident ccmEventIncident,User user) {
 		boolean isNew = false;
-		if(StringUtils.isEmpty(ccmEventIncident.getArea().getId())
+		if((ccmEventIncident.getArea()!=null&&ccmEventIncident.getArea().getId()!=null)
 				&& StringUtils.isNotEmpty(ccmEventIncident.getCasePlace())){
 			ccmEventIncident.getArea().setId(ccmEventIncident.getCasePlace());
 		}

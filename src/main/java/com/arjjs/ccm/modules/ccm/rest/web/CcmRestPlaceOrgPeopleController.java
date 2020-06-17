@@ -6,6 +6,7 @@ package com.arjjs.ccm.modules.ccm.rest.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
@@ -66,7 +67,14 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 		CcmPeople people = new CcmPeople();
 		people.setMore5(type);
 		people.setMore3(placeOrgId);
+		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+
 		Page<CcmPeople> page = ccmPeopleService.findPlaceOfPop(new Page<CcmPeople>(request, response), people);
+		for (CcmPeople ccmPeople : page.getList()) {
+			if(StringUtils.isNotEmpty(ccmPeople.getImages())){
+				ccmPeople.setImages(fileUrl + ccmPeople.getImages());
+			}
+		}
 		result.setCode(CcmRestType.OK);
 		if(page.getList()==null||page.getList().size()<=0) {
 			result.setResult("");
@@ -227,6 +235,12 @@ public class CcmRestPlaceOrgPeopleController extends BaseController {
 		ccmPeople.setMaxnum(page.getPageSize());
 		// 查询 人员列表
 		List<CcmPeople> list = ccmPeopleService.findPlaceOfPopAdd(ccmPeople);
+		String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+		for (CcmPeople people : list) {
+			if(StringUtils.isNotEmpty(people.getImages())){
+				people.setImages(fileUrl + people.getImages());
+			}
+		}
 		result.setCode(CcmRestType.OK);
 		if(list.size()<=0) {
 			result.setResult("");

@@ -92,7 +92,15 @@
 <script src="${ctxStatic}/layim/layui/layui.js" charset="utf-8"></script>
 <script src="${ctxStatic}/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.min.js" charset="utf-8"></script>
 <script>
-    var arjimRest="http://"+window.location.host+"/arjim-server/";
+  //  var arjimRest="http://153.0.171.153:8090/arjim-server/";
+ var arjimRest="http://"+window.location.host+"/arjim-server/";
+    // if(window.location.hostname.startsWith("10")
+    //     || window.location.hostname.startsWith("local")
+    //     || window.location.hostname.startsWith("127")){
+    //     arjimRest="http://10.224.13.146:8080/arjim-server/"
+    // }else if(window.location.hostname.startsWith("153")){
+    //     arjimRest="http://153.0.171.153:8090/arjim-server/"
+    // }
     var currentsession="${fns:getUser().id}";
 
     var setGrp = parent.layui.$(".layui-layer-border")
@@ -183,7 +191,7 @@
                 // var LI = document.createElement("LI")
                 // LI.appendChild(name)
 
-                var selectFd = "<li class='clearfix "+ fdid +"' value='"+ fdid +"'><div class='friend-icon'><img src='"+icon+"'></div><div class='friend-name'>"+name+"</div></li>"
+                var selectFd = "<li class='clearfix "+ fdid +"' value='"+ fdid +"'><div class='friend-icon'><img style='width: 100%;border-radius: 50%' src='"+icon+"'></div><div class='friend-name'>"+name+"</div></li>"
                 var setGroupManager = "<option value='"+ fdid +"' class='"+ fdid +"'>"+ name +"</option>"
 
                 // 判断是否选中

@@ -359,7 +359,7 @@ public class CcmRestHouse extends BaseController {
 		}else{
 			ccmPopTenant.setAreaPoint("");
 			ccmPopTenant.setAreaMap("");
-			ccmPopTenant.setImage("");
+			/*ccmPopTenant.setImage("");*/
 		}
 		if (ccmPopTenant.getCreateBy()== null) {
 			ccmPopTenant.setCreateBy(new User(userId));

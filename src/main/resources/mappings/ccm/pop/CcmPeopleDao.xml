@@ -3063,7 +3063,7 @@
 			AND a2.parent_ids LIKE concat( '%',#{areaId},'%' )
 		</if>
 		AND a2.type = '7'
-		AND ( a.amount_date &gt; date_format( DATE_SUB( curdate( ), INTERVAL 1 MONTH ), '%Y-%m' ) AND a.amount_date &lt; date_format( DATE_SUB( curdate( ), INTERVAL 0 MONTH ), '%Y-%m' ) );
+		AND a.amount_date= last_day(curdate());
 	</select>
 
 	<select id="getSpecialNum" resultType="com.arjjs.ccm.tool.SearchTab">
@@ -3083,10 +3083,8 @@
 		LEFT JOIN sys_area a2 ON a2.id = a.area_id
 		WHERE
 		a.del_flag = '0'
-
 		AND a2.parent_ids LIKE concat( '%',#{areaId},'%' )
-
 		AND a2.type = '7'
-		AND ( a.amount_date &gt; date_format( DATE_SUB( curdate( ), INTERVAL 1 MONTH ), '%Y-%m' ) AND a.amount_date &lt; date_format( DATE_SUB( curdate( ), INTERVAL 0 MONTH ), '%Y-%m' ) );
-	</select>
+		AND a.amount_date= last_day(curdate())
+		</select>
 </mapper>

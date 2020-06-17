@@ -57,6 +57,15 @@ public class CcmEventCasedeal extends DataEntity<CcmEventCasedeal> {
 	private Date tailTime;
 	private String evaluate;
 	private String happenPlace;  //发生地详址
+	private String eventScale;//事件等级
+
+	public String getEventScale() {
+		return eventScale;
+	}
+
+	public void setEventScale(String eventScale) {
+		this.eventScale = eventScale;
+	}
 
 	public String getHappenPlace() {
 		return happenPlace;

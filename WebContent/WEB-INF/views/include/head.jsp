@@ -70,6 +70,6 @@
         box-sizing: unset !important;
     }
     .layui-layer-content{
-        width: 100%;
+        /*width: 100%;*/
     }
 </style>
