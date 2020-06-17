@@ -1,5 +1,5 @@
 
-html{overflow-x:auto !important;}
+html{overflow-x:auto}
 /*去除虚线*/
 .control-group  {
     border-bottom: 0px dotted #dddddd !important;
