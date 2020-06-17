@@ -26,7 +26,14 @@
                 if (this.id == 'areaIcon') {
                     $(this).attr('src','../../static/images/login_bg/login_bg1.png')
                 } else {
-                    $(this).attr('src','../../static/images/user_bg.jpg')
+					if($('.personnel_box ul li').css('background')=="#173563"){
+						$(this).attr('src','../../static/images/user_bg.jpg')
+					}else {
+						$(this).attr('src','../../static/images/user_bj2.png')
+					}
+
+
+
                 }
             }
         });
@@ -120,7 +127,6 @@ h4.nav2 {
 	.personnel_box ul li{
 		width: 11.95vw;
 		height: 16.09vw;
-		background: #173563;
 		border-radius: 6px;
 		float: left;
 		margin-right: 0.9vw;
