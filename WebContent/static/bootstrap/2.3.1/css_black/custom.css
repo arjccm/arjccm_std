@@ -1908,3 +1908,7 @@ cite[class*='t-click']{
  a.errorBtn{
 	 width: 80px!important;
  }
+ /*该样式颜色关联 综治组织辖区信息页面判断    改变颜色值后同时要改变综治组织辖区信息页面判断*/
+ .personnel_box ul li{
+	 background: #173563 !important;
+ }
