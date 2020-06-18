@@ -275,10 +275,10 @@
 
 <script type="text/javascript"
 	src="${ctxStatic}/activemq/amq_jquery_adapter.js" charset="utf-8"></script>
-<script type="text/javascript" src="${ctxStatic}/activemq/amq.js"
+<%--<script type="text/javascript" src="${ctxStatic}/activemq/amq.js"
 	charset="utf-8"></script>
 <script type="text/javascript" src="${ctxStatic}/activemq/amq_init.js"
-    charset="utf-8"></script>
+    charset="utf-8"></script>--%>
 	<script type="text/javascript" src="${ctxStatic}/ccm/sys/js/rmqKeyPeople.js"
 			charset="utf-8"></script>
 <script src="${ctxStatic}/common/qrcode.min.js" type="text/javascript"></script>
