@@ -2669,3 +2669,10 @@ VALUES ( '38906', '06', '民警', 'ccm_org_team_type', '人员类型', 6, '0', '
     ALTER TABLE `ccm_people`
     ADD INDEX `ccm_people_name`(`name`) USING BTREE,
     ADD INDEX `ccm_people_ident`(`ident`) USING BTREE;
+
+
+
+UPDATE `sys_dict` SET `value` = '11', `label` = '四季度', `type` = 'quarter', `description` = '四季度', `sort` = 40, `parent_id` = '0', `create_by` = '1', `create_date` = '2020-03-25 17:58:46', `update_by` = '1', `update_date` = '2020-03-25 17:58:46', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('2531722e8b064681b0775a66f56a34a8' AS Binary(32));
+UPDATE `sys_dict` SET `value` = '5', `label` = '二季度', `type` = 'quarter', `description` = '二季度', `sort` = 20, `parent_id` = '0', `create_by` = '1', `create_date` = '2020-03-25 17:57:58', `update_by` = '1', `update_date` = '2020-03-25 17:57:58', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('266d47e561834389861e87ac4587171e' AS Binary(32));
+UPDATE `sys_dict` SET `value` = '8', `label` = '三季度', `type` = 'quarter', `description` = '三季度', `sort` = 30, `parent_id` = '0', `create_by` = '1', `create_date` = '2020-03-25 17:58:24', `update_by` = '1', `update_date` = '2020-03-25 17:58:24', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('7016c5c4ffca4fafbd9840bd0a8eba4f' AS Binary(32));
+UPDATE `sys_dict` SET `value` = '2', `label` = '一季度', `type` = 'quarter', `description` = '一季度', `sort` = 10, `parent_id` = '0', `create_by` = '1', `create_date` = '2020-03-25 17:57:31', `update_by` = '1', `update_date` = '2020-03-25 17:57:31', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('d9152f8848bc4a98ac6dd5fcc1f2b9b0' AS Binary(32));

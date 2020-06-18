@@ -24,6 +24,7 @@ public class SysMapConfig {
 	private String min; //最小层级
 	private String max; //最大层级
 	private String keshihuaMapUrl; //可视化地图url
+	private String appMapUrl; //APP地图url
 
 	public String getProjection() {
 		return projection;
@@ -128,5 +129,13 @@ public class SysMapConfig {
 
 	public void setKeshihuaMapUrl(String keshihuaMapUrl) {
 		this.keshihuaMapUrl = keshihuaMapUrl;
+	}
+
+	public String getAppMapUrl() {
+		return appMapUrl;
+	}
+
+	public void setAppMapUrl(String appMapUrl) {
+		this.appMapUrl = appMapUrl;
 	}
 }

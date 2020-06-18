@@ -123,7 +123,7 @@ public class KpiSpecialScoreController extends BaseController {
 			String month = "";
 			Date backYear = null;
 			Dict dict = new Dict();
-			dict.setType("kpi_score_quarter");
+			dict.setType("quarter");
 			List<Dict> list = dictService.findList(dict);
 			//根据查询类型进行判断
 			if(StringUtils.isNotEmpty(kpiSpecialScore.getType())) {
@@ -155,24 +155,25 @@ public class KpiSpecialScoreController extends BaseController {
 					backYear = kpiSpecialScore.getBeginDate();
 				}else{                                                          //季度查询
 					//判断非空情况，1.年份为空时，默认查询当前年份选中季度的数据；2.季度为空时，默认查询选中年份的第一季度数据；3.都为空时，默认查询上一季度的数据
+					kpiSpecialScore.setType("03");
 					if(StringUtils.isEmpty(year) && StringUtils.isEmpty(kpiSpecialScore.getQuarter())) {
-						kpiSpecialScore.setType("03");
 						DateRange lastQuarter = getLastQuarter();
 						kpiSpecialScore.setBeginDate(lastQuarter.getStart());
 						kpiSpecialScore.setEndDate(lastQuarter.getEnd());
 					}else if(StringUtils.isNotEmpty(year) && StringUtils.isEmpty(kpiSpecialScore.getQuarter())) {
-						kpiSpecialScore.setType("03");
-						month = "02";
+						month = "2";
+						DateRange Quarter = getQuarter(year,month);
+						kpiSpecialScore.setBeginDate(Quarter.getStart());
+						kpiSpecialScore.setEndDate(Quarter.getEnd());
+					}else if(StringUtils.isEmpty(year) && StringUtils.isNotEmpty(kpiSpecialScore.getQuarter())){
+						month = kpiSpecialScore.getQuarter();
+						Calendar date = Calendar.getInstance();
+						year = String.valueOf(date.get(Calendar.YEAR));
 						DateRange Quarter = getQuarter(year,month);
 						kpiSpecialScore.setBeginDate(Quarter.getStart());
 						kpiSpecialScore.setEndDate(Quarter.getEnd());
 					}else {
-						kpiSpecialScore.setType("03");
-						for (Dict dict2 : list) {
-							if(dict2.getValue().equals(kpiSpecialScore.getQuarter())) {
-								month = dict2.getRemarks();
-							}
-						}
+						month = kpiSpecialScore.getQuarter();
 						DateRange Quarter = getQuarter(year,month);
 						kpiSpecialScore.setBeginDate(Quarter.getStart());
 						kpiSpecialScore.setEndDate(Quarter.getEnd());
@@ -185,6 +186,8 @@ public class KpiSpecialScoreController extends BaseController {
 				DateRange lastQuarter = getLastQuarter();
 				kpiSpecialScore.setBeginDate(lastQuarter.getStart());
 				kpiSpecialScore.setEndDate(lastQuarter.getEnd());
+				//给年份赋值回显
+				backYear = kpiSpecialScore.getBeginDate();
 			}
 			
 			//获取网格得分排行

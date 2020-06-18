@@ -182,6 +182,15 @@
                             class="input-xlarge url"/>
             </div>
         </div>
+
+        <div class="form-actions" style="margin-bottom:15px">APP地图信息</div>
+        <div class="control-group">
+            <label class="control-label">地图URL：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.appMapUrl" htmlEscape="false" maxlength="256"
+                            class="input-xlarge url"/>
+            </div>
+        </div>
         <div class="form-actions">
             <shiro:hasPermission name="sys:sysConfig:edit">
                 <!-- <input id="btnSubmit" class="btn btn-primary" type="submit"

@@ -21,6 +21,8 @@ import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
+import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
+import com.arjjs.ccm.modules.ccm.sys.entity.SysMapConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
 import com.arjjs.ccm.modules.ccm.view.entity.VCcmTeam;
 import com.arjjs.ccm.modules.flat.deviceonline.service.CcmDeviceOnlineService;
@@ -249,8 +251,15 @@ public class CcmRestLogin extends BaseController {
         json.put("mobile",userDB.getMobile());
         json.put("userType",userDB.getUserType());
         json.put("loginIp",userDB.getLoginIp());
-        String imageMapUrl = sysConfigService.getImageMapConfig();
-        json.put("imageMapUrl",imageMapUrl);
+        SysConfig sysConfig = sysConfigService.get(SysConfig.MAP_CONFIG_ID);
+        if (StringUtils.isNotBlank(sysConfig.getParamStr())) {
+            net.sf.json.JSONObject jsonObject = net.sf.json.JSONObject.fromObject(sysConfig.getParamStr());
+            if (jsonObject != null && !jsonObject.isEmpty() && !jsonObject.isNullObject()) {
+                SysMapConfig sysMapConfig = (SysMapConfig) net.sf.json.JSONObject.toBean(jsonObject, SysMapConfig.class);
+                sysConfig.setSysMapConfig(sysMapConfig);
+            }
+        }
+        json.put("imageMapUrl",sysConfig.getSysMapConfig().getAppMapUrl());
         if(StringUtils.isNotBlank(userDB.getPhoto())) {
         	json.put("photo", Global.getConfig("FILE_UPLOAD_URL")+userDB.getPhoto());
 		}else {
