@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.arjjs.ccm.modules.sys.entity.Menu;
+import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,9 @@ public class CcmHouseEmphasisService {
 		String id = "emphasis_people_config";
 		SysConfig sysConfig = sysConfigService.get(id);
 		String param = sysConfig.getParamStr();
+
+		User user = UserUtils.getUser();
+
 		List<String> paramStr = Arrays.asList(param.split(","));
 
 		List<String> specificList = meanList();
@@ -69,6 +73,7 @@ public class CcmHouseEmphasisService {
 						if(s.contains(label)){
 							houseEmphasis.setLabel(dict.getLabel());
 							houseEmphasis.setType(dict.getRemarks());
+							houseEmphasis.setHasPermission(user.getHasPermission());
 							ccmHouseEmphasisList.add(houseEmphasis);
 						}
 					}

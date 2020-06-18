@@ -11,20 +11,41 @@ function findTableNameInDict(){
 		var emphasisData = data.content;
 		for(var i = 0;i < emphasisData.length;i++){
 			if(i == 0){
-				html += '<li class="active"><a href="javascript:;" onclick="findHouseEmphasis(this,\''+emphasisData[0].type+'\')">'+emphasisData[0].label+'</a></li>';
-				findHouseEmphasis(this,emphasisData[0].type);
+				html += '<li class="active"><a href="javascript:;" data="'+emphasisData[0].hasPermission+'" onclick="findHouseEmphasis(this,\''+emphasisData[0].type+'\')">'+emphasisData[0].label+'</a></li>';
 			}else{
-				html += '<li><a href="javascript:;" onclick="findHouseEmphasis(this,\''+emphasisData[i].type+'\')">'+emphasisData[i].label+'</a></li>';
+				html += '<li><a href="javascript:;" data="'+emphasisData[i].hasPermission+'" onclick="findHouseEmphasis(this,\''+emphasisData[i].type+'\')">'+emphasisData[i].label+'</a></li>';
 			}
 		}
 		$('#emphasisTitle').html(html);
+        findHouseEmphasis($('#emphasisTitle li.active a'),emphasisData[0].type);
 	})
 }
 
 function findHouseEmphasis(_this,type){
-	$('#emphasisTitle li').removeClass("active");
-	$(_this).parent().addClass("active");
-	$("#mainFrameCenter").attr('src',ctx+"/house/"+type+"/list?tableType="+type)
+	debugger;
+    var permission=$(_this).attr('data');
+    if(permission=="0"){
+        layer.confirm('请输入涉密密码:<input autofocus="autofocus" id="Secret" type="password"  value="" style="margin: 0; width: 168px; margin-right: 5px;"/>', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                var val=$('#Secret').val();
+                if(val==''){
+                    top.$.jBox.tip("密码不能为空");
+                    return;
+                }
+				$('#emphasisTitle li').removeClass("active");
+				$(_this).parent().addClass("active");
+				$("#mainFrameCenter").attr('src',ctx+"/house/"+type+"/list?tableType="+type+"&permissionKey="+val);
+                layer.close(layer.index);
+            }, function(){
+                //alert('取消');
+            }
+        );
+    }else{
+        $('#emphasisTitle li').removeClass("active");
+        $(_this).parent().addClass("active");
+        $("#mainFrameCenter").attr('src',ctx+"/house/"+type+"/list?tableType="+type);
+    }
 }
 function visitRecord(id,type){
 	layer.open({

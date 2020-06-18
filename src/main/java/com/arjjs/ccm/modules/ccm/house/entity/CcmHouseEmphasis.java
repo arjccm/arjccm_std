@@ -4,6 +4,7 @@ public class CcmHouseEmphasis {
 
 	private String label;
 	private String type;
+	private String hasPermission;
 	public String getLabel() {
 		return label;
 	}
@@ -16,5 +17,12 @@ public class CcmHouseEmphasis {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
+	public String getHasPermission() {
+		return hasPermission;
+	}
+
+	public void setHasPermission(String hasPermission) {
+		this.hasPermission = hasPermission;
+	}
 }
