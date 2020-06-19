@@ -450,7 +450,7 @@
 						<!-- 菜单 -->
 						<div style="z-index: 9999;position: absolute;width:100%; top: 0px;left: 26px;">
 							<div style="float: right; padding-top: 13px;"  class="Logout">
-								<a id="exportButton" style="font-size:unset;color: unset;display: inline;" onclick="exportDataOfEchart(this)" data-id="wanggeguanli"><img src="${ctxStatic}/common/index/images/statIndexCool/home.png"></a>
+								<a id="exportButton" style="font-size:unset;color: unset;display: inline;" onclick="exportDataOfEchart(this)" data-id="wanggeguanli"><input type="button" class="btn" value="导出报表"></a>
 								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/sys/map/projectIndex"><img src="${ctxStatic}/common/index/images/statIndexCool/home.png"></a>
 								<img style="display: inline;" src="${ctxStatic}/common/index/images/statIndexCool/vertical.png">
 								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/logout"><img src="${ctxStatic}/common/index/images/statIndexCool/exit.png"></a>
