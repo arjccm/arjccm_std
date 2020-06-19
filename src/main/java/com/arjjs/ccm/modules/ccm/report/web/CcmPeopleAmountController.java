@@ -5,12 +5,14 @@ package com.arjjs.ccm.modules.ccm.report.web;
 
 import com.arjjs.ccm.common.config.Global;
 import com.arjjs.ccm.common.persistence.Page;
+import com.arjjs.ccm.common.utils.DateUtils;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseKymService;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgAreaService;
+import com.arjjs.ccm.modules.ccm.org.service.CcmOrgComPopService;
 import com.arjjs.ccm.modules.ccm.org.service.CcmOrgNpseService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
@@ -22,9 +24,7 @@ import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleStatService;
 import com.arjjs.ccm.modules.plm.home.service.PlmPortalDictService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.service.AreaService;
-import com.arjjs.ccm.tool.EchartType;
-import com.arjjs.ccm.tool.SearchTab;
-import com.arjjs.ccm.tool.SearchTabMore;
+import com.arjjs.ccm.tool.*;
 import com.google.common.collect.Maps;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
@@ -33,14 +33,12 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +61,8 @@ public class CcmPeopleAmountController extends BaseController {
 	private CcmHouseKymService ccmHouseKymService;
 	@Autowired
 	private CcmPopTenantService ccmPopTenantService;
+    @Autowired
+    private CcmOrgComPopService ccmOrgComPopService;
 	@Autowired
 	private CcmOrgNpseService ccmOrgNpseService;
 	@Autowired
@@ -842,4 +842,208 @@ public class CcmPeopleAmountController extends BaseController {
 		Map<String, Object> result = ccmPeopleAmountService.getnumPopFollowPopQL();
 		return result;
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "exportWGGL", method = RequestMethod.POST)
+	public String exportByType(HttpServletRequest request, HttpServletResponse response,
+							   RedirectAttributes redirectAttributes) {
+		try {
+			List<ExportTool> exportList = new ArrayList<>();
+			// 基础数据
+			ExportTool peopleTypeLabel = new ExportTool();
+			ExportTool peopleTypeValue = new ExportTool();
+			SearchTab searchTab = ccmPeopleAmountService.getAnalyzePopData();
+			peopleTypeLabel.setValue1("户籍人口");
+			peopleTypeLabel.setValue1("流动人口");
+			peopleTypeLabel.setValue1("境外人口");
+			peopleTypeLabel.setValue1("未落户人口");
+			exportList.add(peopleTypeLabel);
+			if (searchTab != null) {
+				peopleTypeValue.setValue1(searchTab.getValue1());
+				peopleTypeValue.setValue2(searchTab.getValue2());
+				peopleTypeValue.setValue3(searchTab.getValue3());
+				peopleTypeValue.setValue4(searchTab.getValue4());
+			} else {
+				peopleTypeValue.setValue1("0");
+				peopleTypeValue.setValue2("0");
+				peopleTypeValue.setValue3("0");
+				peopleTypeValue.setValue4("0");
+			}
+			exportList.add(peopleTypeValue);
+
+			// 基本信息
+			ExportTool houseTypeLabel = new ExportTool();
+			ExportTool houseTypeValue = new ExportTool();
+			String type5 = "0";// 自住数据
+			String type6 = "0";// 出租数据
+			String type7 = "0";// 空置数据
+			String type8 = "0";// 其他数据
+			List<EchartType> houseList = ccmPopTenantService.findHouseType(); // 报表:房屋类型
+			for (EchartType house : houseList) {
+				if ("01".equals(house.getTypeO())) {
+					type5 = house.getValue();
+				}
+				if ("02".equals(house.getTypeO())) {
+					type6 = house.getValue();
+				}
+				if ("03".equals(house.getTypeO())) {
+					type7 = house.getValue();
+				}
+				if ("99".equals(house.getTypeO())) {
+					type8 = house.getValue();
+				}
+			}
+			houseTypeLabel.setValue1("自住");
+			houseTypeValue.setValue1(type5);
+			houseTypeLabel.setValue2("出租");
+			houseTypeValue.setValue2(type6);
+			houseTypeLabel.setValue3("空置");
+			houseTypeValue.setValue3(type7);
+			houseTypeLabel.setValue4("其他");
+			houseTypeValue.setValue4(type8);
+			exportList.add(houseTypeLabel);
+			exportList.add(houseTypeValue);
+
+			// 工作力量
+            Map<String, Object> result = ccmOrgComPopService.getnumOfWorkPower();
+            ExportTool dataXLabel = new ExportTool();
+            ExportTool dataYValue = new ExportTool();
+            List<String> dataX = this.castList(result.get("dataX"), String.class);
+            List<Integer> dataY = this.castList(result.get("dataY"), Integer.class);
+            Field[] label = dataXLabel.getClass().getDeclaredFields();
+            Field[] value = dataYValue.getClass().getDeclaredFields();
+            for (int i=0 ; i<dataX.size() ; i++){
+                label[i].set(dataXLabel, label[i].getType().getConstructor(label[i].getType()).newInstance(dataX.get(i)));
+                value[i].set(dataYValue, value[i].getType().getConstructor(value[i].getType()).newInstance(dataY.get(i).toString()));
+            }
+            exportList.add(dataXLabel);
+            exportList.add(dataYValue);
+
+            // 重点企业
+            EchartType echartType = new EchartType();
+            List<EchartType> listArea = ccmOrgNpseService.findArea(echartType); //报表:重点场所数据区域
+            echartType.setValue("all");
+            List<EchartType> listKeyPlaceType0 = ccmOrgNpseService.findKeyPlaceType(echartType); //报表:重点场所数据重点类型
+            echartType.setValue("00");
+            List<EchartType> listKeyPlaceType1 = ccmOrgNpseService.findKeyPlaceType(echartType); //报表:重点场所数据重点类型00无
+            echartType.setValue("01");
+            List<EchartType> listKeyPlaceType2 = ccmOrgNpseService.findKeyPlaceType(echartType); //报表:重点场所数据重点类型01物流安全
+            echartType.setValue("02");
+            List<EchartType> listKeyPlaceType3 = ccmOrgNpseService.findKeyPlaceType(echartType); //报表:重点场所数据重点类型02安全生产重点
+            echartType.setValue("03");
+            List<EchartType> listKeyPlaceType4 = ccmOrgNpseService.findKeyPlaceType(echartType); //报表:重点场所数据重点类型03消防重点
+            echartType.setValue("04");
+            List<EchartType> listKeyPlaceType5 = ccmOrgNpseService.findKeyPlaceType(echartType); //报表:重点场所数据重点类型04治安重点
+            echartType.setValue("05");
+            List<EchartType> listKeyPlaceType6 = ccmOrgNpseService.findKeyPlaceType(echartType); //报表:重点场所数据重点类型05其他重点
+            List<EchartType> listKeyPlaceType7 = ccmOrgNpseService.findSchool(); //报表:重点场所数据重点类型-学校
+            List<EchartType> listSchoolType = ccmOrgNpseService.findSchoolType(); //报表:重点场所数据-学校办学类型统计
+            List<SearchTabMore> list = new ArrayList<>();
+            for(EchartType li:listArea){
+                SearchTabMore searchTabMore = new SearchTabMore();
+                searchTabMore.setTypeO(li.getTypeO());
+                searchTabMore.setType(li.getType());
+                searchTabMore.setValue("0");
+                searchTabMore.setValue1("0");
+                searchTabMore.setValue2("0");
+                searchTabMore.setValue3("0");
+                searchTabMore.setValue4("0");
+                searchTabMore.setValue5("0");
+                searchTabMore.setValue6("0");
+                searchTabMore.setValue7("0");
+                for(EchartType li0:listKeyPlaceType0){
+                    if(li.getTypeO().equals(li0.getTypeO())){
+                        searchTabMore.setValue(li0.getValue());
+                    }
+                }
+                for(EchartType li1:listKeyPlaceType1){
+                    if(li.getTypeO().equals(li1.getTypeO())){
+                        searchTabMore.setValue1(li1.getValue());
+                    }
+                }
+                for(EchartType li2:listKeyPlaceType2){
+                    if(li.getTypeO().equals(li2.getTypeO())){
+                        searchTabMore.setValue2(li2.getValue());
+                    }
+                }
+                for(EchartType li3:listKeyPlaceType3){
+                    if(li.getTypeO().equals(li3.getTypeO())){
+                        searchTabMore.setValue3(li3.getValue());
+                    }
+                }
+                for(EchartType li4:listKeyPlaceType4){
+                    if(li.getTypeO().equals(li4.getTypeO())){
+                        searchTabMore.setValue4(li4.getValue());
+                    }
+                }
+                for(EchartType li5:listKeyPlaceType5){
+                    if(li.getTypeO().equals(li5.getTypeO())){
+                        searchTabMore.setValue5(li5.getValue());
+                    }
+                }
+                for(EchartType li6:listKeyPlaceType6){
+                    if(li.getTypeO().equals(li6.getTypeO())){
+                        searchTabMore.setValue6(li6.getValue());
+                    }
+                }
+                for(EchartType li7:listKeyPlaceType7){
+                    if(li.getTypeO().equals(li7.getTypeO())){
+                        searchTabMore.setValue7(li7.getValue());
+                    }
+                }
+                list.add(searchTabMore);
+            }
+            int a=0;//计算总数量
+            int b=0;
+            int c=0;
+            int d=0;
+            int e=0;
+            int f=0;
+            int g=0;
+            for(SearchTabMore l:list){
+                a+=Integer.parseInt(l.getValue1());
+                b+=Integer.parseInt(l.getValue2());
+                c+=Integer.parseInt(l.getValue3());
+                d+=Integer.parseInt(l.getValue4());
+                e+=Integer.parseInt(l.getValue5());
+                f+=Integer.parseInt(l.getValue6());
+                g+=Integer.parseInt(l.getValue7());
+            }
+            ExportTool keyPlaceLabel = new ExportTool();
+            ExportTool keyPlaceValue = new ExportTool();
+            keyPlaceLabel.setValue1("无");
+            keyPlaceValue.setValue1(String.valueOf(a));
+            keyPlaceLabel.setValue2("物流安全");
+            keyPlaceValue.setValue2(String.valueOf(b));
+            keyPlaceLabel.setValue3("安全生产重点");
+            keyPlaceValue.setValue3(String.valueOf(c));
+            keyPlaceLabel.setValue4("消防重点");
+            keyPlaceValue.setValue4(String.valueOf(d));
+            keyPlaceLabel.setValue5("治安重点");
+            keyPlaceValue.setValue5(String.valueOf(e));
+            keyPlaceLabel.setValue6("其他重点");
+            keyPlaceValue.setValue6(String.valueOf(f));
+            keyPlaceLabel.setValue7("学校");
+            keyPlaceValue.setValue7(String.valueOf(g));
+            exportList.add(keyPlaceLabel);
+            exportList.add(keyPlaceValue);
+            String fileName = "WangGeGuanLi" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
+            new ExportExcel("网格管理报表数据", ExportTool.class).setDataList(exportList).write(response, fileName).dispose();
+			return null;
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导出网格管理报表失败！失败信息：" + e.getMessage());
+		}
+		return null;
+	}
+
+    public static <T> List<T> castList(Object obj, Class<T> clazz) {
+        List<T> result = new ArrayList<T>();
+        if (obj instanceof List<?>) {
+            for (Object o : (List<?>) obj) {
+                result.add(clazz.cast(o));
+            }
+            return result;
+        }
+        return null;
+    }
 }
