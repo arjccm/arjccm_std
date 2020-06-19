@@ -2379,7 +2379,7 @@ function getPeopleData(noCache) {
         $(".rksj4 .rknum").html(dataList[3].value)
         $(".rksj4 .rktitle").html(dataList[3].name)
 
-        debugger
+        // debugger
         if(count>99999){
             count = parseInt(count / 10000) ;
             $("#rkt1 .rkzs").html(count+ '万');
