@@ -126,6 +126,15 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 	}
 
 	/**
+	 * @return 综治组织 案事件列表 所有
+	 */
+	public Page<CcmEventIncident> findPageOrg(Page<CcmEventIncident> page, CcmEventIncident ccmEventIncident) {
+		ccmEventIncident.setPage(page);
+		page.setList(ccmEventIncidentDao.findPageOrg(ccmEventIncident));
+		return page;
+	}
+
+	/**
 	 * @return 命案列表
 	 */
 	public Page<CcmEventIncident> findPageMurder(Page<CcmEventIncident> page, CcmEventIncident ccmEventIncident) {
