@@ -5642,4 +5642,23 @@ function videoTreeselectCallBack(v, h, f) {
 function exportDataOfEchart(_this) {
     var data = $(_this).attr("data-id");
     console.info(data);
+    if(data == "wanggeguanli"){
+        $("#importForm").attr("action",ctx + "/report/ccmPeopleAmount/exportWGGL");
+        $("#importForm").submit();
+    }
+    if(data == "anquanshengchan"){
+        $("#importForm").attr("action",ctx + "/sys/map/exportData");
+        $("#importForm").submit();
+    }
+
+
 }
+
+
+/*
+function exportsub() {
+    alert('11111111111')
+    $("#importForm").attr("action",ctx + "/sys/map/exportData");
+    $("#importForm").submit();
+
+}*/
