@@ -36,7 +36,11 @@ public class CcmHouseKym extends DataEntity<CcmHouseKym> {
 	private String assistMethod;		// 帮扶手段
 	private String assistCase;		// 帮扶情况
 	private String atteTypeLable;	//app接口使用
-	
+	private String intellectualProblem;   	//智力问题
+	private String emotionalProblem;   	//情绪问题
+	private String willProblem;   	//意志问题
+	private String personalityProblem;   	//人格问题
+
 	// 实有人口
 	private String type; // 人口类型
 	private String name; // 姓名
@@ -191,6 +195,38 @@ public class CcmHouseKym extends DataEntity<CcmHouseKym> {
 
 	public void setAssistCase(String assistCase) {
 		this.assistCase = assistCase;
+	}
+
+	@Length(min=0, max=255, message="智力问题长度必须介于 0 和 255 之间")
+	public String getIntellectualProblem() {
+		return intellectualProblem;
+	}
+	public void setIntellectualProblem(String intellectualProblem) {
+		this.intellectualProblem = intellectualProblem;
+	}
+
+	@Length(min=0, max=255, message="情绪问题长度必须介于 0 和 255 之间")
+	public String getEmotionalProblem() {
+		return emotionalProblem;
+	}
+	public void setEmotionalProblem(String emotionalProblem) {
+		this.emotionalProblem = emotionalProblem;
+	}
+
+	@Length(min=0, max=255, message="意志问题长度必须介于 0 和 255 之间")
+	public String getWillProblem() {
+		return willProblem;
+	}
+	public void setWillProblem(String willProblem) {
+		this.willProblem = willProblem;
+	}
+
+	@Length(min=0, max=255, message="人格问题长度必须介于 0 和 255 之间")
+	public String getPersonalityProblem() {
+		return personalityProblem;
+	}
+	public void setPersonalityProblem(String personalityProblem) {
+		this.personalityProblem = personalityProblem;
 	}
 
 	public String getType() {
