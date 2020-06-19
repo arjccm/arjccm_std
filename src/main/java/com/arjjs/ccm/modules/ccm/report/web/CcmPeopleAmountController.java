@@ -902,7 +902,7 @@ public class CcmPeopleAmountController extends BaseController {
 			houseTypeValue.setValue4(type8);
             houseTypeLabel.setValue5("总数");
             Integer sum = Integer.parseInt(type5)+Integer.parseInt(type6)+Integer.parseInt(type7)+Integer.parseInt(type8);
-            houseTypeValue.setValue4(String.valueOf(sum));
+            houseTypeValue.setValue5(String.valueOf(sum));
 			exportList.add(houseTypeLabel);
 			exportList.add(houseTypeValue);
 
