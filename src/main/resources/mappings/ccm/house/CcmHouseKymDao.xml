@@ -29,6 +29,10 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS
 		"updateDate",
+		a.intellectual_problem AS "intellectualProblem",
+		a.emotional_problem AS "emotionalProblem",
+		a.will_problem AS "willProblem",
+		a.personality_problem AS "personalityProblem",
 		a.remarks AS "remarks",
 		a.del_flag AS "delFlag"
 	</sql>
@@ -54,6 +58,10 @@
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
+		a.intellectual_problem AS "intellectualProblem",
+		a.emotional_problem AS "emotionalProblem",
+		a.will_problem AS "willProblem",
+		a.personality_problem AS "personalityProblem",
 		a.remarks AS "remarks",
 		a.del_flag AS "delFlag",
 
@@ -234,6 +242,10 @@
 		create_date,
 		update_by,
 		update_date,
+		intellectual_problem,
+		emotional_problem,
+		will_problem,
+		personality_problem,
 		remarks,
 		del_flag
 		) VALUES (
@@ -257,6 +269,10 @@
 		#{createDate},
 		#{updateBy.id},
 		#{updateDate},
+		#{intellectualProblem},
+		#{emotionalProblem},
+		#{willProblem},
+		#{personalityProblem},
 		#{remarks},
 		#{delFlag}
 		)
@@ -281,6 +297,10 @@
 		assist_case = #{assistCase},
 		update_by = #{updateBy.id},
 		update_date = #{updateDate},
+		intellectual_problem=#{intellectualProblem},
+		emotional_problem=#{emotionalProblem},
+		will_problem=#{willProblem},
+		personality_problem=#{personalityProblem},
 		remarks = #{remarks}
 		WHERE id = #{id}
 	</update>

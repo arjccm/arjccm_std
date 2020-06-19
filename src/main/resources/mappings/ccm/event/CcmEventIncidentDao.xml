@@ -271,6 +271,51 @@
         </choose>
     </select>
 
+<!--    综治组织案事件  （所有案事件）-->
+    <select id="findPageOrg" resultType="CcmEventIncident">
+        SELECT
+        <include refid="ccmEventIncidentColumnsWithUser"/>
+        FROM ccm_event_incident a
+        <include refid="ccmEventIncidentJoinsUser"/>
+        <include refid="ccmEventIncidentJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+            <if test="caseName != null and caseName != ''">
+                AND a.case_name LIKE
+                <if test="dbName == 'oracle'">'%'||#{caseName}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{caseName}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{caseName},'%')</if>
+            </if>
+            <if
+                    test="beginHappenDate != null and endHappenDate != null and beginHappenDate != '' and endHappenDate != ''">
+                AND a.happen_date BETWEEN #{beginHappenDate} AND
+                #{endHappenDate}
+            </if>
+            <if test="area != null and area.id != null and area.id != ''">
+                AND a.case_place = #{area.id}
+            </if>
+            <if test="eventType != null and eventType != ''">
+                AND a.event_type = #{eventType}
+            </if>
+            <if test="status != null and status != ''">
+                AND a.status = #{status}
+            </if>
+            <if test="property != null and property != ''">
+                AND a.property = #{property}
+            </if>
+            <if test="createBy != null and createBy.id != null and createBy.id != ''">
+                AND a.create_by = #{createBy.id}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.happen_date DESC
+            </otherwise>
+        </choose>
+    </select>
 
     <!-- 线路相关案事件getLine -->
     <select id="getLine" resultType="CcmEventIncident">

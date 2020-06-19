@@ -209,6 +209,19 @@ public class CcmEventIncidentController extends BaseController {
         return "ccm/event/eventIncident/ccmEventIncidentListStudent";
     }
 
+    //综治组织 案事件列表 （所有)
+    @RequiresPermissions("event:ccmEventIncident:view")
+    @RequestMapping(value = "listOrgAll")
+    public String listOrgAll(CcmEventIncident ccmEventIncident, HttpServletRequest request, HttpServletResponse response,
+                              Model model) {
+        Page<CcmEventIncident> page = ccmEventIncidentService.findPageOrg(new Page<CcmEventIncident>(request, response),
+                ccmEventIncident);
+        model.addAttribute("page", page);
+        return "ccm/event/eventIncident/ccmEventIncidentListOrgAll";
+    }
+
+
+
     //命案列表
     @RequiresPermissions("event:ccmEventIncident:edit")
     @RequestMapping(value = "listMurder")
@@ -236,6 +249,25 @@ public class CcmEventIncidentController extends BaseController {
         model.addAttribute("CcmEventCasedealList", CcmEventCasedealList);
         return "ccm/event/eventIncident/ccmEventIncidentFormStudent";
     }
+
+    //综治组织 案事件列表修改
+    @RequiresPermissions("event:ccmEventIncident:view")
+    @RequestMapping(value = "formOrg")
+    public String formOrg(CcmEventIncident ccmEventIncident, Model model) {
+        List<CcmEventCasedeal> CcmEventCasedealList = ccmEventIncidentService.findList(ccmEventIncident.getId());
+        // 返回查询结果
+        JsonConfig config = new JsonConfig();
+        config.setExcludes(new String[]{"createBy", "updateBy", "currentUser", "dbName", "global", "page", "updateDate", "sqlMap"});
+        config.setIgnoreDefaultExcludes(false);  //设置默认忽略
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        String jsonDocumentList = JSONArray.fromObject(CcmEventCasedealList, config).toString();
+        model.addAttribute("documentList", jsonDocumentList);
+        model.addAttribute("documentNumber", CcmEventCasedealList.size());
+        model.addAttribute("CcmEventCasedealList", CcmEventCasedealList);
+        return "ccm/event/eventIncident/ccmEventIncidentFormOrj";
+    }
+
+
 
     //命案修改
     @RequiresPermissions("event:ccmEventIncident:view")
@@ -284,6 +316,15 @@ public class CcmEventIncidentController extends BaseController {
         return "redirect:" + Global.getAdminPath() + "/event/ccmEventIncident/listLine/?repage";
     }
 
+    //综治组织 案事件列表删除
+    @RequiresPermissions("event:ccmEventIncident:edit")
+    @RequestMapping(value = "deleteOrg")
+    public String deleteOrg(CcmEventIncident ccmEventIncident, RedirectAttributes redirectAttributes) {
+        ccmEventIncidentService.delete(ccmEventIncident);
+        addMessage(redirectAttributes, "删除案事件成功");
+        return "redirect:" + Global.getAdminPath() + "/event/ccmEventIncident/listOrgAll/?repage";
+    }
+
     //师生案事件列表删除
     @RequiresPermissions("event:ccmEventIncident:edit")
     @RequestMapping(value = "deleteStudent")
@@ -316,6 +357,18 @@ public class CcmEventIncidentController extends BaseController {
         ccmEventIncidentService.save(ccmEventIncident,UserUtils.getUser());
         addMessage(redirectAttributes, "保存案事件登记成功");
         return "redirect:" + Global.getAdminPath() + "/event/ccmEventIncident/listLine/?repage";
+    }
+
+    //综治组织 案事件保存
+    @RequiresPermissions("event:ccmEventIncident:edit")
+    @RequestMapping(value = "saveOrg")
+    public String saveOrg(CcmEventIncident ccmEventIncident, Model model, RedirectAttributes redirectAttributes) {
+        if (!beanValidator(model, ccmEventIncident)) {
+            return form(ccmEventIncident, model);
+        }
+        ccmEventIncidentService.save(ccmEventIncident,UserUtils.getUser());
+        addMessage(redirectAttributes, "保存案事件登记成功");
+        return "redirect:" + Global.getAdminPath() + "/event/ccmEventIncident/listOrgAll/?repage";
     }
 
     //师生案事件保存

@@ -121,6 +121,9 @@ public interface CcmEventIncidentDao extends CrudDao<CcmEventIncident> {
 	//师生相关案事件
 	public List<CcmEventIncident> findPageStudent(CcmEventIncident ccmEventIncident);
 
+	//综治组织 案事件列表 所有
+	public List<CcmEventIncident> findPageOrg(CcmEventIncident ccmEventIncident);
+
 	//命案案事件
 	public List<CcmEventIncident> findPageMurder(CcmEventIncident ccmEventIncident);
 

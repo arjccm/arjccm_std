@@ -2676,3 +2676,18 @@ UPDATE `sys_dict` SET `value` = '11', `label` = '四季度', `type` = 'quarter',
 UPDATE `sys_dict` SET `value` = '5', `label` = '二季度', `type` = 'quarter', `description` = '二季度', `sort` = 20, `parent_id` = '0', `create_by` = '1', `create_date` = '2020-03-25 17:57:58', `update_by` = '1', `update_date` = '2020-03-25 17:57:58', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('266d47e561834389861e87ac4587171e' AS Binary(32));
 UPDATE `sys_dict` SET `value` = '8', `label` = '三季度', `type` = 'quarter', `description` = '三季度', `sort` = 30, `parent_id` = '0', `create_by` = '1', `create_date` = '2020-03-25 17:58:24', `update_by` = '1', `update_date` = '2020-03-25 17:58:24', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('7016c5c4ffca4fafbd9840bd0a8eba4f' AS Binary(32));
 UPDATE `sys_dict` SET `value` = '2', `label` = '一季度', `type` = 'quarter', `description` = '一季度', `sort` = 10, `parent_id` = '0', `create_by` = '1', `create_date` = '2020-03-25 17:57:31', `update_by` = '1', `update_date` = '2020-03-25 17:57:31', `remarks` = '', `del_flag` = '0' WHERE `id` = Cast('d9152f8848bc4a98ac6dd5fcc1f2b9b0' AS Binary(32));
+
+
+-- 重点青少年字段新增
+alter table ccm_house_kym add intellectual_problem varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '智力问题';
+alter table ccm_house_kym add emotional_problem varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '情绪问题';
+alter table ccm_house_kym add will_problem varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '意志问题';
+alter table ccm_house_kym add personality_problem varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '人格问题';
+
+-- 综治组织下 添加 重特大案件菜单
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '574e44cb96c849c4a5cba3b5487a7fc9', '120100', '0,1,70a1747ee8334e439b2b24ebe947ecdd,120100,', '重特大案件', '/event/ccmEventIncident/listOrgAll', '', 'qitazhongdian', 2090, '1', '', '1', '2020-06-19 17:07:31.322', '1', '2020-06-19 17:07:31.322', '', '0' );
+
+--重特大案件菜单 下添加显示
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '79c620aa280c4e0e8cde68e29e825dc2', '574e44cb96c849c4a5cba3b5487a7fc9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,120100,574e44cb96c849c4a5cba3b5487a7fc9,', '显示', '', '', '', 30, '0', 'event:ccmEventIncident:view', '1', '2020-06-19 17:12:00.372', '1', '2020-06-19 17:12:00.372', '', '0' );
+--重特大案件菜单 下添加隐藏
+INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '1d1d6b3a74614c1db4903bb3e9f110a7', '574e44cb96c849c4a5cba3b5487a7fc9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,120100,574e44cb96c849c4a5cba3b5487a7fc9,', '编辑', '', '', '', 60, '0', 'event:ccmEventIncident:edit', '1', '2020-06-19 17:13:41.169', '1', '2020-06-19 17:13:41.169', '', '0' );

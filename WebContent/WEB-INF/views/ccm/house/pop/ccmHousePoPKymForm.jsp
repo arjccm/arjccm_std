@@ -213,6 +213,42 @@
 			<tr>
 				<td>
 					<div>
+						<label class="control-label">智力问题：</label>
+						<div class="controls">
+							<form:textarea path="intellectualProblem" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">情绪问题：</label>
+						<div class="controls">
+							<form:textarea path="emotionalProblem" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">意志问题：</label>
+						<div class="controls">
+							<form:textarea path="willProblem" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">人格问题：</label>
+						<div class="controls">
+							<form:textarea path="personalityProblem" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
 						<label class="control-label">备注信息：</label>
 						<div class="controls">
 							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
