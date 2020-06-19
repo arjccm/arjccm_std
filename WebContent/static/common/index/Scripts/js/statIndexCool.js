@@ -5645,20 +5645,16 @@ function exportDataOfEchart(_this) {
     if(data == "wanggeguanli"){
         $("#importForm").attr("action",ctx + "/report/ccmPeopleAmount/exportWGGL");
         $("#importForm").submit();
-    }
-    if(data == "anquanshengchan"){
-        $("#importForm").attr("action",ctx + "/sys/map/exportData");
+    }else if(data == "guanzhuduixiang"){
+        $("#importForm").attr("action",ctx + "/sys/map/exportGZDX");
+        $("#importForm").submit();
+    }else if(data == "zhiantaishi"){
+        $("#importForm").attr("action",ctx + "/sys/map/exportZATS");
+        $("#importForm").submit();
+    }else if(data == "anquanshengchan"){
+        $("#importForm").attr("action",ctx + "/sys/map/exportAQSC");
         $("#importForm").submit();
     }
 
 
 }
-
-
-/*
-function exportsub() {
-    alert('11111111111')
-    $("#importForm").attr("action",ctx + "/sys/map/exportData");
-    $("#importForm").submit();
-
-}*/

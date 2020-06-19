@@ -3,6 +3,7 @@ package com.arjjs.ccm.modules.ccm.sys.web;
 import com.arjjs.ccm.common.gis.MapUtil;
 import com.arjjs.ccm.common.gis.Point;
 import com.arjjs.ccm.common.persistence.Page;
+import com.arjjs.ccm.common.utils.DateUtils;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.ccm.broadcast.entity.CcmDeviceBroadcast;
@@ -22,7 +23,9 @@ import com.arjjs.ccm.modules.ccm.event.service.CcmEventIncidentService;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseSchoolrim;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseBuildmanageService;
+import com.arjjs.ccm.modules.ccm.house.service.CcmHouseKymService;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseSchoolrimService;
+import com.arjjs.ccm.modules.ccm.know.service.CcmKnowInspectService;
 import com.arjjs.ccm.modules.ccm.org.entity.*;
 import com.arjjs.ccm.modules.ccm.org.service.*;
 import com.arjjs.ccm.modules.ccm.patrol.entity.CcmTracingpoint;
@@ -41,6 +44,7 @@ import com.arjjs.ccm.modules.ccm.place.religion.entity.CcmPlaceReligion;
 import com.arjjs.ccm.modules.ccm.place.religion.service.CcmPlaceReligionService;
 import com.arjjs.ccm.modules.ccm.report.entity.CcmPeopleAmount;
 import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleAmountService;
+import com.arjjs.ccm.modules.ccm.report.service.CcmPeopleStatService;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
@@ -53,13 +57,12 @@ import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.service.AreaService;
 import com.arjjs.ccm.modules.sys.utils.DictUtils;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
-import com.arjjs.ccm.tool.CommUtil;
-import com.arjjs.ccm.tool.EchartType;
-import com.arjjs.ccm.tool.Tool;
+import com.arjjs.ccm.tool.*;
 import com.arjjs.ccm.tool.geoJson.Features;
 import com.arjjs.ccm.tool.geoJson.GeoJSON;
 import com.arjjs.ccm.tool.geoJson.Geometry;
 import com.arjjs.ccm.tool.geoJson.Properties;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
@@ -71,10 +74,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -173,6 +179,15 @@ public class CcmMapController extends BaseController {
 	// 实际采集人数
 	@Autowired
 	private CcmPeopleAmountService ccmPeopleAmountService;
+
+	@Autowired
+	private CcmHouseKymService ccmHouseKymService;
+
+	@Autowired
+	private CcmPeopleStatService ccmPeopleStatService;
+
+	@Autowired
+	private CcmKnowInspectService ccmKnowInspectService;
 
 
 	private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -3616,5 +3631,236 @@ public class CcmMapController extends BaseController {
 			return null;
 		}
 		return geoJSON;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "exportGZDX", method = RequestMethod.POST)
+	public void exportGZDX(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		try {
+			List<ExportTool> exportList = new ArrayList<>();
+			// 重点青少年帮扶方式
+			Map<String, Object> kymResult = ccmHouseKymService.getNumKymByAssistMethod();
+			String[] kymDataX = (String[])kymResult.get("dataX");
+			int[] dataY = (int[])kymResult.get("dataY");
+			String[] kymDataY = new String[dataY.length];
+			for(int i=0 ; i<dataY.length ; i++){
+				kymDataY[i] = String.valueOf(dataY[i]);
+			}
+			ExportTool kymLabel = arrToObject(kymDataX);
+			ExportTool kymValue = arrToObject(kymDataY);
+			exportList.add(kymLabel);
+			exportList.add(kymValue);
+
+			// 重点青少年分类
+			ExportTool kymTypeLabel = new ExportTool();
+			ExportTool kymTypeValue = new ExportTool();
+			Map<String, Object> reslut = ccmHouseKymService.getnumPopFlowTableQL();
+			List<Map<String, Object>> kymlist = (List<Map<String, Object>>)reslut.get("resultlist");
+			Field[] label = kymTypeLabel.getClass().getDeclaredFields();
+			Field[] value = kymTypeValue.getClass().getDeclaredFields();
+			for (int i=0 ; i<kymlist.size() ; i++) {
+				if(i>19){
+					break;
+				}
+				label[i].setAccessible(true);
+				value[i].setAccessible(true);
+				label[i].set(kymTypeLabel, label[i].getType().getConstructor(label[i].getType()).newInstance(kymlist.get(i).get("name").toString()));
+				value[i].set(kymTypeValue, value[i].getType().getConstructor(value[i].getType()).newInstance(kymlist.get(i).get("value").toString()));
+			}
+			exportList.add(kymTypeLabel);
+			exportList.add(kymTypeValue);
+
+			// 特殊群体
+			Map<String, Object> specialData = ccmPeopleStatService.getSpecialPopDataQL();
+			ExportTool specialPopLabel = new ExportTool();
+			ExportTool specialPopValue = new ExportTool();
+			List<Map<String, Object>> speciallist = (List<Map<String, Object>>)specialData.get("list");
+			Field[] slabel = specialPopLabel.getClass().getDeclaredFields();
+			Field[] svalue = specialPopValue.getClass().getDeclaredFields();
+			for (int i=0 ; i<speciallist.size() ; i++) {
+				if(i>19){
+					break;
+				}
+				slabel[i].setAccessible(true);
+				svalue[i].setAccessible(true);
+				slabel[i].set(specialPopLabel, slabel[i].getType().getConstructor(slabel[i].getType()).newInstance(speciallist.get(i).get("name").toString()));
+				svalue[i].set(specialPopValue, svalue[i].getType().getConstructor(svalue[i].getType()).newInstance(speciallist.get(i).get("value").toString()));
+			}
+			exportList.add(specialPopLabel);
+			exportList.add(specialPopValue);
+
+			String fileName = "GuanZhuDuiXiang" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
+			new ExportExcel("关注对象报表数据", ExportTool.class).setDataList(exportList).write(response, fileName).dispose();
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导出关注对象报表失败！失败信息：" + e.getMessage());
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "exportZATS", method = RequestMethod.POST)
+	public void exportZATS(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		try {
+			List<ExportTool> exportList = new ArrayList<>();
+			// 根据案事件性质
+			List<EchartType> xzlist = ccmEventIncidentService.getItemByProperty();
+			ExportTool xzLabel = new ExportTool();
+			ExportTool xzValue = new ExportTool();
+			Field[] sxzlabel = xzLabel.getClass().getDeclaredFields();
+			Field[] sxzvalue = xzValue.getClass().getDeclaredFields();
+			for (int i=0 ; i<xzlist.size() ; i++) {
+				if(i>19){
+					break;
+				}
+				sxzlabel[i].setAccessible(true);
+				sxzvalue[i].setAccessible(true);
+				sxzlabel[i].set(xzLabel, sxzlabel[i].getType().getConstructor(sxzlabel[i].getType()).newInstance(xzlist.get(i).getType()));
+				sxzvalue[i].set(xzValue, sxzvalue[i].getType().getConstructor(sxzvalue[i].getType()).newInstance(xzlist.get(i).getValue()));
+			}
+			exportList.add(xzLabel);
+			exportList.add(xzValue);
+			// 根据案事件分级
+			Map<String, Object> map = ccmEventIncidentService.getItemByScale();
+			List<EchartType> fjlist = (List<EchartType>)map.get("result");
+			ExportTool fjLabel = new ExportTool();
+			ExportTool fjValue = new ExportTool();
+			Field[] sfjlabel = fjLabel.getClass().getDeclaredFields();
+			Field[] sfjvalue = fjValue.getClass().getDeclaredFields();
+			for (int i=0 ; i<fjlist.size() ; i++) {
+				if(i>19){
+					break;
+				}
+				sfjlabel[i].setAccessible(true);
+				sfjvalue[i].setAccessible(true);
+				sfjlabel[i].set(fjLabel, sfjlabel[i].getType().getConstructor(sfjlabel[i].getType()).newInstance(fjlist.get(i).getType()));
+				sfjvalue[i].set(fjValue, sfjvalue[i].getType().getConstructor(sfjvalue[i].getType()).newInstance(fjlist.get(i).getValue()));
+			}
+			exportList.add(fjLabel);
+			exportList.add(fjValue);
+			// 根据案事件类型。
+			List<EchartType> list = ccmEventIncidentService.findSumByEventType();
+			ExportTool lxLabel = new ExportTool();
+			ExportTool lxValue = new ExportTool();
+			Field[] slxlabel = lxLabel.getClass().getDeclaredFields();
+			Field[] slxvalue = lxValue.getClass().getDeclaredFields();
+			for (int i=0 ; i<list.size() ; i++) {
+				if(i>19){
+					break;
+				}
+				slxlabel[i].setAccessible(true);
+				slxvalue[i].setAccessible(true);
+				slxlabel[i].set(lxLabel, slxlabel[i].getType().getConstructor(slxlabel[i].getType()).newInstance(list.get(i).getType()));
+				slxvalue[i].set(lxValue, slxvalue[i].getType().getConstructor(slxvalue[i].getType()).newInstance(list.get(i).getValue()));
+			}
+			exportList.add(lxLabel);
+			exportList.add(lxValue);
+
+			List<EchartType> listSafeDis = ccmEventIncidentService.getSafeDisData(new CcmEventIncident()); //安全事故分布
+			String[] listdata = new String[5];
+			String[] listtype = new String[5];
+			if(!listSafeDis.isEmpty()){
+				listSafeDis.sort(Comparator.comparing(EchartType::getValue));
+				for (int i = 0; i < listSafeDis.size(); i++) {
+					if (i > 5) {
+						break;
+					}
+					listdata[i] = listSafeDis.get(i).getValue();
+					listtype[i] = listSafeDis.get(i).getType();
+				}
+			}
+			ExportTool eventtype = arrToObject(listtype);
+			ExportTool eventvalue = arrToObject(listdata);
+			exportList.add(eventtype);
+			exportList.add(eventvalue);
+			String fileName = "ZhiAnTaiShi" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
+			new ExportExcel("治安态势报表数据", ExportTool.class).setDataList(exportList).write(response, fileName).dispose();
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导出治安态势报表失败！失败信息：" + e.getMessage());
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "exportAQSC", method = RequestMethod.POST)
+	public void exportAQSC(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		try {
+			List<ExportTool> exportList = new ArrayList<>();
+			//安全生产重点企业
+			List<EchartType> listSafePub = ccmOrgNpseService.getSafePubData();
+			String[] listdata = new String[listSafePub.size()];
+			String[] listtype = new String[listSafePub.size()];
+			for (int i = 0; i < listSafePub.size(); i++) {
+				listdata[i] = listSafePub.get(i).getValue();
+				listtype[i] = listSafePub.get(i).getType();
+			}
+			ExportTool label1 = arrToObject(listtype);
+			ExportTool value1 = arrToObject(listdata);
+			exportList.add(label1);
+			exportList.add(value1);
+			//安全生产防范检查
+        	List<EchartType> listTypeSafe = ccmKnowInspectService.getTypeSafeDataecharts();//安全生产防范检查
+			String[] listdata2 = new String[listTypeSafe.size()];
+			String[] listtype2 = new String[listTypeSafe.size()];
+			for (int i = 0; i < listTypeSafe.size(); i++) {
+				listdata2[i] = listTypeSafe.get(i).getValue();
+				listtype2[i] = listTypeSafe.get(i).getType();
+			}
+			ExportTool label2 = arrToObject(listtype2);
+			ExportTool value2 = arrToObject(listdata2);
+			exportList.add(label2);
+			exportList.add(value2);
+			//安全事故分布
+			CcmEventIncident ccmEventIncident = new CcmEventIncident();
+			String[] eventTypes = {"01","03"};
+			ccmEventIncident.setEventTypes(eventTypes);
+			List<EchartType> listSafeDis = ccmEventIncidentService.getSafeDisData(ccmEventIncident); //安全事故分布
+			String[] listdata3 = new String[listSafeDis.size()];
+			String[] listtype3 = new String[listSafeDis.size()];
+			for (int i = 0; i < listSafeDis.size(); i++) {
+				listdata3[i] = listSafeDis.get(i).getValue();
+				listtype3[i] = listSafeDis.get(i).getType();
+			}
+			ExportTool label3 = arrToObject(listtype3);
+			ExportTool value3 = arrToObject(listdata3);
+			exportList.add(label3);
+			exportList.add(value3);
+			//重点企业分布
+			List<EchartType> listCompImpoTypeTrue = ccmOrgNpseService.getCompImpoTypeTrue(); //重点企业分布
+			String[] listdata4 = new String[listCompImpoTypeTrue.size()];
+			String[] listtype4 = new String[listCompImpoTypeTrue.size()];
+			for (int i = 0; i < listCompImpoTypeTrue.size(); i++) {
+				listdata4[i] = listCompImpoTypeTrue.get(i).getValue();
+				listtype4[i] = listCompImpoTypeTrue.get(i).getType();
+			}
+			ExportTool label4 = arrToObject(listtype4);
+			ExportTool value4 = arrToObject(listdata4);
+			exportList.add(label4);
+			exportList.add(value4);
+			String fileName = "AnQuanShengChan" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
+			new ExportExcel("安全生产报表数据", ExportTool.class).setDataList(exportList).write(response, fileName).dispose();
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导出安全生产报表失败！失败信息：" + e.getMessage());
+		}
+	}
+
+	private ExportTool arrToObject(String[] arr){
+		ExportTool exportTool = new ExportTool();
+		Field[] value = exportTool.getClass().getDeclaredFields();
+		for (int i=0 ; i<arr.length ; i++){
+			if(i>19){
+				break;
+			}
+			value[i].setAccessible(true);
+			try {
+				value[i].set(exportTool, value[i].getType().getConstructor(value[i].getType()).newInstance(arr[i]));
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+		}
+		return exportTool;
 	}
 }

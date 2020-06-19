@@ -845,8 +845,7 @@ public class CcmPeopleAmountController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = "exportWGGL", method = RequestMethod.POST)
-	public String exportByType(HttpServletRequest request, HttpServletResponse response,
-							   RedirectAttributes redirectAttributes) {
+	public void exportWGGL(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			List<ExportTool> exportList = new ArrayList<>();
 			// 基础数据
@@ -854,9 +853,9 @@ public class CcmPeopleAmountController extends BaseController {
 			ExportTool peopleTypeValue = new ExportTool();
 			SearchTab searchTab = ccmPeopleAmountService.getAnalyzePopData();
 			peopleTypeLabel.setValue1("户籍人口");
-			peopleTypeLabel.setValue1("流动人口");
-			peopleTypeLabel.setValue1("境外人口");
-			peopleTypeLabel.setValue1("未落户人口");
+			peopleTypeLabel.setValue2("流动人口");
+			peopleTypeLabel.setValue3("境外人口");
+			peopleTypeLabel.setValue4("未落户人口");
 			exportList.add(peopleTypeLabel);
 			if (searchTab != null) {
 				peopleTypeValue.setValue1(searchTab.getValue1());
@@ -901,6 +900,9 @@ public class CcmPeopleAmountController extends BaseController {
 			houseTypeValue.setValue3(type7);
 			houseTypeLabel.setValue4("其他");
 			houseTypeValue.setValue4(type8);
+            houseTypeLabel.setValue5("总数");
+            Integer sum = Integer.parseInt(type5)+Integer.parseInt(type6)+Integer.parseInt(type7)+Integer.parseInt(type8);
+            houseTypeValue.setValue4(String.valueOf(sum));
 			exportList.add(houseTypeLabel);
 			exportList.add(houseTypeValue);
 
@@ -908,13 +910,18 @@ public class CcmPeopleAmountController extends BaseController {
             Map<String, Object> result = ccmOrgComPopService.getnumOfWorkPower();
             ExportTool dataXLabel = new ExportTool();
             ExportTool dataYValue = new ExportTool();
-            List<String> dataX = this.castList(result.get("dataX"), String.class);
-            List<Integer> dataY = this.castList(result.get("dataY"), Integer.class);
+            String[] dataX = (String[])result.get("dataX");
+            int[] dataY = (int[])result.get("dataY");
             Field[] label = dataXLabel.getClass().getDeclaredFields();
             Field[] value = dataYValue.getClass().getDeclaredFields();
-            for (int i=0 ; i<dataX.size() ; i++){
-                label[i].set(dataXLabel, label[i].getType().getConstructor(label[i].getType()).newInstance(dataX.get(i)));
-                value[i].set(dataYValue, value[i].getType().getConstructor(value[i].getType()).newInstance(dataY.get(i).toString()));
+            for (int i=0 ; i<dataX.length ; i++){
+                if(i>19){
+                    break;
+                }
+                label[i].setAccessible(true);
+                value[i].setAccessible(true);
+                label[i].set(dataXLabel, label[i].getType().getConstructor(label[i].getType()).newInstance(dataX[i]));
+                value[i].set(dataYValue, value[i].getType().getConstructor(value[i].getType()).newInstance(String.valueOf(dataY[i])));
             }
             exportList.add(dataXLabel);
             exportList.add(dataYValue);
@@ -1029,21 +1036,8 @@ public class CcmPeopleAmountController extends BaseController {
             exportList.add(keyPlaceValue);
             String fileName = "WangGeGuanLi" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
             new ExportExcel("网格管理报表数据", ExportTool.class).setDataList(exportList).write(response, fileName).dispose();
-			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出网格管理报表失败！失败信息：" + e.getMessage());
 		}
-		return null;
 	}
-
-    public static <T> List<T> castList(Object obj, Class<T> clazz) {
-        List<T> result = new ArrayList<T>();
-        if (obj instanceof List<?>) {
-            for (Object o : (List<?>) obj) {
-                result.add(clazz.cast(o));
-            }
-            return result;
-        }
-        return null;
-    }
 }
