@@ -1,31 +1,21 @@
 package com.arjjs.ccm.test;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.arjjs.ccm.tool.geoJson.Features;
-import com.arjjs.ccm.tool.geoJson.Properties;
-
 public class Test {
 
 	public static void main(String[] args) {
+		Test.writeThread thread = new Test.writeThread();
+		thread.start();
+		System.out.println("1");
+		System.out.println("2");
+		System.out.println("3");
+		System.out.println("4");
+	}
 
-
-		Features featureDto = new Features();
-		Properties properties = new Properties();
-		// 1 type 默认不填
-		// 2 id 添加
-//		featureDto.setId(Buildmanage.getId());
-		// 3 properties 展示属性信息
-//		properties.setName(Buildmanage.getName());
-//		properties.setIcon(Buildmanage.getImage());
-		Map<String, String> map = new HashMap<String, String>();
-		// 创建附属信息
-		map.put("楼栋名称","名称");
-		map.put("电话", "电话");
-		map.put("生日", "生日");
-		//properties.addInfo(map);
-		featureDto.setProperties(properties);
-		System.out.println(featureDto);
+	public static class writeThread extends Thread{
+		public void run(){
+			for (int i=0;i<1000;i++){
+				System.out.println("无返回值"+i);
+			}
+		}
 	}
 }

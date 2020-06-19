@@ -84,6 +84,7 @@ $(function () {
         showWangGeGuanLi();
         $('#leftCol').animate({width: 'toggle'});
         $('#rightCol').animate({width: 'toggle'});
+        $('#exportButton').attr("data-id","wanggeguanli");
     });
 
     $("#guanzhuduixiang").click(function () {
@@ -94,6 +95,7 @@ $(function () {
         showGuanZhuDuiXiang();
         $('#leftCol').animate({width: 'toggle'});
         $('#rightCol').animate({width: 'toggle'});
+        $('#exportButton').attr("data-id","guanzhuduixiang");
     });
     $("#zhiantaishi").click(function () {
         isbegin();
@@ -103,6 +105,7 @@ $(function () {
         showZhiAnTaiShi();
         $('#leftCol').animate({width: 'toggle'});
         $('#rightCol').animate({width: 'toggle'});
+        $('#exportButton').attr("data-id","zhiantaishi");
     });
     $("#anquanshengchan").click(function () {
         isbegin();
@@ -112,6 +115,7 @@ $(function () {
         showAnQuanShengChan();
         $('#leftCol').animate({width: 'toggle'});
         $('#rightCol').animate({width: 'toggle'});
+        $('#exportButton').attr("data-id","anquanshengchan");
     });
 
     $("#xuelianggongcheng").click(function () {
@@ -5633,4 +5637,9 @@ function videoTreeselectCallBack(v, h, f) {
             return true;
         }
     }
+}
+
+function exportDataOfEchart(_this) {
+    var data = $(_this).attr("data-id");
+    console.info(data);
 }
