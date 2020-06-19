@@ -454,10 +454,11 @@
 								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/sys/map/projectIndex"><img src="${ctxStatic}/common/index/images/statIndexCool/home.png"></a>
 								<img style="display: inline;" src="${ctxStatic}/common/index/images/statIndexCool/vertical.png">
 								<a style="font-size:unset;color: unset;display: inline;" href="${ctx}/logout"><img src="${ctxStatic}/common/index/images/statIndexCool/exit.png"></a>
-								<%--							<span> <a href="${ctx}/logout"> <i--%>
-								<%--									class="icon-off align-top bigger-125"></i> 退出--%>
-								<%--							</a>--%>
-								<%--							</span>--%>
+                                <form id="importForm" action="${ctx}/sys/map/exportData"
+                                      method="post" enctype="multipart/form-data" class="form-search"
+                                      style="padding-left: 20px; text-align: center;"
+                                      onsubmit="">
+                                </form>
 							</div>
 							<div style="float: left;width: 26%;text-align: left;margin-left: 20px;padding-top: 1%">
 								<div class="liuG"></div>
