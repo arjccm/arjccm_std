@@ -2691,3 +2691,13 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '79c620aa280c4e0e8cde68e29e825dc2', '574e44cb96c849c4a5cba3b5487a7fc9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,120100,574e44cb96c849c4a5cba3b5487a7fc9,', '显示', '', '', '', 30, '0', 'event:ccmEventIncident:view', '1', '2020-06-19 17:12:00.372', '1', '2020-06-19 17:12:00.372', '', '0' );
 --重特大案件菜单 下添加隐藏
 INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort, is_show, permission, create_by, create_date, update_by, update_date, remarks, del_flag ) VALUES ( '1d1d6b3a74614c1db4903bb3e9f110a7', '574e44cb96c849c4a5cba3b5487a7fc9', '0,1,70a1747ee8334e439b2b24ebe947ecdd,120100,574e44cb96c849c4a5cba3b5487a7fc9,', '编辑', '', '', '', 60, '0', 'event:ccmEventIncident:edit', '1', '2020-06-19 17:13:41.169', '1', '2020-06-19 17:13:41.169', '', '0' );
+
+
+
+-- 更新菜单列表 实有人口日志错误问题 20200620
+  UPDATE sys_menu SET parent_id = '0c5195a66e1e4ab99790c7c8008e0fba', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,0c5195a66e1e4ab99790c7c8008e0fba,', name = '显示', href = '', target = '', icon = '', sort = 30, is_show = '0', permission = 'pop:ccmPeopleCommunist:view', update_by = '1', update_date = '2020-06-20 10:05:49.886', remarks = ''
+ WHERE id = 'bf81d0016f794fb2a4e64a9146f73935';
+
+
+  UPDATE sys_menu SET parent_id = '0c5195a66e1e4ab99790c7c8008e0fba', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,0c5195a66e1e4ab99790c7c8008e0fba,', name = '编辑', href = '', target = '', icon = '', sort = 60, is_show = '0', permission = 'pop:ccmPeopleCommunist:edit', update_by = '1', update_date = '2020-06-20 10:06:45.259', remarks = ''
+ WHERE id = 'a7534414d35b4363ac9457d1e545613a';
