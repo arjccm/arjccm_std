@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>创建群组</title>
 
-    <%--<link rel="stylesheet" href="http://local.res.layui.com/layui/src/css/layui.css">--%>
+    <%--<link rel="stylesheet" href="http://local.res. /layui/src/css/layui.css">--%>
     <link rel="stylesheet" href="${ctxStatic}/arjim/layui/css/layui.css">
     <link rel="stylesheet" href="${ctxStatic}/jquery-ztree/3.5.12/css/zTreeStyle/zTreeStyle.min.css">
     <link rel="stylesheet" href="${ctxStatic}/arjim/layui/css/addGroup.css">
@@ -87,7 +87,7 @@
 
 
 
-<%--<script src="http://local.res.layui.com/layui/src/layui.js"></script>--%>
+<%--<script src="http://local.res. /layui/src/layui.js"></script>--%>
 <script src="${ctxStatic}/jquery/jquery-1.9.1.min.js" charset="utf-8"></script>
 <script src="${ctxStatic}/arjim/layui/layui.js" charset="utf-8"></script>
 <script src="${ctxStatic}/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.min.js" charset="utf-8"></script>

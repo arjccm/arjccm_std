@@ -117,7 +117,7 @@ layui.config({
 	      //console.log(data); //获取当前会话对象
 	      layim.panel({
 	        title: data.name + ' 聊天信息' //标题
-	        ,tpl: '<div style="padding: 10px;">自定义模版，<a href="http://www.layui.com/doc/modules/layim_mobile.html#ondetail" target="_blank">参考文档</a></div>' //模版
+	        ,tpl: '<div style="padding: 10px;">自定义模版，<a href="" target="_blank">参考文档</a></div>' //模版
 	        ,data: { //数据
 	          test: '么么哒'
 	        }
