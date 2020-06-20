@@ -7,7 +7,7 @@
 	<link rel="stylesheet"
 		  href="${ctxStatic}/jquery-ui-1.12.1/jquery-ui.min.css">
 	<script src="${ctxStatic}/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-	<script src="${ctxStatic}/layim/layui/layui.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/arjim/layui/layui.js" type="text/javascript"></script>
 	<script type="text/javascript"	src="${ctxStatic}/plm/storage/ajaxMessageAlert.js"></script>
 	<script type="text/javascript" src="${ctxStatic}/plm/storage/storageValidate.js"></script>
 	<script type="text/javascript" src='${ctxStatic}/ccm/databaseCollection/js/jquery.min.js'></script>

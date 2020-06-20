@@ -340,7 +340,7 @@ $(document).ready(function() {
     	}else{
     		$('#right').css('padding','0px')
     	}
-    	
+
         // 一级菜单焦点
         $("#menu li.menu").removeClass("active");
         $(this).parent().addClass("active");
@@ -360,7 +360,7 @@ $(document).ready(function() {
         }
         // 显示二级菜单
         var menuId = "#menu-" + $(this).attr("data-id");
-        
+
         if ($(menuId).length > 0) {
             $("#left .accordion").hide();
             $(menuId).show();
@@ -378,7 +378,7 @@ $(document).ready(function() {
                          }
             		}
             	})
-            	  
+
                    _menuUrl="";
             }else{
             	   $(menuId + " .accordion-heading:first a").addClass('active');
@@ -392,7 +392,7 @@ $(document).ready(function() {
             }
 
 
-            
+
             $(menuId + " .accordion-heading:first a").addClass('active');
             // 初始化点击第一个二级菜单
             if (!$(menuId + " .accordion-body:first").hasClass('in')) {
@@ -403,7 +403,7 @@ $(document).ready(function() {
                      $(menuId + " .accordion-body a:first span").click();
                  }
             }
-           
+
             // 初始化点击第一个三级菜单
             $(menuId + " .accordion-body li:first li:first a:first span").click();
         } else {
@@ -415,7 +415,7 @@ $(document).ready(function() {
                     top.location = "${ctx}";
                     return false;
                 }
-                
+
                 $("#left .accordion").hide();
                 $("#left").append(data);
               //  $(menuId + " .accordion-heading:first a").addClass('active');
@@ -460,7 +460,7 @@ $(document).ready(function() {
         						$("#content").width() - leftWidth
         								- $("#openClose").width() - 25);
                 	}
-                	
+
                     $(menuId + " li").removeClass("active");
                     $(menuId + " li a").removeClass("active");
                     $(menuId + " li i").removeClass("icon-white");
@@ -480,12 +480,12 @@ $(document).ready(function() {
                     // <c:if test="${tabmode eq '1'}"> 打开显示页签
                     return addTab($(this)); // </c:if>
                 });
-                
-                
+
+
                 if(_menuUrl){
                 	$(menuId + " .accordion-body a").each(function(index){
                 		if($(this).attr('href')==_menuUrl){
-                			
+
                        	 if(!$(menuId + " .accordion-body a:eq("+index+")").parent().parent().parent().parent().parent().children().children().children().hasClass('icon-chevron-down')){
                               	$(menuId + " .accordion-body a:eq("+index+")").parent().parent().parent().parent().parent().children().children().click()
                               }
@@ -494,15 +494,15 @@ $(document).ready(function() {
                              $(menuId + " .accordion-body li:eq("+index+") li:first a:first i").click();
                 		}
                 	})
-       
-                 	
+
+
                     _menuUrl="";
                 }else{
                 	 // 默认选中第一个菜单
                     $(menuId + " .accordion-body a:first span").click();
                     $(menuId + " .accordion-body li:first li:first a:first span").click();
                 }
-               
+
             });
         }
         // 大小宽度调整
@@ -511,9 +511,9 @@ $(document).ready(function() {
     });
     // 初始化点击第一个一级菜单
    // $("#menu a.menu:first span").click();
-    
-    
-    
+
+
+
 
     if(_menuId){
     	$("#menu a.menu").each(function(index){
@@ -521,11 +521,11 @@ $(document).ready(function() {
     			$("#menu a.menu:eq("+index+") span").click();
     		}
     	})
-    	
+
     	_menuId="";
-    	
+
     }else{
-    	
+
     	$("#menu a.menu:first span").click();
     }
     // <c:if test="${tabmode eq '1'}"> 下拉菜单以选项卡方式打开
@@ -563,7 +563,7 @@ $(document).ready(function() {
     	});
         qrcode.makeCode(data);
 	})
-	
+
 });
 // <c:if test="${tabmode eq '1'}"> 添加一个页签
 function addTab($this, refresh) {
@@ -580,13 +580,13 @@ function addTab($this, refresh) {
     }).loadData(refresh);
     return false;
 } // </c:if>
-</script>   	
+</script>
   <script language="javascript">
-	   function videoSubmit(){ 
+	   function videoSubmit(){
 		   document.getElementById("loginForm").action="${dz_hangzhoudao_link_video}";
 		   document.getElementById("loginForm").submit();
 	   }
-	   function pbsSubmit(){ 
+	   function pbsSubmit(){
 		   document.getElementById("loginForm").action="${dz_hangzhoudao_link_pbs}";
 		   document.getElementById("loginForm").submit();
 	   }
@@ -599,7 +599,7 @@ function addTab($this, refresh) {
 			<input type="hidden" id="username" name="username" value="${user.loginName}">
 			<input type="hidden" id="password" name="password" value="${user.newPassword}">
 			<input type="hidden" id="userid" name="userid" value="${user.id}">
-		</form>	
+		</form>
 		<div id="header" class="navbar navbar-fixed-top">
 			<div class="navbar-inner" style="height: 70px;">
 				<div class="liuG"></div>
@@ -611,7 +611,7 @@ function addTab($this, refresh) {
 						<span style="display: block; top: -20px;left: 113px;width:220px;color:rgba(204, 204, 204, 1); font-size: 17px;font-weight: bold;position: relative;margin-left: -22px;margin-right: -28px;margin-bottom: -15px;">${fns:getConfig('productName_part2')}</span>
 					</a>
 				</div>
-				<ul id="userControl" class="nav pull-right" style="z-index: 1992">
+				<ul id="userControl" class="nav pull-right" style="z-index: 50">
 					<li id="AppInfo" class="dropdown" style="margin-left: 1px;">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="App下载 ">
 							<i class="icon-mobile-phone" style="font-size: 20px;"></i>
@@ -660,7 +660,7 @@ function addTab($this, refresh) {
 									</c:if>
 									 <c:if test="${not empty menu.href}">
 									  <div class="menu-use">使用中</div>
-										<a class="menu" style="padding:0" 
+										<a class="menu" style="padding:0"
 											href="${fn:indexOf(menu.href, '://') eq -1 ? ctx : ''}${menu.href}" data-id="${menu.id}">
 											<i class="nav-icon iconfont  icon-${menu.icon} "></i>
 											<span>${menu.name}</span>
@@ -674,7 +674,7 @@ function addTab($this, refresh) {
 
 						</ul>
 						<!--[if lte IE 6]><script type="text/javascript">$('#sysSwitch').hide();</script><![endif]-->
-					</li> 
+					</li>
 					<li id="userInfo" class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#" title="个人信息">
 						<img style=" width: 29px; height: 29px; border-radius: 100%;margin-right: 18px; margin-top: -9px" src="${fns:getUser().photo}" onerror="this.src='${ctxStatic}/images/head/headPhoto.jpg';this.onerror=null"/>
@@ -702,7 +702,7 @@ function addTab($this, refresh) {
 
                             <li><a href="${ctx}/logout" title="退出登录"><i class="icon-signout"></i>&nbsp;退出登录</a></li>
 						</ul></li>
-					
+
 					<li>&nbsp;</li>
 				</ul>
 				<%-- <c:if test="${cookie.theme.value eq 'cerulean'}">
@@ -815,7 +815,7 @@ function addTab($this, refresh) {
 			frameObj.height((strs[0] < minHeight ? minHeight : strs[0])
 					- headerObj.height() - footerObj.height()
 					- (strs[1] < minWidth ? 30 : 0));
-			$("#openClose").height($("#openClose").height() - 5);// <c:if test="${tabmode eq '1'}"> 
+			$("#openClose").height($("#openClose").height() - 5);// <c:if test="${tabmode eq '1'}">
 			$(".jericho_tab iframe").height(
 					$("#right").height() - tabTitleHeight); // </c:if>
 			wSizeWidth();
@@ -830,12 +830,12 @@ function addTab($this, refresh) {
 			} else {
 				$("#right").width("100%");
 			}
-		}// <c:if test="${tabmode eq '1'}"> 
+		}// <c:if test="${tabmode eq '1'}">
 		function openCloseClickCallBack(b) {
 			$.fn.jerichoTab.resize();
 		} // </c:if>
-		
-		
+
+
 		//详情弹框--不刷新父页面
 		function LayerDialog(src, title, height, width){
 			 layerIndex=parent.layer.open({
@@ -851,7 +851,7 @@ function addTab($this, refresh) {
 			  shade:0
 			});
 		}
-		//弹框--不刷新父页面  
+		//弹框--不刷新父页面
 		function LayerDialog2(src, title, height, width){
 			 layerIndex=parent.layer.open({
 			  type: 2,
@@ -884,7 +884,7 @@ function addTab($this, refresh) {
                   body.find(".form-actions").hide();
                   body.find(".fishBone1").hide();
                   body.find("h4").eq(2).hide();
-                  
+
 			  }
 			});
 		}
@@ -898,15 +898,15 @@ function addTab($this, refresh) {
 			 $location=location;
 			 return false;
 		}
-		
+
 		//刷新列表
        function refreshlist(){
 			if( $location!=null){
-				$location.reload() 
+				$location.reload()
 
 			}
-	
-		}  
+
+		}
 		//详情弹框--不刷新父页面  删除 确定 关闭按钮
 		function LayerDialog1(id,src, title, height, width){
 			parent.layer.open({
@@ -943,7 +943,7 @@ function addTab($this, refresh) {
 			var iframeHtml = window.frames['mainFrame'];               //获取子窗口的句柄
             iframeHtml.saveRefresh(type);
 		}
-		
+
 		/*cppPopPop执行子窗口的方法*/
 		function cppPopPop(type) {
 			var iframeHtml = window.frames['mainFrame'];               //获取子窗口的句柄
@@ -960,7 +960,7 @@ function addTab($this, refresh) {
 			        dotColor: '#E8DFE8',
 			        lineColor: '#133b88'
 			    });
-					
+
 			}else if(theme=="simple"){
 				$("#menu .menu").on("mouseenter",function () {
 					var pageY= $(this)[0].offsetLeft;//获取当前元素高度位置
@@ -970,19 +970,19 @@ function addTab($this, refresh) {
 					}).on("mouseleave",function () {
 						$("#menu >span.layui-nav-bar").css({"width":"0px"});
 					});
-				
+
 			};
-			
-			
+
+
 		})
 
 	</script>
 	<script src="${ctxStatic}/common/wsize.min.js" type="text/javascript"></script>
 	<%@include file="/WEB-INF/views/include/layUI.jsp" %>
-	<%@include file="/WEB-INF/views/layim/page/layim.jsp" %>
-	
+	<%@include file="/WEB-INF/views/arjim/page/arjim.jsp" %>
 
-	
+
+
 <%-- <script src="${ctxStatic}/dist/layui.js"></script> --%>
 <!-- <script>
 
@@ -1071,9 +1071,9 @@ layui.use('layim', function(layim){
     ,notice: true //是否开启桌面消息提醒，默认false
     //,voice: false //声音提醒，默认开启，声音文件为：default.mp3
     
-    ,msgbox: layui.cache.dir + 'css/modules/layim/html/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
-    ,find: layui.cache.dir + 'css/modules/layim/html/find.html' //发现页面地址，若不开启，剔除该项即可
-    ,chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.html' //聊天记录页面地址，若不开启，剔除该项即可
+    ,msgbox: layui.cache.dir + 'css/modules/arjim/html/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
+    ,find: layui.cache.dir + 'css/modules/arjim/html/find.html' //发现页面地址，若不开启，剔除该项即可
+    ,chatLog: layui.cache.dir + 'css/modules/arjim/html/chatlog.html' //聊天记录页面地址，若不开启，剔除该项即可
     
   });
 
@@ -1215,7 +1215,7 @@ layui.use('layim', function(layim){
       });
     }
   });
-  
+
   
 
 });

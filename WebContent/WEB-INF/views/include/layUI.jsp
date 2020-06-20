@@ -66,9 +66,9 @@
       rel="stylesheet" />
 <script src="${ctxStatic}/web-speech/webSpeech.js"></script>
 <%--<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>--%>
-<link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css"
+<link href="${ctxStatic}/arjim/layui/css/layui.css" type="text/css"
       rel="stylesheet">
-<script src="${ctxStatic}/layim/layui/layui.all.js"></script>
+<script src="${ctxStatic}/arjim/layui/layui.all.js"></script>
 <script>
     layui.use('element', function(){
         var element = layui.element; //Tab的切换功能，

@@ -10,7 +10,7 @@
 		var ctx="${ctx}";
 		var ctxStatic="${ctxStatic}";
 	</script>
-	<link rel="stylesheet" href="${ctxStatic}/layim/layui/css/layui.css" />
+	<link rel="stylesheet" href="${ctxStatic}/arjim/layui/css/layui.css" />
 	<link rel="stylesheet" href="${ctxStatic}/flat/realtimeAlarmSituation/css/jquery.eeyellow.Timeline.css" />
 	<link rel="stylesheet" href="${ctxStatic}/layer-v3.1.1/layer/theme/default/layer.css" />
 	<link rel="stylesheet" href="${ctxStatic}/ol/ol.css" type="text/css">
@@ -29,7 +29,7 @@
 	<link rel="stylesheet" href="${ctxStatic}/flat/planManage/css/timeline.css">
 <%--<link rel="stylesheet" href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome.min.css"/>--%>
 	<script src="${ctxStatic}/audio/audio.min.js" type="text/javascript"></script>
-	<script src="${ctxStatic}/layim/layui/layui.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/arjim/layui/layui.js" type="text/javascript"></script>
 	<%-- <script src="${ctxStatic}/flat/planManage/js/timeline.js" type="text/javascript"></script> --%>
 	<script type="text/html" id="barDemo">
 		<i class="icon-phone" id="callPhone" onclick="callPhone(this)" style="color: deepskyblue;font-size: 16px; margin-left: 10px; cursor: pointer;" title="拨打电话"></i>

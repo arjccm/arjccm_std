@@ -12,8 +12,8 @@
 	<link href="${ctxStatic}/iconfont/newfont/iconfont.css" type="text/css" rel="stylesheet" />
 <script src="${ctxStatic}/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/jquery/jquery.cookie.js" type="text/javascript"></script>
-<link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="${ctxStatic}/layim/layui/layui.js"></script>
+<link href="${ctxStatic}/arjim/layui/css/layui.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="${ctxStatic}/arjim/layui/layui.js"></script>
 <script src="${ctxStatic}/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.js" type="text/javascript"></script>
 <link href="${ctxStatic}/layer-v3.1.1/layer/theme/default/layer.css" rel="stylesheet" />
 <script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>

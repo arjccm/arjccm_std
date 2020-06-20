@@ -14,7 +14,7 @@
 <link href="${ctxStatic}/layer-v3.1.1/layer/theme/default/layer.css" rel="stylesheet">
 <link href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome.min.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="${ctxStatic}/modules/map/css/publicinstitutions.css">
-<link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css" rel="stylesheet">
+<link href="${ctxStatic}/arjim/layui/css/layui.css" type="text/css" rel="stylesheet">
 
 <style>
 .radio-div {

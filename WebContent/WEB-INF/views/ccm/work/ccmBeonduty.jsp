@@ -10,7 +10,7 @@
 <link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/custom.css" type="text/css" rel="stylesheet" />
 <script src="${ctxStatic}/bootstrap/2.3.1/js/bootstrap.min.js" type="text/javascript"></script>
-<link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css" rel="stylesheet" />
+<link href="${ctxStatic}/arjim/layui/css/layui.css" type="text/css" rel="stylesheet" />
 
 <link href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome.min.css" type="text/css" rel="stylesheet" />
 <link href="${ctxStatic}/bootstrap/checkbox-radio.css" type="text/css" rel="stylesheet" />

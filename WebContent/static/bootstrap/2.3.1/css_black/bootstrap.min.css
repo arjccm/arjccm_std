@@ -4069,7 +4069,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	position: absolute;
 	left: 0;
 	top: 10px;
-	z-index: 9999 ;
+	z-index: 99 ;
 }
 
 @keyframes logoLight {

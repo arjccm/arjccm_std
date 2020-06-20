@@ -4,7 +4,7 @@
 <head>
 	<title>实时警情管理</title>
 	<meta name="decorator" content="default" />
-<link rel="stylesheet" href="${ctxStatic}/layim/layui/css/layui.css" />
+<link rel="stylesheet" href="${ctxStatic}/arjim/layui/css/layui.css" />
 <link rel="stylesheet" href="${ctxStatic}/flat/bphAlarmDistribute/css/index.css" />
 <script src="${ctxStatic}/common/common.js" type="text/javascript"></script>
 <script src="${ctxStatic}/common/alarm.js" type="text/javascript"></script>
@@ -96,7 +96,7 @@ var ctxStatic='${ctxStatic}',ctx='${ctx}';
 	}
 </script>
 <script src="${ctxStatic}/common/wsize.min.js" type="text/javascript"></script>
-<script src="${ctxStatic}/layim/layui/layui.js" type="text/javascript"></script>
+<script src="${ctxStatic}/arjim/layui/layui.js" type="text/javascript"></script>
 <script src="${ctxStatic}/flat/alarmCommon.js"></script>
 <script src="${ctxStatic}/common/common.js" type="text/javascript"></script>
 <script src="${ctxStatic}/flat/bphAlarmInfoList/bphAlarmInfoList.js" type="text/javascript"></script>

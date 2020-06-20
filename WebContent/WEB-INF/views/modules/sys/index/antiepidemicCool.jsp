@@ -43,9 +43,9 @@
 				ctx = '${ctx}';
 	</script>
 	<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
-	<link href="${ctxStatic}/layim/layui/css/layui.css" type="text/css"
+	<link href="${ctxStatic}/arjim/layui/css/layui.css" type="text/css"
 		  rel="stylesheet">
-	<script src="${ctxStatic}/layim/layui/layui.js"></script>
+	<script src="${ctxStatic}/arjim/layui/layui.js"></script>
 	<script src="${ctxStatic}/modules/map/js/mapBuildSpe.js"></script>
 	<script src="${ctxStatic}/ol/ol.js"></script>
 	<script src="${ctxStatic}/d3/d3.v4.min.js"></script>
