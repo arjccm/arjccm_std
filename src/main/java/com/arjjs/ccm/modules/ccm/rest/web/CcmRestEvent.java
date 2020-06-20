@@ -34,8 +34,6 @@ import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.*;
-import com.arjjs.ccm.tool.gcj02_wgs84.Gps;
-import com.arjjs.ccm.tool.gcj02_wgs84.PositionUtil;
 import com.arjjs.ccm.tool.geoJson.Features;
 import com.arjjs.ccm.tool.geoJson.GeoJSON;
 import com.arjjs.ccm.tool.geoJson.Geometry;
@@ -537,22 +535,14 @@ public class CcmRestEvent extends BaseController {
             if (ccmEventIncidentDB == null) {// 从数据库中没有取到对应数据
                 result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);
             } else {
-                if (StringUtils.isNotEmpty(ccmEventIncident.getAreaPoint())) {
+                /*if (StringUtils.isNotEmpty(ccmEventIncident.getAreaPoint())) {
                     if (StringUtils.isNotEmpty(ccmEventIncidentDB.getAreaPoint())) {
                         if (!ccmEventIncidentDB.getAreaPoint().equals(ccmEventIncident.getAreaPoint())) {
                             // 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
                             String piont = ccmEventIncident.getAreaPoint();
                             String areaPiont = "";
                             String[] pionts = piont.split(",");
-
                             Gps gps = PositionUtil.gcj_To_Gps84(Double.parseDouble(pionts[1]), Double.parseDouble(pionts[0]));
-                           /* TransGPS ins = new TransGPS();
-                            TransGPS.Location wcj = ins.new Location();
-                            wcj.setLat(Double.parseDouble(pionts[1]));
-                            wcj.setLng(Double.parseDouble(pionts[0]));
-
-                            TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
-                            areaPiont = wgs.getLng() + ","  + wgs.getLat();*/
                             areaPiont = gps.getWgLon() + "," + gps.getWgLat();
                             ccmEventIncident.setAreaPoint(areaPiont);
                         }
@@ -562,42 +552,27 @@ public class CcmRestEvent extends BaseController {
                             String piont = ccmEventIncident.getAreaPoint();
                             String areaPiont = "";
                             String[] pionts = piont.split(",");
-
                             Gps gps = PositionUtil.gcj_To_Gps84(Double.parseDouble(pionts[1]), Double.parseDouble(pionts[0]));
-                           /* TransGPS ins = new TransGPS();
-                            TransGPS.Location wcj = ins.new Location();
-                            wcj.setLat(Double.parseDouble(pionts[1]));
-                            wcj.setLng(Double.parseDouble(pionts[0]));
-
-                            TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
-                            areaPiont = wgs.getLng() + ","  + wgs.getLat();*/
                             areaPiont = gps.getWgLon() + "," + gps.getWgLat();
                             ccmEventIncident.setAreaPoint(areaPiont);
                         }
                     }
-                }
+                }*/
             }
 
 
         } else {
             // 赋值事件初始处理状态-->未完结
             ccmEventIncident.setStatus("01");
-            if (StringUtils.isNotEmpty(ccmEventIncident.getAreaPoint())) {
+/*            if (StringUtils.isNotEmpty(ccmEventIncident.getAreaPoint())) {
                 // 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
                 String piont = ccmEventIncident.getAreaPoint();
                 String areaPiont = "";
                 String[] pionts = piont.split(",");
                 Gps gps = PositionUtil.gcj_To_Gps84(Double.parseDouble(pionts[1]), Double.parseDouble(pionts[0]));
-               /* TransGPS ins = new TransGPS();
-                TransGPS.Location wcj = ins.new Location();
-                wcj.setLat(Double.parseDouble(pionts[1]));
-                wcj.setLng(Double.parseDouble(pionts[0]));
-
-                TransGPS.Location wgs = ins.transformFromGCJToWGS(wcj);
-                areaPiont = wgs.getLng() + ","  + wgs.getLat();*/
                 areaPiont = gps.getWgLon() + ","  + gps.getWgLat();
                 ccmEventIncident.setAreaPoint(areaPiont);
-            }
+            }*/
         }
         if (ccmEventIncident.getCreateBy() == null) {
             ccmEventIncident.setCreateBy(new User(userId));
@@ -815,31 +790,6 @@ public class CcmRestEvent extends BaseController {
                 CcmRestEvent.sendMessageToMq(list);
             }
         }
-
-//		if(uuidList.size() > 0){
-	/*	JsonConfig jsonConfig = new JsonConfig();
-		jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
-			@Override
-			public boolean apply(Object source, String name, Object value) {
-				if (name.equals("area") || name.equals("createBy") || name.equals("updateBy")
-						|| name.equals("currentUser") || name.equals("page") || name.equals("sqlMap")) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		});
-		jsonConfig.registerJsonValueProcessor(Timestamp.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
-		for (Map.Entry<String, OrderRabbitMQInfo> entry : RabbitMQTools.orderRabbitMQInfoMap.entrySet()) {
-			for (Entry<String, String> key : uuidList.entrySet()) {
-				if (key.getKey().equals(entry.getKey())) {
-					RabbitMQTools.sendMessage(entry.getKey(),
-							JSONObject.fromObject(ccmEventIncident, jsonConfig).toString());
-				}
-			}
-		}*/
-//			sendMessage(JSONObject.fromObject(ccmEventIncident, jsonConfig).toString());
-        // }
 
         result.setCode(CcmRestType.OK);
         result.setResult(ccmEventIncident);

@@ -21,7 +21,6 @@ import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.ccm.rest.service.CcmRestAreaService;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
-import com.arjjs.ccm.tool.TransGPS;
 import com.arjjs.ccm.tool.geoJson.Features;
 import com.arjjs.ccm.tool.geoJson.GeoJSON;
 import com.arjjs.ccm.tool.geoJson.Geometry;
@@ -363,11 +362,11 @@ public class CcmRestBuilding extends BaseController {
 		}
 		build.setUpdateBy(new User(userId));
 
-
+/*
 		// 判断是否为新增
         if (StringUtils.isEmpty(build.getId())) {   //  新增
             // 坐标经纬度的转换（GCJ坐标 -> WGS-84坐标）
-            if (StringUtils.isNotEmpty(build.getAreaPoint())) {
+            *//*if (StringUtils.isNotEmpty(build.getAreaPoint())) {
                 String piont = build.getAreaPoint();
                 String areaPiont = "";
                 String[] pionts = piont.split(",");
@@ -381,10 +380,10 @@ public class CcmRestBuilding extends BaseController {
                 areaPiont = wgs.getLng() + ","  + wgs.getLat();
                 build.setAreaPoint(areaPiont);
                 build.setAreaMap(areaPiont);
-            }
+            }*//*
         }else {
         	CcmHouseBuildmanage ccmHouseBuild = ccmHouseBuildmanageService.get(build.getId());
-        	if(StringUtils.isNotEmpty(build.getAreaPoint())) {
+        	*//*if(StringUtils.isNotEmpty(build.getAreaPoint())) {
         		if(build.getAreaPoint().equals(ccmHouseBuild.getAreaPoint())) {
         			build.setAreaMap(build.getAreaPoint());
         		}else {
@@ -402,8 +401,8 @@ public class CcmRestBuilding extends BaseController {
                     build.setAreaPoint(areaPiont);
                     build.setAreaMap(areaPiont);
         		}
-        	}
-        }
+        	}*//*
+        }*/
 
 		String file = build.getImages();
 		if(StringUtils.isNotEmpty(file)) {

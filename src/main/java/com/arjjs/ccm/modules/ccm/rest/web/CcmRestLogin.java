@@ -101,9 +101,9 @@ public class CcmRestLogin extends BaseController {
     @Value("${RABBIT_MQ_PASSWORD}")
     private  String  RABBIT_MQ_PASSWORD;
     /**
-     *  @see  登录
-     * @param loginName  用户名
-     * @param password  密码
+     *  @see   -登录
+     * @param -loginName  用户名
+     * @param -password  密码
      * @return
      * @author fuxinshuang
      * @version 2018-02-28
@@ -259,7 +259,7 @@ public class CcmRestLogin extends BaseController {
                 sysConfig.setSysMapConfig(sysMapConfig);
             }
         }
-        json.put("imageMapUrl",sysConfig.getSysMapConfig().getAppMapUrl());
+        json.put("imageMapUrl", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppMapUrl()) ? sysConfig.getSysMapConfig().getAppMapUrl() : "");
         if(StringUtils.isNotBlank(userDB.getPhoto())) {
         	json.put("photo", Global.getConfig("FILE_UPLOAD_URL")+userDB.getPhoto());
 		}else {
@@ -280,9 +280,9 @@ public class CcmRestLogin extends BaseController {
         return result;
     }
     /**
-     * @see  退出
-     * @param loginName  用户名
-     * @param password  密码
+     * @see  - 退出
+     * @param - loginName  用户名
+     * @param - password  密码
      * @return
      * @author fuxinshuang
      * @version 2018-02-28
@@ -311,9 +311,9 @@ public class CcmRestLogin extends BaseController {
         return result;
     }
     /**
-     * @see  更新坐标信息
-     * @param loginName  用户名
-     * @param password  密码
+     * @see  - 更新坐标信息
+     * @param - loginName  用户名
+     * @param - password  密码
      * @return
      * @author fuxinshuang
      * @version 2018-02-28
