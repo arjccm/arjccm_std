@@ -499,25 +499,21 @@ function findCountPeopleForType() {
 function getnumPopFlowTable() {
 	$.getJSON(ctx + "/report/ccmPeopleAmount/getnumPopFlowTable",
 			function(data) {
-				// 接收参数
-				if(data[0]&&data[0]["value1"]){
-					$('#PopKey01').html(data[0]["value1"]);
-				}
-				if(data[1]&&data[1]["value1"]){
-					$('#PopKey02').html(data[1]["value1"]);
-				}
-				if(data[2]&&data[2]["value1"]){
-					$('#PopKey03').html(data[2]["value1"]);
-				}
-				if(data[3]&&data[3]["value1"]){
-					$('#PopKey04').html(data[3]["value1"]);
-				}
-				if(data[4]&&data[4]["value1"]){
-					$('#PopKey05').html(data[4]["value1"]);
-				}
-				if(data[5]&&data[5]["value1"]){
-					$('#PopKey99').html(data[5]["value1"]);
-				}
+                for(var i=0;i<data.length;i++){
+                    if(data[i]["type"]=="01"){
+                        $('#PopKey01').html(data[i]["value1"]);
+                    }else if(data[i]["type"]=="02"){
+                        $('#PopKey02').html(data[i]["value1"]);
+                    }else if(data[i]["type"]=="03"){
+                        $('#PopKey03').html(data[i]["value1"]);
+                    }else if(data[i]["type"]=="04"){
+                        $('#PopKey04').html(data[i]["value1"]);
+                    }else if(data[i]["type"]=="05"){
+                        $('#PopKey05').html(data[i]["value1"]);
+                    }else if(data[i]["type"]=="99"){
+                        $('#PopKey99').html(data[i]["value1"]);
+                    }
+                }
 			});
 }
 // 校园周边
