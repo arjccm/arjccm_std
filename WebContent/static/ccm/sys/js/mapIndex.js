@@ -3344,7 +3344,7 @@ function PopLocation() {
         } else if (ccmPeopleSex == "0") {
             ccmPeopleSex = "男"
         } else {
-            ccmPeopleSex = ""
+            ccmPeopleSex = "未说明性别"
         }
         var ccmPeopleBirthday = $('#ccmPeopleBirthday').val()
         if (ccmPeopleBirthday != "") {

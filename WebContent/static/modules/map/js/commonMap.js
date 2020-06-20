@@ -4041,8 +4041,15 @@ ArjMap.Map.prototype = {
                                                             if (j != 'id' && j != '重点人员' && j != 'id1'&& j != '监控类型') {
 
                                                                 if (j == "性别" && info[j] != null) {
+                                                                    console.info("j--------------"+info[j]);
                                                                     htmls += '<td><strong>' + j + '：</strong></td>';
-                                                                    htmls += '<td style="color:#eea807">' + ((info[j] == 1 || info[j] == "1") ? '女' : '男') + '</td>';
+                                                                    if(info[j] == 1 || info[j] == "1"){
+                                                                        htmls += '<td style="color:#eea807">女</td>';
+                                                                    }else if(info[j] == 0 || info[j] == "0"){
+                                                                        htmls += '<td style="color:#eea807">男</td>';
+                                                                    }else{
+                                                                        htmls += '<td style="color:#eea807">未说明性别</td>';
+                                                                    }
                                                                 } else if (j == "设备状态" && info[j] != null) {
                                                                     htmls += '<td><strong>' + j + '：</strong></td>';
                                                                     if (info[j] == 1 || info[j] == "1") {
@@ -4248,8 +4255,9 @@ ArjMap.Map.prototype = {
                                 if (i != 'id' && i != '重点人员' && i != 'id1' && i != '监控类型') {
 
                                     if (i == "性别" && info[i] != null) {
+                                        console.info("i--------------"+info[i]);
                                         html += '<td><strong>' + i + '：</strong></td>';
-                                        html += '<td style="color:#eea807">' + ((info[i] == 1 || info[i] == "1") ? '女' : '男') + '</td>';
+                                        html += '<td style="color:#eea807">' + info[i] + '</td>';
                                     } else if (i == "设备状态" && info[i] != null) {
                                         html += '<td><strong>' + i + '：</strong></td>';
                                         if (info[i] == 1 || info[i] == "1") {

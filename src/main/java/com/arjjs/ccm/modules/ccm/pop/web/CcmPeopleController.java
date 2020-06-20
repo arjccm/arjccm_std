@@ -948,7 +948,7 @@ public class CcmPeopleController extends BaseController {
 				}
 				
 				//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
-				if(People.getTelephone().contains(".") || People.getTelephone().contains("E10")) {
+				if(People.getTelephone().contains(".") || People.getTelephone().contains("E")) {
 					double bd = Double.valueOf(People.getTelephone());
 					String tel = df.format(bd);
 					People.setTelephone(tel);
@@ -1094,7 +1094,14 @@ public class CcmPeopleController extends BaseController {
 							roomNotHas = true;
 							CcmPopTenant room2 = new CcmPopTenant();
 							room2.setId(UUID.randomUUID().toString());
-							room2.setHouseBuild(People.getRoomName());  //房屋编号
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(People.getRoomName().contains(".") || People.getRoomName().contains("E")) {
+								double bd = Double.valueOf(People.getRoomName());
+								String roomName = df.format(bd);
+								room2.setHouseBuild(roomName);
+							}else{
+								room2.setHouseBuild(People.getRoomName());  //房屋编号
+							}
 							if (People.getAreaGridId() != null) {
 								room2.setArea(People.getAreaGridId());  //所在区域
 							}
