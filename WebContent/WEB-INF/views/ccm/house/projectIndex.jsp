@@ -8,8 +8,8 @@
     <title>${fns:getConfig('productName')}</title>
     <link rel="icon" type="image/x-icon" href="${ctxStatic}/images/logo.ico"/>
     <meta name="decorator" content="blank"/>
-    <link type="text/css" rel="stylesheet" href="${ctxStatic}/layim/layui/css/layui.css"/>
-    <script type="text/javascript" src="${ctxStatic}/layim/layui/layui.js"></script>
+    <link type="text/css" rel="stylesheet" href="${ctxStatic}/arjim/layui/css/layui.css"/>
+    <script type="text/javascript" src="${ctxStatic}/arjim/layui/layui.js"></script>
     <link class="zhuti" href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'black'}/projectIndex.css"
           type="text/css" rel="stylesheet"/>
     <script type="text/javascript">

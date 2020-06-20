@@ -27,7 +27,7 @@ public class BphImController extends BaseController {
 	public String historymessage(Model model, HttpServletRequest request,HttpServletResponse response,ImParamData paramData) {
 		Pager pager = bphImService.historymessage(paramData);
 		model.addAttribute("pager", pager);
-		return "layim/page/historymessage";
+		return "arjim/page/historymessage";
 	}
 	
 	/**
