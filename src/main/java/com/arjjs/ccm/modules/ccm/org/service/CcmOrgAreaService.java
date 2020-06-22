@@ -119,4 +119,11 @@ public class CcmOrgAreaService extends CrudService<CcmOrgAreaDao, CcmOrgArea> {
 	public String getParrenAreaId(String areaId) {
 		return ccmOrgAreaDao.getParrenAreaId(areaId);
 	}
+
+	public Integer getPeopleNum(String id) {
+		return ccmOrgAreaDao.getPeopleNum(id);
+	}
+	public Integer getkeyPeopleNum(String id) {
+		return ccmOrgAreaDao.getkeyPeopleNum(id);
+	}
 }

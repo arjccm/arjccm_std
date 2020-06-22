@@ -52,4 +52,8 @@ public interface CcmOrgAreaDao extends CrudDao<CcmOrgArea> {
     String getAreaId(@Param("userId") String userId);
 
 	String getParrenAreaId(@Param("areaId") String areaId);
+
+	Integer getPeopleNum(@Param("id") String id);
+
+	Integer getkeyPeopleNum(@Param("id") String id);
 }

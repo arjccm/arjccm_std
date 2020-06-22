@@ -575,5 +575,34 @@ WHERE
 		WHERE
 		a.id = #{areaId};
 	</select>
-	
+
+	<select id="getPeopleNum" resultType="int">
+SELECT
+	ifnull(sum(o.mannum),0) AS "mannum"
+FROM
+	ccm_org_area o
+	LEFT JOIN sys_area s ON o.area_id = s.id
+	<where>
+	o.del_flag=0
+	AND s.type=7
+	<if test="id !=null and id != ''">
+	AND s.parent_ids LIKE concat('%',#{id},'%')
+	</if>
+	</where>
+	</select>
+
+	<select id="getkeyPeopleNum" resultType="int">
+		SELECT
+		ifnull(sum(o.key_personnel_num),0) AS "keyPersonnelNum"
+		FROM
+		ccm_org_area o
+		LEFT JOIN sys_area s ON o.area_id = s.id
+		<where>
+			o.del_flag=0
+			AND s.type=7
+			<if test="id !=null and id != ''">
+				AND s.parent_ids LIKE concat('%',#{id},'%')
+			</if>
+		</where>
+	</select>
 </mapper>
