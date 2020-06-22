@@ -429,7 +429,7 @@
                         </div>
                     </div>
                 </td>
-            </tr>2
+            </tr>
         </table>
 
         <div class="form-actions">
