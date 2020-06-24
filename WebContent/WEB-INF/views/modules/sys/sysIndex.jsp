@@ -284,8 +284,8 @@
 <script src="${ctxStatic}/common/qrcode.min.js" type="text/javascript"></script>
 <script type="text/javascript"  >
 	window.onload = function() {
-		initRabbitMQ();
-		initRabbitMQKeyProple();
+		//initRabbitMQ();
+		//initRabbitMQKeyProple();
 	};
 
 	//判断pid是否存在   跳转三亚可视化界面
