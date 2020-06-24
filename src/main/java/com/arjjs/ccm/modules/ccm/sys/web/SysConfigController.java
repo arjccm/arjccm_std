@@ -3,11 +3,19 @@
  */
 package com.arjjs.ccm.modules.ccm.sys.web;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.arjjs.ccm.common.config.Global;
+import com.arjjs.ccm.common.persistence.Page;
+import com.arjjs.ccm.common.utils.StringUtils;
+import com.arjjs.ccm.common.web.BaseController;
+import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
+import com.arjjs.ccm.modules.ccm.sys.entity.SysMapConfig;
+import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.tool.HtmlUtil;
+import groovy.util.logging.Slf4j;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +27,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.arjjs.ccm.common.config.Global;
-import com.arjjs.ccm.common.persistence.Page;
-import com.arjjs.ccm.common.web.BaseController;
-import com.arjjs.ccm.common.utils.StringUtils;
-import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
-import com.arjjs.ccm.modules.ccm.sys.entity.SysMapConfig;
-import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-import net.sf.json.util.CycleDetectionStrategy;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 系统信息配置Controller
@@ -40,6 +39,7 @@ import net.sf.json.util.CycleDetectionStrategy;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/sysConfig")
+@Slf4j
 public class SysConfigController extends BaseController {
 
 	@Autowired
@@ -424,7 +424,7 @@ public class SysConfigController extends BaseController {
 	/**
 	 * 地图配置信息表单
 	 * 
-	 * @param sysConfig
+	 * @param - sysConfig
 	 * @param model
 	 * @return
 	 */
@@ -444,9 +444,9 @@ public class SysConfigController extends BaseController {
 	}
 
 	/**
-	 * 地图配置信息保存
+	 * 地图配置信息保存  ArcGISTiledLayer
 	 * 
-	 * @param sysMapConfig
+	 * @param -  sysMapConfig
 	 * @param model
 	 * @param redirectAttributes
 	 * @return
@@ -465,13 +465,40 @@ public class SysConfigController extends BaseController {
 
 	@RequestMapping(value = "getMapConfigWithAJAX")
 	@ResponseBody
-	public SysConfig getMapConfigWithAJAX() {
+	public SysConfig getMapConfigWithAJAX(HttpServletRequest request) throws Exception {
 		SysConfig sysConfig = sysConfigService.get(SysConfig.MAP_CONFIG_ID);
 		if (StringUtils.isNotBlank(sysConfig.getParamStr())) {
 			JSONObject jsonObject = JSONObject.fromObject(sysConfig.getParamStr());
 			if (jsonObject != null && !jsonObject.isEmpty() && !jsonObject.isNullObject()) {
 				SysMapConfig sysMapConfig = (SysMapConfig) JSONObject.toBean(jsonObject, SysMapConfig.class);
-				sysConfig.setSysMapConfig(sysMapConfig);
+				String actualConfigUrl = HtmlUtil.getActualConfigUrl(sysMapConfig.getAppMapUrl());
+				logger.info("actualConfigUrl:----------------------------" + actualConfigUrl);
+				logger.info("request.getRemoteAddr():----------------------------" + request.getRemoteAddr());
+				logger.info("StringUtils.isNotEmpty(actualConfigUrl) :----------------------------" + StringUtils.isNotEmpty(actualConfigUrl) );
+				logger.info("actualConfigUr:----------------------------" + actualConfigUrl);
+				logger.info("actualConfigUrl.split(\":\")[0].equals(request.getRemoteAddr()) :----------------------------" + actualConfigUrl.split(":")[0].equals(request.getRemoteAddr()) );
+				logger.info("actualConfigUrl.split(:)[0] :----------------------------" + actualConfigUrl.split(":")[0]);
+				logger.info("request.getRemoteAddr() :----------------------------" + request.getRemoteAddr());
+				logger.info("request.getIpAddress() :----------------------------" + HtmlUtil.getIpAddress(request));
+
+				if (StringUtils.isNotEmpty(actualConfigUrl)){ //如果是映射地址
+					if(!"127.0.0.1".equals(request.getRemoteAddr()) ||
+							!Global.getConfig("physical_address_server_url").equals(HtmlUtil.getIpAddress(request))){
+						sysMapConfig.setImageMapUrl(HtmlUtil.getMappingUrl(actualConfigUrl,sysMapConfig.getImageMapUrl())); //影像地图url
+						sysMapConfig.setElectronicMapUrl(HtmlUtil.getMappingUrl(actualConfigUrl,sysMapConfig.getElectronicMapUrl())); //电子地图url
+						sysMapConfig.setKeshihuaMapUrl(HtmlUtil.getMappingUrl(actualConfigUrl,sysMapConfig.getKeshihuaMapUrl()));//可视化地图url
+						sysConfig.setSysMapConfig(sysMapConfig);
+						logger.debug("getAppMapUrl"+sysMapConfig.getAppMapUrl());
+						logger.debug("电子地图url getElectronicMapUrl"+sysMapConfig.getElectronicMapUrl());
+						logger.debug("影像地图url getImageMapUrl"+sysMapConfig.getImageMapUrl());
+						logger.debug("可视化地图url getKeshihuaMapUrl"+sysMapConfig.getKeshihuaMapUrl());
+						logger.info(("getAppMapUrl"+ sysMapConfig.getAppMapUrl()));
+						logger.info("电子地图url getElectronicMapUrl"+sysMapConfig.getElectronicMapUrl());
+						logger.info("影像地图url getImageMapUrl"+sysMapConfig.getImageMapUrl());
+						logger.info("可视化地图url getKeshihuaMapUrl"+sysMapConfig.getKeshihuaMapUrl());
+					}
+
+				}
 			}
 		}
 		return sysConfig;
