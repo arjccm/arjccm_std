@@ -128,7 +128,7 @@
                 tips: 2,
                 // content:"123",
                 area:["115px","115px"],
-                time:10000,
+                time:100000,
                 shade:0.3,
                 shadeClose:true
             });
