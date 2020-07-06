@@ -1,11 +1,31 @@
 package com.arjjs.ccm.tool;
 
+import com.arjjs.ccm.common.utils.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class HtmlUtil {
+    private static final String[] HEADERS = {
+            "X-Forwarded-For",
+            "Proxy-Client-IP",
+            "WL-Proxy-Client-IP",
+            "HTTP_X_FORWARDED_FOR",
+            "HTTP_X_FORWARDED",
+            "HTTP_X_CLUSTER_CLIENT_IP",
+            "HTTP_CLIENT_IP",
+            "HTTP_FORWARDED_FOR",
+            "HTTP_FORWARDED",
+            "HTTP_VIA",
+            "REMOTE_ADDR",
+            "X-Real-IP"
+    };
+
     public static List<String> getImgStr(String htmlStr) {
         List<String> list = new ArrayList<>();
         String img = "";
@@ -53,5 +73,44 @@ public class HtmlUtil {
             System.out.println(group);
         }
         return null;
+    }
+    public static String getIpAddress(HttpServletRequest request) {
+        String ip = "";
+        for (String header : HEADERS) {
+            ip = request.getHeader(header);
+            if(StringUtils.isNotEmpty(ip)) {
+                break;
+            }
+        }
+        if(StringUtils.isEmpty(ip)){
+            ip = request.getRemoteAddr();
+        }
+        if(StringUtils.isNotEmpty(ip) && ip.contains(",")){
+            ip = ip.split(",")[0];
+        }
+        if("0:0:0:0:0:0:0:1".equals(ip)){
+            ip = "127.0.0.1";
+        }
+        return ip;
+    }
+    public static String getMappingUrl(String configUrl, String addressUrl) {
+        String newUrl ="0.0.0.0";
+        try {
+            URL url = new URL(addressUrl);
+            newUrl = "http://" + configUrl+ url.getPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return newUrl;
+    }
+    public static String getActualConfigUrl(String addressUrl) {
+        String configUrl ="";
+        try {
+            URL url = new URL(addressUrl);
+            configUrl = url.getAuthority();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return configUrl;
     }
 }
