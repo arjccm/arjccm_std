@@ -135,8 +135,13 @@ public class SysConfig extends DataEntity<SysConfig> {
 	private String tiandyPort;
 	private String tiandyUserName;
 	private String tiandyPassWord;
-	private String tiandyUserId; 
-	
+	private String tiandyUserId;
+
+	private String dssIP;
+	private String dssPort;
+	private String dssUserName;
+	private String dssPassword;
+
 	/*private String ccmHouseAids;	//艾滋病患者
 	private String ccmHouseDangerous;//危险品从业者	
 	private String ccmHouseDrugs;	//吸毒人员
@@ -219,6 +224,39 @@ public class SysConfig extends DataEntity<SysConfig> {
 	public void setCcmHouseRelease(String ccmHouseRelease) {
 		this.ccmHouseRelease = ccmHouseRelease;
 	}*/
+
+	public String getDssIP() {
+		return dssIP;
+	}
+
+	public void setDssIP(String dssIP) {
+		this.dssIP = dssIP;
+	}
+
+	public String getDssPort() {
+		return dssPort;
+	}
+
+	public void setDssPort(String dssPort) {
+		this.dssPort = dssPort;
+	}
+
+	public String getDssUserName() {
+		return dssUserName;
+	}
+
+	public void setDssUserName(String dssUserName) {
+		this.dssUserName = dssUserName;
+	}
+
+	public String getDssPassword() {
+		return dssPassword;
+	}
+
+	public void setDssPassword(String dssPassword) {
+		this.dssPassword = dssPassword;
+	}
+
 	public String getTiandyIp() {
 		return tiandyIp;
 	}

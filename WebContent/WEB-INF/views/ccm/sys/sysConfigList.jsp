@@ -76,6 +76,18 @@
 									}
 								})
 							});
+							$('#btnSubmitDss').click(function() {
+								$('#inputFormDssVideoConfig').submit();
+							});
+							$('#btnGetDssCameras').click(function() {
+								$.getJSON("/arjccm/app/videoData/getDssCameras",function(data){
+									if(data.code == 0){
+										alert("获取监控设备中");
+									}else{
+										alert("配置信息有误");
+									}
+								})
+							});
 							// 自定义地图层级
 							$('#btnSubmit10').click(function () {
 								$('#inputFormMapLevel').submit();
@@ -230,7 +242,7 @@
 		.high {
 			margin-bottom: 10px
 		}
-		#btnGetCameras,#btnGetTiandyCameras{
+		#btnGetCameras,#btnGetTiandyCameras,#btnGetDssCameras{
 			width: 100px!important;
 		}
 	</style>
@@ -620,6 +632,51 @@
 							<i class="icon-ok"></i>保存
 						</a>
 						<a id="btnGetTiandyCameras" class="btn btn-primary" href="javascript:;">
+							<i class="icon-facetime-video"></i>获取监控设备
+						</a>
+					</shiro:hasPermission>
+				</span>
+			</div>
+		</div>
+	</form:form>
+</c:if>
+
+<!-- 大华视频ocx方式播放  -->
+<c:if test="${dssVideoConfig != null}">
+	<form:form id="inputFormDssVideoConfig" modelAttribute="dssVideoConfig"
+			   action="${ctx}/sys/sysConfig/save" method="post" class="form-horizontal">
+		<form:hidden path="id" />
+		<form:hidden path="remarks" />
+		<div class="control-group">
+			<label class="control-label">${dssVideoConfig.remarks}：</label>
+			<div class="controls">
+				<br>
+				<label class="high">
+					<label class="lableStyle">IP：</label>
+					<form:input path="dssIP" htmlEscape="false" maxlength="128"
+								class="input-xlarge"/>
+				</label><br>
+				<label class="high">
+					<label class="lableStyle">端口：</label>
+					<form:input path="dssPort" htmlEscape="false" maxlength="128"
+								class="input-xlarge " />
+				</label><br>
+				<label class="high">
+					<label class="lableStyle">用户名：</label>
+					<form:input path="dssUserName" htmlEscape="false" maxlength="128"
+								class="input-xlarge " />
+				</label><br>
+				<label class="high">
+					<label class="lableStyle">密码：</label>
+					<form:input path="dssPassword" htmlEscape="false" maxlength="128"
+								class="input-xlarge " />
+				</label>
+				<span style="float: right; margin-right: 200px">
+					<shiro:hasPermission name="sys:sysConfig:edit">
+						<a id="btnSubmitDss" class="btn btn-primary" href="javascript:;">
+							<i class="icon-ok"></i>保存
+						</a>
+						<a id="btnGetDssCameras" class="btn btn-primary" href="javascript:;">
 							<i class="icon-facetime-video"></i>获取监控设备
 						</a>
 					</shiro:hasPermission>

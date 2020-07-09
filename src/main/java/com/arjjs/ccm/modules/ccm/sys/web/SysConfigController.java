@@ -270,6 +270,35 @@ public class SysConfigController extends BaseController {
 				}
 				model.addAttribute("tiandyVideoConfig", tiandyVideoConfig);
 			}
+
+			// 大华视频对接数据
+			if ("dss_video_ocx_play".equals(s.getId())) {
+				SysConfig dssVideoConfig = new SysConfig();
+				dssVideoConfig = s;
+				// 解JSON
+				JSONObject jsonObject = JSONObject.fromObject(dssVideoConfig.getParamStr());
+				if(jsonObject.containsKey("dssIP")) {
+					String dssIP = jsonObject.getString("dssIP");
+					dssVideoConfig.setDssIP(dssIP);
+				}
+				if(jsonObject.containsKey("dssPort")) {
+					String dssPort = jsonObject.getString("dssPort");
+					dssVideoConfig.setDssPort(dssPort);
+				}
+				if(jsonObject.containsKey("dssUserName")) {
+					String dssUserName = jsonObject.getString("dssUserName");
+					dssVideoConfig.setDssUserName(dssUserName);
+				}
+				if(jsonObject.containsKey("dssPassword")) {
+					String dssPassword = jsonObject.getString("dssPassword");
+					dssVideoConfig.setDssPassword(dssPassword);
+				}
+				/*if(jsonObject.containsKey("tiandyUserId")) {
+					String tiandyUserId = jsonObject.getString("tiandyUserId");
+					tiandyVideoConfig.setTiandyUserId(tiandyUserId);
+				}*/
+				model.addAttribute("dssVideoConfig", dssVideoConfig);
+			}
 		}
 		return "ccm/sys/sysConfigList";
 	}
@@ -310,7 +339,9 @@ public class SysConfigController extends BaseController {
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap",
 					"sysMapConfig", "green", "orangeMin", "orangeMax", "yellowMin", "yellowMax", "red", "maxAcceptTime",
 					"maxDispatchTime", "maxArriveTime",
-					"apiUrl", "appKey", "appSecet", "svrIp", "svrPort","tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId" });// 排除
+					"apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
+					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
 			config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 			String jsonString = JSONArray.fromObject(sysConfig, config).toString(); //
@@ -325,7 +356,8 @@ public class SysConfigController extends BaseController {
                     "remarks", "paramStr", "paramInt", "paramDate", "tableName", "objId", "beginParamDate",
                     "endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
                     "username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "paramStrList",
-                    "tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId"});// 排除
+                    "tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
+					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
             config.setIgnoreDefaultExcludes(false); // 设置默认忽略
             config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
             String jsonString = JSONArray.fromObject(sysConfig, config).toString();
@@ -341,7 +373,9 @@ public class SysConfigController extends BaseController {
 					"remarks", "paramStr", "paramInt", "paramDate", "tableName", "objId", "beginParamDate",
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
 					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime",
-					"apiUrl", "appKey", "appSecet", "svrIp", "svrPort","tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId" });// 排除
+					"apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
+					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
 			config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 			String jsonString = JSONArray.fromObject(sysConfig, config).toString(); //
@@ -356,7 +390,9 @@ public class SysConfigController extends BaseController {
 					"remarks", "paramStr", "paramInt", "paramDate", "tableName", "objId", "beginParamDate",
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
 					"username", "password", "sysMapConfig", "red", "yellowMin", "green", "orangeMax", "orangeMin",
-					"yellowMax", "apiUrl", "appKey", "appSecet", "svrIp", "svrPort","tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId" });// 排除
+					"yellowMax", "apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
+					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
 			config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 			String jsonString = JSONArray.fromObject(sysConfig, config).toString(); //
@@ -371,7 +407,9 @@ public class SysConfigController extends BaseController {
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
 					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "red",
 					"yellowMin", "green", "orangeMax", "orangeMin", "yellowMax", "flag",
-					"apiUrl", "appKey", "appSecet", "svrIp", "svrPort","tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId" });// 排除
+					"apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
+					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
 			config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 			String jsonString = JSONArray.fromObject(sysConfig, config).toString(); //
@@ -386,7 +424,8 @@ public class SysConfigController extends BaseController {
 					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "red",
 					"yellowMin", "green", "orangeMax", "orangeMin", "yellowMax", "flag",
 					"alarmFlowFlag", "alarmHandleFlag", "handleModel", "paramStrList","tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
-					"quXian","jieDaoMin","jieDaoMax","sheQuMin","sheQuMax","wangGe"});// 排除
+					"quXian","jieDaoMin","jieDaoMax","sheQuMin","sheQuMax","wangGe",
+					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
 			config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 			String jsonString = JSONArray.fromObject(sysConfig, config).toString(); //
@@ -401,7 +440,24 @@ public class SysConfigController extends BaseController {
 					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "red",
 					"yellowMin", "green", "orangeMax", "orangeMin", "yellowMax", "flag",
 					"alarmFlowFlag", "alarmHandleFlag", "handleModel", "paramStrList","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
-					"quXian","jieDaoMin","jieDaoMax","sheQuMin","sheQuMax","wangGe"});// 排除
+					"quXian","jieDaoMin","jieDaoMax","sheQuMin","sheQuMax","wangGe",
+					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
+			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
+			config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+			String jsonString = JSONArray.fromObject(sysConfig, config).toString(); //
+			jsonString = jsonString.substring(1, jsonString.length() - 1);
+			sysConfig.setParamStr(jsonString);
+		}
+		if ("dss_video_ocx_play".equals(sysConfig.getId())) {
+			JsonConfig config = new JsonConfig();
+			config.setExcludes(new String[] { "createBy", "updateBy", "currentUser", "createDate", "updateDate",
+					"remarks", "paramStr", "paramInt", "paramDate", "tableName", "objId", "beginParamDate",
+					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
+					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "red",
+					"yellowMin", "green", "orangeMax", "orangeMin", "yellowMax", "flag",
+					"alarmFlowFlag", "alarmHandleFlag", "handleModel", "paramStrList","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"quXian","jieDaoMin","jieDaoMax","sheQuMin","sheQuMax","wangGe",
+					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
 			config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 			String jsonString = JSONArray.fromObject(sysConfig, config).toString(); //

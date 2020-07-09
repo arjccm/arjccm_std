@@ -382,7 +382,7 @@ width: 113px;
 									onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'beginCreateDate\')}',maxDate:'%y-%M'});" style="height: 30px; margin-top: 10px;"/>
 		    </li>
 		    <li>
-		    <sys:treeselect id="primaryPerson" name="primaryPerson.id" 
+		    <sys:treeselect id="primaryPerson" name="primaryPerson.id"
 									value="${office.primaryPerson.id}"
 									labelName="office.primaryPerson.name"
 									labelValue="${office.primaryPerson.name}" title="用户"

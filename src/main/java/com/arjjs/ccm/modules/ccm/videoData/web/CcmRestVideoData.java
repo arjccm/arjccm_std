@@ -2,6 +2,7 @@ package com.arjjs.ccm.modules.ccm.videoData.web;
 
 import com.arjjs.ccm.common.web.BaseController;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
+import com.arjjs.ccm.modules.ccm.videoData.service.CcmDssVideoService;
 import com.arjjs.ccm.modules.ccm.videoData.service.CcmRestVideoDataService;
 import com.arjjs.ccm.modules.ccm.videoData.service.CcmTiandyVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class CcmRestVideoData extends BaseController {
 	private CcmRestVideoDataService ccmRestVideoDataService;
 	@Autowired
 	private CcmTiandyVideoService ccmTiandyVideoService;
+	@Autowired
+	private CcmDssVideoService ccmDssVideoService;
 	@ResponseBody
 	@RequestMapping(value = "/getCameras", method = RequestMethod.GET)
 	public CcmRestResult getCameras(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -38,5 +41,10 @@ public class CcmRestVideoData extends BaseController {
 		CcmRestResult result = ccmTiandyVideoService.getCameras();
 		return result;
 	}
-
+	@ResponseBody
+	@RequestMapping(value = "/getDssCameras", method = RequestMethod.GET)
+	public CcmRestResult getDssCameras(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = ccmDssVideoService.getDssCameras();
+		return result;
+	}
 }
