@@ -410,24 +410,22 @@
 		ON a2.id = a.area_id
 		WHERE
 			a.del_flag = '0'
-		<if test="areaType != null and areaType != '' and areaType == 7">
-			AND a.area_id = #{areaId}
-		</if>
-		<if test="areaType != null and areaType != '' and areaType == 6">
-			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
-			AND a2.type = 7
-		</if>
-		<if test="areaType != null and areaType != '' and areaType == 5">
-			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
-			AND a2.type = 6
-		</if>
-		<if test="areaType != null and areaType != '' and areaType != 5 and areaType != 6 and areaType != 7">
-			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
-			AND a2.type = 5
+		<if test="areaType != null and areaType != ''">
+			<if test="areaType == 7">
+				AND a.area_id = #{areaId}
+			</if>
+			<if test="areaType == 6 or areaType == 5 or areaType == 4 or areaType == 3">
+				AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+				AND a2.type = #{showType}
+			</if>
+			<if test="areaType == 2 or areaType == 1">
+				AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+				AND a2.type = 4
+			</if>
 		</if>
 		<if test="areaType == null or areaType == ''">
 			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
-			AND a2.type = 5
+			AND a2.type = 4
 		</if>
 		GROUP BY
 			a.stat_date
@@ -447,24 +445,22 @@
 		ON a2.id = a.area_id
 		WHERE
 		a.del_flag = 0
-		<if test="areaType != null and areaType != '' and areaType == 7">
-			AND a.area_id = #{areaId}
-		</if>
-		<if test="areaType != null and areaType != '' and areaType == 6">
-			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
-			AND a2.type = 7
-		</if>
-		<if test="areaType != null and areaType != '' and areaType == 5">
-			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
-			AND a2.type = 6
-		</if>
-		<if test="areaType != null and areaType != '' and areaType != 5 and areaType != 6 and areaType != 7">
-			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
-			AND a2.type = 5
+		<if test="areaType != null and areaType != ''">
+			<if test="areaType == 7">
+				AND a.area_id = #{areaId}
+			</if>
+			<if test="areaType == 6 or areaType == 5 or areaType == 4 or areaType == 3">
+				AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+				AND a2.type = #{showType}
+			</if>
+			<if test="areaType == 2 or areaType == 1">
+				AND a2.parent_ids LIKE concat('%',#{areaId},'%')
+				AND a2.type = 4
+			</if>
 		</if>
 		<if test="areaType == null or areaType == ''">
 			AND a2.parent_ids LIKE concat('%',#{areaId},'%')
-			AND a2.type = 5
+			AND a2.type = 4
 		</if>
 		and
 		(a.stat_date &gt;

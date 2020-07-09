@@ -273,7 +273,7 @@
                     <div>
                         <label class="control-label">中心点坐标：</label>
                         <div class="controls">
-                            <form:input path="areaPoint" readonly="true" htmlEscape="false" maxlength="40"
+                            <form:input path="areaPoint" htmlEscape="false" maxlength="40"
                                         class="input-xlarge"/>
                         </div>
                     </div>

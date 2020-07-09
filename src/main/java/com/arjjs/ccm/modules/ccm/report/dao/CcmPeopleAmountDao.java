@@ -26,7 +26,7 @@ public interface CcmPeopleAmountDao extends CrudDao<CcmPeopleAmount> {
 	 * @param column
 	 * @return
 	 */
-	List<EchartType> findListBySum(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
+	List<EchartType> findListBySum(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType, @Param("showType")Integer showType);
 
 	/**
 	 * @see 查询当的
@@ -40,14 +40,14 @@ public interface CcmPeopleAmountDao extends CrudDao<CcmPeopleAmount> {
 	 * @param column
 	 * @return
 	 */
-	List<EchartType> findListByMon(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
+	List<EchartType> findListByMon(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType, @Param("showType")Integer showType);
 
 	/**
 	 * @see 查询当日的未采集人口数量
 	 * @param column
 	 * @return
 	 */
-	List<EchartType> findListNotGetByMon(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType);
+	List<EchartType> findListNotGetByMon(@Param("column")String column, @Param("areaId")String areaId, @Param("areaType")String areaType, @Param("showType")Integer showType);
 
 	/**
 	 * @see 查询当日的未采集人口数量

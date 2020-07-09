@@ -924,20 +924,108 @@ public class CcmPeopleController extends BaseController {
 				}
 				
 				// 验证必填项
-				if ( StringUtils.isBlank(People.getName()) || StringUtils.isBlank(People.getIsPermanent()) || StringUtils.isBlank(People.getTelephone()) || StringUtils.isBlank(People.getDomicile())) {
+				if ( StringUtils.isBlank(People.getName()) ||
+						StringUtils.isBlank(People.getType()) ||
+						StringUtils.isBlank(People.getSex()) ||
+						People.getBirthday() == null ||
+						StringUtils.isBlank(People.getIdent()) ||
+						StringUtils.isBlank(People.getTelephone()) ||
+						StringUtils.isBlank(People.getNation()) ||
+						StringUtils.isBlank(People.getCensu()) ||
+						StringUtils.isBlank(People.getMarriage()) ||
+						StringUtils.isBlank(People.getPolitics()) ||
+						StringUtils.isBlank(People.getEducation()) ||
+						StringUtils.isBlank(People.getDomiciledetail()) ||
+						StringUtils.isBlank(People.getResidencedetail()) ||
+						StringUtils.isBlank(People.getIsPermanent()) ||
+						StringUtils.isBlank(People.getAreaGridId().getName()) ||
+						StringUtils.isBlank(People.getBuildName()) ||
+						StringUtils.isBlank(People.getElemNum()) ||
+						StringUtils.isBlank(People.getBuildDoorNum()) ||
+						People.getPilesNum() == null ||
+						People.getFloorNum() == null ||
+						StringUtils.isBlank(People.getRoomName()) ||
+						StringUtils.isBlank(People.getAccount()) ||
+						StringUtils.isBlank(People.getDomicile()) ||
+						StringUtils.isBlank(People.getAccountidentity()) ||
+						StringUtils.isBlank(People.getAreaPoint())
+				) {
 					StringBuilder str = new StringBuilder();
 					str.append("(");
 					if(StringUtils.isBlank(People.getName())) {
 						str.append("姓名为空;");
 					}
-					if(StringUtils.isBlank(People.getIsPermanent())) {
-						str.append("是否常住为空;");
+					if(StringUtils.isBlank(People.getType())) {
+						str.append("人口类型为空;");
+					}
+					if(StringUtils.isBlank(People.getSex())) {
+						str.append("性别为空;");
+					}
+					if(People.getBirthday() == null) {
+						str.append("出生日期为空;");
+					}
+					if(StringUtils.isBlank(People.getIdent())) {
+						str.append("公民身份证号码为空;");
 					}
 					if(StringUtils.isBlank(People.getTelephone())) {
 						str.append("联系方式为空;");
 					}
+					if(StringUtils.isBlank(People.getNation())) {
+						str.append("民族为空;");
+					}
+					if(StringUtils.isBlank(People.getCensu())) {
+						str.append("籍贯为空;");
+					}
+					if(StringUtils.isBlank(People.getMarriage())) {
+						str.append("婚姻状况为空;");
+					}
+					if(StringUtils.isBlank(People.getPolitics())) {
+						str.append("政治面貌为空;");
+					}
+					if(StringUtils.isBlank(People.getEducation())) {
+						str.append("学历为空;");
+					}
+					if(StringUtils.isBlank(People.getDomiciledetail())) {
+						str.append("户籍门（楼）详址为空;");
+					}
+					if(StringUtils.isBlank(People.getResidencedetail())) {
+						str.append("现住门（楼）详址为空;");
+					}
+					if(StringUtils.isBlank(People.getIsPermanent())) {
+						str.append("是否常住为空;");
+					}
+					if(StringUtils.isBlank(People.getAreaGridId().getName())) {
+						str.append("所属网格为空;");
+					}
+					if(StringUtils.isBlank(People.getBuildName())) {
+						str.append("所属楼栋为空;");
+					}
+					if(StringUtils.isBlank(People.getElemNum())) {
+						str.append("楼栋单元总数为空;");
+					}
+					if(StringUtils.isBlank(People.getBuildDoorNum())) {
+						str.append("所属单元为空;");
+					}
+					if(People.getPilesNum() == null) {
+						str.append("楼栋总层数为空;");
+					}
+					if(People.getFloorNum() == null) {
+						str.append("房屋楼层为空;");
+					}
+					if(StringUtils.isBlank(People.getRoomName())) {
+						str.append("所属房屋为空;");
+					}
+					if(StringUtils.isBlank(People.getAccount())) {
+						str.append("户号为空;");
+					}
 					if(StringUtils.isBlank(People.getDomicile())) {
 						str.append("户籍地为空;");
+					}
+					if(StringUtils.isBlank(People.getAccountidentity())) {
+						str.append("户主公民身份证号码为空;");
+					}
+					if(StringUtils.isBlank(People.getAreaPoint())) {
+						str.append("所在楼栋中心点为空;");
 					}
 					str.append(")");
 					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "必填项为空。"+str.toString());
@@ -1095,7 +1183,7 @@ public class CcmPeopleController extends BaseController {
 							CcmPopTenant room2 = new CcmPopTenant();
 							room2.setId(UUID.randomUUID().toString());
 							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
-							if(People.getRoomName().contains(".") || People.getRoomName().contains("E")) {
+							if(People.getRoomName().contains(".")) {
 								double bd = Double.valueOf(People.getRoomName());
 								String roomName = df.format(bd);
 								room2.setHouseBuild(roomName);

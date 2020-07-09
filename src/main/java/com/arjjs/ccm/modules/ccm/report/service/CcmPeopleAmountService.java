@@ -80,20 +80,20 @@ public class CcmPeopleAmountService extends CrudService<CcmPeopleAmountDao, CcmP
 		super.delete(ccmPeopleAmount);
 	}
 	
-	public List<EchartType> findListBySum(String column, String areaId, String areaType) {
-		return ccmPeopleAmountDao.findListBySum(column,areaId,areaType);
+	public List<EchartType> findListBySum(String column, String areaId, String areaType, Integer showType) {
+		return ccmPeopleAmountDao.findListBySum(column,areaId,areaType,showType);
 	}
 
 	public List<EchartType> findListNotGetBySum(String column, String areaId, String areaType) {
 		return ccmPeopleAmountDao.findListNotGetBySum(column,areaId,areaType);
 	}
 
-	public List<EchartType> findListByMon(String column, String areaId, String areaType) {
-		return ccmPeopleAmountDao.findListByMon(column,areaId,areaType);
+	public List<EchartType> findListByMon(String column, String areaId, String areaType, Integer showType) {
+		return ccmPeopleAmountDao.findListByMon(column,areaId,areaType,showType);
 	}
 
-	public List<EchartType> findListNotGetByMon(String column, String areaId, String areaType) {
-		return ccmPeopleAmountDao.findListNotGetByMon(column,areaId,areaType);
+	public List<EchartType> findListNotGetByMon(String column, String areaId, String areaType, Integer showType) {
+		return ccmPeopleAmountDao.findListNotGetByMon(column,areaId,areaType,showType);
 	}
 
 	public List<EchartType> findLowLevelListNotGetByMon(String column, String areaId, String areaType) {

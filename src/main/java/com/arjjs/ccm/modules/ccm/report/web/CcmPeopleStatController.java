@@ -3,7 +3,6 @@
  */
 package com.arjjs.ccm.modules.ccm.report.web;
 
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,9 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.arjjs.ccm.modules.ccm.org.service.SysAreaService;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
-import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.service.AreaService;
 import com.google.common.collect.Lists;
@@ -43,7 +40,6 @@ import net.sf.json.JsonConfig;
 import net.sf.json.util.CycleDetectionStrategy;
 
 import static com.arjjs.ccm.tool.DateTools.getSixMonth;
-import static org.apache.commons.codec.binary.StringUtils.newString;
 
 /**
  * 人口统计Controller
@@ -130,10 +126,11 @@ public class CcmPeopleStatController extends BaseController {
 		User user = UserUtils.getUser();
 		String areaId = user.getOffice().getArea().getId();
 		String areaType = areaService.get(areaId).getType();
+		Integer showType = Integer.parseInt(areaType) + 1 ;
 		// 1. 根据于地区为分界线
 		// 1)本月新增人员数据 2)本月人员总数
-		List<EchartType> list1 = ccmPeopleStatService.findListByMon(columnListNew[type],areaId,areaType);
-		List<EchartType> list2 = ccmPeopleAmountService.findListByMon(columnListAmount[type],areaId,areaType);
+		List<EchartType> list1 = ccmPeopleStatService.findListByMon(columnListNew[type],areaId,areaType,showType);
+		List<EchartType> list2 = ccmPeopleAmountService.findListByMon(columnListAmount[type],areaId,areaType,showType);
 		List<EchartType> list9 = new ArrayList<>();
 		for (EchartType echart : list1) {
 			for (EchartType echart2 : list2) {
@@ -153,7 +150,7 @@ public class CcmPeopleStatController extends BaseController {
 			}
 		}
 		if("户籍".equals(title)){
-			List<EchartType> list5 = ccmPeopleAmountService.findListNotGetByMon(columnListAmount[type],areaId,areaType);
+			List<EchartType> list5 = ccmPeopleAmountService.findListNotGetByMon(columnListAmount[type],areaId,areaType,showType);
 			List<EchartType> list11 = new ArrayList<>();
 			for (EchartType echart : list1) {
 				for (EchartType echart2 : list5) {
@@ -180,8 +177,8 @@ public class CcmPeopleStatController extends BaseController {
 		map.put("所有下级区域本月"+title+"总数", list10);
 		// 2. 根据于月份为分界线
 		// 1) 所有新增日新增总和 2)所有人数地区总和
-		List<EchartType> list3 = ccmPeopleStatService.findListBySum(columnListNew[type],areaId,areaType);
-		List<EchartType> list4 = ccmPeopleAmountService.findListBySum(columnListAmount[type],areaId,areaType);
+		List<EchartType> list3 = ccmPeopleStatService.findListBySum(columnListNew[type],areaId,areaType,showType);
+		List<EchartType> list4 = ccmPeopleAmountService.findListBySum(columnListAmount[type],areaId,areaType,showType);
 		map.put("新增"+title+"人数", list3);
 		map.put(title+"总人数", list4);
 		return map;

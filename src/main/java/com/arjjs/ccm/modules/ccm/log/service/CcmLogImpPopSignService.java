@@ -37,14 +37,21 @@ public class CcmLogImpPopSignService extends CrudService<CcmLogImpPopSignDao, Cc
 	@Transactional(readOnly = false)
 	public void save(CcmLogImpPopSign ccmLogImpPopSign) {
 		if(StringUtils.isNotEmpty(ccmLogImpPopSign.getPic())){
+			logger.debug("重点人员签到日志图片上传格式-------"+ccmLogImpPopSign.getPic());
 			if(ccmLogImpPopSign.getPic().contains("http")){
-				String urlAndPort = ccmLogImpPopSign.getPic().split(":")[1];
-				String[] str = urlAndPort.split("/");
+				String[] URL = ccmLogImpPopSign.getPic().split(":");
+				StringBuilder stb = new StringBuilder();
+				for(int i=0 ; i<URL.length ; i++){
+					if(i>1){
+						stb.append(URL[i]);
+					}
+				}
+				String[] str = stb.toString().split("/");
 				String url = "";
 				for(int i=0 ; i<str.length ; i++){
 					if(i>0){
 						if(StringUtils.isNotEmpty(str[i])){
-							url = "/" + str[i];
+							url = url + "/" + str[i];
 						}
 					}
 				}

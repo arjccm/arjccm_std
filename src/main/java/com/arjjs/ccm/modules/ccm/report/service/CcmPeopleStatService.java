@@ -69,12 +69,12 @@ public class CcmPeopleStatService extends CrudService<CcmPeopleStatDao, CcmPeopl
 		super.delete(ccmPeopleStat);
 	}
 
-	public List<EchartType> findListBySum(String column, String areaId, String areaType) {
-		return ccmPeopleStatDao.findListBySum(column,areaId,areaType);
+	public List<EchartType> findListBySum(String column, String areaId, String areaType, Integer showType) {
+		return ccmPeopleStatDao.findListBySum(column,areaId,areaType,showType);
 	}
 
-	public List<EchartType> findListByMon(String column, String areaId, String areaType) {
-		return ccmPeopleStatDao.findListByMon(column,areaId,areaType);
+	public List<EchartType> findListByMon(String column, String areaId, String areaType, Integer showType) {
+		return ccmPeopleStatDao.findListByMon(column,areaId,areaType,showType);
 	}
 
 	public List<EchartType> findLowLevelListByMon(String column, String areaId, String areaType) {
