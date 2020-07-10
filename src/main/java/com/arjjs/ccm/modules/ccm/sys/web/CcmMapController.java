@@ -511,6 +511,7 @@ public class CcmMapController extends BaseController {
 		CcmOrgArea ccmorgareaDto1 = new CcmOrgArea();
 		CcmOrgArea ccmorgareaDto2 = new CcmOrgArea();
 		CcmOrgArea ccmorgareaDto5 = new CcmOrgArea();
+		CcmOrgArea ccmorgareaDto6 = new CcmOrgArea();
 		//获得登录用户所在区域
 		Area userArea=UserUtils.getUser().getOffice().getArea();
 		if(StringUtils.isNotEmpty(ids) &&
@@ -518,21 +519,24 @@ public class CcmMapController extends BaseController {
 			ccmorgareaDto1.setMore1("a.area_id in("+ids+")");
 			ccmorgareaDto2.setMore1("a.area_id in("+ids+")");
 			ccmorgareaDto5.setMore1("a.area_id in("+ids+")");
-
+			ccmorgareaDto6.setMore1("a.area_id in("+ids+")");
 
 			}
 
 			ccmorgareaDto1.setUserArea(userArea);
 			ccmorgareaDto2.setUserArea(userArea);
 			ccmorgareaDto5.setUserArea(userArea);
+			ccmorgareaDto6.setUserArea(userArea);
 
 
 		// 区域信息
 		List<CcmOrgArea> OrgArealist1 = new ArrayList<>();
 		// 网格信息
 		List<CcmOrgArea> OrgArealist2 = new ArrayList<>();
-		// 街道信息
+		// 乡镇、街道信息
 		List<CcmOrgArea> OrgArealist5 = new ArrayList<>();
+		// 区县信息
+		List<CcmOrgArea> OrgArealist6 = new ArrayList<>();
 		// 3-2-1 3种情况。
 		if (type.equals("1")) {
 			// 注入社区
@@ -585,14 +589,38 @@ public class CcmMapController extends BaseController {
 			ccmorgareaDto2.setAreaId(ids);
 			ccmorgareaDto2.setType("7");
 			OrgArealist2 = ccmOrgAreaService.findList(ccmorgareaDto2);
-		}else {
+		}else if(type.equals("10")){
+			// 注入区县
+			ccmorgareaDto6.setType("4");
+			OrgArealist6 = ccmOrgAreaService.findList(ccmorgareaDto6);
+		}else if(type.equals("11")){
+			// 注入区县街道
+			ccmorgareaDto5.setType("5");
+			OrgArealist5 = ccmOrgAreaService.findList(ccmorgareaDto5);
+			ccmorgareaDto6.setType("4");
+			OrgArealist6 = ccmOrgAreaService.findList(ccmorgareaDto6);
+		}else if(type.equals("12")){
+			// 注入区县社区
+			ccmorgareaDto1.setType("6");
+			OrgArealist1 = ccmOrgAreaService.findList(ccmorgareaDto1);
+			ccmorgareaDto6.setType("4");
+			OrgArealist6 = ccmOrgAreaService.findList(ccmorgareaDto6);
+		}else if(type.equals("13")){
+			// 注入区县网格
+			ccmorgareaDto2.setType("7");
+			OrgArealist2 = ccmOrgAreaService.findList(ccmorgareaDto2);
+			ccmorgareaDto6.setType("4");
+			OrgArealist6 = ccmOrgAreaService.findList(ccmorgareaDto6);
+		}else{
 			// 3这种情况默认为两者都查询
 			ccmorgareaDto1.setType("6");
 			ccmorgareaDto2.setType("7");
 			ccmorgareaDto5.setType("5");
+			ccmorgareaDto6.setType("4");
 			OrgArealist1 = ccmOrgAreaService.findList(ccmorgareaDto1);
 			OrgArealist2 = ccmOrgAreaService.findList(ccmorgareaDto2);
 			OrgArealist5 = ccmOrgAreaService.findList(ccmorgareaDto5);
+			OrgArealist6 = ccmOrgAreaService.findList(ccmorgareaDto6);
 		}
 		// 返回对象
 		GeoJSON geoJSON = new GeoJSON();
@@ -904,6 +932,110 @@ public class CcmMapController extends BaseController {
 			// 获取最后的结果
 			geometry.setCoordinates(CoordinateslistR);
 		}
+
+		// 街道数组
+		for(CcmOrgArea orgarea : OrgArealist6){
+			// 特征,属性
+			Features featureDto = new Features();
+			Properties properties = new Properties();
+			// 1 type 默认不填
+			// 2 id 添加
+			featureDto.setId(orgarea.getId());
+			// 3 properties 展示属性信息
+			properties.setName(orgarea.getArea() + "");
+			properties.setIcon(orgarea.getIcon());
+			properties.setType("4"); //层级
+			Map<String, Object> map_P = new HashMap<String, Object>();
+			// 创建附属信息
+			map_P.put("id1", orgarea.getId());
+			map_P.put("管理员姓名", orgarea.getNetManName());
+			map_P.put("性别", orgarea.getSex());
+			map_P.put("政治面貌", DictUtils.getDictLabel(orgarea.getPolitics(), "sys_ccm_poli_stat", ""));
+			map_P.put("手机号码", orgarea.getTelephone());
+			map_P.put("所属层级", "4");
+
+			// 实际采集人口
+			CcmPeopleAmount ccmPeopleAmount = new CcmPeopleAmount();
+			// area_id赋值
+			ccmPeopleAmount.setArea(orgarea.getArea());
+
+			CcmPeopleAmount collectionData = ccmPeopleAmountService.queryCollectionNum(ccmPeopleAmount);
+			Integer actual;
+
+			if (null == collectionData) {
+				actual = 0;
+			} else {
+				if (null == collectionData.getPersonAmount()) {
+					collectionData.setPersonAmount(0);
+				}
+				if (null == collectionData.getOverseaAmount()) {
+					collectionData.setOverseaAmount(0);
+				}
+				if (null == collectionData.getFloatAmount()) {
+					collectionData.setFloatAmount(0);
+				}
+				if (null == collectionData.getUnsettleAmount()) {
+					collectionData.setUnsettleAmount(0);
+				}
+
+				actual = collectionData.getPersonAmount() + collectionData.getOverseaAmount() + collectionData.getFloatAmount() + collectionData.getUnsettleAmount();
+			}
+
+
+			if (null == orgarea.getMannum() || 0 == orgarea.getMannum()) {
+				map_P.put("人口", "暂未录入数据!");
+			} else {
+				float percentage = (float) actual * 100 / orgarea.getMannum();
+				map_P.put("人口", actual + "/" + orgarea.getMannum() + " (" + df.format(percentage) + "%)");
+			}
+
+			map_P.put("重点人员", orgarea.getKeyPersonnelNum() != null ? orgarea.getKeyPersonnelNum().toString() :"");
+			map_P.put("工作人员数量", orgarea.getNetPeoNum() + "");
+			map_P.put("名称", orgarea.getArea().getName());
+			map_P.put("户数", orgarea.getNetNum());
+			properties.addInfo(map_P);
+			properties.setColor(orgarea.getAreaColor());
+			featureList.add(featureDto);
+			featureDto.setProperties(properties);
+			// 4 geometry 配置参数
+			Geometry geometry = new Geometry();
+			featureDto.setGeometry(geometry);
+			// 点位信息 测试为面
+			geometry.setType("Polygon");
+			// 添加中心点位
+			if (!StringUtils.isEmpty(orgarea.getAreaPoint())) {
+				// 获取中心点的值
+				String[] centpoint = orgarea.getAreaPoint().split(",");
+				// 添加图层中心点位信息
+				geoJSON.setCentpoint(centpoint);
+				// 添加图形中心点位信息
+				properties.setCoordinateCentre(centpoint);
+			}
+			// 添加具体数据
+			// 封装的list 以有孔与无孔进行添加
+			List<Object> CoordinateslistR = new ArrayList<>();
+			// 以下是无孔面积数组
+			String[] coordinates = (StringUtils.isEmpty(orgarea.getAreaMap()) ? ";" : orgarea.getAreaMap()).split(";");
+			// 返回无孔结果 2层数据一个数据源
+			List<String[]> Coordinateslist = new ArrayList<>();
+			for (int i = 0; i < coordinates.length; i++) {
+				if (coordinates.length > 1) {
+					String corrdinate = coordinates[i];
+					// 以“，”为分割数据
+					String[] a = corrdinate.split(",");
+					Coordinateslist.add(a);
+				} else {
+					// 补充一个空的数据源
+					String[] a = { "", "" };
+					Coordinateslist.add(a);
+				}
+			}
+			// 根据格式要求 两层list
+			CoordinateslistR.add(Coordinateslist);
+			// 获取最后的结果
+			geometry.setCoordinates(CoordinateslistR);
+		}
+
 		geoJSON.setFeatures(featureList);
 		// 如果无数据
 		if (featureList.size() == 0) {

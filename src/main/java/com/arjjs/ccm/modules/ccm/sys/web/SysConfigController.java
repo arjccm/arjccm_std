@@ -127,13 +127,17 @@ public class SysConfigController extends BaseController {
                 String jieDaoMax = (String) jsonObject.get("jieDaoMax");
                 String sheQuMin = (String) jsonObject.get("sheQuMin");
                 String sheQuMax = (String) jsonObject.get("sheQuMax");
-                String wangGe = (String) jsonObject.get("wangGe");
+                String wangGeMin = (String) jsonObject.get("wangGeMin");
+				String wangGeMax = (String) jsonObject.get("wangGeMax");
+				String build = (String) jsonObject.get("build");
                 mapLevel.setQuXian(quXian);
                 mapLevel.setJieDaoMin(jieDaoMin);
                 mapLevel.setJieDaoMax(jieDaoMax);
                 mapLevel.setSheQuMin(sheQuMin);
                 mapLevel.setSheQuMax(sheQuMax);
-                mapLevel.setWangGe(wangGe);
+                mapLevel.setWangGeMin(wangGeMin);
+                mapLevel.setWangGeMax(wangGeMax);
+                mapLevel.setBuild(build);
                 model.addAttribute("mapLevel", mapLevel);
             }
 			// 四色预警设置（天）

@@ -8,6 +8,7 @@ var checkVideoNode, checkPopNode, checkPopNodeNot, TodyAlarm, reCloseLayerFun, r
 var TodayVideo, TodayCommunity, TodayHandle, TodayHandleDialog, TodayHandleDialogLayer, TodayHandleDialogLayerClose,
     popLocationData, publicPlaceData, keyPersonHandleLayer, keyPersonHandleFun, keyPersonHandleLayerClose;
 eventFlag = true;
+districtFlag = false;
 streetFlag = true;
 communityFlag = false;
 gridFlag = false;
@@ -31,17 +32,26 @@ $(function () {
                     centerCoordinate = [Number(areaPointArr[0]), Number(areaPointArr[1])];
 
                     var AreaType = data.type;
-                    if (AreaType == '5') {
+                    if  (AreaType == '4'){
+                        districtFlag = true;
+                        streetFlag = false;
+                        communityFlag = false;
+                        gridFlag = false;
+                        zoomIndex = 11;
+                    } else if (AreaType == '5') {
+                        districtFlag = false;
                         streetFlag = true;
                         communityFlag = false;
                         gridFlag = false;
                         zoomIndex = 13;
                     } else if (AreaType == '6') {
+                        districtFlag = false;
                         streetFlag = false;
                         communityFlag = true;
                         gridFlag = false;
                         zoomIndex = 14;
                     } else if (AreaType == '7') {
+                        districtFlag = false;
                         streetFlag = false;
                         communityFlag = false;
                         gridFlag = true;
@@ -767,6 +777,13 @@ $(function () {
         open: true,
         checked: true
     }, {
+        id: "district",
+        pId: "communityGrid",
+        name: "区县",
+        type: 10,
+        icon: ctxStatic + '/modules/map/images/tree_jiedao.png',
+        checked: true
+    }, {
         id: "street",
         pId: "communityGrid",
         name: "街道",
@@ -987,6 +1004,7 @@ $(function () {
             if (communityGridVal != communityGridData && communityGridData != 0) {
                 communityGridVal = communityGridData;
                 // alert('社区网格图层加载' + communityGridVal)
+                Map.removeLayer('districts');
                 Map.removeLayer('streets');
                 Map.removeLayer('communitys');
                 Map.removeLayer('grids');
@@ -1020,6 +1038,17 @@ $(function () {
                             'type': 'streets',
                             'data': data,
                             'isShow': streetFlag
+                        }])
+
+                    })
+                } else if (communityGridVal == '10') {
+                    $.getJSON('' + ctx + '/sys/map/orgAreaMap?type='
+                        + communityGridVal + '', function (data) {
+                        console.log(data)
+                        Map.addJSON1([{
+                            'type': 'districts',
+                            'data': data,
+                            'isShow': districtFlag
                         }])
 
                     })
@@ -1119,6 +1148,7 @@ $(function () {
                 && communityGridData == 0) {
                 communityGridVal = communityGridData;
                 // alert('社区网格图层清除')
+                Map.removeLayer('districts');
                 Map.removeLayer('streets');
                 Map.removeLayer('communitys');
                 Map.removeLayer('grids');
@@ -1573,6 +1603,7 @@ $(function () {
             if (communityGridVal != communityGridData && communityGridData != 0) {
                 communityGridVal = communityGridData;
                 // alert('社区网格图层加载' + communityGridVal)
+                Map.removeLayer('districts');
                 Map.removeLayer('streets');
                 Map.removeLayer('communitys');
                 Map.removeLayer('grids');
@@ -1604,6 +1635,17 @@ $(function () {
                             'type': 'streets',
                             'data': data,
                             'isShow': streetFlag
+                        }])
+
+                    })
+                } else if (communityGridVal == '10') {
+                    $.getJSON('' + ctx + '/sys/map/orgAreaMap?type='
+                        + communityGridVal + '', function (data) {
+                        console.log(data)
+                        Map.addJSON1([{
+                            'type': 'districts',
+                            'data': data,
+                            'isShow': districtFlag
                         }])
 
                     })
@@ -1666,7 +1708,7 @@ $(function () {
 
                         })
 
-                } else if (communityGridVal == '7') {
+                } else if (communityGridVal == '17') {
                     $.getJSON('' + ctx + '/sys/map/orgAreaMap?type=1', function (data) {
                         Map.addJSON1([{
                             'type': 'communitys',
@@ -1688,12 +1730,20 @@ $(function () {
                             'isShow': streetFlag
                         }])
                     })
+                    $.getJSON('' + ctx + '/sys/map/orgAreaMap?type=10', function (data) {
+                        Map.addJSON1([{
+                            'type': 'districts',
+                            'data': data,
+                            'isShow': districtFlag
+                        }])
+                    })
                 }
 
             } else if (communityGridVal != communityGridData
                 && communityGridData == 0) {
                 communityGridVal = communityGridData;
                 // alert('社区网格图层清除')
+                Map.removeLayer('districts');
                 Map.removeLayer('streets');
                 Map.removeLayer('communitys');
                 Map.removeLayer('grids');
@@ -1726,6 +1776,7 @@ $(function () {
 
             Map.clearOverlays();
             // alert('清空图层')
+            Map.removeLayer('districts');
             Map.removeLayer('communitys');
             Map.removeLayer('streets');
             Map.removeLayer('grids');
@@ -1760,8 +1811,9 @@ $(function () {
             // console.log(map.getView().getZoom());
             var zoom = map.getView().getZoom();
             if (map.getView().getZoom() <= Number(map_level.quXian)) {
+                Map.layersIsShow('districts', true);
                 Map.layersIsShow('communitys', false);
-                Map.layersIsShow('streets', true);
+                Map.layersIsShow('streets', false);
                 Map.layersIsShow('grids', false);
                 Map.layersIsShow('builds', false);
                 Map.layersIsShow('schoolPlace', false);
@@ -1777,8 +1829,9 @@ $(function () {
                 Map.layersIsShow('publicPlace', false);
                 Map.layersIsShow('jingwushi', false);
                 Map.layersIsShow('gongzuozhan', false);
+                districtFlag = true;
                 communityFlag = false;
-                streetFlag = true;
+                streetFlag = false;
                 gridFlag = false;
                 buildFlag = false;
                 vccmorgFlag = false;
@@ -1797,6 +1850,45 @@ $(function () {
 
             } else if (map.getView().getZoom() <= Number(map_level.jieDaoMax)
                 && map.getView().getZoom() > Number(map_level.jieDaoMin)) {
+                Map.layersIsShow('districts', false);
+                Map.layersIsShow('communitys', false);
+                Map.layersIsShow('streets', true);
+                Map.layersIsShow('grids', false);
+                Map.layersIsShow('builds', false);
+                Map.layersIsShow('schoolPlace', false);
+                Map.layersIsShow('keyPlace', false);
+                Map.layersIsShow('events', false);
+                Map.layersIsShow('keyPerson', false);
+                Map.layersIsShow('rentingPerson', false);
+                Map.layersIsShow('lands', false);
+                //Map.layersIsShow('videos', false);
+                // Map.layersIsShow('heatMap', true);
+                // Map.layersIsShow('PopLocation',false);
+                Map.layersIsShow('parts', false);
+                Map.layersIsShow('publicPlace', false);
+                Map.layersIsShow('jingwushi', false);
+                Map.layersIsShow('gongzuozhan', false);
+                districtFlag = false;
+                communityFlag = false;
+                streetFlag = true;
+                gridFlag = false;
+                buildFlag = false;
+                vccmorgFlag = false;
+                eventFlag = false;
+                partsFlag = false;
+                landsFlag = false;
+                videoFlag = true;
+                PopulationDensityFlg = false;
+                schoolPlaceFlag = false;
+                keyPlaceFlag = false;
+                keyPersonFlag = false;
+                rentingPersonFlag = false;
+                publicPlaceFlag = false;
+
+                // Map.clearOverlays();
+            } else if (map.getView().getZoom() > Number(map_level.sheQuMin)
+                && map.getView().getZoom() <= Number(map_level.sheQuMax)) {
+                Map.layersIsShow('districts', false);
                 Map.layersIsShow('communitys', true);
                 Map.layersIsShow('streets', false);
                 Map.layersIsShow('grids', false);
@@ -1817,6 +1909,7 @@ $(function () {
                 $.each(idArrjingwushi2, function (index, val) {
                     Pubmap.removeOverlay(Map['' + val + 'Overlay'])
                 });
+                districtFlag = false;
                 communityFlag = true;
                 streetFlag = false;
                 gridFlag = false;
@@ -1835,8 +1928,9 @@ $(function () {
 
                 // Map.clearOverlays();
 
-            } else if (map.getView().getZoom() > Number(map_level.sheQuMin)
-                && map.getView().getZoom() <= Number(map_level.sheQuMax)) {
+            }else if (map.getView().getZoom() > Number(map_level.wangGeMin)
+                && map.getView().getZoom() <= Number(map_level.wangGeMax)) {
+                Map.layersIsShow('districts', false);
                 Map.layersIsShow('communitys', false);
                 Map.layersIsShow('streets', false);
                 Map.layersIsShow('grids', true);
@@ -1854,6 +1948,7 @@ $(function () {
                 Map.layersIsShow('publicPlace', false);
                 Map.layersIsShow('jingwushi', true);
                 Map.layersIsShow('gongzuozhan', true);
+                districtFlag = false;
                 communityFlag = false;
                 streetFlag = false;
                 gridFlag = true;
@@ -1871,7 +1966,8 @@ $(function () {
                 publicPlaceFlag = false;
                 // Map.clearOverlays();
 
-            } else if (map.getView().getZoom() > Number(map_level.wangGe)) {
+            } else if (map.getView().getZoom() > Number(map_level.build)) {
+                Map.layersIsShow('districts', false);
                 Map.layersIsShow('communitys', false);
                 Map.layersIsShow('streets', false);
                 Map.layersIsShow('grids', false);
@@ -1888,6 +1984,7 @@ $(function () {
                 Map.layersIsShow('PopLocation', true);
                 Map.layersIsShow('jingwushi', true);
                 Map.layersIsShow('gongzuozhan', true);
+                districtFlag = false;
                 communityFlag = false;
                 streetFlag = false;
                 gridFlag = false;
@@ -3570,6 +3667,7 @@ function PopLocation() {
         Map.goTo(AlarmAreaPoint);
 
         window.onload = function () {
+            Map.removeLayer('districts');
             Map.removeLayer('communitys');
             Map.removeLayer('streets');
             Map.removeLayer('grids');

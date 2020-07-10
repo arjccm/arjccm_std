@@ -105,25 +105,37 @@
 															.val();
 													var sheQuMax = $('#sheQuMax')
 															.val();
-													var wangGe = $('#wangGe').val();
-													if (Number(jieDaoMin) <= Number(quXian)) {
-														$.jBox.tip('社区层级最低值应大于街道最高值');
+                                                    var wangGeMin = $('#wangGeMin')
+                                                        .val();
+                                                    var wangGeMax = $('#wangGeMax')
+                                                        .val();
+													var build = $('#build').val();
+													if (Number(jieDaoMin) < Number(quXian)) {
+														$.jBox.tip('街道层级最低值应大于等于区县最高值');
 														return;
 													}
 													if (Number(jieDaoMax) <= Number(jieDaoMin)) {
-														$.jBox.tip('社区层级最高值应大于社区层级最低值');
+														$.jBox.tip('街道层级最高值应大于街道层级最低值');
 														return;
 													}
-													if (Number(sheQuMin) <= Number(jieDaoMax)) {
-														$.jBox.tip('网格层级最低值应大于社区层级最高值');
+													if (Number(sheQuMin) < Number(jieDaoMax)) {
+														$.jBox.tip('社区层级最低值应大于等于街道层级最高值');
 														return;
 													}
 													if (Number(sheQuMax) <= Number(sheQuMin)) {
-														$.jBox.tip('网格层级最高值应大于网格层级最低值');
+														$.jBox.tip('社区层级最高值应大于社区层级最低值');
 														return;
 													}
-													if (Number(wangGe) <= Number(sheQuMax)) {
-														$.jBox.tip('楼栋层级最低值应大于网格层级最高值');
+                                                    if (Number(wangGeMin) < Number(sheQuMax)) {
+                                                        $.jBox.tip('网格层级最低值应大于等于社区层级最高值');
+                                                        return;
+                                                    }
+                                                    if (Number(wangGeMax) <= Number(wangGeMin)) {
+                                                        $.jBox.tip('网格层级最高值应大于网格层级最低值');
+                                                        return;
+                                                    }
+													if (Number(build) < Number(wangGeMax)) {
+														$.jBox.tip('楼栋层级最低值应大于等于网格层级最高值');
 														return;
 													}
 													$("#btnSubmit").attr("disabled", true);
@@ -377,7 +389,7 @@
 		<div class="control-group">
 			<br> <label class="control-label">${mapLevel.remarks}：</label>
 			<div class="controls">
-				<br> <label class="">街道层级范围：</label> <input type="number"
+				<br> <label class="">区县层级范围：</label> <input type="number"
 															name="" class="input-small required" disabled="disabled"
 															value='9'/><span
 					class="help-inline"><font color="red">*</font> </span> <span
@@ -388,7 +400,7 @@
 					<%-- <div class=help-inline>表示低概率</div>--%>
 			</div>
 			<div class="controls">
-				<br> <label class="">社区层级范围：</label>
+				<br> <label class="">乡镇、街道层级范围：</label>
 				<form:input path="jieDaoMin" htmlEscape="false"
 							class="input-small required"/>
 				<span class="help-inline"><font color="red">*</font> </span> <span
@@ -399,7 +411,7 @@
 					<%-- <div class=help-inline>表示较大概率</div>--%>
 			</div>
 			<div class="controls">
-				<br> <label class="">网格层级范围：</label>
+				<br> <label class="">社区层级范围：</label>
 				<form:input path="sheQuMin" htmlEscape="false"
 							class="input-small required"/>
 				<span class="help-inline"><font color="red">*</font> </span> <span
@@ -410,8 +422,19 @@
 					<%-- <div class=help-inline>表示较大概率</div>--%>
 			</div>
 			<div class="controls">
+				<br> <label class="">网格层级范围：</label>
+				<form:input path="wangGeMin" htmlEscape="false"
+							class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font> </span> <span
+					class="">-</span>
+				<form:input path="wangGeMax" htmlEscape="false"
+							class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+					<%-- <div class=help-inline>表示较大概率</div>--%>
+			</div>
+			<div class="controls">
 				<br> <label class="">楼栋层级范围：</label>
-				<form:input path="wangGe" htmlEscape="false"
+				<form:input path="build" htmlEscape="false"
 							class="input-small required"/>
 				<span class="help-inline"><font color="red">*</font> </span> <span
 					class="">-</span> <input type="text" name="" htmlEscape="false"

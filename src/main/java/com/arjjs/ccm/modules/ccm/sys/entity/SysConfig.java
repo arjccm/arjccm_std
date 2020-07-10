@@ -52,7 +52,9 @@ public class SysConfig extends DataEntity<SysConfig> {
 	private String jieDaoMax;
 	private String sheQuMin;
 	private String sheQuMax;
-	private String wangGe;
+	private String wangGeMin;
+	private String wangGeMax;
+	private String build;
 
     public String getQuXian() {
         return quXian;
@@ -94,15 +96,31 @@ public class SysConfig extends DataEntity<SysConfig> {
         this.sheQuMax = sheQuMax;
     }
 
-    public String getWangGe() {
-        return wangGe;
-    }
+	public String getWangGeMin() {
+		return wangGeMin;
+	}
 
-    public void setWangGe(String wangGe) {
-        this.wangGe = wangGe;
-    }
+	public void setWangGeMin(String wangGeMin) {
+		this.wangGeMin = wangGeMin;
+	}
 
-    private String maxDispatchTime; // 最大派发时间
+	public String getWangGeMax() {
+		return wangGeMax;
+	}
+
+	public void setWangGeMax(String wangGeMax) {
+		this.wangGeMax = wangGeMax;
+	}
+
+	public String getBuild() {
+		return build;
+	}
+
+	public void setBuild(String build) {
+		this.build = build;
+	}
+
+	private String maxDispatchTime; // 最大派发时间
 	private String maxAcceptTime; // 最大签收时间
 	private String maxArriveTime; // 最大到达时间
 	
