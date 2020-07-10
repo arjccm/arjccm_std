@@ -8,6 +8,8 @@ import com.arjjs.ccm.common.service.CrudService;
 import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmUploadLog;
 import com.arjjs.ccm.modules.ccm.ccmsys.service.CcmUploadLogService;
+import com.arjjs.ccm.modules.ccm.house.dao.CcmHouseBuildmanageDao;
+import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
 import com.arjjs.ccm.modules.ccm.pop.dao.CcmPopTenantDao;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
@@ -33,6 +35,9 @@ public class CcmPopTenantService extends CrudService<CcmPopTenantDao, CcmPopTena
 	
 	@Autowired
 	private CcmPopTenantDao ccmPopTenantDao;
+
+	@Autowired
+	private CcmHouseBuildmanageDao ccmHouseBuildmanageDao;
 
 	//上传上级平台记录
 	@Autowired
@@ -79,7 +84,21 @@ public class CcmPopTenantService extends CrudService<CcmPopTenantDao, CcmPopTena
 		if (ccmPopTenant.getIsNewRecord()) {//指定了是新增记录，则算新记录
 			isNew = true;
 		}
-		
+
+		//修改或新增时判断房屋的所属网格与楼栋是否一致，不一致则改成一致
+		if(StringUtils.isNotBlank(ccmPopTenant.getBuildingId().getId())){
+			CcmHouseBuildmanage build = ccmHouseBuildmanageDao.get(ccmPopTenant.getBuildingId().getId());
+			if(StringUtils.isNotBlank(build.getArea().getId())){
+				if(StringUtils.isNotBlank(ccmPopTenant.getArea().getId())){
+					if(!ccmPopTenant.getArea().getId().equals(build.getArea().getId())){
+						ccmPopTenant.setArea(build.getArea());
+					}
+				}else{
+					ccmPopTenant.setArea(build.getArea());
+				}
+			}
+		}
+
 		super.save(ccmPopTenant);
 
 		//上传上级平台记录
@@ -125,7 +144,21 @@ public class CcmPopTenantService extends CrudService<CcmPopTenantDao, CcmPopTena
 		if (ccmPopTenant.getIsNewRecord()) {//指定了是新增记录，则算新记录
 			isNew = true;
 		}
-		
+
+		//修改或新增时判断房屋的所属网格与楼栋是否一致，不一致则改成一致
+		if(StringUtils.isNotBlank(ccmPopTenant.getBuildingId().getId())){
+			CcmHouseBuildmanage build = ccmHouseBuildmanageDao.get(ccmPopTenant.getBuildingId().getId());
+			if(StringUtils.isNotBlank(build.getArea().getId())){
+				if(StringUtils.isNotBlank(ccmPopTenant.getArea().getId())){
+					if(!ccmPopTenant.getArea().getId().equals(build.getArea().getId())){
+						ccmPopTenant.setArea(build.getArea());
+					}
+				}else{
+					ccmPopTenant.setArea(build.getArea());
+				}
+			}
+		}
+
 		super.save(ccmPopTenant);
 		
 		//上传上级平台记录

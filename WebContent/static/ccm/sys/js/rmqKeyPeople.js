@@ -3,8 +3,8 @@ var rmqUrl = ""
 var timer;
 var mqFlagKeyProple = true;
 function initRabbitMQKeyProple(){
-	// alarmVerifyKeyProple();
-	// RaMqKeyProple();
+	alarmVerifyKeyProple();
+	RaMqKeyProple();
 }
 function connectStatusHandlerKeyProple(connected) {
 	if (!connected) {
@@ -54,7 +54,8 @@ function getRmqInfo(){
 function RaMqKeyProple(){
 	getRmqInfo();
 	// 初始化 ws 对象
-	var ws = new WebSocket(rmqUrl);
+    var ws = new WebSocket('ws://'+window.location.hostname+':15674/ws');
+	//var ws = new WebSocket(rmqUrl);
 	// 获得Stomp client对象
 	var client = Stomp.over(ws);
 	client.heartbeat.outgoing = 10000;//mq心跳
