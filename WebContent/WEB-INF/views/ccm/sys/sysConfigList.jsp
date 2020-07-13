@@ -389,58 +389,54 @@
 		<div class="control-group">
 			<br> <label class="control-label">${mapLevel.remarks}：</label>
 			<div class="controls">
-				<br> <label class="">区县层级范围：</label> <input type="number"
-															name="" class="input-small required" disabled="disabled"
-															value='9'/><span
-					class="help-inline"><font color="red">*</font> </span> <span
-					class="">-</span>
-				<form:input path="quXian" htmlEscape="false"
-							class="input-small required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
-					<%-- <div class=help-inline>表示低概率</div>--%>
+				<br>
+				<label class="" style="width: 150px; margin-right: 10px; text-align: right;">区县层级范围：</label>
+				<input type="number" name="" class="input-small required" disabled="disabled" value='9'/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<span class="">-</span>
+				<form:input path="quXian" htmlEscape="false" class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<%-- <div class=help-inline>表示低概率</div>--%>
 			</div>
 			<div class="controls">
-				<br> <label class="">乡镇、街道层级范围：</label>
-				<form:input path="jieDaoMin" htmlEscape="false"
-							class="input-small required"/>
-				<span class="help-inline"><font color="red">*</font> </span> <span
-					class="">-</span>
-				<form:input path="jieDaoMax" htmlEscape="false"
-							class="input-small required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
-					<%-- <div class=help-inline>表示较大概率</div>--%>
+				<br>
+				<label class="" style="width: 150px; margin-right: 10px; text-align: right;">乡镇/街道层级范围：</label>
+				<form:input path="jieDaoMin" htmlEscape="false" class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<span class="">-</span>
+				<form:input path="jieDaoMax" htmlEscape="false" class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<%-- <div class=help-inline>表示较大概率</div>--%>
 			</div>
 			<div class="controls">
-				<br> <label class="">社区层级范围：</label>
-				<form:input path="sheQuMin" htmlEscape="false"
-							class="input-small required"/>
-				<span class="help-inline"><font color="red">*</font> </span> <span
-					class="">-</span>
-				<form:input path="sheQuMax" htmlEscape="false"
-							class="input-small required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
-					<%-- <div class=help-inline>表示较大概率</div>--%>
+				<br>
+				<label class="" style="width: 150px; margin-right: 10px; text-align: right;">社区层级范围：</label>
+				<form:input path="sheQuMin" htmlEscape="false" class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<span class="">-</span>
+				<form:input path="sheQuMax" htmlEscape="false" class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<%-- <div class=help-inline>表示较大概率</div>--%>
 			</div>
 			<div class="controls">
-				<br> <label class="">网格层级范围：</label>
-				<form:input path="wangGeMin" htmlEscape="false"
-							class="input-small required"/>
-				<span class="help-inline"><font color="red">*</font> </span> <span
-					class="">-</span>
-				<form:input path="wangGeMax" htmlEscape="false"
-							class="input-small required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
-					<%-- <div class=help-inline>表示较大概率</div>--%>
+				<br>
+				<label class="" style="width: 150px; margin-right: 10px; text-align: right;">网格层级范围：</label>
+				<form:input path="wangGeMin" htmlEscape="false" class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<span class="">-</span>
+				<form:input path="wangGeMax" htmlEscape="false" class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<%-- <div class=help-inline>表示较大概率</div>--%>
 			</div>
 			<div class="controls">
-				<br> <label class="">楼栋层级范围：</label>
-				<form:input path="build" htmlEscape="false"
-							class="input-small required"/>
-				<span class="help-inline"><font color="red">*</font> </span> <span
-					class="">-</span> <input type="text" name="" htmlEscape="false"
-											 class="input-small required" disabled="disabled" value="20"/><span
-					class="help-inline"><font color="red">*</font> </span>
-					<%--<div class=help-inline>表示重大概率</div>--%>
+				<br>
+				<label class="" style="width: 150px; margin-right: 10px; text-align: right;">楼栋层级范围：</label>
+				<form:input path="build" htmlEscape="false" class="input-small required"/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<span class="">-</span>
+				<input type="text" name="" htmlEscape="false" class="input-small required" disabled="disabled" value="20"/>
+				<span class="help-inline"><font color="red">*</font></span>
+				<%--<div class=help-inline>表示重大概率</div>--%>
 			</div>
 			<span style="float: right; margin-right: 200px"> <shiro:hasPermission
 					name="sys:sysConfig:edit">
