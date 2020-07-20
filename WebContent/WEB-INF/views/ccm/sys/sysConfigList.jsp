@@ -81,8 +81,8 @@
 							});
 							$('#btnGetDssCameras').click(function() {
 								$.getJSON("/arjccm/app/videoData/getDssCameras",function(data){
+									alert("获取监控设备中");
 									if(data.code == 0){
-										alert("获取监控设备中");
 									}else{
 										alert("配置信息有误");
 									}

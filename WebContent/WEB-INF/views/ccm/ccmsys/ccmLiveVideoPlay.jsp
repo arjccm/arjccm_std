@@ -400,85 +400,70 @@
 		    }); */
 			//*****************海康视频直连摄像头**************//
 		}else if(ccmDeviceTypeVidicon==3){
-			//*****************大华视频**************//
-			var Sys = {};
-			var ua = navigator.userAgent.toLowerCase();
-			var s;
-			(s = ua.match(/(msie\s|trident.*rv:)([\d.]+)/)) ? Sys.ie = s[2] :
-			    (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
-			    (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
-			    (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
-			    (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
-
-			var hasPlugin = checkPlugins();
-
-			var g_ocx; //控件对象，初始化完毕后，可以调用《二次开发使用 WEB32网页调用接口说明.doc》文档中的接口
-			var g_PlayTime;
-			var g_curSpeed = 4; //默认的正常速度
-			var htmlStChn1 = '';
-			var recInfosByFile = [];
-		
-			//加载插件到网页中去。
-			loadPageOcx();
-			
-			//登录设备
-			LoginDevice();
-			RealPlay();
-			
-			/**
-			 * 检测浏览器是否存在视频插件
-			 * @return {Boolean}
-			 */
-			function checkPlugins() {
-			    var PLUGINS_NAME = 'WebActiveEXE.Plugin.1';
-			    var result;
-			    if (Sys.ie) {
-			        try {
-			            result = new ActiveXObject(PLUGINS_NAME);
-			            delete result;
-			        } catch (e) {
-			            return false;
-			        }
-			        return true;
-			    } else {
-			        navigator.plugins.refresh(false);
-			        result = navigator.mimeTypes["application/media-plugin-version-3.1.0.2"];
-			        return !!(result && result.enabledPlugin);
-			    }
-			}
-			function loadPageOcx() {
-			    var mainOcxHtml = '';
-			    if (Sys.ie) {
-			        mainOcxHtml = '<object id="ocx" width="100%" height="100%" classid="CLSID:7F9063B6-E081-49DB-9FEC-D72422F2727F"></object>';
-			    } else {
-			        mainOcxHtml = '<object id="ocx" width="100%" height="100%" type="application/media-plugin-version-3.1.0.2" VideoWindTextColor="9c9c9c" VideoWindBarColor="414141"></object>';
-			    }
-			    document.getElementById('divPlugin').innerHTML = mainOcxHtml;
-			    g_ocx = document.getElementById('ocx');
-			}
-			function LoginDevice() {
-			    var bRet = g_ocx.LoginDeviceEx(ccmDeviceIp, ccmDevicePort, ccmDeviceAccount, ccmDevicePassword, 0);
-			    //登录后，默认四窗口显示。若需要自定义其他窗口数，可以调用g_ocx.SetWinBindedChannel
-			    g_ocx.SetWinBindedChannel(1, 0, 0, 0); //这样调用可以切换为单窗口模式，参数意义详见《二次开发使用 WEB32网页调用接口说明.doc》
-			    if (bRet == 0) {
-			        //登录成功后
-			    }
-			}
-			//实时监视
-			function RealPlay() {
-			//首先切换到监视模式
-			g_ocx.SetModuleMode(1); //监视模式
-			//打开通道视频
-			g_ocx.ConnectRealVideo(0, 1);
-			}
-			//登出
-			function LogoutDevice() {
-			    g_ocx.LogoutDevice();
-			}
-			//关闭浏览器
-		    $(window).unload(function () {
-		    	LogoutDevice();
-		    });
+			/* ****************大华视频start**************/
+			var gWndId = 0;
+			var bIVS = 1;
+			//延迟初始化
+			$(document).ready(function () {
+				setTimeout(function () {
+					init();
+				}, 50); //这里设置延迟是为了正确加载OCX(取决于电脑性能,具体数值请根据实际情况设定,通常不需要修改 直接调用init()是可行的)
+				setTimeout(function () {
+					$('#DPSDK_OCX').css({
+						'width': '100%',
+						'height': '100%'
+					});
+					$('.pop').hide();
+					var noCache = Date();
+					$.getJSON('/arjccm/app/rest/video/getDssConfig',{"noCache": noCache},function(data){
+						//登录
+						var dssIP = data.result.dssIP;
+						var dssPort = data.result.dssPort;
+						var dssUserName = data.result.dssUserName;
+						var dssPassword = data.result.dssPassword;
+						var obj = document.getElementById("DPSDK_OCX");
+						var nRet = obj.DPSDK_Login(dssIP, dssPort, dssUserName, dssPassword);
+						if (nRet==0){
+							startVideo();
+						}
+					});//这里设置延迟(数值请根据实际情况来)是防止快速刷新页面导致进程残留  具体清楚进程方式请参考<关闭进程 云台控制>demo中的代码
+				},500);
+				//初始化
+				function init(){
+					var obj = document.getElementById("DPSDK_OCX");
+					gWndId = obj.DPSDK_CreateSmartWnd(0, 0, 100, 100);
+					ButtonCreateWnd_onclick();
+					ButtonSetCustomizedWndCount_onclick();
+					obj.DPSDK_SetToolBtnVisible(1,false);// 1 audio 2 talk 3 localRecord 4 cappicture 5 close video
+					obj.DPSDK_SetToolBtnVisible(7,false);
+					obj.DPSDK_SetToolBtnVisible(9,false);
+					obj.DPSDK_SetControlButtonShowMode(1, 0);
+					obj.DPSDK_SetControlButtonShowMode(2, 0);
+					obj.DPSDK_SetSelWnd(gWndId, 0);
+				}
+				//播放视频
+				function startVideo() {
+					var obj = document.getElementById("DPSDK_OCX");
+					var szCameraId = ccmDeviceParaml; //通道ID
+					var nStreamType = "1"; //主码流
+					var nMediaType = "1"; //value="1">视频  value="2">音频  value="3">视频+音频s
+					var nTransType = "1"; // value="1">TCP  value="0">UDP
+					var nWndNo = obj.DPSDK_GetSelWnd(gWndId);
+					obj.DPSDK_StartRealplayByWndNo(gWndId, nWndNo, szCameraId, nStreamType, nMediaType, nTransType);
+				}
+				function ButtonCreateWnd_onclick() {
+					var obj = document.getElementById("DPSDK_OCX");
+					var nWndCount = 1;
+					obj.DPSDK_SetWndCount(gWndId, nWndCount);
+					obj.DPSDK_SetSelWnd(gWndId, 0);
+				}
+				function ButtonSetCustomizedWndCount_onclick() {
+					var obj = document.getElementById("DPSDK_OCX");
+					var nWndCount = 1;
+					obj.DPSDK_SetCustomizedWndCount(gWndId, nWndCount);
+					obj.DPSDK_SetSelWnd(gWndId, 0);
+				}
+				/* ****************大华视频end**************/
 		}else if(ccmDeviceTypeVidicon==""){
 		    document.getElementById('divPlugin').innerHTML = '<p style="color:#fff;text-align:center">请选择左侧视频监控设备</p>';
 		}
