@@ -28,7 +28,7 @@
 
 <div>
 	<div id="divPlugin"  style="overflow: hidden;width:100%;height:100%;">
-		<c:if test="${ccmDevice.typeVidicon == 2}">
+		<c:if test="${ccmDevice.typeVidicon == 1}">
 			<OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" id="vlc"     width="560" height="340" id="vlc" events="True">
 				<param name='mrl' value='${ccmDevice.param}' />
 				<param name='volume' value='50' />
@@ -39,7 +39,7 @@
 			</object>
 
 		</c:if>
-		<c:if test="${ccmDevice.typeVidicon == 1}">
+		<c:if test="${ccmDevice.typeVidicon == 2}">
 			<div class="form" style="display: none">
 				<label for="PalyType">PalyType:</label>
 				<br />
@@ -126,7 +126,66 @@
 						<img src="${ctxStatic}/common/index/images/right_down.png" style="width:50px;height:50px;" title="右下">
 					</li>
 				</ul>
+			</div>
+			<div style="float: left; width: 250px;padding-top: 5%">
+				<a href="http://localhost:8080/arjccm/exe/hikvision.exe" style="margin-left: 54%;color: #0bbbee;font-size: 14px">下载视频插件</a>
+			</div>
+		</c:if>
+		<c:if test="${ccmDevice.typeVidicon == 3}">
+			<div class="clearfix" style="overflow: hidden">
+				<div class="video-position" style="width: 600px;height: auto; position: relative;padding: 14px 0 0 0; float: left">
+					<p class="pop" style="display:block">视频加载中</p>
+					<div id="objDss">
+						<object id="DPSDK_OCX" classid="CLSID:D3E383B6-765D-448D-9476-DFD8B499926D"
+								style="width: 100%; height: 80%"
+								codebase="DpsdkOcx.cab#version=1.0.0.0">
+						</object>
+					</div>
+				</div>
+				<div id="vidioDiv3" style="float: left; width: 250px;">
 
+					<ul class="clearfix" style="width: 210px; margin: 0px auto;">
+						<li onmousedown="ButtonPtzCameraOperation_onclick(0)"onmouseup="ButtonPtzCameraOperation_onclickStop(1)" style="float:left ;width: 30px;height: 30px;padding: 10px;margin-left: 45px;margin-top: 5px">
+							<img src="${ctxStatic}/common/index/images/white_ZoomOut_hover.png" style="width:30px;height:30px;" title="放大">
+						</li>
+						<li onmousedown="ButtonPtzCameraOperation_onclick(3)"onmouseup="ButtonPtzCameraOperation_onclickStop(1)" style="float:left ;width: 30px;height: 30px;padding: 10px;margin-left: 18px;margin-top: 2px">
+							<img src="${ctxStatic}/common/index/images/white_ZoomIn_hover.png" style="width:30px;height:30px;" title="缩小">
+						</li>
+					</ul>
+
+					<ul class="clearfix" style="width: 210px; margin: 90px auto;">
+						<li onmousedown="ButtonPtzDirection_onclick(5)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
+							<img src="${ctxStatic}/common/index/images/left_up.png" style="width:50px;height:50px;" title="左上">
+						</li>
+						<li onmousedown="ButtonPtzDirection_onclick(1)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
+							<img src="${ctxStatic}/common/index/images/up.png" style="width:50px;height:50px;" title="向上">
+						</li>
+						<li onmousedown="ButtonPtzDirection_onclick(7)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
+							<img src="${ctxStatic}/common/index/images/right_up.png" style="width:50px;height:50px;" title="右上">
+						</li>
+						<li onmousedown="ButtonPtzDirection_onclick(3)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
+							<img src="${ctxStatic}/common/index/images/left.png" style="width:50px;height:50px;" title="向左">
+						</li>
+						<li onclick="ButtonPtzDirection_onclickStop(1)"  style="float: left;width: 50px;height: 50px;padding: 9px">
+							<img src="${ctxStatic}/common/index/images/auto.png" style="width:50px;height:50px;" title="停止">
+						</li>
+						<li onmousedown="ButtonPtzDirection_onclick(4)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
+							<img src="${ctxStatic}/common/index/images/right.png" style="width:50px;height:50px;" title="向右">
+						</li>
+						<li onmousedown="ButtonPtzDirection_onclick(6)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
+							<img src="${ctxStatic}/common/index/images/left_down.png" style="width:50px;height:50px;" title="左下">
+						</li>
+						<li onmousedown="ButtonPtzDirection_onclick(2)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
+							<img src="${ctxStatic}/common/index/images/down.png" style="width:50px;height:50px;" title="向下">
+						</li>
+						<li onmousedown="ButtonPtzDirection_onclick(8)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
+							<img src="${ctxStatic}/common/index/images/right_down.png" style="width:50px;height:50px;" title="右下">
+						</li>
+					</ul>
+				</div>
+				<div style="float: left; width: 250px;padding-top: 5%">
+					<a href="http://localhost:8080/arjccm/exe/DPSDK_OCX_Win32andWin64.exe" style="margin-left: 54%;color: #0bbbee;font-size: 14px">下载视频插件</a>
+				</div>
 			</div>
 		</c:if>
 		<c:if test="${ccmDevice.typeVidicon == 4}">
@@ -182,68 +241,14 @@
 							<img src="${ctxStatic}/common/index/images/right_down.png" style="width:50px;height:50px;" title="右下">
 						</li>
 					</ul>
-
 				</div>
-
-
+				<div style="float: left; width: 250px;padding-top: 5%">
+					<a href="http://localhost:8080/arjccm/exe/Tiandy.EXE" style="margin-left: 54%;color: #0bbbee;font-size: 14px">下载视频插件</a>
+				</div>
 			</div>
 
 		</c:if>
-		<c:if test="${ccmDevice.typeVidicon == 3}">
-			<div class="clearfix" style="overflow: hidden">
-				<div class="video-position" style="width: 600px;height: auto; position: relative;padding: 14px 0 0 0; float: left">
-					<p class="pop" style="display:block">视频加载中</p>
-					<div id="objDss">
-						<object id="DPSDK_OCX" classid="CLSID:D3E383B6-765D-448D-9476-DFD8B499926D"
-								style="width: 100%; height: 80%"
-								codebase="DpsdkOcx.cab#version=1.0.0.0">
-						</object>
-					</div>
-				</div>
-				<div id="vidioDiv" style="float: left; width: 250px;">
 
-					<ul class="clearfix" style="width: 210px; margin: 0px auto;">
-						<li onclick="PtzControl(11,1,1,100)" style="float:left ;width: 30px;height: 30px;padding: 10px;margin-left: 45px;margin-top: 5px">
-							<img src="${ctxStatic}/common/index/images/white_ZoomOut_hover.png" style="width:30px;height:30px;" title="放大">
-						</li>
-						<li onclick="PtzControl(12,1,1,100)" style="float:left ;width: 30px;height: 30px;padding: 10px;margin-left: 18px;margin-top: 2px">
-							<img src="${ctxStatic}/common/index/images/white_ZoomIn_hover.png" style="width:30px;height:30px;" title="缩小">
-						</li>
-					</ul>
-
-					<ul class="clearfix" style="width: 210px; margin: 90px auto;">
-						<li onmousedown="ButtonPtzDirection_onclick(5)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
-							<img src="${ctxStatic}/common/index/images/left_up.png" style="width:50px;height:50px;" title="左上">
-						</li>
-						<li onmousedown="ButtonPtzDirection_onclick(1)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
-							<img src="${ctxStatic}/common/index/images/up.png" style="width:50px;height:50px;" title="向上">
-						</li>
-						<li onmousedown="ButtonPtzDirection_onclick(7)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
-							<img src="${ctxStatic}/common/index/images/right_up.png" style="width:50px;height:50px;" title="右上">
-						</li>
-						<li onmousedown="ButtonPtzDirection_onclick(3)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
-							<img src="${ctxStatic}/common/index/images/left.png" style="width:50px;height:50px;" title="向左">
-						</li>
-						<li onclick="ButtonPtzDirection_onclickStop(1)"  style="float: left;width: 50px;height: 50px;padding: 9px">
-							<img src="${ctxStatic}/common/index/images/auto.png" style="width:50px;height:50px;" title="停止">
-						</li>
-						<li onmousedown="ButtonPtzDirection_onclick(4)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
-							<img src="${ctxStatic}/common/index/images/right.png" style="width:50px;height:50px;" title="向右">
-						</li>
-						<li onmousedown="ButtonPtzDirection_onclick(6)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
-							<img src="${ctxStatic}/common/index/images/left_down.png" style="width:50px;height:50px;" title="左下">
-						</li>
-						<li onmousedown="ButtonPtzDirection_onclick(2)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
-							<img src="${ctxStatic}/common/index/images/down.png" style="width:50px;height:50px;" title="向下">
-						</li>
-						<li onmousedown="ButtonPtzDirection_onclick(8)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
-							<img src="${ctxStatic}/common/index/images/right_down.png" style="width:50px;height:50px;" title="右下">
-						</li>
-					</ul>
-				</div>
-
-			</div>
-		</c:if>
 	</div>
 </div>
 <script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>
@@ -254,7 +259,6 @@
 
 	//PTZ控制
 	function PtzControl(cmd,param, start, power){
-
 
 		if(cmd == 8 || cmd == 9 || cmd == 39){
 			var paramInfo = "{\"cmd\":"+cmd+",\"param\":"+param+",\"start\":"+start+",\"power\":"+power+"}";
@@ -281,7 +285,7 @@
 	/* ***********************大华控制摄像头************************/
 	function ButtonPtzDirection_onclick(nDirects){
 		var obj = document.getElementById("DPSDK_OCX");
-		var szCameraId = $('#ccmDeviceParaml').val()//通道ID
+		var szCameraId = $('#ccmDeviceParaml').val(); //通道ID
 		nDirect = nDirects;
 		var nStep = "1"; //步长
 		var jz = obj.DPSDK_LoadDGroupInfo();
@@ -289,12 +293,29 @@
 			obj.DPSDK_PtzDirection(szCameraId, nDirect, nStep, 0);
 		}
 	}
-	/* ***********************大华控制摄像头停止************************/
+	/* 大华控制摄像头停止*/
 	function ButtonPtzDirection_onclickStop(bStop){
 		var obj = document.getElementById("DPSDK_OCX");
-		var szCameraId = $('#ccmDeviceParaml').val()//通道ID
+		var szCameraId = $('#ccmDeviceParaml').val(); //通道ID
 		var nStep = "1"; //步长
 		obj.DPSDK_PtzDirection(szCameraId, nDirect, nStep, bStop);
+	}
+	/* 大华控制摄像头变倍*/
+	function ButtonPtzCameraOperation_onclick(nOpers){
+		debugger
+		var obj = document.getElementById("DPSDK_OCX");
+		var szCameraId = $('#ccmDeviceParaml').val(); //通道ID
+		nOper = nOpers;
+		var nStep = "1"; //倍速
+		var abc=obj.DPSDK_PtzCameraOperation(szCameraId, nOper, nStep, 0);
+	}
+	/* 大华控制摄像头变倍停止*/
+	function ButtonPtzCameraOperation_onclickStop(bStop)
+	{
+		var obj = document.getElementById("DPSDK_OCX");
+		var szCameraId =  $('#ccmDeviceParaml').val(); //通道ID
+		var nStep = "1"; //倍速
+		obj.DPSDK_PtzCameraOperation(szCameraId, nOper, nStep, bStop);
 	}
 
 	$(function(){
@@ -313,7 +334,7 @@
 		var ccmDeviceCameraType=$('#ccmDeviceCameraType').val()//监控设备类型  0枪机  1球机  2半球机
 
 
-		if(ccmDeviceTypeVidicon==2){
+		if(ccmDeviceTypeVidicon==1){
 			/* 	    var  mainOcxHtml = '	<video id="videoElement" class="video-js vjs-default-skin vjs-big-play-centered" controlspreload="auto" width="570" height="340"> </video>';
                     document.getElementById('divPlugin').innerHTML = mainOcxHtml;
                     LivePlayerInit();//初始化
@@ -328,7 +349,7 @@
                     mainOcxHtml+='<param name="fullscreen" value="false" />';
                     mainOcxHtml+='</object>';
                     document.getElementById('divPlugin').innerHTML = mainOcxHtml;*/
-		}else if(ccmDeviceTypeVidicon==1){
+		}else if(ccmDeviceTypeVidicon==2){
 			//*****************海康视频OCX播放方式**************//
 			//延迟初始化
 			$(document).ready(function () {
@@ -368,6 +389,7 @@
 			});
 			//初始化
 			function init() {
+				debugger
 				var OCXobj = document.getElementById("PlayViewOCX");
 				var txtInit = $("#config").val();
 				OCXobj.ContainOCX_Init(txtInit);
@@ -432,12 +454,22 @@
 						var obj = document.getElementById("DPSDK_OCX");
 						var nRet = obj.DPSDK_Login(dssIP, dssPort, dssUserName, dssPassword);
 						if (nRet==0){
+							obj.DPSDK_LoadDGroupInfo();
 							startVideo();
 						}
 					});//这里设置延迟(数值请根据实际情况来)是防止快速刷新页面导致进程残留  具体清楚进程方式请参考<关闭进程 云台控制>demo中的代码
 				},500);
 				//初始化
 				function init(){
+					try
+					{
+						var ActiveXobj = new ActiveXObject("DPSDK_OCX.DPSDK_OCXCtrl.1");
+					}
+					catch(e)
+					{
+						alert("控件未注册，请下载并安装视频插件，并在IE11浏览器下使用！");
+						return;
+					}
 					var obj = document.getElementById("DPSDK_OCX");
 					gWndId = obj.DPSDK_CreateSmartWnd(0, 0, 100, 100);
 					ButtonCreateWnd_onclick();

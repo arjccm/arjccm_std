@@ -70,7 +70,7 @@
 <div class="back-list clearfix">
 	<form:form id="inputForm" modelAttribute="ccmDevice" action="" method="post" class="form-horizontal form-search" cssStyle="padding:10px">
 		<div id="divPlugin" style="width:100%;height:640px;background:#4C4B4B">
-			<c:if test="${ccmDevice.typeVidicon == 2}">
+			<c:if test="${ccmDevice.typeVidicon == 1}">
 				 <OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" id="vlc" width="1030" height="640" id="vlc" events="True">
 					<param name='mrl' value='${ccmDevice.param}' />
 					<param name='volume' value='50' />
@@ -80,7 +80,7 @@
 					<param name='fullscreen' value='false' />
 			    </OBJECT>  
 			</c:if>
-			<c:if test="${ccmDevice.typeVidicon == 1}">
+			<c:if test="${ccmDevice.typeVidicon == 2}">
 				<iframe name="ccmLiveVideo" id="ccmLiveVideoTest" src="${ctx}/ccmsys/ccmDevice/getDeviceMap?id=${ccmDevice.id}" style="overflow: visible;" scrolling="yes" frameborder="no" width="1030" height="640" allowfullscreen="true" allowtransparency="true"></iframe>
 				<!-- <div class="form" style="display: none">
 			        <label for="PalyType">PalyType:</label>
@@ -128,6 +128,9 @@
 			        <object classid="CLSID:7E393848-7238-4CE3-82EE-44AF444B240A" id="PlayViewOCX" wmode="opaque" width="0" height="0" name="PlayViewOCX">
 			        </object>
 		        </div> -->
+			</c:if>
+			<c:if test="${ccmDevice.typeVidicon == 3}">
+				<iframe name="ccmLiveVideo" id="ccmLiveVideoTest"  src="${ctx}/ccmsys/ccmDevice/getDeviceMap?id=${ccmDevice.id}" style="overflow: visible;" scrolling="yes" frameborder="no" width="1030" height="590" allowfullscreen="true" allowtransparency="true"></iframe>
 			</c:if>
 			<c:if test="${ccmDevice.typeVidicon == 4}">
 				<iframe name="ccmLiveVideo" id="ccmLiveVideoTest"  src="${ctx}/ccmsys/ccmDevice/getDeviceMap?id=${ccmDevice.id}" style="overflow: visible;" scrolling="yes" frameborder="no" width="1030" height="590" allowfullscreen="true" allowtransparency="true"></iframe>
@@ -267,12 +270,12 @@
 			scolorb="#fff"
 		}
 		$('.video-label').css("color",scolorb);
-		if(ccmDeviceTypeVidicon==2){
+		if(ccmDeviceTypeVidicon==1){
 		/*  var  mainOcxHtml = '	<video id="videoElement" class="video-js vjs-default-skin vjs-big-play-centered" controlspreload="auto" width="1140" height="640"> </video>';
 		    document.getElementById('divPlugin').innerHTML = mainOcxHtml;
 			LivePlayerInit();//初始化
 			videoPlay(ccmDeviceProtocol, ccmDeviceParaml) */
-		}else if(ccmDeviceTypeVidicon==1){
+		}else if(ccmDeviceTypeVidicon==2){
 			//*****************海康视频OCX播放方式**************//
 			//延迟初始化
 		    $(document).ready(function () {
@@ -400,7 +403,7 @@
 		    }); */
 			//*****************海康视频直连摄像头**************//
 		}else if(ccmDeviceTypeVidicon==3){
-			/* ****************大华视频start**************/
+			//*****************大华视频 start**************//
 			var gWndId = 0;
 			var bIVS = 1;
 			//延迟初始化
@@ -424,12 +427,22 @@
 						var obj = document.getElementById("DPSDK_OCX");
 						var nRet = obj.DPSDK_Login(dssIP, dssPort, dssUserName, dssPassword);
 						if (nRet==0){
+							obj.DPSDK_LoadDGroupInfo();
 							startVideo();
 						}
 					});//这里设置延迟(数值请根据实际情况来)是防止快速刷新页面导致进程残留  具体清楚进程方式请参考<关闭进程 云台控制>demo中的代码
 				},500);
 				//初始化
 				function init(){
+					try
+					{
+						var ActiveXobj = new ActiveXObject("DPSDK_OCX.DPSDK_OCXCtrl.1");
+					}
+					catch(e)
+					{
+						alert("控件未注册，请下载并安装视频插件，并在IE11浏览器下使用！");
+						return;
+					}
 					var obj = document.getElementById("DPSDK_OCX");
 					gWndId = obj.DPSDK_CreateSmartWnd(0, 0, 100, 100);
 					ButtonCreateWnd_onclick();
@@ -463,11 +476,11 @@
 					obj.DPSDK_SetCustomizedWndCount(gWndId, nWndCount);
 					obj.DPSDK_SetSelWnd(gWndId, 0);
 				}
-				/* ****************大华视频end**************/
+			})
+			//*****************大华视频 end**************//
 		}else if(ccmDeviceTypeVidicon==""){
-		    document.getElementById('divPlugin').innerHTML = '<p style="color:#fff;text-align:center">请选择左侧视频监控设备</p>';
+			document.getElementById('divPlugin').innerHTML = '<p style="color:#fff;text-align:center">请选择左侧视频监控设备</p>';
 		}
 	}
-
 	</script>
 </html>
