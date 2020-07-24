@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 获取组织个数请求信息
 @param   szCoding					节点code

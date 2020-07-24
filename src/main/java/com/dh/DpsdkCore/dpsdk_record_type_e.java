@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 录像类型
 @param     DPSDK_CORE_PB_RECORD_UNKONWN				= 0;					  全部录像

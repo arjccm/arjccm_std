@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 传输类型
 @param     DPSDK_CORE_VIDEOCODEC_H264			= 1;					h264

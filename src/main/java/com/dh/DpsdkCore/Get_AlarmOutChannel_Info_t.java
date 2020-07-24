@@ -2,9 +2,9 @@ package com.dh.DpsdkCore;
 
 public class Get_AlarmOutChannel_Info_t {
 	
-	public byte[]					szDeviceId = new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];	// 设备ID
-	public int						nAlarmOutChannelCount;												// 通道个数
-	public AlarmOut_Channel_Info_t[]	pAlarmOutChannelnfo;													// 通道信息
+	public byte[]					szDeviceId = new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];	// 锟借备ID
+	public int						nAlarmOutChannelCount;												// 通锟斤拷锟斤拷锟斤拷
+	public AlarmOut_Channel_Info_t[]	pAlarmOutChannelnfo;													// 通锟斤拷锟斤拷息
 
 	public Get_AlarmOutChannel_Info_t(int nMaxAlarmOutChannelCount)
 	{

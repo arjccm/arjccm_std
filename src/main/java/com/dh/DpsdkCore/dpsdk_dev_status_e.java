@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 设备状态
 @param     DPSDK_DEV_STATUS_UNKNOW			= 0;		未知

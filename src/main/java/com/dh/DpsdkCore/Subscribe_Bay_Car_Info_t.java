@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 //订阅卡口过车(或区间测速）信息请求信息
 public class Subscribe_Bay_Car_Info_t {

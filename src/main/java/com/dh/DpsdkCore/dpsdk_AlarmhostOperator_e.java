@@ -1,13 +1,13 @@
 package com.dh.DpsdkCore;
 
-//±¨¾¯Ö÷»ú²¼·À²Ù×÷¿ØÖÆÀàÐÍ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public class dpsdk_AlarmhostOperator_e {
-	public static final int     CONTROL_ERROR = 0;				// ¿ØÖÆÀàÐÍ´íÎó
-	public static final int     CONTROL_DEV_ARM = 1;			// Õë¶ÔÉè±¸²¼·À-1
-	public static final int     CONTROL_DEV_DISARM = 2;			// Õë¶ÔÉè±¸³··À-2
-	public static final int     CONTROL_DEV_ARM_HOME = 3;		// ÔÚ¼Ò²¼·À-3
-	public static final int     CONTROL_DEV_ARM_OUT = 4;		// Íâ³ö²¼·À-4
-	public static final int     CONTROL_CHL_BYPASS = 5;			// Õë¶ÔÍ¨µÀÅÔÂ·-5
-	public static final int     CONTROL_CHL_DISBYPASS = 6;		// Õë¶ÔÍ¨µÀÈ¡ÏûÅÔÂ·-6
-	public static final int     CONTROL_CHL_ARM_CLEAR = 7;		// Õë¶ÔÍ¨µÀÏû¾¯-7
+	public static final int     CONTROL_ERROR = 0;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½
+	public static final int     CONTROL_DEV_ARM = 1;			// ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½-1
+	public static final int     CONTROL_DEV_DISARM = 2;			// ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½-2
+	public static final int     CONTROL_DEV_ARM_HOME = 3;		// ï¿½Ú¼Ò²ï¿½ï¿½ï¿½-3
+	public static final int     CONTROL_DEV_ARM_OUT = 4;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-4
+	public static final int     CONTROL_CHL_BYPASS = 5;			// ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Â·-5
+	public static final int     CONTROL_CHL_DISBYPASS = 6;		// ï¿½ï¿½ï¿½Í¨ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Â·-6
+	public static final int     CONTROL_CHL_ARM_CLEAR = 7;		// ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-7
 }

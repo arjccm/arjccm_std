@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 码流类型
 @param     DPSDK_CORE_STREAMTYPE_MAIN			= 1;				主码流

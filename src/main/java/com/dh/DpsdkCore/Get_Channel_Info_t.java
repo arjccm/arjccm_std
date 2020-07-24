@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 获取通道请求信息
 @param   szDeviceId					设备ID

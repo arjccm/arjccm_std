@@ -1,7 +1,7 @@
 package com.dh.DpsdkCore;
 
 public class Pos_Channel_Info_t {
-	public byte[]	szId		= new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];							// Í¨µÀID:Éè±¸ID+Í¨µÀºÅ
-	public byte[]	szName		= new byte[dpsdk_constant_value.DPSDK_CORE_DGROUP_DEVICENAME_LEN];				// Ãû³Æ
-	public byte[]	szLinkChnl		= new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];						// POSÍ¨µÀµÄ°ó¶¨ÊÓÆµÔ´
+	public byte[]	szId		= new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];							// Í¨ï¿½ï¿½ID:ï¿½è±¸ID+Í¨ï¿½ï¿½ï¿½ï¿½
+	public byte[]	szName		= new byte[dpsdk_constant_value.DPSDK_CORE_DGROUP_DEVICENAME_LEN];				// ï¿½ï¿½ï¿½ï¿½
+	public byte[]	szLinkChnl		= new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];						// POSÍ¨ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ÆµÔ´
 }

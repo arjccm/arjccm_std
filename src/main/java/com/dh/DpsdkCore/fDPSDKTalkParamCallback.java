@@ -1,12 +1,12 @@
 package com.dh.DpsdkCore;
 
-/** ÓïÒô¶Ô½²ÐÅÏ¢±¨»Øµ÷º¯Êý¶¨Òå
-@param	  IN	                                nPDLLHandle		    SDK¾ä±ú
-@param	  IN									nTalkType			¶Ô½²ÀàÐÍ 	dpsdk_talk_type_e
-@param	  IN	                                nAudioType			ÒôÆµÀàÐÍ 	dpsdk_audio_type_e
-@param	  IN	                                nAudioBit			Î»Êý		dpsdk_talk_bits_e
-@param	  IN	                                nSampleRate			²ÉÑùÂÊ	Talk_Sample_Rate_e
-@param	  IN	                                nTransMode			´«ÊäÀàÐÍ	dpsdk_trans_type_e
+/** ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param	  IN	                                nPDLLHandle		    SDKï¿½ï¿½ï¿½
+@param	  IN									nTalkType			ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ 	dpsdk_talk_type_e
+@param	  IN	                                nAudioType			ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ 	dpsdk_audio_type_e
+@param	  IN	                                nAudioBit			Î»ï¿½ï¿½		dpsdk_talk_bits_e
+@param	  IN	                                nSampleRate			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	Talk_Sample_Rate_e
+@param	  IN	                                nTransMode			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	dpsdk_trans_type_e
 */
 
 public interface fDPSDKTalkParamCallback 

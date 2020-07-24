@@ -1,9 +1,9 @@
 package com.dh.DpsdkCore;
 
-/** ³µÔØÉè±¸Ô¶³Ì×¥ÅÄ»Øµ÷
-@param   IN           nPDLLHandle               SDK¾ä±ú
-@param   IN           szCameraId                Í¨µÀID
-@param   IN           szFullPath                ÎÄ¼þÈ«Â·¾¶Ãû
+/** ï¿½ï¿½ï¿½ï¿½ï¿½è±¸Ô¶ï¿½ï¿½×¥ï¿½Ä»Øµï¿½
+@param   IN           nPDLLHandle               SDKï¿½ï¿½ï¿½
+@param   IN           szCameraId                Í¨ï¿½ï¿½ID
+@param   IN           szFullPath                ï¿½Ä¼ï¿½È«Â·ï¿½ï¿½ï¿½ï¿½
 */
 public interface fDPSDKRemoteDeviceSnapCallback {
 	public void invoke(int nPDLLHandle, byte[] szCameraId, byte[] szFullPath);

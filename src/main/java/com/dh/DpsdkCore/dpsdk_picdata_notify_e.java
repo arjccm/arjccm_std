@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 图片监控数据回调类型
 @param    DPSDK_CORE_PICINFO_RECIVE			   	= 0;					收到图片信息

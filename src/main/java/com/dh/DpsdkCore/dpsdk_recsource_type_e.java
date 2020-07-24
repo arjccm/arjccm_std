@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 录像源类型
 @param     DPSDK_CORE_PB_RECSOURCE_ALL				= 1;					  所有

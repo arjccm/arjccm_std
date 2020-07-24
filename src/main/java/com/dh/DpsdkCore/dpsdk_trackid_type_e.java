@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 流输出荷载类型
 @param     DPSDK_CORE_TRACKIDTYPE_PS			= 501;					PS包

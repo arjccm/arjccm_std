@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 发送音频流信息
 @param   pCallBackFun				语音采集回调函数地址值

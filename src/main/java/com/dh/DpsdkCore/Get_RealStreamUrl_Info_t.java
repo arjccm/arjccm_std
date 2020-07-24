@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 获取实时流URL信息
 @param   szCameraId					通道ID

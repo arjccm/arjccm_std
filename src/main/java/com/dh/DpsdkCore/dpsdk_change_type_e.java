@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 节点改变通知类型
 @param     DPSDK_CORE_CHANGE_UNDEFINE		= 0;		未定义

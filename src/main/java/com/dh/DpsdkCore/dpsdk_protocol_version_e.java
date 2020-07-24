@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 协议版本
 @param    DPSDK_PROTOCOL_VERSION_I		        = 1;					一代协议

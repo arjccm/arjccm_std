@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 云台预置点操作类型
 @param     DPSDK_CORE_PTZ_PRESET_LOCATION				= 1;				预置点定位

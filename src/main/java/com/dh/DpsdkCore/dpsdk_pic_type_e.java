@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 图片类型
 @param    DPSDK_CORE_PIC_FORMAT_BMP			   		= 0;					BMP

@@ -1,26 +1,26 @@
 package com.dh.DpsdkCore;
 
-/** ×éÖ¯ÐÅÏ¢(À©Õ¹)
-@param   szCoding		½Úµãcode
-@param   szDepName		½ÚµãÃû³Æ
-@param   szModifyTime	½ÚµãÐÞ¸ÄÊ±¼ä
-@param   szSN			Î¨Ò»±êÊ¶Âë	
-@param   szMemo			±¸×¢ÐÅÏ¢
-@param   nDepType		×éÖ¯½ÚµãÀàÐÍ	
-@param   nDepSort		×éÖ¯ÅÅÐò
-@param   nChargebooth	ÊÕ·ÑÍ¤±êÖ¾		
-@param   nDepExtType	×éÖ¯½ÚµãÀ©Õ¹ÀàÐÍ	
+/** ï¿½ï¿½Ö¯ï¿½ï¿½Ï¢(ï¿½ï¿½Õ¹)
+@param   szCoding		ï¿½Úµï¿½code
+@param   szDepName		ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½
+@param   szModifyTime	ï¿½Úµï¿½ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
+@param   szSN			Î¨Ò»ï¿½ï¿½Ê¶ï¿½ï¿½	
+@param   szMemo			ï¿½ï¿½×¢ï¿½ï¿½Ï¢
+@param   nDepType		ï¿½ï¿½Ö¯ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½	
+@param   nDepSort		ï¿½ï¿½Ö¯ï¿½ï¿½ï¿½ï¿½
+@param   nChargebooth	ï¿½Õ·ï¿½Í¤ï¿½ï¿½Ö¾		
+@param   nDepExtType	ï¿½ï¿½Ö¯ï¿½Úµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½	
 */
 
 public class Dep_Info_Ex_t 
 {	
-	public byte[]	szCoding		= new byte[dpsdk_constant_value.DPSDK_CORE_DGROUP_DGPCODE_LEN];			// ½Úµãcode
-	public byte[]	szDepName		= new byte[dpsdk_constant_value.DPSDK_CORE_DGROUP_DGPNAME_LEN];			// ½ÚµãÃû³Æ
-	public byte[]	szModifyTime	= new byte[dpsdk_constant_value.DPSDK_CORE_TIME_LEN];					// ½ÚµãÐÞ¸ÄÊ±¼ä
-	public byte[]	szSN			= new byte[dpsdk_constant_value.DPSDK_CORE_ORG_SN_LEN];					// Î¨Ò»±êÊ¶Âë
-	public byte[]	szMemo			= new byte[dpsdk_constant_value.DPSDK_CORE_MEM_LEN];					// ±¸×¢ÐÅÏ¢ -->±¨¾¯ÔËÓªÆ½Ì¨
-	public int		nDepType;																				// ×éÖ¯½ÚµãÀàÐÍ -->±¨¾¯ÔËÓªÆ½Ì¨
-	public int		nDepSort;																				// ×éÖ¯ÅÅÐò
-	public int		nChargebooth;																			// ÊÕ·ÑÍ¤±êÖ¾
-	public int		nDepExtType;																			// ×éÖ¯½ÚµãÀ©Õ¹ÀàÐÍ
+	public byte[]	szCoding		= new byte[dpsdk_constant_value.DPSDK_CORE_DGROUP_DGPCODE_LEN];			// ï¿½Úµï¿½code
+	public byte[]	szDepName		= new byte[dpsdk_constant_value.DPSDK_CORE_DGROUP_DGPNAME_LEN];			// ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	szModifyTime	= new byte[dpsdk_constant_value.DPSDK_CORE_TIME_LEN];					// ï¿½Úµï¿½ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
+	public byte[]	szSN			= new byte[dpsdk_constant_value.DPSDK_CORE_ORG_SN_LEN];					// Î¨Ò»ï¿½ï¿½Ê¶ï¿½ï¿½
+	public byte[]	szMemo			= new byte[dpsdk_constant_value.DPSDK_CORE_MEM_LEN];					// ï¿½ï¿½×¢ï¿½ï¿½Ï¢ -->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÓªÆ½Ì¨
+	public int		nDepType;																				// ï¿½ï¿½Ö¯ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ -->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÓªÆ½Ì¨
+	public int		nDepSort;																				// ï¿½ï¿½Ö¯ï¿½ï¿½ï¿½ï¿½
+	public int		nChargebooth;																			// ï¿½Õ·ï¿½Í¤ï¿½ï¿½Ö¾
+	public int		nDepExtType;																			// ï¿½ï¿½Ö¯ï¿½Úµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½
 }; 

@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 单元类型
 @param     DPSDK_DEV_UNIT_UNKOWN						= 0;			未知

@@ -1,12 +1,12 @@
 package com.dh.DpsdkCore;
 
-//±¨¾¯Ö÷»ú×´Ì¬ÀàÐÍ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½
 public class dpsdk_videoalarmhost_status_type_e {
-	public static final int ALARMHOSE_STATUS_ERROR 			= 0;		// ×´Ì¬ÀàÐÍ´íÎó
-	public static final int ALARMHOSE_STATUS__DEV_ARM 		= 1;		// Õë¶ÔÉè±¸²¼·À-1
-	public static final int ALARMHOSE_STATUS__DEV_DISARM 	= 2;		// Õë¶ÔÉè±¸³··À-2
-	public static final int ALARMHOSE_STATUS__CHL_BYPASS 	= 3;		// Õë¶ÔÍ¨µÀÅÔÂ·-3
-	public static final int ALARMHOSE_STATUS__CHL_DISBYPASS = 4;		// Õë¶ÔÍ¨µÀÈ¡ÏûÅÔÂ·-4
-	public static final int ALARMHOSE_STATUS__DEV_IN_ARM	= 5;		// Õë¶ÔÉè±¸ÔÚ¼Ò²¼·À-5 add by djm 20131219
-	public static final int ALARMHOSE_STATUS__DEV_OUT_ARM 	= 6;		// Õë¶ÔÉè±¸Íâ³ö²¼·À-6 add by djm 20131219
+	public static final int ALARMHOSE_STATUS_ERROR 			= 0;		// ×´Ì¬ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½
+	public static final int ALARMHOSE_STATUS__DEV_ARM 		= 1;		// ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½-1
+	public static final int ALARMHOSE_STATUS__DEV_DISARM 	= 2;		// ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½-2
+	public static final int ALARMHOSE_STATUS__CHL_BYPASS 	= 3;		// ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Â·-3
+	public static final int ALARMHOSE_STATUS__CHL_DISBYPASS = 4;		// ï¿½ï¿½ï¿½Í¨ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Â·-4
+	public static final int ALARMHOSE_STATUS__DEV_IN_ARM	= 5;		// ï¿½ï¿½ï¿½ï¿½è±¸ï¿½Ú¼Ò²ï¿½ï¿½ï¿½-5 add by djm 20131219
+	public static final int ALARMHOSE_STATUS__DEV_OUT_ARM 	= 6;		// ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-6 add by djm 20131219
 }

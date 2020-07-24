@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 对讲类型
 @param     Talk_Type_Device				= 1;				设备

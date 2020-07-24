@@ -1,16 +1,16 @@
 package com.dh.DpsdkCore;
 
-/** иХ╠╦╢еелпео╒
-@param   szDevId					иХ╠╦ID
-@param   nDiskInfoSize				╢еелпео╒йЩа©
-@param   pDiskInfoList				╢еелпео╒ап╠М
+/** О©╫Х╠╦О©╫О©╫О©╫О©╫О©╫О©╫о╒
+@param   szDevId					О©╫Х╠╦ID
+@param   nDiskInfoSize				О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫О©╫
+@param   pDiskInfoList				О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫п╠О©╫
 */
 
 public class Device_Disk_Info_t
 {
-	public byte[]				szDevId		=new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];	//иХ╠╦ID
-	public int					nDiskInfoSize;														//╢еелпео╒йЩа©
-	public Single_Disk_Info_t	pDiskInfoList[];													//╢еелпео╒ап╠М
+	public byte[]				szDevId		=new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];	//О©╫Х╠╦ID
+	public int					nDiskInfoSize;														//О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫О©╫
+	public Single_Disk_Info_t	pDiskInfoList[];													//О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫п╠О©╫
 	
 	public Device_Disk_Info_t(int nMaxCount)
 	{

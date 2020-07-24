@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 摄像头类型
 @param     CAMERA_TYPE_NORMAL 		= 1;		枪机

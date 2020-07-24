@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** SDK状态类型
 @param     DPSDK_CORE_STATUS_SERVER_ONLINE			= 1;				服务上线通知

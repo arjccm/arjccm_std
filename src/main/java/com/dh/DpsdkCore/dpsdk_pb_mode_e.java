@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 录像流请求类型
 @param    DPSDK_CORE_PB_MODE_NORMAL			   		= 1;					回放

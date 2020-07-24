@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 设备厂商类型
 @param     DPSDK_CORE_DEVICE_FACTORY_UNDEFINE						= 0;			未定义

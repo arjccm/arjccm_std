@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 位数
 @param     Talk_Audio_Bits_8			= 8;				8位

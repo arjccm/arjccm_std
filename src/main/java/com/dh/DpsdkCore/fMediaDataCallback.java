@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 媒体数据回调.
  @param   IN									nPDLLHandle				SDK句柄

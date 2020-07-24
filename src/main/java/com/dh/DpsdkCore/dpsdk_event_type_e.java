@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 报警发生类型
 @param    ALARM_EVENT_OCCUR							= 1;				  产生

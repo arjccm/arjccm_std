@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 查询节点类型
 @param    DPSDK_CORE_ORG_NODE_TYPE_GROUP			   		= 1;					 组织

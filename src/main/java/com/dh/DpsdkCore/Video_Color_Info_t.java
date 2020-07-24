@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 视频图像属性
 @param   nBrightness			亮度,默认64;范围0-128

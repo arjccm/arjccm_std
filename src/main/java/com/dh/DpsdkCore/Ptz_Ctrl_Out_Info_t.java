@@ -1,8 +1,8 @@
 package com.dh.DpsdkCore;
 
 public class Ptz_Ctrl_Out_Info_t {
-	public byte[]	szCameraId = new byte[dpsdk_constant_value.DPSDK_CORE_CHL_ID_LEN];	// Í¨µÀID
-	public boolean							bOpen;                                      //´ò¿ª±êÖ¾£ºtrue-´ò¿ª, false-¹Ø±Õ
-	public int								nCmd;                                       //¿ØÖÆÃüÁî¡£×´Ì¬¿ØÖÆ¡£1=¿ªÆô£¬0=¹Ø±Õ     Ä£Ê½¿ØÖÆ£º0=¹Ø±Õ  1=×Ô¶¯ 2=ÊÖ¶¯ 3³£±ÕÄ£Ê½ÏÂ¹Ø±Õ£¬4³£±ÕÄ£Ê½ÊÖ¶¯
-	public int								nType;                                      //¿ØÖÆÀàÐÍ¡£1×´Ì¬¿ØÖÆ 2 Ä£Ê½¿ØÖÆ
+	public byte[]	szCameraId = new byte[dpsdk_constant_value.DPSDK_CORE_CHL_ID_LEN];	// Í¨ï¿½ï¿½ID
+	public boolean							bOpen;                                      //ï¿½ò¿ª±ï¿½Ö¾ï¿½ï¿½true-ï¿½ï¿½, false-ï¿½Ø±ï¿½
+	public int								nCmd;                                       //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¡£×´Ì¬ï¿½ï¿½ï¿½Æ¡ï¿½1=ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0=ï¿½Ø±ï¿½     Ä£Ê½ï¿½ï¿½ï¿½Æ£ï¿½0=ï¿½Ø±ï¿½  1=ï¿½Ô¶ï¿½ 2=ï¿½Ö¶ï¿½ 3ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½Â¹Ø±Õ£ï¿½4ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½Ö¶ï¿½
+	public int								nType;                                      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¡ï¿½1×´Ì¬ï¿½ï¿½ï¿½ï¿½ 2 Ä£Ê½ï¿½ï¿½ï¿½ï¿½
 }

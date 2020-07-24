@@ -3,14 +3,14 @@ package com.dh.DpsdkCore;
 public class dpsdk_SetDoorCmd_e {
 	
 	public static final int    DPSDK_CORE_DOOR_CMD_PROGARM			        = 0;				   // 
-	public static final int    DPSDK_CORE_DOOR_CMD_OPEN				        = 5;			       // ¿ªÃÅ
-	public static final int    DPSDK_CORE_DOOR_CMD_CLOSE	        		= 6;				   // ¹ØÃÅ
-	public static final int    DPSDK_CORE_DOOR_CMD_ALWAYS_OPEN		        = 7;				   // ÃÅ³£¿ª
-	public static final int    DPSDK_CORE_DOOR_CMD_ALWAYS_CLOSE		        = 8;				   // ÃÅ³£¹Ø
-	public static final int    DPSDK_CORE_DOOR_CMD_HOLIDAY_MAG_OPEN		    = 9;				   // ¼ÙÈÕ¹ÜÀíÃÅ³£¿ª
-	public static final int    DPSDK_CORE_DOOR_CMD_HOLIDAY_MAG_CLOSE		= 10;				   // ¼ÙÈÕ¹ÜÀíÃÅ³£¹Ø
-	public static final int    DPSDK_CORE_DOOR_CMD_RESET		        	= 11;				   // ¸´Î»
-	public static final int    DPSDK_CORE_DOOR_CMD_HOST_ALWAYS_OPEN		    = 12;				   // ±¨¾¯Ö÷»úÏÂµÄÃÅ½ûÍ¨µÀ£¬³£¿ª
-	public static final int    DPSDK_CORE_DOOR_CMD_HOST_ALWAYS_CLOSE		= 13;				   // ±¨¾¯Ö÷»úÏÂµÄÃÅ½ûÍ¨µÀ£¬³£¹Ø
+	public static final int    DPSDK_CORE_DOOR_CMD_OPEN				        = 5;			       // ï¿½ï¿½ï¿½ï¿½
+	public static final int    DPSDK_CORE_DOOR_CMD_CLOSE	        		= 6;				   // ï¿½ï¿½ï¿½ï¿½
+	public static final int    DPSDK_CORE_DOOR_CMD_ALWAYS_OPEN		        = 7;				   // ï¿½Å³ï¿½ï¿½ï¿½
+	public static final int    DPSDK_CORE_DOOR_CMD_ALWAYS_CLOSE		        = 8;				   // ï¿½Å³ï¿½ï¿½ï¿½
+	public static final int    DPSDK_CORE_DOOR_CMD_HOLIDAY_MAG_OPEN		    = 9;				   // ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½
+	public static final int    DPSDK_CORE_DOOR_CMD_HOLIDAY_MAG_CLOSE		= 10;				   // ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½
+	public static final int    DPSDK_CORE_DOOR_CMD_RESET		        	= 11;				   // ï¿½ï¿½Î»
+	public static final int    DPSDK_CORE_DOOR_CMD_HOST_ALWAYS_OPEN		    = 12;				   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½Å½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final int    DPSDK_CORE_DOOR_CMD_HOST_ALWAYS_CLOSE		= 13;				   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½Å½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 }

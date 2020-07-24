@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 日志等级
 @param     OPTTYPE_UNKOWN				        		= 0;			 

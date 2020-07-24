@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 云台锁定操作信息
 @param   szCameraId					通道ID

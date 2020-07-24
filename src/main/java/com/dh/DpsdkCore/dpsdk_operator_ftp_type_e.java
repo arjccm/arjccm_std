@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** ftp操作类型
 @param    OP_FTP_TYPE_UNKNOW		= 0;

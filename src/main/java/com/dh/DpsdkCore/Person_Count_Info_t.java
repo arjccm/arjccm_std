@@ -1,24 +1,24 @@
 package com.dh.DpsdkCore;
 
-/** ÈËÊýÍ³¼ÆÐÅÏ¢
-@param   nChannelID					Í³¼ÆÍ¨µÀºÅ
-@param   szRuleName					¹æÔòÃû³Æ
-@param   nStartTime					¿ªÊ¼Ê±¼ä
-@param   nEndTime					½áÊøÊ±¼ä
-@param   nEnteredSubTotal			½øÈëÈËÊýÐ¡¼Æ
-@param   nExitedSubtotal			³öÈ¥ÈËÊýÐ¡¼Æ
-@param   nAvgInside					Æ½¾ù±£ÓÐÈËÊý(³ýÈ¥ÁãÖµ)
-@param   nMaxInside					×î´ó±£ÓÐÈËÊý
+/** ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½Ï¢
+@param   nChannelID					Í³ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+@param   szRuleName					ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   nStartTime					ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+@param   nEndTime					ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+@param   nEnteredSubTotal			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½
+@param   nExitedSubtotal			ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½
+@param   nAvgInside					Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½È¥ï¿½ï¿½Öµ)
+@param   nMaxInside					ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 
 public class Person_Count_Info_t
 {		
-	public int 		nChannelID;                         														// Í³¼ÆÍ¨µÀºÅ
-	public byte[]  	szRuleName  = new byte[dpsdk_constant_value.DPSDK_CORE_IVS_EVENT_NAME_LEN];                 // ¹æÔòÃû³Æ
-	public int 		nStartTime;																					// ¿ªÊ¼Ê±¼ä
-	public int 		nEndTime;																					// ½áÊøÊ±¼ä
-	public int 		nEnteredSubTotal;																			// ½øÈëÈËÊýÐ¡¼Æ
-	public int 		nExitedSubtotal;																			// ³öÈ¥ÈËÊýÐ¡¼Æ
-	public int 		nAvgInside;																					// Æ½¾ù±£ÓÐÈËÊý(³ýÈ¥ÁãÖµ)
-	public int 		nMaxInside;																					// ×î´ó±£ÓÐÈËÊý
+	public int 		nChannelID;                         														// Í³ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+	public byte[]  	szRuleName  = new byte[dpsdk_constant_value.DPSDK_CORE_IVS_EVENT_NAME_LEN];                 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int 		nStartTime;																					// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	public int 		nEndTime;																					// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	public int 		nEnteredSubTotal;																			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½
+	public int 		nExitedSubtotal;																			// ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½
+	public int 		nAvgInside;																					// Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½È¥ï¿½ï¿½Öµ)
+	public int 		nMaxInside;																					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };

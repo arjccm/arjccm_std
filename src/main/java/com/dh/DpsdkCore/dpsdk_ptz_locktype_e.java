@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 云台锁类型
 @param     DPSDK_CORE_PTZ_CMD_LOCK					= 1;				锁定当前摄像头

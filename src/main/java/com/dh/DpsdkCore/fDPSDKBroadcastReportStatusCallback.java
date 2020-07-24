@@ -1,12 +1,12 @@
 package com.dh.DpsdkCore;
 
-/** ÒµÏè¹ã²¥Í¨µÀ×´Ì¬»Øµ÷
-@param	  IN	                                nPDLLHandle		    SDK¾ä±ú
-@param	  IN	                                szCameraId			Í¨µÀid
-@param	  IN	                                nRType				ÉÏ±¨ÀàÐÍ£¬²Î¿¼dpsdk_broadcast_report_type_e£¬1500ÒµÏè¹ã²¥¹ÊÕÏÏûÏ¢£¬1501ÒµÏè¹ã²¥²¥·Å×´Ì¬ÏûÏ¢
-@param	  IN	                                nTime				ÉÏ±¨Ê±¼ä
-@param	  IN	                                nStatus				×´Ì¬£¬¶ÔÓÚÒµÏè¶Ô½²Í¨µÀ¹ÊÕÏÏûÏ¢ 1²úÉú 2ÏûÊ§£»¶ÔÓÚÒµÏè¶Ô½²Í¨µÀ²¥·Å×´Ì¬ 1²¥·Å 2Í£Ö¹
-ÍøÂç±¨¾¯Ö÷»ú×´Ì¬Òª×Ô¼º²éÑ¯£¬¿Í»§¶Ë²Ù×÷»áÍ¨ÖªÆäËû¿Í»§¶Ë¡£
+/** Òµï¿½ï¿½ã²¥Í¨ï¿½ï¿½×´Ì¬ï¿½Øµï¿½
+@param	  IN	                                nPDLLHandle		    SDKï¿½ï¿½ï¿½
+@param	  IN	                                szCameraId			Í¨ï¿½ï¿½id
+@param	  IN	                                nRType				ï¿½Ï±ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Î¿ï¿½dpsdk_broadcast_report_type_eï¿½ï¿½1500Òµï¿½ï¿½ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½1501Òµï¿½ï¿½ã²¥ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½Ï¢
+@param	  IN	                                nTime				ï¿½Ï±ï¿½Ê±ï¿½ï¿½
+@param	  IN	                                nStatus				×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½Ô½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ 1ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½Ô½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ 1ï¿½ï¿½ï¿½ï¿½ 2Í£Ö¹
+ï¿½ï¿½ï¿½ç±¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬Òªï¿½Ô¼ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë¡ï¿½
 */
 public interface fDPSDKBroadcastReportStatusCallback {
 	public void invoke(int nPDLLHandle, byte[] szCameraId, int nRType, long nTime, int nStatus);

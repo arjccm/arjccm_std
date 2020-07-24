@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;	
+package com.dh.DpsdkCore;	
 
 /** 按时间获取录像码流信息
 @param   szCameraId						设备ID或通道ID

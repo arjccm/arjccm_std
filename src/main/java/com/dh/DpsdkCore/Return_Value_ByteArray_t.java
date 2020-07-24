@@ -1,10 +1,10 @@
 package com.dh.DpsdkCore;
 
-/** ·µ»ØÖµÐÅÏ¢
-@param   nReturnValue					·µ»ØÖµ
+/** ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Ï¢
+@param   nReturnValue					ï¿½ï¿½ï¿½ï¿½Öµ
 */
 
 public class Return_Value_ByteArray_t 
 {
-	public byte[]	szCodeID	=	new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	//·µ»Ø256×Ö½Ú³¤¶È
+	public byte[]	szCodeID	=	new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	//ï¿½ï¿½ï¿½ï¿½256ï¿½Ö½Ú³ï¿½ï¿½ï¿½
 }

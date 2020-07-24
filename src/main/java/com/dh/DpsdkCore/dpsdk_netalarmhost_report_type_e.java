@@ -3,7 +3,7 @@ package com.dh.DpsdkCore;
 public class dpsdk_netalarmhost_report_type_e {
 	
 	public static final int	AHOST_TYPE_NONE			= 0;
-	public static final int	AHOST_TYPE_STAY			= 1;				// ÁôÊØ²¼·À
-	public static final int	AHOST_TYPE_BYPASS		= 2;				// ·ÀÇøÅÔÂ·
+	public static final int	AHOST_TYPE_STAY			= 1;				// ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½
+	public static final int	AHOST_TYPE_BYPASS		= 2;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·
 
 }

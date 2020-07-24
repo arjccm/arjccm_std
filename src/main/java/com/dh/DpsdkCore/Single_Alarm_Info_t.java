@@ -1,15 +1,15 @@
 package com.dh.DpsdkCore;
 
 public class Single_Alarm_Info_t {
-	public int					nAlarmType;									// ±¨¾¯ÀàÐÍ  dpsdk_alarm_type_e
-	public int					nEventType;									// ÊÂ¼þ×´Ì¬ dpsdk_event_type_e
-	public byte[]				szDevId = new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];				// ±¨¾¯Éè±¸ID
-	public int					uChannel;									// ±¨¾¯Í¨µÀ
-	public long					uAlarmTime;									// ±¨¾¯Ê±¼ä
-	public int          		nDealWith;									// ´¦ÀíÒâ¼û dpsdk_alarm_dealwith_e
-	public byte[]				szPicUrl = new byte[dpsdk_constant_value.DPSDK_CORE_IMG_PATH_LEN];			// ±¨¾¯Í¼Æ¬url
-	public byte[]				szSwLabel = new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ³¬Éù²¨Ì½²â±êÇ©
-	public byte[]				szMessage = new byte[dpsdk_constant_value.DPSDK_CORE_ALARM_MSG_LEN];		// ¸½¼ÓÐÅÏ¢
+	public int					nAlarmType;									// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  dpsdk_alarm_type_e
+	public int					nEventType;									// ï¿½Â¼ï¿½×´Ì¬ dpsdk_event_type_e
+	public byte[]				szDevId = new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];				// ï¿½ï¿½ï¿½ï¿½ï¿½è±¸ID
+	public int					uChannel;									// ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
+	public long					uAlarmTime;									// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	public int          		nDealWith;									// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dpsdk_alarm_dealwith_e
+	public byte[]				szPicUrl = new byte[dpsdk_constant_value.DPSDK_CORE_IMG_PATH_LEN];			// ï¿½ï¿½ï¿½ï¿½Í¼Æ¬url
+	public byte[]				szSwLabel = new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½Ç©
+	public byte[]				szMessage = new byte[dpsdk_constant_value.DPSDK_CORE_ALARM_MSG_LEN];		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	
 	public Single_Alarm_Info_t()
 	{

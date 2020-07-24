@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 云台打开命令信息 目前包括灯光 雨刷 红外
 @param   szCameraId					通道ID

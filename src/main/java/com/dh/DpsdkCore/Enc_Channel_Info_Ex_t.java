@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 编码通道信息
 @param   nCameraType		类型，参见CameraType_e

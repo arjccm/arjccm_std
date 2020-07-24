@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 云台图像控制命令
 @param     DPSDK_CORE_PTZ_ADD_ZOOM       	= 0;		变倍+ 

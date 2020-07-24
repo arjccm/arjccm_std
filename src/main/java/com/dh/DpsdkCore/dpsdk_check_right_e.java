@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 是否检查权限
 @param     DPSDK_CORE_CHECK_RIGHT			= 0;		检查

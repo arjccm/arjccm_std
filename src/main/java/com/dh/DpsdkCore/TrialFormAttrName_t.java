@@ -1,48 +1,48 @@
 package com.dh.DpsdkCore;
 
-/** ÉóÑ¶±íµ¥ÊôÐÔÃû
-@param   m_caseIdAttr					°¸¼þ±àºÅ
-@param   m_trialSeqAttr					°¸¼þÐòºÅ/ÉóÑ¶ÐòºÅ
-@param   m_caseUnderTakerAttr			°ì°¸ÈËÔ±
-@param   m_caseDepAttr					°ì°¸µ¥Î»
-@param   m_caseReasonAttr				ÉæÏÓÃû³Æ
-@param   m_caseReferPersonAttr			Éæ°¸ÈËÔ±
-@param   m_caseRemarkAttr				°¸¾í±¸×¢
-@param   m_caseRecordNameAttr			Â¼ÏñÃû³Æ
-@param   m_trialObjNameAttr				±»ÉóÑ¶ÈËÐÕÃû
-@param   m_trialObjSexAttr				±»ÉóÑ¶ÈËÐÔ±ð
-@param   m_trialObjIDAttr				±»ÉóÑ¶ÈËÉí·ÝÖ¤ºÅÂë
-@param   m_trialObjNationAttr			Ãñ×å
-@param   m_trialObjBirthdayAttr			³öÉúÄêÔÂ
+/** ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_caseIdAttr					ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_trialSeqAttr					ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½
+@param   m_caseUnderTakerAttr			ï¿½ì°¸ï¿½ï¿½Ô±
+@param   m_caseDepAttr					ï¿½ì°¸ï¿½ï¿½Î»
+@param   m_caseReasonAttr				ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_caseReferPersonAttr			ï¿½æ°¸ï¿½ï¿½Ô±
+@param   m_caseRemarkAttr				ï¿½ï¿½ï¿½ï¿½×¢
+@param   m_caseRecordNameAttr			Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_trialObjNameAttr				ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_trialObjSexAttr				ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½Ô±ï¿½
+@param   m_trialObjIDAttr				ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
+@param   m_trialObjNationAttr			ï¿½ï¿½ï¿½ï¿½
+@param   m_trialObjBirthdayAttr			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 @param   m_trialObjHomeAddrAttr			×¡Ö·
-@param   m_trialObjWorkUnitsAttr		¹¤×÷µ¥Î»
-@param   m_trialObjTelephoneAttr		ÁªÏµµç»°
-@param   m_CDIDAttr						¹âÅÌ±àºÅ
-@param   m_recordPersonAttr				¿ÌÂ¼ÈË
-@param   m_caseAssistantAttr			Ð­Öú°ì°¸ÈËÔ±--¾í×ÚÐÅÏ¢ÐÂÔö£¬·Ç±ØÌîÏî
-@param   m_trialObjAgeAttr				ÄêÁä--±»Ñ¯ÎÊÈËÐÅÏ¢-ÐÂÔö£¬·Ç±ØÌîÏî
+@param   m_trialObjWorkUnitsAttr		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
+@param   m_trialObjTelephoneAttr		ï¿½ï¿½Ïµï¿½ç»°
+@param   m_CDIDAttr						ï¿½ï¿½ï¿½Ì±ï¿½ï¿½
+@param   m_recordPersonAttr				ï¿½ï¿½Â¼ï¿½ï¿½
+@param   m_caseAssistantAttr			Ð­ï¿½ï¿½ï¿½ì°¸ï¿½ï¿½Ô±--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_trialObjAgeAttr				ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 
 public class TrialFormAttrName_t
 {
-	public byte[]	m_caseIdAttr			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// °¸¼þ±àºÅ
-	public byte[]	m_trialSeqAttr			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// °¸¼þÐòºÅ/ÉóÑ¶ÐòºÅ
-	public byte[]	m_caseUnderTakerAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// °ì°¸ÈËÔ±
-	public byte[]	m_caseDepAttr			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// °ì°¸µ¥Î»
-	public byte[]	m_caseReasonAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ÉæÏÓÃû³Æ
-	public byte[]	m_caseReferPersonAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// Éæ°¸ÈËÔ±
-	public byte[]	m_caseRemarkAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// °¸¾í±¸×¢
-	public byte[]	m_caseRecordNameAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// Â¼ÏñÃû³Æ
-	public byte[]	m_trialObjNameAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ±»ÉóÑ¶ÈËÐÕÃû
-	public byte[]	m_trialObjSexAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ±»ÉóÑ¶ÈËÐÔ±ð
-	public byte[]	m_trialObjIDAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ±»ÉóÑ¶ÈËÉí·ÝÖ¤ºÅÂë
-	public byte[]	m_trialObjNationAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// Ãñ×å
-	public byte[]	m_trialObjBirthdayAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ³öÉúÄêÔÂ
+	public byte[]	m_caseIdAttr			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_trialSeqAttr			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½
+	public byte[]	m_caseUnderTakerAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ì°¸ï¿½ï¿½Ô±
+	public byte[]	m_caseDepAttr			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ì°¸ï¿½ï¿½Î»
+	public byte[]	m_caseReasonAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_caseReferPersonAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½æ°¸ï¿½ï¿½Ô±
+	public byte[]	m_caseRemarkAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½×¢
+	public byte[]	m_caseRecordNameAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_trialObjNameAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_trialObjSexAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½Ô±ï¿½
+	public byte[]	m_trialObjIDAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_trialObjNationAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_trialObjBirthdayAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public byte[]	m_trialObjHomeAddrAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ×¡Ö·
-	public byte[]	m_trialObjWorkUnitsAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ¹¤×÷µ¥Î»
-	public byte[]	m_trialObjTelephoneAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ÁªÏµµç»°
-	public byte[]	m_CDIDAttr				=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ¹âÅÌ±àºÅ
-	public byte[]	m_recordPersonAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ¿ÌÂ¼ÈË
-	public byte[]	m_caseAssistantAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// Ð­Öú°ì°¸ÈËÔ±--¾í×ÚÐÅÏ¢ÐÂÔö£¬·Ç±ØÌîÏî
-	public byte[]	m_trialObjAgeAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ÄêÁä--±»Ñ¯ÎÊÈËÐÅÏ¢-ÐÂÔö£¬·Ç±ØÌîÏî
+	public byte[]	m_trialObjWorkUnitsAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
+	public byte[]	m_trialObjTelephoneAttr	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½Ïµï¿½ç»°
+	public byte[]	m_CDIDAttr				=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½Ì±ï¿½ï¿½
+	public byte[]	m_recordPersonAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½Â¼ï¿½ï¿½
+	public byte[]	m_caseAssistantAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// Ð­ï¿½ï¿½ï¿½ì°¸ï¿½ï¿½Ô±--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_trialObjAgeAttr		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];			// ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½
 };

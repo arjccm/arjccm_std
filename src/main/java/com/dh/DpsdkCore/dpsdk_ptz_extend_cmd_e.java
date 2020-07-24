@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 云台方向控制命令
 @param     DPSDK_CORE_PTZ_START_AUTO_ROUND				= 39;					开始水平旋转

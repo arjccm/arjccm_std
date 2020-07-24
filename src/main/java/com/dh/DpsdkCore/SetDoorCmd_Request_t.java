@@ -2,10 +2,10 @@ package com.dh.DpsdkCore;
 
 public class SetDoorCmd_Request_t {
 
-	public byte[]					szCameraId= new byte[dpsdk_constant_value.DPSDK_CORE_CHL_ID_LEN];			// Í¨µÀID
-	public int						cmd;									// ¿ØÖÆÃüÁî ²Î¿¼dpsdk_SetDoorCmd_e
-	public long						start;									// ¿ªÊ¼Ê±¼ä
-	public long						end;									// ½áÊøÊ±¼ä
+	public byte[]					szCameraId= new byte[dpsdk_constant_value.DPSDK_CORE_CHL_ID_LEN];			// Í¨ï¿½ï¿½ID
+	public int						cmd;									// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½dpsdk_SetDoorCmd_e
+	public long						start;									// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	public long						end;									// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	
 	public SetDoorCmd_Request_t()
 	{

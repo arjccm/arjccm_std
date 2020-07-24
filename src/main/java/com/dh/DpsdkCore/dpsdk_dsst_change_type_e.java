@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 录像流回放速度
 @param    DSST_GROUP_CHANGE_UNKNOW                   	= 0;			 未知

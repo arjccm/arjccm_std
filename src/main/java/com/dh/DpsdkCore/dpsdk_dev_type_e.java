@@ -1,7 +1,7 @@
 package com.dh.DpsdkCore;
 
 public class dpsdk_dev_type_e {
-	public static final int     DEV_TYPE_ENC_BEGIN			= 0;		// ±àÂëÉè±¸
+	public static final int     DEV_TYPE_ENC_BEGIN			= 0;		// ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
 	public static final int     DEV_TYPE_DVR				= DEV_TYPE_ENC_BEGIN + 1;			// DVR
 	public static final int     DEV_TYPE_IPC				= DEV_TYPE_ENC_BEGIN + 2;			// IPC
 	public static final int     DEV_TYPE_NVS				= DEV_TYPE_ENC_BEGIN + 3;			// NVS
@@ -9,120 +9,120 @@ public class dpsdk_dev_type_e {
 	public static final int		DEV_TYPE_MDVR				= DEV_TYPE_ENC_BEGIN + 5;			// MDVR
 	public static final int		DEV_TYPE_NVR				= DEV_TYPE_ENC_BEGIN + 6;			// NVR
 	public static final int		DEV_TYPE_SVR				= DEV_TYPE_ENC_BEGIN + 7;			// SVR
-	public static final int		DEV_TYPE_PCNVR				= DEV_TYPE_ENC_BEGIN + 8;			// PCNVR£»PSS×Ô´øµÄÒ»¸öÐ¡ÐÍ·þÎñ
+	public static final int		DEV_TYPE_PCNVR				= DEV_TYPE_ENC_BEGIN + 8;			// PCNVRï¿½ï¿½PSSï¿½Ô´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ð¡ï¿½Í·ï¿½ï¿½ï¿½
 	public static final int		DEV_TYPE_PVR				= DEV_TYPE_ENC_BEGIN + 9;			// PVR
 	public static final int		DEV_TYPE_EVS				= DEV_TYPE_ENC_BEGIN + 10;			// EVS
 	public static final int		DEV_TYPE_MPGS				= DEV_TYPE_ENC_BEGIN + 11;			// MPGS
 	public static final int		DEV_TYPE_SMART_IPC			= DEV_TYPE_ENC_BEGIN + 12;			// SMART_IPC
-	public static final int		DEV_TYPE_SMART_TINGSHEN		= DEV_TYPE_ENC_BEGIN + 13;			// Í¥ÉóÖ÷»ú
+	public static final int		DEV_TYPE_SMART_TINGSHEN		= DEV_TYPE_ENC_BEGIN + 13;			// Í¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final int		DEV_TYPE_SMART_NVR			= DEV_TYPE_ENC_BEGIN + 14;			// SMART_NVR
-	public static final int		DEV_TYPE_PRC				= DEV_TYPE_ENC_BEGIN + 15;			// ·À»¤²Õ
-	public static final int		DEV_TYPE_JT808				= DEV_TYPE_ENC_BEGIN + 18;			// ²¿±êJT808
+	public static final int		DEV_TYPE_PRC				= DEV_TYPE_ENC_BEGIN + 15;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_JT808				= DEV_TYPE_ENC_BEGIN + 18;			// ï¿½ï¿½ï¿½ï¿½JT808
 
 	public static final int		DEV_TYPE_ENC_END			= 99;
 
 	public static final int		DEV_TYPE_TVWALL_BEGIN		= 100;
-	public static final int		DEV_TYPE_BIGSCREEN			= DEV_TYPE_TVWALL_BEGIN + 1;		// ´óÆÁ
+	public static final int		DEV_TYPE_BIGSCREEN			= DEV_TYPE_TVWALL_BEGIN + 1;		// ï¿½ï¿½ï¿½ï¿½
 	public static final int		DEV_TYPE_TVWALL_END			= 199;
 
-	public static final int		DEV_TYPE_DEC_BEGIN			= 200;		// ½âÂëÉè±¸
+	public static final int		DEV_TYPE_DEC_BEGIN			= 200;		// ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
 	public static final int		DEV_TYPE_NVD				= DEV_TYPE_DEC_BEGIN + 1;			// NVD
 	public static final int		DEV_TYPE_SNVD				= DEV_TYPE_DEC_BEGIN + 2;			// SNVD
 	public static final int		DEV_TYPE_UDS				= DEV_TYPE_DEC_BEGIN + 5;			// UDS
 	public static final int		DEV_TYPE_DEC_END			=299;
 
-	public static final int		DEV_TYPE_MATRIX_BEGIN		= 300;		// ¾ØÕóÉè±¸
+	public static final int		DEV_TYPE_MATRIX_BEGIN		= 300;		// ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
 	public static final int		DEV_MATRIX_M60				= DEV_TYPE_MATRIX_BEGIN	+ 1;		// M60
 	public static final int		DEV_MATRIX_NVR6000			= DEV_TYPE_MATRIX_BEGIN + 2;		// NVR6000
 	public static final int		DEV_TYPE_MATRIX_END			= 399;
 
-	public static final int		DEV_TYPE_IVS_BEGIN			= 400;		// ÖÇÄÜÉè±¸
-	public static final int		DEV_TYPE_ISD				= DEV_TYPE_IVS_BEGIN + 1;			// ISD ÖÇÄÜÇò
-	public static final int		DEV_TYPE_IVS_B				= DEV_TYPE_IVS_BEGIN + 2;			// IVS-B ÐÐÎª·ÖÎö·þÎñ
-	public static final int		DEV_TYPE_IVS_V				= DEV_TYPE_IVS_BEGIN + 3;			// IVS-V ÊÓÆµÖÊÁ¿Õï¶Ï·þÎñ
-	public static final int		DEV_TYPE_IVS_FR				= DEV_TYPE_IVS_BEGIN + 4;			// IVS-FR ÈËÁ³Ê¶±ð·þÎñ
-	public static final int		DEV_TYPE_IVS_PC				= DEV_TYPE_IVS_BEGIN + 5;			// IVS-PC ÈËÁ÷Á¿Í³¼Æ·þÎñ
-	public static final int		DEV_TYPE_IVS_M				= DEV_TYPE_IVS_BEGIN + 6;			// IVS_M Ö÷´Ó¸ú×ÙÖÇÄÜºÐ
-	public static final int		DEV_TYPE_IVS_PC_BOX			= DEV_TYPE_IVS_BEGIN + 7;			// IVS-PC ÖÇÄÜºÐ 
-	public static final int		DEV_TYPE_IVS_B_BOX			= DEV_TYPE_IVS_BEGIN + 8;			// IVS-B ÖÇÄÜºÐ
-	public static final int		DEV_TYPE_IVS_M_BOX			= DEV_TYPE_IVS_BEGIN + 9;			// IVS-M ºÐ×Ó
-	public static final int		DEV_TYPE_IVS_PRC			= DEV_TYPE_IVS_BEGIN + 10;			// ·À»¤²Õ
+	public static final int		DEV_TYPE_IVS_BEGIN			= 400;		// ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_ISD				= DEV_TYPE_IVS_BEGIN + 1;			// ISD ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_IVS_B				= DEV_TYPE_IVS_BEGIN + 2;			// IVS-B ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_IVS_V				= DEV_TYPE_IVS_BEGIN + 3;			// IVS-V ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_IVS_FR				= DEV_TYPE_IVS_BEGIN + 4;			// IVS-FR ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_IVS_PC				= DEV_TYPE_IVS_BEGIN + 5;			// IVS-PC ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³ï¿½Æ·ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_IVS_M				= DEV_TYPE_IVS_BEGIN + 6;			// IVS_M ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Üºï¿½
+	public static final int		DEV_TYPE_IVS_PC_BOX			= DEV_TYPE_IVS_BEGIN + 7;			// IVS-PC ï¿½ï¿½ï¿½Üºï¿½ 
+	public static final int		DEV_TYPE_IVS_B_BOX			= DEV_TYPE_IVS_BEGIN + 8;			// IVS-B ï¿½ï¿½ï¿½Üºï¿½
+	public static final int		DEV_TYPE_IVS_M_BOX			= DEV_TYPE_IVS_BEGIN + 9;			// IVS-M ï¿½ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_IVS_PRC			= DEV_TYPE_IVS_BEGIN + 10;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final int		DEV_TYPE_IVS_END			= 499;
 
-	public static final int		DEV_TYPE_BAYONET_BEGIN		= 500;		// -CÏà¹ØÉè±¸
-	public static final int		DEV_TYPE_CAPTURE			= DEV_TYPE_BAYONET_BEGIN + 1;		// ¿¨¿ÚÉè±¸
-	public static final int		DEV_TYPE_SPEED				= DEV_TYPE_BAYONET_BEGIN + 2;		// ²âËÙÉè±¸
-	public static final int		DEV_TYPE_TRAFFIC_LIGHT		= DEV_TYPE_BAYONET_BEGIN + 3;		// ´³ºìµÆÉè±¸
-	public static final int		DEV_TYPE_INCORPORATE		= DEV_TYPE_BAYONET_BEGIN + 4;		// Ò»Ìå»¯Éè±¸
-	public static final int		DEV_TYPE_PLATEDISTINGUISH	= DEV_TYPE_BAYONET_BEGIN + 5;		// ³µÅÆÊ¶±ðÉè±¸
-	public static final int		DEV_TYPE_VIOLATESNAPPIC		= DEV_TYPE_BAYONET_BEGIN + 6;		// Î¥Í£¼ì²âÉè±¸
-	public static final int		DEV_TYPE_PARKINGSTATUSDEV	= DEV_TYPE_BAYONET_BEGIN + 7;		// ³µÎ»¼ì²âÉè±¸
-	public static final int		DEV_TYPE_ENTRANCE			= DEV_TYPE_BAYONET_BEGIN + 8;		// ³öÈë¿ÚÉè±¸
-	public static final int		DEV_TYPE_VIOLATESNAPBALL	= DEV_TYPE_BAYONET_BEGIN + 9;		// Î¥Í£×¥ÅÄÇò»ú
-	public static final int		DEV_TYPE_THIRDBAYONET		= DEV_TYPE_BAYONET_BEGIN + 10;		// µÚÈý·½¿¨¿ÚÉè±¸
-	public static final int		DEV_TYPE_ULTRASONIC			= DEV_TYPE_BAYONET_BEGIN + 11;		// ³¬Éù²¨³µÎ»¼ì²âÆ÷
-	public static final int		DEV_TYPE_FACE_CAPTURE		= DEV_TYPE_BAYONET_BEGIN + 12;		// ÈËÁ³×¥ÅÄÉè±¸
-	public static final int		DEV_TYPE_ITC_SMART_NVR		= DEV_TYPE_BAYONET_BEGIN + 13;		// ¿¨¿ÚÖÇÄÜNVRÉè±¸
+	public static final int		DEV_TYPE_BAYONET_BEGIN		= 500;		// -Cï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_CAPTURE			= DEV_TYPE_BAYONET_BEGIN + 1;		// ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_SPEED				= DEV_TYPE_BAYONET_BEGIN + 2;		// ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_TRAFFIC_LIGHT		= DEV_TYPE_BAYONET_BEGIN + 3;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_INCORPORATE		= DEV_TYPE_BAYONET_BEGIN + 4;		// Ò»ï¿½å»¯ï¿½è±¸
+	public static final int		DEV_TYPE_PLATEDISTINGUISH	= DEV_TYPE_BAYONET_BEGIN + 5;		// ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_VIOLATESNAPPIC		= DEV_TYPE_BAYONET_BEGIN + 6;		// Î¥Í£ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_PARKINGSTATUSDEV	= DEV_TYPE_BAYONET_BEGIN + 7;		// ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_ENTRANCE			= DEV_TYPE_BAYONET_BEGIN + 8;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_VIOLATESNAPBALL	= DEV_TYPE_BAYONET_BEGIN + 9;		// Î¥Í£×¥ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_THIRDBAYONET		= DEV_TYPE_BAYONET_BEGIN + 10;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_ULTRASONIC			= DEV_TYPE_BAYONET_BEGIN + 11;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_FACE_CAPTURE		= DEV_TYPE_BAYONET_BEGIN + 12;		// ï¿½ï¿½ï¿½ï¿½×¥ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_ITC_SMART_NVR		= DEV_TYPE_BAYONET_BEGIN + 13;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½NVRï¿½è±¸
 	public static final int		DEV_TYPE_BAYONET_END		= 599;
 
-	public static final int		DEV_TYPE_ALARM_BEGIN		= 600;		// ±¨¾¯Éè±¸
-	public static final int		DEV_TYPE_ALARMHOST			= DEV_TYPE_ALARM_BEGIN + 1;			// ±¨¾¯Ö÷»ú
+	public static final int		DEV_TYPE_ALARM_BEGIN		= 600;		// ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_ALARMHOST			= DEV_TYPE_ALARM_BEGIN + 1;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final int		DEV_TYPE_ALARM_END			= 699;
 
 	public static final int		DEV_TYPE_DOORCTRL_BEGIN		= 700;
-	public static final int		DEV_TYPE_DOORCTRL_DOOR		= DEV_TYPE_DOORCTRL_BEGIN + 1;		// ÃÅ½û
+	public static final int		DEV_TYPE_DOORCTRL_DOOR		= DEV_TYPE_DOORCTRL_BEGIN + 1;		// ï¿½Å½ï¿½
 	public static final int		DEV_TYPE_DOORCTRL_END		=799;
 
 	public static final int		DEV_TYPE_PE_BEGIN			= 800;
-	public static final int		DEV_TYPE_PE_PE				= DEV_TYPE_PE_BEGIN + 1;			// ¶¯»·
-	public static final int		DEV_TYPE_PE_AE6016			= DEV_TYPE_PE_BEGIN + 2;			// AE6016Éè±¸
-	public static final int		DEV_TYPE_PE_NVS				= DEV_TYPE_PE_BEGIN + 3;			// ´ø¶¯»·¹¦ÄÜµÄNVSÉè±¸
+	public static final int		DEV_TYPE_PE_PE				= DEV_TYPE_PE_BEGIN + 1;			// ï¿½ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_PE_AE6016			= DEV_TYPE_PE_BEGIN + 2;			// AE6016ï¿½è±¸
+	public static final int		DEV_TYPE_PE_NVS				= DEV_TYPE_PE_BEGIN + 3;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Üµï¿½NVSï¿½è±¸
 	public static final int		DEV_TYPE_PE_END				=899;
 
-	public static final int		DEV_TYPE_VOICE_BEGIN		= 900;		// ip¶Ô½²
+	public static final int		DEV_TYPE_VOICE_BEGIN		= 900;		// ipï¿½Ô½ï¿½
 	public static final int		DEV_TYPE_VOICE_MIKE			= DEV_TYPE_VOICE_BEGIN + 1;
 	public static final int		DEV_TYPE_VOICE_NET			= DEV_TYPE_VOICE_BEGIN + 2;
 	public static final int		DEV_TYPE_VOICE_END			=999;
 
-	public static final int		DEV_TYPE_IP_BEGIN			= 1000;		// IPÉè±¸£¨Í¨¹ýÍøÂç½ÓÈëµÄÉè±¸£©
-	public static final int		DEV_TYPE_IP_SCNNER			= DEV_TYPE_IP_BEGIN + 1;			// É¨ÃèÇ¹
-	public static final int		DEV_TYPE_IP_SWEEP			= DEV_TYPE_IP_BEGIN + 2;			// µØ°õ
-	public static final int		DEV_TYPE_IP_POWERCONTROL	= DEV_TYPE_IP_BEGIN + 3;			// µçÔ´¿ØÖÆÆ÷
+	public static final int		DEV_TYPE_IP_BEGIN			= 1000;		// IPï¿½è±¸ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½
+	public static final int		DEV_TYPE_IP_SCNNER			= DEV_TYPE_IP_BEGIN + 1;			// É¨ï¿½ï¿½Ç¹
+	public static final int		DEV_TYPE_IP_SWEEP			= DEV_TYPE_IP_BEGIN + 2;			// ï¿½Ø°ï¿½
+	public static final int		DEV_TYPE_IP_POWERCONTROL	= DEV_TYPE_IP_BEGIN + 3;			// ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final int		DEV_TYPE_IP_END				= 1099;
 
-	public static final int		DEV_TYPE_MULTIFUNALARM_BEGIN= 1100;		// ¶à¹¦ÄÜ±¨¾¯Ö÷»ú
-	public static final int		DEV_TYPE_VEDIO_ALARMHOST	= DEV_TYPE_MULTIFUNALARM_BEGIN + 1;	// ÊÓÆµ±¨¾¯Ö÷»ú
+	public static final int		DEV_TYPE_MULTIFUNALARM_BEGIN= 1100;		// ï¿½à¹¦ï¿½Ü±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final int		DEV_TYPE_VEDIO_ALARMHOST	= DEV_TYPE_MULTIFUNALARM_BEGIN + 1;	// ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final int		DEV_TYPE_MULTIFUNALARM_END	= 1199;
 
 	public static final int		DEV_TYPE_SLUICE_BEGIN		= 1200;
-	public static final int		DEV_TYPE_SLUICE_DEV			= DEV_TYPE_SLUICE_BEGIN + 1;		// ³öÈë¿ÚµÀÕ¢Éè±¸
-	public static final int		DEV_TYPE_SLUICE_PARKING		= DEV_TYPE_SLUICE_BEGIN + 2;		// Í£³µ³¡µÀÕ¢Éè±¸
-	public static final int		DEV_TYPE_SLUICE_STOPBUFFER	= DEV_TYPE_SLUICE_BEGIN + 3;		// ÊÓÆµµµ³µÆ÷
+	public static final int		DEV_TYPE_SLUICE_DEV			= DEV_TYPE_SLUICE_BEGIN + 1;		// ï¿½ï¿½ï¿½ï¿½Úµï¿½Õ¢ï¿½è±¸
+	public static final int		DEV_TYPE_SLUICE_PARKING		= DEV_TYPE_SLUICE_BEGIN + 2;		// Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¢ï¿½è±¸
+	public static final int		DEV_TYPE_SLUICE_STOPBUFFER	= DEV_TYPE_SLUICE_BEGIN + 3;		// ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final int		DEV_TYPE_SLUICE_END			= 1299;
 
 	public static final int		DEV_TYPE_ELECTRIC_BEGIN		= 1300;
-	public static final int		DEV_TYPE_ELECTRIC_DEV		= DEV_TYPE_ELECTRIC_BEGIN + 1;		// µçÍøÉè±¸
+	public static final int		DEV_TYPE_ELECTRIC_DEV		= DEV_TYPE_ELECTRIC_BEGIN + 1;		// ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
 	public static final int		DEV_TYPE_ELECTRIC_END		= 1399;
 
 	public static final int		DEV_TYPE_LED_BEGIN			= 1400;
-	public static final int		DEV_TYPE_LED_DEV			= DEV_TYPE_LED_BEGIN + 1;			// LEDÆÁÉè±¸
+	public static final int		DEV_TYPE_LED_DEV			= DEV_TYPE_LED_BEGIN + 1;			// LEDï¿½ï¿½ï¿½è±¸
 	public static final int		DEV_TYPE_LED_END			= 1499;
 
 	public static final int		DEV_TYPE_VIBRATIONFIBER_BEGIN	= 1500;		
-	public static final int		DEV_TYPE_VIBRATIONFIBER_DEV	= DEV_TYPE_VIBRATIONFIBER_BEGIN + 1;// Õð¶¯¹âÏËÉè±¸ 
+	public static final int		DEV_TYPE_VIBRATIONFIBER_DEV	= DEV_TYPE_VIBRATIONFIBER_BEGIN + 1;// ï¿½ð¶¯¹ï¿½ï¿½ï¿½ï¿½è±¸ 
 	public static final int		DEV_TYPE_VIBRATIONFIBER_END = 1599;
 
 	public static final int		DEV_TYPE_PATROL_BEGIN		= 1600;		
-	public static final int		DEV_TYPE_PATROL_DEV			= DEV_TYPE_PATROL_BEGIN + 1;		// Ñ²¸ü°ôÉè±¸
-	public static final int		DEV_TYPE_PATROL_SPOT		= DEV_TYPE_PATROL_BEGIN + 2;		// Ñ²¸üµãÉè±¸
+	public static final int		DEV_TYPE_PATROL_DEV			= DEV_TYPE_PATROL_BEGIN + 1;		// Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
+	public static final int		DEV_TYPE_PATROL_SPOT		= DEV_TYPE_PATROL_BEGIN + 2;		// Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
 	public static final int		DEV_TYPE_PATROL_END			= 1699;
 
 	public static final int		DEV_TYPE_SENTRY_BOX_BEGIN	= 1700;		
-	public static final int		DEV_TYPE_SENTRY_BOX_DEV		= DEV_TYPE_SENTRY_BOX_BEGIN + 1;	// ÉÚÎ»ÏäÉè±¸
+	public static final int		DEV_TYPE_SENTRY_BOX_DEV		= DEV_TYPE_SENTRY_BOX_BEGIN + 1;	// ï¿½ï¿½Î»ï¿½ï¿½ï¿½è±¸
 	public static final int		DEV_TYPE_SENTRY_BOX_END		= 1799;
 
 	public static final int		DEV_TYPE_COURT_BEGIN		= 1800;		
-	public static final int		DEV_TYPE_COURT_DEV			= DEV_TYPE_COURT_BEGIN + 1;			// Í¥ÉóÉè±¸
+	public static final int		DEV_TYPE_COURT_DEV			= DEV_TYPE_COURT_BEGIN + 1;			// Í¥ï¿½ï¿½ï¿½è±¸
 	public static final int		DEV_TYPE_COURT_END			= 1899;
 
 	public static final int		DEV_TYPE_VIDEO_TALK_BEGIN	= 1900;
@@ -132,12 +132,12 @@ public class dpsdk_dev_type_e {
 	public static final int		DEV_TYPE_VIDEO_TALK_END		= 1999;
 
 	public static final int		DEV_TYPE_BROADCAST_BEGIN	= 2000;
-	public static final int		DEV_TYPE_BROADCAST_ITC_T6700R = DEV_TYPE_BROADCAST_BEGIN + 1;	// ITC_T6700R¹ã²¥Éè±¸
+	public static final int		DEV_TYPE_BROADCAST_ITC_T6700R = DEV_TYPE_BROADCAST_BEGIN + 1;	// ITC_T6700Rï¿½ã²¥ï¿½è±¸
 	public static final int		DEV_TYPE_BROADCAST_END		= 2099;
 
 	public static final int		DEV_TYPE_VIDEO_RECORD_SERVER_BEGIN = 2100;
-	public static final int		DEV_TYPE_VIDEO_RECORD_SERVER_BNVR	= DEV_TYPE_VIDEO_RECORD_SERVER_BEGIN + 1; // BNVRÉè±¸
-	public static final int		DEV_TYPE_VIDEO_RECORD_SERVER_OE	= DEV_TYPE_VIDEO_RECORD_SERVER_BEGIN + 2; // ÊÖÊõÉè±¸(operation equipment)
+	public static final int		DEV_TYPE_VIDEO_RECORD_SERVER_BNVR	= DEV_TYPE_VIDEO_RECORD_SERVER_BEGIN + 1; // BNVRï¿½è±¸
+	public static final int		DEV_TYPE_VIDEO_RECORD_SERVER_OE	= DEV_TYPE_VIDEO_RECORD_SERVER_BEGIN + 2; // ï¿½ï¿½ï¿½ï¿½ï¿½è±¸(operation equipment)
 	public static final int		DEV_TYPE_VIDEO_RECORD_SERVER_END= 2199;
 
 }

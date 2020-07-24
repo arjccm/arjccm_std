@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 单个录像信息
 @param   Talk_Audio_Sam_8K				8K

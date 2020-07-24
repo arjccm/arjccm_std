@@ -1,9 +1,9 @@
 package com.dh.DpsdkCore;
 
 public class Alarm_Info_t {
-	public int							nCount;										// ÇëÇóÂ¼ÏñÊý
-	public int						    nRetCount;									// Êµ¼Ê·µ»Ø¸öÊý
-	public Single_Alarm_Info_t[]		pAlarmInfo;									// ±¨¾¯ÐÅÏ¢
+	public int							nCount;										// ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+	public int						    nRetCount;									// Êµï¿½Ê·ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½
+	public Single_Alarm_Info_t[]		pAlarmInfo;									// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	
 	public Alarm_Info_t(int nMaxCount)
 	{

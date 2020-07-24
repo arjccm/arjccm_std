@@ -1,40 +1,40 @@
 package com.dh.DpsdkCore;
 
-/** ¿ÌÂ¼Æ¬Í·
-@param   m_deviceId					Éè±¸ID
-@param   m_password					µþ¼ÓÃÜÂë
-@param   m_caseId					1.°¸¼þ±àºÅ
-@param   m_trialSeq					2.°¸¼þÐòºÅ/ÉóÑ¶ÐòºÅ
-@param   m_caseUnderTaker			3.°ì°¸ÈËÔ±
-@param   m_caseDep					4.°ì°¸µ¥Î»
-@param   m_caseReason				5.ÉæÏÓÃû³Æ
-@param   m_caseReferPerson			6.Éæ°¸ÈËÔ±
-@param   m_caseRemark				7.°¸¾í±¸×¢
-@param   m_caseRecordName			8.Â¼ÏñÃû³Æ
-@param   m_RecordNum				9.¹âÅÌ±àºÅ
-@param   m_recordPerson				10.¿ÌÂ¼ÈË
-@param   m_dataCheckOsdEn			11.¹âÅÌ¿ÌÂ¼Êý¾ÝÐ£ÑéÅäÖÃ/µþ¼ÓÊ¹ÄÜ
-@param   m_AttachFileEn				12.¸½¼ÓÎÄ¼þÊ¹ÄÜ
-@param   m_multiBurnerDataCheck		13.¶à¹âÅÌÒ»ÖÂÐÔÐ£ÑéÊ¹ÄÜ
-@param   m_multiBurnerDataCheckSpeed	14.Ð£ÑéËÙ¶ÈÐ£ÑéËÙ¶È 0 ¸ßËÙ£¨Í·Î²Êý¾ÝÐ£Ñé£©,1 Õý³££¨Ëæ»úÊý¾ÝÐ£Ñé£©,2 µÍËÙ £¨È«ÅÌÊý¾ÝÐ£Ñé£©,Ä¬ÈÏ0
+/** ï¿½ï¿½Â¼Æ¬Í·
+@param   m_deviceId					ï¿½è±¸ID
+@param   m_password					ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_caseId					1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_trialSeq					2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½
+@param   m_caseUnderTaker			3.ï¿½ì°¸ï¿½ï¿½Ô±
+@param   m_caseDep					4.ï¿½ì°¸ï¿½ï¿½Î»
+@param   m_caseReason				5.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_caseReferPerson			6.ï¿½æ°¸ï¿½ï¿½Ô±
+@param   m_caseRemark				7.ï¿½ï¿½ï¿½ï¿½×¢
+@param   m_caseRecordName			8.Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param   m_RecordNum				9.ï¿½ï¿½ï¿½Ì±ï¿½ï¿½
+@param   m_recordPerson				10.ï¿½ï¿½Â¼ï¿½ï¿½
+@param   m_dataCheckOsdEn			11.ï¿½ï¿½ï¿½Ì¿ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
+@param   m_AttachFileEn				12.ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê¹ï¿½ï¿½
+@param   m_multiBurnerDataCheck		13.ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½Ê¹ï¿½ï¿½
+@param   m_multiBurnerDataCheckSpeed	14.Ð£ï¿½ï¿½ï¿½Ù¶ï¿½Ð£ï¿½ï¿½ï¿½Ù¶ï¿½ 0 ï¿½ï¿½ï¿½Ù£ï¿½Í·Î²ï¿½ï¿½ï¿½ï¿½Ð£ï¿½é£©,1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½é£©,2 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½é£©,Ä¬ï¿½ï¿½0
 */
 
 public class DevBurnerInfoHeader_t
 {
-	public byte[]	m_deviceId			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];		// Éè±¸ID
-	public byte[]	m_password			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_64];		// µþ¼ÓÃÜÂë
-	public byte[]	m_caseId			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_64];		// 1.°¸¼þ±àºÅ
-	public byte[]	m_trialSeq			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 2.°¸¼þÐòºÅ/ÉóÑ¶ÐòºÅ
-	public byte[]	m_caseUnderTaker	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 3.°ì°¸ÈËÔ±
-	public byte[]	m_caseDep			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 4.°ì°¸µ¥Î»	
-	public byte[]	m_caseReason		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 5.ÉæÏÓÃû³Æ
-	public byte[]	m_caseReferPerson	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 6.Éæ°¸ÈËÔ±
-	public byte[]	m_caseRemark		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 7.°¸¾í±¸×¢
-	public byte[]	m_caseRecordName	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 8.Â¼ÏñÃû³Æ
-	public byte[]	m_RecordNum			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_64];		// 9.¹âÅÌ±àºÅ
-	public byte[]	m_recordPerson		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 10.¿ÌÂ¼ÈË
-	public boolean	m_dataCheckOsdEn;																// 11.¹âÅÌ¿ÌÂ¼Êý¾ÝÐ£ÑéÅäÖÃ/µþ¼ÓÊ¹ÄÜ
-	public boolean	m_AttachFileEn;																	// 12.¸½¼ÓÎÄ¼þÊ¹ÄÜ
-	public boolean	m_multiBurnerDataCheck;															// 13.¶à¹âÅÌÒ»ÖÂÐÔÐ£ÑéÊ¹ÄÜ
-	public int		m_multiBurnerDataCheckSpeed;													// 14.Ð£ÑéËÙ¶ÈÐ£ÑéËÙ¶È 0 ¸ßËÙ£¨Í·Î²Êý¾ÝÐ£Ñé£©,1 Õý³££¨Ëæ»úÊý¾ÝÐ£Ñé£©,2 µÍËÙ £¨È«ÅÌÊý¾ÝÐ£Ñé£©,Ä¬ÈÏ0
+	public byte[]	m_deviceId			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_32];		// ï¿½è±¸ID
+	public byte[]	m_password			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_64];		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_caseId			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_64];		// 1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_trialSeq			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½
+	public byte[]	m_caseUnderTaker	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 3.ï¿½ì°¸ï¿½ï¿½Ô±
+	public byte[]	m_caseDep			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 4.ï¿½ì°¸ï¿½ï¿½Î»	
+	public byte[]	m_caseReason		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 5.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_caseReferPerson	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 6.ï¿½æ°¸ï¿½ï¿½Ô±
+	public byte[]	m_caseRemark		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 7.ï¿½ï¿½ï¿½ï¿½×¢
+	public byte[]	m_caseRecordName	=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 8.Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public byte[]	m_RecordNum			=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_64];		// 9.ï¿½ï¿½ï¿½Ì±ï¿½ï¿½
+	public byte[]	m_recordPerson		=new byte[dpsdk_constant_value.DPSDK_CORE_CHAR_LEN_256];	// 10.ï¿½ï¿½Â¼ï¿½ï¿½
+	public boolean	m_dataCheckOsdEn;																// 11.ï¿½ï¿½ï¿½Ì¿ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
+	public boolean	m_AttachFileEn;																	// 12.ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê¹ï¿½ï¿½
+	public boolean	m_multiBurnerDataCheck;															// 13.ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½Ê¹ï¿½ï¿½
+	public int		m_multiBurnerDataCheckSpeed;													// 14.Ð£ï¿½ï¿½ï¿½Ù¶ï¿½Ð£ï¿½ï¿½ï¿½Ù¶ï¿½ 0 ï¿½ï¿½ï¿½Ù£ï¿½Í·Î²ï¿½ï¿½ï¿½ï¿½Ð£ï¿½é£©,1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½é£©,2 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½é£©,Ä¬ï¿½ï¿½0
 };

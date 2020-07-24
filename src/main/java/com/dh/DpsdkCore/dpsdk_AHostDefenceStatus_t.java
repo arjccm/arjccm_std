@@ -1,9 +1,9 @@
 package com.dh.DpsdkCore;
 
 public class dpsdk_AHostDefenceStatus_t {
-	public byte[]	szNodeID = new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];// ·ÀÇø½ÚµãID
-	public int  	nAlarm;															// 0±íÊ¾Î´±¨¾¯ 1104±íÊ¾±¨¾¯ 1105±íÊ¾»ð¾¯ 1106±íÊ¾·À
-	public int  	nUndefendAlarm;													// 0±íÊ¾Ã»ÓÐÎ´²¼·À±¨¾¯ 83±íÊ¾Î´²¼·À±¨¾¯£¨ÓÉÓÚ24Ð¡Ê±·ÀÇø»á³öÏÖ²¼·À±¨¾¯ºÍÎ´²¼·À±¨¾¯²¢·¢µÄÇé¿ö ËùÒÔÐèÒªÇø·ÖÒ»ÏÂ£©
-	public boolean	bByPass;														// true=ÅÔÂ·, false=Î´ÅÔÂ·
-	public boolean	bDefend;														// true=²¼·À, false=³··À
+	public byte[]	szNodeID = new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];// ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ID
+	public int  	nAlarm;															// 0ï¿½ï¿½Ê¾Î´ï¿½ï¿½ï¿½ï¿½ 1104ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ 1105ï¿½ï¿½Ê¾ï¿½ï¿½ 1106ï¿½ï¿½Ê¾ï¿½ï¿½
+	public int  	nUndefendAlarm;													// 0ï¿½ï¿½Ê¾Ã»ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 83ï¿½ï¿½Ê¾Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½24Ð¡Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ò»ï¿½Â£ï¿½
+	public boolean	bByPass;														// true=ï¿½ï¿½Â·, false=Î´ï¿½ï¿½Â·
+	public boolean	bDefend;														// true=ï¿½ï¿½ï¿½ï¿½, false=ï¿½ï¿½ï¿½ï¿½
 }

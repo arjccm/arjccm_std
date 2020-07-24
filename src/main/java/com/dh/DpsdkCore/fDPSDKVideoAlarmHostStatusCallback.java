@@ -1,11 +1,11 @@
 package com.dh.DpsdkCore;
 
-/** ÊÓÆµ±¨¾¯Ö÷»ú²¼³··À/ÅÔÂ·×´Ì¬»Øµ÷
-@param	  IN	                                nPDLLHandle		    SDK¾ä±ú
-@param	  IN	                                szDeviceId			Éè±¸Id
-@param	  IN	                                nChannelNO			Í¨µÀºÅ£¬Éè±¸²Ù×÷Í¨µÀºÅÊÇ-1
-@param	  IN	                                nStatus				×´Ì¬£¬²Î¿¼dpsdk_videoalarmhost_status_type_e
-ÊÓÆµ±¨¾¯Ö÷»úÔÚ¿Í»§¶ËµÇÂ½µÄÊ±ºòDMS»áÉÏ±¨×´Ì¬£¬¿Í»§¶Ë²Ù×÷»áÍ¨ÖªÆäËû¿Í»§¶Ë¡£
+/** ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½Â·×´Ì¬ï¿½Øµï¿½
+@param	  IN	                                nPDLLHandle		    SDKï¿½ï¿½ï¿½
+@param	  IN	                                szDeviceId			ï¿½è±¸Id
+@param	  IN	                                nChannelNO			Í¨ï¿½ï¿½ï¿½Å£ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-1
+@param	  IN	                                nStatus				×´Ì¬ï¿½ï¿½ï¿½Î¿ï¿½dpsdk_videoalarmhost_status_type_e
+ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿Í»ï¿½ï¿½Ëµï¿½Â½ï¿½ï¿½Ê±ï¿½ï¿½DMSï¿½ï¿½ï¿½Ï±ï¿½×´Ì¬ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë¡ï¿½
 */
 public interface fDPSDKVideoAlarmHostStatusCallback {
 	public void invoke(int nPDLLHandle, byte[] szDeviceId, int nChannelNO, int nStatus);

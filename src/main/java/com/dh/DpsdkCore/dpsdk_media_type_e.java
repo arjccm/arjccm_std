@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 媒体类型
 @param     DPSDK_CORE_MEDIATYPE_VIDEO				= 1;					  视频

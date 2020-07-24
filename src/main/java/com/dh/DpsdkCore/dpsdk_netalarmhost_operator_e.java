@@ -1,9 +1,9 @@
 package com.dh.DpsdkCore;
 
-//±¨¾¯Ö÷»ú×´Ì¬ÀàÐÍ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½
 public class dpsdk_netalarmhost_operator_e {
-	public static final int	AHOST_OPERATE_DEVICE			= 1;		// Éè±¸ ²¼/³··À
-	public static final int	AHOST_OPERATE_CHANNEL			= 2;		// Í¨µÀ ²¼/³··À
-	public static final int	AHOST_OPERATE_CHANNEL_ALARMOUT	= 3;		// ±¨¾¯Êä³öÍ¨µÀ²Ù×÷
+	public static final int	AHOST_OPERATE_DEVICE			= 1;		// ï¿½è±¸ ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½
+	public static final int	AHOST_OPERATE_CHANNEL			= 2;		// Í¨ï¿½ï¿½ ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½
+	public static final int	AHOST_OPERATE_CHANNEL_ALARMOUT	= 3;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 }

@@ -265,8 +265,9 @@ public class CcmRestLogin extends BaseController {
 		}else {
 			json.put("photo", userDB.getPhoto());
 		}
+        net.sf.json.JSONObject jsonObject = net.sf.json.JSONObject.fromObject(sysConfig.getParamStr());
+        String center = jsonObject.getString("center");
         json.put("admin",userDB.isAdmin());
-
         json.put("arj_netty_url",Global.getConfig("ARJIM_NETTY_URL"));
         //json.put("arj_netty_websocket_url",Global.getConfig("ARJIM_NETTY_WEBSOCKET_URL"));
         json.put("arj_rest_url",Global.getConfig("ARJIM_RETS_URL"));
@@ -276,6 +277,7 @@ public class CcmRestLogin extends BaseController {
         json.put("arj_coturn_stun_url",Global.getConfig("ARJ_COTURN_STUN_URL"));
         json.put("arj_turn_username",Global.getConfig("ARJ_TURN_USERNAME"));
         json.put("arj_turn_password",Global.getConfig("ARJ_TURN_PASSWORD"));
+        json.put("center",center);
         result.setResult(json);
         return result;
     }

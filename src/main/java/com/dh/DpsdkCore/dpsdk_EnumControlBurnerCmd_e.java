@@ -1,18 +1,18 @@
 package com.dh.DpsdkCore;
 
-/** ¿ÌÂ¼¿ØÖÆÃüÁî
-@param    Cmd_StartBurn		        = 1;					¿ªÊ¼¿ÌÂ¼
-@param    Cmd_PauseBurn		        = 2;					ÔÝÍ£¿ÌÂ¼
-@param    Cmd_StartBurn		        = 3;					¼ÌÐø¿ÌÂ¼
-@param    Cmd_PauseBurn		        = 4;					Í£Ö¹¿ÌÂ¼
-@param    Cmd_StartBurn		        = 5;					ÊÖ¶¯»»ÅÌ
+/** ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param    Cmd_StartBurn		        = 1;					ï¿½ï¿½Ê¼ï¿½ï¿½Â¼
+@param    Cmd_PauseBurn		        = 2;					ï¿½ï¿½Í£ï¿½ï¿½Â¼
+@param    Cmd_StartBurn		        = 3;					ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼
+@param    Cmd_PauseBurn		        = 4;					Í£Ö¹ï¿½ï¿½Â¼
+@param    Cmd_StartBurn		        = 5;					ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 
 public class dpsdk_EnumControlBurnerCmd_e
 {
-	public static final int	Cmd_StartBurn 		= 1;		// ¿ªÊ¼¿ÌÂ¼
-	public static final int Cmd_PauseBurn		= 2;		// ÔÝÍ£¿ÌÂ¼
-	public static final int	Cmd_ContinueBurn	= 3;		// ¼ÌÐø¿ÌÂ¼
-	public static final int	Cmd_StopBurn		= 4;		// Í£Ö¹¿ÌÂ¼
-	public static final int	Cmd_ChangeCD		= 5;		// ÊÖ¶¯»»ÅÌ
+	public static final int	Cmd_StartBurn 		= 1;		// ï¿½ï¿½Ê¼ï¿½ï¿½Â¼
+	public static final int Cmd_PauseBurn		= 2;		// ï¿½ï¿½Í£ï¿½ï¿½Â¼
+	public static final int	Cmd_ContinueBurn	= 3;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼
+	public static final int	Cmd_StopBurn		= 4;		// Í£Ö¹ï¿½ï¿½Â¼
+	public static final int	Cmd_ChangeCD		= 5;		// ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
 };

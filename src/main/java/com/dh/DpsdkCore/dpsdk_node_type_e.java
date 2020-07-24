@@ -1,10 +1,10 @@
 package com.dh.DpsdkCore;
 
-//节点类型
+//锟节碉拷锟斤拷锟斤拷
 public class dpsdk_node_type_e 
 {
-	public static final int DPSDK_CORE_NODE_DEP		= 0;										// 组织
-	public static final int DPSDK_CORE_NODE_DEV		= 1;												// 设备
-	public static final int DPSDK_CORE_NODE_CHANNEL = 2;											// 通道
+	public static final int DPSDK_CORE_NODE_DEP		= 0;										// 锟斤拷织
+	public static final int DPSDK_CORE_NODE_DEV		= 1;												// 锟借备
+	public static final int DPSDK_CORE_NODE_CHANNEL = 2;											// 通锟斤拷
 
 }

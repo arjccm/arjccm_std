@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 云台方向控制命令
 @param     DPSDK_CORE_PTZ_GO_UP					= 1;					  上

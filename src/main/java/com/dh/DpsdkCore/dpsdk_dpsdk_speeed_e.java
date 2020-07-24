@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 录像流回放速度
 @param     DPSDK_CORE_PB_NORMAL					= 8;						   1倍数

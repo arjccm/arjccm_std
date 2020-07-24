@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 码流的视频分辨率类型
 @param     DPSDK_CORE_RESOLUTION_1080P			= 1;							 1080P

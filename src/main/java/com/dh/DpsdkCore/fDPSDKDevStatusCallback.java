@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 设备状态回调.
  @param   IN									nPDLLHandle		        SDK句柄

@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 常量定义
 @param DPSDK_CORE_IP_LEN					= 48;			远端IP地址长度

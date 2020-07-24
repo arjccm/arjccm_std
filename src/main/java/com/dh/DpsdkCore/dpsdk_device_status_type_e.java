@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 	
 /** 设备状态类型
 @param     DPSDK_CORE_DEVICE_STATUS_ONLINE							= 1;			设备上线通知

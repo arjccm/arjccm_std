@@ -1,9 +1,9 @@
 package com.dh.DpsdkCore;
 
 public class Get_PosChannel_Info_t {
-	public byte[]	szDeviceId = new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];	// 设备ID
-	public int							nPosChannelChildCount;							// 通道个数
-	public Pos_Channel_Info_t			pPosChannelnfo[];								// 通道信息
+	public byte[]	szDeviceId = new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];	// 锟借备ID
+	public int							nPosChannelChildCount;							// 通锟斤拷锟斤拷锟斤拷
+	public Pos_Channel_Info_t			pPosChannelnfo[];								// 通锟斤拷锟斤拷息
 	
 	public Get_PosChannel_Info_t(int nMaxPosChannelChildCount)
 	{

@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 音频类型
 @param     Talk_Coding_Default  	= 0;		default

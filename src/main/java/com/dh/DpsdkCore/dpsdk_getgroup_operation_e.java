@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 获取节点的深度
 @param     DPSDK_CORE_GEN_GETGROUP_OPERATION_ALL		= -1;					  获取子孙

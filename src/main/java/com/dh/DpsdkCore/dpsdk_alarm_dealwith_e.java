@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** 报警处理类型
 @param   ALARM_DEALWITH_PENDING			= 1;			处理中

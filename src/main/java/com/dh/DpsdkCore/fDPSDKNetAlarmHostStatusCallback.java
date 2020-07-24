@@ -1,12 +1,12 @@
 package com.dh.DpsdkCore;
 
-/** ÍøÂç±¨¾¯Ö÷»ú²¼³··À/ÅÔÂ·×´Ì¬»Øµ÷
-@param	  IN	                                nPDLLHandle		    SDK¾ä±ú
-@param	  IN	                                szDeviceId			²¼³··ÀÊ±ÊÇÉè±¸Id;ÅÔÂ·/È¡ÏûÅÔÂ·Ê±ÊÇÍ¨µÀid
-@param	  IN	                                nRType				ÉÏ±¨ÀàÐÍ£¬²Î¿¼dpsdk_netalarmhost_report_type_e£¬1²¼·À£¬2ÅÔÂ·
-@param	  IN	                                nOperType			²Ù×÷ÀàÐÍ£¬²Î¿¼dpsdk_netalarmhost_operator_e£¬1Éè±¸²Ù×÷£¬2Í¨µÀ²Ù×÷
-@param	  IN	                                nStatus				×´Ì¬£¬¶ÔÓÚ·ÀÇø×´Ì¬1²¼·À2³··À£»¶ÔÓÚÅÔÂ·×´Ì¬1ÅÔÂ·2È¡ÏûÅÔÂ·
-ÍøÂç±¨¾¯Ö÷»ú×´Ì¬Òª×Ô¼º²éÑ¯£¬¿Í»§¶Ë²Ù×÷»áÍ¨ÖªÆäËû¿Í»§¶Ë¡£
+/** ï¿½ï¿½ï¿½ç±¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½Â·×´Ì¬ï¿½Øµï¿½
+@param	  IN	                                nPDLLHandle		    SDKï¿½ï¿½ï¿½
+@param	  IN	                                szDeviceId			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½è±¸Id;ï¿½ï¿½Â·/È¡ï¿½ï¿½ï¿½ï¿½Â·Ê±ï¿½ï¿½Í¨ï¿½ï¿½id
+@param	  IN	                                nRType				ï¿½Ï±ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Î¿ï¿½dpsdk_netalarmhost_report_type_eï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½Â·
+@param	  IN	                                nOperType			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Î¿ï¿½dpsdk_netalarmhost_operator_eï¿½ï¿½1ï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+@param	  IN	                                nStatus				×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½×´Ì¬1ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·×´Ì¬1ï¿½ï¿½Â·2È¡ï¿½ï¿½ï¿½ï¿½Â·
+ï¿½ï¿½ï¿½ç±¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬Òªï¿½Ô¼ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë¡ï¿½
 */
 public interface fDPSDKNetAlarmHostStatusCallback {
 	public void invoke(int nPDLLHandle, byte[] szDeviceId, int nRType, int nOperType, int nStatus);

@@ -1,4 +1,4 @@
-﻿package com.dh.DpsdkCore;
+package com.dh.DpsdkCore;
 
 /** SDK类型
 @param     DPSDK_CORE_SDK_SERVER			= 1;				服务模式使用
