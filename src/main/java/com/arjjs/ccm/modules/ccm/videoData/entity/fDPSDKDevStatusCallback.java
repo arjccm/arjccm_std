@@ -1,5 +1,11 @@
 package com.arjjs.ccm.modules.ccm.videoData.entity;
 
+import com.dh.DpsdkCore.Device_Info_Ex_t;
+import com.dh.DpsdkCore.IDpsdkCore;
+import com.dh.DpsdkCore.Return_Value_Info_t;
+import com.dh.DpsdkCore.dpsdk_dev_type_e;
+import com.dh.DpsdkCore.dpsdk_retval_e;
+
 /** 设备状态回调.
  @param   IN									nPDLLHandle		        SDK句柄
  @param   IN									szDeviceId              设备ID（DVR+通道）
