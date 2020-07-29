@@ -86,7 +86,8 @@
 				<object classid="CLSID:7E393848-7238-4CE3-82EE-44AF444B240A" id="PlayViewOCX" wmode="opaque" width="0" height="0" name="PlayViewOCX">
 				</object>
 			</div>
-			<div id="vidioDiv" style="float: left; width: 250px;">
+			<div style="float: left; width: 250px;">
+			<div id="vidioDiv" >
 
 				<ul class="clearfix" style="width: 210px; margin: 0px auto;">
 					<li onclick="PtzControl(11,1,1,100)" style="float:left ;width: 30px;height: 30px;padding: 10px;margin-left: 45px;margin-top: 5px">
@@ -97,7 +98,7 @@
 					</li>
 				</ul>
 
-				<ul class="clearfix" style="width: 210px; margin: 90px auto;">
+				<ul class="clearfix" style="width: 210px; margin: 20px auto;">
 					<li onmousedown="PtzControl(25,1,1,0)" onmouseup="PtzControl(25,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
 						<img src="${ctxStatic}/common/index/images/left_up.png" style="width:50px;height:50px;" title="左上">
 					</li>
@@ -127,8 +128,9 @@
 					</li>
 				</ul>
 			</div>
-			<div style="float: left; width: 250px;padding-top: 5%">
+			<div style="float: left; width: 250px;padding-top: 15%">
 				<a href="http://localhost:8080/arjccm/exe/hikvision.exe" style="margin-left: 54%;color: #0bbbee;font-size: 14px">下载视频插件</a>
+			</div>
 			</div>
 		</c:if>
 		<c:if test="${ccmDevice.typeVidicon == 3}">
@@ -142,6 +144,7 @@
 						</object>
 					</div>
 				</div>
+				<div style="float: left; width: 250px;">
 				<div id="vidioDiv3" style="float: left; width: 250px;">
 
 					<ul class="clearfix" style="width: 210px; margin: 0px auto;">
@@ -153,7 +156,7 @@
 						</li>
 					</ul>
 
-					<ul class="clearfix" style="width: 210px; margin: 90px auto;">
+					<ul class="clearfix" style="width: 210px; margin: 20px auto;">
 						<li onmousedown="ButtonPtzDirection_onclick(5)" onmouseup="ButtonPtzDirection_onclickStop(1)" style="float: left;width: 50px;height: 50px;padding: 9px">
 							<img src="${ctxStatic}/common/index/images/left_up.png" style="width:50px;height:50px;" title="左上">
 						</li>
@@ -183,8 +186,9 @@
 						</li>
 					</ul>
 				</div>
-				<div style="float: left; width: 250px;padding-top: 5%">
+				<div style="float: left; width: 250px;padding-top: 15%">
 					<a href="http://localhost:8080/arjccm/exe/DPSDK_OCX_Win32andWin64.exe" style="margin-left: 54%;color: #0bbbee;font-size: 14px">下载视频插件</a>
+				</div>
 				</div>
 			</div>
 		</c:if>
@@ -199,9 +203,8 @@
 					<object classid="clsid:02EFF2E9-3D57-461F-BDAC-7A598239E53C" id="PlayViewOCX" wmode="opaque" width="0" height="0" name="PlayViewOCX">
 					</object>
 				</div>
-
-
-				<div id="vidioDiv" style="float: left; width: 250px;">
+				<div style="float: left; width: 250px;">
+				<div id="vidioDiv4" style="float: left; width: 250px;">
 
 					<ul class="clearfix" style="width: 210px; margin: 0px auto;">
 						<li onclick="PtzControl(11,1,1,100)" style="float:left ;width: 30px;height: 30px;padding: 10px;margin-left: 45px;margin-top: 5px">
@@ -212,7 +215,7 @@
 						</li>
 					</ul>
 
-					<ul class="clearfix" style="width: 210px; margin: 90px auto;">
+					<ul class="clearfix" style="width: 210px; margin: 20px auto;">
 						<li onmousedown="PtzControl(25,1,1,0)" onmouseup="PtzControl(25,0,0,0)" style="float: left;width: 50px;height: 50px;padding: 9px">
 							<img src="${ctxStatic}/common/index/images/left_up.png" style="width:50px;height:50px;" title="左上">
 						</li>
@@ -242,8 +245,9 @@
 						</li>
 					</ul>
 				</div>
-				<div style="float: left; width: 250px;padding-top: 5%">
+				<div style="float: left; width: 250px;padding-top: 15%">
 					<a href="http://localhost:8080/arjccm/exe/Tiandy.EXE" style="margin-left: 54%;color: #0bbbee;font-size: 14px">下载视频插件</a>
+				</div>
 				</div>
 			</div>
 
@@ -538,5 +542,15 @@
 	})
 
 </script>
+<style>
+	.clearfix:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
+	}
+</style>
 </body>
 </html>
