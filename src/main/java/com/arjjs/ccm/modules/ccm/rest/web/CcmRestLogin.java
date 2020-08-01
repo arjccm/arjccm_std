@@ -260,24 +260,28 @@ public class CcmRestLogin extends BaseController {
                 sysConfig.setSysMapConfig(sysMapConfig);
             }
         }
-        json.put("mapSrc", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppMapUrl()) ? sysConfig.getSysMapConfig().getAppMapUrl() : "");
-        json.put("tileSize", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getTileSize()) ? sysConfig.getSysMapConfig().getTileSize() : "");
+
+        JSONObject jsonmap= new JSONObject();
+        jsonmap.put("mapSrc", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppMapUrl()) ? sysConfig.getSysMapConfig().getAppMapUrl() : "");
+        jsonmap.put("tileSize", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getTileSize()) ? sysConfig.getSysMapConfig().getTileSize() : "");
         if(StringUtils.isNotBlank(sysConfig.getSysMapConfig().getProjection())){
             if(sysConfig.getSysMapConfig().getProjection().equals("0")){
-                json.put("coordinateFormat", "4326");
+                jsonmap.put("coordinateFormat", "4326");
             } else if(sysConfig.getSysMapConfig().getProjection().equals("1")){
-                json.put("coordinateFormat", "3857");
+                jsonmap.put("coordinateFormat", "3857");
             } else {
-                json.put("coordinateFormat", "");
+                jsonmap.put("coordinateFormat", "");
             }
         } else {
-            json.put("coordinateFormat", "");
+            jsonmap.put("coordinateFormat", "");
         }
-        json.put("layer", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getName()) ? sysConfig.getSysMapConfig().getName() : "");
-        json.put("tileMatrixSet", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getTileMatrixSet()) ? sysConfig.getSysMapConfig().getTileMatrixSet() : "");
-        json.put("minZoom", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getMin()) ? sysConfig.getSysMapConfig().getMin() : "");
-        json.put("maxZoom", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getMax()) ? sysConfig.getSysMapConfig().getMax() : "");
-        json.put("format", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getFormat()) ? sysConfig.getSysMapConfig().getFormat() : "");
+        jsonmap.put("layer", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getName()) ? sysConfig.getSysMapConfig().getName() : "");
+        jsonmap.put("tileMatrixSet", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getTileMatrixSet()) ? sysConfig.getSysMapConfig().getTileMatrixSet() : "");
+        jsonmap.put("minZoom", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getMin()) ? sysConfig.getSysMapConfig().getMin() : "");
+        jsonmap.put("maxZoom", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getMax()) ? sysConfig.getSysMapConfig().getMax() : "");
+        jsonmap.put("format", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getFormat()) ? sysConfig.getSysMapConfig().getFormat() : "");
+        json.put("mapInfoBean",jsonmap);
+
         if(StringUtils.isNotBlank(userDB.getPhoto())) {
         	json.put("photo", Global.getConfig("FILE_UPLOAD_URL")+userDB.getPhoto());
 		}else {
