@@ -251,6 +251,7 @@ public class CcmRestLogin extends BaseController {
         json.put("mobile",userDB.getMobile());
         json.put("userType",userDB.getUserType());
         json.put("loginIp",userDB.getLoginIp());
+        //地图相关参数
         SysConfig sysConfig = sysConfigService.get(SysConfig.MAP_CONFIG_ID);
         if (StringUtils.isNotBlank(sysConfig.getParamStr())) {
             net.sf.json.JSONObject jsonObject = net.sf.json.JSONObject.fromObject(sysConfig.getParamStr());
@@ -259,7 +260,24 @@ public class CcmRestLogin extends BaseController {
                 sysConfig.setSysMapConfig(sysMapConfig);
             }
         }
-        json.put("imageMapUrl", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppMapUrl()) ? sysConfig.getSysMapConfig().getAppMapUrl() : "");
+        json.put("mapSrc", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppMapUrl()) ? sysConfig.getSysMapConfig().getAppMapUrl() : "");
+        json.put("tileSize", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getTileSize()) ? sysConfig.getSysMapConfig().getTileSize() : "");
+        if(StringUtils.isNotBlank(sysConfig.getSysMapConfig().getProjection())){
+            if(sysConfig.getSysMapConfig().getProjection().equals("0")){
+                json.put("coordinateFormat", "4326");
+            } else if(sysConfig.getSysMapConfig().getProjection().equals("1")){
+                json.put("coordinateFormat", "3857");
+            } else {
+                json.put("coordinateFormat", "");
+            }
+        } else {
+            json.put("coordinateFormat", "");
+        }
+        json.put("layer", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getName()) ? sysConfig.getSysMapConfig().getName() : "");
+        json.put("tileMatrixSet", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getTileMatrixSet()) ? sysConfig.getSysMapConfig().getTileMatrixSet() : "");
+        json.put("minZoom", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getMin()) ? sysConfig.getSysMapConfig().getMin() : "");
+        json.put("maxZoom", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getMax()) ? sysConfig.getSysMapConfig().getMax() : "");
+        json.put("format", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getFormat()) ? sysConfig.getSysMapConfig().getFormat() : "");
         if(StringUtils.isNotBlank(userDB.getPhoto())) {
         	json.put("photo", Global.getConfig("FILE_UPLOAD_URL")+userDB.getPhoto());
 		}else {
