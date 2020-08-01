@@ -72,6 +72,66 @@
             </div>
         </div>
         <div class="control-group">
+            <label class="control-label">服务名：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.name" htmlEscape="false" maxlength="256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">tileSize：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.tileSize" htmlEscape="false" maxlength="256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">tileMatrixSet：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.tileMatrixSet" htmlEscape="false" maxlength="256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">format：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.format" htmlEscape="false" maxlength="256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">resolutions：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.resolutions" htmlEscape="false" maxlength="1256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">sliceNum：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.sliceNum" htmlEscape="false" maxlength="256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">origin：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.origin" htmlEscape="false" maxlength="256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">matrixIds：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.matrixIds" htmlEscape="false" maxlength="2256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">resolution：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.resolution" htmlEscape="false" maxlength="256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">extent：</label>
+            <div class="controls">
+                <form:input path="sysMapConfig.extent" htmlEscape="false" maxlength="256" class="input-xlarge digits"/>
+            </div>
+        </div>
+        <div class="control-group">
             <label class="control-label">中心坐标：</label>
             <div class="controls">
                 <form:input path="sysMapConfig.center" htmlEscape="false" maxlength="256" class="input-xlarge number"/>
