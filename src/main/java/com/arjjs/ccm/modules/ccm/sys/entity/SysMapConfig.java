@@ -25,6 +25,17 @@ public class SysMapConfig {
 	private String max; //最大层级
 	private String keshihuaMapUrl; //可视化地图url
 	private String appMapUrl; //APP地图url
+	private String name;  //地图服务名
+	private String format;  //format格式
+	private String tileSize;    //地图大小
+	private String tileMatrixSet;  //投影坐标系设置矩阵
+	private String resolutions;
+	private String sliceNum;
+	private String origin;
+	private String matrixIds;
+	private String resolution;
+	private String extent;
+
 
 	public String getProjection() {
 		return projection;
@@ -137,5 +148,85 @@ public class SysMapConfig {
 
 	public void setAppMapUrl(String appMapUrl) {
 		this.appMapUrl = appMapUrl;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public String getTileSize() {
+		return tileSize;
+	}
+
+	public void setTileSize(String tileSize) {
+		this.tileSize = tileSize;
+	}
+
+	public String getTileMatrixSet() {
+		return tileMatrixSet;
+	}
+
+	public void setTileMatrixSet(String tileMatrixSet) {
+		this.tileMatrixSet = tileMatrixSet;
+	}
+
+	public String getResolutions() {
+		return resolutions;
+	}
+
+	public void setResolutions(String resolutions) {
+		this.resolutions = resolutions;
+	}
+
+	public String getSliceNum() {
+		return sliceNum;
+	}
+
+	public void setSliceNum(String sliceNum) {
+		this.sliceNum = sliceNum;
+	}
+
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+
+	public String getMatrixIds() {
+		return matrixIds;
+	}
+
+	public void setMatrixIds(String matrixIds) {
+		this.matrixIds = matrixIds;
+	}
+
+	public String getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
+	}
+
+	public String getExtent() {
+		return extent;
+	}
+
+	public void setExtent(String extent) {
+		this.extent = extent;
 	}
 }
