@@ -254,6 +254,15 @@
 
         <div class="form-actions" style="margin-bottom:15px">APP地图信息</div>
         <div class="control-group">
+            <label class="control-label">地图类型：</label>
+            <div class="controls">
+                <form:select path="sysMapConfig.appType" class="input-xlarge">
+                    <form:options items="${fns:getDictList('map_type')}" itemLabel="label" itemValue="value"
+                                  htmlEscape="false"/>
+                </form:select>
+            </div>
+        </div>
+        <div class="control-group">
             <label class="control-label">地图URL：</label>
             <div class="controls">
                 <form:input path="sysMapConfig.appMapUrl" htmlEscape="false" maxlength="256"
