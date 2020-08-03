@@ -262,6 +262,7 @@ public class CcmRestLogin extends BaseController {
         }
 
         JSONObject jsonmap= new JSONObject();
+        jsonmap.put("mapType", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppType()) ? sysConfig.getSysMapConfig().getAppType() : "");  //123 Arcgus 4 Geosever
         jsonmap.put("mapSrc", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppMapUrl()) ? sysConfig.getSysMapConfig().getAppMapUrl() : "");
         jsonmap.put("tileSize", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getTileSize()) ? sysConfig.getSysMapConfig().getTileSize() : "");
         if(StringUtils.isNotBlank(sysConfig.getSysMapConfig().getProjection())){
