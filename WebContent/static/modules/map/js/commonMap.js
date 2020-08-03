@@ -18,6 +18,7 @@ ArjMap.Map = function (params) {
     this.resolution = params.resolution || ''; //
     this.resolutions = params.resolutions || ''; //
     this.extent = params.extent || ''; //
+    this.mapType = params.mapType || '';
 
     this.zoomShowOrHide = params.zoomShowOrHide || false; // 右上角地图+-控制
     this.showOLpage = params.showOLpage||false;
@@ -238,6 +239,7 @@ ArjMap.Map.prototype = {
                 var id = baseUrl[i].id;
                 var type = baseUrl[i].type;
                 if(typeof (type)!="undefined"){
+                    this.mapType = type;
                     switch (type) {
                         //杭州道现场地图
                         case '1':
@@ -271,7 +273,7 @@ ArjMap.Map.prototype = {
                             break;
                         //arcgis
                         case '3':
-
+                            this.projection = baseUrl[i].projection,
                             this[id + 'Tile'] = new ol.layer.Tile({
                                 title: "地图",
                                 name: baseUrl[i].name,
@@ -345,19 +347,28 @@ ArjMap.Map.prototype = {
     },
     //创建视图
     view: function () {
-        var view = new ol.View({
-            center: this.center,//中心位置
-            zoom: this.zoom,//当前层级
-            minZoom: this.minZoom,//最小层级
-            maxZoom: this.maxZoom,//最大层级
-            /*resolutions: JSON.parse(this.resolutions)[0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.29153442382813E-5, 2.14576721191406E-5, 1.07288360595703E-5, 5.36441802978516E-6],
-            resolution: 0.00274658203125,
-            //projection: projection,
-            extent: [-180.0,0.0,180.0,90.0]*/
-            resolutions: JSON.parse(this.resolutions),
-            resolution: JSON.parse(this.resolution),
-            extent: JSON.parse(this.extent)
-        });
+        if(this.mapType == 4){
+            var view = new ol.View({
+                center: this.center,//中心位置
+                zoom: this.zoom,//当前层级
+                minZoom: this.minZoom,//最小层级
+                maxZoom: this.maxZoom,//最大层级
+                /*resolutions: JSON.parse(this.resolutions)[0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.29153442382813E-5, 2.14576721191406E-5, 1.07288360595703E-5, 5.36441802978516E-6],
+                resolution: 0.00274658203125,
+                extent: [-180.0,0.0,180.0,90.0]*/
+                resolutions: JSON.parse(this.resolutions),
+                resolution: JSON.parse(this.resolution),
+                extent: JSON.parse(this.extent)
+            });
+        } else {
+            var view = new ol.View({
+                center: this.center,//中心位置
+                zoom: this.zoom,//当前层级
+                minZoom: this.minZoom,//最小层级
+                maxZoom: this.maxZoom,//最大层级
+                projection: this.projection,
+            });
+        }
         return view;
     },
     //创建地图
@@ -6152,6 +6163,29 @@ ArjMap.Map.prototype.drawMapSituation = function () {
                     })
                 });
 
+            } else if (baseUrl[i].type == '4'){
+                //geoServer
+                this.resolution = baseUrl[i].resolution,
+                    this.resolutions =  baseUrl[i].resolutions,
+                    this.extent =  baseUrl[i].extent,
+                    this[id + 'Tile'] = new ol.layer.Tile({
+                        title: "地图",
+                        name: baseUrl[i].name,
+                        visible: baseUrl[i].isShow,
+                        source: new ol.source.WMTS({
+                            url: baseUrl[i].url,
+                            layer: baseUrl[i].LAYERS,
+                            matrixSet: baseUrl[i].tileMatrixSet,
+                            format: baseUrl[i].format,
+                            tileGrid: new ol.tilegrid.WMTS({
+                                tileSize: JSON.parse(baseUrl[i].tileSize),
+                                origin: JSON.parse(baseUrl[i].origin), //原点（左上角）
+                                resolutions: JSON.parse(baseUrl[i].resolutions).slice(0,baseUrl[i].sliceNum), //分辨率数组
+                                matrixIds: eval(baseUrl[i].matrixIds), //矩阵标识列表，与地图级数保持一致
+                            }),
+                            wrapX: true
+                        })
+                    });
             }
             layers.push(this[baseUrl[i].id + 'Tile'])
         }
@@ -6552,6 +6586,29 @@ ArjMap.Map.prototype.drawMapSituationLoudong = function () {
                     })
                 });
 
+            } else if (baseUrl[i].type == '4'){
+                //geoServer
+                this.resolution = baseUrl[i].resolution,
+                this.resolutions =  baseUrl[i].resolutions,
+                this.extent =  baseUrl[i].extent,
+                this[id + 'Tile'] = new ol.layer.Tile({
+                    title: "地图",
+                    name: baseUrl[i].name,
+                    visible: baseUrl[i].isShow,
+                    source: new ol.source.WMTS({
+                        url: baseUrl[i].url,
+                        layer: baseUrl[i].LAYERS,
+                        matrixSet: baseUrl[i].tileMatrixSet,
+                        format: baseUrl[i].format,
+                        tileGrid: new ol.tilegrid.WMTS({
+                            tileSize: JSON.parse(baseUrl[i].tileSize),
+                            origin: JSON.parse(baseUrl[i].origin), //原点（左上角）
+                            resolutions: JSON.parse(baseUrl[i].resolutions).slice(0,baseUrl[i].sliceNum), //分辨率数组
+                            matrixIds: eval(baseUrl[i].matrixIds), //矩阵标识列表，与地图级数保持一致
+                        }),
+                        wrapX: true
+                    })
+                });
             }
 
             layers.push(this[baseUrl[i].id + 'Tile'])
