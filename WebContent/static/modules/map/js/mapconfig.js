@@ -224,6 +224,26 @@ $.ajax({
 					'url' : sysMapConfig.imageMapUrl,
 					'isShow' : ImgShow,
 				})
+			}else if(sysMapConfig.imgType=="4"){//GeoServer
+				baseUrlT.push({
+					'type' : sysMapConfig.imgType,
+					'id' : 'yingxiang',
+					'name' : '影像图 ',
+					'url' : sysMapConfig.imageMapUrl,
+					'isShow' : ImgShow,
+					'projection' : sysMapConfig.projection == 0 ? 'EPSG:4326' : 'EPSG:3857',
+					'LAYERS' : sysMapConfig.name,
+					'tileSize' : sysMapConfig.tileSize,
+					'tileMatrixSet' : sysMapConfig.tileMatrixSet,
+					'format' : sysMapConfig.format,
+					'resolutions' : sysMapConfig.resolutions,
+					'sliceNum' : sysMapConfig.sliceNum,
+					'origin' : sysMapConfig.origin,
+					'matrixIds' : sysMapConfig.matrixIds,
+					'resolution' : sysMapConfig.resolution,
+					'extent' : sysMapConfig.extent,
+
+				})
 			}
 			
 		}
@@ -282,12 +302,44 @@ $.ajax({
 					'url' : sysMapConfig.electronicMapUrl,
 					'isShow' : elecShow,
 				})
+			}else if(sysMapConfig.elcType=="4"){//GeoServer
+				baseUrlT.push({
+					'type' : sysMapConfig.elcType,
+					'id' : 'dianzi',
+					'name' : '电子地图 ',
+					'url' : sysMapConfig.electronicMapUrl,
+					'isShow' : elecShow,
+					'projection' : sysMapConfig.projection == 0 ? 'EPSG:4326' : 'EPSG:3857',
+					'LAYERS' : sysMapConfig.name,
+					'tileSize' : sysMapConfig.tileSize,
+					'tileMatrixSet' : sysMapConfig.tileMatrixSet,
+					'format' : sysMapConfig.format,
+					'resolutions' : sysMapConfig.resolutions,
+					'sliceNum' : sysMapConfig.sliceNum,
+					'origin' : sysMapConfig.origin,
+					'matrixIds' : sysMapConfig.matrixIds,
+					'resolution' : sysMapConfig.resolution,
+					'extent' : sysMapConfig.extent,
+
+				})
 			}
 		 }
 
 		if(sysMapConfig.keshihuaMapUrl!=""){
 			baseUrlT.push({
-				'url':sysMapConfig.keshihuaMapUrl
+                'type' : sysMapConfig.kshType,
+				'url':sysMapConfig.keshihuaMapUrl,
+				'projection' : sysMapConfig.projection == 0 ? 'EPSG:4326' : 'EPSG:3857',
+				'LAYERS' : sysMapConfig.name,
+				'tileSize' : sysMapConfig.tileSize,
+				'tileMatrixSet' : sysMapConfig.tileMatrixSet,
+				'format' : sysMapConfig.format,
+				'resolutions' : sysMapConfig.resolutions,
+				'sliceNum' : sysMapConfig.sliceNum,
+				'origin' : sysMapConfig.origin,
+				'matrixIds' : sysMapConfig.matrixIds,
+				'resolution' : sysMapConfig.resolution,
+				'extent' : sysMapConfig.extent,
 			})
 		}
 
