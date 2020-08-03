@@ -35,7 +35,7 @@ public class SysMapConfig {
 	private String matrixIds;
 	private String resolution;
 	private String extent;
-
+	private String kshType;  //可视化地图map类型
 
 	public String getProjection() {
 		return projection;
@@ -228,5 +228,13 @@ public class SysMapConfig {
 
 	public void setExtent(String extent) {
 		this.extent = extent;
+	}
+
+	public String getKshType() {
+		return kshType;
+	}
+
+	public void setKshType(String kshType) {
+		this.kshType = kshType;
 	}
 }
