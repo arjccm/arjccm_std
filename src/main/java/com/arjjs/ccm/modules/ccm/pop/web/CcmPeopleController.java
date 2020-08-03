@@ -66,7 +66,7 @@ import java.util.*;
 
 /**
  * 实有人口Controller
- * 
+ *
  * @author liang
  * @version 2018-01-04
  */
@@ -813,7 +813,7 @@ public class CcmPeopleController extends BaseController {
 		}
 		return "redirect:" + adminPath + "/pop/ccmPeople/?repage";
 	}
-	
+
 	@RequiresPermissions("pop:ccmPeople:view")
 	@RequestMapping(value = "exportByType", method = RequestMethod.POST)
 	public String exportByType(CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response,
@@ -821,8 +821,8 @@ public class CcmPeopleController extends BaseController {
 		String [] strArr={"姓名","联系方式","所属社区","所属网格","公民身份号码"};
 
 		try {
-			
-			
+
+
 			List<CcmPeople> list = ccmPeopleService.getExportList(ccmPeople);
 			if("10".equals(ccmPeople.getType())) {
 				String fileName = "CensusPeopleExport" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
@@ -846,7 +846,7 @@ public class CcmPeopleController extends BaseController {
 
 	/**
 	 * 导入实有人口数据
-	 * 
+	 *
 	 * @param file
 	 * @param redirectAttributes
 	 * 修改：彭建强 20190522 导入数据时，能够自动添加楼栋和房屋，各类关联数据放入到内存中，减少频繁操作数据库带来的压力
@@ -885,10 +885,10 @@ public class CcmPeopleController extends BaseController {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
 			DecimalFormat df = new DecimalFormat("#");
-			
+
 			//导入过程中失败的数据，进行汇总并导出
 			List<CcmPeople> listFailure = new ArrayList<CcmPeople>();
-			
+
 			for (CcmPeople People : list) {
 
 				if(EntityTools.isEmpty(People)){
@@ -898,7 +898,7 @@ public class CcmPeopleController extends BaseController {
 				//用于标记房屋楼栋数据是否新增
 				buildNotHas = false;
 				roomNotHas = false;
-				
+
 				// 如果当前用户的身份未填写或者为空或者身份证号码位数不够18位则应该进行 剔除
 				if (StringUtils.isBlank(People.getIdent()) || People.getIdent().length() != 18) {
 					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "身份证信息错误");
@@ -907,13 +907,13 @@ public class CcmPeopleController extends BaseController {
 					failureNum++;
 					continue;
 				}
-				
+
 				//验证身份证符合标准后，再从从身份证中去获取出生日期
 				if(People.getBirthday()==null) {
 					String birthStr = People.getIdent().substring(6, 14);
 					People.setBirthday(sdf.parse(birthStr));
 				}
-				
+
 				//在身份证号中获取性别
 				if(StringUtils.isEmpty(People.getSex())) {
 					if (Integer.parseInt(People.getIdent().substring(16).substring(0, 1)) % 2 == 0) {// 判断性别
@@ -922,7 +922,7 @@ public class CcmPeopleController extends BaseController {
 			        	People.setSex("0");
 			        }
 				}
-				
+
 				// 验证必填项
 				if ( StringUtils.isBlank(People.getName()) ||
 						StringUtils.isBlank(People.getType()) ||
@@ -1034,14 +1034,14 @@ public class CcmPeopleController extends BaseController {
 					failureNum++;
 					continue;
 				}
-				
+
 				//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
 				if(People.getTelephone().contains(".") || People.getTelephone().contains("E")) {
 					double bd = Double.valueOf(People.getTelephone());
 					String tel = df.format(bd);
 					People.setTelephone(tel);
 				}
-				
+
 				//电话验证
 				if( NumberTools.isPhone(People.getTelephone())==false) {
 					failureMsg.append("<br/>实有人口名" + People.getName() + " 导入失败：" + "联系方式数据不合法。");
@@ -1339,7 +1339,7 @@ public class CcmPeopleController extends BaseController {
 		}
 		return "redirect:" + adminPath + "/pop/ccmPeople/?repage";
 	}
-	
+
 	@RequestMapping(value = "failureexport", method = RequestMethod.POST)
 	public void failureexport(HttpServletRequest request, HttpServletResponse response,
 			RedirectAttributes redirectAttributes) {
@@ -1354,7 +1354,7 @@ public class CcmPeopleController extends BaseController {
 
 	/**
 	 * 导出实有人口数据---特殊关怀人员
-	 * 
+	 *
 	 * @param user
 	 * @param request
 	 * @param response
@@ -1428,7 +1428,7 @@ public class CcmPeopleController extends BaseController {
 
 	/**
 	 * 导出实有人口数据---老年人
-	 * 
+	 *
 	 * @param user
 	 * @param request
 	 * @param response
@@ -1456,7 +1456,7 @@ public class CcmPeopleController extends BaseController {
 
 	/**
 	 * 导出实有人口数据---党员
-	 * 
+	 *
 	 * @param user
 	 * @param request
 	 * @param response
@@ -2107,7 +2107,7 @@ public class CcmPeopleController extends BaseController {
 		model.addAttribute("ccmEventAmbi", ccmEventAmbi);*/
 		return "dma/schoolsafe/dmaSchoolSafeMap";
 	}
-	
+
 	@RequiresPermissions("pop:ccmPeople:view")
 	@RequestMapping(value ="pop")
 	public String pop(CcmPeople ccmPeople, HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -2119,7 +2119,7 @@ public class CcmPeopleController extends BaseController {
 		model.addAttribute("ccmEventAmbi", ccmEventAmbi);*/
 		return "dma/judiciarysubject/dmaJudiciarySubjectMap";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "popNumAllByPolitics")
 	public List<com.arjjs.ccm.tool.EchartType> selectPopNumAllByPolitics(Model model) {
@@ -2127,7 +2127,7 @@ public class CcmPeopleController extends BaseController {
 	    List<EchartType> list = ccmPeopleService.selectPopNumAllByPolitics();
 	    return list;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "PopNumAllByRectification")
 	public List<com.arjjs.ccm.tool.EchartType> selectPopNumAllByRectification(Model model) {
@@ -2135,8 +2135,8 @@ public class CcmPeopleController extends BaseController {
 	    List<EchartType> list = ccmPeopleService.selectPopNumAllByRectification();
 	    return list;
 	}
-	
-	
+
+
 	// 批量添加的移除人员
 	@RequiresPermissions("pop:ccmPeople:edit")
 	@RequestMapping(value = "deletePeople")
@@ -2193,7 +2193,7 @@ public class CcmPeopleController extends BaseController {
 
 	/**
 	 * 重点人员社交关系（家庭、同住）信息弹框
-	 * 
+	 *
 	 * @author pengjianqiang
 	 * @version 2018-07-22
 	 */
@@ -2218,7 +2218,7 @@ public class CcmPeopleController extends BaseController {
 					if(ccmPeople3==null || ccmPeople3.size() <= 0) {
 						continue;
 					}
-					for (CcmPeople people3 : ccmPeople3) {						
+					for (CcmPeople people3 : ccmPeople3) {
 						people3.setCpptype(list.get(i).getType());
 						listSocial.add(people3);
 					}
@@ -2227,7 +2227,7 @@ public class CcmPeopleController extends BaseController {
 					if(ccmPeople3==null || ccmPeople3.size() <= 0) {
 						continue;
 					}
-					for (CcmPeople people3 : ccmPeople3) {						
+					for (CcmPeople people3 : ccmPeople3) {
 						people3.setCpptype(list.get(i).getType());
 						listSocial.add(people3);
 					}

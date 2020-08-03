@@ -3928,7 +3928,7 @@ ArjMap.Map.prototype = {
         });
         var selectSingleClick = new ol.interaction.Select({
             filter: function (feature, layer) {
-                return layer == _this['communitys'] || layer == _this['streets'];
+                return layer == _this['communitys'] || layer == _this['streets'] || layer == _this['districts'];
             }
         });
         var selectPointerMove = new ol.interaction.Select({

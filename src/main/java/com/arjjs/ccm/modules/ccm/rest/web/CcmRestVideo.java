@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.ccm.rest.entity.DssVideoOcx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,4 +91,32 @@ public class CcmRestVideo extends BaseController {
 		return result;
 	}
 
+	/**
+	 * @see  获取大华频播放ocx的参数
+	 * @author szl
+	 * @version 2020-07-17
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getDssConfig", method = RequestMethod.GET)
+	public CcmRestResult getDssConfig(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = new CcmRestResult();
+
+		SysConfig sysConfig = sysConfigService.get("dss_video_ocx_play");
+		//解JSON
+		JSONObject jsonObject = JSONObject.fromObject(sysConfig.getParamStr());
+		String dssIP = (String)jsonObject.get("dssIP");
+		String dssPort = (String)jsonObject.get("dssPort");
+		String dssUserName = (String)jsonObject.get("dssUserName");
+		String dssPassword = (String)jsonObject.get("dssPassword");
+
+		DssVideoOcx dssVideoOcx = new DssVideoOcx();
+		dssVideoOcx.setDssIP(dssIP);
+		dssVideoOcx.setDssPort(dssPort);
+		dssVideoOcx.setDssUserName(dssUserName);
+		dssVideoOcx.setDssPassword(dssPassword);
+
+		result.setCode(CcmRestType.OK);
+		result.setResult(dssVideoOcx);
+		return result;
+	}
 }

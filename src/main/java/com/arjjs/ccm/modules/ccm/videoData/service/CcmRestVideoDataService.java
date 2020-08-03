@@ -206,7 +206,7 @@ public class CcmRestVideoDataService {
 			}
 			ccmDevice.setTypeId("003");
 			ccmDevice.setImagePath("video.png");
-			ccmDevice.setTypeVidicon("1");
+			ccmDevice.setTypeVidicon("2");
 			Area areaTmp = new Area();
 			if(StringUtils.isBlank(areaId)) {
 				areaId = Global.getConfig("DOCKING_MONITORING_POINT");
@@ -271,7 +271,7 @@ public class CcmRestVideoDataService {
 			}
 			ccmDevice.setTypeId("003");
 			ccmDevice.setImagePath("video.png");
-			ccmDevice.setTypeVidicon("1");
+			ccmDevice.setTypeVidicon("2");
 			User userTmp = new User();
 			userTmp.setId("1");
 			ccmDevice.setUpdateBy(userTmp);

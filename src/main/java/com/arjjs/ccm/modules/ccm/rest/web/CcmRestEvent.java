@@ -192,33 +192,33 @@ public class CcmRestEvent extends BaseController {
         ccmEventIncident.setCheckUser(sessionUser);
         ccmEventIncident.setCreateBy(sessionUser);
         Page<CcmEventIncident> page = null;
-            if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("02")){  //涉及师生
-                page = ccmEventIncidentService.findPageStudent(new Page<CcmEventIncident>(req, resp),
-                        ccmEventIncident);
-            } else if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("03")){ //涉及线路
-                page = ccmEventIncidentService.findPageLine(new Page<CcmEventIncident>(req, resp),
-                        ccmEventIncident);
-            } else if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("04")){  //涉及命案
-                page = ccmEventIncidentService.findPageMurder(new Page<CcmEventIncident>(req, resp),
-                        ccmEventIncident);
-            } else {
-                page = ccmEventIncidentService.findPage(new Page<CcmEventIncident>(req, resp),
-                        ccmEventIncident);
+        if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("02")){  //涉及师生
+            page = ccmEventIncidentService.findPageStudent(new Page<CcmEventIncident>(req, resp),
+                    ccmEventIncident);
+        } else if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("03")){ //涉及线路
+            page = ccmEventIncidentService.findPageLine(new Page<CcmEventIncident>(req, resp),
+                    ccmEventIncident);
+        } else if(StringUtils.isNotEmpty(ccmEventIncident.getEventKind()) && ccmEventIncident.getEventKind().equals("04")){  //涉及命案
+            page = ccmEventIncidentService.findPageMurder(new Page<CcmEventIncident>(req, resp),
+                    ccmEventIncident);
+        } else {
+            page = ccmEventIncidentService.findPage(new Page<CcmEventIncident>(req, resp),
+                    ccmEventIncident);
+        }
+
+        List<CcmEventIncident> list = page.getList();
+        List<CcmEventIncident> resultList = Lists.newArrayList();
+        list.forEach(eventIncident -> {
+            String file1 = eventIncident.getFile1();
+            if (StringUtils.isNotEmpty(file1)) {
+                String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
+                eventIncident.setFile1(fileUrl + file1);
             }
+            resultList.add(eventIncident);
+        });
 
-            List<CcmEventIncident> list = page.getList();
-            List<CcmEventIncident> resultList = Lists.newArrayList();
-            list.forEach(eventIncident -> {
-                String file1 = eventIncident.getFile1();
-                if (StringUtils.isNotEmpty(file1)) {
-                    String fileUrl = Global.getConfig("FILE_UPLOAD_URL");
-                    eventIncident.setFile1(fileUrl + file1);
-                }
-                resultList.add(eventIncident);
-            });
-
-            result.setCode(CcmRestType.OK);
-            result.setResult(page.getList());
+        result.setCode(CcmRestType.OK);
+        result.setResult(page.getList());
         return result;
     }
 
@@ -286,7 +286,7 @@ public class CcmRestEvent extends BaseController {
             featureDto.setId(eventIncident.getId());
             // 3 properties 展示属性信息
             properties.setName(eventIncident.getCaseName());
-           /* properties.setIcon(eventIncident.getFile1());*/
+            /* properties.setIcon(eventIncident.getFile1());*/
             // 点击后展示详细属性值
             Map<String, Object> map_P = new LinkedHashMap<String, Object>();
             // 创建附属信息
@@ -581,11 +581,19 @@ public class CcmRestEvent extends BaseController {
                 CcmDevice camera = ccmDeviceService.getByCode(ccmEventIncident.getCameraCode());
                 if (camera != null) {
                     ccmEventIncident.setAreaPoint(camera.getCoordinate());
+                    SysArea sysArea = sysAreaService.get(camera.getArea().getId());
                     Area area = new Area();
-                    area.setId(camera.getArea().getId());
+                    Area parent = new Area();
+                    parent.setId(sysArea.getParent().getId());
+                    parent.setName(sysArea.getParent().getName());
+                    area.setId(sysArea.getId());
+                    area.setParent(parent);
+                    area.setName(sysArea.getName());
+                    area.setParentIds(sysArea.getParentIds());
+                    area.setType(sysArea.getType());
                     ccmEventIncident.setArea(area);
                     if (ccmEventIncident.getHappenPlace() == null) {
-                        ccmEventIncident.setHappenPlace(camera.getArea().getName());
+                        ccmEventIncident.setHappenPlace(area.getName());
                     }
 
                 }
@@ -595,11 +603,19 @@ public class CcmRestEvent extends BaseController {
                 if (ccmPeople != null) {
                     ccmHouseBuildmanage = ccmHouseBuildmanageService.get(ccmPeople.getBuildId().getId());
                     ccmEventIncident.setAreaPoint(ccmHouseBuildmanage.getAreaPoint());
+                    SysArea sysArea = sysAreaService.get(ccmPeople.getAreaGridId().getId());
                     Area area = new Area();
-                    area.setId(ccmPeople.getAreaGridId().getId());
+                    Area parent = new Area();
+                    parent.setId(sysArea.getParent().getId());
+                    parent.setName(sysArea.getParent().getName());
+                    area.setId(sysArea.getId());
+                    area.setParent(parent);
+                    area.setName(sysArea.getName());
+                    area.setParentIds(sysArea.getParentIds());
+                    area.setType(sysArea.getType());
                     ccmEventIncident.setArea(area);
                     if (ccmEventIncident.getHappenPlace() == null) {
-                        ccmEventIncident.setHappenPlace(ccmPeople.getAreaGridId().getName());
+                        ccmEventIncident.setHappenPlace(area.getName());
                     }
                 }
             }

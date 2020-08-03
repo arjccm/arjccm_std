@@ -148,13 +148,21 @@ public class CcmRestOrgCommonality extends BaseController {
 				result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);
 				return result;
 			}
-			ccmOrgCommonality.setAreaPoint(ccmOrgCommonalityDB.getAreaPoint());
-			ccmOrgCommonality.setAreaMap(ccmOrgCommonalityDB.getAreaMap());
-			ccmOrgCommonality.setImage(ccmOrgCommonalityDB.getImage());
+			if (ccmOrgCommonality.getAreaPoint()==null||ccmOrgCommonality.getAreaPoint()==""){
+				ccmOrgCommonality.setAreaPoint(ccmOrgCommonalityDB.getAreaPoint());
+				ccmOrgCommonality.setAreaMap(ccmOrgCommonalityDB.getAreaMap());
+			}
+			if (ccmOrgCommonality.getImage()==null||ccmOrgCommonality.getImage()==""){
+				ccmOrgCommonality.setImage("");
+			}
 		}else{
-			ccmOrgCommonality.setAreaPoint("");
-			ccmOrgCommonality.setAreaMap("");
-			ccmOrgCommonality.setImage("");
+			if (ccmOrgCommonality.getAreaPoint()==null||ccmOrgCommonality.getAreaPoint()==""){
+				ccmOrgCommonality.setAreaPoint("");
+				ccmOrgCommonality.setAreaMap("");
+			}
+			if (ccmOrgCommonality.getImage()==null||ccmOrgCommonality.getImage()==""){
+				ccmOrgCommonality.setImage("");
+			}
 		}
 		if (ccmOrgCommonality.getCreateBy()== null) {
 			ccmOrgCommonality.setCreateBy(new User(userId));

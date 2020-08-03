@@ -110,8 +110,8 @@ function alarmVerify() {
 */
 function RaMq(){
 	// 初始化 ws 对象
-	// var ws = new WebSocket('ws://'+window.location.hostname +':15674/ws');
-    var ws = new WebSocket('ws://192.168.1.213:15674/ws');
+	var ws = new WebSocket('ws://'+window.location.hostname+':15674/ws');
+    //var ws = new WebSocket('ws://192.168.1.214:15674/ws');
 	// 获得Stomp client对象
 	var client = Stomp.over(ws);
 	client.heartbeat.outgoing = 10000;//mq心跳

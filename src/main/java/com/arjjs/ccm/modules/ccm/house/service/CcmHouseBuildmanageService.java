@@ -12,7 +12,9 @@ import com.arjjs.ccm.modules.ccm.house.dao.CcmHouseBuildmanageDao;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildentrance;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildentranceVo;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseBuildmanage;
+import com.arjjs.ccm.modules.ccm.pop.dao.CcmPopTenantDao;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenantVo;
 import com.arjjs.ccm.modules.ccm.sys.entity.CcmAreaPointVo;
 import com.arjjs.ccm.modules.sys.entity.Area;
@@ -41,6 +43,9 @@ import java.util.Map;
 public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageDao, CcmHouseBuildmanage> {
 	@Autowired
 	private CcmHouseBuildmanageDao ccmHouseBuildmanageDao;
+
+	@Autowired
+	private CcmPopTenantDao ccmPopTenantDao;
 
 	@Autowired
 	private AreaService areaService;
@@ -103,6 +108,28 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 			isNew = true;
 		}
 		super.save(ccmHouseBuildmanage);
+
+		//楼栋修改成功后要将下辖房屋的区域修改
+		if(StringUtils.isNotBlank(ccmHouseBuildmanage.getArea().getId())){
+			CcmHouseBuildmanage build = new CcmHouseBuildmanage();
+			build.setId(ccmHouseBuildmanage.getId());
+			CcmPopTenant tenant = new CcmPopTenant();
+			tenant.setBuildingId(build);
+			List<CcmPopTenant> list = ccmPopTenantDao.findList(tenant);
+			if(list.size()>0){
+				for(CcmPopTenant room:list) {
+					if(StringUtils.isNotBlank(room.getArea().getId())){
+						if(!room.getArea().getId().equals(ccmHouseBuildmanage.getArea().getId())){
+							room.setArea(ccmHouseBuildmanage.getArea());
+							ccmPopTenantDao.update(room);
+						}
+					}else{
+						room.setArea(ccmHouseBuildmanage.getArea());
+						ccmPopTenantDao.update(room);
+					}
+				}
+			}
+		}
 
 		//上传上级平台记录
 		if (!SysConfigInit.UPPER_URL.equals("")) {//有上级平台地址时，才存入上传上级平台记录的日志

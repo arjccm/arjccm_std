@@ -475,7 +475,7 @@ public class CcmPeople extends DataEntity<CcmPeople> {
 	}
 
 //	@ExcelField(title="职业类别", align=2, sort=12)
-	@Length(min=0, max=16, message="职业类别长度必须介于 0 和 16 之间")
+	@Length(min=0, max=36, message="职业类别长度必须介于 0 和 36 之间")
 	public String getProfType() {
 		return profType;
 	}
