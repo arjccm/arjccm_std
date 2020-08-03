@@ -36,6 +36,7 @@ public class SysMapConfig {
 	private String resolution;
 	private String extent;
 	private String kshType;  //可视化地图map类型
+    private String appType;  //app地图参数
 
 	public String getProjection() {
 		return projection;
@@ -237,4 +238,12 @@ public class SysMapConfig {
 	public void setKshType(String kshType) {
 		this.kshType = kshType;
 	}
+
+    public String getAppType() {
+        return appType;
+    }
+
+    public void setAppType(String appType) {
+        this.appType = appType;
+    }
 }
