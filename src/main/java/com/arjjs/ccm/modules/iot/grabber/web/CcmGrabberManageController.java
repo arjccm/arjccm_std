@@ -113,10 +113,4 @@ public class CcmGrabberManageController extends BaseController {
 		return String.valueOf(count);
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/getGrabberList", method = RequestMethod.GET)
-	public CcmRestResult getGrabberList(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		CcmRestResult result = ccmGrabberManageService.getGrabberList();
-		return result;
-	}
 }

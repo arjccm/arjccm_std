@@ -5,6 +5,7 @@ import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import com.arjjs.ccm.modules.ccm.videoData.service.CcmDssVideoService;
 import com.arjjs.ccm.modules.ccm.videoData.service.CcmRestVideoDataService;
 import com.arjjs.ccm.modules.ccm.videoData.service.CcmTiandyVideoService;
+import com.arjjs.ccm.modules.iot.grabber.service.CcmGrabberManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,9 @@ public class CcmRestVideoData extends BaseController {
 	private CcmTiandyVideoService ccmTiandyVideoService;
 	@Autowired
 	private CcmDssVideoService ccmDssVideoService;
+	@Autowired
+	private CcmGrabberManageService ccmGrabberManageService;
+
 	@ResponseBody
 	@RequestMapping(value = "/getCameras", method = RequestMethod.GET)
 	public CcmRestResult getCameras(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -45,6 +49,13 @@ public class CcmRestVideoData extends BaseController {
 	@RequestMapping(value = "/getDssCameras", method = RequestMethod.GET)
 	public CcmRestResult getDssCameras(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		CcmRestResult result = ccmDssVideoService.getDssCameras();
+		return result;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/getGrabberList", method = RequestMethod.GET)
+	public CcmRestResult getGrabberList(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = ccmGrabberManageService.getGrabberList();
 		return result;
 	}
 }

@@ -4,7 +4,9 @@
 package com.arjjs.ccm.modules.iot.grabber.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -16,6 +18,8 @@ import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.hikvision.artemis.sdk.ArtemisHttpUtil;
+import com.hikvision.artemis.sdk.config.ArtemisConfig;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -109,11 +113,19 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 		SysConfig sysConfig = sysConfigService.get("face_docking_config");
 		//解JSON
 		JSONObject jsonObject = JSONObject.parseObject(sysConfig.getParamStr());
-		String url = null;
-		if(jsonObject.containsKey("url")) {
-			url = jsonObject.getString("url");
+		String apiUrl = null;
+		if(jsonObject.containsKey("apiUrl")) {
+			apiUrl = jsonObject.getString("apiUrl");
 		}
-		if(StringUtils.isNotEmpty(url)) {
+		String appKey = null;
+		if(jsonObject.containsKey("appKey")) {
+			appKey = jsonObject.getString("appKey");
+		}
+		String appSecet = null;
+		if(jsonObject.containsKey("appSecet")) {
+			appSecet = jsonObject.getString("appSecet");
+		}
+		if(StringUtils.isNotEmpty(apiUrl) && StringUtils.isNotEmpty(appKey) && StringUtils.isNotEmpty(appSecet)) {
 			if(isStopThread) {
 				CcmGrabberManageService.getGrabberListThread getGrabberListThread = new CcmGrabberManageService.getGrabberListThread();
 				getGrabberListThread.start();
@@ -128,6 +140,12 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 	}
 	private static boolean isStopThread = true;
 
+	/**
+	 * 能力开放平台的网站路径
+	 * TODO 路径不用修改，就是/artemis
+	 */
+	private static final String ARTEMIS_PATH = "/artemis";
+
 	private static final String URL_PATH = "/api/fms/v2/resource/findCamera";
 
 
@@ -137,40 +155,41 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 			SysConfig sysConfig = sysConfigService.get("face_docking_config");
 			//解JSON
 			JSONObject jsonObject = JSONObject.parseObject(sysConfig.getParamStr());
-			String url = jsonObject.getString("url");
-			StringBuffer buffer = new StringBuffer();
-			buffer.append(url);
-			buffer.append(URL_PATH);
+			String apiUrl = jsonObject.getString("apiUrl");
+			String appKey = jsonObject.getString("appKey");
+			String appSecet = jsonObject.getString("appSecet");
 			int i = 0;
 			boolean bool = false;
 			try {
 				while (!bool) {
 					int num = i+1;
-					bool = this.getStaticCcmListPeopleByUrl(buffer.toString() + "?pageNo="+num+"&pageSize=10");
+					bool = this.getStaticCcmListPeopleByUrl(apiUrl,appKey,appSecet,String.valueOf(num));
 					i++;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				System.out.println("获取名单人员结束");
+				System.out.println("获取抓拍机结束");
 				isStopThread = true;
 			}
 		}
 
-		public boolean getStaticCcmListPeopleByUrl(String url) {
+		public boolean getStaticCcmListPeopleByUrl(String apiUrl,String appKey,String appSecet,String page) {
 			boolean bool = false;
-			String result="";
-			//获取httpclient对象
-			DefaultHttpClient httpClient = new DefaultHttpClient();
-			//获取get请求对象
-			HttpGet httpGet = new HttpGet(url);
+			ArtemisConfig.host = apiUrl; // 代理API网关nginx服务器ip端口
+			ArtemisConfig.appKey = appKey;  // 秘钥appkey
+			ArtemisConfig.appSecret = appSecet;// 秘钥appSecret
+			final String getCamsApi = ARTEMIS_PATH + URL_PATH;
+			Map<String,String> querys = new HashMap<String,String>();//get请求的查询参数
+			querys.put("pageNo", page);
+			querys.put("pageSize", "20");
+			Map<String, String> path = new HashMap<String, String>(2){
+				{
+					put("https://", getCamsApi);
+				}
+			};
 			try {
-				//发起请求
-				HttpResponse response = httpClient.execute(httpGet);
-				//获取响应中的数据
-				HttpEntity entity = response.getEntity();
-				//把entity转换成字符串
-				result = EntityUtils.toString(entity, "utf-8");
+				String result = ArtemisHttpUtil.doGetArtemis(path, querys,null,null,null);
 				System.out.println(" ===== >>> " + result);
 				JSONObject resJson = JSONObject.parseObject(result);
 				if(resJson.containsKey("data") && StringUtils.isNotBlank(resJson.getString("data"))) {
@@ -235,8 +254,6 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 									if(!isNew) {
 										grabber.setUpdateBy(UserUtils.getUser());
 										grabber.setUpdateDate(new Date());
-									}else{
-
 									}
 									save(grabber);
 								}
