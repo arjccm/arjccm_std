@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestResult;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,14 @@ public class CcmGrabberManageController extends BaseController {
 		Page<CcmGrabberManage> page = ccmGrabberManageService.findPage(new Page<CcmGrabberManage>(request, response), ccmGrabberManage); 
 		model.addAttribute("page", page);
 		return "iot/grabber/ccmGrabberManageList";
+	}
+
+	@RequiresPermissions("grabber:ccmGrabberManage:edit")
+	@RequestMapping(value = "delete")
+	public String delete(CcmGrabberManage ccmGrabberManage, RedirectAttributes redirectAttributes) {
+		ccmGrabberManageService.delete(ccmGrabberManage);
+		addMessage(redirectAttributes, "删除抓拍机成功");
+		return "redirect:"+Global.getAdminPath()+"/grabber/ccmGrabberManage/?repage";
 	}
 
 	@RequiresPermissions("grabber:ccmGrabberManage:view")
