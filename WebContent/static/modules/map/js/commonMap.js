@@ -6278,16 +6278,21 @@ ArjMap.Map.prototype.drawMapSituationKeShiHua = function () {
                     name: "可视化地图",
                     visible: true,
                     source: new ol.source.WMTS({
-                        url: 'http://192.168.1.33:8080/geoserver/gwc/service/wmts', //WMTS服务基地址
-                        layer: 'fztest2',
-                        matrixSet: 'EPSG:4326_fztest2', //投影坐标系设置矩阵
-                        format: 'image/png', //图片格式
+                        url: baseUrl[2].url, //WMTS服务基地址
+                        layer: baseUrl[2].LAYERS,
+                        matrixSet: baseUrl[2].tileMatrixSet, //投影坐标系设置矩阵
+                        format: baseUrl[2].format, //图片格式
                         //瓦片网格对象
                          tileGrid: new ol.tilegrid.WMTS({
-                             tileSize: [256,256],
-                             origin: [-180.0, 90.0], //原点（左上角）
-                             resolutions: [0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.29153442382813E-5, 2.14576721191406E-5, 1.07288360595703E-5, 5.36441802978516E-6].slice(0, 17), //分辨率数组
-                             matrixIds: ['EPSG:4326_fztest2:0', 'EPSG:4326_fztest2:1', 'EPSG:4326_fztest2:2', 'EPSG:4326_fztest2:3', 'EPSG:4326_fztest2:4', 'EPSG:4326_fztest2:5', 'EPSG:4326_fztest2:6', 'EPSG:4326_fztest2:7', 'EPSG:4326_fztest2:8', 'EPSG:4326_fztest2:9', 'EPSG:4326_fztest2:10', 'EPSG:4326_fztest2:11', 'EPSG:4326_fztest2:12', 'EPSG:4326_fztest2:13', 'EPSG:4326_fztest2:14', 'EPSG:4326_fztest2:15', 'EPSG:4326_fztest2:16'], //矩阵标识列表，与地图级数保持一致
+                             // tileSize: [256,256],
+                             // origin: [-180.0, 90.0], //原点（左上角）
+                             // resolutions: [0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.29153442382813E-5, 2.14576721191406E-5, 1.07288360595703E-5, 5.36441802978516E-6].slice(0, 17), //分辨率数组
+                             // matrixIds: ['EPSG:4326_fztest2:0', 'EPSG:4326_fztest2:1', 'EPSG:4326_fztest2:2', 'EPSG:4326_fztest2:3', 'EPSG:4326_fztest2:4', 'EPSG:4326_fztest2:5', 'EPSG:4326_fztest2:6', 'EPSG:4326_fztest2:7', 'EPSG:4326_fztest2:8', 'EPSG:4326_fztest2:9', 'EPSG:4326_fztest2:10', 'EPSG:4326_fztest2:11', 'EPSG:4326_fztest2:12', 'EPSG:4326_fztest2:13', 'EPSG:4326_fztest2:14', 'EPSG:4326_fztest2:15', 'EPSG:4326_fztest2:16'], //矩阵标识列表，与地图级数保持一致
+
+                             tileSize: JSON.parse(baseUrl[2].tileSize),
+                             origin: JSON.parse(baseUrl[2].origin), //原点（左上角）
+                             resolutions: JSON.parse(baseUrl[2].resolutions).slice(0,baseUrl[2].sliceNum), //分辨率数组
+                             matrixIds: eval(baseUrl[2].matrixIds), //矩阵标识列表，与地图级数保持一致
                          }),
                     })
                 });
