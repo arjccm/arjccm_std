@@ -51,6 +51,16 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 	@Autowired
 	private CcmListUploadService ccmListUploadService;
 
+    private static boolean isStopThread = true;
+
+    /**
+     * 能力开放平台的网站路径
+     * TODO 路径不用修改，就是/artemis
+     */
+    private static final String ARTEMIS_PATH = "/artemis";
+
+    private static final String URL_PATH = "/api/fms/v2/resource/findCamera";
+
 	@Transactional(readOnly = false)
 	public void updateState(CcmGrabberManage ccmGrabberManage) {
 		ccmGrabberManageDao.updateState(ccmGrabberManage);
@@ -138,16 +148,6 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 		}
 		return result;
 	}
-	private static boolean isStopThread = true;
-
-	/**
-	 * 能力开放平台的网站路径
-	 * TODO 路径不用修改，就是/artemis
-	 */
-	private static final String ARTEMIS_PATH = "/artemis";
-
-	private static final String URL_PATH = "/api/fms/v2/resource/findCamera";
-
 
 	class getGrabberListThread extends Thread {
 		public void run() {
@@ -193,75 +193,73 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 				System.out.println(" ===== >>> " + result);
 				JSONObject resJson = JSONObject.parseObject(result);
 				if(resJson.containsKey("data") && StringUtils.isNotBlank(resJson.getString("data"))) {
-					JSONObject dataJson = JSONObject.parseObject(resJson.getString("data"));
-					if(dataJson.containsKey("list") && StringUtils.isNotBlank(dataJson.getString("list"))){
-						JSONArray listJson = JSONArray.parseArray(dataJson.getString("list"));
-						if (listJson.size() > 0) {
-							List<CcmGrabberManage> list = ccmGrabberManageDao.findList(new CcmGrabberManage());
-							for (int i = 0; i < listJson.size(); i++) {
-								JSONObject grabberJson = listJson.getJSONObject(i);
-								String code = null;
-								if(grabberJson.containsKey("deviceCode")) {
-									code = grabberJson.getString("deviceCode");
-								}
-								if(StringUtils.isNotBlank(code)) {
-									CcmGrabberManage grabber = new CcmGrabberManage();
-									grabber.setGrabberNum(code);
-									boolean isNew = true;
-									for (CcmGrabberManage ccmGrabberManage:list) {
-										if(code.equals(ccmGrabberManage.getGrabberNum())){
-											BeanUtils.copyProperties(ccmGrabberManage,grabber);
-											isNew = false;
-										}
-									}
-									if(grabberJson.containsKey("cameraIp")) {
-										grabber.setGrabberIp(grabberJson.getString("cameraIp"));
-									}
-									if(grabberJson.containsKey("cameraName")) {
-										grabber.setGrabberName(grabberJson.getString("cameraName"));
-									}
-									if(grabberJson.containsKey("cameraPort")) {
-										grabber.setGrabberPort(grabberJson.getString("cameraPort"));
-									}
-									if(grabberJson.containsKey("cameraType")) {
-										grabber.setGrabberType(grabberJson.getString("cameraType"));
-									}
-									if(grabberJson.containsKey("channelNo")) {
-										grabber.setGrabberPassway(grabberJson.getString("channelNo"));
-									}
-									if(grabberJson.containsKey("indexCode")) {
-										grabber.setResourcesNum(grabberJson.getString("indexCode"));
-									}
-									if(grabberJson.containsKey("latitude")) {
-										grabber.setGrabberLatitude(grabberJson.getString("latitude"));
-									}
-									if(grabberJson.containsKey("longitude")) {
-										grabber.setGrabberLongitude(grabberJson.getString("longitude"));
-									}
-									if(grabberJson.containsKey("password")) {
-										grabber.setPassword(grabberJson.getString("password"));
-									}
-									if(grabberJson.containsKey("regionId")) {
-										grabber.setRemarks(grabberJson.getString("regionId"));
-									}
-									if(grabberJson.containsKey("userName")) {
-										grabber.setUsername(grabberJson.getString("userName"));
-									}
-									if(grabberJson.containsKey("relationPoint")) {
-										grabber.setMonitorNum(grabberJson.getString("relationPoint"));
-									}
-									grabber.setIsupload("NO");
-									if(!isNew) {
-										grabber.setUpdateBy(UserUtils.getUser());
-										grabber.setUpdateDate(new Date());
-									}
-									save(grabber);
-								}
-							}
-						}else {
-							bool = true;
-						}
-					}
+                    System.out.println(" ===== >>>> " + resJson.getString("data"));
+                    JSONArray listJson = JSONArray.parseArray(resJson.getString("data"));
+                    if (listJson.size() > 0) {
+                        List<CcmGrabberManage> list = ccmGrabberManageDao.findList(new CcmGrabberManage());
+                        for (int i = 0; i < listJson.size(); i++) {
+                            JSONObject grabberJson = listJson.getJSONObject(i);
+                            String code = null;
+                            if(grabberJson.containsKey("deviceCode")) {
+                                code = grabberJson.getString("deviceCode");
+                            }
+                            if(StringUtils.isNotBlank(code)) {
+                                CcmGrabberManage grabber = new CcmGrabberManage();
+                                grabber.setGrabberNum(code);
+                                boolean isNew = true;
+                                for (CcmGrabberManage ccmGrabberManage:list) {
+                                    if(code.equals(ccmGrabberManage.getGrabberNum())){
+                                        BeanUtils.copyProperties(ccmGrabberManage,grabber);
+                                        isNew = false;
+                                    }
+                                }
+                                if(grabberJson.containsKey("cameraIp")) {
+                                    grabber.setGrabberIp(grabberJson.getString("cameraIp"));
+                                }
+                                if(grabberJson.containsKey("cameraName")) {
+                                    grabber.setGrabberName(grabberJson.getString("cameraName"));
+                                }
+                                if(grabberJson.containsKey("cameraPort")) {
+                                    grabber.setGrabberPort(grabberJson.getString("cameraPort"));
+                                }
+                                if(grabberJson.containsKey("cameraType")) {
+                                    grabber.setGrabberType(grabberJson.getString("cameraType"));
+                                }
+                                if(grabberJson.containsKey("channelNo")) {
+                                    grabber.setGrabberPassway(grabberJson.getString("channelNo"));
+                                }
+                                if(grabberJson.containsKey("indexCode")) {
+                                    grabber.setResourcesNum(grabberJson.getString("indexCode"));
+                                }
+                                if(grabberJson.containsKey("latitude")) {
+                                    grabber.setGrabberLatitude(grabberJson.getString("latitude"));
+                                }
+                                if(grabberJson.containsKey("longitude")) {
+                                    grabber.setGrabberLongitude(grabberJson.getString("longitude"));
+                                }
+                                if(grabberJson.containsKey("password")) {
+                                    grabber.setPassword(grabberJson.getString("password"));
+                                }
+                                if(grabberJson.containsKey("regionId")) {
+                                    grabber.setRemarks(grabberJson.getString("regionId"));
+                                }
+                                if(grabberJson.containsKey("userName")) {
+                                    grabber.setUsername(grabberJson.getString("userName"));
+                                }
+                                if(grabberJson.containsKey("relationPoint")) {
+                                    grabber.setMonitorNum(grabberJson.getString("relationPoint"));
+                                }
+                                grabber.setIsupload("NO");
+                                if(!isNew) {
+                                    grabber.setUpdateBy(UserUtils.getUser());
+                                    grabber.setUpdateDate(new Date());
+                                }
+                                save(grabber);
+                            }
+                        }
+                    }else {
+                        bool = true;
+                    }
 				}else {
 					bool = true;
 				}

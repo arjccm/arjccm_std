@@ -23,7 +23,7 @@
 	<form:form id="searchForm" modelAttribute="searchEntity" action="${ctx}/searchlist/iotSearchList" method="post" class="breadcrumb form-search clearfix">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form">
+		<ul class="ul-form" style="height: 70px;">
             <li>
                 <label>名单库:</label>
                 <form:select path="listId" class="input-medium required">
@@ -40,13 +40,15 @@
                 -
                 <form:input path="maxThreshold" htmlEscape="false" maxlength="64" class="input-medium"/>
             </li>
-            <li>
-                <label>图片:</label>
-                <form:hidden id="images" path="imagesUrl" htmlEscape="false"
-                             maxlength="255" class="input-xlarge"/>
-                <sys:ckfinder input="images" type="images"
-                              uploadPath="/photo/faceToSearch" selectMultiple="false"
-                              maxWidth="240" maxHeight="360"/>
+            <li style="height: 70px; width: 520px;">
+                <label style="float: left; line-height: 20px; margin-top: 7px">图片:</label>
+                <div style="float: left;height: 70px; width: 200px;">
+                    <form:hidden id="images" path="imagesUrl" htmlEscape="false"
+                                 maxlength="255" class="input-xlarge"/>
+                    <sys:ckfinder input="images" type="images"
+                                  uploadPath="/photo/faceToSearch" selectMultiple="false"
+                                  maxWidth="240" maxHeight="360"/>
+                </div>
             </li>
 
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="检索"/></li>

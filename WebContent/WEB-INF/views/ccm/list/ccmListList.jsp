@@ -14,6 +14,15 @@
 			$("#searchForm").submit();
         	return false;
         }
+		function gatlists() {
+			$.getJSON("/arjccm/a/list/ccmList/getCcmList",function(data){
+				if(data.code == 0){
+					alert("获取名单库中");
+				}else{
+					alert("配置信息有误");
+				}
+			})
+		};
 	</script>
 	<script src="${ctxStatic}/ccm/event/js/ccmEventIncident.js" type="text/javascript"></script>
 </head>
@@ -37,6 +46,11 @@
 				</form:select>
 			</li>
 
+			<li class="btns">
+				<a onclick="gatlists()" class="btn btn-primary" style="width: 120px !important;">
+					<i class="icon-refresh"></i> 获取名单库数据
+				</a>
+			</li>
 			<li class="btns">
 				<a onclick="parent.LayerDialog('${ctx}/list/ccmList/form', '添加', '600px', '500px')" class="btn btn-primary">
 					<i class="iconfont icon-caozuotubiao-tianjiachuli"></i> 添加
