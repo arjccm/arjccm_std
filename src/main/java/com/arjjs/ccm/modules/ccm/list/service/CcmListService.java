@@ -249,6 +249,7 @@ public class CcmListService extends CrudService<CcmListDao, CcmList> {
 									ccmList.setIsupload("NO");
 									save(ccmList);
 								}
+								list.add(ccmList);
 							}
 						}
 					}

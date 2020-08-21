@@ -200,8 +200,8 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 			ArtemisConfig.appSecret = appSecet;// 秘钥appSecret
 			final String getCamsApi = ARTEMIS_PATH + URL_STATIC_PATH;
 			Map<String,String> querys = new HashMap<String,String>();//get请求的查询参数
-			querys.put("pageNo", page);
-			querys.put("pageSize", String.valueOf(20));
+			querys.put("start", page);
+			querys.put("size", String.valueOf(20));
 			Map<String, String> path = new HashMap<String, String>(2){
 				{
 					put("https://", getCamsApi);
@@ -216,8 +216,8 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 					JSONArray listJson = JSONArray.parseArray(resJson.getString("data"));
 					if (listJson.size() > 0) {
 						CcmListPeople people = new CcmListPeople();
-						people.setType("01");
-						List<CcmListPeople> list = ccmListPeopleDao.findList(people);
+						people.setType("02");
+						List<CcmListPeople> list = findList(people);
 						for (int i = 0; i < listJson.size(); i++) {
 							JSONObject ccmListPeopleJson = listJson.getJSONObject(i);
 							String fid = null;
@@ -279,6 +279,9 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 									ccmListPeople.setUpdateDate(new Date());
 								}
 								save(ccmListPeople);
+								if(isNew){
+									list.add(ccmListPeople);
+								}
 							}
 						}
 					}else {
@@ -301,8 +304,8 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 			ArtemisConfig.appSecret = appSecet;// 秘钥appSecret
 			final String getCamsApi = ARTEMIS_PATH + URL_BLACK_PATH;
 			Map<String,String> querys = new HashMap<String,String>();//get请求的查询参数
-			querys.put("pageNo", page);
-			querys.put("pageSize", String.valueOf(20));
+			querys.put("start", page);
+			querys.put("size", String.valueOf(20));
 			querys.put("listLibIds", ids);
 			Map<String, String> path = new HashMap<String, String>(2){
 				{
@@ -318,8 +321,8 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 					JSONArray listJson = JSONArray.parseArray(resJson.getString("data"));
 					if (listJson.size() > 0) {
 						CcmListPeople people = new CcmListPeople();
-						people.setType("02");
-						List<CcmListPeople> list = ccmListPeopleDao.findList(people);
+						people.setType("01");
+						List<CcmListPeople> list = findList(people);
 						for (int i = 0; i < listJson.size(); i++) {
 							JSONObject ccmListBlackJson = listJson.getJSONObject(i);
 							String fid = null;
@@ -378,6 +381,9 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 									ccmListPeople.setUpdateDate(new Date());
 								}
 								save(ccmListPeople);
+								if(isNew){
+									list.add(ccmListPeople);
+								}
 							}
 						}
 					}else{

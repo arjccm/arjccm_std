@@ -17,7 +17,8 @@
 		a.controller_level AS "controllerLevel",
 		a.machine AS "machine",
 		a.controller_reason AS "controllerReason",
-		a.ident AS "ident"
+		a.ident AS "ident",
+		a.fid AS "fid"
 	</sql>
 	
 	<sql id="ccmFaceControlJoins">

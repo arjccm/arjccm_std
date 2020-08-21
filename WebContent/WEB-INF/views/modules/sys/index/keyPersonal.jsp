@@ -601,7 +601,7 @@
                             console.log("idCard-----------------", idCard);
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -649,7 +649,7 @@
                             idCard = ele.idCard;
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -683,7 +683,7 @@
                         idCard = ele.idCard;
                         html += ' <tr>' +
                             '<td>' + ele.name + '</td>' +
-                            '<td>' + ele.time + '</td>' +
+                            '<td>' + ele.alarmDate + '</td>' +
                             '<td>' + ele.address + '</td>' +
                             '<td class="clearfix">' +
                             '<a class="dangan">' + '</a>' +
@@ -741,7 +741,7 @@
                             idCard = ele.idCard;
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -800,7 +800,7 @@
                             idCard = ele.idCard;
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
@@ -853,7 +853,7 @@
                             idCard = ele.idCard;
                             html += ' <tr>' +
                                 '<td>' + ele.name + '</td>' +
-                                '<td>' + ele.time + '</td>' +
+                                '<td>' + ele.alarmDate + '</td>' +
                                 '<td>' + ele.address + '</td>' +
                                 '<td class="clearfix">' +
                                 '<a class="dangan">' + '</a>' +
