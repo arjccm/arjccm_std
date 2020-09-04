@@ -15,6 +15,11 @@ ArjMap.Map = function (params) {
     this.zoom = params.zoom || ''; // 地图加载级别
     this.maxZoom = params.maxZoom || ''; // 最大放大级别
     this.minZoom = params.minZoom || ''; // 最小缩放级别
+    this.resolution = params.resolution || ''; //
+    this.resolutions = params.resolutions || ''; //
+    this.extent = params.extent || ''; //
+    this.mapType = params.mapType || '';
+
     this.zoomShowOrHide = params.zoomShowOrHide || false; // 右上角地图+-控制
     this.showOLpage = params.showOLpage||false;
     this.map = null;
@@ -234,6 +239,7 @@ ArjMap.Map.prototype = {
                 var id = baseUrl[i].id;
                 var type = baseUrl[i].type;
                 if(typeof (type)!="undefined"){
+                    this.mapType = type;
                     switch (type) {
                         //杭州道现场地图
                         case '1':
@@ -267,7 +273,7 @@ ArjMap.Map.prototype = {
                             break;
                         //arcgis
                         case '3':
-
+                            this.projection = baseUrl[i].projection,
                             this[id + 'Tile'] = new ol.layer.Tile({
                                 title: "地图",
                                 name: baseUrl[i].name,
@@ -276,6 +282,57 @@ ArjMap.Map.prototype = {
                                     url: baseUrl[i].url,
                                 })
                             });
+                            break;
+                        //geoServer
+                        case '4':
+                                this.resolution = baseUrl[i].resolution,
+                                this.resolutions =  baseUrl[i].resolutions,
+                                this.extent =  baseUrl[i].extent,
+                                this[id + 'Tile'] = new ol.layer.Tile({
+                                title: "地图",
+                                name: baseUrl[i].name,
+                                visible: baseUrl[i].isShow,
+                                /*  source: new ol.source.TileWMS({
+                                    // GeoServer安顺市地图配置
+                                    // url: baseUrl[i].url,
+                                    // url: "http://192.168.1.33:8080/geoserver/gwc/service/wms?LAYERS=fztest2&format=image/png&SRS=EPSG:4326",
+                                    url: "http://192.168.1.33:8080/geoserver/gwc/service/wms",
+                                    params: {LAYERS: 'fztest2', format: 'image/png', SRS: 'EPSG:4326' },
+                                    // params: {'LAYERS': baseUrl[i].LAYERS, format: baseUrl[i].format,SRS: baseUrl[i].projection },
+                                    // tileGrid: new ol.tilegrid.TileGrid({
+                                    //             tileSize: [256,256],
+                                    //             origin: [-180.0, 90.0],
+                                    //             extent: [-180.0,0.0,180.0,90.0],
+                                    //             resolutions: [0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.29153442382813E-5, 2.14576721191406E-5, 1.07288360595703E-5, 5.36441802978516E-6],
+                                    //          })
+                                }),*/
+                                source: new ol.source.WMTS({
+                                        // url: 'http://192.168.1.33:8080/geoserver/gwc/service/wmts', //WMTS服务基地址
+                                        // layer: 'fztest2',
+                                        // matrixSet: 'EPSG:4326_fztest2', //投影坐标系设置矩阵
+                                        // format: 'image/png', //图片格式
+                                        //瓦片网格对象
+                                        /* tileGrid: new ol.tilegrid.WMTS({
+                                             tileSize: [256,256],
+                                             origin: [-180.0, 90.0], //原点（左上角）
+                                             resolutions: [0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.29153442382813E-5, 2.14576721191406E-5, 1.07288360595703E-5, 5.36441802978516E-6].slice(0, 17), //分辨率数组
+                                             matrixIds: ['EPSG:4326_fztest2:0', 'EPSG:4326_fztest2:1', 'EPSG:4326_fztest2:2', 'EPSG:4326_fztest2:3', 'EPSG:4326_fztest2:4', 'EPSG:4326_fztest2:5', 'EPSG:4326_fztest2:6', 'EPSG:4326_fztest2:7', 'EPSG:4326_fztest2:8', 'EPSG:4326_fztest2:9', 'EPSG:4326_fztest2:10', 'EPSG:4326_fztest2:11', 'EPSG:4326_fztest2:12', 'EPSG:4326_fztest2:13', 'EPSG:4326_fztest2:14', 'EPSG:4326_fztest2:15', 'EPSG:4326_fztest2:16'], //矩阵标识列表，与地图级数保持一致
+                                         }),*/
+                                        url: baseUrl[i].url,
+                                        layer: baseUrl[i].LAYERS,
+                                        matrixSet: baseUrl[i].tileMatrixSet,
+                                        format: baseUrl[i].format,
+                                        tileGrid: new ol.tilegrid.WMTS({
+                                            tileSize: JSON.parse(baseUrl[i].tileSize),
+                                            origin: JSON.parse(baseUrl[i].origin), //原点（左上角）
+                                            resolutions: JSON.parse(baseUrl[i].resolutions).slice(0,baseUrl[i].sliceNum), //分辨率数组
+                                            matrixIds: eval(baseUrl[i].matrixIds), //矩阵标识列表，与地图级数保持一致
+                                        }),
+                                        wrapX: true
+                                    })
+
+
+                               });
                             break;
                         default:
                     }
@@ -290,13 +347,28 @@ ArjMap.Map.prototype = {
     },
     //创建视图
     view: function () {
-        var view = new ol.View({
-            center: this.center,//中心位置
-            zoom: this.zoom,//当前层级
-            minZoom: this.minZoom,//最小层级
-            maxZoom: this.maxZoom,//最大层级
-            projection: 'EPSG:4326'
-        });
+        if(this.mapType == 4){
+            var view = new ol.View({
+                center: this.center,//中心位置
+                zoom: this.zoom,//当前层级
+                minZoom: this.minZoom,//最小层级
+                maxZoom: this.maxZoom,//最大层级
+                /*resolutions: JSON.parse(this.resolutions)[0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.29153442382813E-5, 2.14576721191406E-5, 1.07288360595703E-5, 5.36441802978516E-6],
+                resolution: 0.00274658203125,
+                extent: [-180.0,0.0,180.0,90.0]*/
+                resolutions: JSON.parse(this.resolutions),
+                resolution: JSON.parse(this.resolution),
+                extent: JSON.parse(this.extent)
+            });
+        } else {
+            var view = new ol.View({
+                center: this.center,//中心位置
+                zoom: this.zoom,//当前层级
+                minZoom: this.minZoom,//最小层级
+                maxZoom: this.maxZoom,//最大层级
+                projection: this.projection,
+            });
+        }
         return view;
     },
     //创建地图
@@ -6091,6 +6163,29 @@ ArjMap.Map.prototype.drawMapSituation = function () {
                     })
                 });
 
+            } else if (baseUrl[i].type == '4'){
+                //geoServer
+                this.resolution = baseUrl[i].resolution,
+                    this.resolutions =  baseUrl[i].resolutions,
+                    this.extent =  baseUrl[i].extent,
+                    this[id + 'Tile'] = new ol.layer.Tile({
+                        title: "地图",
+                        name: baseUrl[i].name,
+                        visible: baseUrl[i].isShow,
+                        source: new ol.source.WMTS({
+                            url: baseUrl[i].url,
+                            layer: baseUrl[i].LAYERS,
+                            matrixSet: baseUrl[i].tileMatrixSet,
+                            format: baseUrl[i].format,
+                            tileGrid: new ol.tilegrid.WMTS({
+                                tileSize: JSON.parse(baseUrl[i].tileSize),
+                                origin: JSON.parse(baseUrl[i].origin), //原点（左上角）
+                                resolutions: JSON.parse(baseUrl[i].resolutions).slice(0,baseUrl[i].sliceNum), //分辨率数组
+                                matrixIds: eval(baseUrl[i].matrixIds), //矩阵标识列表，与地图级数保持一致
+                            }),
+                            wrapX: true
+                        })
+                    });
             }
             layers.push(this[baseUrl[i].id + 'Tile'])
         }
@@ -6127,19 +6222,87 @@ ArjMap.Map.prototype.drawMapSituation = function () {
 ArjMap.Map.prototype.drawMapSituationKeShiHua = function () {
     var layers = [];
     var baseUrl = this.baseUrl;
-    this['KeShiHuaTile'] = new ol.layer.Tile({
-        title: "地图",
-        name: "可视化地图",
-        visible: true,
-        source: new ol.source.TileArcGISRest({
-             // url: baseUrl[i].url
-             // url:"http://192.168.1.106:6080/arcgis/rest/services/quliang/MapServer",//曲梁
-             // url:"http://192.168.1.106:6080/arcgis/rest/services/xinmiblack/MapServer"//新密
-             // url:"http://192.168.1.250:6080/arcgis/rest/services/sanya6/MapServer"//三亚
-                url: baseUrl[2].url
-        }),
-    });
-    layers.push(this['KeShiHuaTile'])
+    var type = baseUrl[2].type;
+    if(typeof (type)!="undefined"){
+        switch (type) {
+            //杭州道现场地图
+            case '1':
+                this['KeShiHuaTile'] = new ol.layer.Tile({
+                    title: "地图",
+                    opacity: 1,//透明度
+                    name: "可视化地图",
+                    visible: true,
+                    source: new ol.source.XYZ({
+                        tileGrid: new ol.tilegrid.TileGrid({
+                            tileSize: baseUrl[1].tileSize,//瓦片大小
+                            origin: baseUrl[1].origin, // 原点
+                            resolutions: baseUrl[1].resolutions//分辨率
+
+                        }),
+                        url: baseUrl[2].url,//地址
+                        projection: 'EPSG:4326'
+                    })
+                });
+                break;
+            //天地地图
+            case '2':
+                this['KeShiHuaTile'] = new ol.layer.Tile({
+                    title: "地图",
+                    name: "可视化地图",
+                    visible: true,
+                    source: new ol.source.XYZ({
+                        url: baseUrl[2].url,
+                    })
+                });
+                break;
+            //arcgis
+            case '3':
+                this['KeShiHuaTile'] = new ol.layer.Tile({
+                    title: "地图",
+                    name: "可视化地图",
+                    visible: true,
+                    source: new ol.source.TileArcGISRest({
+                        // url:"http://192.168.1.106:6080/arcgis/rest/services/quliang/MapServer",//曲梁
+                        // url:"http://192.168.1.106:6080/arcgis/rest/services/xinmiblack/MapServer"//新密
+                        // url:"http://192.168.1.250:6080/arcgis/rest/services/sanya6/MapServer"//三亚
+                        url: baseUrl[2].url,
+                    })
+                });
+                break;
+            case '4':
+                this.resolution = baseUrl[2].resolution,
+                this.resolutions =  baseUrl[2].resolutions,
+                this.extent =  baseUrl[2].extent,
+                this['KeShiHuaTile'] = new ol.layer.Tile({
+                    title: "地图",
+                    name: "可视化地图",
+                    visible: true,
+                    source: new ol.source.WMTS({
+                        url: baseUrl[2].url, //WMTS服务基地址
+                        layer: baseUrl[2].LAYERS,
+                        matrixSet: baseUrl[2].tileMatrixSet, //投影坐标系设置矩阵
+                        format: baseUrl[2].format, //图片格式
+                        //瓦片网格对象
+                         tileGrid: new ol.tilegrid.WMTS({
+                             // tileSize: [256,256],
+                             // origin: [-180.0, 90.0], //原点（左上角）
+                             // resolutions: [0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.29153442382813E-5, 2.14576721191406E-5, 1.07288360595703E-5, 5.36441802978516E-6].slice(0, 17), //分辨率数组
+                             // matrixIds: ['EPSG:4326_fztest2:0', 'EPSG:4326_fztest2:1', 'EPSG:4326_fztest2:2', 'EPSG:4326_fztest2:3', 'EPSG:4326_fztest2:4', 'EPSG:4326_fztest2:5', 'EPSG:4326_fztest2:6', 'EPSG:4326_fztest2:7', 'EPSG:4326_fztest2:8', 'EPSG:4326_fztest2:9', 'EPSG:4326_fztest2:10', 'EPSG:4326_fztest2:11', 'EPSG:4326_fztest2:12', 'EPSG:4326_fztest2:13', 'EPSG:4326_fztest2:14', 'EPSG:4326_fztest2:15', 'EPSG:4326_fztest2:16'], //矩阵标识列表，与地图级数保持一致
+
+                             tileSize: JSON.parse(baseUrl[2].tileSize),
+                             origin: JSON.parse(baseUrl[2].origin), //原点（左上角）
+                             resolutions: JSON.parse(baseUrl[2].resolutions).slice(0,baseUrl[2].sliceNum), //分辨率数组
+                             matrixIds: eval(baseUrl[2].matrixIds), //矩阵标识列表，与地图级数保持一致
+                         }),
+                    })
+                });
+
+        }
+        layers.push(this['KeShiHuaTile'])
+    }
+
+
+
     this.map = new ol.Map({
         layers: layers,
         view: viewSituation,
@@ -6428,6 +6591,29 @@ ArjMap.Map.prototype.drawMapSituationLoudong = function () {
                     })
                 });
 
+            } else if (baseUrl[i].type == '4'){
+                //geoServer
+                this.resolution = baseUrl[i].resolution,
+                this.resolutions =  baseUrl[i].resolutions,
+                this.extent =  baseUrl[i].extent,
+                this[id + 'Tile'] = new ol.layer.Tile({
+                    title: "地图",
+                    name: baseUrl[i].name,
+                    visible: baseUrl[i].isShow,
+                    source: new ol.source.WMTS({
+                        url: baseUrl[i].url,
+                        layer: baseUrl[i].LAYERS,
+                        matrixSet: baseUrl[i].tileMatrixSet,
+                        format: baseUrl[i].format,
+                        tileGrid: new ol.tilegrid.WMTS({
+                            tileSize: JSON.parse(baseUrl[i].tileSize),
+                            origin: JSON.parse(baseUrl[i].origin), //原点（左上角）
+                            resolutions: JSON.parse(baseUrl[i].resolutions).slice(0,baseUrl[i].sliceNum), //分辨率数组
+                            matrixIds: eval(baseUrl[i].matrixIds), //矩阵标识列表，与地图级数保持一致
+                        }),
+                        wrapX: true
+                    })
+                });
             }
 
             layers.push(this[baseUrl[i].id + 'Tile'])

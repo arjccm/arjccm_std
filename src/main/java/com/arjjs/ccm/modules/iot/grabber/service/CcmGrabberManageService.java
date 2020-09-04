@@ -4,7 +4,9 @@
 package com.arjjs.ccm.modules.iot.grabber.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -16,6 +18,8 @@ import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.hikvision.artemis.sdk.ArtemisHttpUtil;
+import com.hikvision.artemis.sdk.config.ArtemisConfig;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -46,6 +50,16 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 	private SysConfigService sysConfigService;
 	@Autowired
 	private CcmListUploadService ccmListUploadService;
+
+    private static boolean isStopThread = true;
+
+    /**
+     * 能力开放平台的网站路径
+     * TODO 路径不用修改，就是/artemis
+     */
+    private static final String ARTEMIS_PATH = "/artemis";
+
+    private static final String URL_PATH = "/api/fms/v2/resource/findCamera";
 
 	@Transactional(readOnly = false)
 	public void updateState(CcmGrabberManage ccmGrabberManage) {
@@ -109,11 +123,19 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 		SysConfig sysConfig = sysConfigService.get("face_docking_config");
 		//解JSON
 		JSONObject jsonObject = JSONObject.parseObject(sysConfig.getParamStr());
-		String url = null;
-		if(jsonObject.containsKey("url")) {
-			url = jsonObject.getString("url");
+		String apiUrl = null;
+		if(jsonObject.containsKey("apiUrl")) {
+			apiUrl = jsonObject.getString("apiUrl");
 		}
-		if(StringUtils.isNotEmpty(url)) {
+		String appKey = null;
+		if(jsonObject.containsKey("appKey")) {
+			appKey = jsonObject.getString("appKey");
+		}
+		String appSecet = null;
+		if(jsonObject.containsKey("appSecet")) {
+			appSecet = jsonObject.getString("appSecet");
+		}
+		if(StringUtils.isNotEmpty(apiUrl) && StringUtils.isNotEmpty(appKey) && StringUtils.isNotEmpty(appSecet)) {
 			if(isStopThread) {
 				CcmGrabberManageService.getGrabberListThread getGrabberListThread = new CcmGrabberManageService.getGrabberListThread();
 				getGrabberListThread.start();
@@ -126,10 +148,6 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 		}
 		return result;
 	}
-	private static boolean isStopThread = true;
-
-	private static final String URL_PATH = "/api/fms/v2/resource/findCamera";
-
 
 	class getGrabberListThread extends Thread {
 		public void run() {
@@ -137,114 +155,111 @@ public class CcmGrabberManageService extends CrudService<CcmGrabberManageDao, Cc
 			SysConfig sysConfig = sysConfigService.get("face_docking_config");
 			//解JSON
 			JSONObject jsonObject = JSONObject.parseObject(sysConfig.getParamStr());
-			String url = jsonObject.getString("url");
-			StringBuffer buffer = new StringBuffer();
-			buffer.append(url);
-			buffer.append(URL_PATH);
+			String apiUrl = jsonObject.getString("apiUrl");
+			String appKey = jsonObject.getString("appKey");
+			String appSecet = jsonObject.getString("appSecet");
 			int i = 0;
 			boolean bool = false;
 			try {
 				while (!bool) {
 					int num = i+1;
-					bool = this.getStaticCcmListPeopleByUrl(buffer.toString() + "?pageNo="+num+"&pageSize=10");
+					bool = this.getStaticCcmListPeopleByUrl(apiUrl,appKey,appSecet,String.valueOf(num));
 					i++;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				System.out.println("获取名单人员结束");
+				System.out.println("获取抓拍机结束");
 				isStopThread = true;
 			}
 		}
 
-		public boolean getStaticCcmListPeopleByUrl(String url) {
+		public boolean getStaticCcmListPeopleByUrl(String apiUrl,String appKey,String appSecet,String page) {
 			boolean bool = false;
-			String result="";
-			//获取httpclient对象
-			DefaultHttpClient httpClient = new DefaultHttpClient();
-			//获取get请求对象
-			HttpGet httpGet = new HttpGet(url);
+			ArtemisConfig.host = apiUrl; // 代理API网关nginx服务器ip端口
+			ArtemisConfig.appKey = appKey;  // 秘钥appkey
+			ArtemisConfig.appSecret = appSecet;// 秘钥appSecret
+			final String getCamsApi = ARTEMIS_PATH + URL_PATH;
+			Map<String,String> querys = new HashMap<String,String>();//get请求的查询参数
+			querys.put("pageNo", page);
+			querys.put("pageSize", "20");
+			Map<String, String> path = new HashMap<String, String>(2){
+				{
+					put("https://", getCamsApi);
+				}
+			};
 			try {
-				//发起请求
-				HttpResponse response = httpClient.execute(httpGet);
-				//获取响应中的数据
-				HttpEntity entity = response.getEntity();
-				//把entity转换成字符串
-				result = EntityUtils.toString(entity, "utf-8");
+				String result = ArtemisHttpUtil.doGetArtemis(path, querys,null,null,null);
 				System.out.println(" ===== >>> " + result);
 				JSONObject resJson = JSONObject.parseObject(result);
 				if(resJson.containsKey("data") && StringUtils.isNotBlank(resJson.getString("data"))) {
-					JSONObject dataJson = JSONObject.parseObject(resJson.getString("data"));
-					if(dataJson.containsKey("list") && StringUtils.isNotBlank(dataJson.getString("list"))){
-						JSONArray listJson = JSONArray.parseArray(dataJson.getString("list"));
-						if (listJson.size() > 0) {
-							List<CcmGrabberManage> list = ccmGrabberManageDao.findList(new CcmGrabberManage());
-							for (int i = 0; i < listJson.size(); i++) {
-								JSONObject grabberJson = listJson.getJSONObject(i);
-								String code = null;
-								if(grabberJson.containsKey("deviceCode")) {
-									code = grabberJson.getString("deviceCode");
-								}
-								if(StringUtils.isNotBlank(code)) {
-									CcmGrabberManage grabber = new CcmGrabberManage();
-									grabber.setGrabberNum(code);
-									boolean isNew = true;
-									for (CcmGrabberManage ccmGrabberManage:list) {
-										if(code.equals(ccmGrabberManage.getGrabberNum())){
-											BeanUtils.copyProperties(ccmGrabberManage,grabber);
-											isNew = false;
-										}
-									}
-									if(grabberJson.containsKey("cameraIp")) {
-										grabber.setGrabberIp(grabberJson.getString("cameraIp"));
-									}
-									if(grabberJson.containsKey("cameraName")) {
-										grabber.setGrabberName(grabberJson.getString("cameraName"));
-									}
-									if(grabberJson.containsKey("cameraPort")) {
-										grabber.setGrabberPort(grabberJson.getString("cameraPort"));
-									}
-									if(grabberJson.containsKey("cameraType")) {
-										grabber.setGrabberType(grabberJson.getString("cameraType"));
-									}
-									if(grabberJson.containsKey("channelNo")) {
-										grabber.setGrabberPassway(grabberJson.getString("channelNo"));
-									}
-									if(grabberJson.containsKey("indexCode")) {
-										grabber.setResourcesNum(grabberJson.getString("indexCode"));
-									}
-									if(grabberJson.containsKey("latitude")) {
-										grabber.setGrabberLatitude(grabberJson.getString("latitude"));
-									}
-									if(grabberJson.containsKey("longitude")) {
-										grabber.setGrabberLongitude(grabberJson.getString("longitude"));
-									}
-									if(grabberJson.containsKey("password")) {
-										grabber.setPassword(grabberJson.getString("password"));
-									}
-									if(grabberJson.containsKey("regionId")) {
-										grabber.setRemarks(grabberJson.getString("regionId"));
-									}
-									if(grabberJson.containsKey("userName")) {
-										grabber.setUsername(grabberJson.getString("userName"));
-									}
-									if(grabberJson.containsKey("relationPoint")) {
-										grabber.setMonitorNum(grabberJson.getString("relationPoint"));
-									}
-									grabber.setIsupload("NO");
-									if(!isNew) {
-										grabber.setUpdateBy(UserUtils.getUser());
-										grabber.setUpdateDate(new Date());
-									}else{
-
-									}
-									save(grabber);
-								}
-							}
-						}else {
-							bool = true;
-						}
-					}
+                    System.out.println(" ===== >>>> " + resJson.getString("data"));
+                    JSONArray listJson = JSONArray.parseArray(resJson.getString("data"));
+                    if (listJson.size() > 0) {
+                        List<CcmGrabberManage> list = ccmGrabberManageDao.findList(new CcmGrabberManage());
+                        for (int i = 0; i < listJson.size(); i++) {
+                            JSONObject grabberJson = listJson.getJSONObject(i);
+                            String code = null;
+                            if(grabberJson.containsKey("deviceCode")) {
+                                code = grabberJson.getString("deviceCode");
+                            }
+                            if(StringUtils.isNotBlank(code)) {
+                                CcmGrabberManage grabber = new CcmGrabberManage();
+                                grabber.setGrabberNum(code);
+                                boolean isNew = true;
+                                for (CcmGrabberManage ccmGrabberManage:list) {
+                                    if(code.equals(ccmGrabberManage.getGrabberNum())){
+                                        BeanUtils.copyProperties(ccmGrabberManage,grabber);
+                                        isNew = false;
+                                    }
+                                }
+                                if(grabberJson.containsKey("cameraIp")) {
+                                    grabber.setGrabberIp(grabberJson.getString("cameraIp"));
+                                }
+                                if(grabberJson.containsKey("cameraName")) {
+                                    grabber.setGrabberName(grabberJson.getString("cameraName"));
+                                }
+                                if(grabberJson.containsKey("cameraPort")) {
+                                    grabber.setGrabberPort(grabberJson.getString("cameraPort"));
+                                }
+                                if(grabberJson.containsKey("cameraType")) {
+                                    grabber.setGrabberType(grabberJson.getString("cameraType"));
+                                }
+                                if(grabberJson.containsKey("channelNo")) {
+                                    grabber.setGrabberPassway(grabberJson.getString("channelNo"));
+                                }
+                                if(grabberJson.containsKey("indexCode")) {
+                                    grabber.setResourcesNum(grabberJson.getString("indexCode"));
+                                }
+                                if(grabberJson.containsKey("latitude")) {
+                                    grabber.setGrabberLatitude(grabberJson.getString("latitude"));
+                                }
+                                if(grabberJson.containsKey("longitude")) {
+                                    grabber.setGrabberLongitude(grabberJson.getString("longitude"));
+                                }
+                                if(grabberJson.containsKey("password")) {
+                                    grabber.setPassword(grabberJson.getString("password"));
+                                }
+                                if(grabberJson.containsKey("regionId")) {
+                                    grabber.setRemarks(grabberJson.getString("regionId"));
+                                }
+                                if(grabberJson.containsKey("userName")) {
+                                    grabber.setUsername(grabberJson.getString("userName"));
+                                }
+                                if(grabberJson.containsKey("relationPoint")) {
+                                    grabber.setMonitorNum(grabberJson.getString("relationPoint"));
+                                }
+                                grabber.setIsupload("NO");
+                                if(!isNew) {
+                                    grabber.setUpdateBy(UserUtils.getUser());
+                                    grabber.setUpdateDate(new Date());
+                                }
+                                save(grabber);
+                            }
+                        }
+                    }else {
+                        bool = true;
+                    }
 				}else {
 					bool = true;
 				}

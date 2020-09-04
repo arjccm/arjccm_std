@@ -251,6 +251,7 @@ public class CcmRestLogin extends BaseController {
         json.put("mobile",userDB.getMobile());
         json.put("userType",userDB.getUserType());
         json.put("loginIp",userDB.getLoginIp());
+        //地图相关参数
         SysConfig sysConfig = sysConfigService.get(SysConfig.MAP_CONFIG_ID);
         if (StringUtils.isNotBlank(sysConfig.getParamStr())) {
             net.sf.json.JSONObject jsonObject = net.sf.json.JSONObject.fromObject(sysConfig.getParamStr());
@@ -259,14 +260,37 @@ public class CcmRestLogin extends BaseController {
                 sysConfig.setSysMapConfig(sysMapConfig);
             }
         }
-        json.put("imageMapUrl", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppMapUrl()) ? sysConfig.getSysMapConfig().getAppMapUrl() : "");
+
+        JSONObject jsonmap= new JSONObject();
+        jsonmap.put("mapType", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppType()) ? sysConfig.getSysMapConfig().getAppType() : "");  //123 Arcgus 4 Geosever
+        jsonmap.put("mapSrc", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getAppMapUrl()) ? sysConfig.getSysMapConfig().getAppMapUrl() : "");
+        jsonmap.put("tileSize", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getTileSize()) ? sysConfig.getSysMapConfig().getTileSize() : "");
+        if(StringUtils.isNotBlank(sysConfig.getSysMapConfig().getProjection())){
+            if(sysConfig.getSysMapConfig().getProjection().equals("0")){
+                jsonmap.put("coordinateFormat", "4326");
+            } else if(sysConfig.getSysMapConfig().getProjection().equals("1")){
+                jsonmap.put("coordinateFormat", "3857");
+            } else {
+                jsonmap.put("coordinateFormat", "");
+            }
+        } else {
+            jsonmap.put("coordinateFormat", "");
+        }
+        jsonmap.put("layer", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getName()) ? sysConfig.getSysMapConfig().getName() : "");
+        jsonmap.put("tileMatrixSet", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getTileMatrixSet()) ? sysConfig.getSysMapConfig().getTileMatrixSet() : "");
+        jsonmap.put("minZoom", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getMin()) ? sysConfig.getSysMapConfig().getMin() : "");
+        jsonmap.put("maxZoom", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getMax()) ? sysConfig.getSysMapConfig().getMax() : "");
+        jsonmap.put("format", StringUtils.isNotBlank(sysConfig.getSysMapConfig().getFormat()) ? sysConfig.getSysMapConfig().getFormat() : "");
+        json.put("mapInfoBean",jsonmap);
+
         if(StringUtils.isNotBlank(userDB.getPhoto())) {
         	json.put("photo", Global.getConfig("FILE_UPLOAD_URL")+userDB.getPhoto());
 		}else {
 			json.put("photo", userDB.getPhoto());
 		}
+        net.sf.json.JSONObject jsonObject = net.sf.json.JSONObject.fromObject(sysConfig.getParamStr());
+        String center = jsonObject.getString("center");
         json.put("admin",userDB.isAdmin());
-
         json.put("arj_netty_url",Global.getConfig("ARJIM_NETTY_URL"));
         //json.put("arj_netty_websocket_url",Global.getConfig("ARJIM_NETTY_WEBSOCKET_URL"));
         json.put("arj_rest_url",Global.getConfig("ARJIM_RETS_URL"));
@@ -276,6 +300,7 @@ public class CcmRestLogin extends BaseController {
         json.put("arj_coturn_stun_url",Global.getConfig("ARJ_COTURN_STUN_URL"));
         json.put("arj_turn_username",Global.getConfig("ARJ_TURN_USERNAME"));
         json.put("arj_turn_password",Global.getConfig("ARJ_TURN_PASSWORD"));
+        json.put("center",center);
         result.setResult(json);
         return result;
     }

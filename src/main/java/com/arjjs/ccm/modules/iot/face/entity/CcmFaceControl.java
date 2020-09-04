@@ -29,6 +29,8 @@ public class CcmFaceControl extends DataEntity<CcmFaceControl> {
 
 	private List<String> librarySelectList;	//名单库集合
 	private List<String> captureMachineList;	//抓拍机集合
+
+	private String fid;
 	
 	public CcmFaceControl() {
 		super();
@@ -124,5 +126,13 @@ public class CcmFaceControl extends DataEntity<CcmFaceControl> {
 
 	public void setCaptureMachineList(List<String> captureMachineList) {
 		this.captureMachineList = captureMachineList;
+	}
+
+	public String getFid() {
+		return fid;
+	}
+
+	public void setFid(String fid) {
+		this.fid = fid;
 	}
 }

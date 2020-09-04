@@ -147,7 +147,7 @@
 					<div class="control-group" style="border:none;margin-top:10px;">
 						<label class="control-label">登录密码：</label>
 						<div class="controls">
-							<form:input path="password" htmlEscape="false" maxlength="30" class="input-xlarge required"/>
+							<form:input path="password" htmlEscape="false" maxlength="512" class="input-xlarge required"/>
 							<span class="help-inline"><font color="red">*</font> </span>
 						</div>
 					</div>

@@ -80,8 +80,8 @@ public class CcmListPeopleController extends BaseController {
 		}
 		Page<CcmListPeople> page = ccmListPeopleService.findPage(new Page<CcmListPeople>(request, response), ccmListPeople);
 		List<CcmListPeople> list = page.getList();
-		String listName = "";
 		for (CcmListPeople people:list) {
+			String listName = "";
 			String[] listId = people.getListId().split(",");
 			if(listId.length>0){
 				for(int i=0 ; i<listId.length ; i++){

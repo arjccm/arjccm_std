@@ -134,7 +134,7 @@
 				<td colspan="2">
 					<label class="control-label">上传图片：</label>
 					<div class="controls">
-						<form:hidden id="images" path="img" htmlEscape="false" maxlength="255" class="input-xlarge"/>
+						<form:hidden id="images" path="img" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
 						<sys:ckfinder input="images" type="images" uploadPath="/photo/peoplePhoto" selectMultiple="false" maxWidth="160" maxHeight="240"/>
 					</div>
 				</td>

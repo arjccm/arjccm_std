@@ -23,6 +23,20 @@
 			var type = $("#type").val();
 			parent.parent.LayerDialog("${ctx}/list/ccmListPeople/form?type=" + type + "&id=" + id, "编辑", "1100px", "500px")
         }
+		function gatListPeoples(type) {
+			if(type === 1){
+				type = '01'
+			}else{
+				type = '02'
+			}
+			$.getJSON("/arjccm/a/list/ccmListPeople/getCcmListPeople?type="+type,function(data){
+				if(data.code == 0){
+					alert("获取人员数据中");
+				}else{
+					alert("配置信息有误");
+				}
+			})
+		};
 	</script>
 	<script src="${ctxStatic}/ccm/event/js/ccmEventIncident.js" type="text/javascript"></script>
 </head>
@@ -49,6 +63,11 @@
 			</li>
 			<li><label>证件号码：</label>
 				<form:input path="papersNumber" htmlEscape="false" maxlength="64" class="input-medium"/>
+			</li>
+			<li class="btns">
+				<a onclick="gatListPeoples(${type})" class="btn btn-primary" style="width: 140px !important;">
+					<i class="icon-refresh"></i> 获取${title}人员数据
+				</a>
 			</li>
 			<li class="btns">
 				<a onclick="onAddClick()" class="btn btn-primary">

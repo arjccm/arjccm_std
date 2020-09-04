@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.list.dao.CcmListAlarmDao">
+    
+	<sql id="ccmListAlarmColumns">
+		a.id AS "id",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.alarm_time AS "alarmTime",
+		a.bkg_pic_url AS "bkgPicUrl",
+		a.face_pic_url AS "facePicUrl",
+		a.control_id AS "controlId",
+		f.name AS "controlName",
+		a.human_id AS "humanId",
+		a.index_code AS "indexCode",
+		a.similarity AS "similarity"
+	</sql>
+	
+	<sql id="ccmListAlarmJoins">
+		LEFT JOIN ccm_face_control f ON a.control_id = f.fid
+	</sql>
+    
+	<select id="get" resultType="CcmListAlarm">
+		SELECT 
+			<include refid="ccmListAlarmColumns"/>
+		FROM ccm_list_alarm a
+		<include refid="ccmListAlarmJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CcmListAlarm">
+		SELECT 
+			<include refid="ccmListAlarmColumns"/>
+		FROM ccm_list_alarm a
+		<include refid="ccmListAlarmJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="startTime != null">
+				AND a.alarm_time &lt;= #{startTime}
+			</if>
+			<if test="endTime != null">
+				AND a.alarm_time &gt;= #{endTime}
+			</if>
+			<if test="controlId != null and controlId != ''">
+				AND a.control_id = #{controlId}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CcmListAlarm">
+		SELECT 
+			<include refid="ccmListAlarmColumns"/>
+		FROM ccm_list_alarm a
+		<include refid="ccmListAlarmJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_list_alarm(
+			id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			alarm_time,
+			bkg_pic_url,
+			face_pic_url,
+			control_id,
+			human_id,
+			index_code,
+			similarity
+		) VALUES (
+			#{id},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{alarmTime},
+			#{bkgPicUrl},
+			#{facePicUrl},
+			#{controlId},
+			#{humanId},
+			#{indexCode},
+			#{similarity}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ccm_list_alarm SET 	
+			id = #{id},
+			create_by = #{createBy.id},
+			create_date = #{createDate},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			del_flag = #{delFlag},
+			alarm_time = #{alarmTime},
+			bkg_pic_url = #{bkgPicUrl},
+			face_pic_url = #{facePicUrl},
+			control_id = #{controlId},
+			human_id = #{humanId},
+			index_code = #{indexCode},
+			similarity = #{similarity}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE ccm_list_alarm SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

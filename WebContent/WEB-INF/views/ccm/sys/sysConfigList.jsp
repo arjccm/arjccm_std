@@ -55,6 +55,15 @@
 							$('#btnSubmit9').click(function() {
 								$('#inputFormHikvisonVideoConfig').submit();
 							});
+							$('#btnGetFaceCameras').click(function() {
+								$.getJSON("/arjccm/app/videoData/getGrabberList",function(data){
+									if(data.code == 0){
+										alert("获取人脸抓拍机设备中");
+									}else{
+										alert("配置信息有误");
+									}
+								})
+							});
 							$('#btnGetCameras').click(function() {
 								$.getJSON("/arjccm/app/videoData/getCameras",function(data){
 									if(data.code == 0){
@@ -81,8 +90,8 @@
 							});
 							$('#btnGetDssCameras').click(function() {
 								$.getJSON("/arjccm/app/videoData/getDssCameras",function(data){
+									alert("获取监控设备中");
 									if(data.code == 0){
-										alert("获取监控设备中");
 									}else{
 										alert("配置信息有误");
 									}
@@ -255,8 +264,11 @@
 			margin-bottom: 10px
 		}
 		#btnGetCameras,#btnGetTiandyCameras,#btnGetDssCameras{
-			width: 100px!important;
+            width: 100px!important;
 		}
+        #btnGetFaceCameras{
+            width: 150px!important;
+        }
 	</style>
 </head>
 <body>
@@ -343,15 +355,42 @@
 	<div class="control-group">
 		<label class="control-label">${faceDockingConfig.remarks}：</label>
 		<div class="controls">
-			<br> <label class="high"><label class="lableStyle">URL：</label>
-			<form:input path="url" htmlEscape="false" maxlength="128"
-						class="input-xlarge " /></label><span class="help-inline">上级接口rest地址，如：http://192.168.1.243:8080/arjccm</span>
+			<br>
+			<label class="high">
+				<label class="lableStyle">apiUrl：</label>
+				<form:input path="apiUrl" htmlEscape="false" maxlength="128"
+							class="input-xlarge"/>
+			</label><br>
+			<label class="high">
+				<label class="lableStyle">appKey：</label>
+				<form:input path="appKey" htmlEscape="false" maxlength="128"
+							class="input-xlarge " />
+			</label><br>
+			<label class="high">
+				<label class="lableStyle">appSecet：</label>
+				<form:input path="appSecet" htmlEscape="false" maxlength="128"
+							class="input-xlarge " />
+			</label><br>
+			<label class="high">
+				<label class="lableStyle">svrIp：</label>
+				<form:input path="svrIp" htmlEscape="false" maxlength="128"
+							class="input-xlarge " />
+			</label><br>
+			<label class="high">
+				<label class="lableStyle">svrPort：</label>
+				<form:input path="svrPort" htmlEscape="false" maxlength="128"
+							class="input-xlarge " />
+			</label>
 			<span style="float: right; margin-right: 200px">
 				<shiro:hasPermission name="sys:sysConfig:edit">
-						<a id="btnSubmit12" class="btn btn-primary" href="javascript:;"><i
-								class="icon-ok"></i>保存</a>
+					<a id="btnSubmit12" class="btn btn-primary" href="javascript:;">
+						<i class="icon-ok"></i>保存
+					</a>
+					<a id="btnGetFaceCameras" class="btn btn-primary" href="javascript:;">
+						<i class="icon-facetime-video"></i>获取人脸抓拍机设备
+					</a>
 				</shiro:hasPermission>
-				</span>
+			</span>
 		</div>
 	</div>
 </form:form>

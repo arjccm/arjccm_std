@@ -26,7 +26,7 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
         <ul class="ul-form">
             <li>
-                <label>名单库:</label>
+                <label>抓拍机:</label>
                 <form:select path="listId" class="input-medium required">
                     <form:option value="" label="全部" />
                     <form:options items="${grabber}"
@@ -53,13 +53,15 @@
                        value="<fmt:formatDate value="${ccmPeople.endBirthday}" pattern="yyyy-MM-dd HH:mm:ss"/>"
                        onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
             </li>
-            <li>
-                <label>图片:</label>
-                <form:hidden id="images" path="imagesUrl" htmlEscape="false"
-                             maxlength="255" class="input-xlarge"/>
-                <sys:ckfinder input="images" type="images"
-                              uploadPath="/photo/grabberToSearch" selectMultiple="false"
-                              maxWidth="240" maxHeight="360"/>
+            <li style="height: 56px; width: 520px; margin-top: 5px;">
+                <label style="float: left; line-height: 20px; margin-top: 7px">图片:</label>
+                <div style="float: left;height: 70px; width: 200px;">
+                    <form:hidden id="images" path="imagesUrl" htmlEscape="false"
+                                 maxlength="255" class="input-xlarge"/>
+                    <sys:ckfinder input="images" type="images"
+                                  uploadPath="/photo/faceToSearch" selectMultiple="false"
+                                  maxWidth="240" maxHeight="360"/>
+                </div>
             </li>
 
             <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="检索"/></li>

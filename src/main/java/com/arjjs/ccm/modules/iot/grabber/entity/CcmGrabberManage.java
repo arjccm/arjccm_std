@@ -107,7 +107,7 @@ public class CcmGrabberManage extends DataEntity<CcmGrabberManage> {
 		this.username = username;
 	}
 	
-	@Length(min=0, max=64, message="登录密码长度必须介于 0 和 64 之间")
+	@Length(min=0, max=512, message="登录密码长度必须介于 0 和 512 之间")
 	public String getPassword() {
 		return password;
 	}

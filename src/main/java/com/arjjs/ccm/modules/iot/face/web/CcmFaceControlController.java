@@ -74,6 +74,7 @@ public class CcmFaceControlController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(CcmFaceControl ccmFaceControl,CcmList ccmList, Model model) {
 		//名单库列表
+		ccmList.setType("01");
 		List<CcmList> list = ccmListService.getList(ccmList);
 
 		CcmGrabberManage ccmGrabberManage = new CcmGrabberManage();

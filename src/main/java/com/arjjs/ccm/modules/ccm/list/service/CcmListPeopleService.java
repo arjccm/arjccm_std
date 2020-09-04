@@ -4,7 +4,9 @@
 package com.arjjs.ccm.modules.ccm.list.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -17,6 +19,8 @@ import com.arjjs.ccm.modules.ccm.rest.entity.CcmRestType;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
 import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.hikvision.artemis.sdk.ArtemisHttpUtil;
+import com.hikvision.artemis.sdk.config.ArtemisConfig;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -49,6 +53,19 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 	private CcmListDao ccmListDao;
 	@Autowired
 	private CcmListUploadService ccmListUploadService;
+
+	private static String getType = "";
+
+	private static boolean isStopThread = true;
+
+	/**
+	 * 能力开放平台的网站路径
+	 * TODO 路径不用修改，就是/artemis
+	 */
+	private static final String ARTEMIS_PATH = "/artemis";
+
+	private static final String URL_BLACK_PATH = "/api/fms/v2/blacklist/findRecord";
+	private static final String URL_STATIC_PATH = "/api/fms/v2/staticlist/findRecord";
 
 	public CcmListPeople get(String id) {
 		return super.get(id);
@@ -98,19 +115,25 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 		super.delete(ccmListPeople);
 	}
 
-	private static String getType = "";
-
 	public CcmRestResult getCcmListPeople(CcmListPeople ccmListPeople) {
 		getType = ccmListPeople.getType();
 		CcmRestResult result = new CcmRestResult();
 		SysConfig sysConfig = sysConfigService.get("face_docking_config");
 		//解JSON
 		JSONObject jsonObject = JSONObject.parseObject(sysConfig.getParamStr());
-		String url = null;
-		if(jsonObject.containsKey("url")) {
-			url = jsonObject.getString("url");
+		String apiUrl = null;
+		if(jsonObject.containsKey("apiUrl")) {
+			apiUrl = jsonObject.getString("apiUrl");
 		}
-		if(StringUtils.isNotEmpty(url)) {
+		String appKey = null;
+		if(jsonObject.containsKey("appKey")) {
+			appKey = jsonObject.getString("appKey");
+		}
+		String appSecet = null;
+		if(jsonObject.containsKey("appSecet")) {
+			appSecet = jsonObject.getString("appSecet");
+		}
+		if(StringUtils.isNotEmpty(apiUrl) && StringUtils.isNotEmpty(appKey) && StringUtils.isNotEmpty(appSecet)) {
 			if(isStopThread) {
 				CcmListPeopleService.getCcmListPeopleThread getCcmListPeopleThread = new CcmListPeopleService.getCcmListPeopleThread();
 				getCcmListPeopleThread.start();
@@ -124,10 +147,7 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 		return result;
 	}
 
-	private static boolean isStopThread = true;
 
-	private static final String URL_BLACK_PATH = "/api/fms/v2/blacklist/findRecord";
-	private static final String URL_STATIC_PATH = "/api/fms/v2/staticlist/findRecord";
 
 	class getCcmListPeopleThread extends Thread {
 		public void run() {
@@ -135,15 +155,12 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 			SysConfig sysConfig = sysConfigService.get("face_docking_config");
 			//解JSON
 			JSONObject jsonObject = JSONObject.parseObject(sysConfig.getParamStr());
-			String url = jsonObject.getString("url");
-			StringBuffer buffer = new StringBuffer();
+			String apiUrl = jsonObject.getString("apiUrl");
+			String appKey = jsonObject.getString("appKey");
+			String appSecet = jsonObject.getString("appSecet");
 			CcmList ccmList = new CcmList();
-			buffer.append(url);
 			if("01".equals(getType)){
-				buffer.append(URL_BLACK_PATH);
 				ccmList.setType(getType);
-			}else{
-				buffer.append(URL_STATIC_PATH);
 			}
 			int i = 0;
 			boolean bool = false;
@@ -152,9 +169,11 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 				if("01".equals(getType)){
 					if(list.size()>0){
 						for(int j = 0; j<list.size() ; j++){
+							bool = false;
+							i = 0;
 							while (!bool) {
 								int num = i+1;
-								bool = this.getBlackCcmListPeopleByUrl(buffer.toString() + "?pageNo="+num+"&pageSize=10&listLibIds="+list.get(j).getFid());
+								bool = this.getBlackCcmListPeopleByUrl(apiUrl,appKey,appSecet,String.valueOf(num),list.get(j).getFid());
 								i++;
 							}
 						}
@@ -162,7 +181,7 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 				}else{
 					while (!bool) {
 						int num = i+1;
-						bool = this.getStaticCcmListPeopleByUrl(buffer.toString() + "?pageNo="+num+"&pageSize=10");
+						bool = this.getStaticCcmListPeopleByUrl(apiUrl,appKey,appSecet,String.valueOf(num));
 						i++;
 					}
 				}
@@ -174,96 +193,99 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 			}
 		}
 
-		public boolean getStaticCcmListPeopleByUrl(String url) {
+		public boolean getStaticCcmListPeopleByUrl(String apiUrl,String appKey,String appSecet,String page) {
 			boolean bool = false;
-			String result="";
-			//获取httpclient对象
-			DefaultHttpClient httpClient = new DefaultHttpClient();
-			//获取get请求对象
-			HttpGet httpGet = new HttpGet(url);
+			ArtemisConfig.host = apiUrl; // 代理API网关nginx服务器ip端口
+			ArtemisConfig.appKey = appKey;  // 秘钥appkey
+			ArtemisConfig.appSecret = appSecet;// 秘钥appSecret
+			final String getCamsApi = ARTEMIS_PATH + URL_STATIC_PATH;
+			Map<String,String> querys = new HashMap<String,String>();//get请求的查询参数
+			querys.put("start", page);
+			querys.put("size", String.valueOf(20));
+			Map<String, String> path = new HashMap<String, String>(2){
+				{
+					put("https://", getCamsApi);
+				}
+			};
 			try {
-				//发起请求
-				HttpResponse response = httpClient.execute(httpGet);
-				//获取响应中的数据
-				HttpEntity entity = response.getEntity();
-				//把entity转换成字符串
-				result = EntityUtils.toString(entity, "utf-8");
+				System.out.println(" ===== >>> " + JSONObject.toJSONString(querys));
+				String result = ArtemisHttpUtil.doGetArtemis(path, querys,null,null,null);
 				System.out.println(" ===== >>> " + result);
 				JSONObject resJson = JSONObject.parseObject(result);
 				if(resJson.containsKey("data") && StringUtils.isNotBlank(resJson.getString("data"))) {
-					JSONObject dataJson = JSONObject.parseObject(resJson.getString("data"));
-					if(dataJson.containsKey("list") && StringUtils.isNotBlank(dataJson.getString("list"))){
-						JSONArray listJson = JSONArray.parseArray(dataJson.getString("list"));
-						if (listJson.size() > 0) {
-							CcmListPeople people = new CcmListPeople();
-							people.setType("01");
-							List<CcmListPeople> list = ccmListPeopleDao.findList(people);
-							for (int i = 0; i < listJson.size(); i++) {
-								JSONObject ccmListPeopleJson = listJson.getJSONObject(i);
-								String fid = null;
-								if(ccmListPeopleJson.containsKey("humanId")) {
-									fid = ccmListPeopleJson.getString("humanId");
+					JSONArray listJson = JSONArray.parseArray(resJson.getString("data"));
+					if (listJson.size() > 0) {
+						CcmListPeople people = new CcmListPeople();
+						people.setType("02");
+						List<CcmListPeople> list = findList(people);
+						for (int i = 0; i < listJson.size(); i++) {
+							JSONObject ccmListPeopleJson = listJson.getJSONObject(i);
+							String fid = null;
+							if(ccmListPeopleJson.containsKey("humanId")) {
+								fid = ccmListPeopleJson.getString("humanId");
+							}
+							if(StringUtils.isNotBlank(fid)) {
+								CcmListPeople ccmListPeople = new CcmListPeople();
+								ccmListPeople.setFid(fid);
+								boolean isNew = true;
+								for (CcmListPeople ccmlistpeople:list) {
+									if(fid.equals(ccmlistpeople.getFid())){
+										BeanUtils.copyProperties(ccmlistpeople,ccmListPeople);
+										isNew = false;
+									}
 								}
-								if(StringUtils.isNotBlank(fid)) {
-									CcmListPeople ccmListPeople = new CcmListPeople();
-									ccmListPeople.setFid(fid);
-									boolean isNew = true;
-									for (CcmListPeople ccmlistpeople:list) {
-										if(fid.equals(ccmlistpeople.getFid())){
-											BeanUtils.copyProperties(ccmlistpeople,ccmListPeople);
-											isNew = false;
-										}
+								ccmListPeople.setIsupload("NO");
+								if(ccmListPeopleJson.containsKey("humanAddress")) {
+									ccmListPeople.setRemarks(ccmListPeopleJson.getString("humanAddress"));
+								}
+								if(ccmListPeopleJson.containsKey("credentialsNum")) {
+									ccmListPeople.setPapersNumber(ccmListPeopleJson.getString("credentialsNum"));
+								}
+								if(ccmListPeopleJson.containsKey("facePicUrl")) {
+									ccmListPeople.setImg(ccmListPeopleJson.getString("facePicUrl"));
+								}
+								if(ccmListPeopleJson.containsKey("humanName")) {
+									ccmListPeople.setName(ccmListPeopleJson.getString("humanName"));
+								}
+								if(ccmListPeopleJson.containsKey("credentialsType")) {
+									ccmListPeople.setName(ccmListPeopleJson.getString("credentialsType"));
+								}
+								if(ccmListPeopleJson.containsKey("sex")) {
+									if("1".equals(ccmListPeopleJson.getString("sex"))){
+										ccmListPeople.setSex("0");
+									}else if("2".equals(ccmListPeopleJson.getString("sex"))){
+										ccmListPeople.setSex("1");
+									}else{
+										ccmListPeople.setSex("9");
 									}
-									ccmListPeople.setIsupload("NO");
-									if(ccmListPeopleJson.containsKey("humanAddress")) {
-										ccmListPeople.setRemarks(ccmListPeopleJson.getString("humanAddress"));
-									}
-									if(ccmListPeopleJson.containsKey("credentialsNum")) {
-										ccmListPeople.setPapersNumber(ccmListPeopleJson.getString("credentialsNum"));
-									}
-									if(ccmListPeopleJson.containsKey("facePicUrl")) {
-										ccmListPeople.setImg(ccmListPeopleJson.getString("facePicUrl"));
-									}
-									if(ccmListPeopleJson.containsKey("humanName")) {
-										ccmListPeople.setName(ccmListPeopleJson.getString("humanName"));
-									}
-									if(ccmListPeopleJson.containsKey("credentialsType")) {
-										ccmListPeople.setName(ccmListPeopleJson.getString("credentialsType"));
-									}
-									if(ccmListPeopleJson.containsKey("sex")) {
-										if("1".equals(ccmListPeopleJson.getString("sex"))){
-											ccmListPeople.setSex("0");
-										}else if("2".equals(ccmListPeopleJson.getString("sex"))){
-											ccmListPeople.setSex("1");
-										}else{
-											ccmListPeople.setSex("9");
-										}
-									}
-									if(ccmListPeopleJson.containsKey("listLibId")) {
-										String listId = "";
-										String[] staticIds = ccmListPeopleJson.getString("listLibId").split(",");
-										for (String staticId:staticIds) {
-											if(StringUtils.isNotEmpty(staticId)){
-												CcmList giveFid = new CcmList();
-												giveFid.setFid(staticId);
-												CcmList ccmList = ccmListDao.getByFid(giveFid);
-												if(StringUtils.isNotEmpty(ccmList.getId())){
-													listId = listId + ccmList.getId() + ",";
-												}
+								}
+								if(ccmListPeopleJson.containsKey("listLibId")) {
+									String listId = "";
+									String[] staticIds = ccmListPeopleJson.getString("listLibId").split(",");
+									for (String staticId:staticIds) {
+										if(StringUtils.isNotEmpty(staticId)){
+											CcmList giveFid = new CcmList();
+											giveFid.setFid(staticId);
+											CcmList ccmList = ccmListDao.getByFid(giveFid);
+											if(StringUtils.isNotEmpty(ccmList.getId())){
+												listId = listId + ccmList.getId() + ",";
 											}
 										}
-										ccmListPeople.setListId(listId);
 									}
-									if(!isNew) {
-										ccmListPeople.setUpdateBy(UserUtils.getUser());
-										ccmListPeople.setUpdateDate(new Date());
-									}
-									save(ccmListPeople);
+									ccmListPeople.setListId(listId);
+								}
+								if(!isNew) {
+									ccmListPeople.setUpdateBy(UserUtils.getUser());
+									ccmListPeople.setUpdateDate(new Date());
+								}
+								save(ccmListPeople);
+								if(isNew){
+									list.add(ccmListPeople);
 								}
 							}
-						}else {
-							bool = true;
 						}
+					}else {
+						bool = true;
 					}
 				}else {
 					bool = true;
@@ -275,93 +297,97 @@ public class CcmListPeopleService extends CrudService<CcmListPeopleDao, CcmListP
 			return bool;
 		}
 
-		public boolean getBlackCcmListPeopleByUrl(String url) {
+		public boolean getBlackCcmListPeopleByUrl(String apiUrl,String appKey,String appSecet,String page, String ids) {
 			boolean bool = false;
-			String result="";
-			//获取httpclient对象
-			DefaultHttpClient httpClient = new DefaultHttpClient();
-			//获取get请求对象
-			HttpGet httpGet = new HttpGet(url);
+			ArtemisConfig.host = apiUrl; // 代理API网关nginx服务器ip端口
+			ArtemisConfig.appKey = appKey;  // 秘钥appkey
+			ArtemisConfig.appSecret = appSecet;// 秘钥appSecret
+			final String getCamsApi = ARTEMIS_PATH + URL_BLACK_PATH;
+			Map<String,String> querys = new HashMap<String,String>();//get请求的查询参数
+			querys.put("start", page);
+			querys.put("size", String.valueOf(20));
+			querys.put("listLibIds", ids);
+			Map<String, String> path = new HashMap<String, String>(2){
+				{
+					put("https://", getCamsApi);
+				}
+			};
 			try {
-				//发起请求
-				HttpResponse response = httpClient.execute(httpGet);
-				//获取响应中的数据
-				HttpEntity entity = response.getEntity();
-				//把entity转换成字符串
-				result = EntityUtils.toString(entity, "utf-8");
+				System.out.println(" ===== >>> " + JSONObject.toJSONString(querys));
+				String result = ArtemisHttpUtil.doGetArtemis(path, querys,null,null,null);
 				System.out.println(" ===== >>> " + result);
 				JSONObject resJson = JSONObject.parseObject(result);
 				if(resJson.containsKey("data") && StringUtils.isNotBlank(resJson.getString("data"))) {
-					JSONObject dataJson = JSONObject.parseObject(resJson.getString("data"));
-					if(dataJson.containsKey("list") && StringUtils.isNotBlank(dataJson.getString("list"))){
-						JSONArray listJson = JSONArray.parseArray(dataJson.getString("list"));
-						if (listJson.size() > 0) {
-							CcmListPeople people = new CcmListPeople();
-							people.setType("02");
-							List<CcmListPeople> list = ccmListPeopleDao.findList(people);
-							for (int i = 0; i < listJson.size(); i++) {
-								JSONObject ccmListBlackJson = listJson.getJSONObject(i);
-								String fid = null;
-								if(ccmListBlackJson.containsKey("humanId")) {
-									fid = ccmListBlackJson.getString("humanId");
+					JSONArray listJson = JSONArray.parseArray(resJson.getString("data"));
+					if (listJson.size() > 0) {
+						CcmListPeople people = new CcmListPeople();
+						people.setType("01");
+						List<CcmListPeople> list = findList(people);
+						for (int i = 0; i < listJson.size(); i++) {
+							JSONObject ccmListBlackJson = listJson.getJSONObject(i);
+							String fid = null;
+							if(ccmListBlackJson.containsKey("humanId")) {
+								fid = ccmListBlackJson.getString("humanId");
+							}
+							if(StringUtils.isNotBlank(fid)) {
+								CcmListPeople ccmListPeople = new CcmListPeople();
+								ccmListPeople.setFid(fid);
+								boolean isNew = true;
+								for (CcmListPeople ccmlistpeople:list) {
+									if(fid.equals(ccmlistpeople.getFid())){
+										BeanUtils.copyProperties(ccmlistpeople,ccmListPeople);
+										isNew = false;
+									}
 								}
-								if(StringUtils.isNotBlank(fid)) {
-									CcmListPeople ccmListPeople = new CcmListPeople();
-									ccmListPeople.setFid(fid);
-									boolean isNew = true;
-									for (CcmListPeople ccmlistpeople:list) {
-										if(fid.equals(ccmlistpeople.getFid())){
-											BeanUtils.copyProperties(ccmlistpeople,ccmListPeople);
-											isNew = false;
-										}
+								if(ccmListBlackJson.containsKey("credentialsNum")) {
+									ccmListPeople.setPapersNumber(ccmListBlackJson.getString("credentialsNum"));
+								}
+								if(ccmListBlackJson.containsKey("facePicUrl")) {
+									ccmListPeople.setImg(ccmListBlackJson.getString("facePicUrl"));
+								}
+								if(ccmListBlackJson.containsKey("sex")) {
+									if("1".equals(ccmListBlackJson.getString("sex"))){
+										ccmListPeople.setSex("0");
+									}else if("2".equals(ccmListBlackJson.getString("sex"))){
+										ccmListPeople.setSex("1");
+									}else{
+										ccmListPeople.setSex("9");
 									}
-									if(ccmListBlackJson.containsKey("credentialsNum")) {
-										ccmListPeople.setPapersNumber(ccmListBlackJson.getString("credentialsNum"));
-									}
-									if(ccmListBlackJson.containsKey("facePicUrl")) {
-										ccmListPeople.setImg(ccmListBlackJson.getString("facePicUrl"));
-									}
-									if(ccmListBlackJson.containsKey("sex")) {
-										if("1".equals(ccmListBlackJson.getString("sex"))){
-											ccmListPeople.setSex("0");
-										}else if("2".equals(ccmListBlackJson.getString("sex"))){
-											ccmListPeople.setSex("1");
-										}else{
-											ccmListPeople.setSex("9");
-										}
-									}
-									if(ccmListBlackJson.containsKey("credentialsType")) {
-										ccmListPeople.setName(ccmListBlackJson.getString("credentialsType"));
-									}
-									if(ccmListBlackJson.containsKey("listLibId")) {
-										String listId = "";
-										String[] blackIds = ccmListBlackJson.getString("listLibId").split(",");
-										for (String blackId:blackIds) {
-											if(StringUtils.isNotEmpty(blackId)){
-												CcmList giveFid = new CcmList();
-												giveFid.setFid(blackId);
-												CcmList ccmList = ccmListDao.getByFid(giveFid);
-												if(StringUtils.isNotEmpty(ccmList.getId())){
-													listId = listId + ccmList.getId() + ",";
-												}
+								}
+								if(ccmListBlackJson.containsKey("credentialsType")) {
+									ccmListPeople.setName(ccmListBlackJson.getString("credentialsType"));
+								}
+								if(ccmListBlackJson.containsKey("listLibId")) {
+									String listId = "";
+									String[] blackIds = ccmListBlackJson.getString("listLibId").split(",");
+									for (String blackId:blackIds) {
+										if(StringUtils.isNotEmpty(blackId)){
+											CcmList giveFid = new CcmList();
+											giveFid.setFid(blackId);
+											CcmList ccmList = ccmListDao.getByFid(giveFid);
+											if(StringUtils.isNotEmpty(ccmList.getId())){
+												listId = listId + ccmList.getId() + ",";
 											}
 										}
-										ccmListPeople.setListId(listId);
 									}
-									if(ccmListBlackJson.containsKey("humanName")) {
-										ccmListPeople.setName(ccmListBlackJson.getString("humanName"));
-									}
-									ccmListPeople.setIsupload("NO");
-									if(!isNew) {
-										ccmListPeople.setUpdateBy(UserUtils.getUser());
-										ccmListPeople.setUpdateDate(new Date());
-									}
-									save(ccmListPeople);
+									ccmListPeople.setListId(listId);
+								}
+								if(ccmListBlackJson.containsKey("humanName")) {
+									ccmListPeople.setName(ccmListBlackJson.getString("humanName"));
+								}
+								ccmListPeople.setIsupload("NO");
+								if(!isNew) {
+									ccmListPeople.setUpdateBy(UserUtils.getUser());
+									ccmListPeople.setUpdateDate(new Date());
+								}
+								save(ccmListPeople);
+								if(isNew){
+									list.add(ccmListPeople);
 								}
 							}
-						}else {
-							bool = true;
 						}
+					}else{
+						bool = true;
 					}
 				}else {
 					bool = true;

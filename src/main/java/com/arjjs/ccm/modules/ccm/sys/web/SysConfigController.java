@@ -106,8 +106,26 @@ public class SysConfigController extends BaseController {
 				faceDockingConfig = s;
 				// 解JSON
 				JSONObject jsonObject = JSONObject.fromObject(faceDockingConfig.getParamStr());
-				String url = (String) jsonObject.get("url");
-				faceDockingConfig.setUrl(url);
+				if(jsonObject.containsKey("apiUrl")) {
+					String apiUrl = jsonObject.getString("apiUrl");
+					faceDockingConfig.setApiUrl(apiUrl);
+				}
+				if(jsonObject.containsKey("appKey")) {
+					String appKey = jsonObject.getString("appKey");
+					faceDockingConfig.setAppKey(appKey);
+				}
+				if(jsonObject.containsKey("appSecet")) {
+					String appSecet = jsonObject.getString("appSecet");
+					faceDockingConfig.setAppSecet(appSecet);
+				}
+				if(jsonObject.containsKey("svrIp")) {
+					String svrIp = jsonObject.getString("svrIp");
+					faceDockingConfig.setSvrIp(svrIp);
+				}
+				if(jsonObject.containsKey("svrPort")) {
+					String svrPort = jsonObject.getString("svrPort");
+					faceDockingConfig.setSvrPort(svrPort);
+				}
 
 				model.addAttribute("faceDockingConfig", faceDockingConfig);
 			}
@@ -456,12 +474,28 @@ public class SysConfigController extends BaseController {
 			JsonConfig config = new JsonConfig();
 			config.setExcludes(new String[] { "createBy", "updateBy", "currentUser", "createDate", "updateDate",
 					"remarks", "paramStr", "paramInt", "paramDate", "tableName", "objId", "beginParamDate",
-					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
+					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url", "build", "wangGeMax", "wangGeMin",
 					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "red",
 					"yellowMin", "green", "orangeMax", "orangeMin", "yellowMax", "flag",
 					"alarmFlowFlag", "alarmHandleFlag", "handleModel", "paramStrList","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
 					"quXian","jieDaoMin","jieDaoMax","sheQuMin","sheQuMax","wangGe",
 					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId"});// 排除
+			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
+			config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+			String jsonString = JSONArray.fromObject(sysConfig, config).toString(); //
+			jsonString = jsonString.substring(1, jsonString.length() - 1);
+			sysConfig.setParamStr(jsonString);
+		}
+		if ("face_docking_config".equals(sysConfig.getId())) {
+			JsonConfig config = new JsonConfig();
+			config.setExcludes(new String[] { "createBy", "updateBy", "currentUser", "createDate", "updateDate",
+					"remarks", "paramStr", "paramInt", "paramDate", "tableName", "objId", "beginParamDate",
+					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
+					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "red",
+					"yellowMin", "green", "orangeMax", "orangeMin", "yellowMax", "flag",
+					"alarmFlowFlag", "alarmHandleFlag", "handleModel", "paramStrList","tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
+					"quXian","jieDaoMin","jieDaoMax","sheQuMin","sheQuMax","wangGe",
+					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
 			config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 			String jsonString = JSONArray.fromObject(sysConfig, config).toString(); //

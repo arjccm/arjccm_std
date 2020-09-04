@@ -159,63 +159,74 @@ ArjMap.Map.prototype={
 		    var len=baseUrl.length;
 		    if(len>0){
 		    	 for(var i=0;i<len;i++){
-		    		 
-		    			//地图瓦片类型判断
+
+					//地图瓦片类型判断
 		    		 var id=baseUrl[i].id;
 		    		 var type=baseUrl[i].type;
-		    		 if(typeof (type)!="undefined"){
-		    			switch (type) {
-		    			//杭州道现场地图
-		    			  case '1':
+					if(typeof (type)!="undefined"){
+						switch (type) {
+							//杭州道现场地图
+							case '1':
 		    				this[id+'Tile']=new ol.layer.Tile({
 				                     title : "地图",
 				                     opacity:1,//透明度
 				                     name : baseUrl[i].name,//名称
 				                     visible : baseUrl[i].isShow,//显示隐藏
 				                     source : new ol.source.XYZ({
-				                         tileGrid: new ol.tilegrid.TileGrid({
+										tileGrid: new ol.tilegrid.TileGrid({
 				                             tileSize:baseUrl[i].tileSize,//瓦片大小
-				                             origin: baseUrl[i].origin, // 原点  
-				                             resolutions: baseUrl[i].resolutions//分辨率
-	
-				                         }),
+											origin: baseUrl[i].origin, // 原点
+											resolutions: baseUrl[i].resolutions//分辨率
+
+										}),
 				                         url : baseUrl[i].url,//地址
 				                         projection : 'EPSG:4326'
-				                     })
-				                 });
-						        break;
-						      //天地地图
-						    case '2':
+									})
+								});
+								break;
+							//天地地图
+							case '2':
 						    	this[id+'Tile']=new ol.layer.Tile({
 				                      title : "地图",
 				                      name : baseUrl[i].name,
 				                      visible : baseUrl[i].isShow,
 				                      source : new ol.source.XYZ({
 				                          url : baseUrl[i].url,
-				                      })
-				                  });
-						        break;
-						        //arcgis
-						    case '3':
-						    	
+									})
+								});
+								break;
+							//arcgis
+							case '3':
+
 						    	this[id+'Tile']=new ol.layer.Tile({
 				                      title : "地图",
 				                      name : baseUrl[i].name,
 				                      visible : baseUrl[i].isShow,
 				                      source : new ol.source.TileArcGISRest({
 											url : baseUrl[i].url,
-										})
-				                  });
-						        break;
-						    default:
-					 	}
+									})
+								});
+								break;
+							//geoServer
+							case '4':
+								this[id + 'Tile'] = new ol.layer.Tile({
+									title: "地图",
+									name: baseUrl[i].name,
+									visible: baseUrl[i].isShow,
+									source: new ol.source.TileWMS({
+										url: baseUrl[i].url,
+									}),
+								});
+								break;
+							default:
+						}
 		    			layers.push(this[id+'Tile'])
 
-					 }
-		    	 }
-		    }
-		    return layers
-			
+					}
+				}
+			}
+			return layers
+
 		},
 		//创建视图
 		view:function(){
