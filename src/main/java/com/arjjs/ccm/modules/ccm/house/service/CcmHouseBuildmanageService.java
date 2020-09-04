@@ -16,6 +16,7 @@ import com.arjjs.ccm.modules.ccm.pop.dao.CcmPopTenantDao;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenantVo;
+import com.arjjs.ccm.modules.ccm.pop.service.CcmPopTenantService;
 import com.arjjs.ccm.modules.ccm.sys.entity.CcmAreaPointVo;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
@@ -46,6 +47,9 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 
 	@Autowired
 	private CcmPopTenantDao ccmPopTenantDao;
+
+	@Autowired
+	private CcmPopTenantService ccmPopTenantService;
 
 	@Autowired
 	private AreaService areaService;
@@ -131,6 +135,64 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 			}
 		}
 
+		//新增楼栋数据时同时要新增房屋基础信息
+		if(isNew){
+			if(ccmHouseBuildmanage.getElemNum() != null && ccmHouseBuildmanage.getElemNum() > 0){
+				int elemNum = ccmHouseBuildmanage.getElemNum();
+				if(ccmHouseBuildmanage.getPilesNum() != null && ccmHouseBuildmanage.getPilesNum() > 0){
+					int pilesNum = ccmHouseBuildmanage.getPilesNum();
+					if(ccmHouseBuildmanage.getHouseNum() != null && ccmHouseBuildmanage.getHouseNum() > 0){
+						int houseNum = ccmHouseBuildmanage.getHouseNum();
+						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
+					}else{
+						ccmHouseBuildmanage.setHouseNum(1);
+						int houseNum = 1;
+						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
+						this.save(ccmHouseBuildmanage);
+					}
+				}else{
+					ccmHouseBuildmanage.setPilesNum(1);
+					int pilesNum = 1;
+					if(ccmHouseBuildmanage.getHouseNum() != null && ccmHouseBuildmanage.getHouseNum() > 0){
+						int houseNum = ccmHouseBuildmanage.getHouseNum();
+						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
+						this.save(ccmHouseBuildmanage);
+					}else{
+						ccmHouseBuildmanage.setHouseNum(1);
+						int houseNum = 1;
+						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
+						this.save(ccmHouseBuildmanage);
+					}
+				}
+			}else{
+				ccmHouseBuildmanage.setElemNum(1);
+				int elemNum = 1;
+				if(ccmHouseBuildmanage.getPilesNum() != null && ccmHouseBuildmanage.getPilesNum() > 0){
+					int pilesNum = ccmHouseBuildmanage.getPilesNum();
+					if(ccmHouseBuildmanage.getHouseNum() != null && ccmHouseBuildmanage.getHouseNum() > 0){
+						int houseNum = ccmHouseBuildmanage.getHouseNum();
+						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
+					}else{
+						ccmHouseBuildmanage.setHouseNum(1);
+						int houseNum = 1;
+						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
+					}
+				}else{
+					ccmHouseBuildmanage.setPilesNum(1);
+					int pilesNum = 1;
+					if(ccmHouseBuildmanage.getHouseNum() != null && ccmHouseBuildmanage.getHouseNum() > 0){
+						int houseNum = ccmHouseBuildmanage.getHouseNum();
+						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
+					}else{
+						ccmHouseBuildmanage.setHouseNum(1);
+						int houseNum = 1;
+						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
+					}
+				}
+				this.save(ccmHouseBuildmanage);
+			}
+		}
+
 		//上传上级平台记录
 		if (!SysConfigInit.UPPER_URL.equals("")) {//有上级平台地址时，才存入上传上级平台记录的日志
 			CcmUploadLog uploadLog = new CcmUploadLog();
@@ -157,6 +219,15 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 	@Transactional(readOnly = false)
 	public void delete(CcmHouseBuildmanage ccmHouseBuildmanage) {
 		super.delete(ccmHouseBuildmanage);
+
+		CcmPopTenant tenant = new CcmPopTenant();
+		tenant.setBuildingId(ccmHouseBuildmanage);
+		tenant.setArea(ccmHouseBuildmanage.getArea());
+		List<CcmPopTenant> list = ccmPopTenantDao.findList(tenant);
+
+		for(CcmPopTenant house:list) {
+			ccmPopTenantDao.delete(house);
+		}
 
 		//上传上级平台记录
 		if (!SysConfigInit.UPPER_URL.equals("")) {//有上级平台地址时，才存入上传上级平台记录的日志
@@ -278,5 +349,28 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 
 	public String areaParentId(String areaId) {
 		return ccmHouseBuildmanageDao.areaParentId(areaId);
+	}
+
+	public void saveHouseByBuild(Integer elemNum, Integer pilesNum, Integer houseNum, CcmHouseBuildmanage build){
+		CcmPopTenant house = null;
+		for(int e=0 ; e<elemNum ; e++){
+			for(int p=0 ; p<pilesNum ; p++){
+				for(int h=0 ; h<houseNum ; h++){
+					house = new CcmPopTenant();
+					house.setBuildingId(build);
+					house.setArea(build.getArea());
+					if(h<9){
+						house.setHouseBuild(String.valueOf(p+1) + "0" + String.valueOf(h+1));
+						house.setDoorNum(String.valueOf(p+1) + "0" + String.valueOf(h+1));
+					}else{
+						house.setHouseBuild(String.valueOf(p+1) + String.valueOf(h+1));
+						house.setDoorNum(String.valueOf(p+1) + String.valueOf(h+1));
+					}
+					house.setFloorNum(String.valueOf(p+1));
+					house.setBuildDoorNum(build.getName() + build.getBuildname() + String.valueOf(e+1) + "单元");
+					ccmPopTenantService.save(house);
+				}
+			}
+		}
 	}
 }

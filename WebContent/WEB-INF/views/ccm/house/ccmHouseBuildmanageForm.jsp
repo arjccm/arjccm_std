@@ -127,14 +127,6 @@
             <tr>
                 <td>
                     <div>
-                        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>小区（单位）名称：</label>
-                        <div class="controls">
-                            <form:input path="name" htmlEscape="false" maxlength="512" class="input-xlarge required"/>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div>
                         <label class="control-label"><span class="help-inline"><font
                                 color="red">*</font> </span>所属网格：</label>
                         <div class="controls">
@@ -146,9 +138,14 @@
                         </div>
                     </div>
                 </td>
-                <td></td>
-            </tr>
-            <tr>
+                <td>
+                    <div>
+                        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>小区（单位）名称：</label>
+                        <div class="controls">
+                            <form:input path="name" htmlEscape="false" maxlength="512" class="input-xlarge required"/>
+                        </div>
+                    </div>
+                </td>
                 <td>
                     <div>
                         <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>建筑物名称：</label>
@@ -159,6 +156,8 @@
                         </div>
                     </div>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <div>
                         <label class="control-label">建筑面积（平方米）：</label>
@@ -174,11 +173,20 @@
                                 color="red">*</font> </span>层数：</label>
                         <div class="controls">
                             <form:input path="pilesNum" htmlEscape="false" maxlength="3"
-                                        class="input-xlarge required digits" min="0" type="number"/>
+                                        class="input-xlarge required digits" min="0" type="number" readonly="${not empty ccmHouseBuildmanage.id ? true:false}"/>
                         </div>
                     </div>
                 </td>
-
+                <td>
+                    <div>
+                        <label class="control-label"> <span class="help-inline"><font
+                                color="red">*</font> </span>每层房屋数量：</label>
+                        <div class="controls">
+                            <form:input path="houseNum" htmlEscape="false" maxlength="3"
+                                        class="input-xlarge required digits" min="0" type="number" readonly="${not empty ccmHouseBuildmanage.id ? true:false}"/>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -200,7 +208,7 @@
                                 color="red">*</font> </span>单元数：</label>
                         <div class="controls">
                             <form:input path="elemNum" htmlEscape="false" maxlength="2"
-                                        class="input-xlarge required positiveNumber" min="0" type="number"/>
+                                        class="input-xlarge required positiveNumber" min="0" type="number" readonly="${not empty ccmHouseBuildmanage.id ? true:false}"/>
 
                         </div>
                     </div>

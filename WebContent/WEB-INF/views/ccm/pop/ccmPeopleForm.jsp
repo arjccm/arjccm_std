@@ -826,7 +826,7 @@
                         <label class="control-label"><span class="help-inline"><font
                                 color="red">*</font> </span>现住地：</label>
                         <div class="controls">
-                            <form:input path="residence" htmlEscape="false" maxlength="6"
+                            <form:input path="residence" htmlEscape="false" maxlength="64"
                                         class="input-xlarge required"/>
                         </div>
                     </div>

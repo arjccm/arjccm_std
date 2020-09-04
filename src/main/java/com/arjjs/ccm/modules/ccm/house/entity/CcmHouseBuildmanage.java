@@ -29,6 +29,7 @@ public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 	private Integer elemNum;		// 单元数
 	private Integer buildNum;		// 楼栋户数
 	private Integer buildPeo;		// 楼栋人数
+	private Integer houseNum;		// 每层房屋数量
 	private String buildPname;		// 楼栋长姓名
 	private String sex;				// 性别
 	private String nation;			// 民族
@@ -179,7 +180,16 @@ public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 	public void setElemNum(Integer elemNum) {
 		this.elemNum = elemNum;
 	}
-	
+
+	@NotNull(message="每层房屋数量不能为空")
+	public Integer getHouseNum() {
+		return houseNum;
+	}
+
+	public void setHouseNum(Integer houseNum) {
+		this.houseNum = houseNum;
+	}
+
 	/* @NotNull(message="楼栋户数不能为空") */
 	@ExcelField(title="楼栋户数", align=2, sort=6)
 	public Integer getBuildNum() {

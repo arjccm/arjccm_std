@@ -525,7 +525,7 @@ public class CcmPeople extends DataEntity<CcmPeople> {
 	}
 
 //	@ExcelField(title="现住地", align=2, sort=16)
-	@Length(min=0, max=16, message="现住地长度必须介于 0 和 16 之间")
+	@Length(min=0, max=64, message="现住地长度必须介于 0 和 64 之间")
 	public String getResidence() {
 		return residence;
 	}

@@ -2701,3 +2701,8 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 
   UPDATE sys_menu SET parent_id = '0c5195a66e1e4ab99790c7c8008e0fba', parent_ids = '0,1,70a1747ee8334e439b2b24ebe947ecdd,03b4e19ae79643398608d7820c29e05d,b3b0c87bb91345bd93903fb7fa267b9d,0c5195a66e1e4ab99790c7c8008e0fba,', name = '编辑', href = '', target = '', icon = '', sort = 60, is_show = '0', permission = 'pop:ccmPeopleCommunist:edit', update_by = '1', update_date = '2020-06-20 10:06:45.259', remarks = ''
  WHERE id = 'a7534414d35b4363ac9457d1e545613a';
+
+
+-- 楼栋新增每层房屋数量字段
+ALTER TABLE `ccm_house_buildmanage`
+ADD COLUMN `house_num` int(3) NULL DEFAULT 0 COMMENT '每层房屋数量' AFTER `build_code`,
