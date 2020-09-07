@@ -11,6 +11,16 @@ $(function(){
 	})
 })
 function videoDialog(id){
+	// 接入方式 0：综合安防  1：只能应用
+	var hktype = "0";
+	var noCache = Date();
+	var hikvisonVideoType = "";
+	$.ajaxSettings.async = false;
+	$.getJSON('/arjccm/app/rest/video/callApiGetSecurity', {"noCache": noCache}, function (data) {
+		console.log("------------->data.result",data.result.hikvisonVideoType)
+		hikvisonVideoType = data.result.hikvisonVideoType;
+	});
+
 	// 捕获页
 	var html = "";
 	/*html += '<div class="layer-common">'*/
@@ -20,7 +30,7 @@ function videoDialog(id){
 	html += '		<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">视频监控</div>'
 	html += '	</div>'
 	html += '	<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; border: 1px solid #10559a;margin-left: 10px;">'
-	html += 		'<iframe name="mainFrame" src="'+ ctx+'/ccmsys/ccmDevice/getDeviceMap?id='+ id+'" style="overflow: visible;" scrolling="yes" frameborder="no" width="870" height="360" allowfullscreen="true" allowtransparency="true"></iframe>'
+	html += '<iframe name="mainFrame" src="'+ ctx+'/ccmsys/ccmDevice/getDeviceMap?id='+ id+'" style="overflow: visible;" scrolling="yes" frameborder="no" width="870" height="360" allowfullscreen="true" allowtransparency="true"></iframe>'
 	html += '	</div>'
 	html += '</div>'
 	layer.open({
@@ -28,17 +38,22 @@ function videoDialog(id){
 		shade : false,
 		/*title : '视频监控', // 不显示标题*/
 		title: false, // 不显示标题
-		area: ["850px", "408px"],
+		area: hktype == hikvisonVideoType ? ["850px", "408px"] : ["0px", "0px"],
 		move: '.layer-common-header',
 		resize: false,
-		fixed: false,
 		id : "videoDialog" +id,
 		content : html,
+		offset: hktype == hikvisonVideoType ? ['27.3%', '27.3%'] : ['27.3%', '69%'],
 		cancel : function() {
 			// 关闭事件
 		}
 	});
 	$('#videoDialog').attr("style", "overflow:hidden");
+
+	/*var index = layer.getFrameIndex(window.name);//获得layer弹出层索引
+	top.layer.iframeAuto(index, 30);//layer弹出层自适应，改造的代码，源代码加上自己加的高度
+	var topHeight = ($(window).height() - $(window).height())/2;//计算高度
+	layer.style(index,{top:topHeight+"px"});//设置弹出层位置*/
 }
 /*视频播放-警车警力视频流播放--vlc*/
 function vlcDialog(userId){

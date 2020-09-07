@@ -148,7 +148,8 @@ public class SysConfig extends DataEntity<SysConfig> {
 	private String appSecet;
 	private String svrIp;
 	private String svrPort;
-	
+	private String hikvisonVideoType;
+
 	private String tiandyIp;
 	private String tiandyPort;
 	private String tiandyUserName;
@@ -318,7 +319,12 @@ public class SysConfig extends DataEntity<SysConfig> {
 	public String getApiUrl() {
 		return apiUrl;
 	}
-
+	public String getHikvisonVideoType() {
+		return hikvisonVideoType;
+	}
+	public void setHikvisonVideoType(String hikvisonVideoType) {
+		this.hikvisonVideoType = hikvisonVideoType;
+	}
 	public void setApiUrl(String apiUrl) {
 		this.apiUrl = apiUrl;
 	}

@@ -616,6 +616,13 @@
 			<div class="controls">
 				<br>
 				<label class="high">
+					<label class="lableStyle">接入方式：</label>
+					<form:select path="hikvisonVideoType" cssStyle="width: 284px">
+						<form:options items="${fns:getDictList('hikvisonVideoType')}"
+									  itemLabel="label" itemValue="value" htmlEscape="false" />
+					</form:select>
+				</label><br>
+				<label class="high">
 					<label class="lableStyle">apiUrl：</label>
 					<form:input path="apiUrl" htmlEscape="false" maxlength="128"
 								class="input-xlarge"/>

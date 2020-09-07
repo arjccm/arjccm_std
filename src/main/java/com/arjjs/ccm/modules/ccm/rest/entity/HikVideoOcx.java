@@ -19,6 +19,7 @@ public class HikVideoOcx extends DataEntity<HikVideoOcx> {
 	private String appKey;
 	private String appSecet;
 	private String appKeyEncrypt;
+	private String hikvisonVideoType;
 	
 	public HikVideoOcx() {
 		super();
@@ -57,7 +58,11 @@ public class HikVideoOcx extends DataEntity<HikVideoOcx> {
 		this.appKeyEncrypt = appKeyEncrypt;
 	}
 
-	
+	public String getHikvisonVideoType() {
+		return hikvisonVideoType;
+	}
 
-	
+	public void setHikvisonVideoType(String hikvisonVideoType) {
+		this.hikvisonVideoType = hikvisonVideoType;
+	}
 }

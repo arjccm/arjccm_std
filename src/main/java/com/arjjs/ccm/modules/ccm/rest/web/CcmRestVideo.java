@@ -26,7 +26,7 @@ import com.hikvision.artemis.sdk.config.ArtemisConfig;
 import net.sf.json.JSONObject;
 
 /**
- *视频播放接口类
+ *视频接口类
  * 
  * @author pengjianqiang
  * @version 2019-05-15
@@ -65,13 +65,15 @@ public class CcmRestVideo extends BaseController {
 		String svrPort = (String)jsonObject.get("svrPort");
 		String appKey = (String)jsonObject.get("appKey");
 		String appSecet = (String)jsonObject.get("appSecet");
+		String hikvisonVideoType = (String)jsonObject.get("hikvisonVideoType");
 		
 		HikVideoOcx hikVideoOcx = new HikVideoOcx();
 		hikVideoOcx.setSvrIp(svrIp);
 		hikVideoOcx.setSvrPort(svrPort);
 		hikVideoOcx.setAppKey(appKey);
 		hikVideoOcx.setAppSecet(appSecet);
-		
+		hikVideoOcx.setHikvisonVideoType(hikvisonVideoType);
+
 		ArtemisConfig.host = apiUrl; // 代理API网关nginx服务器ip端口
 		ArtemisConfig.appKey = appKey;  // 秘钥appkey
 		ArtemisConfig.appSecret = appSecet;// 秘钥appSecret

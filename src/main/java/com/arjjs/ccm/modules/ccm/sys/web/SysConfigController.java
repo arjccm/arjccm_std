@@ -242,6 +242,10 @@ public class SysConfigController extends BaseController {
 				hikvisonVideoConfig = s;
 				// 解JSON
 				JSONObject jsonObject = JSONObject.fromObject(hikvisonVideoConfig.getParamStr());
+				if(jsonObject.containsKey("hikvisonVideoType")) {
+					String hikvisonVideoType = jsonObject.getString("hikvisonVideoType");
+					hikvisonVideoConfig.setHikvisonVideoType(hikvisonVideoType);
+				}
 				if(jsonObject.containsKey("apiUrl")) {
 					String apiUrl = jsonObject.getString("apiUrl");
 					hikvisonVideoConfig.setApiUrl(apiUrl);
@@ -361,7 +365,7 @@ public class SysConfigController extends BaseController {
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap",
 					"sysMapConfig", "green", "orangeMin", "orangeMax", "yellowMin", "yellowMax", "red", "maxAcceptTime",
 					"maxDispatchTime", "maxArriveTime",
-					"apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"hikvisonVideoType","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
 					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
 					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
@@ -395,7 +399,7 @@ public class SysConfigController extends BaseController {
 					"remarks", "paramStr", "paramInt", "paramDate", "tableName", "objId", "beginParamDate",
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
 					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime",
-					"apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"hikvisonVideoType","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
 					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
 					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
@@ -411,8 +415,8 @@ public class SysConfigController extends BaseController {
 			config.setExcludes(new String[] { "createBy", "updateBy", "currentUser", "createDate", "updateDate",
 					"remarks", "paramStr", "paramInt", "paramDate", "tableName", "objId", "beginParamDate",
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
-					"username", "password", "sysMapConfig", "red", "yellowMin", "green", "orangeMax", "orangeMin",
-					"yellowMax", "apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"username", "password", "sysMapConfig", "red", "yellowMin", "green", "orangeMax", "orangeMin","yellowMax",
+					"hikvisonVideoType","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
 					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
 					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
@@ -429,7 +433,7 @@ public class SysConfigController extends BaseController {
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
 					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "red",
 					"yellowMin", "green", "orangeMax", "orangeMin", "yellowMax", "flag",
-					"apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"hikvisonVideoType","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
 					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId",
 					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
@@ -461,7 +465,8 @@ public class SysConfigController extends BaseController {
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url",
 					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "red",
 					"yellowMin", "green", "orangeMax", "orangeMin", "yellowMax", "flag",
-					"alarmFlowFlag", "alarmHandleFlag", "handleModel", "paramStrList","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"alarmFlowFlag", "alarmHandleFlag", "handleModel", "paramStrList",
+					"hikvisonVideoType","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
 					"quXian","jieDaoMin","jieDaoMax","sheQuMin","sheQuMax","wangGe",
 					"dssIP","dssPort","dssUserName","dssPassword"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
@@ -477,7 +482,8 @@ public class SysConfigController extends BaseController {
 					"endParamDate", "id", "dbName", "delFlag", "global", "isNewRecord", "page", "sqlMap", "url", "build", "wangGeMax", "wangGeMin",
 					"username", "password", "sysMapConfig", "maxAcceptTime", "maxDispatchTime", "maxArriveTime", "red",
 					"yellowMin", "green", "orangeMax", "orangeMin", "yellowMax", "flag",
-					"alarmFlowFlag", "alarmHandleFlag", "handleModel", "paramStrList","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
+					"alarmFlowFlag", "alarmHandleFlag", "handleModel", "paramStrList",
+					"hikvisonVideoType","apiUrl", "appKey", "appSecet", "svrIp", "svrPort",
 					"quXian","jieDaoMin","jieDaoMax","sheQuMin","sheQuMax","wangGe",
 					"tiandyIp","tiandyPort","tiandyUserName","tiandyPassWord","tiandyUserId"});// 排除
 			config.setIgnoreDefaultExcludes(false); // 设置默认忽略
