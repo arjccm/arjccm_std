@@ -133,11 +133,18 @@
 		<include refid="ccmHouseBuildmanageJoins" />
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="name != null and name != ''">
-				AND a.name LIKE
-				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
-				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
-				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			<if test="isFindAll == false or isFindAll == null">
+				<if test="name != null and name != ''">
+					AND a.name LIKE
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+				</if>
+			</if>
+			<if test="isFindAll == true and isFindAll != null">
+				<if test="name != null and name != ''">
+					AND a.name = #{name}
+				</if>
 			</if>
 			<if test="buildname != null and buildname != ''">
 				AND a.buildname LIKE

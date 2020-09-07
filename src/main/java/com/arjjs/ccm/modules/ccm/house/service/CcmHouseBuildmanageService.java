@@ -105,8 +105,10 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 	@Transactional(readOnly = false)
 	public void save(CcmHouseBuildmanage ccmHouseBuildmanage) {
 		boolean isNew = false;
+		boolean isSaveHouse = false;
 		if (ccmHouseBuildmanage.getId() == null || "".equals(ccmHouseBuildmanage.getId())) {//无主键ID，则是新记录
 			isNew = true;
+            isSaveHouse = true;
 		}
 		if (ccmHouseBuildmanage.getIsNewRecord()) {//指定了是新增记录，则算新记录
 			isNew = true;
@@ -136,7 +138,7 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 		}
 
 		//新增楼栋数据时同时要新增房屋基础信息
-		if(isNew){
+		if(isSaveHouse){
 			if(ccmHouseBuildmanage.getElemNum() != null && ccmHouseBuildmanage.getElemNum() > 0){
 				int elemNum = ccmHouseBuildmanage.getElemNum();
 				if(ccmHouseBuildmanage.getPilesNum() != null && ccmHouseBuildmanage.getPilesNum() > 0){
@@ -147,21 +149,21 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 					}else{
 						ccmHouseBuildmanage.setHouseNum(1);
 						int houseNum = 1;
+                        this.save(ccmHouseBuildmanage);
 						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
-						this.save(ccmHouseBuildmanage);
 					}
 				}else{
 					ccmHouseBuildmanage.setPilesNum(1);
 					int pilesNum = 1;
 					if(ccmHouseBuildmanage.getHouseNum() != null && ccmHouseBuildmanage.getHouseNum() > 0){
 						int houseNum = ccmHouseBuildmanage.getHouseNum();
+                        this.save(ccmHouseBuildmanage);
 						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
-						this.save(ccmHouseBuildmanage);
 					}else{
 						ccmHouseBuildmanage.setHouseNum(1);
 						int houseNum = 1;
+                        this.save(ccmHouseBuildmanage);
 						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
-						this.save(ccmHouseBuildmanage);
 					}
 				}
 			}else{
@@ -171,10 +173,12 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 					int pilesNum = ccmHouseBuildmanage.getPilesNum();
 					if(ccmHouseBuildmanage.getHouseNum() != null && ccmHouseBuildmanage.getHouseNum() > 0){
 						int houseNum = ccmHouseBuildmanage.getHouseNum();
+                        this.save(ccmHouseBuildmanage);
 						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
 					}else{
 						ccmHouseBuildmanage.setHouseNum(1);
 						int houseNum = 1;
+                        this.save(ccmHouseBuildmanage);
 						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
 					}
 				}else{
@@ -182,14 +186,15 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 					int pilesNum = 1;
 					if(ccmHouseBuildmanage.getHouseNum() != null && ccmHouseBuildmanage.getHouseNum() > 0){
 						int houseNum = ccmHouseBuildmanage.getHouseNum();
+                        this.save(ccmHouseBuildmanage);
 						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
 					}else{
 						ccmHouseBuildmanage.setHouseNum(1);
 						int houseNum = 1;
+                        this.save(ccmHouseBuildmanage);
 						saveHouseByBuild(elemNum,pilesNum,houseNum,ccmHouseBuildmanage);
 					}
 				}
-				this.save(ccmHouseBuildmanage);
 			}
 		}
 
@@ -352,8 +357,15 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 	}
 
 	public void saveHouseByBuild(Integer elemNum, Integer pilesNum, Integer houseNum, CcmHouseBuildmanage build){
+        List<CcmHouseBuildentrance> units = this.findBuildentrance(build.getId());
 		CcmPopTenant house = null;
 		for(int e=0 ; e<elemNum ; e++){
+		    CcmHouseBuildentrance entrance = null;
+		    for(int u=0 ; u<units.size() ; u++){
+		        if(e+1 == units.get(u).getEntranceNum()){
+                    entrance = units.get(u);
+                }
+            }
 			for(int p=0 ; p<pilesNum ; p++){
 				for(int h=0 ; h<houseNum ; h++){
 					house = new CcmPopTenant();
@@ -367,7 +379,9 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 						house.setDoorNum(String.valueOf(p+1) + String.valueOf(h+1));
 					}
 					house.setFloorNum(String.valueOf(p+1));
-					house.setBuildDoorNum(build.getName() + build.getBuildname() + String.valueOf(e+1) + "单元");
+					house.setBuildDoorNum(String.valueOf(entrance.getEntranceNum()));
+                    house.setBuildDoorName(entrance.getEntranceName());
+                    house.setTranceId(entrance.getId());
 					ccmPopTenantService.save(house);
 				}
 			}

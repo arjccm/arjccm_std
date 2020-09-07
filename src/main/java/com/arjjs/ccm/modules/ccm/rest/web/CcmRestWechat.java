@@ -227,6 +227,7 @@ public class CcmRestWechat extends BaseController {
 			result.setCode(CcmRestType.ERROR_PARAM);
 			return result;
 		}
+		ccmHouseBuildmanage.setFindAll(true);
 		Page<CcmHouseBuildmanage> page = ccmHouseBuildmanageService.findPage(new Page<>(pageNo, pageSize), ccmHouseBuildmanage);
 
 		result.setResult(page);

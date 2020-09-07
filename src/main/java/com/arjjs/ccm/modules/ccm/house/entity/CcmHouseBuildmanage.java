@@ -55,6 +55,9 @@ public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 	private Integer maxnum;
 	private Integer nogather;	//楼栋未采集人数
 
+	//是否全词匹配 用于微信公众号查询出租房屋信息
+	private boolean isFindAll = false;
+
 	public Integer getGatherNum() {
 		return gatherNum;
 	}
@@ -370,5 +373,13 @@ public class CcmHouseBuildmanage extends DataEntity<CcmHouseBuildmanage> {
 
 	public void setMaxnum(Integer maxnum) {
 		this.maxnum = maxnum;
+	}
+
+	public boolean isFindAll() {
+		return isFindAll;
+	}
+
+	public void setFindAll(boolean findAll) {
+		isFindAll = findAll;
 	}
 }
