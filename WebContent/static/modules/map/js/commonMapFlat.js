@@ -3204,6 +3204,7 @@ ArjMap.Map.prototype={
 		//悬上图层信息
 		selectedFeatures:function(selectType){
 			var map=this.map;
+			console.log("map------>",map)
 			var _this=this;
 			// 弹框
 			var container = document.getElementById('popup');
@@ -3261,6 +3262,7 @@ ArjMap.Map.prototype={
 						}
 					}else{
 						var data=feature.get('features');
+						console.log("data----->",data)
 						var len=data.length;
 						var displayFlag='';
 						if(len==1){
@@ -3314,10 +3316,11 @@ ArjMap.Map.prototype={
 							}
 							pointType=data[i].get('type');
 							if(pointType&&pointType=='video'){
+								console.log("22222222222222", data[i].get('video')['typeVidicon'])
 								//如果为视频，则添加播放功能
 								html += '<tr>';
 								html += '<td class="td_color"><strong>视频监控：</strong></td>';
-								html += '<td><a class="videoPlay"  href="###" videoIp="'+ data[i].get('video')['ip']+'"  videoId="'+ data[i].get('video')['id']+ '" >' +
+								html += '<td><a class="videoPlay"  href="###" videoIp="'+ data[i].get('video')['ip']+'"  videoId="'+ data[i].get('video')['id']+ '" typeVidicon="'+ data[i].get('video')['typeVidicon']+ '" >' +
 									'<button class="btn btn-success" style="width: 78px;\n' +
 									'    height: 30px;\n' +
 									'    background-color: #5bb75b;\n' +

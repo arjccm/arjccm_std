@@ -4823,6 +4823,8 @@ ArjMap.Map.prototype = {
     },
     // 悬上图层
     selectGISPointer: function (id, info, coordinate) {
+        console.log("info",info);
+        console.log("coordinate",coordinate);
         var getid = id;
         var map = this.map;
         var _this = this;
@@ -4888,6 +4890,8 @@ ArjMap.Map.prototype = {
             } else if (i == '住所楼栋id') {
                 continue
             } else if (i == '场所图片') {
+                continue
+            } else if (i == '设备厂家') {
                 continue
             }
             if (i == '场所类型') {
@@ -4977,9 +4981,10 @@ ArjMap.Map.prototype = {
 
 
         if (video) {
+            var typeFlag = infoData['设备厂家'];
             html += '<tr>';
             html += '<td><strong>视频监控：</strong></td>';
-            html += '<td><a class="click btn btn-success"  href="###" onclick="playVideo(\''+ videoId + '\')" videoIp="' + videoIp + '"  videoId="' + videoId + '">播放</a></td>';
+            html += '<td><a class="click btn btn-success"  href="###" onclick="playVideo(\''+ videoId + '\',\'' + typeFlag + '\')" videoIp="' + videoIp + '"  videoId="' + videoId + '">播放</a></td>';
             html += '</tr>'
         }
         if (isplace == 1) {

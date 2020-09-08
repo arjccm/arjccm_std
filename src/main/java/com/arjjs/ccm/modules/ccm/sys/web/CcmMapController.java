@@ -3172,7 +3172,7 @@ public class CcmMapController extends BaseController {
 			// 创建附属信息
 			map_P.put("设备名称", device.getName());
 			map_P.put("设备编号", device.getCode());
-			//map_P.put("IP地址", device.getIp());
+			map_P.put("设备厂家", device.getTypeVidicon());
 			map_P.put("安装位置", device.getAddress());
 			if(StringUtils.isEmpty(device.getStatus())) {
 				map_P.put("设备状态", "未知");

@@ -5,38 +5,38 @@ $(function(){
 	initMap();
 	//初始化人员类型，场所类型，重点类型
 	initType();
-    var todayDate=today();
-    $('#beginHappenDateEvent').val(todayDate+' 00:00:00');
+	var todayDate=today();
+	$('#beginHappenDateEvent').val(todayDate+' 00:00:00');
 	$('#endHappenDateEvent').val(todayDate+' 23:59:59');
 	QueryEvents();
-    $('#btnSubmitEvent').click(function(){
-    	currPage=1;
-    	QueryEvents();
-    });
-    $('#btnSubmitBuild').click(function(){
-    	currPage=1;
-    	QueryBuilds();
-    });
-    $('#btnSubmitPlac').click(function(){
-    	currPage=1;
-    	QueryPlaces();
-    });
-    $('#btnSubmitPeople').click(function(){
-    	currPage=1;
-    	QueryPeople();
-    });
-    $('#btnSubmitVideo').click(function(){
-    	currPage=1;
-    	QueryVideos();
-    });
-    layui.use('element', function(){
-		  var element = layui.element; //Tab的切换功能，
-		  element.on('tab(allTab)', function(data){
-			  ClearData(data);
-			});
+	$('#btnSubmitEvent').click(function(){
+		currPage=1;
+		QueryEvents();
+	});
+	$('#btnSubmitBuild').click(function(){
+		currPage=1;
+		QueryBuilds();
+	});
+	$('#btnSubmitPlac').click(function(){
+		currPage=1;
+		QueryPlaces();
+	});
+	$('#btnSubmitPeople').click(function(){
+		currPage=1;
+		QueryPeople();
+	});
+	$('#btnSubmitVideo').click(function(){
+		currPage=1;
+		QueryVideos();
+	});
+	layui.use('element', function(){
+		var element = layui.element; //Tab的切换功能，
+		element.on('tab(allTab)', function(data){
+			ClearData(data);
 		});
- 
-    
+	});
+
+
 })
 
 function ClearData(data){
@@ -46,29 +46,29 @@ function ClearData(data){
 	}
 	Map.drawVector.getSource().clear();
 	currPage=1;
-	 if(Map.overlayGISDialog){
-			Map.overlayGISDialog.setPosition(undefined);
-		}
-		Map.clearOverlays();
-		 $('#pageNum').html('0');
- 	 $('#datalist').html('');
- 	 paged('0');
- 	 $('.input-medium').val('');
- 	 if(data.index==0){
-         var todayDate=today();
-         $('#beginHappenDateEvent').val(todayDate+' 00:00:00');
-         $('#endHappenDateEvent').val(todayDate+' 23:59:59');
-     }
+	if(Map.overlayGISDialog){
+		Map.overlayGISDialog.setPosition(undefined);
+	}
+	Map.clearOverlays();
+	$('#pageNum').html('0');
+	$('#datalist').html('');
+	paged('0');
+	$('.input-medium').val('');
+	if(data.index==0){
+		var todayDate=today();
+		$('#beginHappenDateEvent').val(todayDate+' 00:00:00');
+		$('#endHappenDateEvent').val(todayDate+' 23:59:59');
+	}
 }
 function initType(){
 	//人员类型
 	$.getJSON(ctx+'/sys/dict/listData?type=sys_ccm_people',function(datas) {
-	for (var i = 0; i < datas.length; i++) {
-		$('#pType').append("<option value='" + datas[i].value + "'>"+ datas[i].label+ "</option>");
-		pTypeObj[datas[i].value]=datas[i].label;
-	}
+		for (var i = 0; i < datas.length; i++) {
+			$('#pType').append("<option value='" + datas[i].value + "'>"+ datas[i].label+ "</option>");
+			pTypeObj[datas[i].value]=datas[i].label;
+		}
 	})
-	
+
 	//重点人员类型
 	$.getJSON(ctx+'/sys/dict/listData?type=emphasis_people_type',function(datas) {
 		for (var i = 0; i < datas.length; i++) {
@@ -77,7 +77,7 @@ function initType(){
 		}
 	})
 	//场所类型
-	
+
 	$.getJSON(ctx+'/sys/dict/listData?type=place_types',function(datas) {
 		for (var i = 0; i < datas.length; i++) {
 			placeTypeObj[datas[i].value]=datas[i].label;
@@ -109,47 +109,47 @@ function initMap(){
 	map=Map.map;
 	// 框选查询初始化
 	Map.selectQueryInit();
-	
+
 	Pubmap = Map.map;
 }
 function Tab(obj) {
-    $(obj).addClass("active").siblings().removeClass("active");
-    var index = $(obj).index(); //获取索引号
-    $(".tab-item").eq(index).addClass("active").siblings().removeClass("active");
+	$(obj).addClass("active").siblings().removeClass("active");
+	var index = $(obj).index(); //获取索引号
+	$(".tab-item").eq(index).addClass("active").siblings().removeClass("active");
 }
 //分页
 function paged(pageCount){
 	layui.use(['laypage', 'layer'], function(){
-        var laypage = layui.laypage, layer = layui.layer;
-        laypage.render({
-        	elem:'pageList' // 容器id
-            , count: pageCount //总页数
-            , curr: currPage
-            ,groups: 1 //只显示 3 个连续页码
-            ,layout: [ 'prev', 'page', 'next']
-            , jump: function (obj,first) {
-                currPage =obj.curr;  //这里是后台返回给前端的当前页数
-                if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr  ajax 再次请求
-                	$('#GIStab li').each(function(){
-                		if($(this).hasClass('layui-this')){
-                			var type=$(this).attr('type');
-                			if(type=='event'){
-                				QueryEvents()
-                			}else if(type=='build'){
-                				QueryBuilds()
-                			}else if(type=='place'){
-                				QueryPlaces()
-                			}else if(type=='people'){
-                				QueryPeople()
-                			}else if(type=='video'){
-                				QueryVideos()
-                			}
-                		}
-                	})
-                }
-            }
-        });
-    });
+		var laypage = layui.laypage, layer = layui.layer;
+		laypage.render({
+			elem:'pageList' // 容器id
+			, count: pageCount //总页数
+			, curr: currPage
+			,groups: 1 //只显示 3 个连续页码
+			,layout: [ 'prev', 'page', 'next']
+			, jump: function (obj,first) {
+				currPage =obj.curr;  //这里是后台返回给前端的当前页数
+				if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr  ajax 再次请求
+					$('#GIStab li').each(function(){
+						if($(this).hasClass('layui-this')){
+							var type=$(this).attr('type');
+							if(type=='event'){
+								QueryEvents()
+							}else if(type=='build'){
+								QueryBuilds()
+							}else if(type=='place'){
+								QueryPlaces()
+							}else if(type=='people'){
+								QueryPeople()
+							}else if(type=='video'){
+								QueryVideos()
+							}
+						}
+					})
+				}
+			}
+		});
+	});
 }
 //事件
 function QueryEvents(){
@@ -162,14 +162,14 @@ function QueryEvents(){
 	}
 	Map.clearOverlays();
 	$.getJSON(ctx+'/sys/map/queryEventIncidentMap?beginHappenDate='+beginHappenDateEvent+'&endHappenDate='+endHappenDateEvent+'&caseName='+encodeURIComponent(caseName)+'&area.id='+areaEvent+'&pageNo='+currPage+'&pageSize='+pageSize+"&num="+Math.random(),function(data){
-	
+
 		if(data==null||data==""||data==undefined){
-        	 $.jBox.tip('暂无数据！');
-        	 $('#pageNum').html('0');
-        	 $('#datalist').html('');
-        	 paged('0');
-             return ;
-         }
+			$.jBox.tip('暂无数据！');
+			$('#pageNum').html('0');
+			$('#datalist').html('');
+			paged('0');
+			return ;
+		}
 		var featuresData=data.features;
 		var count=data.count;
 		paged(count);
@@ -179,8 +179,8 @@ function QueryEvents(){
 			var id=featuresData[i].id;
 			var x='',y='';
 			if(featuresData[i].geometry.coordinates){
-				 x=featuresData[i].geometry.coordinates[0];
-				 y=featuresData[i].geometry.coordinates[1];
+				x=featuresData[i].geometry.coordinates[0];
+				y=featuresData[i].geometry.coordinates[1];
 			}
 			var properties=featuresData[i].properties;
 			var icon=properties.icon;
@@ -258,7 +258,7 @@ function selectQuery(type,content){
 		//
 		// 	});
 		// }else
-			if(type=='Circle'){
+		if(type=='Circle'){
 
 			var polygon = evt.feature.getGeometry();
 			var center = polygon.getCenter(),radius = polygon.getRadius(),extent = polygon.getExtent();
@@ -409,11 +409,11 @@ function QueryBuilds(){
 	Map.clearOverlays();
 	$.getJSON(ctx+'/sys/map/queryBuildMap?buildname='+encodeURIComponent(buildname)+'&buildPname='+encodeURIComponent(buildPname)+'&residencedetail='+encodeURIComponent(buildaddress)+'&area.id='+areaBuild+'&pageNo='+currPage+'&pageSize='+pageSize,function(data){
 		if(data==null||data==""||data==undefined){
-        	 $.jBox.tip('暂无数据！');
-        	 $('#pageNum').html('0');
-        	 $('#datalist').html('');
-             return ;
-         }
+			$.jBox.tip('暂无数据！');
+			$('#pageNum').html('0');
+			$('#datalist').html('');
+			return ;
+		}
 		var featuresData=data.features;
 		var count=data.count;
 		$('#pageNum').html(count);
@@ -423,8 +423,8 @@ function QueryBuilds(){
 			var id=featuresData[i].id;
 			var x='',y='';
 			if(featuresData[i].geometry.coordinates){
-				 x=featuresData[i].geometry.coordinates[0];
-				 y=featuresData[i].geometry.coordinates[1];
+				x=featuresData[i].geometry.coordinates[0];
+				y=featuresData[i].geometry.coordinates[1];
 			}
 			var properties=featuresData[i].properties;
 			var icon=properties.icon;
@@ -539,12 +539,12 @@ function QueryPlaces(){
 	Map.clearOverlays();
 	$.getJSON(ctx+'/sys/map/queryPlaceMap?placeName='+encodeURIComponent(placeName)+'&area.id='+areaPlace+'&pageNo='+currPage+'&pageSize='+pageSize,function(data){
 		if(data==null||data==""||data==undefined){
-        	 $.jBox.tip('暂无数据！');
-        	 $('#pageNum').html('0');
-        	 $('#datalist').html('');
-        	 paged('0');
-             return ;
-         }
+			$.jBox.tip('暂无数据！');
+			$('#pageNum').html('0');
+			$('#datalist').html('');
+			paged('0');
+			return ;
+		}
 		var featuresData=data.features;
 		var count=data.count;
 		$('#pageNum').html(count);
@@ -554,10 +554,10 @@ function QueryPlaces(){
 			var id=featuresData[i].id;
 			var x='',y='';
 			if(featuresData[i].geometry.coordinates){
-				 x=featuresData[i].geometry.coordinates[0];
-				 y=featuresData[i].geometry.coordinates[1];
+				x=featuresData[i].geometry.coordinates[0];
+				y=featuresData[i].geometry.coordinates[1];
 			}
-			
+
 			var properties=featuresData[i].properties;
 			var icon=properties.icon;
 			if(icon==''||icon==null){
@@ -675,12 +675,12 @@ function QueryPeople(){
 	Map.clearOverlays();
 	$.getJSON(ctx+'/sys/map/queryPeopleMap?name='+encodeURIComponent(pName)+'&ident='+pIdent+'&type='+pType+'&areaGridId.id='+areaPeople+'&importantType='+importantType+'&pageNo='+currPage+'&pageSize='+pageSize,function(data){
 		if(data==null||data==""||data==undefined){
-        	 $.jBox.tip('暂无数据！');
-        	 $('#pageNum').html('0');
-        	 $('#datalist').html('');
-        	 paged('0');
-             return ;
-         }
+			$.jBox.tip('暂无数据！');
+			$('#pageNum').html('0');
+			$('#datalist').html('');
+			paged('0');
+			return ;
+		}
 		var featuresData=data.features;
 		var count=data.count;
 		$('#pageNum').html(count);
@@ -691,8 +691,8 @@ function QueryPeople(){
 			var id=featuresData[i].id;
 			var x='',y='';
 			if(featuresData[i].geometry.coordinates){
-				 x=featuresData[i].geometry.coordinates[0];
-				 y=featuresData[i].geometry.coordinates[1];
+				x=featuresData[i].geometry.coordinates[0];
+				y=featuresData[i].geometry.coordinates[1];
 			}
 			var properties=featuresData[i].properties;
 			var icon=properties.icon;
@@ -809,12 +809,12 @@ function QueryVideos(){
 	Map.clearOverlays();
 	$.getJSON(ctx+'/sys/map/queryDeviceMap?name='+encodeURIComponent(videoName)+'&ip='+videoIP+'&area.id='+areaVideo+'&pageNo='+currPage+'&pageSize='+pageSize,function(data){
 		if(data==null||data==""||data==undefined){
-        	 $.jBox.tip('暂无数据！');
-        	 $('#pageNum').html('0');
-        	 $('#datalist').html('');
-        	 paged('0');
-             return ;
-         }
+			$.jBox.tip('暂无数据！');
+			$('#pageNum').html('0');
+			$('#datalist').html('');
+			paged('0');
+			return ;
+		}
 		var featuresData=data.features;
 		var count=data.count;
 		paged(count);
@@ -824,8 +824,8 @@ function QueryVideos(){
 			var id=featuresData[i].id;
 			var x='',y='';
 			if(featuresData[i].geometry.coordinates){
-				 x=featuresData[i].geometry.coordinates[0];
-				 y=featuresData[i].geometry.coordinates[1];
+				x=featuresData[i].geometry.coordinates[0];
+				y=featuresData[i].geometry.coordinates[1];
 			}
 			var properties=featuresData[i].properties;
 			html+='<li class="datalist-li" id="map_li'+id+'" data-id="'+id+'" onclick="goToDetail('+x+','+y+',\''+id+'\','+JSON.stringify(properties).replace(/"/g, '&quot;')+')">';
@@ -853,7 +853,7 @@ function QueryVideos(){
 		for (var i in data.features){
 			data.features[i].properties['nameNum']=''+(Number(i)+1)+'';
 		}
-		
+
 		Map.addGIS([ {
 			'type' : 'GIS',
 			'id' : 'GIS',
@@ -929,30 +929,31 @@ function QueryVideosBySelection(data,selectionMode){
 }
 //点击定位
 function goToDetail(x,y,id,info){
+	console.log("goToDetail");
 	var coordinates=[x,y];
 	Map.map.getView().setZoom(18);
 	Map.goTo(coordinates);
 	Map.selectGISPointer(id,info,coordinates);
-	 $('.gis-marker').removeClass('activeMax');
-	 $('#overlay_'+id).addClass('activeMax');
-	 $('.gis-marker').parent().removeClass('activeMax');
-	 $('#overlay_'+id).parent().addClass('activeMax');
+	$('.gis-marker').removeClass('activeMax');
+	$('#overlay_'+id).addClass('activeMax');
+	$('.gis-marker').parent().removeClass('activeMax');
+	$('#overlay_'+id).parent().addClass('activeMax');
 }
 
 function onHoverLIst(){
 	var $document = $(document);
-	  $document.on("mouseenter mouseleave",".datalist-li",function(event){
-		  var id=event.target.getAttribute('data-id');
-	  　　if(event.type == "mouseenter"){
-		    $('.gis-marker').removeClass('active');
+	$document.on("mouseenter mouseleave",".datalist-li",function(event){
+		var id=event.target.getAttribute('data-id');
+		if(event.type == "mouseenter"){
+			$('.gis-marker').removeClass('active');
 			$('#overlay_'+id).addClass('active');
-			 $('.gis-marker').parent().removeClass('active');
-			 $('#overlay_'+id).parent().addClass('active');
-	  　　}else if(event.type == "mouseleave"){
-		  $('.gis-marker').removeClass('active');
-		  $('#overlay_'+id).parent().removeClass('active');
-	  　　};
-	  });
+			$('.gis-marker').parent().removeClass('active');
+			$('#overlay_'+id).parent().addClass('active');
+		}else if(event.type == "mouseleave"){
+			$('.gis-marker').removeClass('active');
+			$('#overlay_'+id).parent().removeClass('active');
+		};
+	});
 }
 
 
@@ -1001,7 +1002,7 @@ function yiyuanFun(_this) {
 	if (yiyuanFlag) {
 		// $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
 		$.getJSON('' + ctx + '/sys/map/findMapIndustry?type=2', function (
-				data) {
+			data) {
 			var features = data.features;
 			var len = features.length;
 			idArryiyuan = [];
@@ -1034,7 +1035,7 @@ var jingcheFlag = true;
 function jingcheFun(_this) {
 	if (jingcheFlag) {
 		$.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function(
-				data) {
+			data) {
 			Map.addJSON1([ {
 				'type' : 'DanDian',
 				'data' : data,
@@ -1332,21 +1333,21 @@ function shipinjiankongFun(_this) {
 //广播站
 var broadcastFlag = true;
 function guangbozhanFun(_this) {
-    if (broadcastFlag) {
-        $.getJSON('' + ctx + '/sys/map/deviceBroadcastMap', function(data) {
-            Map.addJSON1([ {
-                'type' : 'broadcast',
-                'id' : 'guangbozhan',
-                'data' : data,
-                'isShow' : true
-            } ])
-        })
-        $(_this).css('border', '1px solid #0e54a9');
-    } else {
-        $(_this).css('border', '1px solid transparent');
-        Map.removeLayer('guangbozhan');
-    }
-    broadcastFlag = !broadcastFlag;
+	if (broadcastFlag) {
+		$.getJSON('' + ctx + '/sys/map/deviceBroadcastMap', function(data) {
+			Map.addJSON1([ {
+				'type' : 'broadcast',
+				'id' : 'guangbozhan',
+				'data' : data,
+				'isShow' : true
+			} ])
+		})
+		$(_this).css('border', '1px solid #0e54a9');
+	} else {
+		$(_this).css('border', '1px solid transparent');
+		Map.removeLayer('guangbozhan');
+	}
+	broadcastFlag = !broadcastFlag;
 }
 //机顶盒
 var SetTopBoxFlag = true;
@@ -1369,100 +1370,110 @@ function SetTopBoxFun(_this) {
 }
 
 $(function(){
-    $(".pimg").click(function(){
-        var _this = $(this);//将当前的pimg元素作为_this传入函数
-        imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
-    });
+	$(".pimg").click(function(){
+		var _this = $(this);//将当前的pimg元素作为_this传入函数
+		imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+	});
 });
 function imgShow(outerdiv, innerdiv, bigimg, _this){
-    // var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
+	// var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
 	var src = _this.src;
-    $(bigimg).attr("src", src);//设置#bigimg元素的src属性
-    /*获取当前点击图片的真实大小，并显示弹出层及大图*/
-    $("<img/>").attr("src", src).load(function(){
-        var windowW = $(window).width();//获取当前窗口宽度
-        var windowH = $(window).height();//获取当前窗口高度
-        var realWidth = this.width;//获取图片真实宽度
-        var realHeight = this.height;//获取图片真实高度
-        var imgWidth, imgHeight;
-        var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
-        if(realHeight>windowH*scale) {//判断图片高度
-            imgHeight = windowH*scale;//如大于窗口高度，图片高度进行缩放
-            imgWidth = imgHeight/realHeight*realWidth;//等比例缩放宽度
-            if(imgWidth>windowW*scale) {//如宽度扔大于窗口宽度
-                imgWidth = windowW*scale;//再对宽度进行缩放
-            }
-        } else if(realWidth>windowW*scale) {//如图片高度合适，判断图片宽度
-            imgWidth = windowW*scale;//如大于窗口宽度，图片宽度进行缩放
-            imgHeight = imgWidth/realWidth*realHeight;//等比例缩放高度
-        } else {//如果图片真实高度和宽度都符合要求，高宽不变
-            imgWidth = realWidth;
-        }
-        imgHeight = realHeight;
-        $(bigimg).css("width",imgWidth);//以最终的宽度对图片缩放
-        var w = (windowW-imgWidth)/2;//计算图片与窗口左边距
-        var h = (windowH-imgHeight)/2;//计算图片与窗口上边距
-        $(innerdiv).css({"top":h, "left":w});//设置#innerdiv的top和left属性
-        $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
-    });
-    $(outerdiv).click(function(){//再次点击淡出消失弹出层
-        $(this).fadeOut("fast");
-    });
-    event.cancelBubble=true;
+	$(bigimg).attr("src", src);//设置#bigimg元素的src属性
+	/*获取当前点击图片的真实大小，并显示弹出层及大图*/
+	$("<img/>").attr("src", src).load(function(){
+		var windowW = $(window).width();//获取当前窗口宽度
+		var windowH = $(window).height();//获取当前窗口高度
+		var realWidth = this.width;//获取图片真实宽度
+		var realHeight = this.height;//获取图片真实高度
+		var imgWidth, imgHeight;
+		var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
+		if(realHeight>windowH*scale) {//判断图片高度
+			imgHeight = windowH*scale;//如大于窗口高度，图片高度进行缩放
+			imgWidth = imgHeight/realHeight*realWidth;//等比例缩放宽度
+			if(imgWidth>windowW*scale) {//如宽度扔大于窗口宽度
+				imgWidth = windowW*scale;//再对宽度进行缩放
+			}
+		} else if(realWidth>windowW*scale) {//如图片高度合适，判断图片宽度
+			imgWidth = windowW*scale;//如大于窗口宽度，图片宽度进行缩放
+			imgHeight = imgWidth/realWidth*realHeight;//等比例缩放高度
+		} else {//如果图片真实高度和宽度都符合要求，高宽不变
+			imgWidth = realWidth;
+		}
+		imgHeight = realHeight;
+		$(bigimg).css("width",imgWidth);//以最终的宽度对图片缩放
+		var w = (windowW-imgWidth)/2;//计算图片与窗口左边距
+		var h = (windowH-imgHeight)/2;//计算图片与窗口上边距
+		$(innerdiv).css({"top":h, "left":w});//设置#innerdiv的top和left属性
+		$(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
+	});
+	$(outerdiv).click(function(){//再次点击淡出消失弹出层
+		$(this).fadeOut("fast");
+	});
+	event.cancelBubble=true;
 }
 
 // 海康视频
-	function playVideo(videoId) {
+function playVideo(videoId, cameraType) {
 
-		var id = videoId;
-		// 接入方式 0：综合安防  1：智能应用
-		var hktype = "0";
-		var noCache = Date();
-		var hikvisonVideoType = "";
+	var id = videoId;
+	// 海康视频接入方式 0：综合安防  1：智能应用
+	var hktype = "0";
+	var noCache = Date();
+	var hikvisonVideoType = "";
+
+	var areaCamerType = "";
+	var areaoffsetType = "";
+	// 海康设备 为2
+	if(cameraType==2){
 		$.ajaxSettings.async = false;
 		$.getJSON('/arjccm/app/rest/video/callApiGetSecurity', {"noCache": noCache}, function (data) {
-			console.log("------------->data.result",data.result.hikvisonVideoType)
 			hikvisonVideoType = data.result.hikvisonVideoType;
 		});
+		areaCamerType =  hktype == hikvisonVideoType ? ["850px", "408px"] : ["0px", "0px"];
+		areaoffsetType = hktype == hikvisonVideoType ? ['27.3%', '27.3%'] : ['27.3%', '69%'];
+	}else {
+		areaCamerType = ["850px", "408px"];
+		areaoffsetType = ['27.3%', '27.3%'];
+	}
 
-			// 捕获页
-			var html = "";
-			html += '<div class="layer-common"  style="width: 632px;height: auto; position: relative;padding: 14px 0 0 0; float: left">'
-			html += '<div class="layer-common-header" style="top: 1px; left: 36px;display: inline-block; padding: 5px 30px; border: 1px solid #0343a3; transform: skew(-20deg); background: #0343a3;color: #fff; font-weight: bold; position: absolute; z-index: 9999;">'
-			html += '<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">视频监控</div>'
-			html += '</div>'
-			html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; border: 1px solid #10559a;margin-left: 10px;background: url('
-				+ ctxStatic
-				+ '/common/index/images/showbg.png);background-size: 100% 100%;">'
+	// 捕获页
+	var html = "";
+	html += '<div class="layer-common"  style="width: 632px;height: auto; position: relative;padding: 14px 0 0 0; float: left">'
+	html += '<div class="layer-common-header" style="top: 1px; left: 36px;display: inline-block; padding: 5px 30px; border: 1px solid #0343a3; transform: skew(-20deg); background: #0343a3;color: #fff; font-weight: bold; position: absolute; z-index: 9999;">'
+	html += '<div style=" transform: skew(20deg); white-space: nowrap;font-size: 15px;">视频监控</div>'
+	html += '</div>'
+	html += '<div class="layer-show  layer-common-center" style="padding: 10px 10px 5px 10px; border: 1px solid #10559a;margin-left: 10px;background: url('
+		+ ctxStatic
+		+ '/common/index/images/showbg.png);background-size: 100% 100%;">'
 
-			html += '<iframe  name="mainFrame" src="'
-				+ ctx
-				+ '/ccmsys/ccmDevice/getDeviceMap?id='
-				+ id
-				+ '" style="overflow: visible;" scrolling="yes" frameborder="no" width="870" height="360" allowfullscreen="true" allowtransparency="true">' +
-				'</iframe>'
+	html += '<iframe  name="mainFrame" src="'
+		+ ctx
+		+ '/ccmsys/ccmDevice/getDeviceMap?id='
+		+ id
+		+ '" style="overflow: visible;" scrolling="yes" frameborder="no" width="870" height="360" allowfullscreen="true" allowtransparency="true">' +
+		'</iframe>'
 
-			html += '</div>'
+	html += '</div>'
 
-			html += '</div>'
+	html += '</div>'
 
 
-			layer.open({
-				type: 1,
-				shade: false,
-				title: false, // 不显示标题
-				area: hktype == hikvisonVideoType ? ["850px", "408px"] : ["0px", "0px"],
-				move: '.layer-common-header',
-				resize: false,
-				fixed: false,
-				id: "videoLayer" +id,
-				content: html,
-				offset:  hktype == hikvisonVideoType ? ['27.3%', '27.3%'] : ['27.3%', '69%'],
-				cancel: function () {
-					// 关闭事件
-					// layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构',
-					// {time: 5000, icon:6});
-				}
-			});
-			$('#videoLayer').attr("style", "overflow:hidden");
+	layer.open({
+		type: 1,
+		shade: false,
+		title: false, // 不显示标题
+		area: areaCamerType,
+		move: '.layer-common-header',
+		resize: false,
+		fixed: false,
+		id: "videoLayer" +id,
+		content: html,
+		offset: areaoffsetType,
+		cancel: function () {
+			// 关闭事件
+			// layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构',
+			// {time: 5000, icon:6});
 		}
+	});
+	$('#videoLayer').attr("style", "overflow:hidden");
+}

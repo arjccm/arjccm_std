@@ -854,13 +854,13 @@
                 }
             }
 
-            if( hikvisonVideoType==0){
+            if( hikvisonVideoType==0 && ccmDeviceTypeVidicon == 2){
                 $('#divPlugin').css({
                     "overflow": "hidden",
                     "width":"100%",
                     "height":"100%"
                 });
-            }else if (hikvisonVideoType==1){
+            }else if (hikvisonVideoType==1 && ccmDeviceTypeVidicon == 2){
                 $('#divPlugin').css({
                     "margin-left": "60%",
                     "margin-top": "40%",

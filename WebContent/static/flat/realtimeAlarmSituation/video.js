@@ -2,7 +2,8 @@
 $(function(){
 	$("#popup").on("click",".videoPlay",function() {
 		var id = $(this).attr('videoId');
-		videoDialog(id);
+		var typeVidicon = $(this).attr('typeVidicon');
+		videoDialog(id,typeVidicon);
 	})
 	$("#popup").on("click",".vlcPlay",function() {
 		var id = $(this).attr('vlcId');
@@ -10,16 +11,26 @@ $(function(){
 		vlcTest();
 	})
 })
-function videoDialog(id){
+function videoDialog(id,typeVidicon){
 	// 接入方式 0：综合安防  1：只能应用
 	var hktype = "0";
 	var noCache = Date();
 	var hikvisonVideoType = "";
-	$.ajaxSettings.async = false;
-	$.getJSON('/arjccm/app/rest/video/callApiGetSecurity', {"noCache": noCache}, function (data) {
-		console.log("------------->data.result",data.result.hikvisonVideoType)
-		hikvisonVideoType = data.result.hikvisonVideoType;
-	});
+
+	var areaCamerType = "";
+	var areaoffsetType = "";
+	// 海康设备 为2
+	if(typeVidicon==2){
+		$.ajaxSettings.async = false;
+		$.getJSON('/arjccm/app/rest/video/callApiGetSecurity', {"noCache": noCache}, function (data) {
+			hikvisonVideoType = data.result.hikvisonVideoType;
+		});
+		areaCamerType =  hktype == hikvisonVideoType ? ["850px", "408px"] : ["0px", "0px"];
+		areaoffsetType = hktype == hikvisonVideoType ? ['27.3%', '27.3%'] : ['27.3%', '69%'];
+	}else {
+		areaCamerType = ["850px", "408px"];
+		areaoffsetType = ['27.3%', '27.3%'];
+	}
 
 	// 捕获页
 	var html = "";
@@ -38,12 +49,12 @@ function videoDialog(id){
 		shade : false,
 		/*title : '视频监控', // 不显示标题*/
 		title: false, // 不显示标题
-		area: hktype == hikvisonVideoType ? ["850px", "408px"] : ["0px", "0px"],
+		area: areaCamerType,
 		move: '.layer-common-header',
 		resize: false,
 		id : "videoDialog" +id,
 		content : html,
-		offset: hktype == hikvisonVideoType ? ['27.3%', '27.3%'] : ['27.3%', '69%'],
+		offset: areaoffsetType,
 		cancel : function() {
 			// 关闭事件
 		}
