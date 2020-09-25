@@ -19,7 +19,8 @@ import com.arjjs.ccm.common.persistence.DataEntity;
 public class CcmWorkBeonduty extends DataEntity<CcmWorkBeonduty> {
 	
 	private static final long serialVersionUID = 1L;
-	private Date months;		// 年月
+	private Date startDay;		// 起始日期
+	private Date endDay;		// 截止日期
 	private String datas;		// 时间段
 	private User principal;		// 值班负责人
 	private String principalMans;		// 值班队伍
@@ -31,6 +32,7 @@ public class CcmWorkBeonduty extends DataEntity<CcmWorkBeonduty> {
 	private String clickDate;		// 年月
 	private Date beginDatas;		// 开始时间段
 	private Date endDatas;        // 结束时间段
+	private Date months;          // 月份查询条件
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -49,9 +51,6 @@ public class CcmWorkBeonduty extends DataEntity<CcmWorkBeonduty> {
 	public void setEndDatas(Date endDatas) {
 		this.endDatas = endDatas;
 	}
-
-
-
 
 	public String getClickDate() {
 		return clickDate;
@@ -76,6 +75,24 @@ public class CcmWorkBeonduty extends DataEntity<CcmWorkBeonduty> {
 
 	public void setMonths(Date months) {
 		this.months = months;
+	}
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getStartDay() {
+		return startDay;
+	}
+
+	public void setStartDay(Date startDay) {
+		this.startDay = startDay;
+	}
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getEndDay() {
+		return endDay;
+	}
+
+	public void setEndDay(Date endDay) {
+		this.endDay = endDay;
 	}
 	
 	@Length(min=0, max=100, message="时间段长度必须介于 0 和 100 之间")

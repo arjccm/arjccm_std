@@ -17,7 +17,7 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group" style="padding-top: 8px">
-			<label class="control-label">年月：</label>
+			<label class="control-label">值班日期：</label>
 			<div class="controls">
 				<input name="months" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="${ccmWorkBeonduty.clickDate}"

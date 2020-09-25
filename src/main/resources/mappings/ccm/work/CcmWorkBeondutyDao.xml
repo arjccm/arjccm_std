@@ -4,7 +4,8 @@
     
 	<sql id="ccmWorkBeondutyColumns">
 		a.id AS "id",
-		a.months AS "months",
+		a.start_day AS "startDay",
+		a.end_day AS "endDay",
 		a.datas AS "datas",
 		a.principal AS "principal.id",
 		a.principal_mans AS "principalMans",
@@ -53,15 +54,22 @@
 		<include refid="ccmWorkBeondutyJoins_Office_Area"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-
-			<if  test="beginMonths != null and beginMonths != ''">
-				AND a.months &gt;= #{beginMonths}
-			</if>
-			<if  test="endMonths != null and endMonths != ''">
-				AND a.months &lt;= #{endMonths}
-			</if>
+			AND (
+				<if test="beginMonths != null and beginMonths != '' and (endMonths == null or endMonths == '')">
+					a.start_day &gt;= #{beginMonths} OR a.end_day &gt;= #{beginMonths}
+				</if>
+				<if test="beginMonths != null and beginMonths != '' and endMonths != null and endMonths != ''">
+					(a.start_day &gt;= #{beginMonths} AND a.start_day &lt;= #{endMonths}) OR (a.end_day &gt;= #{beginMonths} AND a.end_day &lt;= #{endMonths})
+				</if>
+				<if test="endMonths != null and endMonths != '' and (beginMonths == null or beginMonths == '')">
+					a.start_day &lt;= #{endMonths} OR a.end_day &lt;= #{endMonths}
+				</if>
+				<if test="(beginMonths == null or beginMonths == '') and (endMonths == null or endMonths == '')">
+					1=1
+				</if>
+			)
 			<if test="months != null and months != ''">
-				AND a.months = #{months}
+				AND DATE_FORMAT(a.start_day,'%Y-%m') = DATE_FORMAT(#{months},'%Y-%m')
 			</if>
 			<if test="office != null and office.id != null and office.id != ''">
 				AND a.office = #{office.id}
@@ -93,7 +101,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.months DESC,  a.update_date DESC
+				ORDER BY a.start_day DESC,  a.update_date DESC
 			</otherwise>
 		</choose>
 	</select>
@@ -105,11 +113,22 @@
 		<include refid="ccmWorkBeondutyJoins_Office"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="beginMonths != null and endMonths != null and beginMonths != '' and endMonths != ''">
-				AND a.months BETWEEN #{beginMonths} AND #{endMonths}
-			</if>
+			AND (
+				<if test="beginMonths != null and beginMonths != '' and (endMonths == null or endMonths == '')">
+					a.start_day &gt;= #{beginMonths} OR a.end_day &gt;= #{beginMonths}
+				</if>
+				<if test="beginMonths != null and beginMonths != '' and endMonths != null and endMonths != ''">
+					(a.start_day &gt;= #{beginMonths} AND a.start_day &lt;= #{endMonths}) OR (a.end_day &gt;= #{beginMonths} AND a.end_day &lt;= #{endMonths})
+				</if>
+				<if test="endMonths != null and endMonths != '' and (beginMonths == null or beginMonths == '')">
+					a.start_day &lt;= #{endMonths} OR a.end_day &lt;= #{endMonths}
+				</if>
+				<if test="(beginMonths == null or beginMonths == '') and (endMonths == null or endMonths == '')">
+					1=1
+				</if>
+			)
 			<if test="months != null and months != ''">
-				AND a.months = #{months}
+				AND DATE_FORMAT(a.start_day,'%Y-%m') = DATE_FORMAT(#{months},'%Y-%m')
 			</if>
 			<if test="office != null and office.id != null and office.id != ''">
 				AND a.office = #{office.id}
@@ -141,7 +160,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.months DESC,  a.update_date DESC
+				ORDER BY a.start_day DESC,  a.update_date DESC
 			</otherwise>
 		</choose>
 	</select>
@@ -153,11 +172,22 @@
 		<include refid="ccmWorkBeondutyJoins_Office"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="beginMonths != null and endMonths != null and beginMonths != '' and endMonths != ''">
-				AND a.months BETWEEN #{beginMonths} AND #{endMonths}
-			</if>
+			AND (
+				<if test="beginMonths != null and beginMonths != '' and (endMonths == null or endMonths == '')">
+					a.start_day &gt;= #{beginMonths} OR a.end_day &gt;= #{beginMonths}
+				</if>
+				<if test="beginMonths != null and beginMonths != '' and endMonths != null and endMonths != ''">
+					(a.start_day &gt;= #{beginMonths} AND a.start_day &lt;= #{endMonths}) OR (a.end_day &gt;= #{beginMonths} AND a.end_day &lt;= #{endMonths})
+				</if>
+				<if test="endMonths != null and endMonths != '' and (beginMonths == null or beginMonths == '')">
+					a.start_day &lt;= #{endMonths} OR a.end_day &lt;= #{endMonths}
+				</if>
+				<if test="(beginMonths == null or beginMonths == '') and (endMonths == null or endMonths == '')">
+					1=1
+				</if>
+			)
 			<if test="months != null and months != ''">
-				AND DATE_FORMAT(a.months,'%Y-%m') = DATE_FORMAT(#{months},'%Y-%m')
+				AND DATE_FORMAT(a.start_day,'%Y-%m') = DATE_FORMAT(#{months},'%Y-%m')
 			</if>
 			<if test="office != null and office.id != null and office.id != ''">
 				AND a.office = #{office.id}
@@ -189,7 +219,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.months DESC,  a.update_date DESC
+				ORDER BY a.start_day DESC,  a.update_date DESC
 			</otherwise>
 		</choose>
 	</select>
@@ -216,7 +246,8 @@
 	<insert id="insert">
 		INSERT INTO ccm_work_beonduty(
 			id,
-			months,
+			start_day,
+			end_day,
 			datas,
 			principal,
 			principal_mans,
@@ -231,7 +262,8 @@
 			office
 		) VALUES (
 			#{id},
-			#{months},
+			#{startDay},
+			#{endDay},
 			#{datas},
 			#{principal.id},
 			#{principalMans},
@@ -249,7 +281,8 @@
 	
 	<update id="update">
 		UPDATE ccm_work_beonduty SET 	
-			months = #{months},
+			start_day = #{startDay},
+			end_day = #{endDay},
 			datas = #{datas},
 			principal = #{principal.id},
 			principal_mans = #{principalMans},

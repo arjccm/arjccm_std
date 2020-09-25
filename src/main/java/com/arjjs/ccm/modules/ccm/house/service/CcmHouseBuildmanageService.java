@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -382,6 +383,10 @@ public class CcmHouseBuildmanageService extends CrudService<CcmHouseBuildmanageD
 					house.setBuildDoorNum(String.valueOf(entrance.getEntranceNum()));
                     house.setBuildDoorName(entrance.getEntranceName());
                     house.setTranceId(entrance.getId());
+                    house.setCreateBy(build.getCreateBy());
+                    house.setCreateDate(new Date());
+					house.setUpdateBy(build.getUpdateBy());
+					house.setUpdateDate(new Date());
 					ccmPopTenantService.save(house);
 				}
 			}

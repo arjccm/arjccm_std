@@ -60,22 +60,22 @@
 				<form:input path="adds" htmlEscape="false" maxlength="100" class="input-medium"/>
 			</li>
 			<%--<li class="clearfix"></li>--%>
-			<li class="first-line"><label>开始年月：</label>
+			<li class="first-line"><label>开始日期：</label>
 				<input name="beginMonths" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${ccmWorkBeonduty.beginMonths}" pattern="yyyy-MM"/>"
-					   onclick="WdatePicker({dateFmt:'yyyy-MM',isShowClear:false});"/> </li>
-			<li class="second-line"><label>结束年月：</label>	<input name="endMonths" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${ccmWorkBeonduty.endMonths}" pattern="yyyy-MM"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM',isShowClear:false});"/>
+					value="<fmt:formatDate value="${ccmWorkBeonduty.beginMonths}" pattern="yyyy-MM-dd"/>"
+					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/> </li>
+			<li class="second-line"><label>结束日期：</label>	<input name="endMonths" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${ccmWorkBeonduty.endMonths}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 			</li>
 			<li class="second-line"><label>开始时间段：</label>
 			<input name="beginDatas" id="beginDatas" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${ccmWorkBeonduty.beginDatas}" pattern="HH:mm"/>"
-				   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false});"/> </li>
+				   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:true});"/> </li>
 			 <li class="second-line"><label>结束时间段：</label>
 				 <input name="endDatas" id="endDatas" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${ccmWorkBeonduty.endDatas}" pattern="HH:mm"/>"
-					onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false});"/>
+					onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:true});"/>
 				<%-- <form:input path="datas" htmlEscape="false" maxlength="100" class="input-medium"/> --%>
 			</li>
 			<!-- <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li> -->
@@ -100,7 +100,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
-				<th>年月</th>
+				<th>日期</th>
 				<th>时间段</th>
 				<th>归属部门</th>
 				<th>值班负责人</th>
@@ -113,7 +113,7 @@
 		<c:forEach items="${page.list}" var="ccmWorkBeonduty">
 			<tr>
 				<td><a href="${ctx}/work/ccmWorkBeonduty/form?id=${ccmWorkBeonduty.id}">
-					<fmt:formatDate value="${ccmWorkBeonduty.months}" pattern="yyyy-MM"/>
+					<fmt:formatDate value="${ccmWorkBeonduty.startDay}" pattern="yyyy-MM-dd"/>-<fmt:formatDate value="${ccmWorkBeonduty.endDay}" pattern="yyyy-MM-dd"/>
 				</a></td>
 				<td>
 					${ccmWorkBeonduty.datas}

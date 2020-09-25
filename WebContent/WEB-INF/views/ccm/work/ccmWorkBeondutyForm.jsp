@@ -28,6 +28,10 @@
         });
 
         function saveForm() {
+            var start = $("#startDay").val();
+            console.info(start);
+            var end = $("#endDay").val();
+            console.info(end);
             var principalId = $("#principalId").val();
             var html1 = '<label for="" class="error">必填信息 <label>';
             if (principalId.length != 0) {
@@ -36,7 +40,25 @@
                 $("#show1").html(html1);
             }
             if (principalId.length != 0) {
-                $("#inputForm").submit();
+                if(!!start && !!end){
+                    var startDay = new Date(Date.parse(start.replace(/-/g,  "/")));
+                    var endDay = new Date(Date.parse(end.replace(/-/g,  "/")));
+                    if(endDay >= startDay){
+                        var startYear = startDay.getFullYear();
+                        var startMonth = startDay.getMonth()+1;
+                        var endYear = endDay.getFullYear();
+                        var endMonth = endDay.getMonth()+1;
+                        if(startYear==endYear && startMonth==endMonth){
+                            $("#inputForm").submit();
+                        }else{
+                            alert("截止日期与起始日期需在同一个月内！");
+                        }
+                    }else{
+                        alert("截止日期需大于等于起始日期！");
+                    }
+                }else{
+                    $("#inputForm").submit();
+                }
             }
 
         }
@@ -84,16 +106,38 @@
                 <td>
                     <div class="control-group" style="padding-top: 8px">
                         <label class="control-label"><span class="help-inline"><font
-                                color="red">*</font> </span>年月：</label>
+                                color="red">*</font> </span>起始日期：</label>
                         <div class="controls">
-                            <input name="months" type="text" readonly="readonly" maxlength="20"
+                            <input name="startDay" id="startDay" type="text" readonly="readonly" maxlength="20"
                                    class="input-medium Wdate required"
-                                   value="<fmt:formatDate value="${ccmWorkBeonduty.months}" pattern="yyyy-MM"/>"
-                                   onclick="WdatePicker({dateFmt:'yyyy-MM',isShowClear:false});"/>
-
-                                <%-- <input name="months" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-                                    value="<fmt:formatDate value="${ccmWorkBeonduty.months}" pattern="yyyy-MM"/>"
-                                    onclick="WdatePicker({dateFmt:'yyyy-MM',isShowClear:false});"/> --%>
+                                   value="<fmt:formatDate value="${ccmWorkBeonduty.startDay}" pattern="yyyy-MM-dd"/>"
+                                   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="control-group" style="padding-top: 8px">
+                        <label class="control-label"><span class="help-inline"><font
+                                color="red">*</font> </span>截止日期：</label>
+                        <div class="controls">
+                            <input name="endDay" id="endDay" type="text" readonly="readonly" maxlength="20"
+                                   class="input-medium Wdate required"
+                                   value="<fmt:formatDate value="${ccmWorkBeonduty.endDay}" pattern="yyyy-MM-dd"/>"
+                                   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="control-group">
+                        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>值班负责人：</label>
+                        <div class="controls">
+                            <sys:treeselect id="principal" name="principal" value="${ccmWorkBeonduty.principal.id}"
+                                            labelName="" labelValue="${ccmWorkBeonduty.principal.name}"
+                                            title="用户" url="/sys/office/treeData?type=3" cssClass="required"
+                                            allowClear="true" notAllowSelectParent="true"/>
+                            <span class="help-inline"><font color="red" id="show1"></font> </span>
                         </div>
                     </div>
                 </td>
@@ -114,18 +158,12 @@
                 <td>
                     <div class="control-group">
                         <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>开始时间段：</label>
-
                         <div class="controls">
                             <input name="beginDatas" id="beginDatas" type="text" readonly="readonly" maxlength="20"
                                    class="input-medium Wdate required"
                                    value="<fmt:formatDate value="${beginDatas}" pattern="HH:mm"/>"
                                    onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false});"/>
                         </div>
-
-                            <%-- <div class="controls">
-                                <form:input path="datas" htmlEscape="false" maxlength="100" class="input-xlarge required"/>
-                                <span class="help-inline"><font color="red">*</font> </span>
-                            </div> --%>
                     </div>
                 </td>
                 <td>
@@ -179,20 +217,6 @@
                         <div class="controls">
                             <form:textarea path="details" htmlEscape="false" rows="4" maxlength="1000"
                                            class="input-xxlarge "/>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="control-group">
-                        <label class="control-label"><span class="help-inline"><font color="red">*</font> </span>值班负责人：</label>
-                        <div class="controls">
-                            <sys:treeselect id="principal" name="principal" value="${ccmWorkBeonduty.principal.id}"
-                                            labelName="" labelValue="${ccmWorkBeonduty.principal.name}"
-                                            title="用户" url="/sys/office/treeData?type=3" cssClass="required"
-                                            allowClear="true" notAllowSelectParent="true"/>
-                            <span class="help-inline"><font color="red" id="show1"></font> </span>
                         </div>
                     </div>
                 </td>

@@ -2706,3 +2706,8 @@ INSERT INTO sys_menu( id, parent_id, parent_ids, name, href, target, icon, sort,
 -- 楼栋新增每层房屋数量字段
 ALTER TABLE `ccm_house_buildmanage`
 ADD COLUMN `house_num` int(3) NULL DEFAULT 0 COMMENT '每层房屋数量' AFTER `build_code`,
+
+
+-- 三亚现场反馈值班管理可以按天添加问题修改
+ALTER TABLE ccm_work_beonduty CHANGE months start_day datetime COMMENT '起始日期';
+ALTER TABLE ccm_work_beonduty ADD end_day datetime COMMENT '截止日期';

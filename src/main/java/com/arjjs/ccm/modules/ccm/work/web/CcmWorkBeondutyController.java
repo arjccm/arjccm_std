@@ -31,6 +31,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.time.Month;
+import java.time.Year;
 import java.util.*;
 
 /**
@@ -71,10 +73,69 @@ public class CcmWorkBeondutyController extends BaseController {
 	@RequestMapping(value = "copySave")
 	public void copySave(CcmWorkBeonduty ccmWorkBeonduty, Model model, RedirectAttributes redirectAttributes, HttpServletResponse response) throws IOException {
 		CcmWorkBeonduty e = new CcmWorkBeonduty();
+		Calendar ca = Calendar.getInstance();
+		ca.setTime(ccmWorkBeonduty.getEndMonths());
+		int year = ca.get(Calendar.YEAR);
+		int month = ca.get(Calendar.MONTH)+1;
 		e.setMonths(ccmWorkBeonduty.getBeginMonths());
 		List<CcmWorkBeonduty> list = ccmWorkBeondutyService.findByYearMonth(e);
 		for(CcmWorkBeonduty l:list){
-			l.setMonths(ccmWorkBeonduty.getEndMonths());
+			ca.setTime(l.getStartDay());
+			int start = ca.get(Calendar.DAY_OF_MONTH);
+			ca.set(Calendar.YEAR,year);
+			ca.set(Calendar.MONTH,month-1);
+			if(month == 2){
+				if(year/4 == 0){
+					if(start > 29){
+						ca.add(Calendar.MONTH,-1);
+						ca.set(Calendar.DAY_OF_MONTH,ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+					}
+				}else{
+					if(start > 28){
+						ca.add(Calendar.MONTH,-1);
+						ca.set(Calendar.DAY_OF_MONTH,ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+					}
+				}
+			}else if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){
+				if(start > 31){
+					ca.add(Calendar.MONTH,-1);
+					ca.set(Calendar.DAY_OF_MONTH,ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+				}
+			}else{
+				if(start > 30){
+					ca.add(Calendar.MONTH,-1);
+					ca.set(Calendar.DAY_OF_MONTH,ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+				}
+			}
+			l.setStartDay(ca.getTime());
+			ca.setTime(l.getEndDay());
+			int end = ca.get(Calendar.DAY_OF_MONTH);
+			ca.set(Calendar.YEAR,year);
+			ca.set(Calendar.MONTH,month-1);
+			if(month == 2){
+				if(year/4 == 0){
+					if(end > 29){
+						ca.add(Calendar.MONTH,-1);
+						ca.set(Calendar.DAY_OF_MONTH,ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+					}
+				}else{
+					if(end > 28){
+						ca.add(Calendar.MONTH,-1);
+						ca.set(Calendar.DAY_OF_MONTH,ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+					}
+				}
+			}else if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){
+				if(end > 31){
+					ca.add(Calendar.MONTH,-1);
+					ca.set(Calendar.DAY_OF_MONTH,ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+				}
+			}else{
+				if(end > 30){
+					ca.add(Calendar.MONTH,-1);
+					ca.set(Calendar.DAY_OF_MONTH,ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+				}
+			}
+			l.setEndDay(ca.getTime());
 			l.setId(UUID.randomUUID().toString());
 			l.setIsNewRecord(true);
 			ccmWorkBeondutyService.save(l);
@@ -189,20 +250,23 @@ public class CcmWorkBeondutyController extends BaseController {
 	@RequestMapping(value = {"ccmBeonduty"})
 	public String ccmBeonduty(CcmWorkBeonduty ccmWorkBeonduty, HttpServletRequest request, HttpServletResponse response, Model model, String showdate) {
 		CcmWorkBeonduty e = new CcmWorkBeonduty();
-		e.setMonths(ccmWorkBeonduty.getBeginMonths());
+		e.setMonths(new Date());
 		List<CcmWorkBeonduty> list = ccmWorkBeondutyService.findList(e);
-		
-		//[id,title,start,end，全天日程，跨日日程,循环日程,theme,'地址','']          
+
+		//[id,title,start,end，全天日程，跨日日程,循环日程,theme,'地址','']
 	    //[['6147','你好啊',new Date(1338427800000),new Date(1338431400000),0,0,0,0,1,'']];
 		List<List<Object>> list2=new ArrayList<List<Object>>();
-		
+
 		if(list.size()>0) {
 			for (CcmWorkBeonduty res : list) {
 				Calendar c = Calendar.getInstance();
-				c.setTime(res.getMonths());
-				int totalDays = c.getActualMaximum(Calendar.DAY_OF_MONTH);
-				for(int i=1; i<=totalDays; i++) {
-					c.set(Calendar.DAY_OF_MONTH, i);
+				c.setTime(res.getStartDay());
+				int start = c.get(Calendar.DAY_OF_MONTH);
+				c.setTime(res.getEndDay());
+				int end = c.get(Calendar.DAY_OF_MONTH);
+				int totalDays = end-start+1;
+				for(int i=0; i<totalDays; i++) {
+					c.set(Calendar.DAY_OF_MONTH, start+i);
 					Date date = c.getTime();
 
 					List<Object>  list3=new ArrayList<Object>();
@@ -232,8 +296,8 @@ public class CcmWorkBeondutyController extends BaseController {
 			}
 		}
 		
-		JSONArray json = JSONArray.fromObject(list2);  
-		model.addAttribute("list", json);	
+		JSONArray json = JSONArray.fromObject(list2);
+		model.addAttribute("list", json);
 		if(showdate==null||showdate.equals("")) {
 			showdate=String.valueOf(System.currentTimeMillis());
 		}
@@ -252,19 +316,21 @@ public class CcmWorkBeondutyController extends BaseController {
 		e.setPrincipal(ccmWorkBeonduty.getPrincipal());
 		e.setPrincipalMans(ccmWorkBeonduty.getPrincipalMans());
 		List<CcmWorkBeonduty> list = ccmWorkBeondutyService.findList(e);
-		
-		//[id,title,start,end，全天日程，跨日日程,循环日程,theme,'地址','']          
+
+		//[id,title,start,end，全天日程，跨日日程,循环日程,theme,'地址','']
 	    //[['6147','你好啊',new Date(1338427800000),new Date(1338431400000),0,0,0,0,1,'']];
 		List<List<Object>> list2=new ArrayList<List<Object>>();
-		
+
 		if(list.size()>0) {
 			for (CcmWorkBeonduty res : list) {
-
 				Calendar c = Calendar.getInstance();
-				c.setTime(res.getMonths());
-				int totalDays = c.getActualMaximum(Calendar.DAY_OF_MONTH);
-				for(int i=1; i<=totalDays; i++) {
-					c.set(Calendar.DAY_OF_MONTH, i);
+				c.setTime(res.getStartDay());
+				int start = c.get(Calendar.DAY_OF_MONTH);
+				c.setTime(res.getEndDay());
+				int end = c.get(Calendar.DAY_OF_MONTH);
+				int totalDays = end-start+1;
+				for(int i=0; i<totalDays; i++) {
+					c.set(Calendar.DAY_OF_MONTH, start+i);
 					Date date = c.getTime();
 					List<Object>  list3=new ArrayList<Object>();
 					list3.add(0, res.getId()); //id
@@ -292,14 +358,14 @@ public class CcmWorkBeondutyController extends BaseController {
 				}
 			}
 		}
-		
-		JSONArray json = JSONArray.fromObject(list2);  
-		model.addAttribute("list", json);	
+
+		JSONArray json = JSONArray.fromObject(list2);
+		model.addAttribute("list", json);
 		if(showdate==null||showdate.equals("")) {
 			showdate=String.valueOf(System.currentTimeMillis());
 		}
-		
-		model.addAttribute("date", showdate);	
+
+		model.addAttribute("date", showdate);
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("list", json);
 		map.put("date", showdate);
