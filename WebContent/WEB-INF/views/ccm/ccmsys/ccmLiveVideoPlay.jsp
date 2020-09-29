@@ -206,7 +206,8 @@
 	var obj;
 	var flag;
 	function start(){
-		var val = $('#option').val();
+        var str = $("#option option").map(function(){return $(this).val();}).get().join(",");
+        var val = str.split(",");
 		var data = new Array();
 		for(var i=0;i<val.length;i++){
 			data.push({"id":val[i]});
@@ -245,7 +246,8 @@
 		clearInterval(flag);
 	}
 	function startOcx(){
-		var val = $('#option').val();
+        var str = $("#option option").map(function(){return $(this).val();}).get().join(",");
+		var val = str.split(",");
 		var data = new Array();
 		for(var i=0;i<val.length;i++){
 			data.push({"id":val[i]});
