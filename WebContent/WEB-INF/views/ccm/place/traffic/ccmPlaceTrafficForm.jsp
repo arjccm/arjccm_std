@@ -69,7 +69,6 @@
 				window.isCancel = true;
 			},
 			end: function () {
-				debugger
 				if (!window.isCancel) {
 					$("#areaPoint")[0].value = parent.areaPoint;
 					parent.areaPoint = null;

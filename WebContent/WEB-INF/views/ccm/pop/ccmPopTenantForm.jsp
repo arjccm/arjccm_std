@@ -615,23 +615,71 @@
 				<td>
 					<div>
 						<label class="control-label">年限：</label>
-						<form:select path="buildingYears" class="input-xlarge ">
-							<form:option value="" label=""/>
-							<form:options items="${fns:getDictList('ccm_PopTenant_buildingYears')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						</form:select>
+						<div class="controls">
+							<form:select path="buildingYears" class="input-xlarge ">
+								<form:option value="" label=""/>
+								<form:options items="${fns:getDictList('ccm_PopTenant_buildingYears')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+							</form:select>
+						</div>
 					</div>
 				</td>
 				<td>
 					<div>
 						<label class="control-label">建筑类型：</label>
-						<form:select path="buildingType" class="input-xlarge ">
-							<form:option value="" label=""/>
-							<form:options items="${fns:getDictList('ccm_PopTenant_buildingType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-						</form:select>
+						<div class="controls">
+							<form:select path="buildingType" class="input-xlarge ">
+								<form:option value="" label=""/>
+								<form:options items="${fns:getDictList('ccm_PopTenant_buildingType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+							</form:select>
+						</div>
 					</div>
 				</td>
 			</tr>
 			<tr>
+				<td>
+					<div>
+						<label class="control-label">生活资源：</label>
+						<div class="controls">
+							<form:textarea path="livingResources" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">生产资源：</label>
+						<div class="controls">
+							<form:textarea path="productionResources" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">家庭收入情况：</label>
+						<div class="controls">
+							<form:textarea path="familyIncome" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">家庭贫困情况：</label>
+						<div class="controls">
+							<form:textarea path="familyPoverty" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">十星级文明户创评情况：</label>
+						<div class="controls">
+							<form:textarea path="evaluationCivilized" htmlEscape="false" rows="4" maxlength="255" class="input-xlarge " />
+						</div>
+					</div>
+				</td>
 				<td>
 					<div>
 						<label class="control-label">备注信息：</label>

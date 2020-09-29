@@ -22,7 +22,6 @@ function findTableNameInDict(){
 }
 
 function findHouseEmphasis(_this,type){
-	debugger;
     var permission=$(_this).attr('data');
     if(permission=="0"){
         layer.confirm('请输入涉密密码:<input autofocus="autofocus" id="Secret" type="password"  value="" style="margin: 0; width: 168px; margin-right: 5px;"/>', {

@@ -2379,7 +2379,6 @@ function getPeopleData(noCache) {
         $(".rksj4 .rknum").html(dataList[3].value)
         $(".rksj4 .rktitle").html(dataList[3].name)
 
-        // debugger
         if(count>99999){
             count = parseInt(count / 10000) ;
             $("#rkt1 .rkzs").html(count+ '万');
@@ -3445,7 +3444,6 @@ function getPreventive(data) {
 
 //安全事故分布
 function getDistribution(data) {
-    debugger
     distributionChart = echarts.init(document.getElementById('echLeftContent3'));
     distributionChart.resize();
     distributionChart.clear();
@@ -4262,7 +4260,6 @@ function getAreaEch() {
     distributionChart = echarts.init(document.getElementById('echRightContent3'));
     distributionChart.resize();
     distributionChart.clear();
-    debugger
     var dataX = arr1;
     var dataY = arr2;
     var bgNum = [arr2[0], arr2[0], arr2[0], arr2[0], arr2[0]];

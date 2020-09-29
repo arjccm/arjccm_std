@@ -7,9 +7,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//$("#name").focus();
-			debugger
             if("${deviceIdList}"!=null&&"${deviceIdList}"!=""){
-                debugger
                 var deviceList = "${deviceIdList}".split(",");
                 $("#deviceSelect").val(deviceList).select2();
             }

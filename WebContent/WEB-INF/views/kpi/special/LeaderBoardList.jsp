@@ -38,7 +38,6 @@
 		
 		//排名类型变化时，后面的条件隐藏修改
 		function change(){
-			debugger;
 			var val = $('#type option:selected') .val();
 			//每次修改都将季度恢复为第一季度选项
 			$('#quarter').select2("val","01");

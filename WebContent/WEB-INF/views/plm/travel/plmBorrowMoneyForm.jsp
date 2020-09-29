@@ -65,7 +65,6 @@
 				}
 			});
 	           $("#btnCancel").on("click", function(){
-					debugger
 					/* confirmx("确定要撤销申请吗？",function(){ */
 						$('#flag').val('no');
 						$("#inputForm").attr("action","${ctx}/travel/plmBorrowMoney/apply");

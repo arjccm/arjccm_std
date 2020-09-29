@@ -55,7 +55,6 @@
 
 	}
 	function ThisLayerDialog(src, title, height, width) {
-		debugger
 		parent.drawForm = parent.layer.open({
 			type: 2,
 			title: title,
@@ -70,7 +69,6 @@
 				window.isCancel = true;
 			},
 			end: function () {
-				debugger
 				if (!window.isCancel) {
 					$("#areaPoint")[0].value = parent.areaPoint;
 					parent.areaPoint = null;

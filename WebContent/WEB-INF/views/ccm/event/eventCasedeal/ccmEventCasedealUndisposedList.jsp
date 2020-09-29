@@ -39,7 +39,6 @@
         function Pass(id) {
             $.post('${ctx}/event/ccmEventCasedeal/signing?id=' + id, function (data) {
                 if (data.code == '200') {
-                    debugger
                     setTimeout(function () {
                         window.location.reload();
                     }, 1000);

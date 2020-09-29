@@ -111,7 +111,6 @@
                     layer.load(); //上传loading
                 }
                 , done: function (res) {
-                    debugger
                     layer.closeAll('loading'); //关闭loading
                     if (res.code == "200") {
                         //do something （比如将res返回的图片链接保存到表单的隐藏域）

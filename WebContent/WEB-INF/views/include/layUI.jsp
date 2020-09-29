@@ -94,7 +94,6 @@
         // $.getJSON(ctx+"/event/ccmEventIncident/getListToday",{ "noCache": noCache },
         $.getJSON(ctx+"/message/ccmMessage/getListTodayAndUnread",{ "noCache": noCache },
             function(data) {
-            // debugger
                 // console.info("data",data);
                 contentAll += '<table class="table layer"><tbody id="allTbody" class="tBody">';
                 content1 += '<table class="table layer"><tbody id="eventTbody" class="tBody"><tr class="def"> <td>暂无新的消息</td></tr>';
@@ -343,7 +342,6 @@
                 var restore_tp = 200;
                 var min_tp = $(window).outerHeight() - 43;
                 // alert(min_lt);
-                // debugger
                 layerIndex1 = layer.open({
                     type : 1,
                     id:'TodayEvent',

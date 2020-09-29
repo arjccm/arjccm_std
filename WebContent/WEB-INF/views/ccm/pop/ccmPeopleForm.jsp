@@ -1759,7 +1759,6 @@
 <script>
     $("#checkBoxe :checked").each(function () {
         console.log($(this).val())
-        debugger
         if ($(this).val() != null) {
             parent.layui.$("#focuPers1").prop("checked", true);
         }

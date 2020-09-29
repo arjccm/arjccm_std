@@ -6486,7 +6486,6 @@ var displaysingleclickInfo = function (evt) {
         // Map.clearOverlays();
         var restype = feature.get('type');
         var jsontype = null;
-        debugger;
         if(restype == "4"){
             type = 7;
             jsontype = 'communitys';

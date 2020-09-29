@@ -194,7 +194,6 @@
 			$("#selectsTbody").html(html);
 		})
 		function rightMove() {
-			debugger;
 			var brand_sel = document.getElementById("brand_sel");
 			var choose_sel = document.getElementById("choose_sel");
 

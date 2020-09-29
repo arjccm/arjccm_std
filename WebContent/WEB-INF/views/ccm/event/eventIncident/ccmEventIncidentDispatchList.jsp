@@ -76,7 +76,6 @@
         function Pass(eventId) {
             $.post('${ctx}/alarm/bphAlarmInfo/eventToAlarmInfo?eventId='+ eventId,function(data){
                 if(data.code == '200'){
-                    debugger
                     setTimeout(function () {
                         window.location.reload();
                     }, 1000);

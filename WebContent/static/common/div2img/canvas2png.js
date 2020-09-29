@@ -208,7 +208,6 @@ var Canvas2Image = function () {
                 var strData = genBitmapImage(data);
                 saveFile(makeURI(strData, downloadMime));
             } else {
-                debugger
                 var strData = getDataURL(canvas, type, width, height);
                 saveFile(strData.replace(type, downloadMime));
             }

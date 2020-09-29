@@ -46,6 +46,11 @@
         a.remarks AS "remarks",
         a.del_flag AS "delFlag",
         a17.name AS "area.name",
+        a.living_resources AS "livingResources",
+        a.production_resources AS "productionResources",
+        a.family_income AS "familyIncome",
+        a.evaluation_civilized AS "evaluationCivilized",
+        a.family_poverty AS "familyPoverty",
         (case when a18.buildname is null then '' else a18.buildname end) AS "buildingId.buildname"
     </sql>
 
@@ -624,6 +629,11 @@
         update_by,
         update_date,
         remarks,
+        living_resources,
+        production_resources,
+        family_income,
+        evaluation_civilized,
+        family_poverty,
         del_flag
         ) VALUES (
         #{tranceId},
@@ -659,6 +669,11 @@
         #{updateBy.id},
         #{updateDate},
         #{remarks},
+        #{livingResources},
+        #{productionResources},
+        #{familyIncome},
+        #{evaluationCivilized},
+        #{familyPoverty},
         #{delFlag}
         )
     </insert>
@@ -694,6 +709,11 @@
         image = #{image},
         update_by = #{updateBy.id},
         update_date = #{updateDate},
+        living_resources = #{livingResources},
+        production_resources = #{productionResources},
+        family_income = #{familyIncome},
+        evaluation_civilized = #{evaluationCivilized},
+        family_poverty = #{familyPoverty},
         remarks = #{remarks}
         WHERE id = #{id}
     </update>

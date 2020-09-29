@@ -123,7 +123,6 @@ function TableInit(data) {
 	}
 }
 function dataTableInit(tableData) {
-	debugger
 	$('#TableCon').html('<div class="drag_drop" onmousedown="drag()"></div><table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered table-condensed" id="contentTable"></table>');
 	$('#contentTable').dataTable({
 		"data" : tableData,

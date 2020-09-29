@@ -36,7 +36,6 @@
 		var setting = {data:{simpleData:{enable:true,idKey:"id",pIdKey:"pId",rootPId:'0'}},
 			callback:{onClick:function(event, treeId, treeNode){
 					var id = treeNode.id == '0' ? '' :treeNode.id;
-					debugger
 					$('#officeContent').attr("src","${ctx}/cms/ccmFontUser/list?officeId="+id);
 				}
 			}

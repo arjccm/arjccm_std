@@ -73,6 +73,52 @@ public class CcmPopTenant extends DataEntity<CcmPopTenant> {
 	private Integer minnum;
 	private Integer maxnum;
 
+	private String livingResources;      //生活资源
+	private String productionResources;  //生产资源
+	private String familyIncome;		 //家庭收入情况
+	private String evaluationCivilized;  //十星级文明户创评情况
+	private String familyPoverty;		 //家庭贫困情况
+
+	public String getLivingResources() {
+		return livingResources;
+	}
+
+	public void setLivingResources(String livingResources) {
+		this.livingResources = livingResources;
+	}
+
+	public String getProductionResources() {
+		return productionResources;
+	}
+
+	public void setProductionResources(String productionResources) {
+		this.productionResources = productionResources;
+	}
+
+	public String getFamilyIncome() {
+		return familyIncome;
+	}
+
+	public void setFamilyIncome(String familyIncome) {
+		this.familyIncome = familyIncome;
+	}
+
+	public String getEvaluationCivilized() {
+		return evaluationCivilized;
+	}
+
+	public void setEvaluationCivilized(String evaluationCivilized) {
+		this.evaluationCivilized = evaluationCivilized;
+	}
+
+	public String getFamilyPoverty() {
+		return familyPoverty;
+	}
+
+	public void setFamilyPoverty(String familyPoverty) {
+		this.familyPoverty = familyPoverty;
+	}
+
 	public String getType() {
 		return type;
 	}

@@ -6,6 +6,36 @@
     <meta name="decorator" content="default"/>
     <script type="text/javascript"
             src="${ctxStatic}/ccm/pop/js/ccmTenantInfo.js"></script>
+    <script type="text/javascript"
+            src="${ctxStatic}/ccm/pop/js/ccmCommon.js"></script>
+    <script src="${ctxStatic}/common/qrcode.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript">
+        function tenantQRCode(tenantId, e) {
+            // document.getElementById("qrcode").innerHTML = "";
+            // $("#dropdown-menu").removeAttr("hidden");
+            var qrCodeHTML = '<div class="qrcodeBox"><i id="qrcode" style="display: block;"></i></div>'
+
+            layer.tips(qrCodeHTML, "#"+tenantId, {
+                tips: 2,
+                // content:"123",
+                area:["115px","115px"],
+                time:100000,
+                shade:0.3,
+                shadeClose:true
+            });
+            var stenantId = '"' + tenantId + '"';
+            var url = '{"type":"tenant","id":' + stenantId + '}';
+            var qrcode = new QRCode("qrcode", {
+                width: 100,
+                height: 100,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            qrcode.makeCode(url);
+        }
+    </script>
 </head>
 <body>
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
@@ -71,17 +101,11 @@
     <div class="clearfix pull-right btn-box">
         <shiro:hasPermission
                 name="pop:ccmPopTenant:export">
-            <!-- <input id="btnImport" class="btn btn-primary" type="button" value="导入" />
-            <input id="btnExport" class="btn btn-primary" type="button" value="导出" /> -->
-            <!-- <a href="javascript:;" id="btnImport" class="btn btn-export ">
-            <i class=" icon-share-alt "></i> 导入
-            </a> -->
             <a href="javascript:;" id="btnExportAll" class="btn btn-export"
                style="width: 49px;display:inline-block;float: right;"> <i
             ></i> 导出
             </a>
-        </shiro:hasPermission> <!-- 添加该input的点击方法为 return page();-->
-        <!-- <input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" onclick="return page();" /> -->
+        </shiro:hasPermission>
         <a href="javascript:;" id="btnSubmit" class="btn btn-primary"
            style="width: 49px;/*margin-top: 25px;*/display:inline-block;float: right;"> <i
         ></i> 查询
@@ -142,9 +166,13 @@
                            onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmPopTenant.id}&relevance_table=ccm_pop_tenant', '添加记录', '800px', '660px')"
                            title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
                     </shiro:hasPermission>
-                <a class="btnList"
-                   onclick="parent.LayerDialog('${ctx}/tenant/ccmTenantRecord/${ccmPopTenant.id}', '历史住户信息', '800px', '660px')"
-                   title="历史住户信息"><i class="iconfont icon-caozuotubiao-lishizukejiluliebiao"></i></a>
+                    <a class="btnList"
+                       onclick="parent.LayerDialog('${ctx}/tenant/ccmTenantRecord/${ccmPopTenant.id}', '历史住户信息', '800px', '660px')"
+                       title="历史住户信息"><i class="iconfont icon-caozuotubiao-lishizukejiluliebiao"></i></a>
+
+                    <a class="btnList qrCodeBtn" id="${ccmPopTenant.id}" onclick="tenantQRCode('${ccmPopTenant.id}',this)" ;
+                       title="房屋二维码"><i class="icon-mobile-phone" style="color: cornflowerblue;"></i>
+                    </a>
                 </shiro:hasPermission></td>
 
             </tr>
@@ -152,5 +180,33 @@
         </tbody>
     </table>
     <div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+    <style>
+        .qrcodeBox {
+            position: absolute;
+            background: #FFFFFF;
+            border-radius: 6px;
+        }
+        .dropdown-menu {
+            background: none;
+            color: #eea807;
+        }
+        .layui-layer-tips .layui-layer-content{
+            background: #ffffff !important;
+            padding: 8px;
+        }
+        .layui-layer-tips i.layui-layer-TipsL, .layui-layer-tips i.layui-layer-TipsR{
+            border-bottom-color: #FFFFFF;
+            top: -2px;
+        }
+        .qrCodeBtn .icon-mobile-phone{
+            vertical-align: middle;
+        }
+        .qrCodeBtn .icon-mobile-phone:before{
+            height: 16px !important;
+            width: 16px !important;
+            margin-top: -3px !important;
+        }
+    </style>
+</div>
 </body>
 </html>

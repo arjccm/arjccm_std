@@ -17,7 +17,6 @@
                     initAge( $("input[name='birthday']").val());
                     console.log(form.isNonage.value)
                     console.log(form.isKym.value)
-                    debugger
 					$("#btnSubmit").attr("disabled", true);
 					loading('正在提交，请稍等...');
 					form.submit();

@@ -364,7 +364,6 @@ function HisTrackFun1() {
    }
 	$.getJSON(ctx+'/sys/map/deviceMobileTrace?beginCurDate=' + beginCreateDate + '&endCurDate='+endCreateDate+'&user.id='+uesrId,
 			function(data) {
-		debugger
 				if (data.returnFlag) {
 					TableInit(data)
 				} else {
@@ -378,7 +377,6 @@ function HisTrackFun1() {
 var routeCoords = [];
 var trackReplayLen;
 function TableInit(data) {
-	debugger
 	var Data = data.result
 	trackReplayLen = Data.length;
 	var tableData = [];
@@ -478,7 +476,6 @@ function HideDiv() {
 
 
 function GetPopLocation(items/*userId*/) {
-	debugger
 	if(null == items || items.length < 0){
 		console.error("null == items");
 		return;
@@ -497,7 +494,6 @@ function GetPopLocation(items/*userId*/) {
 		}
 		$.getJSON('' + ctx + url,
 		function(data) {
-			debugger
 			Map.addJSONElec([ {
 				'type' : 'PopLocation',
 				'data' : data,

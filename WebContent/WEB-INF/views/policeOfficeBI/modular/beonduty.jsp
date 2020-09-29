@@ -103,7 +103,6 @@
 			var d = new Date();
 			var weeks = d.getDay()-1
 			// alert(weeks)
-			debugger
 			$('#tblArea tr').each(function(i){
 				      $(this).children('td').each(function(j){
 					         // alert("第"+(i+1)+"行，第"+(j+1)+"个td的值："+$(this).text()+"。");

@@ -2891,7 +2891,6 @@ ArjMap.Map.prototype={
 		elecAppLayer:[],//app终端撒点数组
 		elecLayer:null,//单点
 		addJSONElec:function(params){
-			debugger
 			var map = this.map;
 			var _this = this;
 			// 加载数据

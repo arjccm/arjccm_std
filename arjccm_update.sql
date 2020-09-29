@@ -2711,3 +2711,11 @@ ADD COLUMN `house_num` int(3) NULL DEFAULT 0 COMMENT '每层房屋数量' AFTER 
 -- 三亚现场反馈值班管理可以按天添加问题修改
 ALTER TABLE ccm_work_beonduty CHANGE months start_day datetime COMMENT '起始日期';
 ALTER TABLE ccm_work_beonduty ADD end_day datetime COMMENT '截止日期';
+
+
+-- 房屋表新增字段
+ALTER TABLE ccm_pop_tenant ADD living_resources varchar(255) COMMENT '生活资源';
+ALTER TABLE ccm_pop_tenant ADD production_resources varchar(255) COMMENT '成产资源';
+ALTER TABLE ccm_pop_tenant ADD family_income varchar(255) COMMENT '家庭收入情况';
+ALTER TABLE ccm_pop_tenant ADD evaluation_civilized varchar(255) COMMENT '十星级文明户创评情况';
+ALTER TABLE ccm_pop_tenant ADD family_poverty varchar(255) COMMENT '家庭贫困情况';
