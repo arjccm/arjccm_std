@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.ccmsys.service;
 
 import com.arjjs.ccm.common.persistence.Page;
 import com.arjjs.ccm.common.service.CrudService;
+import com.arjjs.ccm.common.utils.StringUtils;
 import com.arjjs.ccm.modules.ccm.ccmsys.dao.CcmDeviceDao;
 import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmAreaDev;
 import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDevice;
@@ -19,6 +20,8 @@ import com.arjjs.ccm.modules.ccm.sys.entity.CcmAreaPointVo;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.videoData.entity.CcmTiandyOnlineStatus;
 import com.arjjs.ccm.modules.sys.entity.Area;
+import com.arjjs.ccm.modules.sys.entity.Dict;
+import com.arjjs.ccm.modules.sys.utils.DictUtils;
 import com.arjjs.ccm.tool.EchartType;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +101,36 @@ public class CcmDeviceService extends CrudService<CcmDeviceDao, CcmDevice> {
 	//<!-- 监控设备类型 -->
 	public List<EchartType> selectByType(){
 		return  dao.selectByType();
+	}
+	//<!-- 监控设备状态 -->
+	public List<EchartType> selectByStatus(){
+		List<EchartType> list = dao.selectByStatus();
+		List<Dict> dicts = DictUtils.getDictList("ccm_device_status");
+		List<EchartType> result = new ArrayList<>();
+		int sum = 0;
+		for(Dict dict:dicts){
+			EchartType echartType = new EchartType();
+			echartType.setType("监控设备"+ dict.getLabel() +"数");
+			for(EchartType e:list){
+				if(StringUtils.isNotEmpty(e.getTypeO())){
+					if(dict.getValue().equals(e.getTypeO())){
+						echartType.setValue(e.getValue());
+					}
+				}
+			}
+			if(StringUtils.isEmpty(echartType.getValue())){
+				echartType.setValue("0");
+			}
+			result.add(echartType);
+		}
+		for(EchartType e:list){
+			sum = sum + Integer.parseInt(e.getValue());
+		}
+		EchartType total = new EchartType();
+		total.setType("监控设备总数");
+		total.setValue(String.valueOf(sum));
+		result.add(0,total);
+		return  result;
 	}
 	// <!-- 视频区域分布 by maoxb 2020-02-16-->
 	public List<EchartType> selectDevAreaInfo(){

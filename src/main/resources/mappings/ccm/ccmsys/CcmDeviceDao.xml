@@ -331,6 +331,18 @@
 
 	</select>
 
+	<!-- 监控设备状态 -->
+	<select id="selectByStatus" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			`status` AS "typeO",
+			count(*) AS "value"
+		FROM
+			ccm_device
+		WHERE
+			del_flag = 0
+			GROUP BY `status`
+	</select>
+
     <!-- 视频区域分布-->
     <select id="selectDeviceByArea" resultType="com.arjjs.ccm.tool.EchartType" >
         SELECT
@@ -351,6 +363,10 @@
 		FROM
 			ccm_device t
 			LEFT JOIN sys_area t1 ON t.area_id = t1.id
+		WHERE
+			t.del_flag = 0
+			AND t1.del_flag = 0
+			AND t1.`name` IS NOT NULL
 	</select>
 	<!-- 视频区域分布 -->
     <select id="selectDeviceByAreaYa" resultType="com.arjjs.ccm.tool.EchartType" >

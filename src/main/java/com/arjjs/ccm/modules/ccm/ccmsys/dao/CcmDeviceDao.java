@@ -37,6 +37,8 @@ public interface CcmDeviceDao extends CrudDao<CcmDevice> {
 
 	public List<EchartType> selectByType();
 
+	public List<EchartType> selectByStatus();
+
 	public List<EchartType> selectDeviceByArea();
 
 	public List<EchartType> selectDeviceByAreaYa();

@@ -2719,3 +2719,53 @@ ALTER TABLE ccm_pop_tenant ADD production_resources varchar(255) COMMENT '成产
 ALTER TABLE ccm_pop_tenant ADD family_income varchar(255) COMMENT '家庭收入情况';
 ALTER TABLE ccm_pop_tenant ADD evaluation_civilized varchar(255) COMMENT '十星级文明户创评情况';
 ALTER TABLE ccm_pop_tenant ADD family_poverty varchar(255) COMMENT '家庭贫困情况';
+
+
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3996d6b9216d49439e1e855ff517e6d7', '02', '已回复', 'ask_reply_type', '请示领导回复状态', 20, '0', '1', '2020-09-30 15:02:13', '1', '2020-09-30 15:02:13', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('4ac659a42c8a44018f3ce2a9a978d9e7', '01', '已提交', 'ask_reply_type', '请示领导回复状态', 10, '0', '1', '2020-09-30 15:01:40', '1', '2020-09-30 15:01:40', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('311249a4305c40cdad508bdb9f9f6eb4', '02', '法人办事', 'service_government_type', '政务查询类型', 20, '0', '1', '2020-09-30 15:00:03', '1', '2020-09-30 15:00:03', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('4c2e69feb60b4db591d076a6e22f7d19', '04', '政务公开', 'service_government_type', '政务查询类型', 40, '0', '1', '2020-09-30 15:00:50', '1', '2020-09-30 15:00:50', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('95422bed074e4754b355ec6f66222d0b', '01', '个人办事', 'service_government_type', '政务查询类型', 10, '0', '1', '2020-09-30 14:59:30', '1', '2020-09-30 14:59:30', '', '0');
+INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('c5dd498becda44f2b6482b8e72fd0c02', '03', '权力清单', 'service_government_type', '政务查询类型', 30, '0', '1', '2020-09-30 15:00:23', '1', '2020-09-30 15:00:23', '', '0');
+
+CREATE TABLE `ccm_service_government` (
+  `id` varchar(64) NOT NULL COMMENT '	唯一主键ID（自增）	',
+  `type` varchar(2) DEFAULT NULL COMMENT '政务类型',
+  `title` varchar(64) NOT NULL COMMENT '事项标题',
+  `content` varchar(512) DEFAULT NULL COMMENT '事项内容',
+  `dept` varchar(64) DEFAULT NULL COMMENT '部门',
+  `create_by` varchar(64) NOT NULL COMMENT '	创建者	',
+  `create_date` datetime NOT NULL COMMENT '	创建时间	',
+  `update_by` varchar(64) NOT NULL COMMENT '	更新者	',
+  `update_date` datetime NOT NULL COMMENT '	更新时间	',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '	备注信息	',
+  `del_flag` varchar(1) NOT NULL COMMENT '	删除标记	',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='政务查询表';
+
+CREATE TABLE `ccm_ask_leader` (
+  `id` varchar(64) NOT NULL COMMENT '	唯一主键ID（自增）	',
+  `leader_id` varchar(64) NOT NULL COMMENT '接收人',
+  `title_request` varchar(512) NOT NULL COMMENT '请示标题',
+  `content_request` varchar(2048) NOT NULL COMMENT '请示内容',
+  `leader_reply` varchar(1024) DEFAULT NULL COMMENT '领导回复',
+  `reply_time` datetime DEFAULT NULL COMMENT '回复时间',
+  `reply_status` varchar(64) DEFAULT NULL COMMENT '回复状态',
+  `create_by` varchar(64) NOT NULL COMMENT '	创建者	',
+  `create_date` datetime NOT NULL COMMENT '	创建时间	',
+  `update_by` varchar(64) NOT NULL COMMENT '	更新者	',
+  `update_date` datetime NOT NULL COMMENT '	更新时间	',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '	备注信息	',
+  `del_flag` varchar(1) NOT NULL COMMENT '	删除标记	',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='领导请示表';
+
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('86be917ec9504aa0964870a00dde3a92', '083b488003e6469da002e0dff281d392', '0,1,3b3a641046be4558b92178d07f93b280,04f9b8b0e9e940638f8b142ec4c4c8aa,083b488003e6469da002e0dff281d392,', '编辑', 60, '', '', '', '0', 'service:ccmServiceGovernment:edit', '1', '2020-09-30 15:45:14', '1', '2020-09-30 15:45:14', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('9bc33c98d386495caf882225227be816', '083b488003e6469da002e0dff281d392', '0,1,3b3a641046be4558b92178d07f93b280,04f9b8b0e9e940638f8b142ec4c4c8aa,083b488003e6469da002e0dff281d392,', '显示', 30, '', '', '', '0', 'service:ccmServiceGovernment:view', '1', '2020-09-30 15:44:36', '1', '2020-09-30 15:44:36', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('af106147cf1643e0b80db8f904c654e4', '157014ddf3b64142a94a764f9a94d89a', '0,1,3b3a641046be4558b92178d07f93b280,04f9b8b0e9e940638f8b142ec4c4c8aa,157014ddf3b64142a94a764f9a94d89a,', '编辑', 60, '', '', '', '0', 'ask:ccmAskLeader:edit', '1', '2020-09-30 15:43:55', '1', '2020-09-30 15:43:55', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('16172669dff2402ab308cdc79ea76267', '157014ddf3b64142a94a764f9a94d89a', '0,1,3b3a641046be4558b92178d07f93b280,04f9b8b0e9e940638f8b142ec4c4c8aa,157014ddf3b64142a94a764f9a94d89a,', '显示', 30, '', '', '', '0', 'ask:ccmAskLeader:view', '1', '2020-09-30 15:43:24', '1', '2020-09-30 15:43:24', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3df5f98aba374387895bcb547454ffa3', 'ff35c6ee33054c3ab0c62ad82e302f2f', '0,1,3b3a641046be4558b92178d07f93b280,04f9b8b0e9e940638f8b142ec4c4c8aa,ff35c6ee33054c3ab0c62ad82e302f2f,', '编辑', 60, '', '', '', '0', 'ask:ccmAskLeader:edit', '1', '2020-09-30 15:42:54', '1', '2020-09-30 15:42:54', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('2b6578cb2cb1424ca6457adef68019c7', 'ff35c6ee33054c3ab0c62ad82e302f2f', '0,1,3b3a641046be4558b92178d07f93b280,04f9b8b0e9e940638f8b142ec4c4c8aa,ff35c6ee33054c3ab0c62ad82e302f2f,', '显示', 30, '', '', '', '0', 'ask:ccmAskLeader:view', '1', '2020-09-30 15:42:05', '1', '2020-09-30 15:42:05', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('083b488003e6469da002e0dff281d392', '04f9b8b0e9e940638f8b142ec4c4c8aa', '0,1,3b3a641046be4558b92178d07f93b280,04f9b8b0e9e940638f8b142ec4c4c8aa,', '政务查询', 190, '/service/ccmServiceGovernment', '', 'caozuotubiao-shenhe', '1', '', '1', '2020-09-30 15:41:21', '1', '2020-09-30 15:41:21', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('157014ddf3b64142a94a764f9a94d89a', '04f9b8b0e9e940638f8b142ec4c4c8aa', '0,1,3b3a641046be4558b92178d07f93b280,04f9b8b0e9e940638f8b142ec4c4c8aa,', '领导请示回复', 160, '/ask/ccmAskLeader', '', 'chengguanhangzhengchufa', '1', '', '1', '2020-09-30 15:40:20', '1', '2020-09-30 15:40:20', '', '0');
+INSERT INTO `sys_menu`(`id`, `parent_id`, `parent_ids`, `name`, `sort`, `href`, `target`, `icon`, `is_show`, `permission`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('ff35c6ee33054c3ab0c62ad82e302f2f', '04f9b8b0e9e940638f8b142ec4c4c8aa', '0,1,3b3a641046be4558b92178d07f93b280,04f9b8b0e9e940638f8b142ec4c4c8aa,', '领导请示', 130, '/ask/ccmAskLeader', '', 'yiqingrenkouguanli', '1', '', '1', '2020-09-30 15:38:37', '1', '2020-09-30 15:38:37', '', '0');

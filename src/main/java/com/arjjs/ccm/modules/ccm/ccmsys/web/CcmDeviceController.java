@@ -298,6 +298,14 @@ public class CcmDeviceController extends BaseController {
 	public List<EchartType> selectByType() {
 		return ccmDeviceService.selectByType();
 	}
+
+	//<!-- 监控设备状态 -->
+	@ResponseBody
+	@RequestMapping(value = "selectByStatus")
+	public List<EchartType> selectByStatus() {
+		return ccmDeviceService.selectByStatus();
+	}
+
 	// <!-- 视频区域分布-->
 	@ResponseBody
 	@RequestMapping(value = "selectDeviceByArea")

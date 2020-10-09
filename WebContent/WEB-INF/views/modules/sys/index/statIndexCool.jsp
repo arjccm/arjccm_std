@@ -811,10 +811,38 @@
 								<div id="echRightContent1" class="echarts"></div>
 							</div>
 							<div class="common-pading" id="videoDiv">
-								<div style="text-align: right;width: 100%;">
-									<sys:treeselect id="video" name="videoId" value="" labelName="videoName" placeholder="监控点 ..." labelValue="" title="监控点" url="/tree/ccmTree/treeDataNew?type=camera&fontCss={color:'#fff'}" cssClass="inputVideoBox" allowClear="true" notAllowSelectParent="true" cssStyle="" />
+								<div class="deviceNumLeft">
+									<div class="deviceNumImg" id="deviceImgOne">
+
+									</div>
+									<div class="deviceNumText" id="deviceTextOne">
+
+									</div>
 								</div>
-								<iframe id="ccmLiveVideoVisualized" name="ccmLiveVideo" src="${ctx}/ccmsys/ccmDevice/getDeviceMap?id=${ccmDevice.id}" style="overflow: visible;" scrolling="yes" frameborder="no" width="479" height="185" allowfullscreen="true" allowtransparency="true"></iframe>
+								<div class="deviceNum">
+									<div class="deviceNumImg" id="deviceImgTwo">
+
+									</div>
+									<div class="deviceNumText" id="deviceTextTwo">
+
+									</div>
+								</div>
+								<div class="deviceNumLeft">
+									<div class="deviceNumImg" id="deviceImgThree">
+
+									</div>
+									<div class="deviceNumText" id="deviceTextThree">
+
+									</div>
+								</div>
+								<div class="deviceNum">
+									<div class="deviceNumImg" id="deviceImgFour">
+
+									</div>
+									<div class="deviceNumText" id="deviceTextFour">
+
+									</div>
+								</div>
 							</div>
 							<div id="eventScale" class="layui-container" style="display: none;">
 <%--								<i class="kuang1"></i>

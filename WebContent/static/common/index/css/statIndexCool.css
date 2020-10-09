@@ -1947,3 +1947,39 @@ div.jbox #search{
 #leftContent0{
     margin-bottom: 20px;
 }
+
+.deviceNum{
+    width: 144px;
+    height: 70px;
+    float: left;
+    margin-top: 40px;
+    margin-left: 50px;
+}
+
+.deviceNumLeft{
+    width: 144px;
+    height: 70px;
+    float: left;
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.deviceNumImg {
+    background: url('../images/deviceNumMax.png') center !important;
+    background-size: 100% 100% !important;
+    width: 144px;
+    height: 33px;
+    text-align: center;
+    line-height: 25px;
+    color: #0bbbee;
+}
+
+.deviceNumText{
+    width: 144px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 5px;
+    font-size: 28px;
+}

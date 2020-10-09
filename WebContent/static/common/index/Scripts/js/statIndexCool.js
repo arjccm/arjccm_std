@@ -323,6 +323,18 @@ $(function () {
             $('#renlian').text(data[2] != undefined ? data[2].value : 0);
         });
 
+        $.getJSON(context + "/ccmsys/ccmDevice/selectByStatus", {"noCache": noCache}, function (
+            data) {
+            console.info(data);
+            $('#deviceImgOne').text(data[0] != undefined ? data[0].type : '设备总数');
+            $('#deviceTextOne').text(data[0] != undefined ? data[0].value : '0');
+            $('#deviceImgTwo').text(data[1] != undefined ? data[1].type : '设备在线数');
+            $('#deviceTextTwo').text(data[1] != undefined ? data[1].value : '0');
+            $('#deviceImgThree').text(data[2] != undefined ? data[2].type : '设备掉线数');
+            $('#deviceTextThree').text(data[2] != undefined ? data[2].value : '0');
+            $('#deviceImgFour').text(data[3] != undefined ? data[3].type : '设备故障数');
+            $('#deviceTextFour').text(data[3] != undefined ? data[3].value : '0');
+        });
     }
 
     function hideDivChat(bool) {
@@ -463,7 +475,7 @@ $(function () {
             $("#leftContent2").hide();
             $("#leftContent3").hide();
             $("#leftContent4").hide();
-            $("#rightContent1").find('.contentTitle').text('实时监控');
+            $("#rightContent1").find('.contentTitle').text('监控设备状态');
             $("#rightContent2").find('.contentTitle').text('监控设备类型');
             $("#rightContent3").find('.contentTitle').text('视频区域分布');
             $("#rightContent0").hide();

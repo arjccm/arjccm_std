@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.ask.dao.CcmAskLeaderDao">
+    
+	<sql id="ccmAskLeaderColumns">
+		a.id AS "id",
+		u2.id AS "leader.id",
+		u2.name AS "leader.name",
+		a.title AS "title",
+		a.content AS "content",
+		a.reply AS "reply",
+		a.reply_time AS "replyTime",
+		a.reply_status AS "replyStatus",
+		u3.id AS "createBy.id",
+		u3.name AS "createBy.name",
+		a.create_date AS "createDate",
+		u4.id AS "updateBy.id",
+		u4.name AS "updateBy.name",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="ccmAskLeaderJoins">
+		LEFT JOIN sys_user u2 ON u2.id = a.leader
+		LEFT JOIN sys_user u3 ON u3.id = a.create_by
+		LEFT JOIN sys_user u4 ON u4.id = a.update_by
+	</sql>
+    
+	<select id="get" resultType="CcmAskLeader">
+		SELECT 
+			<include refid="ccmAskLeaderColumns"/>
+		FROM ccm_ask_leader a
+		<include refid="ccmAskLeaderJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CcmAskLeader">
+		SELECT 
+			<include refid="ccmAskLeaderColumns"/>
+		FROM ccm_ask_leader a
+		<include refid="ccmAskLeaderJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="id != null and id != ''">
+				AND a.id = #{id}
+			</if>
+			<if test="leader != null and leader != ''">
+				AND a.leader = #{leader.id}
+			</if>
+			<if test="title != null and title != ''">
+				AND a.title LIKE #{title}
+			</if>
+			<if test="content != null and content != ''">
+				AND a.content LIKE #{content}
+			</if>
+			<if test="reply != null and reply != ''">
+				AND a.reply LIKE #{reply}
+			</if>
+			<if test="replyTime != null and replyTime != ''">
+				AND a.reply_time = #{replyTime}
+			</if>
+			<if test="replyStatus != null and replyStatus != ''">
+				AND a.reply_status = #{replyStatus}
+			</if>
+			<if test="createBy != null and createBy.id != null and createBy.id != ''">
+				AND a.create_by = #{createBy.id}
+			</if>
+			<if test="createDate != null and createDate != ''">
+				AND a.create_date = #{createDate}
+			</if>
+			<if test="updateBy != null and updateBy.id != null and updateBy.id != ''">
+				AND a.update_by = #{updateBy.id}
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				AND a.update_date = #{updateDate}
+			</if>
+			<if test="remarks != null and remarks != ''">
+				AND a.remarks = #{remarks}
+			</if>
+			<if test="delFlag != null and delFlag != ''">
+				AND a.del_flag = #{delFlag}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CcmAskLeader">
+		SELECT 
+			<include refid="ccmAskLeaderColumns"/>
+		FROM ccm_ask_leader a
+		<include refid="ccmAskLeaderJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_ask_leader(
+			id,
+			leader,
+			title,
+			content,
+			reply,
+			reply_time,
+			reply_status,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{leader.id},
+			#{title},
+			#{content},
+			#{reply},
+			#{replyTime},
+			#{replyStatus},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ccm_ask_leader SET 	
+			id = #{id},
+			leader = #{leader.id},
+			title = #{title},
+			content = #{content},
+			reply = #{reply},
+			reply_time = #{replyTime},
+			reply_status = #{replyStatus},
+			create_by = #{createBy.id},
+			create_date = #{createDate},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			del_flag = #{delFlag}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE ccm_ask_leader SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
