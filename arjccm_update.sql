@@ -2719,6 +2719,7 @@ ALTER TABLE ccm_pop_tenant ADD production_resources varchar(255) COMMENT '成产
 ALTER TABLE ccm_pop_tenant ADD family_income varchar(255) COMMENT '家庭收入情况';
 ALTER TABLE ccm_pop_tenant ADD evaluation_civilized varchar(255) COMMENT '十星级文明户创评情况';
 ALTER TABLE ccm_pop_tenant ADD family_poverty varchar(255) COMMENT '家庭贫困情况';
+ALTER TABLE ccm_pop_tenant ADD interval_date datetime COMMENT '间隔时间';
 
 
 INSERT INTO `sys_dict`(`id`, `value`, `label`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('3996d6b9216d49439e1e855ff517e6d7', '02', '已回复', 'ask_reply_type', '请示领导回复状态', 20, '0', '1', '2020-09-30 15:02:13', '1', '2020-09-30 15:02:13', '', '0');

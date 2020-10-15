@@ -3,6 +3,7 @@
  */
 package com.arjjs.ccm.modules.ccm.patrol.entity;
 
+import io.swagger.annotations.ApiModel;
 import org.hibernate.validator.constraints.Length;
 
 import com.arjjs.ccm.common.persistence.DataEntity;
@@ -12,6 +13,7 @@ import com.arjjs.ccm.common.persistence.DataEntity;
  * @author arj
  * @version 2018-03-15
  */
+@ApiModel
 public class CcmPatrolPointsort extends DataEntity<CcmPatrolPointsort> {
 	
 	private static final long serialVersionUID = 1L;

@@ -79,6 +79,25 @@ public class CcmPopTenant extends DataEntity<CcmPopTenant> {
 	private String evaluationCivilized;  //十星级文明户创评情况
 	private String familyPoverty;		 //家庭贫困情况
 
+	private String tableName;
+	private int timeInterval;
+
+	public int getTimeInterval() {
+		return timeInterval;
+	}
+
+	public void setTimeInterval(int timeInterval) {
+		this.timeInterval = timeInterval;
+	}
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
 	public String getLivingResources() {
 		return livingResources;
 	}

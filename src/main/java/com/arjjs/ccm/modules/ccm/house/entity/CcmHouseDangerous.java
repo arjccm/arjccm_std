@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.house.entity;
 
 import java.util.Date;
 
+import com.arjjs.ccm.modules.sys.entity.Area;
 import org.hibernate.validator.constraints.Length;
 
 import com.arjjs.ccm.common.persistence.DataEntity;
@@ -49,6 +50,17 @@ public class CcmHouseDangerous extends DataEntity<CcmHouseDangerous> {
 	private Date intervalDate;  // 走访时间
 	private Date nextvalDate;   // 下次走访时间
 
+	private Area areaGridId; //所属网格
+
+	@ExcelField(title="所属网格", align=2, sort=15)
+	public Area getAreaGridId() {
+		return areaGridId;
+	}
+
+	public void setAreaGridId(Area areaGridId) {
+		this.areaGridId = areaGridId;
+	}
+
 	public Date getNextvalDate() {
 		return nextvalDate;
 	}
@@ -82,7 +94,7 @@ public class CcmHouseDangerous extends DataEntity<CcmHouseDangerous> {
 		this.type = type;
 	}
 
-	@ExcelField(title="姓名", align=1, sort=1)
+	@ExcelField(title="姓名", align=2, sort=1)
 	public String getName() {
 		return name;
 	}
@@ -201,7 +213,7 @@ public class CcmHouseDangerous extends DataEntity<CcmHouseDangerous> {
 		this.workPlace = workPlace;
 	}
 	
-	@ExcelField(title="关注程度", align=2, sort=15,dictType="ccm_conc_exte")
+	@ExcelField(title="关注程度", align=2, sort=14,dictType="ccm_conc_exte")
 	@Length(min=0, max=2, message="关注程度长度必须介于 0 和 2 之间")
 	public String getAtteType() {
 		return atteType;

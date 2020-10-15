@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
 import org.hibernate.validator.constraints.Length;
 
 import com.arjjs.ccm.common.persistence.DataEntity;
@@ -17,6 +18,7 @@ import com.arjjs.ccm.common.persistence.DataEntity;
  * @author arj
  * @version 2018-03-16
  */
+@ApiModel
 public class CcmPatrolResult extends DataEntity<CcmPatrolResult> {
 	
 	private static final long serialVersionUID = 1L;

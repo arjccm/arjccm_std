@@ -70,6 +70,7 @@
         b.residencedetail AS "residencedetail",
         b.images AS "images",
         a20.name AS "comName",
+		a21.name AS "areaGridId.name",
         (case a.atte_type when 01 then '高' when 02 then '中' when 03 then '低' else '' end) "atteTypeLable"
 	</sql>
 	<sql id="ccmPopBehindJoins">

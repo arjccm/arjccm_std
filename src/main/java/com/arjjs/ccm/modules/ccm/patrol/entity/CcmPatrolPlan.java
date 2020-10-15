@@ -3,6 +3,7 @@
  */
 package com.arjjs.ccm.modules.ccm.patrol.entity;
 
+import io.swagger.annotations.ApiModel;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
@@ -22,6 +23,7 @@ import com.arjjs.ccm.modules.sys.entity.User;
  * @author arj
  * @version 2018-03-14
  */
+@ApiModel
 public class CcmPatrolPlan extends DataEntity<CcmPatrolPlan> {
 
 	private static final long serialVersionUID = 1L;

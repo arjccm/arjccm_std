@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.pop.entity;
 
 import java.util.Date;
 
+import com.arjjs.ccm.modules.sys.entity.Area;
 import org.hibernate.validator.constraints.Length;
 
 import com.arjjs.ccm.common.persistence.DataEntity;
@@ -53,6 +54,17 @@ public class CcmPopBehind extends DataEntity<CcmPopBehind> {
 	private String comName; 	//app接口使用，所属社区
 
 	private User checkUser;		// 拦截器中使用该用户进行权限拦截，App的rest接口使用
+
+	private Area areaGridId; //所属网格
+
+	@ExcelField(title="所属网格", align=2, sort=22)
+	public Area getAreaGridId() {
+		return areaGridId;
+	}
+
+	public void setAreaGridId(Area areaGridId) {
+		this.areaGridId = areaGridId;
+	}
 	public User getCheckUser() {
 		return checkUser;
 	}

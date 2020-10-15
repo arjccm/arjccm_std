@@ -21,6 +21,7 @@ import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.CommUtil;
@@ -46,13 +47,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  * 安置帮教人员Controller
- * 
+ *
  * @author arj
  * @version 2018-01-04
  */
@@ -75,7 +77,7 @@ public class CcmHouseReleaseController extends BaseController {
 
 	@ModelAttribute
 	public CcmHouseRelease get(@RequestParam(value = "id", required = false) String id,
-			@RequestParam(value = "peopleId", required = false) String peopleId) {
+							   @RequestParam(value = "peopleId", required = false) String peopleId) {
 		CcmHouseRelease entity = null;
 
 		if (StringUtils.isNotBlank(id)) {
@@ -168,10 +170,10 @@ public class CcmHouseReleaseController extends BaseController {
 		config.setExcludes(new String[]{"createBy","updateBy","currentUser","dbName","global","page","createDate","updateDate","sqlMap"});
 		config.setIgnoreDefaultExcludes(false);  //设置默认忽略
 		config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-		String jsonDocumentList = JSONArray.fromObject(ccmLogTailList,config).toString(); 
+		String jsonDocumentList = JSONArray.fromObject(ccmLogTailList,config).toString();
 		model.addAttribute("documentList", jsonDocumentList);
 		model.addAttribute("documentNumber", ccmLogTailList.size());
-		
+
 		model.addAttribute("ccmLogTailList", ccmLogTailList);
 		model.addAttribute("ccmHouseRelease", ccmHouseRelease);
 		return "ccm/house/ccmHouseReleaseForm";
@@ -183,7 +185,7 @@ public class CcmHouseReleaseController extends BaseController {
 	 * @param model
 	 * @param redirectAttributes
 	 * @return
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@RequiresPermissions("house:ccmHouseRelease:edit")
 	@RequestMapping(value = "save")
@@ -228,7 +230,7 @@ public class CcmHouseReleaseController extends BaseController {
 			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
-		
+
 		addMessage(redirectAttributes, "保存安置帮教人员成功");
 		return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/?repage";
 	}
@@ -250,11 +252,11 @@ public class CcmHouseReleaseController extends BaseController {
 			ccmPop.setIsRelease(0);
 			ccmPeopleService.save(ccmPop);
 		}
-		
+
 		addMessage(redirectAttributes, "删除安置帮教人员成功");
 		return "redirect:" + Global.getAdminPath() + "/house/ccmHouseRelease/?repage&permissionKey=" + permissionKey;
 	}
-	
+
 	/**
 	 * @see 人员标记 登记跳转页面
 	 * @param ccmPeople
@@ -272,10 +274,10 @@ public class CcmHouseReleaseController extends BaseController {
 		model.addAttribute("ccmHouseRelease", Release);
 		return "/ccm/house/pop/ccmHousePoPReleaseForm";
 	}
-	
+
 	/**
 	 * 导出安置帮教人员数据
-	 * 
+	 *
 	 * @param user
 	 * @param request
 	 * @param response
@@ -285,8 +287,8 @@ public class CcmHouseReleaseController extends BaseController {
 	@RequiresPermissions("house:ccmHouseRelease:view")
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHouseRelease ccmHouseRelease, HttpServletRequest request,
-			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","是否累犯","原判刑期","释放日期","衔接日期","安置日期","原罪名","服刑场所","犯罪是否重新","危险性评估类型","衔接情况","安置情况","关注程度"};
+							 HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","是否累犯","原判刑期","释放日期","衔接日期","安置日期","原罪名","服刑场所","犯罪是否重新","危险性评估类型","衔接情况","安置情况","关注程度","所属网格"};
 		try {
 			String fileName = "ReleasePeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 
@@ -300,7 +302,7 @@ public class CcmHouseReleaseController extends BaseController {
 					list = ccmHouseReleaseService.findList(ccmHouseRelease);
 				}
 			}
-			
+
 //			List<CcmHouseRelease> list = ccmHouseReleaseService.findList(ccmHouseRelease);
 			new ExportExcel("安置帮教人员数据", CcmHouseRelease.class,strArr).setDataList(list).write(response, fileName).dispose();
 			return null;
@@ -312,7 +314,7 @@ public class CcmHouseReleaseController extends BaseController {
 
 	/**
 	 * 导入安置帮教人员数据
-	 * 
+	 *
 	 * @param file
 	 * @param redirectAttributes
 	 * @return
@@ -330,13 +332,15 @@ public class CcmHouseReleaseController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmHouseRelease> list = ei.getDataList(CcmHouseRelease.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHouseRelease HouseRelease : list) {
 				try {
 
 					if(EntityTools.isEmpty(HouseRelease)){
 						continue;
 					}
-					
+
 					if(StringUtils.isBlank(HouseRelease.getRecidivism()) ||
 							StringUtils.isBlank(HouseRelease.getSentence()) ||
 							HouseRelease.getReleDate()==null ||
@@ -392,7 +396,7 @@ public class CcmHouseReleaseController extends BaseController {
 						failureMsg.append("<br/>安置帮教人员名 " + HouseRelease.getName() + " 导入失败：必填项为空。"+str.toString());
 						continue;
 					}
-					
+
 					// 如果当前用户的身份未填写或者为空或者身份证号码位数不够18位则应该进行 剔除
 					if (StringUtils.isBlank(HouseRelease.getIdent()) || HouseRelease.getIdent().length() != 18) {
 						failureMsg.append("<br/>实有人口名" + HouseRelease.getName() + " 导入失败：" + "身份证信息错误。");
@@ -400,31 +404,45 @@ public class CcmHouseReleaseController extends BaseController {
 						failureNum++;
 						continue;
 					}
-					
+
 					CcmPeople ccmPeople=new CcmPeople();
 					ccmPeople.setIdent(HouseRelease.getIdent());
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHouseRelease HouseReleaseFind;
 
-					if (list1.isEmpty()){
-						failureMsg.append("<br/>安置帮教人员名 " + HouseRelease.getName() + " 导入失败：实有人口表中无此人");
-						continue;
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(HouseRelease.getIdent());
+						ccmPeople.setName(HouseRelease.getName());
+						ccmPeople.setType(HouseRelease.getType());
+						ccmPeople.setCensu(HouseRelease.getCensu());
+						ccmPeople.setSex(HouseRelease.getSex());
+						ccmPeople.setTelephone(HouseRelease.getTelephone());
+						ccmPeople.setDomiciledetail(HouseRelease.getDomiciledetail());
+						ccmPeople.setResidencedetail(HouseRelease.getResidencedetail());
+						ccmPeople.setAreaGridId(HouseRelease.getAreaGridId());
+						String birthStr = HouseRelease.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(HouseRelease.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsRelease(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					HouseReleaseFind=ccmHouseReleaseService.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, HouseRelease);
+					if(HouseReleaseFind == null){
+						HouseRelease.setPeopleId(list1.get(0).getId());
+						ccmHouseReleaseService.save(HouseRelease);
+						successNum++;
 					}else{
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsRelease(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						HouseReleaseFind=ccmHouseReleaseService.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, HouseRelease);
-						if(HouseReleaseFind == null){
-							HouseRelease.setPeopleId(list1.get(0).getId());
-							ccmHouseReleaseService.save(HouseRelease);
-							successNum++;
-						}else{
-							failureMsg.append("<br/>安置帮教人员名 " + HouseRelease.getName() + " 导入失败：记录已存在");
-						}
-					}			
+						failureMsg.append("<br/>安置帮教人员名 " + HouseRelease.getName() + " 导入失败：记录已存在");
+					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>安置帮教人员名 " + HouseRelease.getName() + " 导入失败：");
 					List<String> messageList = BeanValidators.extractPropertyAndMessageAsList(ex, ": ");
@@ -446,6 +464,6 @@ public class CcmHouseReleaseController extends BaseController {
 		}
 		return "redirect:" + adminPath + "/house/ccmHouseRelease/?repage";
 	}
-	 
+
 
 }

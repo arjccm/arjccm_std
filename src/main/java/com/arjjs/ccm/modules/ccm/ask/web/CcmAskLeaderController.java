@@ -81,11 +81,11 @@ public class CcmAskLeaderController extends BaseController {
 
 	@RequiresPermissions("ask:ccmAskLeader:edit")
 	@RequestMapping(value = "save")
-	public String save(CcmAskLeader ccmAskLeader, Model model, RedirectAttributes redirectAttributes) {
+	public String save(String type, CcmAskLeader ccmAskLeader, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, ccmAskLeader)){
 			return form(ccmAskLeader, model);
 		}
-		ccmAskLeaderService.save(ccmAskLeader);
+		ccmAskLeaderService.save(ccmAskLeader,type);
 		addMessage(redirectAttributes, "保存领导请示成功");
 		return "redirect:"+Global.getAdminPath()+"/ask/ccmAskLeader/?repage";
 	}

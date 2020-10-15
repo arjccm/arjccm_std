@@ -125,7 +125,11 @@ public class CcmRestPatrolResultController extends BaseController {
 		Page<CcmPatrolResult> page = CcmPatrolResultService.findPage(new Page<CcmPatrolResult>(req, resp),
 				(null == ccmPatrolResult) ? new CcmPatrolResult() : ccmPatrolResult);
 		result.setCode(CcmRestType.OK);
-		result.setResult(page.getList());
+		if(page.getList() == null || page.getList().size() == 0){
+			result.setResult(new ArrayList<CcmPatrolPlan>());
+		}else{
+			result.setResult(page.getList());
+		}
 		// 输出结果
 		return result;
 	}
@@ -314,7 +318,7 @@ public class CcmRestPatrolResultController extends BaseController {
 	 * @throws IOException
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/startplan", method = RequestMethod.GET)
+	@RequestMapping(value = "/startplan", method = RequestMethod.POST)
 	public CcmRestResult startplan(String userId, @RequestParam(required = false) String planId, HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
 		// 获取结果
@@ -338,10 +342,10 @@ public class CcmRestPatrolResultController extends BaseController {
 		if(CcmPatrolResultExit.size()>0){
 			result.setCode(CcmRestType.OK);
 			result.setResult(CcmPatrolResultExit.get(0));
+			result.setMsg("当前计划今天已开启！");
 			return result;
 		}
-		
-		
+
 		// 生成 巡逻结果对象
 		CcmPatrolResult ccmPatrolResult = new CcmPatrolResult();
 		// 巡逻结果对象 填充
@@ -361,6 +365,54 @@ public class CcmRestPatrolResultController extends BaseController {
 		// 返回
 		result.setCode(CcmRestType.OK);
 		result.setResult(ccmPatrolResult);
+		result.setMsg("成功");
+		return result;
+	}
+
+	/**
+	 * 结束计划 完成对于 计划结果 信息 的修改。
+	 *
+	 * @param userId
+	 * @param planId
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws IOException
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/endplan", method = RequestMethod.POST)
+	public CcmRestResult endplan(String userId, @RequestParam(required = false) String planId, HttpServletRequest req,
+								   HttpServletResponse resp) throws IOException {
+		// 获取结果
+		CcmRestResult result = CommUtilRest.queryResult(userId, req, resp);
+		// 如果当前的 flag 为返回
+		if (result.isReturnFlag()) {
+			return result;
+		}
+
+		CcmPatrolPlan ccmPatrolPlanDto = new CcmPatrolPlan();
+		ccmPatrolPlanDto.setId(planId);
+		// 巡逻计划
+		CcmPatrolPlan ccmPatrolPlan = ccmPatrolPlanService.get(ccmPatrolPlanDto);
+		// 先查 当前结果是否已经存在
+		CcmPatrolResult ccmPatrolResultDto = new CcmPatrolResult();
+		ccmPatrolResultDto.setPlan(ccmPatrolPlan);
+		ccmPatrolResultDto.setBeginDate(DateUtils.parseDate(DateUtils.getDate()));
+		ccmPatrolResultDto.setEndDate(DateUtils.parseDate(CommUtil.getSpecifiedDayAfter(DateUtils.getDate())));
+		List<CcmPatrolResult> CcmPatrolResultExit = CcmPatrolResultService.findList(ccmPatrolResultDto);
+		// 如果当前查询结果不存在
+		if(CcmPatrolResultExit.size()<=0){
+			result.setCode(CcmRestType.OK);
+			result.setMsg("当前计划今天未开启！");
+			return result;
+		}
+
+		User userDto = new User(userId);
+		CcmPatrolResultExit.get(0).setUpdateBy(userDto);
+		CcmPatrolResultService.endPlan(CcmPatrolResultExit.get(0));
+		// 返回
+		result.setCode(CcmRestType.OK);
+		result.setMsg("成功");
 		return result;
 	}
 

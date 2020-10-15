@@ -50,6 +50,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -108,7 +109,7 @@ public class CcmHousePetitionController extends BaseController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHousePetition ccmHousePetition, HttpServletRequest request,
 			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码"};
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","所属网格"};
 		try {
 			String fileName = "PetitionPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 
@@ -302,6 +303,8 @@ public class CcmHousePetitionController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmHousePetition> list = ei.getDataList(CcmHousePetition.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHousePetition HousePetition : list) {
 				try {
 
@@ -322,24 +325,38 @@ public class CcmHousePetitionController extends BaseController {
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHousePetition HousePetitionFind;
 
-					if (list1.isEmpty()){
-						failureMsg.append("<br/>重点上访人员名 " + HousePetition.getName() + " 导入失败：实有人口表中无此人");
-						continue;
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(HousePetition.getIdent());
+						ccmPeople.setName(HousePetition.getName());
+						ccmPeople.setType(HousePetition.getType());
+						ccmPeople.setCensu(HousePetition.getCensu());
+						ccmPeople.setSex(HousePetition.getSex());
+						ccmPeople.setTelephone(HousePetition.getTelephone());
+						ccmPeople.setDomiciledetail(HousePetition.getDomiciledetail());
+						ccmPeople.setResidencedetail(HousePetition.getResidencedetail());
+						ccmPeople.setAreaGridId(HousePetition.getAreaGridId());
+						String birthStr = HousePetition.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(HousePetition.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsVisit(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					HousePetitionFind=ccmHousePetitionService.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, HousePetition);
+					if(HousePetitionFind == null){
+						HousePetition.setPeopleId(list1.get(0).getId());
+						ccmHousePetitionService.save(HousePetition);
+						successNum++;
 					}else{
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsVisit(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						HousePetitionFind=ccmHousePetitionService.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, HousePetition);
-						if(HousePetitionFind == null){
-							HousePetition.setPeopleId(list1.get(0).getId());
-							ccmHousePetitionService.save(HousePetition);
-							successNum++;
-						}else{
-							failureMsg.append("<br/>重点上访人员名 " + HousePetition.getName() + " 导入失败：记录已存在");
-						}
+						failureMsg.append("<br/>重点上访人员名 " + HousePetition.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>重点上访人员名 " + HousePetition.getName() + " 导入失败：");

@@ -19,6 +19,7 @@
 	</script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/patrol/ccmPatrolPoint/">数据列表</a></li>
 		<shiro:hasPermission name="patrol:ccmPatrolPoint:edit"><li><a href="${ctx}/patrol/ccmPatrolPoint/form">数据添加</a></li></shiro:hasPermission>
@@ -42,7 +43,7 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>名称</th>
@@ -79,6 +80,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

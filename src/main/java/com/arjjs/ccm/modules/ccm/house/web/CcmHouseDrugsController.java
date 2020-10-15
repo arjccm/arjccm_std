@@ -49,6 +49,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -235,7 +236,7 @@ public class CcmHouseDrugsController extends BaseController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHouseDrugs ccmHouseDrugs, HttpServletRequest request,
 			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","初次发现日期","管控人姓名","帮扶人联系方式","管控情况","管控人联系方式","帮扶人姓名","吸毒原因","关注程度"};
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","初次发现日期","管控人姓名","帮扶人联系方式","管控情况","管控人联系方式","帮扶人姓名","吸毒原因","关注程度","所属网格"};
 		try {
 			String fileName = "DrugsPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 			
@@ -279,6 +280,8 @@ public class CcmHouseDrugsController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmHouseDrugs> list = ei.getDataList(CcmHouseDrugs.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHouseDrugs HouseDrugs : list) {
 				try {
 
@@ -340,26 +343,39 @@ public class CcmHouseDrugsController extends BaseController {
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHouseDrugs HouseDrugsFind;
 
-					if (list1.isEmpty()){
-						failureMsg.append("<br/>吸毒人员名 " + HouseDrugs.getName() + " 导入失败：实有人口表中无此人");
-						continue;
-					}else{
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsDrugs(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						HouseDrugsFind=ccmHouseDrugsService.getPeopleALL(list1.get(0).getId());
-						HouseDrugs.setPeopleId(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, HouseDrugs);
-						if(HouseDrugsFind == null){
-							ccmHouseDrugsService.save(HouseDrugs);
-							successNum++;
-						}else{
-							failureMsg.append("<br/>吸毒人员名 " + HouseDrugs.getName() + " 导入失败：记录已存在");
-						}
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(HouseDrugs.getIdent());
+						ccmPeople.setName(HouseDrugs.getName());
+						ccmPeople.setType(HouseDrugs.getType());
+						ccmPeople.setCensu(HouseDrugs.getCensu());
+						ccmPeople.setSex(HouseDrugs.getSex());
+						ccmPeople.setTelephone(HouseDrugs.getTelephone());
+						ccmPeople.setDomiciledetail(HouseDrugs.getDomiciledetail());
+						ccmPeople.setResidencedetail(HouseDrugs.getResidencedetail());
+						ccmPeople.setAreaGridId(HouseDrugs.getAreaGridId());
+						String birthStr = HouseDrugs.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(HouseDrugs.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
 					}
-					
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsDrugs(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					HouseDrugsFind=ccmHouseDrugsService.getPeopleALL(list1.get(0).getId());
+					HouseDrugs.setPeopleId(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, HouseDrugs);
+					if(HouseDrugsFind == null){
+						ccmHouseDrugsService.save(HouseDrugs);
+						successNum++;
+					}else{
+						failureMsg.append("<br/>吸毒人员名 " + HouseDrugs.getName() + " 导入失败：记录已存在");
+					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>吸毒人员名 " + HouseDrugs.getName() + " 导入失败：");
 					List<String> messageList = BeanValidators.extractPropertyAndMessageAsList(ex, ": ");

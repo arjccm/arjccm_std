@@ -3,6 +3,7 @@ package com.arjjs.ccm.modules.ccm.index.service;
 import java.util.Calendar;
 import java.util.List;
 
+import com.arjjs.ccm.modules.sys.entity.Area;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -126,9 +127,9 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findCountByCompType() {
+	public LayUIBean findCountByCompType(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmOrgNpse> list = ccmOrgNpseDao.findCountByCompType();
+		List<CcmOrgNpse> list = ccmOrgNpseDao.findCountByCompType(parentIds);
 		result.setCode("0");
 		result.setCount(list.size());
 		result.setData(list);
@@ -166,9 +167,13 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findCountSchool() {
+	public LayUIBean findCountSchool(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmHouseSchoolrim> list = ccmHouseSchoolrimDao.findList(new CcmHouseSchoolrim());
+		Area area = new Area();
+		area.setParentIds(parentIds);
+		CcmHouseSchoolrim schoolrim = new CcmHouseSchoolrim();
+		schoolrim.setArea(area);
+		List<CcmHouseSchoolrim> list = ccmHouseSchoolrimDao.findList(schoolrim);
 		result.setCode("0");
 		result.setCount(list.size());
 		result.setData(list);
@@ -176,9 +181,9 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findCountPeopleForType() {
+	public LayUIBean findCountPeopleForType(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmPeople> list = ccmPeopleDao.findCountPeopleForType();
+		List<CcmPeople> list = ccmPeopleDao.findCountPeopleForType(parentIds);
 		result.setCode("0");
 		result.setCount(list.size());
 		result.setData(list);
@@ -186,9 +191,9 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findCountByType() {
+	public LayUIBean findCountByType(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmPeople> list = ccmPeopleDao.findCountByType();
+		List<CcmPeople> list = ccmPeopleDao.findCountByType(parentIds);
 		result.setCode("0");
 		result.setCount(list.size());
 		result.setData(list);
@@ -196,9 +201,9 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findCountByUniformlogo() {
+	public LayUIBean findCountByUniformlogo(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmPeople> list = ccmPeopleDao.findCountByUniformlogo();
+		List<CcmPeople> list = ccmPeopleDao.findCountByUniformlogo(parentIds);
 		result.setCode("0");
 		result.setCount(list.size());
 		result.setData(list);
@@ -206,9 +211,9 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findCountByHouseType() {
+	public LayUIBean findCountByHouseType(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmPopTenant> list = ccmPopTenantDao.findCountByHouseType();
+		List<CcmPopTenant> list = ccmPopTenantDao.findCountByHouseType(parentIds);
 		result.setCode("0");
 		result.setCount(list.size());
 		result.setData(list);
@@ -216,9 +221,9 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findCountByRentPur() {
+	public LayUIBean findCountByRentPur(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmPopTenant> list = ccmPopTenantDao.findCountByRentPur();
+		List<CcmPopTenant> list = ccmPopTenantDao.findCountByRentPur(parentIds);
 		result.setCode("0");
 		result.setCount(list.size());
 		result.setData(list);
@@ -226,9 +231,9 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findCountAddressLibrary() {
+	public LayUIBean findCountAddressLibrary(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmHouseBuildmanage> list = buildmanageDao.findCountAddressLibrary();
+		List<CcmHouseBuildmanage> list = buildmanageDao.findCountAddressLibrary(parentIds);
 		result.setCode("0");
 		result.setCount(list.size());
 		result.setData(list);
@@ -246,9 +251,9 @@ public class IndexChartService {
 		return result;
 	}*/
 
-	public LayUIBean findCountByconstruction() {
+	public LayUIBean findCountByconstruction(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmHouseBuildmanage> list = buildmanageDao.findCountAddressLibrary();
+		List<CcmHouseBuildmanage> list = buildmanageDao.findCountAddressLibrary(parentIds);
 		result.setCode("0");
 		for (CcmHouseBuildmanage ccmHouseBuildmanage : list) {
 			if("buildmanage".equals(ccmHouseBuildmanage.getName())) {
@@ -270,8 +275,12 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findKeyPlace() {
+	public LayUIBean findKeyPlace(String parentIds) {
 		LayUIBean result = new LayUIBean();
+		Area area = new Area();
+		area.setParentIds(parentIds);
+		CcmBasePlace basePlace = new CcmBasePlace();
+		basePlace.setArea(area);
 		List<CcmBasePlace> list = ccmBasePlaceDao.findList(new CcmBasePlace());
 		result.setCode("0");
 		result.setCount(list.size());

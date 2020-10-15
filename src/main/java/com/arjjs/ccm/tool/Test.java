@@ -2,23 +2,39 @@ package com.arjjs.ccm.tool;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 
 public class Test {
 
 	public static void main(String[] args) {
-		System.out.println("start:" + System.currentTimeMillis());
-		long ll = System.currentTimeMillis();
-		//文件与BufferedImage间的转换
-        BufferedImage bi=file2img("D:\\11.png");  //读取图片
-        BufferedImage bii=img_inverse(bi);
-        img2file(bii,"png","D:\\22.png");  //生成图片
-        long ss = (System.currentTimeMillis() - ll);
-		System.out.println("--end:" + System.currentTimeMillis() + ",take " + ss);
-    
-
-	}
+	    String date = "2020-02";
+	    SimpleDateFormat sdff = new SimpleDateFormat("yyyy-MM");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date1 = sdff.parse(date);
+            String date2 = date1.getTime()+"";
+            System.out.println(date2);
+            Date date3 = new Date(Long.parseLong(date2));
+            String date4 = sdf.format(date3);
+            System.out.println(date4);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date());
+            calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+            Date start = calendar.getTime();
+            String dateStart = sdf.format(start);
+            calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+            Date end = calendar.getTime();
+            String dateEnd = sdf.format(end);
+            System.out.println(dateStart);
+            System.out.println(dateEnd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 	//图片反色
     public static BufferedImage img_inverse(BufferedImage imgsrc) {
         try {

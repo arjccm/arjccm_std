@@ -49,6 +49,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -256,7 +257,7 @@ public class ccmSeriousCriminalOffenseController extends BaseController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmSeriousCriminalOffense ccmSeriousCriminalOffense, HttpServletRequest request,
 			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","刑事类型","监管状态","危险程度","参与嫌疑活动描述","发现途径","有无犯罪史"};
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","刑事类型","监管状态","危险程度","参与嫌疑活动描述","发现途径","有无犯罪史","所属网格"};
 		try {
 			String fileName = "SerioussCriminalPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 
@@ -301,6 +302,8 @@ public class ccmSeriousCriminalOffenseController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmSeriousCriminalOffense> list = ei.getDataList(CcmSeriousCriminalOffense.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmSeriousCriminalOffense SeriousCriminalOffense : list) {
 				try {
 
@@ -353,27 +356,39 @@ public class ccmSeriousCriminalOffenseController extends BaseController {
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmSeriousCriminalOffense SeriousCriminalOffenseFind;
 
-					//判断CcmPeople是否为空 空则加载错误 否 查询是否存在当前表数据
-					if (list1.isEmpty()) {
-						failureMsg.append("<br/>严重刑事犯罪嫌疑人员名 " + SeriousCriminalOffense.getName() + " 导入失败：实有人口表中无此人");
-						continue;
-					} else {
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsCriminalOffense(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						SeriousCriminalOffenseFind = ccmSeriousCriminalOffenseService
-								.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, SeriousCriminalOffense);
-						if (SeriousCriminalOffenseFind == null) {
-							SeriousCriminalOffense.setPeopleId(list1.get(0).getId());
-							ccmSeriousCriminalOffenseService.save(SeriousCriminalOffense);
-							successNum++;
-						} else {
-							failureMsg.append("<br/>严重刑事犯罪嫌疑人员名 " + SeriousCriminalOffense.getName() + " 导入失败：记录已存在");
-						}
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(SeriousCriminalOffense.getIdent());
+						ccmPeople.setName(SeriousCriminalOffense.getName());
+						ccmPeople.setType(SeriousCriminalOffense.getType());
+						ccmPeople.setCensu(SeriousCriminalOffense.getCensu());
+						ccmPeople.setSex(SeriousCriminalOffense.getSex());
+						ccmPeople.setTelephone(SeriousCriminalOffense.getTelephone());
+						ccmPeople.setDomiciledetail(SeriousCriminalOffense.getDomiciledetail());
+						ccmPeople.setResidencedetail(SeriousCriminalOffense.getResidencedetail());
+						ccmPeople.setAreaGridId(SeriousCriminalOffense.getAreaGridId());
+						String birthStr = SeriousCriminalOffense.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(SeriousCriminalOffense.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
 
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsCriminalOffense(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					SeriousCriminalOffenseFind = ccmSeriousCriminalOffenseService
+							.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, SeriousCriminalOffense);
+					if (SeriousCriminalOffenseFind == null) {
+						SeriousCriminalOffense.setPeopleId(list1.get(0).getId());
+						ccmSeriousCriminalOffenseService.save(SeriousCriminalOffense);
+						successNum++;
+					} else {
+						failureMsg.append("<br/>严重刑事犯罪嫌疑人员名 " + SeriousCriminalOffense.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>严重刑事犯罪嫌疑人员名 " + SeriousCriminalOffense.getName() + " 导入失败：");

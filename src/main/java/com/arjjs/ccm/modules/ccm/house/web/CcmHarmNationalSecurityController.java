@@ -20,6 +20,7 @@ import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.CommUtil;
@@ -45,6 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -252,7 +254,7 @@ public class CcmHarmNationalSecurityController extends BaseController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHarmNationalSecurity ccmHarmNationalSecurity, HttpServletRequest request,
 			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","嫌疑类型","呈报单位","监管状态","危险程度","呈报时间","发现途径","有无犯罪史"};
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","嫌疑类型","呈报单位","监管状态","危险程度","呈报时间","发现途径","有无犯罪史","所属网格"};
 		try {
 			String fileName = "HarmNationPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 
@@ -297,6 +299,8 @@ public class CcmHarmNationalSecurityController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmHarmNationalSecurity> list = ei.getDataList(CcmHarmNationalSecurity.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHarmNationalSecurity HarmNationalSecurity : list) {
 				try {
 
@@ -352,24 +356,38 @@ public class CcmHarmNationalSecurityController extends BaseController {
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHarmNationalSecurity HarmNationalSecurityFind;
 
-					if (list1.isEmpty()) {
-						failureMsg.append("<br/>危害国家安全人员名 " + HarmNationalSecurity.getName() + " 导入失败：实有人口表中无此人");
-						continue;
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(HarmNationalSecurity.getIdent());
+						ccmPeople.setName(HarmNationalSecurity.getName());
+						ccmPeople.setType(HarmNationalSecurity.getType());
+						ccmPeople.setCensu(HarmNationalSecurity.getCensu());
+						ccmPeople.setSex(HarmNationalSecurity.getSex());
+						ccmPeople.setTelephone(HarmNationalSecurity.getTelephone());
+						ccmPeople.setDomiciledetail(HarmNationalSecurity.getDomiciledetail());
+						ccmPeople.setResidencedetail(HarmNationalSecurity.getResidencedetail());
+						ccmPeople.setAreaGridId(HarmNationalSecurity.getAreaGridId());
+						String birthStr = HarmNationalSecurity.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(HarmNationalSecurity.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsHarmNational(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					HarmNationalSecurityFind = ccmHarmNationalSecurityService.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, HarmNationalSecurity);
+					if (HarmNationalSecurityFind == null) {
+						HarmNationalSecurity.setPeopleId(list1.get(0).getId());
+						ccmHarmNationalSecurityService.save(HarmNationalSecurity);
+						successNum++;
 					} else {
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsHarmNational(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						HarmNationalSecurityFind = ccmHarmNationalSecurityService.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, HarmNationalSecurity);
-						if (HarmNationalSecurityFind == null) {
-							HarmNationalSecurity.setPeopleId(list1.get(0).getId());
-							ccmHarmNationalSecurityService.save(HarmNationalSecurity);
-							successNum++;
-						} else {
-							failureMsg.append("<br/>危害国家安全人员名 " + HarmNationalSecurity.getName() + " 导入失败：记录已存在");
-						}
+						failureMsg.append("<br/>危害国家安全人员名 " + HarmNationalSecurity.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>危害国家安全人员名 " + HarmNationalSecurity.getName() + " 导入失败：");

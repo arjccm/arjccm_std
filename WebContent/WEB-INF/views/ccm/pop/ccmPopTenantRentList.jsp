@@ -60,6 +60,8 @@
 
 
 	<div class="clearfix pull-right btn-box">
+		<a href="javascript:;" onclick="parent.parent.LayerDialog('${ctx}/house/ccmHouseEmphasis/listSet?type=ccmPopTenant', '通知信息设置', '550px', '250px')" id="btnSetting" style="width: 70px!important;display:inline-block;float: right;" class="btn btn-export">
+			<i></i><span style="font-size: 12px">通知信息设置</span></a>
 		<shiro:hasPermission
 				name="tenant:ccmTenantRecord:export">
 			<a href="javascript:;" id="btnExport" class="btn btn-export" style="width: 49px;display:inline-block;float: right;"> <i

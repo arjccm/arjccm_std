@@ -11,6 +11,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.modules.ccm.house.entity.*;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.sys.entity.Menu;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.arjjs.ccm.common.utils.SpringContextHolder;
 import com.arjjs.ccm.common.utils.StringUtils;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmExpireArea;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmExpireUser;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseSetting;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmIntervalPeople;
 import com.arjjs.ccm.modules.ccm.house.service.CcmHouseEmphasisService;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
 import com.arjjs.ccm.modules.ccm.message.entity.CcmMessage;
@@ -57,7 +55,7 @@ public class CcmHouseEmphasisController {
 	/**
 	 * 方法描述：
 	 * @return
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@ResponseBody
 	@RequestMapping(value = "tableName")
@@ -67,7 +65,7 @@ public class CcmHouseEmphasisController {
 	}
 
 
-	
+
 	/**
 	 * 方法描述：根据数据库table名称获取列表数据
 	 * @param tableType
@@ -90,7 +88,7 @@ public class CcmHouseEmphasisController {
 		CcmHouseEmphasisService emphasisService = SpringContextHolder.getBean("CcmHouseEmphasisService");
 		return emphasisService.findVisitRecord(ccmLogTail);
 	}
-	
+
 	@RequestMapping(value = "listSet")
 	public String listSet(String type, Model model) {
 		if(StringUtils.isBlank(type)) {
@@ -140,11 +138,11 @@ public class CcmHouseEmphasisController {
 		List<CcmExpireArea> userList = emphasisService.findExpireUser();
 		return userList;
 	}
-	
+
 	public void testList() {
 		System.out.println("测试===>>>"+new Date());
 	}
-	
+
 	public void listSetting() {
 		SysConfig sysConfig = sysConfigService.get("key_personnel_notice_info_setting");
 		if(sysConfig != null) {
@@ -156,12 +154,12 @@ public class CcmHouseEmphasisController {
 				JSONObject jsonObject = paramObject.getJSONObject(type);
 				if(jsonObject.containsKey("sendInfo")) {
 					String sendInfo = jsonObject.getString("sendInfo");
-					if(StringUtils.isNotBlank(sendInfo) && sendInfo.equals("1")) {	
+					if(StringUtils.isNotBlank(sendInfo) && sendInfo.equals("1")) {
 						if(jsonObject.containsKey("timeInterval")) {
 							String timeInterval = jsonObject.getString("timeInterval");
-							if(StringUtils.isNotBlank(timeInterval)) {								
+							if(StringUtils.isNotBlank(timeInterval)) {
 								CcmPeople ccmPeople = new CcmPeople();
-								int interval = Integer.parseInt(timeInterval); 
+								int interval = Integer.parseInt(timeInterval);
 								ccmPeople.setTimeInterval(interval);
 								List<CcmIntervalPeople> list = Lists.newArrayList();
 								String typeNmae = null;
@@ -205,6 +203,11 @@ public class CcmHouseEmphasisController {
 								}else if(type.equals("ccmHouseHeresy")) {
 									typeNmae = "涉教人员";
 									tableName = "ccm_house_heresy";
+								}else if(type.equals("ccmPopTenant")) {
+									typeNmae = "出租房屋";
+									tableName = "ccm_pop_tenant";
+									this.listSettingTenant(typeNmae,tableName,interval);
+									continue;
 								}else {
 									continue;
 								}
@@ -239,7 +242,7 @@ public class CcmHouseEmphasisController {
 						CcmPeople ccmPeople = new CcmPeople();
 						ccmPeople.setId(ccmIntervalPeople.getPeopleId());
 						List<CcmExpireUser> CcmExpireUserList = ccmHouseEmphasisService.findUserByPeople(ccmPeople);
-						for (CcmExpireUser ccmExpireUser : CcmExpireUserList) {							
+						for (CcmExpireUser ccmExpireUser : CcmExpireUserList) {
 							CcmMessage ccmMessage = new CcmMessage();
 							User user = new User("1");
 							ccmMessage.setCreateBy(user);
@@ -254,15 +257,73 @@ public class CcmHouseEmphasisController {
 							ccmMessage.preInsert();
 							ccmMessage.setUserId(ccmExpireUser.getUserId());
 							list.add(ccmMessage);
-						}						
+						}
 						ccmHouseEmphasisService.updateIntervalDate(ccmIntervalPeople.getKeyId(),ccmIntervalPeople.getTableName());
 					}
-					if(list.size() > 0) {						
+					if(list.size() > 0) {
 						//批量添加
 						ccmMessageService.insertEventAll(list);
 						//发送mq
 						CcmRestEvent.sendMessageToMq(list);
 					}
+				}
+			}
+		}
+	}
+
+	public void listSettingTenant(String typeName, String tableName, int interval) {
+		Map<String,List<CcmIntervalTenant>> mapList = Maps.newHashMap();
+		CcmPopTenant ccmPopTenant = new CcmPopTenant();
+		ccmPopTenant.setTableName(tableName);
+		ccmPopTenant.setTimeInterval(interval);
+		List<CcmIntervalTenant> list = ccmHouseEmphasisService.findExpireTenant(ccmPopTenant);
+		if(list.size() > 0) {
+			for (CcmIntervalTenant ccmIntervalTenant : list) {
+				String gridId = ccmIntervalTenant.getGridId();
+				ccmIntervalTenant.setTypeName(typeName);
+				ccmIntervalTenant.setTableName(tableName);
+				if(mapList.containsKey(gridId)) {
+					mapList.get(gridId).add(ccmIntervalTenant);
+				}else {
+					List<CcmIntervalTenant> datalist = Lists.newArrayList();
+					datalist.add(ccmIntervalTenant);
+					mapList.put(gridId, datalist);
+				}
+			}
+		}
+		Iterator<String> itMap = mapList.keySet().iterator();
+		while (itMap.hasNext()) {
+			String gridId = itMap.next();
+			List<CcmIntervalTenant> resultlist = mapList.get(gridId);
+			if(resultlist.size() > 0) {
+				List<CcmMessage> MsgList = new ArrayList<CcmMessage>();
+				for (CcmIntervalTenant ccmIntervalTenant : resultlist) {
+					CcmPopTenant tenant = new CcmPopTenant();
+					tenant.setId(ccmIntervalTenant.getTenantId());
+					List<CcmExpireUser> CcmExpireUserList = ccmHouseEmphasisService.findUserByTenant(tenant);
+					for (CcmExpireUser ccmExpireUser : CcmExpireUserList) {
+						CcmMessage ccmMessage = new CcmMessage();
+						User user = new User("1");
+						ccmMessage.setCreateBy(user);
+						ccmMessage.setUpdateBy(user);
+						ccmMessage.setType("23");//通知消息
+						Date createDate = new Date();
+						String str = "yyyy-MM-dd";
+						SimpleDateFormat sdf = new SimpleDateFormat(str);
+						ccmMessage.setContent(sdf.format(createDate)+"："+"寻访通知(出租屋)："+ccmIntervalTenant.getXqName()+ccmIntervalTenant.getBuildName()+"["+ccmIntervalTenant.getTenantNum()+"]");
+						ccmMessage.setReadFlag("0");//未读
+						ccmMessage.setObjId(ccmIntervalTenant.getTenantId());
+						ccmMessage.preInsert();
+						ccmMessage.setUserId(ccmExpireUser.getUserId());
+						MsgList.add(ccmMessage);
+					}
+					ccmHouseEmphasisService.updateIntervalDate(ccmIntervalTenant.getTenantId(),ccmIntervalTenant.getTableName());
+				}
+				if(MsgList.size() > 0) {
+					//批量添加
+					ccmMessageService.insertEventAll(MsgList);
+					//发送mq
+					CcmRestEvent.sendMessageToMq(MsgList);
 				}
 			}
 		}

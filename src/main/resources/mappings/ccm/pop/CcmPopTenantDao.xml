@@ -33,9 +33,9 @@
         a.tenant_name AS "tenantName",
         a.tenant_tl AS "tenantTl",
         a.area_id AS "area.id",
-        a.area_map AS
+        a18.area_map AS
         "areaMap",
-        a.area_point AS "areaPoint",
+        a18.area_point AS "areaPoint",
         a.image AS "image",
         a.create_by
         AS "createBy.id",
@@ -96,9 +96,11 @@
 			count( a.id ) AS "count",
 			a.house_type AS "houseType" 
 		FROM
-			ccm_pop_tenant a 
+			ccm_pop_tenant a
+			LEFT JOIN sys_area sa ON a.area_id = sa.id
 		WHERE
-			a.del_flag = 0 
+			a.del_flag = 0
+			AND sa.parent_ids LIKE #{param1}
 		GROUP BY
 			a.house_type ) d ON c.value = d.houseType
     </select>
@@ -116,8 +118,10 @@
             a.rent_pur AS "rentPur"
 		FROM
 			ccm_pop_tenant a
+			LEFT JOIN sys_area sa ON a.area_id = sa.id
 		WHERE
 			a.del_flag = 0
+			AND sa.parent_ids LIKE #{param1}
 		GROUP BY
 			a.rent_pur ) d ON c.value = d.rentPur
 	</select>
@@ -263,6 +267,7 @@
 
     <select id="findList" resultType="CcmPopTenant">
         SELECT
+
         <include refid="ccmPopTenantColumns" />
         FROM ccm_pop_tenant a
         <include refid="ccmPopTenantJoins" />

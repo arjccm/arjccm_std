@@ -46,7 +46,7 @@ import com.google.common.collect.Maps;
 
 /**
  * 巡逻计划信息 Controller
- * 
+ *
  * @author arj
  * @version 2018-03-17
  */
@@ -68,7 +68,7 @@ public class CcmRestPatrolPlanController extends BaseController {
 	private CcmPatrolPointService ccmPatrolPointService;
 
 	/**
-	 * 
+	 *
 	 * @param id
 	 *            查询巡逻计划信息
 	 * @return
@@ -114,48 +114,46 @@ public class CcmRestPatrolPlanController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/query", method = RequestMethod.GET)
 	public CcmRestResult query(String userId, HttpServletRequest req, HttpServletResponse resp,
-			CcmPatrolPlan ccmPatrolPlan, @RequestParam(required = false) String type) {
+							   CcmPatrolPlan ccmPatrolPlan, @RequestParam(required = false) String type) {
 		// 获取结果
 		CcmRestResult result = CommUtilRest.queryResult(userId, req, resp);
 		// 如果当前的 flag 为返回
 		if (result.isReturnFlag()) {
 			return result;
 		}
-		// 添加当前用户的 用户ID
-		if (("1").equals(type)) {
-			ccmPatrolPlan.setCurUser(userId);
-		}
-		// 查询当前用户当天涉及的计划
-		if (("2").equals(type)) {
+		if (("1").equals(type)) {// 查询当前用户当天涉及的计划
 			ccmPatrolPlan.setCurUser(userId);
 			ccmPatrolPlan.setCurDate(new Date());
-		}
-		// 查询当前用户当周涉及的计划
-		if (("3").equals(type)) {
+		}else if (("2").equals(type)) {// 查询当前用户当周涉及的计划
 			ccmPatrolPlan.setCurUser(userId);
 			// 当周开始的日期
 			ccmPatrolPlan.setCurBegin(TimeScope.getWeekBegin());
 			// 当周结束的日期
 			ccmPatrolPlan.setCurEnd(TimeScope.getWeekEnd());
-		}
-		if (("4").equals(type)) {
+		}else if (("3").equals(type)) {// 查询当前用户当月涉及的计划
 			ccmPatrolPlan.setCurUser(userId);
 			// 当月开始的日期
 			ccmPatrolPlan.setCurBegin(TimeScope.getMonthBegin());
 			// 当月结束的日期
 			ccmPatrolPlan.setCurEnd(TimeScope.getMonthEnd());
+		}else {// 添加当前用户的 用户ID
+			ccmPatrolPlan.setCurUser(userId);
 		}
 		Page<CcmPatrolPlan> page = ccmPatrolPlanService.findPage(new Page<CcmPatrolPlan>(req, resp),
 				(null == ccmPatrolPlan) ? new CcmPatrolPlan() : ccmPatrolPlan);
 		result.setCode(CcmRestType.OK);
-		result.setResult(page.getList());
+		if(page.getList() == null || page.getList().size() == 0){
+			result.setResult(new ArrayList<CcmPatrolPlan>());
+		}else{
+			result.setResult(page.getList());
+		}
 		// 输出结果
 		return result;
 	}
 
 	/**
 	 * 所有巡逻点位信息列表
-	 * 
+	 *
 	 * @param userId
 	 * @param req
 	 * @param resp
@@ -167,7 +165,7 @@ public class CcmRestPatrolPlanController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/patrolpointlist", method = RequestMethod.GET)
 	public CcmRestResult patrolpointlist(String userId, HttpServletRequest req, HttpServletResponse resp,
-			CcmPatrolPoint ccmPatrolPoint) {
+										 CcmPatrolPoint ccmPatrolPoint) {
 		// 获取结果
 		CcmRestResult result = CommUtilRest.queryResult(userId, req, resp);
 		// 如果当前的 flag 为返回
@@ -183,7 +181,7 @@ public class CcmRestPatrolPlanController extends BaseController {
 	}
 	/**
 	 * 所有巡逻点位详情
-	 * 
+	 *
 	 * @param userId
 	 * @param req
 	 * @param resp
@@ -211,8 +209,8 @@ public class CcmRestPatrolPlanController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "treeData")
 	public List<Map<String, Object>> treeData(@RequestParam(required = false) String extId,
-			@RequestParam(required = false) String selectIds, @RequestParam(required = false) String module,
-			@RequestParam(required = false) Boolean isAll, HttpServletResponse response) {
+											  @RequestParam(required = false) String selectIds, @RequestParam(required = false) String module,
+											  @RequestParam(required = false) Boolean isAll, HttpServletResponse response) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		// 每周
 		if ("02".equals(module)) {
@@ -254,7 +252,7 @@ public class CcmRestPatrolPlanController extends BaseController {
 
 	/**
 	 * 计划涉及的点位信息
-	 * 
+	 *
 	 * @param ccmPatrolPlan
 	 * @param model
 	 * @return

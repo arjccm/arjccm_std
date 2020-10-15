@@ -55,10 +55,10 @@ public interface CcmPopTenantDao extends CrudDao<CcmPopTenant> {
 	//重点人员More
 	List<SearchTabMM> getStringSpecialMore(CcmPopTenant ccmPopTenantDto);
 	//首页统计实有房屋数量
-	List<CcmPopTenant> findCountByHouseType();
+	List<CcmPopTenant> findCountByHouseType(String parentIds);
 	//首页统计出租房屋数量
 	/*List<CcmPopTenant> findCountByHousePrup();*/
-	List<CcmPopTenant> findCountByRentPur();
+	List<CcmPopTenant> findCountByRentPur(String parentIds);
 
 	public List<String> selectByBuildIdAndName(CcmAreaPointVo areaPointVo);
 

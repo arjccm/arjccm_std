@@ -100,9 +100,11 @@
 				a.comp_type AS "compType",
 				count( a.id ) AS "count" 
 			FROM
-				ccm_org_npse a 
+				ccm_org_npse a
+				LEFT JOIN sys_area a34 ON a34.id = a.area_id
 			WHERE
-				a.del_flag = 0 
+				a.del_flag = 0
+				AND a34.parent_ids LIKE #{param1}
 			GROUP BY
 				a.comp_type 
 			) d ON c.

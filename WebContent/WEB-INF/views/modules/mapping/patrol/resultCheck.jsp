@@ -41,7 +41,7 @@
 	left: 12px;
 	top: 12px;
 	z-index: 2001;
-    background: #fff;
+    background: #0a8ccc;
     border-radius: 4px;
     box-shadow: 1px 2px 1px rgba(0, 0, 0, .15);
     z-index: 9999999999;

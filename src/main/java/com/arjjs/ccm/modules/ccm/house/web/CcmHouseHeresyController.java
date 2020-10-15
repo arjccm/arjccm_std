@@ -19,6 +19,7 @@ import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.CommUtil;
@@ -44,6 +45,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -239,7 +241,7 @@ public class CcmHouseHeresyController extends BaseController {
 		@RequestMapping(value = "export", method = RequestMethod.POST)
 		public String exportFile(CcmHouseHeresy ccmHouseHeresy, HttpServletRequest request,
 				HttpServletResponse response, RedirectAttributes redirectAttributes) {
-			String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","关注程度","痴迷程度","教派名称","是否参加转化培训班"};
+			String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","关注程度","痴迷程度","教派名称","是否参加转化培训班","所属网格"};
 			try {
 				String fileName = "HeresyPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 
@@ -284,6 +286,8 @@ public class CcmHouseHeresyController extends BaseController {
 				StringBuilder failureMsg = new StringBuilder();
 				ImportExcel ei = new ImportExcel(file, 1, 0);
 				List<CcmHouseHeresy> list = ei.getDataList(CcmHouseHeresy.class);
+				//格式化日期
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				for (CcmHouseHeresy HouseHeresy : list) {
 					try {
 						if(EntityTools.isEmpty(HouseHeresy)){
@@ -327,24 +331,38 @@ public class CcmHouseHeresyController extends BaseController {
 						List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 						CcmHouseHeresy HouseHeresyFind;
 
-						if (list1.isEmpty()){
-							failureMsg.append("<br/>涉教人员名 " + HouseHeresy.getName() + " 导入失败：实有人口表中无此人");
-							continue;
+						if(list1.isEmpty()){
+							ccmPeople.setIdent(HouseHeresy.getIdent());
+							ccmPeople.setName(HouseHeresy.getName());
+							ccmPeople.setType(HouseHeresy.getType());
+							ccmPeople.setCensu(HouseHeresy.getCensu());
+							ccmPeople.setSex(HouseHeresy.getSex());
+							ccmPeople.setTelephone(HouseHeresy.getTelephone());
+							ccmPeople.setDomiciledetail(HouseHeresy.getDomiciledetail());
+							ccmPeople.setResidencedetail(HouseHeresy.getResidencedetail());
+							ccmPeople.setAreaGridId(HouseHeresy.getAreaGridId());
+							String birthStr = HouseHeresy.getIdent().substring(6, 14);
+							ccmPeople.setBirthday(sdf.parse(birthStr));
+							Area area = new Area();
+							area.setId(HouseHeresy.getAreaGridId().getParentId());
+							ccmPeople.setAreaComId(area);
+							ccmPeopleService.save(ccmPeople);
+							list1.add(ccmPeople);
+						}
+
+						ccmPeople.setId(list1.get(0).getId());
+						ccmPeople.setUpdateBy(UserUtils.getUser());
+						ccmPeople.setUpdateDate(new Date());
+						ccmPeople.setIsHeresy(1);
+						ccmPeopleService.updatePeople(ccmPeople);
+						HouseHeresyFind=ccmHouseHeresyService.getPeopleALL(list1.get(0).getId());
+						BeanValidators.validateWithException(validator, HouseHeresy);
+						if(HouseHeresyFind == null){
+							HouseHeresy.setPeopleId(list1.get(0).getId());
+							ccmHouseHeresyService.save(HouseHeresy);
+							successNum++;
 						}else{
-							ccmPeople.setId(list1.get(0).getId());
-							ccmPeople.setUpdateBy(UserUtils.getUser());
-							ccmPeople.setUpdateDate(new Date());
-							ccmPeople.setIsHeresy(1);
-							ccmPeopleService.updatePeople(ccmPeople);
-							HouseHeresyFind=ccmHouseHeresyService.getPeopleALL(list1.get(0).getId());
-							BeanValidators.validateWithException(validator, HouseHeresy);
-							if(HouseHeresyFind == null){
-								HouseHeresy.setPeopleId(list1.get(0).getId());
-								ccmHouseHeresyService.save(HouseHeresy);
-								successNum++;
-							}else{
-								failureMsg.append("<br/>涉教人员名 " + HouseHeresy.getName() + " 导入失败：记录已存在");
-							}
+							failureMsg.append("<br/>涉教人员名 " + HouseHeresy.getName() + " 导入失败：记录已存在");
 						}
 					} catch (ConstraintViolationException ex) {
 						failureMsg.append("<br/>涉教人员名 " + HouseHeresy.getName() + " 导入失败：");

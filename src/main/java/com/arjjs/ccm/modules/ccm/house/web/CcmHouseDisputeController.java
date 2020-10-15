@@ -20,6 +20,7 @@ import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.CommUtil;
@@ -45,6 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -246,7 +248,7 @@ public class CcmHouseDisputeController extends BaseController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHouseDispute ccmHouseDispute, HttpServletRequest request, HttpServletResponse response,
 			RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","发现途径","关注程度"};
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","发现途径","关注程度","所属网格"};
 		try {
 			String fileName = "DisputePeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 
@@ -289,6 +291,8 @@ public class CcmHouseDisputeController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmHouseDispute> list = ei.getDataList(CcmHouseDispute.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHouseDispute HouseDispute : list) {
 				try {
 
@@ -323,24 +327,38 @@ public class CcmHouseDisputeController extends BaseController {
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHouseDispute HouseDrugsFind;
 
-					if (list1.isEmpty()) {
-						failureMsg.append("<br/>闹事行凶报复嫌疑人员名 " + HouseDispute.getName() + " 导入失败：实有人口表中无此人");
-						continue;
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(HouseDispute.getIdent());
+						ccmPeople.setName(HouseDispute.getName());
+						ccmPeople.setType(HouseDispute.getType());
+						ccmPeople.setCensu(HouseDispute.getCensu());
+						ccmPeople.setSex(HouseDispute.getSex());
+						ccmPeople.setTelephone(HouseDispute.getTelephone());
+						ccmPeople.setDomiciledetail(HouseDispute.getDomiciledetail());
+						ccmPeople.setResidencedetail(HouseDispute.getResidencedetail());
+						ccmPeople.setAreaGridId(HouseDispute.getAreaGridId());
+						String birthStr = HouseDispute.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(HouseDispute.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsDispute(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					HouseDrugsFind = ccmHouseDisputeService.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, HouseDispute);
+					if (HouseDrugsFind == null) {
+						HouseDispute.setPeopleId(list1.get(0).getId());
+						ccmHouseDisputeService.save(HouseDispute);
+						successNum++;
 					} else {
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsDispute(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						HouseDrugsFind = ccmHouseDisputeService.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, HouseDispute);
-						if (HouseDrugsFind == null) {
-							HouseDispute.setPeopleId(list1.get(0).getId());
-							ccmHouseDisputeService.save(HouseDispute);
-							successNum++;
-						} else {
-							failureMsg.append("<br/>闹事行凶报复嫌疑人员名 " + HouseDispute.getName() + " 导入失败：记录已存在");
-						}
+						failureMsg.append("<br/>闹事行凶报复嫌疑人员名 " + HouseDispute.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>闹事行凶报复嫌疑员名 " + HouseDispute.getName() + " 导入失败：");

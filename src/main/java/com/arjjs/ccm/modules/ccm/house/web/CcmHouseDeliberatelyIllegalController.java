@@ -20,6 +20,7 @@ import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.CommUtil;
@@ -45,6 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -246,7 +248,7 @@ public class CcmHouseDeliberatelyIllegalController extends BaseController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHouseDeliberatelyIllegal ccmHouseDeliberatelyIllegal, HttpServletRequest request,
 			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","所判罪行","监管状态","审判结果","违法时间","关注程度","释放时间"};
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","所判罪行","监管状态","审判结果","违法时间","关注程度","释放时间","所属网格"};
 		try {
 			String fileName = "DeliberatelyPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 			
@@ -291,6 +293,8 @@ public class CcmHouseDeliberatelyIllegalController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmHouseDeliberatelyIllegal> list = ei.getDataList(CcmHouseDeliberatelyIllegal.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHouseDeliberatelyIllegal HouseDeliberatelyIllegal : list) {
 				try {
 
@@ -343,24 +347,38 @@ public class CcmHouseDeliberatelyIllegalController extends BaseController {
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHouseDeliberatelyIllegal HouseDeliberatelyIllegalFind;
 
-					if (list1.isEmpty()){
-						failureMsg.append("<br/>故意犯法释放人员名 " + HouseDeliberatelyIllegal.getName() + " 导入失败：实有人口表中无此人");
-						continue;
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(HouseDeliberatelyIllegal.getIdent());
+						ccmPeople.setName(HouseDeliberatelyIllegal.getName());
+						ccmPeople.setType(HouseDeliberatelyIllegal.getType());
+						ccmPeople.setCensu(HouseDeliberatelyIllegal.getCensu());
+						ccmPeople.setSex(HouseDeliberatelyIllegal.getSex());
+						ccmPeople.setTelephone(HouseDeliberatelyIllegal.getTelephone());
+						ccmPeople.setDomiciledetail(HouseDeliberatelyIllegal.getDomiciledetail());
+						ccmPeople.setResidencedetail(HouseDeliberatelyIllegal.getResidencedetail());
+						ccmPeople.setAreaGridId(HouseDeliberatelyIllegal.getAreaGridId());
+						String birthStr = HouseDeliberatelyIllegal.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(HouseDeliberatelyIllegal.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsDeliberatelyIllegal(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					HouseDeliberatelyIllegalFind=ccmHouseDeliberatelyIllegalService.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, HouseDeliberatelyIllegal);
+					if(HouseDeliberatelyIllegalFind == null){
+						HouseDeliberatelyIllegal.setPeopleId(list1.get(0).getId());
+						ccmHouseDeliberatelyIllegalService.save(HouseDeliberatelyIllegal);
+						successNum++;
 					}else{
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsDeliberatelyIllegal(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						HouseDeliberatelyIllegalFind=ccmHouseDeliberatelyIllegalService.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, HouseDeliberatelyIllegal);
-						if(HouseDeliberatelyIllegalFind == null){
-							HouseDeliberatelyIllegal.setPeopleId(list1.get(0).getId());
-							ccmHouseDeliberatelyIllegalService.save(HouseDeliberatelyIllegal);
-							successNum++;
-						}else{
-							failureMsg.append("<br/>故意犯法释放人员名 " + HouseDeliberatelyIllegal.getName() + " 导入失败：记录已存在");
-						}
+						failureMsg.append("<br/>故意犯法释放人员名 " + HouseDeliberatelyIllegal.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>故意犯法释放人员名 " + HouseDeliberatelyIllegal.getName() + " 导入失败：");

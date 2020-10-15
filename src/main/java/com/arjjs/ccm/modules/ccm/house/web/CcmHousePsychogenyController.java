@@ -21,6 +21,7 @@ import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.Dict;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.service.DictService;
@@ -48,6 +49,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -250,7 +252,7 @@ public class CcmHousePsychogenyController extends BaseController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHousePsychogeny ccmHousePsychogeny, HttpServletRequest request,
 			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","家庭经济状况","监护人联系方式","目前诊断类型","目前危险性评估等级","是否纳入低保","监护人姓名","治疗情况","关注程度"};
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","家庭经济状况","监护人联系方式","目前诊断类型","目前危险性评估等级","是否纳入低保","监护人姓名","治疗情况","关注程度","所属网格"};
 		try {
 			String fileName = "PsychogenyPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 
@@ -346,6 +348,8 @@ public class CcmHousePsychogenyController extends BaseController {
 			List<Dict> managementList = dictService.findList(dict);
 			dict.setType("ccm_supp_case");
 			List<Dict> helpcaseList = dictService.findList(dict);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHousePsychogeny HousePsychogeny : list) {
 				try {
 
@@ -448,24 +452,38 @@ public class CcmHousePsychogenyController extends BaseController {
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHousePsychogeny HousePsychogenyFind;
 
-					if (list1.isEmpty()) {
-						failureMsg.append("<br/>肇事肇祸等严重精神障碍患者名 " + HousePsychogeny.getName() + " 导入失败：实有人口表中无此人");
-						continue;
-					} else {
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsPsychogeny(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						HousePsychogenyFind = ccmHousePsychogenyService.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, HousePsychogeny);
-						if(HousePsychogenyFind == null){
-							HousePsychogeny.setPeopleId(list1.get(0).getId());
-							ccmHousePsychogenyService.save(HousePsychogeny);
-							successNum++;
-						}else{
-							failureMsg.append("<br/>肇事肇祸等严重精神障碍患者名 " + HousePsychogeny.getName() + " 导入失败：记录已存在");
-						}
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(HousePsychogeny.getIdent());
+						ccmPeople.setName(HousePsychogeny.getName());
+						ccmPeople.setType(HousePsychogeny.getType());
+						ccmPeople.setCensu(HousePsychogeny.getCensu());
+						ccmPeople.setSex(HousePsychogeny.getSex());
+						ccmPeople.setTelephone(HousePsychogeny.getTelephone());
+						ccmPeople.setDomiciledetail(HousePsychogeny.getDomiciledetail());
+						ccmPeople.setResidencedetail(HousePsychogeny.getResidencedetail());
+						ccmPeople.setAreaGridId(HousePsychogeny.getAreaGridId());
+						String birthStr = HousePsychogeny.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(HousePsychogeny.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsPsychogeny(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					HousePsychogenyFind = ccmHousePsychogenyService.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, HousePsychogeny);
+					if(HousePsychogenyFind == null){
+						HousePsychogeny.setPeopleId(list1.get(0).getId());
+						ccmHousePsychogenyService.save(HousePsychogeny);
+						successNum++;
+					}else{
+						failureMsg.append("<br/>肇事肇祸等严重精神障碍患者名 " + HousePsychogeny.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>肇事肇祸等严重精神障碍患者名 " + HousePsychogeny.getName() + " 导入失败：");

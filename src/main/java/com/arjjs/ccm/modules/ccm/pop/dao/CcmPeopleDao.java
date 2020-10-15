@@ -121,13 +121,13 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 	public List<CcmPeople> locatingSuspects(List<String> coordianteList);
 
 	//首页统计重点人员数量
-	List<CcmPeople> findCountPeopleForType();
+	List<CcmPeople> findCountPeopleForType(String parentIds);
 
 	//首页统计实有人口信息按type统计
-	List<CcmPeople> findCountByType();
+	List<CcmPeople> findCountByType(String parentIds);
 
 	//首页统计实有人口信息按 uniformlogo统计
-	List<CcmPeople> findCountByUniformlogo();
+	List<CcmPeople> findCountByUniformlogo(String parentIds);
 
 	/**
 	 * @return

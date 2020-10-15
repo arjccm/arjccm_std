@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.patrol.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,9 @@ import com.arjjs.ccm.modules.ccm.patrol.dao.CcmPatrolResultDao;
 @Service
 @Transactional(readOnly = true)
 public class CcmPatrolResultService extends CrudService<CcmPatrolResultDao, CcmPatrolResult> {
+
+	@Autowired
+	private CcmPatrolResultDao ccmPatrolResultDao;
 
 	public CcmPatrolResult get(String id) {
 		return super.get(id);
@@ -42,6 +46,11 @@ public class CcmPatrolResultService extends CrudService<CcmPatrolResultDao, CcmP
 	@Transactional(readOnly = false)
 	public void delete(CcmPatrolResult ccmPatrolResult) {
 		super.delete(ccmPatrolResult);
+	}
+
+	@Transactional(readOnly = false)
+	public void endPlan(CcmPatrolResult ccmPatrolResult) {
+		ccmPatrolResultDao.endPlan(ccmPatrolResult);
 	}
 	
 }

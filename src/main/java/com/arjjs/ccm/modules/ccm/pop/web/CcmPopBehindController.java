@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.pop.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
+import com.arjjs.ccm.modules.sys.entity.Area;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,7 +48,7 @@ import net.sf.json.util.CycleDetectionStrategy;
 
 /**
  * 留守人员Controller
- * 
+ *
  * @author arj
  * @version 2018-01-06
  */
@@ -60,11 +62,11 @@ public class CcmPopBehindController extends BaseController {
 	private CcmPeopleService ccmPeopleService;
 	@Autowired
 	private CcmLogTailService ccmLogTailService;
-	
+
 
 	@ModelAttribute
 	public CcmPopBehind get(@RequestParam(value = "id", required = false) String id,
-			@RequestParam(value = "peopleId", required = false) String peopleId) {
+							@RequestParam(value = "peopleId", required = false) String peopleId) {
 		CcmPopBehind entity = null;
 		if (StringUtils.isNotBlank(id)) {
 			entity = ccmPopBehindService.get(id);
@@ -84,7 +86,7 @@ public class CcmPopBehindController extends BaseController {
 	@RequiresPermissions("pop:ccmPopBehind:view")
 	@RequestMapping(value = { "list", "" })
 	public String list(CcmPopBehind ccmPopBehind, HttpServletRequest request, HttpServletResponse response,
-			Model model) {
+					   Model model) {
 		Page<CcmPopBehind> page = ccmPopBehindService.findPage(new Page<CcmPopBehind>(request, response), ccmPopBehind);
 		model.addAttribute("page", page);
 		return "ccm/pop/ccmPopBehindList";
@@ -103,10 +105,10 @@ public class CcmPopBehindController extends BaseController {
 		config.setExcludes(new String[]{"createBy","updateBy","currentUser","dbName","global","page","createDate","updateDate","sqlMap"});
 		config.setIgnoreDefaultExcludes(false);  //设置默认忽略
 		config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-		String jsonDocumentList = JSONArray.fromObject(ccmLogTailList,config).toString(); 
+		String jsonDocumentList = JSONArray.fromObject(ccmLogTailList,config).toString();
 		model.addAttribute("documentList", jsonDocumentList);
 		model.addAttribute("documentNumber", ccmLogTailList.size());
-		
+
 		model.addAttribute("ccmLogTailList", ccmLogTailList);
 		model.addAttribute("ccmPopBehind", ccmPopBehind);
 		return "ccm/pop/ccmPopBehindForm";
@@ -124,7 +126,7 @@ public class CcmPopBehindController extends BaseController {
 		if(ccmPop!=null){
 			ccmPop.setIsBehind(1);
 			ccmPeopleService.save(ccmPop);
-		} 
+		}
 		addMessage(redirectAttributes, "保存留守人员成功");
 		PrintWriter out = null;
 		try {
@@ -133,7 +135,7 @@ public class CcmPopBehindController extends BaseController {
 			e.printStackTrace();
 		}
 		CommUtil.openWinExpDiv(out, "保存留守人员成功");
-		
+
 		//return "redirect:" + Global.getAdminPath() + "/pop/ccmPopBehind/?repage";
 	}
 
@@ -146,11 +148,11 @@ public class CcmPopBehindController extends BaseController {
 			ccmPop.setIsBehind(0);
 			ccmPeopleService.save(ccmPop);
 		}
-		
+
 		addMessage(redirectAttributes, "删除留守人员成功");
 		return "redirect:" + Global.getAdminPath() + "/pop/ccmPopBehind/?repage";
 	}
-	
+
 	@RequiresPermissions("pop:ccmPopBehind:edit")
 	@RequestMapping(value = "savePop")
 	public String savePop(CcmPopBehind ccmPopBehind, Model model, RedirectAttributes redirectAttributes) {
@@ -164,7 +166,7 @@ public class CcmPopBehindController extends BaseController {
 			ccmPop.setIsBehind(1);
 			ccmPeopleService.save(ccmPop);
 		}
-		
+
 		addMessage(redirectAttributes, "保存留守人员成功");
 
 		return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/?repage";
@@ -184,7 +186,7 @@ public class CcmPopBehindController extends BaseController {
 
 	/**
 	 * 导出留守人员数据
-	 * 
+	 *
 	 * @param user
 	 * @param request
 	 * @param response
@@ -194,8 +196,8 @@ public class CcmPopBehindController extends BaseController {
 	@RequiresPermissions("pop:ccmPopBehind:view")
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmPopBehind ccmPopBehind, HttpServletRequest request,
-			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码"};
+							 HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","所属网格"};
 		try {
 			String fileName = "BehindPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 			List<CcmPopBehind> list = ccmPopBehindService.findList(ccmPopBehind);
@@ -209,7 +211,7 @@ public class CcmPopBehindController extends BaseController {
 
 	/**
 	 * 导入留守人员数据
-	 * 
+	 *
 	 * @param file
 	 * @param redirectAttributes
 	 * @return
@@ -227,9 +229,11 @@ public class CcmPopBehindController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmPopBehind> list = ei.getDataList(CcmPopBehind.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmPopBehind PopBehind : list) {
 				try {
-					
+
 					// 如果当前用户的身份未填写或者为空或者身份证号码位数不够18位则应该进行 剔除
 					if (StringUtils.isBlank(PopBehind.getIdent()) || PopBehind.getIdent().length() != 18) {
 						failureMsg.append("<br/>实有人口名" + PopBehind.getName() + " 导入失败：" + "身份证信息错误。");
@@ -237,29 +241,44 @@ public class CcmPopBehindController extends BaseController {
 						failureNum++;
 						continue;
 					}
-					
+
 					CcmPeople ccmPeople=new CcmPeople();
 					ccmPeople.setIdent(PopBehind.getIdent());
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmPopBehind popBehindFind;
 
-					if (list1.isEmpty()){
-						popBehindFind=null;
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(PopBehind.getIdent());
+						ccmPeople.setName(PopBehind.getName());
+						ccmPeople.setType(PopBehind.getType());
+						ccmPeople.setCensu(PopBehind.getCensu());
+						ccmPeople.setSex(PopBehind.getSex());
+						ccmPeople.setTelephone(PopBehind.getTelephone());
+						ccmPeople.setDomiciledetail(PopBehind.getDomiciledetail());
+						ccmPeople.setResidencedetail(PopBehind.getResidencedetail());
+						ccmPeople.setAreaGridId(PopBehind.getAreaGridId());
+						String birthStr = PopBehind.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(PopBehind.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsBehind(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					popBehindFind=ccmPopBehindService.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, PopBehind);
+					if(popBehindFind == null){
+						PopBehind.setPeopleId(list1.get(0).getId());
+						ccmPopBehindService.save(PopBehind);
+						successNum++;
 					}else{
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsBehind(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						popBehindFind=ccmPopBehindService.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, PopBehind);
-						if(popBehindFind == null){
-							PopBehind.setPeopleId(list1.get(0).getId());
-							ccmPopBehindService.save(PopBehind);
-							successNum++;
-						}else{
-							failureMsg.append("<br/>留守人员名 " + PopBehind.getName() + " 导入失败：记录已存在");
-						}
+						failureMsg.append("<br/>留守人员名 " + PopBehind.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>留守人员名 " + PopBehind.getName() + " 导入失败：");
@@ -281,6 +300,6 @@ public class CcmPopBehindController extends BaseController {
 		}
 		return "redirect:" + adminPath + "/pop/ccmPopBehind/?repage";
 	}
-	 
-	
+
+
 }

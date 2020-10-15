@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.arjjs.ccm.modules.ccm.house.entity.*;
+import com.arjjs.ccm.modules.ccm.pop.entity.CcmPopTenant;
 import com.arjjs.ccm.modules.sys.entity.Menu;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
@@ -13,10 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.arjjs.ccm.modules.ccm.house.dao.CcmHouseEmphasisDao;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmExpireArea;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmExpireUser;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseEmphasis;
-import com.arjjs.ccm.modules.ccm.house.entity.CcmIntervalPeople;
 import com.arjjs.ccm.modules.ccm.log.entity.CcmLogTail;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.sys.entity.SysConfig;
@@ -135,6 +133,10 @@ public class CcmHouseEmphasisService {
 	public List<CcmIntervalPeople> findExpirePeople(CcmPeople ccmPeople) {
 		return ccmHouseEmphasisDao.findExpirePeople(ccmPeople);
 	}
+
+	public List<CcmIntervalTenant> findExpireTenant(CcmPopTenant ccmPopTenant) {
+		return ccmHouseEmphasisDao.findExpireTenant(ccmPopTenant);
+	}
 	
 	public List<CcmExpireArea> findExpireUser() {
 		return ccmHouseEmphasisDao.findExpireUser();
@@ -142,6 +144,10 @@ public class CcmHouseEmphasisService {
 	
 	public List<CcmExpireUser> findUserByPeople(CcmPeople ccmPeople) {
 		return ccmHouseEmphasisDao.findUserByPeople(ccmPeople);
+	}
+
+	public List<CcmExpireUser> findUserByTenant(CcmPopTenant ccmPopTenant) {
+		return ccmHouseEmphasisDao.findUserByTenant(ccmPopTenant);
 	}
 	
 	

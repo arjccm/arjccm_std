@@ -31,7 +31,7 @@
 		<li><a href="${ctx}/ask/ccmAskLeader/?type=2">数据列表</a></li>
 		<li class="active"><a href="${ctx}/ask/ccmAskLeader/reply?id=${ccmAskLeader.id}">数据回复</a></li>
 	</ul>
-	<form:form id="inputForm" modelAttribute="ccmAskLeader" action="${ctx}/ask/ccmAskLeader/save" method="post" class="form-horizontal">
+	<form:form id="inputForm" modelAttribute="ccmAskLeader" action="${ctx}/ask/ccmAskLeader/save?type=2" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
 		<div class="control-group">

@@ -17,24 +17,20 @@
 </script>
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/patrol/ccmPatrolRespoint/">数据列表</a></li>
 		<shiro:hasPermission name="patrol:ccmPatrolRespoint:edit">
 			<li><a href="${ctx}/patrol/ccmPatrolRespoint/form">数据添加</a></li>
 		</shiro:hasPermission>
 	</ul>
-	<!--<form:form id="searchForm" modelAttribute="ccmPatrolRespoint" action="${ctx}/patrol/ccmPatrolRespoint/" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="ccmPatrolRespoint" action="${ctx}/patrol/ccmPatrolRespoint/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form">
-			 <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
-			<li class="clearfix"></li>
-		</ul> 
 	</form:form>
-	-->
 	<sys:message content="${message}" />
 	<table id="contentTable"
-		class="table table-striped table-bordered table-condensed">
+		class="table table-striped table-bordered table-condensed table-gradient">
 		<thead>
 			<tr>
 				<th>点位信息</th>
@@ -68,6 +64,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination" style="float: right; margin-top: 12px">${page}</div>
+</div>
 </body>
 </html>

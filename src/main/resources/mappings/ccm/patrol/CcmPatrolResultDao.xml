@@ -139,4 +139,9 @@
 		WHERE id = #{id}
 	</update>
 
+	<update id="endPlan">
+		UPDATE ccm_patrol_result SET
+		end_date = CURTIME(), update_by = #{updateBy.id}, update_date = CURTIME()
+		WHERE id = #{id}
+	</update>
 </mapper>

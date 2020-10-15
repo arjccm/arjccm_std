@@ -20,6 +20,7 @@ import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.CommUtil;
@@ -46,20 +47,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  * 艾滋病患者Controller
- * 
+ *
  * @author arj
  * @version 2018-01-05
  */
 @Controller
 @RequestMapping(value = "${adminPath}/house/ccmHouseAids")
 public class CcmHouseAidsController extends BaseController {
-	
+
 	@Lazy
 	@Autowired
 	private CcmHouseAidsService ccmHouseAidsService =new CcmHouseAidsService();
@@ -76,7 +78,7 @@ public class CcmHouseAidsController extends BaseController {
 
 	@ModelAttribute
 	public CcmHouseAids get(@RequestParam(value = "id", required = false) String id,
-			@RequestParam(value = "peopleId", required = false) String peopleId) {
+							@RequestParam(value = "peopleId", required = false) String peopleId) {
 		CcmHouseAids entity = null;
 		if (StringUtils.isNotBlank(id)) {
 			entity = ccmHouseAidsService.get(id);
@@ -97,11 +99,11 @@ public class CcmHouseAidsController extends BaseController {
 	@RequiresPermissions("house:ccmHouseAids:view")
 	@RequestMapping(value = { "list", "" })
 	public String list(CcmHouseAids ccmHouseAids, HttpServletRequest request, HttpServletResponse response,
-			Model model,@Param("tableType")String tableType) {
+					   Model model,@Param("tableType")String tableType) {
 //		Page<CcmHouseAids> page = ccmHouseAidsService.findPage(new Page<CcmHouseAids>(request, response), ccmHouseAids);
 //		model.addAttribute("page", page);
 //		return "ccm/house/ccmHouseAidsList";
-		
+
 
 		Page<CcmHouseAids> page = new Page();
 		String permissionKey = request.getParameter("permissionKey");
@@ -147,20 +149,20 @@ public class CcmHouseAidsController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(CcmHouseAids ccmHouseAids, Model model) {
 		// 创建 查询对象 建立查询条件
-				CcmLogTail ccmLogTailDto = new CcmLogTail();
-				ccmLogTailDto.setRelevanceId(ccmHouseAids.getId());
-				ccmLogTailDto.setRelevanceTable("ccm_house_aids");
-				List<CcmLogTail > ccmLogTailList = ccmLogTailService.findListByObject(ccmLogTailDto);
-				// 返回查询结果
-				JsonConfig config = new JsonConfig();
-				config.setExcludes(new String[]{"createBy","updateBy","currentUser","dbName","global","page","createDate","updateDate","sqlMap"});
-				config.setIgnoreDefaultExcludes(false);  //设置默认忽略
-				config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-				String jsonDocumentList = JSONArray.fromObject(ccmLogTailList,config).toString(); 
-				model.addAttribute("documentList", jsonDocumentList);
-				model.addAttribute("documentNumber", ccmLogTailList.size());
-				
-				model.addAttribute("ccmLogTailList", ccmLogTailList);
+		CcmLogTail ccmLogTailDto = new CcmLogTail();
+		ccmLogTailDto.setRelevanceId(ccmHouseAids.getId());
+		ccmLogTailDto.setRelevanceTable("ccm_house_aids");
+		List<CcmLogTail > ccmLogTailList = ccmLogTailService.findListByObject(ccmLogTailDto);
+		// 返回查询结果
+		JsonConfig config = new JsonConfig();
+		config.setExcludes(new String[]{"createBy","updateBy","currentUser","dbName","global","page","createDate","updateDate","sqlMap"});
+		config.setIgnoreDefaultExcludes(false);  //设置默认忽略
+		config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+		String jsonDocumentList = JSONArray.fromObject(ccmLogTailList,config).toString();
+		model.addAttribute("documentList", jsonDocumentList);
+		model.addAttribute("documentNumber", ccmLogTailList.size());
+
+		model.addAttribute("ccmLogTailList", ccmLogTailList);
 		model.addAttribute("ccmHouseAids", ccmHouseAids);
 		return "ccm/house/ccmHouseAidsForm";
 	}
@@ -214,7 +216,7 @@ public class CcmHouseAidsController extends BaseController {
 			ccmPop.setFocuPers(1);
 			ccmPeopleService.save(ccmPop);
 		}
-		
+
 		addMessage(redirectAttributes, "保存艾滋病患者成功");
 
 		return "redirect:" + Global.getAdminPath() + "/pop/ccmPeople/?repage";
@@ -231,11 +233,11 @@ public class CcmHouseAidsController extends BaseController {
 		model.addAttribute("ccmHouseAids", aids);
 		return "/ccm/house/pop/ccmHousePoPAidsForm";
 	}
-	
+
 
 	/**
 	 * 导出艾滋病患者数据
-	 * 
+	 *
 	 * @param user
 	 * @param request
 	 * @param response
@@ -245,11 +247,11 @@ public class CcmHouseAidsController extends BaseController {
 	@RequiresPermissions("house:ccmHouseAids:view")
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHouseAids ccmHouseAids, HttpServletRequest request,
-			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","感染途径","关注程度","帮扶人姓名","收治情况","关注类型","帮扶人联系方式","是否有违法犯罪史"};
+							 HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","感染途径","关注程度","帮扶人姓名","收治情况","关注类型","帮扶人联系方式","是否有违法犯罪史","所属网格"};
 		try {
 			String fileName = "AidsPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
-			
+
 			List<CcmHouseAids> list = new ArrayList<CcmHouseAids>();
 			String permissionKey = request.getParameter("permissionKey");
 			User user = UserUtils.getUser();
@@ -260,7 +262,7 @@ public class CcmHouseAidsController extends BaseController {
 					list = ccmHouseAidsService.findList(ccmHouseAids);
 				}
 			}
-			
+
 //			List<CcmHouseAids> list = ccmHouseAidsService.findList(ccmHouseAids);
 			new ExportExcel("艾滋病患者数据", CcmHouseAids.class,strArr).setDataList(list).write(response, fileName).dispose();
 			return null;
@@ -272,7 +274,7 @@ public class CcmHouseAidsController extends BaseController {
 
 	/**
 	 * 导入艾滋病患者数据
-	 * 
+	 *
 	 * @param file
 	 * @param redirectAttributes
 	 * @return
@@ -290,13 +292,15 @@ public class CcmHouseAidsController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmHouseAids> list = ei.getDataList(CcmHouseAids.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHouseAids HouseAids : list) {
 				try {
 
 					if(EntityTools.isEmpty(HouseAids)){
 						continue;
 					}
-					
+
 					if( StringUtils.isBlank(HouseAids.getInfeRoute()) ||
 							StringUtils.isBlank(HouseAids.getAtteType()) ||
 							StringUtils.isBlank(HouseAids.getHelpName()) ||
@@ -332,7 +336,7 @@ public class CcmHouseAidsController extends BaseController {
 						failureMsg.append("<br/>艾滋病患者 " + HouseAids.getName() + " 导入失败：必填项为空。"+str.toString());
 						continue;
 					}
-					
+
 					// 如果当前用户的身份未填写或者为空或者身份证号码位数不够18位则应该进行 剔除
 					if (StringUtils.isBlank(HouseAids.getIdent()) || HouseAids.getIdent().length() != 18) {
 						failureMsg.append("<br/>实有人口名" + HouseAids.getName() + " 导入失败：" + "身份证信息错误。");
@@ -340,30 +344,44 @@ public class CcmHouseAidsController extends BaseController {
 						failureNum++;
 						continue;
 					}
-					
+
 					CcmPeople ccmPeople=new CcmPeople();
 					ccmPeople.setIdent(HouseAids.getIdent());
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHouseAids houseAidsFind;
 
-					if (list1.isEmpty()){
-						failureMsg.append("<br/>艾滋病患者 " + HouseAids.getName() + " 导入失败：实有人口表中无此人");
-						continue;
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(HouseAids.getIdent());
+						ccmPeople.setName(HouseAids.getName());
+						ccmPeople.setType(HouseAids.getType());
+						ccmPeople.setCensu(HouseAids.getCensu());
+						ccmPeople.setSex(HouseAids.getSex());
+						ccmPeople.setTelephone(HouseAids.getTelephone());
+						ccmPeople.setDomiciledetail(HouseAids.getDomiciledetail());
+						ccmPeople.setResidencedetail(HouseAids.getResidencedetail());
+						ccmPeople.setAreaGridId(HouseAids.getAreaGridId());
+						String birthStr = HouseAids.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(HouseAids.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsAids(1);;
+					ccmPeopleService.updatePeople(ccmPeople);
+					houseAidsFind=ccmHouseAidsService.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, HouseAids);
+					if(houseAidsFind == null){
+						HouseAids.setPeopleId(list1.get(0).getId());
+						ccmHouseAidsService.save(HouseAids);
+						successNum++;
 					}else{
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsAids(1);;
-						ccmPeopleService.updatePeople(ccmPeople);
-						houseAidsFind=ccmHouseAidsService.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, HouseAids);
-						if(houseAidsFind == null){
-							HouseAids.setPeopleId(list1.get(0).getId());
-							ccmHouseAidsService.save(HouseAids);
-							successNum++;
-						}else{
-							failureMsg.append("<br/>艾滋病患者 " + HouseAids.getName() + " 导入失败：记录已存在");
-						}
+						failureMsg.append("<br/>艾滋病患者 " + HouseAids.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>艾滋病患者 " + HouseAids.getName() + " 导入失败：");
@@ -385,6 +403,6 @@ public class CcmHouseAidsController extends BaseController {
 		}
 		return "redirect:" + adminPath + "/house/ccmHouseAids/?repage";
 	}
-	 
+
 
 }

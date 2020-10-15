@@ -6,8 +6,10 @@
 <meta name="decorator" content="default" />
 <script type="text/javascript"
 	src="${ctxStatic}/ccm/patrol/js/ccmPatrolResultForm.js"></script>
+	<link href="${ctxStatic}/bootstrap/2.3.1/css_input/input_Custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="back-list clearfix">
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/patrol/ccmPatrolResult/">数据列表</a></li>
 		<li class="active"><a
@@ -173,5 +175,6 @@
 				onclick="history.go(-1)" />
 		</div>
 	</form:form>
+</div>
 </body>
 </html>

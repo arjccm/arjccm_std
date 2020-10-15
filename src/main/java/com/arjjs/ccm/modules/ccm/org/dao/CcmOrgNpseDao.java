@@ -95,7 +95,7 @@ public interface CcmOrgNpseDao extends CrudDao<CcmOrgNpse> {
 	public List<EchartType> findCompImpoType2();
 	
 	//首页统计两新组织数量 
-	public List<CcmOrgNpse> findCountByCompType();
+	public List<CcmOrgNpse> findCountByCompType(String parentIds);
 
 	//按登记注册类型分类的图表
 	public List<EchartType> getOrgNpseByRegiType(CcmOrgNpse ccmOrgNpse);

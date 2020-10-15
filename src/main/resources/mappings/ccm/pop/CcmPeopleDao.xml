@@ -395,8 +395,10 @@
 			count( a.id ) AS "count" ,a.type AS "type"
 		FROM
 			ccm_people a
+			LEFT JOIN sys_area sa ON a.area_grid_id = sa.id
 		WHERE
 			a.del_flag = 0
+			AND sa.parent_ids LIKE #{param1}
 		GROUP BY
 			a.type) d ON c.value = d.type
 	</select>
@@ -413,8 +415,10 @@
 			count( a.id ) AS "count" ,a.uniformlogo AS "uniformlogo"
 		FROM
 			ccm_people a
+			LEFT JOIN sys_area sa ON a.area_grid_id = sa.id
 		WHERE
 			a.del_flag = 0
+			AND sa.parent_ids LIKE #{param1}
 		GROUP BY
 			a.uniformlogo) d ON c.value = d.uniformlogo
 	</select>
@@ -448,33 +452,33 @@
 
 	<!-- 首页统计重点人员数量 -->
 	<select id="findCountPeopleForType" resultType="CcmPeople">
-		SELECT count( a.id ) AS "count" ,"kym" AS "name" FROM ccm_house_kym a LEFT JOIN ccm_people b ON a.people_id = b.id AND b.del_flag = 0 WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"kym" AS "name" FROM ccm_house_kym a LEFT JOIN ccm_people b ON a.people_id = b.id AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"dangerous" AS "name" FROM ccm_house_dangerous a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"dangerous" AS "name" FROM ccm_house_dangerous a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"illegal" AS "name"  FROM ccm_house_deliberately_illegal a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"illegal" AS "name"  FROM ccm_house_deliberately_illegal a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"dispute" AS "name"  FROM ccm_house_dispute a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"dispute" AS "name"  FROM ccm_house_dispute a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"drugs" AS "name"  FROM ccm_house_drugs a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"drugs" AS "name"  FROM ccm_house_drugs a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"escape" AS "name"  FROM ccm_house_escape a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"escape" AS "name"  FROM ccm_house_escape a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"heresy" AS "name"  FROM ccm_house_heresy a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"heresy" AS "name"  FROM ccm_house_heresy a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"petition" AS "name"  FROM ccm_house_petition a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"petition" AS "name"  FROM ccm_house_petition a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"psychogeny" AS "name"  FROM ccm_house_psychogeny a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"psychogeny" AS "name"  FROM ccm_house_psychogeny a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"rectification" AS "name"  FROM ccm_house_rectification a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"rectification" AS "name"  FROM ccm_house_rectification a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"release" AS "name"  FROM ccm_house_release a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"release" AS "name"  FROM ccm_house_release a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"aids" AS "name"  FROM ccm_house_aids a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"aids" AS "name"  FROM ccm_house_aids a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"security" AS "name"  FROM ccm_harm_national_security a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"security" AS "name"  FROM ccm_harm_national_security a LEFT JOIN ccm_people b ON a.people_id = b.id  AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 			UNION ALL
-		SELECT count( a.id ) AS "count" ,"serious" AS "name"  FROM ccm_serious_criminal_offense a LEFT JOIN ccm_people b ON a.people_id = b.id AND b.del_flag = 0  WHERE a.del_flag = 0
+		SELECT count( a.id ) AS "count" ,"serious" AS "name"  FROM ccm_serious_criminal_offense a LEFT JOIN ccm_people b ON a.people_id = b.id AND b.del_flag = 0 LEFT JOIN sys_area sa ON b.area_grid_id = sa.id WHERE a.del_flag = 0 AND sa.parent_ids LIKE #{param1}
 
 	</select>
 
@@ -1327,7 +1331,7 @@
 				AND a.politics = #{politics}
 			</if>
 			<if test="ident != null and ident != ''">
-				AND a.ident LIKE '${ident}%'
+				AND a.ident LIKE '%${ident}%'
 			</if>
 			<if test="specialCareTypes != null and specialCareTypes.length > 0">
 				AND (

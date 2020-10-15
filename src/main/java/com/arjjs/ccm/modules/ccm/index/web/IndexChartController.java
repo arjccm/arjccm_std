@@ -1,5 +1,8 @@
 package com.arjjs.ccm.modules.ccm.index.web;
 
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.arjjs.ccm.modules.sys.entity.Office;
+import com.arjjs.ccm.modules.sys.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -66,7 +69,8 @@ public class IndexChartController extends BaseController {
 	 */
 	@RequestMapping(value = "findCountByCompType")
 	public Object findCountByCompType() {
-		return indexChartService.findCountByCompType();
+		User user = UserUtils.getUser();
+		return indexChartService.findCountByCompType("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**
@@ -96,7 +100,8 @@ public class IndexChartController extends BaseController {
 	 */
 	@RequestMapping(value = "findCountSchool")
 	public Object findCountSchool() {
-		return indexChartService.findCountSchool();
+		User user = UserUtils.getUser();
+		return indexChartService.findCountSchool("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**
@@ -116,7 +121,8 @@ public class IndexChartController extends BaseController {
 	 */
 	@RequestMapping(value = "findCountPeopleForType")
 	public Object findCountPeopleForType() {
-		return indexChartService.findCountPeopleForType();
+		User user = UserUtils.getUser();
+		return indexChartService.findCountPeopleForType("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**
@@ -127,7 +133,8 @@ public class IndexChartController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "findCountByType")
 	public Object findCountByType() {
-		return indexChartService.findCountByType();
+		User user = UserUtils.getUser();
+		return indexChartService.findCountByType("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**
@@ -137,7 +144,8 @@ public class IndexChartController extends BaseController {
 	 */
 	@RequestMapping(value = "findCountByUniformlogo")
 	public Object findCountByUniformlogo() {
-		return indexChartService.findCountByUniformlogo();
+		User user = UserUtils.getUser();
+		return indexChartService.findCountByUniformlogo("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**
@@ -147,7 +155,8 @@ public class IndexChartController extends BaseController {
 	 */
 	@RequestMapping(value = "findCountByHouseType")
 	public Object findCountByHouseType() {
-		return indexChartService.findCountByHouseType();
+		User user = UserUtils.getUser();
+		return indexChartService.findCountByHouseType("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**
@@ -157,7 +166,8 @@ public class IndexChartController extends BaseController {
 	 */
 	@RequestMapping(value = "findCountAddressLibrary")
 	public Object findCountAddressLibrary() {
-		return indexChartService.findCountAddressLibrary();
+		User user = UserUtils.getUser();
+		return indexChartService.findCountAddressLibrary("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**
@@ -168,7 +178,8 @@ public class IndexChartController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "findCountByRentPur")
 	public Object findCountByRentPur() {
-		return indexChartService.findCountByRentPur();
+		User user = UserUtils.getUser();
+		return indexChartService.findCountByRentPur("%" + user.getOffice().getArea().getId() + "%");
 	}
 	/*public Object findCountByHousePrup() {
 		return indexChartService.findCountByHousePrup();
@@ -183,7 +194,8 @@ public class IndexChartController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "findCountByconstruction")
 	public Object findCountByconstruction() {
-		return indexChartService.findCountByconstruction();
+		User user = UserUtils.getUser();
+		return indexChartService.findCountByconstruction("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**
@@ -204,7 +216,8 @@ public class IndexChartController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "findKeyPlace")
 	public Object findKeyPlace() {
-		return indexChartService.findKeyPlace();
+		User user = UserUtils.getUser();
+		return indexChartService.findKeyPlace("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**

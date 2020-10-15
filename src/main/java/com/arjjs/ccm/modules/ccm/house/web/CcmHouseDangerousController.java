@@ -20,6 +20,7 @@ import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.utils.UserUtils;
 import com.arjjs.ccm.tool.CommUtil;
@@ -45,6 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -291,6 +293,8 @@ public class CcmHouseDangerousController extends BaseController {
 				StringBuilder failureMsg = new StringBuilder();
 				ImportExcel ei = new ImportExcel(file, 1, 0);
 				List<CcmHouseDangerous> list = ei.getDataList(CcmHouseDangerous.class);
+				//格式化日期
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				for (CcmHouseDangerous HouseDangerous : list) {
 					try {
 
@@ -335,24 +339,38 @@ public class CcmHouseDangerousController extends BaseController {
 						List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 						CcmHouseDangerous HouseDangerousFind;
 
-						if (list1.isEmpty()){
-							failureMsg.append("<br/>危险品从业人员名 " + HouseDangerous.getName() + " 导入失败：实有人口表中无此人");
-							continue;
+						if(list1.isEmpty()){
+							ccmPeople.setIdent(HouseDangerous.getIdent());
+							ccmPeople.setName(HouseDangerous.getName());
+							ccmPeople.setType(HouseDangerous.getType());
+							ccmPeople.setCensu(HouseDangerous.getCensu());
+							ccmPeople.setSex(HouseDangerous.getSex());
+							ccmPeople.setTelephone(HouseDangerous.getTelephone());
+							ccmPeople.setDomiciledetail(HouseDangerous.getDomiciledetail());
+							ccmPeople.setResidencedetail(HouseDangerous.getResidencedetail());
+							ccmPeople.setAreaGridId(HouseDangerous.getAreaGridId());
+							String birthStr = HouseDangerous.getIdent().substring(6, 14);
+							ccmPeople.setBirthday(sdf.parse(birthStr));
+							Area area = new Area();
+							area.setId(HouseDangerous.getAreaGridId().getParentId());
+							ccmPeople.setAreaComId(area);
+							ccmPeopleService.save(ccmPeople);
+							list1.add(ccmPeople);
+						}
+
+						ccmPeople.setId(list1.get(0).getId());
+						ccmPeople.setUpdateBy(UserUtils.getUser());
+						ccmPeople.setUpdateDate(new Date());
+						ccmPeople.setIsDangerous(1);
+						ccmPeopleService.updatePeople(ccmPeople);
+						HouseDangerousFind=ccmHouseDangerousService.getPeopleALL(list1.get(0).getId());
+						BeanValidators.validateWithException(validator, HouseDangerous);
+						if(HouseDangerousFind == null){
+							HouseDangerous.setPeopleId(list1.get(0).getId());
+							ccmHouseDangerousService.save(HouseDangerous);
+							successNum++;
 						}else{
-							ccmPeople.setId(list1.get(0).getId());
-							ccmPeople.setUpdateBy(UserUtils.getUser());
-							ccmPeople.setUpdateDate(new Date());
-							ccmPeople.setIsDangerous(1);
-							ccmPeopleService.updatePeople(ccmPeople);
-							HouseDangerousFind=ccmHouseDangerousService.getPeopleALL(list1.get(0).getId());
-							BeanValidators.validateWithException(validator, HouseDangerous);
-							if(HouseDangerousFind == null){
-								HouseDangerous.setPeopleId(list1.get(0).getId());
-								ccmHouseDangerousService.save(HouseDangerous);
-								successNum++;
-							}else{
-								failureMsg.append("<br/>危险品从业人员名 " + HouseDangerous.getName() + " 导入失败：记录已存在");
-							}
+							failureMsg.append("<br/>危险品从业人员名 " + HouseDangerous.getName() + " 导入失败：记录已存在");
 						}
 					} catch (ConstraintViolationException ex) {
 						failureMsg.append("<br/>危险品从业人员名 " + HouseDangerous.getName() + " 导入失败：");

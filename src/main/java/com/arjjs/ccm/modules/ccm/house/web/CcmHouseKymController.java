@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.house.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.tool.EntityTools;
 import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -194,7 +196,7 @@ public class CcmHouseKymController extends BaseController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHouseKym ccmHouseKym, HttpServletRequest request,
 			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","人员类型","监护人公民身份号码","与监护人关系","监护人居住详址","帮扶人联系方式","关注程度","家庭情况","监护人姓名","监护人联系方式","帮扶人姓名","帮扶手段","是否犯罪"};
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","人员类型","监护人公民身份号码","与监护人关系","监护人居住详址","帮扶人联系方式","关注程度","家庭情况","监护人姓名","监护人联系方式","帮扶人姓名","帮扶手段","是否犯罪","所属网格"};
 		try {
 			String fileName = "KymPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 			List<CcmHouseKym> list = ccmHouseKymService.findList(ccmHouseKym);
@@ -226,6 +228,8 @@ public class CcmHouseKymController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<CcmHouseKym> list = ei.getDataList(CcmHouseKym.class);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHouseKym ccmHouseKym : list) {
 				try {
 
@@ -264,24 +268,38 @@ public class CcmHouseKymController extends BaseController {
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHouseKym ccmHouseKymFind;
 
-					if (list1.isEmpty()){
-						failureMsg.append("<br/>重点青少年 " + ccmHouseKym.getName() + " 导入失败：实有人口表中无此人");
-						continue;
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(ccmHouseKym.getIdent());
+						ccmPeople.setName(ccmHouseKym.getName());
+						ccmPeople.setType(ccmHouseKym.getType());
+						ccmPeople.setCensu(ccmHouseKym.getCensu());
+						ccmPeople.setSex(ccmHouseKym.getSex());
+						ccmPeople.setTelephone(ccmHouseKym.getTelephone());
+						ccmPeople.setDomiciledetail(ccmHouseKym.getDomiciledetail());
+						ccmPeople.setResidencedetail(ccmHouseKym.getResidencedetail());
+						ccmPeople.setAreaGridId(ccmHouseKym.getAreaGridId());
+						String birthStr = ccmHouseKym.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(ccmHouseKym.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsKym(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					ccmHouseKymFind=ccmHouseKymService.getPeopleALL(list1.get(0).getId());
+					BeanValidators.validateWithException(validator, ccmHouseKym);
+					if(ccmHouseKymFind == null){
+						ccmHouseKym.setPeopleId(list1.get(0).getId());
+						ccmHouseKymService.save(ccmHouseKym);
+						successNum++;
 					}else{
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsKym(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						ccmHouseKymFind=ccmHouseKymService.getPeopleALL(list1.get(0).getId());
-						BeanValidators.validateWithException(validator, ccmHouseKym);
-						if(ccmHouseKymFind == null){
-							ccmHouseKym.setPeopleId(list1.get(0).getId());
-							ccmHouseKymService.save(ccmHouseKym);
-							successNum++;
-						}else{
-							failureMsg.append("<br/>重点青少年 " + ccmHouseKym.getName() + " 导入失败：记录已存在");
-						}
+						failureMsg.append("<br/>重点青少年 " + ccmHouseKym.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>重点青少年 " + ccmHouseKym.getName() + " 导入失败：");

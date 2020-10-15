@@ -56,13 +56,12 @@ public class CcmAskLeaderService extends CrudService<CcmAskLeaderDao, CcmAskLead
 	}
 	
 	@Transactional(readOnly = false)
-	public void save(CcmAskLeader ccmAskLeader) {
-		if(StringUtils.isEmpty(ccmAskLeader.getId())){
-			ccmAskLeader.setReplyStatus("01");
-		}
-		if(StringUtils.isNotEmpty(ccmAskLeader.getReply())){
+	public void save(CcmAskLeader ccmAskLeader,String type) {
+		if(StringUtils.isNotEmpty(type) && "2".equals(type)){
 			ccmAskLeader.setReplyTime(new Date());
 			ccmAskLeader.setReplyStatus("02");
+		}else{
+			ccmAskLeader.setReplyStatus("01");
 		}
 		super.save(ccmAskLeader);
 	}

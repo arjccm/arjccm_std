@@ -3,6 +3,7 @@
  */
 package com.arjjs.ccm.modules.ccm.house.entity;
 
+import com.arjjs.ccm.modules.sys.entity.Area;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -49,6 +50,17 @@ public class CcmHouseDrugs extends DataEntity<CcmHouseDrugs> {
 
 	private Date intervalDate;  // 走访时间
 	private Date nextvalDate;   // 下次走访时间
+
+	private Area areaGridId; //所属网格
+
+	@ExcelField(title="所属网格", align=2, sort=21)
+	public Area getAreaGridId() {
+		return areaGridId;
+	}
+
+	public void setAreaGridId(Area areaGridId) {
+		this.areaGridId = areaGridId;
+	}
 
 	public Date getNextvalDate() {
 		return nextvalDate;
@@ -245,7 +257,7 @@ public class CcmHouseDrugs extends DataEntity<CcmHouseDrugs> {
 		this.consDrug = consDrug;
 	}
 
-	@ExcelField(title="姓名", align=1, sort=1)
+	@ExcelField(title="姓名", align=2, sort=1)
 	public String getName() {
 		return name;
 	}

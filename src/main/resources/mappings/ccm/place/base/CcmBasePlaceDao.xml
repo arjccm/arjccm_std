@@ -133,6 +133,9 @@
 			<if test="area != null and area.id != null and area.id != ''">
 				AND a.case_place = #{area.id}
 			</if>
+			<if test="area != null and area.parentIds != null and area.parentIds != ''">
+				AND s.parent_ids LIKE #{area.parentIds}
+			</if>
 			<if test="placeName != null and placeName != ''">
 				AND a.place_name LIKE
 				<if test="dbName == 'oracle'">'%'||#{placeName}||'%'</if>

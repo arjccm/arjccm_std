@@ -18,6 +18,7 @@ import com.arjjs.ccm.modules.ccm.log.service.CcmLogTailService;
 import com.arjjs.ccm.modules.ccm.pop.entity.CcmPeople;
 import com.arjjs.ccm.modules.ccm.pop.service.CcmPeopleService;
 import com.arjjs.ccm.modules.ccm.sys.service.SysConfigService;
+import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.Dict;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.modules.sys.service.DictService;
@@ -45,6 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,7 +73,7 @@ public class CcmHouseRectificationController extends BaseController {
 
 	@ModelAttribute
 	public CcmHouseRectification get(@RequestParam(value = "id", required = false) String id,
-			@RequestParam(value = "peopleId", required = false) String peopleId) {
+									 @RequestParam(value = "peopleId", required = false) String peopleId) {
 		CcmHouseRectification entity = null;
 		if (StringUtils.isNotBlank(id)) {
 			entity = ccmHouseRectificationService.get(id);
@@ -91,8 +93,8 @@ public class CcmHouseRectificationController extends BaseController {
 	@RequiresPermissions("house:ccmHouseRectification:view")
 	@RequestMapping(value = { "list", "" })
 	public String list(@Param("tableType") String tableType, CcmHouseRectification ccmHouseRectification,
-			HttpServletRequest request, HttpServletResponse response, Model model) {
-//		Page<CcmHouseRectification> page = ccmHouseRectificationService.findPage(new Page<CcmHouseRectification>(request, response), ccmHouseRectification); 
+					   HttpServletRequest request, HttpServletResponse response, Model model) {
+//		Page<CcmHouseRectification> page = ccmHouseRectificationService.findPage(new Page<CcmHouseRectification>(request, response), ccmHouseRectification);
 //		model.addAttribute("page", page);
 
 		Page<CcmHouseRectification> page = new Page();
@@ -163,7 +165,7 @@ public class CcmHouseRectificationController extends BaseController {
 	@RequiresPermissions("house:ccmHouseRectification:edit")
 	@RequestMapping(value = "save")
 	public void save(HttpServletRequest request, HttpServletResponse response,
-			CcmHouseRectification ccmHouseRectification, Model model, RedirectAttributes redirectAttributes)
+					 CcmHouseRectification ccmHouseRectification, Model model, RedirectAttributes redirectAttributes)
 			throws IOException {
 		if (!beanValidator(model, ccmHouseRectification)) {
 //			return form(ccmHouseRectification, model);
@@ -187,7 +189,7 @@ public class CcmHouseRectificationController extends BaseController {
 	@RequiresPermissions("house:ccmHouseRectification:edit")
 	@RequestMapping(value = "delete")
 	public String delete(HttpServletRequest request, CcmHouseRectification ccmHouseRectification,
-			RedirectAttributes redirectAttributes) {
+						 RedirectAttributes redirectAttributes) {
 		ccmHouseRectificationService.delete(ccmHouseRectification);
 		addMessage(redirectAttributes, "删除社区矫正人员成功");
 		// 更新 当前人不再 是 社区矫正人员
@@ -206,7 +208,7 @@ public class CcmHouseRectificationController extends BaseController {
 	@RequiresPermissions("house:ccmHouseRectification:edit")
 	@RequestMapping(value = "savePop")
 	public String savePop(CcmHouseRectification ccmHouseRectification, Model model,
-			RedirectAttributes redirectAttributes) {
+						  RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, ccmHouseRectification)) {
 			return form(ccmHouseRectification, model);
 		}
@@ -238,7 +240,7 @@ public class CcmHouseRectificationController extends BaseController {
 
 	/**
 	 * 导出社区矫正人员数据
-	 * 
+	 *
 	 * @param user
 	 * @param request
 	 * @param response
@@ -248,8 +250,8 @@ public class CcmHouseRectificationController extends BaseController {
 	@RequiresPermissions("house:ccmHouseRectification:view")
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public String exportFile(CcmHouseRectification ccmHouseRectification, HttpServletRequest request,
-			HttpServletResponse response, RedirectAttributes redirectAttributes) {
-		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","社区矫正人员编号","矫正类別","矫正开始日期","接收方式","是否建立矫正小组","关注程度","案事件类別","矫正结束日期","矫正小组人员组成情况","是否有脱管","是否有漏管","是否重新犯罪"};
+							 HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		String [] strArr={"姓名","联系方式","人口类型","现住门（楼）详址","公民身份号码","社区矫正人员编号","矫正类別","矫正开始日期","接收方式","是否建立矫正小组","关注程度","案事件类別","矫正结束日期","矫正小组人员组成情况","是否有脱管","是否有漏管","是否重新犯罪","所属网格"};
 		try {
 			String fileName = "RectificationPeople" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
 
@@ -283,7 +285,7 @@ public class CcmHouseRectificationController extends BaseController {
 				}
 				str1.append(",");
 				rectification.setFourHis(str1.toString());
-				
+
 				String[] thrarr = rectification.getThrHold().split(",");
 				StringBuilder str2 = new StringBuilder();
 				for(int i=0;i<three.size();i++) {
@@ -295,7 +297,7 @@ public class CcmHouseRectificationController extends BaseController {
 				}
 				str2.append(",");
 				rectification.setThrHold(str2.toString());
-				
+
 				String[] jzxzarr = rectification.getCorrected().split(",");
 				StringBuilder str3 = new StringBuilder();
 				for(int i=0;i<jzxz.size();i++) {
@@ -307,7 +309,7 @@ public class CcmHouseRectificationController extends BaseController {
 				}
 				str3.append(",");
 				rectification.setCorrected(str3.toString());
- 			}
+			}
 //			List<CcmHouseRectification> list = ccmHouseRectificationService.findList(ccmHouseRectification);
 			new ExportExcel("社区矫正人员数据", CcmHouseRectification.class,strArr).setDataList(list).write(response, fileName).dispose();
 			return null;
@@ -319,7 +321,7 @@ public class CcmHouseRectificationController extends BaseController {
 
 	/**
 	 * 导入社区矫正人员数据
-	 * 
+	 *
 	 * @param file
 	 * @param redirectAttributes
 	 * @return
@@ -345,6 +347,8 @@ public class CcmHouseRectificationController extends BaseController {
 			List<Dict> three = dictService.findList(dict);
 			dict.setType("ccm_jzxz_ryzc");
 			List<Dict> jzxz = dictService.findList(dict);
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for (CcmHouseRectification HouseRectification : list) {
 				try {
 
@@ -407,7 +411,7 @@ public class CcmHouseRectificationController extends BaseController {
 						failureMsg.append("<br/>社区矫正人员名 " + HouseRectification.getName() + " 导入失败：必填项为空。"+str.toString());
 						continue;
 					}
-					
+
 					if(StringUtils.isNotEmpty(HouseRectification.getFourHis())) {
 						String[] fourarr = HouseRectification.getFourHis().split(",");
 						StringBuilder str1 = new StringBuilder();
@@ -455,29 +459,43 @@ public class CcmHouseRectificationController extends BaseController {
 						failureNum++;
 						continue;
 					}
-					
+
 					CcmPeople ccmPeople = new CcmPeople();
 					ccmPeople.setIdent(HouseRectification.getIdent());
 					List<CcmPeople> list1 = ccmPeopleService.findList(ccmPeople);
 					CcmHouseRectification HouseRectificationFind;
 
-					if (list1.isEmpty()) {
-						failureMsg.append("<br/>社区矫正人员名 " + HouseRectification.getName() + " 导入失败：实有人口表中无此人");
-						continue;
+					if(list1.isEmpty()){
+						ccmPeople.setIdent(HouseRectification.getIdent());
+						ccmPeople.setName(HouseRectification.getName());
+						ccmPeople.setType(HouseRectification.getType());
+						ccmPeople.setCensu(HouseRectification.getCensu());
+						ccmPeople.setSex(HouseRectification.getSex());
+						ccmPeople.setTelephone(HouseRectification.getTelephone());
+						ccmPeople.setDomiciledetail(HouseRectification.getDomiciledetail());
+						ccmPeople.setResidencedetail(HouseRectification.getResidencedetail());
+						ccmPeople.setAreaGridId(HouseRectification.getAreaGridId());
+						String birthStr = HouseRectification.getIdent().substring(6, 14);
+						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Area area = new Area();
+						area.setId(HouseRectification.getAreaGridId().getParentId());
+						ccmPeople.setAreaComId(area);
+						ccmPeopleService.save(ccmPeople);
+						list1.add(ccmPeople);
+					}
+
+					ccmPeople.setId(list1.get(0).getId());
+					ccmPeople.setUpdateBy(UserUtils.getUser());
+					ccmPeople.setUpdateDate(new Date());
+					ccmPeople.setIsRectification(1);
+					ccmPeopleService.updatePeople(ccmPeople);
+					HouseRectificationFind = ccmHouseRectificationService.getPeopleALL(list1.get(0).getId());
+					if (HouseRectificationFind == null) {
+						HouseRectification.setPeopleId(list1.get(0).getId());
+						ccmHouseRectificationService.save(HouseRectification);
+						successNum++;
 					} else {
-						ccmPeople.setId(list1.get(0).getId());
-						ccmPeople.setUpdateBy(UserUtils.getUser());
-						ccmPeople.setUpdateDate(new Date());
-						ccmPeople.setIsRectification(1);
-						ccmPeopleService.updatePeople(ccmPeople);
-						HouseRectificationFind = ccmHouseRectificationService.getPeopleALL(list1.get(0).getId());
-						if (HouseRectificationFind == null) {
-							HouseRectification.setPeopleId(list1.get(0).getId());
-							ccmHouseRectificationService.save(HouseRectification);
-							successNum++;
-						} else {
-							failureMsg.append("<br/>社区矫正人员名 " + HouseRectification.getName() + " 导入失败：记录已存在");
-						}
+						failureMsg.append("<br/>社区矫正人员名 " + HouseRectification.getName() + " 导入失败：记录已存在");
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("<br/>社区矫正人员名 " + HouseRectification.getName() + " 导入失败：");

@@ -148,6 +148,9 @@
 			<if test="area != null and area.id != null and area.id != ''">
 				AND a.area_id = #{area.id}
 			</if>
+			<if test="area != null and area.parentIds != null and area.parentIds != ''">
+				AND a16.parent_ids LIKE #{area.parentIds}
+			</if>
 			<if test="more1 != null and more1 != ''">
                 AND  (${more1})
             </if>

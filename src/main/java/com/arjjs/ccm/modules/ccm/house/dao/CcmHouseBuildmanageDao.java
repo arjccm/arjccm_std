@@ -57,7 +57,7 @@ public interface CcmHouseBuildmanageDao extends CrudDao<CcmHouseBuildmanage> {
 	public int findListNumDanYuan(CcmHouseBuildmanage ccmHouseBuildmanage);
 	
 	//首页统计地址库信息
-	List<CcmHouseBuildmanage> findCountAddressLibrary();
+	List<CcmHouseBuildmanage> findCountAddressLibrary(String parentIds);
 	
 	//根据建筑id获取单元数据
 	public List<CcmHouseBuildentrance> findBuildentrance(CcmHouseBuildentrance ccmHouseBuildentrance);

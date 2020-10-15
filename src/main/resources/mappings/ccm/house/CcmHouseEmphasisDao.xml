@@ -138,6 +138,41 @@
 				) 
 			) >= ${timeInterval}
 	</select>
+
+	<select id="findExpireTenant" resultType="com.arjjs.ccm.modules.ccm.house.entity.CcmIntervalTenant">
+		SELECT
+			a.id AS "tenantId",
+			b.name AS "xqName",
+			b.buildname AS "buildName",
+			a.house_build AS "tenantNum",
+			a.area_id AS "gridId",
+			TO_DAYS( NOW( ) ) - TO_DAYS(
+			IF
+				(
+					a.interval_date IS NULL,
+				IF
+					( a.update_date IS NULL, a.create_date, a.update_date ),
+					a.interval_date
+				)
+			) AS "timeInterval"
+		FROM
+			${tableName} a
+		LEFT JOIN ccm_house_buildmanage b ON a.building_id = b.id
+		WHERE
+			a.del_flag = 0
+		AND b.del_flag = 0
+		AND a.house_type = '02'
+		AND TO_DAYS( NOW( ) ) - TO_DAYS(
+			IF
+				(
+					a.interval_date IS NULL,
+				IF
+					( a.update_date IS NULL, a.create_date, a.update_date ),
+					a.interval_date
+				)
+			) >= ${timeInterval}
+	</select>
+
 	<select id="findExpirePeopleByUser" resultType="int">
 		SELECT
 		count( 1 )
@@ -243,6 +278,29 @@
 			p.userId IS NOT NULL 
 		AND p.userName IS NOT NULL
 	</select>
+
+
+	<select id="findUserByTenant" resultType="com.arjjs.ccm.modules.ccm.house.entity.CcmExpireUser">
+		SELECT DISTINCT
+			p.userId,p.userName
+		FROM
+			(
+				SELECT
+					a.id AS 'tenantId',
+					b.PRIMARY_PERSON AS 'userId',
+					u.`name` AS 'userName'
+				FROM
+					ccm_pop_tenant a
+				LEFT JOIN sys_office b ON a.area_id = b.area_id
+				LEFT JOIN sys_user u ON (b.PRIMARY_PERSON = u.id or b.DEPUTY_PERSON = u.id )
+				WHERE
+					a.id = #{id}
+			) p
+		WHERE
+			p.userId IS NOT NULL
+		AND p.userName IS NOT NULL
+	</select>
+
 	<update id="updateIntervalDate">
 		UPDATE ${tableName} SET 	
 			interval_date = NOW()
