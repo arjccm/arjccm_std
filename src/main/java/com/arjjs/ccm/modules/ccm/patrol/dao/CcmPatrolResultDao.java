@@ -15,6 +15,6 @@ import com.arjjs.ccm.modules.ccm.patrol.entity.CcmPatrolResult;
 @MyBatisDao
 public interface CcmPatrolResultDao extends CrudDao<CcmPatrolResult> {
 
-    int endPlan(CcmPatrolResult ccmPatrolResult);
+    void endPlan(CcmPatrolResult ccmPatrolResult);
 
 }

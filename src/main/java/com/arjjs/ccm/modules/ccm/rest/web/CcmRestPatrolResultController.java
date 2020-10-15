@@ -340,7 +340,7 @@ public class CcmRestPatrolResultController extends BaseController {
 		List<CcmPatrolResult> CcmPatrolResultExit = CcmPatrolResultService.findList(ccmPatrolResultDto);
 		// 如果当前查询结果已经存在
 		if(CcmPatrolResultExit.size()>0){
-			result.setCode(CcmRestType.OK);
+			result.setCode(CcmRestType.SUBMIT_REPEAT);
 			result.setResult(CcmPatrolResultExit.get(0));
 			result.setMsg("当前计划今天已开启！");
 			return result;
@@ -402,7 +402,8 @@ public class CcmRestPatrolResultController extends BaseController {
 		List<CcmPatrolResult> CcmPatrolResultExit = CcmPatrolResultService.findList(ccmPatrolResultDto);
 		// 如果当前查询结果不存在
 		if(CcmPatrolResultExit.size()<=0){
-			result.setCode(CcmRestType.OK);
+			result.setCode(CcmRestType.ERROR_DB_NOT_EXIST);
+			result.setResult("当前计划今天未开启！");
 			result.setMsg("当前计划今天未开启！");
 			return result;
 		}
@@ -412,6 +413,7 @@ public class CcmRestPatrolResultController extends BaseController {
 		CcmPatrolResultService.endPlan(CcmPatrolResultExit.get(0));
 		// 返回
 		result.setCode(CcmRestType.OK);
+		result.setResult(CcmPatrolResultExit.get(0));
 		result.setMsg("成功");
 		return result;
 	}
