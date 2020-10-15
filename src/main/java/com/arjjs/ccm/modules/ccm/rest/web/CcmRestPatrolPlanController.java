@@ -139,13 +139,13 @@ public class CcmRestPatrolPlanController extends BaseController {
 		}else {// 添加当前用户的 用户ID
 			ccmPatrolPlan.setCurUser(userId);
 		}
-		Page<CcmPatrolPlan> page = ccmPatrolPlanService.findPage(new Page<CcmPatrolPlan>(req, resp),
-				(null == ccmPatrolPlan) ? new CcmPatrolPlan() : ccmPatrolPlan);
+		Page<CcmPatrolPlan> page = ccmPatrolPlanService.findPage(new Page<CcmPatrolPlan>(req, resp), ccmPatrolPlan);
+		List<CcmPatrolPlan> list = page.getList();
 		result.setCode(CcmRestType.OK);
-		if(page.getList() == null || page.getList().size() == 0){
+		if(list.size() == 0){
 			result.setResult(new ArrayList<CcmPatrolPlan>());
 		}else{
-			result.setResult(page.getList());
+			result.setResult(list);
 		}
 		// 输出结果
 		return result;
