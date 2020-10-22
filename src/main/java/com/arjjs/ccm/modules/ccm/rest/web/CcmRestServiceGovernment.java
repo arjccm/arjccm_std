@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * @author cby
@@ -129,9 +130,15 @@ public class CcmRestServiceGovernment extends BaseController {
         }
         if(StringUtils.isEmpty(ccmServiceGovernment.getId())){
             ccmServiceGovernment.setCreateBy(new User(userId));
+            ccmServiceGovernment.setCreateDate(new Date());
             ccmServiceGovernment.setUpdateBy(new User(userId));
+            ccmServiceGovernment.setUpdateDate(new Date());
         }else{
+            CcmServiceGovernment param = ccmServiceGovernmentService.get(ccmServiceGovernment.getId());
+            ccmServiceGovernment.setCreateBy(param.getCreateBy());
+            ccmServiceGovernment.setCreateDate(param.getCreateDate());
             ccmServiceGovernment.setUpdateBy(new User(userId));
+            ccmServiceGovernment.setUpdateDate(new Date());
         }
         ccmServiceGovernmentService.save(ccmServiceGovernment);
         result.setCode(CcmRestType.OK);

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * @author cby
@@ -135,9 +136,15 @@ public class CcmRestAskLeader extends BaseController {
         }
         if(StringUtils.isEmpty(ccmAskLeader.getId())){
             ccmAskLeader.setCreateBy(new User(userId));
+            ccmAskLeader.setCreateDate(new Date());
             ccmAskLeader.setUpdateBy(new User(userId));
+            ccmAskLeader.setUpdateDate(new Date());
         }else{
+            CcmAskLeader param = ccmAskLeaderService.get(ccmAskLeader.getId());
+            ccmAskLeader.setCreateBy(param.getCreateBy());
+            ccmAskLeader.setCreateDate(param.getCreateDate());
             ccmAskLeader.setUpdateBy(new User(userId));
+            ccmAskLeader.setUpdateDate(new Date());
         }
         ccmAskLeaderService.save(ccmAskLeader,type);
         result.setCode(CcmRestType.OK);
