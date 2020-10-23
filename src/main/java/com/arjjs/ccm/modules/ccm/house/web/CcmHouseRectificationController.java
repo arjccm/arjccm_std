@@ -48,6 +48,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -358,12 +359,12 @@ public class CcmHouseRectificationController extends BaseController {
 					}
 					if(StringUtils.isBlank(HouseRectification.getRectNum()) ||
 							StringUtils.isBlank(HouseRectification.getRectType()) ||
-							HouseRectification.getRectBegin()==null ||
+//							HouseRectification.getRectBegin()==null ||
 							StringUtils.isBlank(HouseRectification.getReceiveMode()) ||
 							HouseRectification.getCorrecthas()==null ||
 							StringUtils.isBlank(HouseRectification.getAtteType()) ||
 							StringUtils.isBlank(HouseRectification.getCaseType()) ||
-							HouseRectification.getRectEnd()==null ||
+//							HouseRectification.getRectEnd()==null ||
 							StringUtils.isBlank(HouseRectification.getCorrected()) ||
 							HouseRectification.getDetached()==null ||
 							HouseRectification.getLackContr()==null ||
@@ -475,8 +476,18 @@ public class CcmHouseRectificationController extends BaseController {
 						ccmPeople.setDomiciledetail(HouseRectification.getDomiciledetail());
 						ccmPeople.setResidencedetail(HouseRectification.getResidencedetail());
 						ccmPeople.setAreaGridId(HouseRectification.getAreaGridId());
-						String birthStr = HouseRectification.getIdent().substring(6, 14);
-						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Calendar calendar = Calendar.getInstance();
+						calendar.setTime(new Date());
+						String year = HouseRectification.getIdent().substring(6, 10);
+						String month = HouseRectification.getIdent().substring(10, 12);
+						String day = HouseRectification.getIdent().substring(12, 14);
+						calendar.set(Calendar.YEAR,Integer.parseInt(year));
+						calendar.set(Calendar.MONTH,Integer.parseInt(month));
+						calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(day));
+						calendar.set(Calendar.HOUR_OF_DAY,0);
+						calendar.set(Calendar.MINUTE,0);
+						calendar.set(Calendar.SECOND,0);
+						ccmPeople.setBirthday(calendar.getTime());
 						Area area = new Area();
 						area.setId(HouseRectification.getAreaGridId().getParentId());
 						ccmPeople.setAreaComId(area);

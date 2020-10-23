@@ -43,7 +43,7 @@ public interface CcmEventAmbiDao extends CrudDao<CcmEventAmbi> {
 	List<EchartType> stateEventOneYear(CcmEventAmbi ccmEventAmbi);
 
 	//首页统计矛盾纠纷数量
-	List<CcmEventAmbi> findCountByStatus();
+	List<CcmEventAmbi> findCountByStatus(String parentIds);
 	//首页统计综治机构数量
 	List<CcmEventAmbi> findOfficeCount();
 	//累计受理纠纷总数

@@ -97,10 +97,10 @@
 			a.house_type AS "houseType" 
 		FROM
 			ccm_pop_tenant a
-			LEFT JOIN sys_area sa ON a.area_id = sa.id
+			LEFT JOIN sys_area noselarea ON a.area_id = noselarea.id
 		WHERE
 			a.del_flag = 0
-			AND sa.parent_ids LIKE #{param1}
+			AND noselarea.parent_ids LIKE #{param1}
 		GROUP BY
 			a.house_type ) d ON c.value = d.houseType
     </select>
@@ -118,10 +118,10 @@
             a.rent_pur AS "rentPur"
 		FROM
 			ccm_pop_tenant a
-			LEFT JOIN sys_area sa ON a.area_id = sa.id
+			LEFT JOIN sys_area noselarea ON a.area_id = noselarea.id
 		WHERE
 			a.del_flag = 0
-			AND sa.parent_ids LIKE #{param1}
+			AND noselarea.parent_ids LIKE #{param1}
 		GROUP BY
 			a.rent_pur ) d ON c.value = d.rentPur
 	</select>

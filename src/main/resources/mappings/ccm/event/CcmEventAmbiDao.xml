@@ -311,9 +311,11 @@
 				COUNT( a.id ) AS "count",
 				a.STATUS AS "status" 
 			FROM
-				ccm_event_ambi a 
+				ccm_event_ambi a
+				LEFT JOIN sys_area noselarea ON a.area_id = noselarea.id
 			WHERE
-				a.del_flag = 0 
+				a.del_flag = 0
+				AND noselarea.parent_ids LIKE #{param1}
 			GROUP BY
 				a.STATUS 
 			) d ON c.

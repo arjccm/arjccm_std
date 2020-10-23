@@ -115,10 +115,10 @@
 			"buildmanage" AS "name" 
 		FROM
 			ccm_house_buildmanage a
-			LEFT JOIN sys_area sa ON a.area_id = sa.id
+			LEFT JOIN sys_area noselarea ON a.area_id = noselarea.id
 		WHERE
 			a.del_flag = 0
-			AND sa.parent_ids LIKE #{param1} UNION ALL
+			AND noselarea.parent_ids LIKE #{param1} UNION ALL
 		SELECT
 			count( a.id ) AS "count",
 			"address" AS "name" 

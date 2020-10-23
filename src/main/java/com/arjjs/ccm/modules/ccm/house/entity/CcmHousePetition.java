@@ -238,7 +238,7 @@ public class CcmHousePetition extends DataEntity<CcmHousePetition> {
 	}
 	
 	@ExcelField(title="上访事由", align=2, sort=10)
-	@Length(min=0, max=200, message="上访事由长度必须介于 0 和 200 之间")
+	@Length(min=0, max=500, message="上访事由长度必须介于 0 和 500 之间")
 	public String getPetitionFor() {
 		return petitionFor;
 	}
@@ -277,7 +277,7 @@ public class CcmHousePetition extends DataEntity<CcmHousePetition> {
 	}
 	
 	@ExcelField(title="反映问题", align=2, sort=14)
-	@Length(min=0, max=200, message="反映问题长度必须介于 0 和 200 之间")
+	@Length(min=0, max=500, message="反映问题长度必须介于 0 和 500 之间")
 	public String getReflectProblem() {
 		return reflectProblem;
 	}

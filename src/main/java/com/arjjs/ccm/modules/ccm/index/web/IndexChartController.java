@@ -39,7 +39,8 @@ public class IndexChartController extends BaseController {
 	 */
 	@RequestMapping(value = "byStatus")
 	public Object findCountByStatus() {
-		return indexChartService.indexChartService();
+		User user = UserUtils.getUser();
+		return indexChartService.indexChartService("%" + user.getOffice().getArea().getId() + "%");
 	}
 
 	/**
@@ -100,8 +101,7 @@ public class IndexChartController extends BaseController {
 	 */
 	@RequestMapping(value = "findCountSchool")
 	public Object findCountSchool() {
-		User user = UserUtils.getUser();
-		return indexChartService.findCountSchool("%" + user.getOffice().getArea().getId() + "%");
+		return indexChartService.findCountSchool();
 	}
 
 	/**
@@ -216,8 +216,7 @@ public class IndexChartController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "findKeyPlace")
 	public Object findKeyPlace() {
-		User user = UserUtils.getUser();
-		return indexChartService.findKeyPlace("%" + user.getOffice().getArea().getId() + "%");
+		return indexChartService.findKeyPlace();
 	}
 
 	/**

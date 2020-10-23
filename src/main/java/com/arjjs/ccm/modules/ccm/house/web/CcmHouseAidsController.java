@@ -49,6 +49,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -360,8 +361,18 @@ public class CcmHouseAidsController extends BaseController {
 						ccmPeople.setDomiciledetail(HouseAids.getDomiciledetail());
 						ccmPeople.setResidencedetail(HouseAids.getResidencedetail());
 						ccmPeople.setAreaGridId(HouseAids.getAreaGridId());
-						String birthStr = HouseAids.getIdent().substring(6, 14);
-						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Calendar calendar = Calendar.getInstance();
+						calendar.setTime(new Date());
+						String year = HouseAids.getIdent().substring(6, 10);
+						String month = HouseAids.getIdent().substring(10, 12);
+						String day = HouseAids.getIdent().substring(12, 14);
+						calendar.set(Calendar.YEAR,Integer.parseInt(year));
+						calendar.set(Calendar.MONTH,Integer.parseInt(month));
+						calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(day));
+						calendar.set(Calendar.HOUR_OF_DAY,0);
+						calendar.set(Calendar.MINUTE,0);
+						calendar.set(Calendar.SECOND,0);
+						ccmPeople.setBirthday(calendar.getTime());
 						Area area = new Area();
 						area.setId(HouseAids.getAreaGridId().getParentId());
 						ccmPeople.setAreaComId(area);

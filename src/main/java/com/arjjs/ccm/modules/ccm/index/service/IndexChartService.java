@@ -97,9 +97,9 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean indexChartService() {
+	public LayUIBean indexChartService(String parentIds) {
 		LayUIBean result = new LayUIBean();
-		List<CcmEventAmbi> list = ccmEventAmbiDao.findCountByStatus();
+		List<CcmEventAmbi> list = ccmEventAmbiDao.findCountByStatus(parentIds);
 		result.setCode("0");
 		result.setCount(list.size());
 		result.setData(list);
@@ -167,12 +167,9 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findCountSchool(String parentIds) {
+	public LayUIBean findCountSchool() {
 		LayUIBean result = new LayUIBean();
-		Area area = new Area();
-		area.setParentIds(parentIds);
 		CcmHouseSchoolrim schoolrim = new CcmHouseSchoolrim();
-		schoolrim.setArea(area);
 		List<CcmHouseSchoolrim> list = ccmHouseSchoolrimDao.findList(schoolrim);
 		result.setCode("0");
 		result.setCount(list.size());
@@ -275,12 +272,8 @@ public class IndexChartService {
 		return result;
 	}
 
-	public LayUIBean findKeyPlace(String parentIds) {
+	public LayUIBean findKeyPlace() {
 		LayUIBean result = new LayUIBean();
-		Area area = new Area();
-		area.setParentIds(parentIds);
-		CcmBasePlace basePlace = new CcmBasePlace();
-		basePlace.setArea(area);
 		List<CcmBasePlace> list = ccmBasePlaceDao.findList(new CcmBasePlace());
 		result.setCode("0");
 		result.setCount(list.size());

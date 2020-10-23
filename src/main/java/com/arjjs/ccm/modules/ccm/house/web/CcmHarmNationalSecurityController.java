@@ -48,6 +48,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -366,8 +367,18 @@ public class CcmHarmNationalSecurityController extends BaseController {
 						ccmPeople.setDomiciledetail(HarmNationalSecurity.getDomiciledetail());
 						ccmPeople.setResidencedetail(HarmNationalSecurity.getResidencedetail());
 						ccmPeople.setAreaGridId(HarmNationalSecurity.getAreaGridId());
-						String birthStr = HarmNationalSecurity.getIdent().substring(6, 14);
-						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Calendar calendar = Calendar.getInstance();
+						calendar.setTime(new Date());
+						String year = HarmNationalSecurity.getIdent().substring(6, 10);
+						String month = HarmNationalSecurity.getIdent().substring(10, 12);
+						String day = HarmNationalSecurity.getIdent().substring(12, 14);
+						calendar.set(Calendar.YEAR,Integer.parseInt(year));
+						calendar.set(Calendar.MONTH,Integer.parseInt(month));
+						calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(day));
+						calendar.set(Calendar.HOUR_OF_DAY,0);
+						calendar.set(Calendar.MINUTE,0);
+						calendar.set(Calendar.SECOND,0);
+						ccmPeople.setBirthday(calendar.getTime());
 						Area area = new Area();
 						area.setId(HarmNationalSecurity.getAreaGridId().getParentId());
 						ccmPeople.setAreaComId(area);
