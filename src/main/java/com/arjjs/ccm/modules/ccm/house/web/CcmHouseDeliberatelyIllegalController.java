@@ -46,6 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -296,6 +297,8 @@ public class CcmHouseDeliberatelyIllegalController extends BaseController {
 			List<CcmHouseDeliberatelyIllegal> list = ei.getDataList(CcmHouseDeliberatelyIllegal.class);
 			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			for (CcmHouseDeliberatelyIllegal HouseDeliberatelyIllegal : list) {
 				try {
 
@@ -353,8 +356,24 @@ public class CcmHouseDeliberatelyIllegalController extends BaseController {
 						ccmPeople.setName(HouseDeliberatelyIllegal.getName());
 						ccmPeople.setType(HouseDeliberatelyIllegal.getType());
 						ccmPeople.setCensu(HouseDeliberatelyIllegal.getCensu());
-						ccmPeople.setSex(HouseDeliberatelyIllegal.getSex());
-						ccmPeople.setTelephone(HouseDeliberatelyIllegal.getTelephone());
+						if(StringUtils.isEmpty(HouseDeliberatelyIllegal.getSex())){
+							String sCardNum = HouseDeliberatelyIllegal.getIdent().substring(16, 17);
+							if (Integer.parseInt(sCardNum) % 2 != 0) {
+								HouseDeliberatelyIllegal.setSex("0");
+							} else {
+								HouseDeliberatelyIllegal.setSex("1");
+							}
+						}else{
+							ccmPeople.setSex(HouseDeliberatelyIllegal.getSex());
+						}
+						if(StringUtils.isNotEmpty(HouseDeliberatelyIllegal.getTelephone())){
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(HouseDeliberatelyIllegal.getTelephone().contains(".") || HouseDeliberatelyIllegal.getTelephone().contains("E")) {
+								double bd = Double.valueOf(HouseDeliberatelyIllegal.getTelephone());
+								String tel = df.format(bd);
+								ccmPeople.setTelephone(tel);
+							}
+						}
 						ccmPeople.setDomiciledetail(HouseDeliberatelyIllegal.getDomiciledetail());
 						ccmPeople.setResidencedetail(HouseDeliberatelyIllegal.getResidencedetail());
 						ccmPeople.setAreaGridId(HouseDeliberatelyIllegal.getAreaGridId());

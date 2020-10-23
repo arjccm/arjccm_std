@@ -47,6 +47,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -295,6 +296,8 @@ public class CcmHouseAidsController extends BaseController {
 			List<CcmHouseAids> list = ei.getDataList(CcmHouseAids.class);
 			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			for (CcmHouseAids HouseAids : list) {
 				try {
 
@@ -356,8 +359,24 @@ public class CcmHouseAidsController extends BaseController {
 						ccmPeople.setName(HouseAids.getName());
 						ccmPeople.setType(HouseAids.getType());
 						ccmPeople.setCensu(HouseAids.getCensu());
-						ccmPeople.setSex(HouseAids.getSex());
-						ccmPeople.setTelephone(HouseAids.getTelephone());
+						if(StringUtils.isEmpty(HouseAids.getSex())){
+							String sCardNum = HouseAids.getIdent().substring(16, 17);
+							if (Integer.parseInt(sCardNum) % 2 != 0) {
+								HouseAids.setSex("0");
+							} else {
+								HouseAids.setSex("1");
+							}
+						}else{
+							ccmPeople.setSex(HouseAids.getSex());
+						}
+						if(StringUtils.isNotEmpty(HouseAids.getTelephone())){
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(HouseAids.getTelephone().contains(".") || HouseAids.getTelephone().contains("E")) {
+								double bd = Double.valueOf(HouseAids.getTelephone());
+								String tel = df.format(bd);
+								ccmPeople.setTelephone(tel);
+							}
+						}
 						ccmPeople.setDomiciledetail(HouseAids.getDomiciledetail());
 						ccmPeople.setResidencedetail(HouseAids.getResidencedetail());
 						ccmPeople.setAreaGridId(HouseAids.getAreaGridId());

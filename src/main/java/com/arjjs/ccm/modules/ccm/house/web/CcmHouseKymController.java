@@ -5,7 +5,9 @@ package com.arjjs.ccm.modules.ccm.house.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -230,6 +232,8 @@ public class CcmHouseKymController extends BaseController {
 			List<CcmHouseKym> list = ei.getDataList(CcmHouseKym.class);
 			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			for (CcmHouseKym ccmHouseKym : list) {
 				try {
 
@@ -273,13 +277,39 @@ public class CcmHouseKymController extends BaseController {
 						ccmPeople.setName(ccmHouseKym.getName());
 						ccmPeople.setType(ccmHouseKym.getType());
 						ccmPeople.setCensu(ccmHouseKym.getCensu());
-						ccmPeople.setSex(ccmHouseKym.getSex());
-						ccmPeople.setTelephone(ccmHouseKym.getTelephone());
+						if(StringUtils.isEmpty(ccmHouseKym.getSex())){
+							String sCardNum = ccmHouseKym.getIdent().substring(16, 17);
+							if (Integer.parseInt(sCardNum) % 2 != 0) {
+								ccmHouseKym.setSex("0");
+							} else {
+								ccmHouseKym.setSex("1");
+							}
+						}else{
+							ccmPeople.setSex(ccmHouseKym.getSex());
+						}
+						if(StringUtils.isNotEmpty(ccmHouseKym.getTelephone())){
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(ccmHouseKym.getTelephone().contains(".") || ccmHouseKym.getTelephone().contains("E")) {
+								double bd = Double.valueOf(ccmHouseKym.getTelephone());
+								String tel = df.format(bd);
+								ccmPeople.setTelephone(tel);
+							}
+						}
 						ccmPeople.setDomiciledetail(ccmHouseKym.getDomiciledetail());
 						ccmPeople.setResidencedetail(ccmHouseKym.getResidencedetail());
 						ccmPeople.setAreaGridId(ccmHouseKym.getAreaGridId());
-						String birthStr = ccmHouseKym.getIdent().substring(6, 14);
-						ccmPeople.setBirthday(sdf.parse(birthStr));
+						Calendar calendar = Calendar.getInstance();
+						calendar.setTime(new Date());
+						String year = ccmHouseKym.getIdent().substring(6, 10);
+						String month = ccmHouseKym.getIdent().substring(10, 12);
+						String day = ccmHouseKym.getIdent().substring(12, 14);
+						calendar.set(Calendar.YEAR,Integer.parseInt(year));
+						calendar.set(Calendar.MONTH,Integer.parseInt(month));
+						calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(day));
+						calendar.set(Calendar.HOUR_OF_DAY,0);
+						calendar.set(Calendar.MINUTE,0);
+						calendar.set(Calendar.SECOND,0);
+						ccmPeople.setBirthday(calendar.getTime());
 						Area area = new Area();
 						area.setId(ccmHouseKym.getAreaGridId().getParentId());
 						ccmPeople.setAreaComId(area);

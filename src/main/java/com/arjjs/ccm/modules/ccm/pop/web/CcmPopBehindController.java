@@ -5,6 +5,7 @@ package com.arjjs.ccm.modules.ccm.pop.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -232,6 +233,8 @@ public class CcmPopBehindController extends BaseController {
 			List<CcmPopBehind> list = ei.getDataList(CcmPopBehind.class);
 			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			for (CcmPopBehind PopBehind : list) {
 				try {
 
@@ -253,8 +256,24 @@ public class CcmPopBehindController extends BaseController {
 						ccmPeople.setName(PopBehind.getName());
 						ccmPeople.setType(PopBehind.getType());
 						ccmPeople.setCensu(PopBehind.getCensu());
-						ccmPeople.setSex(PopBehind.getSex());
-						ccmPeople.setTelephone(PopBehind.getTelephone());
+						if(StringUtils.isEmpty(PopBehind.getSex())){
+							String sCardNum = PopBehind.getIdent().substring(16, 17);
+							if (Integer.parseInt(sCardNum) % 2 != 0) {
+								PopBehind.setSex("0");
+							} else {
+								PopBehind.setSex("1");
+							}
+						}else{
+							ccmPeople.setSex(PopBehind.getSex());
+						}
+						if(StringUtils.isNotEmpty(PopBehind.getTelephone())){
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(PopBehind.getTelephone().contains(".") || PopBehind.getTelephone().contains("E")) {
+								double bd = Double.valueOf(PopBehind.getTelephone());
+								String tel = df.format(bd);
+								ccmPeople.setTelephone(tel);
+							}
+						}
 						ccmPeople.setDomiciledetail(PopBehind.getDomiciledetail());
 						ccmPeople.setResidencedetail(PopBehind.getResidencedetail());
 						ccmPeople.setAreaGridId(PopBehind.getAreaGridId());

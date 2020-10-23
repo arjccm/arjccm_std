@@ -46,6 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -350,6 +351,8 @@ public class CcmHouseRectificationController extends BaseController {
 			List<Dict> jzxz = dictService.findList(dict);
 			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			for (CcmHouseRectification HouseRectification : list) {
 				try {
 
@@ -359,12 +362,12 @@ public class CcmHouseRectificationController extends BaseController {
 					}
 					if(StringUtils.isBlank(HouseRectification.getRectNum()) ||
 							StringUtils.isBlank(HouseRectification.getRectType()) ||
-//							HouseRectification.getRectBegin()==null ||
+							HouseRectification.getRectBegin()==null ||
 							StringUtils.isBlank(HouseRectification.getReceiveMode()) ||
 							HouseRectification.getCorrecthas()==null ||
 							StringUtils.isBlank(HouseRectification.getAtteType()) ||
 							StringUtils.isBlank(HouseRectification.getCaseType()) ||
-//							HouseRectification.getRectEnd()==null ||
+							HouseRectification.getRectEnd()==null ||
 							StringUtils.isBlank(HouseRectification.getCorrected()) ||
 							HouseRectification.getDetached()==null ||
 							HouseRectification.getLackContr()==null ||
@@ -471,8 +474,24 @@ public class CcmHouseRectificationController extends BaseController {
 						ccmPeople.setName(HouseRectification.getName());
 						ccmPeople.setType(HouseRectification.getType());
 						ccmPeople.setCensu(HouseRectification.getCensu());
-						ccmPeople.setSex(HouseRectification.getSex());
-						ccmPeople.setTelephone(HouseRectification.getTelephone());
+						if(StringUtils.isEmpty(HouseRectification.getSex())){
+							String sCardNum = HouseRectification.getIdent().substring(16, 17);
+							if (Integer.parseInt(sCardNum) % 2 != 0) {
+								HouseRectification.setSex("0");
+							} else {
+								HouseRectification.setSex("1");
+							}
+						}else{
+							ccmPeople.setSex(HouseRectification.getSex());
+						}
+						if(StringUtils.isNotEmpty(HouseRectification.getTelephone())){
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(HouseRectification.getTelephone().contains(".") || HouseRectification.getTelephone().contains("E")) {
+								double bd = Double.valueOf(HouseRectification.getTelephone());
+								String tel = df.format(bd);
+								ccmPeople.setTelephone(tel);
+							}
+						}
 						ccmPeople.setDomiciledetail(HouseRectification.getDomiciledetail());
 						ccmPeople.setResidencedetail(HouseRectification.getResidencedetail());
 						ccmPeople.setAreaGridId(HouseRectification.getAreaGridId());

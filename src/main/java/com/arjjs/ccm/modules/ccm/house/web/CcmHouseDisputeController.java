@@ -46,6 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -294,6 +295,8 @@ public class CcmHouseDisputeController extends BaseController {
 			List<CcmHouseDispute> list = ei.getDataList(CcmHouseDispute.class);
 			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			for (CcmHouseDispute HouseDispute : list) {
 				try {
 
@@ -333,8 +336,24 @@ public class CcmHouseDisputeController extends BaseController {
 						ccmPeople.setName(HouseDispute.getName());
 						ccmPeople.setType(HouseDispute.getType());
 						ccmPeople.setCensu(HouseDispute.getCensu());
-						ccmPeople.setSex(HouseDispute.getSex());
-						ccmPeople.setTelephone(HouseDispute.getTelephone());
+						if(StringUtils.isEmpty(HouseDispute.getSex())){
+							String sCardNum = HouseDispute.getIdent().substring(16, 17);
+							if (Integer.parseInt(sCardNum) % 2 != 0) {
+								HouseDispute.setSex("0");
+							} else {
+								HouseDispute.setSex("1");
+							}
+						}else{
+							ccmPeople.setSex(HouseDispute.getSex());
+						}
+						if(StringUtils.isNotEmpty(HouseDispute.getTelephone())){
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(HouseDispute.getTelephone().contains(".") || HouseDispute.getTelephone().contains("E")) {
+								double bd = Double.valueOf(HouseDispute.getTelephone());
+								String tel = df.format(bd);
+								ccmPeople.setTelephone(tel);
+							}
+						}
 						ccmPeople.setDomiciledetail(HouseDispute.getDomiciledetail());
 						ccmPeople.setResidencedetail(HouseDispute.getResidencedetail());
 						ccmPeople.setAreaGridId(HouseDispute.getAreaGridId());

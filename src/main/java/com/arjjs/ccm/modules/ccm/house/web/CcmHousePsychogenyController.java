@@ -49,6 +49,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -351,6 +352,8 @@ public class CcmHousePsychogenyController extends BaseController {
 			List<Dict> helpcaseList = dictService.findList(dict);
 			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			for (CcmHousePsychogeny HousePsychogeny : list) {
 				try {
 
@@ -458,8 +461,24 @@ public class CcmHousePsychogenyController extends BaseController {
 						ccmPeople.setName(HousePsychogeny.getName());
 						ccmPeople.setType(HousePsychogeny.getType());
 						ccmPeople.setCensu(HousePsychogeny.getCensu());
-						ccmPeople.setSex(HousePsychogeny.getSex());
-						ccmPeople.setTelephone(HousePsychogeny.getTelephone());
+						if(StringUtils.isEmpty(HousePsychogeny.getSex())){
+							String sCardNum = HousePsychogeny.getIdent().substring(16, 17);
+							if (Integer.parseInt(sCardNum) % 2 != 0) {
+								HousePsychogeny.setSex("0");
+							} else {
+								HousePsychogeny.setSex("1");
+							}
+						}else{
+							ccmPeople.setSex(HousePsychogeny.getSex());
+						}
+						if(StringUtils.isNotEmpty(HousePsychogeny.getTelephone())){
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(HousePsychogeny.getTelephone().contains(".") || HousePsychogeny.getTelephone().contains("E")) {
+								double bd = Double.valueOf(HousePsychogeny.getTelephone());
+								String tel = df.format(bd);
+								ccmPeople.setTelephone(tel);
+							}
+						}
 						ccmPeople.setDomiciledetail(HousePsychogeny.getDomiciledetail());
 						ccmPeople.setResidencedetail(HousePsychogeny.getResidencedetail());
 						ccmPeople.setAreaGridId(HousePsychogeny.getAreaGridId());

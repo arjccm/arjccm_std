@@ -49,6 +49,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -305,6 +306,8 @@ public class ccmSeriousCriminalOffenseController extends BaseController {
 			List<CcmSeriousCriminalOffense> list = ei.getDataList(CcmSeriousCriminalOffense.class);
 			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			for (CcmSeriousCriminalOffense SeriousCriminalOffense : list) {
 				try {
 
@@ -362,8 +365,24 @@ public class ccmSeriousCriminalOffenseController extends BaseController {
 						ccmPeople.setName(SeriousCriminalOffense.getName());
 						ccmPeople.setType(SeriousCriminalOffense.getType());
 						ccmPeople.setCensu(SeriousCriminalOffense.getCensu());
-						ccmPeople.setSex(SeriousCriminalOffense.getSex());
-						ccmPeople.setTelephone(SeriousCriminalOffense.getTelephone());
+						if(StringUtils.isEmpty(SeriousCriminalOffense.getSex())){
+							String sCardNum = SeriousCriminalOffense.getIdent().substring(16, 17);
+							if (Integer.parseInt(sCardNum) % 2 != 0) {
+								SeriousCriminalOffense.setSex("0");
+							} else {
+								SeriousCriminalOffense.setSex("1");
+							}
+						}else{
+							ccmPeople.setSex(SeriousCriminalOffense.getSex());
+						}
+						if(StringUtils.isNotEmpty(SeriousCriminalOffense.getTelephone())){
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(SeriousCriminalOffense.getTelephone().contains(".") || SeriousCriminalOffense.getTelephone().contains("E")) {
+								double bd = Double.valueOf(SeriousCriminalOffense.getTelephone());
+								String tel = df.format(bd);
+								ccmPeople.setTelephone(tel);
+							}
+						}
 						ccmPeople.setDomiciledetail(SeriousCriminalOffense.getDomiciledetail());
 						ccmPeople.setResidencedetail(SeriousCriminalOffense.getResidencedetail());
 						ccmPeople.setAreaGridId(SeriousCriminalOffense.getAreaGridId());

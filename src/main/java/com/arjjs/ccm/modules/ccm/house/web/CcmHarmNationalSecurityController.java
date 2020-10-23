@@ -46,6 +46,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -302,6 +303,8 @@ public class CcmHarmNationalSecurityController extends BaseController {
 			List<CcmHarmNationalSecurity> list = ei.getDataList(CcmHarmNationalSecurity.class);
 			//格式化日期
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
 			for (CcmHarmNationalSecurity HarmNationalSecurity : list) {
 				try {
 
@@ -362,8 +365,24 @@ public class CcmHarmNationalSecurityController extends BaseController {
 						ccmPeople.setName(HarmNationalSecurity.getName());
 						ccmPeople.setType(HarmNationalSecurity.getType());
 						ccmPeople.setCensu(HarmNationalSecurity.getCensu());
-						ccmPeople.setSex(HarmNationalSecurity.getSex());
-						ccmPeople.setTelephone(HarmNationalSecurity.getTelephone());
+						if(StringUtils.isEmpty(HarmNationalSecurity.getSex())){
+							String sCardNum = HarmNationalSecurity.getIdent().substring(16, 17);
+							if (Integer.parseInt(sCardNum) % 2 != 0) {
+								HarmNationalSecurity.setSex("0");
+							} else {
+								HarmNationalSecurity.setSex("1");
+							}
+						}else{
+							ccmPeople.setSex(HarmNationalSecurity.getSex());
+						}
+						if(StringUtils.isNotEmpty(HarmNationalSecurity.getTelephone())){
+							//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+							if(HarmNationalSecurity.getTelephone().contains(".") || HarmNationalSecurity.getTelephone().contains("E")) {
+								double bd = Double.valueOf(HarmNationalSecurity.getTelephone());
+								String tel = df.format(bd);
+								ccmPeople.setTelephone(tel);
+							}
+						}
 						ccmPeople.setDomiciledetail(HarmNationalSecurity.getDomiciledetail());
 						ccmPeople.setResidencedetail(HarmNationalSecurity.getResidencedetail());
 						ccmPeople.setAreaGridId(HarmNationalSecurity.getAreaGridId());
