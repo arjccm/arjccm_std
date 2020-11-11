@@ -24,6 +24,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -74,6 +77,9 @@ public class CcmTiandyVideoService extends BaseController {
 
 	@Transactional(readOnly = false)
 	public CcmRestResult updateCamerasStatus() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyu-MM-dd HH:mm:ss");
+		System.out.println(sdf.format(new Date()) + "监控设备状态更新开始;");
+		int num = 0;
 		CcmRestResult result = new CcmRestResult();
 		SysConfig sysConfig = sysConfigService.get("tiandy_video_ocx_play");
 		//解JSON
@@ -86,12 +92,17 @@ public class CcmTiandyVideoService extends BaseController {
 			username = jsonObject.getString("tiandyUserName");
 		}
 		if(jsonObject.containsKey("tiandyPassWord")) {
-			password = jsonObject.getString("tiandyPassWord");
+				password = jsonObject.getString("tiandyPassWord");
 		}
 		// 登陆
 		String urlUserId = "http://" + tiandyIp + ":" + tiandyPort + "/Easy7/apps/WebService/LogIn.jsp?";
 		if(StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(password)) {
-			urlUserId += "UserName=" + username + "&Password=" + password;
+			try {
+				urlUserId += "UserName=" + username + "&Password=" + URLEncoder.encode(password,"UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				System.out.println("密码参数URL编码异常");
+				e.printStackTrace();
+			}
 		}else {
 			urlUserId += "UserName=admin&Password=1111";
 		}
@@ -109,7 +120,12 @@ public class CcmTiandyVideoService extends BaseController {
 		if(StringUtils.isNotEmpty(tiandyUserId)) {
 			String urlRest = "http://" + tiandyIp + ":" + tiandyPort + "/Easy7/rest/obj/getObjStatus?CurrentUserId=" + tiandyUserId;
 			if(StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(password)) {
-				urlRest += "&UserId=" + username + "&Password=" + password;
+				try {
+					urlRest += "&UserId=" + username + "&Password=" + URLEncoder.encode(password,"UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					System.out.println("密码参数URL编码异常");
+					e.printStackTrace();
+				}
 			}else {
 				urlRest += "&UserId=admin&Password=1111";
 			}
@@ -133,17 +149,19 @@ public class CcmTiandyVideoService extends BaseController {
 					for (CcmTiandyOnlineStatus  easy7Dev : easy7DevList){
                         String status = easy7Dev.getStatus();
                         if ("5".equals(status)){// easy7 的状态
-                            status = "3"; //本系统 的状态
+                            status = "2"; //本系统 的状态
                         }
 						for(CcmTiandyOnlineStatus ccmDev:ccmDevList){
 							if (easy7Dev.getId().equals(ccmDev.getId()) && !status.equals(ccmDev.getStatus())){
 								ccmDeviceDao.updateDevStatus(easy7Dev.getId(),status);
+								num++;
 							}
 						}
 					}
 				}
 			}
 		}
+		System.out.println(sdf.format(new Date()) + "监控设备状态更新结束;更新数量:" + num + "个");
 		return  result;
 	}
 
@@ -165,7 +183,7 @@ public class CcmTiandyVideoService extends BaseController {
 			try {
 				String urlUserId = "http://" + tiandyIp + ":" + tiandyPort + "/Easy7/apps/WebService/LogIn.jsp?";
 				if(StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(password)) {
-					urlUserId += "UserName=" + username + "&Password=" + password;
+					urlUserId += "UserName=" + username + "&Password=" + URLEncoder.encode(password,"UTF-8");
 				}else {
 					urlUserId += "UserName=admin&Password=1111";
 				}
@@ -182,7 +200,7 @@ public class CcmTiandyVideoService extends BaseController {
 				if(StringUtils.isNotEmpty(tiandyUserId)) {
 					String urlRest = "http://" + tiandyIp + ":" + tiandyPort + "/Easy7/apps/WebService/GetResourceTree_Ex.jsp?CurrentUserId=" + tiandyUserId;
 					if(StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(password)) {
-						urlRest += "&UserId=" + username + "&Password=" + password;
+						urlRest += "&UserId=" + username + "&Password=" + URLEncoder.encode(password,"UTF-8");
 					}else {
 						urlRest += "&UserId=admin&Password=1111";
 					}
@@ -313,7 +331,14 @@ public class CcmTiandyVideoService extends BaseController {
 										if (ccmDeviceList != null && ccmDeviceList.size() == 1) {//通过名称取到一条设备数据，则进行数据更新操作
 											this.updateDevice(deviceJson, ccmDeviceList.get(0));
 										} else {//code没有取到，名称没有取到，则新增数据
-											this.insertDevice(deviceJson);
+											if(deviceJson.containsKey("id") && StringUtils.isNotBlank(deviceJson.getString("id"))){//在通过id取一遍，避免id重复，且新增是保存过id，通过id也是可以取到数据的
+												CcmDevice deviceById = ccmDeviceDao.get(deviceJson.getString("id"));
+												if(deviceById == null || "".equals(deviceById.getId())){//code没有取到，名称没有取到，则新增数据
+													this.insertDevice(deviceJson);
+												}else{
+													this.updateDevice(deviceJson, deviceById);
+												}
+											}
 										}
 									}
 								} else {//通过code取得数据，则更新数据
@@ -388,7 +413,7 @@ public class CcmTiandyVideoService extends BaseController {
 			ccmDevice.setTypeId("001");
 			ccmDevice.setImagePath("video.png");
 			ccmDevice.setTypeVidicon("4");
-			ccmDevice.setStatus("3"); //默认状态为离线 使用本系统字典对应值 Easy7 系统离线状态值 为：5
+			ccmDevice.setStatus("2"); //默认状态为离线 使用本系统字典对应值 Easy7 系统离线状态值 为：5
 			Area areaTmp = new Area();
 			areaTmp.setId(areaId);
 			ccmDevice.setArea(areaTmp);

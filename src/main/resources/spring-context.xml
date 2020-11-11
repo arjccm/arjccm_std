@@ -194,12 +194,15 @@
 		<property name="targetMethod" value="updateCamerasStatus" />
 		<property name="concurrent" value="false" />
 	</bean>
-	<bean id="devOnlineStatusTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+	<bean id="devOnlineStatusTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="devOnlineStatusJob" />
-		<property name="startDelay" value="60000" />
-		<property name="repeatInterval" value="60000" />
+		<!--<property name="startDelay" value="60000" />-->
+		<!--<property name="repeatInterval" value="60000" />-->
+		<property name="cronExpression">
+			<value>0 0 0 * * ?</value>
+		</property>
 	</bean>
-	<!--定时更新设备在线状态end 1 小时更新一次 3600000 -->
+	<!--定时更新设备在线状态end每天0点更新-->
 	<bean id="CcmHouseEmphasisService" class="com.arjjs.ccm.modules.ccm.house.service.CcmHouseEmphasisService" />
 	<bean id="dictListJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="CcmHouseEmphasisService" />
