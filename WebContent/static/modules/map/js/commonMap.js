@@ -38,6 +38,7 @@ ArjMap.Map = function (params) {
     this.markInfoId = null;
     this.markInfoType = null;
     this.selectedNodes = null;
+    this.markIds = [];
 
     // 标注容器
     this.geoStrDraw = null; // 当前绘制图形的坐标串
@@ -212,7 +213,7 @@ ArjMap.Map.prototype = {
         this.map = this.drawMap();
 
         //鼠标悬上选中图层样式
-        this.addInteractionHover();
+        // this.addInteractionHover();
 
         //鹰眼图
         if (this.overviewmap) {
@@ -637,7 +638,8 @@ ArjMap.Map.prototype = {
                     scale: map.getView().getZoom() / 15
                 }),
                 fill: new ol.style.Fill({
-                    color: fillColor ? fillColor : 'rgba(255, 255, 255, 0.6)'
+                    // color: fillColor ? fillColor : 'rgba(255, 255, 255, 0.6)'
+                    color: 'rgba(255, 255, 255, 0.1)'
                 }),
                 stroke: new ol.style.Stroke({
                     color: color ? color : 'blue',
@@ -730,7 +732,7 @@ ArjMap.Map.prototype = {
                 stop: function (e2) {
                     high_top2 = parseInt(document.getElementById("PanZoomBar").style.top);
                     // 此处的_this.maxZoom为地图最大的放大级数，250代替滑块150的为滑块轴的高度，16位滑块的高度单位为px,对计算出来的小数向上取整
-                    var realzoom = Number(_this.maxZoom) - Number(_this.maxZoom) * high_top2 / (303 - 16);
+                    var realzoom = Number(_this.maxZoom) - Number(_this.maxZoom) * high_top2 / (200 - 16);
                     // 设置view zoom值
                     view.setZoom(realzoom);
                 }
@@ -739,7 +741,7 @@ ArjMap.Map.prototype = {
             view.on('change:resolution', function (e) {
                 var zommleve = view.getZoom();
                 // 此处的_this.maxZoom为地图最大的放大级数，用210代替110为滑块轴的高度，16位滑块的高度
-                var high = (Number(_this.maxZoom) - zommleve) * (303 - 16) / Number(_this.maxZoom);
+                var high = (Number(_this.maxZoom) - zommleve) * (200 - 16) / Number(_this.maxZoom);
                 document.getElementById("PanZoomBar").style.top = high + "px"
             });
         }
@@ -2946,7 +2948,18 @@ ArjMap.Map.prototype = {
         this.markInfoType = type;
         this.selectedNodes = selectedNodes;
         this.markInfoName = name;
+        this.markIds.push(id);
+        console.info(this.markIds);
     },
+    //删除选中区域
+    removeMarkIds: function(id){
+        var indexnum = this.markIds.indexOf(id);
+        if(indexnum!= -1){
+            this.markIds.splice(indexnum,1);
+        }
+        console.info(this.markIds);
+    },
+
     //标注加载默认数据
     addGraphical: function (type) {
         var map = this.map;
@@ -3929,16 +3942,21 @@ ArjMap.Map.prototype = {
         // select interaction working on "singleclick"
 
         // select interaction working on "click"
+
         _this.selectClick = new ol.interaction.Select({
             condition: ol.events.condition.click,
             filter: function (feature, layer) {
+                if(!isgetFeaturesDate(feature)){
+                    return;
+                };
                 return layer == _this['binguan'] || _this['yule'] || _this['shangchang'] || _this['jiayouzhan'] || _this['yiyuan'] || _this['grids'] || layer == _this['builds'] || layer == _this['events'] || layer == _this['parts'] || layer == _this['lands'] || layer == _this['videos']|| layer == _this['policeroom']||  layer == _this['workstation']|| layer == _this['broadcast'] || layer == _this['schoolPlace'] || layer == _this['keyPlace'] || _this['xuexiao'] || layer == _this['keyPerson'] || layer == _this['rentingPerson'] || layer == _this['publicPlace'] || layer == _this['PopLocation'] || layer == _this['SetTopBoxFlag'] || layer == _this['zongjiaotype'] || layer == _this['antiepidemictype']
-
             }
-
         });
         var selectSingleClick = new ol.interaction.Select({
             filter: function (feature, layer) {
+                if(!isgetFeaturesDate(feature)){
+                    return;
+                };
                 return layer == _this['communitys'] || layer == _this['streets'] || layer == _this['districts'];
             }
         });
@@ -3951,42 +3969,68 @@ ArjMap.Map.prototype = {
                 selectedFeatures(_this.selectClick)
             } else if (e.deselected.length > 0) {
 
-				}
-			});
-           
-			selectedFeatures(_this.selectClick)
-			// 点击添加饼形图--勿删
-            if (($('#areaPoint').val() != "" && $('#ccmPeopleName').val() != "")||($('#AlarmAreaPoint').val() != "")) {
-
-            } else {
-                map.addInteraction(selectSingleClick);
             }
-			selectSingleClick.on('select', function(e) {
-				$('#detailsDialog').html('');
-				$('#detailsDialog').show();
-				if (e.selected.length > 0) {
-					var selectedFeatures = selectSingleClick.getFeatures();			
-					var id = selectedFeatures.getArray().map(function(feature) {
-						return feature.get('info')['id1'];// 社区网格id
-					})
-					var type=selectedFeatures.getArray().map(function(feature) {
-						return feature.get('info')['所属层级'];// 社区网格id
-					})
- 					// var id = $('#detailsDialog').attr('infoId');
-                    // if(type=='4'){
-                    // $("#detailsDialog").load(
-                    // ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
-                    // }else{
-                    // $("#detailsDialog").load(
-                    // ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
-                    // }
-					$("#detailsDialog").load(ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
-					
+        });
 
-				} else if (e.deselected.length > 0) {
-					$('#detailsDialog').hide()
-				}
-			});
+        selectedFeatures(_this.selectClick)
+        // 点击添加饼形图--勿删
+        if (($('#areaPoint').val() != "" && $('#ccmPeopleName').val() != "")||($('#AlarmAreaPoint').val() != "")) {
+
+        } else {
+            map.addInteraction(selectSingleClick);
+        }
+
+
+        selectSingleClick.on('select', function(e) {
+            if(_this.markInfoId == null){
+                return;
+            }
+            $('#detailsDialog').html('');
+            $('#detailsDialog').show();
+            if (e.selected.length > 0) {
+                var selectedFeatures = selectSingleClick.getFeatures();
+                var id = selectedFeatures.getArray().map(function(feature) {
+                    return feature.get('info')['id1'];// 社区网格id
+                })
+                var type = selectedFeatures.getArray().map(function(feature) {
+                    return feature.get('info')['所属层级'];// 社区网格id
+                })
+                console.info(_this.markIds);
+                console.info(id);
+                console.info(type);
+                // var id = $('#detailsDialog').attr('infoId');
+                // if(type=='4'){
+                // $("#detailsDialog").load(
+                // ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
+                // }else{
+                // $("#detailsDialog").load(
+                // ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
+                // }
+                if(_this.markIds.indexOf(id.toString()) == -1){
+                    return;
+                }
+                $("#detailsDialog").load(ctx + "/pop/ccmPeople/getMapAreaForm?id=" + id, {});
+
+
+            } else if (e.deselected.length > 0) {
+                $('#detailsDialog').hide()
+            }
+        });
+
+        function isgetFeaturesDate(selectedFeatures) {
+            if(_this.markInfoId == null){
+                return false;
+            }
+            if(selectedFeatures.N.info == undefined){
+                return false;
+            }
+            var iid = selectedFeatures.N.info.id1;
+            if(_this.markIds.indexOf(iid.toString()) == -1){
+                return false;
+            }
+            return true;
+        }
+
 
         function selectedFeatures(selectType) {
             var selectedFeatures = selectType.getFeatures();
@@ -4705,12 +4749,14 @@ ArjMap.Map.prototype = {
                                         style = styleCache[size] = [new ol.style.Style({
                                             //图层内容颜色
                                             fill: new ol.style.Fill({
-                                                color: fillColor ? fillColor : 'rgba(255, 255, 255, 0.6)'
+                                                // color: fillColor ? fillColor : 'rgba(255, 255, 255, 0.6)'
+                                                color: 'rgba(255, 255, 255, 0)'
                                             }),
                                             //图层边框颜色
                                             stroke: new ol.style.Stroke({
-                                                color: color ? '#fff' : 'white',
-                                                width: 1
+                                                // color: color ? '#fff' : 'white',
+                                                color: 'rgba(255, 255, 255, 0)',
+                                                width: 0.5
                                             }),
                                             //图层文字颜色
                                             text: new ol.style.Text({
@@ -4718,7 +4764,7 @@ ArjMap.Map.prototype = {
                                                 textBaseline: 'middle', // 基准线
                                                 exceedLength: 'true',
                                                 font: 'normal 12px 微软雅黑',  // 文字样式
-                                                text: feature.get('name'),  // 文本内容
+                                                // text: feature.get('name'),  // 文本内容
                                                 fill: new ol.style.Fill({color: '#e5780b'}), // 文本填充样式（即文字颜色）,
                                                 stroke: new ol.style.Stroke({color: '#fff', width: 2})
                                             })
