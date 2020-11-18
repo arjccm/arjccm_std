@@ -929,7 +929,6 @@ function QueryVideosBySelection(data,selectionMode){
 }
 //点击定位
 function goToDetail(x,y,id,info){
-	console.log("goToDetail");
 	var coordinates=[x,y];
 	Map.map.getView().setZoom(18);
 	Map.goTo(coordinates);
@@ -1002,7 +1001,7 @@ function yiyuanFun(_this) {
 	if (yiyuanFlag) {
 		// $.getJSON('' + ctx + '/sys/map/ccmOrgCommonalityMap?type=2', function (
 		$.getJSON('' + ctx + '/sys/map/findMapIndustry?type=2', function (
-			data) {
+				data) {
 			var features = data.features;
 			var len = features.length;
 			idArryiyuan = [];
