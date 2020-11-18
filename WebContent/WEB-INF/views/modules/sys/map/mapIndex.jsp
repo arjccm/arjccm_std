@@ -68,7 +68,7 @@
 <script src="${ctxStatic}/modules/map/js/draw/js/appIndex.js"></script>
 <script src="${ctxStatic}/modules/map/js/mapBuildSpe.js"></script>
 <script src="${ctxStatic}/ccm/sys/js/mapCollectTree.js"></script>
- <script src="${ctxStatic}/ccm/sys/js/mapBusinessTree.js"></script>
+<script src="${ctxStatic}/ccm/sys/js/mapBusinessTree.js"></script>
 
 <style>
 #tool {
@@ -415,17 +415,21 @@ border-top:0.6px solid  #efefef;
 <body  style="overflow: hidden;"   onload="init()">
     <div id="content" class="row-fluid">
      <div id="left" class="accordion-group mapIndex">
-			<div class="accordion-heading">
+			<%--<div class="accordion-heading">
 			<ul  class="nav nav-tabs nav-tabsLeft">
 				<li id="resource"  class="active" ><a>资&nbsp;&nbsp;&nbsp;源</a></li>
 				<li id="business"  ><a>业&nbsp;&nbsp;&nbsp;务</a></li>
 				<li  id="collect"  ><a>收藏夹</a></li>
 				</ul>
-			</div>
-			          <div style="float: left; border-bottom: 1px solid #5b6e84;width: 100%;margin-top: 32px;">
+			</div>--%>
+					 <%-- <div style="float: left; border-bottom: 1px solid #5b6e84;width: 100%;margin-top: 32px;">
 						 <div  id="treeLeft" class="ztree" style="overflow: auto; float: left; width: 100px;height: 100px;margin-bottom: 2px"> </div>
 						 <br>
-				        </div>
+				        </div>--%>
+					<div style="display: none;">
+						<div id="treeLeft" class="ztree"></div>
+						<br>
+					</div>
 					  <div id="resourceDiv">
 
 						<div >
@@ -689,7 +693,7 @@ border-top:0.6px solid  #efefef;
 				<div id="ControlPanZoomIndex"
 					style="position: absolute; width: 66px; height: 161px; left: 17px; top: 0px; overflow: hidden">
 					<img id=""
-						style="position: absolute; left: 0px; top: 133px; width: 65px; height: 16px; display: none"
+						style=" position: absolute; left: 0px; top: 133px; width: 65px; height: 16px; display: none"
 						src="${ctxStatic}/modules/map/images/zoom/city-index.png" /> <img
 						id=""
 						style="position: absolute; left: 0px; top: 108px; width: 65px; height: 16px;"
