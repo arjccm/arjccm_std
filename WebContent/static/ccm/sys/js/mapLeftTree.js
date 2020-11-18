@@ -11,7 +11,9 @@ $(function() {
 	// ztree
 	var setting = {
 		check : {
-			enable : true
+			enable : true,
+			chkStyle : "checkbox",
+			chkboxType : {"Y":"","N":""}
 		},
 		data : {
 			simpleData : {
@@ -110,7 +112,7 @@ $(function() {
 	// 获取选中节点
 
 	function getClickedNodes(e,treeId, treeNode) {
-		
+
 		var checked = "";
 		var zTree = $.fn.zTree.getZTreeObj("assetTree");
 		var selectedNodes = zTree.getSelectedNodes();
@@ -150,7 +152,7 @@ $(function() {
 					});
 				}
 				if(treeTypeData=="area6"){
-					Map.map.getView().setZoom(16);	
+					Map.map.getView().setZoom(16);
 					Map.removeLayer('communitys');
 					$.getJSON('' + ctx + '/sys/map/orgAreaMap?type=1&ids='+"\'"+selectedNodes[0].id+"\'", function(data) {
 						Map.addJSON1([ {
@@ -185,8 +187,9 @@ $(function() {
 
 
 	// 获取选中节点
-	
-	function getCheckedNodes() {
+
+	/*function getCheckedNodes() {
+		debugger
 		Map.removeLayer('lands');
 		Map.removeLayer('parts');
 		Map.removeLayer('videos');
@@ -262,13 +265,13 @@ $(function() {
 				   else if(nodes.type == 'workstation'){
 					 workstation +="\'"+nodes.id+"\',";
 				   }
-		      }/*else if(nodes.type=="area5"){		    	   
+		      }/!*else if(nodes.type=="area5"){
 		    	  $.getJSON('' + ctx + '/sys/map/chooseAreaMap?AreaId='+nodes.id, function(data) {
 		    			 if(data=="200"){
 		    				 alert(200)
 		    			 }
 					}); 
-		      }	*/
+		      }	*!/
 		 }
 		var checkedLeftNodes = zTreeObjLeft.getCheckedNodes(true);
 		if(streetsids != ""){	
@@ -494,9 +497,65 @@ $(function() {
 			Map.removeLayer('jingwushi'); 
 			Map.removeLayer('gongzuozhan');
 		}
-	}	
-	
-	
+	}*/
+
+	// 点击checkbox触发事件
+	function getCheckedNodes() {
+		var checked = "";
+		var zTree = $.fn.zTree.getZTreeObj("assetTree");
+		var selectedNodes = zTree.getChangeCheckedNodes();
+
+		//zTree的getChangeCheckedNodes()方法用于获取输入框勾选状态被改变的节点集合。
+		//如果需要获取每次操作后全部被改变勾选状态的节点数据，请在每次勾选操作后，遍历所有被改变勾选状态的节点数据，让其 checkedOld = checked 就可以了。
+		for (var i=0, l=selectedNodes.length; i<l; i++) {
+			selectedNodes[i].checkedOld = selectedNodes[i].checked;
+		}
+
+		var type=selectedNodes[0].pointType;
+		var areaPoint=selectedNodes[0].areaPoint;
+		var areaMap=selectedNodes[0].areaMap;
+		var id=selectedNodes[0].id;
+		var treeTypeData=selectedNodes[0].type;
+		var name=selectedNodes[0].name;
+		if (selectedNodes[0].checked) {//该节点未选中时，点击完变为选中状态
+			Map.markInfo(id,treeTypeData,selectedNodes,name);
+			// if(selectedNodes[0].color){
+			// 	var num = selectedNodes[0].color.toString().lastIndexOf(',');
+			// 	var color = selectedNodes[0].color.toString().substring(5,num);
+			// 	var num1 = Number(color.split(',')[0]);
+			// 	var num2 = Number(color.split(',')[1]);
+			// 	var num3 = Number(color.split(',')[2]);
+			// 	document.getElementById('a_color').jscolor.fromRGB(num1,num2,num3);
+			// }
+
+			if(areaPoint==""&&areaMap==""){
+				// top.$.jBox.tip('请标注添加坐标信息');
+//				Map.removeLayer('vectorMark'); //pengjianqiang
+			}else{
+				if(type=='0'){
+					type='Point';
+				}else if(type=='1'){
+					type='Polygon';
+				}else if(type=='2'){
+					type='LineString';
+				}
+				Map.addGraphicalWithId(type);
+				/*$.getJSON('' + ctx + '/sys/map/orgAreaMap?type=' + type + '&ids=' + id + '',
+					function (data) {
+					Map.addJSON1([{
+						'type': treeTypeData,
+						'data': data,
+						'isShow': true
+					}])
+				})*/
+				Map.removeLayer('drawMarkVector');// 删除刚才标绘的图层
+			}
+		} else {//取消选中状态
+			Map.removeLayer(id);
+			Map.removeMarkIds(id);
+		}
+
+	}
 	
 	
 	
