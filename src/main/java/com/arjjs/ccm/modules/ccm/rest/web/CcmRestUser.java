@@ -88,9 +88,9 @@ public class CcmRestUser {
         return result;
         }
 
-    // 获取微信公众号连接
+    // 获取微信公众号链接
     @ResponseBody
-    @RequestMapping(value = "/getWechart")
+    @RequestMapping(value = "/getWechart", method = RequestMethod.GET)
     public CcmRestResult getWechart(@RequestParam("id") String id) {
         CcmRestResult result = new CcmRestResult();
         SysConfig wechartPlatform = sysConfigService.get(id);
