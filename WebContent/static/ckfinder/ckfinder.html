@@ -13,6 +13,7 @@
 	//<![CDATA[
 	(function()
 	{
+	    debugger;
 		var config = {};
 		var get = CKFinder.tools.getUrlParam;
 		var getBool = function( v )
@@ -139,7 +140,15 @@
 		config.width = config.height = '100%';
 
 		var ckfinder = new CKFinder( config );
-		ckfinder.replace( 'ckfinder', config );
+		//去掉查看菜单
+        //ckfinder.basePath = 'CkEditor/ckfinder/';//ckfinder所在路径
+        ckfinder.callback = function (api) {//ckfinder创建时函数
+            // 文件查看餐单失效
+            var enableAgain = api.disableFileContextMenuOption('viewFile', false);
+            // 重新有效
+            // enableAgain();
+        }
+        ckfinder.replace( 'ckfinder', config );
 		
 	})();
 	//]]>

@@ -394,8 +394,14 @@ public class PlmCalendarController extends BaseController {
 		
 		return param;
 	}
-	
-	
+
+	@RequiresPermissions("calendar:plmCalendar:edit")
+	@RequestMapping(value = "formdelete")
+	public String formdelete(PlmCalendar plmCalendar, RedirectAttributes redirectAttributes) {
+		plmCalendarService.delete(plmCalendar);
+		addMessage(redirectAttributes, "取消日程计划成功");
+		return "redirect:"+Global.getAdminPath()+"/calendar/plmCalendar/calendar/?repage";
+	}
 	
 	
 	@RequiresPermissions("calendar:plmCalendar:edit")

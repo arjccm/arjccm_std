@@ -117,9 +117,15 @@
 
 					}
 				});
-
 			});
 
+    function deletedata(id){
+        if(window.confirm("您确定要取消该日程吗？")){
+            debugger;
+            document.location = "${ctx}/calendar/plmCalendar/formdelete?id=" + id;
+            parent.location.reload();
+        }
+    };
 	/* function repeat() {
 		
 		if ($(this).val()=="2") {
@@ -327,8 +333,9 @@
 		</table>
 		<div class="form-actions">
 			<shiro:hasPermission name="calendar:plmCalendar:edit">
-				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="icon-ok"></i>保存</a>&nbsp;</shiro:hasPermission>
-			
+				<a id="btnSubmit" class="btn btn-primary" href="javascript:;"><i class="icon-ok"></i>保存</a>&nbsp;
+				<a id="bthDelete" class="btn btn-export" style="width: 60px !important;" onclick="deletedata('${plmCalendar.id}')">取消日程</a>
+			</shiro:hasPermission>
 		</div>
 	</form:form>
 </body>

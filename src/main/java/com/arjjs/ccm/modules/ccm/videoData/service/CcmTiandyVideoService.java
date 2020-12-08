@@ -210,7 +210,7 @@ public class CcmTiandyVideoService extends BaseController {
 					if(StringUtils.isNotBlank(restReturn)) {
 						JSONArray dataJson = JSONArray.parseArray(restReturn);
 						if(dataJson.size() > 0) {
-							System.out.println("开始便利数组");
+							System.out.println("开始遍历数组");
 							areaList.clear();
 							List<CcmOrgArea> orgAreaList = ccmOrgAreaService.getAreaMap(new CcmOrgArea());
 							this.sortList(areaList, orgAreaList, "0", true);
@@ -365,7 +365,7 @@ public class CcmTiandyVideoService extends BaseController {
 				ccmDevice.setName(deviceJson.getString("caption"));
 			}
 			String cameraType = "0";//0:'枪机'；1:'球机';2:'半球'
-			if(deviceJson.containsKey("cameraType")) {
+				if(deviceJson.containsKey("cameraType")) {
 				cameraType = deviceJson.getString("cameraType");
 				ccmDevice.setType(cameraType);
 			}else{
@@ -483,7 +483,7 @@ public class CcmTiandyVideoService extends BaseController {
 			jsonOBJ.put("data_type", 1); //0 主码流 1：子码流
 			ccmDevice.setParam(jsonOBJ.toJSONString());
 			ccmDevice.setCompanyId("tiandy");
-			ccmDevice.setTypeId("003");
+			//ccmDevice.setTypeId("003");
 			ccmDevice.setImagePath("video.png");
 			ccmDevice.setTypeVidicon("4");
 			if(StringUtils.isNotBlank(areaId)) {
