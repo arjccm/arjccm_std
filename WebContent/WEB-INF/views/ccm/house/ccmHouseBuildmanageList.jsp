@@ -273,7 +273,7 @@ ul.ztree.zTreeDragUL{
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}" />
 		<ul class="ul-form pull-left">
 			<li class="first-line"><label class="title-text">建筑物名称：</label> <form:input path="buildname" htmlEscape="false" maxlength="512" class="input-medium" /></li>
-			<li class="first-line"><label class="title-text">所属网格：</label> <sys:treeselect id="area" name="area.id" value="${ccmHouseBuildmanage.area.id}" labelName="area.name" labelValue="${ccmHouseBuildmanage.area.name}" title="网格" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-small" allowClear="true" notAllowSelectParent="true" /></li>
+			<li class="first-line"><label class="title-text">所属区域：</label> <sys:treeselect id="area" name="area.id" value="${ccmHouseBuildmanage.area.id}" labelName="area.name" labelValue="${ccmHouseBuildmanage.area.name}" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid=" cssClass="input-small" allowClear="true" notAllowSelectParent="true" /></li>
 			<li class="first-line"><label class="title-text">小区名称：</label> <form:input path="name" htmlEscape="false" maxlength="512" class="input-medium" /></li>
 			<li class="first-line"><label class="title-text">楼栋长姓名：</label> <form:input path="buildPname" htmlEscape="false" maxlength="64" class="input-medium" /></li>
 		</ul>

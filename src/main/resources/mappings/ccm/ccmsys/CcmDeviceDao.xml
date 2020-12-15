@@ -70,7 +70,7 @@
 		<include refid="ccmDeviceJoins" />
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+			<if test="userArea != null and userArea.id != null and userArea.id != ''">
 				AND (a17.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
 				a.area_id
 				= #{userArea.id})

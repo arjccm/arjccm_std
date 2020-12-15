@@ -1094,6 +1094,11 @@
 			<if  test="endBirthday != null and endBirthday != ''">
 				AND a.birthday &lt;= #{endBirthday}
 			</if>
+			<if test="userArea != null and userArea.id != null and userArea.id != ''">
+				AND (a21.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
+				a.area_grid_id
+				= #{userArea.id})
+			</if>
 			<if
 					test="areaComId != null and areaComId.id != null and areaComId.id != ''">
 				AND a.area_com_id = #{areaComId.id}
@@ -1224,7 +1229,7 @@
 			<if test="type != null and type != ''">
 				AND a.type = #{type}
 			</if>
-			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+			<if test="userArea != null and userArea.id != null and userArea.id != ''">
 				AND (a21.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
 				a.area_grid_id
 				= #{userArea.id})
@@ -1388,7 +1393,7 @@
 			<if test="type != null and type != ''">
 				AND a.type = #{type}
 			</if>
-			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+			<if test="userArea != null and userArea.id != null and userArea.id != ''">
 				AND (a21.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
 				a.area_grid_id
 				= #{userArea.id})
@@ -2672,7 +2677,7 @@
 		<include refid="ccmPeopleJoinsNet"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+			<if test="userArea != null and userArea.id != null and userArea.id != ''">
 				AND (a21.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
 				a.area_grid_id
 				= #{userArea.id})
@@ -2735,7 +2740,7 @@
 			<if test="type != null and type != ''">
 				AND a.type = #{type}
 			</if>
-			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+			<if test="userArea != null and userArea.id != null and userArea.id != ''">
 				AND (a21.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
 				a.area_grid_id
 				= #{userArea.id})
@@ -3037,7 +3042,7 @@
 			LEFT JOIN ccm_house_buildmanage b ON b.id = a.build_id
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+			<if test="userArea != null and userArea.id != null and userArea.id != ''">
 				AND (a21.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
 				a.area_grid_id
 				= #{userArea.id})

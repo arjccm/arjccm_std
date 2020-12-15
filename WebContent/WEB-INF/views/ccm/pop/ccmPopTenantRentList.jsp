@@ -37,10 +37,10 @@
 		<ul class="ul-form pull-left">
 			<li class="first-line"><label class="title-text">房屋编号：</label> <form:input path="houseBuild"
 					htmlEscape="false" maxlength="50" class="input-medium" /></li>
-			<li class="first-line"><label class="title-text">所属网格：</label> <sys:treeselect id="area"
+			<li class="first-line"><label class="title-text">所属区域：</label> <sys:treeselect id="area"
 					name="area.id" value="${ccmPopTenant.area.id}"
 					labelName="area.name" labelValue="${ccmPopTenant.area.name}"
-					title="网格" url="/tree/ccmTree/treeDataArea?type=7&areaid="
+					title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
 					cssClass="input-medium" allowClear="true"
 					notAllowSelectParent="true" /></li>
 			<li class="first-line"><label class="title-text">出租用途：</label>

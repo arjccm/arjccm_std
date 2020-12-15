@@ -15,6 +15,7 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
+                $("#areaError").hide();
 				//$("#name").focus();
 				function getUrlParam(name) {
 					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -80,9 +81,9 @@
 		var html1 = '<label for="" class="error">必选字段 <label>';
 		//alert(officeId.length);
 		if (area.length != 0) {
-			$("#show1").html("*");
+            $("#areaError").hide();
 		} else {
-			$("#show1").html(html1);
+            $("#areaError").show();
 		}
 
 		if (area.length != 0) {
@@ -130,8 +131,7 @@
 				</td>
 				<td>
 					<div>
-						<label class="control-label"><span
-								class="help-inline"><font color="red">*</font> </span>发生时间：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>发生时间：</label>
 						<div class="controls">
 							<input name="sendDate" type="text" readonly="readonly"
 								   maxlength="20" class="input-medium Wdate required"
@@ -145,14 +145,14 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font> </span> 所属网格：</label>
+						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>所属网格：</label>
 						<div class="controls">
 							<sys:treeselect id="area" name="area.id"
 								value="${ccmEventAmbi.area.id}" labelName="area.name"
 								labelValue="${ccmEventAmbi.area.name}" title="区域"
 								url="/tree/ccmTree/treeDataArea?type=7&areaid="
 								allowClear="true" notAllowSelectParent="true" cssClass=""/>
-
+							<label id="areaError" for="area" class="error">必选字段</label>
 						</div>
 					</div>
 				</td>

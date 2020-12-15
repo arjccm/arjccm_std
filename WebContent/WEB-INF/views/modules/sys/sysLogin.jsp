@@ -316,7 +316,7 @@
 
 		<li class="clearfix"></li>
 		<div class="login-box">
-			<c:if test="${surplus < 31 && surplus > 0}">
+			<c:if test="${surplus < 3 && surplus > 0}">
 				<span id="surplus">平台使用的剩余天数:<span id="surplus_num">${surplus}</span>天</span>
 			</c:if>
 			<c:if test="${surplus < 0}">
