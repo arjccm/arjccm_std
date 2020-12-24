@@ -191,7 +191,12 @@
             </form:select>
         </li>
 
-
+        <li class="selectHidden hide"><label>所属区域：</label>
+            <sys:treeselect id="userArea" name="userArea.id" value="${ccmPeople.userArea.id}"
+                            labelName="userArea.name" labelValue="${ccmPeople.userArea.name}"
+                            title="区域" url="/tree/ccmTree/treeDataArea?type=6" cssClass="input-medium" allowClear="true"
+                            notAllowSelectParent="false"/>
+        </li>
         <li class="selectHidden hide"><label>所属社区：</label>
             <sys:treeselect id="areaComId" name="areaComId.id" value="${ccmPeople.areaComId.id}"
                             labelName="areaComId.name" labelValue="${ccmPeople.areaComId.name}"

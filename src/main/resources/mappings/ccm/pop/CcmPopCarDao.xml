@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.pop.dao.CcmPopCarDao">
+    
+	<sql id="ccmPopCarColumns">
+		a.id AS "id",
+		a.jdchphm AS "jdchphm",
+		a.jdchpzldm AS "jdchpzldm",
+		a.jdchpysdm AS "jdchpysdm",
+		a.jdccllxdm AS "jdccllxdm",
+		a.zwppmc AS "zwppmc",
+		a.clxh AS "clxh",
+		a.clcd AS "clcd",
+		a.clkd AS "clkd",
+		a.clgd AS "clgd",
+		a.jdccsysdm AS "jdccsysdm",
+		a.jyqk AS "jyqk",
+		a.xp AS "xp",
+		a.cz_xm AS "czXm",
+		a.cz_gmsfzhm AS "czGmsfzhm",
+		a.cz_lxdh AS "czLxdh",
+		a.djr_xm AS "djrXm",
+		a.djr_lxdh AS "djrLxdh",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="ccmPopCarJoins">
+	</sql>
+    
+	<select id="get" resultType="CcmPopCar">
+		SELECT 
+			<include refid="ccmPopCarColumns"/>
+		FROM ccm_pop_car a
+		<include refid="ccmPopCarJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CcmPopCar">
+		SELECT 
+			<include refid="ccmPopCarColumns"/>
+		FROM ccm_pop_car a
+		<include refid="ccmPopCarJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="jdchphm != null and jdchphm != ''">
+				AND a.jdchphm = #{jdchphm}
+			</if>
+			<if test="jdchpzldm != null and jdchpzldm != ''">
+				AND a.jdchpzldm = #{jdchpzldm}
+			</if>
+			<if test="jdchpysdm != null and jdchpysdm != ''">
+				AND a.jdchpysdm = #{jdchpysdm}
+			</if>
+			<if test="jdccllxdm != null and jdccllxdm != ''">
+				AND a.jdccllxdm = #{jdccllxdm}
+			</if>
+			<if test="zwppmc != null and zwppmc != ''">
+				AND a.zwppmc = #{zwppmc}
+			</if>
+			<if test="clxh != null and clxh != ''">
+				AND a.clxh = #{clxh}
+			</if>
+			<if test="jdccsysdm != null and jdccsysdm != ''">
+				AND a.jdccsysdm = #{jdccsysdm}
+			</if>
+			<if test="czXm != null and czXm != ''">
+				AND a.cz_xm = #{czXm}
+			</if>
+			<if test="djrXm != null and djrXm != ''">
+				AND a.djr_xm = #{djrXm}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CcmPopCar">
+		SELECT 
+			<include refid="ccmPopCarColumns"/>
+		FROM ccm_pop_car a
+		<include refid="ccmPopCarJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_pop_car(
+			id,
+			jdchphm,
+			jdchpzldm,
+			jdchpysdm,
+			jdccllxdm,
+			zwppmc,
+			clxh,
+			clcd,
+			clkd,
+			clgd,
+			jdccsysdm,
+			jyqk,
+			xp,
+			cz_xm,
+			cz_gmsfzhm,
+			cz_lxdh,
+			djr_xm,
+			djr_lxdh,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{jdchphm},
+			#{jdchpzldm},
+			#{jdchpysdm},
+			#{jdccllxdm},
+			#{zwppmc},
+			#{clxh},
+			#{clcd},
+			#{clkd},
+			#{clgd},
+			#{jdccsysdm},
+			#{jyqk},
+			#{xp},
+			#{czXm},
+			#{czGmsfzhm},
+			#{czLxdh},
+			#{djrXm},
+			#{djrLxdh},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ccm_pop_car SET 	
+			jdchphm = #{jdchphm},
+			jdchpzldm = #{jdchpzldm},
+			jdchpysdm = #{jdchpysdm},
+			jdccllxdm = #{jdccllxdm},
+			zwppmc = #{zwppmc},
+			clxh = #{clxh},
+			clcd = #{clcd},
+			clkd = #{clkd},
+			clgd = #{clgd},
+			jdccsysdm = #{jdccsysdm},
+			jyqk = #{jyqk},
+			xp = #{xp},
+			cz_xm = #{czXm},
+			cz_gmsfzhm = #{czGmsfzhm},
+			cz_lxdh = #{czLxdh},
+			djr_xm = #{djrXm},
+			djr_lxdh = #{djrLxdh},
+			create_by = #{createBy.id},
+			create_date = #{createDate},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			del_flag = #{delFlag}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE ccm_pop_car SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

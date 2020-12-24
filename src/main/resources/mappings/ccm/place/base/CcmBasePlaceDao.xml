@@ -125,7 +125,7 @@
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if
-				test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+				test="userArea != null and userArea.id != null and userArea.id != ''">
 				AND (s.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
 				a.case_place
 				= #{userArea.id})

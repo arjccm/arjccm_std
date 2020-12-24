@@ -220,7 +220,7 @@
                 AND a.building_id = #{buildingId.id}
             </if>
             <if test="area != null and area.id != null and area.id != ''">
-                AND a.area_id = #{area.id}
+                AND (a17.parent_ids LIKE CONCAT('%',#{area.id},'%') or a.area_id = #{area.id})
             </if>
             <if test="houseType != null and houseType != ''">
                 AND a.house_type = #{houseType}

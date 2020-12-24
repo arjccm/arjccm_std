@@ -306,7 +306,7 @@
 				<if test="dbName == 'mysql'">concat('%',#{buildname},'%')</if>
 			</if>
 			<if test="area != null and area.id != null and area.id != ''">
-				AND a.area_id = #{area.id}
+				AND (a17.parent_ids LIKE CONCAT('%',#{area.id},'%') or a.area_id = #{area.id})
 			</if>
 			<if test="buildPname != null and buildPname != ''">
 				AND a.build_pname LIKE
@@ -873,7 +873,7 @@
 				<if test="dbName == 'mssql'">'%'+#{buildPname}+'%'</if>
 				<if test="dbName == 'mysql'">concat('%',#{buildPname},'%')</if>
 			</if>
-			<if test="userArea != null and userArea.parentIds != null and userArea.parentIds != ''">
+			<if test="userArea != null and userArea.id != null and userArea.id != ''">
 				AND   (a17.parent_ids LIKE  CONCAT('%',#{userArea.id},'%')  or a.area_id = #{userArea.id})
 			</if>
 			<if test="more1 != null and more1 != ''">
