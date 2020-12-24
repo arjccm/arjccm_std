@@ -73,9 +73,11 @@
 				$("#unsettle").hide();
 			}
 		});
+
 var isRepeat= function(id) {
 	// 新增
 	var aid=id;
+	var btnSubmit = $("#btnSubmit")
 	if (id.trim().length <= 0) {
 		var pident = $("#p_id_card").val();
 		if (pident != null && pident.trim().length > 0) {
@@ -85,7 +87,8 @@ var isRepeat= function(id) {
 				type: "get",
 				success: function (data) {
 					if (data.length > 0) {
-						layer.alert('该身份证号码已注册！！！', {
+						btnSubmit.attr("disabled", true);
+						layer.alert('该身份证号码已注册, 请修改后保存！', {
 							title: "提示",
 							skin: 'layui-layer-lan'
 							, closeBtn: 0,
@@ -104,7 +107,8 @@ var isRepeat= function(id) {
 				type: "get",
 				success: function (data) {
 					if (data.length > 0) {
-						layer.alert('该身份证号码已注册！！！', {
+						btnSubmit.attr("disabled", true);
+						layer.alert('该身份证号码已注册, 请修改后保存！', {
 							title: "提示",
 							skin: 'layui-layer-lan'
 							, closeBtn: 0,

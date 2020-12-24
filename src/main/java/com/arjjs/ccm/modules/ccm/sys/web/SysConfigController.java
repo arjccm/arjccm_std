@@ -583,12 +583,18 @@ public class SysConfigController extends BaseController {
 
 
 				if (StringUtils.isNotEmpty(actualConfigUrl)){ //如果是映射地址
+					logger.info("=================================================如果配置了APP映射地址,也就是外网地址===================================================================");
+					logger.info("127.0.0.1.equals(request.getRemoteAddr() :----------------------------" + "127.0.0.1".equals(request.getRemoteAddr()));
+					logger.info("Global.getConfig(physical_address_server_url).equals(HtmlUtil.getIpAddress(request) :----------------------------" + Global.getConfig("physical_address_server_url").equals(HtmlUtil.getIpAddress(request)));
+					logger.info("HtmlUtil.getIpAddress(request).startsWith(Global.getConfig(physical_address_server_url).substring(0,2)):----------------------------" + HtmlUtil.getIpAddress(request).startsWith(Global.getConfig("physical_address_server_url").substring(0,2)));
+					logger.info("=================================================如果配置了APP映射地址,也就是外网地址===================================================================");
 					if(!"127.0.0.1".equals(request.getRemoteAddr()) &&
 							!Global.getConfig("physical_address_server_url").equals(HtmlUtil.getIpAddress(request)) &&
 							!HtmlUtil.getIpAddress(request).startsWith(Global.getConfig("physical_address_server_url").substring(0,2))){
 						sysMapConfig.setImageMapUrl(HtmlUtil.getMappingUrl(actualConfigUrl,sysMapConfig.getImageMapUrl())); //影像地图url
 						sysMapConfig.setElectronicMapUrl(HtmlUtil.getMappingUrl(actualConfigUrl,sysMapConfig.getElectronicMapUrl())); //电子地图url
 						sysMapConfig.setKeshihuaMapUrl(HtmlUtil.getMappingUrl(actualConfigUrl,sysMapConfig.getKeshihuaMapUrl()));//可视化地图url
+						logger.info("=================================================外网映射地址===================================================================");
 						logger.debug("getAppMapUrl"+sysMapConfig.getAppMapUrl());
 						logger.debug("电子地图url getElectronicMapUrl"+sysMapConfig.getElectronicMapUrl());
 						logger.debug("影像地图url getImageMapUrl"+sysMapConfig.getImageMapUrl());
@@ -597,7 +603,21 @@ public class SysConfigController extends BaseController {
 						logger.info("电子地图url getElectronicMapUrl"+sysMapConfig.getElectronicMapUrl());
 						logger.info("影像地图url getImageMapUrl"+sysMapConfig.getImageMapUrl());
 						logger.info("可视化地图url getKeshihuaMapUrl"+sysMapConfig.getKeshihuaMapUrl());
+						logger.info("=================================================外网映射地址===================================================================");
+					}else{
+						logger.info("=================================================配置地址===================================================================");
+						logger.debug("getAppMapUrl"+sysMapConfig.getAppMapUrl());
+						logger.debug("电子地图url getElectronicMapUrl"+sysMapConfig.getElectronicMapUrl());
+						logger.debug("影像地图url getImageMapUrl"+sysMapConfig.getImageMapUrl());
+						logger.debug("可视化地图url getKeshihuaMapUrl"+sysMapConfig.getKeshihuaMapUrl());
+						logger.info(("getAppMapUrl"+ sysMapConfig.getAppMapUrl()));
+						logger.info("电子地图url getElectronicMapUrl"+sysMapConfig.getElectronicMapUrl());
+						logger.info("影像地图url getImageMapUrl"+sysMapConfig.getImageMapUrl());
+						logger.info("可视化地图url getKeshihuaMapUrl"+sysMapConfig.getKeshihuaMapUrl());
+						logger.info("=================================================配置地址===================================================================");
+
 					}
+
 				}
 				sysConfig.setSysMapConfig(sysMapConfig);
 			}

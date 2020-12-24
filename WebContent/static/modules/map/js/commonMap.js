@@ -5032,6 +5032,10 @@ ArjMap.Map.prototype = {
             html += '<td><strong>视频监控：</strong></td>';
             html += '<td><a class="click btn btn-success"  href="###" onclick="playVideo(\''+ videoId + '\',\'' + typeFlag + '\')" videoIp="' + videoIp + '"  videoId="' + videoId + '">播放</a></td>';
             html += '</tr>'
+            html += '<tr>';
+            html += '<td><strong>录像回放：</strong></td>';
+            html += '<td><a class="click btn btn-success"  href="###" onclick="hkPlayBack(\''+ videoId + '\',\'' + typeFlag + '\')" videoIp="' + videoIp + '"  videoId="' + videoId + '">回放</a></td>';
+            html += '</tr>'
         }
         if (isplace == 1) {
             html += '<tr>';

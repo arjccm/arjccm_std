@@ -3267,7 +3267,7 @@ body {
 
 /*一些通用工具样式开始*/
 .common-yellow-highlight {
-  color: #ddaa00
+  color: #ddaa00;
   font-weight: bold;
 }
 .common-yellow {

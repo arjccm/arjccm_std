@@ -102,6 +102,14 @@ public class CcmDeviceController extends BaseController {
 		model.addAttribute("ccmDevice", ccmDevice);
 		return "ccm/ccmsys/ccmDeviceFormMap";
 	}
+
+	//首页地图弹页面显示摄像机(回放)
+	@RequiresPermissions("ccmsys:ccmDevice:view")
+	@RequestMapping(value = "hkPlayBack")
+	public String hkPlayBack(CcmDevice ccmDevice, Model model) {
+		model.addAttribute("ccmDevice", ccmDevice);
+		return "ccm/ccmsys/hkPlayBack";
+	}
 	/**
 	 * 导出网络设备数据
 	 * 
