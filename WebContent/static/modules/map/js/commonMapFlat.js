@@ -3327,6 +3327,16 @@ ArjMap.Map.prototype={
 									'    color: white;">播放</button>' +
 									'</a></td>';
 								html += '</tr>'
+
+								html += '<tr>';
+								html += '<td class="td_color"><strong>录像回放：</strong></td>';
+								html += '<td><a class="hkPlayBack"  href="###" videoIp="'+ data[i].get('video')['ip']+'"  videoId="'+ data[i].get('video')['id']+ '" typeVidicon="'+ data[i].get('video')['typeVidicon']+ '" >' +
+									'<button class="btn btn-success" style="width: 78px;\n' +
+									'    height: 30px;\n' +
+									'    background-color: #5bb75b;\n' +
+									'    color: white;">回放</button>' +
+									'</a></td>';
+								html += '</tr>'
 							}
 							//if(pointType&&pointType=='vlc'||pointType&&pointType=='people'){
 							if(pointType&&pointType=='vlc'){
