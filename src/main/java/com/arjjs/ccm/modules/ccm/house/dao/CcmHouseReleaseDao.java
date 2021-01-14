@@ -6,6 +6,8 @@ package com.arjjs.ccm.modules.ccm.house.dao;
 import com.arjjs.ccm.common.persistence.CrudDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseRelease;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.method.P;
 
 /**
  * 安置帮教人员DAO接口
@@ -16,4 +18,6 @@ import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseRelease;
 public interface CcmHouseReleaseDao extends CrudDao<CcmHouseRelease> {
 	
 	public CcmHouseRelease getItemByPeopleId(String id);
+
+    CcmHouseRelease getReleaseByPeopleId(@Param("peopleId") String peopleId);
 }

@@ -203,6 +203,10 @@
                         &nbsp; <img src="${ctxStatic}/images/atteType_green.png"/>
                     </td>
                 </c:if>
+                <c:if test="${ccmPopBehind.atteType eq '04'}">
+                    <td>${fns:getDictLabel(ccmPopBehind.atteType, 'ccm_conc_exte', '')}
+                    </td>
+                </c:if>
                 <c:if
                         test="${ccmPopBehind.atteType eq '' or empty ccmPopBehind.atteType}">
                     <td>${fns:getDictLabel(ccmPopBehind.atteType, 'ccm_conc_exte', '')}

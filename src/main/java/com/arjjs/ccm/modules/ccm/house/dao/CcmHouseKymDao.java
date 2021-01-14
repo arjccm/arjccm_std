@@ -3,6 +3,7 @@
  */
 package com.arjjs.ccm.modules.ccm.house.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.arjjs.ccm.common.persistence.CrudDao;
@@ -10,6 +11,7 @@ import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseKym;
 import com.arjjs.ccm.tool.EchartType;
 import com.arjjs.ccm.tool.SearchTab;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 重点青少年管理模块DAO接口
@@ -29,8 +31,7 @@ public interface CcmHouseKymDao extends CrudDao<CcmHouseKym> {
 	public List<EchartType> getnumPopFlowTableQL();
 	
 	EchartType getAllNumKymByAssistMethod();
-	
-	
-	
-	
+
+
+    List<CcmHouseKym> getListByAge(@Param("date") Date date);
 }

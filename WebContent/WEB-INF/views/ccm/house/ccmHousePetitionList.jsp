@@ -172,6 +172,9 @@
 				<c:if test="${ccmHousePetition.atteType eq '03'}">
 					<td>${fns:getDictLabel(ccmHousePetition.atteType, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img src="${ctxStatic}/images/atteType_green.png" /> </td>
 				</c:if>
+				<c:if test="${ccmHousePetition.atteType eq '04'}">
+					<td>${fns:getDictLabel(ccmHousePetition.atteType, 'ccm_conc_exte', '')}</td>
+				</c:if>
 				<c:if test="${ccmHousePetition.atteType eq ''}">
 					<td>${fns:getDictLabel(ccmHousePetition.atteType, 'ccm_conc_exte', '')} </td>
 				</c:if>

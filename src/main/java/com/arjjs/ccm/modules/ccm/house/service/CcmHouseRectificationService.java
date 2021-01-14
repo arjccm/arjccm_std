@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -117,5 +118,9 @@ public class CcmHouseRectificationService extends CrudService<CcmHouseRectificat
 	// 获取 所有信息根据 id
 	public CcmHouseRectification getPeopleALL(String id) {
 		return CcmHouseRectificationDao.getItemByPeopleId(id);
+	}
+
+	public List<CcmHouseRectification> getRectificationByDate(Date date) {
+		return CcmHouseRectificationDao.getRectificationByDate(date);
 	}
 }

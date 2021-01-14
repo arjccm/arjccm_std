@@ -152,6 +152,9 @@
                     <td>${fns:getDictLabel(ccmHouseDeliberatelyIllegal.atteType, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img
                             src="${ctxStatic}/images/atteType_green.png"/></td>
                 </c:if>
+                <c:if test="${ccmHouseDeliberatelyIllegal.atteType eq '04'}">
+                    <td>${fns:getDictLabel(ccmHouseDeliberatelyIllegal.atteType, 'ccm_conc_exte', '')}</td>
+                </c:if>
                 <c:if test="${ccmHouseDeliberatelyIllegal.atteType eq '' or empty ccmHouseDeliberatelyIllegal.atteType}">
                     <td>${fns:getDictLabel(ccmHouseDeliberatelyIllegal.atteType, 'ccm_conc_exte', '')} </td>
                 </c:if>

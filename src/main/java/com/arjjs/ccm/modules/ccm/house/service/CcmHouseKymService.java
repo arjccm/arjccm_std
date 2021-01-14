@@ -3,10 +3,7 @@
  */
 package com.arjjs.ccm.modules.ccm.house.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -214,4 +211,7 @@ public class CcmHouseKymService extends CrudService<CcmHouseKymDao, CcmHouseKym>
 		return result; 
 	}
 
+	public List<CcmHouseKym> getListByAge(Date date) {
+		return ccmHouseKymDao.getListByAge(date);
+	}
 }

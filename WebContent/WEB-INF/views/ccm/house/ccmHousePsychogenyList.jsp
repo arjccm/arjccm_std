@@ -199,6 +199,9 @@
                     <td>${fns:getDictLabel(ccmHousePsychogeny.atteType, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img
                             src="${ctxStatic}/images/atteType_green.png"/></td>
                 </c:if>
+                <c:if test="${ccmHousePsychogeny.atteType eq '04'}">
+                    <td>${fns:getDictLabel(ccmHousePsychogeny.atteType, 'ccm_conc_exte', '')}</td>
+                </c:if>
                 <c:if test="${ccmHousePsychogeny.atteType eq '' or empty ccmHousePsychogeny.atteType}">
                     <td>${fns:getDictLabel(ccmHousePsychogeny.atteType, 'ccm_conc_exte', '')} </td>
                 </c:if>

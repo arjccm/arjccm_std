@@ -121,5 +121,8 @@ public class CcmHouseReleaseService extends CrudService<CcmHouseReleaseDao, CcmH
 			ccmUploadLogService.save(uploadLog);
 		}
 	}
-	
+
+	public CcmHouseRelease getReleaseByPeopleId(String peopleId) {
+		return ccmHouseReleaseDao.getReleaseByPeopleId(peopleId);
+	}
 }

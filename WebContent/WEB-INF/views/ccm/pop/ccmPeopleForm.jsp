@@ -1479,6 +1479,37 @@
                     </div>
                 </td>
             </tr>
+
+            <tr>
+                <td>
+                    <div>
+                        <label class="control-label">房东姓名：</label>
+                        <div class="controls">
+                            <form:input path="certNum" htmlEscape="false" maxlength="22"
+                                        class="input-xlarge "/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="control-label">房东证件号：</label>
+                        <div class="controls">
+                            <form:input path="certNum" htmlEscape="false" maxlength="22"
+                                        class="input-xlarge "/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="control-label">房东联系方式：</label>
+                        <div class="controls">
+                            <form:input path="certNum" htmlEscape="false" maxlength="22"
+                                        class="input-xlarge "/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
             <tr>
                 <td>
                     <div>

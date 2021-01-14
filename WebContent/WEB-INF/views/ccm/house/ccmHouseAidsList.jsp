@@ -169,6 +169,9 @@
 					<c:if test="${ccmHouseAids.atteType eq '03'}">
 						<td>${fns:getDictLabel(ccmHouseAids.atteType, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img src="${ctxStatic}/images/atteType_green.png" /> </td>
 					</c:if>
+					<c:if test="${ccmHouseAids.atteType eq '04'}">
+						<td>${fns:getDictLabel(ccmHouseAids.atteType, 'ccm_conc_exte', '')}</td>
+					</c:if>
 					<c:if test="${ccmHouseAids.atteType eq '' or empty ccmHouseAids.atteType}">
 						<td>${fns:getDictLabel(ccmHouseAids.atteType, 'ccm_conc_exte', '')} </td>
 					</c:if>

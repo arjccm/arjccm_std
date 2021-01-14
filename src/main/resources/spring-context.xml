@@ -202,6 +202,23 @@
 			<value>0 0 0 * * ?</value>
 		</property>
 	</bean>
+
+	<!-- 定时更新重点人员状态start-->
+	<bean id="CcmKeyPeople" class="com.arjjs.ccm.modules.ccm.pop.service.CcmKeyPeople" />
+	<bean id="KeyPeopleStatusJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="CcmKeyPeople" />
+		<property name="targetMethod" value="updateKeyPeopleStatus" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="KeyPeopleStatusTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="KeyPeopleStatusJob" />
+		<!--<property name="startDelay" value="60000" />-->
+		<!--<property name="repeatInterval" value="60000" />-->
+		<property name="cronExpression">
+			<value>0 * * * * ?</value>
+		</property>
+	</bean>
+
 	<!--定时更新设备在线状态end每天0点更新-->
 	<bean id="CcmHouseEmphasisService" class="com.arjjs.ccm.modules.ccm.house.service.CcmHouseEmphasisService" />
 	<bean id="dictListJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
@@ -282,6 +299,7 @@
 <!--    			<ref bean="uploadCcmDataAppTrigger" /> -->
  <!--  			<ref bean="initRabbitMQTrigger" />  &lt;!&ndash;定时检测rabbitMQ连接状态&ndash;&gt;;-->
    			<ref bean="devOnlineStatusTrigger" />  <!-- 定时更新设备状态  -->
+   			<ref bean="KeyPeopleStatusTrigger" />  <!-- 定时更新重点人员状态  -->
    			<ref bean="initSyncJob" /><!-- 重点人员消息通知 -->
 			<ref bean="sysInitTrigger" /> <!-- 初始化系统数据 -->
    			<ref bean="timingOaNotifyTrigger" />

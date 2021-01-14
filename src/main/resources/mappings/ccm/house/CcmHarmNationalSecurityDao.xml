@@ -73,7 +73,7 @@
 		b.birthday AS "birthday",
 		a20.name AS "comName",
 		a21.name AS "areaGridId.name",
-        (case a.danger_level when 01 then '高' when 02 then '中' when 03 then '低' else '' end) "dangerLevelLable"
+        (case a.danger_level when 01 then '高' when 02 then '中' when 03 then '低' when 04 then '取消关注' else '' end) "dangerLevelLable"
 	</sql>
 	
 	<sql id="ccmHarmNationalSecurityJoins">

@@ -185,6 +185,9 @@
                     <td>${fns:getDictLabel(ccmHouseDispute.dangerLevel, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img
                             src="${ctxStatic}/images/atteType_green.png"/></td>
                 </c:if>
+                <c:if test="${ccmHouseDispute.dangerLevel eq '04'}">
+                    <td>${fns:getDictLabel(ccmHouseDispute.dangerLevel, 'ccm_conc_exte', '')}</td>
+                </c:if>
                 <c:if test="${ccmHouseDispute.dangerLevel eq '' or empty ccmHouseDispute.dangerLevel}">
                     <td>${fns:getDictLabel(ccmHouseDispute.dangerLevel, 'ccm_conc_exte', '')} </td>
                 </c:if>

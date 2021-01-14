@@ -138,6 +138,9 @@
 					<c:if test="${ccmHouseDrugs.atteType eq '03'}">
 						<td>${fns:getDictLabel(ccmHouseDrugs.atteType, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img src="${ctxStatic}/images/atteType_green.png" /> </td>
 					</c:if>
+					<c:if test="${ccmHouseDrugs.atteType eq '04'}">
+						<td>${fns:getDictLabel(ccmHouseDrugs.atteType, 'ccm_conc_exte', '')}</td>
+					</c:if>
 					<c:if test="${ccmHouseDrugs.atteType eq '' or empty ccmHouseDrugs.atteType}">
 						<td>${fns:getDictLabel(ccmHouseDrugs.atteType, 'ccm_conc_exte', '')} </td>
 					</c:if>

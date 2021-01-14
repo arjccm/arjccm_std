@@ -66,7 +66,7 @@
 		b.birthday AS "birthday",
 		a20.name AS "comName",
 		a21.name AS "areaGridId.name",
-        (case a.atte_type when 01 then '高' when 02 then '中' when 03 then '低' else '' end) "atteTypeLable"
+        (case a.atte_type when 01 then '高' when 02 then '中' when 03 then '低' when 04 then '取消关注' else '' end) "atteTypeLable"
 	</sql>
 
 	<sql id="ccmHouseReleaseJoins">
@@ -284,4 +284,8 @@
 		WHERE id = #{id}
 	</update>
 
+	<select id="getReleaseByPeopleId" resultType="CcmHouseRelease">
+		SELECT * FROM ccm_house_release
+		where del_flag = '0' AND people_id = #{peopleId}
+	</select>
 </mapper>

@@ -169,6 +169,9 @@
                     <td>${fns:getDictLabel(ccmHouseRelease.atteType, 'ccm_conc_exte', '')}&nbsp;&nbsp; <img
                             src="${ctxStatic}/images/atteType_green.png"/></td>
                 </c:if>
+                <c:if test="${ccmHouseRelease.atteType eq '04'}">
+                    <td>${fns:getDictLabel(ccmHouseRelease.atteType, 'ccm_conc_exte', '')}</td>
+                </c:if>
                 <c:if test="${ccmHouseRelease.atteType eq '' or empty ccmHouseRelease.atteType}">
                     <td>${fns:getDictLabel(ccmHouseRelease.atteType, 'ccm_conc_exte', '')}</td>
                 </c:if>
