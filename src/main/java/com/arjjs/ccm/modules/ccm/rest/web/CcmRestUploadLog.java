@@ -537,6 +537,8 @@ public class CcmRestUploadLog extends BaseController {
 				String departDate = DateFormatUtils.format(entity.getDepartDate(), "yyyy-MM-dd HH:mm:ss");
 				objSbf.append("&departDate=").append(URLEncoder.encode(departDate, "utf-8"));
 			}
+			if(entity.getReceptionCompanyName()!=null)objSbf.append("&receptionCompanyName=").append(URLEncoder.encode(entity.getReceptionCompanyName(),"utf-8"));
+			if(entity.getReceptionCompanyPhone()!=null)objSbf.append("&receptionCompanyPhone=").append(URLEncoder.encode(entity.getReceptionCompanyPhone(),"utf-8"));
 			if(entity.getMore1()!=null)objSbf.append("&more1=").append(URLEncoder.encode(entity.getMore1(),"utf-8"));
 			if(entity.getMore2()!=null)objSbf.append("&more2=").append(URLEncoder.encode(entity.getMore2(),"utf-8"));
 			if(entity.getMore3()!=null)objSbf.append("&more3=").append(URLEncoder.encode(entity.getMore3(),"utf-8"));

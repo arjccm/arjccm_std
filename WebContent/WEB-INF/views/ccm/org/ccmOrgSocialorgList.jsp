@@ -157,6 +157,9 @@
                     <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
                         &nbsp; <img src="${ctxStatic}/images/atteType_green.png"/></td>
                 </c:if>
+                <c:if test="${ccmOrgSocialorg.concernExtent eq '04'}">
+                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}</td>
+                </c:if>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '' or empty ccmOrgSocialorg.concernExtent}">
                     <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')} </td>
                 </c:if>

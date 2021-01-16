@@ -99,6 +99,8 @@ public class CcmPeople extends DataEntity<CcmPeople> {
 	private String purpose;		// 来华目的
 	private Date arriDate;		// 抵达日期
 	private Date departDate;		// 预计离开日期
+	private String receptionCompanyName; //接待单位名称
+	private String receptionCompanyPhone; //接待单位联系方式
 	private String more1;		// 冗余字段1
 	private String more2;		// 冗余字段2
 	private String more3;		// 冗余字段3
@@ -301,6 +303,22 @@ public class CcmPeople extends DataEntity<CcmPeople> {
 
 	public void setIsDeliberatelyIllegal(Integer isDeliberatelyIllegal) {
 		this.isDeliberatelyIllegal = isDeliberatelyIllegal;
+	}
+
+	public String getReceptionCompanyName() {
+		return receptionCompanyName;
+	}
+
+	public void setReceptionCompanyName(String receptionCompanyName) {
+		this.receptionCompanyName = receptionCompanyName;
+	}
+
+	public String getReceptionCompanyPhone() {
+		return receptionCompanyPhone;
+	}
+
+	public void setReceptionCompanyPhone(String receptionCompanyPhone) {
+		this.receptionCompanyPhone = receptionCompanyPhone;
 	}
 
 	public void setCheckUser(User checkUser) {

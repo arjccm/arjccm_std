@@ -73,6 +73,9 @@
 		"areaMap",
 		a.area_point AS "areaPoint",
 		a.is_special AS "is_special",
+		a.manage_status AS "manageStatus",
+		a.reasons_for_change AS "reasonsForChange",
+		a.change_update_date AS "changeUpdateDate",
 		a.is_sdyq AS "is_sdyq",
 		a.icon AS "icon",
 		a.register_date AS "registerDate",
@@ -767,6 +770,9 @@
 		more2,
 		more3,
 		is_special,
+		manage_status,
+		reasons_for_change,
+		change_update_date,
 		is_sdyq
 		) VALUES (
 		#{id},
@@ -829,6 +835,9 @@
 		#{more2},
 		#{more3},
 		#{is_special},
+		#{manageStatus},
+		#{reasonsForChange},
+		#{changeUpdateDate},
 		#{is_sdyq}
 		)
 	</insert>
@@ -904,6 +913,9 @@
 		more2 = #{more2},
 		more3 = #{more3},
 		is_special=#{is_special},
+		manage_status=#{manageStatus},
+		reasons_for_change=#{reasonsForChange},
+		change_update_date=#{changeUpdateDate},
 		is_sdyq=#{is_sdyq}
 		WHERE id = #{id}
 	</update>

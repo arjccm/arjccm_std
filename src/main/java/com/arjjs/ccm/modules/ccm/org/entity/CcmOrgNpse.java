@@ -78,11 +78,39 @@ public class CcmOrgNpse extends DataEntity<CcmOrgNpse> {
 	private String more3;		// 冗余字段3
 	private String concExteLable;	//app接口使用
 	private	int is_special;//是否特业场所
+	private	String manageStatus;//经营状态
+	private	String reasonsForChange;//变更原因
+	private	Date changeUpdateDate;//变更时间
 	private	int is_sdyq;//是否水电油气
 	private User checkUser;		// 拦截器中使用该用户进行权限拦截，App的rest接口使用
 	private String[] industryList;		// 所属行业数组
 	private String count;
-	
+
+
+	public String getManageStatus() {
+		return manageStatus;
+	}
+
+	public void setManageStatus(String manageStatus) {
+		this.manageStatus = manageStatus;
+	}
+
+	public String getReasonsForChange() {
+		return reasonsForChange;
+	}
+
+	public void setReasonsForChange(String reasonsForChange) {
+		this.reasonsForChange = reasonsForChange;
+	}
+
+	public Date getChangeUpdateDate() {
+		return changeUpdateDate;
+	}
+
+	public void setChangeUpdateDate(Date changeUpdateDate) {
+		this.changeUpdateDate = changeUpdateDate;
+	}
+
 	public String getCount() {
 		return count;
 	}
@@ -665,6 +693,9 @@ public class CcmOrgNpse extends DataEntity<CcmOrgNpse> {
 				", more3='" + more3 + '\'' +
 				", concExteLable='" + concExteLable + '\'' +
 				", is_special=" + is_special +
+				", manageStatus='" + manageStatus + '\'' +
+				", reasonsForChange='" + reasonsForChange + '\'' +
+				", changeUpdateDate=" + changeUpdateDate +
 				", is_sdyq=" + is_sdyq +
 				", checkUser=" + checkUser +
 				", industryList=" + Arrays.toString(industryList) +

@@ -103,6 +103,8 @@
 		a.arri_date
 		AS "arriDate",
 		a.depart_date AS "departDate",
+		a.reception_company_name AS "receptionCompanyName",
+		a.reception_company_phone AS "receptionCompanyPhone",
 		a.more1 AS "more1",
 		a.more2 AS "more2",
 		a.more3 AS "more3",
@@ -1633,6 +1635,8 @@
 		purpose,
 		arri_date,
 		depart_date,
+		reception_company_name,
+		reception_company_phone,
 		more1,
 		more2,
 		more3,
@@ -1729,6 +1733,8 @@
 		#{purpose},
 		#{arriDate},
 		#{departDate},
+		#{receptionCompanyName},
+		#{receptionCompanyPhone},
 		#{more1},
 		#{more2},
 		#{more3},
@@ -1851,6 +1857,8 @@
 		#{purpose},
 		arri_date = #{arriDate},
 		depart_date = #{departDate},
+		reception_company_name = #{receptionCompanyName},
+		reception_company_phone = #{receptionCompanyPhone},
 		more1 =
 		#{more1},
 		more2 = #{more2},
@@ -2625,6 +2633,8 @@
 			a.arri_date
 			AS "arriDate",
 			a.depart_date AS "departDate",
+			a.reception_company_name AS "receptionCompanyName",
+			a.reception_company_phone AS "receptionCompanyPhone",
 			a.more1 AS "more1",
 			a.more2 AS "more2",
 			a.more3 AS "more3",
@@ -3001,7 +3011,11 @@
 	<!--根据户主身份证号码查询户主下的人员数据-->
 	<select id="queryByIdent" resultType="CcmPeople">
 	SELECT
-	account,accountname,accounttelephone,domicile
+	account,
+	accountname,
+	accounttelephone,
+	domicile,
+	room_id AS roomIdString
 	FROM
 	ccm_people
 	WHERE

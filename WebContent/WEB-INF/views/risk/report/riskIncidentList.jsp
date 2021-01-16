@@ -119,6 +119,9 @@
                 <td>${fns:getDictLabel(riskIncident.importance, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img
                         src="${ctxStatic}/images/atteType_green.png"/></td>
             </c:if>
+            <c:if test="${riskIncident.importance eq '04'}">
+                <td>${fns:getDictLabel(riskIncident.importance, 'ccm_conc_exte', '')}</td>
+            </c:if>
             <c:if test="${riskIncident.importance eq '' or empty riskIncident.importance}">
                 <td>${fns:getDictLabel(riskIncident.importance, 'ccm_conc_exte', '')} </td>
             </c:if>
@@ -134,6 +137,9 @@
             <c:if test="${riskIncident.urgency eq '03'}">
                 <td>${fns:getDictLabel(riskIncident.urgency, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img
                         src="${ctxStatic}/images/atteType_green.png"/></td>
+            </c:if>
+            <c:if test="${riskIncident.urgency eq '04'}">
+                <td>${fns:getDictLabel(riskIncident.urgency, 'ccm_conc_exte', '')}</td>
             </c:if>
             <c:if test="${riskIncident.urgency eq '' or empty riskIncident.urgency}">
                 <td>${fns:getDictLabel(riskIncident.urgency, 'ccm_conc_exte', '')} </td>

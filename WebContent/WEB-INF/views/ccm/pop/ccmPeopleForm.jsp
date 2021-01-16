@@ -420,8 +420,8 @@
 
         function isHead() {
             let ident = $("#houseCard").val();
+            let roomId = $("#roomIdId").val();
             if (ident != null && ident.trim().length > 0) {
-
                 $.ajax({
                     url: ctx + "/pop/ccmPeople/queryByIdent?ident=" + ident,
                     type: "get",
@@ -430,7 +430,19 @@
                         $("#accountname").val(data[0].accountname);
                         $("#accounttelephone").val(data[0].accounttelephone);
                         $("#domicile").val(data[0].domicile);
-
+                        console.log("szl------>",data[0].roomIdString)
+                        console.log("szl------>2",roomId)
+                        if (roomId != null && roomId.trim().length > 0 && data[0].roomIdString != null && data[0].roomIdString.trim().length > 0){
+                            if (roomId != data[0].roomIdString){
+                                layer.open({
+                                    title: '人房关联不一致',
+                                    offset: 'auto',
+                                    btn: '',
+                                    time: 2500,
+                                    content: '人房关联不一致，疑似外出'
+                                });
+                            }
+                        }
                     }
                 })
             }
@@ -652,7 +664,7 @@
                                             extId="${sysDicts.id}" cssClass="required" allowClear="true"
                                             dicts="true" cssStyle="width: 270px"/>
                             <span class="help-inline" id="showProfType"></span>
-                            
+
                         </div>
                     </div>
                 </td>
@@ -1483,36 +1495,6 @@
             <tr>
                 <td>
                     <div>
-                        <label class="control-label">房东姓名：</label>
-                        <div class="controls">
-                            <form:input path="certNum" htmlEscape="false" maxlength="22"
-                                        class="input-xlarge "/>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="control-label">房东证件号：</label>
-                        <div class="controls">
-                            <form:input path="certNum" htmlEscape="false" maxlength="22"
-                                        class="input-xlarge "/>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="control-label">房东联系方式：</label>
-                        <div class="controls">
-                            <form:input path="certNum" htmlEscape="false" maxlength="22"
-                                        class="input-xlarge "/>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div>
                         <label class="control-label">登记日期：</label>
                         <div class="controls">
                             <input name="recoDate" type="text" readonly="readonly"
@@ -1700,6 +1682,24 @@
                                    value="<fmt:formatDate value="${ccmPeople.departDate}" pattern="yyyy-MM-dd"/>"
                                    onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <label class="control-label"><span class="help-inline"></span>接待单位名称：</label>
+                        <div class="controls">
+                            <form:input path="receptionCompanyName" htmlEscape="false" maxlength="40" class="input-xlarge "/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="control-label"><span class="help-inline"></span>接待单位联系方式：</label>
+                        <div class="controls">
+                            <form:input path="receptionCompanyPhone" htmlEscape="false" maxlength="40" class="input-xlarge phone"/>
                         </div>
                     </div>
                 </td>

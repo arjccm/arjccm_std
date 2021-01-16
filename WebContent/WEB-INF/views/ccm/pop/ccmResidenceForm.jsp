@@ -893,6 +893,24 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <div>
+                        <label class="control-label"><span class="help-inline"></span>接待单位名称：</label>
+                        <div class="controls">
+                            <form:input path="receptionCompanyName" htmlEscape="false" maxlength="40" class="input-xlarge "/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="control-label"><span class="help-inline"></span>接待单位联系方式：</label>
+                        <div class="controls">
+                            <form:input path="receptionCompanyPhone" htmlEscape="false" maxlength="40" class="input-xlarge phone"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
         </table>
 
 

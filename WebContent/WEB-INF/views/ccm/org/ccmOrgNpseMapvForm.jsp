@@ -533,7 +533,7 @@
 
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td>
 					<div>
 						<label class="control-label">重点企业类型：</label>
 						<div class="controls">
@@ -543,6 +543,39 @@
 									itemLabel="label" itemValue="value" htmlEscape="false" />
 							</form:select>
 							<span class="help-inline"><font color="red">*</font> </span>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label"><span class="help-inline"></span>经营状态：</label>
+						<div class="controls">
+							<form:select path="manageStatus" class="input-xlarge">
+								<form:options items="${fns:getDictList('manage_status')}"
+											  itemLabel="label" itemValue="value" htmlEscape="false" />
+							</form:select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">变更原因：</label>
+						<div class="controls">
+							<form:textarea path="reasonsForChange" htmlEscape="false" rows="2"
+										   maxlength="200" class="input-xlarge "/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">变更时间：</label>
+						<div class="controls">
+							<input name="changeUpdateDate" type="text" readonly="readonly"
+								   maxlength="20" class="input-medium Wdate "
+								   value="<fmt:formatDate value="${ccmOrgNpse.changeUpdateDate}" pattern="yyyy-MM-dd"/>"
+								   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 						</div>
 					</div>
 				</td>

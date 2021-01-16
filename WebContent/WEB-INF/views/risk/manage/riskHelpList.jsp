@@ -85,6 +85,9 @@
 				<c:if test="${riskHelp.importance eq '03'}">
 					<td>${fns:getDictLabel(riskHelp.importance, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img src="${ctxStatic}/images/atteType_green.png" /> </td>
 				</c:if>
+				<c:if test="${riskHelp.importance eq '04'}">
+					<td>${fns:getDictLabel(riskHelp.importance, 'ccm_conc_exte', '')}</td>
+				</c:if>
 				<c:if test="${riskHelp.importance eq '' or empty riskHelp.importance}">
 					<td>${fns:getDictLabel(riskHelp.importance, 'ccm_conc_exte', '')} </td>
 				</c:if>   

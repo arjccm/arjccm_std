@@ -192,6 +192,9 @@
                     <td>${fns:getDictLabel(ccmOrgNpse.concExte, 'ccm_conc_exte', '')}&nbsp; &nbsp; <img
                             src="${ctxStatic}/images/atteType_green.png"/></td>
                 </c:if>
+                <c:if test="${ccmOrgNpse.concExte eq '04'}">
+                    <td>${fns:getDictLabel(ccmOrgNpse.concExte, 'ccm_conc_exte', '')}</td>
+                </c:if>
                 <c:if test="${ccmOrgNpse.concExte eq '' or empty ccmOrgNpse.concExte}">
                     <td>${fns:getDictLabel(ccmOrgNpse.concExte, 'ccm_conc_exte', '')} </td>
                 </c:if>
