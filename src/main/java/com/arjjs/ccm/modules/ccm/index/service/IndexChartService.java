@@ -371,7 +371,7 @@ public class IndexChartService {
 		calendar.setTime(new Date());
 		for(int i=0 ; i<7 ; i++){
 			EchartType echartType = new EchartType();
-			calendar.add(Calendar.DAY_OF_MONTH,-(i+1));
+			calendar.add(Calendar.DAY_OF_MONTH,-1);
 			echartType.setName(sdf.format(calendar.getTime()));
 			echartType.setNum(0);
 			list.add(echartType);
