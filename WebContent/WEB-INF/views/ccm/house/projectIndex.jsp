@@ -124,7 +124,10 @@
 
 	$(function () {
 		reload();
-
+        $('body').particleground({
+            dotColor: '#E8DFE8',
+            lineColor: '#133b88'
+        });
 	});
 
 

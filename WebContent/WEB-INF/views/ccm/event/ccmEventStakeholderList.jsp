@@ -115,6 +115,7 @@
 				<shiro:hasPermission name="event:ccmEventStakeholder:edit"><td>
     				<a class="btnList" href="${ctx}/event/ccmEventStakeholder/form?id=${ccmEventStakeholder.id}" title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
 					<a class="btnList"  href="${ctx}/event/ccmEventStakeholder/delete?id=${ccmEventStakeholder.id}" onclick="return confirmx('确认要删除该案（事）件干系人吗？', this.href)" title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+					<a class="btnList" href="${ctx}/event/ccmEventStakeholder/getEventListByStakeholder?stakeHolderIden=${ccmEventStakeholder.idenNum}&incidentId=${ccmEventStakeholder.incidentId}" title="查询前科"><i class="iconfont icon-caozuotubiao-shijianguanlian"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

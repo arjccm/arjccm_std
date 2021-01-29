@@ -15,6 +15,9 @@ public class EchartType {
 	private String value3;
 
 	private Integer num;
+
+	private Integer num1;
+
 	private String name;
 
 	public Integer getNum() {
@@ -23,6 +26,14 @@ public class EchartType {
 
 	public void setNum(Integer num) {
 		this.num = num;
+	}
+
+	public Integer getNum1() {
+		return num1;
+	}
+
+	public void setNum1(Integer num1) {
+		this.num1 = num1;
 	}
 
 	public String getName() {

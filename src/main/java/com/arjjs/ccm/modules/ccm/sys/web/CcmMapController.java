@@ -189,6 +189,8 @@ public class CcmMapController extends BaseController {
 	@Autowired
 	private CcmKnowInspectService ccmKnowInspectService;
 
+	@Autowired
+    private CcmImportAreaService ccmImportAreaService;
 
 	private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -3231,6 +3233,170 @@ public class CcmMapController extends BaseController {
 		}
 		return geoJSON;
 	}
+
+
+
+    /**
+     * @see 生成重点区域地图信息-点位图（分页模式）
+     * @param CcmImportArea
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "queryAreaImportMap")
+    public GeoJSON queryAreaImportMap(CcmImportArea ccmImportArea,
+                                  HttpServletRequest request, HttpServletResponse response,
+                                  @RequestParam(required = false) int pageNo, @RequestParam(required = false) int pageSize) {
+        //分页参数处理
+        Page pageIn = new Page<CcmImportArea>(request, response);
+        if (pageNo != 0) {
+            pageIn.setPageNo(pageNo);
+        }
+        if (pageSize != 0) {
+            pageIn.setPageSize(pageSize);
+        }
+
+        // 查询地图视频信息
+        List<CcmImportArea> importAreaList = new ArrayList<CcmImportArea>();
+
+        //可以选择父节点查询
+        if(ccmImportArea.getArea()!=null&&ccmImportArea.getArea().getId()!=null&&!ccmImportArea.getArea().getId().equals("")){
+            SysArea sysArea = sysAreaService.get(ccmImportArea.getArea().getId());
+            Area area = new Area();
+            area.setId(sysArea.getId());
+            area.setParentIds(sysArea.getParentIds());
+            ccmImportArea.setUserArea(area);
+            ccmImportArea.setArea(null);
+        }
+        Page<CcmImportArea> page = ccmImportAreaService.findPage(pageIn, ccmImportArea);
+        importAreaList = page.getList();
+
+		for(int i=0 ; i<importAreaList.size() ; i++){
+			List<CcmAreaPoint> peoples = ccmMapService.queryAreaPoint("1",importAreaList.get(i).getArea().getId(),importAreaList.get(i).getArea().getName());
+			List<CcmAreaPoint> builds = ccmMapService.queryAreaPoint("2",importAreaList.get(i).getArea().getId(),importAreaList.get(i).getArea().getName());
+			List<CcmAreaPoint> parts = ccmMapService.queryAreaPoint("4",importAreaList.get(i).getArea().getId(),importAreaList.get(i).getArea().getName());
+			List<CcmAreaPoint> events = ccmMapService.queryAreaPoint("7",importAreaList.get(i).getArea().getId(),importAreaList.get(i).getArea().getName());
+			int popNum = 0;
+			int buildNum = 0;
+			int partNum = 0;
+			int eventNum = 0;
+			for(int j=0 ; j<4 ; j++){
+				List<CcmAreaPoint> list = new ArrayList<>();
+				if(j==0){
+					list.addAll(peoples);
+				}else if(j==1){
+					list.addAll(builds);
+				}else if(j==2){
+					list.addAll(parts);
+				}else{
+					list.addAll(events);
+				}
+				for(int k=0 ; k<list.size() ; k++){
+					//判断是否在区域内
+					String coordiante1=list.get(k).getAreaPoint();
+					//判断范围内点工具
+					MapUtil mapUtil=new MapUtil();
+
+					if(coordiante1 == null || "".equals(coordiante1)){
+						continue;
+					}
+					Point sPoint=CommUtil.toPoint(coordiante1);
+					boolean result=false;
+					List<Point> points=new ArrayList<Point>();
+					String[] s1=importAreaList.get(i).getAreaMap().split(";");
+					for (int p = 0; p < s1.length; p++) {
+						String[] s2=s1[p].split(",");
+						double x=Double.parseDouble(s2[0]);
+						double y=Double.parseDouble(s2[1]);
+						Point point= new Point(x, y);
+						points.add(point);
+					}
+					result = mapUtil.isPointInPolygon(sPoint, points);
+					if (result) {
+						if(j==0){
+							popNum = popNum + 1;
+						}else if(j==1){
+							buildNum = buildNum + 1;
+						}else if(j==2){
+							partNum = partNum + 1;
+						}else{
+							eventNum = eventNum + 1;
+						}
+					}
+				}
+			}
+			importAreaList.get(i).setPopNum(popNum);
+			importAreaList.get(i).setBuildNum(buildNum);
+			importAreaList.get(i).setPartNum(partNum);
+			importAreaList.get(i).setEventNum(eventNum);
+		}
+
+        // 返回对象
+        GeoJSON geoJSON = new GeoJSON();
+        geoJSON.setCount(page.getCount());
+        geoJSON.setPageNo(page.getPageNo());
+        geoJSON.setPageSize(page.getPageSize());
+
+        List<Features> featureList = new ArrayList<Features>();
+        // 数组
+        for (CcmImportArea importArea : importAreaList) {
+            // 特征,属性
+            Features featureDto = new Features();
+            Properties properties = new Properties();
+            // 1 type 默认不填
+            // 2 id 添加
+            featureDto.setId(importArea.getId());
+            // 3 properties 展示属性信息
+            properties.setName(importArea.getName());
+            // 点击后展示详细属性值
+            Map<String, Object> map_P = new LinkedHashMap<String, Object>();
+            // 创建附属信息
+            map_P.put("重点区域名称", importArea.getName());
+            map_P.put("所属区域", importArea.getArea().getName());
+            map_P.put("人口数量", importArea.getPopNum());
+            map_P.put("建筑数量", importArea.getBuildNum());
+			map_P.put("城市部件数量", importArea.getPartNum());
+			map_P.put("发生事件数量", importArea.getEventNum());
+            properties.addInfo(map_P);
+            featureList.add(featureDto);
+            featureDto.setProperties(properties);
+            // 4 geometry 配置参数
+            Geometry geometry = new Geometry();
+            featureDto.setGeometry(geometry);
+            // 点位信息 测试为点
+            geometry.setType("Point");
+            // 为中心点赋值
+            if (!StringUtils.isEmpty(importArea.getAreaPoint())) {
+                // 获取中心点的值
+                String[] centpoint = importArea.getAreaPoint().split(",");
+                // 图层中心的
+                geoJSON.setCentpoint(centpoint);
+                // 图形中心点
+                properties.setCoordinateCentre(centpoint);
+            }
+            // 添加具体数据
+            // 封装的list
+            List<String> Coordinateslist = new ArrayList<>();
+            // 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
+            String[] a = (StringUtils.isEmpty(importArea.getAreaPoint()) ? (",") : importArea.getAreaPoint()).split(",");
+            // 填充数据
+            if (a.length < 2) {
+                Coordinateslist.add("");
+                Coordinateslist.add("");
+            } else {
+                Coordinateslist.add(a[0]);
+                Coordinateslist.add(a[1]);
+            }
+            // 装配点位
+            geometry.setCoordinates(Coordinateslist);
+        }
+        // 添加数据
+        geoJSON.setFeatures(featureList);
+        // 如果无数据
+        if (featureList.size() == 0) {
+            return null;
+        }
+        return geoJSON;
+    }
 
 	/**
 	 * @see 生成楼栋地图信息-点位图（分页模式）

@@ -185,7 +185,7 @@
 						</shiro:hasPermission>
 						<shiro:hasPermission name="event:ccmEventStakeholder:view">
 							<%-- <a class="btnList" href="${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}" title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a> --%>
-							<a class="btnList" onclick="parent.LayerDialog1('','${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}', '干系人', '1300px', '700px')"
+							<a class="btnList" onclick="parent.LayerDialog1('','${ctx}/event/ccmEventStakeholder/list?incidentId=${ccmEventIncident.id}', '干系人', '1680px', '700px')"
 								 title="干系人"><i class="iconfont icon-caozuotubiao-ganxiren"></i></a>
 						</shiro:hasPermission>
 					</td>

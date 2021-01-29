@@ -3,10 +3,13 @@
  */
 package com.arjjs.ccm.modules.ccm.house.entity;
 
+import com.arjjs.ccm.common.utils.excel.annotation.ExcelField;
 import org.hibernate.validator.constraints.Length;
 import com.arjjs.ccm.modules.sys.entity.Area;
 import com.arjjs.ccm.modules.sys.entity.User;
 import com.arjjs.ccm.common.persistence.DataEntity;
+
+import java.util.Date;
 
 /**
  * 学校Entity
@@ -60,7 +63,36 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	private String more1;		// sql
 	private String more2;		// more2
 	private String more3;		// more3
-	
+
+	private String isAttention;		// is_attention
+	private String unAttentionReason;		// un_attention_reason
+	private Date unAttentionDate;		// un_attention_date
+
+	@ExcelField(title="是否关注", align=2, sort=16, dictType="yes_no")
+	public String getIsAttention() {
+		return isAttention;
+	}
+
+	public void setIsAttention(String isAttention) {
+		this.isAttention = isAttention;
+	}
+
+	public String getUnAttentionReason() {
+		return unAttentionReason;
+	}
+
+	public void setUnAttentionReason(String unAttentionReason) {
+		this.unAttentionReason = unAttentionReason;
+	}
+
+	public Date getUnAttentionDate() {
+		return unAttentionDate;
+	}
+
+	public void setUnAttentionDate(Date unAttentionDate) {
+		this.unAttentionDate = unAttentionDate;
+	}
+
 	public String getMore1() {
 		return more1;
 	}
@@ -93,6 +125,7 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 		super(id);
 	}
 
+	@ExcelField(title="学校名称", align=2, sort=1)
 	@Length(min=0, max=100, message="学校名称长度必须介于 0 和 100 之间")
 	public String getSchoolName() {
 		return schoolName;
@@ -101,7 +134,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSchoolName(String schoolName) {
 		this.schoolName = schoolName;
 	}
-	
+
+	@ExcelField(title="学校地址", align=2, sort=2)
 	@Length(min=0, max=200, message="学校地址长度必须介于 0 和 200 之间")
 	public String getSchoolAdd() {
 		return schoolAdd;
@@ -110,7 +144,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSchoolAdd(String schoolAdd) {
 		this.schoolAdd = schoolAdd;
 	}
-	
+
+	@ExcelField(title="学校办学类型", align=2, sort=5, dictType="ccm_schol_type")
 	@Length(min=0, max=2, message="学校办学类型长度必须介于 0 和 2 之间")
 	public String getSchoolType() {
 		return schoolType;
@@ -119,7 +154,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSchoolType(String schoolType) {
 		this.schoolType = schoolType;
 	}
-	
+
+	@ExcelField(title="学校所属主管教育行政部门", align=2, sort=6)
 	@Length(min=0, max=6, message="学校所属主管教育行政部门长度必须介于 0 和 6 之间")
 	public String getSchoolEducDepa() {
 		return schoolEducDepa;
@@ -128,7 +164,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSchoolEducDepa(String schoolEducDepa) {
 		this.schoolEducDepa = schoolEducDepa;
 	}
-	
+
+	@ExcelField(title="在校学生人数", align=2, sort=4)
 	public Integer getSchoolNum() {
 		return schoolNum;
 	}
@@ -136,7 +173,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSchoolNum(Integer schoolNum) {
 		this.schoolNum = schoolNum;
 	}
-	
+
+	@ExcelField(title="校长姓名", align=2, sort=7)
 	@Length(min=0, max=50, message="校长姓名长度必须介于 0 和 50 之间")
 	public String getHeadName() {
 		return headName;
@@ -145,7 +183,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setHeadName(String headName) {
 		this.headName = headName;
 	}
-	
+
+	@ExcelField(title="校长联系方式", align=2, sort=8)
 	@Length(min=0, max=50, message="校长联系方式长度必须介于 0 和 50 之间")
 	public String getHeadTl() {
 		return headTl;
@@ -154,7 +193,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setHeadTl(String headTl) {
 		this.headTl = headTl;
 	}
-	
+
+	@ExcelField(title="分管安全保卫责任人姓名", align=2, sort=9)
 	@Length(min=0, max=50, message="分管安全保卫责任人姓名长度必须介于 0 和 50 之间")
 	public String getSecuBranName() {
 		return secuBranName;
@@ -163,7 +203,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSecuBranName(String secuBranName) {
 		this.secuBranName = secuBranName;
 	}
-	
+
+	@ExcelField(title="分管安全保卫责任人联系方式", align=2, sort=10)
 	@Length(min=0, max=50, message="分管安全保卫责任人联系方式长度必须介于 0 和 50 之间")
 	public String getSecuBranTl() {
 		return secuBranTl;
@@ -172,7 +213,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSecuBranTl(String secuBranTl) {
 		this.secuBranTl = secuBranTl;
 	}
-	
+
+	@ExcelField(title="安全保卫责任人姓名", align=2, sort=11)
 	@Length(min=0, max=50, message="安全保卫责任人姓名长度必须介于 0 和 50 之间")
 	public String getSecuGuardName() {
 		return secuGuardName;
@@ -181,7 +223,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSecuGuardName(String secuGuardName) {
 		this.secuGuardName = secuGuardName;
 	}
-	
+
+	@ExcelField(title="安全保卫责任人联系方式", align=2, sort=12)
 	@Length(min=0, max=50, message="安全保卫责任人联系方式长度必须介于 0 和 50 之间")
 	public String getSecuGuardTl() {
 		return secuGuardTl;
@@ -190,7 +233,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSecuGuardTl(String secuGuardTl) {
 		this.secuGuardTl = secuGuardTl;
 	}
-	
+
+	@ExcelField(title="治安责任人姓名", align=2, sort=13)
 	@Length(min=0, max=50, message="治安责任人姓名长度必须介于 0 和 50 之间")
 	public String getSecuName() {
 		return secuName;
@@ -199,7 +243,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSecuName(String secuName) {
 		this.secuName = secuName;
 	}
-	
+
+	@ExcelField(title="治安责任人联系方式", align=2, sort=14)
 	@Length(min=0, max=50, message="治安责任人联系方式长度必须介于 0 和 50 之间")
 	public String getSecuTl() {
 		return secuTl;
@@ -208,7 +253,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSecuTl(String secuTl) {
 		this.secuTl = secuTl;
 	}
-	
+
+	@ExcelField(title="安全保卫人数", align=2, sort=15)
 	public Integer getSecuGuardNum() {
 		return secuGuardNum;
 	}
@@ -216,7 +262,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setSecuGuardNum(Integer secuGuardNum) {
 		this.secuGuardNum = secuGuardNum;
 	}
-	
+
+	@ExcelField(title="所属区域", align=2, sort=3)
 	public Area getArea() {
 		return area;
 	}
@@ -233,7 +280,8 @@ public class CcmHouseSchoolrim extends DataEntity<CcmHouseSchoolrim> {
 	public void setAreaMap(String areaMap) {
 		this.areaMap = areaMap;
 	}
-	
+
+	@ExcelField(title="中心点", align=2, sort=17)
 	@Length(min=0, max=40, message="中心点长度必须介于 0 和 40 之间")
 	public String getAreaPoint() {
 		return areaPoint;

@@ -204,7 +204,48 @@
 					</div>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">产权类型：</label>
+						<div class="controls">
+							<form:select path="propertyType" class="input-xlarge" >
+								<form:options items="${fns:getDictList('line_property_type')}"
+											  itemLabel="label" itemValue="value" htmlEscape="false" />
+							</form:select>
 
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">产权归属（公司）：</label>
+						<div class="controls">
+							<form:input path="propertyAscription" htmlEscape="false" maxlength="30"
+										class="input-xlarge" />
+
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">线路长度（公里）：</label>
+						<div class="controls">
+							<form:input path="lineLength" htmlEscape="false" class="input-xlarge number"/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">线路使用年限：</label>
+						<div class="controls">
+							<form:input path="lineYears" htmlEscape="false" maxlength="30" class="input-xlarge"/>
+						</div>
+					</div>
+				</td>
+			</tr>
 			<tr>
 				<td colspan="2">
 					<div>

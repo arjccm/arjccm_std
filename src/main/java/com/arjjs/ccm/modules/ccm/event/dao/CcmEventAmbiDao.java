@@ -48,5 +48,7 @@ public interface CcmEventAmbiDao extends CrudDao<CcmEventAmbi> {
 	List<CcmEventAmbi> findOfficeCount();
 	//累计受理纠纷总数
 	int findListNum();
+
+	List<EchartType> getEventCountBySevenDay();
 	
 }

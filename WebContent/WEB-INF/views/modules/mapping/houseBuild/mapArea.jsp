@@ -145,6 +145,7 @@ font-size:18px;
 		<li id="clickStructurePop"><a class="color" onclick="showStructurePop()">&nbsp;&nbsp;&nbsp;人口结构&nbsp;&nbsp;&nbsp;</a></li>
 		<li id="clickEmphasisPop"><a class="color" onclick="showEmphasisPop()">&nbsp;&nbsp;&nbsp;特殊人群&nbsp;&nbsp;&nbsp;</a></li>
 		<li id="clickFloatingPop"><a class="color" onclick="showFloatingPop()">&nbsp;&nbsp;&nbsp;流动分析&nbsp;&nbsp;&nbsp;</a></li>
+        <li id="clickReloda"><a class="color" onclick="reloadDialog()">&nbsp;&nbsp;&nbsp;返回默认查询&nbsp;&nbsp;&nbsp;</a></li>
 	</ul>
 	
  	<a href="#" id="myTabContentCloser" class=" icon-remove " title="关闭" onclick="detailsDialogFun()" style="position: absolute; display: block; cursor: pointer; top: 11px; right: 11px; width: 15px; height: 15px;color:#fff"></a>
@@ -215,20 +216,20 @@ font-size:18px;
 							<div class="span12 height100">
 								<table style="width: 100%; height: 100%">
 									<tr>
-										<td align="right">区域面积：</td>
-										<td align="left"><span  class="fontsize-common">${areaNew}&nbsp;</span>km<sup>2</sup></td>
+										<td align="right">房屋数量：</td>
+										<td align="left"><span id="tenantNum" class="fontsize-common">0</span>间</td>
 									</tr>
 									<tr>
-										<td align="right">人口密度：</td>
-										<td align="left"><span  class="fontsize-common">${popArea}&nbsp;</span>人/km<sup>2</sup></td>
+										<td align="right">场所数量：</td>
+										<td align="left"><span id="placeNum" class="fontsize-common">0</span>个</td>
 									</tr>
 									<tr>
-										<td align="right">党员人数：</td>
-										<td align="left"><span  class="fontsize-common"><span>${ccmOrgArea.partyMembersNum}</span>0</span>人</td>
+										<td align="right">监控数量：</td>
+										<td align="left"><span id="deviceNum" class="fontsize-common">0</span>个</td>
 									</tr>
 									<tr>
-										<td align="right">总户数：</td>
-										<td align="left"><span  class="fontsize-common"><span>${ccmOrgArea.netNum}</span>0</span>人</td>
+										<td align="right">监控在线率：</td>
+										<td align="left"><span id="deviceOnLineNum" class="fontsize-common">0</span>%</td>
 									</tr>
 								</table>
 							</div>
@@ -658,10 +659,39 @@ font-size:18px;
 				$("#BuildArea").html(data[0]);
 				$("#BuildPopArea").html(data[1]);
 		});
-		
 
-	})	
-	
+        $.getJSON(ctx+'/sys/map/queryBuildMap?area.id=${area.id}&pageNo=1&pageSize=10',function(data){
+            if(data==null||data==""||data==undefined){
+                return ;
+            }
+            var count=data.count;
+            $("#tenantNum").html(count);
+        })
+
+        $.getJSON(ctx+'/sys/map/queryPlaceMap?area.id=${area.id}&pageNo=1&pageSize=10',function(data){
+            if(data==null||data==""||data==undefined){
+                return ;
+            }
+            var count=data.count;
+            $("#placeNum").html(count);
+        })
+
+        $.getJSON(ctx+'/sys/map/queryDeviceMap?area.id=${area.id}&pageNo=1&pageSize=10',function(data){
+            if(data==null||data==""||data==undefined){
+                return ;
+            }
+            var all=data.count;
+            $("#deviceNum").html(all);
+            $.getJSON(ctx+'/sys/map/queryDeviceMap?area.id=${area.id}&pageNo=1&pageSize=10&status=1',function(data){
+                if(data==null||data==""||data==undefined){
+                    return ;
+                }
+                var online=data.count;
+                $("#deviceOnLineNum").html(all <= 0 ? 0 : (Math.round(online / all * 10000) / 100.00));
+            })
+        })
+
+	})
 	
 	function showHomePop(){
 		$("#clickHomePop").addClass("active"); 

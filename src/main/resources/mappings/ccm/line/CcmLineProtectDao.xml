@@ -24,7 +24,11 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag"
+		a.del_flag AS "delFlag",
+		a.property_type AS "propertyType",
+		a.property_ascription AS "propertyAscription",
+		a.line_length AS "lineLength",
+		a.line_years AS "lineYears"
 	</sql>
 	
 	<sql id="ccmLineProtectJoins">
@@ -150,7 +154,11 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			property_type,
+			property_ascription,
+			line_length,
+			line_years
 		) VALUES (
 			#{id},
 			#{name},
@@ -173,7 +181,11 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{propertyType},
+			#{propertyAscription},
+			#{lineLength},
+			#{lineYears}
 		)
 	</insert>
 	
@@ -196,7 +208,11 @@
 			line = #{line},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
-			remarks = #{remarks}
+			remarks = #{remarks},
+			property_type = #{propertyType},
+			property_ascription = #{propertyAscription},
+			line_length = #{lineLength},
+			line_years = #{lineYears}
 		WHERE id = #{id}
 	</update>
 	

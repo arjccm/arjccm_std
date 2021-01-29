@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.org.dao.CcmImportAreaDao">
+    
+	<sql id="ccmImportAreaColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.area_id AS "area.id",
+		a.area_description AS "areaDescription",
+		a.area_map AS "areaMap",
+		a.area_point AS "areaPoint",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a3.name AS "area.name"
+	</sql>
+	
+	<sql id="ccmImportAreaJoins">
+		LEFT JOIN sys_area a3 ON a3.id = a.area_id
+	</sql>
+    
+	<select id="get" resultType="CcmImportArea">
+		SELECT 
+			<include refid="ccmImportAreaColumns"/>
+		FROM ccm_import_area a
+		<include refid="ccmImportAreaJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CcmImportArea">
+		SELECT 
+			<include refid="ccmImportAreaColumns"/>
+		FROM ccm_import_area a
+		<include refid="ccmImportAreaJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="userArea != null and userArea.id != null and userArea.id != ''">
+				AND (a3.parent_ids LIKE CONCAT('%',#{userArea.id},'%') or
+				a.area_id
+				= #{userArea.id})
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name = #{name}
+			</if>
+			<if test="area != null and area.id != null and area.id != ''">
+				AND a.area_id = #{area.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CcmImportArea">
+		SELECT 
+			<include refid="ccmImportAreaColumns"/>
+		FROM ccm_import_area a
+		<include refid="ccmImportAreaJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_import_area(
+			id,
+			name,
+			area_id,
+			area_description,
+			area_map,
+			area_point,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{name},
+			#{area.id},
+			#{areaDescription},
+			#{areaMap},
+			#{areaPoint},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ccm_import_area SET 	
+			name = #{name},
+			area_id = #{area.id},
+			area_description = #{areaDescription},
+			area_map = #{areaMap},
+			area_point = #{areaPoint},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE ccm_import_area SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
