@@ -48,10 +48,21 @@
 				$("#show1").html(html1);
 			}
 
-			if (area.length != 0) {
-				$("#inputForm").submit();
-			}
-
+            $.ajax({
+                url: ctx + "/house/ccmHouseSchoolrim/findCountSchoolByName?schoolName=" + $("#schoolName").val() + "&id=" + $("#dataId").val(),
+                type: "get",
+                success: function (data) {
+                    debugger;
+                    if(data!=null && data.size>0){
+                        alert("学校名称已存在！！！");
+                        return;
+                    }else{
+                        if (area.length != 0) {
+                            $("#inputForm").submit();
+                        }
+					}
+                }
+            })
 		}
 		function ThisLayerDialog(src, title, height, width) {
 			parent.drawForm = parent.layer.open({
@@ -104,7 +115,7 @@
 		</c:if> --%>
 	</ul>
 	<form:form id="inputForm" modelAttribute="ccmHouseSchoolrim" action="${ctx}/house/ccmHouseSchoolrim/save" method="post" class="form-horizontal">
-		<form:hidden path="id"/>
+		<form:hidden id="dataId" path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
 		<table border="0px" style="border-color: #CCCCCC; border: 0px solid #CCCCCC; padding: 10px; width: 100%;border-top-color: white">
@@ -113,7 +124,7 @@
 					<div>
 						<label class="control-label"><span class="help-inline"><font color="red">*</font> </span>学校名称：</label>
 						<div class="controls">
-							<form:input path="schoolName" htmlEscape="false" maxlength="100" class="input-xlarge required"/>
+							<form:input id="schoolName" path="schoolName" htmlEscape="false" maxlength="100" class="input-xlarge required"/>
 						</div>
 					</div>
 				</td>
@@ -130,10 +141,10 @@
 			<tr>
 				<td>
 					<div>
-						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font> </span>所属社区：</label>
+						<label class="control-label"><span class="help-inline"><font color="red" id="show1">*</font> </span>所属区域：</label>
 						<div class="controls">
 							<sys:treeselect id="area" name="area.id" value="${ccmHouseSchoolrim.area.id}" labelName="area.name" labelValue="${ccmHouseSchoolrim.area.name}"
-											title="区域" url="/tree/ccmTree/treeDataArea?type=6" allowClear="true" notAllowSelectParent="true" cssClass=""/>
+											title="区域" url="/tree/ccmTree/treeDataArea?type=6" allowClear="true" notAllowSelectParent="false" cssClass=""/>
 						</div>
 					</div>
 				</td>
@@ -299,15 +310,41 @@
 						</div>
 					</div>
 				</td>
-
-
-			</tr>
-			<tr>
 				<td>
 					<div>
 						<label class="control-label">图标：</label>
 						<div class="controls">
 							<sys:iconselect id="image" name="image" value="${ccmHouseSchoolrim.image}"/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<label class="control-label">是否关注：</label>
+						<div class="controls">
+							<form:radiobuttons path="isAttention" items="${fns:getDictList('yes_no')}" itemLabel="label"
+											   itemValue="value" htmlEscape="false" class="required"/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">取消关注时间：</label>
+						<div class="controls">
+							<input name="unAttentionDate" type="text" readonly="readonly" maxlength="20"
+								   class="input-medium Wdate "
+								   value="<fmt:formatDate value="${ccmHouseSchoolrim.unAttentionDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+								   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class="control-label">取消关注原因：</label>
+						<div class="controls">
+							<form:textarea path="unAttentionReason" htmlEscape="false" rows="3" maxlength="255" class="input-xlarge " />
 						</div>
 					</div>
 				</td>

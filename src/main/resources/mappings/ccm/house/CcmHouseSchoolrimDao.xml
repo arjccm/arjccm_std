@@ -31,6 +31,9 @@
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
 		a.del_flag AS "delFlag",
+		a.is_attention AS "isAttention",
+		a.un_attention_reason AS "unAttentionReason",
+		a.un_attention_date AS "unAttentionDate",
 		a16.name AS "area.name",
 		(case a.school_type 
 			when 11 then '幼儿园' 
@@ -160,7 +163,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+				ORDER BY a.is_attention DESC, a.update_date DESC
 			</otherwise>
 		</choose>
 	</select>
@@ -178,7 +181,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+				ORDER BY a.is_attention DESC, a.update_date DESC
 			</otherwise>
 		</choose>
 	</select>
@@ -238,7 +241,10 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			is_attention,
+			un_attention_reason,
+			un_attention_date
 		) VALUES (
 			#{id},
 			#{schoolName},
@@ -267,7 +273,10 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{isAttention},
+			#{unAttentionReason},
+			#{unAttentionDate}
 		)
 	</insert>
 	
@@ -296,7 +305,10 @@
 			images = #{images},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
-			remarks = #{remarks}
+			remarks = #{remarks},
+			is_attention = #{isAttention},
+			un_attention_reason = #{unAttentionReason},
+			un_attention_date = #{unAttentionDate}
 		WHERE id = #{id}
 	</update>
 	
@@ -321,4 +333,33 @@
 			<include refid="ccmHouseSchoolrimJoins"/>
 		GROUP BY a.area_id;
 	</select>
+
+	<select id="findCountSchoolByName" resultType="CcmHouseSchoolrim">
+		SELECT
+			a.id AS 'id',
+			a.school_name AS 'schoolName'
+		FROM
+			ccm_house_schoolrim a
+		WHERE
+			a.del_flag = 0
+			AND a.school_name = #{schoolName}
+	</select>
+
+	<update id="addAttention">
+        UPDATE ccm_house_schoolrim SET
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+            is_attention = '1'
+        WHERE id = #{id}
+    </update>
+
+	<update id="delAttention">
+        UPDATE ccm_house_schoolrim SET
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+            is_attention = '0',
+			un_attention_reason = #{unAttentionReason},
+			un_attention_date = #{unAttentionDate}
+        WHERE id = #{id}
+    </update>
 </mapper>

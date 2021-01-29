@@ -147,7 +147,7 @@
 	top: 10px;
 	left: 14px;
 	width: 350px;
-	height: 240px;
+	height: 280px;
 	border-radius: 8px;
 	background-color: #fff;
 	border: 1px solid #ccc;
@@ -193,7 +193,7 @@
 .mapListTop {
 	position: absolute;
 	z-index: 199202;
-	top: 251px;
+	top: 291px;
 	left: 14px;
 	width: 340px;
 	height: 30px;
@@ -212,9 +212,9 @@
 	position: absolute;
 	z-index: 199202;
 	left: 14px;
-	top: 289px;
+	top: 329px;
 	width: 350px;
-	height: calc(100% - 230px - 57px - 25px - 32px);
+	height: calc(100% - 230px - 57px - 25px - 32px - 40px);
 	border: 1px solid #ccc;
 	background-color: #fff;
 	opacity: 0.9;
@@ -355,7 +355,7 @@
 					</p>
 					<div class="mapView-p-head">
 						<div class="layui-tab layui-tab-brief" lay-filter="allTab">
-							<ul class="layui-tab-title" id="GIStab">
+							<ul class="layui-tab-title" id="GIStab" style="height: 80px;">
 								<li class="layui-this" type="event"><i
 									class="nav-icon iconfont  icon-shishibaojing1"></i>事件</li>
 								<li type="build"><i
@@ -366,6 +366,8 @@
 									class="nav-icon iconfont   icon-renkouguanli"></i>人口</li>
 								<li type="video"><i
 									class="nav-icon iconfont   icon-shipinjiankong"></i>监控</li>
+								<li type="importArea" style="display: block;width: 70px;"><i
+									class="nav-icon iconfont   icon-quyuguanli"></i>重点区域</li>
 							</ul>
 							<div class="layui-tab-content">
 								<div class="layui-tab-item layui-show">
@@ -584,6 +586,42 @@
 										</a> <a href="javascript:;" id="ClearSubmitVideo"
 											style="background: #f50b4b !important;"
 											class="btn btn-primary"> <i class="icon-remove"></i> 清空
+										</a> <%--				<a href="javascript:;" onclick="selectQuery('Polygon','video')" style="background: #f50b4b !important;" class="btn btn-primary">--%>
+											<%--					<i class="icon-search"></i> 多边形查询 </a>--%> <%--				<a href="javascript:;" onclick="selectQuery('Circle','video')" style="background: #f50b4b !important;" class="btn btn-primary">--%>
+											<%--					<i class="icon-search"></i> 点圆查询 </a>--%> <%--				<a href="javascript:;" onclick="selectQuery('Box','video')" style="background: #f50b4b !important;" class="btn btn-primary">--%>
+											<%--					<i class="icon-search"></i> 拉框查询 </a>--%></li>
+									</ul>
+								</div>
+								<div class="layui-tab-item">
+									<ul class="ul-form">
+										<li style="margin-top: 10px;"><input id="name"
+											 placeholder="请输入重点区域名称 ..." name="name"
+											 class="input-medium" type="text" value="" maxlength="100"
+											 style="height: 30px; margin-top: 0px; margin-bottom: 10px;">
+											&nbsp; <sys:treeselect id="areaImport" name="areaImport"
+													   value="" labelName="area.name" placeholder="请选择辖区范围 ..."
+													   labelValue="" title="区域" url="/tree/ccmTree/treeDataArea?type=7&areaid="
+													   cssClass="" allowClear="true" notAllowSelectParent="false"
+													   cssStyle="width: 110px;height:30px;" /></li>
+										<li>
+											<%--<a href="javascript:;" style="margin-left: 10px;"--%>
+											   <%--onclick="selectQuery('Circle','areaImport')"> <img--%>
+													<%--src="${ctxStatic}/images/draw_circle.png"  title="点圆查询"--%>
+													<%--style="height: 30px;"></a> &lt;%&ndash;					<i class="icon-search"></i> 点圆查询 </a>&ndash;%&gt;--%>
+											<%--<a href="javascript:;" style="margin-left: 10px;" onclick="selectQuery('Box','video')">--%>
+												<%--<img src="${ctxStatic}/images/draw_rect.png" title="拉框查询"--%>
+													 <%--style="height: 30px;">--%>
+											<%--</a> &lt;%&ndash;					<i class="icon-search"></i> 拉框查询 </a>&ndash;%&gt; <a--%>
+												<%--href="javascript:;" style="margin-left: 10px;" onclick="selectQuery('Polygon','video')">--%>
+											<%--<img src="${ctxStatic}/images/draw_poly.png" title="多边形查询"--%>
+												 <%--style="height: 30px;">--%>
+										<%--</a>--%>
+											<a href="javascript:;" id="btnSubmitAreaImport" style="margin-left: 160px;margin-right: 10px;"
+											   class="btn btn-primary firstbtn"> <i class="icon-search"></i>
+												查询
+											</a> <a href="javascript:;" id="ClearSubmitAreaImport"
+													style="background: #f50b4b !important;"
+													class="btn btn-primary"> <i class="icon-remove"></i> 清空
 										</a> <%--				<a href="javascript:;" onclick="selectQuery('Polygon','video')" style="background: #f50b4b !important;" class="btn btn-primary">--%>
 											<%--					<i class="icon-search"></i> 多边形查询 </a>--%> <%--				<a href="javascript:;" onclick="selectQuery('Circle','video')" style="background: #f50b4b !important;" class="btn btn-primary">--%>
 											<%--					<i class="icon-search"></i> 点圆查询 </a>--%> <%--				<a href="javascript:;" onclick="selectQuery('Box','video')" style="background: #f50b4b !important;" class="btn btn-primary">--%>

@@ -1,7 +1,7 @@
 package com.arjjs.ccm.modules.ccm.index.service;
 
-import java.util.Calendar;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.arjjs.ccm.modules.sys.entity.Area;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -279,6 +279,125 @@ public class IndexChartService {
 		result.setCount(list.size());
 		result.setData(list);
 		result.setMsg("");
+		return result;
+	}
+
+	public List<CcmPeople> findPeopleCountByAllType() {
+		List<CcmPeople> one = ccmPeopleDao.findCountByTypeNoArea();
+		List<CcmPeople> two = ccmPeopleDao.findCountByUniformlogoNoArea();
+		for(CcmPeople count:two){
+			if("02".equals(count.getUniformlogo())){
+				one.add(count);
+			}
+		}
+		return one;
+	}
+
+	public Map<String, Object> getPeopleCountByArea() {
+		Map<String, Object> result = new HashMap<>();
+		List<EchartType> list = ccmPeopleDao.getPeopleCountByArea();
+		String[] legend = new String[]{"实有人口","流动人员"};
+		List<Integer> barNum = new ArrayList<>();
+		List<Integer> lineNum = new ArrayList<>();
+		List<String> xdata = new ArrayList<>();
+		int barMax = 100;
+		int lineMax = 100;
+		for(int i=0 ; i<list.size() ; i++){
+			barNum.add(list.get(i).getNum());
+			lineNum.add(list.get(i).getNum1());
+			xdata.add(list.get(i).getType());
+			if(list.get(i).getNum() > barMax){
+				barMax = list.get(i).getNum();
+			}
+			if(list.get(i).getNum1() > lineMax){
+				lineMax = list.get(i).getNum1();
+			}
+		}
+		Map<String, Object> barData = new HashMap<>();
+		barData.put("name","实有人口");
+		barData.put("data",barNum);
+		Map<String, Object> lineData = new HashMap<>();
+		lineData.put("name","流动人员");
+		lineData.put("data",lineNum);
+
+		result.put("legend",legend);
+		result.put("barData",barData);
+		result.put("lineData",lineData);
+		result.put("xdata",xdata);
+		result.put("barMax",barMax);
+		result.put("lineMax",lineMax);
+		return result;
+	}
+
+	public Map<String, Object> getImportPeopleCountOfArea() {
+		Map<String, Object> result = new HashMap<>();
+		List<EchartType> list = ccmPeopleDao.getImportPeopleCountOfArea();
+		if(list.size()>0){
+			for(int i=0;i<list.size()-1;i++){
+				for(int j=0;j<list.size()-1-i;j++){
+					if(list.get(j+1).getNum()>list.get(j).getNum()){
+						EchartType temp = list.get(j);
+						list.set(j,list.get(j+1));
+						list.set(j+1,temp);
+					}
+				}
+			}
+		}
+		if(list.size()>5){
+			list = list.subList(0, 5);
+		}
+		List<Integer> data = new ArrayList<>();
+		List<String> name = new ArrayList<>();
+		int max = 50;
+		for(int j=0 ; j<list.size() ; j++){
+			data.add(list.get(j).getNum());
+			name.add(list.get(j).getType());
+			if(list.get(j).getNum() > max){
+				max = list.get(j).getNum();
+			}
+		}
+
+		result.put("data",data);
+		result.put("name",name);
+		result.put("max",max);
+		return result;
+	}
+
+	public Map<String, Object> getEventCountBySevenDay() {
+		Map<String, Object> result = new HashMap<>();
+		List<EchartType> list = new ArrayList<>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		for(int i=0 ; i<7 ; i++){
+			EchartType echartType = new EchartType();
+			calendar.add(Calendar.DAY_OF_MONTH,-(i+1));
+			echartType.setName(sdf.format(calendar.getTime()));
+			echartType.setNum(0);
+			list.add(echartType);
+		}
+		List<EchartType> find = ccmEventAmbiDao.getEventCountBySevenDay();
+		for(EchartType one:list){
+			for(EchartType two:find){
+				if(one.getName().equals(two.getName())){
+					one.setNum(two.getNum());
+				}
+			}
+		}
+		List<Integer> data = new ArrayList<>();
+		List<String> name = new ArrayList<>();
+		int max = 50;
+		for(int j=0 ; j<list.size() ; j++){
+			data.add(list.get(j).getNum());
+			name.add(list.get(j).getName());
+			if(list.get(j).getNum() > max){
+				max = list.get(j).getNum();
+			}
+		}
+
+		result.put("data",data);
+		result.put("name",name);
+		result.put("max",max);
 		return result;
 	}
 

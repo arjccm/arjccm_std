@@ -157,9 +157,6 @@
                     <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}&nbsp;
                         &nbsp; <img src="${ctxStatic}/images/atteType_green.png"/></td>
                 </c:if>
-                <c:if test="${ccmOrgSocialorg.concernExtent eq '04'}">
-                    <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')}</td>
-                </c:if>
                 <c:if test="${ccmOrgSocialorg.concernExtent eq '' or empty ccmOrgSocialorg.concernExtent}">
                     <td>${fns:getDictLabel(ccmOrgSocialorg.concernExtent, 'ccm_conc_exte', '')} </td>
                 </c:if>
@@ -169,21 +166,30 @@
                 <td>
                         ${ccmOrgSocialorg.secuTel}
                 </td>
-                <td><shiro:hasPermission name="org:ccmOrgSocialorg:edit">
-                    <a class="btnList" href="${ctx}/org/ccmOrgSocialorg/form?id=${ccmOrgSocialorg.id}" title="修改"><i
-                            class="iconfont icon-caozuotubiao-xiugai"></i></a>
-                    <a class="btnList" href="${ctx}/org/ccmOrgSocialorg/delete?id=${ccmOrgSocialorg.id}"
-                       onclick="return confirmx('确认要删除该社会组织吗？', this.href)" title="删除"><i
-                            class="iconfont icon-caozuotubiao-shanchu"></i></a>
-                </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:view">
-                    <a class="btnList"
-                       onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmOrgSocialorg.id}&relevance_table=ccm_org_socialorg', '记录信息', '800px', '660px')"
-                       title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
-                </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
+                <td>
+                    <shiro:hasPermission name="org:ccmOrgSocialorg:edit">
+                        <a class="btnList" href="${ctx}/org/ccmOrgSocialorg/form?id=${ccmOrgSocialorg.id}" title="修改"><i
+                                class="iconfont icon-caozuotubiao-xiugai"></i></a>
+                        <a class="btnList" href="${ctx}/org/ccmOrgSocialorg/delete?id=${ccmOrgSocialorg.id}"
+                           onclick="return confirmx('确认要删除该社会组织吗？', this.href)" title="删除"><i
+                                class="iconfont icon-caozuotubiao-shanchu"></i></a>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="log:ccmLogTail:view">
+                        <a class="btnList"
+                           onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmOrgSocialorg.id}&relevance_table=ccm_org_socialorg', '记录信息', '800px', '660px')"
+                           title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
+                    </shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
                     <a class="btnList"
                        onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmOrgSocialorg.id}&relevance_table=ccm_org_socialorg', '添加记录', '800px', '660px')"
                        title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
-                </shiro:hasPermission></td>
+                </shiro:hasPermission>
+                    <a class="btnList"
+                       onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/toaddPeople?placeOrgId=${ccmOrgSocialorg.id}&type=3', '从业人员添加', '1550px', '800px')"
+                       title="从业人员添加"><i class="iconfont icon-congyerenyuantianjia"></i></a>
+                    <a class="btnList"
+                       onclick="parent.LayerDialog('${ctx}/placeorgpeople/ccmPlaceOrgPeople/list?placeOrgId=${ccmOrgSocialorg.id}&type=3', '从业人员信息', '1550px', '800px')"
+                       title="从业人员信息"><i class="iconfont icon-congyerenyuanxinxi"></i></a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

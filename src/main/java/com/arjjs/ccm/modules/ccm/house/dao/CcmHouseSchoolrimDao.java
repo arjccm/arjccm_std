@@ -38,4 +38,10 @@ public interface CcmHouseSchoolrimDao extends CrudDao<CcmHouseSchoolrim> {
 	List<EchartType> selectSchoolNumAllByOffice();
 	List<EchartType> selectschoolEventAmbiScale();
 	List<CcmHouseSchoolrim> getAreaBySchool();
+
+	List<CcmHouseSchoolrim> findCountSchoolByName(CcmHouseSchoolrim ccmHouseSchoolrim);
+
+	int addAttention(CcmHouseSchoolrim ccmHouseSchoolrim);
+
+	int delAttention(CcmHouseSchoolrim ccmHouseSchoolrim);
 }

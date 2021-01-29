@@ -3,6 +3,7 @@
  */
 package com.arjjs.ccm.modules.ccm.house.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,5 +141,20 @@ public class CcmHouseSchoolrimService extends CrudService<CcmHouseSchoolrimDao, 
 	//查询所有学校的所属区域并分组
 	public List<CcmHouseSchoolrim> getAreaBySchool(){
 		return ccmHouseSchoolrimDao.getAreaBySchool();
+	}
+
+	public List<CcmHouseSchoolrim> findCountSchoolByName(CcmHouseSchoolrim ccmHouseSchoolrim) {
+		return ccmHouseSchoolrimDao.findCountSchoolByName(ccmHouseSchoolrim);
+	}
+
+	@Transactional(readOnly = false)
+	public void addAttention(CcmHouseSchoolrim ccmHouseSchoolrim) {
+		ccmHouseSchoolrimDao.addAttention(ccmHouseSchoolrim);
+	}
+
+	@Transactional(readOnly = false)
+	public void delAttention(CcmHouseSchoolrim ccmHouseSchoolrim) {
+		ccmHouseSchoolrim.setUnAttentionDate(new Date());
+		ccmHouseSchoolrimDao.delAttention(ccmHouseSchoolrim);
 	}
 }

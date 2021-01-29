@@ -110,6 +110,17 @@ public class CcmEventIncident extends DataEntity<CcmEventIncident> {
 	private String doing; //案件是否已经分配处理
 	
 	private String handleStep; //处理措施
+
+	private String stakeHolderIden;
+
+	public String getStakeHolderIden() {
+		return stakeHolderIden;
+	}
+
+	public void setStakeHolderIden(String stakeHolderIden) {
+		this.stakeHolderIden = stakeHolderIden;
+	}
+
 	public String getHandleStep() {
 		return handleStep;
 	}

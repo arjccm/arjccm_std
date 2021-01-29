@@ -125,6 +125,10 @@
 		LEFT JOIN sys_user b ON b.id = a.create_by
 	</sql>
 
+    <sql id="ccmEventIncidentJoinsStakeholder">
+		LEFT JOIN ccm_event_stakeholder s ON s.incident_id = a.id AND s.del_flag = 0
+	</sql>
+
     <select id="get" resultType="CcmEventIncident">
         SELECT
         <include refid="ccmEventIncidentColumns"/>
@@ -278,6 +282,7 @@
         FROM ccm_event_incident a
         <include refid="ccmEventIncidentJoinsUser"/>
         <include refid="ccmEventIncidentJoins"/>
+        <include refid="ccmEventIncidentJoinsStakeholder"/>
         <where>
             a.del_flag = #{DEL_FLAG_NORMAL}
             <if test="caseName != null and caseName != ''">
@@ -305,6 +310,9 @@
             </if>
             <if test="createBy != null and createBy.id != null and createBy.id != ''">
                 AND a.create_by = #{createBy.id}
+            </if>
+            <if test="stakeHolderIden != null and stakeHolderIden != ''">
+                AND s.iden_num = #{stakeHolderIden}
             </if>
         </where>
         <choose>

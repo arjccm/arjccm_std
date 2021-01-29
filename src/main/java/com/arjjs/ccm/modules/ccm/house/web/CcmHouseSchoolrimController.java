@@ -3,21 +3,29 @@
  */
 package com.arjjs.ccm.modules.ccm.house.web;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
 
+import com.arjjs.ccm.common.beanvalidator.BeanValidators;
+import com.arjjs.ccm.common.utils.excel.ImportExcel;
+import com.arjjs.ccm.modules.ccm.house.entity.CcmHouseRectification;
+import com.arjjs.ccm.modules.pbs.sys.utils.UserUtils;
+import com.arjjs.ccm.modules.sys.entity.Dict;
+import com.arjjs.ccm.tool.CommUtil;
+import com.arjjs.ccm.tool.EntityTools;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.arjjs.ccm.common.config.Global;
@@ -288,5 +296,229 @@ public class CcmHouseSchoolrimController extends BaseController {
 			}
 		}
 		return mapList;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = {"findCountSchoolByName"})
+	public List<CcmHouseSchoolrim> findCountSchoolByName(HttpServletRequest request, HttpServletResponse response , String schoolName, String id) {
+		CcmHouseSchoolrim ccmHouseSchoolrim = new CcmHouseSchoolrim();
+		ccmHouseSchoolrim.setSchoolName(schoolName);
+		List<CcmHouseSchoolrim> result = ccmHouseSchoolrimService.findCountSchoolByName(ccmHouseSchoolrim);
+		if(result.size()>0){
+			for(int i=0 ; i<result.size() ; i++){
+				if(StringUtils.isNotEmpty(id)){
+					if(id.equals(result.get(i).getId())){
+						result.remove(i);
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+
+
+	@RequiresPermissions("house:ccmHouseSchoolrim:edit")
+	@RequestMapping(value = "addAttention")
+	public String addAttention(CcmHouseSchoolrim ccmHouseSchoolrim, Model model, RedirectAttributes redirectAttributes) {
+		if (!beanValidator(model, ccmHouseSchoolrim)){
+			return form(ccmHouseSchoolrim, model);
+		}
+		ccmHouseSchoolrim.setUpdateBy(UserUtils.getUser());
+		ccmHouseSchoolrim.setUpdateDate(new Date());
+		ccmHouseSchoolrimService.addAttention(ccmHouseSchoolrim);
+		addMessage(redirectAttributes, "学校添加关注成功");
+		return "redirect:"+Global.getAdminPath()+"/house/ccmHouseSchoolrim/list?repage";
+	}
+
+	@RequiresPermissions("house:ccmHouseSchoolrim:edit")
+	@RequestMapping(value = "delAttentionForm")
+	public String delAttentionForm(CcmHouseSchoolrim ccmHouseSchoolrim, Model model) {
+		model.addAttribute("ccmHouseSchoolrim", ccmHouseSchoolrim);
+		return "ccm/house/ccmHouseSchoolrimDelAttention";
+	}
+
+	@RequiresPermissions("house:ccmHouseSchoolrim:edit")
+	@RequestMapping(value = "delAttention")
+	public void delAttention(HttpServletRequest request, HttpServletResponse response, CcmHouseSchoolrim ccmHouseSchoolrim, Model model, RedirectAttributes redirectAttributes) throws IOException {
+		if (!beanValidator(model, ccmHouseSchoolrim)){
+//			return form(ccmHouseSchoolrim, model);
+		}
+		ccmHouseSchoolrim.setUpdateBy(UserUtils.getUser());
+		ccmHouseSchoolrim.setUpdateDate(new Date());
+		ccmHouseSchoolrimService.delAttention(ccmHouseSchoolrim);
+		addMessage(redirectAttributes, "学校取消关注成功");
+		addMessage(redirectAttributes, "保存社区矫正人员成功");
+		PrintWriter out = response.getWriter();
+		CommUtil.openWinExpDiv(out, "保存社区矫正人员成功");
+	}
+
+	/**
+	 * 导入学校数据
+	 */
+	@RequiresPermissions("house:ccmHouseSchoolrim:edit")
+	@RequestMapping(value = "import", method = RequestMethod.POST)
+	public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
+		if (Global.isDemoMode()) {
+			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			return "redirect:"+Global.getAdminPath()+"/house/ccmHouseSchoolrim/list?repage";
+		}
+		try {
+			int successNum = 0;
+			int failureNum = 0;
+			StringBuilder failureMsg = new StringBuilder();
+			ImportExcel ei = new ImportExcel(file, 1, 0);
+			List<CcmHouseSchoolrim> list = ei.getDataList(CcmHouseSchoolrim.class);
+
+			List<CcmHouseSchoolrim> alllist = ccmHouseSchoolrimService.findList(new CcmHouseSchoolrim());
+			StringBuilder ishave = new StringBuilder();
+			for(int i=0 ; i<alllist.size() ; i++){
+				ishave.append(alllist.get(i).getSchoolName() + ",");
+			}
+
+			//格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//将电话号获取异常的转为正常电话号（异常包含E10和小数点）
+			DecimalFormat df = new DecimalFormat("#");
+			for (CcmHouseSchoolrim school : list) {
+				try {
+					if(EntityTools.isEmpty(school)){
+						continue;
+					}
+					if(StringUtils.isBlank(school.getSchoolName()) ||
+							StringUtils.isBlank(school.getSchoolAdd()) ||
+							school.getArea() == null ||
+							school.getSchoolNum() == null ||
+							StringUtils.isBlank(school.getSchoolType()) ||
+							StringUtils.isBlank(school.getSchoolEducDepa()) ||
+							StringUtils.isBlank(school.getHeadName()) ||
+							StringUtils.isBlank(school.getHeadTl()) ||
+							StringUtils.isBlank(school.getSecuBranName()) ||
+							StringUtils.isBlank(school.getSecuBranTl()) ||
+							StringUtils.isBlank(school.getSecuGuardName()) ||
+							StringUtils.isBlank(school.getSecuGuardTl()) ||
+							StringUtils.isBlank(school.getSecuName()) ||
+							StringUtils.isBlank(school.getSecuTl()) ||
+							school.getSecuGuardNum() == null ||
+							StringUtils.isBlank(school.getIsAttention())
+					){
+						StringBuilder str = new StringBuilder();
+						str.append("(");
+						if(StringUtils.isBlank(school.getSchoolName())) {
+							str.append("学校名称信息错误;");
+						}
+						if(StringUtils.isBlank(school.getSchoolAdd())) {
+							str.append("学校地址信息错误;");
+						}
+						if(school.getArea() == null) {
+							str.append("所属区域信息错误;");
+						}
+						if(school.getSchoolNum() == null) {
+							str.append("在校学生人数信息错误;");
+						}
+						if(StringUtils.isBlank(school.getSchoolType())) {
+							str.append("学校办学类型信息错误;");
+						}
+						if(StringUtils.isBlank(school.getSchoolEducDepa())) {
+							str.append("学校所属主管教育行政部门信息错误;");
+						}
+						if(StringUtils.isBlank(school.getHeadName())) {
+							str.append("校长姓名信息错误;");
+						}
+						if(StringUtils.isBlank(school.getHeadTl())) {
+							str.append("校长联系方式信息错误;");
+						}
+						if(StringUtils.isBlank(school.getSecuBranName())) {
+							str.append("分管安全保卫责任人姓名信息错误;");
+						}
+						if(StringUtils.isBlank(school.getSecuBranTl())) {
+							str.append("分管安全保卫责任人联系方式信息错误;");
+						}
+						if(StringUtils.isBlank(school.getSecuGuardName())) {
+							str.append("安全保卫责任人姓名信息错误;");
+						}
+						if(StringUtils.isBlank(school.getSecuGuardTl())) {
+							str.append("安全保卫责任人联系方式信息错误;");
+						}
+						if(StringUtils.isBlank(school.getSecuName())) {
+							str.append("治安责任人姓名信息错误;");
+						}
+						if(StringUtils.isBlank(school.getSecuTl())) {
+							str.append("治安责任人联系方式罪信息错误;");
+						}
+						if(school.getSecuGuardNum() == null) {
+							str.append("安全保卫人数信息错误;");
+						}
+						if(StringUtils.isBlank(school.getIsAttention())) {
+							str.append("是否关注信息错误;");
+						}
+						str.append(")");
+						failureMsg.append("<br/>学校名称 " + school.getSchoolName() + " 导入失败：必填项为空。"+str.toString());
+						failureNum++;
+						continue;
+					}
+
+					if(ishave.toString().contains(school.getSchoolName())){
+						failureMsg.append("<br/>学校名称 " + school.getSchoolName() + " 导入失败：该学校名称已存在。");
+						failureNum++;
+						continue;
+					}
+
+
+					if(StringUtils.isNotEmpty(school.getHeadTl())){
+						//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+						if(school.getHeadTl().contains(".") || school.getHeadTl().contains("E")) {
+							double bd = Double.valueOf(school.getHeadTl());
+							String tel = df.format(bd);
+							school.setHeadTl(tel);
+						}
+					}
+					if(StringUtils.isNotEmpty(school.getSecuBranTl())){
+						//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+						if(school.getSecuBranTl().contains(".") || school.getSecuBranTl().contains("E")) {
+							double bd = Double.valueOf(school.getSecuBranTl());
+							String tel = df.format(bd);
+							school.setSecuBranTl(tel);
+						}
+					}
+					if(StringUtils.isNotEmpty(school.getSecuGuardTl())){
+						//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+						if(school.getSecuGuardTl().contains(".") || school.getSecuGuardTl().contains("E")) {
+							double bd = Double.valueOf(school.getSecuGuardTl());
+							String tel = df.format(bd);
+							school.setSecuGuardTl(tel);
+						}
+					}
+					if(StringUtils.isNotEmpty(school.getSecuTl())){
+						//将导入时电话获取包含“.”或“E10”，的转成正确的电话格式
+						if(school.getSecuTl().contains(".") || school.getSecuTl().contains("E")) {
+							double bd = Double.valueOf(school.getSecuTl());
+							String tel = df.format(bd);
+							school.setSecuTl(tel);
+						}
+					}
+
+					ccmHouseSchoolrimService.save(school);
+					successNum++;
+					ishave.append(school.getSchoolName() + ",");
+				} catch (ConstraintViolationException ex) {
+					failureMsg.append("<br/>学校名称 " + school.getSchoolName() + " 导入失败：");
+					List<String> messageList = BeanValidators.extractPropertyAndMessageAsList(ex, ": ");
+					for (String message : messageList) {
+						failureMsg.append(message + "; ");
+						failureNum++;
+					}
+				} catch (Exception ex) {
+					failureMsg.append("<br/>学校名称 " + school.getSchoolName() + " 导入失败：" + ex.getMessage());
+				}
+			}
+			if (failureNum > 0) {
+				failureMsg.insert(0, "，失败 " + failureNum + " 条学校数据，导入信息如下：");
+			}
+			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条学校数据" + failureMsg);
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导入学校数据失败！失败信息：" + e.getMessage());
+		}
+		return "redirect:"+Global.getAdminPath()+"/house/ccmHouseSchoolrim/list?repage";
 	}
 }

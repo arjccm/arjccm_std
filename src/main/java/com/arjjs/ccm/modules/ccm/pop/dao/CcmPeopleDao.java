@@ -228,4 +228,14 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
     SearchTab getData(@Param("areaId") String areaId);
 
 	SearchTab getSpecialNum(@Param("areaId") String areaId);
+
+	public List<EchartType> getPeopleCountByArea();
+
+	public List<EchartType> getImportPeopleCountOfArea();
+
+	//首页统计实有人口信息按type统计
+	List<CcmPeople> findCountByTypeNoArea();
+
+	//首页统计实有人口信息按 uniformlogo统计
+	List<CcmPeople> findCountByUniformlogoNoArea();
 }

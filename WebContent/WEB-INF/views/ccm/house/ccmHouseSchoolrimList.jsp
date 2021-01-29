@@ -10,12 +10,6 @@
 				$("#searchForm").submit();
 			})
 		});
-		function page(n,s){
-			$("#pageNo").val(n);
-			$("#pageSize").val(s);
-			$("#searchForm").submit();
-        	return false;
-        }
 		$(function(){
 			$(".pimg").click(function(){
 				var _this = $(this);//将当前的pimg元素作为_this传入函数
@@ -56,12 +50,46 @@
 				$(this).fadeOut("fast");
 			});
 		}
+
+        var isEmpty = true;
+
+        function saveImport() {
+            if (isEmpty) {
+                alert("请选择文件！");
+                return false;
+            } else {
+                loading('正在导入，请稍等...');
+            }
+        }
+
+        function changeFalse(_this) {
+            if (_this > 0) {
+                isEmpty = false;
+            }
+        }
 	</script>
+	<script type="text/javascript" src="${ctxStatic}/ccm/pop/js/ccmPeopleInfo.js"></script>
 </head>
 <body class="body">
 <%--<img  src="${ctxStatic}/images/shouyedaohang.png"; class="nav-home">--%>
 <%--<span class="nav-position">当前位置 ：</span><span class="nav-menu"><%=session.getAttribute("activeMenuName")%>></span><span class="nav-menu2">校园安全</span>--%>
 <ul class="back-list clearfix">
+	<div class="context" content="${ctx}"></div>
+	<!-- 导入、导出模块 -->
+	<div id="importBox" class="hide">
+		<form id="importForm" action="${ctx}/house/ccmHouseSchoolrim/import"
+			  method="post" enctype="multipart/form-data" class="form-search"
+			  style="padding-left: 20px; text-align: center;"
+			  onsubmit="return saveImport()">
+			<br/><input id="uploadFile" name="file" type="file"
+						style="width: 330px" onchange="changeFalse(this.value.length)"/><br/> <br/>
+			<input id="btnImportTemplate"
+				   class="btn btn-primary" type="button" value="模板下载 "
+				   onclick="location.href='${ctxStatic}/template/excel/school.xlsx'"/>
+			<input id="btnImportSubmit"
+				   class="btn btn-primary" type="submit" value="导  入 "/>
+		</form>
+	</div>
 	<ul class="nav nav-tabs">
 		<li class="active"><a class="nav-head" href="${ctx}/house/ccmHouseSchoolrim/list">学校列表</a></li>
 		<shiro:hasPermission name="house:ccmHouseSchoolrim:edit"><li><a href="${ctx}/house/ccmHouseSchoolrim/form" style="text-align: center">学校添加</a></li></shiro:hasPermission>
@@ -95,7 +123,10 @@
 
 		<a href="javascript:;" id="btnSubmit" class="btn btn-primary"  style="width: 49px;display:inline-block;float: right;">
 			<i></i><span style="font-size: 12px">查询</span>  </a>
-
+		<a href="javascript:;" id="btnImport" style="width: 49px;display:inline-block;float: left;"
+		   class="btn  btn-export ">
+			<i></i> <span style="font-size: 12px">导入</span>
+		</a>
 </div>
 	</form:form>
 	<sys:message content="${message}"/>
@@ -122,15 +153,26 @@
 				<td>${ccmHouseSchoolrim.schoolAdd}</td>
 				<td>${ccmHouseSchoolrim.headName}</td>
 				<td>${ccmHouseSchoolrim.headTl}</td>
-				<td><shiro:hasPermission name="house:ccmHouseSchoolrim:edit">
-    				<a class="btnList" href="${ctx}/house/ccmHouseSchoolrim/form?id=${ccmHouseSchoolrim.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
-					<a class="btnList" href="${ctx}/house/ccmHouseSchoolrim/delete?id=${ccmHouseSchoolrim.id}" onclick="return confirmx('确认要删除该学校吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
-					</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:view">
-					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseSchoolrim.id}&relevance_table=ccm_house_school', '记录信息', '800px', '660px')" 
-								  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
-				</shiro:hasPermission> <shiro:hasPermission name="log:ccmLogTail:edit">
-					<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseSchoolrim.id}&relevance_table=ccm_house_school', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
-					</shiro:hasPermission></td>
+				<td>
+					<shiro:hasPermission name="house:ccmHouseSchoolrim:edit">
+						<a class="btnList" href="${ctx}/house/ccmHouseSchoolrim/form?id=${ccmHouseSchoolrim.id}"  title="修改"><i class="iconfont icon-caozuotubiao-xiugai"></i></a>
+						<a class="btnList" href="${ctx}/house/ccmHouseSchoolrim/delete?id=${ccmHouseSchoolrim.id}" onclick="return confirmx('确认要删除该学校吗？', this.href)"  title="删除"><i class="iconfont icon-caozuotubiao-shanchu"></i></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="log:ccmLogTail:view">
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/list?relevance_id=${ccmHouseSchoolrim.id}&relevance_table=ccm_house_school', '记录信息', '800px', '660px')"
+									  title="记录信息"><i class="iconfont icon-caozuotubiao-jiluxinxi" style="color: cornflowerblue;"></i></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="log:ccmLogTail:edit">
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/log/ccmLogTail/formPro?relevance_id=${ccmHouseSchoolrim.id}&relevance_table=ccm_house_school', '添加记录', '800px', '660px')" title="添加记录"><i class="iconfont icon-caozuotubiao-tianjiachuli"></i> </a>
+					</shiro:hasPermission>
+
+					<c:if test="${not empty ccmHouseSchoolrim.isAttention && ccmHouseSchoolrim.isAttention eq '1'}">
+						<a class="btnList" onclick="parent.LayerDialog('${ctx}/house/ccmHouseSchoolrim/delAttentionForm?id=${ccmHouseSchoolrim.id}', '取消关注', '800px', '250px')"  title="取消关注"><i class="iconfont icon-caozuotubiao-tianjiaxingbiao"></i></a>
+					</c:if>
+					<c:if test="${empty ccmHouseSchoolrim.isAttention || ccmHouseSchoolrim.isAttention eq '0'}">
+						<a class="btnList" href="${ctx}/house/ccmHouseSchoolrim/addAttention?id=${ccmHouseSchoolrim.id}" title="添加关注"><i class="iconfont icon-caozuotubiao-tianjiaxingbiao" style="color: #999999"></i></a>
+					</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

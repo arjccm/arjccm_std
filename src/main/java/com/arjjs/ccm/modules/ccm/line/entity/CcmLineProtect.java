@@ -32,8 +32,44 @@ public class CcmLineProtect extends DataEntity<CcmLineProtect> {
 	private String dangGrade;		// 治安隐患等级
 	private String line;		// 线路
 	private String count;
-	
-	
+
+	private String propertyType;
+	private String propertyAscription;
+	private Double lineLength;
+	private String lineYears;
+
+	public String getPropertyType() {
+		return propertyType;
+	}
+
+	public void setPropertyType(String propertyType) {
+		this.propertyType = propertyType;
+	}
+
+	public String getPropertyAscription() {
+		return propertyAscription;
+	}
+
+	public void setPropertyAscription(String propertyAscription) {
+		this.propertyAscription = propertyAscription;
+	}
+
+	public Double getLineLength() {
+		return lineLength;
+	}
+
+	public void setLineLength(Double lineLength) {
+		this.lineLength = lineLength;
+	}
+
+	public String getLineYears() {
+		return lineYears;
+	}
+
+	public void setLineYears(String lineYears) {
+		this.lineYears = lineYears;
+	}
+
 	public String getCount() {
 		return count;
 	}

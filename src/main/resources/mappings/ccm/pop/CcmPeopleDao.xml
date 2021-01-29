@@ -3109,5 +3109,71 @@
 		AND a2.parent_ids LIKE concat( '%',#{areaId},'%' )
 		AND a2.type = '7'
 		AND a.amount_date= last_day(curdate())
-		</select>
+	</select>
+
+
+	<!-- 人员区域分布统计 -->
+	<select id="getPeopleCountByArea" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			a.name AS "type",
+			ifnull( p.person_amount , 0) + ifnull( p.oversea_amount , 0) + ifnull( p.float_amount , 0) + ifnull( p.unsettle_amount , 0) AS "num",
+			ifnull( p.float_amount , 0) AS "num1"
+		FROM
+			ccm_people_amount p
+			LEFT JOIN sys_area a ON p.area_id = a.id
+		WHERE
+			p.del_flag = '0'
+			AND a.type = '4'
+			group by a.id
+	</select>
+
+	<!-- 重点人员区域分布统计 -->
+	<select id="getImportPeopleCountOfArea" resultType="com.arjjs.ccm.tool.EchartType">
+		SELECT
+			a.name AS "type",
+			ifnull( p.aids_amount , 0) + ifnull( p.psychogeny_amount , 0) + ifnull( p.rectification_amount , 0) + ifnull( p.release_amount , 0) + ifnull( p.drugs_amount , 0) + ifnull( p.behind_amount , 0) + ifnull( p.kym_amount , 0) + ifnull( p.visit_amount , 0) + ifnull( p.heresy_amount , 0) + ifnull( p.dangerous_amount , 0) + ifnull( p.escape_amount , 0) + ifnull( p.harmNational_amount , 0) + ifnull( p.deliberatelyIllegal_amount , 0) + ifnull( p.dispute_amount , 0) AS "num"
+		FROM
+			ccm_people_amount p
+			LEFT JOIN sys_area a ON p.area_id = a.id
+		WHERE
+			p.del_flag = '0'
+			AND a.type = '5'
+			group by a.id
+	</select>
+
+	<!-- 首页统计实有人口信息按type统计 -->
+	<select id="findCountByTypeNoArea" resultType="CcmPeople">
+		SELECT
+			 c.value AS "type",
+			 IFNULL(d.count,0) AS "count"
+		FROM
+		(SELECT d.value AS "value" from sys_dict d WHERE d.del_flag = 0 AND d.type = 'sys_ccm_people' ) c
+		LEFT JOIN
+		(SELECT
+			count( a.id ) AS "count" ,a.type AS "type"
+		FROM
+			ccm_people a
+		WHERE
+			a.del_flag = 0
+		GROUP BY
+			a.type) d ON c.value = d.type
+	</select>
+
+	<!-- 首页统计实有人口信息按 uniformlogo统计-->
+	<select id="findCountByUniformlogoNoArea" resultType="CcmPeople">
+		SELECT
+			 c.value AS "uniformlogo",
+			 IFNULL(d.count,0) AS "count"
+		FROM
+		(SELECT d.value AS "value" from sys_dict d WHERE d.del_flag = 0 AND d.type = 'ccm_huh_cst' ) c
+		LEFT JOIN
+		(SELECT
+			count( a.id ) AS "count" ,a.uniformlogo AS "uniformlogo"
+		FROM
+			ccm_people a
+		WHERE
+			a.del_flag = 0
+		GROUP BY
+			a.uniformlogo) d ON c.value = d.uniformlogo
+	</select>
 </mapper>
