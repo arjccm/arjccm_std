@@ -49,4 +49,6 @@ public interface SysAreaDao extends CrudDao<SysArea> {
 	Integer policeCount();
 	//流动人员流入原因
 	List<EchartType> listFlawService();
+
+    List<SysArea> getAreaIdBytype();
 }

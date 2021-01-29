@@ -43,5 +43,8 @@ public class CcmRestOfficeService extends TreeService<CcmRestOfficeDao, Office> 
 	}
 
 
-
+	public int getOfficeByArea(String areaId) {
+		int userNum = ccmRestOfficeDao.getOfficeByArea(areaId);
+		return userNum;
+	}
 }

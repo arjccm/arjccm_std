@@ -50,4 +50,6 @@ public interface CcmDeviceDao extends CrudDao<CcmDevice> {
 	public int updateDevStatus(@Param("id") String id, @Param("status")String status);
 
 	List<CcmAreaDev> selectDevAreaInfo();
+
+    int getDeviceNumByArea(@Param("areaId") String areaId);
 }

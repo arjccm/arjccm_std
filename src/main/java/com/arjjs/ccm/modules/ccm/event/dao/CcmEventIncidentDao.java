@@ -210,4 +210,6 @@ public interface CcmEventIncidentDao extends CrudDao<CcmEventIncident> {
     Integer worker(@Param("w1") String w1,@Param("w2") String w2);
 
 	List<CcmEventIncident> findByPlaceId(String placeId);
+
+    List<CcmEventIncident> getEventIncident();
 }

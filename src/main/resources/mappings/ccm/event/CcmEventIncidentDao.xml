@@ -1799,5 +1799,7 @@
         where
 	    b.id = #{placeId}
     </select>
-
+<select id="getEventIncident" resultType="CcmEventIncident">
+    select * FROM ccm_event_incident where del_flag = 0 ORDER BY happen_date DESC limit 10
+</select>
 </mapper>

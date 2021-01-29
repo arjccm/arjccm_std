@@ -81,4 +81,8 @@ public class SysAreaService extends CrudService<SysAreaDao, SysArea> {
 	public List<String> selectAreaIdByParentIdAndId(InterceptorEntity interceptorEntity) {
 		return sysAreaDao.selectAreaIdByParentIdAndId(interceptorEntity);
 	}
+
+	public List<SysArea> getAreaIdBytype() {
+		return sysAreaDao.getAreaIdBytype();
+	}
 }

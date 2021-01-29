@@ -407,4 +407,14 @@
 	<update id="updateDevStatus" >
 			UPDATE ccm_device SET		status = #{status}		WHERE id = #{id}
 	</update>
+
+	<select id="getDeviceNumByArea" resultType="int">
+		SELECT DISTINCT
+			count( * )
+		FROM
+			ccm_device d
+		LEFT JOIN sys_area a ON d.area_id = a.id
+		WHERE
+			d.del_flag = 0 AND a.del_flag = 0 AND (a.parent_ids LIKE concat('%',#{areaId},'%') OR a.id = #{areaId})
+	</select>
 </mapper>

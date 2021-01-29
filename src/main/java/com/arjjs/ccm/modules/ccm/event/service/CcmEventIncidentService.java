@@ -902,4 +902,7 @@ public class CcmEventIncidentService extends CrudService<CcmEventIncidentDao, Cc
 		return list;
 	}
 
+	public List<CcmEventIncident> getEventIncident() {
+		return ccmEventIncidentDao.getEventIncident();
+	}
 }

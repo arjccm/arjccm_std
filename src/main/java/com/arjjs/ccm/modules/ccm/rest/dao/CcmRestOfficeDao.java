@@ -8,6 +8,7 @@ import java.util.List;
 import com.arjjs.ccm.common.persistence.TreeDao;
 import com.arjjs.ccm.common.persistence.annotation.MyBatisDao;
 import com.arjjs.ccm.modules.sys.entity.Office;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 机构DAO接口
@@ -22,5 +23,6 @@ public interface CcmRestOfficeDao extends TreeDao<Office> {
 	
 	List<Office> findByParentIdsLike(Office office);
 
-	
+
+	int getOfficeByArea(@Param("areaId") String areaId);
 }

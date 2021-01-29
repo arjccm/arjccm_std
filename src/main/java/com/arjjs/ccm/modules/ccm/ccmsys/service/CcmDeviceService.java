@@ -24,6 +24,7 @@ import com.arjjs.ccm.modules.sys.entity.Dict;
 import com.arjjs.ccm.modules.sys.utils.DictUtils;
 import com.arjjs.ccm.tool.EchartType;
 import com.google.common.collect.Lists;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -283,5 +284,9 @@ public class CcmDeviceService extends CrudService<CcmDeviceDao, CcmDevice> {
 	}
 	List<CcmTiandyOnlineStatus> findIdAndStatus() {
 		return dao.findIdAndStatus();
+	}
+
+	public int getDeviceNumByArea(String areaId) {
+		return dao.getDeviceNumByArea(areaId);
 	}
 }

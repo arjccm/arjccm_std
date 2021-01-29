@@ -644,4 +644,8 @@
 		ORDER BY
 	num
 	</select>
+
+	<select id="getAreaIdBytype" resultType="SysArea">
+		SELECT id,name FROM sys_area WHERE del_flag = 0 AND type = 4
+	</select>
 </mapper>
