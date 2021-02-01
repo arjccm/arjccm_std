@@ -31,6 +31,16 @@ $(document).ready(function () {
     });
 
 });
+var FontColor = '#647484';
+var backgroundColor;
+if ($.cookie('theme') == undefined) {
+    FontColor = '#647484';
+} else if ($.cookie('theme') == 'gradient') {
+    FontColor = '#647484';
+} else if ($.cookie('theme') == 'black') {
+    FontColor = '#fff';
+    backgroundColor = "transparent"
+}
 function getCookie(cname)
 {
   var name = cname + "=";
@@ -179,97 +189,74 @@ function showEventPreview(data){
 	Barchart.setOption(option);
 }
 function countEventData() {
-    var data = [{name:'开发区',value:19},{name:'西秀区',value:42},{name:'平坝区',value:10},{name:'普定县',value:13},
-		{name:'镇宁布依族苗族自治县',value:50},{name:'关岭布依族苗族自治县',value:49},{name:'紫云苗族布依族自治县',value:10}];
-	showEvent(data);
+    var name = ['中原区','二七区','管城回族区','金水区','上街区','惠济区','中牟县','郑州经济技术开发区','郑州高新技术产业开发区','郑州航空港经济综合实验区','巩义市','荥阳市','新密市','新郑市','登封市'];
+    var data = [153,248,263,188,295,130,100,90,233,60,183,167,259,299,103];
+	showEvent(name,data);
 }
-function showEvent(data){
-	var option = {
-		// title : {
-		// 	text: '事件实际发生量统计',
-		// 	subtext: '已发生事件',
-		// 	x:'center'
-		// },
-		tooltip : {
-			trigger: 'item2',
-			formatter: "{a} <br/>{b} : {c} ({d}%)"
-		},
-		legend: {
-			orient: 'vertical',
-			left: 'left',
-			data:['开发区','西秀区','平坝区','普定县','镇宁布依族苗族自治县','关岭布依族苗族自治县','紫云苗族布依族自治县']
-		},
-		series : [
-			{
-				name:"外圆",
-				type:'pie',
-				radius : ['0%', '60%'],
-				center:['50%', "50%"],
-				tooltip: {
-					formatter: function (parms) {
-						return "";
-					}
-				},
-				itemStyle:{
-					color:{
-						type: 'radial',
-						x: 0.5,
-						y: 0.5,
-						r: 0.5,
-						colorStops: [{
-							offset: 0, color: 'rgba(1,124,167,0)' // 0% 处的颜色
-						}, {
-							offset: 0.93, color: 'rgba(1,124,167,0)' // 0% 处的颜色
-						},{
-							offset: 1, color: 'rgba(1,124,167,.7)' // 100% 处的颜色
-						}],
-						global: false // 缺省为 false
-					}
+function showEvent(name,data){
+    var option = {
+        backgroundColor:backgroundColor,
+        // title : {
+        //     text: '行业类型统计',
+        //     textStyle : {
+        //         color :FontColor,
+        //     }
+        // },
+        tooltip : {
+            trigger: 'axis'
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data :  name,
+                axisLabel: {
+                    interval: 0,
+                    rotate: 18,
+                    textStyle: {    //文字样式
+                        fontSize: 10,
+                        // fontFamily: 'Microsoft YaHei'
+                        color :FontColor,
+                    }
+                }
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'数据',
+                type:'bar',
+                data:data,
+                markPoint : {
+                    data : [
 
-				},
-				z:5,
-				labelLine:{
-					show:false
-				},
-				data: ['100']
-			},
-			{
-				name:"内圆",
-				type:'pie',
-				radius : ['0%', '25%'],
-				center:['50%', "50%"],
-				itemStyle:{
-					color: innerCircleColor,
-					shadowColor:"rgba(1,124,167,1)",
-					shadowBlur: 20
+                    ]
+                },
+                itemStyle:{
+                    normal: {
+                        color: function(params) {
+                            // build a color map as your need.
+                            var colorList = [
+                                '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+                                '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+                                '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                        label: {
+                            show: true,
+                            position: 'top',
+                            formatter: '{c}'
+                        }
+                    }
+                }
+            }
+        ]
+    };
 
-				},
-				z:3,
-				labelLine:{
-					show:false
-				},
-				data: ['100']
-			},
-			{
-				name:'数据',
-				type:'pie',
-				radius : ['30%','55%'],
-				center: ['50%', '50%'],
-			
-				data:data,
-				itemStyle: {
-					emphasis: {
-						shadowBlur: 10,
-						shadowOffsetX: 0,
-						shadowColor: 'rgba(0, 0, 0, 0.5)'
-					}
-				},
-				z:10
-			}
-		],
-		color:['#07cdf1','#2875ec','#09a2f1','#ff6803', '#fdde01','#ff747b','#be25c7', '#dd3f60'],
-		backgroundColor:'transparent'
-	};
 	var Barchart = echarts.init(document.getElementById('eventEcharts'),'theme');
 	Barchart.setOption(option);
 }

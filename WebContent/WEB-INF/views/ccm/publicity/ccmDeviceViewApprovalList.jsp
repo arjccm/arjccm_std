@@ -72,8 +72,8 @@
 					<fmt:formatDate value="${ccmDeviceViewApproval.approvalTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="publicity:ccmDeviceViewApproval:edit"><td>
-    				<a href="${ctx}/publicity/ccmDeviceViewApproval/form?id=${ccmDeviceViewApproval.id}">修改</a>
-					<a href="${ctx}/publicity/ccmDeviceViewApproval/delete?id=${ccmDeviceViewApproval.id}" onclick="return confirmx('确认要删除该查看权限审批吗？', this.href)">删除</a>
+    				<a href="${ctx}/publicity/ccmDeviceViewApproval/form?id=${ccmDeviceViewApproval.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/publicity/ccmDeviceViewApproval/delete?id=${ccmDeviceViewApproval.id}" onclick="return confirmx('确认要删除该查看权限审批吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

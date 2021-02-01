@@ -73,8 +73,8 @@
 					${ccmDeviceViewLog.viewFrequency}
 				</td>
 				<shiro:hasPermission name="publicity:ccmDeviceViewLog:edit"><td>
-    				<a href="${ctx}/publicity/ccmDeviceViewLog/form?id=${ccmDeviceViewLog.id}">修改</a>
-					<a href="${ctx}/publicity/ccmDeviceViewLog/delete?id=${ccmDeviceViewLog.id}" onclick="return confirmx('确认要删除该历史查看管理吗？', this.href)">删除</a>
+    				<a href="${ctx}/publicity/ccmDeviceViewLog/form?id=${ccmDeviceViewLog.id}"><i title="修改" class="iconfont icon-caozuotubiao-xiugai"></i></a>
+					<a href="${ctx}/publicity/ccmDeviceViewLog/delete?id=${ccmDeviceViewLog.id}" onclick="return confirmx('确认要删除该历史查看管理吗？', this.href)"><i title="删除" class="iconfont icon-caozuotubiao-shanchu"></i></a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
