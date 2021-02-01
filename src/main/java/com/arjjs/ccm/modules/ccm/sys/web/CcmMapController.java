@@ -3363,7 +3363,7 @@ public class CcmMapController extends BaseController {
             Geometry geometry = new Geometry();
             featureDto.setGeometry(geometry);
             // 点位信息 测试为点
-            geometry.setType("Point");
+            geometry.setType("Polygon");
             // 为中心点赋值
             if (!StringUtils.isEmpty(importArea.getAreaPoint())) {
                 // 获取中心点的值
@@ -3373,21 +3373,29 @@ public class CcmMapController extends BaseController {
                 // 图形中心点
                 properties.setCoordinateCentre(centpoint);
             }
-            // 添加具体数据
-            // 封装的list
-            List<String> Coordinateslist = new ArrayList<>();
-            // 当前是否为空如果为空则进行添加空数组 ，否则进行拆分添加数据
-            String[] a = (StringUtils.isEmpty(importArea.getAreaPoint()) ? (",") : importArea.getAreaPoint()).split(",");
-            // 填充数据
-            if (a.length < 2) {
-                Coordinateslist.add("");
-                Coordinateslist.add("");
-            } else {
-                Coordinateslist.add(a[0]);
-                Coordinateslist.add(a[1]);
-            }
+			// 封装的list 以有孔与无孔进行添加
+			List<Object> CoordinateslistR = new ArrayList<>();
+			// 以下是无孔面积数组
+			String[] coordinates = (StringUtils.isEmpty(importArea.getAreaMap()) ? ";" : importArea.getAreaMap())
+					.split(";");
+			// 返回无孔结果 2层数据一个数据源
+			List<String[]> Coordinateslist = new ArrayList<>();
+			for (int i = 0; i < coordinates.length; i++) {
+				if (coordinates.length > 1) {
+					String corrdinate = coordinates[i];
+					// 以“，”为分割数据
+					String[] a = corrdinate.split(",");
+					Coordinateslist.add(a);
+				} else {
+					// 补充一个空的数据源
+					String[] a = {"", ""};
+					Coordinateslist.add(a);
+				}
+			}
+			// 根据格式要求 两层list
+			CoordinateslistR.add(Coordinateslist);
             // 装配点位
-            geometry.setCoordinates(Coordinateslist);
+            geometry.setCoordinates(CoordinateslistR);
         }
         // 添加数据
         geoJSON.setFeatures(featureList);

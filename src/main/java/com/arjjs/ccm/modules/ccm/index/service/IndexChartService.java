@@ -366,13 +366,13 @@ public class IndexChartService {
 	public Map<String, Object> getEventCountBySevenDay() {
 		Map<String, Object> result = new HashMap<>();
 		List<EchartType> list = new ArrayList<>();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat noyear = new SimpleDateFormat("MM-dd");
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
 		for(int i=0 ; i<7 ; i++){
 			EchartType echartType = new EchartType();
 			calendar.add(Calendar.DAY_OF_MONTH,-1);
-			echartType.setName(sdf.format(calendar.getTime()));
+			echartType.setName(noyear.format(calendar.getTime()));
 			echartType.setNum(0);
 			list.add(echartType);
 		}

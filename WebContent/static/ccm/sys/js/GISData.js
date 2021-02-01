@@ -956,9 +956,9 @@ function QueryAreaImport(){
         for(var i in featuresData){
             var id=featuresData[i].id;
             var x='',y='';
-            if(featuresData[i].geometry.coordinates){
-                x=featuresData[i].geometry.coordinates[0];
-                y=featuresData[i].geometry.coordinates[1];
+            if(featuresData[i].properties.coordinateCentre){
+                x=featuresData[i].properties.coordinateCentre[0];
+                y=featuresData[i].properties.coordinateCentre[1];
             }
             var properties=featuresData[i].properties;
             html+='<li class="datalist-li" id="map_li'+id+'" data-id="'+id+'" onclick="goToDetail('+x+','+y+',\''+id+'\','+JSON.stringify(properties).replace(/"/g, '&quot;')+')">';
@@ -981,15 +981,17 @@ function QueryAreaImport(){
             data.features[i].properties['nameNum']=''+(Number(i)+1)+'';
         }
 
-        Map.addJSON1([ {
-            'type': 'grids',
-            'data' : data,
-            'isShow' : true
-        } ])
+        Map.addJSON3([{
+            'type': 'Shortcut',
+            'data': data,
+            'id': 'yiyuan',
+            'isShow': true
+        }])
     })
 }
 //点击定位
 function goToDetail(x,y,id,info){
+    debugger
     var coordinates=[x,y];
     Map.map.getView().setZoom(18);
     Map.goTo(coordinates);
