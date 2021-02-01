@@ -7,6 +7,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arjjs.ccm.common.utils.StringUtils;
+import com.arjjs.ccm.modules.ccm.ccmsys.entity.CcmDevice;
+import com.arjjs.ccm.modules.ccm.ccmsys.service.CcmDeviceService;
 import com.arjjs.ccm.modules.ccm.rest.entity.DssVideoOcx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +41,9 @@ public class CcmRestVideo extends BaseController {
 	@Autowired
 	private SysConfigService sysConfigService;
 
+	@Autowired
+	private CcmDeviceService ccmDeviceService;
+
 	
 	/**
 	 * 能力开放平台的网站路径
@@ -66,7 +72,7 @@ public class CcmRestVideo extends BaseController {
 		String appKey = (String)jsonObject.get("appKey");
 		String appSecet = (String)jsonObject.get("appSecet");
 		String hikvisonVideoType = (String)jsonObject.get("hikvisonVideoType");
-		
+
 		HikVideoOcx hikVideoOcx = new HikVideoOcx();
 		hikVideoOcx.setSvrIp(svrIp);
 		hikVideoOcx.setSvrPort(svrPort);
@@ -119,6 +125,30 @@ public class CcmRestVideo extends BaseController {
 
 		result.setCode(CcmRestType.OK);
 		result.setResult(dssVideoOcx);
+		return result;
+	}
+
+	/**
+	 * @see  天地获取视频参数
+	 * @param
+	 * @return
+	 * @author cby
+	 * @version 2020-12-24
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getDevice", method = RequestMethod.GET)
+	public CcmRestResult getDevice(String id, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		CcmRestResult result = new CcmRestResult();
+		CcmDevice entity = null;
+		if (StringUtils.isNotBlank(id)){
+			entity = ccmDeviceService.get(id);
+		}
+		if (entity == null){
+			entity = new CcmDevice();
+		}
+
+		result.setCode(CcmRestType.OK);
+		result.setResult(entity);
 		return result;
 	}
 }

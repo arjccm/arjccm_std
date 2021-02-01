@@ -721,9 +721,12 @@ public class CcmMapOtherController extends BaseController {
     // 返回首页地图
     @RequestMapping(value = "indexMap", method = RequestMethod.GET)
     public String indexMap(Model model) {
+        User user = UserUtils.getUser();
+        CcmOrgArea userArea = ccmOrgAreaService.GetItByUserId(user.getId());
         //系统级别
         SysConfig sysConfig = SysConfigInit.SYS_LEVEL_CONFIG;
         model.addAttribute("sysConfig", sysConfig);
+        model.addAttribute("userArea", userArea);
         return "modules/sys/map/mapIndex";
     }
 

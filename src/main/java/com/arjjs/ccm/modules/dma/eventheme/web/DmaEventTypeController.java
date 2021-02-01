@@ -96,4 +96,14 @@ public class DmaEventTypeController {
     public Map<String,Object> countOfficeEvent() {
         return dmaEventTypeService.countOfficeEvent();
     }
+
+    /**
+     *   跳转事件分类统计
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = { "eventCountByType", "" })
+    public String eventCountByType(Model model) {
+        return "dma/eventheme/eventCountByType";
+    }
 }

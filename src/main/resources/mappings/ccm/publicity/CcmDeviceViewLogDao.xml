@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.publicity.dao.CcmDeviceViewLogDao">
+    
+	<sql id="ccmDeviceViewLogColumns">
+		a.id AS "id",
+		a.viewer AS "viewer.id",
+		u2.name AS "viewer.name",
+		a.view_content AS "viewContent",
+		a.start_time AS "startTime",
+		a.end_time AS "endTime",
+		a.view_time AS "viewTime",
+		a.view_frequency AS "viewFrequency",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate"
+	</sql>
+	
+	<sql id="ccmDeviceViewLogJoins">
+		LEFT JOIN sys_user u2 ON u2.id = a.viewer
+	</sql>
+    
+	<select id="get" resultType="CcmDeviceViewLog">
+		SELECT 
+			<include refid="ccmDeviceViewLogColumns"/>
+		FROM ccm_device_view_log a
+		<include refid="ccmDeviceViewLogJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CcmDeviceViewLog">
+		SELECT 
+			<include refid="ccmDeviceViewLogColumns"/>
+		FROM ccm_device_view_log a
+		<include refid="ccmDeviceViewLogJoins"/>
+		<where>
+
+			<if test="viewer != null and viewer.id != null and viewer.id != ''">
+				a.viewer = #{viewer.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CcmDeviceViewLog">
+		SELECT 
+			<include refid="ccmDeviceViewLogColumns"/>
+		FROM ccm_device_view_log a
+		<include refid="ccmDeviceViewLogJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_device_view_log(
+			id,
+			viewer,
+			view_content,
+			start_time,
+			end_time,
+			view_time,
+			view_frequency,
+			create_by,
+			create_date
+		) VALUES (
+			#{id},
+			#{viewer.id},
+			#{viewContent},
+			#{startTime},
+			#{endTime},
+			#{viewTime},
+			#{viewFrequency},
+			#{createBy.id},
+			#{createDate}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ccm_device_view_log SET 	
+			viewer = #{viewer.id},
+			view_content = #{viewContent},
+			start_time = #{startTime},
+			end_time = #{endTime},
+			view_time = #{viewTime},
+			view_frequency = #{viewFrequency},
+			create_by = #{createBy.id},
+			create_date = #{createDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM ccm_device_view_log
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

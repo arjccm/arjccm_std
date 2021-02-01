@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arjjs.ccm.modules.ccm.publicity.dao.CcmDeviceViewApprovalDao">
+    
+	<sql id="ccmDeviceViewApprovalColumns">
+		a.id AS "id",
+		u2.id AS "user.id",
+		u2.name AS "user.name",
+		a.reason AS "reason",
+		u4.id AS "approvalId.id",
+		u4.name AS "approvalId.name",
+		a.approval_result AS "approvalResult",
+		a.approval_time AS "approvalTime",
+		a.return_reason AS "returnReason",
+		a.return_opinion AS "returnOpinion",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="ccmDeviceViewApprovalJoins">
+		LEFT JOIN sys_user u2 ON u2.id = a.user_id
+		LEFT JOIN sys_user u4 ON u4.id = a.approval_id
+	</sql>
+    
+	<select id="get" resultType="CcmDeviceViewApproval">
+		SELECT 
+			<include refid="ccmDeviceViewApprovalColumns"/>
+		FROM ccm_device_view_approval a
+		<include refid="ccmDeviceViewApprovalJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CcmDeviceViewApproval">
+		SELECT 
+			<include refid="ccmDeviceViewApprovalColumns"/>
+		FROM ccm_device_view_approval a
+		<include refid="ccmDeviceViewApprovalJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="user != null and user.id != null and user.id != ''">
+				AND a.user_id = #{user.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CcmDeviceViewApproval">
+		SELECT 
+			<include refid="ccmDeviceViewApprovalColumns"/>
+		FROM ccm_device_view_approval a
+		<include refid="ccmDeviceViewApprovalJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ccm_device_view_approval(
+			id,
+			user_id,
+			reason,
+			approval_id,
+			approval_result,
+			approval_time,
+			return_reason,
+			return_opinion,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{user.id},
+			#{reason},
+			#{approvalId.id},
+			#{approvalResult},
+			#{approvalTime},
+			#{returnReason},
+			#{returnOpinion},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ccm_device_view_approval SET 	
+			user_id = #{user.id},
+			reason = #{reason},
+			approval_id = #{approvalId.id},
+			approval_result = #{approvalResult},
+			approval_time = #{approvalTime},
+			return_reason = #{returnReason},
+			return_opinion = #{returnOpinion},
+			create_by = #{createBy.id},
+			create_date = #{createDate},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE ccm_device_view_approval SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
