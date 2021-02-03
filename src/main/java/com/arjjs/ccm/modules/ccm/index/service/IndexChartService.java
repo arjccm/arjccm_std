@@ -401,4 +401,23 @@ public class IndexChartService {
 		return result;
 	}
 
+	public Map<String, Object> getPeopleCountAndAreaName() {
+		Map<String, Object> result = new HashMap<>();
+		List<EchartType> list = ccmPeopleDao.getPeopleCountAndAreaName();
+		List<Map<String, Object>> data = new ArrayList<>();
+		int max = 0;
+		for(int i=0 ; i<list.size() ; i++){
+			Map<String, Object> map = new HashMap<>();
+			map.put("name", list.get(i).getType());
+			map.put("value", list.get(i).getNum());
+			data.add(map);
+			if(list.get(i).getNum() > max){
+				max = list.get(i).getNum();
+			}
+		}
+		result.put("data",data);
+		result.put("max",max);
+		return result;
+	}
+
 }

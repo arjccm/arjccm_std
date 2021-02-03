@@ -327,4 +327,16 @@ public class CcmRestData extends BaseController {
         result.setResult(map);
         return result;
     }
+
+    @ResponseBody
+    @RequestMapping(value="/getPeopleCountAndAreaName", method = RequestMethod.GET)
+    public CcmRestResult getPeopleCountAndAreaName(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        logger.info("当前正在执行的类名为》》》"+Thread.currentThread().getStackTrace()[1].getClassName());
+        logger.info("当前正在执行的方法名为》》》"+Thread.currentThread().getStackTrace()[1].getMethodName());
+        CcmRestResult result = new CcmRestResult();
+        Map<String, Object> map = indexChartService.getPeopleCountAndAreaName();
+        result.setCode(CcmRestType.OK);
+        result.setResult(map);
+        return result;
+    }
 }

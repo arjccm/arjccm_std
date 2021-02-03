@@ -233,6 +233,8 @@ public interface CcmPeopleDao extends CrudDao<CcmPeople> {
 
 	public List<EchartType> getImportPeopleCountOfArea();
 
+	public List<EchartType> getPeopleCountAndAreaName();
+
 	//首页统计实有人口信息按type统计
 	List<CcmPeople> findCountByTypeNoArea();
 
